@@ -1,0 +1,30 @@
+# Dependencies and build caches
+node_modules/
+dist/
+build/
+.cache/
+.parcel-cache/
+.vite/
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Local environment and temporary files
+.env
+.env.*
+*.log
+tmp/
+temp/
+
+# Internal planning notes, not part of the public web app
+PROJECT_STUDY.md
+
+# Keep large source/reference clones out if they are ever copied here by mistake
+Nurses revision/
+Midwives Revision/
+NursesLabs Clone/
+*.pdf
