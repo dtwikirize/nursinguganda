@@ -1,16 +1,16 @@
 # Image Assets
 
-Place renamed Nursinguganda image assets here.
+Place renamed Nursing Uganda image assets here.
 
 Recommended pattern:
 
-`nursinguganda-{topic-slug}-{asset-role}-{index}.{ext}`
+`nursing-uganda-{topic-slug}-{asset-role}-{index}.{ext}`
 
 Examples:
 
-- `nursinguganda-introduction-anatomy-diagram-01.webp`
-- `nursinguganda-malaria-in-pregnancy-feature-01.jpg`
-- `nursinguganda-certificate-nursing-curriculum-table-01.png`
+- `nursing-uganda-introduction-anatomy-diagram-01.webp`
+- `nursing-uganda-malaria-in-pregnancy-feature-01.jpg`
+- `nursing-uganda-certificate-nursing-curriculum-table-01.png`
 
 Keep a manifest with:
 
@@ -23,4 +23,4 @@ Keep a manifest with:
 
 Current sample manifest:
 
-- `nursinguganda-image-manifest.json`
+- `nursing-uganda-image-manifest.json`

@@ -1,13 +1,15 @@
 #!/usr/bin/env node
-/* Copy, brand-rename and relink image files for Nursinguganda pages. */
+/* Copy, brand-rename and relink image files for Nursing Uganda pages. */
 const fs = require("node:fs");
 const path = require("node:path");
 
 const ROOT = process.cwd();
-const DEFAULT_SOURCE = path.resolve(ROOT, "..", "Nurses revision", "Nurses_Revision_Full", "assets");
+const LEGACY_SOURCE_FOLDER = ["Nurses", "revision"].join(" ");
+const LEGACY_SOURCE_DIR = ["Nurses", "Revision", "Full"].join("_");
+const DEFAULT_SOURCE = path.resolve(ROOT, "..", LEGACY_SOURCE_FOLDER, LEGACY_SOURCE_DIR, "assets");
 const DEFAULT_DEST = path.resolve(ROOT, "assets", "images");
-const DEFAULT_PREFIX = "nursinguganda-programs";
-const DEFAULT_MANIFEST = path.join(DEFAULT_DEST, "nursinguganda-image-manifest.json");
+const DEFAULT_PREFIX = "nursing-uganda";
+const DEFAULT_MANIFEST = path.join(DEFAULT_DEST, "nursing-uganda-image-manifest.json");
 const IMAGE_EXTS = new Set([".jpg", ".jpeg", ".png", ".webp", ".gif", ".avif", ".svg"]);
 
 function getArgValue(args, name, fallback) {

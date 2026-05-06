@@ -118,7 +118,7 @@ document.querySelectorAll("[data-newsletter-form]").forEach((form) => {
     event.preventDefault();
     const status = form.querySelector("[data-form-status]");
     if (status) {
-      status.textContent = "Thank you. Newsletter signup is ready for email integration.";
+      status.textContent = "Thank you. Updates signup is ready for deployment integration.";
     }
     form.reset();
   });
@@ -129,7 +129,7 @@ document.querySelectorAll("[data-contact-form]").forEach((form) => {
     event.preventDefault();
     const status = form.querySelector("[data-form-status]");
     if (status) {
-      status.textContent = "Message captured locally for the demo. Connect this form to email on deployment.";
+      status.textContent = "Message captured locally for the demo. Connect this form on deployment.";
     }
     form.reset();
   });

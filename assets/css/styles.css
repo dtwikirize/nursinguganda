@@ -688,6 +688,214 @@ textarea {
   margin-top: 18px;
 }
 
+.curriculum-hero {
+  padding: 72px 0;
+  background:
+    linear-gradient(135deg, rgba(3, 4, 94, 0.94), rgba(0, 119, 182, 0.88)),
+    url("../images/nursing-uganda-anatomy-physiology-course-01.jpg") center/cover;
+  color: var(--white);
+}
+
+.curriculum-hero.compact {
+  padding: 52px 0;
+}
+
+.curriculum-hero h1,
+.curriculum-hero h2,
+.curriculum-hero p,
+.curriculum-hero .breadcrumbs,
+.curriculum-hero .breadcrumbs a,
+.curriculum-hero .breadcrumbs .current {
+  color: var(--white);
+}
+
+.curriculum-hero p {
+  max-width: 760px;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.curriculum-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 34px;
+  align-items: end;
+}
+
+.curriculum-stat-panel {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.curriculum-stat-panel div {
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(14px);
+}
+
+.curriculum-stat-panel strong {
+  display: block;
+  color: var(--white);
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.curriculum-stat-panel span {
+  display: block;
+  margin-top: 6px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.curriculum-program-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.curriculum-program-card,
+.curriculum-unit-card {
+  display: block;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  box-shadow: 0 14px 34px rgba(3, 4, 94, 0.07);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.curriculum-program-card:hover,
+.curriculum-unit-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(0, 119, 182, 0.3);
+  box-shadow: var(--shadow);
+}
+
+.curriculum-shell {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.curriculum-rail {
+  position: sticky;
+  top: 102px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--soft-blue);
+}
+
+.curriculum-rail h2 {
+  margin-bottom: 12px;
+  font-size: 1rem;
+}
+
+.curriculum-rail a {
+  display: block;
+  padding: 9px 0;
+  border-top: 1px solid rgba(219, 232, 239, 0.9);
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.curriculum-flow {
+  display: grid;
+  gap: 34px;
+}
+
+.curriculum-year {
+  scroll-margin-top: 110px;
+}
+
+.curriculum-year-head {
+  margin-bottom: 16px;
+}
+
+.curriculum-year-head span,
+.unit-code {
+  display: inline-block;
+  margin-bottom: 8px;
+  color: var(--bright-teal-blue);
+  font-size: 0.82rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.curriculum-semester,
+.topic-group {
+  margin-bottom: 18px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: #fbfdff;
+}
+
+.curriculum-semester-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.curriculum-semester-head span {
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 800;
+}
+
+.curriculum-unit-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.curriculum-unit-card h4 {
+  margin-bottom: 8px;
+  font-size: 1.05rem;
+}
+
+.topic-list {
+  display: grid;
+  gap: 10px;
+}
+
+.topic-row {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: 14px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--white);
+}
+
+.topic-row > span {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--deep-twilight);
+  background: var(--light-cyan);
+  font-weight: 900;
+}
+
+.topic-row h3 {
+  font-size: 1rem;
+}
+
+.topic-row p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
 .standards-list {
   display: grid;
   gap: 12px;
@@ -790,8 +998,14 @@ textarea {
   }
 
   .hero-grid,
-  .newsletter {
+  .newsletter,
+  .curriculum-hero-grid,
+  .curriculum-shell {
     grid-template-columns: 1fr;
+  }
+
+  .curriculum-rail {
+    position: static;
   }
 
   .pathway {
@@ -848,8 +1062,19 @@ textarea {
   .grid.programmes,
   .grid.four,
   .grid.three,
-  .meta-grid {
+  .meta-grid,
+  .curriculum-program-grid,
+  .curriculum-unit-grid,
+  .curriculum-stat-panel {
     grid-template-columns: 1fr;
+  }
+
+  .curriculum-hero {
+    padding: 48px 0;
+  }
+
+  .curriculum-semester-head {
+    display: block;
   }
 
   .pathway {

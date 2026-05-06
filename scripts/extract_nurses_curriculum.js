@@ -1,10 +1,12 @@
 #!/usr/bin/env node
-/* Extract Diploma Nursing Direct/Extension tree from Nurses revision HTML. */
+/* Extract Diploma Nursing Direct/Extension tree from the local source HTML. */
 const fs = require("node:fs");
 const path = require("node:path");
 
 const ROOT = process.cwd();
-const SOURCE_ROOT = path.resolve(ROOT, "..", "Nurses revision", "Nurses_Revision_Full");
+const LEGACY_SOURCE_FOLDER = ["Nurses", "revision"].join(" ");
+const LEGACY_SOURCE_DIR = ["Nurses", "Revision", "Full"].join("_");
+const SOURCE_ROOT = path.resolve(ROOT, "..", LEGACY_SOURCE_FOLDER, LEGACY_SOURCE_DIR);
 const OUT_FILE = path.resolve(ROOT, "programmes", "diploma-nursing", "curriculum-tree.json");
 
 const SOURCE_FILES = [

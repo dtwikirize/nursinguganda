@@ -47,25 +47,17 @@ function writeFile(targetFile, html) {
 function nav(rootRel) {
   return `<header class="site-header">
       <div class="container nav-shell">
-        <a class="brand" href="${rootRel}" aria-label="Nursing Revision Uganda home">
+        <a class="brand" href="${rootRel}" aria-label="Nursing Uganda notes home">
           <span class="brand-mark">NU</span>
-          <span>Nursing Revision Uganda<small>Nursinguganda.com</small></span>
+          <span>Nursing Uganda<small>Nursing Uganda</small></span>
         </a>
         <nav class="main-nav" data-main-nav aria-label="Main navigation">
-          <a href="${rootRel}">Home</a>
-          <a class="active" href="${rootRel}programmes/">Programmes</a>
+          <a href="${rootRel}">Notes</a>
           <a href="${rootRel}courses/">Courses</a>
-          <a href="${rootRel}notes/">Notes</a>
-          <a href="${rootRel}past-papers/">Past Papers</a>
-          <a href="${rootRel}quizzes/">Quizzes</a>
-          <a href="${rootRel}licensing/">Licensing</a>
-          <a href="${rootRel}schools/">Schools</a>
-          <a href="${rootRel}blog/">Blog</a>
-          <a href="${rootRel}contact/">Contact</a>
+          <a href="${rootRel}resources/">Resources</a>
         </nav>
         <div class="nav-actions">
-          <a class="login-link" href="${rootRel}login/">Login</a>
-          <a class="button primary" href="${rootRel}programmes/">Start Learning</a>
+          <a class="button primary" href="${rootRel}courses/">Browse Courses</a>
           <button class="mobile-toggle" type="button" data-nav-toggle aria-label="Open menu" aria-expanded="false">
             <span></span><span></span><span></span>
           </button>
@@ -78,7 +70,7 @@ function footer(rootRel, note) {
   return `<footer class="site-footer">
       <div class="container">
         <div class="footer-bottom">
-          <span>&copy; 2026 Nursinguganda.com</span>
+          <span>&copy; 2026 Nursing Uganda</span>
           <span>${escapeHtml(note)}</span>
         </div>
       </div>
@@ -114,7 +106,7 @@ function pageShell({ title, description, rootRel, main, schema }) {
   <body>
     ${nav(rootRel)}
     <main>${main}</main>
-    ${footer(rootRel, "Curriculum mapped from Nurses Revision source and organized for structured learning.")}
+    ${footer(rootRel, "Curriculum mapped from Nursing Uganda source and organized for structured learning.")}
   </body>
 </html>`;
 }
@@ -126,7 +118,7 @@ function trackMeta(trackKey) {
       segment: "extension",
       programmeHref: "../",
       intro:
-        "Extension programme flow organized by year, semester, course unit and topic from the Nurses Revision curriculum."
+        "Extension programme flow organized by year, semester, course unit and topic from the Nursing Uganda curriculum."
     };
   }
   return {
@@ -134,7 +126,7 @@ function trackMeta(trackKey) {
     segment: "",
     programmeHref: "./",
     intro:
-      "Direct-entry programme flow organized by year, semester, course unit and topic from the Nurses Revision curriculum."
+      "Direct-entry programme flow organized by year, semester, course unit and topic from the Nursing Uganda curriculum."
   };
 }
 
@@ -180,11 +172,11 @@ function generateProgrammeOverview(programmes) {
             { label: "Diploma in Nursing", current: true }
           ])}
           <h1>Diploma in Nursing Programmes</h1>
-          <p>Direct and Extension structures are imported from Nurses Revision and arranged for clean Uganda-focused study navigation.</p>
+          <p>Direct and Extension structures are imported from Nursing Uganda and arranged for clean Uganda-focused study navigation.</p>
           <div class="meta-grid">
             <div class="meta-box"><strong>Tracks</strong><span>Direct + Extension</span></div>
             <div class="meta-box"><strong>Structure</strong><span>Year → Semester → Course Unit → Topic</span></div>
-            <div class="meta-box"><strong>Source</strong><span>Nurses Revision curriculum pages</span></div>
+            <div class="meta-box"><strong>Source</strong><span>Nursing Uganda curriculum pages</span></div>
             <div class="meta-box"><strong>Status</strong><span>Mapped and generated locally</span></div>
           </div>
         </div>
@@ -216,7 +208,7 @@ function generateProgrammeOverview(programmes) {
   writeFile(
     outFile,
     pageShell({
-      title: "Diploma in Nursing Programmes | Nursing Revision Uganda",
+      title: "Diploma in Nursing Programmes | Nursing Uganda",
       description:
         "Direct and Extension Diploma in Nursing programme maps with years, semesters, course units and topic pages for Uganda nursing learners.",
       rootRel,
@@ -267,7 +259,7 @@ function generateTrackOverview(trackKey, programme) {
   writeFile(
     outFile,
     pageShell({
-      title: "Diploma in Nursing Extension | Nursing Revision Uganda",
+      title: "Diploma in Nursing Extension | Nursing Uganda",
       description: "Diploma in Nursing Extension programme pages by year, semester and course units.",
       rootRel,
       main
@@ -346,7 +338,7 @@ function generateYearPage({ trackKey, yearKey, yearData }) {
   writeFile(
     outFile,
     pageShell({
-      title: `${meta.label} Year ${yearData.year} | Nursing Revision Uganda`,
+      title: `${meta.label} Year ${yearData.year} | Nursing Uganda`,
       description: `${meta.label} Year ${yearData.year} semesters and course-unit navigation for Uganda nursing students.`,
       rootRel,
       main
@@ -419,7 +411,7 @@ function generateSemesterPage({ trackKey, yearData, yearKey, semesterKey, semest
         <div class="container">
           ${breadcrumbs(crumbs)}
           <h1>${escapeHtml(meta.label)} - Year ${yearData.year} Semester ${semesterData.semester}</h1>
-          <p>Browse course units mapped from Nurses Revision and continue into topic notes, quizzes and resources.</p>
+          <p>Browse course units mapped from Nursing Uganda and continue into topic notes, quizzes and resources.</p>
         </div>
       </section>
       <section class="section">
@@ -450,7 +442,7 @@ function generateSemesterPage({ trackKey, yearData, yearKey, semesterKey, semest
   writeFile(
     outFile,
     pageShell({
-      title: `${meta.label} Year ${yearData.year} Semester ${semesterData.semester} | Nursing Revision Uganda`,
+      title: `${meta.label} Year ${yearData.year} Semester ${semesterData.semester} | Nursing Uganda`,
       description: `${meta.label} Year ${yearData.year} Semester ${semesterData.semester} course units and topic navigation.`,
       rootRel,
       main
@@ -517,7 +509,7 @@ function generateCourseAndTopicPages({ trackKey, yearData, yearKey, semesterData
           <div>
             <section class="content-panel">
               <h2>Course Overview</h2>
-              <p>This course unit is mapped from Nurses Revision curriculum content and structured for clear learning progression.</p>
+              <p>This course unit is mapped from Nursing Uganda curriculum content and structured for clear learning progression.</p>
               <div class="tag-row">
                 <span class="tag">Year ${yearData.year}</span>
                 <span class="tag">Semester ${semesterData.semester}</span>
@@ -555,7 +547,7 @@ function generateCourseAndTopicPages({ trackKey, yearData, yearKey, semesterData
   writeFile(
     path.join(courseDir, "index.html"),
     pageShell({
-      title: `${course.code}: ${course.title} | Nursing Revision Uganda`,
+      title: `${course.code}: ${course.title} | Nursing Uganda`,
       description: `${course.code} ${course.title} notes, topic pages, quiz links and past questions for Uganda nursing learners.`,
       rootRel,
       main: courseMain,
@@ -563,7 +555,7 @@ function generateCourseAndTopicPages({ trackKey, yearData, yearKey, semesterData
         "@context": "https://schema.org",
         "@type": "Course",
         name: `${course.code}: ${course.title}`,
-        provider: { "@type": "Organization", name: "Nursinguganda" }
+        provider: { "@type": "Organization", name: "Nursing Uganda" }
       }
     })
   );
@@ -658,7 +650,7 @@ function generateCourseAndTopicPages({ trackKey, yearData, yearKey, semesterData
   writeFile(
     path.join(topicDir, "index.html"),
     pageShell({
-      title: `${topicTitle} | Nursing Revision Uganda`,
+      title: `${topicTitle} | Nursing Uganda`,
       description: `${topicTitle} topic notes and objectives for ${course.code} ${course.title}.`,
       rootRel: topicRootRel,
       main: topicMain,
@@ -667,7 +659,7 @@ function generateCourseAndTopicPages({ trackKey, yearData, yearKey, semesterData
         "@type": "LearningResource",
         name: topicTitle,
         educationalLevel: "Diploma in Nursing",
-        provider: { "@type": "Organization", name: "Nursinguganda" }
+        provider: { "@type": "Organization", name: "Nursing Uganda" }
       }
     })
   );
