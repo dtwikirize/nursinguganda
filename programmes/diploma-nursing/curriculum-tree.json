@@ -1,0 +1,260 @@
+{
+  "generated_at_utc": "2026-05-06T01:24:15.157Z",
+  "source_root": "D:\\Projects\\Nursing Uganda\\Nurses revision\\Nurses_Revision_Full",
+  "programmes": {
+    "direct": {
+      "key": "direct",
+      "label": "Diploma in Nursing (Direct)",
+      "source_file": "diploma-in-nursing-direct-curriculum.html",
+      "years": {
+        "year-1": {
+          "year": 1,
+          "semesters": {
+            "semester-1": {
+              "semester": 1,
+              "courseUnits": [
+                {
+                  "code": "DND 111",
+                  "title": "Anatomy and Physiology (I) and First Aid",
+                  "slug": "anatomy-and-physiology-i-and-first-aid"
+                },
+                {
+                  "code": "DND 112",
+                  "title": "Foundations of Nursing (I), Sociology and Psychology",
+                  "slug": "foundations-of-nursing-i-sociology-and-psychology"
+                },
+                {
+                  "code": "DND 113",
+                  "title": "Introduction to Basic Computer and Guidance and Counseling",
+                  "slug": "introduction-to-basic-computer-and-guidance-and-counseling"
+                },
+                {
+                  "code": "DND 114",
+                  "title": "Microbiology, Personal and Communal Health",
+                  "slug": "microbiology-personal-and-communal-health"
+                }
+              ]
+            },
+            "semester-2": {
+              "semester": 2,
+              "courseUnits": [
+                {
+                  "code": "DND 121",
+                  "title": "Anatomy and Physiology (II)",
+                  "slug": "anatomy-and-physiology-ii"
+                },
+                {
+                  "code": "DND 122",
+                  "title": "Foundations of Nursing (II)",
+                  "slug": "foundations-of-nursing-ii"
+                },
+                {
+                  "code": "DND 123",
+                  "title": "Medical Nursing (I) and Pharmacology (I)",
+                  "slug": "medical-nursing-i-and-pharmacology-i"
+                },
+                {
+                  "code": "DND 124",
+                  "title": "Surgical Nursing (I) and Paediatric Nursing (I)",
+                  "slug": "surgical-nursing-i-and-paediatric-nursing-i"
+                }
+              ]
+            }
+          }
+        },
+        "year-2": {
+          "year": 2,
+          "semesters": {
+            "semester-1": {
+              "semester": 1,
+              "courseUnits": [
+                {
+                  "code": "DND 211",
+                  "title": "Medical Nursing (II) and Tropical Medicines",
+                  "slug": "medical-nursing-ii-and-tropical-medicines"
+                },
+                {
+                  "code": "DND 212",
+                  "title": "Surgical Nursing (II)",
+                  "slug": "surgical-nursing-ii"
+                },
+                {
+                  "code": "DND 213",
+                  "title": "Gynaecology (I) and Reproductive Health( I)",
+                  "slug": "gynaecology-i-and-reproductive-health-i"
+                },
+                {
+                  "code": "DND 214",
+                  "title": "Mental Health Nursing (I) and Pharmacology (II)",
+                  "slug": "mental-health-nursing-i-and-pharmacology-ii"
+                }
+              ]
+            },
+            "semester-2": {
+              "semester": 2,
+              "courseUnits": [
+                {
+                  "code": "DND 221",
+                  "title": "Foundations of Nursing (III)",
+                  "slug": "foundations-of-nursing-iii"
+                },
+                {
+                  "code": "DND 222",
+                  "title": "Medical Nursing (III)",
+                  "slug": "medical-nursing-iii"
+                },
+                {
+                  "code": "DND 223",
+                  "title": "Surgical Nursing III and Paediatric Nursing (II)",
+                  "slug": "surgical-nursing-iii-and-paediatric-nursing-ii"
+                },
+                {
+                  "code": "DND 224",
+                  "title": "Mental Health Nursing(II) Pharmacology (III)",
+                  "slug": "mental-health-nursing-ii-pharmacology-iii"
+                }
+              ]
+            }
+          }
+        },
+        "year-3": {
+          "year": 3,
+          "semesters": {
+            "semester-1": {
+              "semester": 1,
+              "courseUnits": [
+                {
+                  "code": "DND 311",
+                  "title": "Primary Health Care (PHC) and Community Based Health Care (CBHC)",
+                  "slug": "primary-health-care-phc-and-community-based-health-care-cbhc"
+                },
+                {
+                  "code": "DND 312",
+                  "title": "Applied Research and Teaching Methodology",
+                  "slug": "applied-research-and-teaching-methodology"
+                },
+                {
+                  "code": "DND 313",
+                  "title": "Palliative Care Nursing",
+                  "slug": "palliative-care-nursing"
+                },
+                {
+                  "code": "DND 314",
+                  "title": "Disaster Management and Occupational Health and Safety",
+                  "slug": "disaster-management-and-occupational-health-and-safety"
+                }
+              ]
+            },
+            "semester-2": {
+              "semester": 2,
+              "courseUnits": [
+                {
+                  "code": "DND 321",
+                  "title": "Paediatric Nursing (III)",
+                  "slug": "paediatric-nursing-iii"
+                },
+                {
+                  "code": "DND 322",
+                  "title": "Gynaecology (II) and Reproductive Health (II)",
+                  "slug": "gynaecology-ii-and-reproductive-health-ii"
+                },
+                {
+                  "code": "DND 323",
+                  "title": "Health Service Management and Entrepreneurship",
+                  "slug": "health-service-management-and-entrepreneurship"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "extension": {
+      "key": "extension",
+      "label": "Diploma in Nursing (Extension)",
+      "source_file": "diploma-nursing-extension-curriculum.html",
+      "years": {
+        "year-1": {
+          "year": 1,
+          "semesters": {
+            "semester-1": {
+              "semester": 1,
+              "courseUnits": [
+                {
+                  "code": "DNE 111",
+                  "title": "Foundations of Nursing (III)",
+                  "slug": "foundations-of-nursing-iii"
+                },
+                {
+                  "code": "DNE 112",
+                  "title": "Medical Nursing (III)",
+                  "slug": "medical-nursing-iii"
+                },
+                {
+                  "code": "DNE 113",
+                  "title": "Surgical Nursing III and Paediatric Nursing (II)",
+                  "slug": "surgical-nursing-iii-and-paediatric-nursing-ii"
+                },
+                {
+                  "code": "DNE 114",
+                  "title": "Mental Health Nursing(II) Pharmacology (III)",
+                  "slug": "mental-health-nursing-ii-pharmacology-iii"
+                }
+              ]
+            },
+            "semester-2": {
+              "semester": 2,
+              "courseUnits": [
+                {
+                  "code": "DNE 121",
+                  "title": "Primary Health Care (PHC) and Community Based Health Care (CBHC)",
+                  "slug": "primary-health-care-phc-and-community-based-health-care-cbhc"
+                },
+                {
+                  "code": "DNE 122",
+                  "title": "Applied Research and Teaching Methodology",
+                  "slug": "applied-research-and-teaching-methodology"
+                },
+                {
+                  "code": "DNE 123",
+                  "title": "Palliative Care Nursing",
+                  "slug": "palliative-care-nursing"
+                },
+                {
+                  "code": "DNE 124",
+                  "title": "Disaster Management and Occupational Health and Safety",
+                  "slug": "disaster-management-and-occupational-health-and-safety"
+                }
+              ]
+            }
+          }
+        },
+        "year-2": {
+          "year": 2,
+          "semesters": {
+            "semester-1": {
+              "semester": 1,
+              "courseUnits": [
+                {
+                  "code": "DNE 211",
+                  "title": "Paediatric Nursing (III)",
+                  "slug": "paediatric-nursing-iii"
+                },
+                {
+                  "code": "DNE 212",
+                  "title": "Gynaecology (II) and Reproductive Health (II)",
+                  "slug": "gynaecology-ii-and-reproductive-health-ii"
+                },
+                {
+                  "code": "DNE 213",
+                  "title": "Health Service Management and Entrepreneurship",
+                  "slug": "health-service-management-and-entrepreneurship"
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

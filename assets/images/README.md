@@ -20,3 +20,7 @@ Keep a manifest with:
 - Alt text
 - Source/license note
 - Verification status
+
+Current sample manifest:
+
+- `nursinguganda-image-manifest.json`
