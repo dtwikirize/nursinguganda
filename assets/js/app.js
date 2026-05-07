@@ -572,6 +572,14 @@ function buttonLink(href, label, variant = "primary", iconName = "", extra = "")
 }
 
 const imageCatalog = {
+  heroNurse: {
+    src: "assets/images/nursing-uganda-hero-nursing-student-skills-lab-01.png",
+    alt: "Nursing Uganda student studying in a clinical skills lab"
+  },
+  curriculum: {
+    src: "assets/images/nursing-uganda-curriculum-study-group-01.png",
+    alt: "Nursing and midwifery students studying a curriculum together"
+  },
   anatomy: {
     src: "assets/images/nursing-uganda-anatomy-physiology-course-01.jpg",
     alt: "Anatomy and physiology learning illustration"
@@ -589,16 +597,20 @@ const imageCatalog = {
     alt: "Mental health nursing reference image"
   },
   nursing: {
-    src: "assets/images/nursing-uganda-nursing-management-students-01.jpeg",
-    alt: "Nursing students in training"
+    src: "assets/images/nursing-uganda-hero-nursing-student-skills-lab-01.png",
+    alt: "Nursing Uganda student studying in a clinical skills lab"
   },
   midwifery: {
-    src: "assets/images/source-library/nursing-uganda-midwifery-1024x546-001-5661a73d.jpg",
-    alt: "Midwifery students practising clinical skills"
+    src: "assets/images/nursing-uganda-midwifery-newborn-care-training-01.png",
+    alt: "Midwifery students practising newborn care in a skills lab"
   },
   instruments: {
-    src: "assets/images/source-library/nursing-uganda-medical-instruments-for-nursing-uganda-001-d983f851.jpg",
-    alt: "Medical instruments arranged on a clinical tray"
+    src: "assets/images/nursing-uganda-medical-instruments-clinical-tray-01.png",
+    alt: "Nursing medical instruments arranged on a clean clinical tray"
+  },
+  disease: {
+    src: "assets/images/nursing-uganda-disease-assessment-learning-01.png",
+    alt: "Nursing students learning disease assessment with anatomy references"
   },
   schools: {
     src: "assets/images/source-library/nursing-uganda-skill-lab-12-1-1-001-fae1e61b.jpg",
@@ -617,9 +629,11 @@ function imageFor(label, fallback = "nursing") {
   if (/mental|psychiatric/.test(value)) return imageCatalog.mental;
   if (/midwifery|obstetric|gynaecology|reproductive|maternal|newborn|antenatal|labou?r|pregnan/.test(value)) return imageCatalog.midwifery;
   if (/instrument|stethoscope|catheter|forceps|autoclave|syringe|cannula|theatre|wound|dressing/.test(value)) return imageCatalog.instruments;
+  if (/medical|surgical|disease|pathology|tropical|diagnos|assessment|care plan/.test(value)) return imageCatalog.disease;
   if (/quiz|paper|exam|mock/.test(value)) return imageCatalog.exams;
   if (/school|skills lab|student support|training/.test(value)) return imageCatalog.schools;
-  if (/foundation|management|licensing|resource|course|curriculum/.test(value)) return imageCatalog.nursing;
+  if (/course|curriculum|programme|semester/.test(value)) return imageCatalog.curriculum;
+  if (/foundation|management|licensing|resource/.test(value)) return imageCatalog.nursing;
   return imageCatalog[fallback] || imageCatalog.nursing;
 }
 
@@ -690,6 +704,146 @@ function renderTopicImage(programme, unit, topic) {
   `;
 }
 
+function footerLink(href, label, iconName = "arrowRight", extra = "") {
+  return `<a href="${escapeHtml(href)}"${extra ? ` ${extra}` : ""}>${icon(iconName)}<span>${escapeHtml(label)}</span></a>`;
+}
+
+function renderFooter() {
+  const studyLinks = [
+    ["#/notes", "Notes Home", "bookOpen"],
+    ["#/courses", "Courses", "graduationCap"],
+    ["#/courses/curriculum", "Curriculum Maps", "listChecks"],
+    ["#/search", "Search Topics", "search"],
+    ["#/resources/quizzes", "Quick Quizzes", "helpCircle"]
+  ];
+  const resourceLinks = [
+    ["#/resources/past-papers", "Past Papers", "fileText"],
+    ["#/resources/medical-instruments", "Medical Instruments", "stethoscope"],
+    ["#/resources/schools", "Schools Directory", "school"],
+    ["#/resources/licensing", "Licensing And CPD", "badgeCheck"],
+    ["#/resources/student-support", "Student Support", "heartPulse"]
+  ];
+  const subjectLinks = [
+    ["anatomy|physiology", "Anatomy And Physiology", "activity"],
+    ["medical|surgical", "Medical Surgical", "stethoscope"],
+    ["midwifery|obstetric|newborn", "Midwifery", "briefcaseMedical"],
+    ["pharmacology|drug|medicine", "Pharmacology", "pill"],
+    ["community|public health|primary health", "Community Health", "home"],
+    ["mental|psychiatric", "Mental Health", "heartPulse"]
+  ];
+
+  return `
+    <footer class="site-footer">
+      <div class="container footer-shell">
+        <div class="footer-main">
+          <div class="footer-brand">
+            <a class="footer-logo" href="#/notes" aria-label="Nursing Uganda notes home">
+              <span class="brand-mark">NU</span>
+              <span>Nursing Uganda<small>nursinguganda.com</small></span>
+            </a>
+            <p>Structured nursing and midwifery notes, course maps, practice tools and student resources for Uganda learners.</p>
+            <div class="footer-stats" aria-label="Nursing Uganda content totals">
+              <span><strong>${state.data.totals.programmes}</strong> Programmes</span>
+              <span><strong>${state.data.totals.courseUnits}</strong> Course Units</span>
+              <span><strong>${state.data.totals.topics}</strong> Topics</span>
+            </div>
+          </div>
+          <nav class="footer-column" aria-label="Study links">
+            <h2>Study</h2>
+            ${studyLinks.map(([href, label, iconName]) => footerLink(href, label, iconName)).join("")}
+          </nav>
+          <nav class="footer-column" aria-label="Resource links">
+            <h2>Resources</h2>
+            ${resourceLinks.map(([href, label, iconName]) => footerLink(href, label, iconName)).join("")}
+          </nav>
+          <nav class="footer-column" aria-label="Subject shortcuts">
+            <h2>Subjects</h2>
+            ${subjectLinks.map(([seed, label, iconName]) => footerLink("#/search", label, iconName, `data-search-seed="${escapeHtml(seed)}"`)).join("")}
+          </nav>
+        </div>
+        <div class="footer-support">
+          <div>
+            <span class="mini-label">Student Reminder</span>
+            <p>Use these notes for revision, then confirm clinical decisions with tutors, supervisors and current official guidance.</p>
+          </div>
+          <div class="footer-actions">
+            ${buttonLink("#/courses", "Open Courses", "primary", "graduationCap")}
+            ${buttonLink("#/resources", "Open Resources", "secondary", "folderOpen")}
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; ${new Date().getFullYear()} Nursing Uganda. All rights reserved.</span>
+          <span>Educational content should be checked against current clinical guidance.</span>
+        </div>
+      </div>
+    </footer>
+  `;
+}
+
+function megaMenuLinks(key) {
+  if (key === "notes") {
+    return notesSubjects().map((subject) => ({
+      href: "#/search",
+      label: subject.title,
+      body: `${subject.unitCount} units, ${subject.topicCount} topics`,
+      icon: iconNameFor(subject.title),
+      extra: `data-search-seed="${escapeHtml(subject.search)}"`
+    }));
+  }
+
+  if (key === "courses") {
+    const programmes = (state.data && state.data.programmes ? state.data.programmes : []).slice(0, 6).map((programme) => ({
+      href: `#/courses/${programme.id}`,
+      label: programme.label,
+      body: `${programme.stats.unitCount} units, ${programme.stats.topicCount || 0} topics`,
+      icon: iconNameFor(programme.label)
+    }));
+    return [
+      { href: "#/courses", label: "All Courses", body: "Browse every nursing and midwifery programme", icon: "graduationCap" },
+      { href: "#/courses/curriculum", label: "Curriculum Maps", body: "Move by programme, year and semester", icon: "listChecks" },
+      ...programmes
+    ];
+  }
+
+  return [
+    { href: "#/resources/past-papers", label: "Past Papers", body: "Exam practice and revision sets", icon: "fileText" },
+    { href: "#/resources/quizzes", label: "Quick Quizzes", body: "Practice active recall by topic", icon: "helpCircle" },
+    { href: "#/resources/medical-instruments", label: "Medical Instruments", body: "Uses, safety points and OSCE notes", icon: "stethoscope" },
+    { href: "#/resources/schools", label: "Schools Directory", body: "Training options and recognition notes", icon: "school" },
+    { href: "#/resources/licensing", label: "Licensing And CPD", body: "Professional document planning", icon: "badgeCheck" },
+    { href: "#/resources/student-support", label: "Student Support", body: "Study planning and placement support", icon: "heartPulse" }
+  ];
+}
+
+function renderMegaMenu(key, item, active) {
+  const links = megaMenuLinks(key);
+  return `
+    <div class="mega-item">
+      <a class="mega-trigger ${active === key ? "active" : ""}" href="${item.href}">
+        ${icon(item.icon)}<span>${item.label}</span>
+      </a>
+      <div class="mega-panel" role="group" aria-label="${escapeHtml(item.label)} menu">
+        <div class="mega-panel-head">
+          <strong>${escapeHtml(item.label)}</strong>
+          <span>${key === "notes" ? "Choose a subject area" : key === "courses" ? "Open a programme or curriculum map" : "Open study resources"}</span>
+        </div>
+        <div class="mega-grid">
+          ${links.map((link) => `
+            <a class="mega-link" href="${escapeHtml(link.href)}"${link.extra ? ` ${link.extra}` : ""}>
+              <span class="mega-icon">${icon(link.icon)}</span>
+              <span><strong>${escapeHtml(link.label)}</strong><small>${escapeHtml(link.body)}</small></span>
+            </a>
+          `).join("")}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderMainNav(active) {
+  return Object.entries(routeMap).map(([key, item]) => renderMegaMenu(key, item, active)).join("");
+}
+
 function layout(content) {
   const parts = currentRoute();
   const active = routeKey(parts);
@@ -702,10 +856,9 @@ function layout(content) {
             <span>Nursing Uganda<small>nursinguganda.com</small></span>
           </a>
           <nav class="main-nav${state.navOpen ? " open" : ""}" data-main-nav aria-label="Main navigation">
-            ${Object.entries(routeMap).map(([key, item]) => `<a class="${active === key ? "active" : ""}" href="${item.href}">${icon(item.icon)}<span>${item.label}</span></a>`).join("")}
+            ${renderMainNav(active)}
           </nav>
           <div class="nav-actions">
-            ${buttonLink("#/courses", "Browse Courses", "primary", "graduationCap")}
             <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme">${icon(state.theme === "dark" ? "sun" : "moon")}<span>${state.theme === "dark" ? "Light" : "Dark"}</span></button>
             <button class="mobile-toggle" type="button" data-nav-toggle aria-label="Open menu" aria-expanded="${state.navOpen}">
               <span></span><span></span><span></span>
@@ -714,12 +867,7 @@ function layout(content) {
         </div>
       </header>
       ${content}
-      <footer class="site-footer">
-        <div class="container footer-line">
-          <span>&copy; 2026 Nursing Uganda</span>
-          <span>Educational content should be checked against current clinical guidance.</span>
-        </div>
-      </footer>
+      ${renderFooter()}
     </div>
   `;
 
@@ -800,8 +948,8 @@ function renderNotes() {
     ${hero({
       title: "Nursing Notes for Uganda Students",
       body: "Structured nursing and midwifery notes, curriculum maps and revision resources for Uganda students.",
-      image: imageCatalog.nursing,
-      actions: `${buttonLink("#/courses", "Browse Courses", "primary", "graduationCap")}${buttonLink("#/resources", "Open Resources", "secondary", "folderOpen")}`
+      image: imageCatalog.heroNurse,
+      actions: `${buttonLink("#/courses", "Open Courses", "primary", "graduationCap")}${buttonLink("#/resources", "Open Resources", "secondary", "folderOpen")}`
     })}
     <section class="section compact-section">
       <div class="container">
@@ -819,7 +967,7 @@ function renderNotes() {
             <h2>${last ? escapeHtml(last.title) : "Start Your First Topic"}</h2>
             <p>${last ? `${escapeHtml(last.programme)} - ${escapeHtml(last.unit)}` : "Open any course topic and Nursing Uganda will remember where you stopped."}</p>
           </div>
-          ${buttonLink(last ? last.href : "#/courses", last ? "Resume Topic" : "Browse Courses", "primary", last ? "bookOpen" : "graduationCap")}
+          ${buttonLink(last ? last.href : "#/courses", last ? "Resume Topic" : "Open Courses", "primary", last ? "bookOpen" : "graduationCap")}
         </article>
         <article class="continue-card content-panel">
           <div>
@@ -1010,7 +1158,7 @@ function renderCourses() {
     ${hero({
       title: "Courses and Curriculum Maps",
       body: "Browse nursing and midwifery programmes, years, semesters and course units. Topic maps help you move from curriculum to focused revision.",
-      image: imageCatalog.anatomy,
+      image: imageCatalog.curriculum,
       actions: buttonLink("#/courses/curriculum", "View all maps", "primary", "listChecks")
     })}
     <section class="section">
@@ -1055,7 +1203,7 @@ function renderCurriculumHub() {
     ${hero({
       title: "Curriculum Maps",
       body: "Choose a nursing or midwifery programme and drill into course units, semesters and topics.",
-      image: imageCatalog.anatomyIntro
+      image: imageCatalog.curriculum
     })}
     <section class="section">
       <div class="container">
@@ -1572,7 +1720,7 @@ function renderResources() {
     ${hero({
       title: "Resources",
       body: "Exam practice, medical instruments, licensing, schools and study support for nursing and midwifery students.",
-      image: imageCatalog.community
+      image: imageCatalog.instruments
     })}
     <section class="section">
       <div class="container">
@@ -2136,7 +2284,7 @@ function renderMedicalInstruments() {
     ${hero({
       title: "Medical Instruments",
       body: "A practical guide to common nursing and midwifery instruments, their uses and safe handling points.",
-      image: imageCatalog.nursing,
+      image: imageCatalog.instruments,
       actions: buttonLink("#/resources", "Back to Resources", "secondary", "arrowLeft")
     })}
     <section class="section">
