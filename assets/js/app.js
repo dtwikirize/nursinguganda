@@ -5,6 +5,7 @@ const state = {
   imageLibrary: null,
   optimizedImages: {},
   navOpen: false,
+  megaOpen: "",
   search: "",
   globalSearch: "",
   schoolSearch: "",
@@ -896,6 +897,10 @@ const imageCatalog = {
     src: "assets/images/source-library/nursing-uganda-skill-lab-12-1-1-001-fae1e61b.jpg",
     alt: "Nursing skills laboratory for student training"
   },
+  resourcesHero: {
+    src: "assets/images/resources/resources-hero-premium.jpg",
+    alt: "Nursing students collaborating in a premium study environment"
+  },
   exams: {
     src: "assets/images/source-library/nursing-uganda-unmeb-past-paper-1-001-60ae67af.png",
     alt: "Nursing examination paper for revision practice"
@@ -1101,8 +1106,8 @@ function megaMenuLinks(key) {
 function renderMegaMenu(key, item, active) {
   const links = megaMenuLinks(key);
   return `
-    <div class="mega-item">
-      <a class="mega-trigger ${active === key ? "active" : ""}" href="${item.href}">
+    <div class="mega-item mega-${key}${state.megaOpen === key ? " open" : ""}">
+      <a class="mega-trigger ${active === key ? "active" : ""}" href="${item.href}" data-mega-toggle="${key}" aria-expanded="${state.megaOpen === key ? "true" : "false"}">
         ${icon(item.icon)}<span>${item.label}</span>
       </a>
       <div class="mega-panel" role="group" aria-label="${escapeHtml(item.label)} menu">
@@ -1158,9 +1163,28 @@ function layout(content) {
   if (toggle) {
     toggle.addEventListener("click", () => {
       state.navOpen = !state.navOpen;
+      if (!state.navOpen) state.megaOpen = "";
       render();
     });
   }
+
+  app.querySelectorAll("[data-mega-toggle]").forEach((trigger) => {
+    trigger.addEventListener("click", (event) => {
+      const key = trigger.dataset.megaToggle || "";
+      const isMobileNav = window.matchMedia("(max-width: 760px)").matches || state.navOpen;
+      if (isMobileNav || state.megaOpen !== key) {
+        event.preventDefault();
+        state.megaOpen = state.megaOpen === key ? "" : key;
+        render();
+      } else {
+        state.megaOpen = "";
+      }
+    });
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!event.target.closest(".main-nav")) state.megaOpen = "";
+  }, { once: true });
 
   const themeToggle = app.querySelector("[data-theme-toggle]");
   if (themeToggle) {
@@ -1172,27 +1196,24 @@ function layout(content) {
 }
 
 function hero({ title, body, actions = "", image = imageCatalog.anatomy, breadcrumb = "", stats = [] }) {
+  const cues = stats && stats.length
+    ? stats.slice(0, 3).map(([label]) => label)
+    : ["Structured curriculum", "Uganda-focused content", "Revision-ready resources"];
   return `
     <section class="hero" style="--hero-image: url('${escapeHtml(rootAssetPath(displayImageSrc(image.src)))}')">
-      <div class="container hero-grid${stats.length ? "" : " no-stats"}">
-        <div>
+      <div class="container hero-grid premium-hero-grid">
+        <div class="hero-copy">
           ${breadcrumb}
           <h1>${escapeHtml(title)}</h1>
           <p>${escapeHtml(body)}</p>
           ${actions ? `<div class="hero-actions">${actions}</div>` : ""}
         </div>
-        ${stats.length ? `
-          <div class="app-panel">
-            <div class="stat-grid">
-              ${stats.map(([label, value, iconName]) => `
-                <div class="stat">
-                  <span class="stat-icon">${icon(iconName)}</span>
-                  <span><strong>${value}</strong><small>${escapeHtml(label)}</small></span>
-                </div>
-              `).join("")}
-            </div>
+        <aside class="hero-visual" aria-label="${escapeHtml(title)} visual">
+          <img src="${escapeHtml(rootAssetPath(displayImageSrc(image.src)))}" alt="${escapeHtml(image.alt || title)}">
+          <div class="hero-cues">
+            ${cues.map((cue) => `<span>${escapeHtml(cue)}</span>`).join("")}
           </div>
-        ` : ""}
+        </aside>
       </div>
     </section>
   `;
@@ -2087,7 +2108,11 @@ function resourceCards() {
       href: "#/resources/books",
       category: "Reference",
       icon: "bookOpen",
-      accent: "library"
+      accent: "library",
+      image: {
+        src: "assets/images/resources/resource-digital-library-hero.jpg",
+        alt: "Nursing students reviewing books and study notes together"
+      }
     },
     {
       title: "Past Papers",
@@ -2095,7 +2120,11 @@ function resourceCards() {
       href: "#/resources/past-papers",
       category: "Exam Prep",
       icon: "fileText",
-      accent: "papers"
+      accent: "papers",
+      image: {
+        src: "assets/images/resources/resource-past-papers-hero.png",
+        alt: "Nursing past paper used for examination revision"
+      }
     },
     {
       title: "Quizzes",
@@ -2103,7 +2132,11 @@ function resourceCards() {
       href: "#/resources/quizzes",
       category: "Exam Prep",
       icon: "helpCircle",
-      accent: "quizzes"
+      accent: "quizzes",
+      image: {
+        src: "assets/images/resources/resource-quizzes-hero.jpg",
+        alt: "Nursing quiz board for revision practice"
+      }
     },
     {
       title: "Licensing",
@@ -2111,7 +2144,11 @@ function resourceCards() {
       href: "#/resources/licensing",
       category: "Licensing",
       icon: "badgeCheck",
-      accent: "licensing"
+      accent: "licensing",
+      image: {
+        src: "assets/images/resources/resource-licensing-hero.jpg",
+        alt: "Professional nursing standards and policy reference"
+      }
     },
     {
       title: "Medical Instruments",
@@ -2119,7 +2156,11 @@ function resourceCards() {
       href: "#/resources/medical-instruments",
       category: "Reference",
       icon: "stethoscope",
-      accent: "instruments"
+      accent: "instruments",
+      image: {
+        src: "assets/images/resources/resource-medical-instruments-hero.jpg",
+        alt: imageCatalog.instruments.alt
+      }
     },
     {
       title: "Schools",
@@ -2127,7 +2168,11 @@ function resourceCards() {
       href: "#/resources/schools",
       category: "Career Support",
       icon: "school",
-      accent: "schools"
+      accent: "schools",
+      image: {
+        src: "assets/images/resources/resource-schools-hero.webp",
+        alt: "Nursing school and training environment"
+      }
     },
     {
       title: "Student Support",
@@ -2135,7 +2180,11 @@ function resourceCards() {
       href: "#/resources/student-support",
       category: "Career Support",
       icon: "heartPulse",
-      accent: "support"
+      accent: "support",
+      image: {
+        src: "assets/images/resources/resource-student-support-hero.webp",
+        alt: "Student support and supervision in nursing training"
+      }
     },
     {
       title: "Image Review",
@@ -2143,20 +2192,18 @@ function resourceCards() {
       href: "#/resources/image-review",
       category: "Reference",
       icon: "search",
-      accent: "review"
+      accent: "review",
+      image: {
+        src: "assets/images/resources/resource-image-review-hero.jpg",
+        alt: "Desktop setup used for reviewing and curating learning images"
+      }
     }
   ];
 }
 
 function renderResourcesHero(resources) {
-  const stats = [
-    [`${resources.length}`, "Resource Categories", "folderOpen"],
-    [`${bookLibrary().summary.books_indexed || 178}`, "Book Links", "bookOpen"],
-    [`${state.data.totals.topics}+`, "Topic Connections", "listChecks"]
-  ];
-
   return `
-    <section class="resources-hero hero" style="--hero-image: url('${escapeHtml(rootAssetPath(displayImageSrc(imageCatalog.instruments.src)))}')">
+    <section class="resources-hero hero" style="--hero-image: url('${escapeHtml(rootAssetPath(displayImageSrc(imageCatalog.resourcesHero.src)))}')">
       <div class="container resources-hero-grid">
         <div>
           <span class="mini-label">Resource Hub</span>
@@ -2167,15 +2214,14 @@ function renderResourcesHero(resources) {
             <input data-resource-search type="search" value="${escapeHtml(state.resourceSearch)}" placeholder="Search resources..." aria-label="Search resources">
           </label>
         </div>
-        <div class="resource-stat-panel">
-          ${stats.map(([value, label, iconName]) => `
-            <div class="resource-stat">
-              <span>${icon(iconName)}</span>
-              <strong>${escapeHtml(value)}</strong>
-              <small>${escapeHtml(label)}</small>
-            </div>
-          `).join("")}
-        </div>
+        <aside class="hero-visual resource-hero-visual" aria-label="Resource hub visual">
+          <img src="${escapeHtml(rootAssetPath(displayImageSrc(imageCatalog.resourcesHero.src)))}" alt="${escapeHtml(imageCatalog.resourcesHero.alt)}">
+          <div class="hero-cues">
+            <span>Exam prep</span>
+            <span>Reference tools</span>
+            <span>Career support</span>
+          </div>
+        </aside>
       </div>
     </section>
   `;
@@ -2207,9 +2253,13 @@ function renderResources() {
           </div>
         </div>
         <div class="resource-hub-grid">
-          ${filtered.length ? filtered.map((item) => `
-            <a class="resource-hub-card accent-${escapeHtml(item.accent)}" href="${escapeHtml(item.href)}">
-              <span class="resource-card-art">${icon(item.icon)}</span>
+          ${filtered.length ? filtered.map((item, index) => `
+            <a class="resource-hub-card accent-${escapeHtml(item.accent)}" href="${escapeHtml(item.href)}" style="--card-index:${index}">
+              <span class="resource-card-art">
+                <img class="resource-card-image" src="${escapeHtml(rootAssetPath(displayImageSrc(item.image.src)))}" alt="${escapeHtml(item.image.alt)}" loading="lazy">
+                <span class="resource-card-overlay" aria-hidden="true"></span>
+                <span class="resource-card-icon-badge" aria-hidden="true">${icon(item.icon)}</span>
+              </span>
               <span class="resource-tag">${escapeHtml(item.category)}</span>
               <h3>${escapeHtml(item.title)}</h3>
               <p>${escapeHtml(item.body)}</p>
@@ -2724,17 +2774,29 @@ function renderSchoolsDirectory() {
   const selected = selectedSchool();
   const showClear = hasActiveSchoolFilters();
   const view = state.schoolView === "map" ? "map" : "cards";
+  const heroImage = imageCatalog.schools;
+  const heroImageSrc = rootAssetPath(displayImageSrc(heroImage.src));
 
   return `
-    <section class="schools-hero">
-      <div class="container">
-        <nav class="schools-breadcrumb" aria-label="Breadcrumb"><a href="#/resources">Resources</a><span>/</span><strong>Schools Directory</strong></nav>
-        <h1>Schools Directory</h1>
-        <p>Find UNMC-recognized nursing and midwifery training institutions by district, programme type and registration status.</p>
-        <div class="schools-hero-actions">
-          <a href="#/resources">${icon("arrowLeft")}Back to Resources</a>
-          <a href="https://unmc.ug/recognized-schools/" target="_blank" rel="noopener">${icon("externalLink")}Check UNMC Source</a>
+    <section class="schools-hero schools-hero-with-image" style="--schools-hero-image: url('${escapeHtml(heroImageSrc)}')">
+      <div class="container schools-hero-grid">
+        <div class="schools-hero-copy">
+          <nav class="schools-breadcrumb" aria-label="Breadcrumb"><a href="#/resources">Resources</a><span>/</span><strong>Schools Directory</strong></nav>
+          <h1>Schools Directory</h1>
+          <p>Find UNMC-recognized nursing and midwifery training institutions by district, programme type and registration status.</p>
+          <div class="schools-hero-actions">
+            <a href="#/resources">${icon("arrowLeft")}Back to Resources</a>
+            <a href="https://unmc.ug/recognized-schools/" target="_blank" rel="noopener">${icon("externalLink")}Check UNMC Source</a>
+          </div>
         </div>
+        <aside class="schools-hero-visual" aria-label="Schools directory overview">
+          <img src="${escapeHtml(heroImageSrc)}" alt="${escapeHtml(heroImage.alt)}">
+          <div class="schools-hero-mini">
+            <span>UNMC-aligned records</span>
+            <span>District and sector filters</span>
+            <span>Cards and map view</span>
+          </div>
+        </aside>
       </div>
     </section>
     <section class="schools-filter-shell">
@@ -3639,10 +3701,16 @@ async function init() {
 
 window.addEventListener("hashchange", () => {
   state.navOpen = false;
+  state.megaOpen = "";
   render();
 });
 
 window.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && state.megaOpen) {
+    state.megaOpen = "";
+    render();
+    return;
+  }
   if (event.key === "Escape" && state.selectedSchool) {
     state.selectedSchool = "";
     render();
