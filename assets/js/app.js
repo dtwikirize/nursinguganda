@@ -894,21 +894,29 @@ function layout(content) {
   }
 }
 
-function hero({ title, body, actions = "", image = imageCatalog.anatomy }) {
+function hero({ title, body, actions = "", image = imageCatalog.anatomy, breadcrumb = "" }) {
   return `
     <section class="hero" style="--hero-image: url('${escapeHtml(rootAssetPath(displayImageSrc(image.src)))}')">
       <div class="container hero-grid">
         <div>
+          ${breadcrumb}
           <h1>${escapeHtml(title)}</h1>
           <p>${escapeHtml(body)}</p>
           ${actions ? `<div class="hero-actions">${actions}</div>` : ""}
         </div>
         <div class="app-panel">
           <div class="stat-grid">
-            <div class="stat"><strong>${state.data.totals.programmes}</strong><span>Programmes</span></div>
-            <div class="stat"><strong>${state.data.totals.courseUnits}</strong><span>Course Units</span></div>
-            <div class="stat"><strong>${state.data.totals.topics}</strong><span>Study Topics</span></div>
-            <div class="stat"><strong>${state.data.totals.semesters}</strong><span>Semesters</span></div>
+            ${[
+              ["Programmes", state.data.totals.programmes, "graduationCap"],
+              ["Course Units", state.data.totals.courseUnits, "bookOpen"],
+              ["Study Topics", state.data.totals.topics, "listChecks"],
+              ["Semesters", state.data.totals.semesters, "calendar"]
+            ].map(([label, value, iconName]) => `
+              <div class="stat">
+                <span class="stat-icon">${icon(iconName)}</span>
+                <span><strong>${value}</strong><small>${escapeHtml(label)}</small></span>
+              </div>
+            `).join("")}
           </div>
         </div>
       </div>
@@ -1117,13 +1125,24 @@ function renderQuizHub() {
 }
 
 function programmeCard(programme) {
+  const stats = [
+    ["Years", programme.stats.yearCount],
+    ["Semesters", programme.stats.semesterCount],
+    ["Units", programme.stats.unitCount],
+    ["Topics", programme.stats.topicCount || 0]
+  ];
   return `
-    <a class="card image-card" href="#/courses/${programme.id}">
-      ${cardImage(programme.label)}
-      <span class="card-icon">${iconFor(programme.label)}</span>
-      <h3>${escapeHtml(programme.label)}</h3>
-      <p>${programme.stats.yearCount} years, ${programme.stats.semesterCount} semesters, ${programme.stats.unitCount} course units${programme.stats.topicCount ? `, ${programme.stats.topicCount} topics` : ""}.</p>
-      <span class="card-link">${icon("arrowRight")}<span>Open curriculum</span></span>
+    <a class="card programme-card" href="#/courses/${programme.id}">
+      <span class="programme-art" aria-hidden="true">
+        <span>${iconFor(programme.label)}</span>
+      </span>
+      <div class="programme-card-body">
+        <h3>${escapeHtml(programme.label)}</h3>
+        <div class="programme-meta">
+          ${stats.map(([label, value]) => `<span><strong>${value}</strong> ${escapeHtml(label)}</span>`).join("")}
+        </div>
+        <span class="programme-link">${icon("arrowRight")}<span>Open curriculum</span></span>
+      </div>
     </a>
   `;
 }
@@ -1132,18 +1151,19 @@ function programmeSections() {
   const midwifery = state.data.programmes.filter((programme) => /midwifery/i.test(programme.label));
   const nursing = state.data.programmes.filter((programme) => !/midwifery/i.test(programme.label));
   const section = (title, body, programmes) => `
-    <div class="section-head">
-      <div>
-        <h2>${escapeHtml(title)}</h2>
-        <p>${escapeHtml(body)}</p>
+    <section class="programme-section">
+      <div class="section-head programme-section-head">
+        <div>
+          <h2>${escapeHtml(title)}</h2>
+          <p>${escapeHtml(body)}</p>
+        </div>
       </div>
-    </div>
-    <div class="grid two">${programmes.map(programmeCard).join("")}</div>
+      <div class="programme-grid">${programmes.map(programmeCard).join("")}</div>
+    </section>
   `;
 
   return `
     ${section("Nursing Programmes", "Certificate, diploma and BNS curriculum maps for nursing students.", nursing)}
-    <div class="programme-divider"></div>
     ${section("Midwifery Programmes", "Certificate and diploma curriculum maps for midwifery students.", midwifery)}
   `;
 }
@@ -1169,8 +1189,12 @@ function renderCourses() {
     })}
     <section class="section">
       <div class="container">
-        <div class="toolbar">
-          <input class="search-input" data-search type="search" value="${escapeHtml(state.search)}" placeholder="Search course units, codes or programmes" aria-label="Search courses">
+        <div class="toolbar course-toolbar">
+          <label class="search-field">
+            ${icon("search")}
+            <input class="search-input" data-search type="search" value="${escapeHtml(state.search)}" placeholder="Search course units, codes or programmes" aria-label="Search courses">
+          </label>
+          <button class="button secondary filter-button" type="button">${buttonLabel("Filter", "listChecks")}</button>
         </div>
         ${query ? renderSearchResults(matchedUnits) : `
           ${programmeSections()}
@@ -1220,42 +1244,100 @@ function renderCurriculumHub() {
 }
 
 function renderProgramme(programme) {
+  const years = sortedYears(programme);
+  const firstYearKey = years[0] ? years[0][0] : "";
+  const programmeType = /midwifery/i.test(programme.label) ? "Midwifery Programmes" : "Nursing Programmes";
+  const totalTopics = years.reduce((sum, [, year]) => sum + sortedSemesters(year).reduce((semesterSum, [, semester]) => semesterSum + semester.courseUnits.reduce((unitSum, unit) => unitSum + (unit.topicCount || 0), 0), 0), 0);
+  const totalUnits = years.reduce((sum, [, year]) => sum + sortedSemesters(year).reduce((semesterSum, [, semester]) => semesterSum + semester.courseUnits.length, 0), 0);
   return `
     ${hero({
       title: programme.label,
       body: `Explore ${programme.stats.yearCount} years, ${programme.stats.semesterCount} semesters and ${programme.stats.unitCount} course units.`,
-      image: imageFor(programme.label)
+      image: imageFor(programme.label),
+      breadcrumb: `
+        <nav class="hero-breadcrumb" aria-label="Breadcrumb">
+          <a href="#/courses">Courses</a>
+          <span>${icon("arrowRight")}</span>
+          <a href="#/courses">${escapeHtml(programmeType)}</a>
+          <span>${icon("arrowRight")}</span>
+          <strong>${escapeHtml(programme.label)}</strong>
+        </nav>
+      `,
+      actions: firstYearKey ? `<button class="button primary" type="button" data-scroll-target="${escapeHtml(firstYearKey)}">${buttonLabel("View Year 1", "arrowRight")}</button>` : ""
     })}
     <section class="section">
-      <div class="container app-layout">
-        <aside class="side-panel">
-          <h3>Jump To</h3>
-          ${sortedYears(programme).map(([key, year]) => `<button type="button" data-scroll-target="${key}">${icon("calendar")}<span>Year ${year.year}</span></button>`).join("")}
+      <div class="container app-layout curriculum-layout">
+        <aside class="side-panel curriculum-side-panel" data-curriculum-nav>
+          <div class="curriculum-side-head">
+            <span class="mini-label">Jump To</span>
+            <h3>Curriculum Path</h3>
+          </div>
+          <div class="curriculum-progress">
+            <div>
+              <strong data-curriculum-progress-label>Year 1</strong>
+              <span>${totalUnits} units · ${totalTopics} topics</span>
+            </div>
+            <div class="progress-bar slim"><span data-curriculum-progress-bar style="width: ${years.length ? Math.round(100 / years.length) : 0}%"></span></div>
+          </div>
+          <div class="year-nav-list">
+            ${years.map(([key, year], index) => {
+              const semesters = sortedSemesters(year);
+              const yearUnits = semesters.reduce((sum, [, semester]) => sum + semester.courseUnits.length, 0);
+              return `
+                <div class="year-nav-item${index === 0 ? " active" : ""}" data-year-nav="${escapeHtml(key)}">
+                  <button type="button" data-scroll-target="${escapeHtml(key)}">
+                    ${icon("calendar")}
+                    <span>Year ${year.year}</span>
+                    <small>${yearUnits} units</small>
+                  </button>
+                  <div class="year-subnav">
+                    ${semesters.map(([semesterKey, semester]) => `<button type="button" data-scroll-target="${escapeHtml(`${key}-${semesterKey}`)}">${icon("bookOpen")}<span>Semester ${semester.semester}</span></button>`).join("")}
+                  </div>
+                </div>
+              `;
+            }).join("")}
+          </div>
         </aside>
-        <div>
-          ${sortedYears(programme).map(([yearKey, year]) => `
-            <section id="${yearKey}" class="programme-block">
-              <h2>Year ${year.year}</h2>
-              ${sortedSemesters(year).map(([, semester]) => `
-                <div class="semester-block">
+        <div class="curriculum-content">
+          ${years.map(([yearKey, year]) => {
+            const semesters = sortedSemesters(year);
+            const yearUnits = semesters.reduce((sum, [, semester]) => sum + semester.courseUnits.length, 0);
+            return `
+            <section id="${yearKey}" class="programme-block curriculum-year-block" data-year-section="${yearKey}" data-year-label="Year ${year.year}" data-year-index="${years.findIndex(([key]) => key === yearKey)}" data-year-total="${years.length}">
+              <div class="year-head">
+                <span>Year ${year.year}</span>
+                <h2>Year ${year.year}</h2>
+                <p>${semesters.length} Semesters · ${yearUnits} Course Units</p>
+              </div>
+              ${sortedSemesters(year).map(([semesterKey, semester]) => `
+                <div id="${yearKey}-${semesterKey}" class="semester-block curriculum-semester-block">
                   <div class="semester-head">
                     <h3>Semester ${semester.semester}</h3>
                     <span>${semester.courseUnits.length} course units</span>
                   </div>
                   <div class="unit-grid">
                     ${semester.courseUnits.map((unit) => `
-                      <a class="unit-card" href="#/courses/${programme.id}/${unit.id}">
-                        <span class="unit-code">${escapeHtml(unit.code || "Unit")}</span>
+                      <a class="unit-card curriculum-unit-card" href="#/courses/${programme.id}/${unit.id}">
+                        <div class="unit-card-head">
+                          <span class="unit-code">${escapeHtml(unit.code || "Unit")}</span>
+                          <span class="unit-status">${unit.topicCount ? "Ready" : "Pending topics"}</span>
+                        </div>
                         <h3>${escapeHtml(unit.title)}</h3>
-                        <p>${unit.topicCount ? `${unit.topicGroups.length} topic groups, ${unit.topicCount} topics.` : "Detailed topics will be added soon."}</p>
-                        <span class="card-link">${icon("arrowRight")}<span>Open unit</span></span>
+                        ${unit.topicCount ? `
+                          <div class="unit-meta">
+                            <span>${unit.topicGroups.length} topic groups</span>
+                            <span>${unit.topicCount} topics</span>
+                          </div>
+                        ` : `<span class="unit-info-chip">${icon("helpCircle")}<span>Detailed topics will be added soon</span></span>`}
+                        <span class="unit-action">${icon("arrowRight")}<span>Open unit</span></span>
                       </a>
                     `).join("")}
                   </div>
                 </div>
               `).join("")}
             </section>
-          `).join("")}
+          `;
+          }).join("")}
         </div>
       </div>
     </section>
@@ -2549,6 +2631,49 @@ function renderMedicalInstrumentDetail(instrument) {
   `;
 }
 
+function updateCurriculumNav(activeId) {
+  const nav = app.querySelector("[data-curriculum-nav]");
+  if (!nav || !activeId) return;
+  const items = [...nav.querySelectorAll("[data-year-nav]")];
+  const activeIndex = Math.max(0, items.findIndex((item) => item.dataset.yearNav === activeId));
+  items.forEach((item, index) => item.classList.toggle("active", item.dataset.yearNav === activeId));
+
+  const label = nav.querySelector("[data-curriculum-progress-label]");
+  if (label) {
+    const activeButton = items[activeIndex] ? items[activeIndex].querySelector("button span") : null;
+    label.textContent = activeButton ? activeButton.textContent : "Year 1";
+  }
+
+  const bar = nav.querySelector("[data-curriculum-progress-bar]");
+  if (bar && items.length) {
+    bar.style.width = `${Math.round(((activeIndex + 1) / items.length) * 100)}%`;
+  }
+}
+
+function setupCurriculumScrollSpy() {
+  const sections = [...app.querySelectorAll("[data-year-section]")];
+  if (!sections.length) return;
+  const updateFromScroll = () => {
+    const viewportAnchor = 132;
+    const active = sections
+      .map((section) => ({ section, rect: section.getBoundingClientRect() }))
+      .filter(({ rect }) => rect.top <= window.innerHeight * 0.5 && rect.bottom >= viewportAnchor)
+      .sort((a, b) => Math.abs(a.rect.top - viewportAnchor) - Math.abs(b.rect.top - viewportAnchor))[0];
+    if (active && active.section.id) updateCurriculumNav(active.section.id);
+  };
+  updateCurriculumNav(sections[0].id);
+  updateFromScroll();
+  window.addEventListener("scroll", () => requestAnimationFrame(updateFromScroll), { passive: true });
+  if (!("IntersectionObserver" in window)) return;
+  const observer = new IntersectionObserver((entries) => {
+    const visible = entries
+      .filter((entry) => entry.isIntersecting)
+      .sort((a, b) => Math.abs(a.boundingClientRect.top - 120) - Math.abs(b.boundingClientRect.top - 120))[0];
+    if (visible && visible.target.id) updateCurriculumNav(visible.target.id);
+  }, { rootMargin: "-22% 0px -58% 0px", threshold: [0.05, 0.2, 0.5] });
+  sections.forEach((section) => observer.observe(section));
+}
+
 function notFound() {
   return `
     <section class="section">
@@ -2716,6 +2841,7 @@ function render() {
       if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   });
+  setupCurriculumScrollSpy();
 
   app.querySelectorAll("[data-complete-topic]").forEach((button) => {
     button.addEventListener("click", () => {
