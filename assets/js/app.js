@@ -1,6 +1,7 @@
 const state = {
   data: null,
   imageMatches: null,
+  bookLibrary: null,
   imageLibrary: null,
   optimizedImages: {},
   navOpen: false,
@@ -10,6 +11,8 @@ const state = {
   schoolStatus: "all",
   imageReviewSearch: "",
   imageReviewStatus: "strong",
+  librarySearch: "",
+  librarySubject: "all",
   imagePickerKey: "",
   imagePickerSearch: "",
   imagePickerCategory: "all",
@@ -630,6 +633,7 @@ function imageFor(label, fallback = "nursing") {
   if (/midwifery|obstetric|gynaecology|reproductive|maternal|newborn|antenatal|labou?r|pregnan/.test(value)) return imageCatalog.midwifery;
   if (/instrument|stethoscope|catheter|forceps|autoclave|syringe|cannula|theatre|wound|dressing/.test(value)) return imageCatalog.instruments;
   if (/medical|surgical|disease|pathology|tropical|diagnos|assessment|care plan/.test(value)) return imageCatalog.disease;
+  if (/library|book|reading/.test(value)) return imageCatalog.curriculum;
   if (/quiz|paper|exam|mock/.test(value)) return imageCatalog.exams;
   if (/school|skills lab|student support|training/.test(value)) return imageCatalog.schools;
   if (/course|curriculum|programme|semester/.test(value)) return imageCatalog.curriculum;
@@ -718,6 +722,7 @@ function renderFooter() {
   ];
   const resourceLinks = [
     ["#/resources/past-papers", "Past Papers", "fileText"],
+    ["#/resources/books", "Digital Library", "bookOpen"],
     ["#/resources/medical-instruments", "Medical Instruments", "stethoscope"],
     ["#/resources/schools", "Schools Directory", "school"],
     ["#/resources/licensing", "Licensing And CPD", "badgeCheck"],
@@ -806,6 +811,7 @@ function megaMenuLinks(key) {
   }
 
   return [
+    { href: "#/resources/books", label: "Digital Library", body: "Curated medical and nursing book sources", icon: "bookOpen" },
     { href: "#/resources/past-papers", label: "Past Papers", body: "Exam practice and revision sets", icon: "fileText" },
     { href: "#/resources/quizzes", label: "Quick Quizzes", body: "Practice active recall by topic", icon: "helpCircle" },
     { href: "#/resources/medical-instruments", label: "Medical Instruments", body: "Uses, safety points and OSCE notes", icon: "stethoscope" },
@@ -1707,6 +1713,7 @@ function slugify(value) {
 
 function renderResources() {
   const resources = [
+    ["Digital Library", "Curated nursing and medical book sources matched to course topics.", "#/resources/books"],
     ["Past Papers", "Exam practice grouped by programme and course unit.", "#/resources/past-papers"],
     ["Quizzes", "MCQs for notes, course units and topic revision.", "#/resources/quizzes"],
     ["Licensing", "UNMC, CPD and renewal guidance for professional requirements.", "#/resources/licensing"],
@@ -1790,6 +1797,151 @@ function resourcePages() {
 
 function findResourcePage(slug) {
   return resourcePages().find((page) => page.slug === slug);
+}
+
+function bookLibrary() {
+  return state.bookLibrary || {
+    summary: { curated_collections: 0, books_indexed: 0, recommended_first: 0 },
+    collections: [],
+    books: [],
+    policy: {
+      note: "Book source links are being prepared. Check back after the library data has loaded."
+    },
+    source: {
+      name: "InfoBooks",
+      medical_url: "https://infobooks.org/free-pdf-books/medical/"
+    }
+  };
+}
+
+function librarySubjects() {
+  const subjects = new Set();
+  for (const book of bookLibrary().books || []) {
+    (book.subjects || []).forEach((subject) => subjects.add(subject));
+  }
+  return [...subjects].sort((a, b) => a.localeCompare(b));
+}
+
+function filteredLibraryBooks() {
+  const query = state.librarySearch.trim().toLowerCase();
+  const subject = state.librarySubject;
+  return (bookLibrary().books || []).filter((book) => {
+    const haystack = `${book.title} ${book.description} ${book.author} ${book.collection_title} ${(book.subjects || []).join(" ")}`.toLowerCase();
+    const matchesQuery = !query || haystack.includes(query);
+    const matchesSubject = subject === "all" || (book.subjects || []).includes(subject);
+    return matchesQuery && matchesSubject;
+  });
+}
+
+function renderLibraryTags(tags = []) {
+  return `<div class="programme-tags">${tags.slice(0, 4).map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}</div>`;
+}
+
+function renderBookLibrary() {
+  const library = bookLibrary();
+  const collections = library.collections || [];
+  const priorityCollections = collections.filter((collection) => collection.priority === "high");
+  const books = filteredLibraryBooks();
+  const visibleBooks = books.slice(0, 60);
+  const subjects = librarySubjects();
+
+  return `
+    ${hero({
+      title: "Digital Library",
+      body: "Curated nursing and medical book sources matched to anatomy, pharmacology, midwifery, child health, community health and clinical skills revision.",
+      image: imageCatalog.curriculum,
+      actions: `${buttonLink("#/resources", "Back to Resources", "secondary", "arrowLeft")}${buttonLink(library.source.medical_url, "Open InfoBooks", "primary", "externalLink", `target="_blank" rel="noopener noreferrer"`)}`
+    })}
+    <section class="section">
+      <div class="container">
+        <div class="library-stats">
+          <div><strong>${library.summary.curated_collections || collections.length}</strong><span>Collections</span></div>
+          <div><strong>${library.summary.books_indexed || (library.books || []).length}</strong><span>Books Indexed</span></div>
+          <div><strong>${library.summary.recommended_first || priorityCollections.length}</strong><span>Start Here</span></div>
+        </div>
+        <div class="content-panel library-note">
+          <span class="card-icon">${icon("bookOpen")}</span>
+          <div>
+            <h2>Source-Linked Reading</h2>
+            <p>${escapeHtml(library.policy.note)}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section soft-section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Best Starting Collections</h2>
+            <p>Begin with the closest course matches, then use supporting collections for deeper revision.</p>
+          </div>
+        </div>
+        <div class="grid three">
+          ${collections.map((collection) => `
+            <article class="card library-collection-card">
+              <div class="library-card-head">
+                <span>${escapeHtml(collection.priority)}</span>
+                <strong>${escapeHtml(collection.score)}%</strong>
+              </div>
+              <span class="card-icon">${iconFor(collection.title)}</span>
+              <h3>${escapeHtml(collection.title)}</h3>
+              <p>${escapeHtml(collection.fit)}</p>
+              ${renderLibraryTags(collection.subjects)}
+              <a class="card-link" href="${escapeHtml(collection.url)}" target="_blank" rel="noopener noreferrer">${icon("externalLink")}<span>Open source page</span></a>
+            </article>
+          `).join("")}
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Books For Revision</h2>
+            <p>${books.length} matches. Use search and subject filters to find the right reading faster.</p>
+          </div>
+        </div>
+        <div class="directory-toolbar content-panel library-toolbar">
+          <input class="search-input" data-library-search type="search" value="${escapeHtml(state.librarySearch)}" placeholder="Search title, author, subject or topic" aria-label="Search digital library">
+          <select data-library-subject aria-label="Filter digital library by subject">
+            <option value="all"${state.librarySubject === "all" ? " selected" : ""}>All subjects</option>
+            ${subjects.map((subject) => `<option value="${escapeHtml(subject)}"${state.librarySubject === subject ? " selected" : ""}>${escapeHtml(subject)}</option>`).join("")}
+          </select>
+        </div>
+        <div class="book-grid">
+          ${visibleBooks.length ? visibleBooks.map((book) => `
+            <article class="card book-card">
+              ${book.cover_image ? `<img class="book-cover" src="${escapeHtml(book.cover_image)}" alt="${escapeHtml(book.cover_alt || book.title)}" loading="lazy">` : `<span class="card-icon">${icon("bookOpen")}</span>`}
+              <div class="book-card-body">
+                <div class="library-card-head">
+                  <span>${escapeHtml(book.collection_title)}</span>
+                  <strong>${escapeHtml(book.score)}%</strong>
+                </div>
+                <h3>${escapeHtml(book.title)}</h3>
+                <p>${escapeHtml(book.description)}</p>
+                <div class="book-meta">
+                  ${book.author ? `<span>${icon("fileText")}${escapeHtml(book.author)}</span>` : ""}
+                  ${book.pages ? `<span>${escapeHtml(book.pages)}</span>` : ""}
+                  ${book.file_size ? `<span>${escapeHtml(book.file_size)}</span>` : ""}
+                </div>
+                ${renderLibraryTags(book.subjects)}
+                <div class="book-actions">
+                  <a class="card-link" href="${escapeHtml(book.read_url)}" target="_blank" rel="noopener noreferrer">${icon("bookOpen")}<span>Read source page</span></a>
+                  <a class="card-link muted-link" href="${escapeHtml(book.source_url)}" target="_blank" rel="noopener noreferrer">${icon("externalLink")}<span>Collection</span></a>
+                </div>
+              </div>
+            </article>
+          `).join("") : `
+            <div class="empty-state">
+              <h3>No books found</h3>
+              <p>Try a broader search term or choose all subjects.</p>
+            </div>
+          `}
+        </div>
+        ${books.length > visibleBooks.length ? `<p class="review-limit">Showing the first ${visibleBooks.length} matches. Narrow your search to see a more focused list.</p>` : ""}
+      </div>
+    </section>
+  `;
 }
 
 function imageReviewRows() {
@@ -2436,6 +2588,10 @@ function render() {
     content = renderQuizHub();
     meta = { title: "Quizzes", description: "Practice nursing and midwifery revision with topic-linked quick quizzes." };
   }
+  else if (parts[0] === "resources" && (parts[1] === "books" || parts[1] === "digital-library")) {
+    content = renderBookLibrary();
+    meta = { title: "Digital Library", description: "Curated nursing and medical book source links matched to Nursing Uganda course topics." };
+  }
   else if (parts[0] === "resources" && parts[1] === "medical-instruments" && parts[2]) {
     const instrument = findMedicalInstrument(parts[2]);
     content = instrument ? renderMedicalInstrumentDetail(instrument) : notFound();
@@ -2635,6 +2791,27 @@ function render() {
     });
   }
 
+  const librarySearch = app.querySelector("[data-library-search]");
+  if (librarySearch) {
+    librarySearch.addEventListener("input", (event) => {
+      state.librarySearch = event.target.value;
+      render();
+      const nextSearch = app.querySelector("[data-library-search]");
+      if (nextSearch) {
+        nextSearch.focus();
+        nextSearch.setSelectionRange(nextSearch.value.length, nextSearch.value.length);
+      }
+    });
+  }
+
+  const librarySubject = app.querySelector("[data-library-subject]");
+  if (librarySubject) {
+    librarySubject.addEventListener("change", (event) => {
+      state.librarySubject = event.target.value;
+      render();
+    });
+  }
+
   const imageReviewSearch = app.querySelector("[data-image-review-search]");
   if (imageReviewSearch) {
     imageReviewSearch.addEventListener("input", (event) => {
@@ -2730,15 +2907,17 @@ function render() {
 async function init() {
   try {
     applyTheme();
-    const [response, imageResponse, optimizedResponse] = await Promise.all([
+    const [response, imageResponse, optimizedResponse, bookResponse] = await Promise.all([
       fetch("assets/data/curriculum.json"),
       fetch("assets/data/topic-image-matches.json"),
-      fetch("assets/images/optimized/nursing-uganda-optimized-image-manifest.json")
+      fetch("assets/images/optimized/nursing-uganda-optimized-image-manifest.json"),
+      fetch("assets/data/book-library.json")
     ]);
     if (!response.ok) throw new Error(`We could not load the curriculum. Please refresh. (${response.status})`);
     state.data = await response.json();
     state.imageMatches = imageResponse.ok ? await imageResponse.json() : { matches: {} };
     state.optimizedImages = optimizedResponse.ok ? (await optimizedResponse.json()).images || {} : {};
+    state.bookLibrary = bookResponse.ok ? await bookResponse.json() : bookLibrary();
     if (!window.location.hash) window.location.hash = "#/notes";
     render();
   } catch (error) {

@@ -1,4 +1,4 @@
-const CACHE_VERSION = "nursing-uganda-v1";
+const CACHE_VERSION = "nursing-uganda-v2";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -7,6 +7,7 @@ const APP_SHELL = [
   "./assets/js/app.js",
   "./assets/data/curriculum.json",
   "./assets/data/topic-image-matches.json",
+  "./assets/data/book-library.json",
   "./assets/images/optimized/nursing-uganda-optimized-image-manifest.json",
   "./assets/images/nursing-uganda-favicon.svg"
 ];
