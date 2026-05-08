@@ -13,6 +13,8 @@ const state = {
   imageReviewStatus: "strong",
   librarySearch: "",
   librarySubject: "all",
+  resourceSearch: "",
+  resourceFilter: "All",
   imagePickerKey: "",
   imagePickerSearch: "",
   imagePickerCategory: "all",
@@ -894,31 +896,28 @@ function layout(content) {
   }
 }
 
-function hero({ title, body, actions = "", image = imageCatalog.anatomy, breadcrumb = "" }) {
+function hero({ title, body, actions = "", image = imageCatalog.anatomy, breadcrumb = "", stats = [] }) {
   return `
     <section class="hero" style="--hero-image: url('${escapeHtml(rootAssetPath(displayImageSrc(image.src)))}')">
-      <div class="container hero-grid">
+      <div class="container hero-grid${stats.length ? "" : " no-stats"}">
         <div>
           ${breadcrumb}
           <h1>${escapeHtml(title)}</h1>
           <p>${escapeHtml(body)}</p>
           ${actions ? `<div class="hero-actions">${actions}</div>` : ""}
         </div>
-        <div class="app-panel">
-          <div class="stat-grid">
-            ${[
-              ["Programmes", state.data.totals.programmes, "graduationCap"],
-              ["Course Units", state.data.totals.courseUnits, "bookOpen"],
-              ["Study Topics", state.data.totals.topics, "listChecks"],
-              ["Semesters", state.data.totals.semesters, "calendar"]
-            ].map(([label, value, iconName]) => `
-              <div class="stat">
-                <span class="stat-icon">${icon(iconName)}</span>
-                <span><strong>${value}</strong><small>${escapeHtml(label)}</small></span>
-              </div>
-            `).join("")}
+        ${stats.length ? `
+          <div class="app-panel">
+            <div class="stat-grid">
+              ${stats.map(([label, value, iconName]) => `
+                <div class="stat">
+                  <span class="stat-icon">${icon(iconName)}</span>
+                  <span><strong>${value}</strong><small>${escapeHtml(label)}</small></span>
+                </div>
+              `).join("")}
+            </div>
           </div>
-        </div>
+        ` : ""}
       </div>
     </section>
   `;
@@ -1185,7 +1184,13 @@ function renderCourses() {
       title: "Courses and Curriculum Maps",
       body: "Browse nursing and midwifery programmes, years, semesters and course units. Topic maps help you move from curriculum to focused revision.",
       image: imageCatalog.curriculum,
-      actions: buttonLink("#/courses/curriculum", "View all maps", "primary", "listChecks")
+      actions: buttonLink("#/courses/curriculum", "View all maps", "primary", "listChecks"),
+      stats: [
+        ["Programmes", state.data.totals.programmes, "graduationCap"],
+        ["Course Units", state.data.totals.courseUnits, "bookOpen"],
+        ["Study Topics", state.data.totals.topics, "listChecks"],
+        ["Semesters", state.data.totals.semesters, "calendar"]
+      ]
     })}
     <section class="section">
       <div class="container">
@@ -1263,7 +1268,13 @@ function renderProgramme(programme) {
           <strong>${escapeHtml(programme.label)}</strong>
         </nav>
       `,
-      actions: firstYearKey ? `<button class="button primary" type="button" data-scroll-target="${escapeHtml(firstYearKey)}">${buttonLabel("View Year 1", "arrowRight")}</button>` : ""
+      actions: firstYearKey ? `<button class="button primary" type="button" data-scroll-target="${escapeHtml(firstYearKey)}">${buttonLabel("View Year 1", "arrowRight")}</button>` : "",
+      stats: [
+        ["Years", programme.stats.yearCount, "calendar"],
+        ["Semesters", programme.stats.semesterCount, "listChecks"],
+        ["Course Units", programme.stats.unitCount, "bookOpen"],
+        ["Topics", programme.stats.topicCount || totalTopics, "graduationCap"]
+      ]
     })}
     <section class="section">
       <div class="container app-layout curriculum-layout">
@@ -1793,31 +1804,143 @@ function slugify(value) {
   return String(value).toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
 }
 
-function renderResources() {
-  const resources = [
-    ["Digital Library", "Curated nursing and medical book sources matched to course topics.", "#/resources/books"],
-    ["Past Papers", "Exam practice grouped by programme and course unit.", "#/resources/past-papers"],
-    ["Quizzes", "MCQs for notes, course units and topic revision.", "#/resources/quizzes"],
-    ["Licensing", "UNMC, CPD and renewal guidance for professional requirements.", "#/resources/licensing"],
-    ["Medical Instruments", "Common nursing and midwifery instruments with use, handling and revision notes.", "#/resources/medical-instruments"],
-    ["Schools", "A directory of recognized nursing and midwifery schools.", "#/resources/schools"],
-    ["Student Support", "Study planning, placement preparation and career guidance.", "#/resources/student-support"],
-    ["Image Review", "Review topic image matches, confidence levels and unmatched topics.", "#/resources/image-review"]
+function resourceCards() {
+  return [
+    {
+      title: "Digital Library",
+      body: "Curated nursing and medical book sources matched to course topics.",
+      href: "#/resources/books",
+      category: "Reference",
+      icon: "bookOpen",
+      accent: "library"
+    },
+    {
+      title: "Past Papers",
+      body: "Exam practice grouped by programme and course unit.",
+      href: "#/resources/past-papers",
+      category: "Exam Prep",
+      icon: "fileText",
+      accent: "papers"
+    },
+    {
+      title: "Quizzes",
+      body: "MCQs for notes, course units and topic revision.",
+      href: "#/resources/quizzes",
+      category: "Exam Prep",
+      icon: "helpCircle",
+      accent: "quizzes"
+    },
+    {
+      title: "Licensing",
+      body: "UNMC, CPD and renewal guidance for professional requirements.",
+      href: "#/resources/licensing",
+      category: "Licensing",
+      icon: "badgeCheck",
+      accent: "licensing"
+    },
+    {
+      title: "Medical Instruments",
+      body: "Common nursing and midwifery instruments with use, handling and revision notes.",
+      href: "#/resources/medical-instruments",
+      category: "Reference",
+      icon: "stethoscope",
+      accent: "instruments"
+    },
+    {
+      title: "Schools",
+      body: "A directory of recognized nursing and midwifery schools.",
+      href: "#/resources/schools",
+      category: "Career Support",
+      icon: "school",
+      accent: "schools"
+    },
+    {
+      title: "Student Support",
+      body: "Study planning, placement preparation and career guidance.",
+      href: "#/resources/student-support",
+      category: "Career Support",
+      icon: "heartPulse",
+      accent: "support"
+    },
+    {
+      title: "Image Review",
+      body: "Review topic image matches, confidence levels and unmatched topics.",
+      href: "#/resources/image-review",
+      category: "Reference",
+      icon: "search",
+      accent: "review"
+    }
+  ];
+}
+
+function renderResourcesHero(resources) {
+  const stats = [
+    [`${resources.length}`, "Resource Categories", "folderOpen"],
+    [`${bookLibrary().summary.books_indexed || 178}`, "Book Links", "bookOpen"],
+    [`${state.data.totals.topics}+`, "Topic Connections", "listChecks"]
   ];
 
   return `
-    ${hero({
-      title: "Resources",
-      body: "Exam practice, medical instruments, licensing, schools and study support for nursing and midwifery students.",
-      image: imageCatalog.instruments
-    })}
-    <section class="section">
+    <section class="resources-hero hero" style="--hero-image: url('${escapeHtml(rootAssetPath(displayImageSrc(imageCatalog.instruments.src)))}')">
+      <div class="container resources-hero-grid">
+        <div>
+          <span class="mini-label">Resource Hub</span>
+          <h1>Resources</h1>
+          <p>Everything you need to study smarter: past papers, quizzes, licensing guides, medical references, schools and student support.</p>
+          <label class="resources-hero-search">
+            ${icon("search")}
+            <input data-resource-search type="search" value="${escapeHtml(state.resourceSearch)}" placeholder="Search resources..." aria-label="Search resources">
+          </label>
+        </div>
+        <div class="resource-stat-panel">
+          ${stats.map(([value, label, iconName]) => `
+            <div class="resource-stat">
+              <span>${icon(iconName)}</span>
+              <strong>${escapeHtml(value)}</strong>
+              <small>${escapeHtml(label)}</small>
+            </div>
+          `).join("")}
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function renderResources() {
+  const resources = resourceCards();
+  const filters = ["All", "Exam Prep", "Reference", "Licensing", "Career Support"];
+  const query = state.resourceSearch.trim().toLowerCase();
+  const filtered = resources.filter((item) => {
+    const matchesFilter = state.resourceFilter === "All" || item.category === state.resourceFilter;
+    const haystack = `${item.title} ${item.body} ${item.category}`.toLowerCase();
+    return matchesFilter && (!query || haystack.includes(query));
+  });
+
+  return `
+    ${renderResourcesHero(resources)}
+    <section class="section resources-section">
       <div class="container">
-        <div class="grid three">
-          ${resources.map(([title, body, href]) => {
-            const content = `${cardImage(title)}<span class="card-icon">${iconFor(title)}</span><h3>${escapeHtml(title)}</h3><p>${escapeHtml(body)}</p>${href ? `<span class="card-link">${icon("arrowRight")}<span>Open resource</span></span>` : ""}`;
-            return href ? `<a class="card image-card" href="${href}">${content}</a>` : `<article class="card image-card">${content}</article>`;
-          }).join("")}
+        <div class="resource-filter-bar" aria-label="Filter resources">
+          ${filters.map((filter) => `
+            <button type="button" class="${state.resourceFilter === filter ? "active" : ""}" data-resource-filter="${escapeHtml(filter)}">${escapeHtml(filter)}</button>
+          `).join("")}
+        </div>
+        <div class="resource-hub-head">
+          <div>
+            <h2>${state.resourceFilter === "All" ? "All Resources" : state.resourceFilter}</h2>
+            <p>${filtered.length} ${filtered.length === 1 ? "resource" : "resources"} matched${query ? ` "${escapeHtml(state.resourceSearch)}"` : ""}.</p>
+          </div>
+        </div>
+        <div class="resource-hub-grid">
+          ${filtered.length ? filtered.map((item) => `
+            <a class="resource-hub-card accent-${escapeHtml(item.accent)}" href="${escapeHtml(item.href)}">
+              <span class="resource-card-art">${icon(item.icon)}</span>
+              <span class="resource-tag">${escapeHtml(item.category)}</span>
+              <h3>${escapeHtml(item.title)}</h3>
+              <p>${escapeHtml(item.body)}</p>
+              <span class="resource-button">${icon("arrowRight")}<span>Open resource</span></span>
+            </a>
+          `).join("") : `<div class="empty-state resource-empty">No resources matched that search.</div>`}
         </div>
       </div>
     </section>
@@ -2937,6 +3060,26 @@ function render() {
       render();
     });
   }
+
+  const resourceSearch = app.querySelector("[data-resource-search]");
+  if (resourceSearch) {
+    resourceSearch.addEventListener("input", (event) => {
+      state.resourceSearch = event.target.value;
+      render();
+      const nextSearch = app.querySelector("[data-resource-search]");
+      if (nextSearch) {
+        nextSearch.focus();
+        nextSearch.setSelectionRange(nextSearch.value.length, nextSearch.value.length);
+      }
+    });
+  }
+
+  app.querySelectorAll("[data-resource-filter]").forEach((button) => {
+    button.addEventListener("click", () => {
+      state.resourceFilter = button.dataset.resourceFilter || "All";
+      render();
+    });
+  });
 
   const imageReviewSearch = app.querySelector("[data-image-review-search]");
   if (imageReviewSearch) {
