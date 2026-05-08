@@ -2162,17 +2162,28 @@ p {
 }
 
 .schools-hero {
+  position: relative;
+  overflow: hidden;
   min-height: 260px;
   display: flex;
   align-items: center;
-  padding: 42px 0 38px;
+  padding: 44px 0;
   color: var(--color-on-brand);
-  background: var(--gradient-hero);
+  background:
+    linear-gradient(135deg, rgb(var(--color-navy-rgb) / 0.96) 0%, rgb(var(--color-primary-rgb) / 0.9) 52%, rgb(var(--color-cyan-rgb) / 0.78) 100%),
+    var(--schools-hero-image, none) center / cover;
 }
 
-.schools-hero .container {
+.schools-hero .container,
+.schools-hero-copy {
   display: grid;
   gap: 14px;
+}
+
+.schools-hero-grid {
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.46fr);
+  align-items: center;
+  gap: 34px;
 }
 
 .schools-breadcrumb {
@@ -2233,6 +2244,102 @@ p {
 .schools-hero-actions .ui-icon {
   width: 16px;
   height: 16px;
+}
+
+.schools-hero-visual {
+  position: relative;
+  min-height: 270px;
+}
+
+.schools-hero-visual img {
+  width: 100%;
+  height: 270px;
+  object-fit: cover;
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  box-shadow: 0 26px 60px rgb(var(--color-navy-rgb) / 0.28);
+}
+
+.schools-hero-card,
+.schools-hero-mini {
+  position: absolute;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  box-shadow: var(--glass-shadow);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+}
+
+.schools-hero-card {
+  top: 18px;
+  bottom: auto;
+  left: 16px;
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  column-gap: 10px;
+  row-gap: 2px;
+  max-width: 210px;
+  padding: 14px 16px;
+  border-radius: 16px;
+}
+
+.schools-hero-card span {
+  grid-row: span 2;
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 14px;
+  background: rgb(var(--color-cyan-rgb) / 0.18);
+  color: var(--color-on-brand);
+}
+
+.schools-hero-card .ui-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.schools-hero-card strong {
+  color: var(--color-on-brand);
+  font-size: 1.8rem;
+  font-weight: 950;
+  line-height: 1;
+}
+
+.schools-hero-card small {
+  color: rgb(var(--color-on-brand-rgb) / 0.78);
+  font-size: 0.78rem;
+  font-weight: 850;
+}
+
+.schools-hero-mini {
+  right: 16px;
+  bottom: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: calc(100% - 32px);
+  padding: 10px;
+  border-radius: 16px;
+}
+
+.schools-hero-mini span {
+  display: inline-flex;
+  min-height: 34px;
+  align-items: center;
+  gap: 6px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: rgb(var(--color-navy-rgb) / 0.24);
+  color: rgb(var(--color-on-brand-rgb) / 0.82);
+  font-size: 0.78rem;
+  font-weight: 850;
+}
+
+.schools-hero-mini strong {
+  color: var(--color-on-brand);
+  font-weight: 950;
 }
 
 .schools-filter-shell {
@@ -3150,7 +3257,20 @@ p {
 
 @media (max-width: 980px) {
   .schools-hero {
-    min-height: 220px;
+    min-height: auto;
+  }
+
+  .schools-hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .schools-hero-visual {
+    min-height: 230px;
+    max-width: 560px;
+  }
+
+  .schools-hero-visual img {
+    height: 230px;
   }
 
   .schools-filter-shell {
@@ -3224,12 +3344,40 @@ p {
 
 @media (max-width: 720px) {
   .schools-hero {
-    min-height: 200px;
     padding: 30px 0;
   }
 
   .schools-hero h1 {
     font-size: clamp(2rem, 10vw, 2.75rem);
+  }
+
+  .schools-hero-visual {
+    min-height: 180px;
+  }
+
+  .schools-hero-visual img {
+    height: 180px;
+    border-radius: 16px;
+  }
+
+  .schools-hero-card {
+    top: auto;
+    bottom: 12px;
+    left: 12px;
+    padding: 12px;
+  }
+
+  .schools-hero-card span {
+    width: 36px;
+    height: 36px;
+  }
+
+  .schools-hero-card strong {
+    font-size: 1.45rem;
+  }
+
+  .schools-hero-mini {
+    display: none;
   }
 
   .schools-filter-shell {

@@ -22,6 +22,16 @@ const state = {
   librarySubject: "all",
   resourceSearch: "",
   resourceFilter: "All",
+  careerMode: "jobs",
+  careerSearch: "",
+  careerType: "All",
+  careerLevel: "All",
+  careerRegion: "All",
+  careerSpeciality: "All",
+  careerDeadline: "All",
+  careerSort: "Newest",
+  selectedCareerJob: "",
+  savedCareerJobs: JSON.parse(localStorage.getItem("nursinguganda.savedCareerJobs") || "[]"),
   imagePickerKey: "",
   imagePickerSearch: "",
   imagePickerCategory: "all",
@@ -33,7 +43,8 @@ const app = document.querySelector("#app");
 const routeMap = {
   notes: { label: "Notes", href: "#/notes", icon: "bookOpen" },
   courses: { label: "Courses", href: "#/courses", icon: "graduationCap" },
-  resources: { label: "Resources", href: "#/resources", icon: "folderOpen" }
+  resources: { label: "Resources", href: "#/resources", icon: "folderOpen" },
+  careers: { label: "Careers", href: "#/careers", icon: "briefcaseMedical" }
 };
 
 const iconPaths = {
@@ -91,6 +102,7 @@ function currentRoute() {
 function routeKey(parts = currentRoute()) {
   if (parts[0] === "courses") return "courses";
   if (parts[0] === "resources") return "resources";
+  if (parts[0] === "careers") return "careers";
   return "notes";
 }
 
@@ -170,6 +182,108 @@ function findTopic(unit, groupIndex, topicIndex) {
 
 function lessonFor(topic) {
   return topic && topic.sourceSlug && state.data.lessons ? state.data.lessons[topic.sourceSlug] : null;
+}
+
+const generatedLessonCache = new Map();
+
+function fallbackLessonKey(programme, unit, topic) {
+  return [
+    programme && programme.id ? programme.id : "programme",
+    unit && unit.id ? unit.id : "unit",
+    topic && topic.groupIndex !== undefined ? topic.groupIndex : "group",
+    topic && topic.topicIndex !== undefined ? topic.topicIndex : "topic",
+    topic && topic.title ? topic.title : "untitled"
+  ].join("::");
+}
+
+function buildFallbackLesson(programme, unit, topic) {
+  if (!programme || !unit || !topic) return null;
+  const cacheKey = fallbackLessonKey(programme, unit, topic);
+  if (generatedLessonCache.has(cacheKey)) return generatedLessonCache.get(cacheKey);
+
+  const topicTitle = topic.title || "Topic";
+  const unitLabel = `${unit.code ? `${unit.code}: ` : ""}${unit.title}`;
+  const context = `${programme.label} - ${unitLabel}`;
+  const lower = topicTitle.toLowerCase();
+  const isEmergency = /(first aid|emerg|shock|bleed|trauma|resusc|burn|poison|collapse|unconscious)/i.test(lower);
+  const isMaternal = /(pregnan|labou?r|antenatal|postnatal|midwif|newborn|neonat)/i.test(lower);
+  const isInfection = /(infection|communicable|malaria|tb|hiv|sepsis|immuni|sterile|aseptic)/i.test(lower);
+
+  const alertFocus = isEmergency
+    ? "prioritize scene safety, airway, breathing and circulation before detailed interventions"
+    : isMaternal
+      ? "monitor maternal and fetal wellbeing, identify danger signs early and escalate promptly"
+      : isInfection
+        ? "apply infection prevention measures consistently and recognize red flags early"
+        : "assess systematically, document findings and escalate concerns early";
+
+  const sections = [
+    {
+      title: "Learning Objectives",
+      blocks: [
+        { type: "bullet", text: `Define key terms used in ${topicTitle.toLowerCase()}.` },
+        { type: "bullet", text: `Describe the core nursing principles linked to ${topicTitle.toLowerCase()}.` },
+        { type: "bullet", text: `Apply safe and ethical nursing actions in this area of practice.` }
+      ]
+    },
+    {
+      title: "Core Notes",
+      blocks: [
+        { type: "paragraph", text: `${topicTitle} is studied in ${context} to strengthen clinical reasoning, safe practice and patient-centered care.` },
+        { type: "paragraph", text: `When reviewing this topic, ${alertFocus}. Always relate theory to bedside assessment and local protocol requirements.` },
+        { type: "bullet", text: "Use structured assessment: history, observation, focused examination and nursing interpretation." },
+        { type: "bullet", text: "Link findings to likely causes, patient risk level and immediate nursing priorities." },
+        { type: "bullet", text: "Document interventions clearly and evaluate response after each action." }
+      ]
+    },
+    {
+      title: "Nursing Assessment Focus",
+      blocks: [
+        { type: "bullet", text: "Identify presenting complaints, onset, duration and associated symptoms." },
+        { type: "bullet", text: "Record baseline vital signs and repeat according to patient acuity." },
+        { type: "bullet", text: "Assess risk factors, comorbidities, medication history and allergies." },
+        { type: "bullet", text: "Recognize danger signs requiring urgent review or referral." }
+      ]
+    },
+    {
+      title: "Nursing Interventions And Safety",
+      blocks: [
+        { type: "bullet", text: "Prioritize interventions according to urgency and available resources." },
+        { type: "bullet", text: "Apply infection prevention and control throughout all procedures." },
+        { type: "bullet", text: "Provide clear patient and caregiver explanations before and after care." },
+        { type: "bullet", text: "Escalate deterioration immediately and hand over using a structured format." }
+      ]
+    },
+    {
+      title: "Quick Revision Checklist",
+      blocks: [
+        { type: "bullet", text: `Can you explain ${topicTitle.toLowerCase()} in your own words?` },
+        { type: "bullet", text: "Can you list priority assessments and key danger signs?" },
+        { type: "bullet", text: "Can you outline safe nursing actions and when to refer/escalate?" },
+        { type: "bullet", text: "Can you document and evaluate outcomes correctly?" }
+      ]
+    },
+    {
+      title: "Reference",
+      blocks: [
+        { type: "paragraph", text: "Nursing Uganda structured topic notes. Cross-check with current tutor guidance, facility protocols and national professional standards." }
+      ]
+    }
+  ];
+
+  const lesson = {
+    title: topicTitle,
+    excerpt: `Structured study notes for ${topicTitle.toLowerCase()} in ${unitLabel}.`,
+    sourceFile: "Nursing Uganda generated notes",
+    generated: true,
+    sections
+  };
+  generatedLessonCache.set(cacheKey, lesson);
+  return lesson;
+}
+
+function lessonForTopic(programme, unit, topic) {
+  return lessonFor(topic) || buildFallbackLesson(programme, unit, topic);
 }
 
 function topicKey(programme, unit, topic) {
@@ -344,7 +458,7 @@ function topicProgress(programme, unit) {
   const topics = flatTopics(unit);
   const completed = completedTopics();
   const done = topics.filter((topic) => completed[topicKey(programme, unit, topic)]).length;
-  const available = topics.filter((topic) => lessonFor(topic)).length;
+  const available = topics.filter((topic) => lessonForTopic(programme, unit, topic)).length;
   const percent = topics.length ? Math.round((done / topics.length) * 100) : 0;
   return { total: topics.length, done, available, percent };
 }
@@ -768,7 +882,7 @@ function globalSearchResults(query) {
       }
 
       for (const topic of flatTopics(unit)) {
-        const lesson = lessonFor(topic);
+        const lesson = lessonForTopic(programme, unit, topic);
         const searchText = `${programme.label} ${unit.title} ${topic.groupTitle} ${topic.title} ${lessonSearchText(lesson)}`;
         if (!searchText.toLowerCase().includes(q)) continue;
         results.push({
@@ -815,7 +929,9 @@ function globalSearchResults(query) {
 }
 
 function topicHref(programme, unit, groupIndex, topicIndex) {
-  return `#/courses/${programme.id}/${unit.id}/topic/${groupIndex}/${topicIndex}`;
+  const topic = unit && unit.topicGroups ? findTopic(unit, groupIndex, topicIndex) : null;
+  if (!topic) return `#/courses/${programme.id}/${unit.id}/topic/${groupIndex}/${topicIndex}`;
+  return `#/courses/${programme.id}/${unit.id}/${uniqueTopicSlug(unit, topic)}/`;
 }
 
 function icon(name) {
@@ -898,8 +1014,8 @@ const imageCatalog = {
     alt: "Nursing skills laboratory for student training"
   },
   resourcesHero: {
-    src: "assets/images/resources/resources-hero-premium.jpg",
-    alt: "Nursing students collaborating in a premium study environment"
+    src: "assets/images/nursing-uganda-hero-nursing-student-skills-lab-01.png",
+    alt: "Nursing students collaborating around learning resources"
   },
   exams: {
     src: "assets/images/source-library/nursing-uganda-unmeb-past-paper-1-001-60ae67af.png",
@@ -1000,7 +1116,8 @@ function renderFooter() {
     ["#/courses", "Courses", "graduationCap"],
     ["#/courses/curriculum", "Curriculum Maps", "listChecks"],
     ["#/search", "Search Topics", "search"],
-    ["#/resources/quizzes", "Quick Quizzes", "helpCircle"]
+    ["#/resources/quizzes", "Quick Quizzes", "helpCircle"],
+    ["#/careers", "Careers & Jobs", "briefcaseMedical"]
   ];
   const resourceLinks = [
     ["#/resources/past-papers", "Past Papers", "fileText"],
@@ -1029,11 +1146,6 @@ function renderFooter() {
               <span>Nursing Uganda<small>nursinguganda.com</small></span>
             </a>
             <p>Structured nursing and midwifery notes, course maps, practice tools and student resources for Uganda learners.</p>
-            <div class="footer-stats" aria-label="Nursing Uganda content totals">
-              <span><strong>${state.data.totals.programmes}</strong> Programmes</span>
-              <span><strong>${state.data.totals.courseUnits}</strong> Course Units</span>
-              <span><strong>${state.data.totals.topics}</strong> Topics</span>
-            </div>
           </div>
           <nav class="footer-column" aria-label="Study links">
             <h2>Study</h2>
@@ -1092,6 +1204,16 @@ function megaMenuLinks(key) {
     ];
   }
 
+  if (key === "careers") {
+    return [
+      { href: "#/careers", label: "Jobs Board", body: "Search nursing roles, internships and international listings", icon: "briefcaseMedical" },
+      { href: "#/careers", label: "Career Hub", body: "Pathways, licensing, CV tools and work abroad guides", icon: "map" },
+      { href: "#/careers", label: "International Nursing", body: "UK, Australia, Gulf and regional mobility notes", icon: "externalLink" },
+      { href: "#/careers", label: "Licensing Guides", body: "UNMC, good standing and recognition checklists", icon: "badgeCheck" },
+      { href: "#/careers", label: "CV Resources", body: "Templates, cover letters, interviews and portfolios", icon: "fileText" }
+    ];
+  }
+
   return [
     { href: "#/resources/books", label: "Digital Library", body: "Curated medical and nursing book sources", icon: "bookOpen" },
     { href: "#/resources/past-papers", label: "Past Papers", body: "Exam practice and revision sets", icon: "fileText" },
@@ -1113,7 +1235,7 @@ function renderMegaMenu(key, item, active) {
       <div class="mega-panel" role="group" aria-label="${escapeHtml(item.label)} menu">
         <div class="mega-panel-head">
           <strong>${escapeHtml(item.label)}</strong>
-          <span>${key === "notes" ? "Choose a subject area" : key === "courses" ? "Open a programme or curriculum map" : "Open study resources"}</span>
+          <span>${key === "notes" ? "Choose a subject area" : key === "courses" ? "Open a programme or curriculum map" : key === "careers" ? "Find jobs and career support" : "Open study resources"}</span>
         </div>
         <div class="mega-grid">
           ${links.map((link) => `
@@ -1195,10 +1317,11 @@ function layout(content) {
   }
 }
 
-function hero({ title, body, actions = "", image = imageCatalog.anatomy, breadcrumb = "", stats = [] }) {
-  const cues = stats && stats.length
-    ? stats.slice(0, 3).map(([label]) => label)
-    : ["Structured curriculum", "Uganda-focused content", "Revision-ready resources"];
+function hero({ title, body, actions = "", image = imageCatalog.anatomy, breadcrumb = "", stats = [], cues = [] }) {
+  const statCues = stats && stats.length ? stats.slice(0, 3).map(([label]) => label) : [];
+  const cueLabels = cues.length
+    ? cues
+    : (statCues.length ? statCues : ["Structured curriculum", "Uganda-focused content", "Revision-ready resources"]);
   return `
     <section class="hero" style="--hero-image: url('${escapeHtml(rootAssetPath(displayImageSrc(image.src)))}')">
       <div class="container hero-grid premium-hero-grid">
@@ -1211,7 +1334,7 @@ function hero({ title, body, actions = "", image = imageCatalog.anatomy, breadcr
         <aside class="hero-visual" aria-label="${escapeHtml(title)} visual">
           <img src="${escapeHtml(rootAssetPath(displayImageSrc(image.src)))}" alt="${escapeHtml(image.alt || title)}">
           <div class="hero-cues">
-            ${cues.map((cue) => `<span>${escapeHtml(cue)}</span>`).join("")}
+            ${cueLabels.map((cue) => `<span>${escapeHtml(cue)}</span>`).join("")}
           </div>
         </aside>
       </div>
@@ -1387,7 +1510,7 @@ function renderGlobalSearchPage() {
 
 function renderQuizHub() {
   const quizTopics = allStudyTopics()
-    .filter(({ topic }) => lessonFor(topic))
+    .filter(({ programme, unit, topic }) => lessonForTopic(programme, unit, topic))
     .slice(0, 36);
 
   return `
@@ -1481,6 +1604,7 @@ function renderCourses() {
       body: "Browse nursing and midwifery programmes, years, semesters and course units. Topic maps help you move from curriculum to focused revision.",
       image: imageCatalog.curriculum,
       actions: buttonLink("#/courses/curriculum", "View all maps", "primary", "listChecks"),
+      cues: ["Browse by programme", "Semester pathways", "Topic-linked revision"],
       stats: [
         ["Programmes", state.data.totals.programmes, "graduationCap"],
         ["Course Units", state.data.totals.courseUnits, "bookOpen"],
@@ -1565,6 +1689,7 @@ function renderProgramme(programme) {
         </nav>
       `,
       actions: firstYearKey ? `<button class="button primary" type="button" data-scroll-target="${escapeHtml(firstYearKey)}">${buttonLabel("View Year 1", "arrowRight")}</button>` : "",
+      cues: ["Year-by-year map", "Semester breakdown", "Open each unit"],
       stats: [
         ["Years", programme.stats.yearCount, "calendar"],
         ["Semesters", programme.stats.semesterCount, "listChecks"],
@@ -1688,7 +1813,7 @@ function renderUnit(programme, unit) {
               <div class="topic-list">
                 ${group.topics.map((topic, index) => {
                   const topicWithIndex = { ...topic, groupIndex: groups.indexOf(group), topicIndex: index };
-                  const lesson = lessonFor(topic);
+                  const lesson = lessonForTopic(programme, unit, topicWithIndex);
                   const complete = completedTopics()[topicKey(programme, unit, topicWithIndex)];
                   return `
                     <a class="topic-row topic-link${complete ? " complete" : ""}" href="${topicHref(programme, unit, groups.indexOf(group), index)}">
@@ -1809,7 +1934,7 @@ function renderLessonContent(lesson) {
   return `
     <div class="lesson-content">
       ${lesson.sections.map((section, index) => `
-        <details id="lesson-section-${index}" class="lesson-section${lessonSectionClass(section.title)}" ${index < 2 ? "open" : ""}>
+        <details id="lesson-section-${index}" class="lesson-section${lessonSectionClass(section.title)}" open>
           <summary>
             <span>${String(index + 1).padStart(2, "0")}</span>
             <h3>${escapeHtml(section.title)}</h3>
@@ -2014,8 +2139,10 @@ function renderTopic(programme, unit, topic) {
   const topics = flatTopics(unit);
   const previous = topics[topic.flatIndex - 1];
   const next = topics[topic.flatIndex + 1];
-  const lesson = lessonFor(topic);
-  const sourceText = lesson ? lesson.sourceFile : (topic.sourceSlug || topic.sourceHref || "Reference will be added soon");
+  const lesson = lessonForTopic(programme, unit, topic);
+  const sourceText = lesson && lesson.generated
+    ? "Nursing Uganda generated notes (verify with tutor guidance and official references)"
+    : (lesson ? lesson.sourceFile : (topic.sourceSlug || topic.sourceHref || "Reference will be added soon"));
   const key = topicKey(programme, unit, topic);
   const complete = Boolean(completedTopics()[key]);
   const progress = topicProgress(programme, unit);
@@ -2098,6 +2225,28 @@ function groupId(title) {
 
 function slugify(value) {
   return String(value).toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+}
+
+function topicSlug(topic) {
+  return slugify(topic && (topic.slug || topic.title || topic.sourceSlug || "topic"));
+}
+
+function uniqueTopicSlug(unit, topic) {
+  const base = topicSlug(topic) || "topic";
+  const topics = flatTopics(unit);
+  const matches = topics.filter((item) => topicSlug(item) === base);
+  if (matches.length <= 1) return base;
+
+  const matchIndex = matches.findIndex((item) => item.groupIndex === topic.groupIndex && item.topicIndex === topic.topicIndex);
+  return `${base}-${matchIndex >= 0 ? matchIndex + 1 : topic.flatIndex + 1}`;
+}
+
+function findTopicBySlug(unit, slug) {
+  const cleanSlug = slugify(slug);
+  return flatTopics(unit).find((topic) => {
+    const exactSlug = uniqueTopicSlug(unit, topic);
+    return exactSlug === cleanSlug || topicSlug(topic) === cleanSlug || slugify(topic.sourceSlug || "") === cleanSlug;
+  }) || null;
 }
 
 function resourceCards() {
@@ -2768,6 +2917,650 @@ function renderResourceDetail(page) {
   `;
 }
 
+const careerFilterGroups = {
+  type: ["All", "Internship", "Full Time", "Part Time", "Contract", "Volunteer"],
+  level: ["All", "Student", "Graduate", "Experienced", "Senior"],
+  region: ["All", "Uganda", "East Africa", "UK", "Australia", "Middle East", "Other"],
+  speciality: ["All", "General", "ICU", "Theatre", "Paediatrics", "Midwifery", "Community", "Mental Health"],
+  deadline: ["All", "This week", "This month"]
+};
+
+function careerJobs() {
+  return [
+    ["mulago-graduate-nurse", "Graduate Nurse Program", "Mulago National Referral Hospital", "Kampala, Uganda", "Full Time", "Graduate", "Uganda", "General", "UGX 1.2M-1.8M", "2026-05-02", "2026-05-31", true, false],
+    ["aga-khan-theatre-nurse", "Theatre Nurse", "Aga Khan Hospital Uganda", "Kampala, Uganda", "Full Time", "Experienced", "Uganda", "Theatre", "UGX 2.4M-3.4M", "2026-05-06", "2026-05-22", true, false],
+    ["unhcr-community-health", "Community Health Nurse", "UNHCR Uganda", "Arua, Uganda", "Contract", "Experienced", "Uganda", "Community", "Not disclosed", "2026-05-04", "2026-05-17", false, true],
+    ["msf-icu-nurse", "ICU Nurse", "MSF Uganda", "Kampala, Uganda", "Contract", "Experienced", "Uganda", "ICU", "Not disclosed", "2026-05-01", "2026-05-12", true, true],
+    ["who-surveillance-nurse", "Nursing Surveillance Officer", "WHO Uganda", "Kampala, Uganda", "Contract", "Senior", "Uganda", "Community", "Not disclosed", "2026-04-30", "2026-05-27", false, true],
+    ["red-cross-volunteer-nurse", "Volunteer Nurse - Emergency Response", "Uganda Red Cross", "Gulu, Uganda", "Volunteer", "Student", "Uganda", "General", "Volunteer allowance", "2026-05-07", "2026-05-15", false, false],
+    ["moh-midwife", "Midwife - District Health Facility", "MOH Uganda", "Mbarara, Uganda", "Full Time", "Graduate", "Uganda", "Midwifery", "Government scale", "2026-05-03", "2026-06-07", false, false],
+    ["nakasero-paediatric", "Paediatric Nurse", "Nakasero Hospital", "Kampala, Uganda", "Full Time", "Experienced", "Uganda", "Paediatrics", "UGX 2.0M-2.8M", "2026-05-05", "2026-06-02", false, false],
+    ["ihk-mental-health", "Mental Health Nurse", "International Hospital Kampala", "Namuwongo, Uganda", "Part Time", "Experienced", "Uganda", "Mental Health", "UGX 1.8M-2.6M", "2026-04-28", "2026-05-24", false, false],
+    ["nile-internship", "Student Nursing Internship", "Nile Community Clinic", "Jinja, Uganda", "Internship", "Student", "Uganda", "General", "Transport allowance", "2026-05-08", "2026-05-19", false, false],
+    ["kisumu-nurse", "Staff Nurse", "Kisumu County Hospital", "Kisumu, Kenya", "Full Time", "Experienced", "East Africa", "General", "KES 65K-95K", "2026-05-01", "2026-06-10", false, true],
+    ["nairobi-midwife", "Registered Midwife", "Nairobi Maternal Centre", "Nairobi, Kenya", "Contract", "Experienced", "East Africa", "Midwifery", "KES 80K-120K", "2026-05-06", "2026-05-28", false, true],
+    ["nhs-band5", "Band 5 Staff Nurse", "NHS Trust", "Manchester, UK", "Full Time", "Graduate", "UK", "General", "GBP 28K-34K", "2026-05-03", "2026-06-14", true, true],
+    ["nhs-theatre", "Operating Theatre Practitioner", "NHS Jobs", "Birmingham, UK", "Full Time", "Experienced", "UK", "Theatre", "GBP 35K-42K", "2026-05-02", "2026-05-30", false, true],
+    ["aged-care-australia", "Registered Nurse - Aged Care", "SEEK Australia", "Melbourne, Australia", "Full Time", "Experienced", "Australia", "General", "AUD 75K-95K", "2026-04-29", "2026-06-21", false, true],
+    ["icu-australia", "Critical Care Registered Nurse", "Queensland Health", "Brisbane, Australia", "Contract", "Senior", "Australia", "ICU", "AUD 90K-115K", "2026-05-05", "2026-06-04", true, true],
+    ["dubai-dha", "DHA Registered Nurse", "Dubai Health Recruiters", "Dubai, UAE", "Contract", "Experienced", "Middle East", "General", "AED 6K-9K", "2026-05-01", "2026-05-25", false, true],
+    ["abu-dhabi-paeds", "Paediatric Nurse", "Abu Dhabi Medical City", "Abu Dhabi, UAE", "Full Time", "Experienced", "Middle East", "Paediatrics", "AED 7K-10K", "2026-05-04", "2026-06-12", false, true],
+    ["saudi-midwife", "Staff Midwife", "Saudi Healthcare Group", "Riyadh, Saudi Arabia", "Contract", "Experienced", "Middle East", "Midwifery", "SAR 5K-8K", "2026-04-26", "2026-05-14", true, true],
+    ["qatar-theatre", "Theatre Scrub Nurse", "Qatar Medical Centre", "Doha, Qatar", "Full Time", "Senior", "Middle East", "Theatre", "QAR 8K-12K", "2026-05-06", "2026-06-01", false, true],
+    ["reliefweb-field-nurse", "Field Nurse - Humanitarian Response", "ReliefWeb Partner", "South Sudan", "Contract", "Experienced", "Other", "Community", "USD package", "2026-04-27", "2026-05-20", false, true],
+    ["who-consultant", "Nursing Consultant", "WHO Vacancies", "Remote / Africa Region", "Contract", "Senior", "Other", "General", "Consultancy rate", "2026-05-08", "2026-06-18", false, true],
+    ["clinic-parttime", "Part-time Clinic Nurse", "Kampala Family Clinic", "Kampala, Uganda", "Part Time", "Graduate", "Uganda", "General", "UGX 900K-1.4M", "2026-05-07", "2026-05-10", false, false],
+    ["mental-health-ngo", "Mental Health Outreach Nurse", "StrongMinds Uganda", "Mbale, Uganda", "Contract", "Graduate", "Uganda", "Mental Health", "Not disclosed", "2026-05-02", "2026-05-23", false, true]
+  ].map(([id, title, employer, location, type, level, region, speciality, salary, posted, deadline, isFeatured, isExternal]) => ({
+    id,
+    title,
+    employer,
+    location,
+    type,
+    level,
+    region,
+    speciality,
+    salary,
+    posted,
+    deadline,
+    isFeatured,
+    isExternal,
+    positions: isFeatured ? 3 : 1,
+    duration: type === "Contract" ? "6-24 months" : type === "Internship" ? "8-12 weeks" : "Permanent",
+    applyUrl: isExternal ? "https://www.linkedin.com/jobs/" : `mailto:careers@nursinguganda.com?subject=${encodeURIComponent(title)}`,
+    description: `${title} opportunity for Uganda nursing and midwifery professionals seeking structured growth, safe practice and patient-centred care.`,
+    responsibilities: ["Deliver safe nursing care and accurate documentation.", "Work with multidisciplinary teams and follow facility protocols.", "Support patient education, handover and quality improvement."],
+    requirements: [`${level} nursing or midwifery experience`, `${speciality} interest or relevant placement exposure`, "Active registration or eligibility for registration where required"],
+    documents: ["Updated CV", "Academic transcripts", "Registration certificate or student letter", "National ID or passport", "Two professional referees"],
+    employerType: /WHO|UNHCR|MSF|Relief|Red Cross|StrongMinds/.test(employer) ? "International Agency / NGO" : /MOH|Mulago|County/.test(employer) ? "Government Hospital" : "Private Facility",
+    employerDescription: `${employer} hires nurses and midwives for clinical service, community health, training support and programme delivery.`
+  }));
+}
+
+function careerExternalSources() {
+  return [
+    ["NHS Jobs", "UK public health service roles and sponsorship pathways.", "https://www.jobs.nhs.uk/"],
+    ["SEEK Australia", "Hospital, aged care and regional Australian nursing roles.", "https://www.seek.com.au/"],
+    ["LinkedIn", "Employer-posted jobs and recruiter networking.", "https://www.linkedin.com/jobs/"],
+    ["WHO Vacancies", "Global health officer, consultant and field positions.", "https://careers.who.int/"],
+    ["MSF Jobs", "Humanitarian nursing, theatre, midwifery and field work.", "https://www.msf.org/careers"],
+    ["UNHCR Uganda", "Protection, public health and refugee-response openings.", "https://www.unhcr.org/careers.html"],
+    ["ReliefWeb", "NGO and humanitarian jobs across East Africa.", "https://reliefweb.int/jobs"],
+    ["MOH Uganda", "Government notices, health worker recruitment and updates.", "https://www.health.go.ug/"]
+  ];
+}
+
+function careerEmployers() {
+  return ["Mulago National Referral Hospital", "Aga Khan Hospital Uganda", "UNHCR Uganda", "MSF Uganda", "WHO Uganda", "Uganda Red Cross", "MOH Uganda", "Nakasero Hospital", "International Hospital Kampala"].map((name, index) => ({
+    name,
+    location: index < 7 ? "Uganda" : "Kampala",
+    type: /UNHCR|MSF|WHO|Red Cross/.test(name) ? "International Agency" : /MOH|Mulago/.test(name) ? "Government Hospital" : "Private",
+    roles: /MSF|WHO|UNHCR/.test(name) ? ["Community", "Field", "Senior"] : /Aga|Nakasero|International/.test(name) ? ["Theatre", "ICU", "General"] : ["Graduate", "Midwifery", "General"],
+    hiring: index !== 8
+  }));
+}
+
+function savedCareerJobs() {
+  return new Set(state.savedCareerJobs || []);
+}
+
+function setCareerJobSaved(id, saved) {
+  const next = savedCareerJobs();
+  if (saved) next.add(id);
+  else next.delete(id);
+  state.savedCareerJobs = [...next];
+  localStorage.setItem("nursinguganda.savedCareerJobs", JSON.stringify(state.savedCareerJobs));
+}
+
+function dateLabel(value) {
+  return new Intl.DateTimeFormat("en-GB", { day: "2-digit", month: "short", year: "numeric" }).format(new Date(`${value}T00:00:00`));
+}
+
+function daysUntil(value) {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  return Math.ceil((new Date(`${value}T00:00:00`) - today) / 86400000);
+}
+
+function deadlineClass(job) {
+  const days = daysUntil(job.deadline);
+  if (days < 0) return "expired";
+  if (days < 7) return "urgent";
+  if (days <= 14) return "warning";
+  return "normal";
+}
+
+function regionLabel(region) {
+  const flags = { Uganda: "🇺🇬", "East Africa": "🌍", UK: "🇬🇧", Australia: "🇦🇺", "Middle East": "🇦🇪", Other: "🌐" };
+  return `${flags[region] || "🌐"} ${region}`;
+}
+
+function careerBadge(label, type = "") {
+  return `<span class="career-badge ${escapeHtml(type || slugify(label))}">${escapeHtml(label)}</span>`;
+}
+
+function careerJobMatches(job) {
+  const query = state.careerSearch.trim().toLowerCase();
+  const haystack = `${job.title} ${job.employer} ${job.location} ${job.type} ${job.level} ${job.region} ${job.speciality} ${job.description}`.toLowerCase();
+  const deadlineDays = daysUntil(job.deadline);
+  return (!query || haystack.includes(query))
+    && (state.careerType === "All" || job.type === state.careerType)
+    && (state.careerLevel === "All" || job.level === state.careerLevel)
+    && (state.careerRegion === "All" || job.region === state.careerRegion)
+    && (state.careerSpeciality === "All" || job.speciality === state.careerSpeciality)
+    && (state.careerDeadline === "All" || (state.careerDeadline === "This week" && deadlineDays >= 0 && deadlineDays <= 7) || (state.careerDeadline === "This month" && deadlineDays >= 0 && deadlineDays <= 31));
+}
+
+function filteredCareerJobs() {
+  const jobs = careerJobs().filter(careerJobMatches);
+  return jobs.sort((a, b) => {
+    if (state.careerSort === "Deadline Soonest") return new Date(a.deadline) - new Date(b.deadline);
+    if (state.careerSort === "Most Relevant") return Number(b.isFeatured) - Number(a.isFeatured) || daysUntil(a.deadline) - daysUntil(b.deadline);
+    return new Date(b.posted) - new Date(a.posted);
+  });
+}
+
+function hasActiveCareerFilters() {
+  return Boolean(state.careerSearch || state.careerType !== "All" || state.careerLevel !== "All" || state.careerRegion !== "All" || state.careerSpeciality !== "All" || state.careerDeadline !== "All");
+}
+
+function clearCareerFilters() {
+  state.careerSearch = "";
+  state.careerType = "All";
+  state.careerLevel = "All";
+  state.careerRegion = "All";
+  state.careerSpeciality = "All";
+  state.careerDeadline = "All";
+}
+
+function careerAvatar(name, size = "") {
+  return `<span class="career-avatar ${size}" aria-hidden="true">${escapeHtml(String(name || "N").trim().slice(0, 1))}</span>`;
+}
+
+function renderCareerHero() {
+  return `
+    <section class="careers-hero">
+      <div class="container careers-hero-inner">
+        <nav class="careers-breadcrumb" aria-label="Breadcrumb">
+          <a href="#/notes">Home</a><span>${icon("arrowRight")}</span><strong>Careers & Jobs</strong>
+        </nav>
+        <h1>Nursing Careers & Jobs</h1>
+        <p>Internships, graduate positions, senior roles and international opportunities for Uganda nursing and midwifery professionals.</p>
+        <div class="careers-hero-chips">
+          <span>💼 Active Listings</span>
+          <span>🌍 Countries Covered</span>
+          <span>🗺 Career Pathways</span>
+        </div>
+        <div class="careers-hero-actions">
+          <button type="button" data-career-mode="jobs">Browse Jobs ${icon("arrowRight")}</button>
+          <button type="button" data-career-mode="hub">Career Guidance ${icon("arrowRight")}</button>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function renderCareerModeToggle() {
+  return `
+    <section class="career-mode-bar">
+      <div class="container career-mode-shell">
+        <button type="button" class="${state.careerMode === "jobs" ? "active" : ""}" data-career-mode="jobs">💼 Jobs Board</button>
+        <button type="button" class="${state.careerMode === "hub" ? "active" : ""}" data-career-mode="hub">🎓 Career Hub</button>
+      </div>
+    </section>
+  `;
+}
+
+function renderCareerFilterGroup(label, key, options, active) {
+  return `
+    <div class="career-filter-group" aria-label="${escapeHtml(label)} filter">
+      <span>${escapeHtml(label)}</span>
+      ${options.map((option) => `<button type="button" class="${active === option ? "active" : ""}" data-career-filter="${escapeHtml(key)}" data-career-filter-value="${escapeHtml(option)}">${escapeHtml(option)}</button>`).join("")}
+    </div>
+  `;
+}
+
+function renderCareerJobCard(job) {
+  const saved = savedCareerJobs().has(job.id);
+  const status = deadlineClass(job);
+  return `
+    <article class="career-job-card ${job.isFeatured ? "featured" : ""}" data-career-card="${escapeHtml(job.id)}">
+      <div class="career-job-flags">
+        ${job.isFeatured ? `<span class="featured-flag">⭐ Featured</span>` : ""}
+        ${job.isExternal ? `<span class="external-flag">↗ External</span>` : ""}
+      </div>
+      <header class="career-job-head">
+        ${careerAvatar(job.employer)}
+        <div>
+          <button type="button" data-career-job-open="${escapeHtml(job.id)}">${escapeHtml(job.title)}</button>
+          <a href="#/careers" data-career-employer="${escapeHtml(job.employer)}">${escapeHtml(job.employer)}</a>
+        </div>
+      </header>
+      <div class="career-job-meta">
+        <span>${icon("mapPin")}${escapeHtml(job.location)}</span>
+        <span>${icon("calendar")}Posted ${dateLabel(job.posted)}</span>
+      </div>
+      <p class="career-deadline ${status}">${icon("calendar")}<span>Deadline: ${dateLabel(job.deadline)}${status === "urgent" ? " - Closing soon" : ""}</span></p>
+      <p class="career-job-desc">${escapeHtml(job.description)}</p>
+      <div class="career-badge-row">
+        ${careerBadge(job.type, `type-${slugify(job.type)}`)}
+        ${careerBadge(job.level, "level")}
+        ${careerBadge(regionLabel(job.region), "region")}
+        ${careerBadge(job.speciality, "speciality")}
+      </div>
+      <p class="career-salary">💰 ${escapeHtml(job.salary)}</p>
+      <footer class="career-job-actions">
+        <button type="button" class="career-save ${saved ? "active" : ""}" data-career-job-save="${escapeHtml(job.id)}">♡ <span>${saved ? "Saved" : "Save"}</span></button>
+        <button type="button" class="career-apply" data-career-job-open="${escapeHtml(job.id)}">View & Apply ${icon("arrowRight")}</button>
+      </footer>
+    </article>
+  `;
+}
+
+function renderJobsBoard() {
+  const jobs = filteredCareerJobs();
+  return `
+    <section class="section career-mode-panel">
+      <div class="container">
+        <div class="career-board-toolbar">
+          <label class="career-search">
+            ${icon("search")}
+            <input data-career-search type="search" value="${escapeHtml(state.careerSearch)}" placeholder="Search jobs, employers, locations, specialities..." aria-label="Search careers and jobs">
+          </label>
+          <label class="career-sort">
+            <span>Sort</span>
+            <select data-career-sort aria-label="Sort jobs">
+              ${["Newest", "Deadline Soonest", "Most Relevant"].map((sort) => `<option value="${escapeHtml(sort)}"${state.careerSort === sort ? " selected" : ""}>${escapeHtml(sort)}</option>`).join("")}
+            </select>
+          </label>
+        </div>
+        <div class="career-filter-rail">
+          ${renderCareerFilterGroup("Job Type", "type", careerFilterGroups.type, state.careerType)}
+          ${renderCareerFilterGroup("Level", "level", careerFilterGroups.level, state.careerLevel)}
+          ${renderCareerFilterGroup("Region", "region", careerFilterGroups.region, state.careerRegion)}
+          ${renderCareerFilterGroup("Speciality", "speciality", careerFilterGroups.speciality, state.careerSpeciality)}
+          ${renderCareerFilterGroup("Deadline", "deadline", careerFilterGroups.deadline, state.careerDeadline)}
+        </div>
+        <div class="career-results-head">
+          <h2>${jobs.length} Jobs Found <span>${careerJobs().length} total</span></h2>
+          ${hasActiveCareerFilters() ? `<button type="button" data-career-clear>✕ Clear filters</button>` : ""}
+        </div>
+        ${jobs.length ? `<div class="career-job-grid">${jobs.map(renderCareerJobCard).join("")}</div>` : `
+          <div class="career-empty-state">
+            <span>💼</span>
+            <h2>No jobs match your filters</h2>
+            <p>Try adjusting your search or clearing filters.</p>
+            <button type="button" data-career-clear>Clear filters</button>
+          </div>
+        `}
+        ${renderSavedCareerJobsPanel()}
+      </div>
+    </section>
+    ${renderExternalJobSources()}
+    ${renderEmployerSpotlight()}
+    ${renderJobAlerts()}
+    ${renderCareerDrawer()}
+  `;
+}
+
+function renderSavedCareerJobsPanel() {
+  const saved = careerJobs().filter((job) => savedCareerJobs().has(job.id));
+  if (!saved.length) {
+    return `
+      <aside class="career-saved-panel empty">
+        <span>♡</span>
+        <div>
+          <h3>No saved jobs yet</h3>
+          <p>Click the heart on any job to save it for later.</p>
+        </div>
+      </aside>
+    `;
+  }
+  return `
+    <aside class="career-saved-panel">
+      <div>
+        <h3>${saved.length} Saved ${saved.length === 1 ? "Job" : "Jobs"}</h3>
+        <p>Return to these opportunities before their deadlines.</p>
+      </div>
+      <div class="career-saved-list">
+        ${saved.slice(0, 4).map((job) => `<button type="button" data-career-job-open="${escapeHtml(job.id)}">${escapeHtml(job.title)}<span>${escapeHtml(job.employer)}</span></button>`).join("")}
+      </div>
+    </aside>
+  `;
+}
+
+function renderExternalJobSources() {
+  return `
+    <section class="section career-external-section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Browse More on External Platforms</h2>
+            <p>Use these trusted sources for additional Uganda, regional and international nursing opportunities.</p>
+          </div>
+        </div>
+        <div class="career-source-row">
+          ${careerExternalSources().map(([name, body, url]) => `
+            <a class="career-source-card" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">
+              <span>${careerAvatar(name, "small")}</span>
+              <strong>${escapeHtml(name)}</strong>
+              <p>${escapeHtml(body)}</p>
+              <em>Browse Jobs ↗</em>
+            </a>
+          `).join("")}
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function renderEmployerSpotlight() {
+  return `
+    <section class="section career-employer-section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Featured Employers</h2>
+            <p>Hospitals, agencies and organisations that commonly recruit nurses and midwives.</p>
+          </div>
+        </div>
+        <div class="career-employer-row">
+          ${careerEmployers().map((employer) => `
+            <article class="career-employer-card">
+              ${careerAvatar(employer.name)}
+              <h3>${escapeHtml(employer.name)}</h3>
+              <p>${escapeHtml(employer.location)} · ${escapeHtml(employer.type)}</p>
+              <div class="career-badge-row">${employer.roles.map((role) => careerBadge(role, "speciality")).join("")}</div>
+              ${employer.hiring ? `<span class="hiring-badge">Currently Hiring</span>` : ""}
+              <a href="#/careers">View Jobs ${icon("arrowRight")}</a>
+            </article>
+          `).join("")}
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function renderJobAlerts() {
+  return `
+    <section class="section career-alert-section">
+      <div class="container career-alert-banner">
+        <div>
+          <h2>Never Miss a Nursing Job</h2>
+          <p>Get new jobs matching your preferences delivered to your inbox</p>
+          <small>No spam. Unsubscribe anytime.</small>
+        </div>
+        <form class="career-alert-form" data-career-alert-form>
+          <input type="email" placeholder="Email address" aria-label="Email address" required>
+          <select aria-label="Preferred speciality">
+            ${careerFilterGroups.speciality.map((speciality) => `<option>${escapeHtml(speciality)}</option>`).join("")}
+          </select>
+          <select aria-label="Alert frequency"><option>Weekly</option><option>Daily</option></select>
+          <button type="submit">Subscribe ${icon("arrowRight")}</button>
+        </form>
+      </div>
+    </section>
+  `;
+}
+
+function selectedCareerJob() {
+  return careerJobs().find((job) => job.id === state.selectedCareerJob);
+}
+
+function renderCareerDrawer() {
+  const job = selectedCareerJob();
+  if (!job) return "";
+  const saved = savedCareerJobs().has(job.id);
+  const status = deadlineClass(job);
+  return `
+    <div class="career-drawer-overlay" data-career-drawer-overlay>
+      <aside class="career-drawer" role="dialog" aria-modal="true" aria-labelledby="career-drawer-title">
+        <button class="career-drawer-close" type="button" data-career-drawer-close aria-label="Close job details">${icon("x")}</button>
+        <header class="career-drawer-header">
+          ${careerAvatar(job.employer, "large")}
+          <div>
+            <h2 id="career-drawer-title">${escapeHtml(job.title)}</h2>
+            <p>${escapeHtml(job.employer)}</p>
+            <div class="career-badge-row">
+              ${careerBadge(job.type, `type-${slugify(job.type)}`)}
+              ${careerBadge(job.level, "level")}
+              ${careerBadge(regionLabel(job.region), "region")}
+              ${job.isFeatured ? `<span class="featured-flag">⭐ Featured</span>` : ""}
+              ${job.isExternal ? `<span class="external-flag">↗ External</span>` : ""}
+            </div>
+          </div>
+        </header>
+        <div class="career-drawer-body">
+          <section>
+            <h3>Overview</h3>
+            <p>${escapeHtml(job.description)}</p>
+            <h4>Key responsibilities</h4>
+            <ul>${job.responsibilities.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+            <h4>Requirements</h4>
+            <ul class="check-list">${job.requirements.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+          </section>
+          <section>
+            <h3>Details</h3>
+            <div class="career-detail-grid">
+              <span>${icon("mapPin")}<strong>Location</strong><em>${escapeHtml(job.location)}</em></span>
+              <span>💰<strong>Salary</strong><em>${escapeHtml(job.salary)}</em></span>
+              <span>${icon("calendar")}<strong>Posted</strong><em>${dateLabel(job.posted)}</em></span>
+              <span class="${status}">${icon("calendar")}<strong>Deadline</strong><em>${dateLabel(job.deadline)}</em></span>
+              <span>${icon("clipboardList")}<strong>Positions</strong><em>${job.positions}</em></span>
+              <span>${icon("fileText")}<strong>Contract</strong><em>${escapeHtml(job.type)} · ${escapeHtml(job.duration)}</em></span>
+            </div>
+          </section>
+          <section>
+            <h3>How to Apply</h3>
+            <p>Prepare the documents below and apply through the listed employer channel. For external listings, confirm the job on the source website before submitting personal documents.</p>
+            <div class="career-doc-list">
+              ${job.documents.map((doc) => `<label><input type="checkbox"> <span>${escapeHtml(doc)}</span></label>`).join("")}
+            </div>
+          </section>
+          <section>
+            <h3>About the Employer</h3>
+            <p>${escapeHtml(job.employerDescription)}</p>
+            <div class="career-badge-row">${careerBadge(job.employerType, "level")}${careerBadge(job.speciality, "speciality")}</div>
+          </section>
+        </div>
+        <footer class="career-drawer-footer">
+          <button type="button" class="career-save ${saved ? "active" : ""}" data-career-job-save="${escapeHtml(job.id)}">♡ ${saved ? "Saved Job" : "Save Job"}</button>
+          <a class="career-apply" href="${escapeHtml(job.applyUrl)}" ${job.isExternal ? `target="_blank" rel="noopener noreferrer"` : ""}>${job.isExternal ? "↗ Apply on External Site" : "Apply Now"} ${icon("arrowRight")}</a>
+        </footer>
+      </aside>
+    </div>
+  `;
+}
+
+function careerPathwayData() {
+  return {
+    Nursing: ["Student Nurse|0 yrs|In training|Certificate, Diploma or Degree programme", "Intern/Volunteer Nurse|0-1 yr|UGX allowance|Certificate/Diploma", "Staff Nurse|1-3 yrs|UGX 1.2M-2.0M|Diploma/Degree", "Senior Staff Nurse|3-5 yrs|UGX 2.0M-3.0M|Experience + CPD", "Charge Nurse / Ward In-Charge|5-8 yrs|UGX 3.0M-4.2M|Leadership experience", "Nursing Officer|8-12 yrs|UGX 4.0M-5.5M|Degree required", "Principal Nursing Officer|12+ yrs|UGX 5.5M-7.0M|Advanced leadership", "Chief Nursing Officer|15+ yrs|UGX 7.0M+|Masters preferred"],
+    Midwifery: ["Student Midwife|0 yrs|In training|Certificate, Diploma or Degree programme", "Intern/Volunteer Midwife|0-1 yr|UGX allowance|Certificate/Diploma", "Staff Midwife|1-3 yrs|UGX 1.2M-2.0M|Diploma/Degree", "Senior Midwife|3-5 yrs|UGX 2.0M-3.0M|Maternal care experience", "Maternity In-Charge|5-8 yrs|UGX 3.0M-4.2M|Labour ward leadership", "Midwifery Officer|8-12 yrs|UGX 4.0M-5.5M|Degree required", "Principal Midwifery Officer|12+ yrs|UGX 5.5M-7.0M|Advanced leadership", "Chief Midwifery Officer|15+ yrs|UGX 7.0M+|Masters preferred"]
+  };
+}
+
+function renderCareerPathways() {
+  const tracks = careerPathwayData();
+  const specialities = [
+    ["ICU/Critical Care", "1-2 years ward experience, critical care CPD", "+20-35%"],
+    ["Theatre/Surgical", "Theatre placement, sterile technique, instrument skill", "+15-30%"],
+    ["Paediatric", "Child health exposure and safeguarding knowledge", "+10-25%"],
+    ["Community Health", "Public health, outreach and programme reporting", "+10-20%"],
+    ["Mental Health", "Psychiatric nursing exposure and counselling skills", "+15-30%"],
+    ["Oncology", "Chemotherapy safety, palliative care and counselling", "+20-40%"]
+  ];
+  return `
+    <section id="career-pathways" class="section career-hub-section">
+      <div class="container">
+        <div class="section-head"><div><h2>Career Pathways</h2><p>Compare nursing and midwifery progression from student roles through senior leadership.</p></div></div>
+        <div class="career-pathway-grid">
+          ${Object.entries(tracks).map(([track, steps]) => `
+            <article class="career-track">
+              <h3>${escapeHtml(track)} Track</h3>
+              <div class="career-timeline">
+                ${steps.map((step, index) => {
+                  const [title, years, salary, qualification] = step.split("|");
+                  return `<div class="career-step ${index === 0 ? "current" : ""}"><span>${index + 1}</span><div><h4>${escapeHtml(title)}</h4><p>${escapeHtml(years)} · ${escapeHtml(salary)}</p><small>${escapeHtml(qualification)}</small></div></div>`;
+                }).join("")}
+              </div>
+            </article>
+          `).join("")}
+        </div>
+        <div class="career-speciality-grid">
+          ${specialities.map(([name, req, uplift]) => `<article><h3>${escapeHtml(name)}</h3><p>${escapeHtml(req)}</p><span>${escapeHtml(uplift)} salary uplift</span></article>`).join("")}
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function countryGuides() {
+  return [
+    ["🇬🇧", "United Kingdom", "NHS · NMC Registration", "GBP 28,000-40,000", "NMC", "OSCE + CBT", "Health & Care Worker Visa", ["UNMC Certificate", "IELTS 7.0+", "Good Standing Letter", "Degree preferred"], 3, "6-18 months"],
+    ["🇦🇺", "Australia", "AHPRA registration", "AUD 75,000-110,000", "AHPRA", "NCLEX / IELTS", "Subclass 190 / 482", ["UNMC registration", "English test", "Skills assessment", "Experience evidence"], 4, "9-24 months"],
+    ["🇦🇪", "UAE", "DHA · HAAD · MOH exam", "AED 6,000-10,000", "DHA / DOH / MOH", "Prometric exam", "Employer visa", ["Two years experience", "DataFlow verification", "Good standing", "Agency screening"], 3, "3-9 months"],
+    ["🇸🇦", "Saudi Arabia", "SCFHS registration", "SAR 5,000-9,000", "SCFHS", "Prometric exam", "Employer visa", ["Certificate verification", "Experience letters", "Good standing", "Medical check"], 3, "3-10 months"],
+    ["🇶🇦", "Qatar", "QCHP registration", "QAR 8,000-12,000", "QCHP", "Prometric exam", "Employer visa", ["DataFlow", "Experience evidence", "Good standing", "Interview"], 3, "4-10 months"],
+    ["🇿🇦", "South Africa", "SANC registration", "ZAR 260,000-430,000", "SANC", "SAQA recognition", "Work visa", ["SAQA evaluation", "Council verification", "Good standing", "English documents"], 4, "9-18 months"],
+    ["🇰🇪", "Kenya/Tanzania", "EAC mobility", "Regional scale", "National councils", "Council recognition", "Regional work permit", ["UNMC status", "Good standing", "Transcript", "Employer letter"], 2, "2-6 months"]
+  ];
+}
+
+function renderInternationalGuides() {
+  return `
+    <section id="international" class="section career-hub-section">
+      <div class="container">
+        <div class="section-head"><div><h2>Work Abroad as a Nurse</h2><p>Your Uganda qualification can open doors globally. Here's what you need for each destination.</p></div></div>
+        <div class="country-grid">
+          ${countryGuides().map(([flag, country, subtitle, salary, body, exam, visa, requirements, difficulty, timeline]) => `
+            <article class="country-card">
+              <header><span>${flag}</span><div><h3>${escapeHtml(country)}</h3><p>${escapeHtml(subtitle)}</p></div></header>
+              <div class="country-facts">
+                <span>Average Salary: <strong>${escapeHtml(salary)}</strong></span>
+                <span>Registration Body: <strong>${escapeHtml(body)}</strong></span>
+                <span>Key Exam: <strong>${escapeHtml(exam)}</strong></span>
+                <span>Visa: <strong>${escapeHtml(visa)}</strong></span>
+              </div>
+              <div class="country-requirements"><strong>Requirements:</strong>${requirements.map((item) => `<span>✓ ${escapeHtml(item)}</span>`).join("")}</div>
+              <div class="country-rating"><span>${"●".repeat(difficulty)}${"○".repeat(5 - difficulty)}</span><em>${difficulty > 3 ? "Challenging" : difficulty > 2 ? "Moderate" : "Accessible"}</em><strong>${escapeHtml(timeline)}</strong></div>
+              <a href="#/careers">View Full Guide ${icon("arrowRight")}</a>
+            </article>
+          `).join("")}
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function licensingGuides() {
+  return [
+    ["Register with UNMC", "For new graduates preparing first registration.", "Documents needed|Application form|Fee payment|Examination|Certificate", ["National ID", "Academic transcript", "Passport photo", "School completion letter"], "https://unmc.ug/"],
+    ["Renew Your UNMC Licence", "Annual renewal process, fees and deadline planning.", "Check renewal window|Update CPD records|Pay renewal fee|Submit proof|Keep receipt", ["Current licence", "CPD evidence", "Payment receipt", "Contact details"], "https://unmc.ug/"],
+    ["Get Qualifications Recognised Abroad", "Prepare UK NMC, AHPRA, DHA and SCFHS documentation.", "Choose destination|Verify documents|Book English test|Request council letters|Submit portal profile", ["Transcript", "Good standing letter", "Certificate of registration", "English test"], "https://www.nmc.org.uk/"],
+    ["Good Standing Letter from UNMC", "What it is, why you need it and how to request it.", "Confirm eligibility|Gather registration proof|Pay request fee|Submit application|Collect letter", ["Registration certificate", "Licence copy", "Payment proof", "Destination body details"], "https://unmc.ug/"]
+  ];
+}
+
+function renderLicensingGuides() {
+  return `
+    <section id="licensing" class="section career-hub-section">
+      <div class="container">
+        <div class="section-head"><div><h2>Licensing & Registration Guides</h2><p>Structured checklists for Uganda registration, renewal, good standing and international recognition.</p></div></div>
+        <div class="licensing-grid">
+          ${licensingGuides().map(([title, body, steps, docs, url]) => `
+            <article class="licensing-card">
+              <span class="card-icon">${iconFor(title)}</span>
+              <h3>${escapeHtml(title)}</h3>
+              <p>${escapeHtml(body)}</p>
+              <details open><summary>Step list</summary><ol>${steps.split("|").map((step) => `<li>${escapeHtml(step)}</li>`).join("")}</ol></details>
+              <div class="career-doc-list">${docs.map((doc) => `<label><input type="checkbox"> <span>${escapeHtml(doc)}</span></label>`).join("")}</div>
+              <div class="licensing-actions">
+                <button type="button" data-career-download="${escapeHtml(title)}">Download Checklist</button>
+                <a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">Official Website ↗</a>
+              </div>
+            </article>
+          `).join("")}
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function renderCareerResources() {
+  const resources = [
+    ["Uganda Nursing CV Template", "Local hospital and NGO CV structure with clinical placement detail.", "Download Template", "Free"],
+    ["International Nursing CV Template", "UK and Australia style CV with registration and evidence sections.", "Download Template", "Free"],
+    ["Cover Letter Guide", "Sample nursing cover letters and phrases that work.", "Open Guide", "Free"],
+    ["Interview Preparation", "20 common questions, STAR examples and panel preparation.", "Practice", "Free"],
+    ["Nursing Portfolio Guide", "What to include and how to present it digitally.", "Open Guide", "Coming Soon"],
+    ["Salary Guide Uganda 2024", "Salary ranges by level, speciality and sector.", "View Guide", "Free"]
+  ];
+  return `
+    <section id="cv-resources" class="section career-hub-section">
+      <div class="container">
+        <div class="section-head"><div><h2>Career Resources</h2><p>CV templates, interview preparation, portfolio guidance and salary planning.</p></div></div>
+        <div class="career-resource-grid">
+          ${resources.map(([title, body, action, badge], index) => `
+            <article class="career-resource-card accent-${index % 4}">
+              <span>${iconFor(title)}</span>
+              <strong>${escapeHtml(badge)}</strong>
+              <h3>${escapeHtml(title)}</h3>
+              <p>${escapeHtml(body)}</p>
+              <button type="button" data-career-download="${escapeHtml(title)}">${escapeHtml(action)} ${icon("arrowRight")}</button>
+            </article>
+          `).join("")}
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function renderCareerHub() {
+  return `
+    <section class="career-hub-nav">
+      <div class="container">
+        <a href="#career-pathways">🗺 Career Pathways</a>
+        <a href="#international">🌍 International</a>
+        <a href="#licensing">📋 Licensing</a>
+        <a href="#cv-resources">📄 CV & Resources</a>
+      </div>
+    </section>
+    <div class="career-mode-panel">
+      ${renderCareerPathways()}
+      ${renderInternationalGuides()}
+      ${renderLicensingGuides()}
+      ${renderCareerResources()}
+    </div>
+  `;
+}
+
+function renderCareers() {
+  return `
+    ${renderCareerHero()}
+    ${renderCareerModeToggle()}
+    ${state.careerMode === "hub" ? renderCareerHub() : renderJobsBoard()}
+  `;
+}
+
+function downloadCareerChecklist(title) {
+  const safeTitle = String(title || "career-checklist");
+  const guide = licensingGuides().find(([guideTitle]) => guideTitle === safeTitle);
+  const docs = guide ? guide[3] : ["Updated CV", "Registration certificate", "Academic transcript", "Good standing letter", "Referees"];
+  const content = [
+    `${safeTitle} - Nursing Uganda Checklist`,
+    "",
+    ...docs.map((doc) => `[ ] ${doc}`),
+    "",
+    "Print this checklist or save it as PDF from your browser."
+  ].join("\n");
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(new Blob([content], { type: "text/plain" }));
+  link.download = `${slugify(safeTitle)}-checklist.txt`;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+}
+
 function renderSchoolsDirectory() {
   const schools = filteredSchools();
   const filters = schoolFilters();
@@ -3280,6 +4073,10 @@ function render() {
     content = renderQuizHub();
     meta = { title: "Quizzes", description: "Practice nursing and midwifery revision with topic-linked quick quizzes." };
   }
+  else if (parts[0] === "careers") {
+    content = renderCareers();
+    meta = { title: "Careers & Jobs", description: "Nursing and midwifery jobs, career pathways, licensing guides and international opportunities for Uganda professionals." };
+  }
   else if (parts[0] === "resources" && parts[1] === "quizzes") {
     content = renderQuizHub();
     meta = { title: "Quizzes", description: "Practice nursing and midwifery revision with topic-linked quick quizzes." };
@@ -3334,9 +4131,23 @@ function render() {
       if (!unit) content = notFound();
       else if (parts[3] === "topic") {
         const topic = findTopic(unit, parts[4], parts[5]);
+        if (topic) {
+          const canonicalHref = topicHref(programme, unit, topic.groupIndex, topic.topicIndex);
+          if (window.location.hash !== canonicalHref) history.replaceState(null, "", canonicalHref);
+        }
         content = topic ? renderTopic(programme, unit, topic) : notFound();
         if (topic) {
-          const lesson = lessonFor(topic);
+          const lesson = lessonForTopic(programme, unit, topic);
+          meta = {
+            title: lesson ? lesson.title : topic.title,
+            description: lesson && lesson.excerpt ? truncateText(lesson.excerpt, 155) : `${topic.title} in ${unit.code ? `${unit.code}: ` : ""}${unit.title} for ${programme.label}.`
+          };
+        }
+      } else if (parts[3]) {
+        const topic = findTopicBySlug(unit, parts[3]);
+        content = topic ? renderTopic(programme, unit, topic) : notFound();
+        if (topic) {
+          const lesson = lessonForTopic(programme, unit, topic);
           meta = {
             title: lesson ? lesson.title : topic.title,
             description: lesson && lesson.excerpt ? truncateText(lesson.excerpt, 155) : `${topic.title} in ${unit.code ? `${unit.code}: ` : ""}${unit.title} for ${programme.label}.`
@@ -3583,6 +4394,101 @@ function render() {
     });
   });
 
+  app.querySelectorAll("[data-career-mode]").forEach((button) => {
+    button.addEventListener("click", () => {
+      state.careerMode = button.dataset.careerMode === "hub" ? "hub" : "jobs";
+      if (currentRoute()[0] !== "careers") window.location.hash = "#/careers";
+      render();
+      requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: "smooth" }));
+    });
+  });
+
+  const careerSearch = app.querySelector("[data-career-search]");
+  if (careerSearch) {
+    careerSearch.addEventListener("input", (event) => {
+      state.careerSearch = event.target.value;
+      render();
+      const nextSearch = app.querySelector("[data-career-search]");
+      if (nextSearch) {
+        nextSearch.focus();
+        nextSearch.setSelectionRange(nextSearch.value.length, nextSearch.value.length);
+      }
+    });
+  }
+
+  const careerSort = app.querySelector("[data-career-sort]");
+  if (careerSort) {
+    careerSort.addEventListener("change", (event) => {
+      state.careerSort = event.target.value;
+      render();
+    });
+  }
+
+  app.querySelectorAll("[data-career-filter]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const key = button.dataset.careerFilter;
+      const value = button.dataset.careerFilterValue || "All";
+      if (key === "type") state.careerType = value;
+      if (key === "level") state.careerLevel = value;
+      if (key === "region") state.careerRegion = value;
+      if (key === "speciality") state.careerSpeciality = value;
+      if (key === "deadline") state.careerDeadline = value;
+      render();
+    });
+  });
+
+  app.querySelectorAll("[data-career-clear]").forEach((button) => {
+    button.addEventListener("click", () => {
+      clearCareerFilters();
+      render();
+    });
+  });
+
+  app.querySelectorAll("[data-career-job-open]").forEach((button) => {
+    button.addEventListener("click", () => {
+      state.selectedCareerJob = button.dataset.careerJobOpen || "";
+      render();
+    });
+  });
+
+  app.querySelectorAll("[data-career-job-save]").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      setCareerJobSaved(button.dataset.careerJobSave, !button.classList.contains("active"));
+      render();
+    });
+  });
+
+  app.querySelectorAll("[data-career-drawer-close]").forEach((button) => {
+    button.addEventListener("click", () => {
+      state.selectedCareerJob = "";
+      render();
+    });
+  });
+
+  app.querySelectorAll("[data-career-drawer-overlay]").forEach((overlay) => {
+    overlay.addEventListener("click", (event) => {
+      if (event.target === overlay) {
+        state.selectedCareerJob = "";
+        render();
+      }
+    });
+  });
+
+  app.querySelectorAll("[data-career-alert-form]").forEach((form) => {
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      form.classList.add("subscribed");
+      const button = form.querySelector("button");
+      if (button) button.innerHTML = `${icon("checkCircle")}<span>Subscribed</span>`;
+    });
+  });
+
+  app.querySelectorAll("[data-career-download]").forEach((button) => {
+    button.addEventListener("click", () => downloadCareerChecklist(button.dataset.careerDownload));
+  });
+
   const imageReviewSearch = app.querySelector("[data-image-review-search]");
   if (imageReviewSearch) {
     imageReviewSearch.addEventListener("input", (event) => {
@@ -3713,6 +4619,11 @@ window.addEventListener("keydown", (event) => {
   }
   if (event.key === "Escape" && state.selectedSchool) {
     state.selectedSchool = "";
+    render();
+    return;
+  }
+  if (event.key === "Escape" && state.selectedCareerJob) {
+    state.selectedCareerJob = "";
     render();
   }
 });
