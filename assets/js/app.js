@@ -9,6 +9,12 @@ const state = {
   globalSearch: "",
   schoolSearch: "",
   schoolStatus: "all",
+  schoolDistrict: "all",
+  schoolSector: "all",
+  schoolProgramme: "all",
+  schoolView: localStorage.getItem("nursinguganda.schoolView") || "cards",
+  selectedSchool: "",
+  activeSchool: "",
   imageReviewSearch: "",
   imageReviewStatus: "strong",
   librarySearch: "",
@@ -38,6 +44,7 @@ const iconPaths = {
   bookmark: `<path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16Z"/>`,
   bookmarkCheck: `<path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16Z"/><path d="m9 10 2 2 4-4"/>`,
   briefcaseMedical: `<path d="M12 11v4"/><path d="M14 13h-4"/><path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><rect width="20" height="14" x="2" y="6" rx="2"/>`,
+  building2: `<path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18"/><path d="M6 12H4a2 2 0 0 0-2 2v8h20v-8a2 2 0 0 0-2-2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/>`,
   calendar: `<path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/>`,
   checkCircle: `<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/>`,
   clipboardList: `<rect width="8" height="4" x="8" y="2" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/>`,
@@ -48,16 +55,22 @@ const iconPaths = {
   heartPulse: `<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3H21"/>`,
   helpCircle: `<circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 1 1 5.82 1c0 2-3 2-3 4"/><path d="M12 17h.01"/>`,
   home: `<path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/><path d="M9 22V12h6v10"/>`,
+  layoutGrid: `<rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/>`,
   listChecks: `<path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8"/><path d="M13 12h8"/><path d="M13 18h8"/>`,
+  mail: `<rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-10 6L2 7"/>`,
+  map: `<path d="M14.5 4.5 9.5 2 3 5v17l6.5-3 5 2.5 6.5-3v-17Z"/><path d="M9.5 2v17"/><path d="M14.5 4.5v17"/>`,
+  mapPin: `<path d="M20 10c0 4.99-5.54 10.19-7.4 11.8a1 1 0 0 1-1.2 0C9.54 20.19 4 14.99 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>`,
   moon: `<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>`,
   pill: `<path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/>`,
+  phone: `<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.77.63 2.61a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.47-1.2a2 2 0 0 1 2.11-.45c.84.3 1.71.51 2.61.63A2 2 0 0 1 22 16.92Z"/>`,
   printer: `<path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/>`,
   rotateCcw: `<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/>`,
   school: `<path d="m4 6 8-4 8 4"/><path d="m18 10 4 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-8l4-2"/><path d="M14 22v-6a2 2 0 0 0-4 0v6"/><path d="M18 5v17"/><path d="M6 5v17"/><circle cx="12" cy="9" r="2"/>`,
   search: `<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>`,
   stethoscope: `<path d="M11 2v2"/><path d="M5 2v2"/><path d="M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1"/><path d="M8 15a6 6 0 0 0 12 0v-3"/><circle cx="20" cy="10" r="2"/>`,
   sun: `<circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/>`,
-  syringe: `<path d="m18 2 4 4"/><path d="m17 7 3-3"/><path d="M19 9 8.7 19.3c-1 1-2.5 1-3.5 0l-.5-.5c-1-1-1-2.5 0-3.5L15 5"/><path d="m9 11 4 4"/><path d="m5 19-3 3"/><path d="m14 4 6 6"/>`
+  syringe: `<path d="m18 2 4 4"/><path d="m17 7 3-3"/><path d="M19 9 8.7 19.3c-1 1-2.5 1-3.5 0l-.5-.5c-1-1-1-2.5 0-3.5L15 5"/><path d="m9 11 4 4"/><path d="m5 19-3 3"/><path d="m14 4 6 6"/>`,
+  x: `<path d="M18 6 6 18"/><path d="m6 6 12 12"/>`
 };
 
 function escapeHtml(value) {
@@ -470,6 +483,268 @@ function schoolDirectory() {
       note: "Confirm current recognition status directly with UNMC."
     }
   ];
+}
+
+function schoolCoordinates() {
+  return {
+    "Arua School of Nursing": [3.0201, 30.9111],
+    "Butabika School of Psychiatric Nursing": [0.3187, 32.6498],
+    "Hoima School of Nursing": [1.4319, 31.3525],
+    "Jinja School of Nursing and Midwifery": [0.4479, 33.2026],
+    "Mulago School of Nursing and Midwifery": [0.3404, 32.5763],
+    "Public Health Nurses College": [0.3391, 32.5801],
+    "Mengo School of Nursing and Midwifery": [0.3136, 32.5626],
+    "Nsambya School of Nursing and Midwifery": [0.3008, 32.5912],
+    "Gulu School of Nursing and Midwifery": [2.7746, 32.299],
+    "Makerere University Department of Nursing": [0.3347, 32.5676],
+    "Mbarara University Department of Nursing": [-0.6167, 30.65],
+    "Uganda Nursing School Bwindi": [-1.0524, 29.7151]
+  };
+}
+
+function schoolRecordId(school) {
+  return slugify(school.name);
+}
+
+function schoolWithDisplayData(school) {
+  const coordinates = schoolCoordinates()[school.name] || null;
+  const sector = school.sector === "Faith Based" || school.sector === "University" ? "Private" : school.sector;
+  return {
+    ...school,
+    id: schoolRecordId(school),
+    coordinates,
+    filterSector: sector,
+    contact: school.contact || "",
+    email: school.email || "",
+    website: school.website || "",
+    address: school.address || "",
+    description: school.note || "Nursing and midwifery training institution listed for student comparison."
+  };
+}
+
+function schoolStatusClass(status) {
+  const value = String(status || "").toLowerCase();
+  if (value.includes("full")) return "full";
+  if (value.includes("provisional")) return "provisional";
+  return "not-recognized";
+}
+
+function schoolStatusIcon(status) {
+  const value = schoolStatusClass(status);
+  if (value === "full") return "✓";
+  if (value === "provisional") return "!";
+  return "×";
+}
+
+function schoolStatusExplanation(status) {
+  const value = schoolStatusClass(status);
+  if (value === "full") {
+    return "This school is fully recognized by the Uganda Nurses and Midwives Council (UNMC). Students may apply with confidence, subject to personal verification.";
+  }
+  if (value === "provisional") {
+    return "This school holds a provisional license. Verify current status directly with UNMC before applying.";
+  }
+  return "This school is not currently listed as recognized by UNMC. Exercise caution before applying.";
+}
+
+function schoolProgrammeType(programme) {
+  const value = String(programme || "").toLowerCase();
+  if (/bachelor|master|degree/.test(value)) return "Degree";
+  if (/certificate/.test(value)) return "Certificate";
+  return "Diploma";
+}
+
+function schoolProgrammeClass(programme) {
+  return schoolProgrammeType(programme).toLowerCase();
+}
+
+function schoolAvatar(school, size = "") {
+  return `<span class="school-avatar${size ? ` ${size}` : ""}" aria-hidden="true">${escapeHtml(school.name.slice(0, 1))}</span>`;
+}
+
+function schoolStatusBadge(school, large = false) {
+  return `<span class="school-status-badge ${schoolStatusClass(school.status)}${large ? " large" : ""}"><span>${schoolStatusIcon(school.status)}</span>${escapeHtml(school.status)}</span>`;
+}
+
+function schoolProgrammeChip(programme) {
+  return `<span class="school-programme-chip ${schoolProgrammeClass(programme)}">${escapeHtml(schoolProgrammeType(programme))}</span>`;
+}
+
+function schoolFilters() {
+  const schools = schoolDirectory().map(schoolWithDisplayData);
+  const districts = [...new Set(schools.map((school) => school.district))].sort((a, b) => a.localeCompare(b));
+  return {
+    statuses: ["Full Registration", "Provisional License", "Not Recognized"],
+    districts,
+    sectors: ["Government", "Private"],
+    programmes: ["Diploma", "Certificate", "Degree"]
+  };
+}
+
+function filteredSchools() {
+  const query = state.schoolSearch.trim().toLowerCase();
+  return schoolDirectory().map(schoolWithDisplayData).filter((school) => {
+    const programmeTypes = school.programmes.map(schoolProgrammeType);
+    const haystack = `${school.name} ${school.district} ${school.sector} ${school.filterSector} ${school.status} ${school.programmes.join(" ")}`.toLowerCase();
+    const matchesQuery = !query || haystack.includes(query);
+    const matchesStatus = state.schoolStatus === "all" || school.status === state.schoolStatus;
+    const matchesDistrict = state.schoolDistrict === "all" || school.district === state.schoolDistrict;
+    const matchesSector = state.schoolSector === "all" || school.filterSector === state.schoolSector;
+    const matchesProgramme = state.schoolProgramme === "all" || programmeTypes.includes(state.schoolProgramme);
+    return matchesQuery && matchesStatus && matchesDistrict && matchesSector && matchesProgramme;
+  });
+}
+
+function hasActiveSchoolFilters() {
+  return Boolean(state.schoolSearch.trim()) ||
+    state.schoolStatus !== "all" ||
+    state.schoolDistrict !== "all" ||
+    state.schoolSector !== "all" ||
+    state.schoolProgramme !== "all";
+}
+
+function selectedSchool() {
+  if (!state.selectedSchool) return null;
+  return schoolDirectory().map(schoolWithDisplayData).find((school) => school.id === state.selectedSchool) || null;
+}
+
+function schoolFilterPills(label, type, values, active) {
+  return `
+    <div class="school-filter-group" aria-label="${escapeHtml(label)} filter">
+      <span>${escapeHtml(label)}</span>
+      <button type="button" class="${active === "all" ? "active" : ""}" data-school-filter-type="${escapeHtml(type)}" data-school-filter-value="all">All</button>
+      ${values.map((value) => `
+        <button type="button" class="${active === value ? "active" : ""}" data-school-filter-type="${escapeHtml(type)}" data-school-filter-value="${escapeHtml(value)}">${escapeHtml(value)}</button>
+      `).join("")}
+    </div>
+  `;
+}
+
+function renderSchoolCard(school) {
+  return `
+    <article class="school-directory-card" data-school-card="${escapeHtml(school.id)}">
+      <header class="school-directory-card-head">
+        ${schoolAvatar(school)}
+        <div class="school-card-badges">
+          ${schoolStatusBadge(school)}
+          <span class="school-sector-tag">${escapeHtml(school.sector)}</span>
+        </div>
+      </header>
+      <button class="school-title-button" type="button" data-school-open="${escapeHtml(school.id)}">${escapeHtml(school.name)}</button>
+      <p>${escapeHtml(school.description)}</p>
+      <div class="school-info-list">
+        <span>${icon("mapPin")}<strong>${escapeHtml(school.district)}</strong></span>
+        <span>${icon("phone")}<em>${school.contact ? escapeHtml(school.contact) : "Contact not listed"}</em></span>
+      </div>
+      <div class="school-programmes">
+        ${school.programmes.map((programme) => `<span class="${schoolProgrammeClass(programme)}">${escapeHtml(programme)}</span>`).join("")}
+      </div>
+      <button class="school-detail-button" type="button" data-school-open="${escapeHtml(school.id)}">View School Details ${icon("arrowRight")}</button>
+    </article>
+  `;
+}
+
+function renderSchoolMapPopup(school) {
+  return `
+    <div class="school-map-popup">
+      <div class="school-popup-top">${schoolStatusBadge(school)}<span class="school-sector-tag">${escapeHtml(school.sector)}</span></div>
+      <strong>${escapeHtml(school.name)}</strong>
+      <span class="school-popup-line">${icon("mapPin")}${escapeHtml(school.district)}</span>
+      ${school.programmes[0] ? schoolProgrammeChip(school.programmes[0]) : ""}
+      <button type="button" data-school-open="${escapeHtml(school.id)}">View Details ${icon("arrowRight")}</button>
+    </div>
+  `;
+}
+
+function renderSchoolsMapView(schools) {
+  return `
+    <div class="schools-map-layout">
+      <aside class="schools-map-list" aria-label="Schools map list">
+        ${schools.map((school) => `
+          <button class="${state.activeSchool === school.id ? "active" : ""}" type="button" data-school-map-focus="${escapeHtml(school.id)}">
+            ${schoolAvatar(school, "small")}
+            <span><strong>${escapeHtml(school.name)}</strong><small>${escapeHtml(school.district)} · ${escapeHtml(school.sector)}</small></span>
+            <i class="${schoolStatusClass(school.status)}"></i>
+          </button>
+        `).join("")}
+      </aside>
+      <div class="schools-map-stage">
+        <div id="schools-leaflet-map" class="schools-leaflet-map" aria-label="Map of nursing and midwifery schools in Uganda"></div>
+        <div class="schools-map-fallback" aria-hidden="true">
+          <span class="uganda-map-label">Uganda</span>
+          ${schools.filter((school) => school.coordinates).map((school) => `
+            <button style="--pin-x:${Math.min(88, Math.max(12, 50 + ((school.coordinates[1] - 32.2903) * 11)))}%; --pin-y:${Math.min(88, Math.max(10, 50 - ((school.coordinates[0] - 1.3733) * 12)))}%;" class="schools-fallback-pin ${schoolStatusClass(school.status)}" type="button" data-school-map-focus="${escapeHtml(school.id)}" aria-label="${escapeHtml(school.name)}"></button>
+          `).join("")}
+        </div>
+        <div class="schools-mobile-sheet">
+          <span></span>
+          <strong>Schools in this view</strong>
+          <div>
+            ${schools.map((school) => `
+              <button type="button" data-school-map-focus="${escapeHtml(school.id)}">
+                ${schoolAvatar(school, "small")}
+                <span>${escapeHtml(school.name)}<small>${escapeHtml(school.district)} · ${escapeHtml(school.sector)}</small></span>
+              </button>
+            `).join("")}
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderSchoolDrawer(school) {
+  if (!school) return "";
+  return `
+    <div class="school-drawer-overlay" data-school-overlay>
+      <aside class="school-detail-drawer" role="dialog" aria-modal="true" aria-labelledby="school-drawer-title">
+        <button class="school-drawer-close" type="button" data-school-close aria-label="Close school details">${icon("x")}</button>
+        <header class="school-drawer-hero">
+          ${schoolAvatar(school, "large")}
+          ${schoolStatusBadge(school)}
+          <h2 id="school-drawer-title">${escapeHtml(school.name)}</h2>
+          <span class="school-drawer-sector">${escapeHtml(school.sector)}</span>
+        </header>
+        <div class="school-drawer-body">
+          <section>
+            <h3>About</h3>
+            <p>${escapeHtml(school.description)}</p>
+          </section>
+          <section>
+            <h3>Location & Contact</h3>
+            <div class="school-detail-rows">
+              <span>${icon("mapPin")}<strong>District</strong><em>${escapeHtml(school.district)}</em></span>
+              <span>${icon("building2")}<strong>Address</strong><em>${school.address ? escapeHtml(school.address) : "Not listed"}</em></span>
+              <span>${icon("phone")}<strong>Phone</strong><em>${school.contact ? escapeHtml(school.contact) : "Not listed"}</em></span>
+              <span>${icon("mail")}<strong>Email</strong><em>${school.email ? escapeHtml(school.email) : "Not listed"}</em></span>
+              <span>${icon("externalLink")}<strong>Website</strong><em>${school.website ? escapeHtml(school.website) : "Not listed"}</em></span>
+            </div>
+            ${school.coordinates ? `<div class="school-mini-map" data-school-mini-map="${escapeHtml(school.id)}"></div>` : ""}
+          </section>
+          <section>
+            <h3>Registration Status</h3>
+            <div class="school-status-explainer">
+              ${schoolStatusBadge(school, true)}
+              <p>${escapeHtml(schoolStatusExplanation(school.status))}</p>
+              <a href="https://unmc.ug/recognized-schools/" target="_blank" rel="noopener">${icon("externalLink")}Verify on UNMC website</a>
+            </div>
+          </section>
+          <section>
+            <h3>Programmes Offered</h3>
+            <div class="school-programme-list">
+              ${school.programmes.map((programme) => `
+                <div>${schoolProgrammeChip(programme)}<strong>${escapeHtml(programme)}</strong><span>Duration not listed</span></div>
+              `).join("")}
+            </div>
+          </section>
+        </div>
+        <footer class="school-drawer-footer">
+          <a href="https://unmc.ug/recognized-schools/" target="_blank" rel="noopener">${icon("externalLink")}Check UNMC Source</a>
+          <button type="button" data-school-close>${icon("x")}Close</button>
+        </footer>
+      </aside>
+    </div>
+  `;
 }
 
 function globalSearchResults(query) {
@@ -2444,62 +2719,64 @@ function renderResourceDetail(page) {
 }
 
 function renderSchoolsDirectory() {
-  const query = state.schoolSearch.trim().toLowerCase();
-  const status = state.schoolStatus;
-  const schools = schoolDirectory().filter((school) => {
-    const haystack = `${school.name} ${school.district} ${school.sector} ${school.status} ${school.programmes.join(" ")}`.toLowerCase();
-    const matchesQuery = !query || haystack.includes(query);
-    const matchesStatus = status === "all" || school.status.toLowerCase().includes(status);
-    return matchesQuery && matchesStatus;
-  });
+  const schools = filteredSchools();
+  const filters = schoolFilters();
+  const selected = selectedSchool();
+  const showClear = hasActiveSchoolFilters();
+  const view = state.schoolView === "map" ? "map" : "cards";
 
   return `
-    ${hero({
-      title: "Schools Directory",
-      body: "Find nursing and midwifery training institutions by district, programme type and recognition status.",
-      image: imageCatalog.nursing,
-      actions: `${buttonLink("#/resources", "Back to Resources", "secondary", "arrowLeft")}${buttonLink("https://unmc.ug/recognized-schools/", "Check UNMC Source", "primary", "externalLink", `target="_blank" rel="noopener"`)}`
-    })}
-    <section class="section">
+    <section class="schools-hero">
       <div class="container">
-        <div class="directory-toolbar content-panel">
-          <input class="search-input" data-school-search type="search" value="${escapeHtml(state.schoolSearch)}" placeholder="Search school, district, programme or sector" aria-label="Search schools directory">
-          <select data-school-status aria-label="Filter schools by recognition status">
-            <option value="all"${state.schoolStatus === "all" ? " selected" : ""}>All statuses</option>
-            <option value="full registration"${state.schoolStatus === "full registration" ? " selected" : ""}>Full registration</option>
-            <option value="provisional"${state.schoolStatus === "provisional" ? " selected" : ""}>Provisional license</option>
-          </select>
-        </div>
-        <div class="section-head">
-          <div>
-            <h2>${schools.length} Schools Listed</h2>
-            <p>Status notes are based on the UNMC recognized-schools listing. Always confirm directly with UNMC and the school before applying.</p>
-          </div>
-        </div>
-        <div class="school-grid">
-          ${schools.length ? schools.map((school) => `
-            <article class="school-card card">
-              <span class="card-icon">${icon("school")}</span>
-              <div class="school-card-head">
-                <span class="status-pill ${school.status.toLowerCase().includes("full") ? "full" : "provisional"}">${escapeHtml(school.status)}</span>
-                <span>${escapeHtml(school.sector)}</span>
-              </div>
-              <h3>${escapeHtml(school.name)}</h3>
-              <p>${escapeHtml(school.note)}</p>
-              <div class="school-meta">
-                <strong>District</strong>
-                <span>${escapeHtml(school.district)}</span>
-                <strong>Verify</strong>
-                <span>${escapeHtml(school.verification)}</span>
-              </div>
-              <div class="programme-tags">
-                ${school.programmes.map((programme) => `<span>${escapeHtml(programme)}</span>`).join("")}
-              </div>
-            </article>
-          `).join("") : `<div class="empty-state">No schools matched that filter.</div>`}
+        <nav class="schools-breadcrumb" aria-label="Breadcrumb"><a href="#/resources">Resources</a><span>/</span><strong>Schools Directory</strong></nav>
+        <h1>Schools Directory</h1>
+        <p>Find UNMC-recognized nursing and midwifery training institutions by district, programme type and registration status.</p>
+        <div class="schools-hero-actions">
+          <a href="#/resources">${icon("arrowLeft")}Back to Resources</a>
+          <a href="https://unmc.ug/recognized-schools/" target="_blank" rel="noopener">${icon("externalLink")}Check UNMC Source</a>
         </div>
       </div>
     </section>
+    <section class="schools-filter-shell">
+      <div class="container">
+        <label class="schools-search">
+          ${icon("search")}
+          <input data-school-search type="search" value="${escapeHtml(state.schoolSearch)}" placeholder="Search school, district, programme or sector..." aria-label="Search school, district, programme or sector">
+        </label>
+        <div class="schools-filter-row">
+          ${schoolFilterPills("Status", "status", filters.statuses, state.schoolStatus)}
+          ${schoolFilterPills("District", "district", filters.districts, state.schoolDistrict)}
+          ${schoolFilterPills("Sector", "sector", filters.sectors, state.schoolSector)}
+          ${schoolFilterPills("Programme", "programme", filters.programmes, state.schoolProgramme)}
+          ${showClear ? `<button class="schools-clear" type="button" data-school-clear>${icon("x")}Clear filters</button>` : ""}
+        </div>
+        <div class="schools-results-head">
+          <div>
+            <h2>${schools.length} Schools Listed <span>${schools.length}</span></h2>
+            <p>Status notes are based on the UNMC recognized-schools listing. Always confirm directly with UNMC and the school before applying.</p>
+          </div>
+          <div class="schools-view-toggle" aria-label="Schools view toggle">
+            <button class="${view === "cards" ? "active" : ""}" type="button" data-school-view="cards">${icon("layoutGrid")}Cards</button>
+            <button class="${view === "map" ? "active" : ""}" type="button" data-school-view="map">${icon("map")}Map</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="schools-directory-section">
+      <div class="container">
+        <div class="schools-view-panel ${view === "map" ? "is-map" : "is-cards"}">
+          ${schools.length ? (view === "map" ? renderSchoolsMapView(schools) : `<div class="school-directory-grid">${schools.map(renderSchoolCard).join("")}</div>`) : `
+            <div class="schools-empty-state">
+              <span>${icon("school")}</span>
+              <h2>No schools match your filters</h2>
+              <p>Try adjusting your search or clearing filters.</p>
+              <button type="button" data-school-clear>Clear all filters</button>
+            </div>
+          `}
+        </div>
+      </div>
+    </section>
+    ${renderSchoolDrawer(selected)}
   `;
 }
 
@@ -2797,6 +3074,115 @@ function setupCurriculumScrollSpy() {
   sections.forEach((section) => observer.observe(section));
 }
 
+function leafletStatusColor(status) {
+  const value = schoolStatusClass(status);
+  if (value === "full") return "#2E7D52";
+  if (value === "provisional") return "#D97706";
+  return "#C0392B";
+}
+
+function setupSchoolsMap() {
+  const mapElement = app.querySelector("#schools-leaflet-map");
+  if (!mapElement || state.schoolView !== "map") return;
+  const schools = filteredSchools().filter((school) => school.coordinates);
+
+  if (!window.L) {
+    mapElement.classList.add("leaflet-unavailable");
+    mapElement.innerHTML = `<div><strong>Map tiles are unavailable.</strong><span>Use the school list and pins while Leaflet loads.</span></div>`;
+    return;
+  }
+
+  const map = L.map(mapElement, {
+    scrollWheelZoom: false,
+    zoomControl: true
+  }).setView([1.3733, 32.2903], 7);
+
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19,
+    attribution: "&copy; OpenStreetMap contributors"
+  }).addTo(map);
+
+  const markers = {};
+  const bounds = [];
+  schools.forEach((school) => {
+    const color = leafletStatusColor(school.status);
+    const marker = L.marker(school.coordinates, {
+      title: school.name,
+      icon: L.divIcon({
+        className: "school-leaflet-pin",
+        html: `<span style="background:${color}"></span>`,
+        iconSize: [30, 30],
+        iconAnchor: [15, 30],
+        popupAnchor: [0, -28]
+      })
+    }).addTo(map);
+    marker.bindPopup(renderSchoolMapPopup(school), { className: "school-leaflet-popup", maxWidth: 280 });
+    marker.on("click", () => {
+      state.activeSchool = school.id;
+      app.querySelectorAll("[data-school-map-focus]").forEach((row) => row.classList.toggle("active", row.dataset.schoolMapFocus === school.id));
+    });
+    markers[school.id] = marker;
+    bounds.push(school.coordinates);
+  });
+
+  if (bounds.length > 1) {
+    map.fitBounds(bounds, { padding: [34, 34], maxZoom: 8 });
+  }
+
+  const focusSchool = (id) => {
+    const school = schools.find((item) => item.id === id);
+    const marker = markers[id];
+    if (!school || !marker) return;
+    state.activeSchool = id;
+    map.flyTo(school.coordinates, 9, { duration: 0.6 });
+    marker.openPopup();
+    app.querySelectorAll("[data-school-map-focus]").forEach((row) => row.classList.toggle("active", row.dataset.schoolMapFocus === id));
+  };
+
+  app.querySelectorAll("[data-school-map-focus]").forEach((button) => {
+    button.addEventListener("click", () => focusSchool(button.dataset.schoolMapFocus));
+  });
+
+  map.on("popupopen", (event) => {
+    const button = event.popup.getElement().querySelector("[data-school-open]");
+    if (button) {
+      button.addEventListener("click", () => {
+        state.selectedSchool = button.dataset.schoolOpen;
+        render();
+      });
+    }
+  });
+
+  if (state.activeSchool && markers[state.activeSchool]) {
+    setTimeout(() => focusSchool(state.activeSchool), 120);
+  }
+  setTimeout(() => map.invalidateSize(), 80);
+}
+
+function setupSchoolMiniMap() {
+  const mini = app.querySelector("[data-school-mini-map]");
+  if (!mini || !window.L) return;
+  const school = selectedSchool();
+  if (!school || !school.coordinates) return;
+  const map = L.map(mini, {
+    attributionControl: false,
+    zoomControl: false,
+    dragging: false,
+    scrollWheelZoom: false,
+    doubleClickZoom: false
+  }).setView(school.coordinates, 12);
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19
+  }).addTo(map);
+  L.circleMarker(school.coordinates, {
+    radius: 9,
+    color: leafletStatusColor(school.status),
+    fillColor: leafletStatusColor(school.status),
+    fillOpacity: 0.9
+  }).addTo(map);
+  setTimeout(() => map.invalidateSize(), 80);
+}
+
 function notFound() {
   return `
     <section class="section">
@@ -3040,6 +3426,60 @@ function render() {
     });
   }
 
+  app.querySelectorAll("[data-school-filter-type]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const type = button.dataset.schoolFilterType;
+      const value = button.dataset.schoolFilterValue || "all";
+      if (type === "status") state.schoolStatus = value;
+      if (type === "district") state.schoolDistrict = value;
+      if (type === "sector") state.schoolSector = value;
+      if (type === "programme") state.schoolProgramme = value;
+      render();
+    });
+  });
+
+  app.querySelectorAll("[data-school-view]").forEach((button) => {
+    button.addEventListener("click", () => {
+      state.schoolView = button.dataset.schoolView === "map" ? "map" : "cards";
+      localStorage.setItem("nursinguganda.schoolView", state.schoolView);
+      render();
+    });
+  });
+
+  app.querySelectorAll("[data-school-open]").forEach((button) => {
+    button.addEventListener("click", () => {
+      state.selectedSchool = button.dataset.schoolOpen || "";
+      render();
+    });
+  });
+
+  app.querySelectorAll("[data-school-close]").forEach((button) => {
+    button.addEventListener("click", () => {
+      state.selectedSchool = "";
+      render();
+    });
+  });
+
+  app.querySelectorAll("[data-school-overlay]").forEach((overlay) => {
+    overlay.addEventListener("click", (event) => {
+      if (event.target === overlay) {
+        state.selectedSchool = "";
+        render();
+      }
+    });
+  });
+
+  app.querySelectorAll("[data-school-clear]").forEach((button) => {
+    button.addEventListener("click", () => {
+      state.schoolSearch = "";
+      state.schoolStatus = "all";
+      state.schoolDistrict = "all";
+      state.schoolSector = "all";
+      state.schoolProgramme = "all";
+      render();
+    });
+  });
+
   const librarySearch = app.querySelector("[data-library-search]");
   if (librarySearch) {
     librarySearch.addEventListener("input", (event) => {
@@ -3171,6 +3611,9 @@ function render() {
       render();
     });
   }
+
+  setupSchoolsMap();
+  setupSchoolMiniMap();
 }
 
 async function init() {
@@ -3197,6 +3640,13 @@ async function init() {
 window.addEventListener("hashchange", () => {
   state.navOpen = false;
   render();
+});
+
+window.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && state.selectedSchool) {
+    state.selectedSchool = "";
+    render();
+  }
 });
 
 init();
