@@ -10,6 +10,7 @@ const SOURCE_ROOT = path.resolve(ROOT, "..", LEGACY_SOURCE_FOLDER, LEGACY_SOURCE
 const MIDWIVES_SOURCE_ROOT = path.resolve(ROOT, "..", "Midwives Revision", "Midwives_Revision_Full");
 const DIPLOMA_TREE = path.join(ROOT, "programmes", "diploma-nursing", "curriculum-tree.json");
 const OUT_FILE = path.join(ROOT, "assets", "data", "curriculum.json");
+const NON_LESSON_LINK_RE = /^(terms|privacy policy|disclaimer|about(?: us)?|click here\b.*|want notes in pdf\??.*|home|blog|contact|whatsapp|support|login|register|share|comments?|(?:nurses|midwives)\s+revision|index)$/i;
 
 const BNS_FILES = [
   "anatomy-bns-curriculum.html",
@@ -49,9 +50,13 @@ function clean(value) {
 }
 
 function decodeText(value) {
-  return clean(String(value)
+  const withEmphasis = String(value)
+    .replace(/<(strong|b)[^>]*>([\s\S]*?)<\/\1>/gi, (_, _tag, inner) => ` **${clean(inner)}** `)
+    .replace(/<(em|i)[^>]*>([\s\S]*?)<\/\1>/gi, (_, _tag, inner) => ` ${clean(inner)} `);
+
+  return clean(withEmphasis
     .replace(/<br\s*\/?>/gi, " ")
-    .replace(/<\/(p|li|h[1-6])>/gi, " ")
+    .replace(/<\/(p|li|h[1-6]|td|th)>/gi, " ")
     .replace(/<[^>]+>/g, " ")
     .replace(/&#(\d+);/g, (_, code) => String.fromCharCode(Number(code)))
     .replace(/&#x([0-9a-f]+);/gi, (_, code) => String.fromCharCode(parseInt(code, 16))));
@@ -71,10 +76,13 @@ function parseLinks(block) {
   for (const match of block.matchAll(linkRegex)) {
     const title = clean(match[2]);
     if (!title || title.length < 2) continue;
+    if (NON_LESSON_LINK_RE.test(title)) continue;
+    const sourceSlug = match[1].startsWith("http") ? "" : match[1].replace(/\.html(#.*)?$/i, "");
+    if (NON_LESSON_LINK_RE.test(sourceSlug)) continue;
     links.push({
       title,
       sourceHref: match[1],
-      sourceSlug: match[1].startsWith("http") ? "" : match[1].replace(/\.html(#.*)?$/i, "")
+      sourceSlug
     });
   }
   return links;
@@ -148,19 +156,28 @@ function extractLesson(sourceRoot, href, fallbackTitle) {
     if (current.blocks.length) sections.push(current);
   };
 
-  for (const match of region.matchAll(/<(h[1-4]|p|li)[^>]*>([\s\S]*?)<\/\1>/gi)) {
+  for (const match of region.matchAll(/<(h[1-4]|p|li|tr)[^>]*>([\s\S]*?)<\/\1>/gi)) {
     const tag = match[1].toLowerCase();
     const text = decodeText(match[2]);
     if (!text || text.length < 3) continue;
     if (/table of contents|toggle|spread the love|preparing questions|great effort|choose your answer/i.test(text)) continue;
+    if (/^(?:\*\*)?(contact\s+hours|credit\s+units|module\s+unit\s+description|module\s+unit)\b/i.test(text)) continue;
+    if (/^(?:\*\*)?(revision\s+questions?|review\s+questions?|multiple\s+choice\s+questions?|fill-?in\s+questions?|quiz|questions?)\b/i.test(text)) continue;
+    if (/^question\s*\d+\s*[:.)-]/i.test(text)) continue;
+    if (/^(?:\d+|[a-z])\.\s+(?:(?:briefly|shortly|clearly)\s+)?(?:what|where|which|why|how|describe|list|name|define|explain|differentiate|identify|state|mention|discuss|compare|examine|outline|give|write)\b/i.test(text.replace(/\*\*/g, "").trim())) continue;
+    if (/^(?:\d+|[a-z])\.\s+.+\?\s*(?:answer\s*[:.-].*)?$/i.test(text.replace(/\*\*/g, "").trim())) continue;
+    if (/learning[-\s]*working\s+assignments|practical\s+exercises|underpinning\s+knowledge|below are the .*references listed in the curriculum|refer to the original document for full details/i.test(text)) continue;
     if (tag.startsWith("h")) {
       if (/quiz|references from curriculum/i.test(text)) break;
+      if (/^(module\s+unit\b|module\s+unit\s+description|contact\s+hours|credit\s+units|course\s+units)$/i.test(text)) continue;
+      if (/^(revision\s+questions?|review\s+questions?|multiple\s+choice\s+questions?|fill-?in\s+questions?|quiz|questions?)\b/i.test(text)) continue;
+      if (/references?\s*(?:\(|for|from|\b)|(?:from|in)\s+curriculum|learning[-\s]*working\s+assignments|practical\s+exercises|underpinning\s+knowledge|curriculum\s*$/i.test(text)) continue;
       pushCurrent();
       current = { title: text, blocks: [] };
       continue;
     }
-    current.blocks.push({ type: tag === "li" ? "bullet" : "paragraph", text });
-    if (current.blocks.length >= 90) break;
+    current.blocks.push({ type: tag === "li" || tag === "tr" ? "bullet" : "paragraph", text });
+    if (current.blocks.length >= 220) break;
   }
   pushCurrent();
 
@@ -169,7 +186,7 @@ function extractLesson(sourceRoot, href, fallbackTitle) {
     title,
     excerpt,
     sourceFile: path.basename(file),
-    sections: sections.slice(0, 18)
+    sections: sections.slice(0, 40)
   };
 }
 

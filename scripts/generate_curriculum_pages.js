@@ -116,6 +116,11 @@ function pageShell({ file, title, description, main }) {
     <title>${escapeHtml(title)}</title>
     <meta name="description" content="${escapeHtml(description)}">
     <link rel="stylesheet" href="${rootRel}assets/css/styles.css">
+    <script>
+      if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+      window.addEventListener("load", () => window.scrollTo(0, 0));
+      window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+    </script>
   </head>
   <body>
     ${nav(rootRel)}
