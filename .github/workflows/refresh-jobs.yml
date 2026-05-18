@@ -1,0 +1,42 @@
+name: Daily Job Refresh
+
+on:
+  schedule:
+    # Runs every day at 06:00 UTC
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+    # Allow manual trigger from GitHub Actions tab
+
+jobs:
+  refresh-jobs:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Fetch latest job listings
+        run: node scripts/fetch-jobs.js
+
+      - name: Check for changes
+        id: changes
+        run: |
+          git diff --quiet assets/data/jobs.json || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Commit and push updated jobs
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/data/jobs.json
+          git commit -m "chore: refresh job listings [$(date -u '+%Y-%m-%d')]"
+          git push

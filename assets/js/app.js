@@ -115,7 +115,11 @@ const iconPaths = {
   bell: `<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>`,
   flame: `<path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 3z"/>`,
   trophy: `<path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>`,
-  wifi: `<path d="M12 20h.01"/><path d="M2 8.82a15 15 0 0 1 20 0"/><path d="M5 12.859a10 10 0 0 1 14 0"/><path d="M8.5 16.429a5 5 0 0 1 7 0"/>`
+  wifi: `<path d="M12 20h.01"/><path d="M2 8.82a15 15 0 0 1 20 0"/><path d="M5 12.859a10 10 0 0 1 14 0"/><path d="M8.5 16.429a5 5 0 0 1 7 0"/>`,
+  heart: `<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>`,
+  globe: `<circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/>`,
+  banknote: `<rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/>`,
+  sparkles: `<path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0Z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/>`
 };
 
 function escapeHtml(value) {
@@ -2612,97 +2616,78 @@ function renderFooter() {
   const programmeCount = state.data?.programmes?.length || 0;
   const dictionaryCount = dictionaryTerms().length;
   const instrumentCount = allMedicalInstruments().length;
-  const studyLinks = [
-    ["#/notes", "Notes Home", "Browse subject notes and core revision pages.", "bookOpen"],
-    ["#/courses", "Courses", "Move through programmes, units and lessons.", "graduationCap"],
-    ["#/courses/curriculum", "Curriculum Maps", "Follow year, semester and unit structure.", "listChecks"],
-    ["#/search", "Search Topics", "Find notes, lessons, schools and instruments.", "search"]
-  ];
-  const resourceLinks = [
-    ["#/dictionary", "Dictionary", "Student-friendly nursing and medical definitions.", "fileText"],
-    ["#/resources/medical-instruments", "Medical Instruments", "Uses, images, safety and OSCE points.", "stethoscope"],
-    ["#/resources/books", "Digital Library", "Curated nursing books and reference sources.", "bookOpen"],
-    ["#/resources/schools", "Schools Directory", "Recognized nursing and midwifery schools.", "school"],
-    ["#/resources/past-papers", "Past Papers", "Exam practice and revision sets.", "fileText"],
-    ["#/careers", "Careers & Jobs", "Career paths, CV support and job readiness.", "briefcaseMedical"]
+
+  const exploreLinks = [
+    ["#/notes", "Notes", "bookOpen"],
+    ["#/courses", "Courses", "graduationCap"],
+    ["#/search", "Search", "search"],
+    ["#/dictionary", "Dictionary", "fileText"],
+    ["#/resources/medical-instruments", "Instruments", "stethoscope"],
+    ["#/resources/schools", "Schools", "school"],
+    ["#/resources/past-papers", "Past Papers", "clipboardList"],
+    ["#/careers", "Careers", "briefcaseMedical"]
   ];
   const subjectLinks = [
-    ["anatomy|physiology", "Anatomy And Physiology", "activity"],
+    ["anatomy|physiology", "Anatomy & Physiology", "activity"],
     ["medical|surgical", "Medical Surgical", "stethoscope"],
-    ["midwifery|obstetric|newborn", "Midwifery", "briefcaseMedical"],
+    ["midwifery|obstetric|newborn", "Midwifery", "heartPulse"],
     ["pharmacology|drug|medicine", "Pharmacology", "pill"],
-    ["community|public health|primary health", "Community Health", "home"],
+    ["community|public health", "Community Health", "home"],
     ["mental|psychiatric", "Mental Health", "heartPulse"]
   ];
 
   return `
     <footer class="site-footer">
       <div class="container footer-shell">
-        <section class="footer-hero-panel">
+        <div class="footer-top">
           <div class="footer-brand">
-            <a class="footer-logo" href="#/notes" aria-label="Nursing Uganda notes home">
+            <a class="footer-logo" href="#/notes" aria-label="Nursing Uganda home">
               <span class="brand-mark">NU</span>
               <span>Nursing Uganda<small>nursinguganda.com</small></span>
             </a>
-            <h2>Built for focused nursing revision.</h2>
-            <p>Structured notes, course maps, dictionary terms, medical instruments and student resources for Uganda learners.</p>
-            <div class="footer-stats" aria-label="Nursing Uganda quick stats">
-              <span><strong>${programmeCount || 7}</strong> programmes</span>
-              <span><strong>${totals.courseUnits || 95}</strong> units</span>
-              <span><strong>${dictionaryCount}</strong> terms</span>
-              <span><strong>${instrumentCount}</strong> instruments</span>
+            <p>Structured notes, courses, dictionary and resources for Uganda nursing and midwifery students.</p>
+            <div class="footer-stats" aria-label="Quick stats">
+              <span>${icon("graduationCap")}<strong>${programmeCount || 7}</strong> programmes</span>
+              <span>${icon("bookOpen")}<strong>${totals.courseUnits || 95}</strong> units</span>
+              <span>${icon("fileText")}<strong>${dictionaryCount}</strong> terms</span>
+              <span>${icon("stethoscope")}<strong>${instrumentCount}</strong> instruments</span>
             </div>
           </div>
           <div class="footer-cta-card">
-            <span class="mini-label">Fast Start</span>
-            <h3>Continue from the strongest tools</h3>
-            <div>
+            <span class="mini-label">${icon("sparkles")} Quick access</span>
+            <h3>Your revision toolkit</h3>
+            <div class="footer-cta-actions">
               ${buttonLink("#/search", "Search Everything", "primary", "search")}
-              ${buttonLink("#/dictionary", "Open Dictionary", "secondary", "fileText")}
+              ${buttonLink("#/courses", "Open Courses", "secondary", "graduationCap")}
             </div>
+            <p class="footer-disclaimer">${icon("badgeCheck")} Use for revision. Confirm clinical decisions with tutors and current guidance.</p>
           </div>
-        </section>
-        <div class="footer-main mega">
-          <nav class="footer-column footer-mega-column" aria-label="Study links">
-            <h2>Study</h2>
-            ${studyLinks.map(([href, label, body, iconName]) => footerMegaLink(href, label, body, iconName)).join("")}
+        </div>
+        <div class="footer-nav">
+          <nav class="footer-nav-col" aria-label="Explore links">
+            <h4>Explore</h4>
+            ${exploreLinks.map(([href, label, iconName]) => footerLink(href, label, iconName)).join("")}
           </nav>
-          <nav class="footer-column footer-mega-column" aria-label="Resource links">
-            <h2>Resources</h2>
-            ${resourceLinks.map(([href, label, body, iconName]) => footerMegaLink(href, label, body, iconName)).join("")}
-          </nav>
-          <nav class="footer-column" aria-label="Subject shortcuts">
-            <h2>Subjects</h2>
+          <nav class="footer-nav-col" aria-label="Subjects">
+            <h4>Subjects</h4>
             ${subjectLinks.map(([seed, label, iconName]) => footerLink("#/search", label, iconName, `data-search-seed="${escapeHtml(seed)}"`)).join("")}
           </nav>
-          <nav class="footer-column" aria-label="Professional links">
-            <h2>Professional</h2>
-            ${footerLink("#/resources/licensing", "Licensing And CPD", "badgeCheck")}
+          <nav class="footer-nav-col" aria-label="More">
+            <h4>More</h4>
+            ${footerLink("#/resources/licensing", "Licensing & CPD", "badgeCheck")}
             ${footerLink("#/resources/student-support", "Student Support", "heartPulse")}
-            ${footerLink("#/privacy", "Privacy", "shield")}
+            ${footerLink("#/progress", "My Progress", "chartLine")}
+            ${footerLink("#/privacy", "Privacy Policy", "shield")}
             ${footerLink("#/disclaimer", "Disclaimer", "fileText")}
-            ${footerLink("#/corrections", "Corrections", "fileText")}
+            ${footerLink("#/corrections", "Corrections", "pencil")}
           </nav>
-        </div>
-        <div class="footer-support">
-          <div>
-            <span class="mini-label">Student Reminder</span>
-            <p>Use these notes for revision, then confirm clinical decisions with tutors, supervisors and current official guidance.</p>
-          </div>
-          <div class="footer-actions">
-            ${buttonLink("#/courses", "Open Courses", "primary", "graduationCap")}
-            ${buttonLink("#/resources", "Open Resources", "secondary", "folderOpen")}
-          </div>
         </div>
         <div class="footer-bottom">
           <span>&copy; ${new Date().getFullYear()} Nursing Uganda. All rights reserved.</span>
           <nav class="footer-legal-links" aria-label="Legal links">
             <a href="#/privacy">Privacy</a>
-            <a href="#/privacy-choices">Privacy Choices</a>
-            <a href="#/cookies">Cookies</a>
-            <a href="#/disclaimer">Disclaimer</a>
             <a href="#/terms">Terms</a>
-            <a href="#/corrections">Corrections</a>
+            <a href="#/disclaimer">Disclaimer</a>
             <button type="button" data-cookie-manage>Cookie Preferences</button>
           </nav>
         </div>
@@ -5941,6 +5926,7 @@ function careerAvatar(name, size = "") {
 }
 
 function renderCareerHero() {
+  const jobCount = careerJobs().length;
   return `
     <section class="careers-hero">
       <div class="container careers-hero-inner">
@@ -5950,13 +5936,13 @@ function renderCareerHero() {
         <h1>Nursing Careers & Jobs</h1>
         <p>Internships, graduate positions, senior roles and international opportunities for Uganda nursing and midwifery professionals.</p>
         <div class="careers-hero-chips">
-          <span>💼 Active Listings</span>
-          <span>🌍 Countries Covered</span>
-          <span>🗺 Career Pathways</span>
+          <span>${icon("briefcaseMedical")}<strong>${jobCount}</strong> Active Listings</span>
+          <span>${icon("globe")}<strong>7</strong> Countries Covered</span>
+          <span>${icon("chartLine")}<strong>8</strong> Career Levels</span>
         </div>
         <div class="careers-hero-actions">
-          <button type="button" data-career-mode="jobs">Browse Jobs ${icon("arrowRight")}</button>
-          <button type="button" data-career-mode="hub">Career Guidance ${icon("arrowRight")}</button>
+          <button type="button" data-career-mode="jobs">${icon("briefcaseMedical")}Browse Jobs</button>
+          <button type="button" data-career-mode="hub">${icon("graduationCap")}Career Guidance</button>
         </div>
         ${renderAdSlot("resourcesInline", "Resource hub advertisement")}
       </div>
@@ -5968,8 +5954,8 @@ function renderCareerModeToggle() {
   return `
     <section class="career-mode-bar">
       <div class="container career-mode-shell">
-        <button type="button" class="${state.careerMode === "jobs" ? "active" : ""}" data-career-mode="jobs">💼 Jobs Board</button>
-        <button type="button" class="${state.careerMode === "hub" ? "active" : ""}" data-career-mode="hub">🎓 Career Hub</button>
+        <button type="button" class="${state.careerMode === "jobs" ? "active" : ""}" data-career-mode="jobs">${icon("briefcaseMedical")}Jobs Board</button>
+        <button type="button" class="${state.careerMode === "hub" ? "active" : ""}" data-career-mode="hub">${icon("graduationCap")}Career Hub</button>
       </div>
     </section>
   `;
@@ -5990,8 +5976,8 @@ function renderCareerJobCard(job) {
   return `
     <article class="career-job-card ${job.isFeatured ? "featured" : ""}" data-career-card="${escapeHtml(job.id)}">
       <div class="career-job-flags">
-        ${job.isFeatured ? `<span class="featured-flag">⭐ Featured</span>` : ""}
-        ${job.isExternal ? `<span class="external-flag">↗ External</span>` : ""}
+        ${job.isFeatured ? `<span class="featured-flag">${icon("sparkles")} Featured</span>` : ""}
+        ${job.isExternal ? `<span class="external-flag">${icon("externalLink")} External</span>` : ""}
       </div>
       <header class="career-job-head">
         ${careerAvatar(job.employer)}
@@ -6004,7 +5990,7 @@ function renderCareerJobCard(job) {
         <span>${icon("mapPin")}${escapeHtml(job.location)}</span>
         <span>${icon("calendar")}Posted ${dateLabel(job.posted)}</span>
       </div>
-      <p class="career-deadline ${status}">${icon("calendar")}<span>Deadline: ${dateLabel(job.deadline)}${status === "urgent" ? " - Closing soon" : ""}</span></p>
+      <p class="career-deadline ${status}">${icon("clock")}<span>Deadline: ${dateLabel(job.deadline)}${status === "urgent" ? " — Closing soon" : ""}</span></p>
       <p class="career-job-desc">${escapeHtml(job.description)}</p>
       <div class="career-badge-row">
         ${careerBadge(job.type, `type-${slugify(job.type)}`)}
@@ -6012,9 +5998,9 @@ function renderCareerJobCard(job) {
         ${careerBadge(regionLabel(job.region), "region")}
         ${careerBadge(job.speciality, "speciality")}
       </div>
-      <p class="career-salary">💰 ${escapeHtml(job.salary)}</p>
+      <p class="career-salary">${icon("banknote")} ${escapeHtml(job.salary)}</p>
       <footer class="career-job-actions">
-        <button type="button" class="career-save ${saved ? "active" : ""}" data-career-job-save="${escapeHtml(job.id)}">♡ <span>${saved ? "Saved" : "Save"}</span></button>
+        <button type="button" class="career-save ${saved ? "active" : ""}" data-career-job-save="${escapeHtml(job.id)}">${icon("heart")}<span>${saved ? "Saved" : "Save"}</span></button>
         <button type="button" class="career-apply" data-career-job-open="${escapeHtml(job.id)}">View & Apply ${icon("arrowRight")}</button>
       </footer>
     </article>
@@ -6047,11 +6033,11 @@ function renderJobsBoard() {
         </div>
         <div class="career-results-head">
           <h2>${jobs.length} Jobs Found <span>${careerJobs().length} total</span></h2>
-          ${hasActiveCareerFilters() ? `<button type="button" data-career-clear>✕ Clear filters</button>` : ""}
+          ${hasActiveCareerFilters() ? `<button type="button" data-career-clear>${icon("x")} Clear filters</button>` : ""}
         </div>
         ${jobs.length ? `<div class="career-job-grid">${jobs.map(renderCareerJobCard).join("")}</div>` : `
           <div class="career-empty-state">
-            <span>💼</span>
+            <span class="career-empty-icon">${icon("briefcaseMedical")}</span>
             <h2>No jobs match your filters</h2>
             <p>Try adjusting your search or clearing filters.</p>
             <button type="button" data-career-clear>Clear filters</button>
@@ -6072,7 +6058,7 @@ function renderSavedCareerJobsPanel() {
   if (!saved.length) {
     return `
       <aside class="career-saved-panel empty">
-        <span>♡</span>
+        <span class="career-saved-icon">${icon("heart")}</span>
         <div>
           <h3>No saved jobs yet</h3>
           <p>Click the heart on any job to save it for later.</p>
@@ -6136,7 +6122,7 @@ function renderEmployerSpotlight() {
               <h3>${escapeHtml(employer.name)}</h3>
               <p>${escapeHtml(employer.location)} · ${escapeHtml(employer.type)}</p>
               <div class="career-badge-row">${employer.roles.map((role) => careerBadge(role, "speciality")).join("")}</div>
-              ${employer.hiring ? `<span class="hiring-badge">Currently Hiring</span>` : ""}
+              ${employer.hiring ? `<span class="hiring-badge">${icon("badgeCheck")} Currently Hiring</span>` : ""}
               <a href="#/careers">View Jobs ${icon("arrowRight")}</a>
             </article>
           `).join("")}
@@ -6191,8 +6177,8 @@ function renderCareerDrawer() {
               ${careerBadge(job.type, `type-${slugify(job.type)}`)}
               ${careerBadge(job.level, "level")}
               ${careerBadge(regionLabel(job.region), "region")}
-              ${job.isFeatured ? `<span class="featured-flag">⭐ Featured</span>` : ""}
-              ${job.isExternal ? `<span class="external-flag">↗ External</span>` : ""}
+              ${job.isFeatured ? `<span class="featured-flag">${icon("sparkles")} Featured</span>` : ""}
+              ${job.isExternal ? `<span class="external-flag">${icon("externalLink")} External</span>` : ""}
             </div>
           </div>
         </header>
@@ -6230,8 +6216,8 @@ function renderCareerDrawer() {
           </section>
         </div>
         <footer class="career-drawer-footer">
-          <button type="button" class="career-save ${saved ? "active" : ""}" data-career-job-save="${escapeHtml(job.id)}">♡ ${saved ? "Saved Job" : "Save Job"}</button>
-          <a class="career-apply" href="${escapeHtml(job.applyUrl)}" ${job.isExternal ? `target="_blank" rel="noopener noreferrer"` : ""}>${job.isExternal ? "↗ Apply on External Site" : "Apply Now"} ${icon("arrowRight")}</a>
+          <button type="button" class="career-save ${saved ? "active" : ""}" data-career-job-save="${escapeHtml(job.id)}">${icon("heart")} ${saved ? "Saved" : "Save Job"}</button>
+          <a class="career-apply" href="${escapeHtml(job.applyUrl)}" ${job.isExternal ? `target="_blank" rel="noopener noreferrer"` : ""}>${job.isExternal ? "Apply on External Site" : "Apply Now"} ${icon("arrowRight")}</a>
         </footer>
       </aside>
     </div>
@@ -6307,7 +6293,7 @@ function renderInternationalGuides() {
                 <span>Key Exam: <strong>${escapeHtml(exam)}</strong></span>
                 <span>Visa: <strong>${escapeHtml(visa)}</strong></span>
               </div>
-              <div class="country-requirements"><strong>Requirements:</strong>${requirements.map((item) => `<span>✓ ${escapeHtml(item)}</span>`).join("")}</div>
+              <div class="country-requirements"><strong>Requirements:</strong>${requirements.map((item) => `<span>${icon("checkCircle")} ${escapeHtml(item)}</span>`).join("")}</div>
               <div class="country-rating"><span>${"●".repeat(difficulty)}${"○".repeat(5 - difficulty)}</span><em>${difficulty > 3 ? "Challenging" : difficulty > 2 ? "Moderate" : "Accessible"}</em><strong>${escapeHtml(timeline)}</strong></div>
               <a href="#/careers">View Full Guide ${icon("arrowRight")}</a>
             </article>
@@ -6385,10 +6371,10 @@ function renderCareerHub() {
   return `
     <section class="career-hub-nav">
       <div class="container">
-        <a href="#career-pathways">🗺 Career Pathways</a>
-        <a href="#international">🌍 International</a>
-        <a href="#licensing">📋 Licensing</a>
-        <a href="#cv-resources">📄 CV & Resources</a>
+        <a href="#career-pathways">${icon("chartLine")} Career Pathways</a>
+        <a href="#international">${icon("globe")} International</a>
+        <a href="#licensing">${icon("badgeCheck")} Licensing</a>
+        <a href="#cv-resources">${icon("fileCv")} CV & Resources</a>
       </div>
     </section>
     <div class="career-mode-panel">
