@@ -2887,7 +2887,7 @@ function layout(content) {
         <div id="reading-progress-bar" role="progressbar" aria-hidden="true"></div>
         <div class="container nav-shell">
           <a class="brand" href="#/notes" aria-label="Nursing Uganda notes home">
-            <span>Nursing Uganda<small>nursinguganda.com</small></span>
+            <span>Nursing Uganda</span>
           </a>
           <nav class="main-nav${state.navOpen ? " open" : ""}" data-main-nav aria-label="Main navigation">
             ${renderMainNav(active)}

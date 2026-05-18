@@ -1,10 +1,10 @@
-const CACHE_VERSION = "nursing-uganda-v52";
+const CACHE_VERSION = "nursing-uganda-v53";
 const APP_SHELL = [
   "./",
   "./index.html",
   "./manifest.webmanifest",
   "./assets/css/main.min.css?v=45",
-  "./assets/js/app.js?v=49",
+  "./assets/js/app.js?v=50",
   "./assets/data/curriculum.json",
   "./assets/data/topic-image-matches.json",
   "./assets/data/book-library.json",
