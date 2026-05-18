@@ -50,7 +50,10 @@ const state = {
   imagePickerSearch: "",
   imagePickerCategory: "all",
   cookiePreferencesOpen: false,
-  theme: localStorage.getItem("nursinguganda.theme") || "light"
+  theme: localStorage.getItem("nursinguganda.theme") || "light",
+  flashcardIndex: 0,
+  flashcardFlipped: false,
+  flashcardCategory: "All"
 };
 
 const app = document.querySelector("#app");
@@ -146,6 +149,7 @@ function routeKey(parts = currentRoute()) {
   if (parts[0] === "dictionary") return "dictionary";
   if (parts[0] === "careers") return "careers";
   if (parts[0] === "progress") return "progress";
+  if (parts[0] === "flashcards") return "flashcards";
   return "notes";
 }
 
@@ -2890,6 +2894,7 @@ function layout(content) {
             ${renderMainNav(active)}
           </nav>
           <div class="nav-actions">
+            <a class="progress-nav-link${active === "flashcards" ? " active" : ""}" href="#/flashcards" aria-label="Flashcard study mode">${icon("sparkles")}<span>Flashcards</span></a>
             <a class="progress-nav-link${active === "progress" ? " active" : ""}" href="#/progress" aria-label="My study progress">${icon("chartLine")}<span>Progress</span></a>
             <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme">${icon(state.theme === "dark" ? "sun" : "moon")}<span>${state.theme === "dark" ? "Light" : "Dark"}</span></button>
             <button class="mobile-toggle" type="button" data-nav-toggle aria-label="Open menu" aria-expanded="${state.navOpen}">
@@ -2898,7 +2903,9 @@ function layout(content) {
           </div>
         </div>
       </header>
-      ${content}
+      <div class="page-main" id="page-main">
+        ${content}
+      </div>
       ${renderFooter()}
       ${renderCookieConsent()}
       ${renderImageLightbox()}
@@ -2947,6 +2954,8 @@ function layout(content) {
   hydrateAdSlots();
   setupReadingProgress();
   setupSwipeNavigation();
+  setupLessonNotes();
+  setupFlashcards();
 }
 
 function setupLightboxControls() {
@@ -5050,6 +5059,7 @@ function renderTopic(programme, unit, topic) {
             <span>${escapeHtml(sourceText)}</span>
           </div>
         </div>
+        ${renderLessonNotesPanel(key)}
         <nav class="lesson-bottom-actions" aria-label="Lesson navigation">
           ${previous ? buttonLink(topicHref(programme, unit, previous.groupIndex, previous.topicIndex), "Previous Lesson", "secondary", "arrowLeft") : `<span></span>`}
           <button class="button secondary" type="button" data-print-topic>${buttonLabel("Print / Save PDF", "printer")}</button>
@@ -7603,6 +7613,10 @@ function render() {
     content = renderProgress();
     meta = { title: "My Progress", description: "Track your completed lessons, quiz mastery, study streak and saved bookmarks on Nursing Uganda." };
   }
+  else if (parts[0] === "flashcards") {
+    content = renderFlashcards();
+    meta = { title: "Flashcards", description: "Study key nursing and medical terms with flip-card mode. Track your mastery as you go." };
+  }
   else if (legalPages[parts[0]]) {
     content = renderLegalPage(parts[0]);
     meta = {
@@ -8560,6 +8574,355 @@ function showPwaPrompt() {
   });
 }
 
+/* ── Flashcards ───────────────────────────────────────────────────── */
+function flashcardMastery() {
+  try { return new Set(JSON.parse(localStorage.getItem("nursinguganda.flashcardMastery") || "[]")); }
+  catch { return new Set(); }
+}
+
+function toggleFlashcardMastery(id) {
+  const m = flashcardMastery();
+  m.has(id) ? m.delete(id) : m.add(id);
+  localStorage.setItem("nursinguganda.flashcardMastery", JSON.stringify([...m]));
+}
+
+function flashcardDeck() {
+  const terms = dictionaryTerms();
+  const cat = state.flashcardCategory || "All";
+  return cat === "All" ? terms : terms.filter((t) => t.category === cat);
+}
+
+function renderFlashcards() {
+  const deck = flashcardDeck();
+  const mastery = flashcardMastery();
+  const idx = Math.min(state.flashcardIndex || 0, Math.max(0, deck.length - 1));
+  const card = deck[idx];
+  const categories = ["All", ...new Set(dictionaryTerms().map((t) => t.category))];
+  const masteredCount = deck.filter((t) => mastery.has(t.id)).length;
+  const isMastered = card && mastery.has(card.id);
+  const progress = deck.length ? Math.round((masteredCount / deck.length) * 100) : 0;
+
+  return `
+    <section class="fc-hero">
+      <div class="container">
+        <nav class="fc-breadcrumb"><a href="#/dictionary">Dictionary</a><span>${icon("arrowRight")}</span><strong>Flashcards</strong></nav>
+        <div class="fc-hero-head">
+          <div>
+            <h1>${icon("sparkles")} Flashcard Study</h1>
+            <p>Tap a card to flip it. Mark terms mastered as you go.</p>
+          </div>
+          <div class="fc-summary">
+            <span>${icon("checkCircle")}<strong>${masteredCount}</strong> mastered</span>
+            <span>${icon("bookOpen")}<strong>${deck.length}</strong> in deck</span>
+            <span>${icon("chartBar")}<strong>${progress}%</strong> complete</span>
+          </div>
+        </div>
+        <div class="fc-category-rail">
+          ${categories.map((cat) => `<button type="button" class="fc-cat-btn${state.flashcardCategory === cat ? " active" : ""}" data-fc-cat="${escapeHtml(cat)}">${escapeHtml(cat)}</button>`).join("")}
+        </div>
+      </div>
+    </section>
+    <div class="fc-arena">
+      <div class="container">
+        ${card ? `
+          <div class="fc-progress-bar"><div class="fc-progress-fill" style="width:${progress}%"></div></div>
+          <p class="fc-counter">${idx + 1} of ${deck.length}</p>
+          <div class="fc-wrapper">
+            <div class="fc-card${state.flashcardFlipped ? " flipped" : ""}${isMastered ? " mastered" : ""}" data-fc-flip role="button" tabindex="0" aria-label="Flip card">
+              <div class="fc-front">
+                <span class="fc-category-tag">${escapeHtml(card.category)}</span>
+                <h2>${escapeHtml(card.term)}</h2>
+                ${card.pronunciation ? `<p class="fc-pronunciation">${escapeHtml(card.pronunciation)}</p>` : ""}
+                <p class="fc-hint">${icon("rotateCcw")} Tap to reveal definition</p>
+              </div>
+              <div class="fc-back">
+                <span class="fc-category-tag">${escapeHtml(card.category)}</span>
+                <h2>${escapeHtml(card.term)}</h2>
+                <p class="fc-definition">${escapeHtml(card.simpleDefinition)}</p>
+                <p class="fc-clinical">${icon("stethoscope")} ${escapeHtml(truncateText(card.clinicalContext, 140))}</p>
+              </div>
+            </div>
+          </div>
+          <div class="fc-controls">
+            <button type="button" class="fc-btn secondary" data-fc-prev ${idx === 0 ? "disabled" : ""}>${icon("arrowLeft")} Prev</button>
+            <button type="button" class="fc-btn master${isMastered ? " active" : ""}" data-fc-master data-fc-id="${escapeHtml(card.id)}">${icon(isMastered ? "checkCircle" : "star")} ${isMastered ? "Mastered" : "Mark Mastered"}</button>
+            <button type="button" class="fc-btn secondary" data-fc-next ${idx >= deck.length - 1 ? "disabled" : ""}>Next ${icon("arrowRight")}</button>
+          </div>
+          ${state.flashcardFlipped && card.relatedTerms?.length ? `
+            <div class="fc-related">
+              <span>Related terms:</span>
+              ${card.relatedTerms.slice(0, 4).map((slug) => `<a href="#/dictionary/${escapeHtml(slug)}">${escapeHtml(slug.replace(/-/g, " "))}</a>`).join("")}
+            </div>
+          ` : ""}
+        ` : `
+          <div class="fc-empty">
+            <span>${icon("sparkles")}</span>
+            <p>No cards in this category yet.</p>
+          </div>
+        `}
+      </div>
+    </div>
+  `;
+}
+
+function setupFlashcards() {
+  const flipBtn = app.querySelector("[data-fc-flip]");
+  if (!flipBtn) return;
+
+  flipBtn.addEventListener("click", () => {
+    state.flashcardFlipped = !state.flashcardFlipped;
+    flipBtn.classList.toggle("flipped", state.flashcardFlipped);
+  });
+
+  flipBtn.addEventListener("keydown", (e) => {
+    if (e.key === " " || e.key === "Enter") { e.preventDefault(); flipBtn.click(); }
+  });
+
+  app.querySelector("[data-fc-prev]")?.addEventListener("click", () => {
+    state.flashcardIndex = Math.max(0, (state.flashcardIndex || 0) - 1);
+    state.flashcardFlipped = false;
+    render();
+  });
+
+  app.querySelector("[data-fc-next]")?.addEventListener("click", () => {
+    const deck = flashcardDeck();
+    state.flashcardIndex = Math.min(deck.length - 1, (state.flashcardIndex || 0) + 1);
+    state.flashcardFlipped = false;
+    render();
+  });
+
+  app.querySelector("[data-fc-master]")?.addEventListener("click", (e) => {
+    const id = e.currentTarget.dataset.fcId;
+    toggleFlashcardMastery(id);
+    render();
+  });
+
+  app.querySelectorAll("[data-fc-cat]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      state.flashcardCategory = btn.dataset.fcCat;
+      state.flashcardIndex = 0;
+      state.flashcardFlipped = false;
+      render();
+    });
+  });
+}
+
+/* ── Lesson Notes ─────────────────────────────────────────────────── */
+function renderLessonNotesPanel(topicKey) {
+  const saved = localStorage.getItem(`nursinguganda.notes.${topicKey}`) || "";
+  return `
+    <aside class="lesson-notes-panel" data-notes-panel="${escapeHtml(topicKey)}">
+      <button type="button" class="lesson-notes-toggle" data-notes-toggle>
+        ${icon("pencil")}
+        <span>My Notes</span>
+        ${saved ? `<span class="notes-saved-dot" aria-label="Notes saved"></span>` : ""}
+        ${icon("chevronDown")}
+      </button>
+      <div class="lesson-notes-body" id="lesson-notes-body"${saved ? "" : " hidden"}>
+        <textarea
+          id="lesson-notes-textarea"
+          class="lesson-notes-textarea"
+          placeholder="Write your personal notes for this lesson…"
+          rows="5"
+          aria-label="Personal lesson notes"
+        >${escapeHtml(saved)}</textarea>
+        <div class="lesson-notes-footer">
+          <span class="lesson-notes-count" id="lesson-notes-count">${saved.length} chars</span>
+          <button type="button" class="lesson-notes-clear" id="lesson-notes-clear">Clear notes</button>
+        </div>
+      </div>
+    </aside>
+  `;
+}
+
+function setupLessonNotes() {
+  const toggle = app.querySelector("[data-notes-toggle]");
+  if (!toggle) return;
+  const body = document.getElementById("lesson-notes-body");
+  const textarea = document.getElementById("lesson-notes-textarea");
+  const count = document.getElementById("lesson-notes-count");
+  const clearBtn = document.getElementById("lesson-notes-clear");
+  const panel = app.querySelector("[data-notes-panel]");
+
+  const noteKey = `nursinguganda.notes.${panel?.dataset.notesPanel || ""}`;
+
+  toggle.addEventListener("click", () => {
+    const hidden = body.hasAttribute("hidden");
+    if (hidden) { body.removeAttribute("hidden"); textarea.focus(); }
+    else body.setAttribute("hidden", "");
+    toggle.querySelector(".ui-icon:last-child")?.classList.toggle("rotated", hidden);
+  });
+
+  let saveTimer;
+  textarea.addEventListener("input", () => {
+    count.textContent = `${textarea.value.length} chars`;
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => {
+      localStorage.setItem(noteKey, textarea.value);
+      if (textarea.value) {
+        if (!toggle.querySelector(".notes-saved-dot")) {
+          const dot = document.createElement("span");
+          dot.className = "notes-saved-dot";
+          toggle.querySelector("span").after(dot);
+        }
+      }
+    }, 600);
+  });
+
+  clearBtn.addEventListener("click", () => {
+    if (!textarea.value) return;
+    if (!confirm("Clear your notes for this lesson? This cannot be undone.")) return;
+    textarea.value = "";
+    count.textContent = "0 chars";
+    localStorage.removeItem(noteKey);
+    toggle.querySelector(".notes-saved-dot")?.remove();
+    showToast("Notes cleared", "info");
+  });
+}
+
+/* ── Study Timer / Pomodoro ───────────────────────────────────────── */
+const TIMER_PHASES = [
+  { label: "Focus", minutes: 25, icon: "flame", color: "primary" },
+  { label: "Short Break", minutes: 5, icon: "heartPulse", color: "success" },
+  { label: "Long Break", minutes: 15, icon: "moon", color: "cyan" }
+];
+
+const _timer = {
+  phaseIndex: 0,
+  secondsLeft: TIMER_PHASES[0].minutes * 60,
+  totalSeconds: TIMER_PHASES[0].minutes * 60,
+  running: false,
+  sessions: 0,
+  _interval: null
+};
+
+function timerFmt(s) {
+  return `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
+}
+
+function timerArcOffset(secondsLeft, totalSeconds) {
+  const r = 42;
+  const circumference = 2 * Math.PI * r;
+  const pct = totalSeconds > 0 ? secondsLeft / totalSeconds : 1;
+  return circumference * (1 - pct);
+}
+
+function timerUpdateDisplay() {
+  const display = document.getElementById("nu-timer-display");
+  const label = document.getElementById("nu-timer-label");
+  const arc = document.getElementById("nu-timer-arc");
+  const phase = document.getElementById("nu-timer-phase");
+  const startBtn = document.getElementById("nu-timer-start");
+  if (display) display.textContent = timerFmt(_timer.secondsLeft);
+  if (label) label.textContent = timerFmt(_timer.secondsLeft);
+  if (arc) arc.style.strokeDashoffset = timerArcOffset(_timer.secondsLeft, _timer.totalSeconds);
+  if (phase) phase.textContent = TIMER_PHASES[_timer.phaseIndex].label;
+  if (startBtn) startBtn.textContent = _timer.running ? "Pause" : "Start";
+}
+
+function timerAdvancePhase() {
+  _timer.running = false;
+  clearInterval(_timer._interval);
+  if (_timer.phaseIndex === 0) {
+    _timer.sessions++;
+    _timer.phaseIndex = _timer.sessions % 4 === 0 ? 2 : 1;
+    showToast(`Focus session done! Time for a ${TIMER_PHASES[_timer.phaseIndex].label}.`, "success");
+  } else {
+    _timer.phaseIndex = 0;
+    showToast("Break over — back to focus!", "info");
+  }
+  const phase = TIMER_PHASES[_timer.phaseIndex];
+  _timer.secondsLeft = phase.minutes * 60;
+  _timer.totalSeconds = phase.minutes * 60;
+  timerUpdateDisplay();
+  const el = document.getElementById("nu-timer");
+  if (el) el.dataset.phase = ["primary", "success", "cyan"][_timer.phaseIndex];
+}
+
+function setupStudyTimer() {
+  if (document.getElementById("nu-timer")) return;
+  const el = document.createElement("div");
+  el.id = "nu-timer";
+  el.dataset.phase = "primary";
+  const circumference = 2 * Math.PI * 42;
+  el.innerHTML = `
+    <button class="nu-timer-toggle" id="nu-timer-toggle" aria-label="Study timer" aria-expanded="false">
+      ${icon("clock")} <span id="nu-timer-display">${timerFmt(_timer.secondsLeft)}</span>
+    </button>
+    <div class="nu-timer-panel" id="nu-timer-panel" hidden>
+      <div class="nu-timer-ring-wrap">
+        <svg class="nu-timer-ring" viewBox="0 0 100 100" aria-hidden="true">
+          <circle class="nu-timer-track" cx="50" cy="50" r="42"/>
+          <circle class="nu-timer-arc" id="nu-timer-arc" cx="50" cy="50" r="42"
+            stroke-dasharray="${circumference}"
+            stroke-dashoffset="0"
+            transform="rotate(-90 50 50)"/>
+        </svg>
+        <span class="nu-timer-center">
+          <span id="nu-timer-label">${timerFmt(_timer.secondsLeft)}</span>
+          <small id="nu-timer-phase">${TIMER_PHASES[0].label}</small>
+        </span>
+      </div>
+      <div class="nu-timer-phase-btns">
+        ${TIMER_PHASES.map((p, i) => `<button type="button" class="nu-timer-phase-btn${i === 0 ? " active" : ""}" data-timer-phase="${i}">${p.label}</button>`).join("")}
+      </div>
+      <div class="nu-timer-actions">
+        <button type="button" id="nu-timer-start">Start</button>
+        <button type="button" id="nu-timer-reset">Reset</button>
+      </div>
+      <p class="nu-timer-sessions">${icon("flame")} <span id="nu-timer-sessions">0</span> focus sessions today</p>
+    </div>
+  `;
+  document.body.appendChild(el);
+
+  document.getElementById("nu-timer-toggle").addEventListener("click", () => {
+    const panel = document.getElementById("nu-timer-panel");
+    const toggle = document.getElementById("nu-timer-toggle");
+    const hidden = panel.hasAttribute("hidden");
+    if (hidden) { panel.removeAttribute("hidden"); toggle.setAttribute("aria-expanded", "true"); }
+    else { panel.setAttribute("hidden", ""); toggle.setAttribute("aria-expanded", "false"); }
+  });
+
+  document.getElementById("nu-timer-start").addEventListener("click", () => {
+    if (_timer.running) {
+      _timer.running = false;
+      clearInterval(_timer._interval);
+    } else {
+      _timer.running = true;
+      _timer._interval = setInterval(() => {
+        _timer.secondsLeft--;
+        if (_timer.secondsLeft <= 0) timerAdvancePhase();
+        timerUpdateDisplay();
+        document.getElementById("nu-timer-sessions").textContent = _timer.sessions;
+      }, 1000);
+    }
+    timerUpdateDisplay();
+  });
+
+  document.getElementById("nu-timer-reset").addEventListener("click", () => {
+    _timer.running = false;
+    clearInterval(_timer._interval);
+    const phase = TIMER_PHASES[_timer.phaseIndex];
+    _timer.secondsLeft = phase.minutes * 60;
+    _timer.totalSeconds = phase.minutes * 60;
+    timerUpdateDisplay();
+  });
+
+  el.querySelectorAll("[data-timer-phase]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      _timer.running = false;
+      clearInterval(_timer._interval);
+      _timer.phaseIndex = Number(btn.dataset.timerPhase);
+      const phase = TIMER_PHASES[_timer.phaseIndex];
+      _timer.secondsLeft = phase.minutes * 60;
+      _timer.totalSeconds = phase.minutes * 60;
+      el.dataset.phase = ["primary", "success", "cyan"][_timer.phaseIndex];
+      el.querySelectorAll("[data-timer-phase]").forEach((b) => b.classList.toggle("active", b === btn));
+      timerUpdateDisplay();
+    });
+  });
+}
+
 async function init() {
   try {
     applyTheme();
@@ -8582,6 +8945,7 @@ async function init() {
     scrollPageToTop();
     setupOfflineBanner();
     setupStudyNotifications();
+    setupStudyTimer();
   } catch (error) {
     app.innerHTML = `<div class="loading-screen"><span class="brand-mark">NU</span><p>${escapeHtml(error.message)}</p></div>`;
   }
@@ -8632,8 +8996,15 @@ window.addEventListener("keydown", (event) => {
 init();
 
 if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    scrollPageToTop();
-    navigator.serviceWorker.register("service-worker.js").catch(() => {});
-  });
+  navigator.serviceWorker.register("service-worker.js").then((reg) => {
+    reg.addEventListener("updatefound", () => {
+      const next = reg.installing;
+      if (!next) return;
+      next.addEventListener("statechange", () => {
+        if (next.state === "installed" && navigator.serviceWorker.controller) {
+          showToast("New version available — reload to update", "info");
+        }
+      });
+    });
+  }).catch(() => {});
 }
