@@ -1,0 +1,16 @@
+{
+  "name": "nursinguganda",
+  "version": "1.0.0",
+  "description": "Nursing and midwifery revision for Uganda students",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "echo 'Static site — no build step required'"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
