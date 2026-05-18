@@ -50,7 +50,7 @@ const state = {
   imagePickerSearch: "",
   imagePickerCategory: "all",
   cookiePreferencesOpen: false,
-  theme: localStorage.getItem("nursinguganda.theme") || "light",
+  theme: "light",
   flashcardIndex: 0,
   flashcardFlipped: false,
   flashcardCategory: "All"
@@ -2896,7 +2896,6 @@ function layout(content) {
           <div class="nav-actions">
             <a class="progress-nav-link${active === "flashcards" ? " active" : ""}" href="#/flashcards" aria-label="Flashcard study mode">${icon("sparkles")}<span>Flashcards</span></a>
             <a class="progress-nav-link${active === "progress" ? " active" : ""}" href="#/progress" aria-label="My study progress">${icon("chartLine")}<span>Progress</span></a>
-            <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme">${icon(state.theme === "dark" ? "sun" : "moon")}<span>${state.theme === "dark" ? "Light" : "Dark"}</span></button>
             <button class="mobile-toggle" type="button" data-nav-toggle aria-label="Open menu" aria-expanded="${state.navOpen}">
               <span></span><span></span><span></span>
             </button>
@@ -2938,14 +2937,6 @@ function layout(content) {
   document.addEventListener("click", (event) => {
     if (!event.target.closest(".main-nav")) state.megaOpen = "";
   }, { once: true });
-
-  const themeToggle = app.querySelector("[data-theme-toggle]");
-  if (themeToggle) {
-    themeToggle.addEventListener("click", () => {
-      setTheme(state.theme === "dark" ? "light" : "dark");
-      render();
-    });
-  }
 
   setupCookieConsentControls();
   setupLightboxControls();
@@ -3490,13 +3481,36 @@ function renderNotes() {
   const programmeCount = state.data?.programmes?.length || 0;
   const dictionaryCount = dictionaryTerms().length;
   const instrumentCount = allMedicalInstruments().length;
+  const streak = updateStreak();
+  const masteryCount = flashcardMastery().size;
+  const completed = completedTopics();
+  const ringC = 176;
+  const ringOffset = Math.round(ringC * (1 - progress.percent / 100));
+
+  const subjectPct = (subject) => {
+    const subTopics = allStudyTopics().filter(({ programme, unit, topic }) => {
+      const text = `${programme.label} ${unit.title} ${topic.groupTitle || ""} ${topic.title}`.toLowerCase();
+      return subject.pattern.split("|").some((t) => text.includes(t));
+    });
+    const done = subTopics.filter(({ programme, unit, topic }) => completed[topicKey(programme, unit, topic)]).length;
+    return { done, pct: subTopics.length ? Math.round((done / subTopics.length) * 100) : 0 };
+  };
+
+  const tools = [
+    { href: "#/flashcards", iconName: "bookOpen", label: "Flashcards", desc: "Active recall" },
+    { href: "#/dictionary", iconName: "fileText", label: "Dictionary", desc: `${dictionaryCount} terms` },
+    { href: "#/quiz", iconName: "helpCircle", label: "Quizzes", desc: "Self-test" },
+    { href: "#/search", iconName: "search", label: "Search Notes", desc: "Find anything" },
+    { href: "#/careers", iconName: "briefcaseMedical", label: "Careers", desc: "Jobs & CPD" }
+  ];
 
   return `
     ${hero({
       title: "Nursing Notes for Uganda Students",
       body: "Structured nursing and midwifery notes, curriculum maps and revision resources for Uganda students.",
       image: imageCatalog.heroNurse,
-      actions: `${buttonLink("#/courses", "Open Courses", "primary", "graduationCap")}${buttonLink("#/resources", "Open Resources", "secondary", "folderOpen")}`
+      actions: `${buttonLink("#/courses", "Open Courses", "primary", "graduationCap")}${buttonLink("#/resources", "Open Resources", "secondary", "folderOpen")}`,
+      cues: [`${programmeCount || 7} Programmes`, `${totals.courseUnits || 95}+ Topics`, "Free & Offline"]
     })}
     <div class="hero-stats-bar">
       <div class="container">
@@ -3518,6 +3532,22 @@ function renderNotes() {
         </div>
       </div>
     </div>
+    <section class="section home-tools-section">
+      <div class="container">
+        <div class="home-tools-strip">
+          ${tools.map((t) => `
+            <a href="${escapeHtml(t.href)}" class="home-tool-card">
+              <span class="home-tool-icon">${icon(t.iconName)}</span>
+              <div>
+                <strong>${escapeHtml(t.label)}</strong>
+                <p>${escapeHtml(t.desc)}</p>
+              </div>
+              ${icon("arrowRight")}
+            </a>
+          `).join("")}
+        </div>
+      </div>
+    </section>
     <section class="section compact-section">
       <div class="container">
         ${renderAdvancedSearchForm()}
@@ -3535,12 +3565,31 @@ function renderNotes() {
           ${buttonLink(last ? last.href : "#/courses", last ? "Resume Lesson" : "Open Courses", "primary", last ? "bookOpen" : "graduationCap")}
         </article>
         <article class="continue-card content-panel">
-          <div>
-            <span class="mini-label">Revision Progress</span>
-            <h2>${progress.done} of ${progress.total}</h2>
-            <p>${progress.percent}% of mapped lessons completed.</p>
-            <div class="progress-bar"><span style="width: ${progress.percent}%"></span></div>
+          <div class="progress-ring-wrap">
+            <div class="progress-ring-wrap-inner">
+              <svg viewBox="0 0 68 68" aria-hidden="true">
+                <circle class="progress-ring-track" cx="34" cy="34" r="28"/>
+                <circle class="progress-ring-arc" cx="34" cy="34" r="28"
+                  stroke-dasharray="${ringC}"
+                  stroke-dashoffset="${ringOffset}"
+                  transform="rotate(-90 34 34)"/>
+              </svg>
+              <div class="progress-ring-label">${progress.percent}%</div>
+            </div>
+            <div>
+              <span class="mini-label">Revision Progress</span>
+              <h2 style="margin-top:4px">${progress.done} <small style="font-size:1rem;font-weight:600;color:var(--color-text-muted)">of ${progress.total}</small></h2>
+              <p>lessons completed</p>
+              <div class="progress-bar" style="margin-top:10px"><span style="width:${progress.percent}%"></span></div>
+            </div>
           </div>
+        </article>
+        <article class="continue-card momentum-card content-panel">
+          <div class="momentum-icon">${icon("flame")}</div>
+          <strong>${streak.count || 0}</strong>
+          <em>Day Streak</em>
+          ${masteryCount > 0 ? `<p style="margin:6px 0 0;font-size:.8rem;color:var(--color-text-muted)">${masteryCount} flashcards mastered</p>` : ""}
+          <a href="#/flashcards" style="display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:.82rem;font-weight:900;color:var(--color-primary)">${icon("bookOpen")}<span>Open Flashcards</span></a>
         </article>
       </div>
     </section>
@@ -3549,8 +3598,9 @@ function renderNotes() {
         <div class="container">
           <div class="section-head slim-head">
             <div>
-              <h2>Saved For Later</h2>
-              <p>Your bookmarked topics and resources are kept here for quick return.</p>
+              <span class="eyebrow">Saved For Later</span>
+              <h2>Your Bookmarks</h2>
+              <p>Topics and resources you bookmarked for quick return.</p>
             </div>
           </div>
           <div class="saved-grid">
@@ -3569,28 +3619,34 @@ function renderNotes() {
       <div class="container">
         <div class="section-head notes-section-head">
           <div>
+            <span class="eyebrow">Browse by Subject</span>
             <h2>Choose A Subject</h2>
             <p>Start from the subject area you want to revise, then move into the mapped course units and topics.</p>
           </div>
           <a class="section-head-link" href="#/search" data-search-seed="research nursing">${icon("search")}<span>Search all notes</span></a>
         </div>
         <div class="grid subject-grid">
-          ${subjects.map((subject) => `
-            <article class="card image-card subject-card">
-              ${cardImage(subject.title)}
-              <span class="card-icon">${iconFor(subject.title)}</span>
-              <h3>${escapeHtml(subject.title)}</h3>
-              <p>${escapeHtml(subject.body)}</p>
-              <div class="subject-stats">
-                <span>${subject.unitCount} units</span>
-                <span>${subject.topicCount} topics</span>
-              </div>
-              <div class="subject-actions">
-                ${subject.first ? `<a class="card-link" href="#/courses/${subject.first.programme.id}/${subject.first.unit.id}">${icon("arrowRight")}<span>Open first unit</span></a>` : `<span class="card-link">${icon("bookOpen")}<span>Coming soon</span></span>`}
-                <a class="card-link muted-link" href="#/search" data-search-seed="${escapeHtml(subject.search)}">${icon("search")}<span>Search subject</span></a>
-              </div>
-            </article>
-          `).join("")}
+          ${subjects.map((subject) => {
+            const sp = subjectPct(subject);
+            return `
+              <article class="card image-card subject-card">
+                ${cardImage(subject.title)}
+                <span class="card-icon">${iconFor(subject.title)}</span>
+                <h3>${escapeHtml(subject.title)}</h3>
+                <p>${escapeHtml(subject.body)}</p>
+                <div class="subject-stats">
+                  <span>${subject.unitCount} units</span>
+                  <span>${subject.topicCount} topics</span>
+                </div>
+                <div class="subject-progress-bar"><span style="width:${sp.pct}%"></span></div>
+                <small class="subject-progress-label">${sp.done} of ${subject.topicCount} topics done</small>
+                <div class="subject-actions">
+                  ${subject.first ? `<a class="card-link" href="#/courses/${subject.first.programme.id}/${subject.first.unit.id}">${icon("arrowRight")}<span>Open first unit</span></a>` : `<span class="card-link">${icon("bookOpen")}<span>Coming soon</span></span>`}
+                  <a class="card-link muted-link" href="#/search" data-search-seed="${escapeHtml(subject.search)}">${icon("search")}<span>Search subject</span></a>
+                </div>
+              </article>
+            `;
+          }).join("")}
         </div>
       </div>
     </section>
@@ -3598,6 +3654,7 @@ function renderNotes() {
       <div class="container">
         <div class="section-head notes-section-head">
           <div>
+            <span class="eyebrow">Research & Reading</span>
             <h2>Research & Reading Notes</h2>
             <p>Use these source-linked routes when you want more than a quick definition.</p>
           </div>
@@ -3621,6 +3678,7 @@ function renderNotes() {
       <div class="container">
         <div class="section-head notes-section-head">
           <div>
+            <span class="eyebrow">High-Yield Topics</span>
             <h2>Other Major Topics</h2>
             <p>Jump into high-yield lesson groups across courses, subjects and reference notes.</p>
           </div>
@@ -3641,16 +3699,16 @@ function renderNotes() {
     </section>
     <section class="section compact-section">
       <div class="container">
-        <div class="notes-path-panel">
+        <div class="home-cta-banner">
           <div>
-            <h2>Study With A Clear Path</h2>
-            <p>Search a topic, filter by category, open a course unit, study the lesson, check references, then mark it complete.</p>
+            <span class="eyebrow">Ready to go deeper?</span>
+            <h2>Level Up Your Revision</h2>
+            <p>Use flashcards for active recall, test yourself with quizzes, or explore the full medical dictionary.</p>
           </div>
-          <div class="notes-path-steps">
-            <span>Search</span>
-            <span>Filter</span>
-            <span>Study</span>
-            <span>Verify</span>
+          <div class="home-cta-actions">
+            ${buttonLink("#/flashcards", "Open Flashcards", "primary", "bookOpen")}
+            ${buttonLink("#/quiz", "Take a Quiz", "secondary", "helpCircle")}
+            ${buttonLink("#/dictionary", "Dictionary", "secondary", "search")}
           </div>
         </div>
       </div>
@@ -4228,7 +4286,16 @@ function renderUnit(programme, unit) {
           <a href="#/courses/${programme.id}">${icon("arrowLeft")}<span>Back to programme</span></a>
           ${topics.length ? `<a class="sidebar-primary-action" href="${topicHref(programme, unit, topics[0].groupIndex, topics[0].topicIndex)}">${icon("bookOpen")}<span>Start first lesson</span></a>` : ""}
           <div class="progress-panel">
-            <div class="progress-ring">${progress.percent}%</div>
+            <div class="progress-ring-wrap-inner">
+              <svg viewBox="0 0 64 64" aria-hidden="true">
+                <circle class="progress-ring-track" cx="32" cy="32" r="28"/>
+                <circle class="progress-ring-arc" cx="32" cy="32" r="28"
+                  stroke-dasharray="176"
+                  stroke-dashoffset="${Math.round(176 * (1 - progress.percent / 100))}"
+                  transform="rotate(-90 32 32)"/>
+              </svg>
+              <div class="progress-ring-label">${progress.percent}%</div>
+            </div>
             <div>
               <strong>${progress.done} of ${progress.total}</strong>
               <span>lessons completed</span>
