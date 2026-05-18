@@ -112,6 +112,7 @@ const iconPaths = {
   users: `<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>`,
   video: `<path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2"/>`,
   x: `<path d="M18 6 6 18"/><path d="m6 6 12 12"/>`,
+  bell: `<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>`,
   flame: `<path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 3z"/>`,
   trophy: `<path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>`,
   wifi: `<path d="M12 20h.01"/><path d="M2 8.82a15 15 0 0 1 20 0"/><path d="M5 12.859a10 10 0 0 1 14 0"/><path d="M8.5 16.429a5 5 0 0 1 7 0"/>`
@@ -140,6 +141,7 @@ function routeKey(parts = currentRoute()) {
   if (parts[0] === "resources") return "resources";
   if (parts[0] === "dictionary") return "dictionary";
   if (parts[0] === "careers") return "careers";
+  if (parts[0] === "progress") return "progress";
   return "notes";
 }
 
@@ -2164,9 +2166,12 @@ function setDocumentMeta(title, description) {
   const meta = document.querySelector('meta[name="description"]');
   if (meta) meta.setAttribute("content", description);
 
+  const pageUrl = `https://nursinguganda.com/${window.location.hash || ""}`;
+
   [
     ["og:title", cleanTitle],
     ["og:description", description],
+    ["og:url", pageUrl],
     ["twitter:title", cleanTitle],
     ["twitter:description", description]
   ].forEach(([property, content]) => {
@@ -2179,6 +2184,9 @@ function setDocumentMeta(title, description) {
     }
     element.setAttribute("content", content);
   });
+
+  const canonical = document.querySelector('link[rel="canonical"]');
+  if (canonical) canonical.setAttribute("href", pageUrl);
 }
 
 function topicImageCategoryLabel(category) {
@@ -2897,6 +2905,7 @@ function layout(content) {
             ${renderMainNav(active)}
           </nav>
           <div class="nav-actions">
+            <a class="progress-nav-link${active === "progress" ? " active" : ""}" href="#/progress" aria-label="My study progress">${icon("chartLine")}<span>Progress</span></a>
             <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme">${icon(state.theme === "dark" ? "sun" : "moon")}<span>${state.theme === "dark" ? "Light" : "Dark"}</span></button>
             <button class="mobile-toggle" type="button" data-nav-toggle aria-label="Open menu" aria-expanded="${state.navOpen}">
               <span></span><span></span><span></span>
@@ -2952,6 +2961,7 @@ function layout(content) {
   setupLessonRevealAnimations();
   hydrateAdSlots();
   setupReadingProgress();
+  setupSwipeNavigation();
 }
 
 function setupLightboxControls() {
@@ -3336,6 +3346,143 @@ function researchNoteCards() {
       iconName: "clipboardList"
     }
   ].slice(0, 5);
+}
+
+function renderProgressRing(percent, size = 140) {
+  const r = (size / 2) - 12;
+  const circumference = 2 * Math.PI * r;
+  const dashOffset = circumference * (1 - percent / 100);
+  return `
+    <svg class="progress-dash-ring" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" aria-hidden="true">
+      <defs>
+        <linearGradient id="prog-ring-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#1a5f7a" />
+          <stop offset="50%" stop-color="#00bcd4" />
+          <stop offset="100%" stop-color="#0f7f4f" />
+        </linearGradient>
+      </defs>
+      <circle cx="${size / 2}" cy="${size / 2}" r="${r}" />
+      <circle cx="${size / 2}" cy="${size / 2}" r="${r}" style="stroke-dasharray:${circumference.toFixed(2)};stroke-dashoffset:${dashOffset.toFixed(2)}" />
+    </svg>
+  `;
+}
+
+function renderProgress() {
+  const progress = overallProgress();
+  const streak = updateStreak();
+  const masteredCount = Object.keys(masteredTopics()).length;
+  const saved = bookmarks();
+  const completed = completedTopics();
+
+  const subjectBreakdown = notesSubjects().map((subject) => {
+    const matches = subjectUnits(subject.pattern);
+    const topicList = matches.flatMap(({ programme, unit }) =>
+      flatTopics(unit).map((topic) => ({ programme, unit, topic }))
+    );
+    const done = topicList.filter(({ programme, unit, topic }) => completed[topicKey(programme, unit, topic)]).length;
+    const total = topicList.length;
+    return { title: subject.title, done, total, percent: total ? Math.round((done / total) * 100) : 0 };
+  });
+
+  const encouragement = progress.percent >= 80
+    ? "Exceptional — you're in the final stretch. Push through to 100%."
+    : progress.percent >= 50
+      ? "More than halfway. Keep your daily habit and you'll finish strong."
+      : "Great start. One lesson a day adds up fast — let your streak carry you.";
+
+  return `
+    ${hero({
+      title: "My Study Progress",
+      body: "Track your completed lessons, quiz mastery, study streak and bookmarks across all programmes.",
+      image: imageCatalog.curriculum,
+      actions: `${buttonLink("#/courses", "Continue Studying", "primary", "graduationCap")}${buttonLink("#/notes", "Back to Notes", "secondary", "bookOpen")}`
+    })}
+    <section class="section">
+      <div class="container">
+
+        <div class="progress-stat-grid">
+          <div class="progress-stat-tile">
+            <div class="progress-stat-icon psi-primary">${icon("checkCircle")}</div>
+            <div><strong>${progress.done}</strong><span>Lessons Complete</span><small>of ${progress.total} mapped</small></div>
+          </div>
+          <div class="progress-stat-tile">
+            <div class="progress-stat-icon psi-flame">${icon("flame")}</div>
+            <div><strong>${streak.count}</strong><span>Day Streak</span><small>${streak.count >= 7 ? "Incredible!" : streak.count >= 3 ? "Building momentum" : "Keep it going"}</small></div>
+          </div>
+          <div class="progress-stat-tile">
+            <div class="progress-stat-icon psi-trophy">${icon("trophy")}</div>
+            <div><strong>${masteredCount}</strong><span>Quizzes Mastered</span><small>Perfect scores</small></div>
+          </div>
+          <div class="progress-stat-tile">
+            <div class="progress-stat-icon psi-bookmark">${icon("bookmark")}</div>
+            <div><strong>${saved.length}</strong><span>Saved Bookmarks</span><small>Topics &amp; lessons</small></div>
+          </div>
+        </div>
+
+        <div class="progress-overall-panel content-panel">
+          <div class="progress-ring-wrap">
+            ${renderProgressRing(progress.percent)}
+            <div class="progress-ring-center">
+              <strong>${progress.percent}%</strong>
+              <span>Complete</span>
+            </div>
+          </div>
+          <div class="progress-overall-body">
+            <span class="mini-label">Overall Progress</span>
+            <h2>${progress.done} of ${progress.total} lessons completed</h2>
+            <p>${escapeHtml(encouragement)}</p>
+            <div class="progress-bar" style="margin-top:16px;margin-bottom:20px">
+              <span style="width:${progress.percent}%"></span>
+            </div>
+            ${buttonLink("#/courses", "Continue Studying", "primary", "arrowRight")}
+          </div>
+        </div>
+
+        <div class="section-head slim-head" style="margin-top:48px">
+          <div>
+            <h2>Progress by Subject</h2>
+            <p>Completed lessons across each nursing subject area.</p>
+          </div>
+        </div>
+        <div class="progress-subject-list">
+          ${subjectBreakdown.map((sub) => `
+            <div class="progress-subject-row">
+              <div class="progress-subject-info">
+                <span class="progress-subject-icon">${iconFor(sub.title)}</span>
+                <div>
+                  <strong>${escapeHtml(sub.title)}</strong>
+                  <small>${sub.done} of ${sub.total} lessons</small>
+                </div>
+              </div>
+              <div class="progress-subject-track">
+                <div class="progress-bar progress-subject-bar">
+                  <span style="width:${sub.percent}%"></span>
+                </div>
+                <span class="progress-subject-pct">${sub.percent}%</span>
+              </div>
+            </div>
+          `).join("")}
+        </div>
+
+        ${saved.length ? `
+          <div class="section-head slim-head" style="margin-top:48px">
+            <div><h2>Saved Bookmarks</h2><p>Your bookmarked topics and lessons for quick return.</p></div>
+            ${buttonLink("#/notes", "All Notes", "secondary", "bookOpen")}
+          </div>
+          <div class="saved-grid">
+            ${saved.slice(0, 6).map((item) => `
+              <a class="saved-card" href="${escapeHtml(item.href)}">
+                <span>${escapeHtml(item.type)}</span>
+                <strong>${escapeHtml(item.title)}</strong>
+                ${item.context ? `<small>${escapeHtml(item.context)}</small>` : ""}
+              </a>
+            `).join("")}
+          </div>
+        ` : ""}
+
+      </div>
+    </section>
+  `;
 }
 
 function renderNotes() {
@@ -4797,14 +4944,17 @@ function renderTopicQuiz(lesson, programme, unit, topic, key) {
   const attempt = quizAttempts()[key] || {};
   const answered = questions.filter((_, index) => attempt[index] !== undefined);
   const score = questions.filter((question, index) => quizAnswerCorrect(question, attempt[index])).length;
+  const allAnswered = answered.length === questions.length;
+  if (allAnswered && score === questions.length) setTopicMastery(key);
+  const mastered = isTopicMastered(key);
 
   return `
-    <section class="quiz-panel" id="topic-quiz">
+    <section class="quiz-panel${mastered ? " quiz-mastered" : ""}" id="topic-quiz">
       <div class="quiz-head">
         <div>
           <span class="mini-label">Quick Quiz</span>
-          <h3>Test Yourself</h3>
-          <p>${answered.length ? `${score} of ${answered.length} answered correctly.` : "Answer these quick checks after reading the topic."}</p>
+          <h3>Test Yourself${mastered ? `<span class="mastery-badge">${icon("trophy")} Mastered</span>` : ""}</h3>
+          <p>${allAnswered && score === questions.length ? "Perfect score — this topic is mastered!" : answered.length ? `${score} of ${answered.length} answered correctly.` : "Answer these quick checks after reading the topic."}</p>
         </div>
         <div class="quiz-score-box">
           <strong>${score}/${questions.length}</strong>
@@ -7463,7 +7613,11 @@ function render() {
   };
   let structuredData = null;
 
-  if (legalPages[parts[0]]) {
+  if (parts[0] === "progress") {
+    content = renderProgress();
+    meta = { title: "My Progress", description: "Track your completed lessons, quiz mastery, study streak and saved bookmarks on Nursing Uganda." };
+  }
+  else if (legalPages[parts[0]]) {
     content = renderLegalPage(parts[0]);
     meta = {
       title: legalPages[parts[0]].title,
@@ -8181,6 +8335,24 @@ function render() {
   setupSchoolMiniMap();
 }
 
+/* ── Quiz Mastery ─────────────────────────────────────────────────── */
+function masteredTopics() {
+  try {
+    return JSON.parse(localStorage.getItem("nursinguganda.masteredTopics") || "{}");
+  } catch { return {}; }
+}
+
+function setTopicMastery(key) {
+  const mastered = masteredTopics();
+  if (mastered[key]) return;
+  mastered[key] = new Date().toISOString();
+  localStorage.setItem("nursinguganda.masteredTopics", JSON.stringify(mastered));
+}
+
+function isTopicMastered(key) {
+  return !!masteredTopics()[key];
+}
+
 /* ── Toast Notifications ──────────────────────────────────────────── */
 function showToast(message, type = "success") {
   let container = document.getElementById("nu-toasts");
@@ -8245,6 +8417,94 @@ function setupReadingProgress() {
   }
   window.addEventListener("scroll", update, { passive: true });
   update();
+}
+
+/* ── Swipe Navigation ─────────────────────────────────────────────── */
+function setupSwipeNavigation() {
+  const page = app.querySelector(".premium-lesson-page");
+  if (!page) return;
+  let startX = 0;
+  let startY = 0;
+  page.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+  }, { passive: true });
+  page.addEventListener("touchend", (e) => {
+    const dx = e.changedTouches[0].clientX - startX;
+    const dy = Math.abs(e.changedTouches[0].clientY - startY);
+    if (Math.abs(dx) < 64 || dy > Math.abs(dx) * 0.85) return;
+    const nav = app.querySelector(".lesson-bottom-actions");
+    if (!nav) return;
+    if (dx < 0) {
+      const next = nav.querySelector("a.primary");
+      if (next) next.click();
+    } else {
+      const prev = nav.querySelector("a.secondary");
+      if (prev) prev.click();
+    }
+  }, { passive: true });
+}
+
+/* ── Study Notifications ──────────────────────────────────────────── */
+function setupStudyNotifications() {
+  if (!("Notification" in window)) return;
+  const streak = getStreak();
+  if (streak.count < 2) return;
+  if (localStorage.getItem("nursinguganda.notifAsked")) {
+    if (Notification.permission === "granted") {
+      const today = new Date().toISOString().slice(0, 10);
+      if (streak.lastDate !== today) {
+        new Notification("Keep your streak alive!", {
+          body: `You're on a ${streak.count}-day streak. Study one lesson today to keep it going.`,
+          icon: "/assets/images/nursing-uganda-favicon.svg"
+        });
+      }
+    }
+    return;
+  }
+  setTimeout(showNotifPrompt, 10000);
+}
+
+function showNotifPrompt() {
+  if (document.getElementById("nu-notif-prompt")) return;
+  if (Notification.permission !== "default") return;
+  const streak = getStreak();
+  const el = document.createElement("div");
+  el.id = "nu-notif-prompt";
+  el.setAttribute("role", "dialog");
+  el.setAttribute("aria-label", "Enable study reminders");
+  el.innerHTML = `
+    <span class="nu-notif-icon">${icon("bell")}</span>
+    <div class="nu-notif-body">
+      <strong>Daily study reminders?</strong>
+      <p>We'll remind you to keep your ${streak.count}-day streak alive.</p>
+    </div>
+    <div class="nu-notif-actions">
+      <button type="button" id="nu-notif-allow">Allow</button>
+      <button type="button" id="nu-notif-dismiss" aria-label="Dismiss">${icon("x")}</button>
+    </div>
+  `;
+  document.body.appendChild(el);
+  requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add("nu-notif-show")));
+  el.querySelector("#nu-notif-allow").addEventListener("click", async () => {
+    localStorage.setItem("nursinguganda.notifAsked", "1");
+    el.classList.remove("nu-notif-show");
+    el.addEventListener("transitionend", () => el.remove(), { once: true });
+    try {
+      const permission = await Notification.requestPermission();
+      if (permission === "granted") {
+        new Notification("Nursing Uganda", {
+          body: `Reminders on! You're on a ${getStreak().count}-day streak — keep it going!`,
+          icon: "/assets/images/nursing-uganda-favicon.svg"
+        });
+      }
+    } catch (_) { /* unsupported */ }
+  });
+  el.querySelector("#nu-notif-dismiss").addEventListener("click", () => {
+    localStorage.setItem("nursinguganda.notifAsked", "1");
+    el.classList.remove("nu-notif-show");
+    el.addEventListener("transitionend", () => el.remove(), { once: true });
+  });
 }
 
 /* ── Offline Banner ───────────────────────────────────────────────── */
@@ -8335,6 +8595,7 @@ async function init() {
     render();
     scrollPageToTop();
     setupOfflineBanner();
+    setupStudyNotifications();
   } catch (error) {
     app.innerHTML = `<div class="loading-screen"><span class="brand-mark">NU</span><p>${escapeHtml(error.message)}</p></div>`;
   }
