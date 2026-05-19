@@ -2892,8 +2892,6 @@ function layout(content) {
             ${renderMainNav(active)}
           </nav>
           <div class="nav-actions">
-            <a class="progress-nav-link${active === "flashcards" ? " active" : ""}" href="#/flashcards" aria-label="Flashcard study mode">${icon("sparkles")}<span>Flashcards</span></a>
-            <a class="progress-nav-link${active === "progress" ? " active" : ""}" href="#/progress" aria-label="My study progress">${icon("chartLine")}<span>Progress</span></a>
             <button class="mobile-toggle" type="button" data-nav-toggle aria-label="Open menu" aria-expanded="${state.navOpen}">
               <span></span><span></span><span></span>
             </button>
@@ -3530,22 +3528,6 @@ function renderNotes() {
         </div>
       </div>
     </div>
-    <section class="section home-tools-section">
-      <div class="container">
-        <div class="home-tools-strip">
-          ${tools.map((t) => `
-            <a href="${escapeHtml(t.href)}" class="home-tool-card">
-              <span class="home-tool-icon">${icon(t.iconName)}</span>
-              <div>
-                <strong>${escapeHtml(t.label)}</strong>
-                <p>${escapeHtml(t.desc)}</p>
-              </div>
-              ${icon("arrowRight")}
-            </a>
-          `).join("")}
-        </div>
-      </div>
-    </section>
     <section class="section compact-section">
       <div class="container">
         ${renderAdvancedSearchForm()}
@@ -3667,29 +3649,6 @@ function renderNotes() {
                 <p>${escapeHtml(item.body)}</p>
                 <small>${escapeHtml(item.meta)}</small>
               </div>
-            </a>
-          `).join("")}
-        </div>
-      </div>
-    </section>
-    <section class="section notes-track-section">
-      <div class="container">
-        <div class="section-head notes-section-head">
-          <div>
-            <span class="eyebrow">High-Yield Topics</span>
-            <h2>Other Major Topics</h2>
-            <p>Jump into high-yield lesson groups across courses, subjects and reference notes.</p>
-          </div>
-        </div>
-        <div class="major-topic-grid">
-          ${tracks.map((track) => `
-            <a class="major-topic-card" href="#/search" data-search-seed="${escapeHtml(track.search)}">
-              <span>${icon(track.iconName)}</span>
-              <div>
-                <strong>${escapeHtml(track.title)}</strong>
-                <p>${escapeHtml(track.body)}</p>
-              </div>
-              <em>${track.count} lessons</em>
             </a>
           `).join("")}
         </div>
