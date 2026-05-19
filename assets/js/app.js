@@ -4324,7 +4324,7 @@ function renderLessonBlocks(blocks) {
   let listItems = [];
   const flushList = () => {
     if (!listItems.length) return;
-    html += `<ul>${listItems.map((item) => `<li>${renderInlineText(item)}</li>`).join("")}</ul>`;
+    html += `<ol>${listItems.map((item) => `<li>${renderInlineText(item)}</li>`).join("")}</ol>`;
     listItems = [];
   };
 
@@ -4700,19 +4700,15 @@ function renderTextbookLessonNotes(programme, unit, topic, lesson) {
 
   return `
     <article class="lesson-notes-container printable-topic" id="lesson-notes">
-      ${renderLessonSectionBlock("learning-objectives", 1, "Learning Objectives", `
-        <p>By the end of this lesson, the learner should be able to:</p>
-        <div class="objective-card-list">
-          ${objectives.slice(0, 4).map((item) => `
-            <div>
-              <span aria-hidden="true"><i></i></span>
-              <p>${escapeHtml(item)}</p>
-            </div>
-          `).join("")}
-        </div>
-      `)}
+      <div class="lesson-objectives-block" id="learning-objectives" data-lesson-reveal>
+        <span class="lesson-obj-pill">Learning Objectives</span>
+        <p class="lesson-obj-lead">By the end of this lesson, you should be able to:</p>
+        <ol class="lesson-obj-list">
+          ${objectives.slice(0, 4).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+        </ol>
+      </div>
 
-      ${renderLessonSectionBlock("introduction", 2, "Introduction", `
+      ${renderLessonSectionBlock("introduction", 1, "Introduction", `
         <p>${escapeHtml(frame.definition)}</p>
         <div class="clinical-focus-callout">
           <strong>Clinical Learning Focus</strong>
@@ -4721,13 +4717,13 @@ function renderTextbookLessonNotes(programme, unit, topic, lesson) {
         ${renderLessonImageBlock(introImage, 1, "16/9", isBodyOrganization ? "Fig 1. Overview of human body organization levels" : "Fig 1. Lesson overview reference", introImage && introImage.label ? introImage.label : "Nursing Uganda")}
       `)}
 
-      ${renderLessonSectionBlock("key-concepts", 3, isBodyOrganization ? "Key Concepts (Levels of Organization)" : "Key Concepts", conceptBody)}
+      ${renderLessonSectionBlock("key-concepts", 2, isBodyOrganization ? "Key Concepts (Levels of Organization)" : "Key Concepts", conceptBody)}
 
-      ${renderLessonSectionBlock("clinical-relevance", 4, "Clinical Relevance", `
+      ${renderLessonSectionBlock("clinical-relevance", 3, "Clinical Relevance", `
         ${clinicalRelevance.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
       `)}
 
-      ${renderLessonSectionBlock("nursing-assessment", 5, "Nursing Assessment", `
+      ${renderLessonSectionBlock("nursing-assessment", 4, "Nursing Assessment", `
         <p>Use the lesson concept to organize patient observations and decide what requires escalation.</p>
         <div class="assessment-card-list">
           ${assessment.map((item) => `<div><span aria-hidden="true">*</span><p>${escapeHtml(item)}</p></div>`).join("")}
@@ -4735,20 +4731,20 @@ function renderTextbookLessonNotes(programme, unit, topic, lesson) {
         ${renderLessonImageBlock(assessmentImage, 3, "21/9", "Fig 3. Nurse conducting a structured patient assessment", assessmentImage && assessmentImage.label ? assessmentImage.label : "Nursing Uganda")}
       `)}
 
-      ${renderLessonSectionBlock("nursing-interventions", 6, "Nursing Interventions", `
+      ${renderLessonSectionBlock("nursing-interventions", 5, "Nursing Interventions", `
         <p>Nursing interventions should target the correct organizational level and then be evaluated through patient response.</p>
         <div class="assessment-card-list intervention-list">
           ${interventions.map((item) => `<div><span aria-hidden="true">*</span><p>${escapeHtml(item)}</p></div>`).join("")}
         </div>
       `)}
 
-      ${terms.length ? renderLessonSectionBlock("important-terms", 7, "Important Terms", `
+      ${terms.length ? renderLessonSectionBlock("important-terms", 6, "Important Terms", `
         <dl class="lesson-term-list">
           ${terms.map((item) => `<div><dt>${escapeHtml(item.term)}</dt><dd>${escapeHtml(item.definition)}</dd></div>`).join("")}
         </dl>
       `) : ""}
 
-      ${renderLessonSectionBlock("study-wrap", terms.length ? 8 : 7, "Study Wrap", `
+      ${renderLessonSectionBlock("study-wrap", terms.length ? 7 : 6, "Study Wrap", `
         <div class="revision-card">
           <h4>Before you move on</h4>
           ${[
