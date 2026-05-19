@@ -2646,8 +2646,7 @@ function renderFooter() {
         <div class="footer-top">
           <div class="footer-brand">
             <a class="footer-logo" href="#/notes" aria-label="Nursing Uganda home">
-              <span class="brand-mark">NU</span>
-              <span>Nursing Uganda<small>nursinguganda.com</small></span>
+              <span>Nursing Uganda</span>
             </a>
             <p>Structured notes, courses, dictionary and resources for Uganda nursing and midwifery students.</p>
             <div class="footer-stats" aria-label="Quick stats">
@@ -7653,12 +7652,17 @@ function setupSchoolMiniMap() {
 
 function notFound() {
   return `
-    <section class="section">
+    <section class="section not-found-section">
       <div class="container">
-        <div class="empty-state">
-          <h1>Page not found</h1>
-          <p>This page is not available yet.</p>
-          ${buttonLink("#/notes", "Go to Notes", "primary", "home")}
+        <div class="not-found-panel">
+          <div class="not-found-icon">${icon("alertCircle")}</div>
+          <span class="eyebrow">404 — Not Found</span>
+          <h1>This page doesn't exist yet</h1>
+          <p>The link may be incorrect, or this content is still being built. Head back to study notes or search for what you need.</p>
+          <div class="not-found-actions">
+            ${buttonLink("#/notes", "Back to Notes", "primary", "bookOpen")}
+            ${buttonLink("#/search", "Search", "secondary", "search")}
+          </div>
         </div>
       </div>
     </section>
@@ -9013,7 +9017,7 @@ async function init() {
     setupStudyNotifications();
     setupStudyTimer();
   } catch (error) {
-    app.innerHTML = `<div class="loading-screen"><span class="brand-mark">NU</span><p>${escapeHtml(error.message)}</p></div>`;
+    app.innerHTML = `<div class="loading-screen"><strong class="loading-wordmark">Nursing Uganda</strong><p>${escapeHtml(error.message)}</p></div>`;
   }
 }
 

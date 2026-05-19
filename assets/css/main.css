@@ -218,6 +218,16 @@ display: grid;
   color: var(--color-text-muted);
 }
 
+.loading-wordmark {
+font-size: 1.35rem;
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 .site-header {
 position: sticky;
   top: 0;
@@ -7225,11 +7235,58 @@ width: 22px;
 }
 
 .empty-state {
-padding: 24px;
+padding: 48px 32px;
   color: var(--color-text-muted);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius);
+  border-radius: var(--radius-lg);
   background: var(--color-card);
+  text-align: center;
+}
+
+/* ── 404 Not-Found Panel ─────────────────────────────────────────── */
+.not-found-section { padding-top: 80px; padding-bottom: 80px; }
+
+.not-found-panel {
+display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  max-width: 520px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.not-found-icon {
+display: grid;
+  width: 72px;
+  height: 72px;
+  place-items: center;
+  border-radius: 50%;
+  background: rgb(var(--color-primary-rgb) / 0.08);
+  color: var(--color-primary);
+  margin-bottom: 8px;
+}
+
+.not-found-icon .ui-icon { width: 32px; height: 32px; }
+
+.not-found-panel h1 {
+margin: 0;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+}
+
+.not-found-panel p {
+margin: 0;
+  color: var(--color-text-muted);
+  max-width: 420px;
+  line-height: 1.65;
+}
+
+.not-found-actions {
+display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 8px;
 }
 
 .legal-hero {
@@ -10896,62 +10953,63 @@ display: grid;
 
 .objective-card-list > div {
 display: flex;
-  gap: 10px;
-  padding: 10px 14px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--white);
+  gap: 12px;
+  padding: 12px 16px;
+  border: 1px solid rgb(var(--color-primary-rgb) / 0.14);
+  border-radius: var(--radius);
+  background: rgb(var(--color-primary-rgb) / 0.04);
 }
 
 .objective-card-list > div > span {
 display: grid;
   flex: 0 0 auto;
-  width: 18px;
-  height: 18px;
-  margin-top: 1px;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
   place-items: center;
-  border: 1.5px solid var(--teal-mid);
+  border: 2px solid var(--color-primary);
   border-radius: 50%;
+  background: var(--color-primary);
 }
 
 .objective-card-list i {
-width: 7px;
-  height: 7px;
+width: 8px;
+  height: 8px;
   border-radius: 50%;
+  background: #fff;
 }
 
 .objective-card-list p,
 .assessment-card-list p {
 margin: 0;
-  color: var(--slate);
-  font-size: 17px;
+  color: var(--color-text);
+  font-size: 0.97rem;
   line-height: 1.65;
 }
 
 .clinical-focus-callout {
 margin: 0 0 24px;
-  padding: 12px 16px;
-  border-left: 3px solid var(--teal-mid);
-  border-radius: 0 8px 8px 0;
-  background: var(--teal-light);
+  padding: 14px 18px;
+  border-left: 4px solid var(--color-primary);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  background: rgb(var(--color-primary-rgb) / 0.06);
 }
 
 .clinical-focus-callout strong {
 display: block;
   margin-bottom: 5px;
-  color: var(--teal-dark);
+  color: var(--color-primary);
   font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  line-height: 1.25;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .clinical-focus-callout p {
 margin: 0;
-  color: var(--teal-dark);
-  font-size: 17px;
+  color: var(--color-navy);
+  font-size: 1rem;
   line-height: 1.65;
 }
 
@@ -10962,16 +11020,22 @@ grid-template-columns: repeat(2, minmax(0, 1fr));
 
 .lesson-concept-grid article {
 padding: 14px 16px;
-  border: 1px solid var(--border);
-  border-top: 3px solid var(--teal-mid);
-  border-radius: 10px;
-  background: var(--white);
+  border: 1px solid var(--color-border);
+  border-top: 3px solid var(--color-primary);
+  border-radius: var(--radius);
+  background: var(--color-card);
+  transition: box-shadow 0.18s ease, transform 0.18s ease;
+}
+
+.lesson-concept-grid article:hover {
+box-shadow: 0 8px 24px rgb(var(--color-navy-rgb) / 0.08);
+  transform: translateY(-2px);
 }
 
 .lesson-concept-grid span {
 display: inline-flex;
   margin-bottom: 8px;
-  color: var(--teal);
+  color: var(--color-primary);
 }
 
 .lesson-concept-grid .ui-icon {
@@ -10982,9 +11046,9 @@ width: 18px;
 .lesson-concept-grid h4,
 .lesson-prose-block h4 {
 margin: 0 0 12px;
-  color: var(--teal-dark);
+  color: var(--color-navy);
   font-family: var(--font-body);
-  font-size: 24px;
+  font-size: 1.14rem;
   font-weight: 900;
   line-height: 1.24;
 }
@@ -14321,8 +14385,8 @@ textarea:focus {
 }
 
 .fc-front {
-  background: var(--color-card);
-  border: 1px solid var(--color-border);
+  background: linear-gradient(160deg, var(--color-card) 60%, rgb(var(--color-cyan-rgb) / 0.06));
+  border: 1px solid rgb(var(--color-cyan-rgb) / 0.24);
   box-shadow: 0 16px 48px rgb(var(--color-navy-rgb) / 0.1);
 }
 
