@@ -3498,13 +3498,29 @@ function renderProgress() {
   `;
 }
 
+function pageHeader({ title, body = "", eyebrow = "", actions = "", breadcrumb = "" }) {
+  return `
+    <div class="page-header">
+      <div class="container">
+        ${breadcrumb}
+        ${eyebrow ? `<span class="eyebrow page-eyebrow">${escapeHtml(eyebrow)}</span>` : ""}
+        <div class="page-header-row">
+          <div>
+            <h1 class="page-header-title">${escapeHtml(title)}</h1>
+            ${body ? `<p class="page-header-body">${escapeHtml(body)}</p>` : ""}
+          </div>
+          ${actions ? `<div class="page-header-actions">${actions}</div>` : ""}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
 function renderNotes() {
   const subjects = notesSubjects();
   const progress = overallProgress();
   const last = lastStudiedTopic();
-  const saved = bookmarks().slice(0, 6);
-  const tracks = majorTopicTracks();
-  const researchCards = researchNoteCards();
+  const saved = bookmarks().slice(0, 3);
   const totals = state.data?.totals || {};
   const programmeCount = state.data?.programmes?.length || 0;
   const dictionaryCount = dictionaryTerms().length;
@@ -3512,8 +3528,6 @@ function renderNotes() {
   const streak = updateStreak();
   const masteryCount = flashcardMastery().size;
   const completed = completedTopics();
-  const ringC = 176;
-  const ringOffset = Math.round(ringC * (1 - progress.percent / 100));
 
   const subjectPct = (subject) => {
     const subTopics = allStudyTopics().filter(({ programme, unit, topic }) => {
@@ -3525,39 +3539,27 @@ function renderNotes() {
   };
 
   const tools = [
-    { href: "/flashcards", iconName: "bookOpen", label: "Flashcards", desc: "Active recall" },
-    { href: "/dictionary", iconName: "fileText", label: "Dictionary", desc: `${dictionaryCount} terms` },
-    { href: "/quiz", iconName: "helpCircle", label: "Quizzes", desc: "Self-test" },
-    { href: "/search", iconName: "search", label: "Search Notes", desc: "Find anything" },
-    { href: "/careers", iconName: "briefcaseMedical", label: "Careers", desc: "Jobs & CPD" }
+    { href: "/flashcards", iconName: "bookOpen", label: "Flashcards" },
+    { href: "/dictionary", iconName: "fileText", label: "Dictionary" },
+    { href: "/resources/quizzes", iconName: "helpCircle", label: "Quizzes" },
+    { href: "/resources/medical-instruments", iconName: "stethoscope", label: "Instruments" },
+    { href: "/resources/past-papers", iconName: "clipboardList", label: "Past Papers" },
+    { href: "/careers", iconName: "briefcaseMedical", label: "Careers" }
   ];
 
   return `
-    ${hero({
-      title: "Nursing Notes for Uganda Students",
+    ${pageHeader({
+      eyebrow: "Study Hub",
+      title: "Nursing Notes",
       body: "Structured nursing and midwifery notes, curriculum maps and revision resources for Uganda students.",
-      image: imageCatalog.heroNurse,
-      actions: `${buttonLink("/courses", "Open Courses", "primary", "graduationCap")}${buttonLink("/resources", "Open Resources", "secondary", "folderOpen")}`,
-      cues: [`${programmeCount || 7} Programmes`, `${totals.courseUnits || 95}+ Topics`, "Free & Offline"]
+      actions: `${buttonLink("/courses", "Open Courses", "primary", "graduationCap")}${buttonLink("/search", "Search", "secondary", "search")}`
     })}
-    <div class="hero-stats-bar">
+    <div class="notes-stats-strip">
       <div class="container">
-        <div class="hero-stats-item">
-          <div class="hero-stats-icon">${icon("graduationCap")}</div>
-          <div class="hero-stats-text"><strong>${programmeCount || 7}</strong><span>Programmes</span></div>
-        </div>
-        <div class="hero-stats-item">
-          <div class="hero-stats-icon">${icon("bookOpen")}</div>
-          <div class="hero-stats-text"><strong>${totals.courseUnits || 95}</strong><span>Course Units</span></div>
-        </div>
-        <div class="hero-stats-item">
-          <div class="hero-stats-icon">${icon("fileText")}</div>
-          <div class="hero-stats-text"><strong>${dictionaryCount}</strong><span>Dictionary Terms</span></div>
-        </div>
-        <div class="hero-stats-item">
-          <div class="hero-stats-icon">${icon("stethoscope")}</div>
-          <div class="hero-stats-text"><strong>${instrumentCount}</strong><span>Instruments</span></div>
-        </div>
+        <span>${icon("graduationCap")}<strong>${programmeCount || 7}</strong> Programmes</span>
+        <span>${icon("bookOpen")}<strong>${totals.courseUnits || 95}</strong> Course Units</span>
+        <span>${icon("fileText")}<strong>${dictionaryCount}</strong> Terms</span>
+        <span>${icon("stethoscope")}<strong>${instrumentCount}</strong> Instruments</span>
       </div>
     </div>
     <section class="section compact-section">
@@ -3566,43 +3568,49 @@ function renderNotes() {
       </div>
     </section>
     <section class="section compact-section">
-      <div class="container continue-grid">
-        <article class="continue-card content-panel">
-          <div>
+      <div class="container">
+        <div class="continue-strip content-panel">
+          <div class="continue-strip-info">
             ${streakChip()}
-            <span class="mini-label">Continue Studying</span>
-            <h2>${last ? escapeHtml(last.title) : "Start Your First Lesson"}</h2>
-            <p>${last ? `${escapeHtml(last.programme)} - ${escapeHtml(last.unit)}` : "Open any course lesson and Nursing Uganda will remember where you stopped."}</p>
+            <h3>${last ? escapeHtml(last.title) : "Start Your First Lesson"}</h3>
+            <p>${last ? `${escapeHtml(last.programme)} — ${escapeHtml(last.unit)}` : "Open any course lesson and Nursing Uganda will track where you stopped."}</p>
           </div>
-          ${buttonLink(last ? last.href : "/courses", last ? "Resume Lesson" : "Open Courses", "primary", last ? "bookOpen" : "graduationCap")}
-        </article>
-        <article class="continue-card content-panel">
-          <div class="progress-ring-wrap">
-            <div class="progress-ring-wrap-inner">
-              <svg viewBox="0 0 68 68" aria-hidden="true">
-                <circle class="progress-ring-track" cx="34" cy="34" r="28"/>
-                <circle class="progress-ring-arc" cx="34" cy="34" r="28"
-                  stroke-dasharray="${ringC}"
-                  stroke-dashoffset="${ringOffset}"
-                  transform="rotate(-90 34 34)"/>
-              </svg>
-              <div class="progress-ring-label">${progress.percent}%</div>
-            </div>
-            <div>
-              <span class="mini-label">Revision Progress</span>
-              <h2 style="margin-top:4px">${progress.done} <small style="font-size:1rem;font-weight:600;color:var(--color-text-muted)">of ${progress.total}</small></h2>
-              <p>lessons completed</p>
-              <div class="progress-bar" style="margin-top:10px"><span style="width:${progress.percent}%"></span></div>
-            </div>
+          <div class="continue-strip-stats">
+            <div><strong>${progress.percent}%</strong><span>complete</span></div>
+            <div><strong>${streak.count || 0}</strong><span>day streak</span></div>
+            ${masteryCount > 0 ? `<div><strong>${masteryCount}</strong><span>mastered</span></div>` : ""}
           </div>
-        </article>
-        <article class="continue-card momentum-card content-panel">
-          <div class="momentum-icon">${icon("flame")}</div>
-          <strong>${streak.count || 0}</strong>
-          <em>Day Streak</em>
-          <p class="momentum-sub">${progress.done} topic${progress.done !== 1 ? "s" : ""} studied${masteryCount > 0 ? ` · ${masteryCount} mastered` : ""}</p>
-          <a class="momentum-link" href="/flashcards">${icon("bookOpen")}<span>Flashcards</span></a>
-        </article>
+          ${buttonLink(last ? last.href : "/courses", last ? "Resume" : "Start Learning", "primary", last ? "bookOpen" : "graduationCap")}
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="section-head slim-head">
+          <div>
+            <span class="eyebrow">Browse by Subject</span>
+            <h2>Choose a Subject</h2>
+          </div>
+          <a class="section-head-link" href="/search">${icon("search")}<span>Search all notes</span></a>
+        </div>
+        <div class="subject-list">
+          ${subjects.map((subject) => {
+            const sp = subjectPct(subject);
+            const href = subject.first ? `/courses/${subject.first.programme.id}/${subject.first.unit.id}` : "/search";
+            return `
+              <a class="subject-row${subject.first ? "" : " subject-row-muted"}" href="${escapeHtml(href)}">
+                <span class="subject-row-icon">${iconFor(subject.title)}</span>
+                <div class="subject-row-body">
+                  <strong>${escapeHtml(subject.title)}</strong>
+                  <small>${subject.unitCount} units · ${subject.topicCount} topics</small>
+                  <div class="subject-progress-bar"><span style="width:${sp.pct}%"></span></div>
+                </div>
+                ${sp.pct > 0 ? `<span class="subject-row-pct">${sp.pct}%</span>` : ""}
+                ${icon("arrowRight")}
+              </a>
+            `;
+          }).join("")}
+        </div>
       </div>
     </section>
     ${saved.length ? `
@@ -3612,7 +3620,6 @@ function renderNotes() {
             <div>
               <span class="eyebrow">Saved For Later</span>
               <h2>Your Bookmarks</h2>
-              <p>Topics and resources you bookmarked for quick return.</p>
             </div>
           </div>
           <div class="saved-grid">
@@ -3627,77 +3634,16 @@ function renderNotes() {
         </div>
       </section>
     ` : ""}
-    <section class="section">
-      <div class="container">
-        <div class="section-head notes-section-head">
-          <div>
-            <span class="eyebrow">Browse by Subject</span>
-            <h2>Choose A Subject</h2>
-            <p>Start from the subject area you want to revise, then move into the mapped course units and topics.</p>
-          </div>
-          <a class="section-head-link" href="/search" data-search-seed="research nursing">${icon("search")}<span>Search all notes</span></a>
-        </div>
-        <div class="grid subject-grid">
-          ${subjects.map((subject) => {
-            const sp = subjectPct(subject);
-            return `
-              <article class="card image-card subject-card">
-                ${cardImage(subject.title)}
-                <span class="card-icon">${iconFor(subject.title)}</span>
-                <h3>${escapeHtml(subject.title)}</h3>
-                <p>${escapeHtml(subject.body)}</p>
-                <div class="subject-stats">
-                  <span>${subject.unitCount} units</span>
-                  <span>${subject.topicCount} topics</span>
-                </div>
-                <div class="subject-progress-bar"><span style="width:${sp.pct}%"></span></div>
-                <small class="subject-progress-label">${sp.done} of ${subject.topicCount} topics done</small>
-                <div class="subject-action">
-                  ${subject.first ? `<a class="subject-explore-link" href="/courses/${subject.first.programme.id}/${subject.first.unit.id}"><span>Explore</span>${icon("arrowRight")}</a>` : `<span class="subject-explore-link is-muted">${icon("clock")}<span>Coming soon</span></span>`}
-                </div>
-              </article>
-            `;
-          }).join("")}
-        </div>
-      </div>
-    </section>
-    <section class="section soft-section notes-premium-section">
-      <div class="container">
-        <div class="section-head notes-section-head">
-          <div>
-            <span class="eyebrow">Research & Reading</span>
-            <h2>Research & Reading Notes</h2>
-            <p>Use these source-linked routes when you want more than a quick definition.</p>
-          </div>
-          <a class="section-head-link" href="/resources/books">${icon("bookOpen")}<span>Open library</span></a>
-        </div>
-        <div class="notes-research-grid">
-          ${researchCards.map((item) => `
-            <a class="notes-research-card" href="/search" data-search-seed="${escapeHtml(item.search)}">
-              <span>${icon(item.iconName)}</span>
-              <div>
-                <strong>${escapeHtml(item.title)}</strong>
-                <p>${escapeHtml(item.body)}</p>
-                <small>${escapeHtml(item.meta)}</small>
-              </div>
-            </a>
-          `).join("")}
-        </div>
-      </div>
-    </section>
     <section class="section compact-section">
       <div class="container">
-        <div class="home-cta-banner">
+        <div class="section-head slim-head">
           <div>
-            <span class="eyebrow">Ready to go deeper?</span>
-            <h2>Level Up Your Revision</h2>
-            <p>Use flashcards for active recall, test yourself with quizzes, or explore the full medical dictionary.</p>
+            <span class="eyebrow">Quick Access</span>
+            <h2>Study Tools</h2>
           </div>
-          <div class="home-cta-actions">
-            ${buttonLink("/flashcards", "Open Flashcards", "primary", "bookOpen")}
-            ${buttonLink("/quiz", "Take a Quiz", "secondary", "helpCircle")}
-            ${buttonLink("/dictionary", "Dictionary", "secondary", "search")}
-          </div>
+        </div>
+        <div class="tools-strip">
+          ${tools.map((t) => `<a class="tool-pill" href="${escapeHtml(t.href)}">${icon(t.iconName)}<span>${escapeHtml(t.label)}</span></a>`).join("")}
         </div>
       </div>
     </section>
@@ -3932,31 +3878,19 @@ function renderCourses() {
   }
 
   return `
-    ${hero({
-      title: "Courses and Curriculum Maps",
-      body: "Browse nursing and midwifery programmes, years, semesters and course units. Topic maps help you move from curriculum to focused revision.",
-      image: imageCatalog.curriculum,
-      actions: buttonLink("/courses/curriculum", "View all maps", "primary", "listChecks"),
-      cues: ["Browse by programme", "Semester pathways", "Topic-linked revision"],
-      stats: [
-        ["Programmes", state.data.totals.programmes, "graduationCap"],
-        ["Course Units", state.data.totals.courseUnits, "bookOpen"],
-        ["Study Topics", state.data.totals.topics, "listChecks"],
-        ["Semesters", state.data.totals.semesters, "calendar"]
-      ]
+    ${pageHeader({
+      eyebrow: "Programmes",
+      title: "Courses & Curriculum",
+      body: "Browse nursing and midwifery programmes, year and semester pathways, and topic maps.",
+      actions: buttonLink("/courses/curriculum", "Curriculum Maps", "secondary", "listChecks")
     })}
     <section class="section">
       <div class="container">
-        <div class="toolbar course-toolbar">
-          <label class="search-field">
-            ${icon("search")}
-            <input class="search-input" data-search type="search" value="${escapeHtml(state.search)}" placeholder="Search course units, codes or programmes" aria-label="Search courses">
-          </label>
-          <button class="button secondary filter-button" type="button">${buttonLabel("Filter", "listChecks")}</button>
-        </div>
-        ${query ? renderSearchResults(matchedUnits) : `
-          ${programmeSections()}
-        `}
+        <label class="search-field course-search-label">
+          ${icon("search")}
+          <input class="search-input" data-search type="search" value="${escapeHtml(state.search)}" placeholder="Search course units, codes or programmes…" aria-label="Search courses">
+        </label>
+        ${query ? renderSearchResults(matchedUnits) : programmeSections()}
       </div>
     </section>
   `;
@@ -3987,11 +3921,13 @@ function renderSearchResults(results) {
 }
 
 function renderCurriculumHub() {
+  const programmeCount = state.data?.programmes?.length || 0;
   return `
-    ${hero({
+    ${pageHeader({
+      eyebrow: "Curriculum",
       title: "Curriculum Maps",
-      body: "Choose a nursing or midwifery programme and drill into course units, semesters and topics.",
-      image: imageCatalog.curriculum
+      body: `All ${programmeCount} nursing and midwifery programmes — drill into semesters, course units and topic lists.`,
+      actions: buttonLink("/courses", "All Courses", "secondary", "graduationCap")
     })}
     <section class="section">
       <div class="container">
