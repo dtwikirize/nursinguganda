@@ -122,7 +122,9 @@ const iconPaths = {
   heart: `<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>`,
   globe: `<circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/>`,
   banknote: `<rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/>`,
-  sparkles: `<path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0Z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/>`
+  sparkles: `<path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0Z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/>`,
+  lightbulb: `<path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/>`,
+  tag: `<path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42Z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/>`
 };
 
 function escapeHtml(value) {
@@ -6578,88 +6580,68 @@ function dictionaryFilterSelect(label, key, values, active) {
   `;
 }
 
-function renderDictionaryHero(showSearch = true) {
+function renderDictionarySearch() {
   const suggestions = dictionaryTerms()
     .filter((term) => state.dictionarySearch && dictionarySearchMatches(term, state.dictionarySearch))
     .slice(0, 8);
   return `
-    <section class="dictionary-hero">
-      <div class="dictionary-hero-inner">
-        <div>
-          <h1>Nursing Dictionary</h1>
-          <p>Clear definitions for every nursing and medical term you will encounter.</p>
-        </div>
-        ${showSearch ? `<form class="dictionary-search-wrap" data-dictionary-search-form role="search">
-          <span aria-hidden="true">${icon("search")}</span>
-          <input class="dictionary-search-input" type="search" value="${escapeHtml(state.dictionarySearch)}" placeholder="Search a term, condition or concept..." data-dictionary-search aria-label="Search dictionary terms">
-          ${state.dictionarySearch ? `
-            <div class="dictionary-search-results" role="listbox" aria-label="Dictionary search results">
-              ${suggestions.length ? suggestions.map((term) => `
-                <a href="/dictionary/${escapeHtml(term.slug)}" class="dictionary-search-result">
+    <div class="dict-search-wrap">
+      <form class="dict-search-bar" data-dictionary-search-form role="search">
+        ${icon("search")}
+        <input class="dict-search-input" type="search" value="${escapeHtml(state.dictionarySearch)}"
+          placeholder="Search a term, condition or abbreviation…"
+          data-dictionary-search aria-label="Search dictionary terms" autocomplete="off">
+        ${state.dictionarySearch ? `<button class="dict-search-clear" type="button" data-dictionary-clear aria-label="Clear search">${icon("x")}</button>` : ""}
+        ${state.dictionarySearch ? `
+          <div class="dict-search-results" role="listbox" aria-label="Dictionary suggestions">
+            ${suggestions.length ? suggestions.map((term) => `
+              <a href="/dictionary/${escapeHtml(term.slug)}" class="dict-search-result">
+                <span class="dict-result-icon">${icon("fileText")}</span>
+                <div class="dict-result-body">
                   <strong>${escapeHtml(term.term)}</strong>
-                  ${dictionaryBadge(term.category)}
                   <span>${escapeHtml(term.simpleDefinition)}</span>
-                  <em>View full definition</em>
-                </a>
-              `).join("") : `
-                <div class="dictionary-search-empty">
-                  <strong>No terms found for "${escapeHtml(state.dictionarySearch)}"</strong>
-                  <span>Try a shorter word, a body system or an abbreviation.</span>
-                  <a href="mailto:hello@nursinguganda.com?subject=Dictionary term suggestion">Suggest a term</a>
                 </div>
-              `}
-            </div>
-          ` : ""}
-        </form>` : `<div class="dictionary-hero-card"><strong>A-Z abbreviations</strong><span>Quick lookup for ward reports, observations and exam notes.</span><a href="/dictionary">Search full dictionary</a></div>`}
-      </div>
-    </section>
+                ${dictionaryBadge(term.category)}
+              </a>
+            `).join("") : `
+              <div class="dict-search-empty">
+                ${icon("search")}
+                <strong>No terms found for "${escapeHtml(state.dictionarySearch)}"</strong>
+                <span>Try a shorter word, a body system, or an abbreviation.</span>
+              </div>
+            `}
+          </div>
+        ` : ""}
+      </form>
+    </div>
   `;
 }
 
 function renderDictionaryFilters(parts = currentRoute()) {
-  const routeFilter = dictionaryRouteFilter(parts);
-  const routeLabel = routeFilter
-    ? routeFilter.type === "category"
-      ? dictionaryCategories().find((item) => dictionaryLabelMatches(item, routeFilter.value)) || routeFilter.value
-      : dictionaryBodySystems().find((item) => dictionaryLabelMatches(item, routeFilter.value)) || routeFilter.value
-    : "";
-  const allTerms = dictionaryTerms();
   const visibleTerms = filteredDictionaryTerms(parts);
+  const allTerms = dictionaryTerms();
   const hasFilters = state.dictionarySearch || state.dictionaryCategory !== "All" || state.dictionarySystem !== "All Systems" || state.dictionaryDifficulty !== "All";
   return `
-    <section class="dictionary-filter-shell">
-      <div class="dictionary-filter-head">
-        <div>
-          <span class="mini-label">Dictionary Command Centre</span>
-          <h2>${routeLabel ? escapeHtml(routeLabel) : "All Nursing Terms"}</h2>
-          <p>Filter terms by subject, body system and difficulty, then jump alphabetically.</p>
-        </div>
-        ${hasFilters ? `<button class="dictionary-clear" type="button" data-dictionary-clear>${icon("x")}Clear filters</button>` : ""}
-      </div>
-      <div class="dictionary-filter-grid">
-        <label class="dictionary-filter-search">
-          ${icon("search")}
-          <span>Search</span>
-          <input type="search" value="${escapeHtml(state.dictionarySearch)}" placeholder="Term, condition, abbreviation..." data-dictionary-search aria-label="Search dictionary terms">
-        </label>
+    <div class="dict-filter-bar">
+      <div class="dict-filter-controls">
         ${dictionaryFilterSelect("Category", "category", dictionaryCategories(), state.dictionaryCategory)}
         ${dictionaryFilterSelect("Body System", "system", dictionaryBodySystems(), state.dictionarySystem)}
         ${dictionaryFilterSelect("Difficulty", "difficulty", dictionaryDifficulties(), state.dictionaryDifficulty)}
+        ${hasFilters ? `<button class="dict-clear-btn" type="button" data-dictionary-clear>${icon("x")}<span>Clear</span></button>` : ""}
       </div>
-      <div class="dictionary-filter-stats" aria-label="Dictionary filter summary">
-        <span><strong>${visibleTerms.length}</strong> matching terms</span>
-        <span><strong>${allTerms.length}</strong> total terms</span>
-        <span><strong>${dictionaryCategories().length - 1}</strong> categories</span>
-        <span><strong>${dictionaryBodySystems().length - 1}</strong> systems</span>
+      <div class="dict-quick-pills" aria-label="Quick filters">
+        ${["Clinical Skills", "Pharmacology", "Medical Conditions", "Procedures", "Anatomy"].map((cat) => `
+          <button class="dictionary-filter-pill${state.dictionaryCategory === cat ? " active" : ""}" type="button" data-dictionary-filter="category" data-dictionary-filter-value="${escapeHtml(cat)}">${escapeHtml(cat)}</button>
+        `).join("")}
+        ${["Respiratory", "Cardiovascular", "Nervous"].map((sys) => `
+          <button class="dictionary-filter-pill${state.dictionarySystem === sys ? " active" : ""}" type="button" data-dictionary-filter="system" data-dictionary-filter-value="${escapeHtml(sys)}">${escapeHtml(sys)}</button>
+        `).join("")}
       </div>
-      <div class="dictionary-quick-filter-row" aria-label="Quick dictionary filters">
-        <span>Quick picks</span>
-        <div>
-          ${["Clinical Skills", "Pharmacology", "Medical Conditions", "Procedures"].map((category) => `<button class="dictionary-filter-pill${state.dictionaryCategory === category ? " active" : ""}" type="button" data-dictionary-filter="category" data-dictionary-filter-value="${escapeHtml(category)}">${escapeHtml(category)}</button>`).join("")}
-          ${["Respiratory", "Cardiovascular", "Nervous"].map((system) => `<button class="dictionary-filter-pill${state.dictionarySystem === system ? " active" : ""}" type="button" data-dictionary-filter="system" data-dictionary-filter-value="${escapeHtml(system)}">${escapeHtml(system)}</button>`).join("")}
-        </div>
+      <div class="dict-count-row">
+        <span><strong>${visibleTerms.length}</strong> of <strong>${allTerms.length}</strong> terms</span>
+        <span><strong>${dictionaryCategories().length - 1}</strong> categories · <strong>${dictionaryBodySystems().length - 1}</strong> body systems</span>
       </div>
-    </section>
+    </div>
   `;
 }
 
@@ -6677,16 +6659,18 @@ function renderDictionaryAlphabetNav(terms) {
 
 function renderDictionaryTermRow(term) {
   return `
-    <a class="dictionary-term-row" href="/dictionary/${escapeHtml(term.slug)}">
-      <span>
+    <a class="dict-term-row" href="/dictionary/${escapeHtml(term.slug)}">
+      <div class="dict-term-row-main">
         <strong>${escapeHtml(term.term)}</strong>
-        <small>${escapeHtml(term.simpleDefinition)}</small>
-      </span>
-      <span class="dictionary-term-meta">
+        ${term.pronunciation ? `<span class="dict-term-pron">${escapeHtml(term.pronunciation)}</span>` : ""}
+        <p>${escapeHtml(term.simpleDefinition)}</p>
+      </div>
+      <div class="dict-term-row-meta">
         ${dictionaryBadge(term.category)}
-        <small>${escapeHtml(term.bodySystem)}</small>
-        <em class="difficulty-${escapeHtml(term.difficulty.toLowerCase())}">${escapeHtml(term.difficulty)}</em>
-      </span>
+        <span class="dict-term-system">${escapeHtml(term.bodySystem)}</span>
+        <span class="dict-difficulty dict-difficulty-${escapeHtml(term.difficulty.toLowerCase())}">${escapeHtml(term.difficulty)}</span>
+      </div>
+      <span class="dict-term-arrow">${icon("arrowRight")}</span>
     </a>
   `;
 }
@@ -6694,37 +6678,48 @@ function renderDictionaryTermRow(term) {
 function renderDictionaryListing(parts = currentRoute()) {
   const terms = filteredDictionaryTerms(parts);
   const groups = dictionaryGroupByLetter(terms);
-  const categoryCount = dictionaryTerms().filter((term) => term.category === "Anatomy").length;
+  const allTerms = dictionaryTerms();
+  const routeFilter = dictionaryRouteFilter(parts);
+  const pageTitle = routeFilter
+    ? routeFilter.type === "category"
+      ? dictionaryCategories().find((item) => dictionaryLabelMatches(item, routeFilter.value)) || routeFilter.value
+      : dictionaryBodySystems().find((item) => dictionaryLabelMatches(item, routeFilter.value)) || routeFilter.value
+    : "Nursing Dictionary";
   return `
-    ${renderDictionaryHero()}
-    <main class="dictionary-page">
-      <div class="dictionary-content">
+    ${pageHeader({
+      eyebrow: "Reference",
+      title: routeFilter ? escapeHtml(pageTitle) : "Nursing Dictionary",
+      body: routeFilter ? `Showing ${terms.length} terms in this category.` : `${allTerms.length} clear definitions for nursing and medical terms — from anatomy to pharmacology.`,
+      actions: `${buttonLink("/dictionary/abbreviations", "Abbreviations", "secondary", "fileText")}`
+    })}
+    <section class="section compact-section dict-search-section">
+      <div class="container">
+        ${renderDictionarySearch()}
+      </div>
+    </section>
+    <section class="section compact-section">
+      <div class="container">
         ${renderDictionaryFilters(parts)}
-        <div class="dictionary-stats-bar">
-          <span>Showing ${terms.length} terms</span>
-          <span>${categoryCount} in Anatomy</span>
-          <span>Updated weekly</span>
-          <a href="/dictionary/abbreviations">Open abbreviations</a>
-        </div>
         ${renderDictionaryAlphabetNav(terms)}
         ${terms.length ? `
-          <section class="dictionary-list" aria-label="Dictionary terms">
+          <div class="dict-term-list" aria-label="Dictionary terms">
             ${Object.keys(groups).sort().map((letter) => `
-              <div class="dictionary-letter-group" id="dict-letter-${letter}">
-                <h2 class="dictionary-letter-head">${letter}</h2>
+              <div class="dict-letter-group" id="dict-letter-${letter}">
+                <div class="dict-letter-head">${letter}</div>
                 ${groups[letter].map(renderDictionaryTermRow).join("")}
               </div>
             `).join("")}
-          </section>
+          </div>
         ` : `
-          <section class="empty-state dictionary-empty">
-            <h2>No terms match your filters</h2>
-            <p>Try clearing filters, searching a shorter word, or browsing by A-Z.</p>
+          <div class="dict-empty-state">
+            ${icon("search")}
+            <strong>No terms match your filters</strong>
+            <p>Try clearing filters, searching a shorter word, or browsing by A–Z.</p>
             <button type="button" class="button primary" data-dictionary-clear>Clear filters</button>
-          </section>
+          </div>
         `}
       </div>
-    </main>
+    </section>
   `;
 }
 
@@ -6732,16 +6727,21 @@ function renderDictionarySidebar(term) {
   const related = (term.relatedTerms || []).map(dictionaryTermBySlug).filter(Boolean).slice(0, 6);
   return `
     <aside class="dictionary-term-sidebar">
+      <div class="dict-side-back">
+        <a href="/dictionary">${icon("arrowLeft")}<span>Dictionary</span></a>
+      </div>
       <div class="dictionary-side-block">
-        <span class="mini-label">Dictionary</span>
-        <a href="/dictionary">All terms</a>
-        <a href="/dictionary/abbreviations">Abbreviations</a>
-        <a href="/dictionary/category/${escapeHtml(slugify(term.category))}">${escapeHtml(term.category)}</a>
-        <a href="/dictionary/system/${escapeHtml(slugify(term.bodySystem))}">${escapeHtml(term.bodySystem)}</a>
+        <span class="mini-label">Browse</span>
+        <a href="/dictionary">${icon("bookOpen")} All terms</a>
+        <a href="/dictionary/abbreviations">${icon("fileText")} Abbreviations</a>
+        <a href="/dictionary/category/${escapeHtml(slugify(term.category))}">${icon("tag")} ${escapeHtml(term.category)}</a>
+        <a href="/dictionary/system/${escapeHtml(slugify(term.bodySystem))}">${icon("activity")} ${escapeHtml(term.bodySystem)}</a>
       </div>
       <div class="dictionary-side-block">
         <span class="mini-label">Related Terms</span>
-        ${related.length ? related.map((item) => `<a href="/dictionary/${escapeHtml(item.slug)}">${escapeHtml(item.term)}</a>`).join("") : `<p>No related terms yet.</p>`}
+        ${related.length
+          ? related.map((item) => `<a href="/dictionary/${escapeHtml(item.slug)}" class="dict-related-link">${escapeHtml(item.term)}</a>`).join("")
+          : `<p class="muted-small">Related terms will be added as the dictionary grows.</p>`}
       </div>
     </aside>
   `;
@@ -6787,23 +6787,31 @@ function renderDictionaryTermPage(slug) {
       <div class="dictionary-term-layout">
         ${renderDictionarySidebar(term)}
         <article class="dictionary-term-main">
-          <header class="dictionary-term-hero">
-            <nav><a href="/dictionary">Dictionary</a><span>/</span><a href="/dictionary/category/${escapeHtml(slugify(term.category))}">${escapeHtml(term.category)}</a><span>/</span><strong>${escapeHtml(term.term)}</strong></nav>
-            ${term.pronunciation ? `<p class="dictionary-pronunciation">${escapeHtml(term.pronunciation)} <button type="button" aria-label="Audio pronunciation unavailable">${icon("activity")}</button></p>` : ""}
-            <h1>${escapeHtml(term.term)}</h1>
-            <span class="dictionary-part">${escapeHtml(term.partOfSpeech)}</span>
-            <div class="dictionary-term-chips">
-              ${dictionaryBadge(term.category)}
-              ${dictionaryBadge(term.bodySystem)}
-              ${dictionaryBadge(term.difficulty, `difficulty-${term.difficulty.toLowerCase()}`)}
+          <header class="dict-term-header">
+            <nav class="dict-term-breadcrumb">
+              <a href="/dictionary">Dictionary</a>${icon("arrowRight")}
+              <a href="/dictionary/category/${escapeHtml(slugify(term.category))}">${escapeHtml(term.category)}</a>${icon("arrowRight")}
+              <strong>${escapeHtml(term.term)}</strong>
+            </nav>
+            <div class="dict-term-title-row">
+              <div>
+                ${term.pronunciation ? `<p class="dictionary-pronunciation">${escapeHtml(term.pronunciation)}</p>` : ""}
+                <h1>${escapeHtml(term.term)}</h1>
+                <span class="dict-part-of-speech">${escapeHtml(term.partOfSpeech)}</span>
+              </div>
+              <div class="dict-term-badges">
+                ${dictionaryBadge(term.category)}
+                ${dictionaryBadge(term.bodySystem)}
+                <span class="dict-difficulty dict-difficulty-${escapeHtml(term.difficulty.toLowerCase())}">${escapeHtml(term.difficulty)}</span>
+              </div>
             </div>
           </header>
           <div class="dictionary-detail-flow">
             ${renderDictionaryDetailSection("definition", 1, "Definition", `<blockquote class="dictionary-definition-quote">${escapeHtml(term.definition)}</blockquote>`)}
             ${renderDictionaryDetailSection("simple-explanation", 2, "In Simple Terms", `<div class="simple-definition-card">${escapeHtml(term.simpleDefinition)}</div>`)}
-            ${renderDictionaryDetailSection("clinical-context", 3, "Clinical Relevance for Nurses", `<div class="dictionary-clinical-card"><span>Clinical Context</span><p>${escapeHtml(term.clinicalContext)}</p></div>`)}
-            ${renderDictionaryDetailSection("example-practice", 4, "Example in Practice", `<div class="dictionary-example-card">${escapeHtml(term.example)}</div>`)}
-            ${renderDictionaryDetailSection("memory-aid", 5, "Memory Aid", `<div class="dictionary-memory-card">${escapeHtml(term.mnemonics)}</div>`)}
+            ${renderDictionaryDetailSection("clinical-context", 3, "Clinical Relevance for Nurses", `<div class="dictionary-clinical-card"><span>${icon("stethoscope")} Clinical Context</span><p>${escapeHtml(term.clinicalContext)}</p></div>`)}
+            ${renderDictionaryDetailSection("example-practice", 4, "Example in Practice", `<div class="dictionary-example-card">${icon("bookOpen")}<p>${escapeHtml(term.example)}</p></div>`)}
+            ${renderDictionaryDetailSection("memory-aid", 5, "Memory Aid", `<div class="dictionary-memory-card">${icon("lightbulb")}<p>${escapeHtml(term.mnemonics)}</p></div>`)}
             ${renderDictionaryDetailSection("related-terms", 6, "Related Terms", related.length ? `
               <div class="related-term-grid">
                 ${related.map((item) => `
@@ -6814,7 +6822,7 @@ function renderDictionaryTermPage(slug) {
                   </a>
                 `).join("")}
               </div>
-            ` : `<p class="muted">Related terms will be added as the dictionary expands.</p>`)}
+            ` : `<p class="muted-small">Related terms will be added as the dictionary grows.</p>`)}
             ${renderDictionaryDetailSection("related-lessons", 7, "Learn This in Context", lessons.length ? `
               <div class="related-lesson-grid">
                 ${lessons.map((lesson) => `
@@ -6825,7 +6833,7 @@ function renderDictionaryTermPage(slug) {
                   </a>
                 `).join("")}
               </div>
-            ` : `<p class="muted">This term will be covered in upcoming lessons.</p>`)}
+            ` : `<p class="muted-small">This term will be linked to lessons as content is added.</p>`)}
           </div>
         </article>
         ${renderDictionaryTermToc()}
@@ -6835,32 +6843,45 @@ function renderDictionaryTermPage(slug) {
 }
 
 function renderAbbreviationsTable() {
-  const rows = dictionaryAbbreviations().sort((a, b) => state.dictionaryAbbreviationSort === "meaning" ? a[1].localeCompare(b[1]) : a[0].localeCompare(b[0]));
+  const q = state.dictionarySearch.trim().toLowerCase();
+  const allRows = dictionaryAbbreviations().sort((a, b) => state.dictionaryAbbreviationSort === "meaning" ? a[1].localeCompare(b[1]) : a[0].localeCompare(b[0]));
+  const rows = q ? allRows.filter(([abbr, meaning]) => abbr.toLowerCase().includes(q) || meaning.toLowerCase().includes(q)) : allRows;
   return `
-    ${renderDictionaryHero(false)}
-    <main class="dictionary-page">
-      <div class="dictionary-content">
-        <section class="abbreviations-panel">
-          <div class="dictionary-filter-head">
-            <div>
-              <span class="mini-label">Dictionary</span>
-              <h2>Nursing Abbreviations</h2>
-              <p>Common abbreviations used in notes, observations, ward reports and exams.</p>
-            </div>
-            <div class="abbreviation-sort">
-              <button type="button" class="${state.dictionaryAbbreviationSort === "abbr" ? "active" : ""}" data-abbreviation-sort="abbr">Sort A-Z</button>
-              <button type="button" class="${state.dictionaryAbbreviationSort === "meaning" ? "active" : ""}" data-abbreviation-sort="meaning">Sort by meaning</button>
-            </div>
+    ${pageHeader({
+      eyebrow: "Reference",
+      title: "Nursing Abbreviations",
+      body: `${allRows.length} common abbreviations used in notes, observations, ward reports and exams.`,
+      actions: buttonLink("/dictionary", "Full Dictionary", "secondary", "fileText")
+    })}
+    <section class="section">
+      <div class="container">
+        <div class="abbr-toolbar">
+          <label class="search-field course-search-label abbr-search-label">
+            ${icon("search")}
+            <input class="search-input" data-dictionary-search type="search" value="${escapeHtml(state.dictionarySearch)}" placeholder="Search abbreviations or meanings…" aria-label="Search abbreviations">
+          </label>
+          <div class="abbr-sort-row">
+            <button type="button" class="abbr-sort-btn${state.dictionaryAbbreviationSort !== "meaning" ? " active" : ""}" data-abbreviation-sort="abbr">A–Z</button>
+            <button type="button" class="abbr-sort-btn${state.dictionaryAbbreviationSort === "meaning" ? " active" : ""}" data-abbreviation-sort="meaning">By meaning</button>
           </div>
+        </div>
+        <p class="abbr-count-label">Showing <strong>${rows.length}</strong> of <strong>${allRows.length}</strong> abbreviations</p>
+        ${rows.length ? `
           <table class="abbreviations-table">
             <thead><tr><th>Abbreviation</th><th>Meaning</th></tr></thead>
             <tbody>
               ${rows.map(([abbr, meaning]) => `<tr><td>${escapeHtml(abbr)}</td><td>${escapeHtml(meaning)}</td></tr>`).join("")}
             </tbody>
           </table>
-        </section>
+        ` : `
+          <div class="dict-empty-state">
+            ${icon("search")}
+            <strong>No abbreviations match "${escapeHtml(q)}"</strong>
+            <button type="button" class="button secondary" data-dictionary-clear>Clear search</button>
+          </div>
+        `}
       </div>
-    </main>
+    </section>
   `;
 }
 
