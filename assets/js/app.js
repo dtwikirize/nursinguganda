@@ -59,11 +59,11 @@ const state = {
 const app = document.querySelector("#app");
 
 const routeMap = {
-  notes: { label: "Notes", href: "#/notes", icon: "bookOpen" },
-  courses: { label: "Courses", href: "#/courses", icon: "graduationCap" },
-  resources: { label: "Resources", href: "#/resources", icon: "folderOpen" },
-  dictionary: { label: "Dictionary", href: "#/dictionary", icon: "fileText" },
-  careers: { label: "Careers", href: "#/careers", icon: "briefcaseMedical" }
+  notes: { label: "Notes", href: "/notes", icon: "bookOpen" },
+  courses: { label: "Courses", href: "/courses", icon: "graduationCap" },
+  resources: { label: "Resources", href: "/resources", icon: "folderOpen" },
+  dictionary: { label: "Dictionary", href: "/dictionary", icon: "fileText" },
+  careers: { label: "Careers", href: "/careers", icon: "briefcaseMedical" }
 };
 
 const iconPaths = {
@@ -139,8 +139,8 @@ function renderInlineText(value) {
 }
 
 function currentRoute() {
-  const hash = window.location.hash.replace(/^#\/?/, "");
-  return hash ? hash.split("/").filter(Boolean) : ["notes"];
+  const path = window.location.pathname.replace(/^\//, "");
+  return path ? path.split("/").filter(Boolean) : ["notes"];
 }
 
 function routeKey(parts = currentRoute()) {
@@ -154,7 +154,12 @@ function routeKey(parts = currentRoute()) {
 }
 
 function setRoute(path) {
-  window.location.hash = path;
+  const cleanPath = path.startsWith("#") ? path.slice(1) : path;
+  history.pushState(null, "", cleanPath);
+  state.navOpen = false;
+  state.megaOpen = "";
+  render();
+  scrollPageToTop();
 }
 
 function applyTheme() {
@@ -1930,7 +1935,7 @@ function globalSearchResults(query, options = {}) {
           title: `${unit.code ? `${unit.code}: ` : ""}${unit.title}`,
           context: programme.label,
           body: `Year ${unit.year}, Semester ${unit.semester}. ${unit.topicCount || 0} topics.`,
-          href: `#/courses/${programme.id}/${unit.id}`,
+          href: `/courses/${programme.id}/${unit.id}`,
           score: unit.title.toLowerCase().includes(q) ? 4 : 2
         });
       }
@@ -1962,7 +1967,7 @@ function globalSearchResults(query, options = {}) {
       title: instrument.name,
       context: instrument.category,
       body: snippetFor(text, query),
-      href: `#/resources/medical-instruments/${instrument.slug}`,
+      href: `/resources/medical-instruments/${instrument.slug}`,
       score: instrument.name.toLowerCase().includes(q) ? 4 : 1
     });
   }
@@ -1976,7 +1981,7 @@ function globalSearchResults(query, options = {}) {
       title: school.name,
       context: `${school.district} - ${school.status}`,
       body: snippetFor(text, query),
-      href: "#/resources/schools",
+      href: "/resources/schools",
       score: school.name.toLowerCase().includes(q) ? 4 : 1
     });
   }
@@ -1990,7 +1995,7 @@ function globalSearchResults(query, options = {}) {
       title: term.term,
       context: `${term.category} - ${term.bodySystem}`,
       body: term.simpleDefinition,
-      href: `#/dictionary/${term.slug}`,
+      href: `/dictionary/${term.slug}`,
       score: term.term.toLowerCase().includes(q) ? 5 : 2
     });
   }
@@ -2045,8 +2050,8 @@ function resultMatchesAdvancedFilters(result) {
 
 function topicHref(programme, unit, groupIndex, topicIndex) {
   const topic = unit && unit.topicGroups ? findTopic(unit, groupIndex, topicIndex) : null;
-  if (!topic) return `#/courses/${programme.id}/${unit.id}/topic/${groupIndex}/${topicIndex}`;
-  return `#/courses/${programme.id}/${unit.id}/${uniqueTopicSlug(unit, { ...topic, title: lmsLessonTitle(programme, unit, topic) })}/`;
+  if (!topic) return `/courses/${programme.id}/${unit.id}/topic/${groupIndex}/${topicIndex}`;
+  return `/courses/${programme.id}/${unit.id}/${uniqueTopicSlug(unit, { ...topic, title: lmsLessonTitle(programme, unit, topic) })}/`;
 }
 
 function icon(name) {
@@ -2174,7 +2179,7 @@ function setDocumentMeta(title, description) {
   const meta = document.querySelector('meta[name="description"]');
   if (meta) meta.setAttribute("content", description);
 
-  const pageUrl = `https://nursinguganda.com/${window.location.hash || ""}`;
+  const pageUrl = `https://nursinguganda.com${window.location.pathname}`;
 
   [
     ["og:title", cleanTitle],
@@ -2570,7 +2575,7 @@ function renderCookieConsent() {
               <span class="mini-label">Privacy Choices</span>
               <h2>We Care About Your Privacy</h2>
               <p>Nursing Uganda stores only necessary site preferences by default. With your permission we may use analytics, advertising cookies and affiliate tracking to improve the website, measure useful content and support free peer-to-peer revision resources.</p>
-              <p class="cookie-small">You can change your choices later from Cookie Preferences in the footer. See our <a href="#/privacy">Privacy Policy</a> and <a href="#/cookies">Cookie Policy</a>.</p>
+              <p class="cookie-small">You can change your choices later from Cookie Preferences in the footer. See our <a href="/privacy">Privacy Policy</a> and <a href="/cookies">Cookie Policy</a>.</p>
             </div>
             <div>
               <span class="mini-label">Partners And External Services</span>
@@ -2622,14 +2627,14 @@ function renderFooter() {
   const instrumentCount = allMedicalInstruments().length;
 
   const exploreLinks = [
-    ["#/notes", "Notes", "bookOpen"],
-    ["#/courses", "Courses", "graduationCap"],
-    ["#/search", "Search", "search"],
-    ["#/dictionary", "Dictionary", "fileText"],
-    ["#/resources/medical-instruments", "Instruments", "stethoscope"],
-    ["#/resources/schools", "Schools", "school"],
-    ["#/resources/past-papers", "Past Papers", "clipboardList"],
-    ["#/careers", "Careers", "briefcaseMedical"]
+    ["/notes", "Notes", "bookOpen"],
+    ["/courses", "Courses", "graduationCap"],
+    ["/search", "Search", "search"],
+    ["/dictionary", "Dictionary", "fileText"],
+    ["/resources/medical-instruments", "Instruments", "stethoscope"],
+    ["/resources/schools", "Schools", "school"],
+    ["/resources/past-papers", "Past Papers", "clipboardList"],
+    ["/careers", "Careers", "briefcaseMedical"]
   ];
   const subjectLinks = [
     ["anatomy|physiology", "Anatomy & Physiology", "activity"],
@@ -2645,15 +2650,25 @@ function renderFooter() {
       <div class="container footer-shell">
         <div class="footer-top">
           <div class="footer-brand">
-            <a class="footer-logo" href="#/notes" aria-label="Nursing Uganda home">
-              <span>Nursing Uganda</span>
+            <a class="footer-logo" href="/notes" aria-label="Nursing Uganda home">
+              <span class="brand-mark">NU</span>
+              <div><strong>Nursing Uganda</strong><small>Revision &amp; Resources</small></div>
             </a>
-            <p>Structured notes, courses, dictionary and resources for Uganda nursing and midwifery students.</p>
+            <p>Structured notes, courses, dictionary and resources for Uganda nursing and midwifery students — free and offline-ready.</p>
             <div class="footer-stats" aria-label="Quick stats">
               <span>${icon("graduationCap")}<strong>${programmeCount || 7}</strong> programmes</span>
               <span>${icon("bookOpen")}<strong>${totals.courseUnits || 95}</strong> units</span>
               <span>${icon("fileText")}<strong>${dictionaryCount}</strong> terms</span>
               <span>${icon("stethoscope")}<strong>${instrumentCount}</strong> instruments</span>
+            </div>
+          </div>
+          <div class="footer-cta-aside">
+            <span class="eyebrow footer-cta-eyebrow">Start Studying</span>
+            <h3>Ready to revise?</h3>
+            <p>Jump into notes, test yourself with quizzes, or explore the full dictionary.</p>
+            <div class="footer-cta-aside-actions">
+              ${buttonLink("/notes", "Browse Notes", "primary", "bookOpen")}
+              ${buttonLink("/resources/quizzes", "Take a Quiz", "secondary", "helpCircle")}
             </div>
           </div>
         </div>
@@ -2664,25 +2679,25 @@ function renderFooter() {
           </nav>
           <nav class="footer-nav-col" aria-label="Subjects">
             <h4>Subjects</h4>
-            ${subjectLinks.map(([seed, label, iconName]) => footerLink("#/search", label, iconName, `data-search-seed="${escapeHtml(seed)}"`)).join("")}
+            ${subjectLinks.map(([seed, label, iconName]) => footerLink("/search", label, iconName, `data-search-seed="${escapeHtml(seed)}"`)).join("")}
           </nav>
           <nav class="footer-nav-col" aria-label="More">
             <h4>More</h4>
-            ${footerLink("#/resources/licensing", "Licensing & CPD", "badgeCheck")}
-            ${footerLink("#/resources/student-support", "Student Support", "heartPulse")}
-            ${footerLink("#/progress", "My Progress", "chartLine")}
-            ${footerLink("#/privacy", "Privacy Policy", "shield")}
-            ${footerLink("#/disclaimer", "Disclaimer", "fileText")}
-            ${footerLink("#/corrections", "Corrections", "pencil")}
+            ${footerLink("/resources/licensing", "Licensing & CPD", "badgeCheck")}
+            ${footerLink("/resources/student-support", "Student Support", "heartPulse")}
+            ${footerLink("/progress", "My Progress", "chartLine")}
+            ${footerLink("/privacy", "Privacy Policy", "shield")}
+            ${footerLink("/disclaimer", "Disclaimer", "fileText")}
+            ${footerLink("/corrections", "Corrections", "pencil")}
           </nav>
         </div>
         <div class="footer-bottom">
           <span class="footer-disclaimer">${icon("badgeCheck")} Use for revision. Confirm clinical decisions with tutors and current guidance.</span>
           <span>&copy; ${new Date().getFullYear()} Nursing Uganda. All rights reserved.</span>
           <nav class="footer-legal-links" aria-label="Legal links">
-            <a href="#/privacy">Privacy</a>
-            <a href="#/terms">Terms</a>
-            <a href="#/disclaimer">Disclaimer</a>
+            <a href="/privacy">Privacy</a>
+            <a href="/terms">Terms</a>
+            <a href="/disclaimer">Disclaimer</a>
             <button type="button" data-cookie-manage>Cookie Preferences</button>
           </nav>
         </div>
@@ -2749,7 +2764,7 @@ function setStructuredData(id, data) {
 function megaMenuLinks(key) {
   if (key === "notes") {
     return notesSubjects().map((subject) => ({
-      href: "#/search",
+      href: "/search",
       label: subject.title,
       body: `${subject.unitCount} units, ${subject.topicCount} topics`,
       icon: iconNameFor(subject.title),
@@ -2759,46 +2774,46 @@ function megaMenuLinks(key) {
 
   if (key === "courses") {
     const programmes = (state.data && state.data.programmes ? state.data.programmes : []).slice(0, 6).map((programme) => ({
-      href: `#/courses/${programme.id}`,
+      href: `/courses/${programme.id}`,
       label: programme.label,
       body: `${programme.stats.unitCount} units, ${programme.stats.topicCount || 0} topics`,
       icon: iconNameFor(programme.label)
     }));
     return [
-      { href: "#/courses", label: "All Courses", body: "Browse every nursing and midwifery programme", icon: "graduationCap" },
-      { href: "#/courses/curriculum", label: "Curriculum Maps", body: "Move by programme, year and semester", icon: "listChecks" },
+      { href: "/courses", label: "All Courses", body: "Browse every nursing and midwifery programme", icon: "graduationCap" },
+      { href: "/courses/curriculum", label: "Curriculum Maps", body: "Move by programme, year and semester", icon: "listChecks" },
       ...programmes
     ];
   }
 
   if (key === "careers") {
     return [
-      { href: "#/careers", label: "Jobs Board", body: "Search nursing roles, internships and international listings", icon: "briefcaseMedical" },
-      { href: "#/careers", label: "Career Hub", body: "Pathways, licensing, CV tools and work abroad guides", icon: "map" },
-      { href: "#/careers", label: "International Nursing", body: "UK, Australia, Gulf and regional mobility notes", icon: "externalLink" },
-      { href: "#/careers", label: "Licensing Guides", body: "UNMC, good standing and recognition checklists", icon: "badgeCheck" },
-      { href: "#/careers", label: "CV Resources", body: "Templates, cover letters, interviews and portfolios", icon: "fileText" }
+      { href: "/careers", label: "Jobs Board", body: "Search nursing roles, internships and international listings", icon: "briefcaseMedical" },
+      { href: "/careers", label: "Career Hub", body: "Pathways, licensing, CV tools and work abroad guides", icon: "map" },
+      { href: "/careers", label: "International Nursing", body: "UK, Australia, Gulf and regional mobility notes", icon: "externalLink" },
+      { href: "/careers", label: "Licensing Guides", body: "UNMC, good standing and recognition checklists", icon: "badgeCheck" },
+      { href: "/careers", label: "CV Resources", body: "Templates, cover letters, interviews and portfolios", icon: "fileText" }
     ];
   }
 
   if (key === "dictionary") {
     return [
-      { href: "#/dictionary", label: "All Terms", body: "Search nursing and medical definitions", icon: "search" },
-      { href: "#/dictionary/category/anatomy", label: "Anatomy", body: "Body structures, tissues and systems", icon: "activity" },
-      { href: "#/dictionary/category/clinical-skills", label: "Clinical Skills", body: "Assessment, documentation and bedside terms", icon: "stethoscope" },
-      { href: "#/dictionary/category/pharmacology", label: "Pharmacology", body: "Medicines, routes and safety concepts", icon: "pill" },
-      { href: "#/dictionary/abbreviations", label: "Abbreviations", body: "Common nursing abbreviations in one lookup table", icon: "fileText" }
+      { href: "/dictionary", label: "All Terms", body: "Search nursing and medical definitions", icon: "search" },
+      { href: "/dictionary/category/anatomy", label: "Anatomy", body: "Body structures, tissues and systems", icon: "activity" },
+      { href: "/dictionary/category/clinical-skills", label: "Clinical Skills", body: "Assessment, documentation and bedside terms", icon: "stethoscope" },
+      { href: "/dictionary/category/pharmacology", label: "Pharmacology", body: "Medicines, routes and safety concepts", icon: "pill" },
+      { href: "/dictionary/abbreviations", label: "Abbreviations", body: "Common nursing abbreviations in one lookup table", icon: "fileText" }
     ];
   }
 
   return [
-    { href: "#/resources/books", label: "Digital Library", body: "Curated medical and nursing book sources", icon: "bookOpen" },
-    { href: "#/resources/past-papers", label: "Past Papers", body: "Exam practice and revision sets", icon: "fileText" },
-    { href: "#/resources/quizzes", label: "Quick Quizzes", body: "Practice active recall by topic", icon: "helpCircle" },
-    { href: "#/resources/medical-instruments", label: "Medical Instruments", body: "Uses, safety points and OSCE notes", icon: "stethoscope" },
-    { href: "#/resources/schools", label: "Schools Directory", body: "Training options and recognition notes", icon: "school" },
-    { href: "#/resources/licensing", label: "Licensing And CPD", body: "Professional document planning", icon: "badgeCheck" },
-    { href: "#/resources/student-support", label: "Student Support", body: "Study planning and placement support", icon: "heartPulse" }
+    { href: "/resources/books", label: "Digital Library", body: "Curated medical and nursing book sources", icon: "bookOpen" },
+    { href: "/resources/past-papers", label: "Past Papers", body: "Exam practice and revision sets", icon: "fileText" },
+    { href: "/resources/quizzes", label: "Quick Quizzes", body: "Practice active recall by topic", icon: "helpCircle" },
+    { href: "/resources/medical-instruments", label: "Medical Instruments", body: "Uses, safety points and OSCE notes", icon: "stethoscope" },
+    { href: "/resources/schools", label: "Schools Directory", body: "Training options and recognition notes", icon: "school" },
+    { href: "/resources/licensing", label: "Licensing And CPD", body: "Professional document planning", icon: "badgeCheck" },
+    { href: "/resources/student-support", label: "Student Support", body: "Study planning and placement support", icon: "heartPulse" }
   ];
 }
 
@@ -2814,14 +2829,14 @@ function renderMegaMenu(key, item, active) {
           ? "Search clear nursing and medical definitions"
         : "Open study tools, papers and clinical references";
   const quickLinks = key === "courses"
-    ? [["#/courses", "All programmes"], ["#/courses/curriculum", "Curriculum map"], ["#/notes", "Continue studying"]]
+    ? [["/courses", "All programmes"], ["/courses/curriculum", "Curriculum map"], ["/notes", "Continue studying"]]
     : key === "resources"
-      ? [["#/resources/books", "Books"], ["#/resources/medical-instruments", "Instruments"], ["#/resources/past-papers", "Past papers"]]
+      ? [["/resources/books", "Books"], ["/resources/medical-instruments", "Instruments"], ["/resources/past-papers", "Past papers"]]
       : key === "careers"
-        ? [["#/careers", "Jobs board"], ["#/careers", "Career paths"], ["#/careers", "CV support"]]
+        ? [["/careers", "Jobs board"], ["/careers", "Career paths"], ["/careers", "CV support"]]
         : key === "dictionary"
-          ? [["#/dictionary", "All terms"], ["#/dictionary/abbreviations", "Abbreviations"], ["#/dictionary/category/anatomy", "Anatomy"]]
-        : [["#/notes", "Subject notes"], ["#/courses", "Courses"], ["#/resources", "Resources"]];
+          ? [["/dictionary", "All terms"], ["/dictionary/abbreviations", "Abbreviations"], ["/dictionary/category/anatomy", "Anatomy"]]
+        : [["/notes", "Subject notes"], ["/courses", "Courses"], ["/resources", "Resources"]];
   return `
     <div class="mega-item mega-${key}${state.megaOpen === key ? " open" : ""}">
       <a class="mega-trigger ${active === key ? "active" : ""}" href="${item.href}" data-mega-toggle="${key}" aria-expanded="${state.megaOpen === key ? "true" : "false"}">
@@ -2879,9 +2894,9 @@ function renderPreFooterBand() {
           <p>Search notes, open courses, or look up any term in the dictionary — all free and offline-ready.</p>
         </div>
         <div class="pre-footer-actions">
-          ${buttonLink("#/search", "Search Everything", "primary", "search")}
-          ${buttonLink("#/courses", "Open Courses", "secondary", "graduationCap")}
-          ${buttonLink("#/dictionary", "Dictionary", "ghost", "fileText")}
+          ${buttonLink("/search", "Search Everything", "primary", "search")}
+          ${buttonLink("/courses", "Open Courses", "secondary", "graduationCap")}
+          ${buttonLink("/dictionary", "Dictionary", "ghost", "fileText")}
         </div>
       </div>
     </div>
@@ -2896,13 +2911,18 @@ function layout(content) {
       <header class="site-header">
         <div id="reading-progress-bar" role="progressbar" aria-hidden="true"></div>
         <div class="container nav-shell">
-          <a class="brand" href="#/notes" aria-label="Nursing Uganda notes home">
-            <span>Nursing Uganda</span>
+          <a class="brand" href="/notes" aria-label="Nursing Uganda notes home">
+            <span class="brand-mark">NU</span>
+            <div class="brand-text">
+              <strong>Nursing Uganda</strong>
+              <small>Notes &amp; Resources</small>
+            </div>
           </a>
           <nav class="main-nav${state.navOpen ? " open" : ""}" data-main-nav aria-label="Main navigation">
             ${renderMainNav(active)}
           </nav>
           <div class="nav-actions">
+            <a class="nav-search-pill" href="/search" aria-label="Search notes">${icon("search")}<span>Search</span></a>
             <button class="mobile-toggle" type="button" data-nav-toggle aria-label="Open menu" aria-expanded="${state.navOpen}">
               <span></span><span></span><span></span>
             </button>
@@ -3095,12 +3115,12 @@ const legalPages = {
 function renderLegalPage(key) {
   const page = legalPages[key] || legalPages.privacy;
   const legalNav = [
-    ["#/privacy", "Privacy"],
-    ["#/privacy-choices", "Privacy Choices"],
-    ["#/cookies", "Cookies"],
-    ["#/disclaimer", "Disclaimer"],
-    ["#/terms", "Terms"],
-    ["#/corrections", "Corrections"]
+    ["/privacy", "Privacy"],
+    ["/privacy-choices", "Privacy Choices"],
+    ["/cookies", "Cookies"],
+    ["/disclaimer", "Disclaimer"],
+    ["/terms", "Terms"],
+    ["/corrections", "Corrections"]
   ];
 
   return `
@@ -3117,7 +3137,7 @@ function renderLegalPage(key) {
         </div>
         <nav class="legal-nav-card" aria-label="Legal pages">
           <strong>Legal Pages</strong>
-          ${legalNav.map(([href, label]) => `<a class="${href === `#/${key}` ? "active" : ""}" href="${href}">${escapeHtml(label)}${icon("arrowRight")}</a>`).join("")}
+          ${legalNav.map(([href, label]) => `<a class="${href === `/${key}` ? "active" : ""}" href="${href}">${escapeHtml(label)}${icon("arrowRight")}</a>`).join("")}
         </nav>
       </div>
     </section>
@@ -3388,7 +3408,7 @@ function renderProgress() {
       title: "My Study Progress",
       body: "Track your completed lessons, quiz mastery, study streak and bookmarks across all programmes.",
       image: imageCatalog.curriculum,
-      actions: `${buttonLink("#/courses", "Continue Studying", "primary", "graduationCap")}${buttonLink("#/notes", "Back to Notes", "secondary", "bookOpen")}`
+      actions: `${buttonLink("/courses", "Continue Studying", "primary", "graduationCap")}${buttonLink("/notes", "Back to Notes", "secondary", "bookOpen")}`
     })}
     <section class="section">
       <div class="container">
@@ -3427,7 +3447,7 @@ function renderProgress() {
             <div class="progress-bar" style="margin-top:16px;margin-bottom:20px">
               <span style="width:${progress.percent}%"></span>
             </div>
-            ${buttonLink("#/courses", "Continue Studying", "primary", "arrowRight")}
+            ${buttonLink("/courses", "Continue Studying", "primary", "arrowRight")}
           </div>
         </div>
 
@@ -3460,7 +3480,7 @@ function renderProgress() {
         ${saved.length ? `
           <div class="section-head slim-head" style="margin-top:48px">
             <div><h2>Saved Bookmarks</h2><p>Your bookmarked topics and lessons for quick return.</p></div>
-            ${buttonLink("#/notes", "All Notes", "secondary", "bookOpen")}
+            ${buttonLink("/notes", "All Notes", "secondary", "bookOpen")}
           </div>
           <div class="saved-grid">
             ${saved.slice(0, 6).map((item) => `
@@ -3505,11 +3525,11 @@ function renderNotes() {
   };
 
   const tools = [
-    { href: "#/flashcards", iconName: "bookOpen", label: "Flashcards", desc: "Active recall" },
-    { href: "#/dictionary", iconName: "fileText", label: "Dictionary", desc: `${dictionaryCount} terms` },
-    { href: "#/quiz", iconName: "helpCircle", label: "Quizzes", desc: "Self-test" },
-    { href: "#/search", iconName: "search", label: "Search Notes", desc: "Find anything" },
-    { href: "#/careers", iconName: "briefcaseMedical", label: "Careers", desc: "Jobs & CPD" }
+    { href: "/flashcards", iconName: "bookOpen", label: "Flashcards", desc: "Active recall" },
+    { href: "/dictionary", iconName: "fileText", label: "Dictionary", desc: `${dictionaryCount} terms` },
+    { href: "/quiz", iconName: "helpCircle", label: "Quizzes", desc: "Self-test" },
+    { href: "/search", iconName: "search", label: "Search Notes", desc: "Find anything" },
+    { href: "/careers", iconName: "briefcaseMedical", label: "Careers", desc: "Jobs & CPD" }
   ];
 
   return `
@@ -3517,7 +3537,7 @@ function renderNotes() {
       title: "Nursing Notes for Uganda Students",
       body: "Structured nursing and midwifery notes, curriculum maps and revision resources for Uganda students.",
       image: imageCatalog.heroNurse,
-      actions: `${buttonLink("#/courses", "Open Courses", "primary", "graduationCap")}${buttonLink("#/resources", "Open Resources", "secondary", "folderOpen")}`,
+      actions: `${buttonLink("/courses", "Open Courses", "primary", "graduationCap")}${buttonLink("/resources", "Open Resources", "secondary", "folderOpen")}`,
       cues: [`${programmeCount || 7} Programmes`, `${totals.courseUnits || 95}+ Topics`, "Free & Offline"]
     })}
     <div class="hero-stats-bar">
@@ -3554,7 +3574,7 @@ function renderNotes() {
             <h2>${last ? escapeHtml(last.title) : "Start Your First Lesson"}</h2>
             <p>${last ? `${escapeHtml(last.programme)} - ${escapeHtml(last.unit)}` : "Open any course lesson and Nursing Uganda will remember where you stopped."}</p>
           </div>
-          ${buttonLink(last ? last.href : "#/courses", last ? "Resume Lesson" : "Open Courses", "primary", last ? "bookOpen" : "graduationCap")}
+          ${buttonLink(last ? last.href : "/courses", last ? "Resume Lesson" : "Open Courses", "primary", last ? "bookOpen" : "graduationCap")}
         </article>
         <article class="continue-card content-panel">
           <div class="progress-ring-wrap">
@@ -3581,7 +3601,7 @@ function renderNotes() {
           <strong>${streak.count || 0}</strong>
           <em>Day Streak</em>
           <p class="momentum-sub">${progress.done} topic${progress.done !== 1 ? "s" : ""} studied${masteryCount > 0 ? ` · ${masteryCount} mastered` : ""}</p>
-          <a class="momentum-link" href="#/flashcards">${icon("bookOpen")}<span>Flashcards</span></a>
+          <a class="momentum-link" href="/flashcards">${icon("bookOpen")}<span>Flashcards</span></a>
         </article>
       </div>
     </section>
@@ -3615,7 +3635,7 @@ function renderNotes() {
             <h2>Choose A Subject</h2>
             <p>Start from the subject area you want to revise, then move into the mapped course units and topics.</p>
           </div>
-          <a class="section-head-link" href="#/search" data-search-seed="research nursing">${icon("search")}<span>Search all notes</span></a>
+          <a class="section-head-link" href="/search" data-search-seed="research nursing">${icon("search")}<span>Search all notes</span></a>
         </div>
         <div class="grid subject-grid">
           ${subjects.map((subject) => {
@@ -3633,7 +3653,7 @@ function renderNotes() {
                 <div class="subject-progress-bar"><span style="width:${sp.pct}%"></span></div>
                 <small class="subject-progress-label">${sp.done} of ${subject.topicCount} topics done</small>
                 <div class="subject-action">
-                  ${subject.first ? `<a class="subject-explore-link" href="#/courses/${subject.first.programme.id}/${subject.first.unit.id}"><span>Explore</span>${icon("arrowRight")}</a>` : `<span class="subject-explore-link is-muted">${icon("clock")}<span>Coming soon</span></span>`}
+                  ${subject.first ? `<a class="subject-explore-link" href="/courses/${subject.first.programme.id}/${subject.first.unit.id}"><span>Explore</span>${icon("arrowRight")}</a>` : `<span class="subject-explore-link is-muted">${icon("clock")}<span>Coming soon</span></span>`}
                 </div>
               </article>
             `;
@@ -3649,11 +3669,11 @@ function renderNotes() {
             <h2>Research & Reading Notes</h2>
             <p>Use these source-linked routes when you want more than a quick definition.</p>
           </div>
-          <a class="section-head-link" href="#/resources/books">${icon("bookOpen")}<span>Open library</span></a>
+          <a class="section-head-link" href="/resources/books">${icon("bookOpen")}<span>Open library</span></a>
         </div>
         <div class="notes-research-grid">
           ${researchCards.map((item) => `
-            <a class="notes-research-card" href="#/search" data-search-seed="${escapeHtml(item.search)}">
+            <a class="notes-research-card" href="/search" data-search-seed="${escapeHtml(item.search)}">
               <span>${icon(item.iconName)}</span>
               <div>
                 <strong>${escapeHtml(item.title)}</strong>
@@ -3674,9 +3694,9 @@ function renderNotes() {
             <p>Use flashcards for active recall, test yourself with quizzes, or explore the full medical dictionary.</p>
           </div>
           <div class="home-cta-actions">
-            ${buttonLink("#/flashcards", "Open Flashcards", "primary", "bookOpen")}
-            ${buttonLink("#/quiz", "Take a Quiz", "secondary", "helpCircle")}
-            ${buttonLink("#/dictionary", "Dictionary", "secondary", "search")}
+            ${buttonLink("/flashcards", "Open Flashcards", "primary", "bookOpen")}
+            ${buttonLink("/quiz", "Take a Quiz", "secondary", "helpCircle")}
+            ${buttonLink("/dictionary", "Dictionary", "secondary", "search")}
           </div>
         </div>
       </div>
@@ -3709,7 +3729,7 @@ function renderGlobalSearchPage() {
               <p>Try a disease, body system, nursing procedure, medicine group, school, dictionary term or instrument.</p>
             </div>
             <div class="search-chip-row">
-              ${searchStarterChips().map(([seed, label]) => `<a href="#/search" data-search-seed="${escapeHtml(seed)}">${escapeHtml(label)}</a>`).join("")}
+              ${searchStarterChips().map(([seed, label]) => `<a href="/search" data-search-seed="${escapeHtml(seed)}">${escapeHtml(label)}</a>`).join("")}
             </div>
           </div>
         ` : `
@@ -3739,7 +3759,7 @@ function renderGlobalSearchPage() {
                 <p>${filterLimited ? `${allResults.length} result${allResults.length === 1 ? "" : "s"} matched "${escapeHtml(query)}" before filters. Clear filters to see them.` : "Try a shorter word, a broader clinical term, or one of the suggested searches below."}</p>
                 ${filterLimited ? `<button class="button secondary" type="button" data-search-clear-filters>${buttonLabel("Search all categories", "search")}</button>` : `
                   <div class="search-chip-row">
-                    ${searchStarterChips().slice(0, 4).map(([seed, label]) => `<a href="#/search" data-search-seed="${escapeHtml(seed)}">${escapeHtml(label)}</a>`).join("")}
+                    ${searchStarterChips().slice(0, 4).map(([seed, label]) => `<a href="/search" data-search-seed="${escapeHtml(seed)}">${escapeHtml(label)}</a>`).join("")}
                   </div>
                 `}
               </div>
@@ -3847,7 +3867,7 @@ function programmeCard(programme) {
     ["Topics", programme.stats.topicCount || 0]
   ];
   return `
-    <a class="card programme-card" href="#/courses/${programme.id}">
+    <a class="card programme-card" href="/courses/${programme.id}">
       <span class="programme-art">
         <img src="${escapeHtml(displayImageSrc(visual.src))}" alt="${escapeHtml(visual.alt || programme.label)}" loading="lazy">
         <span class="programme-art-badge" aria-hidden="true">${iconFor(programme.label)}</span>
@@ -3916,7 +3936,7 @@ function renderCourses() {
       title: "Courses and Curriculum Maps",
       body: "Browse nursing and midwifery programmes, years, semesters and course units. Topic maps help you move from curriculum to focused revision.",
       image: imageCatalog.curriculum,
-      actions: buttonLink("#/courses/curriculum", "View all maps", "primary", "listChecks"),
+      actions: buttonLink("/courses/curriculum", "View all maps", "primary", "listChecks"),
       cues: ["Browse by programme", "Semester pathways", "Topic-linked revision"],
       stats: [
         ["Programmes", state.data.totals.programmes, "graduationCap"],
@@ -3955,7 +3975,7 @@ function renderSearchResults(results) {
     </div>
     <div class="unit-grid">
       ${results.map(({ programme, unit }) => `
-        <a class="unit-card" href="#/courses/${programme.id}/${unit.id}">
+        <a class="unit-card" href="/courses/${programme.id}/${unit.id}">
           <span class="unit-code">${escapeHtml(unit.code || "Unit")}</span>
           <h3>${escapeHtml(unit.title)}</h3>
           <p>${escapeHtml(programme.label)} - Year ${unit.year}, Semester ${unit.semester}</p>
@@ -3994,16 +4014,16 @@ function renderProgramme(programme) {
       image: imageFor(programme.label),
       breadcrumb: `
         <nav class="hero-breadcrumb" aria-label="Breadcrumb">
-          <a href="#/courses">Courses</a>
+          <a href="/courses">Courses</a>
           <span>${icon("arrowRight")}</span>
-          <a href="#/courses">${escapeHtml(programmeType)}</a>
+          <a href="/courses">${escapeHtml(programmeType)}</a>
           <span>${icon("arrowRight")}</span>
           <strong>${escapeHtml(programme.label)}</strong>
         </nav>
       `,
       actions: firstYearKey ? `
         <button class="button primary" type="button" data-scroll-target="${escapeHtml(firstYearKey)}">${buttonLabel("View Year 1", "arrowRight")}</button>
-        <a class="button secondary" href="#/courses">${buttonLabel("All Programmes", "graduationCap")}</a>
+        <a class="button secondary" href="/courses">${buttonLabel("All Programmes", "graduationCap")}</a>
       ` : "",
       cues: [
         `${programme.stats.yearCount} Years`,
@@ -4070,7 +4090,7 @@ function renderProgramme(programme) {
                   </div>
                   <div class="unit-grid">
                     ${semester.courseUnits.map((unit) => `
-                      <a class="unit-card curriculum-unit-card" href="#/courses/${programme.id}/${unit.id}">
+                      <a class="unit-card curriculum-unit-card" href="/courses/${programme.id}/${unit.id}">
                         <div class="unit-card-head">
                           <span class="unit-code">${escapeHtml(unit.code || "Unit")}</span>
                           <span class="unit-status">${unit.topicCount ? "Ready" : "Pending topics"}</span>
@@ -4259,7 +4279,7 @@ function renderUnit(programme, unit) {
             <span>Course</span>
             <strong>${escapeHtml(courseTitle)}</strong>
           </div>
-          <a href="#/courses/${programme.id}">${icon("arrowLeft")}<span>Back to programme</span></a>
+          <a href="/courses/${programme.id}">${icon("arrowLeft")}<span>Back to programme</span></a>
           ${topics.length ? `<a class="sidebar-primary-action" href="${topicHref(programme, unit, topics[0].groupIndex, topics[0].topicIndex)}">${icon("bookOpen")}<span>Start first lesson</span></a>` : ""}
           <div class="progress-panel">
             <div class="progress-ring-wrap-inner">
@@ -4866,7 +4886,7 @@ function renderLessonSidebar(programme, unit, topic, previous, next, complete, p
         <span class="lesson-sidebar-label">Lesson Navigation</span>
         ${previous ? `<a href="${topicHref(programme, unit, previous.groupIndex, previous.topicIndex)}"><span aria-hidden="true">${icon("arrowLeft")}</span>Previous lesson</a>` : `<button type="button" disabled><span aria-hidden="true">${icon("arrowLeft")}</span>Previous lesson</button>`}
         ${next ? `<a href="${topicHref(programme, unit, next.groupIndex, next.topicIndex)}"><span aria-hidden="true">${icon("arrowRight")}</span>Next lesson</a>` : `<button type="button" disabled><span aria-hidden="true">${icon("arrowRight")}</span>Next lesson</button>`}
-        <a href="#/courses/${programme.id}/${unit.id}"><span aria-hidden="true">${icon("arrowLeft")}</span>Back to course</a>
+        <a href="/courses/${programme.id}/${unit.id}"><span aria-hidden="true">${icon("arrowLeft")}</span>Back to course</a>
       </section>
       <section>
         <span class="lesson-sidebar-label">Quick Actions</span>
@@ -5102,7 +5122,7 @@ function renderTopic(programme, unit, topic) {
         <nav class="lesson-bottom-actions" aria-label="Lesson navigation">
           ${previous ? buttonLink(topicHref(programme, unit, previous.groupIndex, previous.topicIndex), "Previous Lesson", "secondary", "arrowLeft") : `<span></span>`}
           <button class="button secondary" type="button" data-print-topic>${buttonLabel("Print / Save PDF", "printer")}</button>
-          ${next ? buttonLink(topicHref(programme, unit, next.groupIndex, next.topicIndex), "Next Lesson", "primary", "arrowRight") : buttonLink(`#/courses/${programme.id}/${unit.id}`, "Back to Course", "secondary", "arrowLeft")}
+          ${next ? buttonLink(topicHref(programme, unit, next.groupIndex, next.topicIndex), "Next Lesson", "primary", "arrowRight") : buttonLink(`/courses/${programme.id}/${unit.id}`, "Back to Course", "secondary", "arrowLeft")}
         </nav>
       </main>
       ${renderLessonToc(lesson, false, topic, unit, programme)}
@@ -5146,7 +5166,7 @@ function resourceCards() {
     {
       title: "Digital Library",
       body: "Curated nursing and medical book sources matched to course topics.",
-      href: "#/resources/books",
+      href: "/resources/books",
       category: "Reference",
       icon: "bookOpen",
       accent: "library",
@@ -5158,7 +5178,7 @@ function resourceCards() {
     {
       title: "Past Papers",
       body: "Exam practice grouped by programme and course unit.",
-      href: "#/resources/past-papers",
+      href: "/resources/past-papers",
       category: "Exam Prep",
       icon: "fileText",
       accent: "papers",
@@ -5170,7 +5190,7 @@ function resourceCards() {
     {
       title: "Quizzes",
       body: "MCQs for notes, course units and topic revision.",
-      href: "#/resources/quizzes",
+      href: "/resources/quizzes",
       category: "Exam Prep",
       icon: "helpCircle",
       accent: "quizzes",
@@ -5182,7 +5202,7 @@ function resourceCards() {
     {
       title: "Licensing",
       body: "UNMC, CPD and renewal guidance for professional requirements.",
-      href: "#/resources/licensing",
+      href: "/resources/licensing",
       category: "Licensing",
       icon: "badgeCheck",
       accent: "licensing",
@@ -5194,7 +5214,7 @@ function resourceCards() {
     {
       title: "Medical Instruments",
       body: "Common nursing and midwifery instruments with use, handling and revision notes.",
-      href: "#/resources/medical-instruments",
+      href: "/resources/medical-instruments",
       category: "Reference",
       icon: "stethoscope",
       accent: "instruments",
@@ -5206,7 +5226,7 @@ function resourceCards() {
     {
       title: "Schools",
       body: "A directory of recognized nursing and midwifery schools.",
-      href: "#/resources/schools",
+      href: "/resources/schools",
       category: "Career Support",
       icon: "school",
       accent: "schools",
@@ -5218,7 +5238,7 @@ function resourceCards() {
     {
       title: "Student Support",
       body: "Study planning, placement preparation and career guidance.",
-      href: "#/resources/student-support",
+      href: "/resources/student-support",
       category: "Career Support",
       icon: "heartPulse",
       accent: "support",
@@ -5230,7 +5250,7 @@ function resourceCards() {
     {
       title: "Image Review",
       body: "Review topic image matches, confidence levels and unmatched topics.",
-      href: "#/resources/image-review",
+      href: "/resources/image-review",
       category: "Reference",
       icon: "search",
       accent: "review",
@@ -5422,7 +5442,7 @@ function renderBookLibrary() {
       title: "Digital Library",
       body: "Curated nursing and medical book sources matched to anatomy, pharmacology, midwifery, child health, community health and clinical skills revision.",
       image: imageCatalog.curriculum,
-      actions: `${buttonLink("#/resources", "Back to Resources", "secondary", "arrowLeft")}${buttonLink(library.source.medical_url, "Open InfoBooks", "primary", "externalLink", `target="_blank" rel="noopener noreferrer"`)}`
+      actions: `${buttonLink("/resources", "Back to Resources", "secondary", "arrowLeft")}${buttonLink(library.source.medical_url, "Open InfoBooks", "primary", "externalLink", `target="_blank" rel="noopener noreferrer"`)}`
     })}
     <section class="section">
       <div class="container">
@@ -5531,7 +5551,7 @@ function imageReviewRows() {
       { id: topicUrlParts[1] },
       topicUrlParts[2],
       topicUrlParts[3]
-    ) : "#/resources/image-review";
+    ) : "/resources/image-review";
     const decision = imageReviewDecision(entry.topic_key);
 
     rows.push({
@@ -5556,7 +5576,7 @@ function imageReviewRows() {
       { id: topicUrlParts[1] },
       topicUrlParts[2],
       topicUrlParts[3]
-    ) : "#/resources/image-review";
+    ) : "/resources/image-review";
     const decision = imageReviewDecision(entry.topic_key);
 
     rows.push({
@@ -5692,7 +5712,7 @@ function renderImageReview() {
       title: "Image Review",
       body: "Check topic images before they become part of the final student experience.",
       image: imageCatalog.schools,
-      actions: buttonLink("#/resources", "Back to Resources", "secondary", "arrowLeft")
+      actions: buttonLink("/resources", "Back to Resources", "secondary", "arrowLeft")
     })}
     <section class="section">
       <div class="container">
@@ -5774,7 +5794,7 @@ function renderResourceDetail(page) {
     type: "Resource",
     title: page.title,
     context: "Resources",
-    href: `#/resources/${page.slug}`
+    href: `/resources/${page.slug}`
   };
 
   return `
@@ -5782,7 +5802,7 @@ function renderResourceDetail(page) {
       title: page.title,
       body: page.body,
       image: imageFor(page.title),
-      actions: `${buttonLink("#/resources", "Back to Resources", "secondary", "arrowLeft")}${bookmarkButton(resourceBookmark)}`
+      actions: `${buttonLink("/resources", "Back to Resources", "secondary", "arrowLeft")}${bookmarkButton(resourceBookmark)}`
     })}
     <section class="section">
       <div class="container">
@@ -5980,7 +6000,7 @@ function renderCareerHero() {
     <section class="careers-hero">
       <div class="container careers-hero-inner">
         <nav class="careers-breadcrumb" aria-label="Breadcrumb">
-          <a href="#/notes">Home</a><span>${icon("arrowRight")}</span><strong>Careers & Jobs</strong>
+          <a href="/notes">Home</a><span>${icon("arrowRight")}</span><strong>Careers & Jobs</strong>
         </nav>
         <h1>Nursing Careers & Jobs</h1>
         <p>Internships, graduate positions, senior roles and international opportunities for Uganda nursing and midwifery professionals.</p>
@@ -6032,7 +6052,7 @@ function renderCareerJobCard(job) {
         ${careerAvatar(job.employer)}
         <div>
           <button type="button" data-career-job-open="${escapeHtml(job.id)}">${escapeHtml(job.title)}</button>
-          <a href="#/careers" data-career-employer="${escapeHtml(job.employer)}">${escapeHtml(job.employer)}</a>
+          <a href="/careers" data-career-employer="${escapeHtml(job.employer)}">${escapeHtml(job.employer)}</a>
         </div>
       </header>
       <div class="career-job-meta">
@@ -6172,7 +6192,7 @@ function renderEmployerSpotlight() {
               <p>${escapeHtml(employer.location)} · ${escapeHtml(employer.type)}</p>
               <div class="career-badge-row">${employer.roles.map((role) => careerBadge(role, "speciality")).join("")}</div>
               ${employer.hiring ? `<span class="hiring-badge">${icon("badgeCheck")} Currently Hiring</span>` : ""}
-              <a href="#/careers">View Jobs ${icon("arrowRight")}</a>
+              <a href="/careers">View Jobs ${icon("arrowRight")}</a>
             </article>
           `).join("")}
         </div>
@@ -6344,7 +6364,7 @@ function renderInternationalGuides() {
               </div>
               <div class="country-requirements"><strong>Requirements:</strong>${requirements.map((item) => `<span>${icon("checkCircle")} ${escapeHtml(item)}</span>`).join("")}</div>
               <div class="country-rating"><span>${"●".repeat(difficulty)}${"○".repeat(5 - difficulty)}</span><em>${difficulty > 3 ? "Challenging" : difficulty > 2 ? "Moderate" : "Accessible"}</em><strong>${escapeHtml(timeline)}</strong></div>
-              <a href="#/careers">View Full Guide ${icon("arrowRight")}</a>
+              <a href="/careers">View Full Guide ${icon("arrowRight")}</a>
             </article>
           `).join("")}
         </div>
@@ -6449,11 +6469,11 @@ function dictionaryDifficulties() {
 
 function dictionaryLessonLinks() {
   return {
-    "lesson-1": { title: "Terms Used in Anatomy and Physiology", course: "Anatomy and Physiology 1", href: "#/courses/certificate-in-nursing/anatomy-and-physiology-1/terms-used-in-anatomy-and-physiology" },
-    "lesson-2": { title: "Human Body Organization", course: "Anatomy and Physiology 1", href: "#/courses/certificate-in-nursing/anatomy-and-physiology-1/human-body-organization" },
-    "lesson-3": { title: "Body Fluids, Transport and Homeostasis", course: "Anatomy and Physiology 1", href: "#/courses/certificate-in-nursing/anatomy-and-physiology-1/body-fluids-transport-and-homeostasis" },
-    "lesson-7": { title: "Blood and Its Composition", course: "Anatomy and Physiology 1", href: "#/courses/certificate-in-nursing/anatomy-and-physiology-1/blood-and-its-composition" },
-    "lesson-8": { title: "Cardiovascular System", course: "Anatomy and Physiology 1", href: "#/courses/certificate-in-nursing/anatomy-and-physiology-1/cardiovascular-system" }
+    "lesson-1": { title: "Terms Used in Anatomy and Physiology", course: "Anatomy and Physiology 1", href: "/courses/certificate-in-nursing/anatomy-and-physiology-1/terms-used-in-anatomy-and-physiology" },
+    "lesson-2": { title: "Human Body Organization", course: "Anatomy and Physiology 1", href: "/courses/certificate-in-nursing/anatomy-and-physiology-1/human-body-organization" },
+    "lesson-3": { title: "Body Fluids, Transport and Homeostasis", course: "Anatomy and Physiology 1", href: "/courses/certificate-in-nursing/anatomy-and-physiology-1/body-fluids-transport-and-homeostasis" },
+    "lesson-7": { title: "Blood and Its Composition", course: "Anatomy and Physiology 1", href: "/courses/certificate-in-nursing/anatomy-and-physiology-1/blood-and-its-composition" },
+    "lesson-8": { title: "Cardiovascular System", course: "Anatomy and Physiology 1", href: "/courses/certificate-in-nursing/anatomy-and-physiology-1/cardiovascular-system" }
   };
 }
 
@@ -6639,7 +6659,7 @@ function renderDictionaryHero(showSearch = true) {
           ${state.dictionarySearch ? `
             <div class="dictionary-search-results" role="listbox" aria-label="Dictionary search results">
               ${suggestions.length ? suggestions.map((term) => `
-                <a href="#/dictionary/${escapeHtml(term.slug)}" class="dictionary-search-result">
+                <a href="/dictionary/${escapeHtml(term.slug)}" class="dictionary-search-result">
                   <strong>${escapeHtml(term.term)}</strong>
                   ${dictionaryBadge(term.category)}
                   <span>${escapeHtml(term.simpleDefinition)}</span>
@@ -6654,7 +6674,7 @@ function renderDictionaryHero(showSearch = true) {
               `}
             </div>
           ` : ""}
-        </form>` : `<div class="dictionary-hero-card"><strong>A-Z abbreviations</strong><span>Quick lookup for ward reports, observations and exam notes.</span><a href="#/dictionary">Search full dictionary</a></div>`}
+        </form>` : `<div class="dictionary-hero-card"><strong>A-Z abbreviations</strong><span>Quick lookup for ward reports, observations and exam notes.</span><a href="/dictionary">Search full dictionary</a></div>`}
       </div>
     </section>
   `;
@@ -6721,7 +6741,7 @@ function renderDictionaryAlphabetNav(terms) {
 
 function renderDictionaryTermRow(term) {
   return `
-    <a class="dictionary-term-row" href="#/dictionary/${escapeHtml(term.slug)}">
+    <a class="dictionary-term-row" href="/dictionary/${escapeHtml(term.slug)}">
       <span>
         <strong>${escapeHtml(term.term)}</strong>
         <small>${escapeHtml(term.simpleDefinition)}</small>
@@ -6748,7 +6768,7 @@ function renderDictionaryListing(parts = currentRoute()) {
           <span>Showing ${terms.length} terms</span>
           <span>${categoryCount} in Anatomy</span>
           <span>Updated weekly</span>
-          <a href="#/dictionary/abbreviations">Open abbreviations</a>
+          <a href="/dictionary/abbreviations">Open abbreviations</a>
         </div>
         ${renderDictionaryAlphabetNav(terms)}
         ${terms.length ? `
@@ -6778,14 +6798,14 @@ function renderDictionarySidebar(term) {
     <aside class="dictionary-term-sidebar">
       <div class="dictionary-side-block">
         <span class="mini-label">Dictionary</span>
-        <a href="#/dictionary">All terms</a>
-        <a href="#/dictionary/abbreviations">Abbreviations</a>
-        <a href="#/dictionary/category/${escapeHtml(slugify(term.category))}">${escapeHtml(term.category)}</a>
-        <a href="#/dictionary/system/${escapeHtml(slugify(term.bodySystem))}">${escapeHtml(term.bodySystem)}</a>
+        <a href="/dictionary">All terms</a>
+        <a href="/dictionary/abbreviations">Abbreviations</a>
+        <a href="/dictionary/category/${escapeHtml(slugify(term.category))}">${escapeHtml(term.category)}</a>
+        <a href="/dictionary/system/${escapeHtml(slugify(term.bodySystem))}">${escapeHtml(term.bodySystem)}</a>
       </div>
       <div class="dictionary-side-block">
         <span class="mini-label">Related Terms</span>
-        ${related.length ? related.map((item) => `<a href="#/dictionary/${escapeHtml(item.slug)}">${escapeHtml(item.term)}</a>`).join("") : `<p>No related terms yet.</p>`}
+        ${related.length ? related.map((item) => `<a href="/dictionary/${escapeHtml(item.slug)}">${escapeHtml(item.term)}</a>`).join("") : `<p>No related terms yet.</p>`}
       </div>
     </aside>
   `;
@@ -6832,7 +6852,7 @@ function renderDictionaryTermPage(slug) {
         ${renderDictionarySidebar(term)}
         <article class="dictionary-term-main">
           <header class="dictionary-term-hero">
-            <nav><a href="#/dictionary">Dictionary</a><span>/</span><a href="#/dictionary/category/${escapeHtml(slugify(term.category))}">${escapeHtml(term.category)}</a><span>/</span><strong>${escapeHtml(term.term)}</strong></nav>
+            <nav><a href="/dictionary">Dictionary</a><span>/</span><a href="/dictionary/category/${escapeHtml(slugify(term.category))}">${escapeHtml(term.category)}</a><span>/</span><strong>${escapeHtml(term.term)}</strong></nav>
             ${term.pronunciation ? `<p class="dictionary-pronunciation">${escapeHtml(term.pronunciation)} <button type="button" aria-label="Audio pronunciation unavailable">${icon("activity")}</button></p>` : ""}
             <h1>${escapeHtml(term.term)}</h1>
             <span class="dictionary-part">${escapeHtml(term.partOfSpeech)}</span>
@@ -6851,7 +6871,7 @@ function renderDictionaryTermPage(slug) {
             ${renderDictionaryDetailSection("related-terms", 6, "Related Terms", related.length ? `
               <div class="related-term-grid">
                 ${related.map((item) => `
-                  <a href="#/dictionary/${escapeHtml(item.slug)}">
+                  <a href="/dictionary/${escapeHtml(item.slug)}">
                     <strong>${escapeHtml(item.term)}</strong>
                     <span>${escapeHtml(item.simpleDefinition)}</span>
                     <em>${icon("arrowRight")}</em>
@@ -6955,11 +6975,11 @@ function renderSchoolsDirectory() {
     <section class="schools-hero schools-hero-with-image" style="--schools-hero-image: url('${escapeHtml(heroImageSrc)}')">
       <div class="container schools-hero-grid">
         <div class="schools-hero-copy">
-          <nav class="schools-breadcrumb" aria-label="Breadcrumb"><a href="#/resources">Resources</a><span>/</span><strong>Schools Directory</strong></nav>
+          <nav class="schools-breadcrumb" aria-label="Breadcrumb"><a href="/resources">Resources</a><span>/</span><strong>Schools Directory</strong></nav>
           <h1>Schools Directory</h1>
           <p>Find UNMC-recognized nursing and midwifery training institutions by district, programme type and registration status.</p>
           <div class="schools-hero-actions">
-            <a href="#/resources">${icon("arrowLeft")}Back to Resources</a>
+            <a href="/resources">${icon("arrowLeft")}Back to Resources</a>
             <a href="https://unmc.ug/recognized-schools/" target="_blank" rel="noopener">${icon("externalLink")}Check UNMC Source</a>
           </div>
         </div>
@@ -7196,7 +7216,7 @@ function filteredMedicalInstruments() {
 function renderInstrumentAtlasCard(instrument, compact = false) {
   const image = instrumentImageFor(instrument);
   return `
-    <a class="instrument-atlas-card${compact ? " compact" : ""}" href="#/resources/medical-instruments/${escapeHtml(instrument.slug)}">
+    <a class="instrument-atlas-card${compact ? " compact" : ""}" href="/resources/medical-instruments/${escapeHtml(instrument.slug)}">
       <figure>
         <img src="${escapeHtml(displayImageSrc(image.src))}" alt="${escapeHtml(image.alt)}" loading="lazy">
       </figure>
@@ -7225,7 +7245,7 @@ function renderMedicalInstruments() {
       title: "Medical Instruments",
       body: `A practical guide to ${instruments.length} nursing and midwifery instruments, their uses, images and safe handling points.`,
       image: imageCatalog.instruments,
-      actions: buttonLink("#/resources", "Back to Resources", "secondary", "arrowLeft")
+      actions: buttonLink("/resources", "Back to Resources", "secondary", "arrowLeft")
     })}
     <section class="instrument-atlas-section">
       <div class="container">
@@ -7280,7 +7300,7 @@ function renderMedicalInstruments() {
                   </summary>
                   <p>${escapeHtml(category.body)}</p>
                   <div>
-                    ${category.items.slice(0, 10).map((item) => `<a href="#/resources/medical-instruments/${escapeHtml(item.slug)}">${escapeHtml(item.name)}</a>`).join("")}
+                    ${category.items.slice(0, 10).map((item) => `<a href="/resources/medical-instruments/${escapeHtml(item.slug)}">${escapeHtml(item.name)}</a>`).join("")}
                     ${category.items.length > 10 ? `<button type="button" data-instrument-category-jump="${escapeHtml(category.title)}">${icon("search")}Show all ${category.items.length}</button>` : ""}
                   </div>
                 </details>
@@ -7384,7 +7404,7 @@ function renderMedicalInstrumentDetail(instrument) {
     type: "Instrument",
     title: instrument.name,
     context: instrument.category,
-    href: `#/resources/medical-instruments/${instrument.slug}`
+    href: `/resources/medical-instruments/${instrument.slug}`
   };
 
   return `
@@ -7392,14 +7412,14 @@ function renderMedicalInstrumentDetail(instrument) {
       title: instrument.name,
       body: `${instrument.category}. Revise the use, preparation and safety points for clinical practice and OSCEs.`,
       image: instrumentImage,
-      actions: `${buttonLink("#/resources/medical-instruments", "Back to Instruments", "secondary", "arrowLeft")}${bookmarkButton(instrumentBookmark)}`
+      actions: `${buttonLink("/resources/medical-instruments", "Back to Instruments", "secondary", "arrowLeft")}${bookmarkButton(instrumentBookmark)}`
     })}
     <section class="section">
       <div class="container app-layout instrument-detail-shell">
         <aside class="side-panel instrument-note-rail">
           <span class="mini-label">Study Route</span>
           <h3>Instrument Notes</h3>
-          <a href="#/resources/medical-instruments">${icon("stethoscope")}<span>All instruments</span></a>
+          <a href="/resources/medical-instruments">${icon("stethoscope")}<span>All instruments</span></a>
           <button type="button" data-scroll-target="instrument-use">${icon("activity")}<span>Use</span></button>
           <button type="button" data-scroll-target="instrument-preparation">${icon("clipboardList")}<span>Preparation</span></button>
           <button type="button" data-scroll-target="instrument-safety">${icon("badgeCheck")}<span>Safety</span></button>
@@ -7454,7 +7474,7 @@ function renderMedicalInstrumentDetail(instrument) {
                 ${related.map((item) => {
                   const image = instrumentImageFor(item);
                   return `
-                    <a class="instrument-mini-card compact" href="#/resources/medical-instruments/${escapeHtml(item.slug)}">
+                    <a class="instrument-mini-card compact" href="/resources/medical-instruments/${escapeHtml(item.slug)}">
                       <img src="${escapeHtml(displayImageSrc(image.src))}" alt="${escapeHtml(image.alt)}" loading="lazy">
                       <span>
                         <strong>${escapeHtml(item.name)}</strong>
@@ -7634,8 +7654,8 @@ function notFound() {
           <h1>This page doesn't exist yet</h1>
           <p>The link may be incorrect, or this content is still being built. Head back to study notes or search for what you need.</p>
           <div class="not-found-actions">
-            ${buttonLink("#/notes", "Back to Notes", "primary", "bookOpen")}
-            ${buttonLink("#/search", "Search", "secondary", "search")}
+            ${buttonLink("/notes", "Back to Notes", "primary", "bookOpen")}
+            ${buttonLink("/search", "Search", "secondary", "search")}
           </div>
         </div>
       </div>
@@ -7767,7 +7787,7 @@ function render() {
         const topic = findTopic(unit, parts[4], parts[5]);
         if (topic) {
           const canonicalHref = topicHref(programme, unit, topic.groupIndex, topic.topicIndex);
-          if (window.location.hash !== canonicalHref) history.replaceState(null, "", canonicalHref);
+          if (window.location.pathname !== canonicalHref) history.replaceState(null, "", canonicalHref);
         }
         content = topic ? renderTopic(programme, unit, topic) : notFound();
         if (topic) {
@@ -7823,7 +7843,7 @@ function render() {
     globalSearch.addEventListener("input", (event) => {
       state.globalSearch = event.target.value;
       if (currentRoute()[0] !== "search") {
-        window.location.hash = "#/search";
+        setRoute("/search");
         return;
       }
       render();
@@ -7867,8 +7887,7 @@ function render() {
   app.querySelectorAll("[data-global-search-form]").forEach((form) => {
     form.addEventListener("submit", (event) => {
       event.preventDefault();
-      window.location.hash = "#/search";
-      render();
+      setRoute("/search");
     });
   });
 
@@ -7878,7 +7897,7 @@ function render() {
       state.globalSearch = link.dataset.searchSeed || "";
       state.globalSearchCategory = "all";
       state.globalSearchType = "all";
-      window.location.hash = "#/search";
+      setRoute("/search");
       render();
     });
   });
@@ -8192,7 +8211,7 @@ function render() {
   app.querySelectorAll("[data-career-mode]").forEach((button) => {
     button.addEventListener("click", () => {
       state.careerMode = button.dataset.careerMode === "hub" ? "hub" : "jobs";
-      if (currentRoute()[0] !== "careers") window.location.hash = "#/careers";
+      if (currentRoute()[0] !== "careers") { setRoute("/careers"); return; }
       render();
       requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: "smooth" }));
     });
@@ -8649,7 +8668,7 @@ function renderFlashcards() {
   return `
     <section class="fc-hero">
       <div class="container">
-        <nav class="fc-breadcrumb"><a href="#/dictionary">Dictionary</a><span>${icon("arrowRight")}</span><strong>Flashcards</strong></nav>
+        <nav class="fc-breadcrumb"><a href="/dictionary">Dictionary</a><span>${icon("arrowRight")}</span><strong>Flashcards</strong></nav>
         <div class="fc-hero-head">
           <div>
             <h1>${icon("sparkles")} Flashcard Study</h1>
@@ -8695,7 +8714,7 @@ function renderFlashcards() {
           ${state.flashcardFlipped && card.relatedTerms?.length ? `
             <div class="fc-related">
               <span>Related terms:</span>
-              ${card.relatedTerms.slice(0, 4).map((slug) => `<a href="#/dictionary/${escapeHtml(slug)}">${escapeHtml(slug.replace(/-/g, " "))}</a>`).join("")}
+              ${card.relatedTerms.slice(0, 4).map((slug) => `<a href="/dictionary/${escapeHtml(slug)}">${escapeHtml(slug.replace(/-/g, " "))}</a>`).join("")}
             </div>
           ` : ""}
         ` : `
@@ -8984,7 +9003,7 @@ async function init() {
     state.bookLibrary = bookResponse.ok ? await bookResponse.json() : bookLibrary();
     state.medicalInstrumentLibrary = instrumentResponse.ok ? await instrumentResponse.json() : null;
     setupMonetization();
-    if (!window.location.hash) window.location.hash = "#/notes";
+    if (window.location.pathname === "/" || window.location.pathname === "") history.replaceState(null, "", "/notes");
     render();
     scrollPageToTop();
     setupOfflineBanner();
@@ -8995,18 +9014,29 @@ async function init() {
   }
 }
 
-window.addEventListener("hashchange", (event) => {
-  if (!window.location.hash.startsWith("#/")) {
-    const target = document.getElementById(window.location.hash.slice(1));
-    if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
-    return;
-  }
+// History API navigation — back/forward buttons
+window.addEventListener("popstate", () => {
   state.navOpen = false;
   state.megaOpen = "";
   render();
-  const oldUrl = event.oldURL || "";
-  const oldHash = oldUrl.includes("#") ? oldUrl.slice(oldUrl.indexOf("#")) : "";
-  if (oldHash !== window.location.hash) scrollPageToTop();
+  scrollPageToTop();
+});
+
+// Intercept all internal link clicks — no full page reloads
+document.addEventListener("click", (event) => {
+  const anchor = event.target.closest("a[href]");
+  if (!anchor) return;
+  const href = anchor.getAttribute("href");
+  if (!href || href.startsWith("http") || href.startsWith("mailto:") || href.startsWith("tel:") || href.startsWith("#") || anchor.hasAttribute("target")) return;
+  if (href.startsWith("/")) {
+    event.preventDefault();
+    if (window.location.pathname === href) return;
+    history.pushState(null, "", href);
+    state.navOpen = false;
+    state.megaOpen = "";
+    render();
+    scrollPageToTop();
+  }
 });
 
 window.addEventListener("keydown", (event) => {
