@@ -80,8 +80,8 @@
   --radius-full: 999px;
   --radius-button: 12px;
   --max: 1180px;
-  --font-heading: "Lora", Georgia, serif;
-  --font-body: "DM Sans", sans-serif;
+  --font-heading: "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
 
   /* ── Legacy aliases ──────────────────────────────────────────────── */
   --teal-dark: var(--color-navy);
@@ -344,9 +344,9 @@ width: 15px;
 }
 
 .mega-trigger.active {
-color: var(--color-primary);
-  background: rgb(var(--color-primary-rgb) / 0.1);
-  font-weight: 850;
+  color: var(--color-on-brand);
+  background: var(--color-primary);
+  font-weight: 700;
 }
 
 .mega-trigger:hover,
@@ -763,16 +763,20 @@ color: var(--color-navy);
 }
 
 h1 {
-font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+  font-size: clamp(2.1rem, 4.5vw, 3.4rem);
+  font-weight: 800;
   letter-spacing: -0.03em;
+  line-height: 1.08;
 }
 
 h2 {
-font-size: clamp(1.45rem, 2.8vw, 2.1rem);
+  font-size: clamp(1.4rem, 2.6vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 h3 {
-font-size: 1.18rem;
+  font-size: 1.15rem;
   font-weight: 700;
   letter-spacing: -0.01em;
 }
@@ -9267,14 +9271,12 @@ display: flex;
   border-radius: var(--radius-button);
 }
 
-.main-nav .mega-trigger.active {
-  color: var(--color-on-brand);
-}
+/* .mega-trigger.active already uses --color-on-brand; no override needed */
 
 .hero .hero-copy p {
   margin-top: 0;
-  color: rgb(var(--color-on-brand-rgb) / 0.9);
-  font-size: clamp(1.03rem, 1.5vw, 1.26rem);
+  color: var(--color-text-muted);
+  font-size: clamp(1rem, 1.4vw, 1.18rem);
 }
 
 .hero .hero-cues span {
@@ -10981,10 +10983,11 @@ padding-left: 62px;
 .textbook-section-body p,
 .textbook-section-body li,
 .textbook-section-body dd {
-color: #2c2c2a;
-  font-family: var(--font-heading);
-  font-size: 17px;
-  line-height: 1.9;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 16.5px;
+  line-height: 1.85;
+  font-weight: 400;
 }
 
 .textbook-section-body p {
@@ -13615,12 +13618,11 @@ textarea:focus {
   gap: 6px;
   padding: 0.3rem 0.88rem;
   border-radius: var(--radius-full);
-  background: linear-gradient(135deg, #f97316 0%, #ef4444 100%);
-  color: #fff;
+  background: var(--color-primary);
+  color: var(--color-on-brand);
   font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 0.03em;
-  box-shadow: 0 4px 18px rgba(249, 115, 22, 0.38);
+  font-weight: 700;
+  letter-spacing: 0.02em;
   margin-bottom: 10px;
   width: fit-content;
 }
