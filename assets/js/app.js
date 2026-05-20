@@ -2656,15 +2656,6 @@ function renderFooter() {
               <span>${icon("stethoscope")}<strong>${instrumentCount}</strong> instruments</span>
             </div>
           </div>
-          <div class="footer-cta-card">
-            <span class="mini-label">${icon("sparkles")} Quick access</span>
-            <h3>Your revision toolkit</h3>
-            <div class="footer-cta-actions">
-              ${buttonLink("#/search", "Search Everything", "primary", "search")}
-              ${buttonLink("#/courses", "Open Courses", "secondary", "graduationCap")}
-            </div>
-            <p class="footer-disclaimer">${icon("badgeCheck")} Use for revision. Confirm clinical decisions with tutors and current guidance.</p>
-          </div>
         </div>
         <div class="footer-nav">
           <nav class="footer-nav-col" aria-label="Explore links">
@@ -2686,6 +2677,7 @@ function renderFooter() {
           </nav>
         </div>
         <div class="footer-bottom">
+          <span class="footer-disclaimer">${icon("badgeCheck")} Use for revision. Confirm clinical decisions with tutors and current guidance.</span>
           <span>&copy; ${new Date().getFullYear()} Nursing Uganda. All rights reserved.</span>
           <nav class="footer-legal-links" aria-label="Legal links">
             <a href="#/privacy">Privacy</a>
@@ -2877,6 +2869,25 @@ function renderImageLightbox() {
   `;
 }
 
+function renderPreFooterBand() {
+  return `
+    <div class="pre-footer-band">
+      <div class="container pre-footer-inner">
+        <div class="pre-footer-text">
+          <span class="eyebrow pre-footer-eyebrow">Your Toolkit</span>
+          <h3>Everything you need to revise, in one place</h3>
+          <p>Search notes, open courses, or look up any term in the dictionary — all free and offline-ready.</p>
+        </div>
+        <div class="pre-footer-actions">
+          ${buttonLink("#/search", "Search Everything", "primary", "search")}
+          ${buttonLink("#/courses", "Open Courses", "secondary", "graduationCap")}
+          ${buttonLink("#/dictionary", "Dictionary", "ghost", "fileText")}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
 function layout(content) {
   const parts = currentRoute();
   const active = routeKey(parts);
@@ -2901,6 +2912,7 @@ function layout(content) {
       <div class="page-main" id="page-main">
         ${content}
       </div>
+      ${renderPreFooterBand()}
       ${renderFooter()}
       ${renderCookieConsent()}
       ${renderImageLightbox()}
@@ -3568,8 +3580,8 @@ function renderNotes() {
           <div class="momentum-icon">${icon("flame")}</div>
           <strong>${streak.count || 0}</strong>
           <em>Day Streak</em>
-          ${masteryCount > 0 ? `<p style="margin:6px 0 0;font-size:.8rem;color:var(--color-text-muted)">${masteryCount} flashcards mastered</p>` : ""}
-          <a href="#/flashcards" style="display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:.82rem;font-weight:900;color:var(--color-primary)">${icon("bookOpen")}<span>Open Flashcards</span></a>
+          <p class="momentum-sub">${progress.done} topic${progress.done !== 1 ? "s" : ""} studied${masteryCount > 0 ? ` · ${masteryCount} mastered` : ""}</p>
+          <a class="momentum-link" href="#/flashcards">${icon("bookOpen")}<span>Flashcards</span></a>
         </article>
       </div>
     </section>
@@ -3620,9 +3632,8 @@ function renderNotes() {
                 </div>
                 <div class="subject-progress-bar"><span style="width:${sp.pct}%"></span></div>
                 <small class="subject-progress-label">${sp.done} of ${subject.topicCount} topics done</small>
-                <div class="subject-actions">
-                  ${subject.first ? `<a class="card-link" href="#/courses/${subject.first.programme.id}/${subject.first.unit.id}">${icon("arrowRight")}<span>Open first unit</span></a>` : `<span class="card-link">${icon("bookOpen")}<span>Coming soon</span></span>`}
-                  <a class="card-link muted-link" href="#/search" data-search-seed="${escapeHtml(subject.search)}">${icon("search")}<span>Search subject</span></a>
+                <div class="subject-action">
+                  ${subject.first ? `<a class="subject-explore-link" href="#/courses/${subject.first.programme.id}/${subject.first.unit.id}"><span>Explore</span>${icon("arrowRight")}</a>` : `<span class="subject-explore-link is-muted">${icon("clock")}<span>Coming soon</span></span>`}
                 </div>
               </article>
             `;
@@ -9027,7 +9038,14 @@ if ("serviceWorker" in navigator) {
       if (!next) return;
       next.addEventListener("statechange", () => {
         if (next.state === "installed" && navigator.serviceWorker.controller) {
-          showToast("New version available — reload to update", "info");
+          let container = document.getElementById("nu-toasts");
+          if (!container) { container = document.createElement("div"); container.id = "nu-toasts"; document.body.appendChild(container); }
+          const swToast = document.createElement("div");
+          swToast.className = "nu-toast nu-toast-info";
+          swToast.innerHTML = `<span class="nu-toast-icon">${icon("refreshCw")}</span><span>Update ready</span><button class="nu-toast-action" type="button">Reload</button>`;
+          swToast.querySelector(".nu-toast-action").addEventListener("click", () => location.reload());
+          container.appendChild(swToast);
+          requestAnimationFrame(() => requestAnimationFrame(() => swToast.classList.add("nu-toast-show")));
         }
       });
     });
