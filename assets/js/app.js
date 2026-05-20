@@ -9008,3 +9008,68 @@ if ("serviceWorker" in navigator) {
     });
   }).catch(() => {});
 }
+
+// ── PWA install prompt ──────────────────────────────────────────────────────
+let _pwaPromptEvent = null;
+
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  _pwaPromptEvent = e;
+
+  // Don't show if user dismissed this session, or already installed
+  if (sessionStorage.getItem("nu-install-dismissed") || window.matchMedia("(display-mode: standalone)").matches) return;
+
+  // Show the banner after a short pause so it doesn't compete with initial load
+  setTimeout(() => {
+    if (!_pwaPromptEvent) return;
+    const banner = document.createElement("div");
+    banner.id = "nu-install-banner";
+    banner.setAttribute("role", "banner");
+    banner.innerHTML = `
+      <img class="nu-install-icon" src="assets/images/pwa/icon-192x192.png" alt="Nursing Uganda icon" width="48" height="48">
+      <div class="nu-install-body">
+        <strong>Add to Home Screen</strong>
+        <span>Study offline, faster load &amp; app-like experience</span>
+      </div>
+      <button class="nu-install-btn" type="button" id="nu-install-confirm">Install</button>
+      <button class="nu-install-close" type="button" id="nu-install-dismiss" aria-label="Dismiss">${icon("x")}</button>
+    `;
+    document.body.appendChild(banner);
+    requestAnimationFrame(() => requestAnimationFrame(() => banner.classList.add("nu-install-banner-show")));
+
+    document.getElementById("nu-install-confirm").addEventListener("click", async () => {
+      if (!_pwaPromptEvent) return;
+      _pwaPromptEvent.prompt();
+      const { outcome } = await _pwaPromptEvent.userChoice;
+      _pwaPromptEvent = null;
+      banner.remove();
+      if (outcome === "accepted") {
+        // Optionally show a thank-you toast
+        showToast("App installed! You can open it from your home screen.", "success");
+      }
+    });
+
+    document.getElementById("nu-install-dismiss").addEventListener("click", () => {
+      sessionStorage.setItem("nu-install-dismissed", "1");
+      banner.classList.remove("nu-install-banner-show");
+      setTimeout(() => banner.remove(), 300);
+    });
+  }, 6000);
+});
+
+window.addEventListener("appinstalled", () => {
+  _pwaPromptEvent = null;
+  const banner = document.getElementById("nu-install-banner");
+  if (banner) banner.remove();
+});
+
+function showToast(message, type = "info") {
+  let container = document.getElementById("nu-toasts");
+  if (!container) { container = document.createElement("div"); container.id = "nu-toasts"; document.body.appendChild(container); }
+  const t = document.createElement("div");
+  t.className = `nu-toast nu-toast-${type}`;
+  t.textContent = message;
+  container.appendChild(t);
+  requestAnimationFrame(() => requestAnimationFrame(() => t.classList.add("nu-toast-show")));
+  setTimeout(() => { t.classList.remove("nu-toast-show"); setTimeout(() => t.remove(), 350); }, 4000);
+}

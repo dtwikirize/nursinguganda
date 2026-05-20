@@ -1,4 +1,4 @@
-const CACHE_VERSION = "nursing-uganda-v66";
+const CACHE_VERSION = "nursing-uganda-v67";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -10,7 +10,12 @@ const APP_SHELL = [
   "./assets/data/book-library.json",
   "./assets/data/medical-instruments.json?v=2",
   "./assets/images/optimized/nursing-uganda-optimized-image-manifest.json",
-  "./assets/images/nursing-uganda-favicon.svg"
+  "./assets/images/nursing-uganda-favicon.svg",
+  "./assets/images/pwa/icon-192x192.png",
+  "./assets/images/pwa/icon-512x512.png",
+  "./assets/images/pwa/icon-maskable-192x192.png",
+  "./assets/images/pwa/icon-maskable-512x512.png",
+  "./assets/images/pwa/icon-180x180.png"
 ];
 
 self.addEventListener("install", (event) => {

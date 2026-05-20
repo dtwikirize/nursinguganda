@@ -16327,3 +16327,93 @@ textarea:focus {
   .resource-filter-strip { overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; padding-bottom: 4px; }
   .resource-filter-strip::-webkit-scrollbar { display: none; }
 }
+
+/* ── PWA Install Banner ──────────────────────────────────────────────────── */
+#nu-install-banner {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(calc(100% + 32px));
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 480px;
+  width: calc(100vw - 32px);
+  padding: 14px 16px;
+  border: 1px solid rgb(var(--color-cyan-rgb) / 0.22);
+  border-radius: var(--radius-md);
+  background: var(--color-card);
+  box-shadow: 0 8px 32px rgb(var(--color-navy-rgb) / 0.18), 0 2px 8px rgb(var(--color-navy-rgb) / 0.1);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.35s ease;
+  opacity: 0;
+}
+#nu-install-banner.nu-install-banner-show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+.nu-install-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 10px rgb(var(--color-primary-rgb) / 0.2);
+}
+.nu-install-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.nu-install-body strong {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-navy);
+}
+.nu-install-body span {
+  font-size: 0.76rem;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.nu-install-btn {
+  flex-shrink: 0;
+  min-height: 36px;
+  padding: 0 16px;
+  border: none;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  color: var(--color-on-brand);
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.12s;
+}
+.nu-install-btn:hover {
+  background: var(--color-primary-dark);
+  transform: scale(1.04);
+}
+.nu-install-close {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s, color 0.15s;
+}
+.nu-install-close:hover {
+  background: var(--color-bg-soft);
+  color: var(--color-navy);
+}
+.nu-install-close .ui-icon {
+  width: 14px;
+  height: 14px;
+}
