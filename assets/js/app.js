@@ -3170,12 +3170,12 @@ function hero({ title, body, actions = "", image = imageCatalog.anatomy, breadcr
           <h1>${escapeHtml(title)}</h1>
           <p>${escapeHtml(body)}</p>
           ${actions ? `<div class="hero-actions">${actions}</div>` : ""}
-        </div>
-        <aside class="hero-visual" aria-label="${escapeHtml(title)} visual">
-          <img src="${escapeHtml(rootAssetPath(displayImageSrc(image.src)))}" alt="${escapeHtml(image.alt || title)}">
           <div class="hero-cues">
             ${cueLabels.map((cue) => `<span>${escapeHtml(cue)}</span>`).join("")}
           </div>
+        </div>
+        <aside class="hero-visual" aria-label="${escapeHtml(title)} visual">
+          <img src="${escapeHtml(rootAssetPath(displayImageSrc(image.src)))}" alt="${escapeHtml(image.alt || title)}">
         </aside>
       </div>
     </section>
@@ -3990,7 +3990,7 @@ function renderProgramme(programme) {
   return `
     ${hero({
       title: programme.label,
-      body: `Explore ${programme.stats.yearCount} years, ${programme.stats.semesterCount} semesters and ${programme.stats.unitCount} course units.`,
+      body: `A ${programme.stats.yearCount}-year programme with ${programme.stats.semesterCount} semesters and ${programme.stats.unitCount} course units of structured nursing content.`,
       image: imageFor(programme.label),
       breadcrumb: `
         <nav class="hero-breadcrumb" aria-label="Breadcrumb">
@@ -4001,8 +4001,16 @@ function renderProgramme(programme) {
           <strong>${escapeHtml(programme.label)}</strong>
         </nav>
       `,
-      actions: firstYearKey ? `<button class="button primary" type="button" data-scroll-target="${escapeHtml(firstYearKey)}">${buttonLabel("View Year 1", "arrowRight")}</button>` : "",
-      cues: ["Year-by-year map", "Semester breakdown", "Open each unit"],
+      actions: firstYearKey ? `
+        <button class="button primary" type="button" data-scroll-target="${escapeHtml(firstYearKey)}">${buttonLabel("View Year 1", "arrowRight")}</button>
+        <a class="button secondary" href="#/courses">${buttonLabel("All Programmes", "graduationCap")}</a>
+      ` : "",
+      cues: [
+        `${programme.stats.yearCount} Years`,
+        `${programme.stats.semesterCount} Semesters`,
+        `${programme.stats.unitCount} Units`,
+        `${programme.stats.topicCount || totalTopics} Topics`
+      ],
       stats: [
         ["Years", programme.stats.yearCount, "calendar"],
         ["Semesters", programme.stats.semesterCount, "listChecks"],
