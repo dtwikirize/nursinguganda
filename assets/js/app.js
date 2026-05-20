@@ -3725,19 +3725,14 @@ function renderQuizHub() {
     .slice(0, 36);
 
   return `
-    ${hero({
+    ${pageHeader({
+      eyebrow: "Active Recall",
       title: "Quick Quizzes",
-      body: "Practice active recall from nursing and midwifery topics. Open a topic, answer the quick quiz, then mark it complete.",
-      image: imageCatalog.mental
+      body: `Practice nursing and midwifery recall. Open a topic, answer the quick quiz, then mark it complete. ${quizTopics.length} quiz-ready topics available.`,
+      actions: buttonLink("/resources", "Back to Resources", "secondary", "arrowLeft")
     })}
     <section class="section">
       <div class="container">
-        <div class="section-head">
-          <div>
-            <h2>Ready To Practice</h2>
-            <p>${quizTopics.length} quiz-ready topics with imported notes.</p>
-          </div>
-        </div>
         <div class="unit-grid">
           ${quizTopics.map(({ programme, unit, topic }) => `
             <a class="unit-card" href="${topicHref(programme, unit, topic.groupIndex, topic.topicIndex)}">
@@ -5200,57 +5195,38 @@ function resourceCards() {
   ];
 }
 
-function renderResourcesHero(resources) {
-  return `
-    <section class="resources-hero hero" style="--hero-image: url('${escapeHtml(rootAssetPath(displayImageSrc(imageCatalog.resourcesHero.src)))}')">
-      <div class="container resources-hero-grid">
-        <div>
-          <span class="mini-label">Resource Hub</span>
-          <h1>Resources</h1>
-          <p>Everything you need to study smarter: past papers, quizzes, licensing guides, medical references, schools and student support.</p>
-          <label class="resources-hero-search">
-            ${icon("search")}
-            <input data-resource-search type="search" value="${escapeHtml(state.resourceSearch)}" placeholder="Search resources..." aria-label="Search resources">
-          </label>
-        </div>
-        <aside class="hero-visual resource-hero-visual" aria-label="Resource hub visual">
-          <img src="${escapeHtml(rootAssetPath(displayImageSrc(imageCatalog.resourcesHero.src)))}" alt="${escapeHtml(imageCatalog.resourcesHero.alt)}">
-          <div class="hero-cues">
-            <span>Exam prep</span>
-            <span>Reference tools</span>
-            <span>Career support</span>
-          </div>
-        </aside>
-      </div>
-    </section>
-  `;
-}
-
 function renderResources() {
   const resources = resourceCards();
   const filters = ["All", "Exam Prep", "Reference", "Licensing", "Career Support"];
   const query = state.resourceSearch.trim().toLowerCase();
+  const activeFilter = state.resourceFilter;
   const filtered = resources.filter((item) => {
-    const matchesFilter = state.resourceFilter === "All" || item.category === state.resourceFilter;
+    const matchesFilter = activeFilter === "All" || item.category === activeFilter;
     const haystack = `${item.title} ${item.body} ${item.category}`.toLowerCase();
     return matchesFilter && (!query || haystack.includes(query));
   });
+  const hasFilters = query || activeFilter !== "All";
 
   return `
-    ${renderResourcesHero(resources)}
+    ${pageHeader({
+      eyebrow: "Resource Hub",
+      title: "Resources",
+      body: "Past papers, quizzes, licensing guides, medical references, schools and student support."
+    })}
     <section class="section resources-section">
       <div class="container">
-        <div class="resource-filter-bar" aria-label="Filter resources">
-          ${filters.map((filter) => `
-            <button type="button" class="${state.resourceFilter === filter ? "active" : ""}" data-resource-filter="${escapeHtml(filter)}">${escapeHtml(filter)}</button>
-          `).join("")}
-        </div>
-        <div class="resource-hub-head">
-          <div>
-            <h2>${state.resourceFilter === "All" ? "All Resources" : state.resourceFilter}</h2>
-            <p>${filtered.length} ${filtered.length === 1 ? "resource" : "resources"} matched${query ? ` "${escapeHtml(state.resourceSearch)}"` : ""}.</p>
+        <div class="resource-toolbar">
+          <label class="search-field resource-search-label">
+            ${icon("search")}
+            <input data-resource-search type="search" value="${escapeHtml(state.resourceSearch)}" placeholder="Search resources…" aria-label="Search resources">
+          </label>
+          <div class="resource-filter-strip" role="group" aria-label="Filter resources by category">
+            ${filters.map((filter) => `
+              <button type="button" class="filter-pill${activeFilter === filter ? " active" : ""}" data-resource-filter="${escapeHtml(filter)}">${escapeHtml(filter)}</button>
+            `).join("")}
           </div>
         </div>
+        ${hasFilters ? `<p class="resource-count-row"><strong>${filtered.length}</strong> of <strong>${resources.length}</strong> resources${query ? ` matching "${escapeHtml(state.resourceSearch)}"` : ""}</p>` : ""}
         ${renderStudyDisclaimer("resource")}
         <div class="resource-hub-grid">
           ${filtered.length ? filtered.map((item, index) => `
@@ -5265,7 +5241,7 @@ function renderResources() {
               <p>${escapeHtml(item.body)}</p>
               <span class="resource-button">${icon("arrowRight")}<span>Open resource</span></span>
             </a>
-          `).join("") : `<div class="empty-state resource-empty">No resources matched that search.</div>`}
+          `).join("") : `<div class="empty-state resource-empty"><p>No resources matched that search.</p><button class="button secondary" type="button" data-resource-filter="All">Clear filters</button></div>`}
         </div>
       </div>
     </section>
@@ -5376,10 +5352,10 @@ function renderBookLibrary() {
   const subjects = librarySubjects();
 
   return `
-    ${hero({
-      title: "Digital Library",
+    ${pageHeader({
+      eyebrow: "Digital Library",
+      title: "Medical Books",
       body: "Curated nursing and medical book sources matched to anatomy, pharmacology, midwifery, child health, community health and clinical skills revision.",
-      image: imageCatalog.curriculum,
       actions: `${buttonLink("/resources", "Back to Resources", "secondary", "arrowLeft")}${buttonLink(library.source.medical_url, "Open InfoBooks", "primary", "externalLink", `target="_blank" rel="noopener noreferrer"`)}`
     })}
     <section class="section">
@@ -6929,27 +6905,13 @@ function renderSchoolsDirectory() {
   const stats = schoolSummaryStats(schools);
 
   return `
-    <section class="schools-hero schools-hero-with-image" style="--schools-hero-image: url('${escapeHtml(heroImageSrc)}')">
-      <div class="container schools-hero-grid">
-        <div class="schools-hero-copy">
-          <nav class="schools-breadcrumb" aria-label="Breadcrumb"><a href="/resources">Resources</a><span>/</span><strong>Schools Directory</strong></nav>
-          <h1>Schools Directory</h1>
-          <p>Find UNMC-recognized nursing and midwifery training institutions by district, programme type and registration status.</p>
-          <div class="schools-hero-actions">
-            <a href="/resources">${icon("arrowLeft")}Back to Resources</a>
-            <a href="https://unmc.ug/recognized-schools/" target="_blank" rel="noopener">${icon("externalLink")}Check UNMC Source</a>
-          </div>
-        </div>
-        <aside class="schools-hero-visual" aria-label="Schools directory overview">
-          <img src="${escapeHtml(heroImageSrc)}" alt="${escapeHtml(heroImage.alt)}">
-          <div class="schools-hero-mini">
-            <span>UNMC-aligned records</span>
-            <span>District and sector filters</span>
-            <span>Cards and map view</span>
-          </div>
-        </aside>
-      </div>
-    </section>
+    ${pageHeader({
+      eyebrow: "Schools Directory",
+      title: "Nursing & Midwifery Schools",
+      body: "Find UNMC-recognized training institutions by district, programme type and registration status.",
+      breadcrumb: `<nav class="page-breadcrumb" aria-label="Breadcrumb"><a href="/resources">Resources</a><span>/</span><strong>Schools Directory</strong></nav>`,
+      actions: `${buttonLink("/resources", "Back to Resources", "secondary", "arrowLeft")}<a class="button ghost" href="https://unmc.ug/recognized-schools/" target="_blank" rel="noopener noreferrer">${buttonLabel("UNMC Source", "externalLink")}</a>`
+    })}
     <section class="schools-filter-shell">
       <div class="container">
         <div class="schools-command-panel">
@@ -7198,10 +7160,10 @@ function renderMedicalInstruments() {
   const hasFilters = state.instrumentSearch.trim() || state.instrumentCategory !== "all";
 
   return `
-    ${hero({
+    ${pageHeader({
+      eyebrow: "Clinical Skills Atlas",
       title: "Medical Instruments",
-      body: `A practical guide to ${instruments.length} nursing and midwifery instruments, their uses, images and safe handling points.`,
-      image: imageCatalog.instruments,
+      body: `A practical guide to ${instruments.length} nursing and midwifery instruments — uses, images and safe handling points.`,
       actions: buttonLink("/resources", "Back to Resources", "secondary", "arrowLeft")
     })}
     <section class="instrument-atlas-section">
