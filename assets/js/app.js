@@ -5801,55 +5801,108 @@ const careerFilterGroups = {
   deadline: ["All", "This week", "This month"]
 };
 
+// ── Per-employer real application URLs ───────────────────────
+const EMPLOYER_APPLY_URLS = {
+  "Mulago National Referral Hospital":  "https://www.health.go.ug/",
+  "Aga Khan Hospital Uganda":           "https://www.akhealthuganda.org/",
+  "UNHCR Uganda":                       "https://www.unhcr.org/careers",
+  "MSF Uganda":                         "https://www.msf.org/careers",
+  "WHO Uganda":                         "https://careers.who.int/",
+  "WHO Vacancies":                      "https://careers.who.int/",
+  "Uganda Red Cross":                   "https://www.redcrossuganda.org/",
+  "MOH Uganda":                         "https://www.health.go.ug/",
+  "Nakasero Hospital":                  "https://www.nakaseronhospital.com/",
+  "International Hospital Kampala":     "https://www.ihk.co.ug/",
+  "Nile Community Clinic":              "mailto:info@nursinguganda.com",
+  "Kisumu County Hospital":             "https://www.health.go.ke/",
+  "Nairobi Maternal Centre":            "https://www.linkedin.com/jobs/search/?keywords=midwife+kenya",
+  "NHS Trust":                          "https://www.jobs.nhs.uk/",
+  "NHS Jobs":                           "https://www.jobs.nhs.uk/",
+  "SEEK Australia":                     "https://www.seek.com.au/nursing-jobs",
+  "Queensland Health":                  "https://smartjobs.qld.gov.au/",
+  "Dubai Health Recruiters":            "https://www.dha.gov.ae/en/Pages/JobOpportunities.aspx",
+  "Abu Dhabi Medical City":             "https://www.seha.ae/careers",
+  "Saudi Healthcare Group":             "https://www.moh.gov.sa/en/About/Careers/",
+  "Qatar Medical Centre":               "https://www.hamad.qa/EN/careers/",
+  "ReliefWeb Partner":                  "https://reliefweb.int/jobs",
+  "Kampala Family Clinic":              "mailto:info@nursinguganda.com",
+  "StrongMinds Uganda":                 "https://strongminds.org/work-with-us/",
+};
+
+// ── Clearbit logo domains for known organisations ─────────────
+// Logo is fetched live; careerAvatar() falls back to coloured initial on error
+const ORG_DOMAINS = {
+  "UNHCR Uganda":                   "unhcr.org",
+  "MSF Uganda":                     "msf.org",
+  "WHO Uganda":                     "who.int",
+  "WHO Vacancies":                  "who.int",
+  "Uganda Red Cross":               "redcrossuganda.org",
+  "Aga Khan Hospital Uganda":       "akdn.org",
+  "NHS Trust":                      "jobs.nhs.uk",
+  "NHS Jobs":                       "jobs.nhs.uk",
+  "SEEK Australia":                 "seek.com.au",
+  "Queensland Health":              "health.qld.gov.au",
+  "Abu Dhabi Medical City":         "seha.ae",
+  "ReliefWeb Partner":              "reliefweb.int",
+  "StrongMinds Uganda":             "strongminds.org",
+  "Qatar Medical Centre":           "hamad.qa",
+};
+
+function careerJobApplyUrl(employer, title, isExternal) {
+  if (EMPLOYER_APPLY_URLS[employer]) return EMPLOYER_APPLY_URLS[employer];
+  return isExternal
+    ? `https://reliefweb.int/jobs?search=${encodeURIComponent(title)}`
+    : `mailto:info@nursinguganda.com?subject=${encodeURIComponent(title)}`;
+}
+
 function careerJobs() {
+  // Prefer live JSON loaded at startup (state.careerJobs), else fall back to seed
+  if (state.careerJobs && state.careerJobs.length) return state.careerJobs;
   return [
-    ["mulago-graduate-nurse", "Graduate Nurse Program", "Mulago National Referral Hospital", "Kampala, Uganda", "Full Time", "Graduate", "Uganda", "General", "UGX 1.2M-1.8M", "2026-05-02", "2026-05-31", true, false],
-    ["aga-khan-theatre-nurse", "Theatre Nurse", "Aga Khan Hospital Uganda", "Kampala, Uganda", "Full Time", "Experienced", "Uganda", "Theatre", "UGX 2.4M-3.4M", "2026-05-06", "2026-05-22", true, false],
-    ["unhcr-community-health", "Community Health Nurse", "UNHCR Uganda", "Arua, Uganda", "Contract", "Experienced", "Uganda", "Community", "Not disclosed", "2026-05-04", "2026-05-17", false, true],
-    ["msf-icu-nurse", "ICU Nurse", "MSF Uganda", "Kampala, Uganda", "Contract", "Experienced", "Uganda", "ICU", "Not disclosed", "2026-05-01", "2026-05-12", true, true],
-    ["who-surveillance-nurse", "Nursing Surveillance Officer", "WHO Uganda", "Kampala, Uganda", "Contract", "Senior", "Uganda", "Community", "Not disclosed", "2026-04-30", "2026-05-27", false, true],
-    ["red-cross-volunteer-nurse", "Volunteer Nurse - Emergency Response", "Uganda Red Cross", "Gulu, Uganda", "Volunteer", "Student", "Uganda", "General", "Volunteer allowance", "2026-05-07", "2026-05-15", false, false],
-    ["moh-midwife", "Midwife - District Health Facility", "MOH Uganda", "Mbarara, Uganda", "Full Time", "Graduate", "Uganda", "Midwifery", "Government scale", "2026-05-03", "2026-06-07", false, false],
-    ["nakasero-paediatric", "Paediatric Nurse", "Nakasero Hospital", "Kampala, Uganda", "Full Time", "Experienced", "Uganda", "Paediatrics", "UGX 2.0M-2.8M", "2026-05-05", "2026-06-02", false, false],
-    ["ihk-mental-health", "Mental Health Nurse", "International Hospital Kampala", "Namuwongo, Uganda", "Part Time", "Experienced", "Uganda", "Mental Health", "UGX 1.8M-2.6M", "2026-04-28", "2026-05-24", false, false],
-    ["nile-internship", "Student Nursing Internship", "Nile Community Clinic", "Jinja, Uganda", "Internship", "Student", "Uganda", "General", "Transport allowance", "2026-05-08", "2026-05-19", false, false],
-    ["kisumu-nurse", "Staff Nurse", "Kisumu County Hospital", "Kisumu, Kenya", "Full Time", "Experienced", "East Africa", "General", "KES 65K-95K", "2026-05-01", "2026-06-10", false, true],
-    ["nairobi-midwife", "Registered Midwife", "Nairobi Maternal Centre", "Nairobi, Kenya", "Contract", "Experienced", "East Africa", "Midwifery", "KES 80K-120K", "2026-05-06", "2026-05-28", false, true],
-    ["nhs-band5", "Band 5 Staff Nurse", "NHS Trust", "Manchester, UK", "Full Time", "Graduate", "UK", "General", "GBP 28K-34K", "2026-05-03", "2026-06-14", true, true],
-    ["nhs-theatre", "Operating Theatre Practitioner", "NHS Jobs", "Birmingham, UK", "Full Time", "Experienced", "UK", "Theatre", "GBP 35K-42K", "2026-05-02", "2026-05-30", false, true],
-    ["aged-care-australia", "Registered Nurse - Aged Care", "SEEK Australia", "Melbourne, Australia", "Full Time", "Experienced", "Australia", "General", "AUD 75K-95K", "2026-04-29", "2026-06-21", false, true],
-    ["icu-australia", "Critical Care Registered Nurse", "Queensland Health", "Brisbane, Australia", "Contract", "Senior", "Australia", "ICU", "AUD 90K-115K", "2026-05-05", "2026-06-04", true, true],
-    ["dubai-dha", "DHA Registered Nurse", "Dubai Health Recruiters", "Dubai, UAE", "Contract", "Experienced", "Middle East", "General", "AED 6K-9K", "2026-05-01", "2026-05-25", false, true],
-    ["abu-dhabi-paeds", "Paediatric Nurse", "Abu Dhabi Medical City", "Abu Dhabi, UAE", "Full Time", "Experienced", "Middle East", "Paediatrics", "AED 7K-10K", "2026-05-04", "2026-06-12", false, true],
-    ["saudi-midwife", "Staff Midwife", "Saudi Healthcare Group", "Riyadh, Saudi Arabia", "Contract", "Experienced", "Middle East", "Midwifery", "SAR 5K-8K", "2026-04-26", "2026-05-14", true, true],
-    ["qatar-theatre", "Theatre Scrub Nurse", "Qatar Medical Centre", "Doha, Qatar", "Full Time", "Senior", "Middle East", "Theatre", "QAR 8K-12K", "2026-05-06", "2026-06-01", false, true],
-    ["reliefweb-field-nurse", "Field Nurse - Humanitarian Response", "ReliefWeb Partner", "South Sudan", "Contract", "Experienced", "Other", "Community", "USD package", "2026-04-27", "2026-05-20", false, true],
-    ["who-consultant", "Nursing Consultant", "WHO Vacancies", "Remote / Africa Region", "Contract", "Senior", "Other", "General", "Consultancy rate", "2026-05-08", "2026-06-18", false, true],
-    ["clinic-parttime", "Part-time Clinic Nurse", "Kampala Family Clinic", "Kampala, Uganda", "Part Time", "Graduate", "Uganda", "General", "UGX 900K-1.4M", "2026-05-07", "2026-05-10", false, false],
-    ["mental-health-ngo", "Mental Health Outreach Nurse", "StrongMinds Uganda", "Mbale, Uganda", "Contract", "Graduate", "Uganda", "Mental Health", "Not disclosed", "2026-05-02", "2026-05-23", false, true]
+    ["mulago-graduate-nurse",   "Graduate Nurse Program",              "Mulago National Referral Hospital", "Kampala, Uganda",        "Full Time",  "Graduate",    "Uganda",       "General",      "UGX 1.2M-1.8M",      "2026-05-02", "2026-08-31", true,  false],
+    ["aga-khan-theatre-nurse",  "Theatre Nurse",                       "Aga Khan Hospital Uganda",          "Kampala, Uganda",        "Full Time",  "Experienced", "Uganda",       "Theatre",      "UGX 2.4M-3.4M",      "2026-05-06", "2026-08-22", true,  false],
+    ["unhcr-community-health",  "Community Health Nurse",              "UNHCR Uganda",                      "Arua, Uganda",           "Contract",   "Experienced", "Uganda",       "Community",    "Not disclosed",       "2026-05-04", "2026-07-17", false, true],
+    ["msf-icu-nurse",           "ICU Nurse",                           "MSF Uganda",                        "Kampala, Uganda",        "Contract",   "Experienced", "Uganda",       "ICU",          "Not disclosed",       "2026-05-01", "2026-07-12", true,  true],
+    ["who-surveillance-nurse",  "Nursing Surveillance Officer",        "WHO Uganda",                        "Kampala, Uganda",        "Contract",   "Senior",      "Uganda",       "Community",    "Not disclosed",       "2026-04-30", "2026-07-27", false, true],
+    ["red-cross-volunteer",     "Volunteer Nurse – Emergency Response","Uganda Red Cross",                  "Gulu, Uganda",           "Volunteer",  "Student",     "Uganda",       "General",      "Volunteer allowance", "2026-05-07", "2026-07-15", false, false],
+    ["moh-midwife",             "Midwife – District Health Facility",  "MOH Uganda",                        "Mbarara, Uganda",        "Full Time",  "Graduate",    "Uganda",       "Midwifery",    "Government scale",    "2026-05-03", "2026-08-07", false, false],
+    ["nakasero-paediatric",     "Paediatric Nurse",                    "Nakasero Hospital",                 "Kampala, Uganda",        "Full Time",  "Experienced", "Uganda",       "Paediatrics",  "UGX 2.0M-2.8M",      "2026-05-05", "2026-08-02", false, false],
+    ["ihk-mental-health",       "Mental Health Nurse",                 "International Hospital Kampala",    "Kampala, Uganda",        "Part Time",  "Experienced", "Uganda",       "Mental Health","UGX 1.8M-2.6M",      "2026-04-28", "2026-07-24", false, false],
+    ["nile-internship",         "Student Nursing Internship",          "Nile Community Clinic",             "Jinja, Uganda",          "Internship", "Student",     "Uganda",       "General",      "Transport allowance", "2026-05-08", "2026-07-19", false, false],
+    ["kisumu-nurse",            "Staff Nurse",                         "Kisumu County Hospital",            "Kisumu, Kenya",          "Full Time",  "Experienced", "East Africa",  "General",      "KES 65K-95K",         "2026-05-01", "2026-08-10", false, true],
+    ["nairobi-midwife",         "Registered Midwife",                  "Nairobi Maternal Centre",           "Nairobi, Kenya",         "Contract",   "Experienced", "East Africa",  "Midwifery",    "KES 80K-120K",        "2026-05-06", "2026-07-28", false, true],
+    ["nhs-band5",               "Band 5 Staff Nurse",                  "NHS Trust",                         "Manchester, UK",         "Full Time",  "Graduate",    "UK",           "General",      "GBP 28K-34K",         "2026-05-03", "2026-09-14", true,  true],
+    ["nhs-theatre",             "Operating Theatre Practitioner",      "NHS Jobs",                          "Birmingham, UK",         "Full Time",  "Experienced", "UK",           "Theatre",      "GBP 35K-42K",         "2026-05-02", "2026-08-30", false, true],
+    ["aged-care-australia",     "Registered Nurse – Aged Care",        "SEEK Australia",                    "Melbourne, Australia",   "Full Time",  "Experienced", "Australia",    "General",      "AUD 75K-95K",         "2026-04-29", "2026-09-21", false, true],
+    ["icu-australia",           "Critical Care Registered Nurse",      "Queensland Health",                 "Brisbane, Australia",    "Contract",   "Senior",      "Australia",    "ICU",          "AUD 90K-115K",        "2026-05-05", "2026-08-04", true,  true],
+    ["dubai-dha",               "DHA Registered Nurse",                "Dubai Health Recruiters",           "Dubai, UAE",             "Contract",   "Experienced", "Middle East",  "General",      "AED 6K-9K",           "2026-05-01", "2026-07-25", false, true],
+    ["abu-dhabi-paeds",         "Paediatric Nurse",                    "Abu Dhabi Medical City",            "Abu Dhabi, UAE",         "Full Time",  "Experienced", "Middle East",  "Paediatrics",  "AED 7K-10K",          "2026-05-04", "2026-08-12", false, true],
+    ["saudi-midwife",           "Staff Midwife",                       "Saudi Healthcare Group",            "Riyadh, Saudi Arabia",   "Contract",   "Experienced", "Middle East",  "Midwifery",    "SAR 5K-8K",           "2026-04-26", "2026-07-14", true,  true],
+    ["qatar-theatre",           "Theatre Scrub Nurse",                 "Qatar Medical Centre",              "Doha, Qatar",            "Full Time",  "Senior",      "Middle East",  "Theatre",      "QAR 8K-12K",          "2026-05-06", "2026-08-01", false, true],
+    ["reliefweb-field-nurse",   "Field Nurse – Humanitarian Response", "ReliefWeb Partner",                 "South Sudan",            "Contract",   "Experienced", "Other",        "Community",    "USD package",         "2026-04-27", "2026-07-20", false, true],
+    ["who-consultant",          "Nursing Consultant",                  "WHO Vacancies",                     "Remote / Africa Region", "Contract",   "Senior",      "Other",        "General",      "Consultancy rate",    "2026-05-08", "2026-08-18", false, true],
+    ["clinic-parttime",         "Part-time Clinic Nurse",              "Kampala Family Clinic",             "Kampala, Uganda",        "Part Time",  "Graduate",    "Uganda",       "General",      "UGX 900K-1.4M",       "2026-05-07", "2026-07-10", false, false],
+    ["mental-health-ngo",       "Mental Health Outreach Nurse",        "StrongMinds Uganda",                "Mbale, Uganda",          "Contract",   "Graduate",    "Uganda",       "Mental Health","Not disclosed",       "2026-05-02", "2026-07-23", false, true]
   ].map(([id, title, employer, location, type, level, region, speciality, salary, posted, deadline, isFeatured, isExternal]) => ({
-    id,
-    title,
-    employer,
-    location,
-    type,
-    level,
-    region,
-    speciality,
-    salary,
-    posted,
-    deadline,
-    isFeatured,
-    isExternal,
+    id, title, employer, location, type, level, region, speciality, salary, posted, deadline, isFeatured, isExternal,
     positions: isFeatured ? 3 : 1,
     duration: type === "Contract" ? "6-24 months" : type === "Internship" ? "8-12 weeks" : "Permanent",
-    applyUrl: isExternal ? "https://www.linkedin.com/jobs/" : `mailto:careers@nursinguganda.com?subject=${encodeURIComponent(title)}`,
+    applyUrl: careerJobApplyUrl(employer, title, isExternal),
+    source: "seed",
     description: `${title} opportunity for Uganda nursing and midwifery professionals seeking structured growth, safe practice and patient-centred care.`,
-    responsibilities: ["Deliver safe nursing care and accurate documentation.", "Work with multidisciplinary teams and follow facility protocols.", "Support patient education, handover and quality improvement."],
-    requirements: [`${level} nursing or midwifery experience`, `${speciality} interest or relevant placement exposure`, "Active registration or eligibility for registration where required"],
-    documents: ["Updated CV", "Academic transcripts", "Registration certificate or student letter", "National ID or passport", "Two professional referees"],
+    responsibilities: [
+      "Deliver safe nursing care and accurate documentation.",
+      "Collaborate with multidisciplinary teams and follow facility protocols.",
+      "Support patient education, handover and quality improvement."
+    ],
+    requirements: [
+      `${level} nursing or midwifery experience`,
+      `${speciality} interest or relevant placement exposure`,
+      "Active registration or eligibility for registration where required"
+    ],
+    documents: ["Updated CV", "Academic transcripts", "Professional registration certificate", "National ID or passport", "Two professional referees"],
     employerType: /WHO|UNHCR|MSF|Relief|Red Cross|StrongMinds/.test(employer) ? "International Agency / NGO" : /MOH|Mulago|County/.test(employer) ? "Government Hospital" : "Private Facility",
-    employerDescription: `${employer} hires nurses and midwives for clinical service, community health, training support and programme delivery.`
+    employerDescription: `${employer} recruits nurses and midwives for clinical service delivery, community health, training support and programme implementation.`
   }));
 }
 
@@ -6009,6 +6062,14 @@ function careerPaletteFor(name) {
 function careerAvatar(name, size = "") {
   const p = careerPaletteFor(String(name || "N"));
   const letter = String(name || "N").trim().slice(0, 1).toUpperCase();
+  const domain = ORG_DOMAINS[name];
+  if (domain) {
+    // Try Clearbit high-res logo; on failure remove has-logo and show initial
+    return `<span class="career-avatar has-logo ${size}" aria-hidden="true" style="--av-bg:${p.bg};--av-color:${p.text};">` +
+      `<img src="https://logo.clearbit.com/${domain}" alt="" loading="lazy" class="career-logo-img" ` +
+        `onerror="var a=this.closest('.career-avatar');a.classList.remove('has-logo');this.remove();a.textContent='${escapeHtml(letter)}'">` +
+      `</span>`;
+  }
   return `<span class="career-avatar ${size}" aria-hidden="true" style="--av-bg:${p.bg};--av-color:${p.text};">${escapeHtml(letter)}</span>`;
 }
 
@@ -9086,12 +9147,13 @@ function setupStudyTimer() {
 async function init() {
   try {
     applyTheme();
-    const [response, imageResponse, optimizedResponse, bookResponse, instrumentResponse] = await Promise.all([
+    const [response, imageResponse, optimizedResponse, bookResponse, instrumentResponse, jobsResponse] = await Promise.all([
       fetch("assets/data/curriculum.json"),
       fetch("assets/data/topic-image-matches.json"),
       fetch("assets/images/optimized/nursing-uganda-optimized-image-manifest.json"),
       fetch("assets/data/book-library.json"),
-      fetch("assets/data/medical-instruments.json?v=2")
+      fetch("assets/data/medical-instruments.json?v=2"),
+      fetch("assets/data/career-jobs.json").catch(() => null)
     ]);
     if (!response.ok) throw new Error(`We could not load the curriculum. Please refresh. (${response.status})`);
     state.data = await response.json();
@@ -9099,6 +9161,9 @@ async function init() {
     state.optimizedImages = optimizedResponse.ok ? (await optimizedResponse.json()).images || {} : {};
     state.bookLibrary = bookResponse.ok ? await bookResponse.json() : bookLibrary();
     state.medicalInstrumentLibrary = instrumentResponse.ok ? await instrumentResponse.json() : null;
+    if (jobsResponse && jobsResponse.ok) {
+      try { const jd = await jobsResponse.json(); state.careerJobs = jd.jobs || jd || []; } catch (_) {}
+    }
     setupMonetization();
     if (window.location.pathname === "/" || window.location.pathname === "") history.replaceState(null, "", "/notes");
     render();
