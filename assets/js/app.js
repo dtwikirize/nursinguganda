@@ -6016,22 +6016,48 @@ function renderCareerHero() {
   const jobCount = careerJobs().length;
   return `
     <section class="careers-hero">
+      <div class="careers-hero-overlay" aria-hidden="true"></div>
       <div class="container careers-hero-inner">
-        <nav class="careers-breadcrumb" aria-label="Breadcrumb">
-          <a href="/notes">Home</a><span>${icon("arrowRight")}</span><strong>Careers & Jobs</strong>
-        </nav>
-        <h1>Nursing Careers & Jobs</h1>
-        <p>Internships, graduate positions, senior roles and international opportunities for Uganda nursing and midwifery professionals.</p>
-        <div class="careers-hero-chips">
-          <span>${icon("briefcaseMedical")}<strong>${jobCount}</strong> Active Listings</span>
-          <span>${icon("globe")}<strong>7</strong> Countries Covered</span>
-          <span>${icon("chartLine")}<strong>8</strong> Career Levels</span>
+
+        <div class="careers-hero-content">
+          <nav class="careers-breadcrumb" aria-label="Breadcrumb">
+            <a href="/notes">Home</a><span>${icon("arrowRight")}</span><strong>Careers &amp; Jobs</strong>
+          </nav>
+          <p class="careers-hero-eyebrow">${icon("briefcaseMedical")} Uganda Nursing &amp; Midwifery Jobs</p>
+          <h1>Find Your<br><span>Nursing Career</span></h1>
+          <p class="careers-hero-body">Internships, graduate positions, senior roles and international opportunities — curated for Uganda nursing and midwifery professionals.</p>
+          <div class="careers-hero-actions">
+            <button type="button" class="careers-cta-primary" data-career-mode="jobs">
+              ${icon("briefcaseMedical")} Browse Jobs
+            </button>
+            <button type="button" class="careers-cta-ghost" data-career-mode="hub">
+              ${icon("graduationCap")} Career Guidance
+            </button>
+          </div>
         </div>
-        <div class="careers-hero-actions">
-          <button type="button" data-career-mode="jobs">${icon("briefcaseMedical")}Browse Jobs</button>
-          <button type="button" data-career-mode="hub">${icon("graduationCap")}Career Guidance</button>
+
+        <div class="careers-hero-aside">
+          <div class="careers-stat-grid">
+            <div class="careers-stat-card">
+              <strong>${jobCount}</strong>
+              <span>Active Listings</span>
+            </div>
+            <div class="careers-stat-card">
+              <strong>7</strong>
+              <span>Countries</span>
+            </div>
+            <div class="careers-stat-card">
+              <strong>8</strong>
+              <span>Career Levels</span>
+            </div>
+            <div class="careers-stat-card">
+              <strong>12+</strong>
+              <span>Specialities</span>
+            </div>
+          </div>
+          ${renderAdSlot("resourcesInline", "Resource hub advertisement")}
         </div>
-        ${renderAdSlot("resourcesInline", "Resource hub advertisement")}
+
       </div>
     </section>
   `;
