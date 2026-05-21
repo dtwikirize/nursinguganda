@@ -5940,6 +5940,47 @@ function hasActiveCareerFilters() {
   return Boolean(state.careerSearch || state.careerType !== "All" || state.careerLevel !== "All" || state.careerRegion !== "All" || state.careerSpeciality !== "All" || state.careerDeadline !== "All");
 }
 
+function getActiveFilterCount() {
+  return [state.careerType, state.careerLevel, state.careerRegion, state.careerSpeciality, state.careerDeadline]
+    .filter((v) => v && v !== "All").length;
+}
+
+function renderCareerFilterSidebar() {
+  const groups = [
+    { label: "Job Type",   key: "type",       options: careerFilterGroups.type,       active: state.careerType },
+    { label: "Level",      key: "level",      options: careerFilterGroups.level,      active: state.careerLevel },
+    { label: "Region",     key: "region",     options: careerFilterGroups.region,     active: state.careerRegion },
+    { label: "Speciality", key: "speciality", options: careerFilterGroups.speciality, active: state.careerSpeciality },
+    { label: "Deadline",   key: "deadline",   options: careerFilterGroups.deadline,   active: state.careerDeadline },
+  ];
+  const count = getActiveFilterCount();
+  return `
+    <aside class="career-filter-sidebar">
+      <div class="filter-sidebar-head">
+        <span class="filter-sidebar-title">
+          ${icon("filter")} Filters
+          ${count > 0 ? `<span class="filter-active-count">${count}</span>` : ""}
+        </span>
+        ${count > 0 ? `<button class="filter-sidebar-clear" type="button" data-career-clear>Clear all</button>` : ""}
+      </div>
+      ${groups.map(({ label, key, options, active }) => `
+        <div class="filter-sidebar-group">
+          <h4 class="filter-sidebar-label">${escapeHtml(label)}</h4>
+          <div class="filter-sidebar-options">
+            ${options.map((opt) => `
+              <button type="button"
+                class="filter-sidebar-option${active === opt ? " active" : ""}"
+                data-career-filter="${escapeHtml(key)}"
+                data-career-filter-value="${escapeHtml(opt)}"
+              >${escapeHtml(opt)}</button>
+            `).join("")}
+          </div>
+        </div>
+      `).join("")}
+    </aside>
+  `;
+}
+
 function clearCareerFilters() {
   state.careerSearch = "";
   state.careerType = "All";
@@ -6055,9 +6096,11 @@ function renderCareerJobCard(job) {
 
 function renderJobsBoard() {
   const jobs = filteredCareerJobs();
+  const active = hasActiveCareerFilters();
   return `
     <section class="section career-mode-panel">
       <div class="container">
+
         <div class="career-board-toolbar">
           <label class="career-search">
             ${icon("search")}
@@ -6070,26 +6113,27 @@ function renderJobsBoard() {
             </select>
           </label>
         </div>
-        <div class="career-filter-rail">
-          ${renderCareerFilterGroup("Job Type", "type", careerFilterGroups.type, state.careerType)}
-          ${renderCareerFilterGroup("Level", "level", careerFilterGroups.level, state.careerLevel)}
-          ${renderCareerFilterGroup("Region", "region", careerFilterGroups.region, state.careerRegion)}
-          ${renderCareerFilterGroup("Speciality", "speciality", careerFilterGroups.speciality, state.careerSpeciality)}
-          ${renderCareerFilterGroup("Deadline", "deadline", careerFilterGroups.deadline, state.careerDeadline)}
-        </div>
-        <div class="career-results-head">
-          <h2>${jobs.length} Jobs Found <span>${careerJobs().length} total</span></h2>
-          ${hasActiveCareerFilters() ? `<button type="button" data-career-clear>${icon("x")} Clear filters</button>` : ""}
-        </div>
-        ${jobs.length ? `<div class="career-job-grid">${jobs.map(renderCareerJobCard).join("")}</div>` : `
-          <div class="career-empty-state">
-            <span class="career-empty-icon">${icon("briefcaseMedical")}</span>
-            <h2>No jobs match your filters</h2>
-            <p>Try adjusting your search or clearing filters.</p>
-            <button type="button" data-career-clear>Clear filters</button>
+
+        <div class="career-board-layout">
+          <div class="career-board-main">
+            <div class="career-results-head">
+              <h2>${jobs.length} <span>jobs found</span></h2>
+              ${active ? `<button type="button" class="career-results-clear" data-career-clear>${icon("x")} Clear filters</button>` : ""}
+            </div>
+            ${jobs.length
+              ? `<div class="career-job-grid">${jobs.map(renderCareerJobCard).join("")}</div>`
+              : `<div class="career-empty-state">
+                  <span class="career-empty-icon">${icon("briefcaseMedical")}</span>
+                  <h2>No jobs match your filters</h2>
+                  <p>Try adjusting your search or clearing filters.</p>
+                  <button type="button" data-career-clear>Clear filters</button>
+                </div>`
+            }
+            ${renderSavedCareerJobsPanel()}
           </div>
-        `}
-        ${renderSavedCareerJobsPanel()}
+          ${renderCareerFilterSidebar()}
+        </div>
+
       </div>
     </section>
     ${renderExternalJobSources()}
