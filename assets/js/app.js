@@ -5949,8 +5949,26 @@ function clearCareerFilters() {
   state.careerDeadline = "All";
 }
 
+const CAREER_PALETTE = [
+  { bg: "#dbeafe", text: "#1e40af" },  // blue
+  { bg: "#dcfce7", text: "#15803d" },  // green
+  { bg: "#fef9c3", text: "#92400e" },  // amber
+  { bg: "#fce7f3", text: "#9d174d" },  // pink
+  { bg: "#ede9fe", text: "#5b21b6" },  // purple
+  { bg: "#ffedd5", text: "#c2410c" },  // orange
+  { bg: "#e0f2fe", text: "#0369a1" },  // sky
+  { bg: "#d1fae5", text: "#065f46" },  // emerald
+];
+function careerPaletteFor(name) {
+  let h = 0;
+  const s = String(name || "?");
+  for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) & 0xffff;
+  return CAREER_PALETTE[h % CAREER_PALETTE.length];
+}
 function careerAvatar(name, size = "") {
-  return `<span class="career-avatar ${size}" aria-hidden="true">${escapeHtml(String(name || "N").trim().slice(0, 1))}</span>`;
+  const p = careerPaletteFor(String(name || "N"));
+  const letter = String(name || "N").trim().slice(0, 1).toUpperCase();
+  return `<span class="career-avatar ${size}" aria-hidden="true" style="--av-bg:${p.bg};--av-color:${p.text};">${escapeHtml(letter)}</span>`;
 }
 
 function renderCareerHero() {
@@ -6144,8 +6162,10 @@ function renderEmployerSpotlight() {
           </div>
         </div>
         <div class="career-employer-row">
-          ${careerEmployers().map((employer) => `
-            <article class="career-employer-card">
+          ${careerEmployers().map((employer) => {
+            const ep = careerPaletteFor(employer.name);
+            return `
+            <article class="career-employer-card" style="--card-accent:${ep.text};--card-accent-bg:${ep.bg};">
               ${careerAvatar(employer.name)}
               <h3>${escapeHtml(employer.name)}</h3>
               <p>${escapeHtml(employer.location)} · ${escapeHtml(employer.type)}</p>
@@ -6153,7 +6173,7 @@ function renderEmployerSpotlight() {
               ${employer.hiring ? `<span class="hiring-badge">${icon("badgeCheck")} Currently Hiring</span>` : ""}
               <a href="/careers">View Jobs ${icon("arrowRight")}</a>
             </article>
-          `).join("")}
+          `;}).join("")}
         </div>
         ${renderStudyDisclaimer("resource")}
       </div>
