@@ -6086,8 +6086,11 @@ function renderCareerFilterGroup(label, key, options, active) {
 function renderCareerJobCard(job) {
   const saved = savedCareerJobs().has(job.id);
   const status = deadlineClass(job);
+  const ep = careerPaletteFor(job.employer);
   return `
-    <article class="career-job-card ${job.isFeatured ? "featured" : ""}" data-career-card="${escapeHtml(job.id)}">
+    <article class="career-job-card ${job.isFeatured ? "featured" : ""}"
+      data-career-card="${escapeHtml(job.id)}"
+      style="--card-accent:${ep.text};--card-accent-bg:${ep.bg};">
       <div class="career-job-flags">
         ${job.isFeatured ? `<span class="featured-flag">${icon("sparkles")} Featured</span>` : ""}
         ${job.isExternal ? `<span class="external-flag">${icon("externalLink")} External</span>` : ""}
@@ -6114,7 +6117,7 @@ function renderCareerJobCard(job) {
       <p class="career-salary">${icon("banknote")} ${escapeHtml(job.salary)}</p>
       <footer class="career-job-actions">
         <button type="button" class="career-save ${saved ? "active" : ""}" data-career-job-save="${escapeHtml(job.id)}">${icon("heart")}<span>${saved ? "Saved" : "Save"}</span></button>
-        <button type="button" class="career-apply" data-career-job-open="${escapeHtml(job.id)}">View & Apply ${icon("arrowRight")}</button>
+        <button type="button" class="career-apply-btn" data-career-job-open="${escapeHtml(job.id)}">View & Apply ${icon("arrowRight")}</button>
       </footer>
     </article>
   `;
@@ -6282,62 +6285,93 @@ function renderCareerDrawer() {
   if (!job) return "";
   const saved = savedCareerJobs().has(job.id);
   const status = deadlineClass(job);
+  const ep = careerPaletteFor(job.employer);
   return `
-    <div class="career-drawer-overlay" data-career-drawer-overlay>
-      <aside class="career-drawer" role="dialog" aria-modal="true" aria-labelledby="career-drawer-title">
-        <button class="career-drawer-close" type="button" data-career-drawer-close aria-label="Close job details">${icon("x")}</button>
-        <header class="career-drawer-header">
-          ${careerAvatar(job.employer, "large")}
-          <div>
-            <h2 id="career-drawer-title">${escapeHtml(job.title)}</h2>
-            <p>${escapeHtml(job.employer)}</p>
-            <div class="career-badge-row">
-              ${careerBadge(job.type, `type-${slugify(job.type)}`)}
-              ${careerBadge(job.level, "level")}
-              ${careerBadge(regionLabel(job.region), "region")}
-              ${job.isFeatured ? `<span class="featured-flag">${icon("sparkles")} Featured</span>` : ""}
-              ${job.isExternal ? `<span class="external-flag">${icon("externalLink")} External</span>` : ""}
+    <div class="career-modal-overlay" data-career-drawer-overlay>
+      <div class="career-modal" role="dialog" aria-modal="true" aria-labelledby="career-modal-title">
+
+        <button class="career-modal-close" type="button" data-career-drawer-close aria-label="Close job details">${icon("x")}</button>
+
+        <header class="career-modal-header" style="--card-accent:${ep.text};--card-accent-bg:${ep.bg};">
+          <div class="career-modal-header-inner">
+            ${careerAvatar(job.employer, "xl")}
+            <div class="career-modal-title-block">
+              ${(job.isFeatured || job.isExternal) ? `
+                <div class="career-modal-flags">
+                  ${job.isFeatured ? `<span class="featured-flag">${icon("sparkles")} Featured</span>` : ""}
+                  ${job.isExternal ? `<span class="external-flag">${icon("externalLink")} External</span>` : ""}
+                </div>` : ""}
+              <h2 id="career-modal-title">${escapeHtml(job.title)}</h2>
+              <p class="career-modal-employer">${escapeHtml(job.employer)}</p>
+              <div class="career-modal-meta">
+                <span>${icon("mapPin")} ${escapeHtml(job.location)}</span>
+                <span class="${status}">${icon("clock")} Deadline: ${dateLabel(job.deadline)}</span>
+                <span>${icon("fileText")} ${escapeHtml(job.type)} · ${escapeHtml(job.duration)}</span>
+              </div>
+              <div class="career-badge-row">
+                ${careerBadge(job.type, `type-${slugify(job.type)}`)}
+                ${careerBadge(job.level, "level")}
+                ${careerBadge(regionLabel(job.region), "region")}
+                ${careerBadge(job.speciality, "speciality")}
+              </div>
             </div>
           </div>
         </header>
-        <div class="career-drawer-body">
-          <section>
-            <h3>Overview</h3>
-            <p>${escapeHtml(job.description)}</p>
-            <h4>Key responsibilities</h4>
-            <ul>${job.responsibilities.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
-            <h4>Requirements</h4>
-            <ul class="check-list">${job.requirements.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
-          </section>
-          <section>
-            <h3>Details</h3>
-            <div class="career-detail-grid">
-              <span>${icon("mapPin")}<strong>Location</strong><em>${escapeHtml(job.location)}</em></span>
-              <span>💰<strong>Salary</strong><em>${escapeHtml(job.salary)}</em></span>
-              <span>${icon("calendar")}<strong>Posted</strong><em>${dateLabel(job.posted)}</em></span>
-              <span class="${status}">${icon("calendar")}<strong>Deadline</strong><em>${dateLabel(job.deadline)}</em></span>
-              <span>${icon("clipboardList")}<strong>Positions</strong><em>${job.positions}</em></span>
-              <span>${icon("fileText")}<strong>Contract</strong><em>${escapeHtml(job.type)} · ${escapeHtml(job.duration)}</em></span>
+
+        <div class="career-modal-body">
+          <div class="career-modal-main">
+            <section>
+              <h3>Overview</h3>
+              <p>${escapeHtml(job.description)}</p>
+            </section>
+            <section>
+              <h4>Key responsibilities</h4>
+              <ul>${job.responsibilities.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+            </section>
+            <section>
+              <h4>Requirements</h4>
+              <ul class="check-list">${job.requirements.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+            </section>
+            <section>
+              <h3>How to Apply</h3>
+              <p>Prepare the documents below and apply through the listed employer channel. For external listings, confirm the vacancy on the source website before submitting personal documents.</p>
+              <div class="career-doc-list">
+                ${job.documents.map((doc) => `<label><input type="checkbox"> <span>${escapeHtml(doc)}</span></label>`).join("")}
+              </div>
+            </section>
+          </div>
+          <aside class="career-modal-sidebar">
+            <div class="career-modal-detail-card">
+              <h4>Job Details</h4>
+              <dl class="career-detail-list">
+                <div><dt>${icon("mapPin")} Location</dt><dd>${escapeHtml(job.location)}</dd></div>
+                <div><dt>💰 Salary</dt><dd>${escapeHtml(job.salary)}</dd></div>
+                <div><dt>${icon("calendar")} Posted</dt><dd>${dateLabel(job.posted)}</dd></div>
+                <div class="${status}"><dt>${icon("clock")} Deadline</dt><dd>${dateLabel(job.deadline)}</dd></div>
+                <div><dt>${icon("clipboardList")} Positions</dt><dd>${job.positions}</dd></div>
+                <div><dt>${icon("fileText")} Contract</dt><dd>${escapeHtml(job.type)} · ${escapeHtml(job.duration)}</dd></div>
+              </dl>
             </div>
-          </section>
-          <section>
-            <h3>How to Apply</h3>
-            <p>Prepare the documents below and apply through the listed employer channel. For external listings, confirm the job on the source website before submitting personal documents.</p>
-            <div class="career-doc-list">
-              ${job.documents.map((doc) => `<label><input type="checkbox"> <span>${escapeHtml(doc)}</span></label>`).join("")}
+            <div class="career-modal-employer-card">
+              <div class="career-modal-emp-head">
+                ${careerAvatar(job.employer, "small")}
+                <div>
+                  <h4>${escapeHtml(job.employer)}</h4>
+                  <p>${escapeHtml(job.employerType)}</p>
+                </div>
+              </div>
+              <p class="career-modal-emp-desc">${escapeHtml(job.employerDescription)}</p>
+              <div class="career-badge-row">${careerBadge(job.speciality, "speciality")}</div>
             </div>
-          </section>
-          <section>
-            <h3>About the Employer</h3>
-            <p>${escapeHtml(job.employerDescription)}</p>
-            <div class="career-badge-row">${careerBadge(job.employerType, "level")}${careerBadge(job.speciality, "speciality")}</div>
-          </section>
+          </aside>
         </div>
-        <footer class="career-drawer-footer">
-          <button type="button" class="career-save ${saved ? "active" : ""}" data-career-job-save="${escapeHtml(job.id)}">${icon("heart")} ${saved ? "Saved" : "Save Job"}</button>
-          <a class="career-apply" href="${escapeHtml(job.applyUrl)}" ${job.isExternal ? `target="_blank" rel="noopener noreferrer"` : ""}>${job.isExternal ? "Apply on External Site" : "Apply Now"} ${icon("arrowRight")}</a>
+
+        <footer class="career-modal-footer">
+          <button type="button" class="career-save career-save-lg ${saved ? "active" : ""}" data-career-job-save="${escapeHtml(job.id)}">${icon("heart")} ${saved ? "Saved" : "Save Job"}</button>
+          <a class="career-apply" href="${escapeHtml(job.applyUrl)}" ${job.isExternal ? `target="_blank" rel="noopener noreferrer"` : ""}>${job.isExternal ? `${icon("externalLink")} Apply on External Site` : `Apply Now ${icon("arrowRight")}`}</a>
         </footer>
-      </aside>
+
+      </div>
     </div>
   `;
 }
