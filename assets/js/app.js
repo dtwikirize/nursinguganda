@@ -3541,12 +3541,12 @@ function renderNotes() {
   };
 
   const tools = [
-    { href: "/flashcards", iconName: "bookOpen", label: "Flashcards" },
-    { href: "/dictionary", iconName: "fileText", label: "Dictionary" },
-    { href: "/resources/quizzes", iconName: "helpCircle", label: "Quizzes" },
-    { href: "/resources/medical-instruments", iconName: "stethoscope", label: "Instruments" },
-    { href: "/resources/past-papers", iconName: "clipboardList", label: "Past Papers" },
-    { href: "/careers", iconName: "briefcaseMedical", label: "Careers" }
+    { href: "/flashcards",                    iconName: "bookOpen",        label: "Flashcards",   desc: "Active recall" },
+    { href: "/dictionary",                    iconName: "fileText",        label: "Dictionary",   desc: "800+ terms" },
+    { href: "/resources/quizzes",             iconName: "helpCircle",      label: "Quizzes",      desc: "Test yourself" },
+    { href: "/resources/medical-instruments", iconName: "stethoscope",     label: "Instruments",  desc: "Clinical atlas" },
+    { href: "/resources/past-papers",         iconName: "clipboardList",   label: "Past Papers",  desc: "Exam prep" },
+    { href: "/careers",                       iconName: "briefcaseMedical",label: "Careers",      desc: "Your pathway" }
   ];
 
   return `
@@ -3636,16 +3636,41 @@ function renderNotes() {
         </div>
       </section>
     ` : ""}
-    <section class="section compact-section">
+    <section class="section home-tools-section">
       <div class="container">
         <div class="section-head slim-head">
           <div>
-            <span class="eyebrow">Quick Access</span>
+            <span class="eyebrow">Your Study Toolkit</span>
             <h2>Study Tools</h2>
           </div>
         </div>
-        <div class="tools-strip">
-          ${tools.map((t) => `<a class="tool-pill" href="${escapeHtml(t.href)}">${icon(t.iconName)}<span>${escapeHtml(t.label)}</span></a>`).join("")}
+        <div class="home-tools-strip">
+          ${tools.map((t) => `
+            <a class="home-tool-card" href="${escapeHtml(t.href)}">
+              <span class="home-tool-icon">${icon(t.iconName)}</span>
+              <div>
+                <strong>${escapeHtml(t.label)}</strong>
+                <p>${escapeHtml(t.desc)}</p>
+              </div>
+              ${icon("arrowRight")}
+            </a>
+          `).join("")}
+        </div>
+      </div>
+    </section>
+    <section class="section compact-section">
+      <div class="container">
+        <div class="home-cta-banner">
+          <div>
+            <span class="eyebrow">Ready to go deeper?</span>
+            <h2>Level Up Your Revision</h2>
+            <p>Use flashcards for active recall, test yourself with quizzes, or explore the full medical dictionary.</p>
+          </div>
+          <div class="home-cta-actions">
+            ${buttonLink("/flashcards", "Open Flashcards", "primary", "bookOpen")}
+            ${buttonLink("/resources/quizzes", "Take a Quiz", "secondary", "helpCircle")}
+            ${buttonLink("/dictionary", "Dictionary", "ghost", "search")}
+          </div>
         </div>
       </div>
     </section>
@@ -3661,10 +3686,10 @@ function renderGlobalSearchPage() {
   const typeLabel = searchOptionLabel("types", state.globalSearchType);
 
   return `
-    ${hero({
-      title: "Search Notes And Courses",
-      body: "Find course units, topics and imported lesson text across nursing and midwifery revision.",
-      image: imageCatalog.community
+    ${pageHeader({
+      eyebrow: "Search",
+      title: "Search Notes & Courses",
+      body: "Find course units, topics and lesson text across nursing and midwifery revision."
     })}
     <section class="section">
       <div class="container">
