@@ -16612,3 +16612,244 @@ textarea:focus {
   .home-cta-actions { width: 100%; }
   .home-cta-actions .button { flex: 1; justify-content: center; }
 }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   LESSON NOTES REDESIGN
+   — Removes dark/black section accents, replaces heavy badges with clean
+     numbered pills, lighter callouts, proper bullet dots, cleaner body.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* 1. Override all dark monochrome --sec variables → brand green */
+#introduction,
+#key-concepts,
+#clinical-relevance,
+#nursing-assessment,
+#nursing-interventions,
+#important-terms,
+#study-wrap {
+  --sec: var(--color-primary);
+}
+
+/* 2. Section block — remove dark left border, use clean top divider */
+.textbook-section {
+  padding: 32px 0 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-top: 1px solid var(--color-border) !important;
+}
+.textbook-section:first-of-type {
+  padding-top: 0 !important;
+  border-top: 0 !important;
+}
+
+/* 3. Section number — replace 40px dark badge with small green pill */
+.textbook-section-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+.textbook-section-head > span {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: auto !important;
+  height: auto !important;
+  min-width: 28px;
+  padding: 3px 9px !important;
+  border-radius: var(--radius-full) !important;
+  background: rgb(var(--color-primary-rgb) / 0.1) !important;
+  color: var(--color-primary) !important;
+  font-family: var(--font-body);
+  font-size: 0.7rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.06em;
+  margin-top: 7px;
+}
+
+/* 4. Section title — clean navy, readable size */
+.textbook-section-head h3 {
+  margin: 0;
+  color: var(--color-navy) !important;
+  font-size: 1.45rem !important;
+  font-weight: 800 !important;
+  line-height: 1.24 !important;
+  letter-spacing: -0.015em;
+}
+
+/* 5. Section body — remove the badge-offset indentation */
+.textbook-section-body {
+  padding-left: 0 !important;
+}
+.textbook-section-body p {
+  font-size: 1rem !important;
+  line-height: 1.82 !important;
+  color: var(--color-text) !important;
+}
+.textbook-section-body li {
+  font-size: 1rem !important;
+  line-height: 1.75 !important;
+}
+
+/* 6. Inline bold/keyword highlight — crisp, clearly marked */
+.textbook-section-body strong,
+.lesson-prose-block strong {
+  font-weight: 700 !important;
+  color: var(--color-navy) !important;
+  background: rgb(var(--color-primary-rgb) / 0.09) !important;
+  padding: 0.05em 0.3em !important;
+  border-radius: 4px !important;
+}
+
+/* 7. Clinical Focus callout — keep green accent, soften weight */
+.clinical-focus-callout {
+  border-left: 3px solid var(--color-primary) !important;
+  border-radius: 0 var(--radius) var(--radius) 0 !important;
+  background: rgb(var(--color-primary-rgb) / 0.05) !important;
+  padding: 14px 18px !important;
+  margin-bottom: 20px !important;
+}
+.clinical-focus-callout strong {
+  font-size: 0.7rem !important;
+  font-weight: 900 !important;
+  color: var(--color-primary) !important;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+.clinical-focus-callout p {
+  margin: 4px 0 0 !important;
+  color: var(--color-text) !important;
+  font-size: 0.95rem !important;
+  line-height: 1.65 !important;
+}
+
+/* 8. Learning objectives block — softer left accent */
+.lesson-objectives-block {
+  border: 1px solid var(--color-border) !important;
+  border-left: 3px solid var(--color-primary) !important;
+  border-radius: var(--radius) !important;
+  background: var(--color-bg-soft) !important;
+}
+
+/* 9. Assessment & revision cards — replace "*" with a proper dot */
+.assessment-card-list > div {
+  border: 1px solid var(--color-border) !important;
+  border-left: 2px solid var(--color-primary) !important;
+  border-radius: var(--radius) !important;
+  background: var(--color-card) !important;
+  padding: 10px 14px !important;
+  gap: 12px !important;
+}
+.assessment-card-list > div > span {
+  flex: 0 0 auto;
+  font-size: 0 !important;    /* hide the "*" character */
+  margin-top: 9px;
+  width: 8px !important;
+  height: 8px !important;
+  border-radius: 50%;
+  background: var(--color-primary);
+  display: block !important;
+}
+
+/* 10. Terms list — use design tokens */
+.lesson-term-list > div {
+  border-color: var(--color-border) !important;
+  background: var(--color-card) !important;
+  border-radius: var(--radius) !important;
+}
+.lesson-term-list dt {
+  color: var(--color-primary) !important;
+  font-weight: 700 !important;
+  font-size: 0.85rem !important;
+}
+.lesson-term-list dd {
+  color: var(--color-text) !important;
+  font-size: 0.9rem !important;
+  line-height: 1.6 !important;
+}
+
+/* 11. Study Wrap / Revision card — replace heavy dark bg with soft green */
+.revision-card {
+  color: var(--color-navy) !important;
+  background: linear-gradient(
+    135deg,
+    rgb(var(--color-primary-rgb) / 0.06),
+    rgb(var(--color-cyan-rgb) / 0.08)
+  ) !important;
+  border: 1px solid rgb(var(--color-primary-rgb) / 0.15) !important;
+  border-radius: var(--radius) !important;
+}
+.revision-card h4 {
+  color: var(--color-navy) !important;
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+}
+.revision-card > div {
+  border-bottom-color: var(--color-border) !important;
+  padding: 8px 0 !important;
+  gap: 12px !important;
+}
+.revision-card span {
+  flex: 0 0 auto;
+  font-size: 0 !important;   /* hide "*" */
+  width: 8px !important;
+  height: 8px !important;
+  border-radius: 50% !important;
+  border: 0 !important;
+  background: var(--color-primary) !important;
+  margin-top: 9px;
+}
+.revision-card p {
+  color: var(--color-text) !important;
+  font-size: 0.95rem !important;
+  line-height: 1.65 !important;
+}
+
+/* 12. Lesson prose blocks (imported lesson sections) */
+.lesson-prose-block {
+  margin-bottom: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+.lesson-prose-block h4 {
+  margin: 22px 0 8px !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  color: var(--color-navy) !important;
+  letter-spacing: -0.01em;
+}
+.lesson-prose-block p {
+  margin-bottom: 14px !important;
+  font-size: 1rem !important;
+  line-height: 1.82 !important;
+  color: var(--color-text) !important;
+}
+.lesson-prose-block ol,
+.lesson-prose-block ul {
+  margin: 6px 0 16px !important;
+  padding-left: 1.8em !important;
+  display: grid;
+  gap: 7px;
+}
+.lesson-prose-block ol li::marker,
+.lesson-prose-block ul li::marker {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+/* 13. Concept grid — subtle top border instead of thick colored border */
+.lesson-concept-grid article {
+  border-top: 2px solid var(--color-primary) !important;
+  border-left: 0 !important;
+}
+
+/* Responsive lesson body padding */
+@media (max-width: 900px) {
+  .premium-lesson-body { padding: 20px 20px 28px !important; }
+  .textbook-section-head h3 { font-size: 1.25rem !important; }
+}
+@media (max-width: 600px) {
+  .premium-lesson-body { padding: 16px 16px 24px !important; }
+  .textbook-section-head h3 { font-size: 1.15rem !important; }
+  .lesson-term-list { grid-template-columns: 1fr !important; }
+}
