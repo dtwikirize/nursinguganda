@@ -3282,6 +3282,23 @@ function searchStarterChips() {
   ];
 }
 
+function renderHomeSearch() {
+  return `
+    <form class="home-search-bar" data-global-search-form aria-label="Search notes">
+      <label class="home-search-field">
+        ${icon("search")}
+        <input class="search-input" data-global-search type="search"
+          value="${escapeHtml(state.globalSearch)}"
+          placeholder="Search topics, course units, lesson text…"
+          aria-label="Search all notes and courses"
+          autocomplete="off">
+        ${state.globalSearch ? `<button class="home-search-clear" type="button" data-search-clear-home aria-label="Clear search">${icon("x")}</button>` : ""}
+      </label>
+      <button class="button primary home-search-submit" type="submit">${buttonLabel("Search", "search")}</button>
+    </form>
+  `;
+}
+
 function renderAdvancedSearchForm(extraClass = "") {
   const options = searchFilterOptions();
   const activeFilters = hasActiveSearchFilters();
@@ -3566,7 +3583,7 @@ function renderNotes() {
     </div>
     <section class="section compact-section">
       <div class="container">
-        ${renderAdvancedSearchForm()}
+        ${renderHomeSearch()}
       </div>
     </section>
     <section class="section compact-section">
@@ -7825,6 +7842,15 @@ function render() {
         nextSearch.focus();
         nextSearch.setSelectionRange(nextSearch.value.length, nextSearch.value.length);
       }
+    });
+  });
+
+  app.querySelectorAll("[data-search-clear-home]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      state.globalSearch = "";
+      render();
+      const nextSearch = app.querySelector("[data-global-search]");
+      if (nextSearch) nextSearch.focus();
     });
   });
 

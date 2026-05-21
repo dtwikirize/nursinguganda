@@ -16418,6 +16418,81 @@ textarea:focus {
   height: 14px;
 }
 
+/* ── Home – Simple Search Bar ──────────────────────────────────────────── */
+.home-search-bar {
+  display: flex;
+  gap: 10px;
+  align-items: stretch;
+}
+.home-search-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-card);
+  overflow: hidden;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  box-shadow: 0 2px 8px rgb(var(--color-navy-rgb) / 0.05);
+}
+.home-search-field:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgb(var(--color-primary-rgb) / 0.1);
+}
+.home-search-field > .ui-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--color-primary);
+  margin-left: 16px;
+  flex-shrink: 0;
+  pointer-events: none;
+}
+.home-search-field .search-input {
+  flex: 1;
+  min-height: 52px;
+  padding: 0 14px;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  font-size: 1rem;
+  color: var(--color-text);
+}
+.home-search-field .search-input::placeholder {
+  color: var(--color-text-muted);
+}
+.home-search-clear {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  margin-right: 8px;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.12s, color 0.12s;
+}
+.home-search-clear:hover {
+  background: var(--color-bg-soft);
+  color: var(--color-navy);
+}
+.home-search-clear .ui-icon {
+  width: 13px;
+  height: 13px;
+}
+.home-search-submit {
+  min-height: 52px;
+  padding: 0 26px;
+  flex-shrink: 0;
+}
+@media (max-width: 480px) {
+  .home-search-submit { padding: 0 18px; }
+}
+
 /* ── Home – Tool Cards ──────────────────────────────────────────────────── */
 .home-tools-section {
   padding-bottom: 8px;
