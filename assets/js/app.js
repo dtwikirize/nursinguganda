@@ -3146,10 +3146,13 @@ function renderLegalPage(key) {
     <section class="section legal-section">
       <div class="container legal-content">
         <div class="legal-update">Last updated: May 9, 2026</div>
-        ${page.sections.map(([title, body]) => `
+        ${page.sections.map(([title, body], idx) => `
           <article class="legal-card">
-            <h2>${escapeHtml(title)}</h2>
-            <p>${escapeHtml(body)}</p>
+            <span class="legal-card-num">${String(idx + 1).padStart(2, "0")}</span>
+            <div class="legal-card-body">
+              <h2>${escapeHtml(title)}</h2>
+              <p>${escapeHtml(body)}</p>
+            </div>
           </article>
         `).join("")}
         ${key === "privacy-choices" ? `

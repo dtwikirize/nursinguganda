@@ -22,6 +22,13 @@
   --color-error: #C0392B;
   --color-info: #78716C;
 
+  /* ── Amber accent (achievement / streak / attention) ─────────────── */
+  --color-amber:       #f59e0b;
+  --color-amber-dark:  #d97706;
+  --color-amber-light: #fef9e7;
+  --color-amber-rgb:   245 158 11;
+  --color-warning-rgb: 217 119 6;
+
   /* ── Resource section accents (desaturated) ─────────────────────── */
   --resource-library: #1C1917;
   --resource-library-2: #57534E;
@@ -7662,7 +7669,7 @@ display: flex;
 .legal-hero {
   padding: 54px 0 34px;
   background:
-    linear-gradient(135deg, rgba(10, 92, 124, 0.92), rgba(20, 116, 116, 0.84)),
+    linear-gradient(135deg, rgba(28, 25, 23, 0.95) 0%, rgba(60, 56, 48, 0.88) 55%, rgba(92, 87, 82, 0.78) 100%),
     url("../images/nursing-uganda-hero-nursing-student-skills-lab-01.png") center / cover;
   color: var(--color-on-brand);
 }
@@ -7789,13 +7796,39 @@ display: flex;
 }
 
 .legal-card {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
   padding: 22px;
+  border-top: 2.5px solid var(--color-primary);
 }
 
-.legal-card h2 {
+.legal-card-num {
+  display: grid;
+  place-items: center;
+  min-width: 36px;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background: rgb(var(--color-primary-rgb) / 0.08);
+  color: var(--color-primary);
+  font-size: 0.7rem;
+  font-weight: 950;
+  letter-spacing: -0.01em;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.legal-card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.legal-card h2,
+.legal-card-body h2 {
   margin: 0 0 8px;
   color: var(--color-navy);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 .legal-card p,
@@ -7806,15 +7839,16 @@ display: flex;
 }
 
 .legal-note {
-  padding: 18px;
-  border-color: rgb(var(--color-cyan-rgb) / 0.32);
-  background: linear-gradient(135deg, rgb(var(--color-cyan-rgb) / 0.12), var(--color-card));
+  padding: 18px 18px 18px 22px;
+  border-left: 3px solid var(--color-amber);
+  border-top: none;
+  background: rgb(var(--color-amber-rgb) / 0.04);
 }
 
 .legal-note strong {
   display: block;
   margin-bottom: 6px;
-  color: var(--color-primary);
+  color: var(--color-amber-dark);
 }
 
 .legal-action-card,
@@ -12476,8 +12510,8 @@ width: 100%;
 
 .dict-difficulty-beginner::before { background: var(--color-primary); }
 .dict-difficulty-beginner { color: var(--color-primary); }
-.dict-difficulty-intermediate::before { background: #d97706; }
-.dict-difficulty-intermediate { color: #d97706; }
+.dict-difficulty-intermediate::before { background: var(--color-amber-dark); }
+.dict-difficulty-intermediate { color: var(--color-amber-dark); }
 .dict-difficulty-advanced::before { background: #dc2626; }
 .dict-difficulty-advanced { color: #dc2626; }
 
@@ -12626,7 +12660,7 @@ width: 100%;
 }
 .dictionary-clinical-card .ui-icon { color: var(--color-primary); }
 .dictionary-example-card .ui-icon { color: var(--color-navy); }
-.dictionary-memory-card .ui-icon { color: #d97706; }
+.dictionary-memory-card .ui-icon { color: var(--color-amber-dark); }
 .dictionary-clinical-card span {
   display: none; /* hide old uppercase label, icon does the job */
 }
@@ -13387,7 +13421,7 @@ gap: 8px;
 }
 
 .difficulty-intermediate::before {
-  background: #d97706;
+  background: var(--color-amber-dark);
 }
 
 .difficulty-advanced::before {
@@ -14614,13 +14648,14 @@ textarea:focus {
   gap: 6px;
   padding: 0.3rem 0.88rem;
   border-radius: var(--radius-full);
-  background: var(--color-primary);
-  color: var(--color-on-brand);
+  background: linear-gradient(135deg, var(--color-amber-dark), var(--color-amber));
+  color: #fff;
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.02em;
   margin-bottom: 10px;
   width: fit-content;
+  box-shadow: 0 3px 10px rgb(var(--color-amber-rgb) / 0.32);
 }
 
 .streak-chip .ui-icon {
@@ -14771,7 +14806,7 @@ textarea:focus {
 #nu-offline-banner .ui-icon {
   width: 16px;
   height: 16px;
-  color: #f59e0b;
+  color: var(--color-amber);
   flex-shrink: 0;
 }
 
@@ -14920,7 +14955,7 @@ textarea:focus {
 
 .progress-stat-tile:nth-child(1) { border-top-color: var(--color-primary); }
 .progress-stat-tile:nth-child(2) { border-top-color: #f97316; }
-.progress-stat-tile:nth-child(3) { border-top-color: #d97706; }
+.progress-stat-tile:nth-child(3) { border-top-color: var(--color-amber); }
 .progress-stat-tile:nth-child(4) { border-top-color: var(--color-navy); }
 
 .progress-stat-tile strong {
@@ -14934,7 +14969,7 @@ textarea:focus {
 
 .progress-stat-tile:nth-child(1) strong { color: var(--color-primary); }
 .progress-stat-tile:nth-child(2) strong { color: #f97316; }
-.progress-stat-tile:nth-child(3) strong { color: #d97706; }
+.progress-stat-tile:nth-child(3) strong { color: var(--color-amber); }
 .progress-stat-tile:nth-child(4) strong { color: var(--color-navy); }
 
 .progress-stat-tile span {
@@ -14968,7 +15003,7 @@ textarea:focus {
 
 .psi-primary  { background: linear-gradient(135deg, var(--color-primary), var(--color-cyan)); }
 .psi-flame    { background: linear-gradient(135deg, #f97316, #ef4444); }
-.psi-trophy   { background: linear-gradient(135deg, #d97706, #f59e0b); }
+.psi-trophy   { background: linear-gradient(135deg, var(--color-amber-dark), var(--color-amber)); }
 .psi-bookmark { background: linear-gradient(135deg, var(--color-navy), var(--color-primary)); }
 
 /* ── Overall panel ───────────────────────────────────────────────── */
@@ -15163,7 +15198,7 @@ textarea:focus {
   padding: 3px 10px;
   margin-left: 10px;
   border-radius: var(--radius-full);
-  background: linear-gradient(135deg, #d97706, #f59e0b);
+  background: linear-gradient(135deg, var(--color-amber-dark), var(--color-amber));
   color: #fff;
   font-size: 0.72rem;
   font-weight: 800;
@@ -15174,9 +15209,9 @@ textarea:focus {
 .mastery-badge .ui-icon { width: 12px; height: 12px; }
 
 .quiz-mastered {
-  border-color: rgb(245, 158, 11, 0.3) !important;
+  border-color: rgb(var(--color-amber-rgb) / 0.3) !important;
   background: linear-gradient(135deg,
-    color-mix(in srgb, #f59e0b 6%, var(--color-card) 94%) 0%,
+    color-mix(in srgb, var(--color-amber) 6%, var(--color-card) 94%) 0%,
     var(--color-card) 100%
   ) !important;
 }
