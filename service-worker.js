@@ -1,19 +1,17 @@
-const CACHE_VERSION = "nursing-uganda-v78";
-// Only the minimal shell is pre-cached on install to avoid draining mobile data.
-// Data files (curriculum, images, instruments, etc.) are cached on first access
-// via the stale-while-revalidate handler below.
+const CACHE_VERSION = "nursing-uganda-v79";
 const APP_SHELL = [
   "./",
   "./index.html",
   "./manifest.webmanifest",
-  "./assets/css/main.min.css?v=68",
-  "./assets/js/app.min.js?v=69",
+  "./assets/css/main.min.css?v=70",
+  "./assets/js/app.min.js?v=70",
   "./assets/images/nursing-uganda-favicon.svg",
   "./assets/images/pwa/icon-192x192.png",
   "./assets/images/pwa/icon-512x512.png",
   "./assets/images/pwa/icon-maskable-192x192.png",
   "./assets/images/pwa/icon-maskable-512x512.png",
-  "./assets/images/pwa/icon-180x180.png"
+  "./assets/images/pwa/icon-180x180.png",
+  "./assets/data/curriculum.json"
 ];
 
 self.addEventListener("install", (event) => {

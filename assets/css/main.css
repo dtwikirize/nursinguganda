@@ -235,7 +235,17 @@ display: grid;
   place-items: center;
   align-content: center;
   gap: 12px;
-  color: var(--color-text-muted);
+  /* Always light — avoids dark flash before theme JS runs */
+  background: #f0faf5 !important;
+  color: #374151;
+}
+
+.loading-error .load-error-msg {
+  color: #b45309;
+  font-size: 0.9rem;
+  max-width: 340px;
+  text-align: center;
+  margin: 0;
 }
 
 .loading-wordmark {
@@ -14547,11 +14557,7 @@ gap: 8px;
 }
 
 /* ── Loading Screen ──────────────────────────────────────────────── */
-.loading-screen {
-  background:
-    radial-gradient(ellipse at 30% 40%, rgb(var(--color-cyan-rgb) / 0.14) 0%, transparent 52%),
-    linear-gradient(180deg, var(--color-bg) 0%, var(--color-card) 100%);
-}
+/* background intentionally left to the base rule above (always light) */
 
 .loading-screen .brand-mark {
   width: 58px;

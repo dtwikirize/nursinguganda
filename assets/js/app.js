@@ -9475,8 +9475,9 @@ async function init() {
     applyTheme();
 
     // Curriculum is the minimum needed to render — load it first and paint immediately
-    const response = await fetch("assets/data/curriculum.json");
-    if (!response.ok) throw new Error(`We could not load the curriculum. Please refresh. (${response.status})`);
+    // Use root-relative path so it always resolves correctly regardless of current URL
+    const response = await fetch("/assets/data/curriculum.json");
+    if (!response.ok) throw new Error(`Could not load course content (${response.status}). Please refresh.`);
     state.data = await response.json();
     state.imageMatches = { matches: {} };
 
@@ -9490,25 +9491,31 @@ async function init() {
 
     // Remaining resources load in the background — re-render when images land
     Promise.allSettled([
-      fetch("assets/data/topic-image-matches.json")
+      fetch("/assets/data/topic-image-matches.json")
         .then((r) => r.ok ? r.json() : null)
         .then((d) => { if (d) { state.imageMatches = d; render(); } }),
-      fetch("assets/images/optimized/nursing-uganda-optimized-image-manifest.json")
+      fetch("/assets/images/optimized/nursing-uganda-optimized-image-manifest.json")
         .then((r) => r.ok ? r.json() : null)
         .then((d) => { if (d) state.optimizedImages = d.images || {}; }),
-      fetch("assets/data/book-library.json")
+      fetch("/assets/data/book-library.json")
         .then((r) => r.ok ? r.json() : null)
         .then((d) => { if (d) state.bookLibrary = d; }),
-      fetch("assets/data/medical-instruments.json?v=2")
+      fetch("/assets/data/medical-instruments.json?v=2")
         .then((r) => r.ok ? r.json() : null)
         .then((d) => { if (d) state.medicalInstrumentLibrary = d; }),
-      fetch("assets/data/career-jobs.json")
+      fetch("/assets/data/career-jobs.json")
         .catch(() => null)
         .then((r) => r && r.ok ? r.json() : null)
         .then((d) => { if (d) { try { state.careerJobs = d.jobs || d || []; } catch (_) {} } })
     ]);
   } catch (error) {
-    app.innerHTML = `<div class="loading-screen"><strong class="loading-wordmark">Nursing Uganda</strong><p>${escapeHtml(error.message)}</p></div>`;
+    app.innerHTML = `
+      <div class="loading-screen loading-error">
+        <strong class="loading-wordmark">Nursing Uganda</strong>
+        <p class="load-error-msg">${escapeHtml(error.message)}</p>
+        <button class="button primary" onclick="window.location.reload()">Try Again</button>
+      </div>
+    `;
   }
 }
 
