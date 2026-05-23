@@ -124,7 +124,10 @@ const iconPaths = {
   banknote: `<rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/>`,
   sparkles: `<path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0Z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/>`,
   lightbulb: `<path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/>`,
-  tag: `<path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42Z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/>`
+  tag: `<path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42Z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/>`,
+  xCircle: `<circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/>`,
+  alertTriangle: `<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/>`,
+  send: `<path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/>`,
 };
 
 function escapeHtml(value) {
@@ -866,10 +869,27 @@ function setQuizAnswer(key, questionIndex, answerIndex) {
   localStorage.setItem("nursinguganda.quizAttempts", JSON.stringify(attempts));
 }
 
+function quizSubmitted() {
+  try {
+    return JSON.parse(localStorage.getItem("nursinguganda.quizSubmitted") || "{}");
+  } catch {
+    return {};
+  }
+}
+
+function submitQuiz(key) {
+  const s = quizSubmitted();
+  s[key] = true;
+  localStorage.setItem("nursinguganda.quizSubmitted", JSON.stringify(s));
+}
+
 function resetQuiz(key) {
   const attempts = quizAttempts();
   delete attempts[key];
   localStorage.setItem("nursinguganda.quizAttempts", JSON.stringify(attempts));
+  const submitted = quizSubmitted();
+  delete submitted[key];
+  localStorage.setItem("nursinguganda.quizSubmitted", JSON.stringify(submitted));
 }
 
 function bookmarks() {
@@ -5316,13 +5336,91 @@ function buildUnitQuizQuestions(programme, unit) {
   }).slice(0, 25);
 }
 
+/* ── Quiz sidebar (reusable — used by all standalone quiz pages) ── */
+function renderQuizSidebar(title, questions, attempt, isSubmitted) {
+  const total = questions.length;
+  const attempted = questions.filter((_, i) => attempt[i] !== undefined).length;
+  const remaining = total - attempted;
+  const progressPct = total > 0 ? Math.round((attempted / total) * 100) : 0;
+
+  let correctCount = 0, wrongCount = 0, score = 0, pct = 0, grade = "", gradeClass = "";
+  if (isSubmitted) {
+    correctCount = questions.filter((q, i) => quizAnswerCorrect(q, attempt[i])).length;
+    wrongCount = attempted - correctCount;
+    score = correctCount;
+    pct = total > 0 ? Math.round((score / total) * 100) : 0;
+    grade     = pct >= 80 ? "Distinction" : pct >= 60 ? "Credit" : pct >= 50 ? "Pass" : "Below Pass";
+    gradeClass = pct >= 80 ? "grade-distinction" : pct >= 60 ? "grade-credit" : pct >= 50 ? "grade-pass" : "grade-fail";
+  }
+
+  const status      = !attempted ? "Not Started" : isSubmitted ? "Completed" : "In Progress";
+  const statusClass = !attempted ? "qsp-idle" : isSubmitted ? "qsp-done" : "qsp-active";
+
+  return `
+    <div class="quiz-sidebar-panel">
+      <div class="qsp-header">
+        ${icon("listChecks")}<span>Quiz Progress</span>
+      </div>
+      <span class="qsp-status-badge ${statusClass}">${status}</span>
+
+      <div class="qsp-stat-group">
+        <div class="qsp-stat-row">
+          <span class="qsp-stat-label">Total questions</span>
+          <strong class="qsp-stat-val">${total}</strong>
+        </div>
+        <div class="qsp-stat-row">
+          <span class="qsp-stat-label">Attempted</span>
+          <strong class="qsp-stat-val">${attempted}</strong>
+        </div>
+        <div class="qsp-stat-row">
+          <span class="qsp-stat-label">Remaining</span>
+          <strong class="qsp-stat-val${remaining > 0 && !isSubmitted ? " qsp-remaining" : ""}">${remaining}</strong>
+        </div>
+      </div>
+
+      <div class="qsp-progress-block">
+        <div class="qsp-progress-top">
+          <span>Completion</span><span>${progressPct}%</span>
+        </div>
+        <div class="progress-bar slim"><span style="width:${progressPct}%"></span></div>
+      </div>
+
+      ${isSubmitted ? `
+        <div class="qsp-results-block">
+          <div class="qsp-results-divider"></div>
+          <div class="qsp-stat-row qsp-score-row">
+            <span class="qsp-stat-label">Score</span>
+            <strong class="qsp-stat-val qsp-score-big">${score} / ${total}</strong>
+          </div>
+          <div class="qsp-stat-row">
+            <span class="qsp-stat-label qsp-label-correct">${icon("checkCircle")} Correct</span>
+            <strong class="qsp-stat-val qsp-correct-val">${correctCount}</strong>
+          </div>
+          <div class="qsp-stat-row">
+            <span class="qsp-stat-label qsp-label-wrong">${icon("xCircle")} Wrong</span>
+            <strong class="qsp-stat-val qsp-wrong-val">${wrongCount}</strong>
+          </div>
+          <div class="qsp-grade-display ${gradeClass}">
+            <span class="qsp-pct-big">${pct}%</span>
+            <span class="qsp-grade-name">${grade}</span>
+          </div>
+        </div>
+      ` : `
+        <p class="qsp-hint">${attempted > 0 ? "Keep going — submit when ready." : "Select your answers, then click Submit."}</p>
+      `}
+    </div>
+  `;
+}
+
 function renderStandaloneQuizPage(title, subtitle, questions, quizKey, backHref, backLabel) {
-  const attempt = quizAttempts()[quizKey] || {};
+  const attempt      = quizAttempts()[quizKey] || {};
+  const isSubmitted  = !!quizSubmitted()[quizKey];
   const answeredCount = questions.filter((_, i) => attempt[i] !== undefined).length;
-  const score = questions.filter((q, i) => quizAnswerCorrect(q, attempt[i])).length;
-  const allDone = answeredCount === questions.length && questions.length > 0;
-  const pct = allDone ? Math.round((score / questions.length) * 100) : 0;
-  const grade = pct >= 80 ? "Distinction" : pct >= 60 ? "Credit" : pct >= 50 ? "Pass" : "Below Pass";
+  const unanswered   = questions.length - answeredCount;
+
+  const score    = isSubmitted ? questions.filter((q, i) => quizAnswerCorrect(q, attempt[i])).length : 0;
+  const pct       = isSubmitted && questions.length ? Math.round((score / questions.length) * 100) : 0;
+  const grade     = pct >= 80 ? "Distinction" : pct >= 60 ? "Credit" : pct >= 50 ? "Pass" : "Below Pass";
   const gradeClass = pct >= 80 ? "grade-distinction" : pct >= 60 ? "grade-credit" : pct >= 50 ? "grade-pass" : "grade-fail";
 
   return `
@@ -5339,69 +5437,123 @@ function renderStandaloneQuizPage(title, subtitle, questions, quizKey, backHref,
           </div>
           <div class="quiz-page-meta">
             <span>${questions.length} questions</span>
-            ${allDone
+            ${isSubmitted
               ? `<span class="quiz-grade-chip ${gradeClass}">${grade} &bull; ${score}/${questions.length} (${pct}%)</span>`
               : `<span>${answeredCount} of ${questions.length} answered</span>`}
           </div>
         </div>
-        ${allDone ? `
+
+        ${isSubmitted ? `
           <div class="quiz-result-banner ${gradeClass}">
             <div class="quiz-result-score">${icon("trophy")}<strong>${score}/${questions.length}</strong><span>${pct}%</span></div>
             <div class="quiz-result-detail">
               <strong>${grade}</strong>
               <p>${pct >= 80 ? "Outstanding — excellent work." : pct >= 60 ? "Good understanding — keep revising." : pct >= 50 ? "Satisfactory — review explanations below." : "Keep studying — the explanations below will help."}</p>
-              <button type="button" class="button secondary" data-reset-quiz="${escapeHtml(quizKey)}">${icon("rotateCcw")}<span>Retry Quiz</span></button>
+              <button type="button" class="button secondary" data-reset-quiz="${escapeHtml(quizKey)}">${icon("rotateCcw")}<span>Retake Quiz</span></button>
             </div>
           </div>
         ` : ""}
-        <div class="standalone-quiz-list">
-          ${questions.map((question, qi) => {
-            const selected = attempt[qi];
-            const answered = selected !== undefined;
-            const correct = quizAnswerCorrect(question, selected);
-            const stateClass = answered ? (correct ? " answered-correct" : " answered-wrong") : "";
-            if (question.type === "blank") {
-              return `
-                <article class="sq-question${stateClass}">
-                  <div class="sq-number">${qi + 1}</div>
-                  <div class="sq-body">
-                    <p class="sq-prompt">${escapeHtml(question.prompt)}</p>
-                    <form class="fill-blank-form" data-blank-quiz-form data-quiz-key="${escapeHtml(quizKey)}" data-quiz-question="${qi}">
-                      <input type="text" value="${answered ? escapeHtml(String(selected)) : ""}" placeholder="Type your answer" aria-label="Fill in the blank answer" ${answered ? "disabled" : ""}>
-                      ${answered ? "" : `<button type="submit">${icon("checkCircle")}<span>Check</span></button>`}
-                    </form>
-                    ${answered ? `<div class="sq-explanation ${correct ? "correct-text" : "wrong-text"}">${correct ? icon("checkCircle") : icon("xCircle")}<div><strong>${correct ? "Correct!" : `Incorrect — answer: ${escapeHtml(question.answer)}`}</strong><p>${escapeHtml(question.explanation)}</p></div></div>` : ""}
-                  </div>
-                </article>
-              `;
-            }
-            return `
-              <article class="sq-question${stateClass}">
-                <div class="sq-number">${qi + 1}</div>
-                <div class="sq-body">
-                  <p class="sq-prompt">${escapeHtml(question.prompt)}</p>
-                  <div class="quiz-options sq-options">
-                    ${question.choices.map((choice, ci) => {
-                      const isSel = Number(selected) === ci;
-                      const isCor = choice === question.answer;
-                      const cls = answered ? (isCor ? " correct" : isSel ? " wrong" : "") : "";
-                      return `<button type="button" class="quiz-option${isSel ? " selected" : ""}${cls}" data-quiz-key="${escapeHtml(quizKey)}" data-quiz-question="${qi}" data-quiz-answer="${ci}" ${answered ? "disabled" : ""}>${escapeHtml(choice)}</button>`;
-                    }).join("")}
-                  </div>
-                  ${answered ? `<div class="sq-explanation ${correct ? "correct-text" : "wrong-text"}">${correct ? icon("checkCircle") : icon("xCircle")}<div><strong>${correct ? "Correct!" : `Incorrect — answer: ${escapeHtml(question.answer)}`}</strong><p>${escapeHtml(question.explanation)}</p></div></div>` : ""}
-                </div>
-              </article>
-            `;
-          }).join("")}
-        </div>
-        ${!allDone && questions.length ? `
-          <div class="quiz-progress-bar-wrap">
-            <div class="progress-bar slim"><span style="width:${Math.round(answeredCount / questions.length * 100)}%"></span></div>
-            <span>${answeredCount} of ${questions.length} answered</span>
+
+        <div class="quiz-layout">
+          <!-- ── Main content ── -->
+          <div class="quiz-main">
+            <div class="standalone-quiz-list">
+              ${questions.map((question, qi) => {
+                const selected = attempt[qi];
+                const answered  = selected !== undefined;
+                // Correct/wrong revealed ONLY after submission
+                const correct   = isSubmitted ? quizAnswerCorrect(question, selected) : null;
+                const stateClass = isSubmitted && answered ? (correct ? " answered-correct" : " answered-wrong") : "";
+
+                if (question.type === "blank") {
+                  return `
+                    <article class="sq-question${stateClass}" id="sq-${qi}">
+                      <div class="sq-number">${qi + 1}</div>
+                      <div class="sq-body">
+                        <p class="sq-prompt">${escapeHtml(question.prompt)}</p>
+                        <form class="fill-blank-form" data-blank-quiz-form data-quiz-key="${escapeHtml(quizKey)}" data-quiz-question="${qi}">
+                          <input type="text" value="${answered ? escapeHtml(String(selected)) : ""}" placeholder="Type your answer" aria-label="Fill in the blank answer" ${isSubmitted ? "disabled" : ""}>
+                          ${isSubmitted ? "" : `<button type="submit">${icon("checkCircle")}<span>Save Answer</span></button>`}
+                        </form>
+                        ${isSubmitted && answered ? `
+                          <div class="sq-explanation ${correct ? "correct-text" : "wrong-text"}">
+                            ${correct ? icon("checkCircle") : icon("xCircle")}
+                            <div>
+                              <strong>${correct ? "Correct!" : `Incorrect — answer: ${escapeHtml(question.answer)}`}</strong>
+                              <p>${escapeHtml(question.explanation)}</p>
+                            </div>
+                          </div>
+                        ` : ""}
+                        ${isSubmitted && !answered ? `
+                          <div class="sq-explanation wrong-text">
+                            ${icon("alertTriangle")}
+                            <div><strong>Not answered — correct: ${escapeHtml(question.answer)}</strong><p>${escapeHtml(question.explanation)}</p></div>
+                          </div>
+                        ` : ""}
+                      </div>
+                    </article>
+                  `;
+                }
+                return `
+                  <article class="sq-question${stateClass}" id="sq-${qi}">
+                    <div class="sq-number">${qi + 1}</div>
+                    <div class="sq-body">
+                      <p class="sq-prompt">${escapeHtml(question.prompt)}</p>
+                      <div class="quiz-options sq-options">
+                        ${question.choices.map((choice, ci) => {
+                          const isSel  = Number(selected) === ci;
+                          const isCor  = isSubmitted && choice === question.answer;
+                          const isWrong = isSubmitted && isSel && !isCor;
+                          const cls    = isSubmitted ? (isCor ? " correct" : isWrong ? " wrong" : "") : "";
+                          return `<button type="button" class="quiz-option${isSel ? " selected" : ""}${cls}" data-quiz-key="${escapeHtml(quizKey)}" data-quiz-question="${qi}" data-quiz-answer="${ci}" ${isSubmitted ? "disabled" : ""}>${escapeHtml(choice)}</button>`;
+                        }).join("")}
+                      </div>
+                      ${isSubmitted ? `
+                        <div class="sq-explanation ${answered && correct ? "correct-text" : "wrong-text"}">
+                          ${answered && correct ? icon("checkCircle") : answered ? icon("xCircle") : icon("alertTriangle")}
+                          <div>
+                            <strong>${answered && correct ? "Correct!" : `${answered ? "Incorrect" : "Not answered"} — correct answer: ${escapeHtml(question.answer)}`}</strong>
+                            <p>${escapeHtml(question.explanation)}</p>
+                          </div>
+                        </div>
+                      ` : ""}
+                    </div>
+                  </article>
+                `;
+              }).join("")}
+            </div>
+
+            ${!isSubmitted && questions.length ? `
+              <div class="quiz-submit-zone">
+                ${unanswered > 0 ? `
+                  <p class="quiz-unanswered-note">
+                    ${icon("alertTriangle")}
+                    <span>${unanswered} question${unanswered !== 1 ? "s" : ""} still unanswered</span>
+                  </p>
+                ` : `
+                  <p class="quiz-ready-note">
+                    ${icon("checkCircle")}<span>All questions answered — ready to submit!</span>
+                  </p>
+                `}
+                <button type="button" class="button primary quiz-submit-btn"
+                  data-submit-quiz="${escapeHtml(quizKey)}"
+                  data-submit-total="${questions.length}"
+                  data-submit-answered="${answeredCount}">
+                  ${icon("send")}<span>Submit Quiz</span>
+                </button>
+              </div>
+            ` : ""}
+
+            <div class="quiz-page-footer">
+              ${buttonLink(backHref, backLabel, "secondary", "arrowLeft")}
+              ${isSubmitted ? `<button type="button" class="button secondary" data-reset-quiz="${escapeHtml(quizKey)}">${icon("rotateCcw")}<span>Retake Quiz</span></button>` : ""}
+            </div>
           </div>
-        ` : ""}
-        <div class="quiz-page-footer">
-          ${buttonLink(backHref, backLabel, "secondary", "arrowLeft")}
+
+          <!-- ── Progress sidebar ── -->
+          <div class="quiz-sidebar-col">
+            ${renderQuizSidebar(title, questions, attempt, isSubmitted)}
+          </div>
         </div>
       </div>
     </section>
@@ -8594,21 +8746,25 @@ function render() {
 
   app.querySelectorAll("[data-quiz-key]").forEach((button) => {
     button.addEventListener("click", () => {
+      const savedY = window.scrollY;
       setQuizAnswer(button.dataset.quizKey, button.dataset.quizQuestion, button.dataset.quizAnswer);
       render();
       const target = app.querySelector("#topic-quiz");
       if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+      else window.scrollTo(0, savedY); // preserve position on standalone quiz pages
     });
   });
 
   app.querySelectorAll("[data-blank-quiz-form]").forEach((form) => {
     form.addEventListener("submit", (event) => {
       event.preventDefault();
+      const savedY = window.scrollY;
       const input = form.querySelector("input");
       setQuizAnswer(form.dataset.quizKey, form.dataset.quizQuestion, input ? input.value : "");
       render();
       const target = app.querySelector("#topic-quiz");
       if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+      else window.scrollTo(0, savedY);
     });
   });
 
@@ -8618,6 +8774,26 @@ function render() {
       render();
       const target = app.querySelector("#topic-quiz");
       if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+      else window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  });
+
+  app.querySelectorAll("[data-submit-quiz]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const key      = button.dataset.submitQuiz;
+      const total    = parseInt(button.dataset.submitTotal || "0", 10);
+      const answered = parseInt(button.dataset.submitAnswered || "0", 10);
+      const missing  = total - answered;
+      if (missing > 0) {
+        const ok = window.confirm(
+          `You have ${missing} unanswered question${missing !== 1 ? "s" : ""}.\n\n` +
+          `Unanswered questions will be marked as incorrect.\n\nSubmit anyway?`
+        );
+        if (!ok) return;
+      }
+      submitQuiz(key);
+      render();
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
   });
 
