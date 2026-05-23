@@ -2855,7 +2855,7 @@ function renderMegaMenu(key, item, active) {
   return `
     <div class="mega-item mega-${key}${isOpen ? " open" : ""}">
       <button type="button" class="mega-trigger${active === key ? " active" : ""}" data-mega-toggle="${key}" aria-expanded="${isOpen}">
-        <span>${escapeHtml(item.label)}</span>${icon("chevronDown")}
+        <span class="mega-nav-icon">${icon(item.icon)}</span><span>${escapeHtml(item.label)}</span>${icon("chevronDown")}
       </button>
       <div class="mega-panel" role="dialog" aria-label="${escapeHtml(item.label)} navigation">
         <div class="mega-panel-inner">

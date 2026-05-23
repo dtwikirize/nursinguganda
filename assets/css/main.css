@@ -350,12 +350,32 @@ font-size: 1.35rem;
 .mega-trigger:hover { background: var(--color-surface); color: var(--color-primary); }
 .mega-trigger.active { color: var(--color-primary); background: rgb(15 127 79 / 0.08); }
 
-.mega-trigger .ui-icon:last-child {
-  width: 13px; height: 13px;
-  opacity: 0.6;
-  transition: transform 0.2s;
+/* Nav section icon (before label) */
+.mega-nav-icon {
+  display: inline-flex;
+  align-items: center;
 }
-.mega-item.open .mega-trigger .ui-icon:last-child { transform: rotate(180deg); }
+.mega-nav-icon .ui-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--color-text-muted);
+  opacity: 0.75;
+  transition: color 0.15s, opacity 0.15s;
+}
+.mega-trigger:hover .mega-nav-icon .ui-icon,
+.mega-trigger.active .mega-nav-icon .ui-icon {
+  color: var(--color-primary);
+  opacity: 1;
+}
+
+/* Chevron — direct child only so it doesn't match the nav icon */
+.mega-trigger > .ui-icon:last-child {
+  width: 13px; height: 13px;
+  opacity: 0.5;
+  transition: transform 0.2s, opacity 0.15s;
+}
+.mega-trigger:hover > .ui-icon:last-child { opacity: 0.8; }
+.mega-item.open .mega-trigger > .ui-icon:last-child { transform: rotate(180deg); opacity: 1; }
 
 /* ── Desktop dropdown panel ── */
 .mega-item { position: static; }
