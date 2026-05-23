@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "build": "echo 'Static site — no build step required'"
+    "build": "node scripts/build.js",
+    "build:js": "node scripts/build.js --js-only",
+    "build:css": "node scripts/build.js --css-only"
   },
   "engines": {
     "node": ">=18.0.0"
@@ -14,6 +16,7 @@
     "express": "^4.19.2"
   },
   "devDependencies": {
+    "esbuild": "^0.21.5",
     "sharp": "^0.34.5"
   }
 }

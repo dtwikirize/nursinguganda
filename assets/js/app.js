@@ -50,7 +50,7 @@ const state = {
   imagePickerSearch: "",
   imagePickerCategory: "all",
   cookiePreferencesOpen: false,
-  theme: "light",
+  theme: localStorage.getItem("nursinguganda.theme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"),
   flashcardIndex: 0,
   flashcardFlipped: false,
   flashcardCategory: "All"
@@ -4259,6 +4259,7 @@ function renderUnit(programme, unit) {
           </div>
           <a href="/courses/${programme.id}">${icon("arrowLeft")}<span>Back to programme</span></a>
           ${topics.length ? `<a class="sidebar-primary-action" href="${topicHref(programme, unit, topics[0].groupIndex, topics[0].topicIndex)}">${icon("bookOpen")}<span>Start first lesson</span></a>` : ""}
+          ${topics.length ? `<a class="sidebar-secondary-action" href="${unitQuizHref(programme, unit)}">${icon("helpCircle")}<span>Unit review quiz</span></a>` : ""}
           <div class="progress-panel">
             <div class="progress-ring-wrap-inner">
               <svg viewBox="0 0 64 64" aria-hidden="true">
@@ -4810,7 +4811,7 @@ function renderSecondaryLearningResources(programme, unit, topic, lesson) {
       </div>
       ${renderSecondaryPanel("video-resource", "Watch Video", "video", renderTopicVideo(programme, unit, topic), false)}
       ${renderSecondaryPanel("quiz-resource", "Quick Quiz", "helpCircle", renderTopicQuiz(lesson, programme, unit, topic, topicKey(programme, unit, topic)), false)}
-      ${renderSecondaryPanel("lesson-flashcards", "Practice Flashcards", "badgeCheck", renderFlashcards(lesson), false)}
+      ${renderSecondaryPanel("lesson-flashcards", "Practice Flashcards", "badgeCheck", renderLessonFlashcards(lesson), false)}
       ${renderSecondaryPanel("lesson-references", "References", "bookOpen", renderLessonReferences(programme, unit, topic, lesson), false)}
     </section>
   `;
@@ -4826,6 +4827,7 @@ function renderLessonHeader(programme, unit, topic, lesson, complete) {
       <span class="lesson-hero-circle two" aria-hidden="true"></span>
       <div class="lesson-header-copy">
         <p class="lesson-kicker">Lesson ${topic.flatIndex + 1} - ${escapeHtml(moduleTitle)}</p>
+        ${lesson && lesson.generated ? `<div class="draft-lesson-badge">${icon("pencil")}<span>Draft study notes — full lesson content coming soon</span></div>` : ""}
         <h1>${escapeHtml(title)}</h1>
         <p>${escapeHtml(lessonExcerptFor(programme, unit, topic, lesson, 180))}</p>
         <div class="lesson-header-meta">
@@ -5029,7 +5031,7 @@ function renderTopicQuiz(lesson, programme, unit, topic, key) {
   `;
 }
 
-function renderFlashcards(lesson) {
+function renderLessonFlashcards(lesson) {
   const terms = lessonTerms(lesson).slice(0, 4);
   if (!terms.length) return "";
 
@@ -5051,6 +5053,293 @@ function renderFlashcards(lesson) {
       </div>
     </section>
   `;
+}
+
+function quizSeedHash(str) {
+  let h = 2166136261;
+  for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = (h * 16777619) >>> 0; }
+  return h;
+}
+
+function deterministicShuffle(arr, seed) {
+  const result = arr.slice();
+  let h = quizSeedHash(String(seed));
+  for (let i = result.length - 1; i > 0; i--) {
+    h = (h * 1664525 + 1013904223) >>> 0;
+    const j = h % (i + 1);
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+  return result;
+}
+
+function quizPageHref(programme, unit, topic) {
+  return `${topicHref(programme, unit, topic.groupIndex, topic.topicIndex).replace(/\/$/, "")}/quiz`;
+}
+
+function unitQuizHref(programme, unit) {
+  return `/courses/${programme.id}/${unit.id}/quiz`;
+}
+
+function buildLessonQuizQuestions(lesson, programme, unit, topic) {
+  const sections = visibleLessonSections(lesson).filter((s) => s.title && !/reference|quiz/i.test(s.title));
+  const sectionTitles = sections.map((s) => s.title);
+  const terms = lessonTerms(lesson);
+  const keyPoints = lessonKeyPoints(lesson);
+  const textBlocks = sections.map(firstTextBlock).filter(Boolean).map((b) => truncateText(b.text, 120));
+  const questions = [];
+
+  for (let i = 0; i < Math.min(sectionTitles.length, 3); i++) {
+    const correct = sectionTitles[i];
+    const wrong = sectionTitles.filter((_, j) => j !== i).slice(0, 3);
+    if (!wrong.length) continue;
+    questions.push({
+      prompt: `Which of the following is a section heading in this lesson?`,
+      answer: correct,
+      choices: rotateChoices([correct, ...wrong], i % 4),
+      explanation: `"${correct}" is one of the main sections covered in this lesson.`
+    });
+  }
+
+  for (let i = 0; i < Math.min(textBlocks.length, 2); i++) {
+    const correct = textBlocks[i];
+    const wrong = textBlocks.filter((_, j) => j !== i).slice(0, 3);
+    if (!wrong.length) continue;
+    questions.push({
+      prompt: `Which of the following statements appears in these study notes?`,
+      answer: correct,
+      choices: rotateChoices([correct, ...wrong], (i + 1) % 4),
+      explanation: `This statement appears in the lesson content.`
+    });
+  }
+
+  for (const point of keyPoints.slice(0, 4)) {
+    questions.push({
+      prompt: `True or false: "${point}"`,
+      answer: "True",
+      choices: ["True", "False"],
+      explanation: `This statement is taken from the lesson notes.`
+    });
+  }
+
+  for (const { term, definition } of terms.slice(0, 3)) {
+    questions.push({
+      type: "blank",
+      prompt: `${definition} — What term is being described?`,
+      answer: term,
+      explanation: `The term is "${term}".`
+    });
+  }
+
+  if (terms.length >= 2) {
+    for (let i = 0; i < Math.min(terms.length, 3); i++) {
+      const { term, definition } = terms[i];
+      const wrongTerms = terms.filter((_, j) => j !== i).slice(0, 3).map((t) => t.term);
+      if (!wrongTerms.length) continue;
+      questions.push({
+        prompt: `Which term is defined as: "${truncateText(definition, 100)}"?`,
+        answer: term,
+        choices: rotateChoices([term, ...wrongTerms], i % 4),
+        explanation: `${term}: ${definition}`
+      });
+    }
+  }
+
+  questions.push({
+    prompt: `This lesson is part of which course?`,
+    answer: lmsCourseTitle(programme, unit),
+    choices: rotateChoices([
+      lmsCourseTitle(programme, unit),
+      programme.label,
+      lmsModuleTitle(programme, unit, topic),
+      `Advanced Nursing Practice`
+    ].filter((v, i, a) => v && a.indexOf(v) === i).slice(0, 4), 0),
+    explanation: `This lesson is part of ${lmsCourseTitle(programme, unit)} in the ${programme.label} programme.`
+  });
+
+  const moduleTitle = lmsModuleTitle(programme, unit, topic);
+  if (moduleTitle && moduleTitle !== lmsCourseTitle(programme, unit)) {
+    questions.push({
+      prompt: `Which module does this lesson belong to?`,
+      answer: moduleTitle,
+      choices: rotateChoices([
+        moduleTitle,
+        lmsCourseTitle(programme, unit),
+        programme.label,
+        `Clinical Practice`
+      ].filter((v, i, a) => v && a.indexOf(v) === i).slice(0, 4), 2),
+      explanation: `This lesson is in the "${moduleTitle}" module.`
+    });
+  }
+
+  const seen = new Set();
+  return questions.filter((q) => {
+    if (seen.has(q.prompt)) return false;
+    seen.add(q.prompt);
+    return true;
+  }).slice(0, 15);
+}
+
+function buildUnitQuizQuestions(programme, unit) {
+  const topics = flatTopics(unit);
+  const all = [];
+  for (const topic of topics) {
+    const lesson = lessonForTopic(programme, unit, topic);
+    if (!lesson) continue;
+    const qs = buildLessonQuizQuestions(lesson, programme, unit, topic);
+    all.push(...qs.slice(0, 3));
+    if (all.length >= 35) break;
+  }
+  const seed = programme.id + unit.id;
+  const shuffled = deterministicShuffle(all, seed);
+  const seen = new Set();
+  return shuffled.filter((q) => {
+    if (seen.has(q.prompt)) return false;
+    seen.add(q.prompt);
+    return true;
+  }).slice(0, 25);
+}
+
+function renderStandaloneQuizPage(title, subtitle, questions, quizKey, backHref, backLabel) {
+  const attempt = quizAttempts()[quizKey] || {};
+  const answeredCount = questions.filter((_, i) => attempt[i] !== undefined).length;
+  const score = questions.filter((q, i) => quizAnswerCorrect(q, attempt[i])).length;
+  const allDone = answeredCount === questions.length && questions.length > 0;
+  const pct = allDone ? Math.round((score / questions.length) * 100) : 0;
+  const grade = pct >= 80 ? "Distinction" : pct >= 60 ? "Credit" : pct >= 50 ? "Pass" : "Below Pass";
+  const gradeClass = pct >= 80 ? "grade-distinction" : pct >= 60 ? "grade-credit" : pct >= 50 ? "grade-pass" : "grade-fail";
+
+  return `
+    <section class="standalone-quiz-page">
+      <div class="container">
+        <nav class="quiz-breadcrumb" aria-label="Breadcrumb">
+          <a href="${escapeHtml(backHref)}">${icon("arrowLeft")}<span>${escapeHtml(backLabel)}</span></a>
+        </nav>
+        <div class="quiz-page-head">
+          <div>
+            <span class="mini-label">Quiz</span>
+            <h1>${escapeHtml(title)}</h1>
+            ${subtitle ? `<p class="quiz-subtitle">${escapeHtml(subtitle)}</p>` : ""}
+          </div>
+          <div class="quiz-page-meta">
+            <span>${questions.length} questions</span>
+            ${allDone
+              ? `<span class="quiz-grade-chip ${gradeClass}">${grade} &bull; ${score}/${questions.length} (${pct}%)</span>`
+              : `<span>${answeredCount} of ${questions.length} answered</span>`}
+          </div>
+        </div>
+        ${allDone ? `
+          <div class="quiz-result-banner ${gradeClass}">
+            <div class="quiz-result-score">${icon("trophy")}<strong>${score}/${questions.length}</strong><span>${pct}%</span></div>
+            <div class="quiz-result-detail">
+              <strong>${grade}</strong>
+              <p>${pct >= 80 ? "Outstanding — excellent work." : pct >= 60 ? "Good understanding — keep revising." : pct >= 50 ? "Satisfactory — review explanations below." : "Keep studying — the explanations below will help."}</p>
+              <button type="button" class="button secondary" data-reset-quiz="${escapeHtml(quizKey)}">${icon("rotateCcw")}<span>Retry Quiz</span></button>
+            </div>
+          </div>
+        ` : ""}
+        <div class="standalone-quiz-list">
+          ${questions.map((question, qi) => {
+            const selected = attempt[qi];
+            const answered = selected !== undefined;
+            const correct = quizAnswerCorrect(question, selected);
+            const stateClass = answered ? (correct ? " answered-correct" : " answered-wrong") : "";
+            if (question.type === "blank") {
+              return `
+                <article class="sq-question${stateClass}">
+                  <div class="sq-number">${qi + 1}</div>
+                  <div class="sq-body">
+                    <p class="sq-prompt">${escapeHtml(question.prompt)}</p>
+                    <form class="fill-blank-form" data-blank-quiz-form data-quiz-key="${escapeHtml(quizKey)}" data-quiz-question="${qi}">
+                      <input type="text" value="${answered ? escapeHtml(String(selected)) : ""}" placeholder="Type your answer" aria-label="Fill in the blank answer" ${answered ? "disabled" : ""}>
+                      ${answered ? "" : `<button type="submit">${icon("checkCircle")}<span>Check</span></button>`}
+                    </form>
+                    ${answered ? `<div class="sq-explanation ${correct ? "correct-text" : "wrong-text"}">${correct ? icon("checkCircle") : icon("xCircle")}<div><strong>${correct ? "Correct!" : `Incorrect — answer: ${escapeHtml(question.answer)}`}</strong><p>${escapeHtml(question.explanation)}</p></div></div>` : ""}
+                  </div>
+                </article>
+              `;
+            }
+            return `
+              <article class="sq-question${stateClass}">
+                <div class="sq-number">${qi + 1}</div>
+                <div class="sq-body">
+                  <p class="sq-prompt">${escapeHtml(question.prompt)}</p>
+                  <div class="quiz-options sq-options">
+                    ${question.choices.map((choice, ci) => {
+                      const isSel = Number(selected) === ci;
+                      const isCor = choice === question.answer;
+                      const cls = answered ? (isCor ? " correct" : isSel ? " wrong" : "") : "";
+                      return `<button type="button" class="quiz-option${isSel ? " selected" : ""}${cls}" data-quiz-key="${escapeHtml(quizKey)}" data-quiz-question="${qi}" data-quiz-answer="${ci}" ${answered ? "disabled" : ""}>${escapeHtml(choice)}</button>`;
+                    }).join("")}
+                  </div>
+                  ${answered ? `<div class="sq-explanation ${correct ? "correct-text" : "wrong-text"}">${correct ? icon("checkCircle") : icon("xCircle")}<div><strong>${correct ? "Correct!" : `Incorrect — answer: ${escapeHtml(question.answer)}`}</strong><p>${escapeHtml(question.explanation)}</p></div></div>` : ""}
+                </div>
+              </article>
+            `;
+          }).join("")}
+        </div>
+        ${!allDone && questions.length ? `
+          <div class="quiz-progress-bar-wrap">
+            <div class="progress-bar slim"><span style="width:${Math.round(answeredCount / questions.length * 100)}%"></span></div>
+            <span>${answeredCount} of ${questions.length} answered</span>
+          </div>
+        ` : ""}
+        <div class="quiz-page-footer">
+          ${buttonLink(backHref, backLabel, "secondary", "arrowLeft")}
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function renderLessonQuizPage(programme, unit, topic) {
+  const lesson = lessonForTopic(programme, unit, topic);
+  const title = lmsLessonTitle(programme, unit, topic);
+  const questions = buildLessonQuizQuestions(lesson, programme, unit, topic);
+  const quizKey = `quiz-lesson::${topicKey(programme, unit, topic)}`;
+  const backHref = topicHref(programme, unit, topic.groupIndex, topic.topicIndex);
+  if (!questions.length) {
+    return `
+      <section class="standalone-quiz-page">
+        <div class="container">
+          <nav class="quiz-breadcrumb"><a href="${escapeHtml(backHref)}">${icon("arrowLeft")}<span>Back to Lesson</span></a></nav>
+          <div class="empty-state"><p>Quiz questions for this lesson are being prepared.</p>${buttonLink(backHref, "Back to Lesson", "secondary", "arrowLeft")}</div>
+        </div>
+      </section>
+    `;
+  }
+  return renderStandaloneQuizPage(
+    title,
+    `Test your knowledge — ${questions.length} questions`,
+    questions,
+    quizKey,
+    backHref,
+    "Back to Lesson"
+  );
+}
+
+function renderUnitQuizPage(programme, unit) {
+  const courseTitle = lmsCourseTitle(programme, unit);
+  const questions = buildUnitQuizQuestions(programme, unit);
+  const quizKey = `quiz-unit::${programme.id}::${unit.id}`;
+  const backHref = `/courses/${programme.id}/${unit.id}`;
+  if (!questions.length) {
+    return `
+      <section class="standalone-quiz-page">
+        <div class="container">
+          <nav class="quiz-breadcrumb"><a href="${escapeHtml(backHref)}">${icon("arrowLeft")}<span>Back to Course</span></a></nav>
+          <div class="empty-state"><p>Unit quiz questions are being prepared.</p>${buttonLink(backHref, "Back to Course", "secondary", "arrowLeft")}</div>
+        </div>
+      </section>
+    `;
+  }
+  return renderStandaloneQuizPage(
+    `${courseTitle} — Unit Review Quiz`,
+    `Covers all lessons in this course unit — ${questions.length} questions`,
+    questions,
+    quizKey,
+    backHref,
+    "Back to Course"
+  );
 }
 
 function renderTopic(programme, unit, topic) {
@@ -5097,6 +5386,16 @@ function renderTopic(programme, unit, topic) {
           </div>
         </div>
         ${renderLessonNotesPanel(key)}
+        <div class="lesson-quiz-callout">
+          <div class="lesson-quiz-callout-text">
+            ${icon("helpCircle")}
+            <div>
+              <strong>Test your knowledge</strong>
+              <p>Take the quiz for this lesson to check your understanding.</p>
+            </div>
+          </div>
+          ${buttonLink(quizPageHref(programme, unit, topic), "Take Lesson Quiz", "primary", "helpCircle")}
+        </div>
         <nav class="lesson-bottom-actions" aria-label="Lesson navigation">
           ${previous ? buttonLink(topicHref(programme, unit, previous.groupIndex, previous.topicIndex), "Previous Lesson", "secondary", "arrowLeft") : `<span></span>`}
           <button class="button secondary" type="button" data-print-topic>${buttonLabel("Print / Save PDF", "printer")}</button>
@@ -5652,6 +5951,20 @@ function imageReviewStats(rows = imageReviewRows()) {
 }
 
 function renderImageReview() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("unlock") === "1") localStorage.setItem("nursinguganda.adminMode", "1");
+  if (localStorage.getItem("nursinguganda.adminMode") !== "1") {
+    return `
+      <section class="section">
+        <div class="container">
+          <div class="empty-state" style="padding:4rem 1rem;text-align:center">
+            <p>This tool is for authorized content reviewers only.</p>
+            ${buttonLink("/resources", "Back to Resources", "primary", "arrowLeft")}
+          </div>
+        </div>
+      </section>
+    `;
+  }
   const query = state.imageReviewSearch.trim().toLowerCase();
   const status = state.imageReviewStatus;
   const rows = imageReviewRows();
@@ -7932,29 +8245,42 @@ function render() {
     else {
       const unit = findUnit(programme, parts[2]);
       if (!unit) content = notFound();
-      else if (parts[3] === "topic") {
+      else if (parts[3] === "quiz") {
+        content = renderUnitQuizPage(programme, unit);
+        meta = { title: `${lmsCourseTitle(programme, unit)} — Unit Quiz`, description: `Test your knowledge of ${lmsCourseTitle(programme, unit)} with a review quiz covering all lessons.` };
+      } else if (parts[3] === "topic") {
         const topic = findTopic(unit, parts[4], parts[5]);
-        if (topic) {
-          const canonicalHref = topicHref(programme, unit, topic.groupIndex, topic.topicIndex);
-          if (window.location.pathname !== canonicalHref) history.replaceState(null, "", canonicalHref);
-        }
-        content = topic ? renderTopic(programme, unit, topic) : notFound();
-        if (topic) {
-          const lesson = lessonForTopic(programme, unit, topic);
-          meta = {
-            title: lmsLessonTitle(programme, unit, topic),
-            description: lessonExcerptFor(programme, unit, topic, lesson, 155)
-          };
+        if (parts[6] === "quiz") {
+          content = topic ? renderLessonQuizPage(programme, unit, topic) : notFound();
+          if (topic) meta = { title: `Quiz: ${lmsLessonTitle(programme, unit, topic)}`, description: `Test your knowledge of ${lmsLessonTitle(programme, unit, topic)}.` };
+        } else {
+          if (topic) {
+            const canonicalHref = topicHref(programme, unit, topic.groupIndex, topic.topicIndex);
+            if (window.location.pathname !== canonicalHref) history.replaceState(null, "", canonicalHref);
+          }
+          content = topic ? renderTopic(programme, unit, topic) : notFound();
+          if (topic) {
+            const lesson = lessonForTopic(programme, unit, topic);
+            meta = {
+              title: lmsLessonTitle(programme, unit, topic),
+              description: lessonExcerptFor(programme, unit, topic, lesson, 155)
+            };
+          }
         }
       } else if (parts[3]) {
         const topic = findTopicBySlug(programme, unit, parts[3]);
-        content = topic ? renderTopic(programme, unit, topic) : notFound();
-        if (topic) {
-          const lesson = lessonForTopic(programme, unit, topic);
-          meta = {
-            title: lmsLessonTitle(programme, unit, topic),
-            description: lessonExcerptFor(programme, unit, topic, lesson, 155)
-          };
+        if (parts[4] === "quiz") {
+          content = topic ? renderLessonQuizPage(programme, unit, topic) : notFound();
+          if (topic) meta = { title: `Quiz: ${lmsLessonTitle(programme, unit, topic)}`, description: `Test your knowledge of ${lmsLessonTitle(programme, unit, topic)}.` };
+        } else {
+          content = topic ? renderTopic(programme, unit, topic) : notFound();
+          if (topic) {
+            const lesson = lessonForTopic(programme, unit, topic);
+            meta = {
+              title: lmsLessonTitle(programme, unit, topic),
+              description: lessonExcerptFor(programme, unit, topic, lesson, 155)
+            };
+          }
         }
       } else {
         content = renderUnit(programme, unit);
@@ -9147,23 +9473,13 @@ function setupStudyTimer() {
 async function init() {
   try {
     applyTheme();
-    const [response, imageResponse, optimizedResponse, bookResponse, instrumentResponse, jobsResponse] = await Promise.all([
-      fetch("assets/data/curriculum.json"),
-      fetch("assets/data/topic-image-matches.json"),
-      fetch("assets/images/optimized/nursing-uganda-optimized-image-manifest.json"),
-      fetch("assets/data/book-library.json"),
-      fetch("assets/data/medical-instruments.json?v=2"),
-      fetch("assets/data/career-jobs.json").catch(() => null)
-    ]);
+
+    // Curriculum is the minimum needed to render — load it first and paint immediately
+    const response = await fetch("assets/data/curriculum.json");
     if (!response.ok) throw new Error(`We could not load the curriculum. Please refresh. (${response.status})`);
     state.data = await response.json();
-    state.imageMatches = imageResponse.ok ? await imageResponse.json() : { matches: {} };
-    state.optimizedImages = optimizedResponse.ok ? (await optimizedResponse.json()).images || {} : {};
-    state.bookLibrary = bookResponse.ok ? await bookResponse.json() : bookLibrary();
-    state.medicalInstrumentLibrary = instrumentResponse.ok ? await instrumentResponse.json() : null;
-    if (jobsResponse && jobsResponse.ok) {
-      try { const jd = await jobsResponse.json(); state.careerJobs = jd.jobs || jd || []; } catch (_) {}
-    }
+    state.imageMatches = { matches: {} };
+
     setupMonetization();
     if (window.location.pathname === "/" || window.location.pathname === "") history.replaceState(null, "", "/notes");
     render();
@@ -9171,6 +9487,26 @@ async function init() {
     setupOfflineBanner();
     setupStudyNotifications();
     setupStudyTimer();
+
+    // Remaining resources load in the background — re-render when images land
+    Promise.allSettled([
+      fetch("assets/data/topic-image-matches.json")
+        .then((r) => r.ok ? r.json() : null)
+        .then((d) => { if (d) { state.imageMatches = d; render(); } }),
+      fetch("assets/images/optimized/nursing-uganda-optimized-image-manifest.json")
+        .then((r) => r.ok ? r.json() : null)
+        .then((d) => { if (d) state.optimizedImages = d.images || {}; }),
+      fetch("assets/data/book-library.json")
+        .then((r) => r.ok ? r.json() : null)
+        .then((d) => { if (d) state.bookLibrary = d; }),
+      fetch("assets/data/medical-instruments.json?v=2")
+        .then((r) => r.ok ? r.json() : null)
+        .then((d) => { if (d) state.medicalInstrumentLibrary = d; }),
+      fetch("assets/data/career-jobs.json")
+        .catch(() => null)
+        .then((r) => r && r.ok ? r.json() : null)
+        .then((d) => { if (d) { try { state.careerJobs = d.jobs || d || []; } catch (_) {} } })
+    ]);
   } catch (error) {
     app.innerHTML = `<div class="loading-screen"><strong class="loading-wordmark">Nursing Uganda</strong><p>${escapeHtml(error.message)}</p></div>`;
   }

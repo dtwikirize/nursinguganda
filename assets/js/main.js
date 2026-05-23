@@ -17,42 +17,13 @@ document.querySelectorAll("[data-course-toggle]").forEach((button) => {
   });
 });
 
-const quizData = {
-  anatomyIntro: [
-    {
-      question: "What is anatomy mainly concerned with?",
-      options: [
-        "The structure of the body and its parts",
-        "Only the treatment of disease",
-        "Drug preparation and storage",
-        "Hospital financial management"
-      ],
-      answer: 0,
-      explanation: "Anatomy studies body structures. Physiology studies how those structures function."
-    },
-    {
-      question: "Which term best describes lying flat on the back with the face upward?",
-      options: ["Prone", "Supine", "Lateral", "Fowler's"],
-      answer: 1,
-      explanation: "Supine means lying on the back. Prone means lying face downward."
-    },
-    {
-      question: "Why do nursing students learn anatomical terminology?",
-      options: [
-        "To replace clinical assessment",
-        "To communicate body location clearly and safely",
-        "To avoid documenting patient care",
-        "To memorize unrelated Latin words"
-      ],
-      answer: 1,
-      explanation: "Shared terminology reduces ambiguity when nurses document, report, and escalate clinical findings."
-    }
-  ]
-};
-
 function renderQuiz(target) {
   const quizKey = target.dataset.quiz;
-  const questions = quizData[quizKey] || [];
+  const questions = (window.NURSING_UGANDA_QUIZ_DATA && window.NURSING_UGANDA_QUIZ_DATA[quizKey]) || [];
+  if (!questions.length) {
+    target.innerHTML = `<div class="quiz-box"><p>Quiz questions for this topic will be added soon.</p></div>`;
+    return;
+  }
   let answered = 0;
   let score = 0;
 
@@ -116,9 +87,15 @@ document.querySelectorAll("[data-quiz]").forEach(renderQuiz);
 document.querySelectorAll("[data-newsletter-form]").forEach((form) => {
   form.addEventListener("submit", (event) => {
     event.preventDefault();
+    const email = form.querySelector("input[type='email']");
     const status = form.querySelector("[data-form-status]");
     if (status) {
-      status.textContent = "Thank you. Updates signup is ready for deployment integration.";
+      if (email && email.value) {
+        window.location.href = `mailto:twikirizederick@gmail.com?subject=Newsletter%20signup&body=Please%20add%20me%20to%20the%20Nursing%20Uganda%20newsletter%3A%20${encodeURIComponent(email.value)}`;
+        status.textContent = "Opening your email app to complete signup.";
+      } else {
+        status.textContent = "Please enter your email address.";
+      }
     }
     form.reset();
   });
@@ -127,10 +104,15 @@ document.querySelectorAll("[data-newsletter-form]").forEach((form) => {
 document.querySelectorAll("[data-contact-form]").forEach((form) => {
   form.addEventListener("submit", (event) => {
     event.preventDefault();
+    const name = form.querySelector("input[name='name'], input[placeholder*='name' i]");
+    const message = form.querySelector("textarea");
     const status = form.querySelector("[data-form-status]");
-    if (status) {
-      status.textContent = "Message captured locally for the demo. Connect this form on deployment.";
-    }
+    const body = [
+      name ? `From: ${name.value}` : "",
+      message ? `\n\n${message.value}` : ""
+    ].filter(Boolean).join("");
+    if (status) status.textContent = "Opening your email app to send your message.";
+    window.location.href = `mailto:twikirizederick@gmail.com?subject=Nursing%20Uganda%20Contact&body=${encodeURIComponent(body)}`;
     form.reset();
   });
 });
