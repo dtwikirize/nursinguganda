@@ -64,17 +64,59 @@
     <!-- Web App Manifest -->
     <link rel="manifest" href="manifest.webmanifest">
 
-    <!-- Fonts -->
+    <!-- ═══════════════════════════════════════════════════════
+         CRITICAL INLINE CSS — loading screen always renders
+         correctly even before main.min.css finishes loading
+         ═══════════════════════════════════════════════════════ -->
+    <style>
+      *,*::before,*::after{box-sizing:border-box}
+      html,body{margin:0;padding:0;background:#f0faf5}
+      body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#374151}
+      #app{min-height:100vh}
+      .loading-screen{
+        display:flex;flex-direction:column;align-items:center;justify-content:center;
+        min-height:100vh;background:#f0faf5;color:#374151;
+        gap:1.25rem;padding:2rem;text-align:center
+      }
+      .loading-wordmark{
+        display:block;font-size:1.75rem;font-weight:800;
+        color:#0f7f4f;letter-spacing:-0.03em;margin:0;line-height:1.1
+      }
+      .loading-screen p{margin:0;color:#6b7280;font-size:0.9rem}
+      .loading-screen .load-error-msg{color:#b91c1c;font-size:0.875rem;max-width:340px}
+      /* Pulsing dots animation */
+      .loading-screen p::after{
+        content:'';animation:nu-dots 1.4s steps(4,end) infinite
+      }
+      @keyframes nu-dots{
+        0%{content:''}25%{content:'.'}50%{content:'..'}75%,100%{content:'...'}
+      }
+      /* Dark mode respect even before theme JS runs */
+      @media(prefers-color-scheme:dark){
+        html,body,.loading-screen{background:#0d1117}
+        .loading-screen p{color:#9ca3af}
+      }
+    </style>
+
+    <!-- Fonts — deferred so they don't block the loading screen -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"></noscript>
 
     <!-- Leaflet CSS (deferred) -->
     <link rel="preload" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""></noscript>
 
-    <!-- App CSS -->
-    <link rel="stylesheet" href="assets/css/main.min.css?v=76">
+    <!-- App CSS — preload hint speeds up discovery -->
+    <link rel="preload" href="assets/css/main.min.css?v=76" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="assets/css/main.min.css?v=76"></noscript>
+
+    <!-- App JS — preload so browser starts downloading in parallel with CSS -->
+    <link rel="preload" href="assets/js/app.min.js?v=76" as="script">
+
+    <!-- Curriculum data — prefetch so it's ready when JS runs -->
+    <link rel="prefetch" href="assets/data/curriculum.json" as="fetch" crossorigin="anonymous">
 
     <!-- Scroll restoration -->
     <script>
@@ -86,7 +128,7 @@
     <div id="app">
       <div class="loading-screen">
         <strong class="loading-wordmark">Nursing Uganda</strong>
-        <p>Loading...</p>
+        <p>Loading</p>
       </div>
     </div>
 
