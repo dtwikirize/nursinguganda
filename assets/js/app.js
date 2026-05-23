@@ -60,7 +60,7 @@ const app = document.querySelector("#app");
 
 const routeMap = {
   notes: { label: "Notes", href: "/notes", icon: "bookOpen" },
-  courses: { label: "Courses", href: "/courses/curriculum", icon: "graduationCap" },
+  courses: { label: "Courses", href: "/courses", icon: "graduationCap" },
   resources: { label: "Resources", href: "/resources", icon: "folderOpen" },
   dictionary: { label: "Dictionary", href: "/dictionary", icon: "fileText" },
   careers: { label: "Careers", href: "/careers", icon: "briefcaseMedical" }
@@ -3915,6 +3915,118 @@ function programmeSections() {
   return `
     ${section("Nursing Programmes", "Certificate, diploma and BNS curriculum maps for nursing students.", nursing)}
     ${section("Midwifery Programmes", "Certificate and diploma curriculum maps for midwifery students.", midwifery)}
+  `;
+}
+
+function renderCourses() {
+  const programmes = state.data.programmes || [];
+  const totals = state.data?.totals || {};
+  const progress = overallProgress();
+  const last = lastStudiedTopic();
+  const totalUnits = programmes.reduce((sum, p) => sum + allUnits(p).length, 0);
+  const totalLessons = totals.topics || allStudyTopics().length;
+
+  const levelLinks = [
+    { label: "Certificate", icon: "bookOpen", desc: "Foundation nursing training", filter: "Certificate" },
+    { label: "Diploma", icon: "graduationCap", desc: "Extended clinical programmes", filter: "Diploma" },
+    { label: "Degree", icon: "star", desc: "Bachelor-level programmes", filter: "Degree" }
+  ];
+
+  return `
+    <div class="courses-page">
+
+      <!-- ── Hero ── -->
+      <div class="courses-hero">
+        <div class="container">
+          <div class="courses-hero-inner">
+            <div class="courses-hero-text">
+              <span class="courses-eyebrow">${icon("graduationCap")} Nursing Uganda</span>
+              <h1>Courses &amp; Curriculum</h1>
+              <p>All nursing and midwifery programmes available for Uganda students — structured by year, semester and lesson.</p>
+              <div class="courses-hero-actions">
+                ${buttonLink("/courses/curriculum", "View Curriculum Map", "primary", "listChecks")}
+                ${buttonLink("/search", "Search Lessons", "ghost", "search")}
+              </div>
+            </div>
+            <div class="courses-hero-stats">
+              <div class="courses-stat-card">
+                <strong>${programmes.length}</strong>
+                <span>Programmes</span>
+              </div>
+              <div class="courses-stat-card">
+                <strong>${totalUnits}</strong>
+                <span>Course Units</span>
+              </div>
+              <div class="courses-stat-card">
+                <strong>${totalLessons.toLocaleString()}</strong>
+                <span>Lessons</span>
+              </div>
+              <div class="courses-stat-card">
+                <strong>${progress.percent}%</strong>
+                <span>Your Progress</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Resume strip ── -->
+      ${last ? `
+        <div class="courses-resume-strip">
+          <div class="container">
+            <div class="courses-resume-inner">
+              <div class="courses-resume-info">
+                ${icon("bookOpen")}
+                <div>
+                  <span class="courses-resume-label">Continue where you left off</span>
+                  <strong>${escapeHtml(last.title)}</strong>
+                  <span>${escapeHtml(last.programme)} — ${escapeHtml(last.unit)}</span>
+                </div>
+              </div>
+              ${buttonLink(last.href, "Resume Lesson", "primary", "arrowRight")}
+            </div>
+          </div>
+        </div>
+      ` : ""}
+
+      <!-- ── Level filter pills ── -->
+      <div class="courses-levels-strip">
+        <div class="container">
+          <div class="courses-levels-inner">
+            <div class="courses-levels-text">
+              <h2>Browse by Level</h2>
+              <p>Choose a programme level or scroll down to explore all.</p>
+            </div>
+            <div class="courses-level-pills">
+              ${levelLinks.map((l) => `
+                <button type="button" class="courses-level-pill${state.programmeFilter === l.filter ? " active" : ""}" data-programme-level="${escapeHtml(l.filter)}">
+                  ${icon(l.icon)}
+                  <div>
+                    <strong>${escapeHtml(l.label)}</strong>
+                    <span>${escapeHtml(l.desc)}</span>
+                  </div>
+                </button>
+              `).join("")}
+              <button type="button" class="courses-level-pill${state.programmeFilter === "All" ? " active" : ""}" data-programme-level="All">
+                ${icon("listChecks")}
+                <div>
+                  <strong>All</strong>
+                  <span>Every programme</span>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Programme grid ── -->
+      <section class="section">
+        <div class="container">
+          ${programmeSections()}
+        </div>
+      </section>
+
+    </div>
   `;
 }
 
@@ -8182,8 +8294,8 @@ function render() {
     meta = { title: "Resources", description: "Use Nursing Uganda resources for past papers, quizzes, instruments, licensing, schools and student support." };
   }
   else if (parts[0] === "courses" && !parts[1]) {
-    setRoute("/notes");
-    return;
+    content = renderCourses();
+    meta = { title: "Courses", description: "Browse all nursing and midwifery programmes, course units and lesson pages on Nursing Uganda." };
   }
   else if (parts[0] === "courses" && parts[1] === "curriculum") {
     content = renderCurriculumHub();

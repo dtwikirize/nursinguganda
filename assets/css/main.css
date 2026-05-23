@@ -17818,3 +17818,299 @@ textarea:focus {
 .sidebar-secondary-action:hover {
   background: var(--color-primary-soft, rgb(15 127 79 / 0.08));
 }
+
+/* ============================================================
+   REDESIGNED COURSES PAGE
+   ============================================================ */
+
+/* ── Hero ── */
+.courses-hero {
+  background: linear-gradient(135deg, #0a5c39 0%, #0f7f4f 45%, #1a9e63 100%);
+  color: #fff;
+  padding: 4rem 0 3.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.courses-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 80% 20%, rgb(255 255 255 / 0.06) 0%, transparent 55%),
+    radial-gradient(ellipse at 10% 80%, rgb(0 0 0 / 0.12) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.courses-hero-inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 3rem;
+  align-items: center;
+  position: relative;
+}
+
+.courses-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / 0.7);
+  margin-bottom: 0.75rem;
+}
+
+.courses-hero-text h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: #fff;
+  margin: 0 0 0.75rem;
+}
+
+.courses-hero-text p {
+  font-size: 1.05rem;
+  color: rgb(255 255 255 / 0.82);
+  max-width: 42ch;
+  line-height: 1.55;
+  margin: 0 0 1.75rem;
+}
+
+.courses-hero-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.courses-hero-actions .button.primary {
+  background: #fff;
+  color: #0f7f4f;
+  border-color: #fff;
+}
+
+.courses-hero-actions .button.primary:hover {
+  background: #f0fdf4;
+}
+
+.courses-hero-actions .button.ghost {
+  border-color: rgb(255 255 255 / 0.4);
+  color: #fff;
+}
+
+.courses-hero-actions .button.ghost:hover {
+  background: rgb(255 255 255 / 0.1);
+  border-color: rgb(255 255 255 / 0.7);
+}
+
+.courses-hero-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.courses-stat-card {
+  background: rgb(255 255 255 / 0.12);
+  border: 1px solid rgb(255 255 255 / 0.18);
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  backdrop-filter: blur(6px);
+  text-align: center;
+  min-width: 7rem;
+}
+
+.courses-stat-card strong {
+  display: block;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 0.3rem;
+}
+
+.courses-stat-card span {
+  font-size: 0.75rem;
+  color: rgb(255 255 255 / 0.72);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ── Resume strip ── */
+.courses-resume-strip {
+  background: var(--color-surface, #f8fafc);
+  border-bottom: 1px solid var(--color-border);
+  padding: 1rem 0;
+}
+
+.courses-resume-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.courses-resume-info {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  color: var(--color-primary);
+}
+
+.courses-resume-info svg {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.courses-resume-info div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.courses-resume-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.courses-resume-info strong {
+  font-size: 0.95rem;
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+.courses-resume-info span:last-child {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+/* ── Level filter strip ── */
+.courses-levels-strip {
+  border-bottom: 1px solid var(--color-border);
+  padding: 2rem 0;
+}
+
+.courses-levels-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.courses-levels-text {
+  flex-shrink: 0;
+}
+
+.courses-levels-text h2 {
+  font-size: 1.1rem;
+  margin: 0 0 0.2rem;
+}
+
+.courses-levels-text p {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.courses-level-pills {
+  display: flex;
+  gap: 0.625rem;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.courses-level-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.625rem 1rem;
+  border-radius: 0.625rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface, #fff);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+}
+
+.courses-level-pill:hover {
+  border-color: var(--color-primary);
+  background: rgb(15 127 79 / 0.04);
+}
+
+.courses-level-pill.active {
+  border-color: var(--color-primary);
+  background: rgb(15 127 79 / 0.07);
+  box-shadow: 0 0 0 3px rgb(15 127 79 / 0.12);
+}
+
+.courses-level-pill svg {
+  flex-shrink: 0;
+  color: var(--color-primary);
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.courses-level-pill strong {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--color-text);
+  line-height: 1;
+}
+
+.courses-level-pill span {
+  display: block;
+  font-size: 0.73rem;
+  color: var(--color-text-muted);
+  margin-top: 0.1rem;
+}
+
+/* ── Dark mode ── */
+[data-theme="dark"] .courses-hero {
+  background: linear-gradient(135deg, #063d25 0%, #0a5c39 45%, #0f7f4f 100%);
+}
+
+[data-theme="dark"] .courses-resume-strip {
+  background: var(--color-card);
+}
+
+[data-theme="dark"] .courses-stat-card {
+  background: rgb(255 255 255 / 0.08);
+  border-color: rgb(255 255 255 / 0.12);
+}
+
+[data-theme="dark"] .courses-level-pill {
+  background: var(--color-card);
+}
+
+[data-theme="dark"] .courses-level-pill.active {
+  background: rgb(15 127 79 / 0.15);
+}
+
+/* ── Responsive ── */
+@media (max-width: 860px) {
+  .courses-hero-inner {
+    grid-template-columns: 1fr;
+  }
+  .courses-hero-stats {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .courses-hero {
+    padding: 2.5rem 0 2rem;
+  }
+  .courses-hero-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .courses-levels-inner {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
