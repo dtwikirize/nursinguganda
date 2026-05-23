@@ -2819,50 +2819,47 @@ function megaMenuLinks(key) {
   ];
 }
 
+function megaMenuHelper(key) {
+  return key === "notes" ? "Choose focused notes by subject area"
+    : key === "courses" ? "Open programmes, units and curriculum maps"
+    : key === "careers" ? "Find roles, licensing and career support"
+    : key === "dictionary" ? "Search clear nursing and medical definitions"
+    : "Open study tools, papers and clinical references";
+}
+
 function renderMegaMenu(key, item, active) {
   const links = megaMenuLinks(key);
-  const helper = key === "notes"
-    ? "Choose focused notes by subject area"
-    : key === "courses"
-      ? "Open programmes, units and curriculum maps"
-      : key === "careers"
-        ? "Find roles, licensing and career support"
-        : key === "dictionary"
-          ? "Search clear nursing and medical definitions"
-        : "Open study tools, papers and clinical references";
-  const quickLinks = key === "courses"
-    ? [["/courses/curriculum", "All programmes"], ["/courses/curriculum", "Curriculum map"], ["/notes", "Continue studying"]]
-    : key === "resources"
-      ? [["/resources/books", "Books"], ["/resources/medical-instruments", "Instruments"], ["/resources/past-papers", "Past papers"]]
-      : key === "careers"
-        ? [["/careers", "Jobs board"], ["/careers", "Career paths"], ["/careers", "CV support"]]
-        : key === "dictionary"
-          ? [["/dictionary", "All terms"], ["/dictionary/abbreviations", "Abbreviations"], ["/dictionary/category/anatomy", "Anatomy"]]
-        : [["/notes", "Subject notes"], ["/courses/curriculum", "Courses"], ["/resources", "Resources"]];
+  const featured = links.slice(0, 2);
+  const rest = links.slice(2);
+  const isOpen = state.megaOpen === key;
   return `
-    <div class="mega-item mega-${key}${state.megaOpen === key ? " open" : ""}">
-      <a class="mega-trigger ${active === key ? "active" : ""}" href="${item.href}" data-mega-toggle="${key}" aria-expanded="${state.megaOpen === key ? "true" : "false"}">
-        ${icon(item.icon)}<span>${item.label}</span>
-      </a>
-      <div class="mega-panel" role="group" aria-label="${escapeHtml(item.label)} menu">
-        <div class="mega-panel-head">
-          <div>
-            <span class="mega-eyebrow">Nursing Uganda</span>
-            <strong>${escapeHtml(item.label)}</strong>
+    <div class="mega-item mega-${key}${isOpen ? " open" : ""}">
+      <button type="button" class="mega-trigger${active === key ? " active" : ""}" data-mega-toggle="${key}" aria-expanded="${isOpen}">
+        <span>${escapeHtml(item.label)}</span>${icon("chevronDown")}
+      </button>
+      <div class="mega-panel" role="dialog" aria-label="${escapeHtml(item.label)} navigation">
+        <div class="mega-panel-inner">
+          <div class="mega-panel-sidebar">
+            <span class="mega-sidebar-eyebrow">${escapeHtml(item.label)}</span>
+            <p class="mega-sidebar-desc">${escapeHtml(megaMenuHelper(key))}</p>
+            <a class="mega-sidebar-cta" href="${escapeHtml(item.href)}">${icon("arrowRight")}<span>View all</span></a>
+            <div class="mega-sidebar-featured">
+              ${featured.map((link) => `
+                <a class="mega-feat-link" href="${escapeHtml(link.href)}"${link.extra ? ` ${link.extra}` : ""}>
+                  <span class="mega-feat-icon">${icon(link.icon)}</span>
+                  <div><strong>${escapeHtml(link.label)}</strong><small>${escapeHtml(link.body)}</small></div>
+                </a>
+              `).join("")}
+            </div>
           </div>
-          <a class="mega-head-link" href="${escapeHtml(item.href)}">${escapeHtml(helper)} ${icon("arrowRight")}</a>
-        </div>
-        <div class="mega-grid">
-          ${links.map((link, index) => `
-            <a class="mega-link${index < 2 ? " featured" : ""}" href="${escapeHtml(link.href)}"${link.extra ? ` ${link.extra}` : ""}>
-              <span class="mega-icon">${icon(link.icon)}</span>
-              <span><strong>${escapeHtml(link.label)}</strong><small>${escapeHtml(link.body)}</small></span>
-            </a>
-          `).join("")}
-        </div>
-        <div class="mega-panel-foot">
-          <span>Quick access</span>
-          ${quickLinks.map(([href, label]) => `<a href="${escapeHtml(href)}">${escapeHtml(label)}</a>`).join("")}
+          <div class="mega-panel-links">
+            ${rest.map((link) => `
+              <a class="mega-link" href="${escapeHtml(link.href)}"${link.extra ? ` ${link.extra}` : ""}>
+                <span class="mega-icon">${icon(link.icon)}</span>
+                <span><strong>${escapeHtml(link.label)}</strong><small>${escapeHtml(link.body)}</small></span>
+              </a>
+            `).join("")}
+          </div>
         </div>
       </div>
     </div>
@@ -2871,6 +2868,54 @@ function renderMegaMenu(key, item, active) {
 
 function renderMainNav(active) {
   return Object.entries(routeMap).map(([key, item]) => renderMegaMenu(key, item, active)).join("");
+}
+
+function renderMobileDrawer(active) {
+  return `
+    <div class="mobile-drawer${state.navOpen ? " open" : ""}" id="mobile-drawer" role="dialog" aria-modal="true" aria-label="Navigation menu">
+      <div class="drawer-header">
+        <a class="brand drawer-brand" href="/notes" data-nav-close>
+          <span class="brand-mark">NU</span>
+          <div class="brand-text"><strong>Nursing Uganda</strong><small>Notes &amp; Resources</small></div>
+        </a>
+        <button class="drawer-close-btn" type="button" data-nav-toggle aria-label="Close menu">${icon("x")}</button>
+      </div>
+      <a class="drawer-search-bar" href="/search" data-nav-close>
+        ${icon("search")}<span>Search lessons, courses, terms…</span>
+      </a>
+      <nav class="drawer-nav" aria-label="Main navigation">
+        ${Object.entries(routeMap).map(([key, item]) => {
+          const links = megaMenuLinks(key);
+          const isOpen = state.megaOpen === key;
+          return `
+            <div class="drawer-section${isOpen ? " open" : ""}">
+              <button type="button" class="drawer-section-btn${active === key ? " active" : ""}" data-mega-toggle="${escapeHtml(key)}" aria-expanded="${isOpen}">
+                ${icon(item.icon)}<span>${escapeHtml(item.label)}</span>${icon("chevronDown")}
+              </button>
+              <div class="drawer-section-body">
+                ${links.slice(0, 7).map((link) => `
+                  <a class="drawer-link" href="${escapeHtml(link.href)}" data-nav-close${link.extra ? ` ${link.extra}` : ""}>
+                    <span class="drawer-link-icon">${icon(link.icon)}</span>
+                    <span class="drawer-link-text"><strong>${escapeHtml(link.label)}</strong><small>${escapeHtml(link.body)}</small></span>
+                  </a>
+                `).join("")}
+                <a class="drawer-view-all" href="${escapeHtml(item.href)}" data-nav-close>${icon("arrowRight")}<span>All ${escapeHtml(item.label)}</span></a>
+              </div>
+            </div>
+          `;
+        }).join("")}
+      </nav>
+      <div class="drawer-footer">
+        <button class="drawer-theme-btn" type="button" data-theme-toggle>
+          ${state.theme === "dark" ? icon("sun") : icon("moon")}
+          <span>${state.theme === "dark" ? "Light Mode" : "Dark Mode"}</span>
+        </button>
+        <a class="drawer-footer-link" href="/notes" data-nav-close>${icon("bookOpen")}<span>Notes</span></a>
+        <a class="drawer-footer-link" href="/resources" data-nav-close>${icon("folderOpen")}<span>Resources</span></a>
+      </div>
+    </div>
+    <div class="nav-overlay${state.navOpen ? " open" : ""}" data-nav-overlay></div>
+  `;
 }
 
 function renderImageLightbox() {
@@ -2920,7 +2965,7 @@ function layout(content) {
               <small>Notes &amp; Resources</small>
             </div>
           </a>
-          <nav class="main-nav${state.navOpen ? " open" : ""}" data-main-nav aria-label="Main navigation">
+          <nav class="main-nav" data-main-nav aria-label="Main navigation">
             ${renderMainNav(active)}
           </nav>
           <div class="nav-actions">
@@ -2928,12 +2973,13 @@ function layout(content) {
               ${state.theme === "dark" ? icon("sun") : icon("moon")}
             </button>
             <a class="nav-search-pill" href="/search" aria-label="Search notes">${icon("search")}<span>Search</span></a>
-            <button class="mobile-toggle" type="button" data-nav-toggle aria-label="Open menu" aria-expanded="${state.navOpen}">
-              <span></span><span></span><span></span>
+            <button class="mobile-toggle" type="button" data-nav-toggle aria-label="${state.navOpen ? "Close menu" : "Open menu"}" aria-expanded="${state.navOpen}">
+              ${state.navOpen ? icon("x") : `<span></span><span></span><span></span>`}
             </button>
           </div>
         </div>
       </header>
+      ${renderMobileDrawer(active)}
       <div class="page-main" id="page-main">
         ${content}
       </div>
@@ -2944,39 +2990,44 @@ function layout(content) {
     </div>
   `;
 
-  const toggle = app.querySelector("[data-nav-toggle]");
-  if (toggle) {
+  app.querySelectorAll("[data-nav-toggle]").forEach((toggle) => {
     toggle.addEventListener("click", () => {
       state.navOpen = !state.navOpen;
       if (!state.navOpen) state.megaOpen = "";
       render();
     });
-  }
+  });
 
-  const themeToggle = app.querySelector("[data-theme-toggle]");
-  if (themeToggle) {
-    themeToggle.addEventListener("click", () => {
+  app.querySelectorAll("[data-theme-toggle]").forEach((btn) => {
+    btn.addEventListener("click", () => {
       setTheme(state.theme === "dark" ? "light" : "dark");
       render();
     });
+  });
+
+  // Close mobile drawer when clicking overlay or a nav-close link
+  const overlay = app.querySelector("[data-nav-overlay]");
+  if (overlay) {
+    overlay.addEventListener("click", () => { state.navOpen = false; state.megaOpen = ""; render(); });
   }
+  app.querySelectorAll("[data-nav-close]").forEach((el) => {
+    el.addEventListener("click", () => { state.navOpen = false; state.megaOpen = ""; });
+  });
 
   app.querySelectorAll("[data-mega-toggle]").forEach((trigger) => {
     trigger.addEventListener("click", (event) => {
       const key = trigger.dataset.megaToggle || "";
-      const isMobileNav = window.matchMedia("(max-width: 760px)").matches || state.navOpen;
-      if (isMobileNav || state.megaOpen !== key) {
-        event.preventDefault();
-        state.megaOpen = state.megaOpen === key ? "" : key;
-        render();
-      } else {
-        state.megaOpen = "";
-      }
+      event.preventDefault();
+      state.megaOpen = state.megaOpen === key ? "" : key;
+      render();
     });
   });
 
   document.addEventListener("click", (event) => {
-    if (!event.target.closest(".main-nav")) state.megaOpen = "";
+    if (!event.target.closest(".main-nav") && !event.target.closest(".mobile-drawer") && state.megaOpen) {
+      state.megaOpen = "";
+      render();
+    }
   }, { once: true });
 
   setupCookieConsentControls();
