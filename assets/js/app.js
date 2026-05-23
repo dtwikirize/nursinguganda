@@ -50,7 +50,7 @@ const state = {
   imagePickerSearch: "",
   imagePickerCategory: "all",
   cookiePreferencesOpen: false,
-  theme: localStorage.getItem("nursinguganda.theme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"),
+  theme: localStorage.getItem("nursinguganda.theme") || "light",
   flashcardIndex: 0,
   flashcardFlipped: false,
   flashcardCategory: "All"
@@ -2924,6 +2924,9 @@ function layout(content) {
             ${renderMainNav(active)}
           </nav>
           <div class="nav-actions">
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="${state.theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}" title="${state.theme === "dark" ? "Light mode" : "Dark mode"}">
+              ${state.theme === "dark" ? icon("sun") : icon("moon")}
+            </button>
             <a class="nav-search-pill" href="/search" aria-label="Search notes">${icon("search")}<span>Search</span></a>
             <button class="mobile-toggle" type="button" data-nav-toggle aria-label="Open menu" aria-expanded="${state.navOpen}">
               <span></span><span></span><span></span>
@@ -2946,6 +2949,14 @@ function layout(content) {
     toggle.addEventListener("click", () => {
       state.navOpen = !state.navOpen;
       if (!state.navOpen) state.megaOpen = "";
+      render();
+    });
+  }
+
+  const themeToggle = app.querySelector("[data-theme-toggle]");
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      setTheme(state.theme === "dark" ? "light" : "dark");
       render();
     });
   }
