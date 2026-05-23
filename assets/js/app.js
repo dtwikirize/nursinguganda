@@ -4742,7 +4742,6 @@ function renderSecondaryPanel(id, title, iconName, body, open = false) {
   if (!body) return "";
   const subtitles = {
     "Watch Video": "Visual walkthrough of this lesson",
-    "Quick Quiz": "Test your knowledge",
     "Practice Flashcards": "Key terms and definitions",
     "References": "Textbooks and official sources",
     "Related Lessons": "Continue through this course"
@@ -4766,7 +4765,6 @@ function renderSecondaryLearningResources(programme, unit, topic, lesson) {
         <span class="mini-label">Practice, Watch and Verify</span>
       </div>
       ${renderSecondaryPanel("video-resource", "Watch Video", "video", renderTopicVideo(programme, unit, topic), false)}
-      ${renderSecondaryPanel("quiz-resource", "Quick Quiz", "helpCircle", renderTopicQuiz(lesson, programme, unit, topic, topicKey(programme, unit, topic)), false)}
       ${renderSecondaryPanel("lesson-flashcards", "Practice Flashcards", "badgeCheck", renderLessonFlashcards(lesson), false)}
       ${renderSecondaryPanel("lesson-references", "References", "bookOpen", renderLessonReferences(programme, unit, topic, lesson), false)}
     </section>
