@@ -60,7 +60,7 @@ const app = document.querySelector("#app");
 
 const routeMap = {
   notes: { label: "Notes", href: "/notes", icon: "bookOpen" },
-  courses: { label: "Courses", href: "/courses", icon: "graduationCap" },
+  courses: { label: "Courses", href: "/courses/curriculum", icon: "graduationCap" },
   resources: { label: "Resources", href: "/resources", icon: "folderOpen" },
   dictionary: { label: "Dictionary", href: "/dictionary", icon: "fileText" },
   careers: { label: "Careers", href: "/careers", icon: "briefcaseMedical" }
@@ -2630,7 +2630,7 @@ function renderFooter() {
 
   const exploreLinks = [
     ["/notes", "Notes", "bookOpen"],
-    ["/courses", "Courses", "graduationCap"],
+    ["/courses/curriculum", "Courses", "graduationCap"],
     ["/search", "Search", "search"],
     ["/dictionary", "Dictionary", "fileText"],
     ["/resources/medical-instruments", "Instruments", "stethoscope"],
@@ -2782,7 +2782,7 @@ function megaMenuLinks(key) {
       icon: iconNameFor(programme.label)
     }));
     return [
-      { href: "/courses", label: "All Courses", body: "Browse every nursing and midwifery programme", icon: "graduationCap" },
+      { href: "/courses/curriculum", label: "All Courses", body: "Browse every nursing and midwifery programme", icon: "graduationCap" },
       { href: "/courses/curriculum", label: "Curriculum Maps", body: "Move by programme, year and semester", icon: "listChecks" },
       ...programmes
     ];
@@ -2831,14 +2831,14 @@ function renderMegaMenu(key, item, active) {
           ? "Search clear nursing and medical definitions"
         : "Open study tools, papers and clinical references";
   const quickLinks = key === "courses"
-    ? [["/courses", "All programmes"], ["/courses/curriculum", "Curriculum map"], ["/notes", "Continue studying"]]
+    ? [["/courses/curriculum", "All programmes"], ["/courses/curriculum", "Curriculum map"], ["/notes", "Continue studying"]]
     : key === "resources"
       ? [["/resources/books", "Books"], ["/resources/medical-instruments", "Instruments"], ["/resources/past-papers", "Past papers"]]
       : key === "careers"
         ? [["/careers", "Jobs board"], ["/careers", "Career paths"], ["/careers", "CV support"]]
         : key === "dictionary"
           ? [["/dictionary", "All terms"], ["/dictionary/abbreviations", "Abbreviations"], ["/dictionary/category/anatomy", "Anatomy"]]
-        : [["/notes", "Subject notes"], ["/courses", "Courses"], ["/resources", "Resources"]];
+        : [["/notes", "Subject notes"], ["/courses/curriculum", "Courses"], ["/resources", "Resources"]];
   return `
     <div class="mega-item mega-${key}${state.megaOpen === key ? " open" : ""}">
       <a class="mega-trigger ${active === key ? "active" : ""}" href="${item.href}" data-mega-toggle="${key}" aria-expanded="${state.megaOpen === key ? "true" : "false"}">
@@ -2897,7 +2897,7 @@ function renderPreFooterBand() {
         </div>
         <div class="pre-footer-actions">
           ${buttonLink("/search", "Search Everything", "primary", "search")}
-          ${buttonLink("/courses", "Open Courses", "secondary", "graduationCap")}
+          ${buttonLink("/courses/curriculum", "Open Courses", "secondary", "graduationCap")}
           ${buttonLink("/dictionary", "Dictionary", "ghost", "fileText")}
         </div>
       </div>
@@ -3441,7 +3441,7 @@ function renderProgress() {
       title: "My Study Progress",
       body: "Track your completed lessons, quiz mastery, study streak and bookmarks across all programmes.",
       image: imageCatalog.curriculum,
-      actions: `${buttonLink("/courses", "Continue Studying", "primary", "graduationCap")}${buttonLink("/notes", "Back to Notes", "secondary", "bookOpen")}`
+      actions: `${buttonLink("/courses/curriculum", "Continue Studying", "primary", "graduationCap")}${buttonLink("/notes", "Back to Notes", "secondary", "bookOpen")}`
     })}
     <section class="section">
       <div class="container">
@@ -3480,7 +3480,7 @@ function renderProgress() {
             <div class="progress-bar" style="margin-top:16px;margin-bottom:20px">
               <span style="width:${progress.percent}%"></span>
             </div>
-            ${buttonLink("/courses", "Continue Studying", "primary", "arrowRight")}
+            ${buttonLink("/courses/curriculum", "Continue Studying", "primary", "arrowRight")}
           </div>
         </div>
 
@@ -3585,7 +3585,7 @@ function renderNotes() {
       eyebrow: "Study Hub",
       title: "Nursing Notes",
       body: "Structured nursing and midwifery notes, curriculum maps and revision resources for Uganda students.",
-      actions: `${buttonLink("/courses", "Open Courses", "primary", "graduationCap")}${buttonLink("/search", "Search", "secondary", "search")}`
+      actions: `${buttonLink("/courses/curriculum", "Open Courses", "primary", "graduationCap")}${buttonLink("/search", "Search", "secondary", "search")}`
     })}
     <div class="notes-stats-strip">
       <div class="container">
@@ -3613,7 +3613,7 @@ function renderNotes() {
             <div><strong>${streak.count || 0}</strong><span>day streak</span></div>
             ${masteryCount > 0 ? `<div><strong>${masteryCount}</strong><span>mastered</span></div>` : ""}
           </div>
-          ${buttonLink(last ? last.href : "/courses", last ? "Resume" : "Start Learning", "primary", last ? "bookOpen" : "graduationCap")}
+          ${buttonLink(last ? last.href : "/courses/curriculum", last ? "Resume" : "Start Learning", "primary", last ? "bookOpen" : "graduationCap")}
         </div>
       </div>
     </section>
@@ -3918,61 +3918,6 @@ function programmeSections() {
   `;
 }
 
-function renderCourses() {
-  const query = state.search.trim().toLowerCase();
-  const matchedUnits = [];
-  if (query) {
-    for (const programme of state.data.programmes) {
-      for (const unit of allUnits(programme)) {
-        const haystack = `${programme.label} ${unit.code || ""} ${unit.title}`.toLowerCase();
-        if (haystack.includes(query)) matchedUnits.push({ programme, unit });
-      }
-    }
-  }
-
-  return `
-    ${pageHeader({
-      eyebrow: "Programmes",
-      title: "Courses & Curriculum",
-      body: "Browse nursing and midwifery programmes, year and semester pathways, and topic maps.",
-      actions: buttonLink("/courses/curriculum", "Curriculum Maps", "secondary", "listChecks")
-    })}
-    <section class="section">
-      <div class="container">
-        <label class="search-field course-search-label">
-          ${icon("search")}
-          <input class="search-input" data-search type="search" value="${escapeHtml(state.search)}" placeholder="Search course units, codes or programmes…" aria-label="Search courses">
-        </label>
-        ${query ? renderSearchResults(matchedUnits) : programmeSections()}
-      </div>
-    </section>
-  `;
-}
-
-function renderSearchResults(results) {
-  if (!results.length) {
-    return `<div class="empty-state">No course units matched that search.</div>`;
-  }
-  return `
-    <div class="section-head">
-      <div>
-        <h2>Search Results</h2>
-        <p>${results.length} course units matched.</p>
-      </div>
-    </div>
-    <div class="unit-grid">
-      ${results.map(({ programme, unit }) => `
-        <a class="unit-card" href="/courses/${programme.id}/${unit.id}">
-          <span class="unit-code">${escapeHtml(unit.code || "Unit")}</span>
-          <h3>${escapeHtml(unit.title)}</h3>
-          <p>${escapeHtml(programme.label)} - Year ${unit.year}, Semester ${unit.semester}</p>
-          <span class="card-link">${icon("arrowRight")}<span>Open unit</span></span>
-        </a>
-      `).join("")}
-    </div>
-  `;
-}
-
 function renderCurriculumHub() {
   const programmeCount = state.data?.programmes?.length || 0;
   return `
@@ -3980,7 +3925,7 @@ function renderCurriculumHub() {
       eyebrow: "Curriculum",
       title: "Curriculum Maps",
       body: `All ${programmeCount} nursing and midwifery programmes — drill into semesters, course units and topic lists.`,
-      actions: buttonLink("/courses", "All Courses", "secondary", "graduationCap")
+      actions: buttonLink("/courses/curriculum", "All Courses", "secondary", "graduationCap")
     })}
     <section class="section">
       <div class="container">
@@ -4003,16 +3948,16 @@ function renderProgramme(programme) {
       image: imageFor(programme.label),
       breadcrumb: `
         <nav class="hero-breadcrumb" aria-label="Breadcrumb">
-          <a href="/courses">Courses</a>
+          <a href="/courses/curriculum">Courses</a>
           <span>${icon("arrowRight")}</span>
-          <a href="/courses">${escapeHtml(programmeType)}</a>
+          <a href="/courses/curriculum">${escapeHtml(programmeType)}</a>
           <span>${icon("arrowRight")}</span>
           <strong>${escapeHtml(programme.label)}</strong>
         </nav>
       `,
       actions: firstYearKey ? `
         <button class="button primary" type="button" data-scroll-target="${escapeHtml(firstYearKey)}">${buttonLabel("View Year 1", "arrowRight")}</button>
-        <a class="button secondary" href="/courses">${buttonLabel("All Programmes", "graduationCap")}</a>
+        <a class="button secondary" href="/courses/curriculum">${buttonLabel("All Programmes", "graduationCap")}</a>
       ` : "",
       cues: [
         `${programme.stats.yearCount} Years`,
@@ -8239,8 +8184,8 @@ function render() {
     meta = { title: "Resources", description: "Use Nursing Uganda resources for past papers, quizzes, instruments, licensing, schools and student support." };
   }
   else if (parts[0] === "courses" && !parts[1]) {
-    content = renderCourses();
-    meta = { title: "Courses", description: "Browse nursing and midwifery programmes, course units and curriculum topics." };
+    setRoute("/notes");
+    return;
   }
   else if (parts[0] === "courses" && parts[1] === "curriculum") {
     content = renderCurriculumHub();
