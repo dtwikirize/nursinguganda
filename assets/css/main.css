@@ -682,23 +682,6 @@ font-size: 1.35rem;
   margin-top: auto;
 }
 
-.drawer-theme-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex: 1;
-  padding: 0.6rem 0.875rem;
-  border-radius: 8px;
-  border: 1px solid var(--color-border);
-  background: var(--color-surface);
-  color: var(--color-text);
-  font-size: 0.83rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.15s;
-}
-.drawer-theme-btn:hover { background: var(--color-border); }
-.drawer-theme-btn .ui-icon { width: 15px; height: 15px; color: var(--color-primary); }
 
 .drawer-footer-link {
   display: flex;
@@ -829,25 +812,6 @@ color: var(--color-on-brand);
   border-color: transparent;
 }
 
-.theme-toggle {
-display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  min-height: 42px;
-  padding: 0.58rem 0.92rem;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-button);
-  color: var(--color-navy);
-  background: var(--color-card);
-  font-weight: 900;
-  cursor: pointer;
-}
-
-.theme-toggle:hover {
-color: var(--color-on-brand);
-  background: var(--color-primary);
-}
 
 .hero {
 padding: 64px 0 48px;
@@ -8548,32 +8512,6 @@ display: flex;
   line-height: 1.15;
 }
 
-/* Theme toggle */
-.theme-toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: 1px solid var(--color-border);
-  background: var(--color-card);
-  color: var(--color-text-muted);
-  cursor: pointer;
-  transition: border-color 0.18s, color 0.18s, background 0.18s;
-  flex-shrink: 0;
-}
-
-.theme-toggle:hover {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
-  background: rgb(15 127 79 / 0.06);
-}
-
-.theme-toggle .ui-icon {
-  width: 16px;
-  height: 16px;
-}
 
 /* Nav search pill */
 .nav-search-pill {
@@ -10378,7 +10316,6 @@ display: flex;
 }
 
 /* Responsive and final-pass refinements */
-.theme-toggle,
 .bookmark-toggle,
 .programme-link,
 .unit-action,
@@ -14906,15 +14843,6 @@ textarea:focus {
   box-shadow: 0 8px 24px rgb(var(--color-navy-rgb) / 0.08);
 }
 
-/* ── Theme Toggle Premium ────────────────────────────────────────── */
-.theme-toggle {
-  transition: color 0.2s ease, background 0.2s ease, transform 0.2s var(--ease-spring), box-shadow 0.2s ease;
-}
-
-.theme-toggle:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 12px 28px rgb(var(--color-primary-rgb) / 0.2);
-}
 
 /* ── Dark Mode Card Premium ──────────────────────────────────────── */
 [data-theme="dark"] .card:hover,

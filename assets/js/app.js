@@ -50,7 +50,6 @@ const state = {
   imagePickerSearch: "",
   imagePickerCategory: "all",
   cookiePreferencesOpen: false,
-  theme: localStorage.getItem("nursinguganda.theme") || "light",
   flashcardIndex: 0,
   flashcardFlipped: false,
   flashcardCategory: "All"
@@ -167,17 +166,6 @@ function setRoute(path) {
   scrollPageToTop();
 }
 
-function applyTheme() {
-  document.documentElement.dataset.theme = state.theme;
-}
-
-function setTheme(theme) {
-  state.theme = theme;
-  localStorage.setItem("nursinguganda.theme", theme);
-  applyTheme();
-}
-
-applyTheme();
 
 if ("scrollRestoration" in history) {
   history.scrollRestoration = "manual";
@@ -2926,10 +2914,6 @@ function renderMobileDrawer(active) {
         }).join("")}
       </nav>
       <div class="drawer-footer">
-        <button class="drawer-theme-btn" type="button" data-theme-toggle>
-          ${state.theme === "dark" ? icon("sun") : icon("moon")}
-          <span>${state.theme === "dark" ? "Light Mode" : "Dark Mode"}</span>
-        </button>
         <a class="drawer-footer-link" href="/notes" data-nav-close>${icon("bookOpen")}<span>Notes</span></a>
         <a class="drawer-footer-link" href="/resources" data-nav-close>${icon("folderOpen")}<span>Resources</span></a>
       </div>
@@ -2989,9 +2973,6 @@ function layout(content) {
             ${renderMainNav(active)}
           </nav>
           <div class="nav-actions">
-            <button class="theme-toggle" type="button" data-theme-toggle aria-label="${state.theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}" title="${state.theme === "dark" ? "Light mode" : "Dark mode"}">
-              ${state.theme === "dark" ? icon("sun") : icon("moon")}
-            </button>
             <a class="nav-search-pill" href="/search" aria-label="Search notes">${icon("search")}<span>Search</span></a>
             <button class="mobile-toggle" type="button" data-nav-toggle aria-label="${state.navOpen ? "Close menu" : "Open menu"}" aria-expanded="${state.navOpen}">
               ${state.navOpen ? icon("x") : `<span></span><span></span><span></span>`}
@@ -3018,12 +2999,6 @@ function layout(content) {
     });
   });
 
-  app.querySelectorAll("[data-theme-toggle]").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      setTheme(state.theme === "dark" ? "light" : "dark");
-      render();
-    });
-  });
 
   // Close mobile drawer when clicking overlay or a nav-close link
   const overlay = app.querySelector("[data-nav-overlay]");
@@ -9765,7 +9740,6 @@ function setupStudyTimer() {
 
 async function init() {
   try {
-    applyTheme();
 
     // Curriculum is the minimum needed to render — load it first and paint immediately
     // Use root-relative path so it always resolves correctly regardless of current URL
