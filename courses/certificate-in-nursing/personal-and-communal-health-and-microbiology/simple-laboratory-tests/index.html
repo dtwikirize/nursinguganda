@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,117 +97,150 @@
         <p>Simple laboratory tests should be reviewed through safe maternal and newborn assessment, early recognition of danger signs, respectful communication and timely referral. Connect the definition to vital signs, bleeding, fetal or newborn wellbeing, patient education and local protocol requirements.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 19 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Simple Laboratory Tests in Microbiology</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">1. The Essential Tool: The Microscope</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Types of Microscopes</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Components of a Compound Microscope and Their Functions</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Specimen Management</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Types of Specimens</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Specimen Containers</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Specimen Preservation and Transport</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Sputum</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Urine (Clean-Catch Midstream)</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Wound Swabs &amp; Aspirates</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Venous Blood Collection (Phlebotomy)</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Common Factors Affecting Blood Samples</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Laboratory Processes &amp; Specific Tests</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Common Serological Tests</a>
+          <a href="#section-16" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-17" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-18" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-19" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Simple Laboratory Tests in Microbiology</summary>
           <p>Accurate diagnosis of infectious diseases relies heavily on laboratory analysis. For nurses and midwives, understanding the principles of laboratory tests, especially how to properly collect and handle specimens, is a critical skill. The quality of a lab result is only as good as the quality of the specimen collected. This unit covers the essential equipment, specimen types, and procedures used in a clinical microbiology laboratory.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 1. The Essential Tool: The Microscope</summary>
           <p>A <strong>microscope</strong> is an optical instrument used to observe objects that are too small to be seen with the naked eye. It is the cornerstone of the microbiology lab, used for direct examination of specimens and for viewing stained microorganisms.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Types of Microscopes</summary>
           <ul><li><strong>Simple Microscope:</strong> Contains only one magnifying lens, like a magnifying glass. It has limited magnification.</li><li><strong>Compound Microscope:</strong> Contains a system of multiple lenses (ocular and objective lenses), allowing for much higher magnification. This is the most commonly used microscope in medical laboratories in Uganda and worldwide.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Components of a Compound Microscope and Their Functions</summary>
           <ul><li>Component Function Clinical Importance</li><li><strong>Ocular Lens (Eyepiece)</strong> Contains the lens you look through. Typically provides a 10x magnification. It&#39;s the final magnification step. Total Magnification = Ocular Lens × Objective Lens.</li><li><strong>Objective Lenses</strong> Lenses of different magnifications (e.g., 4x, 10x, 40x, 100x) mounted on the revolving nosepiece. Allows you to switch from low to high power. The <strong>100x lens is the &quot;oil immersion&quot; lens</strong> , used to view bacteria.</li><li><strong>Revolving Nosepiece</strong> A rotating turret that holds the objective lenses, permitting easy interchange between magnifications. Essential for systematically focusing on a specimen (starting on low power and moving up).</li><li><strong>Stage</strong> A flat platform where the specimen slide is placed. It must be kept clean and dry to avoid damaging the specimen or the microscope.</li><li><strong>Stage Clips</strong> Clips that hold the specimen slide firmly in place on the stage. Prevents the slide from moving unexpectedly while viewing.</li><li><strong>Condenser</strong> A lens system located below the stage that focuses the light from the light source onto the specimen. Properly adjusting the condenser is critical for achieving a clear, well-lit image, especially at high power.</li><li><strong>Diaphragm (Iris Diaphragm)</strong> Located within the condenser, it is an adjustable aperture that controls the amount of light passing through the specimen. Used to adjust contrast. Reducing light can make unstained or transparent specimens more visible.</li><li><strong>Light Source (Illuminator)</strong> An integrated electric bulb (or a mirror on older models) that provides light. Provides the illumination necessary to see the specimen.</li><li><strong>Coarse Adjustment Knob</strong> A large knob that moves the stage up and down rapidly for initial focusing. <strong>CRITICAL RULE:</strong> Use the coarse adjustment knob <strong>ONLY with the lowest power (4x or 10x) objective lens</strong> . Using it on high power will crash the lens into the slide, breaking both.</li><li><strong>Fine Adjustment Knob</strong> A smaller knob that moves the stage up and down very slowly for precise, sharp focusing. This is the only focusing knob used with the high-power (40x) and oil-immersion (100x) lenses.</li><li><strong>Arm</strong> Connects the head of the microscope to the base. It is used to carry the microscope. Proper handling involves holding the arm with one hand and supporting the base with the other.</li><li><strong>Base</strong> The supportive bottom of the microscope. Provides stability and houses the illuminator.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Specimen Management</summary>
           <p>The &quot;pre-analytical phase&quot;—everything that happens before the sample is tested—is where most laboratory errors occur. As a nurse or midwife, you play the most critical role in this phase. The principle is simple: <strong>&quot;Garbage In, Garbage Out.&quot;</strong> A poorly collected or handled specimen will lead to an incorrect result, potentially harming the patient.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Types of Specimens</summary>
           <p>A specimen is a sample of biological material taken from a patient for diagnostic purposes.</p>
 <ul><li><strong>Blood:</strong> Can be whole blood, serum (the fluid after clotting), or plasma (the fluid with anticoagulants). Used for blood cultures, serology, and chemistry.</li><li><strong>Urine:</strong> Typically a midstream clean-catch specimen for urinalysis and culture.</li><li><strong>Swabs:</strong> Used to sample surfaces. Includes throat, wound, high vaginal, cervical, eye, ear, and nasal swabs.</li><li><strong>Sputum:</strong> A sample coughed up from the lower respiratory tract, not saliva. Used to diagnose pneumonia and tuberculosis.</li><li><strong>Stool (Feces):</strong> Used to detect intestinal pathogens (bacteria, parasites, viruses).</li><li><strong>Sterile Body Fluids (Aspirates):</strong> Fluid collected by needle aspiration from normally sterile sites. Includes Cerebrospinal Fluid (CSF), pleural fluid (from the lungs), synovial fluid (from joints), and peritoneal fluid (from the abdomen).</li><li><strong>Tissue Biopsies:</strong> Small pieces of tissue removed surgically for histology and culture.</li><li><strong>Superficial Samples:</strong> Skin scrapings, nail clippings, or hair for diagnosing fungal infections.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Specimen Containers</summary>
           <p>Using the correct sterile container is essential to prevent contamination and ensure the specimen is preserved correctly.</p>
 <ul><li>Container Type Description Common Use</li><li><strong>Vacutainer Tubes (Blood)</strong> Glass or plastic tubes with a vacuum that automatically draws a specific volume of blood. Tops are color-coded based on the additive inside. Venous blood collection.</li><li>Red or Gold Top Plain tube with no anticoagulant (may have a clot activator). Used for tests requiring <strong>serum</strong> (e.g., serology, chemistry). The blood is allowed to clot.</li><li>Lavender Top Contains EDTA (an anticoagulant that binds calcium). Used for tests requiring <strong>whole blood</strong> (e.g., hematology, Complete Blood Count - CBC). Prevents clotting.</li><li>Light Blue Top Contains sodium citrate (a reversible anticoagulant). Used for <strong>coagulation studies</strong> (e.g., PT/INR).</li><li>Green Top Contains heparin (an anticoagulant). Used for some chemistry tests requiring <strong>plasma</strong> .</li><li>Gray Top Contains sodium fluoride (preserves glucose) and potassium oxalate (anticoagulant). Used for <strong>glucose and lactate testing</strong> .</li><li><strong>Sterile Universal Container</strong> A sterile, wide-mouthed screw-capped bottle (usually 30 mL). The most versatile container, used for <strong>urine, sputum, fluids, and stool</strong> .</li><li><strong>Swab with Transport Medium</strong> A sterile swab in a tube containing a transport medium like Amies or Cary-Blair. Used for most swabs (throat, wound, vaginal). The medium keeps bacteria alive but prevents overgrowth during transport.</li><li><strong>Blood Culture Bottles</strong> Specialized bottles containing a nutrient broth to grow bacteria. They come in aerobic (with oxygen) and anaerobic (without oxygen) sets. For collecting blood when <strong>sepsis or bacteremia</strong> is suspected.</li><li><strong>Stool Container</strong> A clean, wide-mouthed container, often with a built-in spoon in the lid. For collecting feces for examination.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Specimen Preservation and Transport</summary>
           <p>Specimens should be transported to the lab immediately. If a delay is unavoidable, proper preservation is crucial.</p>
 <ul><li><strong>Refrigeration (2-8°C):</strong> This is the most common method. It slows down the metabolic activity of bacteria, preventing overgrowth of commensals and preserving the original ratio of microbes. Ideal for urine, swabs, and sputum if there is a delay of more than 2 hours. <strong>NEVER refrigerate CSF for bacterial meningitis or blood cultures.</strong></li><li><strong>Freezing (-20°C or lower):</strong> Used for long-term storage of serum, plasma, or tissues. Not suitable for most bacteriology specimens as freezing can kill delicate bacteria.</li><li><strong>Incubation (35-37°C):</strong> Only for specific situations, like keeping CSF for suspected pyogenic meningitis warm to preserve fragile bacteria like Neisseria meningitidis .</li><li><strong>Chemical Preservation:</strong> <strong>Transport Media (Amies, Cary-Blair):</strong> A semi-solid gel that maintains the viability of bacteria without allowing them to multiply. Essential for swabs.</li><li><strong>Anticoagulants (EDTA, Heparin, Citrate):</strong> Prevent blood from clotting when plasma or whole blood is needed.</li><li><strong>Fixatives (10% Formalin):</strong> Used for histology to preserve tissue structure by killing all cells and microbes. <strong>NEVER use formalin for samples intended for culture.</strong></li><li><strong>Strict Aseptic Technique:</strong> Use sterile equipment and techniques to avoid contaminating the specimen with environmental microbes or normal flora from the patient&#39;s skin. This is the single most important principle.</li><li><strong>Collect from the Actual Site of Infection:</strong> Ensure the sample represents the disease process. For a wound, sample the deep part, not the surface pus. For pneumonia, collect deep-coughed sputum, not saliva.</li><li><strong>Collect at the Right Time:</strong> Collect specimens before administering antibiotics whenever possible. For blood cultures, collect during a fever spike. For tuberculosis, collect early morning sputum.</li><li><strong>Use the Correct Container and Label Properly:</strong> Every specimen must be in the correct container and labeled immediately with at least the patient&#39;s full name, hospital number, date, and time of collection. An unlabeled specimen will be rejected.</li><li><strong>Ensure Sufficient Quantity:</strong> An insufficient sample (e.g., a dry swab) cannot be processed properly.</li><li><strong>Prompt Transport to the Lab:</strong> Transport all specimens to the laboratory as quickly as possible to ensure the best results.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Sputum</summary>
           <ul><li>Instruct the patient that the goal is a sample from deep in the lungs, not saliva from the mouth.</li><li>Have the patient rinse their mouth with plain water to reduce contamination from oral bacteria.</li><li>Instruct the patient to take several deep breaths and then perform a deep, forceful cough, expectorating directly into a sterile, wide-mouthed universal container.</li><li><strong>Important Note:</strong> Early morning specimens are best as secretions pool overnight. If the patient cannot produce sputum, physiotherapy or induction with nebulized sterile saline may be necessary.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Urine (Clean-Catch Midstream)</summary>
           <ul><li>Provide the patient with a sterile universal container and antiseptic wipes.</li><li><strong>For Females:</strong> Instruct her to separate the labia, clean the urethral opening with a wipe from front to back, and repeat with a new wipe. She should then begin to urinate into the toilet, and without stopping the stream, collect the &quot;midstream&quot; portion of the urine into the sterile container before finishing in the toilet.</li><li><strong>For Males:</strong> Instruct him to retract the foreskin (if uncircumcised), clean the glans with a wipe, begin urinating into the toilet, and then collect the midstream portion.</li><li>This procedure is designed to flush out contaminating bacteria from the distal urethra.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 Wound Swabs &amp; Aspirates</summary>
           <ul><li><strong>Superficial Wound/Open Abscess:</strong> First, clean the surface of the wound with sterile saline to remove surface contaminants and exudate. Using a sterile swab, firmly sample the advancing edge or deep base of the lesion where active infection is occurring. Place the swab into transport medium.</li><li><strong>Closed Abscess/Deep Wound:</strong> This is a doctor-led procedure. The overlying skin is disinfected, and a sterile needle and syringe are used to aspirate pus from deep within the abscess. An aspirate is always superior to a swab because it avoids surface contamination and collects a larger volume of anaerobic bacteria.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-12">
           <summary>12 Venous Blood Collection (Phlebotomy)</summary>
           <ul><li><strong>Prepare:</strong> Wash hands, wear gloves, assemble all equipment (tourniquet, alcohol swab, needle, vacutainer tubes in the correct order of draw).</li><li><strong>Identify &amp; Position:</strong> Confirm patient identity. Position the patient comfortably with their arm extended and supported.</li><li><strong>Select Vein:</strong> Apply the tourniquet 7-10 cm above the site. Palpate to find a suitable vein (usually the median cubital vein in the antecubital fossa). Ask the patient to make a fist.</li><li><strong>Disinfect:</strong> Clean the site vigorously with a 70% alcohol swab in a circular motion, moving outwards. Allow it to air dry completely. Do not touch the site after cleaning.</li><li><strong>Perform Venipuncture:</strong> Anchor the vein by pulling the skin taut below the site. Insert the needle, bevel up, at a 15-30 degree angle. Once in the vein, push the vacutainer tube into the holder to draw blood.</li><li><strong>Complete and Withdraw:</strong> Release the tourniquet once blood flow is established. Once the last tube is full, withdraw the needle and immediately activate the safety feature. Apply firm pressure to the site with a cotton ball or gauze.</li><li><strong>Handle Specimen:</strong> Gently invert tubes with additives 8-10 times. Label all tubes at the patient&#39;s bedside.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-13">
           <summary>13 Common Factors Affecting Blood Samples</summary>
           <ul><li><strong>Hemolysis:</strong> The breakdown of red blood cells, which releases potassium and enzymes, leading to inaccurate chemistry results. Caused by using a needle that is too small, shaking the tube vigorously, or drawing blood too slowly.</li><li><strong>Lipemia:</strong> An abnormal amount of fat in the blood, which makes the serum look milky. Occurs if the patient has not been fasting before the blood draw.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-14">
           <summary>14 Laboratory Processes &amp; Specific Tests</summary>
           <p>Once a specimen arrives at the lab, a microbiologist will process it.</p>
 <ul><li><strong>Direct Microscopy:</strong> The specimen may be viewed directly under a microscope, often after staining (e.g., Gram stain on a CSF sample, or wet mount of a vaginal swab to look for yeast).</li><li><strong>Culture:</strong> The specimen is inoculated onto various types of nutrient media (agar plates) and incubated at 37°C. This allows bacteria or fungi to grow into visible colonies, which can then be identified.</li><li><strong>Sensitivity Testing:</strong> Once a pathogen is isolated, its susceptibility to various antibiotics is tested to guide treatment.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-15">
           <summary>15 Common Serological Tests</summary>
           <p>Serology involves testing the patient&#39;s serum for the presence of antibodies (indicating past or present infection) or antigens (parts of the pathogen itself).</p>
 <ul><li><strong>Widal Test:</strong> A historical agglutination test used to detect antibodies against Salmonella typhi to help diagnose typhoid fever. It involves mixing dilutions of the patient&#39;s serum with killed Salmonella antigen. While largely replaced by more reliable tests, its principle is still taught.</li><li><strong>VDRL (Venereal Disease Research Laboratory) Test / Wassermann Reaction:</strong> Historical tests for syphilis that detect non-specific antibodies (reagin) that appear in patients with syphilis. They are known for having false positives and are now used mainly for screening, with a positive result requiring confirmation by a more specific test (like a treponemal antibody test).</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-16">
           <summary>16 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Simple laboratory tests</strong> as a practical nursing topic, not only a memorized definition. Read the topic through the safety of two patients: the mother and the fetus or newborn.</p>
 <ul><li><strong>What to understand first:</strong> define simple laboratory tests, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-17">
           <summary>17 Assessment Guide</summary>
           <ul><li>Maternal vital signs, bleeding, pain, contractions, uterine tone and danger signs.</li><li>Fetal or newborn wellbeing, feeding, temperature, breathing and activity.</li><li>History of pregnancy, parity, medications, allergies, investigations and referral risks.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-18">
           <summary>18 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Recognize danger signs early and escalate without delay.</li><li>Provide respectful communication, privacy, infection prevention and clear documentation.</li><li>Teach the mother what to monitor at home and when to return urgently.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> Mother and baby remain stable, danger signs are acted on early, and the family understands follow-up instructions.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-19">
           <summary>19 Patient Teaching and Revision Check</summary>
           <ul><li>Explain simple laboratory tests in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Simple%20laboratory%20tests%20Personal%20and%20Communal%20health%20%26%20Microbiology%20nursing%20lecture" title="Simple laboratory tests YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (4)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Simple-laboratory-tests-1.webp" alt="Simple Laboratory Tests 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Simple Laboratory Tests 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Parts-of-a-microscope.webp" alt="Parts Of A Microscope" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Parts Of A Microscope</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/A-collection-of-labeled-laboratory-specimen-containers-including.webp" alt="A Collection Of Labeled Laboratory Specimen Containers Including" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">A Collection Of Labeled Laboratory Specimen Containers Including</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/6418cc0e064ff22db4a2a7ea70891907.webp" alt="6418cc0e064ff22db4a2a7ea70891907" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">6418cc0e064ff22db4a2a7ea70891907</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Simple%20laboratory%20tests%20Personal%20and%20Communal%20health%20%26%20Microbiology%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Simple%20laboratory%20tests%20Personal%20and%20Communal%20health%20%26%20Microbiology%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,13 +97,48 @@
         <p>(Cervix, Breast, Uterus and Ovaries) should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 29 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Breast Cancer</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Clinical Manifestations</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Risk Factors</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Stages of Breast Cancer</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Diagnosis/Investigations:</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Management of breast Cancer</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Mastectomy</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Cervix</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Cervical Cancer</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Staging of Cervical Cancer</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Diagnosis of Cervical Cancer</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Treatment and Prevention of Cervical Cancer</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Endometrial Cancer/Uterine Cancer</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Incidence/Epidemiology</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Causes/Risk Factors</a>
+          <a href="#section-16" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Classifications of Endometrial Cancer</a>
+          <a href="#section-17" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Clinical Presentation</a>
+          <a href="#section-18" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Diagnosis</a>
+          <a href="#section-19" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Differential Diagnosis</a>
+          <a href="#section-20" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Management</a>
+          <a href="#section-21" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Ovarian Cancer</a>
+          <a href="#section-22" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Etiology and Pathogenesis</a>
+          <a href="#section-23" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Risk Factors</a>
+          <a href="#section-24" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Stages of Ovarian Cancer</a>
+          <a href="#section-25" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Complications Ovarian cancer often presents with complications, including:</a>
+          <a href="#section-26" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-27" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-28" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-29" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Breast Cancer</summary>
           <p>Breast cancer occurs when cells in the breast grow and divide uncontrollably, forming a mass of tissue known as a tumour .</p>
 <p>Breast cancer can invade nearby tissues and travel to other body parts, forming new tumours, a process called metastasis.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Clinical Manifestations</summary>
           <p>Early Signs of Breast Cancer</p>
 <ul><li>Asymptomatic : Sometimes, breast cancer shows no symptoms at all, especially in the early stages. This means you might not notice anything unusual.</li><li>Size and Shape Changes : A noticeable change in the size or shape of the breast.</li><li>Lump : A mass or lump that may be as small as a pea.</li><li>Persistent Lump or Thickening : A lump or thickening in or near the breast or underarm that persists through the menstrual cycle.</li><li>Skin Changes : Dimpling, wrinkling, scaliness, or inflammation of the skin on the breast or nipple.</li><li>Redness : Redness of the skin on the breast or nipple.</li><li>Distinct Area : An area distinctly different from other areas on either breast.</li><li>Nipple Discharge : Blood-stained or clear fluid discharge from the nipple.</li></ul>
@@ -99,23 +146,23 @@
 <ul><li>Unilateral nipple discharge : When fluid, which could be clear, bloody, or another color, leaks from only one nipple.</li><li>Change in breast size : One breast might become noticeably larger or smaller than the other, or there could be a change in the overall size of the breast.</li><li>Nipple or skin retraction : The nipple may become inverted or pulled inward, or there may be dimpling or puckering of the skin on the breast.</li><li>Local lymphadenopathy : Swollen or enlarged lymph nodes in the armpit or collarbone area, indicating possible spread of cancer.</li><li>Skin changes-orange-like appearance ( Peau d’orange ): The skin on the breast might take on an orange peel-like appearance, due to changes caused by cancer cells blocking lymph vessels.</li><li>Nipple or skin ulceration : Sores or ulcers on the breast or nipple that do not heal or go away.</li><li>Breast pain : Persistent or unusual pain in the breast, although breast cancer does not cause pain in its early stages.</li><li>Symptoms of metastasis : If the cancer has spread to other parts of the body, symptoms may include bone pain, shortness of breath, jaundice, or neurological symptoms like headaches or seizures.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Risk Factors</summary>
           <ul><li>Age : Being 55 or older increases the risk of breast cancer.</li><li>Sex : Women are much more likely to develop breast cancer than men.</li><li>Family History and Genetics : A family history of breast cancer increases the risk especially if close relatives like mother, sister, or daughter have had it. About 5% to 10% of breast cancers are due to inherited abnormal genes like the BRCA1 and BRCA2 genes.</li><li>Smoking : Tobacco use is linked to many cancers, including breast cancer.</li><li>Alcohol Use : Drinking alcohol increases the risk of certain types of breast cancer.</li><li>Obesity : Obesity increases the risk of breast cancer and recurrence.</li><li>Radiation Exposure : Prior radiation therapy, especially to the head, neck, or chest, increases risk.</li><li>Early onset menarche: Starting menstruation at a young age, usually before age 12.</li><li>Late menopause : Continuing menstruation later in life, usually after age 55.</li><li>Delayed first pregnancy ( after 30 years of age ): Not becoming pregnant for the first time until after the age of 30.</li><li>Null parity: Never having given birth to a child.</li><li>Family history (maternal or paternal) BRCA1 and BRCA2 genes: A family history of breast cancer,</li><li>History of breast biopsy : Previous biopsies or other breast procedures may indicate increased risk.</li><li>Use of Hormonal therapy for more than 4 years : Long-term use of hormone replacement therapy (HRT), which involves taking oestrogen and progesterone to relieve symptoms of menopause.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Stages of Breast Cancer</summary>
           <p>Staging helps describe the extent of cancer by determining the size, location, and spread of the tumour.</p>
 <ul><li>Stage 0 : Non-invasive; cancer has not broken out of the breast ducts.</li><li>Stage I : Cancer cells have spread to nearby breast tissue.</li><li>Stage II : Tumour is smaller than 2 cm and has spread to underarm lymph nodes or is larger than 5 cm without spreading to underarm lymph nodes.</li><li>Stage III: Cancer has spread beyond the breast to nearby tissues and lymph nodes but not to distant organs (locally advanced breast cancer).</li><li>Stage IV : Cancer has spread to distant organs such as bones, liver, lungs, or brain (metastatic breast cancer).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Diagnosis/Investigations:</summary>
           <ul><li>History Taking : About family history of breast cancer,medical history, and any other symptoms.</li><li>Self Breast Examination and Breast Examination : For any lumps, changes in size or shape, or other abnormalities.</li><li>Mammogram: Special X-ray of the breasts that can detect changes or abnormal growths, even before they can be felt. It’s a common screening tool for breast cancer.</li><li>Ultrasonography : Also known as ultrasound, Uses sound waves to create images of breast tissues. It helps in diagnosing lumps or other abnormalities found during a physical examination or mammogram.</li><li>Positron Emission Tomography (PET) Scan : This test uses special dyes to highlight areas of the body with abnormal metabolic activity, which can indicate the presence of cancer cells.</li><li>Magnetic Resonance Imaging (MRI) : MRI uses magnets and radio waves to produce detailed images of breast structures. It’s especially useful for evaluating the extent of the disease in the breast.</li><li>TNM System : This is a staging system used to describe the extent of the cancer based on the size of the tumour (T), whether it has spread to nearby lymph nodes (N), and whether it has metastasized to other parts of the body (M).</li><li>Full Blood Count : This blood test helps assess the overall health and can indicate if there are any abnormalities or signs of infection or inflammation.</li><li>Renal and Hepatic Profile: Blood tests to assess the function of the kidneys and liver, as metastatic breast cancer can spread to these organs.</li><li>Chest X-Ray : This test may be done to check for any signs of metastasis to the lungs.</li><li>Biopsy (Preferably Fine Needle Aspiration) : A biopsy is the definitive way to diagnose breast cancer by analyzing a sample of breast tissue under a microscope. Fine needle aspiration is a less invasive biopsy method often used for initial diagnosis.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Management of breast Cancer</summary>
           <p>Management depends on the tumour’s location and size, lab test results, and whether the cancer has spread.</p>
 <p>Stage 0 (Cancer in situ):</p>
@@ -126,7 +173,7 @@
 <ul><li>Hormonal Therapy : Same as for early stage, Tamoxifen 20mg orally daily for 5 years, but may cause retinal damage.</li><li>Chemotherapy : same as for early stage.</li><li>Radiation Therapy : Uses high-energy rays to kill cancer cells.</li><li>Immunotherapy : Helps the immune system fight cancer.</li><li>Targeted Drug Therapy: Uses drugs to target specific cancer cells.</li><li>Lumpectomy (Partial Mastectomy) : Removal of the tumour and some surrounding tissue, often followed by radiation therapy.</li><li>Mastectomy : Removal of the entire breast.</li><li>Axillary Lymph Node Dissection : Removal of multiple lymph nodes.</li><li>Modified Radical Mastectomy : Removal of the entire breast, underarm lymph nodes, and chest wall muscles if the cancer has spread. Reconstruction may be an option.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Mastectomy</summary>
           <p>Mastectomy is a planned surgical procedure involving the removal of the breast tissue .</p>
 <p>There are different types of mastectomy:</p>
@@ -144,13 +191,13 @@
 <ul><li>Radiotherapy: Start when the wound heals (6-8 weeks), lasting 2 months.</li><li>Follow-Up: Every 2 months for up to 2 years.</li><li>Chemotherapy: Continue as prescribed.</li><li>Regular Checkups: Monitor for metastasis.</li><li>Cancer Institute Visits: Attend radiotherapy.</li><li>Artificial Breast Use: Educate on proper use.</li><li>Necrosis : Death of suture line tissue.</li><li>Nerve Damage : Potential paralysis of the arm.</li><li>Contractures : Tightening of muscles and joints.</li><li>Sloughing : Shedding of dead tissue.</li><li>Infections : Risk of infection at the wound site.</li><li>Gaping : Opening of the wound.</li><li>Chronic Sinus: Persistent drainage site.</li><li>Oedema : Swelling of the arm.</li><li>Thrombosis : Blood clots in the axillary vein.</li><li>Cosmetic Deformity : Changes in appearance post-surgery</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 The Cervix</summary>
           <p>The cervix is a vital part of the female reproductive system, connecting the uterus to the vagina. It has two main types of cells:</p>
 <ul><li>Squamous cells : Flat, thin cells found in the outer layer of the cervix ( ectocervix ).</li><li>Glandular cells : Column-shaped cells that produce cervical mucus and are found in the cervical canal ( endocervix ).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Cervical Cancer</summary>
           <p>Cervical cancer is a malignant tumor found in the tissues of the cervix, occurring when abnormal cells in the cervix turn into cancer cells. These cancer cells can invade the surface cells (epithelium) and the underlying tissue (stroma) of the cervix, most commonly beginning in the transformation zone.</p>
 <p>Epidemiology</p>
@@ -167,7 +214,7 @@
 <ul><li>Severe weight loss, anemia, dehydration</li><li>Fatigue</li><li>Back pain</li><li>Pain or swelling in the legs</li><li>Urinary or fecal incontinence</li><li>Bone fractures</li><li>Hematuria</li><li>Enlarged organs</li><li>Rectal bleeding</li><li>Tenesmus (desire to defecate)</li><li>Fistulas</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Staging of Cervical Cancer</summary>
           <p>Staging describes the extent of cancer spread. Federation for International Gynecology and Obstetrics (Figo) staging.</p>
 <p>Stage 0 : Carcinoma in situ (pre-invasive)</p>
@@ -182,7 +229,7 @@
 <ul><li>Direct spread to parametria on both sides, upper part of cervix, uterus, vaginal wall, bladder.</li><li>Lymphatic spread to lymph nodes in parametria, obturator nodes, external and internal iliac nodes, inguinal nodes, sacral nodes, hypogastric glands and rarely aortic and lumbar glands.</li><li>Blood spread to the lungs, liver, bone and intestines implantation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 Diagnosis of Cervical Cancer</summary>
           <p>1. History and Examination: Includes speculum and colposcopic examination.</p>
 <p>2. Colposcopy-directed biopsy: Examination and tissue sample collection. Cervix-lesion may be in the form of an ulcer, Cauliflower growth.</p>
@@ -194,7 +241,7 @@
 <p>7. Biopsy : This is a surgical removal of tissue to look for cancer cells and usually done under local anesthesia. This may be done if cervical smear reveals evidence of cervical intraepithelial neoplasia. The tissue sample obtained is sent to the pathologist for histology and for confirmation.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-12">
           <summary>12 Treatment and Prevention of Cervical Cancer</summary>
           <ul><li>Pre-invasive : Pre invasive- lesions are destroyed using methods like liquid carbon dioxide, laser beam(leep)loop, electric excision procedure where the doctor uses an electric wire loop to slice off a thin, round piece of cervical tissue. Lesions destroyed using cryotherapy, laser beam, or LEEP.</li><li>Invasive carcinoma: Treatment is by wertheim’s hysterectomy. This involves total hysterectomy with removal of the upper 1/3 of the vagina as well as dissection of the lymph nodes including Para-aortic nodes plus salpingo-oophorectomy and this can be followed by radiotherapy. Treated with surgery (e.g., hysterectomy), chemotherapy, and radiotherapy.</li><li>Radiation therapy : This is the use of high-energy rays to kill cancer cells.</li><li>It’s an option for women with any stage of cervical cancer and may prefer radiation therapy to surgery.</li><li>It may also be used after surgery to destroy any cancer cells that remain in the area.</li><li>For women with cancer that extends beyond the cervix may need to combine radiation therapy and chemotherapy.</li></ul>
 <p>Surgical Management</p>
@@ -218,43 +265,43 @@
 <ul><li>Reduce the cost of screening to make it more accessible to the population.</li><li>Provide additional radiotherapy units in the country to extend services closer to the people.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-13">
           <summary>13 Endometrial Cancer/Uterine Cancer</summary>
           <p>Endometrial cancer is a malignant tumor within the endometrium, resulting in abnormal cell growth that can invade or spread to other parts of the body.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-14">
           <summary>14 Incidence/Epidemiology</summary>
           <ul><li>It is the sixth most common cancer in women globally.</li><li>More common in developed countries, with a lifetime risk of 1.6% compared to 0.6% in developing countries.</li><li>Occurs in 12.9 out of 100,000 women annually in developed countries.</li><li>Most frequently appears during peri-menopause (ages 50-65).</li><li>75% of cases occur after menopause.</li><li>Women younger than 40 make up 5% of cases; 10-15% occur in women under 50.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-15">
           <summary>15 Causes/Risk Factors</summary>
           <p>The exact cause is idiopathic, but it is associated with:</p>
 <ul><li>High blood pressure</li><li>Diabetes</li><li>Excessive or long-term estrogen exposure</li><li>Polycystic ovary syndrome (PCOS)</li><li>Functioning ovarian tumors</li><li>Anovulation</li><li>Infertility</li><li>Family history or genetic factors</li><li>Obesity</li><li>Late menopause</li><li>Early menarche</li><li>Age above 55 years</li><li>Excessive use of tamoxifen</li><li>Nulliparity (never having had children)</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-16">
           <summary>16 Classifications of Endometrial Cancer</summary>
           <ul><li>Type 1 Endometrial Carcinoma : Estrogen-related, occurs in younger, obese, premenopausal women, usually low-grade and endometrioid.</li><li>Type 2 Endometrial Carcinoma: High-grade, usually serous or clear cell, affects older women.</li><li>Type 3 Endometrial Carcinoma : Hereditary or genetic types, some related to Lynch II syndrome.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-17">
           <summary>17 Clinical Presentation</summary>
           <ul><li>Vaginal bleeding or spotting in postmenopausal women (90% of cases).</li><li>Abnormal menstrual cycles or heavy, frequent bleeding in premenopausal women.</li><li>Thin white or clear vaginal discharge in postmenopausal women.</li><li>Enlarged uterus on physical examination.</li><li>Lower abdominal pain, pelvic cramping, painful sexual intercourse, painful or difficult urination (with metastasis).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-18">
           <summary>18 Diagnosis</summary>
           <ul><li>History and physical examination.</li><li>Dilation and curettage.</li><li>Transvaginal ultrasound to examine endometrial thickness in postmenopausal bleeding.</li><li>Endometrial biopsy.</li><li>CT scan.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-19">
           <summary>19 Differential Diagnosis</summary>
           <ul><li>Senile endometritis/vaginitis.</li><li>Dysfunctional uterine bleeding.</li><li>Submucous myoma/endometrial polyps.</li><li>Cervical cancer.</li><li>Uterine sarcoma.</li><li>Primary carcinoma of the fallopian tube.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-20">
           <summary>20 Management</summary>
           <p>Surgery</p>
 <ul><li>Stage I: Total Abdominal Hysterectomy and Bilateral Salpingo-Oophorectomy (TAH-BSO).</li><li>Stage II: Radical Hysterectomy.</li><li>Stage III : Radical surgery with maximal debulking followed by radiotherapy.</li><li>Stage IV: Radical radiotherapy, with or without hormonal therapy and/or chemotherapy.</li></ul>
@@ -267,22 +314,22 @@
 <ul><li>Doxorubicin (Anthracycline) and Cisplatin</li><li>Carboplatin (Platinum Medicines): Use is limited by the patient’s advanced age and poor performance status.</li><li>Typical regimen: Cisplatin 50 mg/m² IV, Adriamycin 45 mg/m² IV on Day 1, followed by Paclitaxel 160 mg/m², repeated every 21 days.</li><li>Alternative regimen: Carboplatin and Paclitaxel as for ovarian cancer.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-21">
           <summary>21 Ovarian Cancer</summary>
           <p>Ovarian cancer is a malignant growth within the ovarian tissue.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-22">
           <summary>22 Etiology and Pathogenesis</summary>
           <p>There is a link between ovulation and epithelial ovarian cancer. Combined hormonal contraception reduces the risk by approximately 50%. Risk factors include having a first-degree relative with ovarian cancer.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-23">
           <summary>23 Risk Factors</summary>
           <ul><li>Postmenopausal women</li><li>Family history of ovarian cancer (mother, sister)</li><li>Abnormal ovarian development (e.g., Turner’s syndrome)</li><li>Nulliparity</li><li>BRCA1 and BRCA2 gene mutations</li><li>Smoking and alcoholism</li><li>Ovulatory stimulant drugs</li><li>High-fat diet</li><li>Fertility drugs</li><li>Hormonal replacement therapy</li><li>Increased number of ovulatory cycles (early menarche, late menopause)</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-24">
           <summary>24 Stages of Ovarian Cancer</summary>
           <p>Stage I: Confined to the ovaries</p>
 <ul><li>1a: One ovary involved</li><li>1b: Both ovaries involved</li><li>1c: Positive cytology, ascites, or capsule breach</li></ul>
@@ -308,42 +355,47 @@
 <ul><li>Manage pelvic pain and abdomino-pelvic mass, especially with vaginal bleeding.</li><li>Perform annual pelvic examinations and ultrasounds for reproductive and advanced-age women.</li><li>Encourage oral contraceptives for high-risk women.</li><li>Consider prophylactic bilateral laparoscopic oophorectomy for women not desiring fertility but at high risk.</li><li>CA-125 is useful for follow-up but not for screening.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-25">
           <summary>25 Complications Ovarian cancer often presents with complications, including:</summary>
           <ul><li>Ascites</li><li>Bowel obstruction/intestinal occlusion</li><li>Bladder infiltration causing hematuria</li><li>Secondary deposits in liver or lung</li><li>Severe weight loss</li><li>Metastasis to other organs</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-26">
           <summary>26 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Cancers of Reproductive Health Organs(Breast, Cervix, Uterus, and Ovaries)</strong> as a practical nursing topic, not only a memorized definition. Read the topic through the safety of two patients: the mother and the fetus or newborn.</p>
 <ul><li><strong>What to understand first:</strong> define cancers of reproductive health organs(breast, cervix, uterus, and ovaries), identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-27">
           <summary>27 Assessment Guide</summary>
           <ul><li>Maternal vital signs, bleeding, pain, contractions, uterine tone and danger signs.</li><li>Fetal or newborn wellbeing, feeding, temperature, breathing and activity.</li><li>History of pregnancy, parity, medications, allergies, investigations and referral risks.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-28">
           <summary>28 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Recognize danger signs early and escalate without delay.</li><li>Provide respectful communication, privacy, infection prevention and clear documentation.</li><li>Teach the mother what to monitor at home and when to return urgently.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> Mother and baby remain stable, danger signs are acted on early, and the family understands follow-up instructions.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-29">
           <summary>29 Patient Teaching and Revision Check</summary>
           <ul><li>Explain cancers of reproductive health organs(breast, cervix, uterus, and ovaries) in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=(Cervix%2C%20Breast%2C%20Uterus%20and%20Ovaries)%20Gynaecology%20(II)%20and%20Reproductive%20Health%20(II)%20nursing%20lecture" title="(Cervix, Breast, Uterus and Ovaries) YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (1)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/uterus-fallopian-tube-ovaries-midwives-revision.webp" alt="Uterus Fallopian Tube Ovaries Midwives Revision" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Uterus Fallopian Tube Ovaries Midwives Revision</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=(Cervix%2C%20Breast%2C%20Uterus%20and%20Ovaries)%20Gynaecology%20(II)%20and%20Reproductive%20Health%20(II)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=(Cervix%2C%20Breast%2C%20Uterus%20and%20Ovaries)%20Gynaecology%20(II)%20and%20Reproductive%20Health%20(II)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,18 @@
         <p>Gout should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (5)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Overview</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Overview</summary>
           <ul><li>Define Gout and differentiate it from other forms of arthritis.</li><li>Explain the Pathophysiology of Gout, specifically focusing on uric acid metabolism and crystal formation.</li><li>Identify the Risk Factors and triggers associated with developing gout and gout flares.</li><li>Describe the Clinical Presentation of acute gouty arthritis, chronic tophaceous gout, and intercritical gout.</li><li>Discuss the Diagnostic Criteria and key laboratory/imaging findings used to confirm a diagnosis of gout.</li><li>Explain the Pharmacological Management Strategies for both acute gout flares and long-term uric acid-lowering therapy (ULT).</li><li>Identify Non-Pharmacological Management Strategies and lifestyle modifications crucial for preventing gout flares.</li><li>Describe Potential Complications associated with chronic gout.</li></ul>
 <p>Gout is a metabolic disorder characterized by elevated serum uric acid levels and deposits of urate crystals in synovial fluids and surrounding tissues.</p>
@@ -138,37 +161,49 @@
 <ul><li><strong>Recurrent and More Severe Acute Flares:</strong> Flares become more frequent, often polyarticular (affecting multiple joints), more severe, and of longer duration.</li><li>The intercritical periods (between flares) may shorten, or patients may experience continuous low-grade inflammation.</li><li><strong>Chronic Tophaceous Gout:</strong> This is a hallmark of untreated, long-standing gout. Tophi are crystal deposits that can form in: <strong>Joints and surrounding soft tissues:</strong> Leading to chronic pain, stiffness, persistent swelling, and ultimately, irreversible joint damage, deformity, and significant functional disability.</li><li><strong>Bursae:</strong> (e.g., olecranon, prepatellar) causing inflammation and swelling.</li><li><strong>Ear helix:</strong> Characteristic deposits that can disfigure.</li><li><strong>Tendons:</strong> (e.g., Achilles tendon) leading to pain, dysfunction, and potential rupture.</li><li><strong>Internal organs:</strong> Although less common and often only detected on advanced imaging, tophi can deposit in kidneys or heart valves, contributing to organ dysfunction.</li><li><strong>Joint Destruction and Deformity:</strong> The persistent presence of MSU crystals and chronic inflammation leads to erosion of cartilage and bone, resulting in a severe form of arthritis that can mimic other inflammatory arthropathies. This can lead to permanent loss of joint function.</li><li><strong>Kidney Complications:</strong> <strong>Uric Acid Nephrolithiasis (Kidney Stones):</strong> Elevated uric acid levels increase the risk of forming uric acid kidney stones, which can cause severe pain, urinary tract obstruction, infection, and kidney damage.</li><li><strong>Urate Nephropathy (Gouty Nephropathy):</strong> Chronic deposition of MSU crystals in the renal interstitium can lead to chronic inflammation, fibrosis, and progressive decline in kidney function. This can contribute to end-stage renal disease.</li><li><strong>Psychosocial Impact:</strong> Chronic pain, disability, and the unpredictable nature of flares can lead to depression, anxiety, social isolation, and impaired quality of life.</li><li>Difficulty performing daily activities, working, and engaging in hobbies.</li><li><strong>Association with Cardiovascular and Metabolic Diseases:</strong> While hyperuricemia and gout are often associated with cardiovascular disease, hypertension, diabetes, and metabolic syndrome, the exact causal relationship is complex and actively researched. However, it is clear that untreated gout exists within a cluster of metabolic disturbances that collectively increase morbidity and mortality risks. Effective gout management, particularly by addressing underlying metabolic issues, may contribute to better overall health outcomes.</li><li><strong>Acute Pain</strong> related to inflammation in the affected joint(s) secondary to uric acid crystal deposition, as evidenced by patient&#39;s report of severe pain, guarding behavior, grimacing, and joint redness/swelling.</li><li><strong>Impaired Physical Mobility</strong> related to pain and inflammation in the affected joint(s), as evidenced by reluctance to move the affected limb, limited range of motion, and difficulty with ambulation.</li><li><strong>Inadequate health Knowledge</strong> related to disease process, dietary restrictions, medication regimen, and prevention strategies, as evidenced by patient&#39;s questions about gout, stated misconceptions, or observed non-adherence.</li><li><strong>Risk for Ineffective Health Maintenance</strong> related to potential for non-adherence to long-term uric acid-lowering therapy, dietary modifications, and lifestyle changes.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" open id="section-2">
           <summary>02 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Gout</strong> as a practical nursing topic, not only a memorized definition. Connect structure, movement, pain, circulation, nerve function and safe mobility.</p>
 <ul><li><strong>What to understand first:</strong> define gout, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-3">
           <summary>03 Assessment Guide</summary>
           <ul><li>Pain score, site, onset, deformity, swelling, bruising and ability to move.</li><li>Distal pulse, capillary refill, colour, warmth, sensation and movement.</li><li>Skin integrity, wounds, cast tightness, traction alignment and pressure areas.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-4">
           <summary>04 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Immobilize and protect the affected part while preventing further injury.</li><li>Control pain and swelling while monitoring neurovascular status.</li><li>Prevent complications such as compartment syndrome, infection, pressure injury and venous stasis.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> Pain is reduced, circulation and sensation remain intact, swelling is controlled and the patient mobilizes safely within the care plan.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-5">
           <summary>05 Patient Teaching and Revision Check</summary>
           <ul><li>Explain gout in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Gout%20Medical%20Nursing%20(III)%20nursing%20lecture" title="Gout YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (9)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Gout.webp" alt="Gout" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Gout</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/gout-pathophysiology.webp" alt="Gout Pathophysiology" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Gout Pathophysiology</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/types-of-gout-1.webp" alt="Types Of Gout 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Types Of Gout 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/cdd0735174483a5ce3f1d968c621415a.webp" alt="Cdd0735174483a5ce3f1d968c621415a" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Cdd0735174483a5ce3f1d968c621415a</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/51bf1f6d879754a1fdd0b2d8ab8d965e.webp" alt="51bf1f6d879754a1fdd0b2d8ab8d965e" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">51bf1f6d879754a1fdd0b2d8ab8d965e</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/c4330bf3874cc8d6782323f3613e1633.webp" alt="C4330bf3874cc8d6782323f3613e1633" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">C4330bf3874cc8d6782323f3613e1633</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/2c92eac68a0fb6fa8915a2fa82fc5210.webp" alt="2c92eac68a0fb6fa8915a2fa82fc5210" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">2c92eac68a0fb6fa8915a2fa82fc5210</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/90861fc70890aec992d36d4eef076f62.webp" alt="90861fc70890aec992d36d4eef076f62" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">90861fc70890aec992d36d4eef076f62</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Gout%20Medical%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <p style="color:var(--seo-muted);font-size:.85rem;margin:8px 0 0">1 more diagram available — open the lesson for full illustrations.</p>
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Gout%20Medical%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,24 @@
         <p>Urinary tract infections links cause, transmission, prevention, assessment and treatment support. Good nursing notes should include infection prevention, danger signs, adherence support and community health education.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (11)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Urinary Tract Infections (UTIs)</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Risk Factors for Urinary Tract Infections</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Pathophysiology of Urinary Tract Infections</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Etiology of Urinary Tract Infections</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Clinical Presentation: Signs and Symptoms of Urinary Tract Infections</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Diagnosis of Urinary Tract Infection</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Complications of Urinary Tract Infections</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Urinary Tract Infections (UTIs)</summary>
           <p>Urinary tract infections (UTIs) are bacterial infections that can occur in any part of the urinary system, including the kidneys, bladder, ureters, and urethra.</p>
 <p>The most common cause of UTIs is the colonization of bacteria from the gastrointestinal tract, with Escherichia coli (E. coli) being the most frequently implicated pathogen. Other pathogens that can cause UTIs include Klebsiella , Proteus , Enterococcus , and Staphylococcus species.</p>
@@ -99,7 +128,7 @@
 <ul><li>Women (20-50 years) : The most common types of UTIs in this group are cystitis (bladder infection) and pyelonephritis (kidney infection). These are often considered “uncomplicated” UTIs in otherwise healthy, non-pregnant women without structural urinary tract abnormalities.</li><li>Men (20-50 years) : In men of the same age, UTIs are less frequent but often present as urethritis (urethral infection) or prostatitis (prostate infection). UTIs in men are generally considered more complex and require thorough evaluation.</li><li>Older Adults (&amp;gt;50 years) : The incidence of UTIs increases in both sexes. In women, cystitis and pyelonephritis remain common. In men, alongside urethritis and prostatitis, UTIs may become associated with BPH and require careful management.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Risk Factors for Urinary Tract Infections</summary>
           <p>UTIs develop when bacteria, usually from the bowel, enter the urinary tract and multiply . Several factors can compromise the body’s natural defenses and increase the likelihood of bacterial colonization and infection. These risk factors can be broadly categorized:</p>
 <p>1. Iatrogenic/Drugs (Medical Procedure or Medication Related) :</p>
@@ -112,12 +141,12 @@
 <ul><li>Familial Tendency : There’s evidence suggesting a genetic component to UTI susceptibility, as UTI occurrence can cluster in families.</li><li>Susceptible Uroepithelial Cells : The cells lining the urinary tract (uroepithelial cells) play a role in defense against infection. Some individuals may have uroepithelial cells that are more susceptible to bacterial adhesion and invasion.</li><li>Vaginal Mucus Properties : The properties of vaginal mucus, including its composition and viscosity, can influence the ability of E. coli to bind and colonize.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Pathophysiology of Urinary Tract Infections</summary>
           <ul><li>Colonization : The process often begins with bacteria, typically from the bowel flora, colonizing the periurethral area (the skin around the urethral opening). These bacteria then ascend through the urethra, moving upwards towards the bladder. E. coli is the most frequent culprit in uncomplicated UTIs due to its ability to adhere to uroepithelial cells.</li><li>Uroepithelium Penetration : Certain bacterial features, like fimbriae (pili), act as adhesion molecules. Fimbriae allow bacteria to attach to and penetrate the bladder’s epithelial cells. After penetration, bacteria can replicate within the bladder lining and may form biofilms, communities of bacteria encased in a protective matrix, making them harder to eradicate.</li><li>Ascension : If the infection is not contained at the bladder level, bacteria can ascend further up the urinary tract, moving through the ureters towards the kidneys. Factors like VUR can facilitate this ascension. Bacterial toxins may also inhibit peristalsis (the rhythmic contractions of the ureters that help move urine downwards), reducing urine flow and aiding bacterial ascent.</li><li>Pyelonephritis : When bacteria reach the kidneys and infect the renal parenchyma (the functional tissue of the kidney), it triggers an inflammatory response known as pyelonephritis. This kidney infection can be severe. While usually caused by ascending bacteria, pyelonephritis can also result from hematogenous spread – bacteria traveling from another infection site in the body through the bloodstream to the kidneys (though this is less common in typical UTIs).</li><li>Acute Kidney Injury: If the inflammatory cascade in the kidney continues unchecked, it can lead to tubular obstruction (blockage of the kidney tubules) and tissue damage, resulting in interstitial edema (swelling in the kidney tissue). This process can progress to interstitial nephritis, ultimately causing acute kidney injury (AKI).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Etiology of Urinary Tract Infections</summary>
           <p>Common Bacterial Culprits</p>
 <p>The vast majority of UTIs are caused by bacteria. Identifying the common culprits is crucial for effective treatment.</p>
@@ -127,7 +156,7 @@
 <ul><li>Staphylococcus saprophyticus: This gram-positive coccus is a significant cause of UTIs, particularly in young, sexually active women (5-10% of bacterial UTIs in this group).</li><li>Enterococcus faecalis (Group D streptococci): Enterococci are becoming increasingly important UTI pathogens, especially in hospitalized patients and those with complicated UTIs.</li><li>Streptococcus agalactiae (Group B streptococci): While primarily known for neonatal infections, Group B strep can also cause UTIs in adults, including pregnant women.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Clinical Presentation: Signs and Symptoms of Urinary Tract Infections</summary>
           <p>The symptoms of a UTI vary depending on the location of the infection within the urinary tract.</p>
 <p>1. Kidney Infection (Acute Pyelonephritis) : Symptoms are typically more systemic and severe:</p>
@@ -148,7 +177,7 @@
 <ul><li>Structural or Functional Urinary Tract Abnormality : Conditions like kidney stones, obstructions, neurogenic bladder, or VUR can complicate UTIs.</li><li>Comorbidities Increasing Infection Risk: Conditions such as poorly controlled diabetes, chronic kidney disease, immunocompromised states (e.g., HIV, organ transplant recipients), or sickle cell disease increase the complexity of UTI management.</li><li>Recent Instrumentation or Surgery of the Urinary Tract : Procedures like cystoscopy or urological surgery can introduce bacteria and complicate UTI.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Diagnosis of Urinary Tract Infection</summary>
           <p>Urine Collection : Proper urine collection is essential to avoid contamination and ensure accurate results.</p>
 <ul><li>Clean-catch, Midstream Specimen: This is the preferred method for routine UTI diagnosis. Patients are instructed to clean the genital area, start urinating, and then collect the mid-portion of the urine stream into a sterile container, avoiding the initial and final portions. This helps minimize contamination from the urethra and surrounding skin.</li><li>Specimen Obtained by Catheterization: In certain situations, such as in patients unable to void voluntarily or those with indwelling catheters, urine may be collected directly through catheterization. This method is more invasive but can be necessary for specific patient populations.</li><li>Urethral Swab for STD Testing (if suspected): If a sexually transmitted infection (STD) is suspected as a cause of urethritis (e.g., in men with urethral discharge), a urethral swab for STD testing should be obtained prior to voiding to avoid washing away the organisms.</li></ul>
@@ -201,7 +230,7 @@
 <ul><li>Refer infants &amp;lt;3 months with UTI.</li><li>Treat children &amp;gt;3 months with UTI using Amoxicillin/Augmentin, send culture and consider ultrasound.</li><li>Treat non-pregnant women with 3 days of Nitrofurantoin for uncomplicated cystitis.</li><li>Treat asymptomatic bacteriuria in pregnant women.</li><li>Consider STI and prostatitis in men with UTI symptoms.</li><li>Do not give prophylaxis for adult with catheter and do not treat asymptomatic bacteriuria in catheterized patients.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Complications of Urinary Tract Infections</summary>
           <p>While most UTIs are treatable, complications can arise, especially if infections are untreated or complicated.</p>
 <ul><li>Recurrent Infections : Frequent UTIs, defined as two or more in six months or four or more within a year, can be a significant problem, particularly in women.</li><li>Permanent Kidney Damage : Untreated or severe kidney infections (pyelonephritis) can lead to scarring and permanent kidney damage. Chronic kidney infection can also contribute to long-term renal dysfunction.</li><li>Increased Risk in Pregnant Women : UTIs in pregnant women, even asymptomatic bacteriuria, are linked to an increased risk of delivering low birth weight or premature infants.</li><li>Urethral Narrowing (Stricture) in Men : Recurrent urethritis, especially if caused by sexually transmitted infections like gonococcal urethritis, can lead to urethral strictures, causing difficulty with urination.</li><li>Sepsis : This is a potentially life-threatening complication where the infection spreads into the bloodstream and triggers a systemic inflammatory response. Sepsis is more likely if the UTI ascends to the kidneys.</li></ul>
@@ -232,37 +261,49 @@
 <ul><li>Risk Factors : Antibiotic therapy, potential for gastrointestinal side effects of antibiotics (nausea, diarrhea), individual sensitivity to medications.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-8">
           <summary>08 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Urinary tract infections</strong> as a practical nursing topic, not only a memorized definition. Link cause, transmission, incubation, clinical features, treatment support and prevention.</p>
 <ul><li><strong>What to understand first:</strong> define urinary tract infections, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-9">
           <summary>09 Assessment Guide</summary>
           <ul><li>Temperature, pulse, respiratory status, hydration, pain, rash, wounds, stool, urine or sputum changes.</li><li>Exposure history, travel, contacts, vaccination status and comorbidities.</li><li>Specimen orders, isolation needs, antimicrobial history and danger signs.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-10">
           <summary>10 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use standard precautions and transmission-based precautions where needed.</li><li>Support hydration, nutrition, medicines, monitoring and early referral for severe disease.</li><li>Teach prevention, adherence, hygiene, safe water, vector control or contact tracing as relevant.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> Symptoms improve, complications are detected early, transmission risk is reduced and treatment is completed correctly.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-11">
           <summary>11 Patient Teaching and Revision Check</summary>
           <ul><li>Explain urinary tract infections in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Urinary%20tract%20infections%20Medical%20Nursing%20(III)%20nursing%20lecture" title="Urinary tract infections YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (17)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/ezgif.com-gif-maker-5-1-1024x503.webp" alt="Ezgif.Com Gif Maker 5 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Ezgif.Com Gif Maker 5 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Risk-Factors-for-Urinary-Tract-Infections-1-1.webp" alt="Risk Factors For Urinary Tract Infections 1 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Risk Factors For Urinary Tract Infections 1 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/uti-urinary-tract-infection-pathophysiology-original-1.webp" alt="Uti Urinary Tract Infection Pathophysiology Original 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Uti Urinary Tract Infection Pathophysiology Original 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Common-Bacteria-Causing-UTI-Urinary-Tract-Infection-e1743148325673-1024x399.webp" alt="Common Bacteria Causing UTI Urinary Tract Infection E1743148325673" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Common Bacteria Causing UTI Urinary Tract Infection E1743148325673</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Clinical-Presentation-Signs-and-Symptoms-of-Urinary-Tract-Infections-1-1-1024x569.webp" alt="Clinical Presentation Signs And Symptoms Of Urinary Tract Infections 1 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Clinical Presentation Signs And Symptoms Of Urinary Tract Infections 1 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Diagnosis-of-Urinary-Tract-Infection-e1743148686113.webp" alt="Diagnosis Of Urinary Tract Infection E1743148686113" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Diagnosis Of Urinary Tract Infection E1743148686113</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Management-of-Urinary-Tract-Infections-1024x569.webp" alt="Management Of Urinary Tract Infections" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Management Of Urinary Tract Infections</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/352bcc2b6df7a04d958c8b37586fdb6c.webp" alt="352bcc2b6df7a04d958c8b37586fdb6c" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">352bcc2b6df7a04d958c8b37586fdb6c</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Urinary%20tract%20infections%20Medical%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <p style="color:var(--seo-muted);font-size:.85rem;margin:8px 0 0">9 more diagrams available — open the lesson for full illustrations.</p>
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Urinary%20tract%20infections%20Medical%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

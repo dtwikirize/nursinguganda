@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,27 @@
         <p>Glomerulonephritis should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 14 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Glomerulonephritis (GN)</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Classification of Glomerulonephritis</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Clinical Manifestations (Signs and Symptoms)</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Clinical Presentation of Glomerulonephritis</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Etiology of Glomerulonephritis</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Pathophysiology of Glomerulonephritis</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Diagnostic Evaluation of Glomerulonephritis</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Management of Glomerulonephritis</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Management</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Complications of Glomerulonephritis</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Glomerulonephritis (GN)</summary>
           <p>Glomerulonephritis (GN) refers to a group of kidney diseases characterized primarily by inflammation and damage to the glomeruli , the tiny filtering units within the kidneys.</p>
 <p>Glomerulonephritis is an inflammatory condition of the kidneys characterized by increased permeability of the glomerular filtration barrier causing filtration of RBCs and proteins .</p>
@@ -102,7 +134,7 @@
 <p>Renal Blood Flow Regulation : The kidneys have intrinsic mechanisms (autoregulation) and are influenced by the autonomic nervous system (sympathetic and parasympathetic nerves) and hormones (like angiotensin II, prostaglandins) to maintain relatively stable blood flow and GFR despite fluctuations in systemic blood pressure.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Classification of Glomerulonephritis</summary>
           <p>GN can be classified in several ways, which often overlap:</p>
 <p>Onset and Duration:</p>
@@ -111,7 +143,7 @@
 <ul><li>Proliferative GN: Characterized by an increase in the number of cells within the glomerulus (e.g., endothelial, mesangial, epithelial cells, infiltrating inflammatory cells). Examples include:</li><li>IgA Nephropathy (most common primary GN worldwide)</li><li>Post-Infectious GN (e.g., post-streptococcal)</li><li>Membranoproliferative GN (MPGN)</li><li>Lupus Nephritis (certain classes)</li><li>RPGN (Crescentic GN)</li><li>Non-Proliferative GN: Characterized primarily by structural changes without significant hypercellularity. Examples include:</li><li>Minimal Change Disease (common cause of nephrotic syndrome in children)</li><li>Focal Segmental Glomerulosclerosis (FSGS)</li><li>Membranous Nephropathy (common cause of nephrotic syndrome in adults)</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Clinical Manifestations (Signs and Symptoms)</summary>
           <p>Symptoms vary widely depending on the type, severity, and acuity of GN. Some patients may be asymptomatic initially.</p>
 <p>Common Features (especially Nephritic pattern):</p>
@@ -122,7 +154,7 @@
 <ul><li>Shortness of Breath : Due to pulmonary edema (fluid in lungs) from fluid overload or heart failure.</li><li>Visual Disturbances : Blurred vision due to hypertensive retinopathy or retinal edema.</li><li>Symptoms of SLE, Vasculitis, etc.: Rash, joint pain, etc.</li><li>Chronic GN Symptoms : May be subtle initially, presenting later with signs of CKD like nocturia (frequent urination at night), bone pain/deformity (renal osteodystrophy), anemia, failure to thrive (in children).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Clinical Presentation of Glomerulonephritis</summary>
           <p>Nephritic Syndrome : Characterized by inflammation.</p>
 <ul><li>Key features include Hematuria (blood in urine, often cola-colored),</li><li>Hypertension,</li><li>Oliguria (reduced urine output),</li><li>Azotemia (increased BUN/Creatinine), and</li><li>mild to moderate Proteinuria.</li><li>Edema is common.</li><li>Post-streptococcal GN is a classic example.</li></ul>
@@ -130,7 +162,7 @@
 <ul><li>heavy proteinuria (&amp;gt;3.5 g/day ),</li><li>Hypoalbuminemia (low blood albumin),</li><li>severe Edema, and</li><li>Hyperlipidemia (high cholesterol/triglycerides).</li><li>Minimal Change Disease and Membranous Nephropathy are classic examples.</li><li>(Note: Some GN types can present with mixed nephritic/nephrotic features or evolve from one pattern to another).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Etiology of Glomerulonephritis</summary>
           <ul><li>Primary GN : The disease originates within the kidney itself, without evidence of a systemic disease trigger (though often immune-mediated). Examples: IgA Nephropathy, Minimal Change Disease, FSGS, Membranous Nephropathy.</li><li>Secondary GN : Occurs as a consequence of another underlying systemic disease or condition. Examples: Lupus Nephritis (from SLE), Diabetic Nephropathy, Vasculitis-associated GN (e.g., Wegener’s/GPA, Microscopic Polyangiitis), Anti-GBM Disease (Goodpasture’s Syndrome), GN related to infections (Hepatitis B/C, HIV, Endocarditis), certain cancers, or drug reactions.</li></ul>
 <p>Factors that can cause or increase the risk of developing GN include:</p>
@@ -145,7 +177,7 @@
 <ul><li>Certain Cancers (e.g., lymphomas, solid tumors via paraneoplastic syndromes).</li><li>Exposure to certain drugs or toxins (e.g., NSAIDs, lithium, some antibiotics).</li><li>Idiopathic : In many cases, the specific cause remains unknown.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Pathophysiology of Glomerulonephritis</summary>
           <ul><li>Acute glomerulonephritis following an infection and is thought to be as a result of immunological response.</li><li>The body responds to streptococci by producing antibodies which combine with bacterial antigens to form immune complexes.</li><li>As these antigen-antibody complexes travel through circulation, they get trapped in the glomeruli and activate an inflammatory response that results in injury to capillary walls.</li><li>As a result of the inflammation, the capillary lumen becomes smaller leading to renal insufficiency .</li><li>Injury to the capillaries increases permeability to large molecules-proteins hence can leak into urine .</li></ul>
 <p>Structural Damage:</p>
@@ -170,7 +202,7 @@
 <ul><li>Glomerulonephritis can be acute if it occurs in days or weeks ie 1 – 3 weeks following a streptococcal infection or glomerular damage</li><li>Chronic glomerulonephritis occur over months or years and is characterized by progressive destruction (sclerosis) or glomeruli and gradual loss of renal function</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Diagnostic Evaluation of Glomerulonephritis</summary>
           <p>A combination of history, physical exam, and laboratory/imaging tests are used. Kidney biopsy is often the definitive test.</p>
 <p>History :</p>
@@ -187,7 +219,7 @@
 <ul><li>Gold Standard : Provides a definitive diagnosis by allowing histological examination of kidney tissue (glomeruli, tubules, interstitium, vessels).</li><li>Information Gained : Identifies the specific type of GN, assesses the severity of inflammation/scarring (activity and chronicity), guides treatment decisions, and helps determine prognosis. Performed using light microscopy, immunofluorescence (to detect immune deposits like IgG, IgA, IgM, C3, C1q), and electron microscopy (for ultrastructural details like deposit location, podocyte changes).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Management of Glomerulonephritis</summary>
           <p>Aims of Management</p>
 <p>Treatment goals depend on the type, severity, and underlying cause of GN.</p>
@@ -213,7 +245,7 @@
 <ul><li>Endurance Exercise : As tolerated (walking, swimming, cycling) can improve cardiovascular health, circulation, and well-being. Helps kidneys discharge waste and toxins by improving overall circulation.</li><li>Breathing Exercises : Pursed-lip breathing and diaphragmatic breathing can help manage shortness of breath associated with fluid overload or anxiety.</li><li>Edema Management: Elevation of edematous limbs, gentle range-of-motion exercises. Lymphatic massage may be considered for persistent edema, but primary treatment is addressing the underlying fluid overload medically.</li><li>Energy Conservation Techniques: Pacing activities, rest periods, especially if fatigued due to anemia or uremia.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Nursing Management</summary>
           <p>Goals of Nursing Care:</p>
 <ul><li>Maintain fluid and electrolyte balance.</li><li>Achieve and maintain target blood pressure.</li><li>Alleviate pain and discomfort.</li><li>Maintain effective breathing pattern and gas exchange.</li><li>Prevent skin breakdown.</li><li>Prevent infection.</li><li>Maintain adequate nutritional status.</li><li>Patient verbalizes understanding of disease and treatment plan.</li><li>Patient copes effectively with diagnosis and lifestyle changes.</li></ul>
@@ -225,43 +257,55 @@
 <ul><li>Fluid Management : Administer diuretics as ordered, enforce fluid/sodium restrictions accurately, monitor I&amp;O and daily weights meticulously, elevate edematous extremities, assist with frequent position changes to mobilize fluid and prevent skin breakdown.</li><li>Blood Pressure Management : Administer antihypertensives as ordered, monitor BP closely (before/after meds, postural checks if indicated).</li><li>Pain Management: Assess pain thoroughly (onset, location, quality, severity), provide comfort measures (positioning, quiet environment), administer analgesics as ordered (use caution with NSAIDs), explore relaxation techniques/diversion therapy.</li><li>Respiratory Support : Elevate head of bed (Semi-Fowler’s or High-Fowler’s position) to ease breathing, monitor respiratory status (rate, depth, effort, O2 saturation), administer oxygen as needed, encourage deep breathing/coughing exercises (if appropriate, not overly strenuous).</li><li>Nutritional Support : Collaborate with dietitian, provide prescribed diet, monitor intake, manage nausea/vomiting (antiemetics as ordered), provide oral care.</li><li>Skin Care : Gentle cleansing, moisturizing, use pressure-relieving surfaces if bed-bound, handle edematous skin carefully.</li><li>Activity Management : Encourage rest periods, assist with ADLs as needed, gradually increase activity as tolerated, plan activities to conserve energy.</li><li>Infection Prevention: Monitor for signs of infection (fever, increased WBC, site-specific signs), use aseptic technique, educate patient on hand hygiene and avoiding sick contacts (especially if immunosuppressed).</li><li>Medication Administration: Administer all medications accurately and on time (diuretics, antihypertensives, immunosuppressants, antibiotics, phosphate binders, etc.), monitor for therapeutic effects and side effects. Administer albumin infusions as ordered (helps shift fluid from interstitial space to intravascular space, often followed by diuretics).</li><li>Psychosocial Support: Provide emotional support, encourage verbalization of feelings, involve family, provide clear explanations, refer to support groups or counseling if needed.</li><li>Patient Education: Teach about the disease, medications (purpose, dose, side effects), dietary/fluid restrictions, monitoring (BP, weight, symptoms), when to seek medical attention, importance of follow-up.</li><li>Preparation for Procedures : Educate and prepare patient for kidney biopsy, dialysis initiation if necessary.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Complications of Glomerulonephritis</summary>
           <p>GN can lead to various acute and chronic complications:</p>
 <ul><li>Acute Kidney Injury (AKI) / Acute Renal Failure: Rapid decline in kidney function.</li><li>Chronic Kidney Disease (CKD): Progressive, irreversible loss of kidney function over time.</li><li>End-Stage Renal Disease (ESRD): Kidney function fails completely, requiring dialysis or transplantation.</li><li>Nephrotic Syndrome : (If not the primary presentation).</li><li>Hypertension : Often difficult to control, increases cardiovascular risk.</li><li>Electrolyte Imbalances: Hyperkalemia (high potassium – dangerous!), hyperphosphatemia, hypocalcemia, metabolic acidosis.</li><li>Anemia : Due to decreased erythropoietin production.</li><li>Increased Susceptibility to Infections : Due to the disease itself or immunosuppressive therapy.</li><li>Cardiovascular Disease : Increased risk of heart attack, stroke.</li><li>Renal Osteodystrophy: Bone disease related to CKD.</li><li>Hypertensive Encephalopathy : Neurological symptoms due to severely elevated blood pressure (headache, confusion, seizures).</li><li>Fluid Overload: Leading to:</li><li>Pulmonary Edema : Fluid accumulation in the lungs, causing severe shortness of breath.</li><li>Congestive Heart Failure (CHF) : Heart struggles to cope with excess fluid volume.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-11">
           <summary>11 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Glomerulonephritis</strong> as a practical nursing topic, not only a memorized definition. Start with normal structure and function, then connect it to assessment findings and disease.</p>
 <ul><li><strong>What to understand first:</strong> define glomerulonephritis, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-12">
           <summary>12 Assessment Guide</summary>
           <ul><li>Relevant inspection, palpation, movement, auscultation, vital signs or neurological checks.</li><li>Normal findings, abnormal findings and what each abnormality may indicate.</li><li>Patient history, risk factors and how the body system affects other systems.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-13">
           <summary>13 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use anatomy to explain symptoms and guide focused assessment.</li><li>Recognize findings that need urgent escalation.</li><li>Teach the patient using simple body-system language.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The learner can explain normal function, identify abnormal signs and connect them to nursing action.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-14">
           <summary>14 Patient Teaching and Revision Check</summary>
           <ul><li>Explain glomerulonephritis in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Glomerulonephritis%20Medical%20Nursing%20(III)%20nursing%20lecture" title="Glomerulonephritis YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (13)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/glomerulonephritis-1.webp" alt="Glomerulonephritis 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Glomerulonephritis 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Nephrotic-Syndrome-causes.webp" alt="Nephrotic Syndrome Causes" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Nephrotic Syndrome Causes</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Classification-of-glomerulonephritis-in-children.webp" alt="Classification Of Glomerulonephritis In Children" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Classification Of Glomerulonephritis In Children</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Clinical-Presentation-of-Glomerulonephritis.webp" alt="Clinical Presentation Of Glomerulonephritis" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Clinical Presentation Of Glomerulonephritis</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Glomerulonephritis.webp" alt="Glomerulonephritis" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Glomerulonephritis</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Diagnosis-PYE.webp" alt="Diagnosis PYE" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Diagnosis PYE</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Management-of-Glomerulonephritis-1-e1743766156681.webp" alt="Management Of Glomerulonephritis 1 E1743766156681" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Management Of Glomerulonephritis 1 E1743766156681</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/dce5cecac4ebc8c779f189dc491f4e2d.webp" alt="Dce5cecac4ebc8c779f189dc491f4e2d" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Dce5cecac4ebc8c779f189dc491f4e2d</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Glomerulonephritis%20Medical%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <p style="color:var(--seo-muted);font-size:.85rem;margin:8px 0 0">5 more diagrams available — open the lesson for full illustrations.</p>
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Glomerulonephritis%20Medical%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

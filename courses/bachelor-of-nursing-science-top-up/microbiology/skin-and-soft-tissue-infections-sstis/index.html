@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,107 +97,146 @@
         <p>Skin and Soft Tissue Infections (SSTIs) links cause, transmission, prevention, assessment and treatment support. Good nursing notes should include infection prevention, danger signs, adherence support and community health education.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 33 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">1. Introduction to Skin &amp; Soft Tissue Infections (SSTIs)</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Classic General Clinical Presentation:</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">General Diagnostic Approach: Specimen Collection and Processing</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Laboratory Processing:</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">2. Superficial Infections (The Pyodermas)</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">A. Impetigo (Non-Bullous)</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Honey-Crusted Child</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Serology Trap</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">B. Bullous Impetigo</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">C. Staphylococcal Scalded Skin Syndrome (SSSS)</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">D. Staphylococcal Scarlet Fever &amp; Toxic Shock Syndrome (TSS)</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">3. Hair Follicle Infections</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Etiology Scenarios for Folliculitis:</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">4. Cutaneous Diphtheria</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Clinical History &amp; Presentations (3 Types):</a>
+          <a href="#section-16" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Diagnostics &amp; Treatment:</a>
+          <a href="#section-17" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">A. Erysipelas (Superficial)</a>
+          <a href="#section-18" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">B. Cellulitis (Deep)</a>
+          <a href="#section-19" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Anatomic Variants &amp; Specific Etiologies (MUST MEMORIZE FOR EXAM):</a>
+          <a href="#section-20" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">6. Infectious Gangrene (The Surgical Emergencies)</a>
+          <a href="#section-21" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">A. Clostridial Anaerobic Cellulitis &amp; Gas Gangrene (Myonecrosis)</a>
+          <a href="#section-22" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">B. Nonclostridial Anaerobic Cellulitis</a>
+          <a href="#section-23" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">C. Necrotizing Fasciitis</a>
+          <a href="#section-24" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Clinical Presentation &amp; Fournier&#39;s Variant</a>
+          <a href="#section-25" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">D. Progressive Bacterial Synergistic Gangrene</a>
+          <a href="#section-26" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">7. Subcutaneous Abscesses from Deep Spread</a>
+          <a href="#section-27" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">8. Mycetoma (Madura Foot)</a>
+          <a href="#section-28" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Host Immune Response (3 Types):</a>
+          <a href="#section-29" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Etiology (CRITICAL EXAM MEMORIZATION):</a>
+          <a href="#section-30" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-31" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-32" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-33" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 1. Introduction to Skin &amp; Soft Tissue Infections (SSTIs)</summary>
           <p><strong>General Overview:</strong> SSTIs range from minor superficial infections (like a tiny pimple) to rapidly spreading, life-threatening emergencies (like flesh-eating bacteria). The skin normally acts as an impenetrable physical and immunological barrier; infections usually require a breach (such as trauma, an insect bite, surgery, or maceration from prolonged moisture).</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Classic General Clinical Presentation:</summary>
           <ul><li><strong>Local Signs:</strong> Accumulation of pus (purulence), intense redness (erythema), pain/tenderness, swelling (edema) due to increased vascular permeability.</li><li><strong>Systemic Signs:</strong> Fever, chills, malaise (as cytokines like TNF and IL-1 enter the bloodstream).</li><li><strong>Severe Complication:</strong> Bacteremia (bacteria entering the bloodstream, potentially leading to widespread sepsis and septic shock).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 General Diagnostic Approach: Specimen Collection and Processing</summary>
           <p><strong>Exam Trap:</strong> Never just swab a dry, intact crust or a superficial ulcer base. You must get to the active, deep infection! Swabbing dry crusts only yields dead bacteria or environmental contaminants.</p>
 <ul><li><strong>Collection History &amp; Prep:</strong> The site MUST be heavily decontaminated first with soap and 70% isopropyl alcohol. Why? To avoid culturing normal, harmless skin flora (like Staphylococcus epidermidis ) which will confuse the lab results and lead to the prescription of unnecessary antibiotics.</li><li><strong>The Procedure (Aspiration &amp;gt; Swabs):</strong> Use a sterile needle and syringe to aspirate (pull out) the loculated fluid or pus from the absolute depths of pustular/vesicle wounds or abscesses. Fluid is always vastly superior to a dry swab.</li><li><strong>Transport:</strong> Use the aspirating syringe itself as the transport container (safely capped). If there is a delay in processing, the sample MUST go into an anaerobic transport container. Clinical Reason: Deep tissues, especially in diabetics or deep bite wounds, often harbor strict anaerobes (like Bacteroides ). Room air (oxygen) is toxic to them and will kill them before they reach the lab, giving you a false negative!</li><li><strong>Swabs:</strong> If a swab must be used, it should be placed in an anaerobic transport medium or inoculated directly onto culture media right at the patient&#39;s bedside.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Laboratory Processing:</summary>
           <ul><li><strong>Gram Stain:</strong> Done first! It acts as a rapid guide for the clinician to select early empiric antibiotics (e.g., seeing Gram-positive cocci in clusters immediately suggests Staph , prompting the use of Flucloxacillin or Vancomycin) and tells the lab which specific culture media to use.</li><li><strong>Culture:</strong> The lab uses both selective and enriched non-selective media. You must know these three: <strong>5% Sheep Blood Agar:</strong> Detects hemolysis patterns (Alpha, Beta, Gamma) crucial for identifying Streptococcus and Staphylococcus .</li><li><strong>MacConkey Agar:</strong> Selects specifically for Gram-negatives (like E. coli or Pseudomonas ), inhibiting Gram-positives.</li><li><strong>Chocolate Agar:</strong> Cooked blood agar that releases internal cell nutrients, used for fastidious (picky) organisms like Haemophilus influenzae .</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 2. Superficial Infections (The Pyodermas)</summary>
           <p>Pyoderma literally means &quot;pus in the skin.&quot; These are highly contagious, superficial infections predominantly affecting the epidermis.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 A. Impetigo (Non-Bullous)</summary>
           <p><strong>Pathophysiology &amp; Etiology:</strong> A superficial, intraepidermal (top layer of skin), unilocular vesicopustule. It frequently occurs after minor trauma like insect bites or scratches which break the skin barrier, allowing surface bacteria to invade.</p>
 <ul><li><strong>Causative Agents:</strong> Group A Streptococci (GAS) (Specifically M-serotypes 2, 49, 52, 55, 57, 59, 60, 61), Group C and G Streptococci, and Staphylococcus aureus .</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 The Honey-Crusted Child</summary>
           <p>A 6-year-old boy presents to the pediatric clinic with a cluster of sores around his mouth and nose. His mother mentions he had mosquito bites there a few days ago and kept scratching them. The sores have burst, leaving a classic <strong>&quot;honey-colored crust.&quot;</strong> This golden crust is the absolute hallmark of non-bullous impetigo, formed by dried serum and bacterial proteins.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 The Serology Trap</summary>
           <ul><li><strong>Gram Stain:</strong> Reveals Gram-positive cocci.</li><li><strong>Culture:</strong> Take exudate from beneath an unroofed crust. It will grow S. aureus , GAS, or a mixture of both.</li><li><strong>Serology (Exam Gold!):</strong> If caused by Streptococcus, the Anti-Streptolysin O (ASO) titer will be SCANT (negative). Why? Because the skin lipids (cholesterol in the skin) locally bind to, inhibit, and destroy Streptolysin O! Therefore, no ASO antibodies are made. Instead, you must look for an <strong>anti-DNase B response</strong> , which readily occurs and proves a recent skin Strep infection (vital if the patient later develops Post-Streptococcal Glomerulonephritis).</li></ul>
 <p><strong>Treatment:</strong> Topical antibiotics (like Mupirocin) for mild, localized cases. Systemic ampicillin, penicillin, erythromycin, or cephalosporins for widespread cases or immunocompromised hosts.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 B. Bullous Impetigo</summary>
           <p><strong>Pathophysiology &amp; Etiology:</strong> Caused specifically by S. aureus of Phage Group II (usually type 71). This specific strain produces ETA toxin (Exfoliative Toxin A).</p>
 <p><strong>Mechanism:</strong> The ETA toxin acts as highly specific molecular scissors. It specifically cleaves <strong>desmoglein 1</strong> (a transmembrane glycoprotein of desmosomes that acts like velcro to hold skin cells together). This causes subcorneal separation of the epidermis, creating a pocket that fills with fluid.</p>
 <p><strong>Clinical History &amp; Presentation:</strong> Seen almost exclusively in newborns and young children. Lesions begin as vesicles that quickly turn into large, flaccid bullae (blisters) containing clear yellow fluid. The bullae lack a surrounding ring of redness. They quickly rupture, leaving a moist, raw red surface.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 C. Staphylococcal Scalded Skin Syndrome (SSSS)</summary>
           <p><strong>Pathophysiology:</strong> Similar to bullous impetigo, but instead of the toxin acting locally, the S. aureus exfoliative exotoxin enters the bloodstream and acts systemically across the entire body.</p>
 <p><strong>Clinical History &amp; Presentation:</strong> Begins abruptly. The patient develops a fever, intense skin tenderness, and a scarlatiniform (sandpaper-like red) rash. Large, flaccid, clear bullae form, promptly rupture, and result in the separation of massive sheets of skin. Visual Note: The child looks exactly like they have suffered a severe, widespread boiling water burn. (Unlike Toxic Epidermal Necrolysis/TEN, which involves the deeper dermal-epidermal junction and mucous membranes, SSSS is highly superficial and usually spares the mucous membranes).</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 D. Staphylococcal Scarlet Fever &amp; Toxic Shock Syndrome (TSS)</summary>
           <ul><li><strong>Staphylococcal Scarlet Fever:</strong> Caused by S. aureus enterotoxins (A through D) and Toxic Shock Syndrome Toxin 1 (TSST-1). Presents with a scarlatiniform rash and skin desquamation (peeling), particularly on the palms and soles.</li><li><strong>Toxic Shock Syndrome (TSS):</strong> A severe, life-threatening acute febrile illness driven by &quot;superantigens&quot; that massively hyper-activate T-cells, causing a &quot;cytokine storm.&quot; Clinical Presentation: Generalized scarlatiniform eruption, intense desquamation, severe hypotension (shock), and functional abnormalities of three or more organ systems (e.g., liver failure, renal failure, GI vomiting/diarrhea).</li><li>Classic Scenario: Historically associated with the use of highly absorbent, retained vaginal tampons, or surgical nasal/wound packing harboring S. aureus .</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-12">
           <summary>12 3. Hair Follicle Infections</summary>
           <ul><li>Condition Pathophysiology &amp; Depth Clinical Presentation &amp; Key Details</li><li><strong>Folliculitis</strong> A pyoderma localized entirely within hair follicles and apocrine (sweat gland) regions. Very superficial. Small (2-5mm) erythematous, sometimes pruritic (itchy) papules topped by a central pustule with a hair shaft piercing the center. Preferred sites: Buttocks, hips, axillae (armpits). Note: Palms and soles are strictly spared because they do not have hair follicles!</li><li><strong>Furuncle (Boil)</strong> A deep inflammatory nodule that develops from preceding folliculitis. Extends into the dermis. Caused exclusively by S. aureus . Firm, tender, red nodule that becomes painfully fluctuant (squishy, filled with pus). Occurs in areas subject to friction and perspiration (neck, face, axillae, buttocks). Usually drains pus spontaneously.</li><li><strong>Carbuncle</strong> A much larger, deeper, indurated (hardened) mass. Essentially multiple furuncles joined together. Caused exclusively by S. aureus . Extends deeply into subcutaneous fat in areas covered by thick, inelastic skin (nape of neck, back, thighs). It is multiple abscesses separated by connective tissue septa that drain to the surface along multiple hair follicles. Patient has fever, malaise, and prominent leukocytosis.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-13">
           <summary>13 Etiology Scenarios for Folliculitis:</summary>
           <p>Knowing the patient&#39;s history immediately gives you the bug:</p>
 <ul><li><strong>Friction/shaving:</strong> Patient shaved their legs or beard and developed red bumps. Bug = S. aureus .</li><li><strong>Hot tub use:</strong> Patient sat in a poorly maintained, inadequately chlorinated wooden hot tub. Two days later, they have a rash restricted to areas covered by their swimsuit. Bug = Pseudomonas aeruginosa (serotype O-11).</li><li><strong>Prolonged antibiotics/steroids:</strong> An acne patient on long-term oral tetracyclines suddenly develops a worsening, itchy follicular rash. Bug = Candida (fungus) or Gram-negative folliculitis.</li></ul>
 <p>Predisposing Factors for Carbuncles: Obesity, blood dyscrasias, corticosteroid treatment, defects in neutrophil function, and most notably, <strong>Diabetes Mellitus</strong> (high blood sugar impairs neutrophil chemotaxis, allowing deep abscesses to form).</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-14">
           <summary>14 4. Cutaneous Diphtheria</summary>
           <p><strong>Pathophysiology:</strong> Caused by the bacterium Corynebacterium diphtheriae . Unlike respiratory diphtheria which chokes the throat, this attacks the skin, producing a highly potent exotoxin that halts cellular protein synthesis, causing local tissue death.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-15">
           <summary>15 Clinical History &amp; Presentations (3 Types):</summary>
           <ul><li><strong>Wound Diphtheria:</strong> Secondary infection of a pre-existing wound. The wound becomes partially covered by a necrotic membrane and is encircled by a red zone (erythema).</li><li><strong>Primary Cutaneous Diphtheria:</strong> A disease primarily of the tropics. Scenario: A traveler returns from a tropical region with a pustule on their lower leg. It progresses to form a classic &quot;punched-out&quot; ulcer covered by a thick, gray-brown pseudomembrane. If you try to peel this membrane off, it will bleed profusely because it is anchored into the dying tissue!</li><li><strong>Superinfection:</strong> Infects already eczematized skin lesions, forming a superficial membranous infection.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-16">
           <summary>16 Diagnostics &amp; Treatment:</summary>
           <ul><li><strong>Staining:</strong> Methylene blue-stained smears of the edge of the membrane reveal characteristic beaded, metachromatically staining bacilli. They uniquely arrange themselves in V or L shapes, commonly described as looking like <strong>&quot;Chinese letters&quot;</strong> or club-shaped rods.</li><li><strong>Culture:</strong> Regular agar won&#39;t work well. You must use highly selective media: <strong>Cysteine-tellurite blood agar</strong> or fresh <strong>Tinsdale&#39;s medium</strong> (colonies grow black with a brown halo).</li><li><strong>Toxigenicity Testing:</strong> Finding the bug isn&#39;t enough; you must prove the bug actually makes the deadly toxin to confirm diphtheria. This is done via the <strong>Elek plate</strong> (an in-vitro agar diffusion precipitin reaction where toxin and antitoxin meet to form a visible line) or by injecting a guinea pig (causes visible dermonecrosis).</li><li><strong>Treatment:</strong> <strong>Diphtheria Antitoxin</strong> is the absolute first line and is life-saving (it neutralizes circulating toxin before it enters cells). Followed by Erythromycin or Penicillin to kill the bacteria, and careful surgical removal of the necrotic debris (membrane) to aid healing.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-17">
           <summary>17 A. Erysipelas (Superficial)</summary>
           <p><strong>Pathophysiology &amp; Etiology:</strong> A distinctive type of superficial cellulitis with prominent lymphatic involvement. Caused almost universally by <strong>Group A Streptococci</strong> (uncommonly by Group C or G).</p>
 <p><strong>Clinical History &amp; Presentation:</strong> Occurs mainly on the Face and lower extremities. Portals of entry include skin ulcers, local trauma/abrasions, psoriatic/eczematous lesions, or fungal infections (like athlete&#39;s foot creating microscopic cracks in the toes). Predisposing factors: venous stasis, paraparesis, diabetes, alcohol abuse.</p>
 <ul><li><strong>Physical Exam:</strong> A severely painful lesion with a bright red, edematous, indurated appearance known as &quot;peau d&#39;orange&quot; (because the swollen hair follicles make it look exactly like an orange peel). The absolute hallmark is an advancing, <strong>raised border that is sharply demarcated</strong> from the adjacent normal skin. You can easily draw a pen line where the infection stops. Patient will have high fever and chills.</li><li><strong>Diagnostics:</strong> Leukocytosis is prominent.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-18">
           <summary>18 B. Cellulitis (Deep)</summary>
           <p><strong>Pathophysiology &amp; Etiology:</strong> An acute, spreading infection extending much deeper than erysipelas, heavily involving the subcutaneous tissues. Caused mostly by <strong>Group A Streptococcus</strong> or <strong>S. aureus</strong> . Spread can be blood-borne, or direct spread from subjacent infections (e.g., subcutaneous abscesses, or fistulas draining from deep bone osteomyelitis).</p>
         </details>
       
-        <details class="seo-lesson-section exam-section" open>
+        <details class="seo-lesson-section exam-section" id="section-19">
           <summary>19 Anatomic Variants &amp; Specific Etiologies (MUST MEMORIZE FOR EXAM):</summary>
           <p>The location of the cellulitis often gives away the specific causative bug!</p>
 <ul><li><strong>Periorbital (around the eye):</strong> S. aureus , Streptococcus pneumoniae , Group A Strep. (Can be life-threatening if it spreads to the cavernous sinus!).</li><li><strong>Buccal (cheek):</strong> Haemophilus influenzae . (Classic scenario: An unvaccinated toddler with a rapidly swelling, purplish cheek).</li><li><strong>Body Piercing (Ear, nose, umbilicus):</strong> S. aureus , Group A Strep.</li><li><strong>After Mastectomy (Ipsilateral arm):</strong> Non-group A β-hemolytic streptococci. (Due to compromised lymph node drainage).</li><li><strong>After Saphenous Vein Harvest (Ipsilateral leg):</strong> Group A or non-group A β-hemolytic strep. (Common post-CABG heart surgery).</li><li><strong>Pelvic surgery / Radiation therapy (Vulva, groin, legs):</strong> Group B and Group G streptococci.</li><li><strong>Postoperative abdominal wound:</strong> Group A streptococci.</li><li><strong>Injection Drug Use (IVDU) (Extremities, neck):</strong> S. aureus , Streptococci (Groups A, C, F, G). (Usually from dirty needles or skin flora pushed deep).</li><li><strong>Perianal:</strong> Group A streptococcus.</li></ul>
@@ -194,13 +245,13 @@
 <ul><li>Polymorphonuclear leukocytosis.</li><li><strong>Gram Stain:</strong> Gram-positive organisms are most common.</li><li><strong>Cultures:</strong> Needle aspirates are NOT indicated ordinarily (yield is very low). You <strong>ONLY aspirate if:</strong> 1) unusual pathogens are suspected (immunocompromised patient), 2) fluctuant areas (pus pockets) are detected, or 3) initial antibiotics have completely failed.</li><li><strong>Blood Cultures:</strong> Positive in only 2% to 4% of community-acquired cases (very low yield).</li><li><strong>Standard:</strong> β-Lactam antibiotics active against penicillinase-producing S. aureus (e.g., Cefazolin, Nafcillin).</li><li><strong>If MRSA is suspected:</strong> Vancomycin or Linezolid.</li><li><strong>Diabetic Foot Infection:</strong> Requires broad-spectrum coverage because it is often polymicrobial (Ampicillin/sulbactam, Imipenem/cilastatin, or Meropenem).</li><li><strong>Supportive:</strong> Immobilization and elevation of the limb (crucial to let gravity reduce swelling). Apply a cool, sterile saline dressing to remove purulent exudate and decrease pain.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-20">
           <summary>20 6. Infectious Gangrene (The Surgical Emergencies)</summary>
           <p><strong>Definition:</strong> Cellulitis that has rapidly progressed, displaying extensive necrosis (death) of subcutaneous tissues, deep fascia, and overlying skin. This group includes Necrotizing Fasciitis, Gas Gangrene, and synergistic gangrenes.</p>
 <p><strong>General Pathology:</strong> Necrosis and hemorrhage in tissues, abundant polymorphonuclear (neutrophil) exudate, and critically, <strong>fibrin thrombi choking off the small arteries and veins</strong> of the dermis and subcutaneous fat. Because the blood supply is choked off, the tissue dies (turns black/gangrenous), and systemically delivered antibiotics cannot reach the site, making <strong>urgent surgery mandatory</strong> .</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-21">
           <summary>21 A. Clostridial Anaerobic Cellulitis &amp; Gas Gangrene (Myonecrosis)</summary>
           <p><strong>Pathophysiology:</strong> Necrotizing clostridial infection of devitalized (dead/crushed) subcutaneous tissue. Note for Anaerobic Cellulitis: Deep fascia is not appreciably involved and no myositis (muscle death) is present yet, unlike true gas gangrene where the muscle turns to mush. Gas formation is common and extensive.</p>
 <ul><li><strong>Clostridium perfringens:</strong> Introduced via dirty/inadequately debrided traumatic wounds (e.g., a motorcycle crash in mud), contamination during bowel surgery, or preexisting localized infection.</li><li><strong>Clostridium septicum:</strong> Arises from bacteremia, highly associated with leukemia, granulocytopenia, and classically, <strong>occult colon cancer</strong> . (If a patient gets C. septicum gangrene without trauma, you must scope their colon for a tumor!).</li></ul>
@@ -208,48 +259,48 @@
 <ul><li><strong>Diagnostics:</strong> Gram Stain of Drainage: Reveals numerous blunt-ended, thick, Gram-positive bacilli (&quot;boxcar&quot; shaped) with variable numbers of leukocytes.</li><li>X-ray (Roentgenograms): Soft tissue imaging brilliantly highlights abundant black pockets of gas trapped in the tissue planes.</li><li><strong>Treatment:</strong> Immediate surgical exploration to check for muscle involvement. If no myonecrosis, aggressively debride necrotic tissue and drain pus widely. IV Penicillin or Ampicillin PLUS Clindamycin or Metronidazole. Definitive therapy is based on culture susceptibilities.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-22">
           <summary>22 B. Nonclostridial Anaerobic Cellulitis</summary>
           <p>Caused by non-spore-forming anaerobes ( Bacteroides, Peptostreptococcus, Peptococcus ), often mixed with facultative species (Coliforms, Strep, Staph). Gas-forming soft tissue infections here are produced by E. coli, Klebsiella , or Aeromonas .</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-23">
           <summary>23 C. Necrotizing Fasciitis</summary>
           <p>A severe, &quot;flesh-eating&quot; infection involving the subcutaneous soft tissues, specifically spreading rapidly along the superficial (and often deep) fascial planes.</p>
 <p><strong>Etiology (Two Types):</strong></p>
 <ul><li><strong>Type I (Polymicrobial):</strong> At least one anaerobe ( Bacteroides or Peptostrep ) PLUS facultative anaerobes (non-Group A strep) AND Enterobacteriaceae ( E. coli, Enterobacter, Klebsiella, Proteus ). Common in diabetics and after abdominal surgery.</li><li><strong>Type II (Hemolytic Streptococcal Gangrene):</strong> Group A Streptococci isolated alone or with S. aureus . Associated with M-protein types 1, 3, 12, and 28 which elaborate Pyrogenic Exotoxin A. Seen in healthy young people after minor trauma, surgery, or in diabetics/PVD. Present in half of all Strep toxic shock-like syndrome cases.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-24">
           <summary>24 Clinical Presentation &amp; Fournier&#39;s Variant</summary>
           <p>Tissue is swollen without sharp margins, hot, shiny, and exquisitely tender. The hallmark is <strong>&quot;pain out of proportion to exam&quot;</strong> (the skin might just look slightly red, but the patient is screaming in agony because the deep fascia is dying). Lymphangitis is rare. Progresses to cutaneous gangrene. Marked edema can cause compartment syndrome. Subcutaneous gas may be present. Severe systemic toxicity with high fever (38.9°C - 40.5°C).</p>
 <p><strong>Fournier&#39;s Gangrene (A specific variant):</strong> Necrotizing fasciitis specifically of the male genitals.</p>
 <ul><li>Predisposing: Diabetes, local trauma, paraphimosis, periurethral extravasation of urine, perirectal infection, or circumcision/hernia surgery. Mixed cultures (facultative + anaerobes).</li><li>Presentation: Swollen, tender, prominent pain. Systemic toxicity. Swelling and crepitus of the scrotum rapidly increase, leading to dark purple areas and extensive scrotal gangrene. Spreads extremely rapidly along Colles&#39; fascia in obese diabetics to the abdominal wall.</li><li><strong>Diagnostics:</strong> Leukocytosis and positive blood cultures.</li><li>Gram Stain: Mixture of organisms (Type I) or chains of gram-positive cocci (Type II).</li><li>Metabolic: <strong>Hypocalcemia</strong> (without tetany) may occur due to saponification if subcutaneous fat necrosis is extensive (fat breaks down and binds free calcium).</li><li><strong>Treatment for all Necrotizing Fasciitis:</strong> Immediate, aggressive surgical debridement is paramount (slice until it bleeds!). Antibiotics: Ampicillin + Gentamicin + Clindamycin/Metronidazole, OR Amp-Sulbactam + Gentamicin, OR Imipenem/Meropenem.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-25">
           <summary>25 D. Progressive Bacterial Synergistic Gangrene</summary>
           <ul><li><strong>Clinical History:</strong> Occurs specifically after an abdominal operative wound (frequently when wire retention sutures are used), around a colostomy/ileostomy, or near a fistulous tract.</li><li><strong>Presentation:</strong> Local tender swelling that ulcerates. The painful, shaggy ulcer enlarges and is characteristically encircled by a margin of gangrenous skin, which is remarkably further surrounded by a violaceous (purple) zone.</li><li><strong>Etiology:</strong> Microaerophilic/anaerobic strep, S. aureus , Proteus , or other gram-negatives.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-26">
           <summary>26 7. Subcutaneous Abscesses from Deep Spread</summary>
           <p>Sometimes skin infections don&#39;t start on the skin; they erupt from below.</p>
 <ul><li><strong>Osteomyelitis:</strong> Acute hematogenous osteomyelitis (bone infection) can manifest as a subcutaneous abscess when a deep subperiosteal abscess physically ruptures through the muscle/tissue to the skin surface. Most commonly S. aureus .</li><li><strong>Bacteremic Infections/Endocarditis:</strong> Metastatic pyogenic (pus-forming) infections can seed the subcutaneous tissue via the blood. Scenario: An IV drug user with S. aureus growing on their heart valves (endocarditis) shoots tiny septic emboli into the bloodstream, which lodge in the skin and grow into tender, fluctuant abscesses. Most commonly S. aureus .</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-27">
           <summary>27 8. Mycetoma (Madura Foot)</summary>
           <p><strong>Pathophysiology:</strong> A chronic, progressive granulomatous infection of the skin and subcutaneous tissue. Infection follows inoculation of organisms deep into tissue, frequently through thorn punctures, wood splinters, or pre-existing abrasions (commonly seen in agricultural workers walking barefoot in the tropics).</p>
 <p>Once inside, the organisms grow and survive by producing <strong>&quot;grains&quot;</strong> (granules or sclerotia). These grains are massive clusters of fungal mycelia or bacterial filaments heavily held together in a proteinaceous matrix, which brilliantly protects them like a physical fortress from the host&#39;s immune system.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-28">
           <summary>28 The Host Immune Response (3 Types):</summary>
           <ul><li><strong>Type I:</strong> Neutrophils degranulate and adhere to the grain surface, leading to gradual disintegration of the grain.</li><li><strong>Type II:</strong> Neutrophils disappear, and Macrophages arrive to clear the grains and the dead neutrophil debris.</li><li><strong>Type III:</strong> Marked by the formation of an epithelioid granuloma (the body realizes it can&#39;t eat the grain, so it builds a wall around it).</li></ul>
         </details>
       
-        <details class="seo-lesson-section exam-section" open>
+        <details class="seo-lesson-section exam-section" id="section-29">
           <summary>29 Etiology (CRITICAL EXAM MEMORIZATION):</summary>
           <p>Mycetoma is divided into Fungal (Eumycetoma) and Bacterial (Actinomycetoma). You MUST know the specific colors of the grains they produce. Exam Hint: If it&#39;s black, it&#39;s 100% Fungal!</p>
 <p><strong>Eumycetoma (Fungal):</strong></p>
@@ -261,37 +312,35 @@
 <p>Quick Quiz</p>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-30">
           <summary>30 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Skin and Soft Tissue Infections (SSTIs)</strong> as a practical nursing topic, not only a memorized definition. Link cause, transmission, incubation, clinical features, treatment support and prevention.</p>
 <ul><li><strong>What to understand first:</strong> define skin and soft tissue infections (sstis), identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-31">
           <summary>31 Assessment Guide</summary>
           <ul><li>Temperature, pulse, respiratory status, hydration, pain, rash, wounds, stool, urine or sputum changes.</li><li>Exposure history, travel, contacts, vaccination status and comorbidities.</li><li>Specimen orders, isolation needs, antimicrobial history and danger signs.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-32">
           <summary>32 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use standard precautions and transmission-based precautions where needed.</li><li>Support hydration, nutrition, medicines, monitoring and early referral for severe disease.</li><li>Teach prevention, adherence, hygiene, safe water, vector control or contact tracing as relevant.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> Symptoms improve, complications are detected early, transmission risk is reduced and treatment is completed correctly.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-33">
           <summary>33 Patient Teaching and Revision Check</summary>
           <ul><li>Explain skin and soft tissue infections (sstis) in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
+      
       <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Skin%20and%20Soft%20Tissue%20Infections%20(SSTIs)%20Microbiology%20nursing%20lecture" title="Skin and Soft Tissue Infections (SSTIs) YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Skin%20and%20Soft%20Tissue%20Infections%20(SSTIs)%20Microbiology%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Skin%20and%20Soft%20Tissue%20Infections%20(SSTIs)%20Microbiology%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

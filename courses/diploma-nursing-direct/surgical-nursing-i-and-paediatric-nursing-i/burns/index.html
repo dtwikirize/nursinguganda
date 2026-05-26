@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,13 +97,40 @@
         <p>Burns should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 21 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">BURNS</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">TYPES OF BURNS</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">CLASSIFICATION OF BURN INJURY</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">EXTENT OF A BURNT AREA.</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">PREDISPOSING FACTORS &amp; ASSESSMENT</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">CRITERIA FOR ADMISSION OF BURNT PATIENT.</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">FIRST AID FOR BURNS.</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">FOR AIRWAY BURNS</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">FOR CHEMICAL BURNS</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">FOR ELECTRIC BURNS</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">ASSESSMENT FOR BURNS TO THE EYE.</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">GENERAL MANAGEMENT OF BURNS</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">GENERAL NURSING CARE OF A BURN PATIENT</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">FLUID REPLACEMENT</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Management of Wounds</a>
+          <a href="#section-16" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Prevention of Burns</a>
+          <a href="#section-17" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">COMPLICATIONS OF BURNS</a>
+          <a href="#section-18" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-19" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-20" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-21" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 BURNS</summary>
           <p>Burns are injuries to the skin due to extremes of temperature i.e cold or hot, chemicals or radiations. Burns occur when there is injury to the tissues of the body caused by heat, chemicals, electric current or radiations.</p>
 <ul><li>Skin is the <strong>largest organ of the body</strong> that protects against injury, loss of fluid and from infection.</li><li>It also maintains a constant body temperature with sebum, hair follicles. The skin has got two layers;</li><li>- Epidermis (outer layer)</li><li>Under the skin is sebaceous tissue mainly fat.</li><li>The top part of the skin (epidermis) is made up of fat cells which are constantly shed and are replaced by new cells which come from underneath the layer.</li><li>The epidermis has got an oily layer called sebum produced by sebaceous gland. It prevents heat loss (it thickens when it’s cold).</li><li>Sebum makes the skin water proof, makes skin supplies plethoric.</li><li>The dermis contains blood vessels, nerve, muscles, sweat glands, hair follicles, sebaceous glands; the ends of the sensory nerves in the dermis register sensation from the body surface.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 TYPES OF BURNS</summary>
           <p>These can be caused by flame, flash, scald, or contact with hot object.</p>
 <p>These are the result of tissue injury and destruction from necrotizing substance. Chemical burns are most commonly caused by acids; however alkalis can also cause a burn e.g. cleaning agents, drain cleaners and lye’s.</p>
@@ -103,7 +142,7 @@
 <p>Are injuries caused by moist heat, and hot liquids?</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 CLASSIFICATION OF BURN INJURY</summary>
           <p>Burns are classified according to;</p>
 <ul><li>Depth of the burn.</li><li>Extent of the burn.</li><li>Location of the burn.</li></ul>
@@ -111,54 +150,54 @@
 <ul><li>SUPERFICIAL BURNS: Involves only the outer most skin layer. They have redness, swelling, and tenderness. It usually heals well, if first aid is given promptly and if blisters don’t form. Burns from sun, charcoal stove. Are also known as first degree burns.</li><li>PARTIAL THICKNESS BURNS: The damage to epidermis is severe, we almost always have blister formation and very painful. Completely destroys the epidermis. Blisters form because of fluid released from the damaged tissue, usually heal well but may be fatal if more than 30% of skin is involved. Also known as second degree burns.</li><li>FULL THICKNESS/DEEP BURNS: The dermis is involved including other structures like muscles, bones. All layers involved blood vessels, fat and nerves. There is either no pain or minimal. This may mislead that the burns are not severe. You need immediate help; the skin is pale and charred (like toasted meat).</li><li>The location of the burn wound is related to the severity of the burn injury. Burns to the face and neck and circumferential burns of the chest may inhibit respiratory function by virtue of mechanical obstruction secondary to edema or scar formation.</li><li>These injuries may also indicate the possibility of inhalation injury and respiratory mucosal damage.</li><li>Burns of the hands, feet, joints, and eyes are of concern because they make self-care very difficult and may jeopardize future function.</li><li>The ears and nose, composed mainly of cartilage, are susceptible to infection because of poor blood supply to the cartilage.</li><li>Burns of buttocks and genitalia are highly susceptible to infection.</li><li>Circumferential burns of the extremities can cause circulatory compromise distal to the burn with subsequent neurologic impairment of the affected extremity.</li><li>Patient may develop compartment syndrome from direct heat damage to the muscles, multiple intravenous access attempts or pre burn vascular problems.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 EXTENT OF A BURNT AREA.</summary>
           <p>Two commonly used guides for determining the total body surface area (TBSA) affected or the extent of a burn wound are the Lund-Browder chart and rule of nines. Only partial thickness burns and full thickness burns are included when calculating the burnt area because it is more accurate. The patient’s age, in proportions to relative body area size, is taken into account. For irregular or odd-shaped burns, the palmar surface of the patient’s hand is considered to be approximately 1% of the TBSA.</p>
 <ul><li>Head and neck is 9% (NB. The head alone is 8% and the neck is 1%).</li><li>Each arm is 9% (both arms carry 18%).</li><li>Anterior trunk-18% (chest and abdomen).</li><li>Posterior trunk-18% (from neck to symphysis, coccyx).</li><li>Each lower limb-18% (both limbs 36%).</li><li>Perineal/genital area-1%.</li><li>Head -18%</li><li>Arms -9%</li><li>Chest and trunk -18%</li><li>Back of trunk -18%</li><li>Legs -14%</li><li>Perineal and genital area -1%</li><li>Head 7%</li><li>Neck 2%</li><li>Anterior trunk 13%</li><li>Posterior trunk 13%</li><li>Rt buttock 2.5%</li><li>Lt buttock 2.5%</li><li>Genitalia 1%</li><li>Rt upper arm 4%</li><li>Lt upper arm 4%</li><li>Rt lower arm 3%</li><li>Lt lower arm 3%</li><li>Rt hand 2.5%</li><li>Lt hand 2.5%</li><li>Rt thigh 9.5%</li><li>Lt thigh 9.5%</li><li>Rt leg 7%</li><li>Lt leg 7%</li><li>Rt foot 3.5%</li><li>Lt foot 3.5%</li><li><strong>Total</strong> <strong>100%</strong></li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 PREDISPOSING FACTORS &amp; ASSESSMENT</summary>
           <ul><li>Age, children and old (weak)</li><li>Disease-commonly epilepsy, leprosy</li><li>alcoholism, and cigarette smoking</li><li>Occupation-e.g. electricians, industrial workers, alcohol brewers</li><li>Poverty e.g crowded kitchen.</li><li>Fights (wrangles and conflicts)</li><li>Race e.g. frost bite common in whites</li><li>Skin bleaching.</li><li>History of involvement with any of the cause of burns.</li><li>Blistering due to vasodilation hence collection of serum between the dermis and epidermis.</li><li>Necrosis due to coagulation of proteins.</li><li>Functional impairment of the temperature regulation process of the burnt area.</li><li>Shock due to fluid loss and blood loss (hypovoleamic shock).</li><li>Shock can also occur due to severe pain (neurogenic shock).</li><li>Toxaemia depending on the type and cause of burns. Histamines and adenocytes produced are released from the burnt surface and they find their way into the blood stream.</li><li>Circumstances and cause of burns i.e. where and when did it occur.</li><li>Was the airway affected? Assess whether it was in closed spaces (inhaled hot gases).</li><li>Assess the extent, location and depth. The bigger the burn, the higher the extent (%) the greater the surface area.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 CRITERIA FOR ADMISSION OF BURNT PATIENT.</summary>
           <ul><li>Burns involving the airways</li><li>Full thickness.</li><li>Admit all children for observation</li><li>The bigger the surface area above 5% superficial burns.</li><li>Special areas involved e.g. face, hands, joints, neck, and genitalia.</li><li>Circumferential burns give a tourniquet effect may cause gangrene.</li><li>Electric burns because all electric burns are said to be deep until proved otherwise.</li><li>Chemical burns, can continue burning for several days.</li><li>If you are not sure; below 15% burns, GIT absorption is intact, oral route work in fluid replacement.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 FIRST AID FOR BURNS.</summary>
           <ul><li>Maintain an open airway.</li><li>Minimize the risk of infection</li><li>Treat any other associated injuries</li><li>Make sure you watch for signs of shock.</li><li>Make sure you check for signs of respiratory distress.</li><li>Decrease temperature /stop fire if possible.</li><li>Call for help.</li><li>Evacuate the patient; pour water on the affected area.</li><li>Undress the patient.</li><li>Assume the airway has been affected until proved otherwise continue pouring water on the burnt area for minimally 20min to reduce injury i.e neutralized heat.</li><li>Lie patient down but avoid the burnt area touching the ground.</li><li>Pour water on burns for 20mins.</li><li>Continue pouring water until pain stops.</li><li>Put on gloves.</li><li>Remove rings, shoes, watches, necklace, belts, stockings and clothes before tissue damage.</li><li>Cover the injured area with sterile cloth or sterile dressing.</li><li>Record details of injuries.</li><li>Regularly monitor and record the vital signs and the level of consciousness, urine output.</li><li>Treat shock if present.</li><li>Re-assure and give words of hope.</li><li>Avoid over cooling the patients especially children and elderly because they may get hypothermia.</li><li>Do not remove anything stuck on the burnt wound to prevent spread of infections and more injuries.</li><li>Do not touch the burnt area with your fingers.</li><li>Do not apply lotions on the burn apart from anti-septic.</li><li>Do not burst any blisters.</li><li>If burns are on the face do not cover them for easy assessment of respiratory distress.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 FOR AIRWAY BURNS</summary>
           <p>Burns of the face, mouth, throat, nose, airway passages, are serious because the airway passage rapidly becomes swollen because of inflammation.</p>
 <ul><li>History taking.</li><li>Respiratory rate increased.</li><li>Examine the nostrils i.e there is no soot.</li><li>Examine the nasal hair i.e if they are burnt, short with a Taft.</li><li>There would be damaged to the skin around the nose and mouth.</li><li>Has difficulty in breathing.</li><li>Has hoarse voice due to inflammation of vocal cords.</li><li>To recognize the airway burns.</li><li>To maintain the airway and after take the patient to hospital management.</li><li>Open the mouth (airway) and check whether he is breathing.</li><li>Sweep the tongue.</li><li>If not breathing, give rescue breaths, mouth to mouth. Put patient in a recovery position and call for help.</li><li>Take the steps to improve the airway e.g remove clothes or unbutton, clear the place.</li><li>Re assure the patient.</li><li>Monitor and record vital observations until help arrives.</li></ul>
 <p>Put patient on oxygen therapy. Intubate the patient with endotracheal tube, connected to oxygen cylinder.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 FOR CHEMICAL BURNS</summary>
           <p>The commonest cause of chemical burns in Uganda are domestic fights and it’s commonly women to women.</p>
 <ul><li>Ensure your safety.</li><li>Disperse the powerful chemical by wiping away the chemical, pouring water (plenty) for about 30min. This dilutes the chemical.</li><li>Arrange to transfer patient to hospital but label the chemical if you have identified it.</li><li>Do not attempt to neutralize the chemical with another chemical.</li><li>Ensure that you remove contaminated clothing.</li><li>If the face has been burnt, expect the burns of the airway. Make sure that the airway is open and functioning.</li><li>There may be chemicals in the vicinity.</li><li>The pain is intense and stinging (itching).</li><li>Later discoloration, blistering and peeling of the skin forming wound.</li><li>Supportive treatment with anti-inflammatory drugs, anxiolytics, painkillers.</li><li>Re-assure the patient.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 FOR ELECTRIC BURNS</summary>
           <p>These occur when electricity passes through the body, person a conductor through which electricity passes. Most of the visible damage occurs at points of entry and exit of the current. You may have an internal tract where wounds are mainly concentrated. The current follows mainly muscle, nerves and blood vessels. If it follows the nerves, it can cause cardiac arrest which is the commonest cause of death in electric burns.</p>
 <p>The current will cause muscle spasms which may prevent patient from breaking contact with electric source hence continues electric shock. Switch off the main switch. Do not touch a patient with live hands or metallic materials to break the contact. Assess the ABC immediately. Shout for help. Be safe, do something and waste no time.</p>
 <ul><li>Ensure your safety first.</li><li>Ensure that electric source is disconnected or blocked i.e you may use your shoes or clothes to disconnect the source from patient.</li><li>Flood the exit and entry points with water to cool the burn and prevent further burning process.</li><li>Protect the burn from infection.</li><li>Re-assure</li><li>Give treatment for shock.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 ASSESSMENT FOR BURNS TO THE EYE.</summary>
           <p>Patient is usually unconscious or semi-conscious. If eyes are burnt with chemicals, it will cause scarring and blindness so gets water and wash the eyes to dilute and disperse the acid. Let them not rub the eyes (don’t touch the eyes), continue pouring water in the eyes.</p>
 <ul><li>Continue watering the eyes</li><li>Swollen</li><li>redness</li><li>Have gloves on.</li><li>Lie the patient with the affected eye low and most so that water does not affect the rest of the face.</li><li>Open that eye and run cold water for more than 30 minutes.</li><li>Make sure that the water is penetrating into all parts of the eye. Open eye with your hands if they cannot open.</li><li>Get a clean bandage and close the eye until the opthalmist comes.</li><li>Try to identify the chemical and record or label.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-12">
           <summary>12 GENERAL MANAGEMENT OF BURNS</summary>
           <ul><li>To arrest bleeding.</li><li>To prevent the condition from worsening.</li><li>To preserve life.</li><li>To correct electrolyte imbalances. Etc</li></ul>
 <p><strong>N.B Burns with a TBSA greater than 15% the following is done.</strong> It is a surgical emergency so quit assessment and immediate care is needed plus quick admission. (Immediate nursing care).</p>
@@ -170,13 +209,13 @@
 <p>Examine the pupils for light reaction. Hypoxia can cause reduced levels of response. Keep the patient flat and covered with a sterile sheet to relieve the pain induced by circulatory air currents. Keep the patient warm and check for any adherent clothing, cut around it, when removing the cloth i.e cut around the edges of the clothes disturbing the wound as little as possible.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-13">
           <summary>13 GENERAL NURSING CARE OF A BURN PATIENT</summary>
           <p>All attendants must wear capes, gowns, masks and cover shoes. Hands should be washed thoroughly. Cleaning should consist of sloughing skin and use of aseptic solution like hibitane or savlon, the surface is then dried with warm air or sterile dressing (gauze). Afterwards the burnt area is treated by either the exposure method or closed of dressing.</p>
 <ul><li>Nurse the patient in a special room to prevent infections (burns are normally sterile). Make sure that you maintain asepsis as much as possible.</li><li>Avoid touching the wound with bear hands i.e. use sterile gloves and use a disinfectant after attending to the patient.</li><li>You must have a mask while examining the patient.</li><li>Use the mosquito net to protect the patient from flies.</li><li>Limit visitors as these increase the risk of infection we give definitive treatment (dress) after resuscitation for burns involving the eyes attend to airway then the burnt eyes and resuscitation later.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-14">
           <summary>14 FLUID REPLACEMENT</summary>
           <p>Always replace the lost fluids, can be IV or orally since fluid absorption in the GIT is now very poor. IV fluids are recommended. If an adult loses 15% of the body fluid or as little as 10% in a small child, this will lead to shock. Replacement needs to be continued for at least 48hours.</p>
 <p>In deep burns, plasma is given as this is what the patient is losing in 48hours. Towards the end of 48hours, whole blood is given to replace RBCs destroyed, later N/S to replace electrolytes. Glucose to replace energy loss.</p>
@@ -187,7 +226,7 @@
 <p>The rate of fluid loss in children below 6yrs is twice that of adults hence double the fluids to be replaced.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-15">
           <summary>15 Management of Wounds</summary>
           <ul><li>Nurse the patient in a special room to prevent infections (burns are normally sterile).</li><li>Avoid touching the wound with bear hands i.e. use sterile gloves and use a disinfectant after attending to the patient.</li><li>You must have a mask while examining the patient.</li><li>Use the mosquito net to protect the patient from flies.</li><li>Limit visitors as these increase the risk of infection.</li></ul>
 <p>Nothing touches the burn except air and anti-bacterial agent e.g. hibitane, ghee and honey. This indicates for burns of the face especially scalds. It is good for areas that are difficult to dress e.g. perineum, buttocks, face, Axilla.</p>
@@ -196,47 +235,56 @@
 <ul><li>Ensure Sterility: Utilize a number touch technique, meaning no human hand shall directly touch the burn or the dressing materials, except when sterile. All instruments used must be sterile.</li><li>Consider Sedation: Administer appropriate sedation if required, to ensure patient comfort and cooperation during the procedure.</li><li>Clean the Area: Gently clean the burn wound and the surrounding healthy skin with Chlorhexidine solution.</li><li>Manage Blisters: Leave any blisters intact; do not puncture them, as they provide a natural protective barrier against infection.</li><li>Apply Impregnated Gauze: Using a sterile spatula, carefully apply the impregnated gauze directly onto the burn wound.</li><li>Apply Dry Gauze: Cover the impregnated gauze with at least 2cm of dry gauze.</li><li>Add Cotton Wool: Place approximately 3cm of cotton wool over the dry gauze layer.</li><li>Secure with Crepe Bandage: Apply a crepe bandage to secure all layers of the dressing.</li><li>Extend Dressing Margins: Ensure the entire dressing extends beyond the wound margin by about 10cm to provide adequate coverage and protection.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-16">
           <summary>16 Prevention of Burns</summary>
           <ul><li>Treat the epileptics, teach them, and mobilize the community about epileptics with burns.</li><li>Raised fire places.</li><li>Keep flues out of the houses e.g. petrol.</li><li>Keep chemical in raised places and out of reach of children.</li><li>Avoid bleaching.</li><li>Keep children out of hot or fire places.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-17">
           <summary>17 COMPLICATIONS OF BURNS</summary>
           <ul><li>Shock.</li><li>Excessive oedema, quite dangerous if burns are of the face, neck as it causes obstruction of the airway and oesophagus.</li><li>Renal failure; due to failure to give adequately fluids.</li><li>Toxaemia and infections; infection of the burnt area causing sepsis resulting in septicaemia, gas gangrene and tetanus.</li><li>Depression of the bone marrow.</li><li>Contractures.</li><li>Keloid formation</li><li>Electrolyte imbalance</li><li>Anaemia due to haemolysis.</li><li>Thrombosis due to plasma loss.</li><li>GIT bleeding, ulcers develop due to increased production of gastric acid.</li><li>Paralytic ileus.</li><li>Sepsis.</li><li>Neuromas</li><li>Cosmetic disfigurement</li><li>Mal-function of the body part</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-18">
           <summary>18 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Burns</strong> as a practical nursing topic, not only a memorized definition. Prioritize airway, breathing, circulation, pain, asepsis, wound healing and early complication detection.</p>
 <ul><li><strong>What to understand first:</strong> define burns, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-19">
           <summary>19 Assessment Guide</summary>
           <ul><li>Vital signs, pain, bleeding, perfusion, level of consciousness and injury pattern.</li><li>Wound appearance, drainage, odour, swelling, temperature and surrounding skin.</li><li>Fluid balance, mobility, nutrition, surgical site risk and ordered investigations.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-20">
           <summary>20 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Stabilize urgent problems first, then prepare for investigations or theatre care.</li><li>Maintain aseptic technique, pain control, wound care and documentation.</li><li>Prevent shock, infection, pressure injury, deep vein thrombosis and delayed healing.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The patient remains stable, wound healing progresses, pain is controlled and complications are recognized early.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-21">
           <summary>21 Patient Teaching and Revision Check</summary>
           <ul><li>Explain burns in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Burns%20Surgical%20Nursing%20(I)%20and%20Paediatric%20Nursing%20(I)%20nursing%20lecture" title="Burns YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (5)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/BURNS-NURSES-REVISION-UHPAB-1.webp" alt="BURNS NURSES REVISION UHPAB 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">BURNS NURSES REVISION UHPAB 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/TYPES-OF-BURNS-2.webp" alt="TYPES OF BURNS 2" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">TYPES OF BURNS 2</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/CLASSIFICATION-OF-BURN-INJURY.webp" alt="CLASSIFICATION OF BURN INJURY" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">CLASSIFICATION OF BURN INJURY</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/EXTENT-OF-A-BURNT-AREA.webp" alt="EXTENT OF A BURNT AREA" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">EXTENT OF A BURNT AREA</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/SIGNS-AND-SYMPTOMS-OF-BURNS.webp" alt="SIGNS AND SYMPTOMS OF BURNS" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">SIGNS AND SYMPTOMS OF BURNS</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Burns%20Surgical%20Nursing%20(I)%20and%20Paediatric%20Nursing%20(I)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Burns%20Surgical%20Nursing%20(I)%20and%20Paediatric%20Nursing%20(I)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

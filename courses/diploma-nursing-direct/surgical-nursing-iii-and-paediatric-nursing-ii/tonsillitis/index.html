@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,18 @@
         <p>Tonsillitis should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (5)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Overview</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Overview</summary>
           <p>To understand tonsillitis, it&#39;s essential to first know what the tonsils are and their role in the body.</p>
 <ul><li><strong>Location:</strong> The tonsils are lymphoid tissues located at the back of the throat. The most commonly referred to tonsils are the <strong>palatine tonsils</strong> , which are two oval-shaped pads of tissue located on either side of the back of the throat, visible upon examination. Other tonsils include the lingual tonsils (at the base of the tongue) and the pharyngeal tonsil (adenoid, located behind the nasal cavity).</li><li><strong>Structure:</strong> Each palatine tonsil is covered by mucous membrane and contains crypts (invaginations or pockets) where lymphocytes are present.</li><li><strong>Function:</strong> Tonsils are part of the body&#39;s <strong>lymphatic system</strong> and play a crucial role in the <strong>immune system</strong> . They act as a first line of defense against pathogens (bacteria, viruses) that enter the body through the mouth or nose. They contain immune cells (lymphocytes) that can identify and trap germs, producing antibodies to fight infections. They are particularly active in early childhood when the immune system is developing.</li></ul>
@@ -126,37 +149,49 @@
 <ul><li><strong>Related To:</strong> Inflammation and swelling of the tonsils, pharyngeal irritation.</li><li><strong>As Evidenced By:</strong> Patient verbalizing pain (e.g., &quot;my throat hurts&quot;), difficulty swallowing, grimacing, restlessness, increased heart rate, refusal to eat/drink.</li><li>Intervention Rationale</li><li><strong>Assess Pain</strong> Regularly assess pain level using a pain scale (e.g., 0-10) and observe non-verbal cues.</li><li><strong>Administer Analgesics</strong> Administer prescribed pain medications (e.g., acetaminophen, ibuprofen) as ordered, ensuring proper dosage and timing. Educate patient/parents on avoiding aspirin in children.</li><li><strong>Provide Comfort Measures</strong> Encourage warm saline gargles (for older children/adults). Offer throat lozenges or hard candies (avoid in young children). Provide cool or lukewarm liquids; popsicles or ice chips can be soothing. Maintain a humidified environment. Apply a cool compress to the neck externally if tolerated.</li><li><strong>Encourage Rest</strong> Promote a quiet environment for rest to conserve energy.</li><li><strong>Educate</strong> Teach patient/family about pain management techniques and when to report worsening pain.</li><li><strong>Related To:</strong> Difficulty/painful swallowing (odynophagia), fever leading to increased insensible fluid loss.</li><li><strong>As Evidenced By:</strong> (Potential signs of dehydration) dry mucous membranes, decreased urine output, poor skin turgor, patient expressing reluctance to drink.</li><li>Intervention Rationale</li><li><strong>Monitor Intake and Output (I&amp;O)</strong> Accurately record all fluid intake and urine output.</li><li><strong>Encourage Oral Fluid Intake</strong> Offer small, frequent amounts of preferred liquids (water, clear broths, diluted juice, popsicles). Explain the importance of hydration to the patient/family.</li><li><strong>Assess Hydration Status</strong> Monitor mucous membranes, skin turgor, fontanelles (in infants), and urine specific gravity.</li><li><strong>Administer IV Fluids</strong> If oral intake is severely compromised or signs of dehydration are present, administer intravenous fluids as prescribed.</li><li><strong>Educate</strong> Instruct patient/family on recognizing signs of dehydration and the need to increase fluid intake.</li><li><strong>Related To:</strong> Painful swallowing, loss of appetite due to illness, difficulty consuming solid foods.</li><li><strong>As Evidenced By:</strong> Weight loss (if chronic), reluctance to eat, verbalization of inability to eat, poor intake recorded.</li><li>Intervention Rationale</li><li><strong>Assess Nutritional Status</strong> Monitor weight (daily if possible), review dietary intake, and assess for signs of malnutrition.</li><li><strong>Offer Soft, Bland Diet</strong> Provide foods that are easy to swallow, non-irritating, and nutritionally dense (e.g., pureed foods, mashed potatoes, cooked cereals, yogurts, soups). Avoid spicy, acidic, or hard/crunchy foods.</li><li><strong>Small, Frequent Meals</strong> Offer smaller, more frequent meals/snacks rather than large meals.</li><li><strong>High-Calorie, High-Protein Supplements</strong> Consider liquid nutritional supplements if oral intake remains poor.</li><li><strong>Encourage Oral Hygiene</strong> Good mouth care before meals can improve appetite and comfort.</li><li><strong>Educate</strong> Advise family on appropriate food choices and strategies to encourage intake.</li><li><strong>Related To:</strong> Presence of infectious organisms (bacterial/viral), close contact with others.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" open id="section-2">
           <summary>02 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Tonsillitis</strong> as a practical nursing topic, not only a memorized definition. Prioritize airway, breathing, circulation, pain, asepsis, wound healing and early complication detection.</p>
 <ul><li><strong>What to understand first:</strong> define tonsillitis, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-3">
           <summary>03 Assessment Guide</summary>
           <ul><li>Vital signs, pain, bleeding, perfusion, level of consciousness and injury pattern.</li><li>Wound appearance, drainage, odour, swelling, temperature and surrounding skin.</li><li>Fluid balance, mobility, nutrition, surgical site risk and ordered investigations.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-4">
           <summary>04 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Stabilize urgent problems first, then prepare for investigations or theatre care.</li><li>Maintain aseptic technique, pain control, wound care and documentation.</li><li>Prevent shock, infection, pressure injury, deep vein thrombosis and delayed healing.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The patient remains stable, wound healing progresses, pain is controlled and complications are recognized early.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-5">
           <summary>05 Patient Teaching and Revision Check</summary>
           <ul><li>Explain tonsillitis in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Tonsillitis%20Surgical%20Nursing%20III%20and%20Paediatric%20Nursing%20(II)%20nursing%20lecture" title="Tonsillitis YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (19)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Tonsillitis-1024x617.webp" alt="Tonsillitis" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Tonsillitis</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Anatomy-and-Function-of-the-Tonsils-1.webp" alt="Anatomy And Function Of The Tonsils 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Anatomy And Function Of The Tonsils 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/class-frequency-tonsilitis.webp" alt="Class Frequency Tonsilitis" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Class Frequency Tonsilitis</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/bacterial-tonsillitis-viral-tonsillitis.webp" alt="Bacterial Tonsillitis Viral Tonsillitis" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Bacterial Tonsillitis Viral Tonsillitis</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/conditions-with-tonsilitis.webp" alt="Conditions With Tonsilitis" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Conditions With Tonsilitis</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Clinical-Presentations-of-Tonsillitis-1.webp" alt="Clinical Presentations Of Tonsillitis 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Clinical Presentations Of Tonsillitis 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Diagnostic-Approaches-of-Tonsillitis.webp" alt="Diagnostic Approaches Of Tonsillitis" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Diagnostic Approaches Of Tonsillitis</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/2c8ae183556440da353e401bf2756782.webp" alt="2c8ae183556440da353e401bf2756782" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">2c8ae183556440da353e401bf2756782</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Tonsillitis%20Surgical%20Nursing%20III%20and%20Paediatric%20Nursing%20(II)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <p style="color:var(--seo-muted);font-size:.85rem;margin:8px 0 0">11 more diagrams available — open the lesson for full illustrations.</p>
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Tonsillitis%20Surgical%20Nursing%20III%20and%20Paediatric%20Nursing%20(II)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

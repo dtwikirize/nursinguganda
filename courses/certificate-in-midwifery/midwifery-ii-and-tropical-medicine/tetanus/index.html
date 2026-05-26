@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,28 @@
         <p>Tetanus should be reviewed through safe maternal and newborn assessment, early recognition of danger signs, respectful communication and timely referral. Connect the definition to vital signs, bleeding, fetal or newborn wellbeing, patient education and local protocol requirements.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 15 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Tetanus**</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Incidence of tetanus :</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Pathophysiology of Tetanus</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Route of entry</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Clinical Features of Tetanus:</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Alblett Classification of Tetanus</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Management of Tetanus</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">General Management:</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Prevention :</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Complications of Tetanus</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Test Questions</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 **Tetanus**</summary>
           <p>Tetanus is an acute infectious disease of the central nervous system caused by clostridium tetani and is characterized by spasms of the skeletal muscles frequently attacking the muscles of the jaw.</p>
 <p>Tetanus is commonly known as ‘ <strong>Lock-jaw</strong> .’</p>
@@ -97,35 +130,35 @@
 <ul><li>Deep penetrating wounds : Puncture wounds, lacerations, burns, and crush injuries provide anaerobic conditions ideal for spore germination.</li><li>Umbilical cord: In newborns (neonatal tetanus), infection often arises from an unsterile umbilical cord stump.</li><li>Other routes : Ear infections, wounds sustained during delivery, and septic abortions can also serve as entry points.</li><li>The organism can live for a long time in any condition, especially dirty environments. So it can be found in dust, soil, or grass.</li><li>The clostridia can be normal organisms in the alimentary canal of animals but when passed out and gain entry to the human body, they become harmful. The organism can be found in cows, horse, sheep, or goat.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Incidence of tetanus :</summary>
           <ul><li>In babies born at home before arrival at the hospital.</li><li>In homes where domestic animals are kept.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Pathophysiology of Tetanus</summary>
           <p>The pathophysiology of tetanus involves the invasion of the body by <strong>bacilli</strong> or <strong>spores</strong> , typically through deep puncture wounds or cuts . These <strong>bacilli</strong> find a suitable environmen t to <strong>multiply</strong> in <strong>anaerobic</strong> conditions. It is crucial to note that all unclean wounds pose a significant risk. Once the clostridium tetani organisms enter the wound, they unleash two forms of exotoxins into the surrounding tissues: <strong>tetanospasmin</strong> and <strong>tetanolysin</strong> .</p>
 <p><strong>Tetanospasmin</strong> , a potent toxin , plays a critical role in producing the disease’s clinical manifestations. It primarily affects the <strong>central nervous system (CNS)</strong> . The toxins specifically target the <strong>motor</strong> nerve cells of the <strong>spinal cord</strong> and the <strong>brain</strong> . As a result, <strong>spasms</strong> develop in the muscles that are supplied by the corresponding <strong>nerves</strong> .</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Route of entry</summary>
           <p>The route of entry for the clostridium tetani organisms includes various pathways, all of which can lead to infection and subsequent tetanus:</p>
 <ul><li>Infected ulcerated wound.</li><li>Postoperative wounds.</li><li>Umbilical stumps (in newborns).</li><li>Gun-shot wounds.</li><li>Septic abortion.</li><li>Jiggers or foreign bodies.</li><li>Burns and scalds.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Clinical Features of Tetanus:</summary>
           <p>Symptoms typically begin with localized muscle stiffness, progressing to more generalized manifestations:</p>
 <ul><li>Trismus (Lockjaw) : Difficulty opening the mouth due to masseter muscle spasm. Stiffness of the muscles, particularly noticeable in the jaw. Spasms affecting the muscles of the face, especially the cheek and jaw, leading to difficulty in opening the mouth, a condition referred to as trismus.</li><li>Risus sardonicus : A characteristic grimace with a sardonic smile. The angles of the mouth are pulled outwards, causing a forced smile known as risus sardonicus or the “Devil’s grin.”</li><li>Dysphagia : Difficulty swallowing. Swallowing becomes challenging as the muscles of the mouth and esophagus are affected by spasms.</li><li>Weight loss may occur due to difficulties in eating, leading to starvation.</li><li>Muscle spasms : Severe, painful spasms initially affecting the jaw and neck, then spreading to other muscle groups. Spasms can be triggered by stimuli such as sounds or light.</li><li>Opisthotonos : Severe arching of the back due to muscle spasms, while the patient remains conscious. The head is thrown back, and the back becomes arched due to the rigid muscles in the neck, a condition called opisthotonus.</li><li>Fever : Often present. Patients may experience an elevated temperature and rapid pulse.</li><li>Signs of inflammation may be evident, such as swelling of the umbilical cord (if present in newborns), a wet cord, offensive smell, or pus discharge from the wound site.</li><li>Respiratory distress : Spasms of respiratory muscles can cause respiratory failure, a life-threatening complication. Spasms affecting the respiratory muscles may lead to prolonged periods without oxygen (anoxia), which can be life-threatening and result in death.</li><li>Autonomic nervous system instability : This can lead to fluctuating blood pressure, sweating, and tachycardia.</li><li>Hyperreflexia : Exaggerated reflexes.</li><li>Absence of a visible wound : Does not exclude a diagnosis of tetanus; infection can sometimes occur without a readily apparent wound.</li><li>Spasms of the sphincters can result in retention of urine or stool, and in severe cases, sphincter rupture may occur.</li><li>Patients may have a wound or a history of a wound, which could be the point of entry for the tetanus-causing bacteria.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Alblett Classification of Tetanus</summary>
           <p>There are several grading systems; the scale proposed by Ablett5 is the most widely used . This categorizes patients into four grades depending upon the intensity of spasms, and respiratory and autonomic involvement.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Management of Tetanus</summary>
           <p>There’s no cure for tetanus. A tetanus infection requires emergency and long-term supportive care while the disease runs its course.</p>
 <p>Aims of Management</p>
@@ -148,22 +181,22 @@
 <ul><li>Absolute rest and isolation: The patient should be kept in a quiet room with dim lighting to minimize triggers for spasms.</li><li>Prevention of external stimuli: Measures such as fitting the door with suitable closing materials or springs prevent slamming noises that could stimulate the patient.</li><li>Warming hands before touching: Nurses should warm their hands before touching the patient to avoid any stimulation that might trigger spasms.</li><li>Medication administration: Sedatives and muscle relaxants, such as chlorpromazine (Largactil), and Diazepam, are given regularly through a nasogastric tube to maintain a controlled state and alleviate spasms.</li><li>o Example of 6 hourly regimen Drug 6-9 am 9-12 pm 12-3 pm 3-6 pm 6-9 pm 9-12 am 12-3 am 3-6 am 6-9 am Largactil ⫼⫼⫼⫼ ⫼⫼⫼⫼ ⫼⫼⫼⫼ ⫼⫼⫼⫼ Diazepam ⫼⫼⫼⫼ ⫼⫼⫼⫼ ⫼⫼⫼⫼ ⫼⫼⫼⫼ ⫼⫼⫼⫼</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 General Management:</summary>
           <ul><li>Close observation and airway management : Monitor the patient closely, ensuring a clear airway and using a mucous extractor if necessary.</li><li>Vital signs monitoring: Regularly check temperature, pulse, and respirations, noting the severity of the condition. Record the strength, frequency, duration, and body part involved in spasms using a spasm chart.</li><li>Nutrition : Maintain adequate nutrition through nasogastric tube feeding to avoid stimulating spasms with injections. Prevent aspiration of fluids into the airway.</li><li>Catheterization : Catheterize the patient to maintain proper bladder function.</li><li>Fluid balance chart: Monitor and maintain fluid balance, initially using intravenous fluids if necessary and later transitioning to nasogastric tube feeding.</li><li>Hygiene : Ensure daily cleaning of the cord with normal saline and perform oral care carefully. Turn the patient every two hours to prevent pressure sores.</li><li>Vaccination : Prevent future tetanus cases by ensuring all individuals receive a full course of DPT (diphtheria, pertussis, and tetanus) vaccination.</li><li>Use sterile equipment : Prevent cross-infection by using sterile equipment during medical procedures.</li><li>Bowel and bladder care : Monitor and assist the patient in passing stool and urine.</li><li>Medication : Administer prescribed drugs as instructed.</li><li>Physiotherapy : Implement physiotherapy sessions for deep breathing exercises and active limb movements.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Prevention :</summary>
           <ul><li><strong>Public health education</strong> : Raise awareness about the dangers of using unsterilized equipment during childbirth and applying native medicine or other substances to the umbilical cord.</li><li><strong>Immunization</strong> : Ensure that all women of childbearing age are vaccinated against tetanus.</li><li><strong>Safe childbirth practices:</strong> Promote safe and clean practices during childbirth to prevent infections.</li><li><strong>Discourage harmful practices</strong> : Discourage practices like applying cow dung to a child’s umbilical cord.</li><li><strong>Wound care education</strong> : Educate people on cleaning wounds thoroughly with water and soap to prevent infections. Encourage covering wounds with sterile dressings and seeking early medical attention for cut wounds.</li><li><strong>Protective gear</strong> : Encourage the use of gum boots when digging to prevent soil-related infections.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Complications of Tetanus</summary>
           <ul><li>Fracture of bones or the spine: The intense and frequent muscle spasms can cause fractures in bones or the spine, especially if the spasms are severe and uncontrolled.</li><li>Pneumonia : Heavy sedation, a common treatment for managing tetanus spasms, may lead to shallow breathing or difficulty in clearing the airway, increasing the risk of pneumonia, a potentially severe respiratory infection.</li><li>Brain damage : The potent toxins produced by the tetanus-causing bacteria can affect the central nervous system, leading to brain damage in severe cases.</li><li>Growth retardation : In children affected by tetanus, the disease can interfere with proper nutrition and growth, potentially causing growth retardation.</li><li>Exhaustion : The continuous and strenuous muscle spasms can lead to extreme exhaustion, further weakening the patient’s overall condition.</li><li>Respiratory failure : In severe cases, the spasms can affect the respiratory muscles, resulting in respiratory failure, where the patient is unable to breathe adequately on their own.</li><li>Retention of urine : Spasms in the pelvic region can cause the sphincters to contract, leading to difficulty in passing urine and possible urine retention.</li><li>Death due to airway obstruction : In the most severe cases, the intense spasms, particularly those affecting the muscles of the jaw and neck, can obstruct the airway, leading to suffocation and potential death.</li></ul>
         </details>
       
-        <details class="seo-lesson-section exam-section" open>
+        <details class="seo-lesson-section exam-section" id="section-11">
           <summary>11 Test Questions</summary>
           <p>Which bacterium causes tetanus? a) Streptococcus pyogenes b) Staphylococcus aureus c) Clostridium tetani d) Escherichia coli Answer: c) Clostridium tetani</p>
 <p>Explanation: Clostridium tetani is the bacterium responsible for causing tetanus.</p>
@@ -187,37 +220,46 @@
 <p>Explanation: Physiotherapy aims to promote muscle strength and mobility, which can be helpful in the recovery process of tetanus patients.</p>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-12">
           <summary>12 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Tetanus</strong> as a practical nursing topic, not only a memorized definition. Prioritize airway, breathing, circulation, pain, asepsis, wound healing and early complication detection.</p>
 <ul><li><strong>What to understand first:</strong> define tetanus, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-13">
           <summary>13 Assessment Guide</summary>
           <ul><li>Vital signs, pain, bleeding, perfusion, level of consciousness and injury pattern.</li><li>Wound appearance, drainage, odour, swelling, temperature and surrounding skin.</li><li>Fluid balance, mobility, nutrition, surgical site risk and ordered investigations.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-14">
           <summary>14 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Stabilize urgent problems first, then prepare for investigations or theatre care.</li><li>Maintain aseptic technique, pain control, wound care and documentation.</li><li>Prevent shock, infection, pressure injury, deep vein thrombosis and delayed healing.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The patient remains stable, wound healing progresses, pain is controlled and complications are recognized early.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-15">
           <summary>15 Patient Teaching and Revision Check</summary>
           <ul><li>Explain tetanus in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Tetanus%20Midwifery%20II%20%26%20Tropical%20medicine%20nursing%20lecture" title="Tetanus YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (5)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Tetanus.webp" alt="Tetanus" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Tetanus</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/d8b95b2138cd22d6fb4f0545a5fc18f0.webp" alt="D8b95b2138cd22d6fb4f0545a5fc18f0" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">D8b95b2138cd22d6fb4f0545a5fc18f0</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/b37e560e0c1a31bede6cfd724bfd22b1.webp" alt="B37e560e0c1a31bede6cfd724bfd22b1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">B37e560e0c1a31bede6cfd724bfd22b1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/446bc6a1cabebf4fc1f84b854c2bc031.webp" alt="446bc6a1cabebf4fc1f84b854c2bc031" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">446bc6a1cabebf4fc1f84b854c2bc031</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/2c2030ce31efa2a028ceab152cef3e57.webp" alt="2c2030ce31efa2a028ceab152cef3e57" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">2c2030ce31efa2a028ceab152cef3e57</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Tetanus%20Midwifery%20II%20%26%20Tropical%20medicine%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Tetanus%20Midwifery%20II%20%26%20Tropical%20medicine%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

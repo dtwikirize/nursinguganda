@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,50 +97,84 @@
         <p>Drug administration should be reviewed through safe maternal and newborn assessment, early recognition of danger signs, respectful communication and timely referral. Connect the definition to vital signs, bleeding, fetal or newborn wellbeing, patient education and local protocol requirements.</p>
       </section>
       
-        <details class="seo-lesson-section signature-section snapshot-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 28 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Snapshot</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Build The Idea</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Ward Mode</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Red Flags</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Exam Answer Map</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Administer Prescribed Medicines Appropriately</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Rights Related to Medicine Administration</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Routes Used in Administering Medicines</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Forms of Medicines</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">GENERAL RULES OF DRUG ADMINISTRATION</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">ORAL ADMINISTRATION</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">INHALATION</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">DRY INHALATION (Oxygen administration)</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">PARENTERAL ROUTE (INJECTION)</a>
+          <a href="#section-16" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">A. Intradermal or Intracutaneous Injection</a>
+          <a href="#section-17" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">B. Subcutaneous Injection or Hypodermic</a>
+          <a href="#section-18" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">C. Intramuscular Injection</a>
+          <a href="#section-19" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">D. Intravenous Injection</a>
+          <a href="#section-20" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">COMPLICATIONS OF INTRAVENOUS INJECTIONS</a>
+          <a href="#section-21" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">COMPLICATIONS OF INTRAMUSCULAR INJECTIONS</a>
+          <a href="#section-22" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Formula for Calculating the Drop Rate</a>
+          <a href="#section-23" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Factors that May Affect the Flow Rate</a>
+          <a href="#section-24" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Care of the Patient While on Intravenous Infusion</a>
+          <a href="#section-25" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-26" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-27" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-28" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section signature-section snapshot-section" open id="section-1">
           <summary>01 Nursing Uganda Snapshot</summary>
           <p>Drug administration is a safety procedure, not just giving tablets or injections. The nurse protects the patient by verifying the order, patient, medicine, dose, route, time, indication, allergies, response and documentation.</p>
         </details>
       
-        <details class="seo-lesson-section signature-section build-section" open>
+        <details class="seo-lesson-section signature-section build-section" open id="section-2">
           <summary>02 Build The Idea</summary>
           <p>Use the medication rights as a thinking tool. Do not memorize them as a list only; apply them at the bedside.</p>
 <ul><li><strong>Before:</strong> check order, patient, allergies, indication and baseline observations.</li><li><strong>During:</strong> prepare correctly, explain, administer by correct route and maintain infection prevention.</li><li><strong>After:</strong> monitor effect, side effects, document and report errors immediately.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section ward-section" open>
+        <details class="seo-lesson-section signature-section ward-section" id="section-3">
           <summary>03 Ward Mode</summary>
           <p>If something about a prescription is unclear, pause and clarify before giving the medicine.</p>
 <ul><li>Compare prescription with medicine label.</li><li>Identify patient using approved identifiers.</li><li>Calculate dose carefully and ask for double-check when high risk.</li><li>Document immediately after administration.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section red-flags-section" open>
+        <details class="seo-lesson-section signature-section red-flags-section" id="section-4">
           <summary>04 Red Flags</summary>
           <ul><li>Anaphylaxis signs.</li><li>Unclear or incomplete prescription.</li><li>High-alert medication without double-check.</li><li>Dose calculation uncertainty.</li><li>Patient refuses medicine.</li><li>Unexpected deterioration after a drug.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-5">
           <summary>05 Patient Teaching</summary>
           <ul><li>Know the medicine name, purpose and timing.</li><li>Do not share medicines.</li><li>Report rash, swelling, breathing difficulty, severe dizziness or unusual bleeding.</li><li>Complete courses such as antibiotics unless told otherwise.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section exam-map-section" open>
+        <details class="seo-lesson-section signature-section exam-map-section" id="section-6">
           <summary>06 Exam Answer Map</summary>
           <ul><li>Define drug administration.</li><li>List medication rights.</li><li>Explain preparation, administration and documentation.</li><li>State adverse reaction actions.</li><li>Add patient education.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Administer Prescribed Medicines Appropriately</summary>
           <p>A medicine is any chemical substance in a regulated dose intended for use in the medical diagnosis, cure, treatment, or prevention of disease or any substance that is prescribed and administered to patients to produce therapeutic effects in the body.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Rights Related to Medicine Administration</summary>
           <p>The rights that should be observed:</p>
 <ul><li>Right patient.</li><li>Right medicine.</li><li>Right dosage.</li><li>Right route.</li><li>Right time.</li><li>Right storage.</li><li>Right formulation.</li><li>Right disposal.</li><li>Right site.</li><li>Right equipment.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Routes Used in Administering Medicines</summary>
           <p>SYSTEMIC ROUTE</p>
 <p>ENTERAL ROUTE</p>
@@ -141,7 +187,7 @@
 <ul><li>Dry inhalation : Oxygen Administration: this is given when the respiratory capacity is diminished as in chest injuries, pneumonia and cardiac failure.</li><li>Moist/steam inhalation : It is used in case of inflammation of air passages and the nasal sinuses. These are given to:</li><li>Warm and moisten the air breathed in and relieve irritation e.g. in bronchitis, after tracheotomy and other chest conditions.</li><li>To relieve inflammation and coughing e.g. in colds.</li><li>To relieve congestion and oedema e.g. in sinusitis and acute laryngitis.</li><li>Nebuliser : this produces vapors which is inhaled by the patient for example in asthma to relieve spasms of the bronchial tubes or for the relief of chest pain in angina pectoris. Other indications include Respiratory diseases eg asthma, pneumonia, Airway obstruction, Nasal congestion, Nasal bleeding, Chest injuries and Cardiac failure.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Forms of Medicines</summary>
           <p>Liquids :</p>
 <ul><li>Solutions : Medicine dissolved in water.</li><li>Syrups : Medicine dissolved in sugar and water.</li><li>Mixtures : Medicine mixed with liquid but not dissolved in it.</li><li>Milks : White medicine substances mixed with water.</li><li>Emulsions : Medicine mixed with oil and water.</li><li>Elixirs : Medicine dissolved in a sweetened flavored solution containing alcohol.</li><li>Tinctures : Medicine dissolved in alcohol or alcohol and water.</li><li>Fluidextracts : Medicine that has been boiled and evaporated to concentrate their strength and dissolve them in alcohol.</li><li>Liniments : Medicine mixed in oil, soap, or alcohol (for external use only).</li><li>Lotion : Mixed with water for external application.</li></ul>
@@ -153,12 +199,12 @@
 <ul><li>Aa .: of each Ad lib .: as much as desired B.i.d . or b.d .: twice a day t.d.s . or t.i.d .: three times a day a.c .: before P.c .: after g .: gram Gr .: grain Gutt .: a drop Mane : in the morning Mist.: a mixture Nocte: at night q.h .: every hour o.m .: every morning o.n .: every night p.r.n .: whenever necessary q.4h : every 4 hours s.o.s .: if necessary in an emergency Stat : immediately q.i.d .: 4 times a day/every 6 hours o.d .: once a day</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 GENERAL RULES OF DRUG ADMINISTRATION</summary>
           <ul><li>Read the instructions carefully and incase of any doubt ask the Doctor or ward in charge.</li><li>Never give a drug from a container or a bottle which is not clearly labeled.</li><li>Check the label against the instructions 3 times .The 1 st time before having the container, 2nd time before the drug is drawn, 3rd time before the drug is administered to the patient.</li><li>Give the drug following 10Rs i.e -right patient, right time, right dose, right route, right drug/medication, right formulation, right disposal, right storage, right equipment and right site.</li><li>Once a drug is drawn from its container it shouldn’t be returned.</li><li>Always identify the drug by reading its label on the container not by its color, smell, shape and size.</li><li>Do not transfer drugs to another container when the old label is still on.</li><li>Ask for clarification if any order regarding the dose is not readable.</li><li>Watch all patients for drug reactions, especially parental drugs.</li><li>If any drug changes its color, it should not be administered.</li><li>Liquid preparations should always be shaken before drawing from the bottles.</li><li>Never use a drug which has been left in an unlabeled container.</li><li>Always measure the dose of the drug in good light.</li><li>Observe strictly the time of administration of medication.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-12">
           <summary>12 ORAL ADMINISTRATION</summary>
           <p>Requirements</p>
 <p>Trolley</p>
@@ -167,14 +213,14 @@
 <ul><li>Steps Action Rationale</li><li>1. Follow general rules of nursing procedures. Ensures accuracy and prevents errors</li><li>2. Observe the rules of medicine administration. Ensures accuracy and prevents errors</li><li>3. Arrange medication trolley in nurse’s station. To save time and reduce error in medication administration</li><li>4. Prepare medicine of one patient at a time, keeping medicine lists/charts together. Ensures accuracy and prevents errors</li><li>5. Verify the order for medication from the patient’s chart comparing with the medicine list and the label on the bottle. Ensures accuracy</li><li>6. Check the label on the medicine container three times (i.e. when taking it from the shelf, before pouring it into the medicine cup and before returning it to the shelf). Ensures accuracy</li><li>7. For tablets/capsules, pour required number from bottle into bottle cap and transfer to medication cup, for packaged tablet/capsule pour directly over the cup retain the strip. Reduces errors in medication administration</li><li>8. For liquid, hold medication cup to eye level and pour the prescribed amount. Ensures accuracy</li><li>9. For volume of less than 5ml, use a 5ml syringe without a needle to measure the amount prescribed. Ensures accuracy</li><li>10. Keep the label on the bottle uppermost against the palm of hand when pouring. To avoid spilling liquid in place.</li><li>11. Wipe the rim of the bottle before replacing the cork. Prevents cap from sticking.</li><li>12. Use only the dropper-supplied with liquids measured in drops. Ensures accuracy</li><li>13. Read the label again before replacing the container on the trolley. Third check reduces errors.</li><li>14. Place the measuring cup on the tray together with the drinking cup with water and then take it to the patient at the correct time. Ensures timely administration</li><li>15. Call the patient’s name, check the room or bed number against the medicine list before giving the medicine. Confirms the patient’s identity</li><li>16. Assess the patient’s condition including the level of consciousness and vital signs. For instance patients having digitalis the pulse rate should be checked before administering the medicine. To rule out likely contraindications or side effects.</li><li>18. Assist patient in sitting or side lying position. Prevents aspiration</li><li>19. Administer medicine properly, only one medicine at a time and offer a glass of water or milk. Aids swallowing.</li><li>20. If a patient has difficulty swallowing, grind the tablets in a mortar with pestle, crush it to fine powder and mix it with a small amount of water. To ease swallowing.</li><li>21. Prepare powdered medication at the bedside and give it to the patient. Increases compliance.</li><li>23. If the patient is unable to hold medication in hand; assist to place the cup to the lip and slowly transfer medicine into the mouth using a spoon. To support the patient.</li><li>24. If medicines fall on the floor, discard and replace them. To avoid contaminated medicine</li><li>25. Stay with the patient until the medicine has been swallowed; if the patient is confused or disoriented his/her mouth should be checked to confirm that the patient has swallowed the medicine. If the medicine is vomited within 5 minutes report to the In-charge or Doctor. Medicines must never be left on the bedside table. Ensures that patient receives prescribed medication at the correct time</li><li>26. Assist the patient to a comfortable position. Maintains patient’s comfort</li><li>27. Dispose of soiled supplies, clean work area and wash hands. Reduces transmission of infection</li><li>28. Document the administration of the medication with date, time and signature immediately after administration. To avoid errors and promote proper accountability.</li><li>29 Reassess the patient’s response to the medicine within one hour after giving it and any ill effects reported. To detect therapeutic/ side effects or adverse effects.</li><li>30 The medicine cups are washed and returned to their proper place. Promote hygiene.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-13">
           <summary>13 INHALATION</summary>
           <p>Inhalation is the breathing of air vapor or volatile medicine into the lungs.</p>
 <p>Types</p>
 <ul><li>Dry inhalation : Oxygen Administration: this is given when the respiratory capacity is diminished as in chest injuries, pneumonia and cardiac failure.</li><li>Moist/steam inhalation : It is used in case of inflammation of air passages and the nasal sinuses. These are given to:</li><li>Warm and moisten the air breathed in and relieve irritation e.g. in bronchitis, after tracheotomy and other chest conditions.</li><li>To relieve inflammation and coughing e.g. in colds.</li><li>To relieve congestion and oedema e.g. in sinusitis and acute laryngitis.</li><li>Nebuliser : this produces vapors which is inhaled by the patient for example in asthma to relieve spasms of the bronchial tubes or for the relief of chest pain in angina pectoris. Other indications include Respiratory diseases eg asthma, pneumonia, Airway obstruction, Nasal congestion, Nasal bleeding, Chest injuries and Cardiac failure.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-14">
           <summary>14 DRY INHALATION (Oxygen administration)</summary>
           <p>It is given when the respiratory tract is diminished as in chest injuries, cardiac failure and pneumonia.</p>
 <p>REQUIREMENTS FOR OXYGEN ADMINISTRATION</p>
@@ -187,7 +233,7 @@
 <p>Parts of an Oxygen Flowmeter</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-15">
           <summary>15 PARENTERAL ROUTE (INJECTION)</summary>
           <p>Requirements</p>
 <p>Trolley</p>
@@ -195,36 +241,36 @@
 <p>Procedure ****</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-16">
           <summary>16 A. Intradermal or Intracutaneous Injection</summary>
           <ul><li>Steps Action Rationale</li><li>1. Refer to general and medicine administration rules for injections.</li><li>2. A tuberculin syringe or 1 ml syringe is used and needles.</li><li>4. Clean the skin with an antiseptic swab and allow the site to dry. Exposes the selected site.</li><li>5. If it is a BCG vaccination, clean the site with water.</li><li>6. Stretch the patient’s skin, draw it tight and introduce the needle at an angle parallel to the skin.</li><li>7. Gently and slowly inject the medicine while observing for a small wheal to appear.</li><li>8. Carefully withdraw the needle.</li><li>9. Do not massage the site after removing the needle. This may alter the test results.</li><li>10. Circle the area with a pen and record time, and request the patient not to wash the area until it is assessed for the intended outcome. If it was for diagnostic purposes e.g., Mantoux test.</li><li>11. Inspect for signs of reaction when the stated duration of time has reached.</li><li>12. Report and record results.</li><li>13. Clean away the used equipment.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-17">
           <summary>17 B. Subcutaneous Injection or Hypodermic</summary>
           <ul><li>Steps Action Rationale</li><li>14. Help patient assume position depending on site selected. Ensures free access to site.</li><li>15. Choose a suitable needle gauge; take a 1 ml or 2 ml syringe depending on the dosage.</li><li>16. Draw the medicine into the syringe.</li><li>17. Expel the air by holding the syringe with the needle pointing up.</li><li>18. Place the syringe in the injection dish.</li><li>20. Select the site and clean it with an antiseptic swab and let the area dry first.</li><li>21. Grasp and pinch or squeeze the patient’s skin gently between the finger and thumb of your left hand and insert the needle at an angle of 45°. Provides for easy and less painful entry into subcutaneous tissue.</li><li>22. Pull back the (piston) plunger and inject the medicine slowly. Determines if the needle is in a blood vessel.</li><li>23. When the medicine has been injected completely, place a swab over the needle and withdraw the needle quickly and smoothly. Reduces discomfort.</li><li>24. If there is any bleeding at the site, apply firm gentle pressure with a swab until it stops.</li><li>25. Make the patient comfortable and record the medicine given on the patient’s treatment sheet.</li><li>26. Discard syringe, gloves, and swabs appropriately and clear away the equipment. Promotes infection control measures.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-18">
           <summary>18 C. Intramuscular Injection</summary>
           <ul><li>Steps Action Rationale</li><li>27. Observe the general nursing rules.</li><li>28. Read the prescription carefully and check the medicine with the other nurse, including the amount to be given.</li><li>29. Assemble syringe and needle, put on gloves.</li><li>30. Break open the top of the ampoule (by using a gauze swab or a file) or remove the top of the rubber cap.</li><li>31. Reconstitute powdered medicines according to the instructions on the bottle.</li><li>32. Put on gloves and draw up the prescribed dose of the medicine.</li><li>33. Expel the air and remember that with antibiotics and multi-dose vials, the air is expelled into the container.</li><li>34. Position the patient depending on the site chosen. Proper positioning ensures muscle relaxation of the patient.</li><li>35. Select, locate, clean the site and allow it to dry.</li><li>36. Inject the medication; grasp and pinch the area surrounding the injection site or spread skin at site as appropriate. Aids needle penetration in patients with thick muscles.</li><li>37. Hold the syringe between thumb and forefinger and pierce skin at a 90° angle and insert the needle.</li><li>38. Aspirate by holding the barrel steady with a non-dominant hand. Helps to check if a needle is in a blood vessel.</li><li>39. If the blood does not appear in the syringe, inject the medication slowly and steadily. Helps to disperse medication into muscle tissue, thus decreasing a patient’s discomfort.</li><li>40 Withdraw the needle slowly and steadily while supporting at the hub of the syringe and needle. With non-dominant hand support the skin surface using cotton swab for applying counter traction at the site Helps to reduce discomfort and prevent pulling of tissues when needle is withdrawn</li><li>41 Apply gentle pressure at the site with a dry cotton swab but do not massage. Massaging irritates tissues at the injection site.</li><li>42 Discard the un capped needle and syringe appropriately. Promotes infection prevention and control.</li><li>43 Clear away, remove gloves and wash hands.</li><li>44 Record procedure including the name of medication, dose, site and response of the patient. Reduces chances of medication errors</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-19">
           <summary>19 D. Intravenous Injection</summary>
           <ul><li>Steps Action Rationale</li><li>45. Prepare the injection tray and take it to the patient’s bedside. Ensures all necessary items are available for the procedure.</li><li>47. Screen the bed and put on gloves. Provides privacy.</li><li>48. Place a small pillow and a protective sheet under the patient’s arm. Promotes comfort and protects the beddings.</li><li>49. Expose the patient’s forearm and anterior surface of the elbow. Ensures easy access to the injection site.</li><li>50. Inspect the selected vein, if it is visible and clear; apply a tourniquet or a sphygmomanometer cuff around the patient’s upper arm and inflate sufficiently about 8 to 10 cm above the site. Helps to distend and enlarge the vein.</li><li>51. Request the patient to close and open the fist for a minute. Promotes venous filling and visibility.</li><li>52. Clean the area with an antiseptic and dry with a sterile swab. Reduces microorganisms.</li><li>53. Expel air from the syringe. Ensures accurate dosing and prevents air embolism.</li><li>54. Hold the patient’s arm and with your left thumb exert pressure about 3 cm below the chosen site and make the skin tight. Stabilizes the vein and reduces movement.</li><li>55. Insert the needle at an angle of 15-45 degrees with its bevel up then quickly and steadily insert into the vein. Pull back the piston slightly if blood is aspirated. Ensures that the needle is in the vein.</li><li>56. Remove the tourniquet or deflate the cuff and inject the medicine slowly. Prevents excessive pressure in the vein and ensures proper delivery of medication.</li><li>57. When the medicine is injected, put a swab over the site and withdraw the needle. Minimizes bleeding and ensures cleanliness.</li><li>58. Apply pressure at the site with a swab for some seconds to make sure there is no bleeding. If oozing continues, apply a swab and a piece of strapping. Prevents bleeding.</li><li>59. Record the medicine in the patient’s chart and clear away. Ensures accurate medical records and maintains order.</li></ul>
 <p>SOME OF THE RECOMMENDED VEINS FOR INTRAVENOUS INFUSION</p>
 <ul><li>BACK OF THE HAND FOREARM LOWER EXTREMITY</li><li>Dorsal metacarpal veins Basilic vein Cephalic vein Femoral and saphenous vein in the thigh Dorsal venous plexus, medial and lateral marginal veins in the foot</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-20">
           <summary>20 COMPLICATIONS OF INTRAVENOUS INJECTIONS</summary>
           <ul><li>Incorrect IV Site Placement : Inserting the IV into the wrong vessel (e.g., artery instead of vein) can lead to severe consequences.</li><li>Medication Errors : Misidentification of medications, incorrect dosages, or incompatible mixing can result in serious adverse reactions.</li><li>Rapid Administration and Undesired Effects : Delivering medications too quickly can lead to undesirable effects like hypotension, cardiac arrhythmias, allergic reactions, and fluid overload.</li><li>Thrombophlebitis : Inflammation of a vein, often with a blood clot, can occur due to frequent IV injections, improper technique, or certain medications.</li><li>Circulatory Overload : Infusing too much fluid too quickly can overwhelm the circulatory system, leading to fluid buildup and strain on the heart and lungs.</li><li>Embolism : A blood clot, air bubble, or foreign matter blocking a blood vessel can occur due to thrombophlebitis, improper IV line placement, or air entering the line.</li><li>Shock : Severe allergic reactions, blood loss, or sepsis can lead to a life-threatening decrease in blood flow to vital organs.</li><li>Infiltration/Extravasation : When IV fluids leak out of the vein into the surrounding tissues, it can cause pain, swelling, and tissue damage.</li><li>Phlebitis : Inflammation of a vein without a clot, often caused by irritation from the IV catheter or medication.</li><li>Air Embolism : Air entering the bloodstream through the IV line can travel to the heart or lungs, causing blockage and potentially leading to respiratory distress or cardiac arrest.</li><li>Catheter-Related Bloodstream Infection (CRBSI) : A serious complication where bacteria enter the bloodstream through the IV catheter, leading to fever, chills, and potentially sepsis.</li><li>Nerve Damage : Incorrect placement of the IV catheter can damage nerves in the area, resulting in pain, numbness, or weakness.</li><li>Hematoma : Bleeding into the surrounding tissues from the IV puncture site, appearing as a bruise.</li><li>Phlebosclerosis : Hardening of the vein due to repeated IV punctures or irritation from the catheter.</li></ul>
 <p>Common Sites for Intramuscular Injections</p>
 <ul><li>Gluteal Muscle: The outer upper quadrant of the buttock is the safest site, as it avoids the sciatic nerve.</li><li>Thigh Muscles : The upper outer third of the thigh muscles.</li><li>Deltoid Muscle : Used for small injections (up to 2 ml) if the patient has enough muscle mass, but this site should be avoided whenever possible.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-21">
           <summary>21 COMPLICATIONS OF INTRAMUSCULAR INJECTIONS</summary>
           <p>1. Abscess Formation : This occurs when unsterile needles and syringes are used, or when oily substances are not injected deep enough. The injection site becomes inflamed and filled with pus.</p>
 <ul><li>Prevention : Strict adherence to aseptic technique, proper needle selection, and injecting oily substances deep into the muscle tissue are crucial.</li></ul>
@@ -249,19 +295,19 @@
 <p>Intravenous infusion equipment and the superficial veins of the forearm that may be cannulated</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-22">
           <summary>22 Formula for Calculating the Drop Rate</summary>
           <p>To calculate the drop rate, use the following formula:</p>
 <p><strong>Example:</strong></p>
 <p>The doctor has prescribed 1000 mls of 5% dextrose infusion to run in 10 hours. How many drops per minute will you regulate if the infusion set has a drop factor of 20?</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-23">
           <summary>23 Factors that May Affect the Flow Rate</summary>
           <ul><li>Height of the Infusion Bottle : Raising the infusion bottle higher will increase the rate of flow, and lowering it will decrease the rate.</li><li>Patency of Infusion Set and Needle : A blood clot in the needle may stop the infusion. This may occur when there is a delay in changing the emptied infusion bottle.</li><li>Kinking of the Tubing or Faulty Position of the Needle : When the needle is against or away from the vein wall, it may affect the flow.</li><li>Tight Splint: A tight splint on or above the infusion needle will restrict the flow rate.</li><li>Blocked Air Vent: A blocked air vent will cause the infusion to stop running.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-24">
           <summary>24 Care of the Patient While on Intravenous Infusion</summary>
           <ul><li>Accurate Record Keeping : Keep an accurate record, including the time of starting the infusion, type of fluid, amount, and the prescribed rate of flow.</li><li>Frequent Assessment : Assess the patient at frequent intervals for signs of abnormal reactions such as pain, sweating, restlessness, or change of color.</li><li>Regular Site Inspection : Inspect the site at regular intervals for signs of infiltration.</li><li>Condition Monitoring : Take and record the patient’s condition regularly.</li><li>Daily Cleansing : If the infusion is running for some days, cleanse the area around the injection site with sterile gauze daily.</li></ul>
 <p>INSTILLING MEDICATION INTO EAR</p>
@@ -273,37 +319,42 @@
 <p>Click Here</p>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-25">
           <summary>25 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Oxygen Administration</strong> as a practical nursing topic, not only a memorized definition. Turn the topic into practical nursing knowledge: meaning, assessment, care priorities, teaching and evaluation.</p>
 <ul><li><strong>What to understand first:</strong> define oxygen administration, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-26">
           <summary>26 Assessment Guide</summary>
           <ul><li>Key definitions, patient history, focused observations and risk factors.</li><li>Findings that are normal, abnormal or urgent.</li><li>Resources, referral needs and documentation requirements.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-27">
           <summary>27 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Protect safety, comfort, dignity and infection prevention.</li><li>Provide clear care, education and escalation when needed.</li><li>Evaluate response and record what changed.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The topic is understood in a way that supports safe nursing judgement and revision.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-28">
           <summary>28 Patient Teaching and Revision Check</summary>
           <ul><li>Explain oxygen administration in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Drug%20administration%20Mental%20Health%20and%20Pharmacology%20nursing%20lecture" title="Drug administration YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (1)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/10-Rights-of-Drug-Administration-Nursing-Notes-Study-Guides.webp" alt="10 Rights Of Drug Administration Nursing Notes Study Guides" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">10 Rights Of Drug Administration Nursing Notes Study Guides</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Drug%20administration%20Mental%20Health%20and%20Pharmacology%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Drug%20administration%20Mental%20Health%20and%20Pharmacology%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

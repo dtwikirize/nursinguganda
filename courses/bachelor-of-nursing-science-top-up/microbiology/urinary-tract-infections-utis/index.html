@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,18 +97,51 @@
         <p>Urinary Tract Infections (UTIs) links cause, transmission, prevention, assessment and treatment support. Good nursing notes should include infection prevention, danger signs, adherence support and community health education.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 27 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Urinary Tract Infections (UTIs)</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">1. The Definitions</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Uncomplicated vs. Complicated</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">2. Epidemiology &amp; Common Bugs</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The &quot;Ojambo 2008&quot; Ugandan Data:</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">3. Pathogenesis:</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Routes of Invasion</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Parasite Virulence Factors</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Master Table: Uropathogenic E. coli Adhesins</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Host&#39;s Defenses (Why we don&#39;t always have a UTI)</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">STEP 1: THE CLINICAL HISTORY (Manifestations &amp; Risk Factors)</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Reviewing Risk Factors</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Clinical Manifestations by Age &amp; Type</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">A. Presumptive Diagnosis (Urinalysis / Dipstick)</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Bacterial Count Extrapolation: 1 Bacterium per Microscopic Field = CFU/mL</a>
+          <a href="#section-16" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">B. Diagnosis by Culture</a>
+          <a href="#section-17" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Collection Techniques</a>
+          <a href="#section-18" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Culture Methodology &amp; Interpretation</a>
+          <a href="#section-19" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Natural History</a>
+          <a href="#section-20" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">1. Acute Pyelonephritis</a>
+          <a href="#section-21" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">2. Cystitis</a>
+          <a href="#section-22" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">To Treat or Not To Treat?</a>
+          <a href="#section-23" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">3. Relapse vs Recurrent UTI</a>
+          <a href="#section-24" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-25" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-26" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-27" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Urinary Tract Infections (UTIs)</summary>
           <p>Welcome to the comprehensive master guide on Urinary Tract Infections (UTIs). This guide covers everything from the microscopic battleground between bacterial virulence factors and host defenses, to step-by-step diagnostic workups and evidence-based treatment guidelines.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 1. The Definitions</summary>
           <p>Before diving into pathology, you must master the precise terminology used to describe urinary infections.</p>
 <ul><li><strong>Bacteriuria:</strong> Simply means the presence of bacteria in the urine.</li><li><strong>Significant Bacteriuria:</strong> The number of bacteria in voided urine exceeds what would be expected from normal contamination by the anterior urethra. <strong>Cutoff: ≥ 10 5 bacteria/mL</strong> . If you see this, infection must be seriously considered.</li><li><strong>Asymptomatic Bacteriuria:</strong> Significant bacteriuria (≥ 10 5 ) in a patient with absolutely ZERO symptoms. (We will discuss later who gets treated for this and who does not!)</li><li><strong>Location:</strong> UTIs can be confined to the lower tract (bladder/urethra) or involve both the upper (kidneys) and lower tracts.</li><li><strong>Cystitis (Lower UTI):</strong> A clinical syndrome involving dysuria (painful urination), frequency, urgency, and occasionally suprapubic (lower abdominal) tenderness.</li><li><strong>Acute Pyelonephritis (Upper UTI):</strong> A more severe clinical syndrome characterized by flank pain or tenderness (costovertebral angle), fever, often associated with the lower tract symptoms (dysuria, urgency, frequency).</li><li><strong>Uncomplicated UTI:</strong> Infection in a structurally and neurologically normal urinary tract.</li><li><strong>Complicated UTI:</strong> Infection in a urinary tract with functional or structural abnormalities (e.g., indwelling catheters, neurogenic bladder, or kidney stones/calculi).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Uncomplicated vs. Complicated</summary>
           <p><strong>Patient A:</strong> A healthy 22-year-old female presents with painful urination and urgency for 2 days. She has no medical history. This is an <strong>Uncomplicated UTI</strong> (Cystitis).</p>
 <p><strong>Patient B:</strong> A 65-year-old male with an enlarged prostate (BPH) and a history of kidney stones presents with the same symptoms. Because his urinary tract has structural blockages that prevent normal urine flushing, this is a <strong>Complicated UTI</strong> and requires much more aggressive management.</p>
@@ -104,40 +149,40 @@
 <ul><li><strong>Temperature:</strong> &amp;gt; 38°C (Fever) OR &amp;lt; 36°C (Hypothermia)</li><li><strong>Heart Rate:</strong> &amp;gt; 90 beats per minute (Tachycardia)</li><li><strong>Respiratory Rate:</strong> &amp;gt; 20 breaths/minute, OR PaCO 2 &amp;lt; 32 mm Hg (Tachypnea/hyperventilation)</li><li><strong>White Blood Cell Count:</strong> &amp;gt; 12,000/mm 3 (Leukocytosis), OR &amp;lt; 4,000/mm 3 (Leukopenia), OR &amp;gt; 10% band forms (immature neutrophils).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 2. Epidemiology &amp; Common Bugs</summary>
           <ul><li><strong>Females:</strong> UTI is much more common in women. 1-2% of young, non-pregnant women have it at any given time. <strong>40% of all females</strong> will have a symptomatic UTI in their lifetime.</li><li><strong>Males:</strong> Extremely rare in young men (prevalence is only 0.04%). Clinical Pearl: If a young man gets a UTI, look for a structural defect or a Sexually Transmitted Disease (STD)!</li><li><strong>Older Age:</strong> Incidence skyrockets in the elderly (10% of men, 20% of women) due to functional impairments, prostate enlargement, and estrogen loss.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 The &quot;Ojambo 2008&quot; Ugandan Data:</summary>
           <p>Over 95% of UTIs are caused by a single bacterial species. According to Ojambo 2008, the predominant organisms are:</p>
 <ul><li><strong>Escherichia coli (45%)</strong> - The undisputed king of UTIs.</li><li><strong>Klebsiella species (17%)</strong></li><li><strong>Staphylococcus species (8%)</strong> - Most common Gram-positive.</li><li><strong>Enterococcus (5%)</strong></li></ul>
 <p>Other common offenders: Proteus, Pseudomonas, Enterobacter, and Candida (fungus, usually seen in diabetics or patients with chronic indwelling catheters).</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 3. Pathogenesis:</summary>
           <p>A UTI is an epic battle between bacterial virulence factors and host defense mechanisms.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 The Routes of Invasion</summary>
           <ul><li><strong>Ascending Route (Most Common):</strong> Bacteria from the gut colonize the perineum/urethra and climb up into the bladder. Why women? The female urethra is short and anatomically very close to the warm, moist vulvar and perianal areas, making fecal contamination highly likely.</li><li><strong>Hematogenous Route (Blood-borne):</strong> Infection of the kidney tissue by organisms traveling in the blood. Clinical Scenario: A patient with Staphylococcus aureus endocarditis (heart valve infection) throws infected blood clots into the kidneys, causing renal abscesses.</li><li><strong>Lymphatic Route:</strong> Rare, spread via lymphatic channels.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Parasite Virulence Factors</summary>
           <p>Not all E. coli cause UTIs. The ones that do are called <strong>Uropathogenic E. coli (UPEC) clones</strong> (Serogroups O1, O2, O4, O6, O7, O8, O75, O150, and O18ab). They possess specific genetic superpowers:</p>
 <ul><li><strong>Adhesins (Fimbriae/Pili):</strong> Prevent the bacteria from being washed away by urine. <strong>P fimbriae:</strong> Bind to Gal-α 1-4 (P blood group antigen). Strongly associated with Pyelonephritis and bacteremia.</li><li><strong>Type 1 fimbriae:</strong> Bind to mannosylated proteins (uroplakin Ia) on bladder cells. Associated with cystitis.</li><li><strong>Resistance to serum bactericidal activity.</strong></li><li><strong>K Antigen (Capsules):</strong> High quantities of K1, K5, K12 capsular antigens physically protect bacteria from leukocyte phagocytosis.</li><li><strong>Aerobactin:</strong> An iron-scavenging protein (siderophore). Iron is scarce in urine; aerobactin steals it for the bacteria to grow.</li><li><strong>Hemolysin &amp; Cytotoxic Necrotizing Factor type 1 (CNF-1) &amp; Sat Toxin:</strong> Toxins that facilitate tissue invasion, cause severe renal tubular damage, and lyse red blood cells to make even more iron available to the invading E. coli .</li><li><strong>Urease (Specifically in Proteus species):</strong> Proteus produces urease, which splits urea into ammonia. This strongly correlates with its ability to cause severe pyelonephritis and struvite kidney stones. Deep Dive: Ammonia makes the urine highly alkaline. This change in pH causes magnesium, ammonium, and phosphate to crystallize, forming massive &quot;staghorn&quot; struvite stones that fill the entire renal pelvis!</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Master Table: Uropathogenic E. coli Adhesins</summary>
           <ul><li>Adhesin Genetic Sequence Receptor Target Clinical Comments</li><li><strong>Type 1 fimbriae (MS)</strong> Pil, fimH Mannosylated proteins on epithelial cells (uroplakin Ia) &amp; PMNs Binds to Tamm-Horsfall protein (THP) and SIgA.</li><li><strong>P fimbriae (MR)</strong> papG (class Ia, II, III) Gal-α 1-4 (P blood group antigen) Class II: Strongly associated with pyelonephritis &amp; bacteremia. Class III: Cystitis in patients with urinary tract abnormalities.</li><li><strong>S/F1C fimbriae (MR)</strong> Sfa/fac Sialyl-(α-2-3) galactoside Adherence is inhibited by THP.</li><li><strong>Type 1C (MR)</strong> Fac Undetermined Possibly associated with pyelonephritis.</li><li><strong>G fimbriae (MR)</strong> — Terminal N-acetyl-D-glucosamine —</li><li><strong>M fimbriae (MR)</strong> — Galactose-N-acetyl-galactosamine / Blood group M (glycophorin A) —</li><li><strong>Dr family</strong> Drb operon, Afa E1-5, Afa F Dr blood group antigen (decay accelerating factor - DAF) &amp; type IV collagen Found in 16% of first-time cystitis isolates.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 The Host&#39;s Defenses (Why we don&#39;t always have a UTI)</summary>
           <p>The normal urinary tract efficiently and rapidly eliminates microorganisms through:</p>
 <ul><li><strong>Urine Flow &amp; Micturition:</strong> The physical flushing mechanism of the bladder is the single major protective effect. (Think of it like a powerful river continuously washing away mud from the riverbanks).</li><li><strong>Urine Chemistry:</strong> Extreme osmolality, high urea concentration, and low pH are highly inhibitory to fastidious and anaerobic bacteria.</li><li><strong>Urinary Inhibitors of Adherence:</strong> Your body secretes Tamm-Horsfall protein (THP), bladder mucopolysaccharides, low-molecular-weight oligosaccharides, SIgA, and Lactoferrin to bind up bacterial fimbriae so they can&#39;t stick to your cells!</li><li><strong>Inflammatory Response:</strong> When bacteria stick, epithelial cells release cytokines, summoning Polymorphonuclear neutrophils (PMNs) to eat the bacteria.</li><li><strong>Prostatic Secretions:</strong> In men, these have natural antibacterial properties.</li></ul>
@@ -146,18 +191,18 @@
 <p>Also, remember: The greater the number of organisms delivered to the kidneys, the greater the chance of infection.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 STEP 1: THE CLINICAL HISTORY (Manifestations &amp; Risk Factors)</summary>
           <p>When a patient walks in, you must evaluate their risk factors and symptoms to distinguish between Cystitis, Pyelonephritis, or Asymptomatic Bacteriuria.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-12">
           <summary>12 Reviewing Risk Factors</summary>
           <p>Obstruction inhibits normal urine flow; <strong>stasis is the most important factor</strong> in increasing susceptibility.</p>
 <ul><li><strong>Extrarenal Obstruction:</strong> Congenital anomalies (valves, bands, stenosis), calculi (stones), benign prostatic hypertrophy (BPH), extrinsic ureteral compression.</li><li><strong>Intrarenal Obstruction:</strong> Nephrocalcinosis, uric acid nephropathy, analgesic nephropathy, polycystic kidney disease, hypokalemic nephropathy, sickle cell trait/disease.</li><li><strong>Adult Females:</strong> Sexual intercourse (honeymoon cystitis), lack of post-coital urination, spermicides, diaphragms, pregnancy, diabetes, HIV (high viral load).</li><li><strong>Older Age:</strong> Estrogen deficiency leads to a loss of vaginal lactobacilli (the good bacteria), allowing E. coli to overgrow. Mental impairment, bladder prolapse, and catheterization also highly increase risk.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-13">
           <summary>13 Clinical Manifestations by Age &amp; Type</summary>
           <ul><li><strong>Neonates &amp; Children &amp;lt; 2 years:</strong> Symptoms are totally nonspecific. Look for failure to thrive, vomiting, and unexplained fever.</li><li><strong>Children &amp;gt; 2 years:</strong> Frequency, dysuria, and abdominal or flank pain.</li></ul>
 <p>Frequent and painful urination of small amounts of turbid (cloudy) urine, suprapubic heaviness/pain. Urine may be grossly bloody or show a bloody tinge at the end of micturition (hemorrhagic cystitis).</p>
@@ -166,50 +211,50 @@
 <p>The vast majority are actually asymptomatic! If they do present, the classic burning urination might be absent. Instead, their only symptom may be <strong>sudden confusion or delirium</strong> .</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-14">
           <summary>14 A. Presumptive Diagnosis (Urinalysis / Dipstick)</summary>
           <p>Microscopic examination of the urine is the absolute first step in the lab diagnosis.</p>
 <ul><li><strong>Pyuria (Pus/WBCs in urine):</strong> The preferred definition is ≥ 10 leukocytes/mm 3 of midstream urine using a counting chamber.</li><li><strong>Leukocyte Esterase Test:</strong> A rapid dipstick screening test for detecting pyuria. (Pyuria alone is non-specific, but highly suggestive when symptoms are present).</li><li><strong>Hematuria:</strong> Microscopic or gross blood indicates mucosal irritation (hemorrhagic cystitis).</li><li><strong>White Cell Casts:</strong> Pathognomonic for Pyelonephritis (indicates inflammation is happening high up in the kidney tubules, where casts are formed).</li><li><strong>Proteinuria:</strong> Common in UTI, but usually mild (&amp;lt; 2 g/24 hrs).</li><li><strong>Direct Gram Stain:</strong> Finding at least 1 bacterium per High Power Field (HPF) in an uncentrifuged, clean-catch urine specimen correlates perfectly with ≥ 10 5 bacteria/mL.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-15">
           <summary>15 Bacterial Count Extrapolation: 1 Bacterium per Microscopic Field = CFU/mL</summary>
           <ul><li>Sample Preparation Unstained (×400) Stained (×1000)</li><li>Uncentrifuged sample ≥ 10 6 ≥ 10 5</li><li>Centrifuged sample ≥ 10 5 ≥ 10 4</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-16">
           <summary>16 B. Diagnosis by Culture</summary>
           <p>Urine is easily contaminated by skin flora. Culturing quantifies the bacteria to statistically separate true infection from contamination.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-17">
           <summary>17 Collection Techniques</summary>
           <ul><li><strong>Midstream Clean Catch (Preferred):</strong> Women: Wash hands, straddle commode. Wash vulva front-to-back 4 times with 4 different sterile gauze pads soaked in green soap. Rinse with 2 sterile water sponges. Spread labia, void, discard first portion, collect the second (midstream).</li><li>Men: Retract prepuce, clean, collect midstream.</li><li><strong>Catheterization:</strong> Used for patients with altered sensorium. Requires scrupulous aseptic technique.</li><li><strong>Suprapubic Aspiration:</strong> Inserting a needle directly through the abdomen into a full bladder. Highly safe and sterile. Used in premies, neonates, children, adults, and even pregnant patients.</li><li>Note on infants: Sterile adhesive bags are used, but contamination is highly common.</li><li><strong>Lab Processing:</strong> Process immediately. If delayed, refrigerate at 4°C and culture within 24 hours.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-18">
           <summary>18 Culture Methodology &amp; Interpretation</summary>
           <p>The lab uses platinum calibrated loops (0.01 mL or 0.001 mL) to streak urine onto agar. After 24 hours at 37°C, Colony Forming Units (CFUs) are counted and multiplied by 100 or 1000 respectively.</p>
 <ul><li><strong>Asymptomatic Women:</strong> 1 clean-catch with &amp;gt; 10 5 bacteria/mL = 80% probable true bacteriuria. You MUST get 2 separate specimens showing &amp;gt; 10 5 of the same bacterium to reach 95% probability and confirm the diagnosis!</li><li><strong>Symptomatic Women:</strong> While &amp;gt; 10 5 is classic, a third of young women with lower UTI symptoms have fewer than 10 5 .</li><li><strong>IDSA Consensus Guidelines:</strong> Cystitis: &amp;gt; 10 3 CFU/mL of a uropathogen.</li><li>Pyelonephritis: &amp;gt; 10 4 CFU/mL.</li><li><strong>Men:</strong> &amp;gt; 10 3 organisms/mL is highly suggestive of infection.</li><li><strong>False-Negative Cultures:</strong> Caused by patient taking antibiotics, soap falling into the urine cup, total obstruction below the infection site, fastidious organisms, renal tuberculosis, or heavy diuresis (diluting the urine).</li></ul>
 <p>Note: The high count criteria mainly apply to Enterobacteriaceae. Gram-positives, fungi, and fastidious bugs might cause true infection at only 10 4 to 10 5 /mL. Mixed infections occur in ~5% of cases.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-19">
           <summary>19 Natural History</summary>
           <ul><li><strong>Uncomplicated UTI:</strong> Treatment leads to complete cure. Recurrences may happen in clusters (usually within 2-3 months), but they do not lead to chronic renal impairment.</li><li><strong>Complicated UTI:</strong> Recurrent complicated UTIs can lead to renal failure and accelerate the progression of underlying renal diseases.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-20">
           <summary>20 1. Acute Pyelonephritis</summary>
           <ul><li><strong>Mild:</strong> Treat orally (Fluoroquinolones, Co-trimoxazole, Cefuroxime).</li><li><strong>Moderate-Severe:</strong> Parenteral/IV treatment (Aminoglycosides, Ceftriaxone, Aztreonam, Tazocin). Therapy leads to marked decline in count after 48 hours.</li><li><strong>Red Flags:</strong> If there is persistent fever or a positive blood culture after 3 days of therapy, rule out obstruction or kidney abscess!</li><li><strong>Step-down:</strong> After defervescence (fever breaks), switch to oral therapy to complete a full 2 weeks. Follow-up culture 2 weeks after finishing antibiotics.</li><li>In males: always look for a predisposing structural cause.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-21">
           <summary>21 2. Cystitis</summary>
           <ul><li><strong>Young Females (Uncomplicated):</strong> 3 days of oral therapy (Fluoroquinolone, Cotrimoxazole, Cefuroxime, Augmentin).</li><li><strong>Females with delayed presentation:</strong> If symptoms have lasted x 7 days OR history of previous infection → treat for 7 days.</li><li><strong>Males:</strong> Treat orally for 7-10 days.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-22">
           <summary>22 To Treat or Not To Treat?</summary>
           <p>There is NO urgency to treat. Confirm with 2 cultures first.</p>
 <p><strong>YES - INDICATED TO TREAT IN:</strong></p>
@@ -218,7 +263,7 @@
 <ul><li>Young non-pregnant women without structural abnormalities.</li><li><strong>Elderly patients</strong> (Very high yield! Treating asymptomatic elderly patients just causes antibiotic resistance. Do not treat a positive culture in a nursing home patient who has no symptoms!).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-23">
           <summary>23 3. Relapse vs Recurrent UTI</summary>
           <p><strong>The Definition:</strong> The exact same organism re-emerges because it was never fully eradicated. It was hiding in a kidney stone, a structural abnormality, or the prostate (chronic bacterial prostatitis).</p>
 <p><strong>Treatment for Relapse:</strong> Needs 2 weeks of antibiotics. Obstruction MUST be corrected. If uncorrectable, treat for 4-6 weeks (or longer), do monthly follow-up cultures, and annually assess the kidneys. In males, specifically rule out chronic prostatitis.</p>
@@ -228,37 +273,42 @@
 <p>Quick Quiz</p>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-24">
           <summary>24 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Urinary Tract Infections (UTIs)</strong> as a practical nursing topic, not only a memorized definition. Link cause, transmission, incubation, clinical features, treatment support and prevention.</p>
 <ul><li><strong>What to understand first:</strong> define urinary tract infections (utis), identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-25">
           <summary>25 Assessment Guide</summary>
           <ul><li>Temperature, pulse, respiratory status, hydration, pain, rash, wounds, stool, urine or sputum changes.</li><li>Exposure history, travel, contacts, vaccination status and comorbidities.</li><li>Specimen orders, isolation needs, antimicrobial history and danger signs.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-26">
           <summary>26 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use standard precautions and transmission-based precautions where needed.</li><li>Support hydration, nutrition, medicines, monitoring and early referral for severe disease.</li><li>Teach prevention, adherence, hygiene, safe water, vector control or contact tracing as relevant.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> Symptoms improve, complications are detected early, transmission risk is reduced and treatment is completed correctly.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-27">
           <summary>27 Patient Teaching and Revision Check</summary>
           <ul><li>Explain urinary tract infections (utis) in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Urinary%20Tract%20Infections%20(UTIs)%20Microbiology%20nursing%20lecture" title="Urinary Tract Infections (UTIs) YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (1)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/V2-Urinary-System-Anatomy-and-Physiology-Nursing-Study-Guide.webp" alt="V2 Urinary System Anatomy And Physiology Nursing Study Guide" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">V2 Urinary System Anatomy And Physiology Nursing Study Guide</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Urinary%20Tract%20Infections%20(UTIs)%20Microbiology%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Urinary%20Tract%20Infections%20(UTIs)%20Microbiology%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

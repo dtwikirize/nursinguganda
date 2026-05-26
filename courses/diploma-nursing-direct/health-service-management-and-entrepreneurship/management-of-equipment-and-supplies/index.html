@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,24 +97,42 @@
         <p>Management of equipment and supplies should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (12)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Management of equipment and supplies</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Phase of Equipment and Supplies Management.</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Management of Supplies</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">RATIONAL USE OF SUPPLIES</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Irrational Use of Medicine</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">10R’s for Proper Drug Administration</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Common Problems in Handling Medical Supplies:</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">ROLES OF A NURSES IN EQUIPMENT AND SUPPLIES MANAGEMENT</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Management of equipment and supplies</summary>
           <p>It is important for ensuring the availability of necessary equipment and supplies, optimizing their utilization, and maintaining their quality and safety standards.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Phase of Equipment and Supplies Management.</summary>
           <ul><li>Planning : This involves assessing the healthcare facility’s needs, identifying the required equipment and supplies, and developing a strategic plan for their acquisition and utilization.</li><li>Acquisition : This stage involves the procurement of equipment and supplies through processes such as tendering, vendor evaluation, and contract negotiation.</li><li>Delivery and incoming inspection : Upon delivery, the equipment and supplies undergo an inspection to ensure they meet the specified requirements and are in proper working condition.</li><li>Inventory and documentation : A comprehensive inventory is maintained, documenting details such as equipment descriptions, manufacturer information, purchase orders, warranty conditions, and service history.</li><li>Installation and commissioning : Proper installation and commissioning of equipment are essential to ensure their safe and effective functioning. This may involve in-house technical staff or collaboration with suppliers.</li><li>User training : Training programs are conducted to educate healthcare staff on the proper use and maintenance of equipment and supplies, reducing the risk of malfunctions and errors.</li><li>Monitoring of use : Regular monitoring and performance evaluation of equipment and supplies are conducted to identify any issues, ensure optimal utilization, and address maintenance needs.</li><li>Maintenance : Preventive and corrective maintenance activities are carried out to ensure equipment remains in good working condition, reducing the need for repairs and minimizing downtime.</li><li>Replacement or disposal : When equipment reaches the end of its useful life or becomes obsolete, proper procedures for replacement or disposal are followed, considering environmental regulations and safety guidelines.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Management of Supplies</summary>
           <p>Supplies at a healthcare facility are stores of essential equipment, drugs and other supplies that you will need to use during your routine healthcare work .</p>
 <p>There are two main types of supplies in your Health Post, referred to as non-consumables and consumables .</p>
 <ul><li>Non-consumables are items of equipment that can be used for years, but may eventually have to be replaced or updated.</li><li>Consumables are items that are used within a short period of time, so they need to be regularly replaced. They include all the medicines, drugs, vitamin supplements and infusion fluids (for intravenous use).</li><li>Category Item Description</li><li>Non-Consumables</li><li>Furniture Desks, chairs, cabinets, examination tables, etc.</li><li>Equipment Medical devices, diagnostic equipment, etc.</li><li>Vehicles Ambulances, vans, motorcycles, etc.</li><li>Infrastructure Buildings, fixtures, plumbing, electrical, etc.</li><li>Consumables</li><li>Medical Supplies Bandages, dressings, syringes, gloves, etc.</li><li>Pharmaceuticals Medications, drugs, vaccines, etc.</li><li>Laboratory Supplies Test tubes, slides, reagents, etc.</li><li>Office Supplies Paper, pens, folders, staplers, etc.</li><li>Cleaning Supplies Disinfectants, detergents, mops, buckets, etc.</li><li>Fuel Gasoline, diesel, propane, etc.</li><li>Maintenance Supplies Lubricants, spare parts, tools, etc.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 RATIONAL USE OF SUPPLIES</summary>
           <p>Rational medicine use : Refers to measures designed to avoid misuse of medicines, hence increases effectiveness, efficiency, and minimises waste and danger .</p>
 <p>This is the administration of the correct medications, for the appropriate patients, for the appropriate clinical needs, in doses and routes that meet their own individual requirements, for an adequate period of time, and at the lowest cost to them and their community.</p>
@@ -110,18 +140,18 @@
 <ul><li>Correct Medicines : Ensuring that the prescribed medications are appropriate for the patient’s condition and are the most effective treatment available.</li><li>Appropriate Indication : Prescribing medications based on sound medical considerations and in accordance with established treatment guidelines for the specific condition being treated.</li><li>Medicine Suitability : Selecting medications that are suitable for the individual patient, taking into account factors such as age, gender, medical history, allergies, and other medications they may be taking.</li><li>Dosage, Administration, and Duration : Ensuring that the prescribed dosage of medication is appropriate for the patient’s condition and age, that it is administered correctly, and that the duration of treatment is sufficient to achieve the desired therapeutic outcome.</li><li>Patient Safety : Taking into consideration any contraindications or potential adverse reactions to the prescribed medication, and ensuring that the benefits outweigh the risks for the individual patient.</li><li>Dispensing Accuracy : Ensuring that medications are dispensed accurately and that patients receive clear instructions on how to take them, including dosage instructions, frequency, and any special considerations.</li><li>Patient Adherence: Encouraging and supporting patients to adhere to their prescribed medication regimen, including addressing any barriers or concerns they may have about taking their medications as directed.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Irrational Use of Medicine</summary>
           <p>Irrational medicine use can occur due to health worker wrong prescribing practices i.e.</p>
 <ul><li>Patients often take medicines in the wrong way, either by reducing the dose to make the treatment last longer or by increasing the dose in the hope of quick recovery.</li><li>They take the medicines at the wrong times or forget a dose.</li><li>Patients on long courses of treatment often stop taking medicines too soon.</li><li>Some patients do not understand the action of medicines in the body. As a result, they are sometimes not cured and the medicines are wasted.</li><li>Use of medicines when not needed e.g. use of antibiotics to treat mild ARI or diarrhea.</li><li>Wrong medicines e.g. the use of tetracycline for sore throat instead of penicillin.</li><li>Unsafe medicines e.g. Dipyrone (Novalgine).</li><li>Underuse of available effective medicines e.g. underuse of ORS for acute diarrhea.</li><li>Incorrect use of medicines e.g. giving patients only one or two days’ supply of antibiotics rather than the full course of therapy.</li><li>Wrong route of administration e.g. application of antibiotics directly on the wounds.</li><li>Polypharmacy – prescribing multiple medications without a clear medical indication.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 10R’s for Proper Drug Administration</summary>
           <ul><li>Right Patient : Ensuring that the medication is administered to the correct patient by verifying their identity using at least two unique identifiers, such as their name, date of birth, or medical record number.</li><li>Right Time : Administering the medication at the correct time intervals as prescribed, adhering to the prescribed schedule to maintain therapeutic effectiveness and prevent adverse effects.</li><li>Right Dose : Providing the accurate dosage of the medication according to the prescribed amount, taking into account the patient’s age, weight, and other relevant factors.</li><li>Right Route : Administering the medication via the appropriate route of administration, such as oral, intravenous, intramuscular, subcutaneous, or topical, as specified in the medication order.</li><li>Right Drug/Medication : Ensuring that the medication administered is the correct drug as prescribed by the healthcare provider, matching the medication order and the patient’s condition.</li><li>Right Formulation : Administering the medication in the correct formulation, such as tablets, capsules, liquid, or injectable, as specified in the prescription.</li><li>Right Disposal : Properly disposing of expired or unused medications according to institutional protocols and regulatory guidelines to prevent environmental contamination and misuse.</li><li>Right Storage : Storing medications appropriately under conditions such as temperature, humidity, and light to maintain their stability and efficacy, following manufacturer recommendations and regulatory requirements.</li><li>Right Equipment: Using the appropriate equipment and devices for medication administration, such as syringes, infusion pumps, or inhalers, and ensuring they are clean, calibrated, and functioning properly.</li><li>Right Site : Administering medications to the correct anatomical site or location as prescribed, particularly important for procedures such as injections, intravenous infusions, or topical applications, to avoid complications or adverse effects.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Common Problems in Handling Medical Supplies:</summary>
           <p>Theft</p>
 <ul><li>Lack of proper record to identify the culprits/detect theft.</li><li>Lack of security in the store where it’s accessed by everybody at any time making it difficult to detect theft cases and responsible person.</li><li>Lack or irregular stock cards not updated and items been picked/issued with requisitioning.</li><li>Fear by Incharges or store personnel to report theft cases due to fear of creating conflicts and enmity with staff.</li><li>Theft due to collusion between staff members.</li></ul>
@@ -133,42 +163,51 @@
 <ul><li>Expired Supplies : Failure to monitor and manage inventory effectively can lead to the accumulation of expired medical supplies, which can result in wastage of resources and compromise patient care if used unknowingly.</li><li>Stockouts : Inadequate inventory management practices may result in stockouts of essential medical supplies, leading to delays in patient care, compromised safety, and increased costs due to emergency procurement or alternative solutions.</li><li>Poor Quality Control: Lack of quality control measures in the procurement and storage of medical supplies can result in the acquisition of substandard or counterfeit products, posing risks to patient safety and treatment effectiveness.</li><li>Inefficient Ordering Process : Inefficient or inaccurate ordering processes, such as manual requisition systems or lack of forecasting methods, may lead to understocking or overstocking of medical supplies, impacting patient care and operational efficiency.</li><li>Inadequate Storage Facilities : Improper storage facilities, such as inadequate space, inappropriate environmental conditions (e.g., temperature, humidity), or lack of security measures, can compromise the integrity and shelf life of medical supplies, leading to waste and reduced efficacy.</li><li>Poor Distribution Practices : Inefficient distribution practices, such as lack of standardized procedures, improper handling, or delays in delivery, can result in discrepancies between supply availability and demand at healthcare facilities, affecting patient care and workflow efficiency.</li><li>Inaccurate Documentation : Failure to maintain accurate and up-to-date documentation related to medical supplies, including procurement records, inventory logs, and usage reports, can lead to errors in decision-making, regulatory non-compliance, and financial losses.</li><li>Inadequate Training: Insufficient training and education of healthcare staff involved in handling medical supplies may result in improper storage, handling, or administration practices, increasing the risk of errors, contamination, or adverse events.</li><li>Lack of Standardization: Absence of standardized protocols and procedures for managing medical supplies across healthcare facilities within an organization or region can lead to inconsistencies, inefficiencies, and disparities in care delivery.</li><li>Budget Constraints : Limited financial resources allocated for the procurement and maintenance of medical supplies may restrict access to essential supplies, compromise patient care quality, and impede efforts to address emerging healthcare needs or emergencies.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 ROLES OF A NURSES IN EQUIPMENT AND SUPPLIES MANAGEMENT</summary>
           <ul><li>Inventory Management : Nurses are responsible for monitoring and managing inventory levels of medical supplies, including consumables (e.g., gloves, syringes, dressings) and non-consumables (e.g., equipment, instruments). This involves regular stocktaking, tracking usage patterns, and replenishing supplies as needed to prevent stockouts or overstocking.</li><li>Ordering and Procurement: Nurses play a crucial role in the procurement process by assessing supply needs, preparing requisitions, and liaising with relevant departments or suppliers to ensure timely acquisition of required supplies. They may also participate in evaluating product quality and cost-effectiveness.</li><li>Storage and Handling : Nurses are responsible for ensuring that medical supplies are stored appropriately to maintain their integrity, safety, and efficacy. This includes organizing storage areas, monitoring environmental conditions (e.g., temperature, humidity), and implementing proper handling procedures to prevent damage, contamination, or expiration of supplies.</li><li>Distribution and Allocation : Nurses facilitate the distribution and allocation of medical supplies to various departments, units, or patient care areas within the healthcare facility based on demand, priority, and usage patterns. They ensure equitable distribution while optimizing resource utilization.</li><li>Quality Control : Nurses are involved in ensuring the quality and safety of medical supplies through inspection, verification, and adherence to standards and regulations. They identify and report any issues related to product quality, packaging, labeling, or expiration dates to appropriate authorities.</li><li>Education and Training : Nurses provide education and training to healthcare staff on proper procedures for handling, storing, and using medical supplies to promote patient safety, infection control, and resource conservation. They may conduct in-service sessions, orientation programs, or ongoing training to reinforce best practices.</li><li>Documentation and Reporting : Nurses maintain accurate records and documentation related to supply management activities, including inventory records, usage logs, expiration dates, and incident reports. They generate reports and analysis to track trends, identify areas for improvement, and support decision-making.</li><li>Collaboration : Nurses collaborate with multidisciplinary teams, including procurement personnel, clinicians, administrators, and support staff, to coordinate supply-related activities, address challenges, and implement effective solutions. They communicate effectively to facilitate seamless workflow and optimize patient care outcomes.</li><li>Continuous Improvement : Nurses actively participate in quality improvement initiatives aimed at enhancing supply chain efficiency, reducing waste, and optimizing resource utilization. They contribute ideas, feedback, and suggestions for process improvement and innovation in supplies management practices.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-9">
           <summary>09 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Management of health facility resources</strong> as a practical nursing topic, not only a memorized definition. Translate theory into safe decisions, accountability, communication and service improvement.</p>
 <ul><li><strong>What to understand first:</strong> define management of health facility resources, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-10">
           <summary>10 Assessment Guide</summary>
           <ul><li>The problem, stakeholders, available resources, policy requirements and ethical issues.</li><li>Risks to patients, staff, confidentiality, quality, costs and continuity.</li><li>Documentation, reporting lines, supervision and evaluation measures.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-11">
           <summary>11 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use evidence, policy and professional standards to guide action.</li><li>Communicate clearly, document decisions and protect confidentiality.</li><li>Evaluate whether the action improves safety, learning or service delivery.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The plan is documented, realistic, ethical and improves patient care or learning outcomes.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-12">
           <summary>12 Patient Teaching and Revision Check</summary>
           <ul><li>Explain management of health facility resources in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Management%20of%20equipment%20and%20supplies%20Health%20Service%20Management%20and%20Entrepreneurship%20nursing%20lecture" title="Management of equipment and supplies YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (5)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Management-of-equipment-and-supplies-1-e1710567165463-1024x324.webp" alt="Management Of Equipment And Supplies 1 E1710567165463" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Management Of Equipment And Supplies 1 E1710567165463</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Management-of-Supplies-1.webp" alt="Management Of Supplies 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Management Of Supplies 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/RATIONAL-USE-OF-SUPPLIES-e1710567663547-1024x546.webp" alt="RATIONAL USE OF SUPPLIES E1710567663547" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">RATIONAL USE OF SUPPLIES E1710567663547</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/20ac6d7c6d4cd7e2f9ee1fb8bdb29386.webp" alt="20ac6d7c6d4cd7e2f9ee1fb8bdb29386" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">20ac6d7c6d4cd7e2f9ee1fb8bdb29386</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/9d4731c30d8e110285e3beef10ae3cfc.webp" alt="9d4731c30d8e110285e3beef10ae3cfc" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">9d4731c30d8e110285e3beef10ae3cfc</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Management%20of%20equipment%20and%20supplies%20Health%20Service%20Management%20and%20Entrepreneurship%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Management%20of%20equipment%20and%20supplies%20Health%20Service%20Management%20and%20Entrepreneurship%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

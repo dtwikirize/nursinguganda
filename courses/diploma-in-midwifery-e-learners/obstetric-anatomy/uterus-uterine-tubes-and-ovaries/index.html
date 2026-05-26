@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,27 @@
         <p>Uterus, Uterine tubes and Ovaries should be reviewed through safe maternal and newborn assessment, early recognition of danger signs, respectful communication and timely referral. Connect the definition to vital signs, bleeding, fetal or newborn wellbeing, patient education and local protocol requirements.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 14 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">THE NON-PREGNANT UTERUS</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Microscopic structure of the uterus There are three layers of tissue from within.</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Relations to the uterus</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Supports</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Functions of the Uterus:</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Clinical note</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Guiding questions</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Clinical procedure: Antenatal Examination</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Fallopian Tubes</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Ovaries :</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 THE NON-PREGNANT UTERUS</summary>
           <p>The uterus is a hollow muscular organ of the female reproductive system where offspring gestate . A pear-shaped organ, the uterus lies posterior-superior to the bladder and anterior to the rectum in the female pelvis. It consists of the fundus (top), body (middle), and cervix (lower). The uterus is composed of the endometrium (inner mucosal lining), myometrium (smooth muscular middle layer), and perimetrium.</p>
 <p>Situation : The uterus lies in the true pelvis in an anteverted (leans forward) and ante-flexed (bends over its body) position. The body of the uterus lies above the urinary bladder.</p>
@@ -99,7 +131,7 @@
 <p>2. THE NECK OF THE UTERUS This forms the lower 1/3 of the uterus and enters the vagina at right angles.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Microscopic structure of the uterus There are three layers of tissue from within.</summary>
           <p>1. The endometrium : It is the mucus membrane which lines the cavity of the uterus. It is made up of three layers; The compact layer, the Functional (spongy) layer and the Basal layer. The appearance of this lining varies with each day of the menstruation cycle. During menstruation, it is shed up to the basal layer.</p>
 <p>2. The myometrium : It is the thickest muscle layer and has three layers.</p>
@@ -107,39 +139,39 @@
 <p>3. The perimetrium – This is the outer covering of the peritoneum which covers the uterus except at the side where it forms the broad ligaments and at the level of the isthmus.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Relations to the uterus</summary>
           <ul><li>Superiorly : The intestines and the abdominal muscles.</li><li>Anteriorly : The bladder, Uterovesical pouch, anterior vaginal fornix.</li><li>Posteriorly : The rectal uterine pouch, rectum, utero-sacral ligaments.</li><li>Laterally : The broad ligaments, ureters, Fallopian tubes, ovaries and round ligaments.</li><li>Inferiorly : The vagina.</li><li>Blood supply: Uterine arteries: These arise from the internal iliac arteries and ovarian arteries.</li><li>Venous return: Uterine veins.</li><li>Lymphatic drainage: Into the internal iliac and sacral glands.</li><li>Nerve supply: By the sympathetic and the parasympathetic nerves which are branches of the lee Franken Hauser plexus.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Supports</summary>
           <ul><li>The round ligaments : Maintain the uterus in its position of anteverted and anteflexed. They extend from the cornua at each side, pass downwards and insert into the tissue of the labia majora.</li><li>The broad ligaments : These are not true ligaments but folds of peritoneum extending laterally between the uterus and the side walls of the pelvis.</li><li>Cardinal ligament or Transverse cervical ligaments : They run out from the side walls of the cervix to the side walls of the pelvis.</li><li>The uterosacral ligament : These pass from the cervix to the sacrum.</li><li>Pub cervical ligament : These pass from the cervix under the bladder to the pubic bone.</li><li>The ovarian ligament: These begin at the cornua and attach to the ovaries.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Functions of the Uterus:</summary>
           <ul><li>Responsible for menstruation as the endometrium sheds during each monthly period.</li><li>The endometrial cavity accommodates the fetus during pregnancy.</li><li>Uterine muscles facilitate contractions during labor, enabling the expulsion of the infant through the birth canal.</li><li>To accommodate and nourish the fertilized ovum for the gestation period.</li><li>To involute following childbirth.</li><li>It is a site for intra-Uterine Device insertion.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Clinical note</summary>
           <p>The uterus undergoes physiological changes in structure when one is pregnant due to the action of progesterone and oestrogen hormone.</p>
         </details>
       
-        <details class="seo-lesson-section exam-section" open>
+        <details class="seo-lesson-section exam-section" id="section-7">
           <summary>07 Guiding questions</summary>
           <ul><li>Describe the non-pregnant uterus with a well-labeled diagram.</li><li>List three layers of the uterus.</li><li>Describe the myometrium of the uterus.</li><li>Outline three uterine supports.</li><li>Outline four functions of the uterus.</li></ul>
         </details>
       
-        <details class="seo-lesson-section exam-section" open>
+        <details class="seo-lesson-section exam-section" id="section-8">
           <summary>08 Clinical procedure: Antenatal Examination</summary>
           <p>An antenatal mother is waiting to be examined. Using the Leopold method, palpate her abdomen.</p>
 <p>TASK: Abdominal examination</p>
 <ul><li>Step Action: Rationale:</li><li>1. Welcome and explain the procedure to the mother, wash hands. To allay anxiety and promote cooperation.</li><li>2. Request mother to empty bladder. For comfort.</li><li>3. Put the mother in a recumbent position and expose the xiphisternum and symphysis pubis. To aid relaxation of the abdominal muscles.</li><li>4. While standing at the foot of the bed, inspect and observe the abdomen for: – Striae gravidarum, linear nigra, Fetal movements, Size and shape – Linea alba, – Skin rashes, skin hyper-pigmented spots and scars To rule out pregnancy.</li><li>5. Stand on the right hand side of the mother, – Ask the woman if she has any pain palpation in the abdomen. – Do light palpation of her left and right abdomen, and ensure to exclude enlargement of the spleen and liver. To detect anatomical conditions of the organs.</li><li>6. Fundal grip . Palpate the upper abdomen with both hands to feel the gravid uterus. To detect the size and position of the uterus.</li><li>7. Umbilical grip . Place the hand to apply deep pressure with the palm on the lateral sides to feel the uterus. Take note of the irregular nodules which indicate fetal limbs. To identify the location and position of the fetal back.</li><li>8. Pawlik’s grip – Turn and face the mother’s legs. – Use the fingers and thumbs to feel the moving fetal limbs in the lower abdomen. To determine the presentation and the amniotic fluid volume.</li><li>9. Pelvic grip . Move the finger towards the pelvis to determine where the brow is located. To confirm presentation and the lie.</li><li>10. Auscultation Place Pinard’s stethoscope over the maternal abdomen where the fetal back was felt. Move the stethoscope until maximum intensity is felt. Place the right hand on the maternal radial pulse and compare it with the fetal heart rate. Count the fetal heart beats per minute. To determine fetal viability.</li><li>11. Tell the mother findings</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Fallopian Tubes</summary>
           <p>Fallopian tubes are two muscular tubes leading from the ovaries to the uterus .</p>
 <p>They consist of the infundibulum (with fimbriae near the ovary), ampullary region , isthmus (narrowest part linking to the uterus), and interstitial part traversing the uterine musculature. They are also called oviduct or fallopian tubes named after Fallopius, an ancient Greek anatomist.</p>
@@ -173,7 +205,7 @@
 <ul><li>Cleanliness of the vulva is very significant.</li><li>Early detection of abnormal vaginal discharge like the pus discharge of Gonorrhea is important so that treatment is given on time.</li><li>List four parts of the uterine tubes.</li><li>Outline two functions of the ampulla.</li><li>Describe the uterine tubes with the aid of a diagram.</li><li>Explain three functions of the uterine tubes.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Ovaries :</summary>
           <p>The ovaries are two small glandular structures. They are the female sex endocrine glands in which ova are produced.</p>
 <p>Two glands on each side of the uterus, ovaries are attached to the uterus by the ovarian ligament and the pelvic wall by the suspensory ligament . Covered by the mesovarium (part of the broad ligament), the ovary’s size varies with age and menstrual cycle stage.</p>
@@ -205,37 +237,42 @@
 <ul><li>Describe the development of the Graffian follicle.</li><li>Describe the cortex of the ovary.</li><li>State two functions of the medulla.</li><li>State two hormones produced by the ovary.</li><li>With the aid of a diagram, describe the mature ovary.</li><li>Define ovulation.</li><li>Give three reasons why ovulation takes place.</li><li>List four ovarian supports.</li><li>State two functions of the ovary.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-11">
           <summary>11 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Uterus, Uterine tubes and Ovaries</strong> as a practical nursing topic, not only a memorized definition. Read the topic through the safety of two patients: the mother and the fetus or newborn.</p>
 <ul><li><strong>What to understand first:</strong> define uterus, uterine tubes and ovaries, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-12">
           <summary>12 Assessment Guide</summary>
           <ul><li>Maternal vital signs, bleeding, pain, contractions, uterine tone and danger signs.</li><li>Fetal or newborn wellbeing, feeding, temperature, breathing and activity.</li><li>History of pregnancy, parity, medications, allergies, investigations and referral risks.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-13">
           <summary>13 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Recognize danger signs early and escalate without delay.</li><li>Provide respectful communication, privacy, infection prevention and clear documentation.</li><li>Teach the mother what to monitor at home and when to return urgently.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> Mother and baby remain stable, danger signs are acted on early, and the family understands follow-up instructions.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-14">
           <summary>14 Patient Teaching and Revision Check</summary>
           <ul><li>Explain uterus, uterine tubes and ovaries in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Uterus%2C%20Uterine%20tubes%20and%20Ovaries%20Obstetric%20anatomy%20nursing%20lecture" title="Uterus, Uterine tubes and Ovaries YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (1)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/uterus-fallopian-tube-ovaries-midwives-revision.webp" alt="Uterus Fallopian Tube Ovaries Midwives Revision" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Uterus Fallopian Tube Ovaries Midwives Revision</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Uterus%2C%20Uterine%20tubes%20and%20Ovaries%20Obstetric%20anatomy%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Uterus%2C%20Uterine%20tubes%20and%20Ovaries%20Obstetric%20anatomy%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

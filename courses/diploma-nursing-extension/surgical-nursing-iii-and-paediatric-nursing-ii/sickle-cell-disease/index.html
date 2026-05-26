@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,30 @@
         <p>Sickle cell disease should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 17 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Sickle Cell Disease/Sickle Cell Anaemia</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Classification of sickle cell disease</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Possibility of Sickle cell Disease</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Cause of Sickle Cell Disease</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Pathophysiology of Sickle Cell Disease.</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Clinical Presentation of SCD</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Sickle-cell crisis</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Types of Sickle Cell Crisis.</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Precipitating Factors of Sickle Cell Crisis</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Diagnosis and Investigations:</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Prevention Of Sickle Cell Disease</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Complications of Sickle Cell anaemia</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">NURSING CARE PLAN FOR A PATIENT WITH SICKLE CELL CRISIS</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-16" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-17" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Sickle Cell Disease/Sickle Cell Anaemia</summary>
           <p>Sickle cell disease is inherited as an autosomal recessive trait . Normal Hb A gets replaced with Abnormal Hb S .</p>
 <p>Children with this disorder have atypical haemoglobin molecules called haemoglobin S which can distort red blood cells into a sickle or crescent shape.</p>
@@ -94,7 +129,7 @@
 <p>These cells stick together and can’t easily move through the blood vessels. This can block small blood vessels and the movement of healthy, normal oxygen-carrying blood. The blockage can cause pain</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Classification of sickle cell disease</summary>
           <p>Disease is broadly classified into;</p>
 <p>1. Sickle Cell Anaemia (Homozygous) : Are patients whose Red blood cells only contain abnormal beta chains leading to HbSS (SS) . These patients are said to have sickle-cell anaemia and they have S+S of Sickle cell disease. Individuals with sickle cell anaemia inherit two copies of the faulty haemoglobin gene , one from each parent. This is denoted as HbSS or SS. Other names: HbSS , SS disease , Haemoglobin S.</p>
@@ -111,20 +146,20 @@
 <ul><li>SCD: A faulty instruction manual leads to problems with red blood cells.</li><li>Autosomal: The chromosomes that determine most traits (the house’s foundation).</li><li>Heterozygous: You have one good and one faulty copy of a gene (one good and one faulty instruction manual).</li><li>Homozygous: You have two identical copies of a gene (two good or two faulty instruction manuals).</li><li>Recessive: You need two faulty copies to express the disease (two faulty instruction manuals to build a bad house).</li><li>Dominant: You only need one faulty copy to express the disease (one faulty instruction manual is enough to build a bad house).</li><li>Red Blood Cells: These cells carry oxygen throughout the body.</li><li>Haemoglobin: A protein within red blood cells that binds to oxygen.</li><li>Haemoglobin Gene: A gene located on chromosome 11 that provides instructions for making haemoglobin.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Possibility of Sickle cell Disease</summary>
           <p>Problems in sickle cell disease begin around 5 to 6 months of age. Sickle-cell disease occurs when a person inherits two abnormal copies of the haemoglobin gene , one from each parent. This gene occurs in chromosome 11.</p>
 <ul><li>Type of Gene Normal Trait Disease</li><li>One Parent with Trait 50% 50% 0%</li><li>Both Parents with Trait 25% 50% 25%</li><li>One Parent with Disease 50% 50% 50%</li><li>Both Parents have Disease 0% 0% 100%</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Cause of Sickle Cell Disease</summary>
           <ul><li>It is caused by a <strong>defect</strong> in <strong>beta chains</strong> where a given amino acid is replaced by another (Substitution of valine for glutamic acid ) at position 6 of the chain.</li><li>This change creates abnormal hemoglobin called <strong>HbS.</strong></li></ul>
 <p>Sickle cell disease is caused by a genetic mutation in the gene that produces haemoglobin , a protein in red blood cells that carries oxygen.</p>
 <ul><li>Normal Haemoglobin : Normal haemoglobin is made up of two alpha chains and two beta chains , denoted as HbA .</li><li>Sickle Cell Haemoglobin : In sickle cell disease, there’s a single point mutation in the beta chain of haemoglobin , replacing a glutamic acid with valine , at position 6 of the chain.This mutated haemoglobin is called HbS .</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Pathophysiology of Sickle Cell Disease.</summary>
           <p>Normally each haemoglobin molecule consists of four molecules of haem folate into one molecule of globin .</p>
 <p>But in sickle cell disease this is altered and cells become sickle shaped, glutamine is replaced by valine . The sickle cells elongate under conditions of lower oxygen concentration, Acidosis takes place and dehydration.</p>
@@ -133,7 +168,7 @@
 <p>Although the bone marrow attempts to compensate by creating new red cells, it does not match the rate of destruction. Healthy red blood cells usually function for 90–120 days, but sickled cells only last 10–20 days. Increased sequestration of Red blood cells in the spleen also cause anaemia</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Clinical Presentation of SCD</summary>
           <p>Children are rarely symptomatic until late in the first years of life related to increased amounts of fetal haemoglobin being cleared from blood. The severity of symptoms can vary from person to person. Sickle-cell disease may lead to various acute and chronic complications, several of which have a high mortality rate.</p>
 <ul><li>Painful swelling of hands and feet (Hand-foot syndrome): This is a common presentation in children, caused by vaso-occlusive crisis in the small blood vessels of the hands and feet.</li><li>Pain crisis (sickle crisis) : This is a major complication characterized by intense pain due to blocked blood flow to a specific area of the body and can last for days or weeks. Pain in the chest, abdomen, limbs, and joints.</li><li>Anaemia : A consistent feature, as the lifespan of sickle red blood cells is shortened. This leads to fatigue, weakness, and paleness.</li><li>Jaundice : Caused by the breakdown of red blood cells, leading to a yellowish discoloration of the skin and eyes.</li><li>Haemoglobin levels : Usually low, ranging from 6 g/dL to 9 g/dL, indicating the severity of anaemia.</li><li>Shortness of breath : Caused by complications like pneumonia, acute chest syndrome, and pulmonary hypertension.</li><li>Fatigue and weakness : A common symptom due to the low oxygen levels caused by anaemia.</li><li>Priapism : A painful erection lasting for hours or days, caused by blocked blood flow in the penis. If not promptly treated, it can lead to impotence.</li><li>Abdominal swelling and pain : Often associated with spleen enlargement (splenomegaly) or blockages in the blood vessels supplying the intestines.</li><li>Unusual headache : May be a sign of stroke, as sickled cells can block blood flow to the brain.</li><li>Loss of appetite : A common symptom associated with anaemia and pain.</li><li>Irritability : Can be a response to pain, fatigue, or other symptoms.</li><li>Bossing of the bones of the skull : Indicates active erythropoiesis (red blood cell production) to compensate for the loss of sickle cells.</li><li>Intercurrent infections : Patients with sickle cell disease are more susceptible to infections like pneumonia, acute respiratory infections, and malaria, often complicated by severe anaemia.</li><li>Splenomegaly: Enlarged spleen, common in younger children, but often shrinks in older children due to splenic infarction.</li><li>Growth retardation : Can occur due to chronic illness, pain, and infections.</li><li>Stroke : A serious complication resulting from blocked blood flow to the brain, leading to brain damage.</li></ul>
@@ -144,13 +179,13 @@
 <ul><li>Chronic pain is a defining feature, often with unpredictable patterns.</li><li>Pulmonary complications : Pulmonary hypertension, acute chest syndrome, and pneumonia are frequent issues.</li><li>Osteonecrosis : Damage to bone due to lack of blood flow.</li><li>Avascular necrosis : Can affect bones, especially hips and shoulders.</li><li>Chronic kidney disease : Can develop over time due to repeated damage to the kidneys.</li><li>Jaundice : Yellowing of the skin and whites of the eyes due to the breakdown of red blood cells.</li><li>Gallstones : Formation of stones in the gallbladder, often caused by a build-up of bilirubin from red blood cell breakdown.</li><li>Progressive kidney impairment: Damaged blood vessels in the kidneys can lead to reduced kidney function over time.</li><li>Growth retardation : Slower growth of long bones and skeletal deformities, particularly in the spine, can occur.</li><li>Delayed puberty : The chronic illness can delay the onset of puberty.</li><li>Chronic painful leg ulcers: Related to chronic anaemia and poor blood flow to the extremities.</li><li>Decreased lifespan : While advancements in medical care have improved life expectancy, individuals with sickle cell disease still have a shortened lifespan compared to the general population.</li><li>Altered body structures : These include “bossing” of the skull (abnormal thickening of the skull bones), as well as septic necrosis (bone death due to infection) in the femur (thigh bone) and head of the humerus (upper arm bone).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Sickle-cell crisis</summary>
           <p>Sickle cell crisis is pain that can begin suddenly and lasts several hours to several days .</p>
 <p>The terms “ sickle-cell crisis ” or “ sickling crisis ” may be used to describe several independent acute conditions occurring in patients with Sickle Cell Disease. It happens when sickled red blood cells block small blood vessels that carry blood to bones. Children may present with pain in the back, knees, legs, arms, chest or stomach. The pain can be throbbing, sharp, dull or stabbing.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Types of Sickle Cell Crisis.</summary>
           <p>(i) Vaso-occlusive Crisis : This is the most common form of crisis . Small blood vessels are occluded by the sickle cells causing distal ischemia and infarction, leading to pain, swelling, and inflammation.</p>
 <ul><li>Symptoms : Intense pain in the bones, joints, abdomen, chest, or head. Other symptoms may include fever, fatigue, and shortness of breath.</li><li>Extremities . Bone destruction leading to osteoporosis or ischaemic necrosis.</li><li>Foot and hand syndrome due to aseptic infarction of metacarpals and metatarsals causing swelling and pains often this is seen in infants and toddlers.</li><li>Triggers : Dehydration, infection, cold weather, high altitude, and strenuous physical activity.</li><li>Treatment : Pain management with analgesics, intravenous fluids, and blood transfusions in severe cases.</li></ul>
@@ -166,7 +201,7 @@
 <ul><li>Symptoms : Chest pain, fever, shortness of breath, cough, and rapid breathing.</li><li>Treatment : Oxygen therapy, antibiotics, pain management, and sometimes mechanical ventilation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Precipitating Factors of Sickle Cell Crisis</summary>
           <p>Sickle cell crises are painful episodes that occur when sickle red blood cells block blood flow in the body. These crises can be triggered by various factors, including:</p>
 <p>Environmental and Physiological Factors:</p>
@@ -177,7 +212,7 @@
 <ul><li>Pregnancy : The increased blood volume and hormonal changes during pregnancy can make women more susceptible to crises.</li><li>Asthma : The inflammatory response in asthma can trigger sickle cell crises.</li><li>Anxiety : Similar to stress, anxiety can constrict blood vessels and increase the risk of a crisis.</li><li>Dehydration.</li><li>Infection.</li><li>Trauma.</li><li>Strainous Physical exercises.</li><li>Extreme fatigue.</li><li>Extreme exertion</li><li>Severe cold that constricts peripheral vessels</li><li>Fever Excessive exercise</li><li>Hypoxia.</li><li>Acidosis.</li><li>Extreme temperature</li><li>High attitude</li><li>Emotional stress</li><li>Pregnancy</li><li>Asthma</li><li>Anxiety</li><li>Abrupt changes in temperature</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Diagnosis and Investigations:</summary>
           <ul><li>Family history : A strong family history of sickle cell disease is a big indicator.</li><li>Full blood count and peripheral film: The blood test may show leukocytosis (increased white blood cell count) due to bacterial infection and reveal the presence of sickle cells.</li><li>Haemoglobin estimation : Will reveals a low haemoglobin level (6-8 g/dL) with a high reticulocyte count (10-20%), indicating the body’s attempt to compensate for the loss of red blood cells.</li><li>Sickling test : This simple test, done by finger or heel prick, observes a drop of blood under a microscope after removing oxygen. Sickle-shaped cells are indicative of the disease. However, it doesn’t distinguish between the trait and the disease or other sickle haemoglobin opathies.</li><li>Haemoglobin electrophoresis : This more definitive test involves separating different types of haemoglobin through an electric current. It identifies the presence and amount of HbS (sickle haemoglobin), providing a definitive diagnosis for both the trait and the disease.</li><li>Sickledex test : A rapid screening test for detecting the presence of HbS in the blood.</li><li>Peripheral blood smear : Examines a blood sample under a microscope to identify sickle cells and reticulocytes.</li><li>Urinalysis : Analyzes urine for signs of kidney damage.</li><li>Liver and renal function tests : Assess the function of the liver and kidneys.</li><li>Chest radiography: Used to diagnose Acute Chest Syndrome.</li><li>Abdominal ultrasound: Can help detect problems in the abdomen, such as a mesenteric crisis (blockage of blood vessels in the intestines).</li><li>Sickling test (emergency screening): Can be performed before surgery to identify individuals with sickle cell disease.</li><li>Acute anaemia</li><li>Carotid-Cavernous Fistula (CCF)</li><li>haemoglobin C Disease</li><li>Hemolytic Anaemia</li><li>Osteomyelitis in Emergency Medicine</li><li>Pulmonary Embolism (PE)</li><li>Rheumatoid Arthritis Hand Imaging</li><li>Septic Arthritis</li></ul>
 <p>Management of Sickle Cell Disease.</p>
@@ -213,52 +248,64 @@
 <ul><li>Join a sickle cell support group : Connect with other individuals living with sickle cell disease and share experiences and resources.</li><li>Acute pain related to tissue hypoxia due to agglutination of sickled cells within blood vessels evidenced by patient verbalization.</li><li>Risk for infection related to lowered immunity.</li><li>Impaired Gas Exchange related to decreased oxygen-carrying capacity of the blood, reduced RBC life span/premature destruction, abnormal RBC structure; sensitivity to low oxygen tension (strenuous exercise, increase in altitude) as evidenced by difficulty in breathing.</li><li>Ineffective Tissue Perfusion related to vaso-occlusive nature of sickling as evidenced by changes in vital signs: diminished peripheral pulses/capillary refill, general pallor or decreased mentation, restlessness.</li><li>Risk for Deficient Fluid Volume related to increased fluid needs, e.g., hypermetabolic state/fever, inflammatory processes.</li><li>Acute Pain related to Intravascular sickling with localized stasis, occlusion, and infarction/necrosis as evidenced by generalized pain, described as throbbing, or severe ; affecting peripheral extremities, bones, joints, back, abdomen, or head (headaches)</li><li>Risk for Impaired Skin Integrity related to impaired circulation (venous stasis and vaso-occlusion)</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 Prevention Of Sickle Cell Disease</summary>
           <ul><li>Genetic counselling is important to prevent passing on the trait or disease to children for those wanting to have them.</li><li>Premarital counselling is encouraged. Early recognition/screening of children with low Hb.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-12">
           <summary>12 Complications of Sickle Cell anaemia</summary>
           <ul><li>Stroke . Issues in circulation will result to blockages, therefore predisposing the patient to develop thrombolytic strokes</li><li>Acute chest syndrome . This is characterized by chest pain, fever and difficulty breathing requiring emergency medical treatment</li><li>Pulmonary hypertension . This type of anaemia can cause build-up of unnecessary lung pressure due to problems with circulation as a result of erythrocyte clumping</li><li>Organ damage . Due to the chronic inability of the red blood cells to provide essential oxygen for normal organ function, patients with sickle cell anaemia may develop organ failure, which can be fatal.</li><li>Blindness . One of the potential complications of having abnormal red blood cells circulating in the body is damage to smaller blood vessels, particularly the eye. This in turn will cause eye damage and eventually blindness.</li><li>Leg ulcers . Poor wound healing and rampant skin breakdown can be observed for patients suffering from sickle cell anaemia.</li><li>Gallstones . The build of bilirubin caused by the metabolism of the abnormal erythrocytes will result to gall stones that will block the flow of bile.</li><li>Priapism . This is a condition wherein men with Sickle cell anaemia will present with painful and long-lasting erections due to the blockages of the tiny blood vessels of the penis.</li><li>Pregnancy complications . Sickle cell anaemia increases the risk of high blood pressure and the presence of clots that will interfere with the normal development of the fetus.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-13">
           <summary>13 NURSING CARE PLAN FOR A PATIENT WITH SICKLE CELL CRISIS</summary>
           <ul><li>Assessment Diagnosis Goals/Expected Outcomes Intervention Rationale Evaluation</li><li>Cyanosis, breathlessness at a rate of 28 breaths/min, restlessness, and SpO2 of 80%. Impaired gaseous exchange related to increased viscosity of blood evidenced by cyanosis, breathlessness, restlessness, and SpO2 of 80%. – Establish adequate gaseous exchange within 2 hours. – Improve SpO2 by 10% within the first 30 minutes. – Establish a normal breathing pattern without assisted respiration within 1 hour. – Restore normal skin color in 30 minutes. – Establish an intravenous line and administer fluids (normal saline 500 mL every 6 hours for 24 hours). – Encourage fluid intake by mouth. – Start a fluid input and output chart. – Assess the need for more fluids after 24 hours. – Take vital signs every 30 minutes for 2 hours, paying attention to breathing and SpO2, then adjust according to findings. – Administer oxygen 3 L/min for 1 hour using a face mask. – Establishing IV access and administering fluids help to reduce blood viscosity and improve circulation. – Encouraging oral fluid intake promotes hydration. – Fluid balance chart helps to monitor fluid status. – Regular assessment ensures timely adjustments in fluid therapy. – Oxygen therapy increases oxygen saturation in the blood. – Patient is resting. – Normal breathing pattern restored, rate 20 breaths/min. – SpO2 improved to 98% on room air. – Normal skin colour restored, lips look pink.</li><li>Patient verbalizing throbbing pain in the legs and joints, rating score of 8 on the pain scale. Acute pain related to intravascular sickling with localized stasis evidenced by patient verbalizing throbbing pain in the legs and joints. – Relieve pain within 4 hours. – Improve venous patency – Improve circulatory flow. – Administer analgesia (pethidine 50 mg single dose, then tramadol 50 mg every 8 hours for 3 days as prescribed and document). – Continue intravenous fluids as above and monitor pain hourly. – Analgesics provide comfort and relieve restlessness. – IV fluids maintain normal circulatory flow. – Patient reports pain relief after 4 hours, score 2 on the pain scale.</li><li>Reduced haemoglobin levels of 5 g/L according to laboratory results, swelling of the lower limbs and joints. Altered tissue perfusion related to decreased red blood cells as evidenced by reduced haemoglobin levels of 5 g/L, swelling of the lower limbs and joints. – Restore normal tissue perfusion within 24 hours. – Establish normal tissue perfusion. – Transfuse with units of packed cells 5 mL/kg/h as prescribed. – Continue with fluid balance chart. – Apply a warm compress to the affected areas. – Elevate the affected limbs. – Blood transfusion increases haemoglobin levels. – Fluid balance chart monitors fluid status. – Warm compresses promote vasodilation and circulation to hypoxic areas. – Elevation reduces swelling and promotes venous return. – Increased haemoglobin levels of 7 g/dL as seen in post-transfusion lab report. – Swelling has subsided, and the patient is able to move the limb.</li><li>Fever, hypermetabolic state, dehydration symptoms (dry mucous membranes, poor skin turgor). Risk for fluid volume deficit related to increased fluid needs due to hypermetabolic state or fever. – Maintain adequate hydration. – Prevent fluid volume deficit. – Monitor vital signs and fluid status regularly. – Encourage oral fluid intake and administer IV fluids as needed. – Educate the patient on the importance of fluid intake. – Regular monitoring detects early signs of fluid deficit. – Ensuring adequate hydration prevents complications. – Fluid balance is maintained, and signs of dehydration are absent.</li><li>Presence of venous stasis, vaso-occlusion, decreased mobility, and risk of skin breakdown. Risk for impaired skin integrity related to impaired circulation due to venous stasis and vaso-occlusion, and decreased mobility. – Prevent skin breakdown. – Maintain skin integrity. – Assess skin regularly for signs of breakdown. – Reposition the patient every 2 hours. – Provide skin care and keep the skin clean and dry. – Use pressure-relieving devices as needed. – Regular assessment and repositioning prevent pressure ulcers. – Good skin care promotes skin integrity. – Skin remains intact without signs of breakdown.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-14">
           <summary>14 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Sickle cell disease</strong> as a practical nursing topic, not only a memorized definition. Prioritize airway, breathing, circulation, pain, asepsis, wound healing and early complication detection.</p>
 <ul><li><strong>What to understand first:</strong> define sickle cell disease, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-15">
           <summary>15 Assessment Guide</summary>
           <ul><li>Vital signs, pain, bleeding, perfusion, level of consciousness and injury pattern.</li><li>Wound appearance, drainage, odour, swelling, temperature and surrounding skin.</li><li>Fluid balance, mobility, nutrition, surgical site risk and ordered investigations.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-16">
           <summary>16 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Stabilize urgent problems first, then prepare for investigations or theatre care.</li><li>Maintain aseptic technique, pain control, wound care and documentation.</li><li>Prevent shock, infection, pressure injury, deep vein thrombosis and delayed healing.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The patient remains stable, wound healing progresses, pain is controlled and complications are recognized early.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-17">
           <summary>17 Patient Teaching and Revision Check</summary>
           <ul><li>Explain sickle cell disease in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Sickle%20cell%20disease%20Surgical%20Nursing%20III%20and%20Paediatric%20Nursing%20(II)%20nursing%20lecture" title="Sickle cell disease YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (24)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/sickle-cell-Sickle-Cell-Disease.webp" alt="Sickle Cell Sickle Cell Disease" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Sickle Cell Sickle Cell Disease</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Sickle-Cell-Disease-sickle-shape.webp" alt="Sickle Cell Disease Sickle Shape" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Sickle Cell Disease Sickle Shape</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Types-of-Sickle-Cell-disease-1-1024x692.webp" alt="Types Of Sickle Cell Disease 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Types Of Sickle Cell Disease 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/PotentialTriggersforaSickleCellCrisis-.webp" alt="PotentialTriggersforaSickleCellCrisis" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">PotentialTriggersforaSickleCellCrisis</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Diagnosis-and-Investigations-sickle-2-1-1024x679.webp" alt="Diagnosis And Investigations Sickle 2 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Diagnosis And Investigations Sickle 2 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/b255f11b6728902630b0d312d8014db7.webp" alt="B255f11b6728902630b0d312d8014db7" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">B255f11b6728902630b0d312d8014db7</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/51bf1f6d879754a1fdd0b2d8ab8d965e.webp" alt="51bf1f6d879754a1fdd0b2d8ab8d965e" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">51bf1f6d879754a1fdd0b2d8ab8d965e</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/96e677e7a1bd8891b7f4e0019930dad3.webp" alt="96e677e7a1bd8891b7f4e0019930dad3" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">96e677e7a1bd8891b7f4e0019930dad3</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Sickle%20cell%20disease%20Surgical%20Nursing%20III%20and%20Paediatric%20Nursing%20(II)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <p style="color:var(--seo-muted);font-size:.85rem;margin:8px 0 0">16 more diagrams available — open the lesson for full illustrations.</p>
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Sickle%20cell%20disease%20Surgical%20Nursing%20III%20and%20Paediatric%20Nursing%20(II)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

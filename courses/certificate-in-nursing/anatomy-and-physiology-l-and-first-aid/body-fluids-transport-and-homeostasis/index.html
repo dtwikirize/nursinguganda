@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,44 +97,73 @@
         <p>Body Fluids, Transport &amp; Homeostasis should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 23 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Body&#39;s Environments: Internal and External</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">1. The External Environment</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">2. The Internal Environment</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Subdivisions of the Internal Environment (Body Fluids)</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">A. Extracellular Fluid (ECF)</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">B. Intracellular Fluid (ICF)</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">HOMEOSTASIS</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Control Systems of Homeostasis</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">1. Negative Feedback Mechanism</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">2. Positive Feedback Mechanism</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Homeostatic Imbalance</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">MOVEMENT OF SUBSTANCES WITHIN BODY FLUIDS</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">1. Passive Transport</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">A. Diffusion</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">B. Osmosis (The Diffusion of Water)</a>
+          <a href="#section-16" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">2. Active Transport</a>
+          <a href="#section-17" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Types of Active Transport</a>
+          <a href="#section-18" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Environment, Homeostasis &amp; Transport Qiuz</a>
+          <a href="#section-19" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Environment, Homeostasis &amp; Transport Qiuz</a>
+          <a href="#section-20" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-21" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-22" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-23" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 The Body&#39;s Environments: Internal and External</summary>
           <p>The human body is a biological machine that does not exist alone. Rather, it exists within two distinct environments that constantly interact to maintain life, health, and functionality. To understand human physiology, we must first understand the boundaries and contents of these two environments.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 1. The External Environment</summary>
           <ul><li><strong>Description:</strong> The external environment encompasses all the surroundings completely outside the physical barrier of the body (the skin and mucosal linings). It includes the air we breathe into our lungs, the water we drink, and the food we ingest into our gastrointestinal tract. (Note: the inside of your stomach and intestines is technically considered the external environment until nutrients cross the intestinal wall into the blood!)</li><li><strong>Role (Intake):</strong> It serves as the ultimate source of survival, providing essential life-sustaining resources like molecular oxygen (O 2 ) and macronutrients/micronutrients for cells.</li><li><strong>Waste Removal (Output):</strong> The external environment simultaneously serves as a dumping ground for toxic metabolic waste products generated by the body (e.g., exhaling carbon dioxide into the air, excreting urea in urine, and passing feces).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 2. The Internal Environment</summary>
           <ul><li><strong>Description:</strong> The internal environment is the microscopic, fluid-filled space deeply enclosed within the body where living cells actually reside, function, and communicate.</li><li><strong>Key Component:</strong> <strong>Interstitial fluid (tissue fluid)</strong> . This fluid continuously bathes, surrounds, and nourishes almost all body cells (except for the dead, dry outer layers of the skin).</li><li><strong>Composition:</strong> It is mostly composed of water, acting as a universal solvent. However, it also contains a highly specific mixture of <strong>electrolytes</strong> (charged ions like sodium, potassium, and chloride), vital <strong>nutrients</strong> (glucose, amino acids), <strong>hormones</strong> (chemical messengers), and <strong>waste products</strong> traveling to excretory organs.</li><li><strong>Vital Role:</strong> The internal environment must be precisely and aggressively regulated to maintain a stable, unchanging state called <strong>Homeostasis</strong> . If this fluid becomes too acidic, too salty, or too hot, cells will rapidly die.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Subdivisions of the Internal Environment (Body Fluids)</summary>
           <p>The total body water is strictly divided into two distinct fluid compartments, separated by the selectively permeable cell membrane.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 A. Extracellular Fluid (ECF)</summary>
           <ul><li><strong>Description:</strong> All the fluid located outside of the cells. It acts as the body&#39;s internal delivery system. It includes blood plasma (inside blood vessels), lymph (inside lymphatic vessels), cerebrospinal fluid (bathing the brain and spinal cord), and interstitial fluid (between the cells).</li><li><strong>Composition:</strong> It is uniquely high in <strong>Sodium (Na + )</strong> and <strong>Chloride (Cl - )</strong> ions.</li><li><strong>Functions:</strong> Transports nutrients, oxygen, and hormones to target cells.</li><li>Carries toxic metabolic waste products away from cells to the kidneys and lungs.</li><li>Helps regulate overall body temperature and blood pH levels.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 B. Intracellular Fluid (ICF)</summary>
           <ul><li><strong>Description:</strong> The fluid trapped deeply within the cells themselves (the cytosol). This makes up the vast majority of the body&#39;s water.</li><li><strong>Composition:</strong> In stark contrast to ECF, the ICF is uniquely high in <strong>Potassium (K + )</strong> ions.</li><li><strong>Regulation:</strong> The cell membrane actively and constantly controls the composition of ICF. It acts like a bouncer at a club, ensuring the right balance of ions and molecules is maintained for internal cellular processes (like energy production and DNA repair).</li></ul>
 <p><strong>Key Takeaways on Environments:</strong></p>
 <ul><li>The internal environment is tightly regulated to maintain a stable state for optimal cell function.</li><li>Extracellular and intracellular fluids possess completely different chemical compositions. This exact difference in sodium and potassium is absolutely essential for various physiological processes, most notably nerve impulse firing and muscle contraction.</li><li>Disruptions in the delicate balance of these fluids can lead to severe, life-threatening health problems (e.g., severe dehydration or water toxicity).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 HOMEOSTASIS</summary>
           <p>Homeostasis is arguably the most important concept in all of physiology. It refers to the body&#39;s dynamic ability to maintain a stable, constant internal environment within very narrow limits, despite wild and continuous changes in the external environment.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Control Systems of Homeostasis</summary>
           <p>The body uses vast communication networks (primarily the Nervous and Endocrine systems) to detect and instantly respond to changes in the internal environment.</p>
 <p><strong>The 3 Vital Components of a Control System:</strong></p>
@@ -131,7 +172,7 @@
 <p>Homeostasis is maintained by two distinct types of feedback loops: <strong>Negative Feedback</strong> and <strong>Positive Feedback</strong> .</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 1. Negative Feedback Mechanism</summary>
           <p><strong>Description:</strong> This is the most common regulatory mechanism in the human body. It responds to a stimulus by <strong>reversing or negating</strong> the effect of that stimulus. The ultimate goal is to maintain a steady, normal state. For example, if a variable rises too high, negative feedback will bring it back down to the normal level; if it drops too low, it pushes it back up.</p>
 <p>Think of a domestic central heating system:</p>
@@ -142,39 +183,39 @@
 <ul><li><strong>Blood Glucose Levels:</strong> If blood sugar is too high, the pancreas releases insulin (effector) to push glucose into cells, lowering blood sugar back to normal.</li><li><strong>Oxygen and Carbon Dioxide levels:</strong> If CO 2 builds up, the brain forces you to breathe faster to exhale it.</li><li><strong>Water and Electrolyte levels:</strong> If you are dehydrated, the kidneys hold onto water instead of making urine.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 2. Positive Feedback Mechanism</summary>
           <p><strong>Description:</strong> Sometimes referred to as cascade or amplifier systems. In stark contrast to negative feedback, this mechanism <strong>increases and amplifies</strong> the response progressively as long as the stimulus is present. It does not maintain stability; it drives a process to a massive, explosive completion.</p>
 <ul><li>During labor, uterine contractions are stimulated by the hormone <strong>oxytocin</strong> .</li><li>As the contractions push the fetus downwards, the baby&#39;s head presses violently against the uterine cervix.</li><li>This stretching of the cervix stimulates stretch receptors (detectors), which send signals to the brain.</li><li>The brain responds by releasing even more oxytocin into the blood.</li><li>More oxytocin means stronger contractions, which pushes the head harder, which releases more oxytocin. This amplifying cycle continues until the ultimate climax: the baby is born (the stimulus is suddenly removed).</li><li>When a blood vessel is torn, a few platelets cling to the injured site.</li><li>These attached platelets release chemical signals that attract more platelets.</li><li>The new platelets release even more chemicals, attracting a massive swarm of platelets.</li><li>This amplification cascade continues until a large, solid platelet plug is formed, stopping the bleeding completely.</li></ul>
 <p>(Note: Action potentials in nerve cells are also driven by positive feedback—a small entry of sodium causes massive sodium channels to open, firing the nerve).</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 Homeostatic Imbalance</summary>
           <p>A homeostatic imbalance occurs when the body&#39;s control systems completely fail to maintain homeostasis, resulting in an abnormal, chaotic state.</p>
 <ul><li>When the body&#39;s controlled conditions remain within narrow limits, body cells function efficiently, negative feedback systems maintain homeostasis, and the body stays healthy.</li><li>However, if one or more components (the detector, control center, or effector) lose their ability to contribute to homeostasis, the normal equilibrium among body processes is severely disturbed.</li><li><strong>Moderate Imbalance:</strong> Can lead to a disorder or disease (e.g., if the pancreas fails to regulate glucose, the patient develops Diabetes Mellitus).</li><li><strong>Severe Imbalance:</strong> May rapidly result in death (e.g., if the body loses the ability to regulate core temperature, resulting in fatal heatstroke).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-12">
           <summary>12 MOVEMENT OF SUBSTANCES WITHIN BODY FLUIDS</summary>
           <p>Movement of substances within and between body fluids, often across physical barriers like cell membranes, is absolutely vital for normal physiology. The plasma membrane&#39;s unique structure grants it <strong>selective permeability</strong> . It acts as a strict border guard, allowing only certain substances to pass based on their physical size, electrical charge, and lipid-solubility.</p>
 <p><strong>The Main Types of Movement:</strong></p>
 <ul><li><strong>Passive Transport</strong> (No energy required)</li><li><strong>Active Transport</strong> (Cellular energy required)</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-13">
           <summary>13 1. Passive Transport</summary>
           <p><strong>Description:</strong> Movement of substances <strong>down</strong> their concentration gradient (flowing naturally like water down a hill, from an area of HIGH concentration to an area of LOW concentration) until equilibrium is perfectly reached. This process happens spontaneously and <strong>does not require any cellular energy (ATP)</strong> .</p>
 <p>There are two main methods of passive transport: <strong>Diffusion</strong> and <strong>Osmosis</strong> .</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-14">
           <summary>14 A. Diffusion</summary>
           <p><strong>Definition:</strong> The movement of molecules from an area of high concentration to an area of low concentration, occurring mainly in gases, liquids, and solutions. There are two sub-types:</p>
 <ul><li><strong>Simple Diffusion:</strong> Everyday Example: If you drop sugar molecules at the bottom of a cup of coffee, over time, the sugar will distribute evenly throughout the entire liquid by simple diffusion. This process speeds up if you increase the temperature (hot coffee) or increase the concentration of the diffusing substance.</li><li>Across Human Membranes: Diffusion can occur across semi-permeable membranes like the plasma membrane or capillary walls. However, only molecules that are very small or highly lipid-soluble can diffuse through unaided.</li><li>Clinical Example: Oxygen (O 2 ) diffuses freely through the thin walls of the alveoli (air sacs in the lungs), where oxygen concentration is very high, straight into the bloodstream, where oxygen concentration is low. Blood cells and large protein molecules in the plasma are physically too large to cross the alveolar membrane and remain safely in the blood.</li><li><strong>Facilitated Diffusion:</strong> Process: This passive process is utilized by larger, water-soluble substances like <strong>glucose</strong> and <strong>amino acids</strong> that cannot simply melt through the fat-based semi-permeable membrane unaided.</li><li>Mechanism: Specialized protein carriers embedded in the membrane have specific binding sites that attract these substances, functioning exactly like a <strong>lock and key mechanism</strong> . The carrier attracts the molecule, undergoes a physical change in shape, and deposits the substance on the other side of the membrane. Crucially, these carrier sites are highly specific to one particular substance.</li><li>Limitation (Transport Maximum): There is a finite, limited number of these protein carriers on the cell surface. This limits the total amount of substance that can be transported at any given time. Once all carriers are full and busy, the rate of diffusion hits a ceiling. This is known as the <strong>transport maximum</strong> .</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-15">
           <summary>15 B. Osmosis (The Diffusion of Water)</summary>
           <p><strong>Definition:</strong> The specific movement of <strong>water molecules</strong> from a region of high water concentration (a dilute, watery solution) to a region of low water concentration (a thick, highly concentrated solution) across a semi-permeable membrane. The powerful, magnetic force driving this water movement is called <strong>osmotic pressure</strong> .</p>
 <p>Imagine two sugar solutions separated by a semi-permeable membrane. The membrane has pores that are too small for the large sugar molecules to pass through, but large enough for water to pass. On one side, the sugar solution is twice as concentrated as the other side.</p>
@@ -186,13 +227,13 @@
 <ul><li><strong>Hypotonic Solutions:</strong> Have a lower concentration of solutes than human blood. Water will leave the blood and enter the cells. Example: <strong>½ strength Darrow&#39;s solution</strong> . Used cautiously when cells are severely dehydrated.</li><li><strong>Hypertonic Solutions:</strong> Have a higher concentration of solutes than human blood. Draws water out of swollen cells and into the blood. Example: <strong>Glucose 50%</strong> . Used in severe hypoglycemia or to reduce brain swelling.</li><li><strong>Isotonic Solutions:</strong> Have the exact same concentration as human blood. No net movement of water into or out of cells; it just safely increases total blood volume. Examples: <strong>Normal Saline (0.9% NaCl), Ringer&#39;s Lactate, Dextrose 5% in water (D5W)</strong> . Heavily used to treat blood loss or general dehydration.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-16">
           <summary>16 2. Active Transport</summary>
           <p><strong>Definition:</strong> The forceful transport of substances <strong>up or against</strong> their concentration gradient (pushing a boulder up a hill, from an area of lower concentration to an area of higher concentration).</p>
 <ul><li><strong>Energy Requirement:</strong> Because it goes against nature, this process strictly requires chemical energy in the form of <strong>ATP (Adenosine Triphosphate)</strong> .</li><li><strong>Mechanism:</strong> Specialized protein carriers in the membrane act as powerful pumps. They physically transport substances across the membrane, using up an astonishing <strong>up to 30% of total cellular ATP</strong> just to keep these pumps running.</li><li><strong>Specificity:</strong> Just like facilitated diffusion, these carrier sites are highly specific to one type of substance, and the rate of transfer depends entirely on the number of available pump sites.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-17">
           <summary>17 Types of Active Transport</summary>
           <p><strong>1. The Sodium-Potassium (Na+/K+) Pump</strong></p>
 <ul><li><strong>Function:</strong> This is the most famous active transport pump. It actively maintains the unequal, life-sustaining concentrations of sodium (Na + ) and potassium (K + ) ions on either side of the plasma membrane, consuming up to 30% of all cellular ATP to do so.</li><li><strong>Ion Distribution (The Rule):</strong> Potassium levels are kept much higher inside the cell (K + is the principal intracellular cation). Conversely, sodium levels are kept much higher outside the cell (Na + is the principal extracellular cation).</li><li><strong>Mechanism:</strong> Naturally, potassium tends to leak outwards, and sodium tends to leak deeply into the cell. To prevent this, the pump grabs the invading sodium and constantly pumps it back OUT of the cell, in direct exchange for grabbing escaped potassium and pumping it back IN. (Specifically, it pumps 3 Sodium out for every 2 Potassium in).</li></ul>
@@ -202,49 +243,54 @@
 <p>Quick Quiz</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-18">
           <summary>18 Environment, Homeostasis &amp; Transport Qiuz</summary>
           <p>Anatomy - mobile-friendly and focused practice.</p>
 <p><strong>Privacy:</strong> Your details are used only for quiz tracking and certificates.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-19">
           <summary>19 Environment, Homeostasis &amp; Transport Qiuz</summary>
           <p>Anatomy</p>
 <p>Here is your quick performance summary.</p>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-20">
           <summary>20 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Body Fluids, Transport &amp; Homeostasis</strong> as a practical nursing topic, not only a memorized definition. Prioritize airway, breathing, circulation, pain, asepsis, wound healing and early complication detection.</p>
 <ul><li><strong>What to understand first:</strong> define body fluids, transport &amp; homeostasis, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-21">
           <summary>21 Assessment Guide</summary>
           <ul><li>Vital signs, pain, bleeding, perfusion, level of consciousness and injury pattern.</li><li>Wound appearance, drainage, odour, swelling, temperature and surrounding skin.</li><li>Fluid balance, mobility, nutrition, surgical site risk and ordered investigations.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-22">
           <summary>22 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Stabilize urgent problems first, then prepare for investigations or theatre care.</li><li>Maintain aseptic technique, pain control, wound care and documentation.</li><li>Prevent shock, infection, pressure injury, deep vein thrombosis and delayed healing.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The patient remains stable, wound healing progresses, pain is controlled and complications are recognized early.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-23">
           <summary>23 Patient Teaching and Revision Check</summary>
           <ul><li>Explain body fluids, transport &amp; homeostasis in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Body%20Fluids%2C%20Transport%20%26%20Homeostasis%20Anatomy%20%26%20Physiology%20l%20and%20First%20Aid%20nursing%20lecture" title="Body Fluids, Transport &amp; Homeostasis YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (1)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/MANAGING-transport-1024x538.webp" alt="MANAGING Transport" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">MANAGING Transport</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Body%20Fluids%2C%20Transport%20%26%20Homeostasis%20Anatomy%20%26%20Physiology%20l%20and%20First%20Aid%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Body%20Fluids%2C%20Transport%20%26%20Homeostasis%20Anatomy%20%26%20Physiology%20l%20and%20First%20Aid%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

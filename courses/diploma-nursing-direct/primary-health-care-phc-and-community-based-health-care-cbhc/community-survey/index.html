@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,13 +97,28 @@
         <p>Community Survey should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (9)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Community Survey**</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Facts or Profile to be obtained during a Community Survey</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Importance of conducting a Community Survey</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**How to Conduct a Community Survey**</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Roles of a nurse in a community survey</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 **Community Survey**</summary>
           <p>Community survey is a method of gathering information and data about a specific community.</p>
 <p>This follows Community Entry.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Facts or Profile to be obtained during a Community Survey</summary>
           <p>1. <strong>Population Size</strong> : The survey collects data on the total number of individuals living in the community. This information helps in understanding the scale of the population and its implications for planning and resource allocation.</p>
 <p>2. <strong>Location</strong> : The survey identifies the geographical location of the community, including its specific geographical boundaries. This information is important for mapping, resource allocation, and understanding the community’s environmental status.</p>
@@ -105,7 +132,7 @@
 <ul><li>What are the major problems or challenges faced by the community?</li><li>How well is the existing health facility addressing these problems or challenges?</li><li>What are the strengths and weaknesses of health workers in their roles and responsibilities?</li><li>What are the perceived problems and needs of health workers in delivering healthcare services?</li><li>What are the perceived problems and needs of community members regarding their healthcare?</li><li>Are community members satisfied with the quality and accessibility of healthcare services?</li><li>What are the barriers or challenges community members face in accessing healthcare?</li><li>Are there specific health issues or diseases prevalent in the community that need attention?</li><li>Are community members aware of preventive healthcare measures and health promotion activities?</li><li>Are there any specific groups within the community (e.g., children, elderly, marginalized populations) that require targeted healthcare interventions?</li><li>Are there any cultural or social factors that influence healthcare-seeking behaviors in the community?</li><li>Are there any existing community-based healthcare initiatives or programs? How effective are they?</li><li>What are the community’s perceptions and attitudes toward healthcare providers and services?</li><li>Are there any gaps in healthcare infrastructure or resources within the community?</li><li>How does the community perceive the affordability and availability of healthcare services?</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Importance of conducting a Community Survey</summary>
           <p>1. <strong>Identification of the community’s needs and problems</strong> : A community survey helps to systematically identify the specific needs, challenges, and issues faced by the community. It provides valuable data and insights that inform decision-making and resource allocation.</p>
 <p>2. <strong>Provision of data for planning, implementation, and evaluation</strong> : The data collected through a community survey serves as a foundation for planning, implementing, and evaluating community-based health and development programs. It ensures that interventions are evidence-based, targeted, and aligned with the community’s needs.</p>
@@ -116,7 +143,7 @@
 <p>7. <strong>Creating opportunities for inter-sectoral collaboration</strong> : A community survey facilitates the identification of opportunities for collaboration among different sectors, such as healthcare, education, social services, and environmental agencies. It promotes coordination among stakeholders to address the multifaceted needs of the community.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 **How to Conduct a Community Survey**</summary>
           <p>When planning a survey, consider the following ;</p>
 <ul><li>Time</li><li>What information will be collected</li><li>Community health problems</li><li>Competencies of the health workers</li><li>Community attitude towards health workers</li><li>Health resources in the community</li><li>Environmental sanitation as in H 2 O, housing, nutrition, hygiene</li><li>Where will the data be collected?</li><li>How will the data be analyzed?</li><li>How will the data be used?</li></ul>
@@ -130,7 +157,7 @@
 <ul><li>Analyze the collected survey data using appropriate statistical methods.</li><li>Discuss the results with medical staff and members of the community to gain additional insights and perspectives.</li><li>Prepare a brief report summarizing the findings, including recommendations for action.</li><li>Share the report and recommendations with relevant stakeholders, such as the Ministry of Health or community leaders.</li><li>Provide feedback to the community, sharing the survey results and engaging in a dialogue about potential interventions and next steps.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Roles of a nurse in a community survey</summary>
           <p>1. <strong>Planning and Design</strong> : Nurses play a crucial role in the planning and design phase of a community survey. They contribute their knowledge and expertise in identifying relevant health indicators, designing appropriate survey questions related to health, and ensuring that the survey instrument captures important health data.</p>
 <p>2. <strong>Data Collection</strong> : Nurses actively participate in the data collection process during a community survey. They administer surveys, conduct interviews, and engage with community members to gather accurate and reliable health-related information. Nurses ensure that data collection is conducted in an ethical and culturally sensitive manner.</p>
@@ -141,37 +168,49 @@
 <p>7. <strong>Reporting and Documentation</strong> : Nurses play a vital role in documenting survey findings, outcomes, and recommendations. They contribute to the preparation of reports summarizing the health-related data, observations, and identified health needs. Nurses ensure accurate documentation and communication of the survey results to relevant stakeholders, including healthcare teams and community leaders.</p>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-6">
           <summary>06 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Community Survey</strong> as a practical nursing topic, not only a memorized definition. Move from individual illness to prevention, population risk, health education and continuity of care.</p>
 <ul><li><strong>What to understand first:</strong> define community survey, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-7">
           <summary>07 Assessment Guide</summary>
           <ul><li>Who is affected, where they live, risk factors, resources and barriers to care.</li><li>Environmental hygiene, nutrition, immunization, water, sanitation and health-seeking behaviour.</li><li>Community beliefs, leaders, household practices and surveillance data.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-8">
           <summary>08 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Promote prevention, early detection, referral and community participation.</li><li>Use clear health education matched to literacy, culture and available resources.</li><li>Document findings and coordinate with community health structures.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The community understands the message, risk is reduced and follow-up or referral pathways are active.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-9">
           <summary>09 Patient Teaching and Revision Check</summary>
           <ul><li>Explain community survey in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Community%20Survey%20Primary%20Health%20Care%20(PHC)%20and%20Community%20Based%20Health%20Care%20(CBHC)%20nursing%20lecture" title="Community Survey YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (12)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Community-Survey.webp" alt="Community Survey" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Community Survey</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/37643cbc393f879349346103c58b8d43.webp" alt="37643cbc393f879349346103c58b8d43" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">37643cbc393f879349346103c58b8d43</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/5a3f8f9da4c1b74819716936b337eecb.webp" alt="5a3f8f9da4c1b74819716936b337eecb" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">5a3f8f9da4c1b74819716936b337eecb</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/1204b680a20406d41458313e4cc15405.webp" alt="1204b680a20406d41458313e4cc15405" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">1204b680a20406d41458313e4cc15405</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/c1fa8bbfc09c20016e34339358e2491e.webp" alt="C1fa8bbfc09c20016e34339358e2491e" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">C1fa8bbfc09c20016e34339358e2491e</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/995ea829f5b8a2990f92c81bee11f5be.webp" alt="995ea829f5b8a2990f92c81bee11f5be" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">995ea829f5b8a2990f92c81bee11f5be</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/7a087cb61b037a987fda68d4fd9a8871.webp" alt="7a087cb61b037a987fda68d4fd9a8871" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">7a087cb61b037a987fda68d4fd9a8871</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/5b68866cc2e18117e59b4763177d9f58.webp" alt="5b68866cc2e18117e59b4763177d9f58" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">5b68866cc2e18117e59b4763177d9f58</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Community%20Survey%20Primary%20Health%20Care%20(PHC)%20and%20Community%20Based%20Health%20Care%20(CBHC)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <p style="color:var(--seo-muted);font-size:.85rem;margin:8px 0 0">4 more diagrams available — open the lesson for full illustrations.</p>
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Community%20Survey%20Primary%20Health%20Care%20(PHC)%20and%20Community%20Based%20Health%20Care%20(CBHC)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

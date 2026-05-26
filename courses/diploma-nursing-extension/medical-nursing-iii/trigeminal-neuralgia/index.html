@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,14 +97,32 @@
         <p>Trigeminal neuralgia should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (12)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Branches of the Trigeminal Nerve</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Causes of Trigeminal Neuralgia:</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Precipitating Factors of Pain:**</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Clinical Features of Trigeminal Neuralgia:**</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Pathophysiology of Trigeminal Neuralgia</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Investigations and Diagnosis of Trigeminal Neuralgia (TN)</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Medical Management of Trigeminal Neuralgia:</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Nursing care plan for Trigeminal Neuralgia**</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Branches of the Trigeminal Nerve</summary>
           <p>The trigeminal nerve has 3 divisions i.e</p>
 <ul><li>The ophthalmic division(v1) that supplies the forehead , eyes, nose, meninges , paranasal sinuses and part of the nasal mucosa.</li><li>The maxillary division(v2) supplies the upper jaw , teeth , lip , cheeks , hard palate , maxillary sinus and part of the nasal mucosa.</li><li>The mandibular division(v3) supplies the lower jaw, teeth, lip, buccal mucosa, tongue, part of the external ear and the meninges.</li></ul>
 <p>Trigeminal neuralgia most commonly affects the second (V2) and third (V3) branches of the trigeminal nerve.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Causes of Trigeminal Neuralgia:</summary>
           <p>The exact cause of trigeminal neuralgia is not fully understood ; however, factors depend on the subtype. The International Classification of Headache Disorders, Third Edition (ICHD-3) categorizes Trigeminal Neuralgia (TN) into three main types:</p>
 <p>1. Classic Trigeminal Neuralgia (Classic TN) :</p>
@@ -104,12 +134,12 @@
 <ul><li>This category refers to cases of TN where the underlying cause remains unknown .</li><li>Despite extensive investigations, no identifiable factor like a blood vessel compression or other neurological condition is found to be responsible.</li><li><strong>Nerve Compression:</strong> Explanation: : Compression of the trigeminal nerve by nearby structures, often blood vessels, leading to irritation and pain signals.</li><li>Example : Blood vessels impinging on the trigeminal nerve, causing compression and neuralgia.</li><li><strong>Demyelinating Plaques:</strong> Explanation: Damage to the myelin sheath surrounding the trigeminal nerve, disrupting normal nerve function.</li><li>Example : Demyelination seen in conditions like multiple sclerosis.</li><li><strong>Herpes Virus Infection:</strong> Explanation: Activation or infection of the trigeminal nerve by the herpes virus, contributing to inflammation and pain.</li><li>Example : Reactivation of the herpes simplex virus affecting the trigeminal nerve.</li><li><strong>Infection of the Teeth and Jaw:</strong> Explanation: Infections in the teeth or jaw leading to inflammation and irritation of the trigeminal nerve.</li><li>Example : Dental infections spreading to the trigeminal nerve branches.</li><li><strong>Irritation from Flu-Like Illnesses:</strong> Explanation: Inflammatory response due to flu-like illnesses affecting the trigeminal nerve.</li><li>Example : Increased sensitivity and irritation during or after a viral infection.</li><li><strong>Trauma of the Teeth or Jaw:</strong> Explanation: Physical injury to the teeth or jaw causing irritation of the trigeminal nerve.</li><li>Example : Dental trauma resulting in nerve irritation and subsequent neuralgia.</li><li><strong>Aneurysm Causing Pressure on the Nerve:</strong> Explanation: Enlargement of an artery (aneurysm) putting pressure on the trigeminal nerve.</li><li>Example : Compression of the nerve by an adjacent aneurysm.</li><li><strong>Tumor:</strong> Explanation: Presence of a tumor near the trigeminal nerve leading to compression and irritation.</li><li>Example : Tumor growth impacting the trigeminal nerve.</li><li><strong>Arteriosclerotic Changes of an Artery Close to the Nerve:</strong> Explanation: Changes in artery walls close to the trigeminal nerve, potentially leading to compression.</li><li>Example : Arteriosclerosis affecting vessels in proximity to the trigeminal nerve.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 **Precipitating Factors of Pain:**</summary>
           <ul><li><strong>Light Touch:</strong> Explanation: Even gentle touch or breeze on the face triggers severe pain due to the hypersensitivity of the trigeminal nerve.</li><li>Example : Brushing against the face lightly causing intense pain.</li><li><strong>Eating:</strong> Explanation: Chewing and the mechanical process of eating can trigger neuralgic pain.</li><li>Example : Pain occurring during or after meals.</li><li><strong>Swallowing:</strong> Explanation: The act of swallowing, which involves movement and muscle engagement in the face, can trigger pain.</li><li>Example : Pain associated with swallowing liquids or food.</li><li><strong>Talking:</strong> Explanation: Articulating words and facial movements during speech may induce pain.</li><li>Example : Pain occurring while engaging in conversation.</li><li><strong>Sneezing:</strong> Explanation: The sudden and forceful nature of sneezing can trigger intense facial pain.</li><li>Example : Pain experienced during or after sneezing.</li><li><strong>Shaving:</strong> Explanation: The mechanical action of shaving involving contact with the face can lead to pain.</li><li>Example : Pain triggered by shaving activities.</li><li><strong>Chewing Gum:</strong> Explanation: Repetitive jaw movements during gum chewing can aggravate trigeminal neuralgia.</li><li>Example : Pain associated with chewing gum.</li><li><strong>Brushing the Teeth or Washing the Face:</strong> Explanation: Activities involving contact with the face, such as brushing teeth or washing, may cause pain.</li><li>Example : Pain occurring during facial hygiene practices.</li><li><strong>Exposure to Wind:</strong> Explanation: Sensitivity to environmental factors, such as wind, leading to pain.</li><li>Example : Pain triggered by exposure to windy conditions.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 **Clinical Features of Trigeminal Neuralgia:**</summary>
           <p>1. Nature of the Condition:</p>
 <ul><li>Trigeminal neuralgia is a chronic condition affecting the fifth cranial nerve.</li></ul>
@@ -137,7 +167,7 @@
 <ul><li>Recurrences are unpredictable, varying in frequency and duration.</li><li>Episodes can recur for several days, weeks, or months apart.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Pathophysiology of Trigeminal Neuralgia</summary>
           <p>Trigeminal neuralgia (TN) is characterized by intense, stabbing, electric shock-like pain in the distribution of one or more branches of the trigeminal nerve (CN V). It is broadly classified into two main forms: classical (idiopathic) and symptomatic (secondary).</p>
 <p>Classical (Idiopathic) Trigeminal Neuralgia : In the classical form, a definitive underlying cause is often not identified. However, microvascular compression of the trigeminal nerve near its exit from the brainstem is the most widely accepted etiological factor.</p>
@@ -149,7 +179,7 @@
 <ul><li>Dental Pathology : Toothaches, abscesses, or temporomandibular joint (TMJ) disorders can mimic TN pain.</li><li>Herpes Zoster: Postherpetic neuralgia following a shingles outbreak can cause persistent facial pain.</li><li>Nasopharyngeal and Paranasal Pathology: Sinus infections or tumors in the nasal cavity or sinuses can cause facial pain.</li><li>Cervical Artery Dissection : Although rare, dissection of the internal carotid or vertebral artery can cause facial pain.</li><li>Giant Cell Arteritis : This inflammatory condition can cause facial pain, particularly in older adults.</li><li>Cluster Headaches and Migraines : These primary headache disorders can sometimes present with facial pain.</li><li>Unstable Angina : In rare cases, pain from unstable angina can radiate to the jaw and face, mimicking TN.</li><li>Trigeminal Neuropathy: Sensory loss or other neurological deficits may indicate a different underlying condition than TN</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Investigations and Diagnosis of Trigeminal Neuralgia (TN)</summary>
           <p>Diagnosing TN primarily relies on a thorough medical history and physical examination, as there is no single definitive test.</p>
 <p>1. Detailed Medical History :</p>
@@ -160,7 +190,7 @@
 <ul><li>Magnetic Resonance Imaging (MRI): An MRI scan can help rule out other neurological conditions that can cause facial pain, such as tumors, MS, or vascular malformations.</li><li>Computed Tomography (CT) Scan : A CT scan can also help visualize the anatomy of the trigeminal nerve and surrounding structures.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Medical Management of Trigeminal Neuralgia:</summary>
           <p>Aims of Management</p>
 <ul><li>Control Pain : Reduce the frequency and severity of pain attacks.</li><li>Improve Quality of Life : Enable individuals to engage in daily activities without significant pain interference.</li><li>Prevent Complications: Minimize the risk of potential complications such as depression, anxiety, and social isolation.</li></ul>
@@ -210,42 +240,54 @@
 <ul><li>Schedule regular follow-up appointments to assess the patient’s overall condition and adjust the care plan as needed.</li><li>Ensure continuity of care and collaboration among healthcare providers.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 **Nursing care plan for Trigeminal Neuralgia**</summary>
           <ul><li>Assessment Nursing Diagnosis Goals/Expected Outcomes Intervention Rationale Evaluation</li><li>Patient reports difficulty chewing and swallowing; weight loss of 3 kg in the last month Risk for imbalanced nutrition: less than body requirements related to difficulty chewing and swallowing – Maintain adequate nutritional intake within 1 week. – Patient reports improved ability to eat without pain. – Assess a patient’s nutritional status (weight, dietary intake). – Provide soft or pureed foods that are easier to chew and swallow. – Consult with a dietitian to ensure nutritional needs are met. – Painful episodes may lead to avoidance of certain foods, potentially resulting in inadequate nutrition. – Soft foods reduce discomfort during eating. – A dietitian can help design a nutritionally balanced meal plan. Patient maintained adequate nutritional intake within 1 week. Patient reported improved ability to eat without pain.</li><li>Difficulty swallowing, reports of choking during meals Risk for Aspiration related to difficulty in swallowing. – Prevent aspiration during meals within 24 hours. – Patient swallows without difficulty or choking. – Assess swallowing ability before each meal. – Position the patient upright during meals and 30 minutes after. – Provide thickened liquids to reduce the risk of aspiration. – Facial pain may compromise the patient’s ability to swallow effectively, increasing the risk of aspiration. – Upright positioning reduces the risk of aspiration. – Thickened liquids are easier to control during swallowing. Prevent aspiration during meals within 24 hours Patient swallows without difficulty or choking</li><li>Patient remains alone and avoids social interactions Social Isolation related to fear of pain during social interactions as evidenced by patients remaining alone and indoors. – Reduce social isolation within 2 weeks. – Patient participates in at least one social activity. – Encourage the patient to express feelings about pain and social isolation. – Refer the patient to a support group for individuals with chronic pain. – Plan gradual exposure to social situations, starting with a trusted friend or family member. – Anticipation of painful episodes may lead to withdrawal from social activities, increasing the risk of social isolation. – Expressing feelings can help reduce the emotional burden of isolation. – Support groups provide emotional support and understanding. – Patient reports feeling less isolated. – Participates in social activities without significant fear of pain.</li><li>Patient stutters and struggles to articulate words during conversation Impaired Communication related to difficulty articulating words as evidenced by patient stuttering while talking. – Improve communication within 1 week. – Patient articulates words more clearly. – Assess the extent of communication difficulties. – Provide alternative communication methods (e.g., writing, gestures). – Encourage the patient to speak slowly and take breaks when needed. – Painful episodes may affect the patient’s ability to articulate words clearly, impacting communication. – Alternative methods ensure communication needs are met. – Speaking slowly and taking breaks can reduce frustration and pain. – Patient articulates words more clearly. – Uses alternative communication methods effectively.</li><li>Patient reports difficulty sleeping, frequent awakenings due to pain Altered Sleep Pattern related to trigeminal neuralgia pain disrupting normal sleep cycles as evidenced by patient verbalizing difficulty getting sleep. – Improve sleep quality within 1 week. – Patient reports sleeping for at least 6 hours uninterrupted. – Assess the impact of pain on sleep patterns. – Encourage a bedtime routine with relaxation techniques (e.g., warm bath, deep breathing). – Administer prescribed pain medication 30 minutes before bedtime. – Chronic pain may interfere with the patient’s ability to achieve restful sleep, potentially leading to altered sleep patterns. – Relaxation techniques can promote sleep. – Pain medication can reduce pain levels and improve sleep quality. – Patient reports improved sleep quality. – Sleeps for at least 6 hours without interruption.</li><li>Patient appears self-conscious, wears concealing clothes Disturbed Body Image related to altered facial expressions and communication difficulties as evidenced by patient putting on concealing clothes. – Improve body image within 2 weeks. – Patient expresses acceptance of appearance and interacts more confidently. – Encourage the patient to express feelings about body image. – Provide positive reinforcement and support during social interactions. – Refer to a counselor if needed to address self-esteem issues. – Changes in facial appearance and communication challenges may contribute to feelings of decreased self-esteem. – Expressing feelings can help process negative emotions. – Counseling can provide strategies to improve self-esteem. – Patient expresses acceptance of appearance. – Interacts more confidently in social settings.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-9">
           <summary>09 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Trigeminal neuralgia</strong> as a practical nursing topic, not only a memorized definition. Start with normal structure and function, then connect it to assessment findings and disease.</p>
 <ul><li><strong>What to understand first:</strong> define trigeminal neuralgia, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-10">
           <summary>10 Assessment Guide</summary>
           <ul><li>Relevant inspection, palpation, movement, auscultation, vital signs or neurological checks.</li><li>Normal findings, abnormal findings and what each abnormality may indicate.</li><li>Patient history, risk factors and how the body system affects other systems.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-11">
           <summary>11 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use anatomy to explain symptoms and guide focused assessment.</li><li>Recognize findings that need urgent escalation.</li><li>Teach the patient using simple body-system language.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The learner can explain normal function, identify abnormal signs and connect them to nursing action.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-12">
           <summary>12 Patient Teaching and Revision Check</summary>
           <ul><li>Explain trigeminal neuralgia in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Trigeminal%20neuralgia%20Medical%20Nursing%20(III)%20nursing%20lecture" title="Trigeminal neuralgia YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (18)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/ezgif.com-gif-maker.webp" alt="Ezgif.Com Gif Maker" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Ezgif.Com Gif Maker</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Causes-of-Trigeminal-Neuralgia.gif" alt="Causes Of Trigeminal Neuralgia" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Causes Of Trigeminal Neuralgia</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Clinical-Features-of-Trigeminal-Neuralgia.webp" alt="Clinical Features Of Trigeminal Neuralgia" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Clinical Features Of Trigeminal Neuralgia</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Pathophysiology-of-Trigeminal-Neuralgia--e1742398568424.webp" alt="Pathophysiology Of Trigeminal Neuralgia E1742398568424" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Pathophysiology Of Trigeminal Neuralgia E1742398568424</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/b4094e16000d400f801e72f33d29594e.webp" alt="B4094e16000d400f801e72f33d29594e" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">B4094e16000d400f801e72f33d29594e</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/6b493bd1c5f256bfe412269184cb1d1f.webp" alt="6b493bd1c5f256bfe412269184cb1d1f" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">6b493bd1c5f256bfe412269184cb1d1f</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/5a3f8f9da4c1b74819716936b337eecb.webp" alt="5a3f8f9da4c1b74819716936b337eecb" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">5a3f8f9da4c1b74819716936b337eecb</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/1fd0d0c32acda9a9c8aa48e515bef79c.webp" alt="1fd0d0c32acda9a9c8aa48e515bef79c" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">1fd0d0c32acda9a9c8aa48e515bef79c</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Trigeminal%20neuralgia%20Medical%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <p style="color:var(--seo-muted);font-size:.85rem;margin:8px 0 0">10 more diagrams available — open the lesson for full illustrations.</p>
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Trigeminal%20neuralgia%20Medical%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

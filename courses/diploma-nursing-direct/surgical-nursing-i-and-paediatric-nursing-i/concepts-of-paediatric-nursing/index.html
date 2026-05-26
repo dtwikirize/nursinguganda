@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,37 @@
         <p>Concepts of paediatric nursing should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 24 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Introduction to Paediatric Nursing</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Principles of Paediatric Nursing</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Scope of Paediatric Nursing</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Roles of the Paediatric Nurse</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Rights of the Child in Healthcare</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Antenatal Care</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Fetal Development</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Goals</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Definition of Terms</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Characteristics of a Normal Newborn</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Newborn</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Physical Characteristics</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Sensory Development</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Skin and Body Systems</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Behavior</a>
+          <a href="#section-16" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Physical Characteristics</a>
+          <a href="#section-17" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Skin</a>
+          <a href="#section-18" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Chest and Abdomen</a>
+          <a href="#section-19" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Genitalia</a>
+          <a href="#section-20" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Common Reflexes Observed in the Newborn</a>
+          <a href="#section-21" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-22" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-23" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-24" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Introduction to Paediatric Nursing</summary>
           <p><strong>Paediatrics</strong> is a specialized branch of medicine that focuses on the prevention, diagnosis, treatment, and management of health problems affecting young patients—from infants and children to adolescents. The term originates from the Greek words &quot;paed&quot; meaning &quot;child&quot; and &quot;iatrikē&quot; meaning &quot;treatment.&quot; It encompasses not only the clinical aspects but also the psychological and social well-being of the child.</p>
 <p>Paediatric nursing requires a deep understanding of genetics, obstetrics, physiological development, management of disabilities, and the effects of social conditions on a child&#39;s health. Since a child is entirely dependent on their caregivers, it is essential that the care provided is <strong>family-centered</strong> . Providing quality care for sick children depends on the nurse&#39;s ability to understand the developmental variations anticipated in different age groups.</p>
@@ -94,34 +136,34 @@
 <p>As the child is totally dependent on the care-givers, it is important that the care provided is family centered. Providing quality care for sick children depends on you, understanding developmental variations as anticipated in different age groups.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Principles of Paediatric Nursing</summary>
           <ul><li><strong>Family-Centered Care:</strong> This approach recognizes the family as the primary source of strength and support for the child. The nurse collaborates with the family in all aspects of planning, delivering, and evaluating healthcare.</li><li><strong>Atraumatic Care:</strong> This principle focuses on minimizing the psychological and physical distress experienced by children and their families. It involves using procedures and communication that reduce pain, fear, and anxiety.</li><li><strong>Health Promotion and Disease Prevention:</strong> A key focus is on educating families about healthy habits (e.g., nutrition, safety) and preventive measures (e.g., immunizations) to ensure optimal health and well-being.</li><li><strong>Advocacy:</strong> The paediatric nurse acts as a voice for the child, ensuring their needs are met and their rights are protected within the healthcare system and the community.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Scope of Paediatric Nursing</summary>
           <p>Paediatric nurses practice in a wide variety of settings, including:</p>
 <ul><li><strong>Hospitals:</strong> General paediatric wards, Paediatric Intensive Care Units (PICU), Neonatal Intensive Care Units (NICU), and outpatient clinics.</li><li><strong>Community Health Centres:</strong> Providing primary care, health screenings, and immunizations.</li><li><strong>Schools:</strong> Managing the health needs of students during school hours.</li><li><strong>Home Care:</strong> Providing care for children with chronic conditions or those recovering from illness in their own homes.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Roles of the Paediatric Nurse</summary>
           <ul><li><strong>Direct Care Provider:</strong> Assessing health, administering medications and treatments, and providing hands-on care.</li><li><strong>Educator:</strong> Teaching children and families about health conditions, treatments, and self-care.</li><li><strong>Advocate:</strong> Protecting the child&#39;s rights and ensuring their best interests are served.</li><li><strong>Counselor:</strong> Providing emotional support and guidance to children and their families during stressful times.</li><li><strong>Collaborator:</strong> Working with doctors, therapists, and other healthcare professionals to create a comprehensive care plan.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Rights of the Child in Healthcare</summary>
           <p>Every child has fundamental rights that must be respected in any healthcare setting. These include:</p>
 <ul><li>The right to the best possible health.</li><li>The right to be cared for by parents or guardians.</li><li>The right to be protected from pain and to receive pain relief.</li><li>The right to be informed in a way they can understand.</li><li>The right to participate in decisions about their care.</li><li>The right to privacy and confidentiality.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Antenatal Care</summary>
           <p>Good antenatal care is important to the future development of the child. Attendance by the mother at maternity clinic at regular intervals during pregnancy will ensure that any problems which may influence fetal development are recognized promptly, as well as providing an opportunity for the mother and father to attend parentcraft sessions, e.g. in breastfeeding, in order to help the parents rear their baby happily and successfully.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Fetal Development</summary>
           <p>Development of the fetus during pregnancy is a time of rapid growth. After fertilization, when the spermatozoon meets an ovum usually in the outer third of the fallopian tube, the cells multiply rapidly into a morula which passes into the uterine cavity and embeds in the endometrium.</p>
 <p>After four weeks the fetal shape resembles a mammal and is about 1cm long. By about 8 weeks limbs have developed.</p>
@@ -132,12 +174,12 @@
 <p>End of pregnancy occurs after a gestation period of about 40 weeks.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Nursing Goals</summary>
           <ul><li><strong>Normalize the life of the child during hospitalization in preparation for the family home, school and community.</strong> Example: For a hospitalized child with asthma, the nurse ensures the child&#39;s daily routine includes opportunities for play and learning (e.g., child life activities, scheduled playtime), within the limits of their condition, to minimize disruption to their normal life and facilitate easier transition back home and to school upon discharge.</li><li><strong>Minimize the impact of the child’s unique condition.</strong> Example: For a child with newly diagnosed Type 1 Diabetes, the nurse provides comprehensive education to the child and family on insulin administration, blood glucose monitoring, and dietary management, empowering them to manage the condition effectively and reduce its interference with daily activities and future development.</li><li><strong>Foster maximal growth and development.</strong> Example: For an infant admitted for failure to thrive, the nurse collaborates with dietitians to establish an appropriate feeding plan and implements interventions like structured feeding times and positive reinforcement to ensure adequate nutritional intake, thereby supporting healthy physical growth and cognitive development.</li><li><strong>Develop realistic, functional and coordinated home care plans for the children and families.</strong> Example: For a child discharged with a new tracheostomy, the nurse coordinates with social work, home health agencies, and equipment providers to ensure the family has necessary supplies, training, and support (e.g., skilled nursing visits, emergency contact numbers) to safely manage the tracheostomy at home.</li><li><strong>Respect the roles of the families in the care of their children.</strong> Example: When caring for a child who requires complex wound care, the nurse actively involves the parents in the dressing changes, teaching them the technique, allowing them to ask questions, and incorporating their preferences (e.g., timing of dressing changes around the child&#39;s nap schedule) to foster their sense of control and competence in their child&#39;s care.</li><li><strong>Prevention of disease and promotion of health of the child.</strong> Example: The nurse administers age-appropriate immunizations as scheduled during well-child visits and provides anticipatory guidance to parents on healthy eating habits, regular physical activity, and injury prevention (e.g., car seat safety, poison control) to protect the child from illness and promote overall well-being.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Definition of Terms</summary>
           <p><strong>Pediatrics:</strong> The term pediatrics is derived from Greek words. ‘Paed’ means child, ‘icitrike’ means treatment, ‘..ics’ means the science of child care and scientific treatment of childhood diseases.</p>
 <p><strong>Neonatal Period:</strong> Neonatal period is the period from birth to 28 days of life or the first month of life.</p>
@@ -159,17 +201,17 @@
 <p><strong>Post-Neonatal Mortality:</strong> Post-neonatal mortality is referred to as the deaths of all babies from 1 month to 1 year per 1000 babies alive at 1 month.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Characteristics of a Normal Newborn</summary>
           <p>A normal newborn (0-28 days) exhibits a unique set of physical and behavioural characteristics as they adapt to life outside the womb.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 The Newborn</summary>
           <p>A newborn is a just or recently born child (0-28 days).</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-12">
           <summary>12 Physical Characteristics</summary>
           <p><strong>Weight:</strong> The normal full-term infant weighs approximately 3.5 kgs. In Uganda, the weight may range from 2.5 kg-3.5 kg. Babies in the tropics tend to be smaller than European babies. Newborn infants usually are considered to be tiny and powerless, completely dependent on others for life.</p>
 <p><strong>Length:</strong> Measurement is taken from the highest point of vertex of the head to the heel. It ranges from 45-50 cm (average 50cm).</p>
@@ -181,14 +223,14 @@
 <p><strong>Arms and Legs:</strong> After birth, the baby’s arms and legs may look bowed and are held close to the body. Hands are in tight fists, the arms and legs may appear too short for the body because of their bent appearance. This is temporary; by 3 to 4 months, the arms and legs stretch out.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-13">
           <summary>13 Sensory Development</summary>
           <p><strong>Vision:</strong> The baby’s eye color depends on skin tone, blue-gray if fair-skinned or brown if dark-skinned. By 6 months to 1 year of age, the baby’s eye color will be permanent. Eyes: When the newborn cries, tears may be absent. Tear ducts may not function for the first few weeks after birth. Cross-eyed: A newborn’s eye muscles are weak at birth. Over the next few weeks, eye muscle strength will improve, and the baby can better focus on objects.</p>
 <p><strong>Hearing:</strong> Babies can hear loud and soft noises at birth. Loud noises may cause the baby to startle, while soft noises may help to calm your baby. The baby quickly learns the difference in voice sounds. The baby will turn its head to a familiar voice, especially mom’s and dad’s voice.</p>
 <p><strong>Taste and Smell:</strong> Newborns can taste and smell at birth. The baby will be able to taste breast milk.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-14">
           <summary>14 Skin and Body Systems</summary>
           <p><strong>Skin:</strong> At birth, the baby may have a thick cheese-like covering. This is called vernix caseosa. Vernix helps to protect the baby’s skin while in the uterus. Over the baby’s forehead, nose, and cheeks, you may see “whiteheads” or milia. These are immature oil glands that will go away in several weeks. The baby may have soft downy hair that may cover its face and body. This is called lanugo, and it will go away within a few weeks after birth. The baby may have pale pink marks on the face and neck. They are called stork bites and will fade during childhood. The baby may have bluish-black marks on the lower back or bottom. These are called Mongolian spots and are more common on dark-skinned children. The subcutaneous fat is small and the skin looks red and elastic.</p>
 <p><strong>Chest and Breathing:</strong> Babies take little breaths and use abdominal muscles to help breathe. You may even notice short pauses between some breaths. The rate of breathing is 30 to 60 times a minute. This is because their heart rate is rapid at 120 to 160 times a minute. The breasts of boy and girl babies may look enlarged after birth. The hormones that cross the placenta during the last two weeks before birth cause the breasts to fill with milk. Do not squeeze the breasts. The enlarged breasts will go away in about 2 weeks.</p>
@@ -196,68 +238,66 @@
 <p><strong>Genitalia:</strong> In boys, the testicles are descended into the scrotum which has plentiful rugae. The urethral meatus opens at the tip of the penis, and the prepuce is adhered to the glans. In girls born at term, the labia majora normally cover the labia minora. The hymen and clitoris may appear disproportionately large. The hormones in a girl may cause the baby to have white vaginal discharge or vaginal spotting (false period).</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-15">
           <summary>15 Behavior</summary>
           <p><strong>Behavior:</strong> The newborn baby will probably spend a lot of time sleeping. The baby may be very alert and gaze at the mother or people or be very quiet and drowsy right after birth. During the next month, the baby will spend less time sleeping and more time awake.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-16">
           <summary>16 Physical Characteristics</summary>
           <ul><li><strong>Weight:</strong> A normal full-term infant weighs approximately 3.5 kg. In Uganda, the range is typically 2.5-3.5 kg.</li><li><strong>Length:</strong> Measured from crown to heel, the average length is 50 cm (range 45-50 cm).</li><li><strong>Lie/Posture:</strong> The newborn typically lies in a flexed position, with arms and legs bent and held close to the body.</li><li><strong>Head:</strong> The head circumference is 33-35 cm and appears large in proportion to the body. The <strong>anterior fontanelle</strong> (diamond-shaped) and <strong>posterior fontanelle</strong> (triangular) are soft spots on the skull that are open at birth.</li><li><strong>Temperature:</strong> Normal range is 36.5°C to 37.5°C.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-17">
           <summary>17 Skin</summary>
           <ul><li><strong>Vernix Caseosa:</strong> A thick, white, cheese-like substance that covers and protects the fetal skin in utero. It is gradually absorbed after birth.</li><li><strong>Lanugo:</strong> Fine, soft, downy hair that may cover the body, especially on the shoulders and back. It disappears within a few weeks.</li><li><strong>Milia:</strong> Tiny white bumps (plugged oil glands) often seen on the nose and cheeks, which disappear on their own.</li><li><strong>Mongolian Spots:</strong> Bluish-black marks, resembling bruises, commonly found on the lower back or buttocks of dark-skinned babies. They are harmless and fade over time.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-18">
           <summary>18 Chest and Abdomen</summary>
           <ul><li><strong>Breathing:</strong> Newborn breathing is primarily abdominal, with a rate of 30-60 breaths per minute. Short pauses (periodic breathing) are normal.</li><li><strong>Heart Rate:</strong> The heart rate is rapid, ranging from 120-160 beats per minute.</li><li><strong>Umbilical Cord:</strong> The stump is clamped at birth. It will dry, harden, and typically fall off within 1-2 weeks. It should be kept clean and dry to prevent infection.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-19">
           <summary>19 Genitalia</summary>
           <ul><li>Due to maternal hormones, the genitalia of both boys and girls may appear swollen.</li><li><strong>Girls:</strong> May have a white vaginal discharge or a small amount of bloody mucoid discharge (pseudomenstruation), which is normal.</li><li><strong>Boys:</strong> In a full-term male, the testes have descended into the scrotum, which has folds (rugae).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-20">
           <summary>20 The Common Reflexes Observed in the Newborn</summary>
           <p>A reflex is an automatic or voluntary response to a stimulus, which is brought about by relatively simple nervous circuits without consciousness being necessarily involved. They include:</p>
 <ul><li><strong>Pupil Reflexes:</strong> The newborn infant will turn his head towards the source of light, providing it is not too bright.</li><li><strong>Moro Reflex (Startle):</strong> Response to sudden stimulus or sound causing the infant’s body to stiffen, the arms to go up and out, then forward and towards each other. This reflex usually disappears at about the age of 3-4 months and may be difficult to elicit in a preterm baby.</li><li><strong>The Grasp Reflex:</strong> This may be obtained in the hand or foot by either introducing a finger into the palm of the hand, which the infant grasps quite strongly, or by gently stroking the sole of the foot behind the toes.</li><li><strong>Rooting Reflex:</strong> When the corner of the mouth is touched with a finger which moves towards the cheek, the infant will turn his head towards the object and open his mouth.</li><li><strong>Withdrawal Reflex:</strong> Pricking the sole of the foot will result in the infant’s leg being flexed at the hip, knee, and ankle.</li><li><strong>Babinski Reflex:</strong> This occurs when the sole of the baby’s foot is stimulated. This has an effect of causing an unusual extension of the big toe as well as fanning the other toes. The simulation may be started from the heel all the way to the base of the baby’s toes. This reflex is normally used to ascertain the adequateness of the central nervous system.</li><li><strong>Sucking and Swallowing Reflexes:</strong> This is essential for safe feeding and adequate nutrition. Place a nipple or finger in the mouth of the baby, the infant should suck vigorously and swallow.</li><li><strong>Traction Response:</strong> When the baby is pulled upright by the wrists to a sitting position, the head will lag initially, then right itself momentarily before falling forward onto the chest.</li><li><strong>Blinking and Corneal Reflex:</strong> This protects the eyes from trauma.</li><li><strong>Walking and Stepping Reflexes:</strong> When the baby is supported upright with his feet touching a flat surface, the baby simulates walking. If held with the tibia in contact with the edge of a table, the baby will step up onto the table.</li><li>In your own words, what is family-centered care and why is it a core principle of paediatric nursing?</li><li>Differentiate between a &#39;preterm baby,&#39; a &#39;term baby,&#39; and a &#39;low birth weight baby.&#39;</li><li>A mother is worried about the fine, soft hair (lanugo) and the tiny white spots (milia) on her newborn&#39;s face. As a nurse, how would you explain these findings to her?</li><li>Describe the Moro reflex. What is its significance, and when does it typically disappear?</li><li>List three distinct roles of a paediatric nurse and provide a practical example for each role.</li><li>What is pseudomenstruation in a female newborn, and what causes it?</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-21">
           <summary>21 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Introduction to Paediatrics</strong> as a practical nursing topic, not only a memorized definition. Adapt assessment and care to age, weight, development, caregiver knowledge and family support.</p>
 <ul><li><strong>What to understand first:</strong> define introduction to paediatrics, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-22">
           <summary>22 Assessment Guide</summary>
           <ul><li>Airway, breathing, circulation, hydration, temperature, feeding, activity and danger signs.</li><li>Weight-based medicines, immunization status, growth, development and caregiver concerns.</li><li>Signs that may be subtle in children, including lethargy, poor feeding, fast breathing or convulsions.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-23">
           <summary>23 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use age-appropriate communication and involve the caregiver.</li><li>Prevent dehydration, hypothermia, medication errors and delayed referral.</li><li>Teach home care, danger signs and follow-up clearly.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The child is clinically improving, caregiver instructions are understood and follow-up is arranged.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-24">
           <summary>24 Patient Teaching and Revision Check</summary>
           <ul><li>Explain introduction to paediatrics in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
+      
       <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Concepts%20of%20paediatric%20nursing%20Surgical%20Nursing%20(I)%20and%20Paediatric%20Nursing%20(I)%20nursing%20lecture" title="Concepts of paediatric nursing YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Concepts%20of%20paediatric%20nursing%20Surgical%20Nursing%20(I)%20and%20Paediatric%20Nursing%20(I)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Concepts%20of%20paediatric%20nursing%20Surgical%20Nursing%20(I)%20and%20Paediatric%20Nursing%20(I)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

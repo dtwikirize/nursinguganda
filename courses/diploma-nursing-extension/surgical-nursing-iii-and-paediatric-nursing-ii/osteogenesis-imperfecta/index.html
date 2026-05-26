@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,18 @@
         <p>Osteogenesis Imperfecta should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (5)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Overview</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Overview</summary>
           <p>Osteogenesis Imperfecta (OI), often colloquially known as &quot;brittle bone disease,&quot; is a rare, inherited genetic disorder primarily characterized by bone fragility that leads to recurrent fractures, often with minimal or no trauma. It is a lifelong condition that can range in severity from very mild, with only a few fractures over a lifetime, to extremely severe, leading to hundreds of fractures, severe deformity, and even perinatal lethality.</p>
 <p>Osteogenesis imperfecta (OI) also known as brittle bone disease, is a genetic disorder characterized by fragile bones that break easily.</p>
@@ -131,37 +154,46 @@
 <ul><li><strong>Physical Therapy (PT):</strong> <strong>Focus:</strong> Gentle, low-impact exercises to maintain muscle strength, improve balance, and enhance mobility without risking fractures.</li><li><strong>Techniques:</strong> Hydrotherapy (swimming) is often excellent, strengthening exercises for core and limb muscles, gait training, stretching.</li><li><strong>Goals:</strong> Prevent muscle atrophy, improve posture, teach safe movement and transfers.</li><li><strong>Occupational Therapy (OT):</strong> <strong>Focus:</strong> Adapting activities of daily living (ADLs) and environments to promote independence.</li><li><strong>Techniques:</strong> Training in adaptive equipment (e.g., wheelchairs, walkers, crutches), home modifications, energy conservation techniques.</li><li><strong>Wheelchairs:</strong> Manual or power wheelchairs for individuals with severe mobility limitations.</li><li><strong>Walkers, crutches, braces:</strong> To provide support and aid in ambulation for those who can walk.</li><li><strong>Splints/Orthoses:</strong> To support fragile limbs and prevent deformities.</li><li><strong>Dental Care:</strong> <strong>Dentinogenesis Imperfecta (DI):</strong> Regular dental check-ups, fluoride treatments, good oral hygiene. Crowns or veneers can protect brittle teeth.</li><li><strong>Orthodontics:</strong> May be needed to correct malocclusion.</li><li><strong>Audiology:</strong> <strong>Hearing loss:</strong> Regular hearing assessments. Hearing aids or cochlear implants may be necessary.</li><li><strong>Ophthalmology:</strong> <strong>Blue sclerae:</strong> No specific treatment, but ophthalmological evaluation for any visual concerns.</li><li><strong>Pulmonary Management:</strong> <strong>Respiratory insufficiency:</strong> Aggressive management of respiratory infections, respiratory support (e.g., BiPAP) if needed, physical therapy to improve lung function. Spinal surgery for severe scoliosis can improve lung capacity.</li><li><strong>Neurological Management:</strong> <strong>Basilar Invagination:</strong> Regular neurological assessments. Surgical decompression may be required in severe cases with neurological compromise.</li><li><strong>Acute pain:</strong> Due to fractures, managed with analgesics (opioid and non-opioid), muscle relaxants, and immobilization.</li><li><strong>Chronic pain:</strong> Often present due to multiple fractures, deformities, or joint issues. May require a chronic pain management approach, including medication, physical therapy, and psychological support.</li><li><strong>Balanced diet:</strong> Essential for bone health and overall well-being.</li><li><strong>Calcium and Vitamin D:</strong> Supplementation as needed, but generally not a primary cause of OI.</li><li><strong>Weight management:</strong> Preventing obesity is important to reduce stress on fragile bones.</li><li><strong>Counseling:</strong> For patients and families to cope with the challenges of a chronic condition, body image issues, pain, and disability.</li><li><strong>Support groups:</strong> Connecting with others who have OI can be invaluable.</li><li><strong>Educational support:</strong> Ensuring children with OI receive appropriate educational accommodations.</li><li><strong>Recurrent Fractures:</strong> The most defining complication. Even with treatment, individuals may experience multiple fractures, leading to pain, immobilization, and repeated hospitalizations.</li><li><strong>Progressive Bone Deformities:</strong> Despite rodding and other surgical interventions, bones can continue to bow, leading to significant limb deformities, short stature, and gait abnormalities.</li><li><strong>Kyphoscoliosis:</strong> Progressive curvature of the spine (forward hunching and lateral curve), particularly common in Type III.</li><li><strong>Basilar Invagination:</strong> Upward protrusion of the base of the skull into the foramen magnum, potentially compressing the brainstem or cerebellum.</li><li><strong>Pseudarthrosis / Non-union:</strong> A fracture fails to heal properly, creating a &quot;false joint&quot; or remaining ununited.</li><li><strong>Bone Pain:</strong> Chronic bone pain is common, even in the absence of acute fractures, and can significantly impact quality of life.</li><li><strong>Osteopenia/Osteoporosis:</strong> Persistently low bone mineral density, increasing the risk of fractures throughout life.</li><li><strong>Respiratory Complications:</strong> A major cause of morbidity and mortality, especially in severe OI. Caused by: Severe kyphoscoliosis and rib cage deformities restricting lung expansion.</li><li>Reduced chest wall compliance.</li><li>Muscle weakness.</li><li><strong>Hearing Loss:</strong> Progressive hearing loss (conductive, sensorineural, or mixed) commonly affects adults with OI, starting in childhood or young adulthood.</li><li><strong>Dental Complications (Dentinogenesis Imperfecta):</strong> Brittle, discolored teeth prone to rapid wear, decay, and fracture.</li><li><strong>Cardiovascular Complications:</strong> Less common but potentially serious. Can include: <strong>Aortic Root Dilatation/Aortic Dissection:</strong> Weakening of the aortic wall due to defective collagen.</li><li><strong>Mitral Valve Prolapse:</strong> Also due to connective tissue weakness.</li><li><strong>Ophthalmological Complications:</strong> While blue sclerae are a sign, rarely, extreme scleral thinness can lead to globe rupture from minor trauma. Other issues like corneal abnormalities can occur.</li><li><strong>Neurological Complications:</strong> Beyond basilar invagination, hydrocephalus can occur (often secondary to basilar invagination or skull deformities).</li><li><strong>Gastrointestinal Complications:</strong> Constipation is common due to reduced mobility, medications, and sometimes hypotonia.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" open id="section-2">
           <summary>02 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Osteogenesis Imperfecta</strong> as a practical nursing topic, not only a memorized definition. Connect structure, movement, pain, circulation, nerve function and safe mobility.</p>
 <ul><li><strong>What to understand first:</strong> define osteogenesis imperfecta, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-3">
           <summary>03 Assessment Guide</summary>
           <ul><li>Pain score, site, onset, deformity, swelling, bruising and ability to move.</li><li>Distal pulse, capillary refill, colour, warmth, sensation and movement.</li><li>Skin integrity, wounds, cast tightness, traction alignment and pressure areas.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-4">
           <summary>04 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Immobilize and protect the affected part while preventing further injury.</li><li>Control pain and swelling while monitoring neurovascular status.</li><li>Prevent complications such as compartment syndrome, infection, pressure injury and venous stasis.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> Pain is reduced, circulation and sensation remain intact, swelling is controlled and the patient mobilizes safely within the care plan.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-5">
           <summary>05 Patient Teaching and Revision Check</summary>
           <ul><li>Explain osteogenesis imperfecta in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Osteogenesis%20Imperfecta%20Surgical%20Nursing%20III%20and%20Paediatric%20Nursing%20(II)%20nursing%20lecture" title="Osteogenesis Imperfecta YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (5)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Osteogenesis-Imperfecta.webp" alt="Osteogenesis Imperfecta" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Osteogenesis Imperfecta</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Osteogenesis-Imperfecta-remember-types.webp" alt="Osteogenesis Imperfecta Remember Types" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Osteogenesis Imperfecta Remember Types</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Pathophysiology-of-Osteogenesis-Imperfecta-1.webp" alt="Pathophysiology Of Osteogenesis Imperfecta 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Pathophysiology Of Osteogenesis Imperfecta 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/clinical-manifestations-of-osteogenesis-imperfecta.webp" alt="Clinical Manifestations Of Osteogenesis Imperfecta" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Clinical Manifestations Of Osteogenesis Imperfecta</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/5c6e3e5590d89b63fa954378ca5f4f43.webp" alt="5c6e3e5590d89b63fa954378ca5f4f43" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">5c6e3e5590d89b63fa954378ca5f4f43</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Osteogenesis%20Imperfecta%20Surgical%20Nursing%20III%20and%20Paediatric%20Nursing%20(II)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Osteogenesis%20Imperfecta%20Surgical%20Nursing%20III%20and%20Paediatric%20Nursing%20(II)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

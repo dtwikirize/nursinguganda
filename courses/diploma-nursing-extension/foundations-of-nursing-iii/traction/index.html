@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,20 +97,40 @@
         <p>Traction should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 14 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">TRACTION</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Indications for Traction</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Types of Traction</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">SKELETAL TRACTION</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">SKIN TRACTION</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Gallows Traction(Bryant’s Traction)</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">PULP TRACTION</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Skull Tongs Traction</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Halo Traction</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Fixators</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 TRACTION</summary>
           <p>Traction is a pull exerted on the part of the limb against a pull of compared strength in the opposite direction .</p>
 <p>This is a system in fracture management in which a continuous pull is applied and maintained on a limb or other parts of the body by the use of cords and weights.</p>
 <p>It involves applying a pulling force to a part of the body in order to realign bones, relieve pressure on joints, or stretch muscles and soft tissues. This method is commonly used to stabilize fractures, reduce dislocations, and alleviate pain.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Indications for Traction</summary>
           <p>Traction is indicated in a variety of clinical situations, including:</p>
 <ul><li>Fractures : To realign fractured bones and facilitate proper healing.</li><li>Dislocations : To reduce dislocations and restore proper joint alignment.</li><li>Muscle Spasms : To relieve muscle spasms by stretching the affected muscles.</li><li>Deformities : To correct skeletal deformities, such as scoliosis or leg length discrepancies.</li><li>Joint Pain : To alleviate pain associated with arthritis or other joint conditions.</li><li>Post – Surgical Stabilization : Following surgical procedures to maintain proper alignment and support healing.</li><li>Preoperative or Postoperative Care : To prepare for or support recovery from surgical interventions.</li><li>Joint Deformities : To correct joint deformities effectively.</li><li>Separation of Joint Surfaces : To prevent further spread of infection, such as tuberculosis of the joints (e.g., hips, knees).</li><li>Prevention of Muscle Spasms : To help alleviate muscle spasms.</li><li>Prevention of Bone Overriding : To maintain bones in the correct position during the healing process.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Types of Traction</summary>
           <p>Traction can be classified into several types based on the method of application and the area of the body affected:</p>
 <p>1. Skeletal Traction : Involves the insertion of pins, wires, or screws into the bone, which are then attached to weights to apply traction.</p>
@@ -111,7 +143,7 @@
 <ul><li>Internal Fixators : Implanted devices within the body to hold bones in place.</li><li>External Fixators : Devices applied externally to stabilize fractures through the skin.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 SKELETAL TRACTION</summary>
           <p>Skeletal traction is the type of traction in which a pin, nail, or wire is passed through a bone. This type of traction is mainly used for the treatment of fractures and works better for well-built strong persons.</p>
 <p>Common sites for introducing the pins include:</p>
@@ -129,7 +161,7 @@
 <ul><li>Action Rationale</li><li>1. The patient is nursed on fracture boards on the bed, and the foot of the bed elevated at all times with bed blocks. Foot of the bed elevated to aid venous return.</li><li>2. Weights must not be lifted or removed unless required. To provide constant traction.</li><li>3. Traction must be maintained 24 hours a day. Sudden cessation of traction irritates diseased joints, causes displacement in a fracture, and is very painful for the patient.</li><li>4. Lubricate with a drop or two of oil if necessary.</li><li>5. Keep a cork on the sharp point of the pin. So that it’s not loose.</li><li>6. See that the patient’s bed is provided with an overhead lifting pole and chain. To help the patient lift himself/herself.</li><li>7. When giving a bed pan, ask the patient to lift him/herself or get another nurse to help. Patient lifting himself makes participation more active.</li><li>8. Change the bottom sheet from top to bottom. To provide comfort.</li><li>9. Make patient participate in activities of daily living (e.g., bathing in bed, feeding, active exercises, etc.).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 SKIN TRACTION</summary>
           <p>It involves applying splints, bandages, or adhesive tapes to the skin directly below the fracture . Once the material has been applied, weights are fastened to it. The affected body part is then pulled into the right position using a pulley system attached to the hospital bed.</p>
 <p>Preparation of the Patient for Skin Traction</p>
@@ -144,7 +176,7 @@
 <ul><li>Traction : Check that the strapping does not slip. Bandages should be secure and unwrinkled to avoid friction.</li><li>Inspection : Check the circulation of the foot and toes by noting color, temperature, sensation, and power. Neurovascular assessments aid in early identification of complications.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Gallows Traction(Bryant’s Traction)</summary>
           <p>This is commonly used in treating fractured femurs in smaller children below 5 years.</p>
 <p>Additional Requirement for Skin Traction Procedure</p>
@@ -181,12 +213,12 @@
 <ul><li>Skin Breakdown / Pressure Areas : Pressure from the traction or immobilization can lead to skin damage.</li><li>Neurovascular Impairment : Monitor for issues with circulation, oxygenation, and nerve function in the limbs.</li><li>Compartment Syndrome : Increased pressure in muscle compartments can affect muscles and nerves, requiring urgent care.</li><li>Joint Contractures : Prolonged immobility may result in stiffening of the joints.</li><li>Constipation : This can result from immobility and the use of analgesics.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 PULP TRACTION</summary>
           <p>This is the type of traction used for management of displaced phalanges, metacarpals and metatarsal fractures . A structure is put through the pulp of the fingers and fastened to an extension wire which is incorporated in the plaster.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Skull Tongs Traction</summary>
           <p>Skull tongs traction is used to immobilize the cervical spine in cases of unstable fractures or dislocations of the cervical vertebrae.</p>
 <p>Types of Skull Tongs Traction:</p>
@@ -200,13 +232,13 @@
 <ul><li>Assist with daily activities as the patient will have difficulty performing them independently.</li><li>Prevent infection at the tong sites through regular cleaning.</li><li>Suggest recreational or occupational activities to address restlessness and boredom.</li><li>Teach the patient range of motion exercises.</li><li>Ensure proper nutrition.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Halo Traction</summary>
           <p>Halo traction is similar to skull tongs traction but includes a vertical frame that extends to the body, allowing the patient to move out of bed without disrupting its function. The pin is inserted into the skull, and the frame provides stabilization for fractured cervical vertebrae.</p>
 <ul><li>The frame is not removable, as any movement of the vertebrae could damage the spinal cord.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Fixators</summary>
           <p>Fixators are metallic rods passed through a bone to ensure stability.</p>
 <p>Types :</p>
@@ -226,37 +258,49 @@
 <ul><li>Encourage deep breathing exercises.</li><li>Promote limb movement for the affected site.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-11">
           <summary>11 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Traction</strong> as a practical nursing topic, not only a memorized definition. Connect structure, movement, pain, circulation, nerve function and safe mobility.</p>
 <ul><li><strong>What to understand first:</strong> define traction, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-12">
           <summary>12 Assessment Guide</summary>
           <ul><li>Pain score, site, onset, deformity, swelling, bruising and ability to move.</li><li>Distal pulse, capillary refill, colour, warmth, sensation and movement.</li><li>Skin integrity, wounds, cast tightness, traction alignment and pressure areas.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-13">
           <summary>13 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Immobilize and protect the affected part while preventing further injury.</li><li>Control pain and swelling while monitoring neurovascular status.</li><li>Prevent complications such as compartment syndrome, infection, pressure injury and venous stasis.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> Pain is reduced, circulation and sensation remain intact, swelling is controlled and the patient mobilizes safely within the care plan.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-14">
           <summary>14 Patient Teaching and Revision Check</summary>
           <ul><li>Explain traction in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Traction%20Foundations%20of%20Nursing%20(III)%20nursing%20lecture" title="Traction YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (9)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/orthopedic-nursing-care-1024x701.webp" alt="Orthopedic Nursing Care" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Orthopedic Nursing Care</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/SKELETAL-TRACTION.webp" alt="SKELETAL TRACTION" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">SKELETAL TRACTION</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Steinmanns-pins-e1742282194206.webp" alt="Steinmanns Pins E1742282194206" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Steinmanns Pins E1742282194206</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/SKIN-TRACTION-1024x920.webp" alt="SKIN TRACTION" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">SKIN TRACTION</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Gallows-TractionBryants-Traction-1.webp" alt="Gallows TractionBryants Traction 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Gallows TractionBryants Traction 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/PULP-TRACTION.webp" alt="PULP TRACTION" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">PULP TRACTION</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/An-illustration-of-a-cervical-traction-with-Gardner-wells-tongs..webp" alt="An Illustration Of A Cervical Traction With Gardner Wells Tongs." loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">An Illustration Of A Cervical Traction With Gardner Wells Tongs.</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Halo-Traction.webp" alt="Halo Traction" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Halo Traction</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Traction%20Foundations%20of%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <p style="color:var(--seo-muted);font-size:.85rem;margin:8px 0 0">1 more diagram available — open the lesson for full illustrations.</p>
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Traction%20Foundations%20of%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

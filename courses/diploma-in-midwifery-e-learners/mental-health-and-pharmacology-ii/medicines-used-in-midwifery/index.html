@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,41 @@
         <p>Medicines used in midwifery should be reviewed through safe maternal and newborn assessment, early recognition of danger signs, respectful communication and timely referral. Connect the definition to vital signs, bleeding, fetal or newborn wellbeing, patient education and local protocol requirements.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 28 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">DRUGS USED IN MIDWIFERY</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">DRUGS USED IN LABOUR</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Uterine Relaxants</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Uterine Stimulants/Uterine Motility Drugs (Oxytocics)</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Oxytocics</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Abortifacients</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Dysmenorrhea: Drug Treatment</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Analgesics and Anesthetics for Labor Pain</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Drugs for Postpartum Hemorrhage (PPH)</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Rh Immunoglobulin :</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Antiemetics for Nausea and Vomiting in Pregnancy</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Corticosteroids for Fetal Lung Maturation</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Iron and Folic Acid Supplements</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Drugs for Hypertension in Pregnancy</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">ANTIMALARIAL DRUGS</a>
+          <a href="#section-16" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Four Species of Malaria Parasites:</a>
+          <a href="#section-17" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Life Cycle of Malaria Parasites</a>
+          <a href="#section-18" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Classification of Antimalarial Drugs</a>
+          <a href="#section-19" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">QUININE</a>
+          <a href="#section-20" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">SULFADOXINE WITH PYRIMETHAMINE (FANSIDAR)</a>
+          <a href="#section-21" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">ARTEMISININ AND DERIVATIVES</a>
+          <a href="#section-22" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Artemether :</a>
+          <a href="#section-23" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">ARTEMETHER + LUMEFANTRINE</a>
+          <a href="#section-24" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">ARTESUNATE</a>
+          <a href="#section-25" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-26" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-27" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-28" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 DRUGS USED IN MIDWIFERY</summary>
           <p>Drugs used in midwifery are drugs specifically used during pregnancy, labor, delivery, and postpartum care to ensure the health of the mother and baby .</p>
 <p>They may induce labor, prevent complications, manage pain, or treat postpartum conditions.</p>
@@ -95,14 +141,14 @@
 <ul><li>Inducing or augmenting labor.</li><li>Managing preterm labor.</li><li>Preventing or treating postpartum hemorrhage.</li><li>Managing pregnancy-related conditions like preeclampsia, nausea, or pain.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 DRUGS USED IN LABOUR</summary>
           <p>Drugs in Labor refers to the medications that are administered to a woman during labor to manage pain, assist with the process of childbirth, or address complications . These drugs can be used for pain relief, induction or augmentation of labor, and management of medical conditions that may arise during labor.</p>
 <p>Drugs used in labor can be grouped according to the effect they have on the uterus.</p>
 <ul><li>Uterine relaxants ( Tocolytics ): These drugs relax the uterus, slowing or stopping contractions such as Nifedipine, Magnesium Sulfate.</li><li>Uterine Stimulants/Uterine Motility drugs . ( Oxytocics ): These drugs stimulate the uterus to contract, helping to induce or strengthen labor , such as Oxytocin (Pitocin).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Uterine Relaxants</summary>
           <p>Uterine relaxants , also known as tocolytics , are a group of medications used to suppress uterine contractions and delay labor.</p>
 <p>Their primary goal is to prolong pregnancy , allowing the fetus to develop further and increasing the chances of neonatal survival. These drugs are primarily used to prevent premature labor, particularly when cervical dilation is less than 4 cm.</p>
@@ -164,13 +210,13 @@
 <ul><li>Severe hypotension</li><li>Reflex tachycardia</li><li>Congestive heart failure (CHF) exacerbation</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Uterine Stimulants/Uterine Motility Drugs (Oxytocics)</summary>
           <p>Uterine motility drugs , also known as oxytocics , are agents used to stimulate uterine contractions .</p>
 <p>These medications are primarily used to induce or augment labor, manage postpartum hemorrhage, and facilitate uterine evacuation in cases of incomplete abortion or fetal death. They are also employed as abortifacients to induce abortion.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Oxytocics</summary>
           <p>Oxytocics are drugs that stimulate uterine contractions , mimicking the action of the natural hormone oxytocin. They are used to induce or augment labor, control postpartum bleeding, and in some cases, manage incomplete or missed abortions.</p>
 <p>Types of Oxytocics</p>
@@ -233,7 +279,7 @@
 <ul><li>Oligohydramnios (reduced amniotic fluid)</li><li>Premature closure of the ductus arteriosus in the fetus</li><li>Renal impairment in both mother and fetus</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Abortifacients</summary>
           <p>Abortifacients are drugs that induce abortion by causing strong uterine contractions, leading to the expulsion of uterine contents . They are often used in the first and second trimesters of pregnancy for medical termination, and are often used in conjunction with other medications.</p>
 <p>Types of Abortifacients</p>
@@ -255,7 +301,7 @@
 <ul><li>Absorption : Rapidly absorbed after oral, sublingual, or vaginal administration</li><li>Distribution : Well distributed throughout the body, crossing into fetal circulation</li><li>Metabolism : Hepatically metabolized to active prostaglandin analogs</li><li>Excretion : Primarily excreted in urine.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Dysmenorrhea: Drug Treatment</summary>
           <p>Dysmenorrhoea refers to pain during menstruation, caused by excessive prostaglandin production, leading to strong uterine contractions .</p>
 <p>Dysmenorrhea, or painful menstruation, is categorized into primary and secondary types, based on the presence or absence of an identifiable underlying cause.</p>
@@ -266,7 +312,7 @@
 <p>Others ;</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Analgesics and Anesthetics for Labor Pain</summary>
           <p>Purpose : Provide pain relief during labor and delivery.</p>
 <p>Examples :</p>
@@ -278,7 +324,7 @@
 <ul><li>Mechanism : Bind to opioid receptors in the brain to reduce pain perception.</li><li>Examples : Fentanyl, Remifentanil.</li><li>Indications : Moderate to severe labor pain.</li><li>Administration : IV or IM.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Drugs for Postpartum Hemorrhage (PPH)</summary>
           <p>Purpose : Prevent or treat excessive bleeding after delivery.</p>
 <p>Examples :</p>
@@ -294,14 +340,14 @@
 <ul><li>Mechanism : Antifibrinolytic that reduces bleeding.</li><li>Indications : PPH.</li><li>Administration : IV.</li><li>Dosage : 1g over 10 minutes</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Rh Immunoglobulin :</summary>
           <p>A medication used to prevent unwanted immune reactions in blood transfusions or pregnancy.</p>
 <p>Human Rho(D) immune globulin is a solution of antibodies used to prevent isoimmunization of Rho(D) negative patients exposed to Rho(D) positive blood in pregnancy or transfusion.</p>
 <ul><li>Purpose : Prevent Rh sensitization in Rh-negative mothers.</li><li>Mechanism : Prevents the mother’s immune system from producing antibodies against Rh-positive fetal blood cells.</li><li>Indications : Rh-negative mothers with Rh-positive babies.</li><li>Administration : IM, usually at 28 weeks of pregnancy and within 72 hours of delivery.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 Antiemetics for Nausea and Vomiting in Pregnancy</summary>
           <p>Purpose: Manage nausea and vomiting, including hyperemesis gravidarum.</p>
 <p>Examples:</p>
@@ -332,7 +378,7 @@
 <ul><li>Dosage : 10-25mg orally every 4-6 hours: Oral alternative to the IV/IM route.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-12">
           <summary>12 Corticosteroids for Fetal Lung Maturation</summary>
           <p>Purpose : Accelerate fetal lung development in preterm labor.</p>
 <p>Examples :</p>
@@ -342,12 +388,12 @@
 <ul><li>Mechanism : Similar to betamethasone.</li><li>Indications : Preterm labor.</li><li>Administration : Four 6 mg doses given IM every 12 hours.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-13">
           <summary>13 Iron and Folic Acid Supplements</summary>
           <ul><li>Purpose : Prevent or treat anemia during pregnancy.</li><li>Mechanism : Supports red blood cell production and fetal development.</li><li>Indications : Routine supplementation during pregnancy.</li><li>Administration : Oral.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-14">
           <summary>14 Drugs for Hypertension in Pregnancy</summary>
           <p>Hypertension in pregnancy is a serious condition requiring careful management due to potential risks to both mother and fetus.</p>
 <p>Types of Hypertension in Pregnancy:</p>
@@ -366,23 +412,23 @@
 <ul><li>Methyldopa 250mg twice daily to three times daily : A centrally acting alpha-2 agonist that is generally considered safe in pregnancy. The dosage is adjusted based on blood pressure response.</li><li>Nifedipine retard 20mg twice daily : A long-acting calcium channel blocker that offers sustained blood pressure control. Again, dose adjustments are necessary based on clinical monitoring.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-15">
           <summary>15 ANTIMALARIAL DRUGS</summary>
           <p>Malaria is an acute febrile illness caused by protozoa of the genus Plasmodium . It is transmitted from person to person through the bite of a female Anopheles mosquito.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-16">
           <summary>16 The Four Species of Malaria Parasites:</summary>
           <ul><li>Plasmodium falciparum</li><li>Plasmodium vivax</li><li>Plasmodium ovale</li><li>Plasmodium malariae</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-17">
           <summary>17 Life Cycle of Malaria Parasites</summary>
           <p>Malaria parasites undergo both a sexual cycle (in the female Anopheles mosquito) and an asexual cycle (in humans).</p>
 <ul><li>Mosquito Bite : The mosquito injects sexual forms of the parasite (sporozoites) into the bloodstream.</li><li>Hepatic Cycle : Sporozoites enter liver cells, forming tissue schizonts, which rupture and release merozoites. Some sporozoites become dormant forms (hypnozoites), which may reactivate later.</li><li>Erythrocytic Cycle : Merozoites invade red blood cells (RBCs), forming blood schizonts. The schizonts rupture the RBCs, causing the clinical symptoms of malaria.</li><li>Gametocyte Formation : Some merozoites develop into male and female gametocytes. If taken up by a mosquito, they complete the life cycle, forming sporozoites.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-18">
           <summary>18 Classification of Antimalarial Drugs</summary>
           <p>Classification I</p>
 <ul><li>Tissue Schizonticides : Act on malaria parasites in the liver ( Primaquine, Pyrimethamine, Proguanil ).</li><li>Blood Schizonticides : Act on schizonts in RBCs ( Chloroquine, Amodiaquine, Proguanil, Pyrimethamine, Mefloquine, Quinine, Artemisinin ).</li><li>Gametocides : Prevent transmission by destroying gametocytes ( Primaquine ).</li></ul>
@@ -390,7 +436,7 @@
 <ul><li>4-Aminoquinolines : Chloroquine, Amodiaquine</li><li>8-Aminoquinolines : Primaquine</li><li>4-Methanolquinolines (Quinoline Methanols) : Quinine, Mefloquine</li><li>Biguanides : Proguanil</li><li>Sulphonamides : Sulfadoxine</li><li>Artemisinin Derivatives : Artemether, Artesunate, Dihydroartemisinin, Artemisinin</li><li>Antibiotics : Doxycycline, Tetracycline, Clindamycin</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-19">
           <summary>19 QUININE</summary>
           <ul><li>Type : Alkaloid derived from the bark of the cinchona tree.</li><li>Classification : 4-Methanolquinoline</li><li>Action : Rapid blood schizonticide active against Plasmodium falciparum, vivax, ovale, malariae .</li><li>Mechanism : Inhibits haem polymerase, preventing the polymerization of haem to haemozoin.</li></ul>
 <p>Available Preparations :</p>
@@ -409,7 +455,7 @@
 <ul><li>Increases digoxin and warfarin levels.</li><li>Delayed absorption with aluminum antacids.</li><li>Cimetidine increases quinine blood levels.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-20">
           <summary>20 SULFADOXINE WITH PYRIMETHAMINE (FANSIDAR)</summary>
           <ul><li>Action : Synergistically inhibit folic acid synthesis in parasites.</li><li>Available Preparations : Tablets (500 mg sulfadoxine/25 mg pyrimethamine).</li></ul>
 <p>Pharmacokinetics :</p>
@@ -426,12 +472,12 @@
 <ul><li>Increased antifolate effect with methotrexate and cotrimoxazole, raises phenytoin plasma concentration.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-21">
           <summary>21 ARTEMISININ AND DERIVATIVES</summary>
           <ul><li>Derived from Artemesia annua (Chinese herb Qinghaosu ).</li><li>Action : Rapidly acting blood schizonticides effective against multidrug-resistant Plasmodium falciparum .</li><li>Derivatives : Artesunate (water-soluble), Artemether (lipid-soluble).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-22">
           <summary>22 Artemether :</summary>
           <ul><li>Available Forms : Injection (20 mg/ml, 40 mg/ml, 80 mg/ml).</li><li>Indications : Uncomplicated and severe malaria.</li><li>Dose : Adults 300 mg loading dose, followed by 100 mg once daily for 4 days.</li></ul>
 <p>Side Effects :</p>
@@ -440,7 +486,7 @@
 <ul><li>Hypersensitivity, first trimester of pregnancy.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-23">
           <summary>23 ARTEMETHER + LUMEFANTRINE</summary>
           <ul><li>Available Forms : Tablets (20 mg/120 mg, 40 mg/240 mg), suspension (15 mg/90 mg/5 ml).</li><li>Indications : First-line treatment for uncomplicated malaria.</li></ul>
 <p>Dosage :</p>
@@ -453,7 +499,7 @@
 <p>Avoid concurrent use with amiodarone, ciprofloxacin, fluconazole, mefloquine.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-24">
           <summary>24 ARTESUNATE</summary>
           <p>Type : Derivative of artemisinin, water-soluble.</p>
 <p>Classification : Blood schizonticide and gametocide, particularly effective against Plasmodium falciparum , including multidrug-resistant strains.</p>
@@ -474,37 +520,42 @@
 <ul><li>Caution with drugs affecting the heart’s electrical activity (e.g., antiarrhythmics like amiodarone).</li><li>Avoid concurrent use with drugs that prolong QT interval (e.g., quinidine, erythromycin).</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-25">
           <summary>25 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Medicines used in midwifery</strong> as a practical nursing topic, not only a memorized definition. Read the topic through the safety of two patients: the mother and the fetus or newborn.</p>
 <ul><li><strong>What to understand first:</strong> define medicines used in midwifery, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-26">
           <summary>26 Assessment Guide</summary>
           <ul><li>Maternal vital signs, bleeding, pain, contractions, uterine tone and danger signs.</li><li>Fetal or newborn wellbeing, feeding, temperature, breathing and activity.</li><li>History of pregnancy, parity, medications, allergies, investigations and referral risks.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-27">
           <summary>27 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Recognize danger signs early and escalate without delay.</li><li>Provide respectful communication, privacy, infection prevention and clear documentation.</li><li>Teach the mother what to monitor at home and when to return urgently.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> Mother and baby remain stable, danger signs are acted on early, and the family understands follow-up instructions.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-28">
           <summary>28 Patient Teaching and Revision Check</summary>
           <ul><li>Explain medicines used in midwifery in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Medicines%20used%20in%20midwifery%20Mental%20Health%20and%20Pharmacology%20ii%20nursing%20lecture" title="Medicines used in midwifery YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (1)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/DRUGS-USED-IN-MIDWIFERY-1024x576.webp" alt="DRUGS USED IN MIDWIFERY" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">DRUGS USED IN MIDWIFERY</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Medicines%20used%20in%20midwifery%20Mental%20Health%20and%20Pharmacology%20ii%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Medicines%20used%20in%20midwifery%20Mental%20Health%20and%20Pharmacology%20ii%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

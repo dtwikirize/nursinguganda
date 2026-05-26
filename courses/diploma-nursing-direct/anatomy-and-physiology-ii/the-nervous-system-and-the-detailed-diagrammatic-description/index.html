@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,12 +97,27 @@
         <p>The nervous system and the detailed diagrammatic description should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (9)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Overview</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Anatomy of the Nervous System</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Brain Anatomy &amp; Physiology.</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Anatomy of the Spinal Cord</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">CRANIAL NERVES and ASSESSMENT</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Overview</summary>
           <p>REVIEW OF THE ANATOMY AND PHYSIOLOGY OF NERVOUS SYSTEM</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Anatomy of the Nervous System</summary>
           <p>The nervous system can be separated into parts based on structure and on function:</p>
 <p>Structurally , it’s organized into the central nervous system (CNS) and the peripheral nervous system (PNS) .</p>
@@ -104,7 +131,7 @@
 <ul><li>Satellite Cells: Surround neuron cell bodies in ganglia. Maintain a micro-environment and provide insulation.</li><li>Ependymal Cells: Line CNS cavities, secrete cerebrospinal fluid, and form choroid plexuses.</li><li>Oligodendrocytes: Wrap around CNS neurons to produce myelin sheath.</li><li>Astrocytes: Glial cells in the CNS. Anchor neurons to blood vessels and form the blood-brain barrier.</li><li>Microglia : Monocytes in the nervous system. Move to damaged tissue for phagocytosis.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Brain Anatomy &amp; Physiology.</summary>
           <ul><li>Largest brain structure with frontal , temporal , parietal , and occipital lobes.</li><li>Divided into hemispheres by the longitudinal cerebral fissure.</li><li>Cerebral cortex (gray matter) and subcortical white matter.</li><li>Responsible for memory , sensory perception (pain, temperature, touch, sight, hearing, taste, smell), and control of skeletal muscle contractions.</li><li>Located behind the pons, below the occipital lobe.</li><li>Oval-shaped with hemispheres separated by vermis.</li><li>Contains gray and white matter.</li><li>Coordinates voluntary muscle movement, maintains posture and balance , and contributes to learning and language processing .</li><li>Midbrain surrounds the cerebral aqueduct, connecting cerebrum and pons.</li><li>Pons, in front of the cerebellum, have nuclei and nerve fibers.</li><li>Medulla oblongata extends from the pons, continuous with the spinal cord, containing gray and white matter.</li><li>Midbrain acts as a relay station for ascending and descending nerve fibers, connecting cerebrum with lower brain fibers and spinal cord.</li><li>Pons collaborates with the medulla to control respiration .</li><li>Medulla oblongata controls respiration , cardiovascular function , and reflexes (vomiting, coughing, sneezing, swallowing).</li><li>Connects cerebrum and midbrain.</li><li>Houses thalamus (gray and white matter masses) and hypothalamus (below thalamus, connected to pituitary gland).</li></ul>
 <p>Thalamus</p>
@@ -113,7 +140,7 @@
 <ul><li>Controls the autonomic nervous system .</li><li>Regulates appetite , thirst , body temperature , water balance , emotional reactions , and sexual behavior.</li><li>Influences sleeping and waking cycles through melatonin from the pineal gland.</li><li>Secretes ADH (antidiuretic hormone) and oxytocin .</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Anatomy of the Spinal Cord</summary>
           <ul><li>Cylindrical shape with circular to oval cross-section and a central canal.</li><li>Comprises 31 pairs of spinal nerves, each with sensory (dorsal root) and motor (ventral root) fibers.</li></ul>
 <p>Physiology of the Spinal Cord:</p>
@@ -125,7 +152,7 @@
 <ul><li>Dura Mater: Thickest and outermost layer, continuous with cranial dura mater. The spinal dura mater is continuous with the cranial dura mater at the foramen magnum of the skull and is the outermost meningeal membrane. In the cranial cavity, one layer of the dura mater is fused to the bone and represents the periosteum, but the spinal dura mater is separated from the bones of the vertebral canal by an extradural space. Inferiorly, the Dural sac dramatically narrows at the level of the lower border of vertebra SII and forms an investing sheath for the pial part of the filum terminale of the spinal cord. The dural part of the filum terminale attaches to the posterior surface of the vertebral bodies of the coccyx.</li><li>Arachnoid Mater : Thin, delicate membrane against the internal surface of the dura mater. This is a thin delicate membrane against, but not adherent to, the deep surface of the dura mater. It is separated from the pia mater by the subarachnoid space. The arachnoid mater ends at the level of vertebra SII. The sub-arachnoid space contain CSF.</li><li>Pia Mater: Adherent to the brain and spinal cord, extends into the anterior median fissure, and forms the denticulate ligament. It extends into the anterior median fissure and reflects as sleeve-like coating onto posterior and anterior rootlets and roots as they cross the subarachnoid space. As the roots exit the space, the sleeve-like coatings reflect onto the arachnoid mater. On each side of the spinal cord, a longitudinally oriented sheet of pia mater (the denticulate ligament) extends laterally from the cord toward the arachnoid and dura mater. Because the subarachnoid space can be accessed in the lower lumbar region without endangering the spinal cord, it is important to be able to identify the position of the lumbar vertebral spinous processes. The LIV vertebral spinous process is level with a horizontal line between the highest points on the iliac crests. In the lumbar region, the palpable ends of the vertebral spinous processes lie opposite their corresponding vertebral bodies. The subarachnoid space can be accessed between vertebral levels LIII and LIV and between LIV and LV without endangering the spinal cord.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 CRANIAL NERVES and ASSESSMENT</summary>
           <p>In a clinical practice, it’s very important for the nurse to know the basic cranial nerves, there location and function. Below are the major cranial nerves in the body.</p>
 <p>Olfactory Nerve (I):</p>
@@ -164,37 +191,49 @@
 <ul><li>Region of s keletal muscle innervated by a single nerve or spinal cord level.</li><li>Most muscles receive input from multiple spinal cord levels.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-6">
           <summary>06 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>The Nervous system</strong> as a practical nursing topic, not only a memorized definition. Start with normal structure and function, then connect it to assessment findings and disease.</p>
 <ul><li><strong>What to understand first:</strong> define the nervous system, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-7">
           <summary>07 Assessment Guide</summary>
           <ul><li>Relevant inspection, palpation, movement, auscultation, vital signs or neurological checks.</li><li>Normal findings, abnormal findings and what each abnormality may indicate.</li><li>Patient history, risk factors and how the body system affects other systems.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-8">
           <summary>08 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use anatomy to explain symptoms and guide focused assessment.</li><li>Recognize findings that need urgent escalation.</li><li>Teach the patient using simple body-system language.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The learner can explain normal function, identify abnormal signs and connect them to nursing action.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-9">
           <summary>09 Patient Teaching and Revision Check</summary>
           <ul><li>Explain the nervous system in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=The%20nervous%20system%20and%20the%20detailed%20diagrammatic%20description%20Anatomy%20and%20Physiology%20(II)%20nursing%20lecture" title="The nervous system and the detailed diagrammatic description YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (19)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Applied-anatomy-and-Physiology-of-the-nervous-system.webp" alt="Applied Anatomy And Physiology Of The Nervous System" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Applied Anatomy And Physiology Of The Nervous System</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/neuron-structure-2-300x166.webp" alt="Neuron Structure 2" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Neuron Structure 2</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/applied-sensory-219x300.webp" alt="Applied Sensory" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Applied Sensory</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/applied-motor-neuron-243x300.webp" alt="Applied Motor Neuron" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Applied Motor Neuron</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/applied-brain-anatomy.webp" alt="Applied Brain Anatomy" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Applied Brain Anatomy</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Anatomy-of-the-spinal-cord-219x300.webp" alt="Anatomy Of The Spinal Cord" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Anatomy Of The Spinal Cord</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/cross-section-of-the-spinal-cord.webp" alt="Cross Section Of The Spinal Cord" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Cross Section Of The Spinal Cord</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/how-spine-works-230x300.webp" alt="How Spine Works" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">How Spine Works</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=The%20nervous%20system%20and%20the%20detailed%20diagrammatic%20description%20Anatomy%20and%20Physiology%20(II)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <p style="color:var(--seo-muted);font-size:.85rem;margin:8px 0 0">11 more diagrams available — open the lesson for full illustrations.</p>
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=The%20nervous%20system%20and%20the%20detailed%20diagrammatic%20description%20Anatomy%20and%20Physiology%20(II)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

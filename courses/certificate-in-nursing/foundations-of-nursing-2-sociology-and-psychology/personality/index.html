@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,25 @@
         <p>Personality should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (12)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Personality</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Personality Development</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Erickson&#39;s Psychosocial Theory of Personality Development</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">THEORIES OF PERSONALITY DEVELOPMENT</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Differences between Normal and Abnormal Personalities</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">ABNORMALITIES OF PERSONALITIES</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Psychological Challenges in Patients</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Management of Psychological Challenges in Patients</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Personality</summary>
           <p>The word personality is derived from the word &quot; persona ,&quot; which was used to describe the theatrical mask worn by some dramatic actors at that time. Psychologists who study personality aim to understand why people exhibit diverse emotional, motivational, and behavioral patterns (e.g., why some are &quot;bad,&quot; &quot;good,&quot; &quot;sad,&quot; or &quot;glad&quot;).</p>
 <p>So, they define personality as the reasonably stable patterns of emotions, motives, and behavior that distinguish one person from another. Personality is simply the sum total of an individual’s physical, mental, and environmental characteristics which makes that person unique from others.</p>
@@ -93,7 +123,7 @@
 <p>Sigmund Freud proposed that one&#39;s adult personality is largely determined by life experiences that occur during the first five years of life. He put forward two major theories to explain this:</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Personality Development</summary>
           <p><strong>Personality</strong> is defined as the sum total of an individual&#39;s physical, mental, and emotional characteristics which work together to make that person unique from others.</p>
 <p>Personality develops through the interaction of hereditary predisposition (nature) and environmental influences (nurture). Children grow physically, mentally, socially, emotionally, and form attachments and relationships, all contributing to their personality.</p>
@@ -118,7 +148,7 @@
 <p><strong>NOTE:</strong> The above-mentioned stages are biologically programmed, meaning they are influenced by maturation. However, parents or other individuals interacting with the child play a crucial role. Either excessive gratification or extreme frustration at a particular stage can result in an individual getting emotionally &quot;stuck&quot; (fixated) at that particular stage, which may be associated with certain adult personality traits.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Erickson&#39;s Psychosocial Theory of Personality Development</summary>
           <p>Erik Erikson proposed that personality develops by confronting a series of eight major psychosocial stages throughout the lifespan. Each stage presents a crisis or conflict concerning how we view ourselves in relation to other people and the world. While each crisis is present throughout life, it takes on special importance during a particular age period.</p>
 <p>During the first year of life, infants are entirely dependent on parents or caretakers. Whether we develop basic trust or mistrust depends on how adequately our needs are met and how much love and attention we receive from our caregivers.</p>
@@ -138,7 +168,7 @@
 <ul><li><strong>Outcome:</strong> The person experiences integrity (a sense of completeness, fulfillment, and satisfaction with their life&#39;s journey) if the major crises of earlier stages have been successfully resolved. Those with failures or unresolved conflicts at earlier stages may experience despair, regret, and a feeling that they cannot live in a more fulfilling way, leading to bitterness and fear of death.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 THEORIES OF PERSONALITY DEVELOPMENT</summary>
           <p>There is no single, universally accepted understanding of how personality develops. However, there are different perspectives and theories that attempt to explain personality development. These include psychodynamic theory, trait theory, and type theory.</p>
 <p>For a detailed understanding, please refer to the &quot;Personality Development according to Sigmund Freud&quot; notes previously provided.</p>
@@ -149,61 +179,71 @@
 <ul><li><strong>TYPE A PERSONALITY</strong> Individuals with a Type A personality are characterized by: Being highly success-oriented, impatient, always in a hurry, and irritable at times.</li><li>They are often referred to as a &quot;high-stress&quot; type of personality.</li><li>They have a double risk of developing cardiovascular diseases such as myocardial infarction (heart attack) and angina pectoris.</li><li>They are aggressive and have high levels of competitiveness and ambition.</li><li>They live under great pressure and have an exaggerated sense of time urgency.</li><li>They become very irritated at delays or failure to meet their deadlines.</li><li>They frequently try to do several things at once.</li><li>They tend to overreact physiologically to events that arouse anger.</li><li><strong>TYPE B PERSONALITY</strong> Individuals with a Type B personality are generally: Relaxed with low stress levels, possessing patience and a calm demeanor.</li><li>They tend to be coronary disease resistant, meaning they have a lower incidence of cardiovascular problems and high blood pressure.</li><li>They are generally more agreeable and have a far less sense of time urgency compared to Type A individuals.</li><li><strong>TYPE C PERSONALITY</strong> Individuals with a Type C personality are sometimes associated with a &quot;cancer-prone&quot; personality (this is a controversial and not universally accepted concept in mainstream psychology). They are characterized by: Being highly sociable and perceived as &quot;nice&quot; people.</li><li>They are very inhibited in showing negative emotions, often bottling up feelings like anger or anxiety, which seems to hinder active coping mechanisms.</li><li>They tend to feel helpless and hopeless in the face of severe stress.</li><li>They are often passive, uncomplaining, and compliant.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Differences between Normal and Abnormal Personalities</summary>
           <p>Distinguishing between normal and abnormal personalities is crucial in psychology and healthcare. While there is a spectrum, key differences often lie in the degree of distress, impairment, and deviation from cultural norms.</p>
 <ul><li><strong>Normal Personality:</strong> Exhibits flexible and adaptive responses to life&#39;s challenges.</li><li>Experiences a wide range of emotions appropriate to situations.</li><li>Maintains stable and fulfilling relationships.</li><li>Has a realistic perception of self and others.</li><li>Copes effectively with stress and adversity.</li><li>Behaviors are generally within socially accepted norms and do not cause significant distress to self or others.</li><li><strong>Abnormal Personality (Personality Disorder):</strong> Inflexible and maladaptive patterns of thinking, feeling, and behaving that deviate significantly from cultural expectations.</li><li>Causes significant distress or impairment in social, occupational, or other important areas of functioning.</li><li>Patterns are pervasive across a broad range of personal and social situations.</li><li>Often present since adolescence or early adulthood and stable over time.</li><li>May have difficulty maintaining stable relationships, understanding social cues, or controlling impulses.</li><li>The individual may not always perceive their own behavior as problematic, leading to challenges in seeking help.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 ABNORMALITIES OF PERSONALITIES</summary>
           <p>These descriptions refer to certain enduring patterns of thinking, feeling, and behaving that deviate significantly from cultural expectations, are pervasive and inflexible, have an onset in adolescence or early adulthood, are stable over time, and lead to distress or impairment.</p>
 <ul><li><strong>INTROVERTS</strong> Usually quiet and do not mix well with others.</li><li>Prefer a solitary life to company.</li><li>Interests are more introspective and intellectual.</li><li>May have difficulty in making friends.</li><li><strong>EXTROVERTS</strong> They like company and prefer a social way of life over solitude.</li><li>They are more practical and action-oriented than introspective.</li><li>Their interests often involve activities done in a team or group.</li><li><strong>AMBIVERT</strong> These individuals fall between the introvert and extrovert types of personality, exhibiting characteristics of both depending on the situation.</li><li><strong>OBSESSIVE</strong> (Often referred to in a clinical context as Obsessive-Compulsive Personality Disorder - OCPD, which is distinct from OCD) These are people who are always aiming at perfection, are extremely orderly, neat, and rigidly adhere to rules.</li><li>They are always cautious and highly responsible.</li><li>They are sometimes too rigid, governed by routine rather than situational considerations.</li><li>They find great difficulty in adapting to change.</li><li>They are reliable and cannot tolerate mistakes.</li><li>They are consistent and punctual, often to an extreme degree.</li><li>They can be uncomfortable with relationships due to their rigidity and need for control.</li><li>Paradoxically, they may not complete tasks due to excessive preoccupation with detail and perfection.</li><li><strong>SCHIZOID</strong> (Schizoid Personality Disorder) These people are extremely introverted and tend to avoid social company.</li><li>They are emotionally cold and aloof.</li><li>They are inclined to daydreaming/fantasy and have a rich inner world.</li><li>They often have no sense of humor.</li><li>They can be absent-minded or seem to have a &quot;split mind&quot; in terms of attention.</li><li>They have poor social skills.</li><li>While distinct, schizoid personality can sometimes be an early indicator or precursor to schizophrenic illness for some individuals.</li><li><strong>CYCLOTHYMIC</strong> (Cyclothymic Disorder, a milder form of Bipolar Disorder) They are characterized by chronic mood swings, fluctuating between mild depressive symptoms and mild hypomanic (elevated mood) symptoms, not severe enough to be full-blown major depression or mania.</li><li>Sometimes one is extroverted, good-natured, sociable, and emotionally warm.</li><li>At other times, they can be gloomy, irritable, and emotionally cold.</li><li>These individuals have a higher predisposition to develop bipolar affective disorder (manic-depressive psychosis).</li><li><strong>PARANOID</strong> (Paranoid Personality Disorder) They are very suspicious of others, interpreting their motives as malevolent.</li><li>They exhibit excessive jealousy.</li><li>They are difficult to please and take everything rather too seriously, avoiding a sense of humor.</li><li>They may develop delusions of grandeur (exaggerated belief in one&#39;s importance) and persecution (belief that others are out to harm them).</li><li>They lack trust and are usually hyper-alert to defend themselves.</li><li>They frequently complain of being treated unfairly.</li><li>In severe cases, they may develop paranoid schizophrenia.</li><li><strong>HYSTERICAL / HISTRIONIC</strong> (Histrionic Personality Disorder) Characterized by excessive emotionality and attention-seeking behavior.</li><li>They are highly suggestible, easily influenced by others or circumstances.</li><li>Show immaturity and are governed by emotions as opposed to realism or logic.</li><li><strong>PSYCHOPATHIC / ANTI-SOCIAL / SOCIO-PATHY</strong> (Antisocial Personality Disorder) They are noted for a profound lack of conscience, empathy, or remorse/regret for their actions.</li><li>They do not learn from past experiences or punishments.</li><li>They frequently show anti-social and disregard for the rights of others.</li><li>Usually very intelligent, cunning, convincing, and highly deceptive.</li><li>They make friends quickly but also drop them easily, using people for their own gain.</li><li>They are disrespectful and exploitative.</li><li>They can be violent and dishonest.</li><li>Often have a history of neglect or abuse in childhood.</li><li>They are prone to substance abuse (e.g., alcoholism) and sexual deviations.</li><li><strong>ANXIOUS / AVOIDANT</strong> (Avoidant Personality Disorder) Chronically pessimistic and always expecting the worst outcomes.</li><li>Tensed up with chronic worrying and feelings of inadequacy.</li><li>Always complaining of how unfairly they are treated by others in authority.</li><li>Hard to please, as they perceive life as full of insurmountable problems.</li><li>Feels the future holds no hope for them.</li><li><strong>NARCISSISTIC</strong> (Narcissistic Personality Disorder) They have a pervasive sense of superiority, grandiosity, and self-importance.</li><li>They are extremely sensitive to failure, defeat, and criticism.</li><li>When confronted with failure or criticism, they can easily become depressed or enraged.</li><li>They expect to be admired and often suspect others&#39; motives.</li><li>They are viewed by others as self-centered, arrogant, selfish, and lacking empathy.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Psychological Challenges in Patients</summary>
           <p>Patients in a healthcare setting often face a multitude of psychological challenges that can significantly impact their well-being, recovery, and overall quality of life. Nurses play a critical role in identifying and addressing these challenges.</p>
 <ul><li><strong>Anxiety:</strong> Common due to uncertainty about diagnosis, treatment outcomes, pain, or fear of the unknown.</li><li><strong>Fear:</strong> Fear of death, pain, disfigurement, loss of independence, or loss of livelihood.</li><li><strong>Depression:</strong> Can arise from chronic illness, disability, loss of function, prolonged hospitalization, or grief over health changes.</li><li><strong>Stress:</strong> Related to the illness itself, hospital environment, financial burdens, or changes in family roles.</li><li><strong>Grief and Loss:</strong> Patients may grieve the loss of health, body image, future plans, or even their former self.</li><li><strong>Helplessness and Hopelessness:</strong> Feeling a lack of control over their situation or belief that their condition will not improve.</li><li><strong>Anger and Frustration:</strong> Directed at their illness, healthcare providers, family, or themselves for their situation.</li><li><strong>Body Image Disturbances:</strong> Especially after surgery, injury, or illness that alters physical appearance or function.</li><li><strong>Social Isolation:</strong> Due to prolonged hospitalization, limited visitors, or difficulty engaging in social activities.</li><li><strong>Cognitive Impairment:</strong> From illness, medication side effects, or age, leading to confusion, memory problems, or disorientation.</li><li><strong>Dependency:</strong> Loss of independence can lead to feelings of frustration and helplessness.</li><li><strong>Denial:</strong> A coping mechanism where patients refuse to acknowledge the reality of their illness.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Management of Psychological Challenges in Patients</summary>
           <p>Effective management of psychological challenges is an integral part of holistic nursing care. It requires a patient-centered approach, empathy, and a range of communication and therapeutic skills.</p>
 <ul><li><strong>Therapeutic Communication:</strong> Active listening and allowing patients to express their feelings without judgment.</li><li>Providing accurate and honest information about their condition and treatment in an understandable manner.</li><li>Using empathy to acknowledge and validate their feelings (&quot;I understand this must be very difficult for you&quot;).</li><li>Encouraging questions and addressing concerns openly.</li><li><strong>Emotional Support:</strong> Creating a safe and supportive environment where patients feel comfortable sharing their anxieties and fears.</li><li>Reassuring patients and providing a sense of security.</li><li>Encouraging family involvement and support where appropriate.</li><li>Providing comfort measures (e.g., pain relief, comfortable environment).</li><li><strong>Patient Education:</strong> Educating patients about their illness, treatment plan, and expected outcomes to reduce anxiety and fear of the unknown.</li><li>Teaching coping mechanisms and stress reduction techniques (e.g., deep breathing, mindfulness).</li><li>Explaining procedures clearly to minimize apprehension.</li><li><strong>Promoting Autonomy and Control:</strong> Involving patients in decision-making regarding their care whenever possible.</li><li>Encouraging independence in self-care activities to the extent possible.</li><li>Allowing choices where appropriate (e.g., timing of baths, food preferences).</li><li><strong>Referral to Specialists:</strong> Collaborating with psychologists, psychiatrists, social workers, and counselors for patients with complex or severe psychological distress (e.g., clinical depression, severe anxiety disorders, adjustment disorders).</li><li>Referring to support groups or peer counseling.</li><li><strong>Creating a Healing Environment:</strong> Minimizing noise, providing privacy, and ensuring a clean and comfortable space.</li><li>Encouraging gentle activities or distractions (e.g., reading, music, light exercise if permitted).</li><li>Ensuring adequate rest and sleep.</li><li><strong>Managing Physical Symptoms:</strong> Effective pain management, nausea control, and other symptom relief can significantly reduce psychological distress.</li><li><strong>Crisis Intervention:</strong> Being prepared to respond to acute psychological distress, panic attacks, or expressions of suicidal ideation.</li><li>Ensuring patient safety and seeking immediate psychiatric consultation if needed.</li><li><strong>Advocacy:</strong> Advocating for the patient&#39;s needs and rights, ensuring they receive comprehensive care that addresses both their physical and psychological well-being.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-9">
           <summary>09 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Personality</strong> as a practical nursing topic, not only a memorized definition. Turn the topic into practical nursing knowledge: meaning, assessment, care priorities, teaching and evaluation.</p>
 <ul><li><strong>What to understand first:</strong> define personality, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-10">
           <summary>10 Assessment Guide</summary>
           <ul><li>Key definitions, patient history, focused observations and risk factors.</li><li>Findings that are normal, abnormal or urgent.</li><li>Resources, referral needs and documentation requirements.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-11">
           <summary>11 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Protect safety, comfort, dignity and infection prevention.</li><li>Provide clear care, education and escalation when needed.</li><li>Evaluate response and record what changed.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The topic is understood in a way that supports safe nursing judgement and revision.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-12">
           <summary>12 Patient Teaching and Revision Check</summary>
           <ul><li>Explain personality in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Personality%20Foundations%20of%20Nursing%202%2C%20Sociology%20and%20psychology%20nursing%20lecture" title="Personality YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (6)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Personality.webp" alt="Personality" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Personality</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Parts-of-the-Mind.webp" alt="Parts Of The Mind" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Parts Of The Mind</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Theory-of-Psycho-Sexual-Development.webp" alt="Theory Of Psycho Sexual Development" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Theory Of Psycho Sexual Development</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Eriksons-Theory-of-Development.gif" alt="Eriksons Theory Of Development" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Eriksons Theory Of Development</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/THEORIES-OF-PERSONALITY-DEVELOPMENT-e1752651123463.webp" alt="THEORIES OF PERSONALITY DEVELOPMENT E1752651123463" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">THEORIES OF PERSONALITY DEVELOPMENT E1752651123463</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Psychological-aspects-in-nursing-care-of-patients.webp" alt="Psychological Aspects In Nursing Care Of Patients" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Psychological Aspects In Nursing Care Of Patients</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Personality%20Foundations%20of%20Nursing%202%2C%20Sociology%20and%20psychology%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Personality%20Foundations%20of%20Nursing%202%2C%20Sociology%20and%20psychology%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

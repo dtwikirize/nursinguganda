@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,23 @@
         <p>Instilling medication should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (10)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">INSTILLING MEDICATION INTO EAR</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">INSTILLING MEDICATION INTO THE EYES</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">ADMINISTERING NASAL DROPS</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">ADMINISTERING MEDICATION THROUGH NASO-GASTRIC TUBE</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">APPLYING TOPICAL MEDICATIONS</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">ADMINISTERING RECTAL AND VAGINAL MEDICATION.</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 INSTILLING MEDICATION INTO EAR</summary>
           <p>Requirements</p>
 <p>Tray</p>
@@ -98,7 +126,7 @@
 <ul><li>Use sterile technique in administration when administering medication in perforated tympanic membrane.</li><li>Consider side effects and toxic effects and contraindications of various medicines.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 INSTILLING MEDICATION INTO THE EYES</summary>
           <p>Requirements</p>
 <p>Tray</p>
@@ -111,7 +139,7 @@
 <ul><li>If more than one eye drop is ordered, wait 5 minutes between each medication.</li><li>If medication for both eyes, place, in the unaffected eye first.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 ADMINISTERING NASAL DROPS</summary>
           <p>Requirements</p>
 <p>Tray</p>
@@ -122,7 +150,7 @@
 <ul><li>Step Action Rationale</li><li>1 Refer to general rules on nursing procedure and medicine administration.</li><li>2 Inspect the condition of the nose and sinuses using a penlight and palpate sinuses for tenderness. Provides baseline data to monitor effects.</li><li>3 Wash hands and put on gloves. Promotes infection prevention.</li><li>4 Request patient to clear or blow nose gently unless contraindicated (increased intracranial pressure or nose bleeds). Removes mucous and secretions that can block the nasal passages.</li><li>5 Position patient supine, and position head properly for access to the posterior pharynx, tilt patient’s head backward. Allows medication to flow into affected sinuses.</li><li>6 Support the patient’s head with the non-dominant hand and instruct the patient to breathe through the mouth. Prevents straining of the muscles and mouth breathing reduces the chances of aspirating nasal drops.</li><li>7 Hold dropper ½ – 1 cm above nares and instill prescribed number of drops towards the midline of the ethmoid bone. Avoids contamination of the dropper.</li><li>8 Have the patient remain in the supine position for 5 minutes and offer a facial towel to blot the nose but do not blow. Prevents premature loss of medication through nares and allows maximum dose to be absorbed.</li><li>9 Assist patient to a comfortable position after the medication is absorbed. Restores comfort.</li><li>10 Assess patient response, replace requirements, and wash hands. To detect reactions and maintain a hygienic environment.</li><li>11 Document and record administration of medication. Ensures accurate record keeping and continuity of care.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 ADMINISTERING MEDICATION THROUGH NASO-GASTRIC TUBE</summary>
           <p>Requirements</p>
 <p>Tray</p>
@@ -133,7 +161,7 @@
 <ul><li>Step Action Rationale</li><li>1 Refer to general rules on nursing procedure and medicine administration.</li><li>2 Position patient and place mackintosh and towel under the chest. Protects patient from spillage.</li><li>3 Elevate the head of the bead 35° -45° Protects patient from aspiration.</li><li>4 Assess placement of the tube, if correct flush 15-30ml of water (adults) or 5-10ml in children. Helps to maintain tube patency.</li><li>5 Administer the prepared medication in the same manner as feeds are administered. Administer each medication and flush with 5ml after each, do not mix medications. To avoid medicine reactions.</li><li>6 After administering the prescribed medications flush the tubing with at least 30 ml of water. Prevents clogging of feeding tube</li><li>7 Assess patient response, replace requirements and wash hands.</li><li>8 Document and record administration of medication.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 APPLYING TOPICAL MEDICATIONS</summary>
           <p>Requirements</p>
 <p>Tray</p>
@@ -142,7 +170,7 @@
 <ul><li>Step Action Rationale</li><li>1 Refer to general rules on nursing procedure and medicine administration. To maitain Standards</li><li>2 Expose only the area where lotion/liniment is to be applied</li><li>3 Powders ; make sure the skin surface is dry and sprinkle evenly over the area till a fine layer covers the skin. Cover Area if required.</li><li>4 Lotions ; shake the container and put a small amount of lotion on a gauze dressing pad and apply it evenly in the direction of hair growth.</li><li>5 Creams , ointments, and pastes; take a small quantity of medication in gloved hand, smear it evenly over skin using long strokes in the direction of hair growth.</li><li>6 Spray; shake the container well to mix the contents, hold the container at 15 – 30 cm away from the area and spray, ensuring that it does not enter the eyes.</li><li>7 Transdermal patches ; select clean dry area which is free of air, take the patch holding it without holding the adhesive edges and apply it firmly using palm of hand and press it for 10 seconds, remove the patch at the appropriate time.</li><li>8 Observe the area carefully for changes in color, swelling appearance of a rash.</li><li>9 Document and record administration of medication.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 ADMINISTERING RECTAL AND VAGINAL MEDICATION.</summary>
           <p>Requirements</p>
 <p>Tray</p>
@@ -156,37 +184,49 @@
 <ul><li>Steps Action Rationale</li><li>2. Request patient to empty bowel and bladder. Promotes effectiveness.</li><li>3. Position patient in semi recumbent, cover patient leaving the perineal area only. Ensures patient privacy.</li><li>4. Prepare requirements, unwrap suppository, for cream, fill applicator as instructed. Promotes infection control.</li><li>5. Put on gloves, inspect perineal/vaginal discharge. Prevents infection.</li><li>6. Apply medicine gently into the vaginal wall. Ensures correct administration.</li><li>7. Request the patient to remain flat or on one side for 5-10 minutes following insertion. Ensures absorption.</li><li>8. Apply a clean perineal pad if excessive discharge or cream leakage. Promotes patient’s comfort.</li><li>9. Clean, remove gloves and wash hands. Infection prevention.</li><li>10. Record and report all patients’ responses to medication including any reactions. Promotes communication between team members.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-7">
           <summary>07 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Instilling medication</strong> as a practical nursing topic, not only a memorized definition. Turn the topic into practical nursing knowledge: meaning, assessment, care priorities, teaching and evaluation.</p>
 <ul><li><strong>What to understand first:</strong> define instilling medication, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-8">
           <summary>08 Assessment Guide</summary>
           <ul><li>Key definitions, patient history, focused observations and risk factors.</li><li>Findings that are normal, abnormal or urgent.</li><li>Resources, referral needs and documentation requirements.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-9">
           <summary>09 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Protect safety, comfort, dignity and infection prevention.</li><li>Provide clear care, education and escalation when needed.</li><li>Evaluate response and record what changed.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The topic is understood in a way that supports safe nursing judgement and revision.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-10">
           <summary>10 Patient Teaching and Revision Check</summary>
           <ul><li>Explain instilling medication in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Instilling%20medication%20Foundations%20of%20Nursing%20(III)%20nursing%20lecture" title="Instilling medication YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (12)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/INSTIlLING-MEDICATION-a.webp" alt="INSTIlLING MEDICATION A" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">INSTIlLING MEDICATION A</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/INSTIlLING-MEDICATION-e1719052532955.webp" alt="INSTIlLING MEDICATION E1719052532955" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">INSTIlLING MEDICATION E1719052532955</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/INSTILLING-MEDICATION-INTO-THE-EYES.webp" alt="INSTILLING MEDICATION INTO THE EYES" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">INSTILLING MEDICATION INTO THE EYES</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/ADMINISTERING-NASAL-DROPS-1.webp" alt="ADMINISTERING NASAL DROPS 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">ADMINISTERING NASAL DROPS 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/ADMINISTERING-MEDICATION-THROUGH-NASO-GASTRIC-TUBE-1024x410.webp" alt="ADMINISTERING MEDICATION THROUGH NASO GASTRIC TUBE" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">ADMINISTERING MEDICATION THROUGH NASO GASTRIC TUBE</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/APPLYING-TOPICAL-MEDICATIONS.webp" alt="APPLYING TOPICAL MEDICATIONS" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">APPLYING TOPICAL MEDICATIONS</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/ADMINISTERING-RECTAL-AND-VAGINAL-MEDICATION.webp" alt="ADMINISTERING RECTAL AND VAGINAL MEDICATION" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">ADMINISTERING RECTAL AND VAGINAL MEDICATION</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/b16e41a25bdefb1bf63f6c808435ab4e.webp" alt="B16e41a25bdefb1bf63f6c808435ab4e" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">B16e41a25bdefb1bf63f6c808435ab4e</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Instilling%20medication%20Foundations%20of%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <p style="color:var(--seo-muted);font-size:.85rem;margin:8px 0 0">4 more diagrams available — open the lesson for full illustrations.</p>
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Instilling%20medication%20Foundations%20of%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

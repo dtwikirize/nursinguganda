@@ -1,26 +1,151 @@
-const express = require("express");
-const path = require("path");
+const express    = require("express");
+const path       = require("path");
+const fs         = require("fs");
+const compression = require("compression");
+const rateLimit  = require("express-rate-limit");
 
-const app = express();
+const app  = express();
 const PORT = process.env.PORT || 3000;
+const PROD = process.env.NODE_ENV === "production";
 
-// Correct MIME type for web app manifest
-express.static.mime.define({ "application/manifest+json": ["webmanifest"] });
+// ── Hide stack fingerprint ────────────────────────────────────────────────────
+app.disable("x-powered-by");
 
-// Serve all static assets from the project root
+// ── Block sensitive files & directories (before static middleware) ────────────
+// These files exist in the project root but must never be served to browsers.
+const BLOCKED_EXACT = new Set([
+  "/package.json",
+  "/package-lock.json",
+  "/server.js",
+  "/.gitignore",
+  "/preview-server.log",
+  "/preview-server.err.log",
+  "/DEPLOYMENT.md",
+  "/DEPLOYMENT_AUDIT.md",
+  "/PROJECT_STUDY.md",
+]);
+const BLOCKED_PREFIX = ["/node_modules/", "/scripts/", "/research/"];
+
+app.use((req, res, next) => {
+  const p = req.path;
+  // Block exact files
+  if (BLOCKED_EXACT.has(p)) return res.status(403).end();
+  // Block sensitive directories
+  if (BLOCKED_PREFIX.some((pfx) => p.startsWith(pfx))) return res.status(403).end();
+  // Block any .md and .log files at any depth
+  if (/\.(md|log|sh|env)$/i.test(p)) return res.status(403).end();
+  next();
+});
+
+// ── Security headers ──────────────────────────────────────────────────────────
+const CSP = [
+  "default-src 'self'",
+  "script-src 'self' 'unsafe-inline'",          // unsafe-inline needed for inline scripts in SEO pages
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+  "font-src 'self' https://fonts.gstatic.com",
+  "img-src 'self' data: https:",                 // https: allows lesson images & map tiles
+  "connect-src 'self'",
+  "frame-src https://www.youtube.com",           // kept for any future embeds
+  "object-src 'none'",                           // no Flash / plugins
+  "base-uri 'self'",                             // prevent base-tag injection
+  "form-action 'self'",                          // prevent form hijacking
+  "frame-ancestors 'self'",                      // replaces X-Frame-Options
+].join("; ");
+
+app.use((_req, res, next) => {
+  res.setHeader("Content-Security-Policy", CSP);
+  res.setHeader("X-Content-Type-Options",  "nosniff");
+  res.setHeader("X-Frame-Options",         "SAMEORIGIN");
+  res.setHeader("X-XSS-Protection",        "1; mode=block");
+  res.setHeader("Referrer-Policy",         "strict-origin-when-cross-origin");
+  res.setHeader("Permissions-Policy",      "camera=(), microphone=(), geolocation=()");
+  next();
+});
+
+// ── HTTPS redirect (only in production behind a proxy) ────────────────────────
+if (PROD) {
+  app.use((req, res, next) => {
+    // Heroku / Render / Railway set x-forwarded-proto
+    const proto = req.headers["x-forwarded-proto"];
+    if (proto && proto !== "https") {
+      return res.redirect(301, `https://${req.headers.host}${req.url}`);
+    }
+    next();
+  });
+}
+
+// ── Gzip / Brotli compression ─────────────────────────────────────────────────
+app.use(compression());
+
+// ── Rate limiting ─────────────────────────────────────────────────────────────
+// General: 300 requests / 1 minute per IP (covers normal browsing + PWA caching)
 app.use(
-  express.static(__dirname, {
-    maxAge: "1d",
-    etag: true,
-    lastModified: true,
+  rateLimit({
+    windowMs: 60 * 1000,
+    max: 300,
+    standardHeaders: true,
+    legacyHeaders: false,
+    message: "Too many requests — please try again in a minute.",
   })
 );
 
-// SPA fallback — hash-based routing handles all navigation client-side
-app.get("*", (_req, res) => {
+// ── MIME types ────────────────────────────────────────────────────────────────
+express.static.mime.define({ "application/manifest+json": ["webmanifest"] });
+
+// ── Service worker — always fresh ─────────────────────────────────────────────
+app.get("/service-worker.js", (_req, res) => {
+  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+  res.sendFile(path.join(__dirname, "service-worker.js"));
+});
+
+// ── Versioned CSS / JS — immutable (1 year) ───────────────────────────────────
+app.use(
+  "/assets/css",
+  express.static(path.join(__dirname, "assets", "css"), { maxAge: "1y", immutable: true })
+);
+app.use(
+  "/assets/js",
+  express.static(path.join(__dirname, "assets", "js"), { maxAge: "1y", immutable: true })
+);
+
+// ── Images — long cache (90 days) ────────────────────────────────────────────
+app.use(
+  "/assets/images",
+  express.static(path.join(__dirname, "assets", "images"), { maxAge: "90d", etag: true })
+);
+
+// ── Data files — short cache (1 hour) ────────────────────────────────────────
+app.use(
+  "/assets/data",
+  express.static(path.join(__dirname, "assets", "data"), { maxAge: "1h", etag: true })
+);
+
+// ── Everything else — 1 day ───────────────────────────────────────────────────
+app.use(
+  express.static(__dirname, { maxAge: "1d", etag: true, lastModified: true })
+);
+
+// ── Fallback routing ──────────────────────────────────────────────────────────
+app.get("*", (req, res) => {
+  // Guard against path traversal in custom file-existence check
+  const rawPath = req.path;
+
+  if (rawPath.startsWith("/courses/")) {
+    const relative  = rawPath.endsWith("/") ? rawPath + "index.html" : rawPath;
+    const resolved  = path.resolve(path.join(__dirname, relative));
+    const inRoot    = resolved.startsWith(__dirname + path.sep) || resolved === __dirname;
+
+    // Reject traversal attempts that escape the project root
+    if (!inRoot) return res.status(403).end();
+
+    if (!fs.existsSync(resolved)) {
+      return res.status(404).sendFile(path.join(__dirname, "404.html"));
+    }
+  }
+
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
 app.listen(PORT, () => {
-  console.log(`Nursing Uganda running on port ${PORT}`);
+  console.log(`Nursing Uganda running on port ${PORT}${PROD ? " [production]" : ""}`);
 });

@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,24 @@
         <p>Will Making should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (11)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Will Making</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Terms used in the Will</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">INHERITANCE</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">IMPORTANCE OF MAKING A WILL</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">ESSENTIAL CONTENTS OF A WILL</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Invalidation of a Will:</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">SHARING OF PROPERTY IN THE ABSENCE OF A WILL</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Will Making</summary>
           <p>Will: A will is a document created by an individual during their lifetime, wherein they state how their property and affairs should be handled after their death.</p>
 <p>Will: A will is a written document produced by a person while they are alive, clearly instructing how their property should be managed or divided following their passing.</p>
@@ -94,14 +123,14 @@
 <p>However, customary laws and practices often prevail over the legal provisions, leading to property distribution that may not adequately consider the welfare of widows, widowers, and children. Consequently, it is crucial for individuals to create a will during their lifetime to ensure that their property and assets are distributed according to their wishes.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Terms used in the Will</summary>
           <ul><li><strong>Administrator/Administratrix</strong> : A person authorized by a court of law to manage the property owned by the deceased.</li><li><strong>Child</strong> : An individual under the age of 18, including both legitimate and illegitimate children.</li><li><strong>Customary heir</strong> : A person designated by the deceased or the family clan members to succeed the deceased based on the customs of the deceased’s tribe.</li><li><strong>Deceased</strong> : A person who has passed away.</li><li><strong>Dependent relatives</strong> : These include a spouse, children under the age of 18, or children above 18 who were substantially dependent on the deceased. It also encompasses parents, siblings, grandparents, or grandchildren who relied significantly on the deceased for their basic needs.</li><li><strong>Estate</strong> : Refers to all the immovable and movable assets of the deceased, such as houses, agricultural produce, land, livestock, food supplies, personal belongings, motor vehicles, shareholdings, bank deposits, and outstanding debts owed to the deceased.</li><li><strong>Executor</strong> : A male individual appointed in the will of a deceased person to carry out the instructions stated in the will.</li><li><strong>Executrix</strong> : A female individual appointed in the will of a deceased person to carry out the instructions stated in the will.</li><li><strong>Husband</strong> : A man who is legally married according to the laws of Uganda or any other foreign jurisdiction where the marriage was celebrated.</li><li><strong>Wife</strong> : A woman who is legally married according to the laws of Uganda or any other foreign jurisdiction where the marriage was celebrated. This term does not include individuals who had children with the deceased without being legally married.</li><li><strong>Personal representatives</strong> : Individuals appointed by the court to manage the estate of a deceased person, upon whom probate or letters of administration have been conferred.</li><li><strong>Probate</strong> : The legal authorization granted by a court of law to manage the estate of the will-maker.</li><li><strong>Letters of Administration</strong> : The legal authorization granted by a court of law to a person who passes away without leaving a will.</li><li><strong>Residential Holding</strong> : The primary residence of the deceased person.</li><li><strong>Testator</strong> : A person who creates a will.</li></ul>
 <p>The law of Uganda recognizes three (3) different types of marriages</p>
 <ul><li><strong>Marriage Registration</strong> : Marriage celebrated either in a Registered Church, or the Office of the Chief Administrative Officer, or the Registrar General’s</li><li><strong>Customary Marriage</strong> : A marriage celebrated according to the customs of a given tribal community in These marriages are known as a customary marriage and must be registered.</li><li><strong>Sharia Marriage</strong> : A marriage celebrated in accordance with the Moslem religion, a Marriage celebrated in accordance with the Hindu</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 INHERITANCE</summary>
           <p>Inheritance is the process through which the property and responsibilities left by a deceased person are distributed among specific individuals according to the wishes of the deceased or according to the regulations outlined in the law.</p>
 <p><strong>There are two main ways in which inheritance occurs:</strong></p>
@@ -112,12 +141,12 @@
 <p>Alternatively, a lawyer can be engaged to draft the will for a fee.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 IMPORTANCE OF MAKING A WILL</summary>
           <ul><li>Clearly Expressing Wishes : A will articulates the testator’s desires, ensuring that their intentions are followed during the distribution of their property.</li><li>Asset Protection : A will establishes guidelines for managing and distributing the testator’s property, providing protection and clarity.</li><li>Guardianship Provision : A will may designate guardians for minor children, ensuring their care and well-being.</li><li>Avoiding Disputes : By clearly stating the beneficiaries and their entitlements, a will helps prevent disputes and conflicts among relatives.</li><li>Establishing Paternity: A will can help avoid disputes over the paternity of children.</li><li>Debt Collection : The executor of the will can collect any debts owed to the deceased.</li><li>Beneficiary Flexibility : A will allows the testator to allocate their property to individuals beyond immediate relatives.</li><li>Debt Settlement : The testator can indicate any outstanding debts owed to them, ensuring their repayment.</li><li>Estate Administration Guidance: A will provides instructions for the proper administration of the deceased’s assets and properties.</li><li>Responsibilities Allocation : A will can assign various relatives the responsibility of raising children or fulfilling specific duties.</li><li>Social and Financial Security : A will helps ensure the well-being and financial stability of dependents, such as orphans and widows.</li><li>Debt Acknowledgment : The testator can state if they owe any debts and specify the repayment method.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 ESSENTIAL CONTENTS OF A WILL</summary>
           <ul><li><strong>Full Identification</strong> : The will should include the full names, place of birth, tribe, place of origin, names of parents, clan/religion, and address of the testator (person making the will).</li><li><strong>Date of Will</strong> : The date when the will is made should be clearly stated, including the day, month, and year.</li><li><strong>Cancellation of Previous Will</strong> : If the testator is revoking a previous will, it should be explicitly stated in the current will.</li><li><strong>Executor(s) or Executrix</strong> : The names of the executor(s) or executrix (person(s) responsible for carrying out the testator’s wishes as stated in the will) should be mentioned.</li><li><strong>Appointment of Heir/Heiress</strong> : The full names of the customary heir/heiress (woman entitled to inherit or has a right of inheritance) should be specified.</li><li><strong>Guardianship</strong> : If there are minor children, the names of the guardians appointed to care for them should be included.</li><li><strong>Marital Status and Spouse Information</strong> : The marital status of the testator should be indicated, along with the name(s) of the spouse(s) and the place and date of marriage. If separated or divorced, the date of divorce/separation should be stated.</li><li><strong>Children</strong> : The names and number of all children, whether born within or outside marriage, should be listed.</li><li><strong>Dependent Relatives</strong> : If the testator wishes to provide for any dependent relatives in the will, their names should be mentioned.</li><li><strong>Property Description</strong> : A comprehensive list and description of the testator’s property should be provided. This should include assets belonging solely to the testator and not those of others.</li><li><strong>Beneficiaries and Distribution</strong> : The names and addresses of the individuals, including spouse’s children and relatives, who will inherit the property should be stated. The will should also specify how the property is to be distributed after the testator’s death.</li><li><strong>Additional Wishes</strong> : Any additional wishes of the testator, such as burial preferences or specific instructions related to the will, should be included.</li><li><strong>Creditors and Debt Repayment</strong> : Any creditors to whom the testator owes money should be mentioned, along with instructions on how to repay them.</li><li><strong>Debtors and Amounts Due</strong> : If there are individuals who owe the testator money, their names and the amounts owed should be included.</li><li><strong>Signature or Thumbprint</strong> : The will should be signed or thumbprinted by the testator to indicate their approval and authentication.</li><li><strong>Witness Information</strong> : The names, addresses, and signatures of at least two witnesses should be present on the will. Witnesses should not read the will but must attest that the testator voluntarily made the will while of sound mind.</li></ul>
 <p><strong>Additional Information to Consider:</strong></p>
@@ -131,14 +160,14 @@
 <ul><li>Bank Manager</li><li>Reverend, Church Priest, or Imam</li><li>Local Council Executives</li><li>Headmaster or Headmistress</li><li>A trusted friend</li><li>A spouse</li><li>The Administrator General</li><li>Your Lawyer</li><li>Legal NGOs such as FIDA (U), Legal Aid Project of the Uganda Law Society (LAP), and Legal Aid Clinic (of the Law Development Centre)</li><li>A relative</li><li>Registrar General’s Office</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Invalidation of a Will:</summary>
           <p>A will may be declared invalid (not legally recognized) by the court if the following conditions are proven:</p>
 <ul><li>The testator was of unsound mind or senile when making the will.</li><li>The will was made under duress or threats.</li><li>The testator was underage at the time of making the will.</li><li>The testator married after making the will, rendering it invalid.</li><li>The will is ambiguous or unclear in its provisions.</li><li>The estate or subject matter of the will no longer exists before the testator’s death.</li><li>The will was not signed by the testator or witnessed.</li><li>Some or all of the property mentioned in the will was sold, given away, or destroyed before the testator’s death or execution of the will.</li><li>The will inadequately provides for the spouse(s), minor children below the age of 21, or dependent relatives who significantly rely on the deceased for their basic needs.</li></ul>
 <p>Note: If the court declares a will invalid, the property of the testator will be distributed according to the laws pertaining to individuals who did not create a will.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 SHARING OF PROPERTY IN THE ABSENCE OF A WILL</summary>
           <p>When a person passes away without leaving a will, the law provides specific ways to distribute the property.</p>
 <p>The following are the key points regarding property distribution:</p>
@@ -168,37 +197,42 @@
 <p>It is important to note that it is illegal for anyone to evict the widow or children from the residential home, or to handle the estate without proper court authority.</p>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-8">
           <summary>08 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Will Making</strong> as a practical nursing topic, not only a memorized definition. Focus on comfort, dignity, symptom control, communication and family support.</p>
 <ul><li><strong>What to understand first:</strong> define will making, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-9">
           <summary>09 Assessment Guide</summary>
           <ul><li>Pain and other symptoms, function, sleep, appetite, mood, spiritual distress and family concerns.</li><li>Medication response, side effects, wound or skin needs and end-of-life preferences.</li><li>Caregiver burden, home resources and urgent red flags.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-10">
           <summary>10 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Relieve distressing symptoms and prevent avoidable suffering.</li><li>Communicate honestly, respectfully and at the patient&#39;s pace.</li><li>Support family care, medication access, dignity and continuity.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> Symptoms are better controlled, patient preferences are respected and the family knows when to seek help.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-11">
           <summary>11 Patient Teaching and Revision Check</summary>
           <ul><li>Explain will making in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Will%20Making%20Palliative%20Care%20Nursing%20nursing%20lecture" title="Will Making YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (1)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Will-Making.webp" alt="Will Making" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Will Making</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Will%20Making%20Palliative%20Care%20Nursing%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Will%20Making%20Palliative%20Care%20Nursing%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

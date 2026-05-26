@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,12 +97,40 @@
         <p>Renal diseases should be reviewed through safe maternal and newborn assessment, early recognition of danger signs, respectful communication and timely referral. Connect the definition to vital signs, bleeding, fetal or newborn wellbeing, patient education and local protocol requirements.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 22 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">COMMON TERMS IN URINARY SYSTEM</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Anatomy of the Renal System</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Physiology of the urinary system</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Pyelonephritis in Pregnancy</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Types of Infection:</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Causative Organisms for Pyelonephritis</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Predisposing Causes</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Signs and Symptoms</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Diagnosis</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Effects on Pregnancy</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">ACUTE PYELONEPHRITIS</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Management/Treatment of Pyelonephritis in Pregnancy</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Complications:</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">CYSTITIS</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Causes of Cystitis</a>
+          <a href="#section-16" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Signs and symptoms</a>
+          <a href="#section-17" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Management of Cystitis in Pregnancy</a>
+          <a href="#section-18" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing care plan for a patient with renal diseases in pregnancy</a>
+          <a href="#section-19" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-20" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-21" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-22" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 COMMON TERMS IN URINARY SYSTEM</summary>
           <ul><li>Proteinuria : Daily excretion of proteins in the urine is more than 150mg. It signifies that the kidney is damaged/ perforated.</li><li>Haematuria : Means passing urine containing blood and is due to bleeding into the urinary tract.</li><li>Crystalluria : Presence of crystals like oxalates, phosphates in the urine detected by microscopic examination of urine</li><li>Glycosuria : Means presence of sugar (glucose) in urine either due to diabetes mellitus or due to renal glycosuria</li><li>Azotemia : Increase in the serum concentration of urea and creatinine above their normal values. This occurs when glomerular filtration pressure (GFR) of the kidneys falls due to renal failure. “uremia”.</li><li>Oliguria : Diminished urine volume output of urine i.e. 100 mL to 400 mL per day.</li><li>Anuria – Complete absence of urine formation i.e zero to 100 mL per day</li><li>Dysuria – Difficulty or pain in passing urine</li><li>Polyuria – Urine volume above 3 litres per day</li><li>Retention of urine – occurs due to obstruction of urine outflow from the bladder, this is relieved by catheterization</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Anatomy of the Renal System</summary>
           <p>The urinary system is the main excretory system eliminating waste products from blood through urine. Its anatomy consists of two kidneys , each joined to the bladder by the tube called ureter , which conveys urine from the kidneys to the bladder for storage. Following bladder contraction, urine is expelled through the urethra .</p>
 <p>There are two kidneys which lie behind the peritoneum on either side of the vertebral column. In adults, they measure approximately 12 to 14 cm.</p>
@@ -119,7 +159,7 @@
 <ul><li>Bowman’s Capsule a cup-like structure made of squamous epithelium and inner layer has modified cell (podocytes) closely associated with glomerular capillaries</li><li>Glomerulus made of highly permeable capillary network</li><li>Proximal convoluted tubule , made of cuboidal epithelium with microvilli. It is a primary site of tubular reabsorption and secretion mechanisms.</li><li>Loop of Henle, both ascending and descending loops are involved in urine concentration</li><li>Distal Convoluted tubule ; this is shorter than the proximal and contains macula densa specialized sensory cells which monitor NaCl concentrations. it’s a site of tubular reabsorption and secretion</li><li>Collecting Ducts ; these empty urine into the renal pyramids</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Physiology of the urinary system</summary>
           <p>The volume of the urine excreted per day is about 1500m/s or roughly 1 ml /min . The processes responsible for urine formation are ultra filtration at the glomeruli and reabsorption in the tubules of the nephrons.</p>
 <p>The kidneys are largely responsible for maintaining this constancy and the excretion of waste products of metabolism.</p>
@@ -140,7 +180,7 @@
 <p>Tubular secretion of hydrogen ions (H+) is important in maintaining normal blood pH.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Pyelonephritis in Pregnancy</summary>
           <p>Pyelonephritis is an infection of the kidneys, specifically affecting the renal pelvis and tubules .</p>
 <p>It occurs in approximately 2% of pregnant women, particularly during the second trimester (16-26th week), with a higher incidence in first-time mothers (primigravidas).</p>
@@ -150,38 +190,38 @@
 <ul><li>Short urethra (4 cm) : The female urethra is significantly shorter than the male urethra, making it easier for bacteria to ascend from the external opening to the bladder.</li><li>Close proximity of the external urethral meatus to areas (vulva and lower third of vagina) contaminated heavily with bacteria : The proximity of the urethra to areas harbouring a high concentration of bacteria increases the risk of contamination.</li><li>Catheterization : The use of urinary catheters, often for medical reasons, can introduce bacteria into the bladder and increase the risk of infection.</li><li>Sexual intercourse: Sexual intercourse can introduce bacteria into the urethra, particularly in women who are not properly lubricated.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Types of Infection:</summary>
           <ul><li>Ascending Infection : Bacteria ascend from the bladder or urethra, often originating from neighbouring organs like the rectum.</li><li>Bloodborne Infection: Bacteria enter the bloodstream, often stemming from conditions like septicemia.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Causative Organisms for Pyelonephritis</summary>
           <ul><li>E. coli (70%) : The most common causative organism, usually originating from the gut.</li><li>Klebsiella pneumoniae (10%).</li><li>Enterobacter.</li><li>Proteus.</li><li>Pseudomonas.</li><li>Staphylococcus aureus group.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Predisposing Causes</summary>
           <ul><li>Urinary Stasis : The growing uterus puts pressure on the ureters (tubes that carry urine from the kidneys to the bladder), causing them to dilate and kink. This creates areas where urine can pool, leading to stagnation and a favourable environment for bacterial growth.</li><li>Loss of Urethral Tone : Pregnancy hormones relax smooth muscles throughout the body, including the muscles surrounding the urethra. This loss of tone can contribute to urine stagnation and increased risk of infection.</li><li>Increased Vaginal Secretions : The increased production of vaginal discharge ( leukorrhea ) during pregnancy can introduce bacteria into the urethra, increasing the chances of infection.</li><li>Prior History of Nephritis : Women who had acute nephritis (kidney inflammation) in childhood are more susceptible to developing pyelonephritis during pregnancy. This suggests a predisposition to kidney infections.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Signs and Symptoms</summary>
           <ul><li>Fever and Chills : A high fever (38-40°C) accompanied by chills is a common sign.</li><li>Painful and Frequent Urination : The inflammation of the urethra causes pain and increased frequency of urination, often with a burning sensation.</li><li>Tachycardia : An elevated heart rate (110-130 beats per minute or higher) is another typical sign.</li><li>Vomiting : Nausea and vomiting are frequent symptoms.</li><li>General Malaise : The patient may feel unwell with a coated tongue and overall weakness.</li><li>Offensive Urine: The urine may have a strong, unpleasant odor due to the presence of bacteria.</li><li>Epigastric Pain : Pain in the upper abdomen due to vomiting can also occur.</li><li>Tenderness on Examination : The doctor may find tenderness when examining the renal angles (the areas where the kidneys are located) and the area above the pubic bone.</li><li>Acute Aching Pain : A sharp, aching pain in the loins (lower back) is often felt, radiating to the groin and the costovertebral angle (the area where the ribs meet the spine).</li><li>Tenderness on Palpation : The costovertebral angle is often tender when pressed upon.</li><li>Urinary Symptoms : These include urgency (feeling like you need to urinate urgently), frequency (urinating more often than usual), dysuria (painful urination), and hematuria (blood in the urine).</li><li>Fever and Flu-like Symptoms : The fever can be high and spiky (reaching 40°C), with chills and rigors (muscle spasms). This may be followed by hypothermia (low body temperature, around 34°C). Other flu-like symptoms include anorexia (loss of appetite), nausea , vomiting , and myalgias (muscle aches).</li><li>Respiratory Distress: In severe cases, pyelonephritis can lead to respiratory distress and pulmonary edema (fluid in the lungs). This is due to endotoxin (a toxin released by bacteria) damaging the alveoli (tiny air sacs in the lungs). This is also known as Acute Respiratory Distress Syndrome (ARDS).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Diagnosis</summary>
           <p>A combination of factors aids in the diagnosis of pyelonephritis:</p>
 <ul><li>History : The patient’s history of painful urination, fever, and other symptoms is crucial.</li><li>Urinalysis : Examining the urine under a microscope reveals protein (from dead epithelial cells), sugar, and pus cells, all indicative of infection.</li><li>Urine Culture and Sensitivity: A culture of the urine helps identify the specific bacteria causing the infection. This information is crucial for selecting the appropriate antibiotic treatment.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Effects on Pregnancy</summary>
           <ul><li>Increased Pregnancy Wastage : There is a higher risk of miscarriage or premature birth.</li><li>Abortions : The infection can trigger premature labor and lead to a miscarriage.</li><li>Premature Labor : Pyelonephritis can induce premature contractions and lead to early delivery.</li><li>Intrauterine Fetal Death : In severe cases, the infection can cause the fetus to die in the womb.</li><li>Small for Dates : The fetus may grow more slowly than expected due to the infection.</li><li>Accidental Haemorrhage : The infection can weaken the cervix and make it more prone to bleeding.</li><li>Anaemia : Pyelonephritis can contribute to anaemia due to the body’s response to infection.</li><li>Hypertension : The infection can elevate blood pressure, posing a risk to both the mother and fetus.</li><li>Septicemia and Septic Shock: The infection can spread to the bloodstream (septicemia), potentially leading to a life-threatening condition called septic shock.</li><li>Renal Dysfunction: Pyelonephritis can damage the kidneys, leading to impaired kidney function.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 ACUTE PYELONEPHRITIS</summary>
           <p>This is characterized by acute inflammation of the parenchyma (core substance of the kidney/kidney tissue) and the pelvis of the kidneys.</p>
 <p>The disease may be bilateral or unilateral . This usually results from untreated bacterial cystitis and may be associated with pregnancy, trauma of the urinary bladder , and urinary obstruction Also Ascending and Descending infections.</p>
@@ -193,7 +233,7 @@
 <ul><li>bacteriuria,</li><li>hypertension,</li><li>flunk tenderness,</li><li>septic shock,</li><li>dizziness fainting and signs of renal insufficiency</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-12">
           <summary>12 Management/Treatment of Pyelonephritis in Pregnancy</summary>
           <p>Aims of management</p>
 <p>The management of pyelonephritis in pregnancy focuses on treating the infection and preventing further complications:</p>
@@ -208,7 +248,7 @@
 <ul><li>Antibiotic Therapy : Intravenous antibiotics are administered for 48 hours. Common choices include cephalosporins, aminoglycosides (gentamicin), Cefazolin, or Ceftriaxone. Once the culture results are available, the antibiotic may be switched to an oral therapy for another 10-14 days.</li><li>Repeat Cultures: Urine cultures are repeated after 2 weeks of antibiotic therapy and at each trimester of pregnancy.</li><li>Retreatment : If symptoms recur or the urine dipstick test for nitrate and leukocyte esterase is positive, a urine culture is repeated, and treatment is given if the culture is positive.</li><li>Imaging Studies: If the patient does not respond to treatment, imaging studies like ultrasound, CT scan, or radiography may be required to rule out urinary tract obstruction.</li><li>Antimicrobial Suppression Therapy : To prevent recurrence (which occurs in 30-40% of cases), antimicrobial suppression therapy may be continued until the end of pregnancy. Nitrofurantoin 100 mg daily at bedtime is an effective option. Cephalexin 250–500 mg orally every day for the remainder of pregnancy and continuing until 4–6 weeks postpartum is also recommended if nitrofurantoin is not available.</li><li>Potassium Citrate : Prescribe potassium citrate 15 ml four-hourly to alkalinize the urine and potentially relieve pain.</li><li>Fever Management: Acetaminophen (paracetamol) is given to reduce fever.</li><li>Fluid Intake : There is a danger of crystallisation of these sulphur drugs to the kidneys if enough fluids are not given especially if the patient is vomiting so much, also watch for haematuria and oliguria.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-13">
           <summary>13 Complications:</summary>
           <p>for the Mother: ****</p>
 <ul><li>Sepsis : A severe and life-threatening condition where the infection spreads throughout the body.</li><li>Kidney Damage : Repeated or untreated pyelonephritis can lead to long-term damage to the kidneys, potentially causing chronic kidney disease.</li><li>Preterm Labor : The infection can trigger premature contractions and lead to premature birth, especially in the second and third trimesters.</li><li>Low Birth Weight : Pyelonephritis can restrict fetal growth, leading to babies being born with low birth weight.</li><li>Urinary Tract Obstruction : Infection can contribute to or worsen urinary tract blockages, making it harder to treat the infection.</li><li>Acute Renal Failure : In rare cases, severe pyelonephritis can lead to kidney failure, requiring dialysis.</li></ul>
@@ -216,7 +256,7 @@
 <ul><li>Premature Birth : As mentioned above, premature delivery is a significant risk.</li><li>Fetal Growth Restriction : The infection can hinder fetal growth and development.</li><li>Stillbirth : In severe cases, pyelonephritis can increase the risk of stillbirth.</li><li>Congenital Anomalies : While not fully established, some studies suggest a possible link between pyelonephritis in pregnancy and certain congenital anomalies in the baby.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-14">
           <summary>14 CYSTITIS</summary>
           <p>Cystitis is a lower urinary infection involving inflammation of the urinary bladder.</p>
 <p>Acute bacterial cystitis is common in women as the short urethra predisposes them to infection of the bladder.</p>
@@ -224,17 +264,17 @@
 <p>Urine may be cloudy and malodorous and should be cultured. Has similar causative agents as asymptomatic bacteriuria- E.coli implicated in almost 80% of cases.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-15">
           <summary>15 Causes of Cystitis</summary>
           <ul><li>Hormonal Changes : Pregnancy hormones, particularly oestrogen, can relax the bladder muscles and urethral sphincter, making it easier for bacteria to enter the bladder.</li><li>Urinary Tract Obstruction: The growing uterus can compress the ureters, the tubes that carry urine from the kidneys to the bladder, causing urine to back up and increasing the risk of infection.</li><li>Increased Urinary Frequency: Pregnancy often leads to increased urine frequency, which can flush out bacteria less effectively, increasing the risk of infection.</li><li>Immune System Suppression : The body’s immune system is naturally suppressed during pregnancy to protect the fetus. This suppression can make it easier for bacteria to grow and cause infection.</li><li>Changes in Urinary Flow: The growing uterus can compress the bladder, making it difficult to empty completely. This can leave residual urine in the bladder, providing a breeding ground for bacteria.</li><li>Sexual Activity: While not always the case, sexual activity can introduce bacteria into the urethra, increasing the risk of infection.</li><li>Previous UTIs: Having a history of UTIs increases the risk of developing cystitis during pregnancy.</li><li>Bladder Incompetence: This can happen during pregnancy due to hormonal changes, and is a major contributor to cystitis.</li><li>Ascending infections : This is a primary cause of cystitis, both in pregnancy and generally, due to bacteria traveling up the urinary tract.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-16">
           <summary>16 Signs and symptoms</summary>
           <ul><li>Frequent Urination : Feel the urge to urinate more often than usual, even if you haven’t consumed much fluid. It’s common in pregnancy anyway, but the urge may be particularly strong and urgent with cystitis.</li><li>Painful Urination (Dysuria) : A burning or stinging sensation during urination is a hallmark symptom. This can be especially uncomfortable during pregnancy, as the bladder may be more sensitive.</li><li>Urgency : A strong, sudden urge to urinate that’s difficult to ignore. This can be exacerbated by the pressure of the growing uterus on the bladder.</li><li>Pelvic Pain : A dull ache or pressure in the lower abdomen or pelvis, often located above the pubic bone.</li><li>Blood in Urine (Hematuria) : Presence of blood in your urine, ranging from a faint pink to bright red. While rare, it can happen with cystitis and is a sign that the infection is more severe.</li><li>Fever : A low-grade fever, usually below 101°F (38.3°C), may occur with cystitis.</li><li>Cloudy Urine : Urine may appear cloudy or have a strong odour/smell.</li><li>Nausea and Vomiting : While less common, these symptoms can occur with severe cystitis.</li><li>Back Pain : If the infection has spread to the kidneys (pyelonephritis), you may experience back pain, often on one side.</li><li>Chills : If you have a fever, you may also experience chills.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-17">
           <summary>17 Management of Cystitis in Pregnancy</summary>
           <p>Assessment:</p>
 <p>History and Physical Exam :</p>
@@ -261,42 +301,47 @@
 <ul><li>Advise the patient to continue adequate hydration.</li><li>Educate her on the importance of wiping from front to back after using the toilet to reduce the risk of recurrent UTIs.</li><li>Explain the signs and symptoms of complications (fever, chills, severe pain) and when to seek immediate medical attention.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-18">
           <summary>18 Nursing care plan for a patient with renal diseases in pregnancy</summary>
           <ul><li>Assessment Nursing Diagnosis Goals/Expected Outcomes Intervention Rationale Evaluation</li><li>Patient reports fatigue and weakness Fatigue related to decreased erythropoietin production and anaemia secondary to renal disease as evidenced by patient reports of feeling tired and weak. – Reduce fatigue within 48 hours. – Patient reports improved energy levels. – Encourage frequent rest periods. – Administer iron supplements as prescribed. – Educate patient on energy conservation techniques. – Rest periods help prevent overexertion. – Iron supplements help correct anemia. – Energy conservation techniques help manage fatigue. – Patient reports improved energy levels. – Fatigue is reduced.</li><li>Blood pressure 150/100 mmHg, proteinuria, peripheral edema Ineffective Renal Perfusion related to altered blood flow to the kidneys as evidenced by hypertension, proteinuria, and peripheral edema. – Maintain effective renal perfusion within 24 hours. – Blood pressure stabilized within normal range. – Decrease in proteinuria and edema. – Monitor blood pressure and urine output regularly. – Administer antihypertensive medications as prescribed. – Educate patient on the importance of medication adherence and lifestyle modifications. – Regular monitoring detects early changes in renal perfusion. – Antihypertensive medications help control blood pressure. – Patient education promotes adherence to treatment. – Blood pressure stabilized within normal range. – Proteinuria and edema decreased.</li><li>Patient reports difficulty breathing, SpO2 88%, crackles on lung auscultation Impaired Gas Exchange related to fluid overload secondary to renal disease as evidenced by difficulty breathing, decreased SpO2, and crackles on lung auscultation. – Improve gas exchange within 4 hours. – SpO2 improved to 92% or higher. – Patient reports easier breathing. – Administer oxygen therapy as prescribed. – Monitor respiratory status and SpO2 regularly. – Administer diuretics as prescribed and monitor fluid balance. – Oxygen therapy improves oxygen saturation. – Regular monitoring ensures timely adjustments in care. – Diuretics help reduce fluid overload and improve breathing. – SpO2 improved to 92% or higher. – Patient reports easier breathing. – Crackles on lung auscultation decreased.</li><li>Patient reports difficulty concentrating, confusion, serum creatinine elevated Acute Confusion related to uremia secondary to renal disease as evidenced by difficulty concentrating, confusion, and elevated serum creatinine. – Prevent acute confusion within 24 hours. – Patient demonstrates improved cognitive function. – Monitor neurological status regularly. – Educate patient and family on signs of worsening renal function. – Administer medications to manage uremia as prescribed. – Regular monitoring detects early signs of confusion. – Patient education promotes early intervention. – Medications help manage uremia and prevent confusion. – Patient demonstrates improved cognitive function. – No signs of acute confusion.</li><li>Patient reports swelling, weight gain, decreased urine output Fluid Volume Excess related to impaired renal function as evidenced by swelling, weight gain, and decreased urine output. – Maintain fluid balance within 24 hours. – Decrease in swelling and weight gain. – Urine output normalized. – Monitor daily weight and intake/output. – Administer diuretics as prescribed. – Educate patient on low-sodium diet. – Regular monitoring helps assess fluid status. – Diuretics help reduce fluid retention. – Low-sodium diet prevents fluid overload. – Swelling and weight gain decreased. – Urine output normalized. – Fluid balance maintained.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-19">
           <summary>19 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Renal diseases</strong> as a practical nursing topic, not only a memorized definition. Read the topic through the safety of two patients: the mother and the fetus or newborn.</p>
 <ul><li><strong>What to understand first:</strong> define renal diseases, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-20">
           <summary>20 Assessment Guide</summary>
           <ul><li>Maternal vital signs, bleeding, pain, contractions, uterine tone and danger signs.</li><li>Fetal or newborn wellbeing, feeding, temperature, breathing and activity.</li><li>History of pregnancy, parity, medications, allergies, investigations and referral risks.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-21">
           <summary>21 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Recognize danger signs early and escalate without delay.</li><li>Provide respectful communication, privacy, infection prevention and clear documentation.</li><li>Teach the mother what to monitor at home and when to return urgently.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> Mother and baby remain stable, danger signs are acted on early, and the family understands follow-up instructions.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-22">
           <summary>22 Patient Teaching and Revision Check</summary>
           <ul><li>Explain renal diseases in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Renal%20diseases%20Midwifery%20II%20nursing%20lecture" title="Renal diseases YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (1)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Renal-Diseases-in-Pregnancy.webp" alt="Renal Diseases In Pregnancy" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Renal Diseases In Pregnancy</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Renal%20diseases%20Midwifery%20II%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Renal%20diseases%20Midwifery%20II%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

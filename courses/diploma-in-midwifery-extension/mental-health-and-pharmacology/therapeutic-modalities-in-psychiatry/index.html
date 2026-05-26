@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,26 +97,51 @@
         <p>Therapeutic modalities in psychiatry should be reviewed through safe maternal and newborn assessment, early recognition of danger signs, respectful communication and timely referral. Connect the definition to vital signs, bleeding, fetal or newborn wellbeing, patient education and local protocol requirements.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 19 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">THERAPEUTIC MODALITIES IN PSYCHIATRY</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Goals of Treatment in Psychiatry</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Types of Treatment Modalities</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Physical (Biomedical) Treatments</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Electroconvulsive Therapy (ECT)</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Occupational Therapy (OT)</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Recreational Therapy</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Other Therapeutic Modalities:</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Psychological Methods of Treatment</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Psychotherapy</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Types of Psychotherapy:</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Hypnotherapy</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Cognitive Behavioral Therapy (CBT)</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Behavioral Therapy / Behavior Modification</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Relaxation Therapy</a>
+          <a href="#section-16" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-17" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-18" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-19" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 THERAPEUTIC MODALITIES IN PSYCHIATRY</summary>
           <p>Therapeutic modalities refers to different types of care provided by psychiatric nurses to individual patients, groups and families .</p>
 <p>Therapy is the treatment of someone with mental or physical illness without the use of drugs or operations .</p>
 <p>Psychiatric treatment aims to manage mental health disorders, alleviate symptoms, and improve patients’ overall quality of life. Treatment combines physical and psychological methods to address different aspects of mental illness, supporting recovery and helping patients maintain stability.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Goals of Treatment in Psychiatry</summary>
           <ul><li>Reduction of Symptoms Severity : Alleviating symptoms such as anxiety, depression, hallucinations, or manic episodes.</li><li>Maintenance of Stability : Preventing relapse or the re-emergence of severe symptoms.</li><li>Enhanced Quality of Life : Helping patients achieve and sustain mental well-being, social integration, and functionality.</li><li>Promoting Recovery : Aiding patients in gaining control over their lives and maintaining a sense of purpose and autonomy.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Types of Treatment Modalities</summary>
           <p>Psychiatric treatments are typically divided into two main types:</p>
 <ul><li>Physical (Biomedical) Treatments : Directly target brain chemistry or brain function.</li><li>Psychological (Therapeutic) Treatments : Focus on altering thought patterns, behaviors, and emotional responses.</li></ul>
 <p>Many patients receive a combination of physical and psychological treatments for comprehensive care.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Physical (Biomedical) Treatments</summary>
           <p>Biomedical treatments in psychiatry directly aim to alter brain chemistry or function to alleviate mental health symptoms .</p>
 <p>This can involve medication, such as antidepressants, antipsychotics, or mood stabilizers; brain stimulation therapies like electroconvulsive therapy (ECT) or transcranial magnetic stimulation (TMS); or even surgery in rare, severe cases.</p>
@@ -112,7 +149,7 @@
 <ul><li>Drug Treatment (Psychopharmacology). More notes about drug treatment, click the links below for each of the classification.</li><li>Anxiolytics</li><li>Hypnotics</li><li>Mood stabilizers</li><li>Anti-depressants</li><li>Anti-psychotics</li><li>Anticonvulsants</li><li>ElectroConvulsive Therapy.</li><li>Occupational Therapy</li><li>Recreational Therapy</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Electroconvulsive Therapy (ECT)</summary>
           <p>Electroconvulsive therapy (ECT) is a medical procedure involving the induction of a controlled seizure using electrical currents passed through the brain .</p>
 <p>While its mechanism isn’t fully understood, it’s a highly effective treatment for specific mental health conditions. This guide provides a detailed overview, encompassing indications, contraindications, procedure, nursing care, and potential complications.</p>
@@ -149,7 +186,7 @@
 <ul><li>Pre-ECT assessment: Detailed medical history, medication list, allergies, vital signs, and mental status.</li><li>Procedure details: Type of ECT (unilateral, bilateral), electrode placement, electrical parameters, seizure duration, and any complications during the procedure.</li><li>Post-ECT monitoring: Vital signs, neurological assessment, level of consciousness, and any adverse events.</li><li>Medication administration : Record all medications administered, including dosages and times.</li><li>Patient response: Document the patient’s response to the procedure, including any relief of symptoms and any side effects experienced.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Occupational Therapy (OT)</summary>
           <p>Occupational therapy involves structured activities to help patients regain or acquire skills for daily living, aiming to restore independence and functionality .</p>
 <p>It focuses on enabling individuals to participate in the activities of everyday life, enhancing their quality of life and overall well-being.</p>
@@ -192,7 +229,7 @@
 <ul><li>Patient Advocacy : Advocate for the patient’s needs and rights within the healthcare system.</li><li>Community Resources : Connect patients with community resources and support services to enhance their quality of life.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Recreational Therapy</summary>
           <p>Recreation is a form of activity therapy used in most psychiatric settings. These include Music therapy, drama therapy, art therapy, and sports.</p>
 <p>Recreational Therapy is a planned therapeutic activity that enables people with limitations to engage in recreational experiences .</p>
@@ -219,7 +256,7 @@
 <ul><li>Planning : Plan and implement recreational therapy activities.</li><li>Assessment : Assess the patient’s needs and preferences for recreational activities.</li><li>Collaboration : Work with recreational therapists to integrate activities into the care plan.</li><li>Encouragement : Encourage participation and provide support during activities.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Other Therapeutic Modalities:</summary>
           <p>These include;</p>
 <p>Play therapy is a form of counseling or psychotherapy that uses play to help children express their feelings, work through emotional difficulties, and develop coping mechanisms .</p>
@@ -293,18 +330,18 @@
 <p>Psychoeducation : Psychoeducation is an evidence-based psychotherapeutic intervention. In this intervention, education about the nature of illness, its treatment, coping and management strategies, and skills needed to avoid relapse is provided to mentally ill patients and their family members with an intention to empower them in dealing with their condition in an optimal manner. It can be given to the patient in a one-to-one discussion or in a group by qualified health educators, such as nurses, social workers, psychologists, psychiatrists, occupational therapists, etc.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Psychological Methods of Treatment</summary>
           <p>Psychological methods in psychiatry provide structured approaches to treat mental health disorders through therapeutic conversations, behavior modification, cognitive restructuring, and other interventions .</p>
 <p>These methods aim to address underlying psychological issues, improve coping mechanisms, and foster healthier behaviors and emotions. Here’s an in-depth overview:</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Psychotherapy</summary>
           <p>Psychotherapy, often called “talk therapy,” is a broad approach that encompasses several types of therapeutic interactions aimed at helping individuals understand and manage their thoughts, feelings, and behaviors. It is typically led by a psychiatrist, psychologist, or trained counselor.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 Types of Psychotherapy:</summary>
           <p>Individual Therapy .</p>
 <ul><li>One-on-one sessions between a therapist and a patient.</li><li>Focuses on specific issues, such as depression, anxiety, or trauma.</li><li>Enables personalized treatment plans and goals.</li></ul>
@@ -316,7 +353,7 @@
 <ul><li>Based on Freud’s theories, focusing on unconscious thoughts influencing behavior.</li><li>Uses techniques like free association, dream analysis, and transference to explore unresolved conflicts.</li><li>Effective for treating deep-rooted issues and personality disorders.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-12">
           <summary>12 Hypnotherapy</summary>
           <p>Uses hypnosis to access the subconscious mind and modify behaviors, thoughts, or feelings. Hypnotherapy involves inducing a trance-like state in patients to enhance focus, suggestibility, and access to unconscious thoughts.</p>
 <p>A typical hypnotherapy session begins with something called an induction procedure. The therapist will speak slowly and softly and make suggestions that help you to focus your attention and relax. They will often do this by describing relaxing images such as lying on a beach, or whatever imagery you find relaxing</p>
@@ -326,7 +363,7 @@
 <ul><li>Can be beneficial for patients who struggle with talk therapy alone.</li><li>Effective for conditions with a strong habitual component, such as OCD and phobias.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-13">
           <summary>13 Cognitive Behavioral Therapy (CBT)</summary>
           <p>CBT is a widely used approach that focuses on identifying and changing negative thought patterns that lead to undesired behaviors and emotional responses.</p>
 <p>Principles</p>
@@ -335,7 +372,7 @@
 <ul><li>Highly effective for mood disorders, anxiety disorders, PTSD, and substance abuse.</li><li>Provides patients with practical tools to manage symptoms outside of therapy sessions.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-14">
           <summary>14 Behavioral Therapy / Behavior Modification</summary>
           <p>Behavioral therapy is based on the principle that behaviors are learned and can, therefore, be unlearned or modified.</p>
 <p>Techniques</p>
@@ -344,7 +381,7 @@
 <ul><li>Focuses on eliminating symptoms and fostering positive personality traits.</li><li>Effective for phobias, compulsive behaviors, and some personality disorders.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-15">
           <summary>15 Relaxation Therapy</summary>
           <p>Relaxation therapy incorporates various techniques to reduce stress and promote mental and physical calmness.</p>
 <p>Methods</p>
@@ -353,37 +390,42 @@
 <ul><li>Effective for managing anxiety, PTSD, and stress-related disorders.</li><li>Helps reduce heart rate, improve blood flow, and stabilize neuromuscular functions.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-16">
           <summary>16 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Therapeutic modalities in psychiatry</strong> as a practical nursing topic, not only a memorized definition. Read the topic through the safety of two patients: the mother and the fetus or newborn.</p>
 <ul><li><strong>What to understand first:</strong> define therapeutic modalities in psychiatry, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-17">
           <summary>17 Assessment Guide</summary>
           <ul><li>Maternal vital signs, bleeding, pain, contractions, uterine tone and danger signs.</li><li>Fetal or newborn wellbeing, feeding, temperature, breathing and activity.</li><li>History of pregnancy, parity, medications, allergies, investigations and referral risks.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-18">
           <summary>18 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Recognize danger signs early and escalate without delay.</li><li>Provide respectful communication, privacy, infection prevention and clear documentation.</li><li>Teach the mother what to monitor at home and when to return urgently.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> Mother and baby remain stable, danger signs are acted on early, and the family understands follow-up instructions.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-19">
           <summary>19 Patient Teaching and Revision Check</summary>
           <ul><li>Explain therapeutic modalities in psychiatry in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Therapeutic%20modalities%20in%20psychiatry%20Mental%20Health%20and%20Pharmacology%20nursing%20lecture" title="Therapeutic modalities in psychiatry YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (1)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Therapeutic-Modalities-in-Psychiatry.webp" alt="Therapeutic Modalities In Psychiatry" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Therapeutic Modalities In Psychiatry</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Therapeutic%20modalities%20in%20psychiatry%20Mental%20Health%20and%20Pharmacology%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Therapeutic%20modalities%20in%20psychiatry%20Mental%20Health%20and%20Pharmacology%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

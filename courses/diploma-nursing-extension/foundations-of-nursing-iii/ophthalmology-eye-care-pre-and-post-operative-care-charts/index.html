@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,19 +97,40 @@
         <p>Ophthalmology(Eye care, Pre &amp; Post Operative care, Charts). should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 15 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Ophthalmology</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Role of Ophthalmic Nurses</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Ophthalmic Emergencies and Urgent Cases</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">EYE CARE</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Indications for Eye Care:</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Purpose of Performing Eye Care:</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Purpose of Eye Medications:</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Care of the Child Undergoing Eye Surgery:</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Responsibility of nurse during ophthalmology</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Common charts used in the measurement of distance visual acuity</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">CARE OF THE PATIENT’S EYES.</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Ophthalmology</summary>
           <p>Ophthalmology is a branch of medicine that deals with the diagnosis and treatment of diseases and disorders related to the eyes .</p>
 <p>Definition of Terms</p>
 <ul><li>Ophthalmologist : A medical or osteopathic doctor specializing in eye and vision care. Ophthalmologists diagnose and treat all eye diseases, perform eye surgery, and prescribe and fit eyeglasses and contact lenses to correct vision problems. Many ophthalmologists are also involved in scientific research on the causes and cures for eye diseases and vision disorders.</li><li>Optometrist : A healthcare professional providing primary vision care ranging from sight testing and correction to the diagnosis, treatment, and management of vision changes. An optometrist is not a medical doctor.</li><li>Optician : A technician trained to design, verify, and fit eyeglass lenses and frames, contact lenses, and other devices to correct eyesight.</li><li>Ophthalmic Nurse : A nursing professional focused on assessing and treating patients with various eye diseases and injuries.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Role of Ophthalmic Nurses</summary>
           <ul><li>Provide first aid treatment in cases of eye injuries and emergencies.</li><li>Perform preliminary physical examinations, such as blood tests, to detect possible underlying illnesses that could contribute to eye problems (e.g., hypertension).</li><li>Conduct initial screenings on patients.</li><li>Collect medical histories.</li><li>Assist in eye examinations.</li><li>Offer tips and advice to help patients manage eye pain and other symptoms.</li><li>Demonstrate how to administer medication.</li><li>Educate patients on the treatment of ocular conditions.</li><li>Prepare patients for surgery and assist during operations.</li><li>Provide after-surgery care for patients.</li><li>Conduct various eye tests and procedures.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Ophthalmic Emergencies and Urgent Cases</summary>
           <p>Emergencies requiring immediate medical attention include:</p>
 <p>Sudden vision loss:</p>
@@ -110,30 +143,30 @@
 <ul><li>Corneal ulcer : Open sore on the cornea, causing pain, redness, and blurred vision.</li><li>Vitreous hemorrhage : Bleeding into the vitreous humor (jelly-like substance filling the back of the eye), causing blurred vision or floaters.</li><li>Acute dacryocystitis : Inflammation of the lacrimal sac (tear sac), causing pain, swelling, and redness.</li><li>Optic nerve disorders : Conditions affecting the optic nerve, causing vision loss or other visual disturbances.</li><li>Ocular tumors : Growths within the eye, which may affect vision or require treatment.</li><li>Acute uveitis : Inflammation of the middle layer of the eye, causing pain, redness, and blurred vision.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 EYE CARE</summary>
           <p>Eye care is characterized as the special attention given to the eyes to prevent complications .</p>
 <p>Natural Cleansing: The production of tears and the blinking mechanism provide a natural cleansing process for the eyes (Harrison, 2006). When this process is interrupted, the eyes may need to be artificially cleansed to remove debris, prevent dryness, and ensure eyelid closure (Dawson, 2005).</p>
 <p>Eye Cleansing: Eye cleansing can be performed alone or with eye swabbing, instilling eye medication, and applying eye padding/dressing/shield.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Indications for Eye Care:</summary>
           <ul><li>Children Undergoing Eye Surgery : Pre-operative and post-operative eye care is important to ensure the eye is clean, free from infection, and well-prepared for surgery. This care includes instilling prescribed eye drops, maintaining proper hygiene, and following specific instructions from the ophthalmologist.</li><li>Children Whose Eyes Cannot Close Properly: Hydrocephalus, cerebral palsy, facial nerve palsy, and other conditions affecting eyelid closure,, where eyelid function may be compromised, maintaining eye moisture and cleanliness is essential to prevent corneal damage and infection.</li><li>Unconscious, Sedated, or Muscle-Relaxed Children : These children cannot blink or close their eyes effectively, making them prone to dryness and exposure to keratitis. Regular eye care, including lubrication and protective measures, is necessary to prevent complications.</li><li>Presence of Infection (e.g., Conjunctivitis/Neonatal Conjunctivitis): Eye infections require careful cleansing and medication administration to control and eradicate the infection. This prevents the spread of infection and promotes faster healing.</li><li>Infants with Non-Infected Sticky Eye Due to Underlying Causes (e.g., Blocked Tear Ducts): Conditions like blocked tear ducts can cause sticky discharge. Regular eye cleaning helps keep the eye clear and reduces the risk of secondary infections.</li><li>Immunosuppressed Children : These children are more susceptible to infections due to their weakened immune systems. Regular and prompt eye care helps prevent opportunistic infections and maintain eye health.</li><li>Trauma : Eye injuries require prompt and careful cleaning to remove debris, prevent infection, and manage pain. Eye care post-trauma is crucial for recovery and to avoid further damage.</li><li>Chronic Eye Conditions (e.g.,Dry Eye Syndrome): Conditions causing chronic dryness need regular lubrication to maintain comfort and prevent damage to the cornea and conjunctiva.</li><li>Post-Chemotherapy/Radiation Therapy : Children undergoing cancer treatments may experience eye issues due to the side effects of therapy. Regular eye care can mitigate symptoms like dryness and irritation.</li><li>Congenital Eye Disorders (e.g., Ptosis, Congenital Glaucoma): Children with congenital eye disorders may need regular eye care to manage symptoms, prevent complications, and support overall eye health.</li><li>Post-Cataract Surgery: After cataract surgery, careful eye care is necessary to ensure proper healing, prevent infection, and manage any postoperative complications.</li><li>Severe Allergies : Children with severe allergies may experience frequent eye irritation and discharge, necessitating regular cleaning and medication application.</li><li>Exposure to Environmental Irritants : Children exposed to smoke, dust, or chemicals need regular eye cleaning to remove irritants and prevent damage.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Purpose of Performing Eye Care:</summary>
           <ul><li>Maintain Eye Cleanliness : Regular eye care helps keep the eyes clean, promoting comfort for the patient and reducing the risk of cross-infection, particularly in clinical settings.</li><li>Prevent Eye Dryness : Various methods are employed to keep the eyes moist and comfortable. These include:</li><li>Methylcellulose Drops : Used for general lubrication.</li><li>Ointments : Provide longer-lasting moisture.</li><li>General Lubricants : Help maintain moisture balance.</li><li>Polyacrylamide Hydrogel Dressings : Effective for unconscious, sedated, or paralyzed children as they moisten and lubricate the eye area while maintaining eyelid closure.</li><li>Hypromellose Drops (Artificial Tears) : Used to supplement natural tears and prevent dryness.</li><li>Ensure Eyelid Closure : Using polyacrylamide hydrogel dressings like Geliperm® helps keep the eyelids closed, which is crucial for preventing exposure to keratitis in patients who cannot close their eyes naturally.</li><li>Treat Existing Eye Infections: Proper eye care is essential for treating infections, involving cleaning the eye and administering appropriate medications to eradicate the infection and prevent its spread.</li><li>Prepare for Medication Administration : Ensuring the eye is clean and free from debris before administering medications enhances the effectiveness of the treatment and reduces the risk of complications.</li><li>Protect the Eye During Phototherapy : When using phototherapy light lamps, especially in newborns with jaundice, eye care measures are taken to protect the retina from potential damage caused by the light exposure.</li><li>Support Healing Post-Surgery: After eye surgeries such as cataract removal, meticulous eye care supports the healing process, reduces the risk of infection, and helps manage post-operative discomfort.</li><li>Manage Allergic Reactions : In cases of severe allergies, eye care involves cleaning and administering anti-allergy medications to reduce irritation and prevent secondary infections.</li><li>Facilitate Proper Drainage : For conditions like blocked tear ducts, regular eye care helps in facilitating drainage and reducing discomfort and infection risk.</li><li>Prevent Damage in Systemic Conditions : In children with systemic conditions like diabetes, regular eye care is vital to monitor and manage potential complications, thus preserving eye health.</li><li>Educate Caregivers : Eye care is a tool for educating caregivers on proper eye care techniques, signs of complications, and the importance of maintaining eye hygiene ensures consistent and effective care for the child.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Purpose of Eye Medications:</summary>
           <p>Topical medication is the preferred route for treating eye diseases. Eye medications are delivered to:</p>
 <ul><li>Treat infections.</li><li>Provide intraocular treatment for diseases such as glaucoma.</li><li>Prepare for and recover from surgical procedures.</li><li>Dilate pupils for eye examinations and/or refraction.</li><li>Provide lubrication.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Care of the Child Undergoing Eye Surgery:</summary>
           <p>The care involves pre-operative , intra-operative , and post-operative care.</p>
 <p>Common conditions requiring surgical intervention include trauma, Cataracts, Foreign body eye, Congenital malformations, Glaucoma, Eye injuries, Astigmatism or strabismus, Sagging of the upper eyelid (ptosis) and detached retina. The ophthalmologist will determine the treatment and procedure, ranging from a simple incision to total removal of the eyeball (enucleation).</p>
@@ -175,7 +208,7 @@
 <ul><li>Worsening Eyesight : If your eyesight worsens.</li><li>Increasing Pain : If you experience increasing pain or ache in the eye.</li><li>Redness : If there is increasing redness.</li><li>Swelling : If there is swelling around the eye.</li><li>Discharge : If there is any discharge from the eye.</li><li>New Symptoms : If you notice new floaters, flashes of light, or changes in your field of vision.</li><li>Wash Your Hands: Ensure your hands are clean before touching your eye drops.</li><li>Tilt Your Head : Look at the ceiling from a sitting or lying position.</li><li>Form a Pocket : Use one or two fingers to gently pull down your lower eyelid to form a pocket.</li><li>Instill the Drop : Keeping both eyes open, gently squeeze one drop into the eye pocket. Avoid letting the bottle top touch your eye, eyelashes, fingers, or any surface.</li><li>Close the Eye : Close the eye for 30 to 60 seconds to let the drops absorb.</li><li>Avoid Rubbing : Do not rub your eyes after applying the drops. Gently blot the eye area with a tissue if needed.</li><li>Multiple Drops : When using multiple eye drops, wait about three minutes after instilling the first medication before applying the next.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Responsibility of nurse during ophthalmology</summary>
           <p>The Nurse’s Role in Ophthalmic Visual Acuity Testing</p>
 <p>Visual acuity , the measurement of central vision sharpness, is a cornerstone of any ophthalmic examination. An accurate assessment is important for diagnosis and treatment planning. It tests the entire visual system, from the occipital cortex (brain) to the cornea (front of the eye).</p>
@@ -190,7 +223,7 @@
 <ul><li>Communicating with the Ophthalmologist : Communicate any relevant observations, including patient cooperation, suspected refractive errors, or signs of media opacity to the ophthalmologist for further assessment and diagnosis.</li><li>Patient Cooperation : The patient must understand and follow instructions, including focusing on the chart and maintaining a fixed gaze.</li><li>Recognition of Forms: The patient needs to be able to identify the forms displayed on the chart.</li><li>Ocular Media Clarity : The cornea, lens, and vitreous must be clear for light to pass through and reach the retina.</li><li>Focusing Ability : The eye must be able to focus properly on the chart.</li><li>Eye Convergence : Both eyes need to work together to converge on the target.</li><li>Retinal Function : The retina must be able to receive and process the visual information.</li><li>Intact Visual Pathways : The optic nerve and brain pathways must be intact for visual information to travel to the brain.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Common charts used in the measurement of distance visual acuity</summary>
           <p>The most common chart for measuring distance visual acuity in a literate adult is the Snellen chart . Distance vision is tested at 6 meters, as rays of light from this distance are nearly parallel. If the patient wears glasses constantly, vision may be recorded with and without glasses, but this must be noted on the record. Each eye is tested and recorded separately, the other being covered with a card held by the examiner.</p>
 <p>Heavy block letters, numbers, or symbols printed in black on a white background are arranged on a chart in nine rows of graded size, diminishing from the top downwards. The top letter can be read by the normal eye at a distance of 60 meters , and the following rows should be read at 36, 24, 18, 12, 9, 6, 5, and 4 meters, respectively.</p>
@@ -210,42 +243,54 @@
 <ul><li>The patient holds a wooden “E”.</li><li>The examiner points to an “E” on the chart.</li><li>The patient rotates their wooden “E” to match the orientation of the “E” on the chart.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 CARE OF THE PATIENT’S EYES.</summary>
           <p>Click Here</p>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-12">
           <summary>12 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Ophthalmology(Eye care, Pre &amp; Post Operative care, Charts).</strong> as a practical nursing topic, not only a memorized definition. Turn the topic into practical nursing knowledge: meaning, assessment, care priorities, teaching and evaluation.</p>
 <ul><li><strong>What to understand first:</strong> define ophthalmology(eye care, pre &amp; post operative care, charts)., identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-13">
           <summary>13 Assessment Guide</summary>
           <ul><li>Key definitions, patient history, focused observations and risk factors.</li><li>Findings that are normal, abnormal or urgent.</li><li>Resources, referral needs and documentation requirements.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-14">
           <summary>14 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Protect safety, comfort, dignity and infection prevention.</li><li>Provide clear care, education and escalation when needed.</li><li>Evaluate response and record what changed.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The topic is understood in a way that supports safe nursing judgement and revision.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-15">
           <summary>15 Patient Teaching and Revision Check</summary>
           <ul><li>Explain ophthalmology(eye care, pre &amp; post operative care, charts). in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Ophthalmology(Eye%20care%2C%20Pre%20%26%20Post%20Operative%20care%2C%20Charts).%20Foundations%20of%20Nursing%20(III)%20nursing%20lecture" title="Ophthalmology(Eye care, Pre &amp; Post Operative care, Charts). YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (9)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/peri-operative-care.webp" alt="Peri Operative Care" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Peri Operative Care</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/7b95489466278cc01d95108065fedaf5.webp" alt="7b95489466278cc01d95108065fedaf5" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">7b95489466278cc01d95108065fedaf5</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/5a3f8f9da4c1b74819716936b337eecb.webp" alt="5a3f8f9da4c1b74819716936b337eecb" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">5a3f8f9da4c1b74819716936b337eecb</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/300c7e088318024fe20356891593a363.webp" alt="300c7e088318024fe20356891593a363" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">300c7e088318024fe20356891593a363</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/7d1f137ba99d697e02950d9f07159efd.webp" alt="7d1f137ba99d697e02950d9f07159efd" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">7d1f137ba99d697e02950d9f07159efd</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/9bd7f293595efeb348a70d60daca0701.webp" alt="9bd7f293595efeb348a70d60daca0701" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">9bd7f293595efeb348a70d60daca0701</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/082a7380d8b6c80ffec3a9edbb4c536a.webp" alt="082a7380d8b6c80ffec3a9edbb4c536a" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">082a7380d8b6c80ffec3a9edbb4c536a</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/8afae4183330a25c66601e542c864240.webp" alt="8afae4183330a25c66601e542c864240" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">8afae4183330a25c66601e542c864240</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Ophthalmology(Eye%20care%2C%20Pre%20%26%20Post%20Operative%20care%2C%20Charts).%20Foundations%20of%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <p style="color:var(--seo-muted);font-size:.85rem;margin:8px 0 0">1 more diagram available — open the lesson for full illustrations.</p>
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Ophthalmology(Eye%20care%2C%20Pre%20%26%20Post%20Operative%20care%2C%20Charts).%20Foundations%20of%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

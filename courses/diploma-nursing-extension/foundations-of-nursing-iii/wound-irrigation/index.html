@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,39 +97,82 @@
         <p>Wound Irrigation should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section signature-section snapshot-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 37 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Snapshot</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Build The Idea</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Ward Mode</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Red Flags</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Exam Answer Map</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">WOUND DRESSING</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Classification of Wounds</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">WOUND HEALING</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Factors Affecting Wound Healing</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Types of Wound Healing (Wound Closure)</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Phases of Wound Healing</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Dressing Methods</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">General Rules for Wound Dressing</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Dressing a Clean Wound</a>
+          <a href="#section-16" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Dressing of Septic Wound</a>
+          <a href="#section-17" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Wound Irrigation</a>
+          <a href="#section-18" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Essential Steps of Wound Irrigation</a>
+          <a href="#section-19" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Indications for Wound Irrigation</a>
+          <a href="#section-20" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Contraindications for Wound Irrigation</a>
+          <a href="#section-21" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Wound Cleansing Agents</a>
+          <a href="#section-22" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Irrigation Solutions for Wound Cleansing</a>
+          <a href="#section-23" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Complications</a>
+          <a href="#section-24" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Wound Assessment</a>
+          <a href="#section-25" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Key Factors in Wound Assessment</a>
+          <a href="#section-26" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">1. Type of Wound</a>
+          <a href="#section-27" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">2. Tissue Loss</a>
+          <a href="#section-28" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">3. Clinical Appearance of the Wound Bed</a>
+          <a href="#section-29" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">4. Wound Measurement</a>
+          <a href="#section-30" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">5. Wound Edges</a>
+          <a href="#section-31" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">6. Exudate (Wound Drainage)</a>
+          <a href="#section-32" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">7. Surrounding Skin Condition</a>
+          <a href="#section-33" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">8. Presence of Infection</a>
+          <a href="#section-34" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-35" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-36" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-37" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section signature-section snapshot-section" open id="section-1">
           <summary>01 Nursing Uganda Snapshot</summary>
           <p>Wound care is the planned assessment, cleaning, protection and monitoring of damaged tissue so healing occurs without avoidable infection or breakdown.</p>
         </details>
       
-        <details class="seo-lesson-section signature-section build-section" open>
+        <details class="seo-lesson-section signature-section build-section" open id="section-2">
           <summary>02 Build The Idea</summary>
           <p>Original wound notes should move from wound type to healing needs: blood supply, cleanliness, moisture balance, pressure relief, nutrition and patient education.</p>
 <ul><li><strong>Clean wound:</strong> lower infection risk.</li><li><strong>Contaminated wound:</strong> needs careful cleaning and observation.</li><li><strong>Chronic wound:</strong> often linked to pressure, diabetes, poor circulation or nutrition.</li><li><strong>Dressing choice:</strong> should match wound condition and facility protocol.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section ward-section" open>
+        <details class="seo-lesson-section signature-section ward-section" id="section-3">
           <summary>03 Ward Mode</summary>
           <p>Before dressing, look first. A nurse should not remove and replace dressings mechanically without assessing the wound.</p>
 <ul><li>Prepare equipment and maintain privacy.</li><li>Use hand hygiene and aseptic technique.</li><li>Assess size, depth, exudate, odour, pain, edges and surrounding skin.</li><li>Document findings and patient response.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section red-flags-section" open>
+        <details class="seo-lesson-section signature-section red-flags-section" id="section-4">
           <summary>04 Red Flags</summary>
           <ul><li>Fever with wound infection signs.</li><li>Rapidly spreading redness.</li><li>Severe pain.</li><li>Wound opening after surgery.</li><li>Uncontrolled bleeding.</li><li>Black tissue or gas/crepitus.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-5">
           <summary>05 Patient Teaching</summary>
           <ul><li>Keep dressing clean and dry unless instructed otherwise.</li><li>Return for fever, swelling, pus, bad smell, severe pain or bleeding.</li><li>Eat protein-rich foods and avoid pressure on the wound.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section exam-map-section" open>
+        <details class="seo-lesson-section signature-section exam-map-section" id="section-6">
           <summary>06 Exam Answer Map</summary>
           <ul><li>Define wound.</li><li>Classify wounds.</li><li>List factors affecting healing.</li><li>Explain wound assessment.</li><li>Describe dressing procedure and patient education.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 WOUND DRESSING</summary>
           <p>Wound dressing is a method of carrying out surgical dressing and operative treatment with an aim to prevent the entry of Microorganisms into the wound. ****</p>
 <p>Indications for wound dressing</p>
@@ -125,7 +180,7 @@
 <p>Wound : A cut or break in the normal continuity of the skin or body structure internally or externally.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Classification of Wounds</summary>
           <p>Wounds can be classified based on manner of production, bacterial content, extent, and time . Below is a detailed breakdown of each classification:</p>
 <p>1. Classification by Manner of Production</p>
@@ -160,13 +215,13 @@
 <ul><li>A wound that fails to heal within four weeks and remains in the inflammatory phase of healing.</li><li>Chronic wounds may be associated with conditions such as diabetes, poor circulation, or infection .</li><li>Example: Pressure ulcers, diabetic foot ulcers, and venous leg ulcers .</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 WOUND HEALING</summary>
           <p>Wound healing refers to the body’s natural process of replacing destroyed tissue with new, living tissue .</p>
 <p>This complex biological process involves multiple phases and can be influenced by various internal and external factors.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Factors Affecting Wound Healing</summary>
           <p>Several factors determine the rate and effectiveness of wound healing:</p>
 <p>1. Age</p>
@@ -200,7 +255,7 @@
 <ul><li>A wound that becomes infected requires additional time to heal due to the presence of bacteria that compete with new tissue growth.</li><li>Infections can lead to chronic wounds if left untreated.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 Types of Wound Healing (Wound Closure)</summary>
           <p>1. Healing by Primary Intention (First Intention)</p>
 <ul><li>The wound edges are brought together (approximated) using sutures, staples, or adhesive strips.</li><li>Occurs in clean, minimal tissue loss wounds such as surgical incisions.</li><li>Healing is quick with minimal scarring.</li></ul>
@@ -208,7 +263,7 @@
 <ul><li>Happens when there is significant tissue damage or infection , preventing the wound edges from being approximated.</li><li>The wound heals from the bottom up, filling with granulation tissue (new connective tissue and blood vessels).</li><li>Requires daily wound dressing as the open wound is at risk of infection.</li><li>Healing time is longer , and scarring is more prominent.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-12">
           <summary>12 Phases of Wound Healing</summary>
           <p>The wound healing process consists of four overlapping phases , commonly referred to as the “cascade of healing.”</p>
 <p>1. Hemostasis Phase (Bleeding Control Phase) : The immediate response to physical injury, ensuring that bleeding is controlled.</p>
@@ -225,7 +280,7 @@
 <ul><li>Collagen Type III is replaced with Collagen Type I , increasing tensile strength up to 80% of normal skin .</li><li>The wound contracts, and scar tissue forms.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-13">
           <summary>13 Dressing Methods</summary>
           <ul><li>Dressing Method – Covers the wound to promote healing.</li><li>Non-Dressing Method – Leaves the wound open to air for healing.</li></ul>
 <p>Advantages of Dressing</p>
@@ -250,12 +305,12 @@
 <p>To prevent these risks and minimize wound infections , the following essential rules must be followed:</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-14">
           <summary>14 General Rules for Wound Dressing</summary>
           <ul><li>No. Rules Rationale</li><li>1. All bed making, mopping of the floor and dusting must be finished at least one hour before the dressing round is started. To prevent spread of infections.</li><li>2. Before the dressing round, wash the trolley with soap and water and dry it.</li><li>3. Before each dressing, wipe the trolley shelves with a disinfectant using a mopper.</li><li>4. Sterile articles are placed on the top shelf, un-sterile articles on the bottom shelf.</li><li>5. Clean wounds are always dressed first</li><li>6. Limit movements in the ward and windows near to the patient being dressed must be closed. To prevent cross infection.</li><li>7. Do not carry out dressing when having a focal wound or droplet infection.</li><li>8. If possible 2 nurses should be available to carry out dressing. To prevent contamination and save time.</li><li>9. Apply universal infection prevention and control before and after each procedure. To prevent spread of infections.</li><li>10. Nails must be short, watches and rings should be removed.</li><li>11. Masks are worn if required and once in position they must not be handled. • When removing the mask, handle only the tapes and dispose off immediately. • Never put a used mask in the uniform pocket. To prevent spread of infections</li><li>12. Lotions: The dressing assistant should pour only enough lotion for one dressing. Unused lotion must be disposed off when clearing the trolley. To avoid wastage and cross infection.</li><li>13. The trolley is reset for each dressing.</li><li>14. All used equipment must be decontaminated, washed with soap water, brushed, dried and sterilisation. To be ready for next dressing</li><li>15. The trolley is cleaned with disinfectant.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-15">
           <summary>15 Dressing a Clean Wound</summary>
           <p>A clean wound is a s uperficial wound caused by uncontaminated sharp objects .</p>
 <p>It may occur electively (e.g., surgical incision) or accidentally (e.g., cuts from broken glass or sharp metal).</p>
@@ -269,7 +324,7 @@
 <ul><li>Steps Action Rationale</li><li>1. Refer to general rules. –</li><li>2. Dressing assistant positions the patient. To maintain sterility.</li><li>3. Place a mackintosh and towel under the part to be dressed. Provides comfort and prevents soiling of bed linen.</li><li>4. Dressing assistant puts on clean gloves, removes the bandage, and loosens the strapping. For easy removal of the old dressing.</li><li>5. Dressing assistant removes gloves, washes hands, opens the dressing pack, and adds any additional sterile equipment using Cheatle forceps. To arrange materials for easy use and maintain sterility.</li><li>6. Adds sterile cleaning solution required. To prevent the spread of infections.</li><li>7. Dressing assistant puts on clean gloves, removes the dressing, and discards it in the receiver. To prevent the spread of infections.</li><li>8. Dressing nurse washes hands thoroughly with soap and water and dries with a sterile towel. To reduce the spread of infections.</li><li>9. Puts on sterile gloves. To maintain surgical asepsis.</li><li>10. Drapes the wound with a dressing towel. To provide a sterile environment.</li><li>11. Using forceps, swabs the wound, discarding each swab after use ( first the center , then each side of the wound , working from the middle outwards ). To minimize the spread of infection.</li><li>12. For a dirty wound, perform necessary toileting as prescribed, which may involve the removal of stitches or clips, probing the wound, or packing the wound. To promote healing.</li><li>13. Applies dressing to cover the wound and puts additional dressing if oozing or discharge is anticipated. To protect the wound and prevent soiling of the linen.</li><li>14. Places used instruments in a receiver. To avoid cross infections.</li><li>15. Removes gloves, applies strapping or a bandage on the wound as required. –</li><li>16. Washes hands, clears away, and leaves the patient comfortable. To maintain hygiene and sterility.</li><li>17. Documents the procedure and reports accordingly. For continuity of care and follow-up.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-16">
           <summary>16 Dressing of Septic Wound</summary>
           <p>Septic wound is characterized by the presence of pus, dead skin and offensive odour in the wound.</p>
 <p>Purpose of Dressing a Septic Wound</p>
@@ -280,7 +335,7 @@
 <ul><li>Step Action Rationale</li><li>1 Explain procedure to the patient To gain patient cooperation and reduce anxiety.</li><li>2 Clean trolley or tray and assemble sterile equipment on one side and surgically clean items on the other side. Make sure the tray or trolley is covered. To maintain asepsis and prevent contamination of sterile supplies.</li><li>3 Drape patient and position comfortably. To provide privacy and comfort for the patient during the procedure.</li><li>4 Place the rubber sheet and its cover under the affected part. To protect the bed linen from becoming soiled.</li><li>5 First remove the outer layer of the dressing. To expose the inner dressing and wound site.</li><li>6 Wear gloves if necessary. Use forceps to remove the inner layer of the dressing smoothly and discard therefore caps. To prevent contamination of the wound and protect healthcare worker from exposure to infectious materials.</li><li>7 Observe the wound and check if there is drainage rubber or tube. To assess the wound’s condition and identify any complications.</li><li>8 Take specimens for culture or slide if ordered (Do not cleanse wounds with antiseptic before you obtain the specimen.) To accurately identify any infectious organisms present in the wound.</li><li>9 Start cleaning the wound from the cleanest part of the wound to the most contaminated part using antiseptic solution. (Hydrogen peroxide 3%) is commonly used for septic wounds). Discard the cotton ball used for cleaning after each stroke over the wound. To prevent the spread of contamination from the dirtier areas to the cleaner areas.</li><li>10 Cleanse the skin around the wound to remove the plaster gum with benzene or ether. To ensure proper adhesion of the new dressing.</li><li>11 Use cotton balls for drying the skin around the wound properly. To create a clean, dry surface for the new dressing.</li><li>12 Dress the wound and make sure that the wound is covered completely. To protect the wound from infection and promote healing.</li><li>13 Fix dressing in place with adhesive tape or bandages. To secure the dressing and prevent it from dislodging.</li><li>14 Leave the patient comfortable and tidy. To promote patient well-being and satisfaction.</li><li>15 Cleanse and return equipment to its proper places. To maintain a clean and organized work environment.</li><li>16 Discard soiled dressings properly to prevent cross infection in the ward. To prevent the spread of infection to other patients and healthcare workers.</li><li>NB: If sterile forceps are not available, use sterile gloves. Immerse used forceps, scissors and other instruments in strong antiseptic solution before cleansing and discard soiled dressing properly. In a big ward it is best to give priorities to clean wounds and then to septic wounds, when changing dressings, as this might lessen the risk of cross infection. Consideration should be given to provide privacy for the patient while dressing the wound. Wounds should not be too tightly packed in effort to absorb discharge as this may delay healing.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-17">
           <summary>17 Wound Irrigation</summary>
           <p>Wound irrigation is the process of removing foreign materials, reducing bacterial contamination , and clearing cellular debris or exudate from the wound surface .</p>
 <p>It is a critical step in wound management, helping to maintain a clean environment that promotes optimal healing .</p>
@@ -288,30 +343,30 @@
 <p>Since wound irrigation involves bodily fluids , splashing and spraying can occur due to the use of pressure. To ensure the safety of healthcare providers , proper personal protective equipment (PPE) such as gloves, masks, eye protection, and gowns must be worn.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-18">
           <summary>18 Essential Steps of Wound Irrigation</summary>
           <ul><li>Assessing the Wound – Evaluate the wound’s size, depth, level of contamination, and presence of infection.</li><li>Wound Anesthesia – If necessary, provide local anesthesia to minimize patient discomfort during irrigation.</li><li>Wound Periphery Cleansing – Clean the skin around the wound using antiseptic solutions to prevent external contamination.</li><li>Irrigation with Solution Under Pressure – Flush the wound using an appropriate solution with controlled pressure to remove debris and bacteria effectively.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-19">
           <summary>19 Indications for Wound Irrigation</summary>
           <p>Wound irrigation is recommended for both acute and chronic wounds , especially when:</p>
 <ul><li>The wound is contaminated with debris or foreign materials.</li><li>The wound will undergo suturing, surgical repair, or debridement .</li><li>The wound has exudate buildup , which may delay healing.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-20">
           <summary>20 Contraindications for Wound Irrigation</summary>
           <p>Wound irrigation may not be necessary or should be carefully performed in the following situations:</p>
 <ul><li>Contraindication Reason</li><li>Highly vascular areas (e.g., scalp wounds) Excessive irrigation may not be required due to the scalp’s rich blood supply, which naturally aids in cleansing.</li><li>Wounds with fistulas or sinuses of unknown depth Irrigation could push bacteria and debris deeper into the wound or surrounding body spaces, leading to complications.</li><li>Extensive tissue damage or fragile wounds Excessive irrigation pressure can worsen tissue injury.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-21">
           <summary>21 Wound Cleansing Agents</summary>
           <p>Various wound cleansing agents are available, each with different bactericidal properties:</p>
 <ul><li>Cleansing Agent Bactericidal Action Effect on Healthy Tissue</li><li>Povidone-Iodine Solution Strong against both gram-positive and gram-negative bacteria Mildly toxic to healthy cells and granulation tissues</li><li>Chlorhexidine Strongly bactericidal against gram-positive bacteria, less effective against gram-negative bacteria Generally safe but may cause irritation</li><li>Hydrogen Peroxide Strong against gram-positive bacteria, less effective against gram-negative bacteria Can damage healthy tissue and delay healing</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-22">
           <summary>22 Irrigation Solutions for Wound Cleansing</summary>
           <p>Different irrigation solutions can be used based on wound type and availability:</p>
 <ul><li>Irrigation Solution Properties Usage Considerations</li><li>Normal Saline (0.9%) Non-toxic, similar in tonicity to body fluids Most commonly used due to safety and effectiveness</li><li>Sterile Water Non-toxic but hypotonic, may cause cell lysis Suitable when saline is unavailable but should be used cautiously</li><li>Potable Water Readily available, no significant difference from sterile water in infection rates Used when sterile water or saline is unavailable</li></ul>
@@ -321,56 +376,56 @@
 <ul><li>Step Action Rationale</li><li>1 Explain the procedure to the patient and organize the needed items. To gain patient cooperation and ensure efficiency.</li><li>2 Drape and position patient. To provide privacy and comfort.</li><li>3 Put a rubber sheet and its cover under the part to be irrigated. To protect the bed linen from becoming soiled.</li><li>4 Remove the outer layer of the dressing. To expose the inner dressing.</li><li>5 Remove the inner layer of the dressing using the first sterile forceps. To maintain sterility during dressing removal.</li><li>6 Put the receiver under the patient to receive the outflow. To collect the irrigation fluid and prevent mess.</li><li>7 Use a syringe with the desired amount of solution fitted with the catheter. To deliver a controlled amount of irrigation fluid.</li><li>8 Use forceps to direct the catheter into the wound. To ensure the catheter reaches the desired area of the wound.</li><li>9 First inject the solution such as hydrogen peroxide at body temperature gently and wait for the flow. This must be followed by normal saline for rinsing. Hydrogen peroxide helps to loosen debris, while normal saline rinses away the debris and remaining peroxide.</li><li>10 Make sure the wound is cleaned and dried properly. To prepare the wound for dressing and prevent maceration.</li><li>11 Dress the wound and check if it is covered completely. To protect the wound from infection.</li><li>12 Secure dressing in place with adhesive tape or bandage. To keep the dressing in place.</li><li>13 Leave the patient comfortable and tidy. To promote patient well-being.</li><li>14 Record the state of the wound. To monitor healing progress.</li><li>15 Clean and return equipment to its proper place. To maintain a clean and organized environment.</li><li>NB: Keep patient in a convenient position. According to the need so that solution will flow from wound down to the receiver.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-23">
           <summary>23 Complications</summary>
           <p>Wound irrigation should be avoided if the wound is actively bleeding, as it can disrupt clot formation and exacerbate hemorrhage. Incomplete or inadequate wound irrigation can lead to several complications:</p>
 <ul><li>Persistent Debris : Failure to thoroughly remove debris, foreign bodies, or necrotic tissue increases the risk of infection and delayed healing.</li><li>Sinus Formation : In abscesses, inadequate irrigation can result in the persistence of purulent discharge, potentially leading to chronic sinus tract formation.</li><li>Infection : Retained bacteria and contaminants can promote local or systemic infection.</li><li>Cytotoxicity : While povidone-iodine is a common antiseptic, excessive use or direct instillation into deep wounds can be cytotoxic, impairing wound healing. It should be used carefully, primarily on wound edges, and avoided in large quantities within the wound.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-24">
           <summary>24 Wound Assessment</summary>
           <p>Wound assessment is a critical process in wound management that allows healthcare professionals to determine the appropriate treatment plan and monitor healing progression .</p>
 <p>It involves evaluating the type, severity, and condition of the wound , along with assessing for signs of infection, complications, or delayed healing.</p>
 <p>Both initial and ongoing wound assessments should be conducted systematically in collaboration with the treating team to ensure optimal patient care.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-25">
           <summary>25 Key Factors in Wound Assessment</summary>
           <p>The following considerations are essential for a comprehensive wound assessment :</p>
 <ul><li>Type of Wound – Categorized as acute or chronic based on duration and healing progression.</li><li>Aetiology (Cause of Wound) – Includes surgical wounds, lacerations, ulcers, burns, abrasions, traumatic injuries, pressure injuries, and neoplastic wounds.</li><li>Wound Location &amp; Surrounding Skin – Important for understanding healing potential and the impact on mobility or function.</li><li>Tissue Loss – Determines whether the wound is superficial, partial-thickness, or full-thickness .</li><li>Clinical Appearance of Wound Bed – Indicates the stage of healing and tissue viability.</li><li>Measurement &amp; Dimensions – Includes both two-dimensional and three-dimensional wound assessments.</li><li>Wound Edges – Assessed for color, contraction, elevation, and rolling , all of which impact healing.</li><li>Exudate (Wound Drainage) – Evaluated for quantity, color, consistency, and odor to detect infection or complications.</li><li>Presence of Infection – Identified by local or systemic indicators of bacterial overgrowth.</li><li>Pain – Helps assess wound progression and potential underlying complications.</li><li>Previous Wound Management – Important for evaluating treatment effectiveness and necessary modifications.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-26">
           <summary>26 1. Type of Wound</summary>
           <p>Wounds can be classified based on terminology related to their cause and general healing characteristics .</p>
 <ul><li>Wound Type Description</li><li>Surgical Wound Incision made during a medical procedure under sterile conditions.</li><li>Burn Caused by heat, chemicals, electricity, or radiation.</li><li>Laceration A deep cut or tear in the skin due to trauma.</li><li>Ulcer A wound caused by prolonged pressure, infection, or vascular insufficiency.</li><li>Abrasion Superficial wound caused by friction removing the skin’s surface.</li><li>Traumatic Wound Resulting from external force, such as accidents, falls, or injuries.</li><li>Pressure Injury (Bedsore) Skin and tissue damage due to prolonged pressure, especially in bedridden patients.</li><li>Neoplastic Wound Caused by malignant tumors breaking down skin tissue.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-27">
           <summary>27 2. Tissue Loss</summary>
           <p>The depth of a wound determines the level of tissue loss:</p>
 <ul><li>Tissue Loss Classification Description</li><li>Superficial Wound Involves only the epidermis (outer layer of the skin).</li><li>Partial-Thickness Wound Affects both the epidermis and dermis.</li><li>Full-Thickness Wound Extends beyond the dermis into subcutaneous tissue, possibly reaching muscles, bones, or tendons.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-28">
           <summary>28 3. Clinical Appearance of the Wound Bed</summary>
           <p>The wound bed provides insight into the healing process. Different tissue types indicate the stage of healing and whether intervention is required.</p>
 <ul><li>Wound Bed Appearance Description</li><li>Granulating Healthy red/pink moist tissue, indicating active healing. Contains newly formed collagen, elastin, and capillary networks. Bleeds easily.</li><li>Epithelializing Thin, pink or whitish layer forming over the wound. Signifies new skin formation over granulation tissue.</li><li>Sloughy Yellow or whitish tissue, made up of dead cells and fibrin. Must not be confused with pus.</li><li>Necrotic Black, dry, or grey dead tissue. Prevents healing and may require debridement.</li><li>Hypergranulating Excess granulation tissue, extending beyond the wound margins. Often caused by infection, irritants, or bacterial imbalance.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-29">
           <summary>29 4. Wound Measurement</summary>
           <p>A proper wound assessment requires accurate measurement of its size and depth.</p>
 <ul><li>Measurement Method Description</li><li>Two-Dimensional Assessment Uses a paper tape measure to record the length and width (in mm). Commonly used for chronic wounds.</li><li>Three-Dimensional Assessment Depth is measured using a dampened cotton tip applicator. Helps assess cavity wounds or tracking (tunneling wounds).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-30">
           <summary>30 5. Wound Edges</summary>
           <p>The edges of the wound give valuable insight into healing progress.</p>
 <ul><li>Wound Edge Feature Indication</li><li>Pink edges Indicate new tissue growth and healing.</li><li>Dusky edges Suggest hypoxia (lack of oxygen) in the wound.</li><li>Erythema (redness) May indicate inflammation or cellulitis.</li><li>Contracting wound edges Show wound contraction, a normal part of healing.</li><li>Raised wound edges Suggest hypergranulation, which may need intervention.</li><li>Rolled edges Edges rolling inward may delay healing and require corrective action.</li><li>Changes in sensation Increased pain or numbness should be investigated.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-31">
           <summary>31 6. Exudate (Wound Drainage)</summary>
           <p>Exudate plays a critical role in healing but requires careful monitoring.</p>
 <p>Functions of Exudate in Healing</p>
@@ -379,13 +434,13 @@
 <ul><li>Excess exudate → Causes maceration (breakdown of surrounding skin).</li><li>Insufficient exudate → Leads to wound dryness , slowing healing.</li><li>Odorous, thick exudate → Indicates infection or necrosis .</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-32">
           <summary>32 7. Surrounding Skin Condition</summary>
           <p>The surrounding skin should be examined for:</p>
 <ul><li>Signs of maceration (excess moisture causing soft, broken skin).</li><li>Erythema (redness indicating inflammation or infection).</li><li>Dryness or cracking , which may slow healing.</li><li>Skin integrity changes , requiring protection measures.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-33">
           <summary>33 8. Presence of Infection</summary>
           <p>A wound infection occurs when bacteria multiply beyond the body’s ability to control them .</p>
 <p>This can lead to delayed healing, tissue destruction, or systemic illness .</p>
@@ -397,37 +452,47 @@
 <p>Click Here</p>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-34">
           <summary>34 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Wound dressing</strong> as a practical nursing topic, not only a memorized definition. Prioritize airway, breathing, circulation, pain, asepsis, wound healing and early complication detection.</p>
 <ul><li><strong>What to understand first:</strong> define wound dressing, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-35">
           <summary>35 Assessment Guide</summary>
           <ul><li>Vital signs, pain, bleeding, perfusion, level of consciousness and injury pattern.</li><li>Wound appearance, drainage, odour, swelling, temperature and surrounding skin.</li><li>Fluid balance, mobility, nutrition, surgical site risk and ordered investigations.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-36">
           <summary>36 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Stabilize urgent problems first, then prepare for investigations or theatre care.</li><li>Maintain aseptic technique, pain control, wound care and documentation.</li><li>Prevent shock, infection, pressure injury, deep vein thrombosis and delayed healing.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The patient remains stable, wound healing progresses, pain is controlled and complications are recognized early.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-37">
           <summary>37 Patient Teaching and Revision Check</summary>
           <ul><li>Explain wound dressing in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Wound%20Irrigation%20Foundations%20of%20Nursing%20(III)%20nursing%20lecture" title="Wound Irrigation YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (6)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Suturing.webp" alt="Suturing" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Suturing</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Types-of-Sutures.webp" alt="Types Of Sutures" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Types Of Sutures</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Suture-Materials-1-1024x640.webp" alt="Suture Materials 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Suture Materials 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Suture-Needles.webp" alt="Suture Needles" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Suture Needles</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Suture-Removal-Guidelines-1-e1742278405306.webp" alt="Suture Removal Guidelines 1 E1742278405306" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Suture Removal Guidelines 1 E1742278405306</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Clips-Metal-Sutures-in-Wound-Closure-e1742278573317.webp" alt="Clips Metal Sutures In Wound Closure E1742278573317" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Clips Metal Sutures In Wound Closure E1742278573317</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Wound%20Irrigation%20Foundations%20of%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Wound%20Irrigation%20Foundations%20of%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

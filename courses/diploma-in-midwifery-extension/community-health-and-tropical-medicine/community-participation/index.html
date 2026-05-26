@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,40 +97,58 @@
         <p>Community participation should be reviewed through safe maternal and newborn assessment, early recognition of danger signs, respectful communication and timely referral. Connect the definition to vital signs, bleeding, fetal or newborn wellbeing, patient education and local protocol requirements.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (12)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Community Participation</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Principles of Community Participation</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Types of participation.</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Indicators for community participation</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Importance of Community Participation.**</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Factors that promote community participation.</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Levels of Community Participation</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Factors that hinder community participation and possible solutions:</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Community Participation</summary>
           <p><strong>Community participation</strong> is the process by which community members are empowered to take part in problem identification, setting priorities, identifying possible solution, taking decisions, implementing, monitoring and evaluating activities for their own health and development.</p>
 <p>Community participation is a process where a community is fully involved in identification of its problems, making decisions on interventions, and implementation. Community participation is not just utilization of services and being passive users. This follows Community Mobilization</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Principles of Community Participation</summary>
           <ul><li><strong>Bottom-up approach:</strong> Community participation involves starting from the grassroots level and engaging communities in decision-making processes regarding issues that directly affect them. It recognizes that communities have valuable knowledge and perspectives that should be considered in shaping interventions and programs.</li><li><strong>Democratic process:</strong> Community participation ensures that everyone in the community has the opportunity to be involved and consulted. It promotes inclusivity, transparency, and equal participation, allowing community members to voice their opinions, contribute to discussions, and have their voices heard.</li><li><strong>Enabling environment</strong> : Community participation creates a supportive environment that enables communities to develop and advance. It empowers community members to take ownership of programs and initiatives, fostering a sense of responsibility, commitment, and accountability.</li><li><strong>Shifting power dynamics</strong> : Community participation shifts the traditional power dynamics from external experts to the communities themselves. It recognizes the expertise and lived experiences of community members and involves them in all stages of the process, including</li><li>needs assessment,</li><li>priority setting</li><li>planning</li><li>implementation, and</li><li>monitoring and evaluation of programs.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Types of participation.</summary>
           <ul><li><strong>Manipulative participation</strong> : In this type, participation is merely symbolic, and individuals are given positions on official boards or committees without real decision-making power. Their representation is used as a pretense to create an illusion of community involvement.</li><li><strong>Passive participation</strong> : In passive participation, community members are informed about decisions or actions that have already been taken by external agencies. They are not actively involved in the decision-making process and their role is limited to receiving information or providing feedback after the fact.</li><li><strong>Participation by consultation</strong> : This type involves consulting community members, usually by external agencies, to gather their opinions or feedback. However, the decision-making power remains with the professionals or experts, and community input may not be fully considered in the design or implementation of interventions.</li><li><strong>Participation by material incentives</strong> : In this form of participation, individuals are motivated to participate by receiving material incentives such as food, cash, or other resources. Their involvement is primarily driven by the tangible benefits they receive in return for their time, labor, or resources.</li><li><strong>Functional participation</strong> : Functional participation occurs when community members are involved in specific tasks or activities that are predetermined and related to a project. Their participation typically occurs after major decisions have already been made, and their role is limited to carrying out specific objectives rather than being involved in the decision-making process.</li><li><strong>Interactive participation</strong> : Interactive participation involves joint problem-solving and action planning between community members and external agencies. It fosters active engagement and empowers local groups to take control over local decisions. This type of participation recognizes the importance of community input and ensures that people have a stake in the decisions that affect them.</li><li><strong>Self-mobilization</strong> : Self-mobilization occurs when community members take independent initiative to address and change systems or situations without relying on external institutions. It is a self-driven form of participation where communities take ownership of their own development and work towards achieving their goals.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Indicators for community participation</summary>
           <ul><li><strong>People working together as a group:</strong> This indicator assesses the formation and functioning of community groups or clubs, such as youth groups, women’s groups, or other community-based organizations. It demonstrates the level of collective action and collaboration within the community.</li><li><strong>Increased participation of women</strong> : This indicator looks at the involvement of women in decision-making processes at both household and community levels. It reflects the empowerment of women and the recognition of their voices and contributions in community affairs.</li><li><strong>Community contributions</strong> : This indicator measures the extent of community involvement in development activities and projects. It includes contributions in terms of labor, materials, and financial resources. The indicator demonstrates the level of ownership and commitment of community members.</li><li><strong>Documentation of activities and accomplishments:</strong> Keeping records of community activities, such as minutes of meetings, progress reports, or project documentation, serves as an indicator of community participation. It shows the community’s engagement in planning, implementation, and monitoring of initiatives.</li><li><strong>Utilization of local resources and services:</strong> This indicator assesses the extent to which community members utilize local resources and services for their own development. It reflects the community’s self-reliance and ability to meet their needs through local means.</li><li><strong>Response to community mobilization</strong> : This indicator measures the level of response and engagement of community members when mobilized for community activities or projects. It indicates the level of interest, commitment, and active participation within the community.</li><li><strong>Diversity of roles among community leaders</strong> : This indicator focuses on the distribution of leadership roles and responsibilities among community members. It reflects a decentralized and inclusive approach to decision-making and community development.</li><li><strong>Engagement in seeking external support</strong> : This indicator assesses the community’s proactive efforts in seeking external support, both technical and material, to complement their own resources and capacities. It demonstrates the community’s networking and resource mobilization abilities.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 **Importance of Community Participation.**</summary>
           <ul><li><strong>Decision-making authority:</strong> Community participation ensures that individuals have the right to be involved in making decisions that directly impact them. It promotes democratic principles and gives community members a voice in shaping their own development.</li><li><strong>Increased utilization of services</strong> : When community members actively participate in planning and implementing projects or services, they are more likely to use and benefit from them. Their involvement fosters a sense of ownership, making them more invested in utilizing the resources available to them.</li><li><strong>Development of responsibility and ownership</strong> : By actively participating in community initiatives, individuals develop a sense of responsibility and ownership. They take pride in their contributions and are more likely to take care of and sustain the activities or programs they have helped create.</li><li><strong>Enhanced sustainability</strong> : Community participation contributes to the long-term sustainability of initiatives. When community members have a sense of ownership, they are more committed to maintaining and improving projects, ensuring their continued success even after external support diminishes.</li><li><strong>Increased resources</strong> : Community participation brings forth additional resources such as labor, materials, financial contributions, and volunteered time. With more resources available, planned activities can be executed more effectively, leading to better outcomes.</li><li><strong>Improved planning and implementation</strong> : When community members participate in the planning and implementation processes, there is a greater understanding of the objectives and rationale behind the activities. This shared understanding leads to more efficient planning and smoother implementation.</li><li><strong>Confidence and unity building</strong> : Active community participation fosters confidence among individuals as they witness the positive outcomes resulting from their contributions. It also builds a greater sense of unity and cohesion within the community, as members work together towards common goals.</li><li><strong>Community empowerment and capacity building</strong> : Participation empowers community members by giving them a sense of agency and control over their own development. Through participation, individuals gain valuable skills, knowledge, and experience, contributing to their personal growth and the overall capacity of the community.</li></ul>
 <p><strong>Ways in which community members participate in development activities / projects</strong></p>
 <ul><li>They use the service provided</li><li>They provide resources (labor, materials, money, and spare their time) for pre-planned activities.</li><li>They can monitor and evaluate programs of planned activities.</li><li>They can participate in making decisions with plans</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Factors that promote community participation.</summary>
           <ul><li><strong>Good leadership</strong> : Effective leadership builds trust and confidence among community members, ensuring that their resources will be utilized transparently and for their benefit. Trust in leaders encourages active participation.</li><li><strong>Good planning</strong> : When community members are involved in the planning process, they have a sense of ownership and are more likely to participate actively in the activities. Their input in identifying needs, setting goals, and determining implementation strategies increases their commitment.</li><li><strong>Clear understanding of project goals and stakeholders’ roles</strong> : Community members should have a clear understanding of the project’s objectives, expected outcomes, and the roles and responsibilities of different stakeholders. This clarity helps individuals see the value of their participation and how their contributions contribute to the overall success of the project.</li><li><strong>Effective communication</strong> : Transparent and consistent communication about the project’s purpose, challenges, benefits, and the commitment required from participants is crucial. When people have a comprehensive understanding of the project, they are more motivated to take action.</li><li><strong>Knowledge, attitudes, and skills</strong> : Community members need to have the necessary knowledge, attitudes, and skills to actively participate in project activities. Providing training and capacity-building opportunities ensures that individuals feel capable and confident in their roles.</li><li><strong>Positive attitudes</strong> : A positive and favorable attitude towards working with others fosters collaboration and cooperation. Creating an environment where community members, leaders, and project staff have a positive attitude towards working together encourages greater participation.</li><li><strong>Cooperation and collaboration</strong> : Building strong relationships and fostering cooperation between the project staff and the community is essential. Collaboration ensures that everyone is working towards a common goal and that decisions are made collectively.</li><li><strong>Involvement of relevant sectors:</strong> Engaging and involving various sectors within the community ensures that different perspectives are considered, increasing the diversity and effectiveness of community participation.</li><li><strong>Income-generating activities</strong> : Encouraging the community to engage in income-generating activities fosters economic empowerment and motivates individuals to actively participate in community initiatives. Economic opportunities can enhance the overall well-being of community members and strengthen their commitment to the project.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Levels of Community Participation</summary>
           <p>There are four levels of community participation:</p>
 <p>1. <strong>Participation in the use of services provided</strong> : This level involves actively mobilizing the community to utilize the services that are provided, such as community programs or initiatives. Community members are encouraged to take advantage of the services available to them.</p>
@@ -128,7 +158,7 @@
 <p><strong>N.B:</strong> It is important to note that progressing from one level to another may take time and requires careful preparation and facilitation to ensure the meaningful and effective engagement of the community throughout the process.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Factors that hinder community participation and possible solutions:</summary>
           <ul><li>No. Factors that Hinder Possible Solutions</li><li>1. Poor leadership – Selecting good leaders</li><li>– Encouraging teamwork</li><li>2. Political differences – Promoting mature politics</li><li>3. Lack of transparency – Emphasizing transparency</li><li>4. Poor planning – Implementing good planning</li><li>– Setting clear and realistic objectives</li><li>5. Abrupt changes to set schedules – Sticking to the schedule</li><li>6. Failure to involve community – Actively involving community members</li><li>– Ensuring effective communication and engagement</li><li>7. Higher expectations – Encouraging openness to self-reliance</li><li>– Managing expectations through clear communication</li><li>8. Conflicts among beneficiaries and source providers – Continuous sensitization with transparency</li><li>9. Poor motivation – Providing motivation, encouragement, and recognition</li><li>– Conducting effective sensitization and training programs</li><li>10. Conflicts with cultures and traditions in the community – Understanding and respecting community cultures and traditions</li><li>11. Disrespect towards community members – Fostering respect for community members</li><li>12. Natural calamities (e.g., earthquakes, floods, etc.) – Seeking assistance from community leaders and relevant organizations</li></ul>
 <p><strong>Effective community participation results</strong></p>
@@ -136,37 +166,48 @@
 <ul><li>∙ Sense of ownership</li><li>∙ Self-reliance</li><li>∙ Acquisition of skill &amp; abilities &amp; abilities to sustain the PHC process.</li><li>∙ Efficiency &amp; effectiveness in PHC implementation.</li><li>∙ Equitable distribution of resources among others</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-9">
           <summary>09 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Community Participation</strong> as a practical nursing topic, not only a memorized definition. Move from individual illness to prevention, population risk, health education and continuity of care.</p>
 <ul><li><strong>What to understand first:</strong> define community participation, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-10">
           <summary>10 Assessment Guide</summary>
           <ul><li>Who is affected, where they live, risk factors, resources and barriers to care.</li><li>Environmental hygiene, nutrition, immunization, water, sanitation and health-seeking behaviour.</li><li>Community beliefs, leaders, household practices and surveillance data.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-11">
           <summary>11 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Promote prevention, early detection, referral and community participation.</li><li>Use clear health education matched to literacy, culture and available resources.</li><li>Document findings and coordinate with community health structures.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The community understands the message, risk is reduced and follow-up or referral pathways are active.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-12">
           <summary>12 Patient Teaching and Revision Check</summary>
           <ul><li>Explain community participation in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Community%20participation%20Community%20Health%20and%20Tropical%20Medicine%20nursing%20lecture" title="Community participation YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (7)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Community-Participation.webp" alt="Community Participation" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Community Participation</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/b87acab0380a66309c235cc24236836a.webp" alt="B87acab0380a66309c235cc24236836a" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">B87acab0380a66309c235cc24236836a</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/0a4327756f596a576ab96669e87322dc.webp" alt="0a4327756f596a576ab96669e87322dc" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">0a4327756f596a576ab96669e87322dc</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/c7281d78d2d85b684ab8ad69a02b3be9.webp" alt="C7281d78d2d85b684ab8ad69a02b3be9" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">C7281d78d2d85b684ab8ad69a02b3be9</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/807f274bd8316550d7ab4a34d3baa9ec.webp" alt="807f274bd8316550d7ab4a34d3baa9ec" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">807f274bd8316550d7ab4a34d3baa9ec</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/251163e0ce2a991f145b00652bd1375c.webp" alt="251163e0ce2a991f145b00652bd1375c" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">251163e0ce2a991f145b00652bd1375c</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/35a407ef16b0008bcecbf9cc1a5ad5ec.webp" alt="35a407ef16b0008bcecbf9cc1a5ad5ec" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">35a407ef16b0008bcecbf9cc1a5ad5ec</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Community%20participation%20Community%20Health%20and%20Tropical%20Medicine%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Community%20participation%20Community%20Health%20and%20Tropical%20Medicine%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

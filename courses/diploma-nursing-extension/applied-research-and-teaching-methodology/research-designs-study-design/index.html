@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,57 @@
         <p>Research Designs/Study Design should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 44 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Overview</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Importance of Research Design</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Factors That Influence Choosing a Research Design</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Types of Research Designs</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Qualitative Research Designs:</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Quantitative Research Designs:</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Mixed Research Designs:</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Methodology Research Design Overview</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Qualitative vs. Quantitative Research Designs</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">RESEARCH APPROACHES, RESEARCH DESIGNS AND WHAT THEY MEAN</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Experimental Study Design</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">General Characteristics of Experimental Designs</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Advantages of Experimental Design</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Disadvantages of Experimental Design</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Cross-Sectional Study Design</a>
+          <a href="#section-16" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Characteristics of Cross-Sectional Studies</a>
+          <a href="#section-17" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">What Cross-Sectional Studies Can Reveal</a>
+          <a href="#section-18" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Disadvantages and Challenges of Cross-Sectional Design</a>
+          <a href="#section-19" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Characteristics of Cross-Sectional Research Design</a>
+          <a href="#section-20" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Longitudinal Research Design</a>
+          <a href="#section-21" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Examples</a>
+          <a href="#section-22" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">What Longitudinal Studies Tell You</a>
+          <a href="#section-23" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">What Longitudinal Studies Don’t Tell You</a>
+          <a href="#section-24" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Case Study/Case Report Designs</a>
+          <a href="#section-25" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">What Case Studies Don’t Tell You (Disadvantages)</a>
+          <a href="#section-26" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Retrospective and Prospective Study</a>
+          <a href="#section-27" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Cohort Study Design</a>
+          <a href="#section-28" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Example of a Cohort Study</a>
+          <a href="#section-29" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Advantages of Cohort Studies</a>
+          <a href="#section-30" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Disadvantages of Cohort Studies</a>
+          <a href="#section-31" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Randomized Controlled Trial (RCT)</a>
+          <a href="#section-32" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Advantages of RCT</a>
+          <a href="#section-33" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Limitations of RCT</a>
+          <a href="#section-34" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Case Series/Clinical Series</a>
+          <a href="#section-35" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Correlation Study Design</a>
+          <a href="#section-36" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">There are three primary types of correlation</a>
+          <a href="#section-37" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Comparative Study Design</a>
+          <a href="#section-38" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Ethnographical Research Design</a>
+          <a href="#section-39" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Phenomenological Research Design</a>
+          <a href="#section-40" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Grounded Theory Research Design</a>
+          <a href="#section-41" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-42" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-43" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-44" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Overview</summary>
           <p>Study or Research design defines the approaches, methods and the rationale of picking that appropriate research design.</p>
 <ul><li>Eg: descriptive cross sectional design</li><li>Approaches can be Quantitative/qualitative or both</li><li><strong>Note:</strong> that it is advisable to use one of these at our level.</li></ul>
@@ -95,111 +157,111 @@
 <ul><li>How will the study be conducted?</li><li>What procedures will be adopted to obtain answers to research questions?</li><li>What kind of data needs to be collected?</li><li>How will the tasks required to complete the various research components be carried out?</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Importance of Research Design</summary>
           <p>A robust research design is crucial for the success and validity of any study. Its importance can be summarized as follows:</p>
 <ul><li><strong>Foundation for Research:</strong> A well-defined research design acts as the solid base upon which the entire research stands. It provides a firm foundation, ensuring the study is structured and coherent from its inception.</li><li><strong>Smooth Research Operations:</strong> It ensures all research activities run smoothly and efficiently. By clearly outlining the steps and processes, researchers know what to expect and what comes next, minimizing disruptions.</li><li><strong>Efficiency Maximization:</strong> A good design provides maximum information with minimal effort, time, and cost. It makes research as efficient as possible by giving maximum information with minimum expenditure of effort, time, and energy.</li><li><strong>Blueprint for Research:</strong> Just as an architect needs a blueprint for building a house, research needs a proper design for conducting a study. This blueprint guides the entire process, from data collection to analysis.</li><li><strong>Simplifies Work:</strong> A carefully planned design simplifies work by ensuring that limitations are predetermined and solutions are already at hand, allowing researchers to overcome potential challenges effectively.</li></ul>
 <p>A well-planned research design is like a strong foundation for your study, making the research process efficient and effective.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Factors That Influence Choosing a Research Design</summary>
           <p>Several factors play a significant role in determining the most appropriate research design for a study. These include:</p>
 <ul><li><strong>Researcher’s Knowledge:</strong> The researcher’s familiarity with a particular design. Example: If a researcher is well-versed in qualitative research methods, they may choose to conduct an ethnographic study to gain an in-depth understanding of a specific community.</li><li><strong>Resource Availability:</strong> Availability of time, human resources, and willing respondents. Example: In a time-sensitive study, a researcher might opt for a cross-sectional design due to its efficiency in data collection and analysis.</li><li><strong>Ethical Considerations:</strong> Ethical aspects, including the ethical treatment of respondents. Example: In a study involving vulnerable populations, such as children, ethical considerations may lead the researcher to choose a design that prioritizes the protection of participants, like an experimental design.</li><li><strong>Feasibility and Relevance:</strong> The practicality and relevance of the design to the study. Example: A large-scale public health survey may require a design that is both feasible and relevant, such as a cross-sectional study that provides a snapshot of health trends in a population.</li><li><strong>Geographical Scope:</strong> The extent of the geographical area to be covered. Example: A study investigating regional variations in climate change impacts might choose a design that covers multiple countries and regions to capture a broad geographical scope, such as a comparative case study.</li><li><strong>Equipment Availability:</strong> Access to necessary research equipment and tools. Example: Research requiring advanced scientific equipment, like electron microscopes, would naturally be influenced to adopt experimental research designs.</li><li><strong>Research Type:</strong> The specific type of research, e.g., cross-sectional or longitudinal. Example: If a researcher aims to understand changes over time, they may select a longitudinal design to follow the same group of participants at multiple points in time.</li><li><strong>Control:</strong> The level of control the researcher can maintain over the study. Example: In a medical study testing a new drug’s effectiveness, a randomized controlled trial (RCT) design would provide a high level of control over the research conditions and variables.</li><li><strong>Population Type:</strong> The characteristics of the population under study. Example: Research on consumer preferences might employ a certain design to ensure the population’s characteristics are accurately represented in the study.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Types of Research Designs</summary>
           <p>There are three main overall methodologies (or designs): Qualitative, Quantitative, and Mixed.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Qualitative Research Designs:</summary>
           <ul><li>Qualitative research designs are primarily exploratory and descriptive in nature.</li><li>They aim to understand and interpret the underlying meaning of phenomena.</li><li>Qualitative studies often involve collecting non-numerical data such as text, images, or observations.</li><li>Common qualitative research designs include phenomenology, ethnography, grounded theory, and case studies.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Quantitative Research Designs:</summary>
           <ul><li>Quantitative research designs focus on collecting and analyzing numerical data.</li><li>They are structured, objective, and use statistics to establish relationships between variables.</li><li>The primary goal of quantitative research is to measure, describe, and explain phenomena through numerical data.</li><li>Common quantitative research designs include descriptive, analytical, experimental, and correlational studies.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Mixed Research Designs:</summary>
           <ul><li>Mixed research designs combine elements of both qualitative and quantitative research within a single study.</li><li>These designs aim to provide a comprehensive understanding of complex research questions.</li><li>Researchers typically collect and analyze both numerical and non-numerical data, often in two distinct phases, with one method informing the other.</li><li>The choice of mixed design depends on the research objectives and the need for a holistic approach to the research question.</li></ul>
 <p>Below are some Research designs under each main design. There are many types of research designs, but we are going to explain the most commonly used/examined research designs.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Methodology Research Design Overview</summary>
           <ul><li>Research Design Type Specific Designs</li><li><strong>Quantitative</strong> Experimental Analytical Descriptive Correlational Quasi &amp; Comparative</li><li><strong>Qualitative</strong> Phenomenology Ethnography Grounded Theory Case Study</li><li><strong>Mixed/Other</strong> Cross-Sectional Study Longitudinal Study Retrospective Study Cohort Study Randomized Controlled Trial Comparative Study</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Qualitative vs. Quantitative Research Designs</summary>
           <p><strong>Qualitative research</strong> deals with phenomena that are difficult or impossible to quantify mathematically, such as beliefs, meanings, attributes, and symbols.</p>
 <p><strong>Quantitative research</strong> deals with phenomena that are possible to be quantified mathematically. For example, experimental studies are quantitative in nature.</p>
 <ul><li>Aspect Qualitative Quantitative</li><li><strong>Nature of Data</strong> Non-numerical (text, words) Numerical (numbers, measurements)</li><li><strong>Number of Respondents</strong> Fewer respondents Larger number of respondents</li><li><strong>Research Aim</strong> Formulation of hypotheses Testing formulated hypotheses</li><li><strong>Researcher’s Knowledge</strong> Limited knowledge on the topic More knowledgeable about the topic</li><li><strong>Nature of Data Collection</strong> Subjective (relies on respondents) Objective (researcher gathers data)</li><li><strong>Conclusiveness of Results</strong> Inductive (results inconclusive) Deductive (results are conclusive)</li><li><strong>Questioning Approach</strong> General and broad questions Specific and narrow questions</li><li><strong>Bias in Research</strong> Highly biased Less biased (researcher in control)</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 RESEARCH APPROACHES, RESEARCH DESIGNS AND WHAT THEY MEAN</summary>
           <ul><li>Research Approach Research design Meaning of the Research Design</li><li>Quantitative <strong>Experimental design</strong> While using this design the researcher considers two cohorts or groups, one group receives the intervention (X), this is referred to as the treatment group while as the other group does not receive the intervention (X₁) this group is referred to as the control group. In this case the researcher is interested in assessing whether the intervention impacted on the treatment group and assessment of the counterfactual situation. Remember the interest of the researcher is to examine whether the independent variable (X) affects the dependent variable (Y) or not. The research will observe the behavior of the treatment group then make comparisons after a given period of time. In this case the treatment and control group&#39;s must be equivalent. Assignment of elements or subjects into these groups is random. <strong>Note that:</strong> These two groups must be protected against the influence of other external factors or forces. Some of the challenges faced in using this method include; Selection bias It requires a lot of expertise Challenge of ensuring internal validity since we assume that the two groups are equivalent. This is the most expensive design to adopt.</li><li>Qualitative &amp; Quantitative <strong>Quasi-Experimental Design</strong> However, this design is the most accurate if well executed and the researcher has the capacity to attribute changes or causes and effects including the assessment of the counterfactual (What would be the situation in the absence of the intervention at the same point in time). This research design is similar to the experimental research design with both a control and treatment cohort or group but the main difference is that in this research design the researcher does not assign elements or subjects to the cohort randomly but rather the researcher uses naturally occurring comparison groups. Therefore, as compared to experimental design where groups are assumed to be equivalent, in this case they are assumed to be similar but not equivalent.</li><li>Qualitative <strong>Non-Experimental research design</strong> Most of the research designs used are examples of non-experimental research design. In this research design, the researcher does not compare groups. In this case the researcher attempts to find a representative sample and as well looks at identifying the characteristics, frequency, correlations and associations.</li><li>Quantitative <strong>Correlation Research design</strong> This research design is used by a research who is interested in examining whether there is a relationship (positive or negative or no relationship) between 2 variables. These must be quantitative in nature. This design should be adopted when; The researcher is interested in determining the relationship between quantitative variables. Having 30 or more respondents increases the validity of the study statistical findings.</li><li>Quantitative <strong>Descriptive Research design</strong> This is a research design that supports the researcher to adopt the unit of analysis in a more accurate way. Therefore, adopting this research design will enable the researcher to describe the state of affairs as they actually exist.</li><li>Qualitative <strong>Exploratory Research Design</strong> This form of research design is adopted when the researcher does not have a vivid or clear picture of the problems he/she is likely to encounter during the study. This is usually used when the researcher is trying to explore a new field or a field that has not been well studied usually with little or no information about it. Therefore, the researcher aims at getting familiar with a formerly virgin field. <strong>Note that:</strong> this design is used when; The area has not been previously well studied for example previous researchers could have considered it as vague therefore committing little or no time to study it. The researcher could have a topic but failed to generate objectives and needs to generate them from the field. The researcher may conduct an exploratory study for the sake of being sure about what they are doing.</li><li>Qualitative <strong>Case study Research Design</strong> This research design is adopted when a researcher intends to study a given unit of analysis in detail or holistically as compared to a mere sweeping statistical survey which may not be thorough enough. Considering a case study design will enable the researcher to develop an in-depth understanding of a particular situation. Since this design supports the researcher to generate responses to the questions of; Who, What, Where, When &amp; How among others. <strong>Note that:</strong> The findings of such a study may generate a lot of knowledge but may not be used for generalization. It&#39;s quite expensive and time consuming to conduct an effective study using the design. Researchers should now understand that this is a research design and therefore avoid using it in their research titles for example &quot;A Case Study of FEM Consultants and Research Centre Ltd.&quot; That is wrong, it should rather be &quot;A Case of FEM Consultants and Research Centre Ltd&quot;</li><li>Quantitative <strong>Cross-sectional Research design</strong> The researcher adopts a cross-sectional research design when he/she intends to collect data from different respondents aimed at making inferences about the entire population at a point in time (at one point in time). This research design is adopted when the researcher intends to gather or collect data from respondents repeatedly over a given period of time.</li><li>Quantitative <strong>Longitudinal Research Design</strong> This design could as well be referred to as &quot;Longitudinal Cohort Design&quot;, this is where a researcher intends to collect data from the same participants / group of respondents/ cohort over a given period of time. This design is usually adopted in clinical psychology, in social personality and in Developmental psychology to examine changes in behaviors, thoughts as well as emotions. <strong>Note that:</strong> The main purpose of such a design is to enable the researcher examine for consistence (Reliability) of results. Examine whether there is a difference within the unit of analysis over time (the specified period of time).</li><li>Qualitative <strong>One-short case study research Design</strong> This form of research design is used when the researcher expects to expose a single cohort test unit to an intervention and there-after that cohort is measured for purposes of making inferences. <strong>Important to note</strong> is that this design as well ignores the control group and only analyses the post-test results. <strong>Note that:</strong> Researchers must always provide a justification for the choice of design they have used or intend to use.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 Experimental Study Design</summary>
           <p>Experimental study design involves introducing an intervention assumed to be the ’cause’ of change and waiting until it has produced or has been given sufficient time to create that change. Some essential experimental study designs include the following:</p>
 <ul><li><strong>After-only design:</strong> In this approach, the researcher knows that the population has been exposed to an intervention. They aim to study its impact on the population. Information about the baseline is usually gathered from respondents’ recall of the situation before the intervention or from existing records. This design is commonly used in impact assessment studies.</li><li><strong>Before-and-after design:</strong> This design addresses the issue of retrospectively constructing the ‘before’ observation by establishing it before introducing the intervention to the study population. Subsequently, when the program is fully implemented or assumed to have its effect on the population, an ‘after’ observation is conducted to determine the intervention’s impact.</li><li><strong>Control group design:</strong> In the control group design, the researcher selects two population groups – a control group and an experimental group. These groups are expected to be as comparable as possible in every respect except for the intervention. The experimental group receives or is exposed to the intervention, while the control group is not. Initially, the ‘before’ observation is made on both groups simultaneously. Subsequently, the experimental group is exposed to the intervention. When it is assumed that the intervention has had an impact, an ‘after’ observation is conducted on both groups. Any difference in the ‘before’ observation between the groups concerning the dependent variable(s) is attributed to the intervention.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-12">
           <summary>12 General Characteristics of Experimental Designs</summary>
           <ul><li>Direct manipulation of independent variables in a controlled environment.</li><li>Examination of the effect of independent variable(s) on one or more dependent variables.</li><li>Focus on testing hypotheses.</li><li>Total control of extraneous variables.</li><li>Generation of empirical findings with internal and external validity.</li><li>Some experimental designs use control and experimental groups (pure experimental design).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-13">
           <summary>13 Advantages of Experimental Design</summary>
           <ul><li>It enables the researcher to control the situation, helping answer the question, “What causes something to occur?”</li><li>It allows identification of cause-and-effect relationships between variables and distinguishes placebo effects from treatment effects.</li><li>Experimental research designs support the ability to limit alternative explanations and infer direct causal relationships in the study.</li><li>This approach provides the highest level of evidence for single studies.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-14">
           <summary>14 Disadvantages of Experimental Design</summary>
           <ul><li>Experimental design can be artificial, and results may not generalize well to the real world.</li><li>The artificial settings of experiments may alter participants’ behaviors or responses.</li><li>Experimental designs can be costly if they require special equipment or facilities.</li><li>Some research problems cannot be studied using experiments due to ethical or technical reasons.</li><li>It can be challenging to apply ethnographic and other qualitative methods to experimentally designed studies.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-15">
           <summary>15 Cross-Sectional Study Design</summary>
           <p>Cross-sectional study design is a research approach that involves different groups of people who vary in the variable of interest but share other characteristics, such as socioeconomic status, educational background, and ethnicity. For instance, researchers may select groups of people who are quite similar in most aspects but differ only in age. This allows any observed differences between groups to be attributed to age rather than other variables.</p>
 <p>Cross-sectional studies are typically observational and are commonly used in descriptive research.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-16">
           <summary>16 Characteristics of Cross-Sectional Studies</summary>
           <ul><li>Researchers record existing information within a population without manipulating variables.</li><li>Data collection occurs at a single point in time.</li><li>This research design describes characteristics within a population but does not establish cause-and-effect relationships between different variables.</li><li>It enables researchers to investigate multiple aspects simultaneously, such as age, income, and gender.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-17">
           <summary>17 What Cross-Sectional Studies Can Reveal</summary>
           <ul><li>Cross-sectional studies provide a snapshot of outcomes and associated characteristics at a specific point in time.</li><li>Unlike experimental designs that involve active intervention to induce and measure change or create differences, cross-sectional studies focus on studying and drawing inferences from existing differences among people, subjects, or phenomena.</li><li>Data is collected at a particular moment in time.</li><li>While longitudinal studies require multiple measurements over an extended period, cross-sectional research aims to identify relationships between variables at a single moment.</li><li>Groups chosen for study are deliberately selected based on existing differences in the sample rather than random sampling.</li><li>This method can estimate the prevalence of an outcome of interest because the sample typically represents the entire population.</li><li>Cross-sectional designs often use survey techniques for data collection, making them relatively cost-effective and efficient.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-18">
           <summary>18 Disadvantages and Challenges of Cross-Sectional Design</summary>
           <ul><li>Finding individuals, subjects, or phenomena that are very similar except for a specific variable can be challenging.</li><li>Results are static and time-bound, offering no insights into the sequence of events or historical contexts.</li><li>Cross-sectional studies cannot establish cause-and-effect relationships.</li><li>This design provides only a single snapshot of analysis, which may yield different results if conducted at another time.</li><li>There is no follow-up to the findings.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-19">
           <summary>19 Characteristics of Cross-Sectional Research Design</summary>
           <ul><li>No time dimension.</li><li>Focuses on existing differences rather than changes following intervention.</li><li>Groups are selected based on existing differences rather than random allocation.</li></ul>
 <p><strong>Note:</strong> Cross-sectional research design differs from longitudinal research, which involves taking multiple measurements over an extended period of time.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-20">
           <summary>20 Longitudinal Research Design</summary>
           <p>This is a study design that involves a series of sample measurements taken over a period of time. The study focuses on specific respondents or a sample over a specified period, examining changes in behavior.</p>
         </details>
       
-        <details class="seo-lesson-section exam-section" open>
+        <details class="seo-lesson-section exam-section" id="section-21">
           <summary>21 Examples</summary>
           <ul><li>A study of a specific group of children’s academic performance over time.</li><li>A study of the stages of human development by following a child from birth to adulthood.</li></ul>
 <p>Longitudinal studies provide deeper insights into issues. However, they can be expensive in terms of both time and money. Such studies may face setbacks if a respondent dies or transfers.</p>
@@ -208,141 +270,147 @@
 <p><strong>Trend Study:</strong> Involves different homogenous groups or samples in phases over the study. The results obtained from the study are then analyzed and compared to investigate trends of change. For example, one can observe the trend of change in the behavior of 1st-year students admitted in 2001 and 1st-year students admitted in 2002 using a trend longitudinal study.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-22">
           <summary>22 What Longitudinal Studies Tell You</summary>
           <ul><li>Longitudinal data help analyze the duration of a specific phenomenon.</li><li>Enables researchers to approach causal explanations usually achievable only through experiments.</li><li>Permits the measurement of differences or changes in a variable from one period to another, describing patterns of change over time.</li><li>Facilitates predicting future outcomes based on earlier factors.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-23">
           <summary>23 What Longitudinal Studies Don’t Tell You</summary>
           <ul><li>The data collection method may change over time.</li><li>Maintaining the integrity of the original sample can be difficult over an extended period.</li><li>It can be challenging to show more than one variable at a time.</li><li>This design often requires qualitative research data to explain fluctuations in the results.</li><li>A longitudinal research design assumes that present trends will continue unchanged.</li><li>It can take a long time to gather results.</li><li>A large sample size and accurate sampling are needed to reach representativeness.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-24">
           <summary>24 Case Study/Case Report Designs</summary>
           <p>A case study is an in-depth examination of the behavior of a specific phenomenon, such as a person, a group of people, an object, or a situation within a limited environment. The findings from a case study can be generalized to represent other cases within a population of interest. For instance, one can study the behavior of a child or a group of children from birth to adulthood and then generalize the results to other children.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-25">
           <summary>25 What Case Studies Don’t Tell You (Disadvantages)</summary>
           <ul><li>A single or a small number of cases offer limited grounds for establishing reliability or for generalizing the findings to a broader population of people, places, or things.</li><li>Intensive exposure to the study of a case can bias a researcher’s interpretation of the findings.</li><li>This design does not facilitate the assessment of cause-and-effect relationships.</li><li>Vital information may be missing, making the case challenging to interpret.</li><li>The case may not be representative or typical of the larger problem under investigation.</li><li>If a case is selected because it represents a very unusual or unique phenomenon or problem for study, then the interpretation of the findings can only apply to that specific case.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-26">
           <summary>26 Retrospective and Prospective Study</summary>
           <p>A retrospective study is a longitudinal study that examines data from the past. For example, a researcher may review medical records from previous years to identify trends. In essence, retrospective studies “look back” in time. On the other hand, prospective studies “look forward” by collecting data as events unfold.</p>
 <p><strong>Retrospective Study Example in Health:</strong> A retrospective study in health might involve examining historical medical records of cancer patients to determine the effectiveness of a particular treatment protocol used in the past. Researchers can analyze the outcomes of these patients based on the treatment they received and other variables to gain insights into the treatment’s success rates.</p>
 <p><strong>Prospective Study Example in Health:</strong> A prospective study in health could involve tracking a group of pregnant women from early pregnancy through childbirth and beyond. Researchers would collect data on factors like prenatal care, diet, and lifestyle, and follow the women to monitor pregnancy outcomes, birth complications, and the health of their babies after birth. This type of study helps in understanding the factors that influence maternal and child health during and after pregnancy.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-27">
           <summary>27 Cohort Study Design</summary>
           <p>A cohort is a group of individuals who share a common characteristic or experience. For instance, a group of people born on the same day or during a specific period, like 1981, can form a birth cohort. The cohort design is a type of observational study in which one or more groups (cohorts) are followed over time, and subsequent assessments are made to determine the association between the initial characteristics or risk factors of the participants and specific outcomes or diseases. As the study progresses, the outcomes of participants in each cohort are measured, and researchers analyze the relationships with particular characteristics.</p>
         </details>
       
-        <details class="seo-lesson-section exam-section" open>
+        <details class="seo-lesson-section exam-section" id="section-28">
           <summary>28 Example of a Cohort Study</summary>
           <p>To investigate whether tobacco exposure is associated with the development of lung cancer, an investigator forms two groups (cohorts) of adolescents. One group consists of individuals who have never smoked tobacco and continue to refrain from smoking (unexposed), while the other group comprises tobacco smokers (exposed). The investigator then follows both groups for a specified period and observes how many individuals in each cohort develop the disease and how many do not. Below is a table illustrating the outcomes:</p>
 <ul><li>Cohort Develop Disease Do Not Develop Disease Total Incidence of Disease</li><li>Smoke tobacco 84 2916 3000 0.028</li><li>Do not smoke tobacco 87 4913 5000 0.0174</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-29">
           <summary>29 Advantages of Cohort Studies</summary>
           <ul><li>Subjects in cohorts can be matched to limit the influence of confounding variables.</li><li>Cohort studies can demonstrate that potential causes precede the outcomes.</li><li>Original or secondary data can be used in this design.</li><li>Cohort studies are often less expensive and easier to conduct than randomized controlled trials.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-30">
           <summary>30 Disadvantages of Cohort Studies</summary>
           <ul><li>Identifying cohorts can be challenging due to confounding variables.</li><li>Lack of randomization may lead to imbalances in patient characteristics.</li><li>Blinding or masking is difficult in cohort studies.</li><li>Outcomes of interest may take time to occur.</li><li>Additionally, they might take a long time to complete, potentially impacting the validity of findings. The lack of randomization in cohort studies also reduces their external validity compared to randomized studies.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-31">
           <summary>31 Randomized Controlled Trial (RCT)</summary>
           <p>The primary difference between a Randomized Controlled Trial (RCT) and a cohort study is the random selection of samples. RCTs involve the random allocation of participants to different clinical interventions, including a control group. These trials seek to measure and compare the outcomes following the interventions. RCTs are purely experimental and quantitative in nature.</p>
 <p><strong>Example:</strong> In a study to determine whether painkillers are necessary for males who have just undergone circumcision, 200 eligible men were randomly assigned to two groups. One group received Panadol tablets as pain relief immediately after surgery, while the other group received a placebo. The results showed that a majority (90%) of patients given Panadol reported no pain, whereas over 90% of patients on the placebo reported significant pain.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-32">
           <summary>32 Advantages of RCT</summary>
           <ul><li>RCTs are considered the most reliable form of scientific evidence.</li><li>They reduce spurious causality.</li><li>RCTs influence healthcare policy and practice.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-33">
           <summary>33 Limitations of RCT</summary>
           <ul><li>The external validity of RCT results may be limited.</li><li>Ethical concerns may arise in some situations.</li><li>The time required to observe outcomes can be extensive.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-34">
           <summary>34 Case Series/Clinical Series</summary>
           <p>A case series is a descriptive study that follows a group of patients or subjects with known exposure, such as individuals who have received similar treatments or whose medical records are examined for exposure and outcomes. Case series can generate hypotheses for further studies but cannot establish causal relationships.</p>
 <p>Internal validity in case series studies is generally low because they lack a comparator group exposed to the same intervening variables.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-35">
           <summary>35 Correlation Study Design</summary>
           <p>A correlation study investigates whether two variables are correlated, meaning an increase or decrease in one variable corresponds to a change in the other. However, correlation does not imply causation. Three types of correlation exist: positive, negative, and no correlation.</p>
 <p>A correlation coefficient, which ranges from +1 to -1, is typically used to quantify the strength and direction of the correlation between variables.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-36">
           <summary>36 There are three primary types of correlation</summary>
           <ul><li><strong>Positive Correlation:</strong> This type of correlation occurs when an increase in one variable is associated with an increase in another, and a decrease in one variable is linked to a decrease in the other. For example, an individual’s wealth may exhibit a positive correlation with the number of rental houses they own. This suggests that as wealth increases, so does property ownership.</li><li><strong>Negative Correlation:</strong> Negative correlation is observed when an increase in one variable is connected to a decrease in another, and vice versa. For instance, there might be a negative correlation between the level of education in a country and its crime rate. If education levels improve in a country, the crime rate tends to decrease. However, it’s essential to note that this does not mean that a lack of education directly causes crime. Both factors might share a common underlying cause, such as poverty.</li><li><strong>No Correlation (Uncorrelated):</strong> In cases of no correlation, changes in one variable do not correspond to changes in the other, and vice versa. For example, among millionaires, there may be no correlation between their level of wealth and their level of happiness. This indicates that an increase in wealth does not necessarily lead to an increase in happiness.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-37">
           <summary>37 Comparative Study Design</summary>
           <p>Comparative studies involve examining two or more cases, specimens, or events that share similarities in some aspects but differ in others. The goal is to determine the reasons for these differences and to generalize findings to larger groups from which the cases originated. The plausibility of generalization increases when several cases from the same group are considered.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-38">
           <summary>38 Ethnographical Research Design</summary>
           <p>Ethnographical research, often referred to as ethnography, involves the in-depth study of naturally occurring behavior within a particular culture or social group. Its primary aim is to understand the relationship between culture and behavior. Culture in this context refers to the beliefs, values, and attitudes of a specific group of people. Ethnographic research methods were developed by anthropologists to study and describe human cultures.</p>
 <p>Characteristics of good ethnography, as described by Spindler &amp; Hammond (2000), include:</p>
 <ul><li><strong>Extended Participant Observation:</strong> Researchers immerse themselves in the culture or social group they are studying and observe behavior over an extended period.</li><li><strong>Long Time at Site:</strong> Researchers spend a significant amount of time within the community or culture being studied to gain a deep understanding of their way of life.</li><li><strong>Collection of Large Volume of Materials:</strong> This includes detailed notes, audio recordings, video tapes, and other data, often without having specific hypotheses or predefined categories at the outset of the study.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-39">
           <summary>39 Phenomenological Research Design</summary>
           <p>Phenomenological research is the study of phenomena, which can be events, situations, experiences, or concepts as they are perceived by individuals. This approach aims to understand and describe the essence of lived experiences from the perspective of the participants. Phenomenology begins with the acknowledgment that there is a gap in our understanding and that clarification will be beneficial.</p>
 <p>In phenomenological research, researchers seek to explore the essence and meaning of experiences as they are lived. It often involves in-depth interviews and analysis to uncover the common themes and structures that underlie these experiences. This research design is valuable in understanding how individuals make sense of the world and their experiences.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-40">
           <summary>40 Grounded Theory Research Design</summary>
           <p>Grounded theory is a systematic research methodology that aims to develop theories or concepts that are grounded in data. It was developed by sociologists Barney Glaser and Anselm Strauss in the 1960s. The primary goal of grounded theory is to generate new, abstract theories based on empirical observations, rather than testing existing theories.</p>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-41">
           <summary>41 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Research Designs/Study Design</strong> as a practical nursing topic, not only a memorized definition. Translate theory into safe decisions, accountability, communication and service improvement.</p>
 <ul><li><strong>What to understand first:</strong> define research designs/study design, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-42">
           <summary>42 Assessment Guide</summary>
           <ul><li>The problem, stakeholders, available resources, policy requirements and ethical issues.</li><li>Risks to patients, staff, confidentiality, quality, costs and continuity.</li><li>Documentation, reporting lines, supervision and evaluation measures.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-43">
           <summary>43 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use evidence, policy and professional standards to guide action.</li><li>Communicate clearly, document decisions and protect confidentiality.</li><li>Evaluate whether the action improves safety, learning or service delivery.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The plan is documented, realistic, ethical and improves patient care or learning outcomes.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-44">
           <summary>44 Patient Teaching and Revision Check</summary>
           <ul><li>Explain research designs/study design in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Research%20Designs%2FStudy%20Design%20Applied%20Research%20and%20Teaching%20Methodology%20nursing%20lecture" title="Research Designs/Study Design YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (2)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Research-Designs-Study-Design.webp" alt="Research Designs Study Design" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Research Designs Study Design</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/a6498463534299b9cd033b72f21619a4.webp" alt="A6498463534299b9cd033b72f21619a4" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">A6498463534299b9cd033b72f21619a4</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Research%20Designs%2FStudy%20Design%20Applied%20Research%20and%20Teaching%20Methodology%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Research%20Designs%2FStudy%20Design%20Applied%20Research%20and%20Teaching%20Methodology%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

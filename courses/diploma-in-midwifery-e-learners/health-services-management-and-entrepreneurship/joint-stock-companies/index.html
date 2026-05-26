@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,35 +97,53 @@
         <p>Joint Stock Companies should be reviewed through safe maternal and newborn assessment, early recognition of danger signs, respectful communication and timely referral. Connect the definition to vital signs, bleeding, fetal or newborn wellbeing, patient education and local protocol requirements.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (12)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">JOINT STOCK COMPANIES</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Features of a Company:</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Advantages of Companies</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Disadvantages of Companies:</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Differences between a Registered Company and a Partnership:</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">I. Companies Incorporated under the Companies Act:</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Winding Up a Company</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">COOPERATIVES</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 JOINT STOCK COMPANIES</summary>
           <p>J oint stock company is a voluntary association of persons incorporated into a business having joint capital divided into transferable shares of a fixed face value, with limited liability of members.</p>
 <p>Each of the persons who contribute capital is known as a share-holder. The liability of shareholders of a joint stock company is limited to their capital contribution.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Features of a Company:</summary>
           <ul><li>Voluntary Association of Persons in Cooperation : A company is formed by the voluntary association of two or more persons who come together to cooperate and work towards a common goal.</li><li>Artificial Person : A company is an artificial person created by law. It is distinct from its owners and has its own legal rights and liabilities.</li><li>Separate Legal Entity : A company is a separate legal entity from its owners. This means that the company can enter into contracts, own property, and sue or be sued in its own name.</li><li>Common Seal : A company has a common seal, which is used to authenticate important documents.</li><li>Limited Liability : Members of a company have limited liability, which means that their personal assets are not at risk if the company incurs debts or losses.</li><li>Transferability of Shares: Shares in a company can be easily transferred from one person to another. This makes it easy for investors to buy and sell shares in the company.</li><li>Assured Perpetual Succession : A company has assured perpetual succession, which means that it continues to exist even if one or more of its members dies or leaves the company.</li></ul>
 <p>Additional Features:</p>
 <ul><li>A company can raise capital by selling shares to investors.</li><li>The profits of a company are shared among its shareholders in proportion to the number of shares they hold.</li><li>A company is managed by a board of directors, which is elected by the shareholders.</li><li>A company is required to file annual financial statements with the government.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Advantages of Companies</summary>
           <ul><li>More Capital : Joint stock companies are in a better position to mobilize large amounts of capital than sole proprietorships and partnerships due to the large number of shareholders who constitute them. This is because companies can issue shares to the public, which allows them to raise large sums of money from a wide range of investors.</li><li>Limited Liability: The liability of the members of a company is limited, which means that their personal assets are not at risk if the company incurs debts or losses. This is a major advantage of companies over sole proprietorships and partnerships, where the owners are personally liable for the debts and losses of the business.</li><li>Continuity : A company is a legal entity that continues to exist even if one or more of its members dies, becomes bankrupt, or withdraws from the company. This is known as the principle of perpetual succession.</li><li>High Profits : Joint stock companies have the potential to generate high profits due to their large scale of operations and economies of scale. They can also benefit from specialization and division of labor, which can lead to increased efficiency and productivity.</li><li>Shares are Freely Transferable: Shareholders of a public limited company can easily sell their shares on the stock exchange market without the consent of other shareholders. This makes it easy for investors to enter and exit the company, which can increase liquidity and attract more investors.</li><li>Strong Financial Position : Companies have a strong financial position because their capital cannot be withdrawn. This means that they can more easily secure loans from banks and other financial institutions.</li><li>Efficient Management: Joint stock companies can employ specialists in different departments, such as managers, accountants, and sales managers. This can lead to more efficient and effective management of the business.</li><li>Different Types of Shares : Companies can issue different types of shares to suit the investment habits of different types of people. This can make it easier for companies to attract a wide range of investors.</li><li>Encourage Savings: People can invest their savings profitably by buying shares in a joint stock company and receiving dividends (profits). This can encourage people to save and invest their money, which can benefit the economy as a whole.</li><li>Security : Public limited companies are required to publish their financial statements to the general public. This can help to protect investors from fraud and other financial irregularities.</li><li>Free Transferability of Shares : Shareholders can easily sell their shares to other investors, which makes it easy for them to exit the company if they wish.</li><li>Large Financial Resources : Companies can raise large amounts of capital from a wide range of investors, which gives them access to significant financial resources.</li><li>Economies of Scale: Companies can achieve economies of scale by producing goods and services on a large scale. This can lead to lower costs and higher profits.</li><li>Public Confidence : Public limited companies are required to publish their financial statements and other information, which can help to build public confidence in the company.</li><li>Tax Benefits : Companies may be eligible for certain tax benefits, such as lower tax rates or investment tax credits.</li><li>Diffused Risks : The risk of loss is spread among a large number of shareholders, which can make it less risky for individual investors.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Disadvantages of Companies:</summary>
           <ul><li>Delays in Decision Making: Decision-making in companies can be slow and bureaucratic, as it often requires the approval of multiple stakeholders, such as the board of directors and the shareholders.</li><li>Oligarchies in Management : In some companies, a small group of powerful individuals may have too much control over the decision-making process, which can lead to a lack of accountability and transparency.</li><li>Lack of Secrecy: Public limited companies are required to disclose a significant amount of information to the public, which can reduce the company’s ability to keep its business strategies and financial information confidential.</li><li>Difficulty and Costly Formation : Forming a company can be a complex and expensive process, as it requires the preparation of various legal documents and the payment of government fees.</li><li>Lack of Motivation and Personal Attention: In large companies, individual employees may feel less motivated and less connected to the business, which can lead to lower productivity and innovation.</li><li>The Management of Public Companies Lies in the Hands of Hired Professionals : This can lead to a lack of accountability and responsiveness to the needs of shareholders and other stakeholders.</li><li>Excessive Regulations : Companies are subject to a significant amount of government regulation, which can increase the cost of doing business and reduce the company’s flexibility.</li><li>Social Evils : Some companies may engage in unethical or illegal activities, such as pollution, labor exploitation, or tax evasion. This can damage the company’s reputation and lead to legal and financial penalties.</li><li>Conflict of Interest : Directors and managers of companies may have personal interests that conflict with the interests of the company, leading to decisions that benefit them at the expense of the company’s shareholders or stakeholders.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Differences between a Registered Company and a Partnership:</summary>
           <ul><li>Management : In a registered company, management is delegated to a board of directors, while in a partnership, all general partners share in the management.</li><li>Legal Entity : A registered company is a separate legal entity from its members, while a partnership is not distinct from its members.</li><li>Number of Members : A public company can have 7 or more members, while a private company can have 2 to 50 members. Partnerships are limited to 20 members for non-banking businesses and 10 members for banking businesses.</li><li>Binding Authority : Members of a company cannot bind the company, while partners can enter into contracts on behalf of the partnership.</li><li>Liability : In a company, liability is limited to the amount unpaid on shares or the agreed liability amount. In a partnership, except for limited partners, liability extends to personal assets.</li><li>Profit Distribution : In a company, undistributed profits cannot be added to share capital. In a partnership, partners’ shares of profits can be added to their capital.</li><li>Bookkeeping and Auditing : Registered companies are required to keep prescribed books of account and have annual audited accounts. Partnerships are not subject to these requirements unless agreed upon by the partners.</li><li>Public Inspection of Accounts : Audited accounts and directors’ reports of limited companies are open to public inspection. Partnership accounts are not subject to public inspection.</li><li>Business Scope : Companies can only pursue the objects for which they were formed. Partnerships can carry on any business agreed upon by the partners.</li><li>Continuation : Companies continue to exist despite changes in membership. Partnerships may terminate upon the death of a partner or the introduction of a new partner.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 I. Companies Incorporated under the Companies Act:</summary>
           <p>a) Companies Limited by Shares/Ownership:</p>
 <ul><li>Private Limited Liability Companies:</li><li>Limited liability for shareholders</li><li>Minimum of 2 and maximum of 50 shareholders</li><li>Shares are not publicly traded</li><li>Capital raised through sale of shares to family members and friends</li><li>Shares cannot be transferred without the consent of other shareholders</li><li>Public Limited Liability Companies:</li><li>Limited liability for shareholders</li><li>Minimum of 7 shareholders</li><li>Shares are publicly traded</li><li>Company is a separate legal entity from its shareholders</li><li>Capital raised through the sale of shares to individuals</li><li>Shares are freely transferable through the stock exchange market</li><li>Each shareholder has the right to vote in the general meeting</li><li>Accounts, balance sheets, and auditor’s reports must be filed with the Registrar of Companies annually</li><li>Formation requires extensive documentation</li><li>Continued existence, not affected by death, bankruptcy, insanity, or withdrawal of a member</li><li>Majority of shareholders have no say in the day-to-day running of the company, which is handled by directors</li><li>Government Companies:</li><li>Owned and controlled by the government</li><li>Established for public purposes</li></ul>
@@ -131,7 +161,7 @@
 <p>Originated from the United Kingdom with permission from the monarch. Examples: BAT Uganda, British South African Company (BSACo), Imperial British East African Company (IBEACo), British East Indian Company (BEICo)</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Winding Up a Company</summary>
           <p>Winding up, also known as liquidation, is the process of bringing a company’s life to an end by selling off its property or assets and paying creditors. It can be either voluntary or compulsory.</p>
 <p>1. Voluntary Winding Up:</p>
@@ -140,42 +170,51 @@
 <ul><li>Also known as winding up by court order</li><li>Initiated by a petition filed with the court by creditors, shareholders, or other interested parties</li><li>Court appoints a liquidator to oversee the winding up process</li><li>Liquidator sells the company’s assets and uses the proceeds to pay creditors</li><li>Any remaining assets are distributed to shareholders</li><li>Bankruptcy : Inability to pay debts when they become due</li><li>Acting Out of Their Articles of Association : Violating the rules and regulations set out in the company’s articles of association</li><li>Agreement Among the Members to Change Line of Business: Shareholders may agree to change the company’s line of business, which may necessitate dissolution</li><li>Dissolution by Order of Court: Court may order the dissolution of a company for various reasons, such as fraud, mismanagement, or oppression of minority shareholders</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 COOPERATIVES</summary>
           <p>Click Here</p>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-9">
           <summary>09 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Joint Stock Companies</strong> as a practical nursing topic, not only a memorized definition. Connect structure, movement, pain, circulation, nerve function and safe mobility.</p>
 <ul><li><strong>What to understand first:</strong> define joint stock companies, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-10">
           <summary>10 Assessment Guide</summary>
           <ul><li>Pain score, site, onset, deformity, swelling, bruising and ability to move.</li><li>Distal pulse, capillary refill, colour, warmth, sensation and movement.</li><li>Skin integrity, wounds, cast tightness, traction alignment and pressure areas.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-11">
           <summary>11 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Immobilize and protect the affected part while preventing further injury.</li><li>Control pain and swelling while monitoring neurovascular status.</li><li>Prevent complications such as compartment syndrome, infection, pressure injury and venous stasis.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> Pain is reduced, circulation and sensation remain intact, swelling is controlled and the patient mobilizes safely within the care plan.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-12">
           <summary>12 Patient Teaching and Revision Check</summary>
           <ul><li>Explain joint stock companies in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Joint%20Stock%20Companies%20Health%20Services%20Management%20%26%20Entrepreneurship%20nursing%20lecture" title="Joint Stock Companies YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (5)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Joint-Stock-Company-e1704799571217.webp" alt="Joint Stock Company E1704799571217" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Joint Stock Company E1704799571217</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Features-of-a-Company-e1704799902534.webp" alt="Features Of A Company E1704799902534" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Features Of A Company E1704799902534</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Advantages-of-Companies-e1704800093992.webp" alt="Advantages Of Companies E1704800093992" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Advantages Of Companies E1704800093992</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/types-of-joint-stock-companies-e1704800402564.webp" alt="Types Of Joint Stock Companies E1704800402564" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Types Of Joint Stock Companies E1704800402564</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Winding-Up-a-Company-e1704800644458-1024x336.webp" alt="Winding Up A Company E1704800644458" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Winding Up A Company E1704800644458</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Joint%20Stock%20Companies%20Health%20Services%20Management%20%26%20Entrepreneurship%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Joint%20Stock%20Companies%20Health%20Services%20Management%20%26%20Entrepreneurship%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

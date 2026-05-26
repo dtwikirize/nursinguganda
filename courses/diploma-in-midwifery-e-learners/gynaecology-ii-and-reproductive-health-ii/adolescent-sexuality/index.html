@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,14 +97,37 @@
         <p>Adolescent Sexuality should be reviewed through safe maternal and newborn assessment, early recognition of danger signs, respectful communication and timely referral. Connect the definition to vital signs, bleeding, fetal or newborn wellbeing, patient education and local protocol requirements.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 17 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">ADOLESCENT SEXUALITY</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Definition of Terms</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Awareness about Sexuality</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Building Healthy Relationships</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Steps of Building Healthy Relationships</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Differences Between Love and Infatuation</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Healthy Ways of Ending a Relationship</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Factors Influencing Adolescent Engagement in Sexual Activity</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Consequences of Adolescent Engagement in Sex</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Measures to Prevent Adolescent Engagement in Sex</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Roles of Health Workers in Managing Adolescents Engaging in Unprotected Sex</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Risk Factors Leading Adolescents to Engage in Sex</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">What Adolescents Can Do to Avoid Engaging in Sexual Activities</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-16" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-17" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 ADOLESCENT SEXUALITY</summary>
           <p>Sexual health is an essential part of good overall health and wellbeing. Sexuality is a part of human life and human development.</p>
 <p>Good sexual health implies not only the absence of a disease , but the ability to understand and weigh the risks, responsibilities, outcomes and impacts of sexual actions, to be knowledgeable of and comfortable with one’s’ body and to be free from exploitation and coercion, whereas good sexual health is significant across the life span, It is critical in adolescent health.</p>
 <p>Adolescence signifies the onset of physical sexual maturation and reproductive capacity , young people have a need and a right to know about their own bodies and to be educated and informed about their sexual health, yet they face many social, political and community barriers to receiving and gaining access to the right information .</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Definition of Terms</summary>
           <p>Incest : Incest refers to sexual activity or marriage between individuals who are closely related by blood, such as siblings or between parents and children.</p>
 <p>Pedophilia : Pedophilia is a psychiatric disorder characterized by an adult’s sexual attraction to prepubescent children.</p>
@@ -110,33 +145,33 @@
 <p>Homosexuality : Homosexuality is the romantic or sexual attraction between individuals of the same gender. People who identify as homosexual are often referred to as gay (men) or lesbian (women).</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Awareness about Sexuality</summary>
           <p>This is a matter of public concern in Uganda. The common belief that adolescents are more involved in sexual activities now compared to traditional societies is supported by evidence. The early age at which young people start engaging in sexual activities in Uganda has been verified through various means. Sexual activity during adolescence can be a personal choice or involuntary. The average age for the first consensual sexual experience is 16 years for women aged 20-49 and 17.6 years for men aged 24-54.</p>
 <ul><li>Level 1 – No awareness : Many adolescents are either ignorant or have a “who cares” attitude towards high-risk sexual behaviour. They are not yet aware enough to change their behaviour and are exposed to high risks as a result. This type of adolescent may be classified at Level 1 of awareness.</li><li>Level 2 – Some awareness: Young people at level two are those who have some self-knowledge of risky situations and behaviours but are not ready to take action. Thus, they are exposed to unwanted pregnancy and infections.</li><li>Level 3 – Relatively aware : Young people at level three are conscious of their risky sexual behaviours and are ready to take action, but do not do so because of factors like peer pressure.</li><li>Level 4 – Fully aware : Young people in this stage have a high level of knowledge and awareness and have also undergone attitude and behavioural changes. Such young people are actively involved in fighting risky sexual behaviours.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Building Healthy Relationships</summary>
           <ul><li>Relationship : Relationship refers to a connection, dealing, or association between individuals.</li><li>Friendship : Friendship refers to a relationship between people who know and like each other, characterized by kind and pleasant behaviour.</li><li>Romantic Relationship : A romantic relationship signifies a loving association between two people, appealing to the imagination and influencing emotions.</li><li>Sexual Relationship : A sexual relationship is an intimate connection involving sex between individuals in love.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Steps of Building Healthy Relationships</summary>
           <ul><li>Initiating Contact: Actual contact is made with the purpose of getting together and knowing each other..</li><li>Mutual Interest : Each person believes the other is interested in them.</li><li>Acceptance : Each person learns to accept one another for who they truly are.</li><li>Conflict Resolution : Disagreements occur, and the comfort level grows between partners.</li><li>Complementing Each Other : Partners learn to complement each other in their strengths and weaknesses.</li><li>Building Trust : Trust is established, reducing feelings of jealousy.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Differences Between Love and Infatuation</summary>
           <ul><li>Love can be described as a feeling of intense affection for another person .</li><li>Infatuation is the state of being completely carried away by unreasoning passion or love; addictive love. Infatuation usually occurs at the beginning of a relationship when sexual attraction is central.</li><li>LOVE INFATUATION</li><li>Develops gradually over time Occurs almost instantly</li><li>Can last a long time; becomes deeper and powerful Powerful but short-lived</li><li>Accepts the whole person, imperfections and all Flourishes on perfection; shows only the good</li><li>Energizing Draining</li><li>Survives arguments Glosses over arguments</li><li>Considers the other person Selfish</li><li>Being in love with a person Being in love with love</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Healthy Ways of Ending a Relationship</summary>
           <ul><li>Clear Decision : Make a clear decision about whether to end the relationship or not.</li><li>Acknowledgment of Hurt : Acknowledge that someone will likely be hurt, and you may feel sadness yourself.</li><li>Commitment to Decision : Once the decision is made, stick to it.</li><li>Truthful Communication : Be truthful but kind about why you are ending the relationship.</li><li>Appropriate Setting : Choose an appropriate place and time to break up.</li><li>Avoiding Blame : Try not to blame your partner for the break, focusing on mutual understanding.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Factors Influencing Adolescent Engagement in Sexual Activity</summary>
           <p>Lack of Knowledge on Outcome of Sexual Activity: Many adolescents might not fully understand the potential consequences of engaging in sexual activities, including the risk of unintended pregnancies and sexually transmitted infections.</p>
 <p>Sexual Abuse</p>
@@ -156,7 +191,7 @@
 <p>Revenge : Seeking revenge or retaliating against perceived wrongs can be a motivation for engaging in risky behaviour.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Consequences of Adolescent Engagement in Sex</summary>
           <p>Pregnancy</p>
 <ul><li>Complications: Risks associated with teenage pregnancies, including health issues for both mother and baby.</li><li>Induced Abortions : The potential consequences of unsafe abortion practices.</li><li>Premature Childbirth : Increased risk of complications for both mother and child.</li><li>VVF (Vesicovaginal Fistula) : A severe condition often associated with childbirth.</li></ul>
@@ -172,12 +207,12 @@
 <ul><li>Dropping Out of School : Impact on educational pursuits.</li><li>Truancy : Irregular attendance and engagement.</li><li>Stigmatization : Negative societal perceptions.</li><li>Forced Marriage : Pressure to marry due to early pregnancy.</li><li>Stunted Growth for Adolescent Mothers : Health impacts on both mother and child.</li><li>Reduced Employment Chances and Low Social Status : Long-term societal implications.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Measures to Prevent Adolescent Engagement in Sex</summary>
           <ul><li>Promotion of Positive Cultural Practices : Reinforcing cultural values that discourage early sexual activity.</li><li>Advocating for Virginity/Abstinence : Encouraging young people to abstain from sexual activity until they are emotionally and mentally prepared.</li><li>Life Skills Promotion: Providing adolescents with essential life skills, including communication, decision-making, and critical thinking, to navigate challenges effectively.</li><li>Comprehensive Sex Education : Implementing educational programs that equip adolescents with accurate information about sexual health and relationships.</li><li>Access to Reproductive Health Services : Ensuring availability and accessibility of reproductive health services for adolescents, including counselling and contraceptives.</li><li>Community Awareness and Involvement : Engaging communities to raise awareness about the consequences of early sexual activity and fostering support networks.</li><li>Mentorship Programs : Establishing mentorship initiatives to guide adolescents and provide positive role models.</li><li>Poverty Alleviation Programs : Addressing economic disparities to reduce vulnerability to transactional sex due to financial hardships.</li><li>Parental Involvement : Encouraging open communication between parents and adolescents to ascertain understanding and guidance.</li><li>Legal Protection : Enforcing and strengthening laws against sexual abuse and exploitation to protect adolescents.</li><li>Psychosocial Support: Offering psychological and emotional support to adolescents dealing with emotional challenges.</li><li>School-Based Programs : Implementing educational initiatives within schools to address sexual health, life skills, and personal development.</li><li>Media Literacy: Promoting media literacy to help adolescents critically evaluate and understand media influences on sexual behavior.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 Roles of Health Workers in Managing Adolescents Engaging in Unprotected Sex</summary>
           <p>Sensitizing the Community on Consequences of Adolescent Sex</p>
 <ul><li>Health workers play a role in educating the community about the potential risks and consequences of adolescent sexual activity, promoting awareness and informed decision-making.</li></ul>
@@ -193,12 +228,12 @@
 <ul><li>Ensuring access to condoms and contraceptives helps reduce the risk of unintended pregnancies and sexually transmitted infections among sexually active adolescents.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-12">
           <summary>12 Risk Factors Leading Adolescents to Engage in Sex</summary>
           <ul><li>Use of Alcohol and Drugs: Substance abuse impairs judgement, leading to increased risk-taking behaviour among adolescents.</li><li>Lack of Comprehensive and Reliable Information : Limited access to accurate sexual and reproductive health information increases the likelihood of engaging in risky sexual behaviour.</li><li>Low Perception of Risk: Adolescents may underestimate the risks associated with early sexual activity, affecting their decision-making and precautionary measures.</li><li>Gender Inequality : Gender disparities contribute to risky sexual practices, influenced by social and cultural expectations.</li><li>Levels of Education : Education plays a crucial role in shaping behaviour, decision-making, and health-seeking behaviour among adolescents.</li><li>Lack of Guidance and Poor Modeling by Parents : Inadequate parental guidance and poor role modelling can create an environment conducive to early sexual initiation.</li><li>Socio-Economic Constraints : Economic challenges may drive adolescents to engage in transactional sex for material gains.</li><li>Single Parent in the Household : Adolescents in single-parent households may face increased risks, with potential implications for their attitudes toward sex.</li><li>External Influence from Peers (Peer Pressures) : Peers can significantly impact adolescents’ behavior, especially if they lack guidance and information from other sources.</li><li>Overcrowding in Slums: Living in overcrowded conditions, such as slums, may expose adolescents to various immoral behaviors and influence their decisions.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-13">
           <summary>13 What Adolescents Can Do to Avoid Engaging in Sexual Activities</summary>
           <p>Proper Parental Mentoring and Supervision</p>
 <ul><li>Adolescents benefit from parental involvement, guidance, and setting family rules to shape their behaviours positively.</li></ul>
@@ -222,37 +257,46 @@
 <ul><li>Career guidance and counselling play a vital role in leading adolescents toward positive life choices.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-14">
           <summary>14 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Adolescent Sexuality</strong> as a practical nursing topic, not only a memorized definition. Start with normal structure and function, then connect it to assessment findings and disease.</p>
 <ul><li><strong>What to understand first:</strong> define adolescent sexuality, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-15">
           <summary>15 Assessment Guide</summary>
           <ul><li>Relevant inspection, palpation, movement, auscultation, vital signs or neurological checks.</li><li>Normal findings, abnormal findings and what each abnormality may indicate.</li><li>Patient history, risk factors and how the body system affects other systems.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-16">
           <summary>16 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use anatomy to explain symptoms and guide focused assessment.</li><li>Recognize findings that need urgent escalation.</li><li>Teach the patient using simple body-system language.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The learner can explain normal function, identify abnormal signs and connect them to nursing action.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-17">
           <summary>17 Patient Teaching and Revision Check</summary>
           <ul><li>Explain adolescent sexuality in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Adolescent%20Sexuality%20Gynaecology%20II%20and%20Reproductive%20Health%20II%20nursing%20lecture" title="Adolescent Sexuality YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (5)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/ADOLESCENT-SEXUALITY.webp" alt="ADOLESCENT SEXUALITY" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">ADOLESCENT SEXUALITY</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Factors-Influencing-Adolescent-Engagement-in-Sexual-Activity-e1706537657760.webp" alt="Factors Influencing Adolescent Engagement In Sexual Activity E1706537657760" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Factors Influencing Adolescent Engagement In Sexual Activity E1706537657760</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Consequences-of-Adolescent-Engagement-in-Sex-1.webp" alt="Consequences Of Adolescent Engagement In Sex 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Consequences Of Adolescent Engagement In Sex 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Measures-to-Prevent-Adolescent-Engagement-in-Sex.webp" alt="Measures To Prevent Adolescent Engagement In Sex" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Measures To Prevent Adolescent Engagement In Sex</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/6e4336a2a7995727db9bc1da0e09360f.webp" alt="6e4336a2a7995727db9bc1da0e09360f" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">6e4336a2a7995727db9bc1da0e09360f</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Adolescent%20Sexuality%20Gynaecology%20II%20and%20Reproductive%20Health%20II%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Adolescent%20Sexuality%20Gynaecology%20II%20and%20Reproductive%20Health%20II%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

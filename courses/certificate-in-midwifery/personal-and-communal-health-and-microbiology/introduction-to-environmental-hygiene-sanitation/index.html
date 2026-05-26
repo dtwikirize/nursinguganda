@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,98 +97,127 @@
         <p>Introduction to environmental hygiene/sanitation should be reviewed through safe maternal and newborn assessment, early recognition of danger signs, respectful communication and timely referral. Connect the definition to vital signs, bleeding, fetal or newborn wellbeing, patient education and local protocol requirements.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 14 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Objectives</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Definition of Terms</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Environment in Relation to Health</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Importance of Environmental Hygiene and Sanitation</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Problem: The Contaminated Environment</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">How long do pathogens survive?</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Where are the pathogens?</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Role of the Environment in Transmission</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Principles of Effective Cleaning and Disinfection</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Monitoring Environmental Hygiene Quality</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Objectives</summary>
           <p>This module will provide the knowledge necessary to:</p>
 <ul><li>Explain why there is a need to maintain a <strong>clean environment</strong> to prevent the spread of infections.</li><li>Discuss cleaning and disinfection <strong>requirements for clinical settings</strong> like ambulatory surgery centers.</li><li>Utilize a set of tools designed to assure <strong>environmental hygiene quality</strong> .</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Definition of Terms</summary>
           <p>Understanding the distinction between environmental hygiene and sanitation is crucial for public health.</p>
 <ul><li><strong>Environmental Hygiene:</strong> This refers to the control of all factors in our physical surroundings that can have a harmful effect on human health and development. It&#39;s about maintaining a clean and safe environment to prevent disease.</li><li><strong>Sanitation:</strong> This specifically refers to the principles and practices related to the safe collection, treatment, and disposal of human excreta and other liquid and solid wastes . Proper sanitation is a cornerstone of environmental hygiene and is critical for preventing the spread of many communicable diseases.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 The Environment in Relation to Health</summary>
           <p>The environment is the aggregate of all external conditions that influence the life and development of an organism. It is a key component of the Epidemiological Triad, alongside the host and the agent. The environment can be broken down into three main categories:</p>
 <ul><li><strong>1. The Physical Environment:</strong> This includes all non-living (inanimate) things and physical forces. A healthy physical environment is essential for preventing disease. Key components include: Safe Water Supply: Free from pathogens and harmful chemicals.</li><li>Clean Air: Unpolluted by smoke, dust, or industrial fumes.</li><li>Safe Housing: Structurally sound, uncrowded, and protected from the elements.</li><li>Waste Disposal: Proper management of refuse and sewage.</li><li>Climate and Geography: Temperature, humidity, and terrain can influence the types of diseases prevalent in an area.</li><li><strong>2. The Biological Environment:</strong> This includes all living things that surround us, apart from humans themselves. The biological environment comprises: Flora (Plants): Can provide food and medicine but can also include poisonous plants or produce pollen that causes allergies.</li><li>Fauna (Animals): Includes insects, rodents, and other animals that can act as <strong>vectors</strong> (transmitting diseases, like mosquitoes carrying malaria) or <strong>reservoirs</strong> (hosting infectious agents).</li><li>Microorganisms: The world of bacteria, viruses, fungi, and protozoa, many of which are pathogenic.</li><li><strong>3. The Social (or Socio-cultural) Environment:</strong> This encompasses the societal and cultural factors that influence health and behavior. It includes: Cultural Beliefs, Customs, and Habits: Practices related to food preparation, personal hygiene, and seeking healthcare can significantly impact health.</li><li>Socioeconomic Status: Poverty, education level, and employment affect access to resources like nutritious food, good housing, and healthcare.</li><li>Laws and Governance: Government policies on sanitation, water quality, and healthcare infrastructure are critical for public health.</li><li>Social Networks and Support Systems: The community and family structure can provide support that enhances health and well-being.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 The Importance of Environmental Hygiene and Sanitation</summary>
           <p>Maintaining a clean and safe environment is not just about aesthetics; it is a fundamental pillar of public health. A nurse must be able to present a desired attitude regarding its importance because:</p>
 <ul><li><strong>It Prevents Disease:</strong> Proper sanitation breaks the chain of infection for many diseases like cholera, typhoid, and dysentery by preventing fecal-oral transmission.</li><li><strong>It Controls Vectors:</strong> A clean environment with proper waste management reduces breeding grounds for disease-carrying vectors like mosquitoes, flies, and rats.</li><li><strong>It Promotes Physical Well-being:</strong> Access to clean air, safe water, and adequate housing contributes directly to physical health and reduces respiratory and gastrointestinal illnesses.</li><li><strong>It Enhances Mental and Social Well-being:</strong> Living in a clean, organized, and safe community contributes to a sense of pride, security, and overall mental wellness.</li><li><strong>It Reduces Healthcare Costs:</strong> By preventing diseases, good environmental hygiene reduces the burden on the healthcare system, saving resources and costs for both individuals and the government.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 The Problem: The Contaminated Environment</summary>
           <p>The healthcare environment is a major reservoir for pathogens. Without rigorous cleaning, surfaces can harbor and transmit dangerous microorganisms, contributing to Healthcare-Associated Infections (HAIs).</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 How long do pathogens survive?</summary>
           <p>Studies show that significant pathogens can survive on dry, inanimate surfaces for extended periods, posing an ongoing risk to patients and staff.</p>
 <ul><li>Bacterium Duration of Survival</li><li>Methicillin-resistant S. aureus (MRSA) 7 days to 7 months</li><li>Vancomycin-resistant Enterococcus (VRE) 5 days to 4 months</li><li>C. difficile spores 5 months</li></ul>
 <p>Source: Matlow, A. G. et al. CMAJ 2009;180:1021-1024</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Where are the pathogens?</summary>
           <p>Pathogens are found on virtually all surfaces in a patient&#39;s room, especially <strong>high-touch surfaces</strong> .</p>
 <ul><li>Surface VRE MRSA C. difficile</li><li>Bed Rails ++++++ + +++</li><li>Bed Table ++++++ +</li><li>Door Knobs ++ ++ +</li><li>Doors +++ +</li><li>Call Button +++ + ++</li><li>Chair ++ + ++</li><li>Tray Table +++ ++</li><li>Toilet Surface + ++++</li><li>Sink Surface + + +++</li><li>Bedpan Cleaner +</li></ul>
 <p>Source: Phillip Carling, MD, Boston University School of Medicine</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 The Role of the Environment in Transmission</summary>
           <p>The environment is a critical link in the chain of infection. Traditional infection control has focused on isolation and hand hygiene, but without addressing the environment, a key pathway for transmission remains.</p>
 <ul><li><strong>The Traditional Model:</strong> An antibiotic-resistant pathogen on or in a patient can be transferred to an at-risk patient via the hands of a Healthcare Worker (HCW).</li><li><strong>Intervention 1: Isolation.</strong> Isolation procedures aim to break the link between the pathogen source and the HCW&#39;s hands.</li><li><strong>Intervention 2: Hand Hygiene.</strong> Proper hand washing aims to break the link between the HCW&#39;s hands and the at-risk patient.</li><li><strong>The Missing Link: Environmental Surfaces.</strong> Pathogens from the patient contaminate environmental surfaces. These surfaces then contaminate the HCW&#39;s hands, which can then transmit the pathogen to another patient. The environment acts as a persistent reservoir.</li><li><strong>Intervention 3: Disinfection &amp; Cleaning.</strong> Proper environmental cleaning breaks the link between the contaminated surfaces and the HCW/patient, completing the prevention strategy.</li></ul>
 <p><strong>Conclusion:</strong> A clean and healthful environment, achieved through effective cleaning and disinfection, is a critical and non-negotiable aspect of patient care, just as important as hand hygiene and isolation.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Principles of Effective Cleaning and Disinfection</summary>
           <ul><li><strong>EPA-Registered Disinfectant:</strong> Use disinfectants registered by the Environmental Protection Agency (EPA). These products have been tested for efficacy against specific pathogens. The product label will contain the EPA registration number.</li><li><strong>Contact/Dwell Time:</strong> Disinfectant kills while it is drying. The surface must be thoroughly wet and allowed to remain wet for the time listed on the product label. Staff must be able to state this required &quot;dry time.&quot;</li><li><strong>Frictional Cleaning:</strong> Cleaning requires the use of friction (&quot;elbow grease&quot;) to physically remove organic material and microorganisms from surfaces. Simply wetting a surface is insufficient.</li><li><strong>Do Not Re-dip:</strong> Used cloths should not be re-dipped into cleaning solutions, as this contaminates the entire bucket of solution.</li><li><strong>Appropriate Tools:</strong> Microfiber mops have demonstrated superior microbial removal compared to cotton string mops. Mop heads and cleaning solutions must be changed frequently, at a minimum when visibly soiled and after each procedure.</li><li><strong>Dust Control:</strong> Use damp mopping or chemically treated mops to reduce airborne dust. HEPA-filtered vacuums should be used in patient care areas, and vacuuming should not be done when procedures are in progress.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Monitoring Environmental Hygiene Quality</summary>
           <p>Evaluating the effectiveness of cleaning practices is a key CDC guideline. This cannot be left to chance.</p>
 <ul><li><strong>High-Touch Surfaces:</strong> Cleaning efforts and monitoring should focus on high-touch surfaces in close proximity to the patient (e.g., bed rails, light switches, call buttons, doorknobs, keyboards).</li><li><strong>Monitoring Tools:</strong> Objective tools can be used to evaluate the quality of cleaning. These include: <strong>Fluorescent Gel/Markers:</strong> An invisible marker is placed on a high-touch surface before cleaning. After cleaning, a UV light is used to see if the mark was removed.</li><li><strong>ATP (Adenosine Triphosphate) Systems:</strong> Measures for ATP, a molecule present in all living cells, providing a rapid quantitative measure of cleanliness.</li><li><strong>Swab Cultures:</strong> Culturing a surface to identify if specific pathogens are present after cleaning.</li><li><strong>Feedback and Improvement:</strong> Studies show that cleaning practices significantly improve after staff education, performance feedback, and repeated measurement (remeasure). These activities should be part of a facility&#39;s Quality Assurance Performance Improvement (QAPI) program.</li><li>What is the main difference between the terms <strong>&quot;environmental hygiene&quot;</strong> and <strong>&quot;sanitation&quot;</strong> ?</li><li>List the three main components of the environment (physical, biological, social) and give two examples for each.</li><li>Why is it important for a nurse to have a positive and proactive attitude towards environmental hygiene? List three reasons.</li><li>How does the <strong>physical environment</strong> directly impact a person&#39;s health? Provide one positive and one negative example.</li><li>Why is the environment considered a critical &quot;missing link&quot; in infection prevention, alongside hand hygiene and isolation?</li><li>According to studies, for how long can MRSA and C. difficile spores survive on dry surfaces?</li><li>Name five <strong>high-touch surfaces</strong> in a patient room that require diligent cleaning.</li><li>What is &quot;dwell time&quot; and why is it important for effective disinfection?</li><li>Describe one method for monitoring the quality of environmental cleaning.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-11">
           <summary>11 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Introduction to environmental hygiene/sanitation</strong> as a practical nursing topic, not only a memorized definition. Combine safety, therapeutic communication, mental status assessment and dignity.</p>
 <ul><li><strong>What to understand first:</strong> define introduction to environmental hygiene/sanitation, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-12">
           <summary>12 Assessment Guide</summary>
           <ul><li>Appearance, behaviour, speech, mood, thought process, perception, cognition and insight.</li><li>Risk of self-harm, harm to others, neglect, withdrawal, substance use or relapse.</li><li>Support systems, medication adherence, sleep, appetite and triggers.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-13">
           <summary>13 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Maintain safety using the least restrictive approach possible.</li><li>Use calm communication, active listening and non-judgmental observation.</li><li>Support adherence, coping skills, family involvement and follow-up.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> Risk reduces, the patient engages with care, symptoms are monitored and a realistic safety or relapse plan is in place.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-14">
           <summary>14 Patient Teaching and Revision Check</summary>
           <ul><li>Explain introduction to environmental hygiene/sanitation in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Introduction%20to%20environmental%20hygiene%2Fsanitation%20Personal%20and%20communal%20health%20%26%20Microbiology%20nursing%20lecture" title="Introduction to environmental hygiene/sanitation YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (5)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Introduction-to-environmental-hygiene.webp" alt="Introduction To Environmental Hygiene" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Introduction To Environmental Hygiene</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Places-Where-VRE.webp" alt="Places Where VRE" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Places Where VRE</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/isolation-1.webp" alt="Isolation 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Isolation 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/hand-hygiene-1.webp" alt="Hand Hygiene 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Hand Hygiene 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/hand-hygiene-1-1.webp" alt="Hand Hygiene 1 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Hand Hygiene 1 1</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Introduction%20to%20environmental%20hygiene%2Fsanitation%20Personal%20and%20communal%20health%20%26%20Microbiology%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Introduction%20to%20environmental%20hygiene%2Fsanitation%20Personal%20and%20communal%20health%20%26%20Microbiology%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

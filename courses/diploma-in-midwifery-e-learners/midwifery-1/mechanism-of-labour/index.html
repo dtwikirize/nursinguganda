@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,27 +97,52 @@
         <p>Mechanism of labour should be reviewed through safe maternal and newborn assessment, early recognition of danger signs, respectful communication and timely referral. Connect the definition to vital signs, bleeding, fetal or newborn wellbeing, patient education and local protocol requirements.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 19 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Normal second stage of labour</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">SIGNS OF SECOND STAGE</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Stages:</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Phases:</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">PHYSIOLOGY OF SECOND STAGE</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">MECHANISM OF NORMAL LABOUR</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">TERMS USED</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">MAIN MOVEMENTS</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">MANAGEMENT OF SECOND STAGE OF LABOUR</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**CONDUCTING 2** **ND** **STAGE ( ACTIVE MANAGEMENT)**</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Procedure:</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Immediate Care of the Newborn After Birth (Within the First Hour):</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Points to Consider While Conducting Delivery:</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Factors Influencing the Length of the 2nd Stage of Labour:</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Possible Complications of 2nd Stage of Labour:</a>
+          <a href="#section-16" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-17" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-18" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-19" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Normal second stage of labour</summary>
           <p>The second stage of labor commences when the cervix is fully dilated and concludes with the delivery of the baby.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 SIGNS OF SECOND STAGE</summary>
           <ul><li><strong>Expulsive uterine contractions</strong> : Expulsive uterine contractions may occur when the mother is not fully dilated, particularly in occipital posterior position or with a full rectum.</li><li><strong>Rapture of fore waters</strong> : Rupture of fore waters can occur at any time during labor.</li><li><strong>Dilatation and gaping of the anus :</strong> Dilatation and gaping of the anus may happen due to deep engagement of the presenting part and premature maternal effort in the later part of the first stage.</li><li><strong>Appearance of presenting part:</strong> Appearance of the presenting part becomes evident. Excessive molding may lead to the formation of a large caput succedaneum, which can protrude through the cervix before full dilatation. In breech presentation, the presenting part may be visible when the cervix is only 7-8 cm dilated.</li><li><strong>Show</strong> : Show should be distinguished from bleeding caused by partial separation of the placenta, stretched cervix, or vaginal mucosa when the presenting part descends.</li><li><strong>Congestion of the vulva</strong> : Congestion of the vulva is due to enthusiastic premature pushing.</li><li><strong>Bulging of the perineum.</strong></li><li>No cervix is felt on VE (full dilatation – 10cm).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Stages:</summary>
           <ul><li>The cervix is fully dilated, but there are no involuntary expulsive contractions. Labour that is progressing well may take one hour.</li><li>The cervix is fully dilated, there are involuntary expulsive contractions, and the baby is visible. The doctor should be informed if the baby has not been delivered after 2 hours in primigravida and 1 hour in multigravida.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Phases:</summary>
           <ul><li>It starts from full dilatation up to the descent of the presenting part to the pelvic floor.</li><li>It is distinguished by maternal bearing down efforts and ends with the delivery of the baby.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 PHYSIOLOGY OF SECOND STAGE</summary>
           <p>Descent:</p>
 <ul><li>Descent of the presenting part, which began during the first stage of labour and reaches its maximum speed towards the end of the first stage, continues its rapid pace through the second stage until it reaches the pelvic floor.</li></ul>
@@ -116,14 +153,14 @@
 <ul><li>Anteriorly , the bladder is pushed upwards into the abdomen where it is at less risk of injury during the descent of the fetus. This results in stretching and thinning of the urethra, reducing its lumen.</li><li>Posteriorly , the rectum becomes flattened in the sacral curve, and the advancing head expels any residual fecal matter.</li><li>The levator ani muscles dilate, thin out, and are displaced laterally.</li><li>The perineal body is flattened, stretched, and thinned.</li><li>The fetal head is seen at the vulva advancing with each contraction and recoiling during the resting phase until crowning takes place.</li><li>The head is born, and the shoulders and body follow with the next contraction, accompanied by a gush of amniotic fluid and sometimes blood.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 MECHANISM OF NORMAL LABOUR</summary>
           <p>These are series of movements made by the fetus as it passes through the birth canal in order to be born.</p>
 <p>OR: These are series of passive movements made by the fetus as it negotiates the curves and diameters of the pelvis in order to be born. There is a mechanism for every presentation and position which can be delivered vaginally.</p>
 <ul><li>Descent takes place throughout.</li><li>Whichever part that leads and first meets the resistance of the pelvic floor will rotate forward until it comes under the symphysis pubis.</li><li>The part that escapes under the symphysis pubis will pivot around the pubic bone.</li><li>The fetus turns slightly to take advantage of the widest space in each plane of the pelvis, i.e., transverse at the brim and anteroposterior at the outlet.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 TERMS USED</summary>
           <p><strong>Attitude</strong> : This refers to the relationship of the fetal head and limbs to its trunk. The ideal attitude should be one of complete flexion. Flexion of the fetal head enables the smallest diameters to present to the pelvis, resulting in an easier labor.</p>
 <p><strong>Presentation</strong> : This indicates the part of the fetus that lies in the lower pole of the uterus. The normal presentation is vertex, where the head presents first.</p>
@@ -148,7 +185,7 @@
 <ul><li>Attitude is one of complete flexion.</li><li>Lie is longitudinal.</li><li>The presentation is cephalic.</li><li>Position can be either right or left occipitoanterior.</li><li>The denominator is the occiput.</li><li>Presenting diameters are the biparietal and occipitofrontal.</li><li>Engaging diameters are the biparietal (transverse) and suboccipitofrontal (anteroposterior).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 MAIN MOVEMENTS</summary>
           <p><strong>Engagement</strong> : Engagement occurs when the biparietal and suboccipitofrontal diameters pass through the pelvic brim. In primigravidas, engagement often happens before the onset of labor, while in most multigravidas, it occurs in the late first stage.</p>
 <p><strong>Descent</strong> : Throughout the first stage of labor, uterine muscle contractions and retraction reduce the space in the uterus, exerting pressure on the fetus to descend. After the rupture of the fore waters and with maternal effort, descent speeds up, culminating in the complete expulsion of the fetus. Factors facilitating descent include uterine contraction and retraction, bearing down efforts, and straightening of the fetus after the rupture of membranes.</p>
@@ -163,7 +200,7 @@
 <ul><li>Maternal parity</li><li>Fetal size</li><li>Force of uterine contractions</li><li>Presentation</li><li>Position</li><li>Pelvic size</li><li>Method of anesthesia</li><li>Magnitude of maternal expulsive effort</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 MANAGEMENT OF SECOND STAGE OF LABOUR</summary>
           <p>The woman should be reassured and provided with psychological support to encourage cooperation during the second stage of labor.</p>
 <ul><li>Ensure the woman is not left alone and transfer her to the delivery room in a timely manner without rushing.</li><li>Prepare the delivery room, necessary equipment, and a cot for the baby well in advance.</li><li>Ensure a clean and decontaminated environment, with adequate lighting in the delivery room.</li><li>Properly prepare oneself and any assisting personnel by wearing protective gear, washing hands thoroughly with clean water and soap, and wearing sterile gloves.</li><li>Before conducting delivery, scrubbing and wearing protective gear should be done.</li><li>Position the mother in a dorsal position for delivery.</li></ul>
@@ -171,69 +208,81 @@
 <ul><li><strong>Care of the bladder</strong> : Encourage the mother to empty her bladder at the beginning of the second stage. A full bladder may delay the descent of the presenting part, and the bladder may be at risk of injury during the descent of the fetal head.</li><li><strong>Hygiene and comfort</strong> : Swab the vulva whenever necessary and provide a sterile pad to cover it between contractions. In case of leg cramps, massage, extend, and flex the leg to provide relief.</li><li><strong>Emotional support</strong> : Offer constant praise and keep the woman informed of her progress. Create a calm and quiet environment with privacy to reduce anxiety. Avoid unnecessary interruptions by other caregivers.</li><li><strong>Position</strong> : Consider using positions like squatting, kneeling, all fours, standing, left lateral position, or dorsal position during the second stage. These positions may improve the effectiveness of contractions and facilitate the process.</li><li><strong>Observations</strong> : Monitor the strength, length, and frequency of contractions. Observe the descent of the presenting part, fetal condition (e.g., fetal heart rate, color of amniotic fluid, molding, and state of membranes), and maternal condition (e.g., emotional coping ability, pulse every 30 minutes, and blood pressure hourly).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 **CONDUCTING 2** **ND** **STAGE ( ACTIVE MANAGEMENT)**</summary>
           <p><strong>Requirements</strong></p>
 <p>A trolley with;-</p>
 <ul><li>Top Shelf Bottom Shelf Beside</li><li>Sterile delivery pack containing: Vial of lignocaine A warm cot and baby’s clothing</li><li>– 6 delivery swabs Amp of oxytocin Resuscitation equipment</li><li>– 2 cord clamps Measuring jar Gum boots</li><li>– 1 pair of cord scissors Apron 2 buckets (one for used gloves, swabs, etc., and one with disinfectant)</li><li>– 1 pair of episiotomy scissors 2 pairs of sterile gloves Hamper</li><li>– 2 gallipots for swabs and lotion Episiotomy pack Drip stand</li><li>– 2 receivers Disinfectant</li><li>– Bulb syringe (mucus extractor) Syringe and needles</li><li>– 2 syringes Mackintosh and towel</li><li>– Perineal pad Clean pads</li><li>– Four delivery towels Safety box</li><li>– Cord ligatures</li><li>– Sterile gloves</li><li>– 4 delivery towels</li><li><strong>Reassure the mother:</strong> Provide constant reassurance and emotional support to the mother throughout the second stage of labor to help her remain calm and focused.</li><li><strong>Position the mother</strong> : Assist the mother in assuming the most comfortable and effective position for delivery, whether it’s dorsal, squatting, kneeling, all fours, standing, or left lateral position.</li><li><strong>Instruct mother when to push:</strong> Guide the mother and provide clear instructions on when to push during contractions to facilitate the descent and delivery of the baby.</li><li><strong>Listen to fetal heart:</strong> Monitor the fetal heart rate regularly, especially after each contraction, to assess the well-being of the baby during the delivery process.</li><li><strong>Give oxytocin after delivery</strong> : Administer oxytocin to the mother within one minute after the baby’s delivery to help prevent excessive bleeding and facilitate uterine contractions.</li><li><strong>Show the sex of the baby</strong> : After delivery, if requested, reveal the sex of the baby to the mother and her partner, respecting their preferences and cultural beliefs.</li><li><strong>Score the baby</strong> : Perform the Apgar scoring at 1 minute and 5 minutes after birth to assess the baby’s overall health and well-being.</li><li><strong>Ensure baby care</strong> : After delivery, ensure the baby is promptly dried, kept warm, and placed on the mother’s breast for skin-to-skin contact and initiating breastfeeding.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 Procedure:</summary>
           <ul><li>Explain the Procedure to the Mother : Communicate the entire delivery process to the mother, ensuring she understands what will happen during the second stage of labor. Address any questions or concerns she may have.</li><li>Put on Gum Boots, Gown, and Mask : Prior to conducting the delivery, don gum boots, wear a sterile gown, and put on a mask to maintain a hygienic environment and prevent the spread of infections.</li><li>Position the Mother: Assist the mother in assuming a comfortable position for delivery, such as dorsal, squatting, kneeling, all fours, standing, or left lateral position, depending on her preference and the progress of labor.</li><li>Scrub Hands before Conducting Delivery: Thoroughly scrub and clean your hands with soap and water to ensure they are free from any potential contaminants.</li><li>Put on Two Pairs of Sterile Gloves : Wear two pairs of sterile gloves to maintain a sterile field during the delivery process.</li><li>Swab the Perineum and Drape with Sterile Towels : Prepare the perineal area by swabbing it with an antiseptic solution to maintain cleanliness. Then, drape the delivery area and perineum with sterile towels to create a sterile field.</li><li>Place a Sterile Pad on the Anus: To prevent contamination from fecal matter, place a sterile pad over the anus, ensuring the delivery field remains clean and sterile.</li><li>Confirm 2nd Stage of Labor : Before proceeding, confirm that the mother has entered the second stage of labor, with full dilatation of the cervix and the presenting part of the baby ready for delivery.</li><li>As the fetal head descends at the vulva, keep it flexed by applying pressure with two fingers of the left hand on the vertex, pointing towards the anterior fontanel.</li><li>Use the right hand to place a small rectal pad to control fecal matter and maintain the sterile delivery field.</li><li>Monitor the descent of the head with your fingers to prevent expulsive crowning and potential perineal laceration.</li><li>The head should advance with each contraction. At crowning, ask the mother to stop pushing and pant to maintain pressure on the head and control the birth.</li><li>Deliver the head slowly by extending it, bringing the occiput towards the symphysis pubis. Wipe the baby’s face, swab the eyes inside outwards, and clear the airway as soon as the head is born.</li><li>During the resting phase, check for the umbilical cord around the baby’s neck. If it’s loose, slip it over. If tight, clamp it with two artery cord clamps and cut between them.</li><li>Hold gauze over the incised area to reduce the risk of being sprayed with blood during the procedure.</li><li>Ensure restitution and external rotation of the head to safely deliver the shoulders and avoid perineal lacerations.</li><li>External rotation of the head indicates that the shoulders are rotating into the anterior-posterior diameter of the pelvic outlet, ready to be delivered.</li><li>Deliver one shoulder at a time to prevent overstretching of the perineum.</li><li>Place a hand on each side of the baby’s head over the ears and deliver the anterior shoulder with a downward movement and the posterior shoulder with an upward movement, sweeping the perineum.</li><li>Deliver the rest of the body towards the mother’s breast.</li><li>Note the time of delivery and perform the Apgar score at 1 minute. Congratulate the mother and palpate the abdomen to rule out a second baby.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-12">
           <summary>12 Immediate Care of the Newborn After Birth (Within the First Hour):</summary>
           <ul><li>Clamp and cut the cord.</li><li>Clear secretions from the baby’s mouth and nostrils.</li><li>Tightly ligature the cord.</li><li>Warm the newborn and wrap it in a sterile warm towel.</li><li>Place the baby on the mother’s breast if in good condition and not contraindicated.</li><li>Perform the Apgar score at 5 minutes.</li><li>Show the baby’s face and sex to the mother.</li><li>Provide warmth to the mother.</li><li>Put an identification tag on the baby with the mother’s name, time of delivery, sex, birth weight, and date of delivery.</li><li>Note that the baby should have a strong and lusty cry, which helps the lungs expand.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-13">
           <summary>13 Points to Consider While Conducting Delivery:</summary>
           <ul><li>Ensure all necessary equipment, including newborn resuscitation equipment, is available and the delivery area is clean and warm.</li><li>Make sure the mother’s bladder is empty before delivery.</li><li>Assist the woman in assuming a comfortable position of her choice.</li><li>Stay with the mother and provide emotional and physical support throughout the process.</li><li>Allow the mother to push as she wishes and avoid urging her to push.</li><li>Decontaminate the delivery trolley and set up sterile equipment.</li><li>Prepare the delivery environment, decontaminate the bed, and ensure adequate lighting.</li><li>Put on protective gear such as a plastic apron and gum boots.</li><li>Wear sterile gloves for the delivery procedure.</li><li>Ensure controlled delivery of the baby’s head to prevent complications.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-14">
           <summary>14 Factors Influencing the Length of the 2nd Stage of Labour:</summary>
           <ul><li>Maternal parity (number of previous pregnancies).</li><li>Fetal size.</li><li>Uterine contractile force and strength of contractions.</li><li>Presentation of the baby (e.g., vertex or breech).</li><li>Position of the baby during delivery (e.g., occipitoanterior or occipitoposterior).</li><li>Size and shape of the maternal pelvis.</li><li>Method of anesthesia used during labour, if any.</li><li>The magnitude of maternal expulsive force.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-15">
           <summary>15 Possible Complications of 2nd Stage of Labour:</summary>
           <ul><li>Deep transverse arrest (failure of the baby’s head to rotate and descend properly).</li><li>Obstetrical shock (resulting from severe bleeding or other complications).</li><li>Uterine inertia (weak or ineffective uterine contractions).</li><li>Maternal distress (emotional or physical strain during labour).</li><li>Shoulder dystocia (difficulty delivering the baby’s shoulders after the head is born).</li><li>3rd-degree tear (severe tear involving the perineum and anal sphincter).</li><li>Amniotic embolism (rare but serious condition where amniotic fluid enters the mother’s bloodstream).</li><li>Ruptured uterus (tearing of the uterine wall during labour).</li><li>Fetal distress (abnormalities in the baby’s heart rate or well-being).</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-16">
           <summary>16 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Normal second stage of labour.</strong> as a practical nursing topic, not only a memorized definition. Read the topic through the safety of two patients: the mother and the fetus or newborn.</p>
 <ul><li><strong>What to understand first:</strong> define normal second stage of labour., identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-17">
           <summary>17 Assessment Guide</summary>
           <ul><li>Maternal vital signs, bleeding, pain, contractions, uterine tone and danger signs.</li><li>Fetal or newborn wellbeing, feeding, temperature, breathing and activity.</li><li>History of pregnancy, parity, medications, allergies, investigations and referral risks.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-18">
           <summary>18 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Recognize danger signs early and escalate without delay.</li><li>Provide respectful communication, privacy, infection prevention and clear documentation.</li><li>Teach the mother what to monitor at home and when to return urgently.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> Mother and baby remain stable, danger signs are acted on early, and the family understands follow-up instructions.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-19">
           <summary>19 Patient Teaching and Revision Check</summary>
           <ul><li>Explain normal second stage of labour. in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Mechanism%20of%20labour%20Midwifery%201%20nursing%20lecture" title="Mechanism of labour YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (8)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/labour-1024x554.webp" alt="Labour" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Labour</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/c5131402459264c08c474bcaf95130af.webp" alt="C5131402459264c08c474bcaf95130af" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">C5131402459264c08c474bcaf95130af</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/d2eded6b9d737961b802dbe59fda4850.webp" alt="D2eded6b9d737961b802dbe59fda4850" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">D2eded6b9d737961b802dbe59fda4850</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/4f484ce329e2a360d47ca777cd04de0c.webp" alt="4f484ce329e2a360d47ca777cd04de0c" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">4f484ce329e2a360d47ca777cd04de0c</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/4902fdbb5ef33e231db9db8cbd7adbae.webp" alt="4902fdbb5ef33e231db9db8cbd7adbae" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">4902fdbb5ef33e231db9db8cbd7adbae</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/f0cde39efc2258c5a61a5c14fb030984.webp" alt="F0cde39efc2258c5a61a5c14fb030984" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">F0cde39efc2258c5a61a5c14fb030984</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/16bccb7ebada9312347915a5cc726ea3.webp" alt="16bccb7ebada9312347915a5cc726ea3" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">16bccb7ebada9312347915a5cc726ea3</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/2692d81bff55eff00b6305ac99f97f89.webp" alt="2692d81bff55eff00b6305ac99f97f89" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">2692d81bff55eff00b6305ac99f97f89</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Mechanism%20of%20labour%20Midwifery%201%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Mechanism%20of%20labour%20Midwifery%201%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

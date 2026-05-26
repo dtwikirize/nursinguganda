@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,29 @@
         <p>Renal failure should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 16 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">RENAL FAILURE (Acute and Chronic)</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Types of Renal Failure:</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">ACUTE RENAL FAILURE (ARF) / ACUTE KIDNEY INJURY (AKI)</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Pathophysiology of Acute Renal Failure/Acute Kidney Failure</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Etiology of Acute Renal Failure</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Phases/Stages of Acute Renal Failure</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Clinical features of Acute Renal Failure</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Investigations/Diagnostic Findings</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">CHRONIC RENAL FAILURE</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Causes of Chronic Renal Failure:</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Management of CKD</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Management of CKD:</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-16" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 RENAL FAILURE (Acute and Chronic)</summary>
           <p>Renal failure refers to reduction in renal/kidney function .</p>
 <p>Renal failure , also known as kidney failure , describes a situation where the kidneys lose their ability to function adequately .</p>
@@ -105,12 +139,12 @@
 <ul><li>Decreased production of erythropoietin (EPO), leading to anemia.</li><li>Impaired activation of Vitamin D , contributing to hypocalcemia and bone disease (renal osteodystrophy).</li><li>Altered insulin metabolism (kidneys help degrade insulin; failure can lead to longer insulin half-life).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Types of Renal Failure:</summary>
           <ul><li>Acute Renal Failure (ARF) / Acute Kidney Injury (AKI): Characterized by a sudden onset (hours to days) of kidney dysfunction , often reversible if the underlying cause is treated promptly.</li><li>Chronic Renal Failure (CRF) / Chronic Kidney Disease (CKD): Characterized by a gradual, progressive, and irreversible loss of kidney function occurring over months to years.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 ACUTE RENAL FAILURE (ARF) / ACUTE KIDNEY INJURY (AKI)</summary>
           <p>Acute Renal Failure is the rapid decline in the kidney’s ability to clear the blood of toxic substances e.g poison, drugs and antibodies that react against the kidneys leading to accumulation of metabolic waste products e.g. urea in blood.</p>
 <p>AKI is the abrupt loss of kidney function, resulting in the retention of urea and other nitrogenous waste products and the dysregulation of extracellular volume and electrolytes. It’s characterized by a sudden and often complete loss of the kidneys’ ability to remove waste , occurring over hours, days, or sometimes weeks. While potentially reversible, it carries significant morbidity and mortality.</p>
@@ -121,14 +155,14 @@
 <ul><li>Hospitalization : Especially ICU admission.</li><li>Advanced Age : Reduced baseline GFR, more comorbidities.</li><li>Pre-existing Chronic Kidney Disease (CKD) : Reduced renal reserve.</li><li>Diabetes Mellitus : Underlying nephropathy, vascular disease.</li><li>Hypertension : Underlying vascular disease.</li><li>Heart Failure : Reduced cardiac output, cardiorenal syndrome.</li><li>Liver Disease : Hepatorenal syndrome, altered hemodynamics.</li><li>Peripheral Artery Disease : Marker of systemic atherosclerosis, may involve renal arteries.</li><li>Sepsis : Hypotension, inflammation, direct kidney effects.</li><li>Volume Depletion (Dehydration) : Common precipitant.</li><li>Exposure to Nephrotoxins : Contrast dye, certain antibiotics (aminoglycosides, vancomycin), NSAIDs.</li><li>Major Surgery : Especially cardiac or vascular surgery (risk of hypotension, emboli).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Pathophysiology of Acute Renal Failure/Acute Kidney Failure</summary>
           <p>Although the pathogenesis of Acute Renal Failure and oliguria is not always known, many times there is a specific underlying problem. ****</p>
 <p>There are underlying problems that cause the development of Acute Renal Failure such as hypovolemia , hypotension , reduced cardiac output and failure , and obstruction of the kidney .</p>
 <p>Pathophysiology Summary (Simplified Flow): Initial Insult (Prerenal, Intrarenal, Postrenal) → Decreased Renal Perfusion / Direct Tubular/Glomerular Damage / Obstruction → Decreased GFR → Activation of RAAS &amp; Sympathetic Nervous System (attempt to preserve BP/volume) → Renal Vasoconstriction → Further Decrease in Renal Blood Flow &amp; GFR → Tubular Cell Injury/Dysfunction (impaired reabsorption/secretion) → Sodium &amp; Fluid Retention (Edema, Hypertension) → Decreased Waste Excretion (Azotemia) → Decreased Acid Excretion (Metabolic Acidosis) → Decreased Potassium Excretion (Hyperkalemia) → Oliguria / AKI Manifestations</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Etiology of Acute Renal Failure</summary>
           <p>This category involves conditions that reduce blood supply to the kidneys, leading to ischemia (reduced blood flow) and damage to the kidney tissue. The kidneys are highly sensitive to blood flow reduction, as they require a constant supply of oxygen and nutrients to function properly.</p>
 <p>1. Hypovolemia (Low Blood Volume) :</p>
@@ -154,7 +188,7 @@
 <ul><li>Tumors : Tumors in the bladder, prostate, or other parts of the urinary tract can block urine flow.</li><li>Stones : Kidney stones or bladder stones can obstruct the flow of urine.</li><li>Edema : Swelling in the urinary tract, often due to infection or inflammation, can obstruct urine flow.</li><li>Prostatic Hyperplasia : Enlargement of the prostate gland can compress the urethra, blocking urine flow.</li><li>Other Obstructions : Urethral strictures, congenital abnormalities, and trauma can also cause urinary outflow obstruction.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Phases/Stages of Acute Renal Failure</summary>
           <p>There are four phases of Acute Renal Failure when Initiation phase is included, otherwise they are 3 stages that begin with Oliguria</p>
 <ul><li>Initiation(Onset)or Asymptomatic Phase : The initiation period begins with the initial insult, and ends when oliguria develops. Period from the initial insult until signs/symptoms become apparent. Kidney injury is evolving. Early intervention here can prevent progression. Lasts hours to days. In the early stages of renal failure, often referred to as the asymptomatic phase, the kidneys start to lose their function, but individuals may not experience any noticeable symptoms. This phase can last for months or even years, and kidney damage may progress gradually without apparent signs.</li><li>Oliguric Phase/ Oliguria . This stage is characterized by reduced urine output of &amp;lt;400mls/day. This phase lasts 1-2 weeks. The oliguria period is accompanied by an increase in the serum concentration of substances usually excreted by kidneys. Other symptoms that may manifest during this phase include fatigue, fluid retention leading to edema (swelling), electrolyte imbalances, high blood pressure, and a buildup of waste products in the blood. Significant fall in GFR and urine output (&amp;lt;400 mL/day). Accumulation of fluid, electrolytes (K+, Phos), and waste products (BUN, Cr). Metabolic acidosis worsens. Complications are most likely during this phase.</li><li>Diuretic Phase/ Diuresis . Urine output increases to as much as 4000 mL/day but no waste products, at the end of this stage you may begin to see improvement. The diuresis period is marked by a gradual increase in urine output, which signals that glomerular filtration has started to recover. GFR starts to rise, BUN/Cr start to fall (lagging behind urine output). Patient is at risk for dehydration and electrolyte losses (hypokalemia, hyponatremia). Lasts approximately 1-3 weeks.</li><li>Recovery . The recovery period signals the improvement of renal function and may take 3 to 12 months . If it is insufficient, it develops to Chronic renal failure. GFR increases, and tubular function normalizes. BUN and creatinine levels return towards baseline. Some patients recover fully, while others may have residual kidney damage or progress to CKD.</li></ul>
@@ -162,7 +196,7 @@
 <p>● End-Stage Renal Disease (ESRD) : If renal failure progresses to a point where the kidneys are functioning at less than 10-15% of their normal capacity, it is referred to as end-stage renal disease (ESRD). At this stage, kidney function is severely compromised, and individuals require renal replacement therapies such as dialysis or kidney transplantation to sustain life.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Clinical features of Acute Renal Failure</summary>
           <p>Acute renal failure (ARF) is a sudden decline in kidney function, leading to a buildup of waste products in the blood and a disruption in fluid and electrolyte balance.</p>
 <p>1. Reduced Urine Output (Oliguria) : Occurs within 1-3 days, a rapid decrease in urine output occurs, often accompanied by a significant rise in blood urea nitrogen (BUN) and creatinine levels.</p>
@@ -187,7 +221,7 @@
 <ul><li>Congestive heart failure : Fluid overload and electrolyte disturbances can strain the heart, leading to heart failure.</li><li>Severe hypertension : Decreased kidney function can contribute to high blood pressure, potentially leading to complications such as stroke.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Investigations/Diagnostic Findings</summary>
           <p>Urine</p>
 <ul><li>Volume : Usually less than 100 mL/24 hours (anuric phase) or 400 mL/24 hours (oliguric phase)</li><li>Color : Dirty, brown sediment indicates the presence of RBCs, hemoglobin.</li><li>Specific gravity: Less than 1.020 reflects kidney disease, e.g., glomerulonephritis, pyelonephritis.</li><li>Protein : High-grade proteinuria (3–4+) strongly indicates glomerular damage when Red Blood Cells and casts are also present</li><li>Glomerular filtration rate (GFR) : The GFR is a standard means of expressing overall kidney function.</li></ul>
@@ -248,7 +282,7 @@
 <ul><li>Administer medications as ordered, monitoring for effects and side effects. Adjust doses based on renal function.</li><li>Implement fluid restrictions/replacements accurately. Maintain IV therapy.</li><li>Monitor patient response to diuretics and dialysis.</li><li>Maintain meticulous aseptic technique with all lines and procedures. Catheter care.</li><li>Monitor for and prevent complications (hyperkalemia, fluid overload, infection, bleeding, skin breakdown).</li><li>Provide nutritional support, assist with meals, monitor intake.</li><li>Frequent repositioning, skin care.</li><li>Provide patient and family education about AKI, treatments, diet, and follow-up.</li><li>Provide emotional support and reassurance.</li><li>Collaborate with multidisciplinary team (physicians, dietitians, pharmacists, social workers).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 CHRONIC RENAL FAILURE</summary>
           <p>CKD is defined as abnormalities of kidney structure or function, present for more than 3 months, with implications for health. It involves a progressive, slow, insidious, and irreversible decline in renal excretory and regulatory functions .</p>
 <ul><li>Criteria: Either GFR &amp;lt; 60 mL/min/1.73 m² for &amp;gt;3 months, OR markers of kidney damage (e.g., albuminuria [ACR ≥ 30 mg/g], urine sediment abnormalities, electrolyte abnormalities due to tubular disorders, histological abnormalities, structural abnormalities on imaging, history of kidney transplant) present for &amp;gt;3 months.</li></ul>
@@ -257,7 +291,7 @@
 <p>End-Stage Renal Disease (ESRD) : The final stage (Stage 5 CKD), where kidney function is insufficient to sustain life, requiring renal replacement therapy (dialysis or transplantation). GFR is typically &amp;lt; 15 mL/min/1.73 m². This stage is characterized by uremia, the syndrome of symptoms resulting from the accumulation of toxic waste products.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Causes of Chronic Renal Failure:</summary>
           <p>Major Causes:</p>
 <ul><li>Diabetes Mellitus (Diabetic Nephropathy): Leading cause (~40-50%). High blood glucose damages glomerular capillaries.</li><li>Hypertension (Hypertensive Nephrosclerosis): Second leading cause (~25-30%). High blood pressure damages small blood vessels in the kidneys.</li></ul>
@@ -292,7 +326,7 @@
 <ul><li>Blood Tests : BUN, Creatinine (monitor trends, calculate eGFR), Electrolytes (K, Na, Cl, HCO3, Ca, Phos), Magnesium, Parathyroid Hormone (PTH), Vitamin D levels, CBC (anemia), Iron studies (ferritin, TSAT), Lipid profile, Albumin (nutritional status), HbA1c (if diabetic).</li><li>Urine Tests: Urinalysis (protein, blood, glucose, sediment for casts), Urine Albumin-to-Creatinine Ratio (ACR) (quantifies albuminuria – key marker of damage and risk), 24-hour urine collection (for measured CrCl or protein – less common now).</li><li>Renal Biopsy: Sometimes performed if the cause of CKD is unclear, especially if a treatable condition like certain glomerulonephritides is suspected. Less common than in AKI.</li><li>CBC : Assess for anemia.</li><li>Imaging Studies :</li><li>Renal Ultrasound : Assess kidney size (typically small and echogenic in CKD, except in PKD or diabetic nephropathy where they can be normal/large initially), rule out obstruction, evaluate for cysts/masses.</li><li>CT/MRI : Less routine, used for specific indications (e.g., suspected malignancy, complex anatomy)</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 Management of CKD</summary>
           <p>Aims of Management</p>
 <p>Focuses on slowing progression, managing complications, and preparing for RRT. Requires a multidisciplinary approach.</p>
@@ -326,7 +360,7 @@
 <ul><li>Hemodialysis (HD) : Blood filtered outside the body via a machine. Usually done 3 times/week for 3-5 hours per session, typically in a dialysis center (can be done at home). Requires vascular access (AV fistula preferred, AV graft, or central venous catheter).</li><li>Peritoneal Dialysis (PD) : Uses the patient’s own peritoneal membrane as the filter. Dialysis fluid (dialysate) is instilled into the abdominal cavity via a surgically placed catheter, dwells for a period, and then drained. Can be done manually several times a day (CAPD) or overnight using a machine (APD). Done at home by the patient.</li><li>Kidney Transplantation : Surgical placement of a healthy kidney from a living or deceased donor. Offers the best quality of life and survival but requires lifelong immunosuppression to prevent rejection. Not all patients are suitable candidates.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-12">
           <summary>12 Nursing Management of CKD:</summary>
           <p>Focuses on long-term care, education, adherence, monitoring, and supporting the patient through disease progression and RRT.</p>
 <p>Assessment :</p>
@@ -359,37 +393,49 @@
 <p>NB . General guidelines &amp; may vary depending on the specific needs of the patient and the stage and severity of their renal or kidney disease.</p>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-13">
           <summary>13 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Renal failure</strong> as a practical nursing topic, not only a memorized definition. Start with normal structure and function, then connect it to assessment findings and disease.</p>
 <ul><li><strong>What to understand first:</strong> define renal failure, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-14">
           <summary>14 Assessment Guide</summary>
           <ul><li>Relevant inspection, palpation, movement, auscultation, vital signs or neurological checks.</li><li>Normal findings, abnormal findings and what each abnormality may indicate.</li><li>Patient history, risk factors and how the body system affects other systems.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-15">
           <summary>15 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use anatomy to explain symptoms and guide focused assessment.</li><li>Recognize findings that need urgent escalation.</li><li>Teach the patient using simple body-system language.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The learner can explain normal function, identify abnormal signs and connect them to nursing action.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-16">
           <summary>16 Patient Teaching and Revision Check</summary>
           <ul><li>Explain renal failure in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Renal%20failure%20Medical%20Nursing%20(III)%20nursing%20lecture" title="Renal failure YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (11)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Renal-failure.webp" alt="Renal Failure" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Renal Failure</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Etiology-of-Acute-Renal-Failure-1.webp" alt="Etiology Of Acute Renal Failure 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Etiology Of Acute Renal Failure 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/PhasesofAcuteRenalFailure-e1743841744825.webp" alt="PhasesofAcuteRenalFailure E1743841744825" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">PhasesofAcuteRenalFailure E1743841744825</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Clinical-features-of-Acute-Renal-Failure-.webp" alt="Clinical Features Of Acute Renal Failure" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Clinical Features Of Acute Renal Failure</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Management-of-Acute-Renal-Failure-1-e1743842580691.webp" alt="Management Of Acute Renal Failure 1 E1743842580691" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Management Of Acute Renal Failure 1 E1743842580691</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/270a619aa9b09964ea86033a68bf3733.webp" alt="270a619aa9b09964ea86033a68bf3733" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">270a619aa9b09964ea86033a68bf3733</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/29d4238e0f4d4d52b46469c947676143.webp" alt="29d4238e0f4d4d52b46469c947676143" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">29d4238e0f4d4d52b46469c947676143</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/47b5813a2f3a1f7c7a332a7aecabc4d8.webp" alt="47b5813a2f3a1f7c7a332a7aecabc4d8" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">47b5813a2f3a1f7c7a332a7aecabc4d8</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Renal%20failure%20Medical%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <p style="color:var(--seo-muted);font-size:.85rem;margin:8px 0 0">3 more diagrams available — open the lesson for full illustrations.</p>
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Renal%20failure%20Medical%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

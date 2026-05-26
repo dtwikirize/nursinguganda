@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,12 +97,62 @@
         <p>Cell Theory, Structure &amp; Function should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 44 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Cell: An Introduction to the Basic Unit of Life</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">History of Cells &amp; the Cell Theory</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Cell Theory</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Basic Characteristics &amp; Classification of Cells</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Discoveries Since the Cell Theory: Two Major Categories</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Cell / Plasma Membrane</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Cell Membrane Structure: The Fluid Mosaic Model</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Phospholipid Molecule</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Chemical Compositions &amp; Other Components</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Functions of the Cell Membrane</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Transport Mechanisms: How Cells Move Things</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">No Energy Needed!</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Energy Required!</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Ion Channels &amp; Coupled Transport</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Vesicular Transport: For Big Stuff!</a>
+          <a href="#section-16" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Organelles: The Cell&#39;s Specialized Internal Structures</a>
+          <a href="#section-17" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Department 1: The Information &amp; Protein Manufacturing Pathway</a>
+          <a href="#section-18" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Nucleus: The Command Control Center</a>
+          <a href="#section-19" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Ribosomes: The Protein Factories</a>
+          <a href="#section-20" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Endoplasmic Reticulum (ER): The Intracellular Transport &amp; Production Network</a>
+          <a href="#section-21" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The &quot;Finishing Department&quot;</a>
+          <a href="#section-22" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The &quot;Lipid &amp; Detox Department&quot;</a>
+          <a href="#section-23" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">ER Stress and Disease</a>
+          <a href="#section-24" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Golgi Apparatus: The Post Office &amp; Packaging Center</a>
+          <a href="#section-25" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Department 2: Storage, Cleanup &amp; Waste Breakdown</a>
+          <a href="#section-26" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Zellweger Syndrome (Cerebrohepatorenal Syndrome)</a>
+          <a href="#section-27" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Mitochondria: The Powerhouse of the Cell</a>
+          <a href="#section-28" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Department 4: Reproduction, Structure, &amp; Movement</a>
+          <a href="#section-29" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Cytoskeleton: Scaffolding and Highways</a>
+          <a href="#section-30" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Centrosome</a>
+          <a href="#section-31" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">External Structures for Movement &amp; Surface Area</a>
+          <a href="#section-32" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Kartagener&#39;s Syndrome (Primary Ciliary Dyskinesia)</a>
+          <a href="#section-33" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Cell Connections and Intercellular Communication</a>
+          <a href="#section-34" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Cellular Connections (Junctions)</a>
+          <a href="#section-35" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Exosomes: Intercellular Messengers</a>
+          <a href="#section-36" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Cell Functions and Functional Specialization</a>
+          <a href="#section-37" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Fundamental Functions Shared by Most Cells</a>
+          <a href="#section-38" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">How Specific Cells Specialize for their Jobs</a>
+          <a href="#section-39" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Cell Division: The Process of Life&#39;s Replication</a>
+          <a href="#section-40" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Two Types of Cell Division</a>
+          <a href="#section-41" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-42" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-43" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-44" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 The Cell: An Introduction to the Basic Unit of Life</summary>
           <p>To understand human health, disease, pharmacology, and physiology, we must first master the cell. A cell is not just a building block; it is a highly complex, bustling metropolis, complete with its own power plants, shipping centers, recycling facilities, and a heavily guarded command center.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 History of Cells &amp; the Cell Theory</summary>
           <p>The discovery of the cell was entirely dependent on the invention of the microscope. Before the 1600s, humanity had no idea that a microscopic world existed.</p>
 <p>An English scientist who used an early, primitive compound microscope to examine a thin slice of dead plant tissue (cork). He observed what looked like hundreds of empty, small rectangular boxes. He is responsible for naming them <strong>&quot;cells&quot;</strong> because they heavily resembled the small, austere rooms (cellula) that monks lived in at monasteries.</p>
@@ -100,20 +162,20 @@
 <p>A brilliant German medical doctor and pathologist. He observed cells dividing under the microscope and reasoned that <strong>all cells come from other pre-existing cells</strong> ( &quot;Omnis cellula e cellula&quot; ), completing the classical cell theory and establishing the basis of cellular pathology.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 The Cell Theory</summary>
           <p>This theory is one of the absolute cornerstones of modern biology and medicine. It provides the fundamental framework for understanding life. It consists of three main tenets, representing the key rules about cells:</p>
 <ul><li><strong>All living organisms are made up of one or more cells.</strong> Explanation: Whether it is a tiny, single-celled bacterium (like an amoeba or E. coli ), a towering redwood tree, or a human being composed of over 30 trillion cells, the basic unit of structure is always the cell.</li><li><strong>The cell is the basic unit of structure and function in an organism (the basic unit of life).</strong> Explanation: The cell is the smallest independent level at which life functions can be carried out. Just as a single brick is the basic unit of a wall, a cell is the basic unit of a tissue, which builds an organ, which ultimately builds an organism. All the complex biochemical processes of life (metabolism, energy generation) happen strictly within cells.</li><li><strong>Cells arise from pre-existing cells (cell division).</strong> Explanation: Cells do not spontaneously generate out of nowhere from non-living matter. New cells are produced exclusively through cellular replication and division (such as mitosis for growth or meiosis for reproduction) from parent cells that already exist. This explains biological growth, tissue repair, and the continuity of life across generations.</li></ul>
 <p><strong>Why is this theory crucial for medicine?</strong> It dictates that to understand how the human body functions in health, and how it fails in disease, we must first understand how cells work. Diseases—from cancer to cystic fibrosis—are fundamentally cellular malfunctions. When cells are damaged, grow uncontrollably, or fail to communicate, the entire organism suffers.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Basic Characteristics &amp; Classification of Cells</summary>
           <p>A cell is the smallest functional unit of a living organism, fully capable of performing all essential life functions independently. A functional cell can:</p>
 <ul><li>Eat (take in nutrients), grow, and move.</li><li>Perform necessary internal maintenance, recycle damaged parts, and dispose of toxic wastes.</li><li>Adapt dynamically to physical and chemical changes in its environment.</li><li>Replicate itself to ensure survival.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Discoveries Since the Cell Theory: Two Major Categories</summary>
           <p>Further microscopic research and genetic analysis have allowed us to classify all cells on Earth into two major evolutionary categories based on their internal complexity and the presence of membrane-bound structures.</p>
 <p>These are ancient, primitive cells that entirely <strong>lack a true nucleus</strong> and lack other membrane-bound organelles.</p>
@@ -122,73 +184,73 @@
 <ul><li><strong>Examples:</strong> Protists (amoebas), Fungi (yeasts, mushrooms), Plants, and Animals (including humans).</li><li><strong>Complexity:</strong> Significantly more complex and much larger (10-100 micrometers) than prokaryotes.</li><li><strong>Features:</strong> They possess a distinct nucleus safeguarding linear DNA, highly compartmentalized organelles to separate chemical reactions, and a robust internal protein scaffolding called the <strong>cytoskeleton</strong> .</li><li><strong>Shared Structures:</strong> All eukaryotic cells possess three main components: a <strong>Nucleus</strong> , a <strong>Cell Membrane</strong> , and <strong>Cytoplasm</strong> .</li><li><strong>Main Types:</strong> Plant Cells (which have rigid cell walls and chloroplasts) and Animal Cells (which lack walls for flexibility).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 The Cell / Plasma Membrane</summary>
           <p>When you go swimming, have you ever wondered why your cells don&#39;t instantly fill up with water and burst, or why your internal cell juices don&#39;t leak out into the pool? The reason is a critical boundary structure called the <strong>cell membrane</strong> (or plasma membrane). It completely envelops the cell, protects it from the unpredictable outside environment, and strictly determines what can enter and leave—a vital physiological property we call <strong>selective semi-permeability</strong> .</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Cell Membrane Structure: The Fluid Mosaic Model</summary>
           <p>When viewed with a powerful electron microscope, the membrane appears as a delicate, double-layered line about 7.5 to 10 nanometers thick. It is not a solid wall; rather, it is described by the <strong>Fluid Mosaic Model</strong> . It behaves like a fluid ocean of fat in which protein &quot;icebergs&quot; float and move around. It is primarily composed of a structure known as the <strong>Phospholipid Bilayer</strong> .</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 The Phospholipid Molecule</summary>
           <p>The foundation of the membrane is the phospholipid. Millions of these molecules line up side-by-side to form the bilayer. Each phospholipid is amphipathic, meaning it has two distinct, chemically opposing parts:</p>
 <ul><li><strong>Phosphate Head:</strong> This part is <strong>Hydrophilic</strong> (water-loving) and polar (carries a charge). Because tissues are mostly water, these heads face outward toward the watery extracellular fluid, and inward toward the watery intracellular cytoplasm.</li><li><strong>Fatty Acid Tails:</strong> Each molecule has two tails that are <strong>Hydrophobic</strong> (water-fearing) and non-polar. To escape the water, these tails turn inward to face each other, creating a dry, fat-filled core in the middle of the membrane. (This lipid core is why water-soluble drugs cannot easily cross into cells without a transporter!)</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Chemical Compositions &amp; Other Components</summary>
           <ul><li><strong>Proteins:</strong> Embedded in or attached to the lipid bilayer, they act as the doors, tunnels, pumps, and communicators for the cell. Integral proteins: Span the entire thickness of the membrane (transmembrane), acting as channels for ions to pass.</li><li>Peripheral proteins: Found loosely attached only on the inner or outer surface, often acting as enzymes or anchoring the cytoskeleton.</li><li><strong>Carbohydrates:</strong> Sugars found strictly on the outer surface of the cell. They attach to proteins (forming <strong>glycoproteins</strong> ) or to lipids (forming <strong>glycolipids</strong> ). Together, they form a sugary coating called the glycocalyx . They act as the cell&#39;s unique &quot;identification tags,&quot; allowing the immune system to recognize the cell as &quot;self&quot; rather than a foreign invader.</li><li><strong>Cholesterol:</strong> These lipid molecules are wedged between the phospholipid tails. They act as temperature buffers, helping to maintain the membrane&#39;s perfect level of fluidity and stability (preventing it from freezing solid in the cold, or melting apart in the heat).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Functions of the Cell Membrane</summary>
           <p>The plasma membrane is highly active and performs several vital jobs for survival:</p>
 <ul><li><strong>Protective Barrier:</strong> Keeps delicate internal organelles safe from external toxins.</li><li><strong>Selective Permeability:</strong> The primary controller of what enters and exits, restricting large or charged molecules.</li><li><strong>Absorptive Function:</strong> Takes in essential nutrients (glucose, amino acids) needed for metabolism.</li><li><strong>Excretory Function:</strong> Expels metabolic wastes (like urea) so they don&#39;t poison the cell.</li><li><strong>Gas Exchange:</strong> Allows life-sustaining O₂ to diffuse in, and toxic CO₂ to diffuse out.</li><li><strong>Maintains Shape:</strong> Anchors to the internal cytoskeleton to help the cell keep its physical form.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 Transport Mechanisms: How Cells Move Things</summary>
           <p>A cell is a busy factory. It constantly needs to bring in raw supplies and get rid of trash. The cell membrane acts as the ultimate gatekeeper, utilizing several different transport methods. How easily a substance crosses depends heavily on its size and whether it is lipid-soluble (likes fat) or water-soluble (likes water).</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-12">
           <summary>12 No Energy Needed!</summary>
           <p>This relies entirely on physics. Substances naturally move from an area of <strong>high concentration to an area of low concentration</strong> (moving &quot;down&quot; the concentration gradient) until equilibrium is reached. It costs the cell zero ATP.</p>
 <ul><li><strong>A. Simple Diffusion:</strong> The simplest way small, fat-soluble, uncharged molecules (like O₂, CO₂, and steroid hormones) sneak right through the lipid bilayer. It&#39;s a slow process driven purely by the concentration gradient.</li><li><strong>B. Facilitated Diffusion:</strong> Substances that are too large or too water-soluble (polar/charged) to cross the fat layer (like glucose or amino acids) get a &quot;ride&quot; using special integral <strong>carrier proteins</strong> without the expenditure of energy. The carrier changes shape to let the molecule in. It is much faster than simple diffusion but is limited by the number of carriers available.</li><li><strong>C. Osmosis:</strong> The specific, vital movement of <strong>water</strong> across a semi-permeable membrane. Water moves from an area of higher water concentration (lower solute) to an area of lower water concentration (higher solute) in a desperate attempt to dilute the solutes and even out the concentrations.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-13">
           <summary>13 Energy Required!</summary>
           <p>This is like pushing a heavy boulder uphill. It forces substances to move <strong>against their natural concentration gradient</strong> (from low to high concentration). Because it fights physics, it strictly requires biological energy, usually obtained from burning <strong>ATP</strong> .</p>
 <ul><li><strong>Key Example: The Sodium-Potassium (Na+/K+) Pump:</strong> This is the most famous and vital active transport mechanism in the body (using up to 30% of your body&#39;s daily energy!). This protein pump uses 1 molecule of ATP to constantly push <strong>3 Sodium ions (Na+) OUT</strong> of the cell, and pull <strong>2 Potassium ions (K+) INTO</strong> the cell against their gradients. This maintains a strong electrical charge across the membrane, which is absolutely vital for nerve signaling and heart muscle contractions.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-14">
           <summary>14 Ion Channels &amp; Coupled Transport</summary>
           <ul><li><strong>Ion Channels:</strong> Protein &quot;tunnels&quot; that allow specific, charged ions (like Na+, K+, Ca²⁺) to rapidly rush through when a specific &quot;gate&quot; opens (triggered by voltage or a chemical messenger).</li><li><strong>Coupled Transport (Secondary Active Transport):</strong> Uses a single carrier protein to move multiple different substances at the same time. It uses the kinetic energy of one molecule moving down its gradient to drag another molecule up its gradient. Symport (Cotransport): Both molecules move in the same direction (e.g., Sodium dragging Glucose into an intestinal cell).</li><li>Antiport (Countertransport): Molecules move in opposite directions.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-15">
           <summary>15 Vesicular Transport: For Big Stuff!</summary>
           <p>When cells need to move massive particles, whole bacteria, or large volumes of fluid that cannot fit through any protein channel, they wrap them in a piece of their own cell membrane to form a sac called a <strong>vesicle</strong> . This process requires significant ATP.</p>
 <ul><li><strong>Endocytosis (&quot;Bringing In&quot;):</strong> The cell membrane physically folds inward, engulfing an extracellular substance to bring it inside the cell. Phagocytosis: &quot;Cell eating.&quot; Used for massive solid particles, like a white blood cell engulfing a dangerous bacterium.</li><li>Pinocytosis: &quot;Cell drinking.&quot; The cell gulps droplets of extracellular fluid to sample the surrounding nutrients.</li><li><strong>Exocytosis (&quot;Sending Out&quot;):</strong> The exact reverse. A vesicle manufactured deep inside the cell moves to the boundary, fuses completely with the cell membrane, and bursts open to release its contents into the outside world. This is how cells secrete hormones (like insulin), release neurotransmitters into synapses, and dump massive amounts of cellular waste.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-16">
           <summary>16 Organelles: The Cell&#39;s Specialized Internal Structures</summary>
           <p>If the cell is a factory, organelles are the specialized machines and departments within it. An <strong>organelle</strong> is a specific, membrane-bound structure within a eukaryotic cell that performs a highly specialized, dedicated function. They are identified by electron microscopy. (Note: The cell membrane itself is not considered an organelle, as it is the outer boundary housing the factory, not a machine inside it.)</p>
 <p><strong>The Basic Layout:</strong> The two fundamental components of any eukaryotic cell are its outer boundary ( <strong>Cell Membrane</strong> ) and its internal contents, collectively called the <strong>Cytoplasm</strong> (which includes the jelly-like fluid called cytosol, plus all the suspended organelles, excluding the inside of the nucleus).</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-17">
           <summary>17 Department 1: The Information &amp; Protein Manufacturing Pathway</summary>
           <p>This is the central logistics pathway of the cell, dictating exactly what the cell does by controlling the creation of proteins. It involves a tightly coordinated effort from the nucleus all the way to the Golgi apparatus.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-18">
           <summary>18 The Nucleus: The Command Control Center</summary>
           <p>Often referred to as the &quot;brain&quot; or &quot;CEO&quot; of the cell, the nucleus is the largest and most prominent organelle. Molecules of DNA located in chromosomes inside the nucleus definitively control all the activities of the cells. Its primary functions are safeguarding the genetic blueprint, performing <strong>DNA Replication</strong> (prior to cell division), and <strong>Transcription</strong> (creating messenger RNA instructions from the DNA archive).</p>
 <p><strong>Key Structures of the Nucleus:</strong></p>
@@ -197,36 +259,36 @@
 <ul><li><strong>Chromatin:</strong> The normal, everyday working state of DNA in a non-dividing cell. It exists as a complex of DNA wrapped around proteins called histones, resembling a tangled, invisible bowl of spaghetti. Euchromatin: Loosely packed chromatin. It is genetically active; the genes are exposed and accessible for transcription into mRNA.</li><li>Heterochromatin: Tightly packed, clumped chromatin. It is genetically inactive and stored away.</li><li><strong>Chromosomes:</strong> When a cell is about to undergo division (mitosis), the loose chromatin tightly condenses, coils, and super-coils into these highly organized, thick, microscopically visible X-shaped structures. This ensures the vast amount of DNA is safely and equally distributed to the daughter cells without tangling or tearing.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-19">
           <summary>19 Ribosomes: The Protein Factories</summary>
           <p>Instructions for synthesizing a protein are carried from the DNA in the nucleus to the ribosomes by <strong>messenger RNA (mRNA)</strong> . The sites of actual protein synthesis are the ribosomes. They are tiny molecular machines made of rRNA and proteins whose only job is to read the mRNA blueprint and link amino acids together in the exact specified order (a process called <strong>Translation</strong> ).</p>
 <ul><li><strong>Free Ribosomes:</strong> Float freely in the cytoplasm. They synthesize proteins that will remain and function within the cell itself (e.g., metabolic enzymes or structural actin for the cytoskeleton).</li><li><strong>Bound Ribosomes:</strong> Are physically attached to the outer surface of the Rough Endoplasmic Reticulum. They exclusively synthesize proteins that are destined to be exported out of the cell, embedded into the cell membrane, or delivered to dangerous organelles like lysosomes.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-20">
           <summary>20 Endoplasmic Reticulum (ER): The Intracellular Transport &amp; Production Network</summary>
           <p>The endoplasmic reticulum consists of an extensive, vast network of intracellular membranous channels, tubes, and flattened sacs (cisternae) responsible for material transport and massive synthesis. It comes in two distinct forms.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-21">
           <summary>21 The &quot;Finishing Department&quot;</summary>
           <p>Named &quot;rough&quot; because its outer surface is heavily studded with bound ribosomes, making it look bumpy under an electron microscope. It is directly continuous with the nuclear envelope.</p>
 <ul><li><strong>Protein Processing:</strong> After a bound ribosome links amino acids, the raw protein chain is threaded directly into the interior (lumen) of the RER. Here, it is meticulously folded into its functional 3D shape by chaperone proteins.</li><li><strong>Glycosylation:</strong> The RER acts as a shipping tagger, attaching carbohydrate sugar chains to the proteins (creating glycoproteins) to ensure stability and proper cellular recognition.</li><li><strong>Cellular Abundance:</strong> You find massive, extensive amounts of RER in cells specialized for high-volume protein secretion. For example, Plasma Cells (immune cells producing thousands of antibody proteins per second) and Pancreatic Acinar Cells (producing massive amounts of digestive enzymes).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-22">
           <summary>22 The &quot;Lipid &amp; Detox Department&quot;</summary>
           <p>Named &quot;smooth&quot; because it completely lacks ribosomes. Its structure is more tubular and it plays no role in protein synthesis. It boasts over 7 critical functions:</p>
 <ul><li><strong>Lipid &amp; Steroid Synthesis:</strong> Manufactures cholesterol, phospholipids for new membranes, and steroid hormones (abundant in gonads and the adrenal cortex).</li><li><strong>Detoxification:</strong> In liver cells (hepatocytes), the SER contains specialized cytochrome P450 enzymes that neutralize toxins, metabolic wastes, and drugs/alcohol.</li><li><strong>Calcium Storage:</strong> In muscle cells, a highly specialized SER called the Sarcoplasmic Reticulum (SR) sequesters and rapidly releases Ca²⁺ ions, which is the absolute trigger for muscle contraction.</li><li><strong>Carbohydrate Metabolism:</strong> Helps the liver break down stored glycogen into free glucose for the blood.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-23">
           <summary>23 ER Stress and Disease</summary>
           <p><strong>Misfolded Proteins in the RER:</strong> If proteins do not fold correctly due to genetic errors, the RER quality control system targets them for complete destruction. In <strong>Cystic Fibrosis</strong> , a tiny mutation causes the CFTR chloride channel protein to misfold slightly in the RER. Even though it might still work, the RER aggressively degrades it instead of sending it to the cell membrane, leaving the lungs unable to clear thick, sticky mucus, leading to the devastating disease.</p>
 <p><strong>Drug Tolerance in the SER:</strong> When the liver is chronically exposed to toxic substances or heavy medications (like barbiturates or alcohol), the cell physically responds by massively expanding and multiplying the amount of Smooth ER (SER hypertrophy). This drastically increases the liver&#39;s rate of detoxification. Because the drug is now destroyed faster, the patient requires a much higher dose to achieve the same medical or intoxicating effect. This cellular adaptation is the direct biological basis for <strong>drug tolerance</strong> .</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-24">
           <summary>24 Golgi Apparatus: The Post Office &amp; Packaging Center</summary>
           <p>A distinctive stack of flattened, hollow membrane sacs (cisternae) that looks like a stack of hollow pancakes. It receives raw proteins and lipids arriving in vesicles from the ER at its receiving face (cis-face). It passes them through its layers, heavily modifies them, sorts them by destination, and packages them into final secretory vesicles that bud off the shipping face (trans-face) for delivery to the cell membrane, outside the cell, or to other organelles.</p>
 <p><strong>Major Roles of the Golgi:</strong></p>
@@ -235,7 +297,7 @@
 <p><strong>I-Cell Disease (Mucolipidosis II):</strong> This is a devastating, fatal childhood genetic disease caused directly by a Golgi defect. Normally, the Golgi &quot;tags&quot; newly made lysosomal enzymes with a specific chemical marker called mannose-6-phosphate , which acts as a zip code directing the enzyme to the lysosome. In I-cell disease, the Golgi lacks the enzyme to attach this tag. Consequently, the deadly digestive enzymes are mistakenly secreted completely outside the cell into the blood. The lysosomes are left empty and useless, failing to break down cellular waste. Massive amounts of trash (inclusion bodies) accumulate inside the cells, causing severe neurological, skeletal, and developmental decay.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-25">
           <summary>25 Department 2: Storage, Cleanup &amp; Waste Breakdown</summary>
           <p>Cells generate immense amounts of waste, encounter toxins, and must break down complex foods. They utilize highly specialized, dangerous chemical vesicles to handle this.</p>
 <p>Lysosomes are membrane-bound vesicles heavily packed with over 40 different, extraordinarily powerful digestive enzymes called <strong>acid hydrolases</strong> . They act as the cell&#39;s stomach and recycling crew.</p>
@@ -244,12 +306,12 @@
 <ul><li><strong>Functions:</strong> Breakdown of Very Long-Chain Fatty Acids (VLCFA) for energy.</li><li>Synthesis of primary Bile Acids (for digestion) and Plasmalogens (vital lipids for brain white matter).</li><li>Massive detoxification of poisonous substances like alcohol (ethanol) in the liver.</li><li><strong>The Danger:</strong> These heavy oxidation reactions naturally produce a highly toxic, free-radical byproduct: <strong>Hydrogen Peroxide (H₂O₂)</strong> . To prevent cellular damage, peroxisomes uniquely contain massive amounts of the protective enzyme <strong>catalase</strong> , which instantly neutralizes the dangerous H₂O₂ by converting it safely into water and oxygen.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-26">
           <summary>26 Zellweger Syndrome (Cerebrohepatorenal Syndrome)</summary>
           <p>This is a severe, usually fatal congenital disorder where a genetic mutation causes the body to fail to form functional peroxisomes, or fails to import the necessary enzymes into them. As a direct result, Very Long-Chain Fatty Acids (VLCFAs) cannot be broken down. These toxic fats progressively accumulate in the blood and destroy vital tissues, especially the brain (destroying myelin), liver (hepatomegaly), and kidneys, leading to severe facial deformities, seizures, and profound neurological defects, usually resulting in death within the first year of life.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-27">
           <summary>27 Mitochondria: The Powerhouse of the Cell</summary>
           <p>A factory cannot run without electricity. Breakdown of organic nutrients (like glucose and fatty acids) inside cells to release massive amounts of energy and form ATP is called <strong>cellular respiration</strong> . Crucially, the highly efficient, oxygen-dependent phase of this process ( <strong>Aerobic respiration</strong> ) occurs exclusively within the <strong>mitochondria</strong> .</p>
 <p><strong>Key Structures of the Mitochondrion:</strong></p>
@@ -258,23 +320,23 @@
 <ul><li><strong>Mitochondrial DNA (mtDNA):</strong> Mitochondria are utterly unique because they possess their own private set of circular DNA and their own ribosomes. According to the Endosymbiotic Theory , mitochondria were once free-living ancient bacteria that were swallowed by a larger cell millions of years ago, entering a mutually beneficial relationship. Furthermore, in humans, 100% of your mtDNA is inherited strictly from your mother (via the egg cell).</li><li><strong>Relationship Between Number and Function:</strong> The number of mitochondria within a specific cell type directly, linearly correlates with that cell&#39;s metabolic energy demand. Cells that perform exhausting, constant work—like cardiac muscle cells beating 100,000 times a day, highly active neurons in the brain, and the rapidly swimming tails of sperm—are packed densely with thousands of mitochondria. Passive cells, like bone or fat cells, have very few.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-28">
           <summary>28 Department 4: Reproduction, Structure, &amp; Movement</summary>
           <p>Cells require internal scaffolding to maintain their complex 3D shape, organize their organelles, and physically move materials around the cytoplasm.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-29">
           <summary>29 The Cytoskeleton: Scaffolding and Highways</summary>
           <p>A highly dynamic, constantly shifting network of interwoven protein fibers spanning the entire cell.</p>
 <ul><li><strong>Microtubules:</strong> The thickest structural cables. These are large, hollow cylinders made of the protein tubulin . They act as heavy-duty girders resisting compression, and serve as the physical &quot;railroad tracks&quot; along which motor proteins physically carry vesicles from the Golgi to the membrane. Their most famous property is &quot;dynamic instability&quot; (the ability to rapidly grow and instantly collapse and shrink). This rapid assembly is crucial for forming the mitotic spindle, the spider-web-like structure that actively hunts down and pulls chromosomes apart during cell division.</li><li><strong>Microfilaments (Actin):</strong> The thinnest fibers, located just under the cell membrane. They allow the cell to change shape, squeeze, and divide in half during cytokinesis.</li><li><strong>Intermediate Filaments:</strong> The medium, tough, rope-like fibers (like keratin) that provide permanent tensile strength, preventing the cell from being torn apart by physical stress.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-30">
           <summary>30 The Centrosome</summary>
           <p>Located near the nucleus, composed of two barrel-shaped <strong>centrioles</strong> sitting at right angles to each other. This is the main organizing center for microtubules and acts as the master architect that commands the formation of the spindle fibers during mitosis.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-31">
           <summary>31 External Structures for Movement &amp; Surface Area</summary>
           <p>Many cells utilize specialized extensions of their plasma membrane and cytoskeleton to interact with their environment.</p>
 <p>Microscopic, densely packed, finger-like folds of the plasma membrane. They do absolutely no moving. Their sole purpose is to massively <strong>increase the total surface area</strong> of the cell membrane to maximize the absorption of nutrients. They are found lining the absorptive surfaces of the small intestine and the proximal tubules of the kidney.</p>
@@ -282,40 +344,40 @@
 <p>A single, extremely long, whip-like tail designed to act as a powerful outboard motor to propel the entire cell rapidly forward through fluid. In the entire human body, the only cell that possesses a flagellum is the male <strong>sperm cell</strong> .</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-32">
           <summary>32 Kartagener&#39;s Syndrome (Primary Ciliary Dyskinesia)</summary>
           <p>The movement of cilia and flagella requires specialized motor proteins called dynein arms , which physically &quot;walk&quot; along the microtubules, causing them to bend. Kartagener&#39;s Syndrome is a rare genetic disorder where the DNA blueprint for these dynein arms is defective or entirely missing. This renders all the cilia and flagella in the body completely paralyzed and immobile.</p>
 <p><strong>Clinical consequences:</strong> Patients suffer from chronic, severe respiratory infections (bronchiectasis and sinusitis) because they cannot sweep mucus and bacteria out of their lungs. Furthermore, males are profoundly infertile because their sperm tails are paralyzed, and females struggle with ectopic pregnancies because Fallopian cilia cannot move the egg.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-33">
           <summary>33 Cell Connections and Intercellular Communication</summary>
           <p>Cells within tissues do not operate in isolation; they are tightly bound to their neighbors and constantly whispering chemical secrets to one another to maintain systemic harmony.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-34">
           <summary>34 Cellular Connections (Junctions)</summary>
           <ul><li><strong>Tight Junctions:</strong> Proteins literally stitch the membranes of adjacent cells tightly together, forming an impenetrable, watertight seal. This completely blocks fluids, stomach acid, or bacteria from leaking through the tiny spaces between cells. Found heavily in the epithelial lining of the intestines, stomach, and the blood-brain barrier.</li><li><strong>Gap Junctions:</strong> Form actual physical hollow channels (connexons) that directly bridge and connect the cytoplasm of two adjacent cells. This allows ions and electrical signals to instantly flow from one cell directly into the next, allowing for incredibly rapid, synchronized communication. This is why millions of heart muscle cells can contract simultaneously as a single unit during a heartbeat.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-35">
           <summary>35 Exosomes: Intercellular Messengers</summary>
           <p>A relatively newly discovered, highly sophisticated form of long-distance cell-to-cell communication. <strong>Exosomes</strong> are extremely small, lipid-bound vesicles purposefully released by cells into the bloodstream. Unlike simple hormone molecules, exosomes contain a rich, complex cargo of proteins, lipids, and even genetic material (messenger RNA and microRNA). When a distant target cell absorbs the exosome, this complex cargo can literally reprogram the behavior of the receiving cell. They play massive roles in immune responses, tissue repair, and unfortunately, the spread and metastasis of cancer.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-36">
           <summary>36 Cell Functions and Functional Specialization</summary>
           <p>Even though all cells share the basic structures we just discussed (a nucleus, membrane, and mitochondria) and carry out essential life processes, different types of cells in our body are highly specialized to perform very specific, unique functions. This phenomenon, known as <strong>functional specialization</strong> (or differentiation), is exactly what allows us to evolve from a ball of identical cells into a complex human with brain tissues, beating hearts, and rigid bones.</p>
 <p>Think of the different workers in our factory – some are structural builders, some are aggressive security guards, and some are communicators. Each has a unique role, achieved by over-expressing certain organelles or completely altering their physical shape.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-37">
           <summary>37 Fundamental Functions Shared by Most Cells</summary>
           <p>Before specializing, cells must keep themselves alive:</p>
 <ul><li><strong>Metabolism:</strong> The sum of all chemical processes. Cells carry out metabolic reactions to obtain energy (cellular respiration in mitochondria) and to synthesize or break down molecules.</li><li><strong>Responsiveness:</strong> The ability to detect and adapt to changes in their environment, sensing chemical signals, physical touch, or electricity.</li><li><strong>Movement:</strong> Moving the entire cell (like white blood cells crawling to an infection), or moving internal organelles along microtubule highways.</li><li><strong>Growth:</strong> Increasing physical cell size or increasing the total tissue mass through replication.</li><li><strong>Differentiation:</strong> The magical process by which a plain, generic, unspecialized stem cell turns into a highly specialized, mature cell type with a distinct job.</li><li><strong>Reproduction:</strong> Forming new cells for growth and repair (mitosis), or producing a whole new organism (meiosis).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-38">
           <summary>38 How Specific Cells Specialize for their Jobs</summary>
           <p>Let&#39;s examine how specific cell types alter their anatomy to master their profession:</p>
 <p>Specialized for powerful physical <strong>contraction</strong> . To achieve this, their cytoplasm is absolutely packed with tightly aligned protein filaments (actin and myosin) that forcefully slide past each other to shorten the cell, producing mechanical force. They possess abundant, large mitochondria to fuel this massive energy demand, and a specialized smooth ER (the sarcoplasmic reticulum) to hold the trigger: calcium.</p>
@@ -327,47 +389,59 @@
 <p>Specialized for maintaining hard skeletal tissue. They excrete calcium and phosphate minerals, literally entombing themselves in a hard, calcified extracellular matrix they helped produce, providing rigid structural support and protection to the soft human body.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-39">
           <summary>39 Cell Division: The Process of Life&#39;s Replication</summary>
           <p>Cells do not live forever. To maintain an organism, heal a wound, or create a new life, cells must reproduce. They achieve this through a highly orchestrated, dangerous, and fundamental process called cell division. There are two entirely different types of division, serving completely different biological purposes.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-40">
           <summary>40 The Two Types of Cell Division</summary>
           <ul><li>Feature Mitotic Division (Mitosis) Meiotic Division (Meiosis)</li><li><strong>Primary Role</strong> Organismal growth, replacing dead cells, and repairing damaged tissues. Strictly for reproduction (the creation of specialized sex cells).</li><li><strong>Occurs In</strong> Somatic cells (all regular body cells: skin, liver, heart, bone). Strictly in the reproductive organs (testes and ovaries).</li><li><strong>Final Outcome</strong> Two (2) genetically identical daughter cells. Four (4) genetically unique, diverse daughter cells.</li><li><strong>Chromosome Number</strong> Maintained at 46 (Diploid/2n), exactly the same as the parent cell. Halved to 23 (Haploid/n), containing exactly half the DNA of the parent.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-41">
           <summary>41 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Cell Theory, Structure &amp; Function</strong> as a practical nursing topic, not only a memorized definition. Start with normal structure and function, then connect it to assessment findings and disease.</p>
 <ul><li><strong>What to understand first:</strong> define cell theory, structure &amp; function, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-42">
           <summary>42 Assessment Guide</summary>
           <ul><li>Relevant inspection, palpation, movement, auscultation, vital signs or neurological checks.</li><li>Normal findings, abnormal findings and what each abnormality may indicate.</li><li>Patient history, risk factors and how the body system affects other systems.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-43">
           <summary>43 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use anatomy to explain symptoms and guide focused assessment.</li><li>Recognize findings that need urgent escalation.</li><li>Teach the patient using simple body-system language.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The learner can explain normal function, identify abnormal signs and connect them to nursing action.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-44">
           <summary>44 Patient Teaching and Revision Check</summary>
           <ul><li>Explain cell theory, structure &amp; function in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Cell%20Theory%2C%20Structure%20%26%20Function%20Anatomy%20nursing%20lecture" title="Cell Theory, Structure &amp; Function YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (15)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Cell-thery-1-e1747459249536.webp" alt="Cell Thery 1 E1747459249536" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Cell Thery 1 E1747459249536</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Prokaryotic-and-Eukaryotic-cell.webp" alt="Prokaryotic And Eukaryotic Cell" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Prokaryotic And Eukaryotic Cell</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/lipid-bilayer-proteins-surfaces-phospholipids.webp" alt="Lipid Bilayer Proteins Surfaces Phospholipids" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Lipid Bilayer Proteins Surfaces Phospholipids</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Phospholipid-Diagram-1.webp" alt="Phospholipid Diagram 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Phospholipid Diagram 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Transport-Mechanisms-1.webp" alt="Transport Mechanisms 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Transport Mechanisms 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/passive-transport-mechanisms.webp" alt="Passive Transport Mechanisms" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Passive Transport Mechanisms</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Primary-and-Secondary-Active-transport.webp" alt="Primary And Secondary Active Transport" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Primary And Secondary Active Transport</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/ion-ch.webp" alt="Ion Ch" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Ion Ch</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Cell%20Theory%2C%20Structure%20%26%20Function%20Anatomy%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <p style="color:var(--seo-muted);font-size:.85rem;margin:8px 0 0">7 more diagrams available — open the lesson for full illustrations.</p>
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Cell%20Theory%2C%20Structure%20%26%20Function%20Anatomy%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

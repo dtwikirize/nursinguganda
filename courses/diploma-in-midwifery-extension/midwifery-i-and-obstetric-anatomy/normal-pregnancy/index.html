@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,21 @@
         <p>Normal pregnancy should be reviewed through safe maternal and newborn assessment, early recognition of danger signs, respectful communication and timely referral. Connect the definition to vital signs, bleeding, fetal or newborn wellbeing, patient education and local protocol requirements.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (8)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">NORMAL PREGNANCY</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">SIGNS AND SYMPTOMS OF PREGNANCY</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Differential Diagnosis:</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Fill in the Blanks:</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 NORMAL PREGNANCY</summary>
           <p>Normal Pregnancy refers to growth and development of a fertilized ovum and begins from when the ovum is fertilized until the fetus is expelled from the uterus.</p>
 <p>Normally the fetus is expelled at term or 9 months or 40 weeks or 280 days. If the fetus is expelled before 28 weeks, it is called an abortion and if fetus is expelled after 28 weeks but before 37weeks it’s called premature labour and if born after 42 weeks, the post- mature is used.</p>
@@ -93,7 +119,7 @@
 <ul><li>The fertilized ovum is growing in the cavity of the uterus.</li><li>One fetus is forming, one placenta and two membranes.</li><li>There is about 1000-1500ml of liquor amnii.</li><li>There is vertex presentation.</li><li>There is no bleeding until show in first stage of labour.</li><li>The mother should remain healthy with no serious disorders of pregnancy.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 SIGNS AND SYMPTOMS OF PREGNANCY</summary>
           <p>When a woman misses one or two menstrual periods, she may begin to suspect that she is pregnant, and in most cases, her intuition is correct with an accuracy of about 98%, especially if she has been experiencing regular menstruation.</p>
 <p>The signs of pregnancy can be classified into three groups:</p>
@@ -102,50 +128,61 @@
 <ul><li><strong>Fetal heart sounds</strong> : The fetal heart begins beating around the 24th week after conception. It can be heard using a Doppler device as early as 10 weeks and with a fetoscope by 24 weeks. It is important to distinguish the fetal heart sounds from the uterine soufflé caused by pulsating maternal arteries. The normal fetal heart rate ranges between 120 and 160 beats per minute.</li><li><strong>Ultrasound scanning of the fetus</strong> : Using ultrasound technology, the gestation sac can be visualized and photographed. As early as the 4th week, an embryo can be identified, and by the 10th week of gestation, fetal body parts begin to appear on the ultrasound images.</li><li><strong>Palpation of the entire fetus</strong> : A trained examiner can palpate and feel the various parts of the fetus, including the head, back, and upper and lower body parts. This allows for a comprehensive assessment of the baby’s position and size.</li><li><strong>Palpation of fetal movement</strong> : Skilled healthcare providers can feel and detect fetal movements through palpation after the 24th week of gestation. This involves perceiving the baby’s kicks, rolls, and other movements by gently applying pressure on the mother’s abdomen.</li><li><strong>X-ray</strong> : While an X-ray can identify the complete fetal skeleton as early as the 12th week, it is not a recommended method for confirming pregnancy due to the potential risks associated with radiation exposure. Total body radiation from X-rays in utero can have harmful effects on the developing fetus, leading to genetic or gonadal alterations. Therefore, other non-invasive methods, such as ultrasound, are preferred for assessing pregnancy.</li><li><strong>Actual delivery of the baby:</strong> The ultimate confirmation of pregnancy occurs when the woman delivers the baby. The delivery of a live newborn is the conclusive evidence of pregnancy.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Differential Diagnosis:</summary>
           <p>Abdominal enlargement can be caused by conditions other than pregnancy, and it is important to consider these possibilities. Some of the potential differential diagnoses include:</p>
 <ul><li><strong>Ovarian cysts</strong> : Enlargement of the abdomen can occur due to the presence of ovarian cysts. When palpated, the swelling caused by ovarian cysts can be distinguished from the uterus, and pregnancy tests will yield negative results.</li><li><strong>Fibroids</strong> : Fibroids are noncancerous growths that can develop in the uterus. They can sometimes be mistaken for pregnancy, as they can cause a hard mass to be felt in the abdomen. However, pregnancy tests will be negative in the case of fibroids.</li><li><strong>Distended urinary bladder</strong> : Abdominal enlargement can also result from a distended urinary bladder due to urine retention. In such cases, a catheter can be inserted to relieve the urine retention, and there will be no other signs indicating pregnancy.</li><li><strong>Pseudocyesis</strong> : Pseudocyesis, also known as false pregnancy or phantom pregnancy, is a condition in which a woman experiences symptoms that mimic pregnancy, including amenorrhea (absence of menstruation) and other signs suggestive of pregnancy. However, upon examination, the typical signs of pregnancy are absent, and pregnancy tests will be negative. Pseudocyesis often occurs in women who have a strong desire to conceive or who experience high levels of anxiety related to pregnancy.</li><li>Which of the following is a presumptive sign of pregnancy? a) Fetal heart sounds b) Softening of the cervix c) Palpation of fetal movement d) Morning sickness</li><li>Hagar’s sign is detected by: a) Auscultation of fetal heart sounds b) Palpation of fetal movement c) Vaginal examination d) Ultrasound scanning</li><li>Which sign is a probable sign of pregnancy? a) Fetal heart sounds b) Ovarian cysts c) Presence of HCG d) Pseudocyesis</li><li>What is the normal fetal heart rate? a) 60-80 beats per minute b) 90-120 beats per minute c) 120-160 beats per minute d) 180-200 beats per minute</li><li>Which sign can help in determining the gestational age if the mother is unsure of her dates? a) Quickening b) Internal ballottement c) Jacquemier’s sign d) Amenorrhea</li><li>Which diagnostic tool can visualize the gestation sac and fetal parts? a) X-ray b) Ultrasound scanning c) Fetal palpation d) HCG test</li><li>What is the most accurate method to confirm pregnancy? a) Palpation of fetal movement b) X-ray c) Actual delivery of the baby d) Ultrasonography</li><li>Which condition can cause abdominal enlargement and yield negative pregnancy test results? a) Fibroids b) Ovarian cysts c) Pseudocyesis d) Morning sickness</li><li>Osiander’s sign is characterized by: a) Softening of the cervix b) Increased pulsation in the vaginal fornices c) Bluish discoloration of the vaginal walls d) Enlargement of the breasts</li><li>Which sign can be detected by both Doppler and fetoscope? a) Fetal heart sounds b) Uterine soufflé c) Internal ballottement d) Quickening</li><li>What differentiates fibroids from pregnancy? a) Positive pregnancy test results b) Palpable fetal movements c) Presence of uterine soufflé d) Hard mass felt on palpation</li><li>What is the purpose of X-ray in pregnancy? a) To visualize the fetal heart rate b) To determine the gestational age c) To confirm pregnancy definitively d) It is not recommended due to radiation risks</li><li>What differentiates pseudocyesis from a true pregnancy? a) Amenorrhea b) Fetal heart sounds c) Palpation of fetal movement d) Negative pregnancy test results</li><li>What is the primary cause of morning sickness during pregnancy? a) Increased blood production b) Hormonal changes c) Bladder pressure d) Emotional upsets</li><li>Which sign is considered a positive sign of pregnancy? a) Morning sickness b) Softening of the cervix c) Distended urinary bladder d) Palpation of fetal movement</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Fill in the Blanks:</summary>
           <ul><li>________ is the absence of menstruation and a presumptive sign of pregnancy.</li><li>________ can be detected by performing a vaginal examination and palpating the isthmus.</li><li>Increased pulsation in the lateral vaginal fornices is known as ________.</li><li>________ is a condition in which a woman experiences symptoms resembling pregnancy, but pregnancy tests are negative.</li><li>Fetal heart sounds can be detected by a ________ or a fetoscope.</li><li>The normal fetal heart rate ranges between ________ beats per minute.</li><li>Ultrasound scanning can visualize the ________ and identify the fetal parts.</li><li>Palpation of ________ is necessary to assess the position and size of the fetus.</li><li>X-ray is not recommended for pregnancy confirmation due to potential ________ risks.</li><li>The delivery of a live newborn is the ________ evidence of pregnancy.</li><li>Answer: d) Morning sickness</li><li>Answer: c) Vaginal examination</li><li>Answer: b) Ovarian cysts</li><li>Answer: c) 120-160 beats per minute</li><li>Answer: b) Internal ballottement</li><li>Answer: b) Ultrasound scanning</li><li>Answer: c) Actual delivery of the baby</li><li>Answer: a) Fibroids</li><li>Answer: b) Increased pulsation in the vaginal fornices</li><li>Answer: a) Fetal heart sounds</li><li>Answer: d) Hard mass felt on palpation</li><li>Answer: d) It is not recommended due to radiation risks</li><li>Answer: d) Negative pregnancy test results</li><li>Answer: b) Hormonal changes</li><li>Answer: d) Palpation of fetal movement</li></ul>
 <p>Fill in the Blanks:</p>
 <ul><li>Amenorrhea is the absence of menstruation and a presumptive sign of pregnancy.</li><li>Hagar’s sign can be detected by performing a vaginal examination and palpating the isthmus.</li><li>Increased pulsation in the lateral vaginal fornices is known as Osiander’s sign.</li><li>Pseudocyesis is a condition in which a woman experiences symptoms resembling pregnancy, but pregnancy tests are negative.</li><li>Fetal heart sounds can be detected by a Doppler or a fetoscope.</li><li>The normal fetal heart rate ranges between ________ beats per minute.</li><li>Ultrasound scanning can visualize the gestation sac and identify the fetal parts.</li><li>Palpation of the entire fetus is necessary to assess the position and size of the fetus.</li><li>X-ray is not recommended for pregnancy confirmation due to potential radiation risks.</li><li>The delivery of a live newborn is the ultimate evidence of pregnancy.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-5">
           <summary>05 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Normal pregnancy</strong> as a practical nursing topic, not only a memorized definition. Read the topic through the safety of two patients: the mother and the fetus or newborn.</p>
 <ul><li><strong>What to understand first:</strong> define normal pregnancy, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-6">
           <summary>06 Assessment Guide</summary>
           <ul><li>Maternal vital signs, bleeding, pain, contractions, uterine tone and danger signs.</li><li>Fetal or newborn wellbeing, feeding, temperature, breathing and activity.</li><li>History of pregnancy, parity, medications, allergies, investigations and referral risks.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-7">
           <summary>07 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Recognize danger signs early and escalate without delay.</li><li>Provide respectful communication, privacy, infection prevention and clear documentation.</li><li>Teach the mother what to monitor at home and when to return urgently.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> Mother and baby remain stable, danger signs are acted on early, and the family understands follow-up instructions.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-8">
           <summary>08 Patient Teaching and Revision Check</summary>
           <ul><li>Explain normal pregnancy in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Normal%20pregnancy%20Midwifery%20I%20and%20Obstetric%20Anatomy%20nursing%20lecture" title="Normal pregnancy YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (7)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/normal-pregnancy.webp" alt="Normal Pregnancy" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Normal Pregnancy</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/09afcf30cbdf5d002db957755c214814.webp" alt="09afcf30cbdf5d002db957755c214814" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">09afcf30cbdf5d002db957755c214814</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/4932fa6f051aa96ff23935cbe062c9ba.webp" alt="4932fa6f051aa96ff23935cbe062c9ba" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">4932fa6f051aa96ff23935cbe062c9ba</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/0461df2466a46ebb2243d7702359b6ac.webp" alt="0461df2466a46ebb2243d7702359b6ac" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">0461df2466a46ebb2243d7702359b6ac</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/bb4a8b45f7ea8c539d8bc80755db90aa.webp" alt="Bb4a8b45f7ea8c539d8bc80755db90aa" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Bb4a8b45f7ea8c539d8bc80755db90aa</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/b31bd1678e47d9e5b67e22f23bdf30e7.webp" alt="B31bd1678e47d9e5b67e22f23bdf30e7" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">B31bd1678e47d9e5b67e22f23bdf30e7</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/cfca779119186569bbd8eb0756e3f9c5.webp" alt="Cfca779119186569bbd8eb0756e3f9c5" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Cfca779119186569bbd8eb0756e3f9c5</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Normal%20pregnancy%20Midwifery%20I%20and%20Obstetric%20Anatomy%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Normal%20pregnancy%20Midwifery%20I%20and%20Obstetric%20Anatomy%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

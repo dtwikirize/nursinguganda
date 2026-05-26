@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,13 +97,35 @@
         <p>Communication – Preparation of family to make important decisions should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 16 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**COMMUNICATION IN PALLIATIVE CARE**</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Types of communication**</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Major skills in communication**</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Listening**</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Qualities and Attitudes for Effective Communication in Palliative Care**</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Benefits of Effective Communication in Palliative Care**</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Consequences of Ineffective Communication in Palliative Care**</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Special Considerations in HIV and AIDS</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Communication in Children’s Palliative Care</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Good Communication Skills for Interacting with Children:</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Principles for Answering Difficult Questions in Children:</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Key Aspects of Communication in Children’s Palliative Care:</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-16" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 **COMMUNICATION IN PALLIATIVE CARE**</summary>
           <p>Communication (as a generic process) is a two-way process between two or more persons in which ideas, feelings and information are shared, with the ultimate aim of reducing uncertainties and clarifying issues.</p>
 <p>Communication only becomes complete when there is feedback.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 **Types of communication**</summary>
           <ul><li><strong>Verbal communication</strong> is the exchange of ideas through spoken expression in words. It is a medium for communication that can entail using the spoken word, such as talking face-to-face, on a telephone, or through a formal speech; similar communication can occur through writing.</li><li><strong>Non-verbal communication</strong> involves the expression of ideas, thoughts or feelings without the spoken or written word. This is generally expressed in the form of body language that includes gestures and facial expressions and, where appropriate, touches <strong>.</strong></li></ul>
 <p><strong>NB:</strong> Both verbal and non-verbal communication is important in palliative care.</p>
@@ -99,13 +133,13 @@
 <ul><li>∙ 38% is through vocal tones</li><li>∙ 55% is through facial expressions</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 **Major skills in communication**</summary>
           <p>These include the following</p>
 <ul><li>Listening</li><li>Checking Understanding</li><li>Asking Questions</li><li>Answering Questions</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 **Listening**</summary>
           <p>The first and perhaps the most important skill is to be a good listener. We have to be able to listen in order to understand the patient and family needs.</p>
 <p>How well do we listen?</p>
@@ -135,7 +169,7 @@
 <ul><li>Behind every question, there is usually a problem, worry or concern’.</li><li>Avoid answering “Yes” or ‘No’. It does not help the health professional to effectively understand the client’s situation or what the patient and family know about their illness.</li><li>When answering the clients’ questions or discussing the clients’ concerns, give information rather than advice or false reassurance.</li><li>Avoid suggesting to the patient and family what to do, but put forward a suggestion for discussion,</li><li>Always give accurate information. Be honest, it is alright to say. ‘‘I don’t know”.</li><li>Answer questions using simple and clear language. Complicated medical jargon can confuse the patient and their family.</li><li>After giving information, check whether the person has understood the information and ask the person what he intends to do about the situation?</li><li>Remember people ask questions when seeking for help.</li><li>Sometimes there is no obvious answer’ to give a question, such as ‘Why has God done this to me?” but listening to the patient and helping then, explore the feelings behind this statement can be very helpful to him/her.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 **Qualities and Attitudes for Effective Communication in Palliative Care**</summary>
           <p>Effective communication is essential for providing quality care to patients and their families in palliative care. Care providers who possess the following qualities and attitudes are more likely to achieve positive outcomes:</p>
 <ul><li><strong>Desire to help.</strong> Care providers should have a genuine desire to assist patients and their families.</li><li><strong>Patience.</strong> Care providers should be patient and allow patients to express themselves at their own pace.</li><li><strong>Honesty.</strong> Care providers should be truthful and sincere in their interactions with patients and their families.</li><li><strong>Genuineness.</strong> Care providers should be authentic and free from pretense.</li><li><strong>Openness.</strong> Care providers should be open-minded and receptive to different perspectives.</li><li><strong>Dependability.</strong> Care providers should provide accurate and clear information to build trust and facilitate future communication.</li><li><strong>Ability to put others at ease.</strong> Care providers should be able to create rapport and make patients feel comfortable.</li><li><strong>Respect for others and their decisions.</strong> Care providers should treat each patient as an individual and respect their beliefs and values.</li><li><strong>Positive attitude.</strong> Care providers should be non-judgmental, accepting, caring, empathetic, and respectful.</li></ul>
@@ -143,39 +177,39 @@
 <ul><li><strong>Communicate with sensitivity.</strong> Care providers should be empathetic and compassionate when communicating with patients and their families.</li><li><strong>Listen attentively.</strong> Care providers should allow patients to express their emotions and concerns without interruption.</li><li><strong>Check for understanding.</strong> Care providers should confirm that patients and their families understand the information that is being communicated.</li><li><strong>Consider cultural and religious factors.</strong> Care providers should be aware of the cultural and religious backgrounds of patients and their families and tailor their communication accordingly.</li><li><strong>Hold family meetings.</strong> Family meetings can be a valuable way to gather information about patients’ needs and preferences, as well as to build rapport with family members.</li><li><strong>Offer debriefing.</strong> Care providers who have provided care to patients who have died may benefit from debriefing to process their emotions and experiences.</li><li><strong>Pay attention to nonverbal cues.</strong> Care providers should be aware of nonverbal cues, such as facial expressions and body language, which can provide important information about patients’ thoughts and feelings.</li><li><strong>Use clear and simple language.</strong> Care providers should use language that is easy for patients to understand.</li><li><strong>Ask open-ended questions.</strong> Care providers should ask open-ended questions to encourage patients to share their thoughts and feelings.</li><li><strong>Summarize and clarify.</strong> Care providers should summarize and clarify information to ensure that patients and their families understand.</li><li><strong>Address communication barriers.</strong> Care providers should be aware of potential communication barriers, such as language, culture, and disability, and take steps to address them.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 **Benefits of Effective Communication in Palliative Care**</summary>
           <p>Effective communication is essential for providing quality care to patients and their families in palliative care. Here are some of the benefits of effective communication in palliative care:</p>
 <ul><li><strong>Holistic needs assessment:</strong> Effective communication can help to identify and address the psychological, spiritual, social, cultural, and physical needs of patients.</li><li><strong>Personalized information:</strong> Effective communication can help to ensure that patients receive information that is tailored to their individual needs and preferences, whether good or bad news.</li><li><strong>Patient agenda:</strong> Effective communication can help to ensure that patients have the opportunity to share their concerns and priorities in conversations.</li><li><strong>Truthful communication:</strong> Effective communication can help to ensure that patients receive accurate and essential information, which can promote understanding and trust.</li><li><strong>Comprehensive care:</strong> Effective communication can help to facilitate referrals, interdisciplinary assessments, continuity of care, discharge planning, end-of-life care, bereavement support, conflict resolution, and stress management.</li><li><strong>Resource guidance:</strong> Effective communication can help to advise patients on available resources to address various needs and concerns.</li><li><strong>Sense of security:</strong> Effective communication can help to offer patients a sense of security, consistency, and comfort.</li><li><strong>Family education:</strong> Effective communication can help to educate family members and care providers on pain management, distress, symptoms, and effective communication.</li><li><strong>Improved relationships:</strong> Effective communication can help to enhance relationships between family members, care providers, and the community.</li><li><strong>Information flow:</strong> Effective communication can help to ensure smooth information exchange among organizations involved in service delivery.</li><li><strong>Lasting memories:</strong> Effective communication can help to leave positive impressions on family members during the grieving process.</li><li><strong>Strong caregiver-patient relationship:</strong> Effective communication can help to foster a strong bond between caregivers and patients.</li><li><strong>Dignity and autonomy:</strong> Effective communication can help to allow patients to make informed decisions about their remaining time.</li><li><strong>Professional relationships:</strong> Effective communication can help to maintain effective professional relationships and uphold a high standard of care.</li><li><strong>Communication as therapy:</strong> Effective communication can be utilized as a therapeutic tool to support patients in coping with their problems.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 **Consequences of Ineffective Communication in Palliative Care**</summary>
           <p>Ineffective communication in palliative care can have a number of negative consequences, including:</p>
 <ul><li><strong>Lack of accurate information:</strong> Failing to provide essential information to patients may exacerbate problems.</li><li><strong>Lack of planning:</strong> Withholding the truth can lead to inconsistencies and hinder future planning by patients and their families.</li><li><strong>Heightened fear and anxiety:</strong> Avoiding the truth can create a climate of fear, anxiety, and confusion instead of providing calmness.</li><li><strong>Threat to patient care:</strong> Poor communication jeopardizes patient care, erodes trust, and increases staff stress.</li><li><strong>Patient engagement:</strong> Effective communication is crucial for engaging patients and their families in their own care.</li><li><strong>Lack of future preparation:</strong> Not communicating the nature and seriousness of an illness may prevent patients from planning for the future, such as writing a will or making arrangements for children’s care.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Special Considerations in HIV and AIDS</summary>
           <ul><li>Diagnosis Impact <strong>:</strong> An HIV diagnosis brings the prospect of a life-threatening illness and the stigma associated with the disease.</li><li>Emotional Challenges : Strong emotions, such as anxiety, fear of rejection, fear of infecting others, anger, betrayal, shame, and worries about coping and family, affect effective communication in HIV and AIDS.</li><li>Disclosure of Status : Patients may struggle with disclosing their status due to concerns about respect, abandonment, or fear of family reactions.</li><li>Adherence to Treatment: Adherence to the prescribed drug regimen is crucial for successful antiretroviral therapy (ART), and effective provider-patient communication plays a vital role in promoting adherence.</li><li>Key Communication Factors for Adherence : <strong>a</strong> . Pre-treatment education and counseling. <strong>b</strong> . Information on HIV, its manifestations, benefits, and side effects. <strong>c</strong> . Peer support involvement in treatment. <strong>d</strong> . Psychosocial support to reduce stigma. <strong>e</strong> . Culturally appropriate adherence programs. <strong>f</strong> . Support groups, particularly in the African region, have proven successful in providing emotional and peer support to individuals coping with HIV and AIDS.</li><li>Impairments : Illnesses may impact patients’ hearing or vocal capacity, hindering communication.</li><li>Limited Knowledge : Service providers with limited knowledge about HIV and AIDS may face challenges in effective communication.</li><li>Extreme Pain : Severe pain experienced by patients can hinder effective communication.</li><li>Conspiracy of Silence : Caregivers or patients may choose not to disclose important information, leading to communication barriers.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Communication in Children’s Palliative Care</summary>
           <p>In children’s palliative care, communication plays a crucial role as a child’s development and well-being are closely tied to the attention and care they receive. Children learn and grow through talking, playing, and observing others in their family and social environments. Establishing meaningful relationships with adults and peers is vital for their emotional and intellectual development. However, disclosing a diagnosis and ensuring adherence to treatment can present unique challenges in pediatric palliative care.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Good Communication Skills for Interacting with Children:</summary>
           <ul><li>Active Listening : Paying attention and genuinely listening to children.</li><li>Showing Interest : Displaying curiosity and engaging with the child.</li><li>Age-Appropriate Communication: Adjusting communication style and language to suit the child’s developmental stage.</li><li>Non-Judgmental Attitude: Creating a safe space where the child feels comfortable expressing themselves.</li><li>Empathy : Understanding and relating to the child’s feelings and experiences.</li><li>Confidentiality : Respecting the child’s privacy and keeping sensitive information confidential.</li><li>Openness and Honesty : Being transparent with the child while using age-appropriate language.</li><li>Cultural Respect : Valuing and incorporating the child and family’s cultural beliefs and values.</li><li>Patience : Allowing the child ample time to express themselves without rushing or interrupting.</li></ul>
         </details>
       
-        <details class="seo-lesson-section exam-section" open>
+        <details class="seo-lesson-section exam-section" id="section-11">
           <summary>11 Principles for Answering Difficult Questions in Children:</summary>
           <ul><li><strong>Trustworthy Communication</strong> : Building a relationship of trust and security with the child before discussing sensitive topics.</li><li><strong>Individualized Approach</strong> : Assessing the child’s existing knowledge and understanding before providing information.</li><li><strong>Questioning Technique</strong> : Answering questions with further questions to clarify the child’s intent.</li><li><strong>WPC Chunk Technique:</strong> <strong>a. Warn</strong> : Preparing the child for potentially difficult information. <strong>b. Pause</strong> : Allowing the child to process and indicate readiness to continue. <strong>c. Check</strong> : Verifying the child’s understanding and willingness to proceed. <strong>d. Chunk</strong> : Sharing information in small portions, checking comprehension along the way.</li><li><strong>Honesty and Avoidance</strong> : Avoiding evasion or dishonesty when addressing difficult questions.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-12">
           <summary>12 Key Aspects of Communication in Children’s Palliative Care:</summary>
           <ul><li>Addressing Beliefs and Values : Discussing death and dying in line with the child and family’s beliefs, alleviating fear, and involving them in preparing for death.</li><li>End-of-Life Discussions : Openly discussing end-of-life issues and the child’s anticipated death with honesty and sensitivity.</li><li>Saying Goodbye: Providing opportunities for the child to say goodbye, express their feelings, and share their wishes.</li><li>Bereavement Support : Offering counseling and support to children during the bereavement process.</li></ul>
 <p><strong>Note</strong> : Effective communication in children’s palliative care not only helps address their unique needs but also fosters trust, emotional well-being, and family involvement throughout the care journey.</p>
@@ -212,37 +246,49 @@
 <p>Disclosure of an HIV diagnosis can be challenging due to concerns about ____________ and ____________. Answer: respect; abandonment Explanation: Individuals may hesitate to disclose their HIV diagnosis due to fears of losing respect or being abandoned by their family or social circle.</p>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-13">
           <summary>13 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Communication process</strong> as a practical nursing topic, not only a memorized definition. Adapt assessment and care to age, weight, development, caregiver knowledge and family support.</p>
 <ul><li><strong>What to understand first:</strong> define communication process, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-14">
           <summary>14 Assessment Guide</summary>
           <ul><li>Airway, breathing, circulation, hydration, temperature, feeding, activity and danger signs.</li><li>Weight-based medicines, immunization status, growth, development and caregiver concerns.</li><li>Signs that may be subtle in children, including lethargy, poor feeding, fast breathing or convulsions.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-15">
           <summary>15 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use age-appropriate communication and involve the caregiver.</li><li>Prevent dehydration, hypothermia, medication errors and delayed referral.</li><li>Teach home care, danger signs and follow-up clearly.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The child is clinically improving, caregiver instructions are understood and follow-up is arranged.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-16">
           <summary>16 Patient Teaching and Revision Check</summary>
           <ul><li>Explain communication process in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Communication%20%E2%80%93%20Preparation%20of%20family%20to%20make%20important%20decisions%20Palliative%20Care%20Nursing%20nursing%20lecture" title="Communication – Preparation of family to make important decisions YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (11)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/COMMUNICATION.webp" alt="COMMUNICATION" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">COMMUNICATION</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/4basic-forms-of-communication-2-2048-1024x768.webp" alt="4basic Forms Of Communication 2 2048" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">4basic Forms Of Communication 2 2048</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Communication-in-Childrens-Palliative-Care.webp" alt="Communication In Childrens Palliative Care" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Communication In Childrens Palliative Care</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/2502e7c8fa07a99982275c83587ad888.webp" alt="2502e7c8fa07a99982275c83587ad888" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">2502e7c8fa07a99982275c83587ad888</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/21c60dd964b084e9658527b67ebf790c.webp" alt="21c60dd964b084e9658527b67ebf790c" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">21c60dd964b084e9658527b67ebf790c</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/ef1a8c5455c5821e1e7d1b27c5fe5378.webp" alt="Ef1a8c5455c5821e1e7d1b27c5fe5378" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Ef1a8c5455c5821e1e7d1b27c5fe5378</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/b9fbdbcf88def3ecf42b1fe09ab7e862.webp" alt="B9fbdbcf88def3ecf42b1fe09ab7e862" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">B9fbdbcf88def3ecf42b1fe09ab7e862</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/7beecb13c245a2016873d0f2933ca370.webp" alt="7beecb13c245a2016873d0f2933ca370" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">7beecb13c245a2016873d0f2933ca370</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Communication%20%E2%80%93%20Preparation%20of%20family%20to%20make%20important%20decisions%20Palliative%20Care%20Nursing%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <p style="color:var(--seo-muted);font-size:.85rem;margin:8px 0 0">3 more diagrams available — open the lesson for full illustrations.</p>
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Communication%20%E2%80%93%20Preparation%20of%20family%20to%20make%20important%20decisions%20Palliative%20Care%20Nursing%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

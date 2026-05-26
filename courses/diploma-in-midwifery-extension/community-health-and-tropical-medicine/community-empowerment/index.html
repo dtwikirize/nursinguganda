@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,25 @@
         <p>Community empowerment should be reviewed through safe maternal and newborn assessment, early recognition of danger signs, respectful communication and timely referral. Connect the definition to vital signs, bleeding, fetal or newborn wellbeing, patient education and local protocol requirements.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (12)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Community Empowerment</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Types of Empowerment</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Stages of Empowerment for Highly Sensitive People in the Community</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Objectives of Community Empowerment.</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Principles of Community Empowerment**</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Elements of Community Empowerment</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Essential Factors in Community Empowerment</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Importance of Community Empowerment</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Community Empowerment</summary>
           <p><strong>Community empowerment</strong> refers to the process of enabling communities to increase control over their lives and the decisions that affect them.</p>
 <p>It involves measures and actions designed to enhance autonomy, self-determination, and the ability of individuals and communities to represent their interests and act on their own authority.</p>
@@ -96,37 +126,37 @@
 <p>Power is a central concept in community empowerment and health promotion invariably operates within the arena of a power to struggle. Empowerment follows Community Organization.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Types of Empowerment</summary>
           <ul><li><strong>Economic Empowerment</strong> : Economic empowerment encompasses the actions taken by individuals to generate wealth and improve their financial well-being. It focuses on acquiring resources, developing skills, and accessing opportunities for economic growth.</li><li><strong>Political Empowerment:</strong> Political empowerment involves the processes through which individuals and communities organize themselves and participate in decision-making. It includes activities such as civic engagement, advocacy, and the exercise of democratic rights to influence political systems and policies.</li><li><strong>Cultural Empowerment</strong> : Cultural empowerment pertains to aspects related to language, food, clothing, religion, customs, and history. It involves preserving and celebrating cultural heritage, promoting cultural diversity, and ensuring equal recognition and respect for different cultural identities within a society.</li><li><strong>National Empowerment</strong> : National empowerment refers to a nation’s ability to make independent decisions and exercise sovereignty over its affairs. It involves asserting self-governance, autonomy, and self-determination as a nation-state, allowing for the pursuit of national interests and the shaping of national policies.</li><li><strong>Societal Empowerment</strong> : Societal empowerment arises from the fair and equitable treatment of all members of a society. It involves creating inclusive social structures, eliminating discrimination, and ensuring equal opportunities and rights for individuals regardless of their backgrounds, identities, or social status.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Stages of Empowerment for Highly Sensitive People in the Community</summary>
           <ul><li><strong>Stage One:</strong> Survival Mode – Life’s Struggles : In this stage, we find ourselves just trying to get through each day amidst the overwhelming stress, anxiety, and depression that often accompany being highly sensitive. It can feel like a constant battle, and we may experience a great deal of suffering during this phase.</li><li><strong>Stage Two</strong> : The Spark – Opening New Doors : Something starts to shift within us during this stage. There is often a spark, a glimmer of hope, that propels us to take action and explore new paths. It’s as if we’re opening a door to a different way of living and experiencing life. We begin to sense that positive changes are possible.</li><li><strong>Stage Three</strong> : Commitment – Nurturing Self-Care : In this stage, we learn the importance of caring for ourselves without feeling guilty about it. It becomes an act of wellness and balance. We consciously choose to spend more time with people who bring positivity and light into our lives, while reducing our interactions with those who drain our energy. During this phase, we feel inspired and dedicated to our own self-care.</li><li><strong>Stage Four:</strong> Becoming Whole – Surrounding Yourself with Positivity : In this stage, we prioritize and consciously invest our time in relationships with people who make us feel good about ourselves, who energize us, and whom we admire. We start to distance ourselves from individuals who may have a negative impact on our well-being or drain our energy.</li><li><strong>Stage Five</strong> : Empowered – Embracing Our Gifts : This is the stage where we aim to see the majority of highly sensitive people reach. At this point, we finally tap into the unique gifts that come with being highly sensitive. We gain the ability to make informed decisions, view things from a positive perspective, and let go of unnecessary worries and paranoia.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Objectives of Community Empowerment.</summary>
           <ul><li><strong>Building Local Capacity and Leadership</strong> : Community empowerment aims to provide training, education, and learning tools to individuals and communities, enabling them to develop the skills and knowledge necessary to take control of their own development. By building local capacity and leadership, communities become more self-sufficient and capable of addressing their needs.</li><li><strong>Creating a Global Network</strong> : Community empowerment seeks to establish a global network of individuals and organizations dedicated to investing in community development. This network facilitates collaboration, sharing of best practices, and collective action to support and empower communities worldwide.</li><li><strong>Scaling Up Successful Community Development</strong> : One of the objectives of community empowerment is to expand the knowledge and understanding of successful community development approaches. By documenting and sharing successful models and practices, empowerment efforts aim to replicate and scale up these initiatives in various communities. Additionally, community empowerment recognizes the importance of engaging the private sector in sustainable community development.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 **Principles of Community Empowerment**</summary>
           <ul><li><strong>Valuing People:</strong> Community empowerment begins by recognizing and valuing the contributions, experiences, and perspectives of individuals within the community. It involves treating people with respect, dignity, and fairness.</li><li><strong>Shared Leadership:</strong> Empowerment is fostered through shared leadership, where community members have the opportunity to actively participate in decision-making processes. This promotes inclusivity, collaboration, and a sense of ownership among community members.</li><li><strong>Shared Goals and Directions:</strong> Empowerment is facilitated by creating a shared understanding of goals and directions within the community. This involves involving community members in the process of defining objectives and collectively working towards them.</li><li><strong>Trust</strong> : Trust is a vital principle of community empowerment. Building trust among community members and between community members and leaders creates an environment of openness, transparency, and mutual support.</li><li><strong>Information and Decision-Making</strong> : Empowerment requires providing relevant information, resources, and guidance to community members to facilitate informed decision-making. This enables individuals to actively participate in shaping their own lives and community.</li><li><strong>Delegation of Authority</strong> : Empowerment involves delegating authority and providing opportunities for community members to take on leadership roles and make decisions that impact their lives. It encourages autonomy, responsibility, and the development of individual and collective capacities.</li><li><strong>Feedback and Communication</strong> : Regular and meaningful feedback is essential for community empowerment. Providing feedback on progress, achievements, and challenges helps to keep community members engaged, informed, and motivated to continue their efforts.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Elements of Community Empowerment</summary>
           <ul><li><strong>Shared Values</strong> : Emphasizing the importance of shared values and a sense of belonging to a unified entity strengthens community empowerment.</li><li><strong>Access to Essential Services</strong> : Ensuring equitable access to communal services such as water, education, and roads enhances community empowerment.</li><li><strong>Effective Communication</strong> : Open and effective communication channels play a crucial role in fostering empowerment within the community.</li><li><strong>Confidence</strong> : Cultivating a positive attitude, willingness, and self-motivation among community members contributes to increased empowerment.</li><li><strong>Information Sharing</strong> : Facilitating the effective provision of information empowers community members by equipping them with knowledge and resources.</li><li><strong>Political and Administrative</strong> (Context): When political leaders collaborate and work together, they can promote empowerment within the community.</li><li><strong>Leadership:</strong> Strong and effective leaders play a pivotal role in promoting community empowerment, while ineffective leadership can weaken it.</li><li><strong>Networking and Collaboration</strong> : Building networks and fostering collaboration among community members strengthens empowerment, as isolation can undermine community empowerment.</li><li><strong>Organization and Unity</strong> : Promoting good organization and unity among community members encourages them to work together towards a common goal, reinforcing empowerment</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Essential Factors in Community Empowerment</summary>
           <ul><li><strong>Self-Confidence:</strong> Building self-confidence among community members is crucial for empowering them to take charge of their own lives and contribute to the community’s development.</li><li><strong>Exposure</strong> : Providing exposure to new ideas, knowledge, and experiences broadens perspectives and empowers individuals to explore new possibilities.</li><li><strong>Independence</strong> : Encouraging independence enables community members to make decisions and take actions autonomously, fostering a sense of ownership and empowerment.</li><li><strong>Empowering Community Processes</strong> : Implementing inclusive and participatory processes that involve community members in decision-making and problem-solving is vital for community empowerment.</li><li><strong>Express Gratitude</strong> : Recognize and appreciate the efforts and time invested by community members through simple acts of gratitude, as it motivates and reinforces their value and contribution.</li><li><strong>Facilitate Connection and Freedom</strong> : Offer opportunities for community members to connect, provide them with guidance and tools for empowerment, while also allowing them the freedom to explore their own paths.</li><li><strong>Identify Potentials:</strong> Help community members identify their unique strengths and potentials in life, enabling them to harness their abilities and make meaningful contributions to their community.</li><li><strong>Active Listening and Feedback</strong> : Create a culture of open communication, actively listen to the input and feedback of community members, and involve them in the decision-making process to ensure their voices are heard.</li><li><strong>Recognize and Appreciate</strong> : Shine a spotlight on the work of community members, publicly acknowledging their efforts and highlighting how their contributions have contributed to the success of both the organization and the individuals themselves.</li><li><strong>Mentorship and Leadership Development</strong> : Support community members in recruiting and mentoring new leaders, ensuring the continuity of community empowerment and fostering long-term sustainability.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Importance of Community Empowerment</summary>
           <ul><li><strong>Networking and Influential Connections</strong> : Community empowerment opens doors for communities to expand their networks and connect with new and influential individuals who can contribute to their growth and development.</li><li><strong>Socioeconomic Influence</strong> : Empowered communities actively advocate for their rights and influence social and economic aspects within the country, leading to positive changes and improved conditions for their members.</li><li><strong>Fosters Teamwork</strong> : Community empowerment promotes a sense of teamwork and collaboration among community members, enabling them to work together towards common goals and objectives.</li><li><strong>Resource Contribution</strong> : Empowered communities actively contribute the necessary resources to implement specific actions related to health or other areas, ensuring the successful execution of initiatives.</li><li><strong>Community Involvement</strong> : Community empowerment encourages active community involvement in decision-making processes, allowing individuals to have a voice and contribute to shaping their community’s future.</li><li><strong>Increased Participation:</strong> Empowerment initiatives result in increased community participation, as individuals feel motivated and empowered to actively engage in activities and initiatives that benefit the community.</li><li><strong>Trust and Loyalty</strong> : Community empowerment strengthens trust and loyalty among community members, as they feel supported, valued, and included in decision-making processes and community development efforts.</li><li><strong>Self-Awareness and Confidence</strong> : Through empowerment, community members develop self-awareness and confidence, realizing their own capabilities and potential to create positive change within their community.</li><li><strong>Enhanced Productivity:</strong> Empowered communities experience increased productivity, as individuals are motivated and empowered to contribute their skills, knowledge, and resources towards community development.</li><li><strong>Expanded Assets and Capabilities</strong> : Community empowerment leads to the growth and expansion of community assets and capabilities, allowing communities to become more self-reliant, resilient, and resourceful.</li></ul>
 <p>In Summary,</p>
@@ -134,37 +164,49 @@
 <ul><li>1. It helps the community to broaden their networks and meet new and influential people</li><li>2. It influences the social and economic aspects of the country to seek their rights</li><li>3. Promotes team work with in community members</li><li>4. It contributes resources required to implement a specific action towards health</li><li>5. Encourages community involvement</li><li>6. Increases community participation</li><li>7. Increases/ develops trust and loyalty</li><li>8. Increases self-awareness and confidence</li><li>9. Results into increased productivity</li><li>10. It increases the assets and capabilities.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-9">
           <summary>09 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Community Empowerment</strong> as a practical nursing topic, not only a memorized definition. Move from individual illness to prevention, population risk, health education and continuity of care.</p>
 <ul><li><strong>What to understand first:</strong> define community empowerment, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-10">
           <summary>10 Assessment Guide</summary>
           <ul><li>Who is affected, where they live, risk factors, resources and barriers to care.</li><li>Environmental hygiene, nutrition, immunization, water, sanitation and health-seeking behaviour.</li><li>Community beliefs, leaders, household practices and surveillance data.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-11">
           <summary>11 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Promote prevention, early detection, referral and community participation.</li><li>Use clear health education matched to literacy, culture and available resources.</li><li>Document findings and coordinate with community health structures.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The community understands the message, risk is reduced and follow-up or referral pathways are active.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-12">
           <summary>12 Patient Teaching and Revision Check</summary>
           <ul><li>Explain community empowerment in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Community%20empowerment%20Community%20Health%20and%20Tropical%20Medicine%20nursing%20lecture" title="Community empowerment YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (10)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Community-Empowerment-1.webp" alt="Community Empowerment 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Community Empowerment 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/99474aabff28060fc17ac7e3572e5dac.webp" alt="99474aabff28060fc17ac7e3572e5dac" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">99474aabff28060fc17ac7e3572e5dac</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/c1fa47d1a15bb4ad1f528aa1b0810b47.webp" alt="C1fa47d1a15bb4ad1f528aa1b0810b47" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">C1fa47d1a15bb4ad1f528aa1b0810b47</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/3927de387a20f664f49ad8014681ad8e.webp" alt="3927de387a20f664f49ad8014681ad8e" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">3927de387a20f664f49ad8014681ad8e</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/e3dec9dd5cbf4c03dae9b26571cf5b24.webp" alt="E3dec9dd5cbf4c03dae9b26571cf5b24" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">E3dec9dd5cbf4c03dae9b26571cf5b24</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/40dbd2671bf1fa0acfc027ab2ad2e2bc.webp" alt="40dbd2671bf1fa0acfc027ab2ad2e2bc" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">40dbd2671bf1fa0acfc027ab2ad2e2bc</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/e2bec0eb3c4a8909955230fe7ec5601e.webp" alt="E2bec0eb3c4a8909955230fe7ec5601e" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">E2bec0eb3c4a8909955230fe7ec5601e</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/41aac2c7f2b94ebb8f4733a545fe6c00.webp" alt="41aac2c7f2b94ebb8f4733a545fe6c00" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">41aac2c7f2b94ebb8f4733a545fe6c00</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Community%20empowerment%20Community%20Health%20and%20Tropical%20Medicine%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <p style="color:var(--seo-muted);font-size:.85rem;margin:8px 0 0">2 more diagrams available — open the lesson for full illustrations.</p>
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Community%20empowerment%20Community%20Health%20and%20Tropical%20Medicine%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

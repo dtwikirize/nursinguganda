@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,17 +97,36 @@
         <p>Perform Shortening and removal of drains should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 13 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">SHORTENING OF DRAINS</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Examples of Drains</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Indications of Drains</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Classifications of Drains</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Types of Drains:</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">PROCEDURE FOR SHORTENING AND REMOVAL OF DRAINS</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Emptying a Drain</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Removal of Drains</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">CARE OF WOUNDS WITH DRAINAGE</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 SHORTENING OF DRAINS</summary>
           <p>A drain: A surgical implant that allows removal of fluid and/or gas from a wound or body cavity.</p>
         </details>
       
-        <details class="seo-lesson-section exam-section" open>
+        <details class="seo-lesson-section exam-section" open id="section-2">
           <summary>02 Examples of Drains</summary>
           <ul><li>Nasogastric Tube (NG Tube): This is used to drain stomach contents or provide nutrition. Shortening and removal may be necessary when the tube is no longer needed or needs adjustment.</li><li>Catheters : Catheters can refer to various types, such as urinary catheters and central venous catheters. Shortening and removal may be needed when the catheter is ready to be taken out.</li><li>Ventriculoperitoneal Shunts (VP Shunts) : These are used to manage excess cerebrospinal fluid in the brain. While they are typically removed in a surgical procedure, adjustments or revisions may be needed during a patient’s treatment.</li><li>Vascular Access Ports : These are used for long-term intravenous treatments. Ports are typically removed when they are no longer required, such as when a patient completes chemotherapy.</li><li>Jackson-Pratt Drain (JP Drain) : Used to remove fluids that build up in surgical sites, such as after a mastectomy or abdominal surgery. They are typically removed when the drainage decreases to an acceptable level.</li><li>Hemovac Drain : Similar to the JP drain, the Hemovac drain is used to remove blood and fluids from surgical sites. It is also removed when drainage decreases.</li><li>Penrose Drain : A soft, flat rubber tube used to allow drainage from a wound. It may be removed when the wound has healed sufficiently.</li><li>Chest Tube : Inserted into the chest to remove air or fluids, often in cases of pneumothorax or pleural effusion. They can be removed when they are no longer needed.</li><li>Biliary Drainage Tube : Used to drain bile from the liver or gallbladder when there is a blockage. Removal depends on the patient’s condition and the resolution of the blockage.</li><li>Ureteral Stent : Placed in the ureter to promote urine flow, often after urological surgeries. They may need to be shortened or removed when they are no longer needed.</li><li>Gastrostomy Tube (G-tube) : Used for long-term enteral feeding, often in patients who cannot eat normally. Removal may be considered when the patient can resume oral feeding.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Indications of Drains</summary>
           <p>Nasogastric Tube (NG Tube):</p>
 <ul><li>Gastric decompression : To remove stomach contents and gas to relieve abdominal distention.</li><li>Enteral feeding : To provide nutrition and medications when oral intake is not possible.</li><li>Gastric lavage</li><li>Medication administration</li></ul>
@@ -109,7 +140,7 @@
 <ul><li>Pneumothorax : To remove air from the pleural space.</li><li>Pleural effusion : To drain fluid or blood from the pleural cavity.</li><li>Post-surgical use : After thoracic surgery to prevent pneumothorax or pleural effusion.</li><li>Hemothorax</li><li>Empyema</li><li>Lung abscess</li><li>Trauma</li><li>Pulmonary embolism</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Classifications of Drains</summary>
           <p>Drains are categorized based on various factors, including their functionality and design. Here, we discuss the classifications of drains:</p>
 <p>Open Drains:</p>
@@ -130,7 +161,7 @@
 <ul><li>Less efficient drainage: They rely on gravity and may not drain fluids effectively, especially in large volumes.</li><li>Increased risk of infection : The open design increases the risk of contamination and infection.</li><li>Difficult to monitor drainage : The drainage volume may be difficult to measure accurately, leading to potential complications.</li><li>Gravity differences may affect the location of the drain.</li><li>Drains can easily become clogged.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Types of Drains:</summary>
           <p>Pigtail Drain:</p>
 <ul><li>Inserted under radiological guidance : This ensures precise placement and minimizes complications.</li><li>Used to remove unwanted body fluids from organs, ducts, or abscesses : This includes fluids like pus, bile, blood, or urine.</li><li>The tip forms a pigtail shape, facilitating drainage : This shape helps prevent the drain from getting clogged and ensures efficient removal of fluids.</li><li>Advantages :</li><li>Can be placed in difficult-to-reach areas.</li><li>Low risk of tissue damage due to its flexibility.</li><li>Effective in draining thick, viscous fluids.</li><li>Disadvantages:</li><li>May be prone to blockage.</li><li>Requires radiological expertise for insertion and maintenance.</li></ul>
@@ -148,7 +179,7 @@
 <ul><li>Hollow, flexible tubes used to collect urine from the bladder : Provides a way to drain urine from the bladder.</li><li>Indications include relieving urinary obstructions, managing bladder weakness or nerve damage, draining the bladder during and after surgery, and treating urinary incontinence: Essential for managing urinary issues and ensuring bladder health.</li><li>Catheter materials can include rubber, silicone, or latex</li><li>Advantages :</li><li>Allows for effective urine drainage.</li><li>Reduces urinary tract infections.</li><li>Provides a way to monitor urine output.</li><li>Disadvantages :</li><li>Can cause discomfort or pain.</li><li>Risk of infection if not properly maintained.</li><li>May be associated with bladder stones or urinary retention.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 PROCEDURE FOR SHORTENING AND REMOVAL OF DRAINS</summary>
           <p>Requirements</p>
 <ul><li>Top Shelf Bottom Shelf</li><li>Stitch removing pack containing Bottle of antiseptic solution</li><li>– Stitch Scissors</li><li>– Non-toothed dissecting forceps</li><li>– 2 dressing forceps</li><li>– Cotton wool swabs</li><li>– Gauze</li><li>– Sterile gloves</li><li>– Sterile safety pin</li><li>– Sterile dressing towel</li><li>– Receiver</li></ul>
@@ -157,53 +188,65 @@
 <p>Hospital Standards Procedures.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Emptying a Drain</summary>
           <ul><li>Steps Action Rationale</li><li>1. Perform hand hygiene. Hand hygiene reduces the risk of infection.</li><li>2. Collect necessary equipment. Having the required supplies readily available, such as a drainage measurement container, non-sterile gloves, waterproof pad, and alcohol swab, ensures a smooth and efficient procedure.</li><li>3. Apply non-sterile gloves and goggles or a face shield where necessary. Personal protective equipment (PPE) reduces the transmission of microorganisms and protects against accidental exposure to body fluids.</li><li>4. Maintaining principles of asepsis, remove the plug from the pouring spout as indicated on the drain. Aseptic technique is crucial to prevent contamination. Opening the plug away from your face reduces the risk of accidental splashing of body fluid.</li><li>5. Gently tilt the opening of the reservoir toward the measuring container and pour out the contents. Note the character of drainage: color, consistency, odor, and amount. Pouring away from yourself prevents exposure to body fluids. Monitoring and documenting the characteristics of drainage are essential for patient care and record-keeping.</li><li>6. Swab the surface of the pouring spout and plug with an alcohol swab. Place the drainage container on the bed or a hard surface, tilt it away from your face, and compress the drain to flatten it with one hand. Swabbing with alcohol maintains cleanliness. Flattening the drain before closing helps expel air, ensuring efficient functioning of the drainage system.</li><li>7. Place the plug back into the pour spout of the drainage system, maintaining asepsis. Reinserting the plug while maintaining aseptic principles reestablishes the vacuum suction in the drainage system.</li><li>8. Secure the device onto the patient’s gown using a safety pin; ensure the drain is functioning; make sure that enough slack is present on the tubing. Securing the drain minimizes the risk of inadvertent removal. Providing adequate slack accommodates patient movement and prevents tension at the drain insertion site.</li><li>9. Discard drainage according to agency policy. Proper disposal procedures protect healthcare workers against exposure to blood and body fluids.</li><li>10. Remove gloves and perform hand hygiene. Hand hygiene should be performed after removing gloves, as gloves are not puncture-proof or leak-proof. Hands may become contaminated during glove removal.</li><li>11. Document the procedure and findings accordingly. Report any unusual findings or concerns to the appropriate healthcare professional. Documentation ensures accurate recording of drainage and any changes. If multiple drains are present, numbering and noting their locations in the chart is essential. Any significant changes or concerns must be reported to the healthcare provider per agency policy.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Removal of Drains</summary>
           <ul><li>Steps Action Rationale</li><li>1. Confirm that the prescriber’s order correlates with the amount of drainage in the past 24 hours. Ensuring the prescriber’s order aligns with recent drainage amounts is crucial for safe removal. It helps avoid early removal if the drainage is not yet at an acceptable level.</li><li>3. Assemble supplies at the patient’s bedside: dressing tray, sterile suture scissors or sterile blade, cleansing solution, tape, garbage bag, outer dressing. Organizing supplies in advance ensures efficiency and readiness for the procedure, enhancing patient safety and comfort.</li><li>4. Apply a waterproof drape or mackintosh for setting the drain onto once it has been removed. This provides a designated place for the removed drain, preventing contamination and maintaining cleanliness.</li><li>5. Perform hand hygiene. Hand hygiene before the procedure reduces the risk of introducing microorganisms from other sources to the patient.</li><li>6. Apply non-sterile gloves and PPE accordingly. Wearing non-sterile gloves and appropriate PPE as assessed at the point of care reduces the risk of transmission of microorganisms and provides added protection against contamination.</li><li>7. Release suction on the reservoir and empty; measure and record volumes greater than 10 ml. Remove the dressing. Releasing suction ensures safe removal. Measuring and documenting the drainage volume is crucial for patient care and record-keeping.</li><li>8. Clean and dry the incision and drain site following principles of asepsis. Preparing the wound and surrounding area through aseptic cleaning minimizes the risk of infection.</li><li>9. Carefully cut and remove the securing suture following principles of asepsis. Removing the suture safely is essential to avoid complications and ensure smooth removal of the drain.</li><li>10. While holding two to three 4 × 4 sterile gauze in the non-dominant hand, stabilize the skin. Sterile gauze helps absorb any additional drainage during the removal process, reducing the risk of introducing microorganisms. Stabilizing the skin minimizes discomfort to the patient during the procedure.</li><li>11. Ask the patient to take a deep breath and exhale slowly; remove the drain as the patient exhales. Firmly grasp the drainage tube close to the skin with the dominant hand, and with a swift and steady motion, withdraw the drain. Patient cooperation, distraction, and timed removal reduce discomfort. The gentle resistance felt during removal is expected, but if resistance is strong, taking a pause and encouraging relaxation is essential.</li><li>12. Place the drain and tubing onto a waterproof pad or into a garbage bag. Remove gloves. Proper disposal prevents contamination of the environment and maintains hygiene.</li><li>13. At this point, some nurses may clean and dry the wound. The decision to clean the wound can vary based on the specific situation and healthcare provider’s preferences.</li><li>14. Dress the wound with a sterile dressing. Dressing the wound post-removal is essential as drain sites may continue to drain for a few days.</li><li>15. Discard the drain and garbage. Proper disposal follows agency policy and decreases the risk of exposure to blood and body fluids for others.</li><li>16. Perform hand hygiene. Hand hygiene after the procedure minimizes the risk of contamination.</li><li>17. Assess the dressing 30 minutes after drain removal. Likewise, ask the patient to call if they notice any increased drainage from the site. Monitoring for changes in drainage after removal is essential for patient safety and early detection of complications.</li><li>18. Document the procedure (including drain removal, drain output and characteristics, how the patient tolerated the procedure, dressings applied) accordingly. Report any unusual findings or concerns to the appropriate healthcare professional. Accurate and timely documentation and reporting are crucial for patient care and safety, ensuring that any concerns are addressed promptly.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 CARE OF WOUNDS WITH DRAINAGE</summary>
           <p>Important Points in the Care of Closed Drainage</p>
 <ul><li>Step Action Rationale</li><li>1 Maintain the end of the tube from the wound below the water in the drainage bottle. This prevents air from passing back up the tube into the wound.</li><li>2 Seal the tubing first with either clips or artery forceps before emptying the bottle. To prevent air entry into the lungs.</li><li>3 Measure the amount of water or antiseptic in the drainage bottle and subtract this amount from the total when measuring the drainage. To get the correct amount of fluid drained from the wound.</li><li>4 Observe for any abnormal deposits, colour, and odour. To aid diagnosis and follow up/progress.</li><li>5 Keep a clip or artery forceps at the bedside incase of an accident to the tubing. To be able to clip the tube immediately to prevent air going to the lungs in case of accident to the tubing.</li><li>6 Maintain sterility of the bottle and should never be lifted up to the bed level or above. To maintain asepsis and also to prevent back flow of fluid from the drainage chamber to the pleural cavity.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-10">
           <summary>10 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Perform Shortening and removal of drains</strong> as a practical nursing topic, not only a memorized definition. Turn the topic into practical nursing knowledge: meaning, assessment, care priorities, teaching and evaluation.</p>
 <ul><li><strong>What to understand first:</strong> define perform shortening and removal of drains, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-11">
           <summary>11 Assessment Guide</summary>
           <ul><li>Key definitions, patient history, focused observations and risk factors.</li><li>Findings that are normal, abnormal or urgent.</li><li>Resources, referral needs and documentation requirements.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-12">
           <summary>12 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Protect safety, comfort, dignity and infection prevention.</li><li>Provide clear care, education and escalation when needed.</li><li>Evaluate response and record what changed.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The topic is understood in a way that supports safe nursing judgement and revision.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-13">
           <summary>13 Patient Teaching and Revision Check</summary>
           <ul><li>Explain perform shortening and removal of drains in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Perform%20Shortening%20and%20removal%20of%20drains%20Foundations%20of%20Nursing%20(III)%20nursing%20lecture" title="Perform Shortening and removal of drains YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (27)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/removing-drains.webp" alt="Removing Drains" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Removing Drains</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Indications-of-Drains-1-1024x682.webp" alt="Indications Of Drains 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Indications Of Drains 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/pigtail-drain.webp" alt="Pigtail Drain" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Pigtail Drain</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/hemovac.webp" alt="Hemovac" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Hemovac</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/penrose.webp" alt="Penrose" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Penrose</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/t-tube.webp" alt="T Tube" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">T Tube</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/chest-tube-e1719123851291.webp" alt="Chest Tube E1719123851291" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Chest Tube E1719123851291</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/nasogastric_tube1.webp" alt="Nasogastric Tube1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Nasogastric Tube1</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Perform%20Shortening%20and%20removal%20of%20drains%20Foundations%20of%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <p style="color:var(--seo-muted);font-size:.85rem;margin:8px 0 0">19 more diagrams available — open the lesson for full illustrations.</p>
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Perform%20Shortening%20and%20removal%20of%20drains%20Foundations%20of%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

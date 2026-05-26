@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,13 +97,31 @@
         <p>Hemophilus influenza should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (12)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">HAEMOPHILUS INFLUENZA INFECTION.</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Classifications of Haemophilus Influenzae</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Infections and Diseases:</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Mode of spread of Haemophilus Influenzae:</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Pathophysiology of Haemophilus influenzae Infection:</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Clinical Features according to Infections and Diseases</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Diagnosis and Investigations</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Management</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 HAEMOPHILUS INFLUENZA INFECTION.</summary>
           <p>Haemophilus influenzae is a gram-negative , cocco-bacillary, facultatively anaerobic bacterium that falls within the Coccobacilli group. While it normally resides as a commensal in the nose and throat without causing infections under normal conditions, it can become pathogenic if host defenses are compromised.</p>
 <p>The bacterium was initially misattributed as the cause of influenza, later identified correctly as the influenza virus.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Classifications of Haemophilus Influenzae</summary>
           <p>Haemophilus influenzae is classified into two main groups based on the presence or absence of a capsule : Encapsulated and Unencapsulated (non-typeable).</p>
 <p>Encapsulated Types:</p>
@@ -100,7 +130,7 @@
 <ul><li>Lack capsular serotypes and are generally less invasive but can still cause inflammation.</li><li>Not affected by the Hib vaccination.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Infections and Diseases:</summary>
           <p>Haemophilus influenzae infections can lead to various diseases, particularly when the bacterium successfully invades the body. These include:</p>
 <p>Invasive Diseases: (For Encapsulated)</p>
@@ -109,25 +139,25 @@
 <ul><li>Otitis media</li><li>Conjunctivitis</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Mode of spread of Haemophilus Influenzae:</summary>
           <p>The primary mode of spread for Haemophilus influenzae is person-to-person transmission through respiratory droplets. The bacterium is spread when an infected person coughs or sneezes, releasing tiny droplets containing the bacteria into the air. These droplets can then be inhaled by individuals in close contact, leading to the colonization of the respiratory tract.</p>
 <ul><li>Respiratory Droplets : The most common mode of transmission is through respiratory droplets expelled by infected individuals during activities such as coughing, sneezing, or talking.</li><li>Close Contact : Transmission is more likely to occur in situations where people are in close contact with an infected person, especially in crowded or confined spaces.</li><li>Asymptomatic Carriers: Individuals colonized with Haemophilus influenzae , even if asymptomatic, can still potentially transmit the bacterium to others.</li><li>Opportunistic Nature : Haemophilus influenzae is considered an opportunistic pathogen, meaning it takes advantage of weakened immune defenses to cause infections. While it can colonize the respiratory tract without causing disease in healthy individuals, it may lead to infections when the host’s immune system is compromised.</li><li>Age Groups : The transmission is particularly significant in settings with a high density of young children, as they are more prone to certain types of invasive Haemophilus influenzae infections, such as Hib (Haemophilus influenzae type b) meningitis.</li><li>Household Crowding : Living in a crowded household where people are in close proximity increases the likelihood of person-to-person transmission of the bacterium through respiratory droplets, which can lead to Hib infection.</li><li>Large Household Size : Larger households provide more opportunities for the spread of infectious agents. The more people there are in a household, the higher the chances of someone being a carrier of Haemophilus influenzae, increasing the risk of transmission.</li><li>Child Care Attendance : Children in daycare settings may have closer contact with each other, facilitating the spread of bacteria. Additionally, young children may not have fully developed immune systems, making them more susceptible to infections like Hib.</li><li>Low Socioeconomic Status: Lower socioeconomic status often correlates with limited access to healthcare, crowded living conditions, and potential challenges in maintaining hygiene. These factors collectively contribute to an increased risk of Hib infection.</li><li>Low Parental Education Levels : Parents with lower education levels may have less awareness of preventive measures and healthcare practices. This lack of knowledge can impact their ability to protect their children from infectious diseases, including Hib.</li><li>School-Age Siblings : Siblings attending school may be exposed to various infectious agents, including Haemophilus influenzae. As carriers, they can potentially transmit the bacterium to younger siblings at home.</li><li>Age (Youngest and Oldest) : The youngest and oldest individuals are at an elevated risk. Young children often have developing immune systems, and the elderly may have weakened immune defenses, making both age groups more susceptible to severe infections.</li><li>Race/Ethnicity (Native Americans) : Native Americans may face elevated risks due to a combination of genetic, socioeconomic, and healthcare access factors that can contribute to a higher incidence of Hib disease.</li><li>Chronic Diseases (e.g., HIV, Immunodeficiency): Conditions that compromise the immune system, such as HIV, immunodeficiency, or asplenia, reduce the body’s ability to fight infections, increasing the risk and severity of Hib disease.</li><li>Prematurity : Premature infants may have underdeveloped immune systems, placing them at a higher risk of infections, including Hib. Their immune systems may not be fully equipped to respond effectively to bacterial threats.</li><li>Extremes of Age (Below 5 and Above 65) : Both very young children (below 5 years) and the elderly (above 65 years) often have weaker immune responses, making them more vulnerable to severe infections, including those caused by Haemophilus influenzae.</li><li>Immunocompromised Individuals : Individuals with compromised immune systems, such as those with HIV/AIDS, cancers, or sickle cell disease, are less capable of mounting an effective immune response against pathogens, increasing the risk of severe Hib infections.</li><li>Asplenia : Asplenia (lack of a spleen or non-functional spleen) impairs the immune system’s ability to clear bacteria from the bloodstream, leading to an increased risk of severe Hib infections.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Pathophysiology of Haemophilus influenzae Infection:</summary>
           <ul><li>Entry into the Body: Haemophilus influenzae enters the body through the nasopharynx, commonly the upper respiratory tract.</li><li>Colonization in the Nasopharynx: The organisms colonize the nasopharynx, where they may remain shortly or for several months. Some individuals may carry the bacteria without displaying symptoms, becoming asymptomatic carriers.</li><li>Multiplication and Immune Recognition: Once inside the body, the organisms start to multiply. The immune system recognizes the presence of the foreign invader, sensitizing immune cells to the threat.</li><li>Immune Response Activation: The immune system responds by transporting various defense cells, including cytokines, to the affected area. This mobilization is a defensive reaction against the invading bacteria.</li><li>Inflammation Occurs: In response to the interaction between the immune cells and the bacteria, inflammation takes place. This is a protective mechanism designed to eliminate the infectious agent.</li><li>Signs and Symptoms of Infection: The inflammatory response leads to signs and symptoms of infection, including fever, weakness, nausea, and other systemic manifestations. These symptoms are indicative of the body’s efforts to combat the infection.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Clinical Features according to Infections and Diseases</summary>
           <ul><li>Clinical Manifestation Signs and Symptoms</li><li>Pneumonia Fever and chills Cough Shortness of breath Sweating Chest pain Headache Tiredness Fatigue</li><li>Bacteraemia Fever and chills Tiredness Anorexia Nausea Vomiting Dyspnea Confusion Irritability</li><li>Meningitis Fever Headache Neck stiffness Nausea ± vomiting Photophobia Confusion, decreased mental status. Hearing impairment or neurologic sequelae in survivors Case fatality ratio: 3% to 6%</li><li>Epiglottitis Infection and swelling of the epiglottis Life-threatening airway obstruction</li></ul>
 <p>In Children:</p>
 <ul><li>Signs and Symptoms</li><li>Irritability Vomiting feeds Poor feeding and refusal of feeds Lack of interest in everything and inactivity General weakness Drowsiness Decreased reflexes in babies</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Diagnosis and Investigations</summary>
           <p>Clinical Assessment:</p>
 <ul><li>Medical History : Inquire about the patient’s symptoms, recent illnesses, and exposure to potential sources of infection.</li><li>Physical Examination: A thorough examination to assess specific signs and symptoms associated with the type of infection, such as lung sounds for pneumonia or neck stiffness for meningitis.</li></ul>
@@ -137,7 +167,7 @@
 <ul><li>Chest X-ray : For suspected pneumonia, a chest X-ray may be conducted to visualize abnormalities in the lungs and confirm the diagnosis.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Management</summary>
           <p>Aims</p>
 <ul><li>To minimize further complication.</li><li>To relieve pain.</li><li>To preserve life.</li><li>To promote comfort</li></ul>
@@ -185,37 +215,49 @@
 <ul><li>Vaccination:</li><li>Hib Vaccine: Vaccination against Haemophilus influenzae type b (Hib) is highly effective in preventing invasive diseases, including meningitis and bacteremia. It is a routine childhood vaccine.</li><li>Pneumococcal Vaccine: Protects against pneumonia caused by various bacteria, including some strains of Haemophilus influenzae. Routine Immunizations:</li><li>Ensuring timely administration of routine childhood immunizations as recommended by national vaccination schedules.</li><li>Good Hygiene Practices:</li><li>Hand Hygiene: Regular handwashing can help prevent the spread of respiratory infections, including Haemophilus influenzae.</li><li>Avoiding Crowded Places:</li><li>Especially during peak seasons of respiratory infections.</li><li>Prompt Antibiotic Treatment:</li><li>Early diagnosis and treatment of respiratory infections to prevent complications and the spread of the bacteria.</li><li>Health Education:</li><li>Raising awareness about the signs and symptoms of invasive infections and the importance of seeking medical attention promptly.</li><li>Antibiotic Prophylaxis:</li><li>In certain cases, antibiotic prophylaxis may be recommended for close contacts of individuals with Haemophilus influenzae infection to prevent secondary cases.</li><li>Respiratory Etiquette:</li><li>Encouraging the practice of covering the mouth and nose when coughing or sneezing to prevent the spread of respiratory droplets.</li><li>Maintaining Healthy Lifestyle:</li><li>Ensuring good nutrition, regular exercise, and overall well-being to support a healthy immune system.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-9">
           <summary>09 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Hemophilus influenza</strong> as a practical nursing topic, not only a memorized definition. Adapt assessment and care to age, weight, development, caregiver knowledge and family support.</p>
 <ul><li><strong>What to understand first:</strong> define hemophilus influenza, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-10">
           <summary>10 Assessment Guide</summary>
           <ul><li>Airway, breathing, circulation, hydration, temperature, feeding, activity and danger signs.</li><li>Weight-based medicines, immunization status, growth, development and caregiver concerns.</li><li>Signs that may be subtle in children, including lethargy, poor feeding, fast breathing or convulsions.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-11">
           <summary>11 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use age-appropriate communication and involve the caregiver.</li><li>Prevent dehydration, hypothermia, medication errors and delayed referral.</li><li>Teach home care, danger signs and follow-up clearly.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The child is clinically improving, caregiver instructions are understood and follow-up is arranged.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-12">
           <summary>12 Patient Teaching and Revision Check</summary>
           <ul><li>Explain hemophilus influenza in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Hemophilus%20influenza%20Paediatric%20Nursing%20(III)%20nursing%20lecture" title="Hemophilus influenza YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (21)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/haemophilus-influenza-1024x576.webp" alt="Haemophilus Influenza" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Haemophilus Influenza</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Classifications-of-Haemophilus-Influenzae-1024x512.webp" alt="Classifications Of Haemophilus Influenzae" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Classifications Of Haemophilus Influenzae</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Influenza.webp" alt="Influenza" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Influenza</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/mode-of-spread-1-1024x607.webp" alt="Mode Of Spread 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Mode Of Spread 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/PATHOPHYSIOLOGY.webp" alt="PATHOPHYSIOLOGY" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">PATHOPHYSIOLOGY</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/INFECTION.webp" alt="INFECTION" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">INFECTION</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/DISEASE.webp" alt="DISEASE" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">DISEASE</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Haemophilus-influenzae-1-1.webp" alt="Haemophilus Influenzae 1 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Haemophilus Influenzae 1 1</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Hemophilus%20influenza%20Paediatric%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <p style="color:var(--seo-muted);font-size:.85rem;margin:8px 0 0">13 more diagrams available — open the lesson for full illustrations.</p>
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Hemophilus%20influenza%20Paediatric%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

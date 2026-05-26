@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,50 +97,74 @@
         <p>Buying an existing business should be reviewed through safe maternal and newborn assessment, early recognition of danger signs, respectful communication and timely referral. Connect the definition to vital signs, bleeding, fetal or newborn wellbeing, patient education and local protocol requirements.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 18 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">BUSINESS START-UPS</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Advantages and Disa dvantages of Startups</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">WHAT ARE YOUR OPTIONS WHEN YOU BEGIN YOUR BUSINESS?</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Features of a Business:</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Basics of a Business:</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">BUYING A NEW BUSINESS</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Advantages of Buying an Existing Business:</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Disadvantages of Buying an Existing Business:</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">STEPS IN ACQUIRING/BUYING AN EXISTING BUSINESS</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Evaluating an Existing Business</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Ways of evaluating an existing business before purchase include;</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Protecting Your Idea</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Protecting a business</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Ways of Protecting a business</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-16" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-17" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-18" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 BUSINESS START-UPS</summary>
           <p>Startup refers to a company in the first stages of operations. Startups are founded by one or more entrepreneurs who want to develop a product or service for which they believe there is demand.</p>
 <p>These companies usually start with high costs and limited revenue, which is why they look for capital from a variety of sources such as venture capitalists, crowdfunding, and loans.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Advantages and Disa dvantages of Startups</summary>
           <ul><li>Advantages Disadvantages</li><li>More opportunities to learn Risk of failure</li><li>Increased responsibility Having to raise capital</li><li>Flexibility High stress</li><li>Workplace benefits Competitive business environment</li><li>Innovation is encouraged Long hours</li><li>Flexible hours</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 WHAT ARE YOUR OPTIONS WHEN YOU BEGIN YOUR BUSINESS?</summary>
           <p>The entrepreneur here looks at options of how to start a business. There are several ways on how a business can be started as discussed below.</p>
 <ul><li>Starting from scratch ; This calls for starting a business from nowhere to somewhere. This involves starting a business from the ground up. This requires collecting all the factors of production and put them together to have a business started. Most entrepreneurs go this way to start small businesses and they grow them into large businesses.</li><li>Inheriting an existing business ; Some entrepreneurs inherit businesses from their parents or other relatives. This can be a great way to get started in business, as the entrepreneur may already have a customer base and a team of employees in place. For instance the current owner of Madhivan group is a grandson of the first Madhivan who started the business. He inherited business from his father.</li><li>Buying an existing business ; Entrepreneurs can also purchase existing businesses from other owners. For instance someone may be selling out a failed business or with other prospects of changing line of business and someone with money goes ahead and buys the business facility and start his entrepreneurial career from their onwards</li><li>Franchise ; A franchise is a business that is operated under the name and trademarks of another company. The franchisee pays a fee to the franchisor for the right to use the franchisor’s brand, products, and services. This requires the entrepreneur to start a business in the same line with that of the parent company. He may have to get rights from the owner and he runs the business elsewhere. For example the Baroda Bank of Uganda is a franchise of Baroda bank of India</li><li>Business Incubation . This is where existing entrepreneurs, organizations or government agencies provide facilities to help new entrepreneurs get started, trained and provided with operating tools, facilities and land or space. Organizations like Uganda Industrial Research Institute (UIRI), FINAfrica at UMA Logogo, and Global Labs Uganda.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Features of a Business:</summary>
           <ul><li>Exchange of Goods and Services: All business activities involve the exchange of goods or services for money or its equivalent. This exchange is the core of business transactions.</li><li>Deals in Numerous Transactions : Businesses regularly engage in multiple transactions, not just one or two. This ongoing exchange of goods and services is a defining characteristic of business activity.</li><li>Profit is the Main Objective: Businesses are driven by the profit motive, aiming to generate revenue that exceeds expenses. Profit is the reward for the services provided by the business owner or entrepreneur.</li><li>Business Skills for Economic Success : Running a successful business requires specific skills and qualities. A good businessman or entrepreneur needs experience, knowledge, and the ability to make sound decisions in a dynamic and often uncertain business environment.</li><li>Risks and Uncertainties : Business activities are subject to various risks and uncertainties. Some risks, such as loss due to fire or theft, can be managed through insurance . However, other uncertainties, such as changes in demand or price fluctuations, cannot be insured and must be borne by the business owner.</li><li>Buyer and Seller: Every business transaction involves at least two parties: a buyer and a seller. Business is essentially a contract or agreement between these parties, where goods or services are exchanged for money or other forms of compensation.</li><li>Connected with Production : Business activities can be related to the production of goods or services. When a business is involved in the production of goods, it is referred to as an industrial activity. Industries can be classified as primary (extracting raw materials) or secondary (transforming raw materials into finished goods).</li><li>Marketing and Distribution of Goods : Business activities can also involve the marketing or distribution of goods. This is known as commercial activity. Businesses engaged in marketing and distribution focus on connecting producers with consumers, ensuring that goods reach their intended markets.</li><li>Deals in Goods and Services: Businesses deal in both goods (tangible products) and services (intangible offerings). Consumer goods are those used directly by consumers, while producer goods are used in the production of other goods. Services are intangible but can be exchanged for value, such as transportation, warehousing, and insurance services.</li><li>To Satisfy Human Wants : Businesses aim to satisfy human wants and needs through their products and services. By producing and supplying various commodities, businesses contribute to consumer satisfaction and well-being.</li><li>Social Obligations : Modern businesses recognize their social responsibility and strive to operate in a manner that benefits society as a whole. This includes ethical business practices, environmental sustainability, and contributing to the community.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Basics of a Business:</summary>
           <ul><li>Business Concept : Every business starts with an idea or concept that addresses a market need or opportunity.</li><li>Market Research : Depending on the business type, extensive market research may be necessary to evaluate the viability of the concept and identify target customers.</li><li>Business Name : Selecting a suitable business name is essential, considering factors such as memorability, relevance to the business, and legal availability.</li><li>Legal Structure : Businesses can choose from various legal structures, such as sole proprietorship, partnership, corporation, or limited liability company (LLC), each with its own advantages and disadvantages.</li><li>Financing : Starting and operating a business requires financing, which can come from personal savings, loans, or investors.</li><li>Operations : Businesses must establish efficient systems and processes for production, distribution, marketing, and customer service.</li><li>Marketing : Businesses need to develop and implement marketing strategies to promote their products or services and attract customers.</li><li>Customer Service : Providing excellent customer service is crucial for building customer loyalty and maintaining a positive reputation.</li><li>Financial Management: Businesses must manage their finances effectively, including revenue, expenses, profits, and cash flow.</li><li>Compliance : Businesses are required to comply with various laws and regulations, such as tax laws, employment laws, and industry-specific regulations.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 BUYING A NEW BUSINESS</summary>
           <p>When it comes to business ownership, some entrepreneurs choose to bypass the process of starting from scratch or acquiring a franchise by opting to buy an existing business.</p>
 <p>The route to acquiring a business demands thorough due diligence, a process as demanding as creating a business plan for a new venture. This due diligence is important as it uncovers both the strengths and weaknesses of a business; skipping it can lead to unforeseen problems that may doom the business to failure.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Advantages of Buying an Existing Business:</summary>
           <ul><li>Proven Success : A thriving business with a solid track record offers a higher chance of continued success. It comes with an established customer base, supplier relationships, and operational systems.</li><li>Prime Location : Buying a business ensures you start at the right location, avoiding the risk of second-choice locations that might not attract the same customer traffic.</li><li>Experienced Workforce : Existing businesses come with knowledgeable employees who can guide through the transition and contribute to continuous revenue generation.</li><li>Operational Equipment : The necessary equipment is already in place, and its capacity and condition can be assessed prior to purchase, saving on initial investment costs.</li><li>Inventory and Trade Credit : Successful businesses have already figured out the right balance of inventory and have established trade credit relationships, which new owners can benefit from.</li><li>Immediate Operation: Buying an existing business allows owners to start earning immediately without the delays of setting up a new venture.</li><li>Leveraging Past Owner’s Experience : Even if the previous owner is not present, their records and decisions provide valuable insights for the new owner.</li><li>Easier Financing : It’s often simpler to secure financing for an existing business, especially one with a good relationship with lenders.</li><li>Potential Bargains : Sometimes businesses are sold at a low price due to various reasons, offering a good deal for the discerning buyer.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Disadvantages of Buying an Existing Business:</summary>
           <ul><li>Risk of a Failing Busines s: Some businesses are on sale because they’re struggling.</li><li>Unsuitable Employees : Inherited staff may not align with the new owner’s vision, necessitating difficult decisions.</li><li>Deteriorating Location : Changes in demographics or competition could render a previously ideal location unsuitable.</li><li>Outdated Equipmen t: Unforeseen costs can arise if the existing equipment or facilities are found to be outdated or inefficient after purchase.</li><li>Resistance to Change : Implementing new policies or innovations can be challenging due to established practices and customer expectations.</li><li>Tangible limitations:</li><li>Design problems : The business’s physical layout, branding, or website may be outdated and require costly renovations or updates.</li><li>Location problems : The business may be located in an inconvenient location, making it difficult for customers to access.</li><li>Merchandise problems : The business may have outdated inventory, that is no longer in demand, limited product selection, or may sell products of poor quality, leading to customer dissatisfaction.</li><li>Intangible limitations:</li><li>Customer or employee ill will : The business may have a negative reputation among customers or employees, making it difficult to attract new business or retain staff, Key employees may leave too.</li><li>Pricing problems: The business may be overpriced, making it difficult to recoup the investment.</li><li>Potentially higher costs to buy: There may be hidden costs associated with the business, such as environmental liabilities or outstanding debts.</li><li>Legal liability in inheriting lawsuits : The business may be facing existing lawsuits that the buyer will inherit.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 STEPS IN ACQUIRING/BUYING AN EXISTING BUSINESS</summary>
           <p>Buying an existing business can be risky if approached without following the steps.</p>
 <p>1. Self-Assessment: Identifying the Right Business</p>
@@ -146,14 +182,14 @@
 <ul><li>Concentrate on communicating with employees. Business sales are fraught with uncertainty and anxiety, and employees need reassurance.</li><li>Be honest with employees. Avoid telling them only what they want to hear. Share with the employees your vision for the business in the hope of generating a heightened level of motivation and support.</li><li>Listen to employees. They have first-hand knowledge of the business and its strengths and weaknesses and usually can offer valuable suggestions for improving it.</li><li>Consider asking the seller to serve as a consultant until the transition is complete. The previous owner can be a valuable resource, especially to an inexperienced buyer.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Evaluating an Existing Business</summary>
           <p>Buying an existing business can be a great opportunity, giving you an established brand, customers, and immediate income. But finding the right business to buy isn’t easy—it’s a time-consuming, costly, and sometimes frustrating process.</p>
 <p>Evaluating a business means assessing and analyzing various areas of a business to determine its value, potential risks, and viability. It involves thoroughly examining factors such as financial performance, market position, operations, assets, liabilities, reputation, and legal compliance.</p>
 <p>The purpose of evaluating a business is to gain a clear understanding of its strengths, weaknesses, opportunities, and threats before making a decision to buy or invest in it.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 Ways of evaluating an existing business before purchase include;</summary>
           <p>1. Personal Assessment and Criteria: First, consider if the business aligns with your interests, resources, and skills. Evaluate if it’s the right fit for you in terms of cash, credibility, skills, and contacts.</p>
 <p>2. Perform due diligence : This involves researching and confirming the details of the business to ensure you are buying what you expect and to assess its value. Create a team of experts including a banker, industry-specific accountant, attorney, and possibly a small business consultant to perform due diligence. During due diligence, focus on five critical areas:</p>
@@ -167,7 +203,7 @@
 <p>9. Confirm the business’ entity status : If the business is a partnership, corporation or limited liability company (LLC) or joint stock company, review entity documents and related records to ensure the business is registered and in good standing. Verify that the owner has the legal rights to sell the business.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-12">
           <summary>12 Protecting Your Idea</summary>
           <p>1. Intellectual Property : Business ideas, inventions, logos, and unique product names can be considered intellectual property if recorded in written, audio, or video format.</p>
 <p>2. Legal Forms of Protection :</p>
@@ -180,13 +216,13 @@
 <p>7. Notarization : Consider having your written description of your idea notarized for added legal protection. Notarization is the official act of verifying the authenticity of a signature on a document and confirming the identity of the signer.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-13">
           <summary>13 Protecting a business</summary>
           <p>Protecting a business involves safeguarding its assets, reputation, and future viability from various threats .</p>
 <p>This includes ways encompassing legal, financial, operational, and strategic measures.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-14">
           <summary>14 Ways of Protecting a business</summary>
           <p>1. Legal Protection :</p>
 <ul><li>Intellectual Property Protection : Registering trademarks, patents, copyrights, and trade secrets to protect your unique creations and brand identity. This prevents unauthorized use and provides legal recourse against infringement.</li><li>Contractual Agreements: Developing and enforcing robust contracts with suppliers, customers, and employees to clearly define responsibilities, obligations, and liabilities. This minimizes disputes and protects against breaches.</li><li>Business Structure : Choosing the right legal structure (sole proprietorship, partnership, LLC, corporation) impacts liability and tax obligations. Consult with legal professionals to determine the best structure for your specific business and risk tolerance.</li><li>Insurance : Obtaining comprehensive insurance coverage, including general liability, professional liability (errors and omissions), property insurance, and business interruption insurance, safeguards against financial losses from unforeseen events.</li><li>Compliance : Adhering to all relevant laws and regulations (environmental, labor, consumer protection, etc.) minimizes legal risks and prevents penalties.</li></ul>
@@ -200,37 +236,49 @@
 <p>Click here</p>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-15">
           <summary>15 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Setting up a Business</strong> as a practical nursing topic, not only a memorized definition. Translate theory into safe decisions, accountability, communication and service improvement.</p>
 <ul><li><strong>What to understand first:</strong> define setting up a business, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-16">
           <summary>16 Assessment Guide</summary>
           <ul><li>The problem, stakeholders, available resources, policy requirements and ethical issues.</li><li>Risks to patients, staff, confidentiality, quality, costs and continuity.</li><li>Documentation, reporting lines, supervision and evaluation measures.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-17">
           <summary>17 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use evidence, policy and professional standards to guide action.</li><li>Communicate clearly, document decisions and protect confidentiality.</li><li>Evaluate whether the action improves safety, learning or service delivery.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The plan is documented, realistic, ethical and improves patient care or learning outcomes.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-18">
           <summary>18 Patient Teaching and Revision Check</summary>
           <ul><li>Explain setting up a business in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Buying%20an%20existing%20business%20Health%20Services%20Management%20%26%20Entrepreneurship%20nursing%20lecture" title="Buying an existing business YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (8)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/BUSINESS-BUSINESS-ENTERPRISE-1-e1704900550640.webp" alt="BUSINESS BUSINESS ENTERPRISE 1 E1704900550640" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">BUSINESS BUSINESS ENTERPRISE 1 E1704900550640</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Types-of-Business-e1704901106452-1024x507.webp" alt="Types Of Business E1704901106452" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Types Of Business E1704901106452</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Entrepreneurial-Decisions-in-Setting-up-a-Business-e1704901388812-1024x365.webp" alt="Entrepreneurial Decisions In Setting Up A Business E1704901388812" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Entrepreneurial Decisions In Setting Up A Business E1704901388812</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Benefits-of-a-Successful-Business-to-an-Entrepreneur-1024x576.webp" alt="Benefits Of A Successful Business To An Entrepreneur" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Benefits Of A Successful Business To An Entrepreneur</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/business-records-e1704901746901.webp" alt="Business Records E1704901746901" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Business Records E1704901746901</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/BUSINESS-INSURANCE-e1704901931970-1024x428.webp" alt="BUSINESS INSURANCE E1704901931970" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">BUSINESS INSURANCE E1704901931970</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/BUSINESS-COMPETITIONS-e1704902147833-1024x645.webp" alt="BUSINESS COMPETITIONS E1704902147833" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">BUSINESS COMPETITIONS E1704902147833</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/HANDLING-OF-COMPETITION-1-e1704902325675.webp" alt="HANDLING OF COMPETITION 1 E1704902325675" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">HANDLING OF COMPETITION 1 E1704902325675</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Buying%20an%20existing%20business%20Health%20Services%20Management%20%26%20Entrepreneurship%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Buying%20an%20existing%20business%20Health%20Services%20Management%20%26%20Entrepreneurship%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,119 +97,151 @@
         <p>Anatomical Positions, Terms &amp; Body planes should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 26 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Anatomical Position, Directional Terms &amp; Planes</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Problem: Why Do We Need a Standard?</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Golden Rule of Anatomy</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Solution: The Anatomical Position</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Strict Rules of Anatomical Position:</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Anatomical Terms of Position (Directional Terms)</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Student Pitfall: Proximal/Distal vs. Superior/Inferior</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Anatomical Planes and Sections</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Regional Terminology</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">A) Axial Skeleton Regions (Head, Neck, and Trunk)</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">1. Upper Limb (The Arm)</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">2. Lower Limb (The Leg)</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Body Movements</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Flexion &amp; Extension</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Abduction &amp; Adduction</a>
+          <a href="#section-16" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Rotational Movements</a>
+          <a href="#section-17" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Circumduction</a>
+          <a href="#section-18" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">1. Forearm: Supination &amp; Pronation</a>
+          <a href="#section-19" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">2. Ankle &amp; Foot: Dorsiflexion, Plantarflexion, Inversion &amp; Eversion</a>
+          <a href="#section-20" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">3. Scapula (Shoulder Blade) &amp; Mandible (Jaw)</a>
+          <a href="#section-21" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">4. Hand: Opposition &amp; Reposition</a>
+          <a href="#section-22" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Body Positions (Clinical Postures)</a>
+          <a href="#section-23" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-24" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-25" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-26" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Anatomical Position, Directional Terms &amp; Planes</summary>
           <ul><li>What is the anatomical position, and why is it the universal standard?</li><li>What are the specific directional terms used to navigate the human body?</li><li>What are the anatomical planes and sections used in medical imaging?</li><li>How do we correctly describe specific body movements and clinical patient positions?</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 The Problem: Why Do We Need a Standard?</summary>
           <p>When we describe where something is on the human body, it can quickly become confusing because the body is incredibly mobile. For example, if a person is holding their hand with the palm facing up, a mole on it is on the &quot;front.&quot; But if they turn their hand so the palm faces down, is that mole now on the &quot;inside,&quot; the &quot;back,&quot; or still the &quot;front&quot;?</p>
 <p>This ambiguity is highly dangerous in medicine (e.g., a surgeon operating on the wrong side of a limb). This confusion is exactly why anatomists and medical professionals created a single, rigid standard position to use as an absolute reference point, no matter how the body is actually positioned in real life.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 The Golden Rule of Anatomy</summary>
           <p>No matter how a patient or a body in an image is actually positioned (sitting, lying down, upside down, or curled up), <strong>you always describe their anatomy as if they were standing in the Anatomical Position</strong> .</p>
 <p><strong>Most Important Rule:</strong> All descriptions are from the <strong>patient&#39;s point of view</strong> , not yours. The patient&#39;s left is always their left, even if it is on your right side when you look at them.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 The Solution: The Anatomical Position</summary>
           <p>The Anatomical Position is the universal starting point for describing any part of the body. It acts as the &quot;Zero Coordinate&quot; for the human map.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 The Strict Rules of Anatomical Position:</summary>
           <ul><li><strong>Body Posture:</strong> The person is standing up straight (erect).</li><li><strong>Head and Eyes:</strong> They are facing directly forward, with eyes looking straight ahead.</li><li><strong>Lower Limbs:</strong> The legs are together or slightly apart (shoulder-width), with the feet flat on the floor and toes pointing directly forward.</li><li><strong>Upper Limbs:</strong> Their arms are hanging down at their sides.</li><li><strong>Hands (Crucial Detail):</strong> Their <strong>palms are facing forward</strong> (supinated). Because the palms face forward, their <strong>thumbs are pointing away from the body</strong> (laterally). This ensures the two bones of the forearm (radius and ulna) are parallel and not crossed over each other.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Anatomical Terms of Position (Directional Terms)</summary>
           <p>These terms are like a GPS for the body. They are used in <strong>pairs of opposites</strong> and help describe where one body part is strictly in relation to another. To accurately describe body parts and their positions, we use this specific set of directional terms.</p>
 <ul><li><strong>Anterior (Ventral):</strong> Towards the front of the body. Example: &quot;The sternum (breastbone) is anterior to the vertebral column (spine).&quot; Example: &quot;The kneecap is located on the anterior side of the leg.&quot;</li><li><strong>Posterior (Dorsal):</strong> Towards the back of the body. Example: &quot;The vertebral column (spine) is posterior to the sternum.&quot; Example: &quot;The shoulder blades are located on the posterior chest wall.&quot;</li><li><strong>Superior (Cranial/Cephalic):</strong> Towards the top or head. Used only for the head, neck, and trunk. Example: &quot;The nose is superior to the mouth.&quot; Example: &quot;The skull is cranial to the neck.&quot;</li><li><strong>Inferior (Caudal):</strong> Towards the bottom, feet, or tail. Used only for the head, neck, and trunk. Example: &quot;The mouth is inferior to the nose.&quot; Example: &quot;The neck is caudal to the skull.&quot;</li><li><strong>Medial:</strong> Towards the imaginary midline of the body. Example: &quot;The nose is medial to the ears.&quot; Example: &quot;The heart is medial to the lungs.&quot;</li><li><strong>Lateral:</strong> Away from the midline of the body; towards the sides. Example: &quot;The ears are lateral to the nose.&quot; Example: &quot;The arms are lateral to the chest.&quot;</li><li><strong>Superficial (External):</strong> Situated closer to the surface of the body. Example: &quot;The skin is superficial to the skeletal muscles.&quot;</li><li><strong>Deep (Internal):</strong> Situated further inward, away from the surface of the body. Example: &quot;The bones are deep to the skin and muscles.&quot;</li><li><strong>Proximal:</strong> Closer to the origin or attachment point of a limb to the main trunk of the body. Example: &quot;The elbow is proximal to the wrist.&quot; Example: &quot;The femur (thigh) is proximal to the knee.&quot;</li><li><strong>Distal:</strong> Farther away from the origin or attachment point of a limb. Example: &quot;The wrist is distal to the elbow.&quot; Example: &quot;The toes are distal to the ankle.&quot;</li><li><strong>Ipsilateral:</strong> On the same side of the body. Example: &quot;The right hand and right foot are ipsilateral.&quot;</li><li><strong>Contralateral:</strong> On the opposite side of the body. Example: &quot;A stroke on the right side of the brain causes contralateral paralysis on the left side of the body.&quot;</li><li><strong>Rostral:</strong> Towards the nose (specifically used in neuroanatomy to describe the brain).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Student Pitfall: Proximal/Distal vs. Superior/Inferior</summary>
           <p>Students often make the mistake of saying &quot;The wrist is inferior to the elbow.&quot; While technically lower to the ground, anatomists <strong>strictly reserve Superior/Inferior for the Head and Trunk (Axial skeleton)</strong> . For the arms and legs (Appendicular skeleton), you <strong>must</strong> use Proximal and Distal. Why? Because if you raise your hand above your head, your wrist is suddenly physically higher than your elbow. But anatomically, the wrist is always Distal to the elbow, no matter where your arm is reaching!</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Anatomical Planes and Sections</summary>
           <p>To study internal anatomy, or to view the body using medical imaging (like CT scans or MRIs), the body is often sectioned (cut) along an imaginary flat 2D surface called a <strong>plane</strong> . The cut itself is called a <strong>section</strong> .</p>
 <ul><li><strong>1. Sagittal Plane:</strong> A vertical line dividing the body into left and right parts. Midsagittal (Median) Plane: Cuts exactly down the absolute midline, creating equal left and right halves.</li><li>Parasagittal Plane: An off-center cut, creating unequal left and right portions.</li><li><strong>2. Coronal (Frontal) Plane:</strong> A vertical line dividing the body into anterior (front) and posterior (back) parts. Memory Aid: Think of a crown (corona) sitting across the top of your head from ear to ear.</li><li><strong>3. Axial (Transverse / Horizontal) Plane:</strong> A horizontal line dividing the body into superior (top) and inferior (bottom) parts. It acts like a cross-section.</li><li><strong>4. Oblique Plane:</strong> Any plane that cuts through the body at an angle other than a perfect 90-degree vertical or horizontal angle.</li></ul>
 <p>When you look at a Transverse/Axial CT or MRI scan, the standard convention in medicine is that <strong>you are looking up from the patient&#39;s feet toward their head</strong> , while they are lying on their back. This is why the Right and Left markers on a scan seem reversed to you (the patient&#39;s right side appears on the left side of your computer screen).</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Regional Terminology</summary>
           <p>This is like learning the names of countries on a map, but for the human body. We divide the body into two main areas: <strong>Axial</strong> (head, neck, trunk) and <strong>Appendicular</strong> (limbs).</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 A) Axial Skeleton Regions (Head, Neck, and Trunk)</summary>
           <ul><li>Region Common Name / Area Region Common Name / Area</li><li><strong>Frontal</strong> Forehead <strong>Mammary</strong> Breast area</li><li><strong>Orbital</strong> Eye area <strong>Scapular</strong> Shoulder blade (posterior)</li><li><strong>Nasal</strong> Nose area <strong>Vertebral</strong> Spine area</li><li><strong>Oral</strong> Mouth area <strong>Abdominal</strong> Belly</li><li><strong>Mental</strong> Chin <strong>Umbilical</strong> Belly button (Navel)</li><li><strong>Occipital</strong> Back of head <strong>Inguinal</strong> Groin (crease between trunk and thigh)</li><li><strong>Otic</strong> Ear area <strong>Pubic</strong> Genital region</li><li><strong>Cervical</strong> Neck (e.g., Cervical spine/collar) <strong>Lumbar</strong> Lower back (Loin)</li><li><strong>Sternal</strong> Breastbone area (center of chest) <strong>Sacral</strong> Near tailbone (base of spine)</li><li><strong>Axillary</strong> Armpit (e.g., Axillary lymph nodes) <strong>Buccal</strong> Cheek area</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 1. Upper Limb (The Arm)</summary>
           <ul><li><strong>Acromial:</strong> Tip of shoulder.</li><li><strong>Brachial:</strong> Upper arm (shoulder to elbow).</li><li><strong>Antecubital:</strong> Front of elbow (where blood is typically drawn).</li><li><strong>Olecranal:</strong> Back of elbow.</li><li><strong>Antebrachial:</strong> Forearm (elbow to wrist).</li><li><strong>Carpal:</strong> Wrist (e.g., Carpal Tunnel Syndrome).</li><li><strong>Palmar (Volar):</strong> Palm of the hand (anterior surface).</li><li><strong>Dorsum of hand:</strong> Back of the hand.</li><li><strong>Pollex:</strong> Thumb.</li><li><strong>Digital (Phalangeal):</strong> Fingers.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-12">
           <summary>12 2. Lower Limb (The Leg)</summary>
           <ul><li><strong>Coxal:</strong> Hip area.</li><li><strong>Femoral:</strong> Thigh (hip to knee).</li><li><strong>Patellar:</strong> Anterior Kneecap.</li><li><strong>Popliteal:</strong> Back of the knee (where the popliteal artery runs).</li><li><strong>Crural:</strong> Anterior lower leg (Shin area).</li><li><strong>Sural:</strong> Posterior lower leg (Calf area).</li><li><strong>Fibular (Peroneal):</strong> Side (lateral aspect) of the lower leg.</li><li><strong>Tarsal:</strong> Ankle.</li><li><strong>Calcaneal:</strong> Heel of the foot.</li><li><strong>Plantar:</strong> Sole (bottom) of the foot.</li><li><strong>Dorsum of foot:</strong> Top surface of the foot.</li><li><strong>Hallux:</strong> Big toe.</li><li><strong>Digital (Phalangeal):</strong> Toes.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-13">
           <summary>13 Body Movements</summary>
           <p>Describing how our bodies move seems simple, but terms like &quot;up,&quot; &quot;down,&quot; or &quot;sideways&quot; can be confusing because their meaning changes depending on our position. To create a clear and universal language for healthcare professionals, trainers, and scientists, anatomy uses a specific set of terms for every possible motion.</p>
 <p>All of these movements are described from a single, consistent starting point: the <strong>Anatomical Position</strong> . These notes break down the essential anatomical movement terms, providing simple definitions and memory aids.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-14">
           <summary>14 Flexion &amp; Extension</summary>
           <ul><li><strong>Flexion:</strong> Bending a joint or decreasing the angle between two body parts. Example: Bending your elbow; bringing your chin to your chest. Memory Aid: Think of curling into the &quot;Fetal&quot; position—everything is in Flexion.</li><li><strong>Extension:</strong> Straightening a joint or increasing the angle between two body parts back to anatomical position. Example: Straightening your knee; looking straight ahead.</li><li><strong>Hyperextension:</strong> Extending a joint beyond the normal anatomical position (e.g., looking up at the ceiling).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-15">
           <summary>15 Abduction &amp; Adduction</summary>
           <ul><li><strong>Abduction:</strong> Moving a limb away from the body&#39;s midline. Example: Lifting your arm out to the side; spreading your fingers apart. Memory Aid: An alien <strong>abduction</strong> takes you away .</li><li><strong>Adduction:</strong> Moving a limb toward the body&#39;s midline. Example: Bringing your arm back down to your side; squeezing your fingers together. Memory Aid: You are <strong>&quot;adding&quot;</strong> the limb back to your body.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-16">
           <summary>16 Rotational Movements</summary>
           <ul><li><strong>Medial (Internal) Rotation:</strong> Rotating a limb inward, toward the body&#39;s anterior midline. Example: Turning your foot inward to be &quot;pigeon-toed&quot;; folding your arm across your stomach.</li><li><strong>Lateral (External) Rotation:</strong> Rotating a limb outward, away from the body&#39;s midline. Example: Turning your foot outward like a ballerina; opening your arm up to point to the side.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-17">
           <summary>17 Circumduction</summary>
           <p>A circular, cone-like movement of a limb that combines flexion, extension, abduction, and adduction in a continuous sequence.</p>
 <p>Example: Making large circles with your arm (like a windmill) or leg. The proximal end stays relatively stable while the distal end traces a circle.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-18">
           <summary>18 1. Forearm: Supination &amp; Pronation</summary>
           <ul><li><strong>Supination:</strong> Rotating the forearm so the palm faces up (anteriorly in anatomical position). The radius and ulna are parallel. Memory Aid: You can hold a bowl of &quot; <strong>soup</strong> &quot; in your palm.</li><li><strong>Pronation:</strong> Rotating the forearm so the palm faces down (posteriorly). The radius crosses over the ulna to form an &#39;X&#39;. Memory Aid: You are &quot; <strong>prone</strong> &quot; to dropping things if your palm is down.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-19">
           <summary>19 2. Ankle &amp; Foot: Dorsiflexion, Plantarflexion, Inversion &amp; Eversion</summary>
           <ul><li><strong>Dorsiflexion:</strong> Pointing your toes up toward your shin (lifting the foot off the gas pedal).</li><li><strong>Plantarflexion:</strong> Pointing your toes down, away from the shin (pressing the gas pedal, or standing on tiptoes).</li><li><strong>Inversion:</strong> Turning the sole of the foot inward (medially) to face the other foot. This is the most common way to sprain an ankle.</li><li><strong>Eversion:</strong> Turning the sole of the foot outward (laterally).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-20">
           <summary>20 3. Scapula (Shoulder Blade) &amp; Mandible (Jaw)</summary>
           <ul><li><strong>Elevation:</strong> Moving a body part upward superiorly (e.g., shrugging your shoulders up, or closing your jaw).</li><li><strong>Depression:</strong> Moving a body part downward inferiorly (e.g., lowering your shoulders, or opening your jaw).</li><li><strong>Protraction:</strong> Moving a body part forward anteriorly (e.g., pushing your shoulders forward/hunching, or giving yourself an underbite).</li><li><strong>Retraction:</strong> Pulling a body part backward posteriorly (e.g., pulling your shoulder blades back and together, or pulling your chin back).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-21">
           <summary>21 4. Hand: Opposition &amp; Reposition</summary>
           <ul><li><strong>Opposition:</strong> The highly specialized movement of the thumb crossing the palm to touch the tips of the other fingers (allows humans to grasp tools).</li><li><strong>Reposition:</strong> Returning the thumb back to its standard anatomical position.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-22">
           <summary>22 Body Positions (Clinical Postures)</summary>
           <p>These are standardized postures or orientations of the human body used in anatomy, nursing, surgery, and critical care to ensure consistency in patient care, physical examination, and procedural execution. Placing a patient in the correct position can literally save their life by improving hemodynamics or airway patency.</p>
 <p>The patient lies completely flat on their back, facing upward, with arms typically at their sides and legs extended.</p>
@@ -223,37 +267,48 @@
 <p>Quick Quiz</p>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-23">
           <summary>23 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Anatomical Positions, Terms &amp; Body planes</strong> as a practical nursing topic, not only a memorized definition. Start with normal structure and function, then connect it to assessment findings and disease.</p>
 <ul><li><strong>What to understand first:</strong> define anatomical positions, terms &amp; body planes, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-24">
           <summary>24 Assessment Guide</summary>
           <ul><li>Relevant inspection, palpation, movement, auscultation, vital signs or neurological checks.</li><li>Normal findings, abnormal findings and what each abnormality may indicate.</li><li>Patient history, risk factors and how the body system affects other systems.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-25">
           <summary>25 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use anatomy to explain symptoms and guide focused assessment.</li><li>Recognize findings that need urgent escalation.</li><li>Teach the patient using simple body-system language.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The learner can explain normal function, identify abnormal signs and connect them to nursing action.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-26">
           <summary>26 Patient Teaching and Revision Check</summary>
           <ul><li>Explain anatomical positions, terms &amp; body planes in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Anatomical%20Positions%2C%20Terms%20%26%20Body%20planes%20Anatomy%20nursing%20lecture" title="Anatomical Positions, Terms &amp; Body planes YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (7)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Anatomical-Position-1.webp" alt="Anatomical Position 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Anatomical Position 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Directional-terms-1.webp" alt="Directional Terms 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Directional Terms 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/body-planes-diagram.webp" alt="Body Planes Diagram" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Body Planes Diagram</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Skeleton-Regions-1.webp" alt="Skeleton Regions 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Skeleton Regions 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/axial-and-appendicular-regions.webp" alt="Axial And Appendicular Regions" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Axial And Appendicular Regions</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Types-Of-Body-Movement.webp" alt="Types Of Body Movement" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Types Of Body Movement</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Body-Positions-1.webp" alt="Body Positions 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Body Positions 1</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Anatomical%20Positions%2C%20Terms%20%26%20Body%20planes%20Anatomy%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Anatomical%20Positions%2C%20Terms%20%26%20Body%20planes%20Anatomy%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

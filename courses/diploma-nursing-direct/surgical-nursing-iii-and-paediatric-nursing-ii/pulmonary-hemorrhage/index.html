@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,25 @@
         <p>Pulmonary hemorrhage should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (12)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">PULMONARY HEMORRHAGE</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Causes of Pulmonary Heamorrhage</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Risk Factors of Pulmonary Heamorrhage</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Clinical Presentations of Pulmonary Heamorrhage</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Diagnosis of Pulmonary Hemorrhage</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Management of Pulmonary Heamorrhage</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Complications of Pulmonary Heamorrhage</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing care plan for a patient with Pulmonary Hemorrhage</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 PULMONARY HEMORRHAGE</summary>
           <p>Pulmonary hemorrhage (PH) is a serious condition in children, characterized by bleeding into the alveoli and airways of the lungs .</p>
 <p>Pulmonary haemorrhage is an acute bleeding from the lung, from the upper respiratory tract, the trachea, and the alveoli .</p>
@@ -95,7 +125,7 @@
 <p>The onset of pulmonary hemorrhage is characterized by productive cough with blood (hemoptysis) and worsening of oxygenation leading to cyanosis.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Causes of Pulmonary Heamorrhage</summary>
           <p>Infectious :</p>
 <ul><li>Viral : Respiratory syncytial virus (RSV), influenza, parainfluenza</li><li>Bacterial : Mycoplasma pneumoniae, Chlamydia pneumoniae</li><li>Other : Adenovirus, rhinovirus</li></ul>
@@ -103,7 +133,7 @@
 <ul><li>Idiopathic : Occurs without a known cause, often associated with Goodpasture’s syndrome, an autoimmune disease</li><li>Trauma : Chest trauma, blunt force injury</li><li>Vascular abnormalities : Pulmonary arteriovenous malformations, pulmonary hypertension</li><li>Coagulation disorders : Hemophilia, von Willebrand disease</li><li>Drug – induced : Aspirin, nonsteroidal anti-inflammatory drugs (NSAIDs)</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Risk Factors of Pulmonary Heamorrhage</summary>
           <p>Maternal Risk Factors:</p>
 <ul><li>Pregnancy-related complications :</li><li>Preeclampsia/Eclampsia (Pregnancy-induced hypertension)</li><li>Toxemia</li><li>Infection</li><li>Bleeding Disorders : Hemophilia, von Willebrand disease, etc.</li><li>Medications : Anticonvulsants</li><li>Antitubercular drugs</li><li>Vitamin K antagonists</li><li>Lack of antenatal steroids : In preterm labor, this can weaken the infant’s lungs.</li></ul>
@@ -111,12 +141,12 @@
 <ul><li>Prematurity : Most common risk factor.</li><li>Low Birth Weight : Infants weighing less than 1000 grams are at increased risk.</li><li>Intrauterine Growth Restriction (IUGR) : Limited growth in the womb.</li><li>Respiratory Problems :</li><li>Hypoxia (low oxygen levels)</li><li>Asphyxia (lack of oxygen)</li><li>Respiratory Distress Syndrome (RDS)</li><li>Meconium Aspiration</li><li>Pneumothorax (collapsed lung)</li><li>Surfactant Treatment</li><li>Sepsis : Bloodstream infection.</li><li>Mechanical Ventilation : Can irritate the lungs.</li><li>Patent Ductus Arteriosus (PDA), Heart Failure: Cardiovascular complications.</li><li>Disseminated Intravascular Coagulation (DIC), Coagulopathy : Bleeding disorders.</li><li>Multiple Births, Male Sex : Increased risk factors.</li><li>Hypothermia : Low body temperature.</li><li>Polycythemia : High red blood cell count.</li><li>Erythroblastosis Fetalis : Blood incompatibility between mother and fetus.</li><li>Extracorporeal Membrane Support : Used for severe respiratory distress.</li><li>Previous Use of Blood Products: Can increase the risk of bleeding.</li><li>Hypoplastic Lung Disease : Underdeveloped lungs.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Clinical Presentations of Pulmonary Heamorrhage</summary>
           <ul><li>Bleeding from Airways: Oozing of blood from the nose, mouth, or ETT.</li><li>Secretions : Frothy pink tinged secretions followed by fresh bloody secretions.</li><li>Rapid Clinical Deterioration :</li><li>Increased work of breathing</li><li>Bradycardia (slow heart rate)</li><li>Apnea (cessation of breathing)</li><li>Cyanosis (blue discoloration of the skin)</li><li>Hypotension (low blood pressure)</li><li>Pallor (paleness)</li><li>Poor systemic perfusion (inadequate blood flow)</li><li>Signs of Infection or Congestive Heart Failure : Fever, cough, wheezing, edema, hepatosplenomegaly, murmur.</li><li>Lung Auscultation : Decreased breath sounds and crepitations (crackling sounds).</li><li>Respiratory distress: Difficulty breathing, rapid breathing, wheezing, coughing.</li><li>Hemoptysis : Coughing up blood, which can range from streaks of blood to frank blood.</li><li>Hypoxia : Low blood oxygen levels, leading to cyanosis (blue discoloration of the skin)</li><li>Fever : May be present if the PH is caused by an infection.</li><li>Chest pain : May be present if the PH is caused by trauma or a vascular abnormality.</li><li>Respiratory failure : Severe cases can lead to respiratory failure, requiring mechanical ventilation.</li><li>Anaemia : Continuous bleeding with decreased hematocrit (HCT) level resulting in anemia</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Diagnosis of Pulmonary Hemorrhage</summary>
           <p>The common method of identifying the disease symptoms as well as the progression includes the following:</p>
 <p>History and physical examination : Taking a detailed medical history and performing a physical examination to assess the severity of the condition.</p>
@@ -130,7 +160,7 @@
 <p>Lung or renal biopsy is often done when a cause is undetectable or if the progression of the disease is very fast. Specimens usually show blood along with numerous siderophages and erythrocytes; lavage fluid characteristically remains hemorrhagic or becomes highly hemorrhagic just after consecutive sampling.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Management of Pulmonary Heamorrhage</summary>
           <p>Aims</p>
 <ul><li>To decrease and stop the bleeding in the lungs.</li><li>To identify the underlying cause.</li><li>To improve gaseous exchange.</li><li>To improve distress</li></ul>
@@ -152,7 +182,7 @@
 <ul><li>Hemocoagulase : Is a new treatment method discovered from a brazilian snake’s venom. It has a thromboplastin-like effect that coverts prothrombin to thrombin and fibrinogen to fibrin. Its measured in KU(Klobusitzky Units) and dose os 0.5KU every 4-6 hours until hemorrhage is stopped.</li><li>Activated Recombinant Factor VIIa (rFVIIa) : This drug works by activating the extrinsic pathway and binds to tissue factor which will eventually bind and seal sites with vascular injury. For effectiveness o this drug, platelets can be administered too. The dosage is 50mg/kg twice daily for 2 – 3 days.</li><li>Low-molecular-weight Heparin : This drug is found to provide better patient outcome for neonatal pulmonary hemorrhage as it does improve the pulmonary function and coagulation function and reduce the incidence of getting complications.</li><li>Diuretics and steroids can also be helpful.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Complications of Pulmonary Heamorrhage</summary>
           <p>Respiratory Complications:</p>
 <ul><li>Respiratory Distress : The accumulation of blood in the alveoli can lead to severe respiratory distress, characterized by tachypnea, retractions, and cyanosis.</li><li>Hypoxemia : Blood in the alveoli can impair gas exchange, resulting in low blood oxygen levels (hypoxemia).</li><li>Pneumothorax : The pressure from blood in the lungs can cause a pneumothorax (collapsed lung).</li><li>Atelectasis : Blood in the alveoli can collapse the lung tissue, leading to atelectasis.</li><li>Bronchospasm : Some infants may develop bronchospasm in response to the irritation caused by blood in the airways.</li><li>Acute Respiratory Distress Syndrome (ARDS) : Severe pulmonary hemorrhage can lead to ARDS, a life-threatening condition characterized by diffuse lung inflammation and impaired gas exchange.</li></ul>
@@ -165,42 +195,53 @@
 <p>****</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Nursing care plan for a patient with Pulmonary Hemorrhage</summary>
           <ul><li>Assessment Nursing Diagnosis Goals/Expected Outcomes Interventions Rationale Evaluation</li><li>1. Child presents with hemoptysis (coughing up blood), tachypnea, and respiratory distress (nasal flaring, use of accessory muscles). Ineffective Airway Clearance related to bleeding in the lungs as evidenced by hemoptysis and respiratory distress. The child will maintain a clear airway with reduced respiratory distress and no further episodes of hemoptysis. – Continuously monitor respiratory status, including respiratory rate, effort, and oxygen saturation. – Position the child in a semi-Fowler’s or upright position to facilitate breathing and reduce aspiration risk. – Administer humidified oxygen to maintain adequate oxygenation. – Prepare for possible intubation or mechanical ventilation if respiratory status worsens. Continuous monitoring helps detect changes in respiratory status and guide interventions. Positioning promotes optimal lung expansion and airway clearance. Humidified oxygen eases breathing and reduces the work of breathing. Mechanical ventilation may be necessary in severe cases to maintain adequate oxygenation. The child’s respiratory rate and effort normalize, oxygen saturation remains above 92%, and hemoptysis is reduced or absent.</li><li>2. Child exhibits pale skin, cold extremities, and decreased capillary refill time. Ineffective Tissue Perfusion related to blood loss from pulmonary hemorrhage as evidenced by pallor, cold extremities, and delayed capillary refill. The child will maintain adequate tissue perfusion as evidenced by normal capillary refill time, warm extremities, and stable vital signs. – Monitor vital signs, including heart rate, blood pressure, and capillary refill time, every 15-30 minutes initially. – Administer intravenous fluids or blood products as prescribed to maintain circulatory volume and improve perfusion. – Monitor hemoglobin and hematocrit levels regularly. – Assess for signs of hypovolemic shock and initiate emergency interventions if needed. Frequent monitoring of vital signs is crucial to assess the child’s circulatory status. Fluid and blood product administration help restore circulating volume and improve tissue perfusion. Hemoglobin and hematocrit monitoring guide transfusion and fluid therapy decisions. Early detection of shock allows for prompt life-saving interventions. The child’s capillary refill time improves to less than 2 seconds, skin color and temperature normalize, and vital signs stabilize.</li><li>3. Child is at risk for further bleeding due to underlying conditions (e.g., coagulopathy, infection). Risk for decreased tissue perfusion related to pulmonary hemorrhage and underlying conditions. The child will experience no further episodes of bleeding as evidenced by stable hemoglobin levels and the absence of hemoptysis. – Monitor coagulation profiles (PT, PTT, INR) and platelet count regularly. – Administer anticoagulants or clotting factors as prescribed to manage underlying coagulopathy. – Avoid invasive procedures and handle the child gently to minimize the risk of provoking further bleeding. – Educate parents on signs of bleeding and the importance of minimizing the child’s activity. Regular monitoring of coagulation profiles helps identify and address coagulopathies. Anticoagulants or clotting factors correct underlying coagulation abnormalities. Gentle handling and avoiding invasive procedures reduce the risk of inducing further bleeding. Parental education ensures early recognition of bleeding and adherence to activity restrictions.</li><li>4. Child exhibits anxiety and restlessness due to difficulty breathing and fear of bleeding. Anxiety related to respiratory distress and fear of bleeding as evidenced by restlessness and verbalization of fear. The child will demonstrate reduced anxiety as evidenced by calm behavior and verbalization of feeling more relaxed. – Provide a calm and reassuring presence to reduce the child’s anxiety. – Use age-appropriate communication to explain procedures and care to the child and family. – Encourage the presence of a parent or caregiver at the bedside to provide comfort and support. – Administer prescribed anxiolytics if the child’s anxiety remains severe despite non-pharmacological measures. A calm presence helps alleviate the child’s fear and anxiety. Age-appropriate explanations foster understanding and cooperation. Parental presence provides emotional support and reassurance. Anxiolytics may be necessary to reduce severe anxiety and facilitate care. The child appears more relaxed, with reduced restlessness and verbalizes feeling less anxious.</li><li>5. Child is at risk for infection due to potential aspiration and compromised lung function. Risk for Infection related to aspiration of blood and compromised lung function. The child will remain free from infection as evidenced by normal temperature and absence of signs of infection. – Monitor for signs of infection, including fever, increased WBC count, and changes in respiratory status. – Maintain strict aseptic technique during all procedures and interventions. – Administer prophylactic antibiotics as prescribed to prevent infection. – Educate parents on the importance of hand hygiene and infection prevention measures at home. Early detection and treatment of infection are critical to preventing complications. Aseptic technique minimizes the risk of introducing pathogens. Prophylactic antibiotics may reduce the risk of secondary infections. Parental education ensures adherence to infection prevention practices.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-9">
           <summary>09 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Pulmonary hemorrhage</strong> as a practical nursing topic, not only a memorized definition. Prioritize airway, breathing, circulation, pain, asepsis, wound healing and early complication detection.</p>
 <ul><li><strong>What to understand first:</strong> define pulmonary hemorrhage, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-10">
           <summary>10 Assessment Guide</summary>
           <ul><li>Vital signs, pain, bleeding, perfusion, level of consciousness and injury pattern.</li><li>Wound appearance, drainage, odour, swelling, temperature and surrounding skin.</li><li>Fluid balance, mobility, nutrition, surgical site risk and ordered investigations.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-11">
           <summary>11 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Stabilize urgent problems first, then prepare for investigations or theatre care.</li><li>Maintain aseptic technique, pain control, wound care and documentation.</li><li>Prevent shock, infection, pressure injury, deep vein thrombosis and delayed healing.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The patient remains stable, wound healing progresses, pain is controlled and complications are recognized early.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-12">
           <summary>12 Patient Teaching and Revision Check</summary>
           <ul><li>Explain pulmonary hemorrhage in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Pulmonary%20hemorrhage%20Surgical%20Nursing%20III%20and%20Paediatric%20Nursing%20(II)%20nursing%20lecture" title="Pulmonary hemorrhage YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (7)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Pulmonary-hemorrhage.webp" alt="Pulmonary Hemorrhage" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Pulmonary Hemorrhage</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/0361f1b8e2bdd6d1bb39e64517d47329.webp" alt="0361f1b8e2bdd6d1bb39e64517d47329" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">0361f1b8e2bdd6d1bb39e64517d47329</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/5a3f8f9da4c1b74819716936b337eecb.webp" alt="5a3f8f9da4c1b74819716936b337eecb" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">5a3f8f9da4c1b74819716936b337eecb</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/31b1737bc98c2821f44a008bdd3d1a84.webp" alt="31b1737bc98c2821f44a008bdd3d1a84" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">31b1737bc98c2821f44a008bdd3d1a84</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/02149ff012bb4db2030c083006e84a1c.webp" alt="02149ff012bb4db2030c083006e84a1c" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">02149ff012bb4db2030c083006e84a1c</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/9abcaa1136cbc80436e99c3dce59b47b.webp" alt="9abcaa1136cbc80436e99c3dce59b47b" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">9abcaa1136cbc80436e99c3dce59b47b</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/c50a31cdcc8cebb49a1eb7a3bd57faf5.webp" alt="C50a31cdcc8cebb49a1eb7a3bd57faf5" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">C50a31cdcc8cebb49a1eb7a3bd57faf5</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Pulmonary%20hemorrhage%20Surgical%20Nursing%20III%20and%20Paediatric%20Nursing%20(II)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Pulmonary%20hemorrhage%20Surgical%20Nursing%20III%20and%20Paediatric%20Nursing%20(II)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

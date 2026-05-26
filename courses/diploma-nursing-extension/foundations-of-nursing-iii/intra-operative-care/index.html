@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,14 +97,34 @@
         <p>Intra-operative Care should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 14 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Peri-Operative care</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Reasons For Surgery</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Types of Surgery</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">PRE-OPERATIVE CARE OF PATIENTS</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Consent Form</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Preparation of the patient on the eve of surgery (12 hours to operation)</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Preparation for pre-operative care</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Procedure for Pre-operative care</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Intra-operative Nursing Care</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Post-Operative Nursing Care</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Peri-Operative care</summary>
           <p>Peri-Operative care is the care rendered to a patient before, during and after the surgery .</p>
 <p>Peri-Operative care is composed of the following</p>
 <ul><li>Pre-operative care : The period of time before surgery.</li><li>Intra-operative care : The period of time during surgery.</li><li>Post-operative care : The period of time after surgery.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Reasons For Surgery</summary>
           <p>1. Curative : To completely eliminate the underlying disease or condition.</p>
 <p>Examples :</p>
@@ -108,7 +140,7 @@
 <ul><li>Gastrostomy : Surgical creation of an opening in the stomach for feeding in patients with esophageal cancer.</li><li>Stent placement : Insertion of a tube to open a blocked artery or airway.</li><li>Pain management procedures : Nerve blocks or other interventions to reduce pain.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Types of Surgery</summary>
           <p>1. Major Surgery : Complex procedures involving extensive tissue manipulation, often requiring prolonged operating time, general anesthesia, a large surgical team, and advanced equipment.</p>
 <p>Characteristics :</p>
@@ -132,7 +164,7 @@
 <ul><li>Trauma surgery : Repair of severe injuries due to accidents or assault.</li><li>Appendicitis surgery : Removal of an inflamed appendix.</li><li>Hemorrhagic stroke surgery: Surgery to stop bleeding in the brain.</li><li>Cardiac arrest surgery : Emergency procedures to restore heart function.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 PRE-OPERATIVE CARE OF PATIENTS</summary>
           <p>Objectives</p>
 <ul><li>Identify the requirements for pre and post operative care.</li><li>Prepare requirements for pre and post operative care.</li><li>Perform pre and post operative care.</li></ul>
@@ -146,7 +178,7 @@
 <ul><li>Information and Orientation : Patient is given explanations or printed information about hospital routines, visiting hours, meal times, specific locations and general orientation to the hospital environment.</li><li>Procedure Explanations : Give full explanations of all procedures the patient may undergo, covering the pre-operative, intra-operative, and postoperative phases.</li><li>Reasoning and Discomfort : Patient is made aware of the reasons for the various procedures to be done on him and any discomfort that may be experienced, ensuring the patient understands the reasons for the intervention.</li><li>Collaborative Communication : There must be prior consultation between a nurse and the doctor in order to maintain the uniformity and accuracy of the information to be given to the patient.</li><li>Questioning and Clarification : Patient should be given a chance to ask questions concerning the operation and the postoperative period, providing reassurance and addressing any concerns.</li><li>Information Management : Give only as much information as the patient wishes to know, as too much information given in a short time may create more anxiety or when given at a wrong time, like some few hours to operation.</li><li>Peer Support : Patients going for major surgery like mastectomy, colostomy, may benefit from being introduced to people who have successfully recovered from these operations.</li><li>Occupational Therapy : Occupational therapy can be arranged for patients who are facing an extended preoperative period, e.g. games, handicrafts, television to distract the patient and ease the fear and loneliness.</li><li>Family and Friends : Encourage visits from family members and friends to have time with the patient, to provide companionship and emotional support.</li><li>Religious Support : Ascertain the patient’s religious preference and arrange for a priest, minister, or rabbi to visit if the patient so desires.</li><li>Age-Appropriate Language : A child should be told in simple language appropriate to his age and level of development what to expect before and after surgery.</li><li>Honesty and Clarity : The child should never be told lies. Be honest when telling him about surgery, tests, pain, stitches, etc.</li><li>Socialization : Let the child be with other hospitalized children for easy adjustment.</li><li>Note : handling fears in this way can smooth the patient’s operative course. Studies show that the calm,emotionally prepared pre-operative patient is able to withstand the induction of anesthesia better and also experiences less postoperative nausea and vomiting and fewer postoperative complications.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Consent Form</summary>
           <p>A consent form is a document with important information about a medical procedure or treatment, a clinical trial, or genetic testing . It also includes information on possible risks and benefits. If a person chooses to take part in the treatment, procedure, trial, or testing, he or she signs the form to give official consent. Any patient undergoing a surgical procedure, however minor, must sign a consent form.</p>
 <ul><li>Avoiding Unwanted Procedures: Safeguards the patient from undergoing surgery they are unaware of or do not consent to.It protects the patient against submitting to operations that she or he does not know about or does not want.</li><li>Ensures the patient understands the nature of the proposed procedure, including its risks, benefits, and potential complications, empowering them to make an informed and voluntary decision.</li><li>Legal protection : Protects healthcare providers, including surgeons and hospital staff, from liability in cases where a patient or their family alleges that surgery was performed without consent.</li><li>Respect for Autonomy : Acknowledges and respects the patient’s right to self-determination and bodily integrity.</li><li>Open Dialogue : Encourages open communication between the patient and healthcare providers, allowing for any questions, concerns, or anxieties to be addressed before proceeding with the procedure.</li><li>Family Involvement : Facilitates the involvement of family members or loved ones in the decision-making process, particularly when the patient desires their input or support. Sometimes the patient wishes to talk to a close relative before signing the form</li><li>Clear Explanation : The patient must have the full explanation of the operation before signing the consent form and pictures and diagrams may be necessary.</li><li>Potential Complications : The patient must be told about any possible complications and the disfigurements that may arise from the surgery.</li><li>Procedure and Investigations : Explain about procedures and investigations and let him understand before accepting the operation.</li><li>Anesthesia : Explain about the administration of anesthesia, addressing any concerns or questions the patient may have.</li><li>Pain Management: The patient should be reassured about pain management strategies during and after the surgery.</li><li>Disfigurement : If the surgery involves the possibility of disfigurement, such as amputation, mastectomy, or hysterectomy, this should be openly discussed with the patient, acknowledging the potential impact on their body image and self-esteem.</li><li>Social and Economic Background : The patient’s social and economic background should be considered, understanding potential challenges or concerns related to recovery, finances, and daily life.Encourage the patient to talk about his social, economic background, and talk to him about spiritual life.</li><li>Spiritual Life : The patient’s spiritual beliefs and practices should be acknowledged and addressed, offering appropriate support or resources if desired.</li><li>Organ or Body Part Removal : If any organ or body part is to be removed, the patient should be informed of this in a clear and sensitive manner.</li><li>Simple Explanations are given in terms that the patient can understand- the patient needs an honest and fair statement of what may be faced both in surgery and following the operation.</li><li>Signature : Adults sign their consent forms unless unconscious or mentally incompetent, thus making a relative or a guardian to sign on his behalf. Children under 18 years must be signed for by an adult and preferably a relative. If a child’s parents can not be present, permission be got by telephone or letter or the surgeon may sign the form personally, depending on the laws of the state or court order may have to be obtained permitting the operation.</li><li>Make sure this accompanies other medical forms to the operation room.</li><li>After all the above details, a patient is asked to sign the consent form which indicates that he consents to have the operative procedure performed. This implies that he has been provided with the knowledge necessary to understand the nature of the procedure to be carried out as well as the known and possible consequences of the operation.</li></ul>
@@ -160,7 +192,7 @@
 <ul><li>Prepare a comfortable freshly made bed and in a well-ventilated room.</li><li>Nurse avoids talking to a tired patient.</li><li>Visitors are restricted from always disturbing the patient.</li><li>Noise of any kind is avoided, i.e., using rubber-soled shoes, talking loudly is not allowed, radio sounds put at low tones, banging doors and using trolleys that make a lot of noise are avoided.</li><li>Sedation may be necessary to induce sleep or to reduce the pain that may interfere with sleep,</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Preparation of the patient on the eve of surgery (12 hours to operation)</summary>
           <p>Skin care of the area to be operated: The skin site preparation preoperatively is aimed at removing dirt, oils and microorganisms, to prevent the growth of microorganisms that remained and to leave the skin undamaged with no irritation from the cleansing and shaving procedure, and the area depends on the type of surgery to be done.</p>
 <ul><li>The areas to be prepared should always be larger and wider and longer than the area of the proposed incision, because the surgeon may unexpectedly widen or extend the incision line.</li><li>First wash the area with soap and water and start shaving when you are sure of the cleanliness.</li><li>Use a strong, light, well-focused and sterile safety razor or blade.</li><li>Shave against the direction of the hair shaft to ensure clean, close shave.</li><li>Check the skin for nicks, irritations, and cuts since these are all potential sites for infection.</li><li>Use skin antiseptics after shaving to clean the site, like chlorhexidine, iodine and others.</li></ul>
@@ -175,7 +207,7 @@
 <ul><li>She records the patient’s vital signs as baseline for future observations and comparison, to detect abnormalities which may entail postponement of operation, e.g., pyrexia, tachycardia (120b/m over), or bradycardia (pulse rate below 60 b/m), urine results and weight for future comparison and for drug calculation.</li><li>She checks for the skin preparation if done well or there is need to be repeated in a thorough manner.</li><li>She asks the patient to void before going to theater to avoid bladder injury in the lower abdominal and pelvic surgery, incontinence during operation (due to anesthesia), restlessness during the early post-operative period, or if the catheter is in situ, the output is emptied and recorded.</li><li>She carries out special orders like giving enemas, insertion of catheters if not done in the evening, NGT, putting infusion lines if not done before and hanging fluids prescribed before anesthesia (1 liter of normal saline), or checking if the line is patent and the surrounding tissues are not infiltrated.</li><li>She gives the patient oral hygiene and removes any dentures and safely keeps them.</li><li>She gathers all the necessary documents like form 5, admission and observation charts, laboratory forms, x-ray radiographs, consent form, fluid balance chart, etc, and puts them together ready for theater.</li><li>She checks if the consent form is signed for and helps the patient if not done.</li><li>In privacy, she asks the patient to remove his or her own personal clothing which are safely to be kept, she removes and keeps the patient’s jewelry, earrings, but the wedding ring is usually left insitu and strapped with an adhesive tape; necklaces, bangles, plastic rings or rubber are too removed and kept together with other things.</li><li>She dresses the patient in a theatre gown which is clean and perhaps supports stockings. If the patient has long hair, braid them into 2 braids, all hair pins are removed to prevent scalp injury during and after surgery, and the head is covered with a protective cap.</li><li>Colored nail polish is removed with the nail file to help in easy assessment of cyanosis from the nail bed. Anything that is difficult to remove can be strapped off.</li><li>She questions the patient to make sure that food has not been eaten for the last 8 hours, or fluids taken during the preceding 4 hours, and report immediately if the patient has eaten so that surgery is postponed.</li><li>She makes the patient’s identification band containing his name, age ward, type of surgery to be undertaken and attaches it to the patient. She makes sure the information is accurate.</li><li>She gives preoperative medications : this is usually a combination of sedatives and analgesics opiates, e.g., morphine 10-15mg, or pethidine 50-100mgs, temazepam 10-20mg, tranquilizers such as diazepam 5-10mgs. These drugs are meant to reduce apprehension so as to reduce shock, to ensure sleep, and to reduce the amount of anesthetic drugs to be used, and to create amnesia for the events that precede surgery</li><li>Other drugs sometimes may be prescribed to be given before the patient is transported to theatre, such as antibiotics like Metronidazole i.v, + ampicillin gentamicin or chloramphenicol in some abdominal conditions, gynaecological conditions, head injury, gun shot wounds, etc. give according to the prescription.</li><li>Anti-secretions like atropine 0.6-1 mg is given to dry up secretions or to prevent overproduction when inhalation anesthetics are used especially ether; it improves the heart action and suppresses vagal influence on the heart. These drugs must be given half to 45 minutes preoperatively to ensure the above effects. The time of administration should be recorded accurately. If omitted or delayed, the anesthetist should be informed. Do not give under the maxim “better late than never”.</li><li>When all the preparations are ready, and the time of surgery has come, the patient is transported to the operating theater on a couch, rolled by 2 nurses. Minimal noise should be made as hearing is very acute after pre-medications. All movements to theater should be gentle, steady and unhurried. The nurse should carry all documents to the theater with the patient.</li><li>A full report is given to the theater nurse, or anesthetist concerning the patient.</li><li>A post-operative bed is then made with clean linen . The specific bed depends on the type of surgery, e.g., divided bed, fracture bed with traction appliances, etc. bedside accessories like bed cradles, infusion stands, vital observations tray, mouth care tray, infusion trays, oxygen apparatus and cylinder, suction apparatus and suction machines, bed elevators, mosquito nets, etc. this are the items necessary for resuscitation immediately post-operatively. The bed should be warm, without overheating to prevent shock.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Preparation for pre-operative care</summary>
           <ul><li>Steps Action Rationale</li><li>1. Refer to general rules and ensure understanding of the type of operation to be done. To gain confidence in the nurse and for an informed consent to be given.</li><li>2. Carry out preoperative nursing assessment. To collect baseline data from the patient and the family.</li><li>3. Ensure that diagnostic tests are done and results are ready before operation i.e. urinalysis, chest x-ray, blood test e.g. ABO group and rhesus factor, and HB, CBC, ECG. To clarify pathological conditions and be able to manage them before surgery.</li><li>4. Obtain consent from the patient for operation or if minor or unable to consent; next of kin consents on behalf of the patient. To gain approval and protect the patient from unwanted procedures as well as preventing litigation related to unauthorized surgeries.</li><li>5. Stop all solid foods and oral fluids 4-6 hours before operation. To ensure empty stomach and prevent vomiting which may occur during the anaesthesia and cause respiratory failure or aspiration pneumonia.</li></ul>
 <p>PHYSIOTHERAPY:</p>
@@ -185,52 +217,64 @@
 <ul><li>Top shelf Bottom shelf At the side</li><li>– Basin – Receiver for used swabs – Screen</li><li>– Soap in a dish – Face cloth – 2 chairs back to back</li><li>– Cotton swabs – Draw mackintosh and draw sheet – Hand washing equipment</li><li>– A small pair of scissors for trimming long hair – Bucket for dirty water –</li><li>– A jug of cold water –</li><li>– Clean gloves –</li><li>– A jug of hot water –</li><li>– Antiseptic lotion –</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Procedure for Pre-operative care</summary>
           <ul><li>Steps Action Rationale</li><li>Morning before Operation</li><li>1 Request the patient to bathe or offer the bath. Promote hygiene.</li><li>2 Prepare the operation site. –</li><li>3 Report any abnormalities detected. For immediate intervention.</li><li>4 Give a clean gown and theater cap. For decency and privacy.</li><li>5 Request the patient to empty the bladder if unable to catheterise before operation. To minimize the risk of injury or complications during and after surgery, to promote hygiene.</li><li>6 The operation site is shaved on the morning of operation or 30 minutes before operation or in theater. To promote infection prevention and control.</li><li>7 Provide preoperative medications if prescribed i.e. atropine, morphine, pethidine. To reduce the incidence of surgical complications i.e. bronchial and salivary secretions and to allay anxiety.</li><li>8 Label and securely store the patient’s valuables such as money, jewelry, dentures and documents. To prevent loss and legal purposes.</li><li>9 Put up intravenous infusion if prescribed. To prevent postoperative shock.</li><li>10 Check the operation site for cleanliness, label the operation site and the patient. To minimize infections. Right identification of the site of operation and the patient.</li><li>11 Check the surgical and safety (SSC) list (See SSC appendix). Ensure pre-operative phase is completed.</li><li>Steps Action Rationale</li><li>Transportation to Theatre</li><li>12 Carry all notes i.e. X-ray forms; consent form, patient’s chart, and surgical and safety checklist with the patient to the theater. To minimize errors and promote quality surgery.</li><li>13 Cover the patient with clean warm clothing during transportation to the theater. To provide privacy and prevent chilling.</li><li>14 Two nurses transport the patient to the operating theater. To safely hand-over the patient and give a report.</li><li>15 Hand-over the patient to in-theater nursing staff. Ensure that it is the right patient and ready for surgery.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Intra-operative Nursing Care</summary>
           <ul><li>Observing a client undergoing surgery may be a component of a nursing student’s experience. Doing so will not only give the student a better idea of surgical procedures, but it will also help in understanding the client’s feelings and apprehensions. Special training mostly given in OR technique and anesthesia Nurses assist surgeons in the operating room.</li><li>The two basic categories of assistant are the sterile assistant and the circulating assistant . The sterile assistant (scrub nurse) is scrubbed, gowned and gloved. He/she functions within the sterile field. Duties include handling instruments to the surgeon, threading needles, cutting sutures, assisting with retraction and suction, and handling specimens.</li><li>The circulating nurse works outside the sterile field. Duties include opening sterile packs, delivering supplies and instruments to the sterile team, delivering medications to sterile nurse, labeling specimens, and keeping records during the surgical procedure. This person acts as a client advocate by monitoring the situation and maintaining safety in the operating room. In most cases, the circulating nurse must be a registered nurse.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Post-Operative Nursing Care</summary>
           <p>Click Here</p>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-11">
           <summary>11 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Peri-Operative care</strong> as a practical nursing topic, not only a memorized definition. Prioritize airway, breathing, circulation, pain, asepsis, wound healing and early complication detection.</p>
 <ul><li><strong>What to understand first:</strong> define peri-operative care, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-12">
           <summary>12 Assessment Guide</summary>
           <ul><li>Vital signs, pain, bleeding, perfusion, level of consciousness and injury pattern.</li><li>Wound appearance, drainage, odour, swelling, temperature and surrounding skin.</li><li>Fluid balance, mobility, nutrition, surgical site risk and ordered investigations.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-13">
           <summary>13 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Stabilize urgent problems first, then prepare for investigations or theatre care.</li><li>Maintain aseptic technique, pain control, wound care and documentation.</li><li>Prevent shock, infection, pressure injury, deep vein thrombosis and delayed healing.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The patient remains stable, wound healing progresses, pain is controlled and complications are recognized early.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-14">
           <summary>14 Patient Teaching and Revision Check</summary>
           <ul><li>Explain peri-operative care in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Intra-operative%20Care%20Foundations%20of%20Nursing%20(III)%20nursing%20lecture" title="Intra-operative Care YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (9)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/peri-operative-care.webp" alt="Peri Operative Care" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Peri Operative Care</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/7b95489466278cc01d95108065fedaf5.webp" alt="7b95489466278cc01d95108065fedaf5" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">7b95489466278cc01d95108065fedaf5</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/5a3f8f9da4c1b74819716936b337eecb.webp" alt="5a3f8f9da4c1b74819716936b337eecb" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">5a3f8f9da4c1b74819716936b337eecb</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/300c7e088318024fe20356891593a363.webp" alt="300c7e088318024fe20356891593a363" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">300c7e088318024fe20356891593a363</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/7d1f137ba99d697e02950d9f07159efd.webp" alt="7d1f137ba99d697e02950d9f07159efd" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">7d1f137ba99d697e02950d9f07159efd</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/9bd7f293595efeb348a70d60daca0701.webp" alt="9bd7f293595efeb348a70d60daca0701" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">9bd7f293595efeb348a70d60daca0701</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/082a7380d8b6c80ffec3a9edbb4c536a.webp" alt="082a7380d8b6c80ffec3a9edbb4c536a" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">082a7380d8b6c80ffec3a9edbb4c536a</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/8afae4183330a25c66601e542c864240.webp" alt="8afae4183330a25c66601e542c864240" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">8afae4183330a25c66601e542c864240</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Intra-operative%20Care%20Foundations%20of%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <p style="color:var(--seo-muted);font-size:.85rem;margin:8px 0 0">1 more diagram available — open the lesson for full illustrations.</p>
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Intra-operative%20Care%20Foundations%20of%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

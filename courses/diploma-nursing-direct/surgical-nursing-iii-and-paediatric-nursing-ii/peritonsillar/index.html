@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,18 @@
         <p>Peritonsillar should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (5)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Overview</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Overview</summary>
           <p>Peritonsillar abscess, often referred to as Quinsy, represents a localized collection of pus situated in the peritonsillar space. This space is found between the tonsillar capsule and the superior constrictor muscle of the pharynx.</p>
 <p>It generally involves a pus-filled pocket that forms near one of the tonsils. It is a collection of pus around the tonsils. It usually begins as a complication of untreated streptococcal throat or tonsillitis infection</p>
@@ -115,37 +138,49 @@
 <ul><li><strong>Related to:</strong> Pharyngeal swelling, pain, accumulated secretions, potential for airway obstruction.</li><li><strong>Defining Characteristics:</strong> Stridor, dyspnea, muffled voice (&quot;hot potato&quot; voice), drooling, restlessness, anxiety.</li><li>Intervention Rationale</li><li><strong>Monitor Respiratory Status Continually</strong> Early detection of changes in breathing patterns, rate, depth, presence of stridor, or increased work of breathing is paramount for preventing life-threatening airway compromise.</li><li><strong>Position for Optimal Airway Patency</strong> Elevate the head of the bed to a semi-Fowler&#39;s or high-Fowler&#39;s position to promote lung expansion and reduce pressure on the airway from pharyngeal swelling.</li><li><strong>Assess for Trismus and Uvular Deviation</strong> These are key indicators of the severity of the abscess and its potential impact on airway patency and ability to manage secretions.</li><li><strong>Have Emergency Airway Equipment Readily Available</strong> Be prepared for immediate intervention (e.g., intubation tray, tracheostomy kit, oxygen, suction) if acute airway obstruction occurs.</li><li><strong>Encourage Effective Coughing and Secretion Management</strong> If the patient is able, encourage gentle coughing or swallowing secretions. Provide suction as needed for drooling or excessive oral secretions.</li><li><strong>Administer Oxygen as Prescribed</strong> To maintain adequate oxygen saturation and reduce respiratory effort.</li><li><strong>Related to:</strong> Inflammatory process, tissue swelling, nerve irritation, surgical intervention (drainage).</li><li><strong>Defining Characteristics:</strong> Patient verbalization of pain (severe sore throat, ear pain), facial grimacing, guarding behavior, difficulty swallowing, restlessness, increased heart rate/blood pressure.</li><li>Intervention Rationale</li><li><strong>Assess Pain Characteristics Regularly (PQRST method)</strong> Obtain a comprehensive understanding of the pain&#39;s nature, intensity, and location to guide effective management. Note if pain is unilateral.</li><li><strong>Administer Analgesics as Prescribed</strong> Provide scheduled and PRN pain medication (e.g., NSAIDs, opioids) to keep pain at a manageable level, allowing for rest and improved comfort.</li><li><strong>Provide Non-Pharmacological Pain Relief</strong> Offer cool compresses to the neck, encourage quiet environment, and provide distractions to complement pharmacological interventions.</li><li><strong>Educate on Importance of Pain Control</strong> Explain that adequate pain control improves ability to swallow, facilitates rest, and reduces anxiety.</li><li><strong>Monitor Effectiveness of Pain Interventions</strong> Reassess pain levels after administering interventions to ensure they are providing sufficient relief.</li><li><strong>Related to:</strong> Inability to swallow due to severe pain (odynophagia) and dysphagia, fever, increased metabolic demands.</li><li><strong>Defining Characteristics:</strong> Dry mucous membranes, decreased urine output, poor skin turgor, increased heart rate, low blood pressure, patient reports of thirst.</li><li>Intervention Rationale</li><li><strong>Monitor Hydration Status Closely</strong> Track intake and output, assess skin turgor, mucous membranes, urine specific gravity, and daily weights.</li><li><strong>Administer Intravenous Fluids as Prescribed</strong> Provide necessary hydration and electrolytes until the patient can tolerate oral fluids.</li><li><strong>Encourage Oral Fluid Intake as Tolerated</strong> Offer small, frequent sips of cool, non-acidic liquids (e.g., water, clear broth, diluted juices) once swallowing improves. Avoid extremely hot or cold liquids initially.</li><li><strong>Educate Patient on Signs of Dehydration</strong> Empower the patient to recognize and report symptoms, promoting proactive self-care.</li><li><strong>Related to:</strong> Pain upon swallowing, fear of swallowing, nausea/vomiting from antibiotics, general malaise, increased metabolic needs due to infection.</li><li><strong>Defining Characteristics:</strong> Weight loss, refusal to eat, patient reports of inadequate intake, weakness.</li><li>Intervention Rationale</li><li><strong>Assess Nutritional Status</strong> Evaluate current dietary intake, weight changes, and presence of any nausea/vomiting.</li><li><strong>Provide Small, Frequent, Soft, Bland Meals</strong> Easier to swallow and less likely to irritate the inflamed throat. Examples include mashed potatoes, yogurt, pureed soups.</li><li><strong>Encourage High-Calorie, High-Protein Supplements</strong> To meet increased metabolic demands and prevent further weight loss.</li><li><strong>Collaborate with Dietary Services</strong> Ensure appropriate meal planning that considers patient preferences and tolerance.</li><li><strong>Monitor for Nausea and Administer Antiemetics as Prescribed</strong> To improve appetite and ability to eat.</li><li><strong>Related to:</strong> Bacterial infection, incomplete drainage, non-adherence to antibiotic regimen.</li><li><strong>Defining Characteristics:</strong> Elevated WBC count, fever, chills, purulent drainage, patient statements of non-adherence.</li><li>Intervention Rationale</li><li><strong>Administer Antibiotics as Prescribed (Dose, Route, Frequency)</strong> Ensure therapeutic levels to eradicate the bacterial infection and prevent complications. Emphasize completing the entire course.</li><li><strong>Monitor for Signs of Infection Spread</strong> Regularly assess for worsening pain, increasing swelling in the neck or face, new onset of fever/chills, changes in respiratory status, or signs of deeper neck space infection.</li><li><strong>Educate on Wound Care (Post-Drainage)</strong> Instruct on proper oral hygiene, gentle gargles with warm saline, and reporting any foul-smelling discharge.</li><li><strong>Patient Education on Completing Antibiotic Course</strong> Stress the importance of taking all prescribed antibiotics, even if feeling better, to prevent recurrence and antibiotic resistance.</li><li><strong>Advise on Follow-Up Care</strong> Emphasize the need for follow-up appointments to ensure complete resolution and to discuss potential tonsillectomy for recurrent cases.</li><li><strong>Related to:</strong> Acute illness, severe pain, difficulty breathing, fear of choking, uncertainty about prognosis.</li><li><strong>Defining Characteristics:</strong> Verbalization of anxiety/fear, restlessness, irritability, increased heart rate, difficulty sleeping.</li><li>Intervention Rationale</li><li><strong>Provide Clear and Concise Information</strong> Explain procedures, treatment plan, expected outcomes, and how to manage symptoms in an understandable manner.</li><li><strong>Maintain a Calm and Reassuring Demeanor</strong> Reduces patient anxiety and promotes trust.</li><li><strong>Ensure Adequate Pain Control and Airway Patency</strong> Addressing immediate physical discomforts directly reduces anxiety.</li><li><strong>Encourage Presence of Supportive Family/Friends</strong> Provides emotional support to the patient.</li><li><strong>Allow for Questions and Expression of Feelings</strong> Active listening and addressing concerns can alleviate fear.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" open id="section-2">
           <summary>02 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Peritonsillar</strong> as a practical nursing topic, not only a memorized definition. Prioritize airway, breathing, circulation, pain, asepsis, wound healing and early complication detection.</p>
 <ul><li><strong>What to understand first:</strong> define peritonsillar, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-3">
           <summary>03 Assessment Guide</summary>
           <ul><li>Vital signs, pain, bleeding, perfusion, level of consciousness and injury pattern.</li><li>Wound appearance, drainage, odour, swelling, temperature and surrounding skin.</li><li>Fluid balance, mobility, nutrition, surgical site risk and ordered investigations.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-4">
           <summary>04 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Stabilize urgent problems first, then prepare for investigations or theatre care.</li><li>Maintain aseptic technique, pain control, wound care and documentation.</li><li>Prevent shock, infection, pressure injury, deep vein thrombosis and delayed healing.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The patient remains stable, wound healing progresses, pain is controlled and complications are recognized early.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-5">
           <summary>05 Patient Teaching and Revision Check</summary>
           <ul><li>Explain peritonsillar in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Peritonsillar%20Surgical%20Nursing%20III%20and%20Paediatric%20Nursing%20(II)%20nursing%20lecture" title="Peritonsillar YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (16)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/peritonsillar.webp" alt="Peritonsillar" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Peritonsillar</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Peritonsillar-Abscess.webp" alt="Peritonsillar Abscess" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Peritonsillar Abscess</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/causes-of-peritonsillar-absess-1.gif" alt="Causes Of Peritonsillar Absess 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Causes Of Peritonsillar Absess 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Etiology-and-Pathophysiology-of-Peritonsillar-Abscess.webp" alt="Etiology And Pathophysiology Of Peritonsillar Abscess" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Etiology And Pathophysiology Of Peritonsillar Abscess</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Clinical-Presentation-of-peritonsillar-abscess.webp" alt="Clinical Presentation Of Peritonsillar Abscess" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Clinical Presentation Of Peritonsillar Abscess</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Diagnostic-Approaches-of-peritonsillar-abscess.gif" alt="Diagnostic Approaches Of Peritonsillar Abscess" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Diagnostic Approaches Of Peritonsillar Abscess</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Management-and-Treatment-Strategies-of-peritonsillar-abscess-1.webp" alt="Management And Treatment Strategies Of Peritonsillar Abscess 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Management And Treatment Strategies Of Peritonsillar Abscess 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/4e43b679388b2caa2492ad47cc004c1e.webp" alt="4e43b679388b2caa2492ad47cc004c1e" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">4e43b679388b2caa2492ad47cc004c1e</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Peritonsillar%20Surgical%20Nursing%20III%20and%20Paediatric%20Nursing%20(II)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <p style="color:var(--seo-muted);font-size:.85rem;margin:8px 0 0">8 more diagrams available — open the lesson for full illustrations.</p>
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Peritonsillar%20Surgical%20Nursing%20III%20and%20Paediatric%20Nursing%20(II)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,31 +97,53 @@
         <p>Obstetrical and Pediatric Emergencies in Safe Motherhood should be reviewed through safe maternal and newborn assessment, early recognition of danger signs, respectful communication and timely referral. Connect the definition to vital signs, bleeding, fetal or newborn wellbeing, patient education and local protocol requirements.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 16 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Obstetrical Emergencies</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**List of Obstetrical Emergency**</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Roles of a Nurse/Midwife in Obstetrical Emergencies**</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**General Management**</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Complications**</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Prevention of Obstetric Emergencies**</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Pediatric Emergencies**</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**List of pediatric emergencies**</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Causes of Neonatal Morbidity and Mortality**</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Causes of infant mortality and morbidity in Uganda**</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Management of pediatrics emergencies**</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Prevention of Pediatric Emergencies**</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-16" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Obstetrical Emergencies</summary>
           <p>Obstetrical Emergency is the situation when the life of the mother or baby is in danger of death and something must be done quickly to save lives.</p>
 <p>There is a need for the midwife to take quick action in provision of emergency treatment and consideration of proper referral systems.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 **List of Obstetrical Emergency**</summary>
           <ul><li>AntePartum Hemorrhage</li><li>Postpartum hemorrhage</li><li>Cord prolapse</li><li>Ruptured uterus</li><li>Fetal distress</li><li>Vasa previa</li><li>Intrapartum hemorrhage</li><li>Obstructed labour</li><li>Retained placenta</li><li>Severe preeclampsia and eclampsia</li><li>Pulmonary embolism</li><li>Severe anemia</li><li>Inversion of the uterus</li><li>Impending rupture of uterus</li><li>Obstetric shock.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 **Roles of a Nurse/Midwife in Obstetrical Emergencies**</summary>
           <ul><li><strong>At The Community Level</strong></li><li>✔ Health education of the community about obstetrical emergencies and their roles in management and prevention</li><li>✔ Educate, supervise and evaluate the TBAs in management given to the mother during pregnancy, labour and puerperium</li><li>✔ To create awareness on the available health facility like dispensary, clinics, maternity centre and hospitals</li><li>✔ To encourage them to attend antenatal clinics, intranatal clinics, postnatal clinics, young child clinics and family planning clinics</li><li>✔ Advice women to start self-help project to minimize over dependency on their husbands</li><li>✔ Help them realize the importance of taking a well-balanced diet</li><li>✔ Discourage harmful traditional practices and beliefs which expose a girl child to early sex marriages as a result of lack of education, boy preferences</li><li>✔ Husband should take over tiring duties from their wives when pregnant to relieve them psychologically and physically</li><li>✔ Encourage the community to help to transport in case of obstetrical emergencies.</li></ul>
 <p><strong>2. During Pregnancy</strong></p>
 <ul><li>✔ Identify cases of high risk pregnancies which may end in obstetrical emergencies and refer in time</li><li>✔ Thorough history taking, examination and early investigations on every mothers during pregnancy</li><li>✔ Early preparation of mothers for labour and successful lactation</li><li>✔ Prompt treatment of mothers with minor conditions like morning sickness etc</li><li>✔ Early referral of mothers with serious conditions for further management</li><li>✔ Proper referral systems.</li><li><strong>During Labour</strong></li><li>✔ Proper admission of mothers in labour inform of a warm welcome, reassurance and counseling</li><li>✔ Proper history taking, examination and investigation on every mother in labour ✔ Proper monitoring of mothers in labour by use of a partograph</li><li>✔ Early detection of danger signs. the midwife should summon for help in time</li><li>✔ Avoid prolonged and exhausting labour by administration of analgesics, reassurance and avoid early pushing plus rehydration with IV fluids or per Os</li><li>✔ Give assisted timely episiotomy in case of assisted delivers to prevent; extended tears, hemorrhage; give episiotomy in mal-presentation and malposition</li><li>✔ Use aseptic techniques throughout labour, infection prevention and control techniques</li><li>✔ Ensure proper management of 3 rd stage of labour to prevent PPH.</li><li><strong>After Delivery</strong></li><li>✔ Carryout proper observation to the mother and baby especially in the 1 st 2 hours to prevent 4 th stage complications</li><li>✔ Health education of the mothers about the need of;</li><li>– Taking a well-balanced diet</li><li>– Breastfeeding on demands</li><li>– Carrying out postnatal exercise</li><li>– Maintain personal and environmental hygiene</li><li>– Come back for review after 6 weeks to postnatal clinic</li><li>– Attending family planning clinic</li><li>– Bringing the baby in YCC for immunization</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 **General Management**</summary>
           <p><strong>Principles applied in this management</strong></p>
 <ul><li>Readiness with everything used in management used in management of high risk pregnancy this includes facilities such as:</li><li>✔ Emergency tray containing the following; ▪ Drugs i.e. Ergometrine, hydrocortisone, diazepam, dexamethasone, mannitol, digoxin, lasix, dextrose 5%, 50%, vitamin K, aminophylline, atropine, pethidine, morphine, pitocin, magnesium sulphate, others are adrenaline, oxygen cylinder, solutions like normal saline, needles and syringes, adequate staffs, Umbu bags and any facility needed for resuscitation</li><li>✔ The midwife/nurse should be calm, quick and knowledgeable and should summon for help</li><li>✔ Start with the most urgent need first e.g. arresting hemorrhage, rehydration or delivery of the baby</li><li>✔ Quick general history taking, examination and investigations</li><li>✔ Apply the essential care systematically according to the emergency such as delivery, manual removal of the placenta, resuscitation etc (apply nursing process) ✔ Reassure the mother and the relatives</li><li>✔ Some mothers with HRP are cared for in the maternity centre during pregnancy and referred at full term for delivery in the hospital. others are referred on the first contact</li><li>✔ Early detection and referral are very important</li><li>✔ Prepare for transport</li><li>✔ Writing referral notes which includes the following:-</li><li>▪ Time of arrival</li><li>▪ Personal history of the mother</li><li>▪ General conditions on arrival</li><li>▪ All what has been found on examination and admission</li><li>▪ Treatment given plus obstetrical management</li><li>▪ Reasons for referral</li><li>▪ Conditions at referral</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 **Complications**</summary>
           <p><strong>To the mother</strong></p>
 <p>Obstetrical emergency exposes the mothers and fetus to a higher chance of morbidity and mortality. This becomes worsened in case the management is delayed or even wrongly applied. There is lack of facilities or poor knowledge; however the mothers and fetus may face the following;</p>
@@ -118,34 +152,34 @@
 <ul><li>✔ High neonatal and infant morbidity and mortality</li><li>✔ Failure to thrive</li><li>✔ Cerebral damage leading to mental retardation</li><li>✔ Premature deliveries with their complications</li><li>✔ Abortions (pregnancy wastage)</li><li>✔ Assisted deliveries and its complications</li><li>✔ Intrauterine fetal growth retardation</li><li>✔ Low resistance to infections.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 **Prevention of Obstetric Emergencies**</summary>
           <ul><li>✔ The role of a midwife in the obstetric emergencies</li><li>✔ The nurse/midwife should be knowledgeable of how to deal with the obstetric emergencies</li><li>✔ Update herself in obstetrical conditions</li><li>✔ Equip her maternity center and be able to deal with such emergencies efficiently</li><li>✔ Make sure she can transfer the mother to the hospital immediately.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 **Pediatric Emergencies**</summary>
           <p>T hey are considered right from birth up to 5 years of age.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 **List of pediatric emergencies**</summary>
           <ul><li>✔ Asphyxia as seen in below conditions</li><li>✔ Intrauterine anoxia due to cord prolapsed and APH</li><li>✔ Cerebral damage</li><li>✔ Hemorrhagic of a newborn</li></ul>
 <p><strong>As The Child Grows</strong></p>
 <ul><li>Swallowed objects and aspiration</li><li>Poisons</li><li>Insect bites</li><li>Falling</li><li>Burns</li><li>Cuts</li><li>Fractures and diseases.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 **Causes of Neonatal Morbidity and Mortality**</summary>
           <ul><li>Asphyxia neonatorum</li><li>Birth injuries</li><li>Low birth weights</li><li>Hypothermia</li><li>Congenital abnormalities</li><li>Sepsis like neonatal sepsis, pneumonia, acute respiratory infection, diarrhea, tetanus, meningitis and septicemia.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 **Causes of infant mortality and morbidity in Uganda**</summary>
           <ul><li>✔ Measles</li><li>✔ Diarrhea</li><li>✔ URTI</li><li>✔ Malaria</li><li>✔ Malnutrition</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 **Management of pediatrics emergencies**</summary>
           <p>Depends on the causes BUT you have to consider the following;</p>
 <ul><li>Resuscitation</li><li>Induced emesis if the substances taken is not acidic</li><li>Give milk to drink</li><li>Give oxygen</li><li>Put up a drip</li></ul>
@@ -153,42 +187,47 @@
 <ul><li>Depends on the type of pediatric emergencies</li><li>Complications may happen permanently or temporarily at birth or later in life</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-12">
           <summary>12 **Prevention of Pediatric Emergencies**</summary>
           <ul><li>Health education to the public of pediatric emergencies, their causes and prevention. Since most of the maternal conditions leads to paediatric emergencies, neonatal/infant morbidity and mortality. Therefore in preventing such emergencies, neonatal /infant morbidity and mortality such as high risk pregnancies</li><li>Knowledge of life saving skills in pediatric e.g. resuscitation is essential.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-13">
           <summary>13 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Obstetrical and Pediatric Emergencies in Safe Motherhood</strong> as a practical nursing topic, not only a memorized definition. Read the topic through the safety of two patients: the mother and the fetus or newborn.</p>
 <ul><li><strong>What to understand first:</strong> define obstetrical and pediatric emergencies in safe motherhood, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-14">
           <summary>14 Assessment Guide</summary>
           <ul><li>Maternal vital signs, bleeding, pain, contractions, uterine tone and danger signs.</li><li>Fetal or newborn wellbeing, feeding, temperature, breathing and activity.</li><li>History of pregnancy, parity, medications, allergies, investigations and referral risks.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-15">
           <summary>15 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Recognize danger signs early and escalate without delay.</li><li>Provide respectful communication, privacy, infection prevention and clear documentation.</li><li>Teach the mother what to monitor at home and when to return urgently.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> Mother and baby remain stable, danger signs are acted on early, and the family understands follow-up instructions.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-16">
           <summary>16 Patient Teaching and Revision Check</summary>
           <ul><li>Explain obstetrical and pediatric emergencies in safe motherhood in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Obstetrical%20and%20Pediatric%20Emergencies%20in%20Safe%20Motherhood%20Gynaecology%20and%20Reproductive%20Health%20nursing%20lecture" title="Obstetrical and Pediatric Emergencies in Safe Motherhood YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (1)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Obstetrical-Emergencies.webp" alt="Obstetrical Emergencies" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Obstetrical Emergencies</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Obstetrical%20and%20Pediatric%20Emergencies%20in%20Safe%20Motherhood%20Gynaecology%20and%20Reproductive%20Health%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Obstetrical%20and%20Pediatric%20Emergencies%20in%20Safe%20Motherhood%20Gynaecology%20and%20Reproductive%20Health%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

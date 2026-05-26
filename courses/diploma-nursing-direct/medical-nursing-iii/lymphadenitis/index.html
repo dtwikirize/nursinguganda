@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,18 @@
         <p>Lymphadenitis should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (5)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Overview</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Overview</summary>
           <p>Lymphedema (pronounced lim-fa-DEE-ma) is a chronic, progressive, and often debilitating condition characterized by localized tissue swelling and fluid retention, which occurs when the lymphatic system is impaired or damaged.</p>
 <ul><li><strong>Chronic and Progressive:</strong> Chronic: It is a long-term condition that typically does not resolve on its own.</li><li>Progressive: If left untreated, the swelling tends to worsen over time, leading to more significant tissue changes.</li><li><strong>Localized Tissue Swelling and Fluid Retention:</strong> The most visible and primary symptom is swelling, usually in one or more limbs (arms or legs), but it can also affect other body parts such as the trunk, head and neck, or genitalia.</li><li>The fluid that accumulates is rich in protein, which is a distinguishing feature from other types of edema.</li><li><strong>Impaired or Damaged Lymphatic System:</strong> This is the defining characteristic. Lymphedema specifically results from a failure of the lymphatic system to adequately drain lymph fluid from a particular area of the body.</li><li>The lymphatic system is a network of vessels, nodes, and organs responsible for collecting excess interstitial fluid (lymph) from tissues, filtering it, and returning it to the bloodstream.</li><li>When this system is compromised, lymph fluid accumulates in the interstitial spaces, leading to swelling.</li><li><strong>Distinguishing from General Edema:</strong> Edema is a general term for swelling caused by fluid accumulation. Many conditions can cause edema (e.g., heart failure, kidney disease, venous insufficiency).</li><li>Lymphedema is a specific type of edema characterized by: <strong>High Protein Content:</strong> Unlike many other forms of edema where the fluid is mainly water and electrolytes, lymphedema fluid is rich in protein. This high protein content is crucial because it draws more water into the interstitial space, stimulates fibroblast activity, and contributes to tissue fibrosis (hardening/thickening of the skin and subcutaneous tissue).</li><li><strong>Non-pitting (in later stages):</strong> While early lymphedema may be pitting (an indentation remains after pressure is applied), as the condition progresses and fibrosis occurs, the tissue becomes harder and the swelling becomes non-pitting.</li><li><strong>Asymmetrical (often):</strong> Lymphedema often affects one limb or one side of the body, though it can be bilateral if the underlying cause affects both sides. Other systemic edemas are typically symmetrical.</li></ul>
@@ -110,37 +133,45 @@
 <ul><li><strong>Manual Lymphatic Drainage (MLD):</strong> Description: Gentle, rhythmic massage to stimulate flow and reroute lymph.</li><li>Mechanism: Promotes lymphangiomotoricity and opens alternative pathways.</li><li><strong>Compression Bandaging:</strong> Description: Multiple layers of short-stretch bandages applied to the limb.</li><li>Mechanism: Provides external pressure to reduce swelling, improve muscle pump efficiency, and break down fibrotic tissue. Worn 24 hours/day.</li><li><strong>Skin Care:</strong> Description: Meticulous hygiene and moisturizing.</li><li>Mechanism: Prevents infection (cellulitis) in compromised skin.</li><li><strong>Decongestive Exercises:</strong> Description: Low-impact exercises worn with compression.</li><li>Mechanism: Activates muscle pump to move fluid.</li><li><strong>Education:</strong> Self-care techniques and infection prevention.</li><li><strong>Compression Garments:</strong> Custom-fitted or ready-to-wear garments worn daily. Replace bandages once volume is stabilized.</li><li><strong>Self-MLD:</strong> Patients taught simplified techniques.</li><li><strong>Self-Bandaging:</strong> Applied at night or during flare-ups.</li><li><strong>Regular Exercise &amp; Lifelong Skin Care.</strong></li><li><strong>Regular Follow-ups.</strong></li><li><strong>Pneumatic Compression Pumps:</strong> Devices applying sequential pressure. Adjunct to CDT.</li><li><strong>Weight Management:</strong> Crucial for obese patients to reduce mechanical compression on vessels.</li><li><strong>Lymphaticovenous Anastomosis (LVA) / Bypass (LVB):</strong> Description: Microsurgical connection of lymphatic vessels to small veins.</li><li>Mechanism: Bypasses obstruction by draining into venous system.</li><li>Indication: Early to moderate lymphedema.</li><li><strong>Vascularized Lymph Node Transfer (VLNT):</strong> Description: Transplantation of healthy lymph nodes to the affected area.</li><li>Mechanism: Provides new drainage pathways and growth factors.</li><li><strong>Direct Excision/Debulking:</strong> Surgical removal of excess fibrotic tissue. For very advanced/disfigured limbs.</li><li><strong>Liposuction (Suction-Assisted Lipectomy):</strong> Description: Removal of excess adipose tissue.</li><li>Indication: Chronic Stage 2 or 3 where maximal decongestion is achieved but fat remains. Requires lifelong compression post-op.</li><li><strong>Related to:</strong> Edema, altered circulation, chronic inflammation, skin changes.</li><li><strong>As evidenced by:</strong> Swelling, thickened skin, discoloration, fissures, positive Stemmer&#39;s sign.</li><li><strong>Interventions:</strong> <strong>Assess skin integrity daily:</strong> Inspect for redness, warmth, cracks, blisters, signs of infection.</li><li><strong>Provide meticulous skin care:</strong> Wash daily with mild soap, pat dry (especially folds). Apply low pH, non-perfumed moisturizer.</li><li><strong>Protect skin from injury:</strong> Wear gloves for chores, use electric razor, avoid tight clothing/jewelry.</li><li><strong>Elevate affected limb</strong> when resting.</li><li><strong>Implement wound care protocols</strong> for breakdown.</li><li><strong>Ensure proper fit of compression garments</strong> to prevent irritation.</li><li><strong>Related to:</strong> Accumulation of protein-rich fluid (bacterial medium), altered skin integrity, decreased local immune response.</li><li><strong>Interventions:</strong> <strong>Educate on signs of infection:</strong> Redness, warmth, increased swelling, pain, fever, streaks. Report immediately.</li><li><strong>Emphasize strict skin care regimen.</strong></li><li><strong>Advise on avoiding trauma:</strong> Prevent cuts, insect bites, sunburns, needle sticks (no blood draws/BP in affected limb).</li><li><strong>Discuss prophylactic antibiotics</strong> if history of recurrent cellulitis.</li><li><strong>Encourage prompt treatment</strong> of minor cuts with antiseptic.</li><li><strong>Related to:</strong> Tissue distension, nerve compression, fibrosis, heavy limb.</li><li><strong>Interventions:</strong> <strong>Assess pain characteristics.</strong></li><li><strong>Administer prescribed analgesics.</strong></li><li><strong>Implement non-pharmacological strategies:</strong> Elevation, cold/warm packs (caution with sensation), gentle massage, relaxation.</li><li><strong>Ensure proper fit of compression garments</strong> to avoid constriction.</li><li><strong>Encourage gentle exercises</strong> to reduce stiffness.</li><li><strong>Related to:</strong> Increased limb size/weight, stiffness, fear of injury.</li><li><strong>Interventions:</strong> <strong>Assess mobility and ROM.</strong></li><li><strong>Encourage gentle active/passive ROM exercises.</strong></li><li><strong>Collaborate with PT/OT</strong> for tailored programs.</li><li><strong>Instruct on proper body mechanics.</strong></li><li><strong>Related to:</strong> Limb disfigurement, clothing difficulties.</li><li><strong>Interventions:</strong> <strong>Provide safe environment</strong> to express feelings.</li><li><strong>Listen actively and empathetically.</strong></li><li><strong>Focus on functional improvements</strong> rather than just cosmetic.</li><li><strong>Suggest coping strategies:</strong> Clothing choices, support groups, counseling.</li><li><strong>Related to:</strong> Complexity of treatment, lack of information, barriers to adherence.</li><li><strong>Interventions:</strong> <strong>Assess current knowledge and learning style.</strong></li><li><strong>Provide clear education on:</strong> MLD, compression, skin care, infection prevention, signs of complications.</li><li><strong>Use teach-back method.</strong></li><li><strong>Provide written materials/videos.</strong></li><li><strong>Address barriers</strong> (cost, time).</li><li><strong>Refer to Certified Lymphedema Therapist (CLT).</strong></li><li><strong>Certified Lymphedema Therapist (CLT):</strong> Essential for CDT implementation.</li><li><strong>Physician/Specialist:</strong> Diagnosis and medical management.</li><li><strong>PT/OT:</strong> Functional adaptations.</li><li><strong>Dietitian:</strong> Weight management.</li><li><strong>Social Worker/Psychologist:</strong> Emotional support.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" open id="section-2">
           <summary>02 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Lymphedema</strong> as a practical nursing topic, not only a memorized definition. Start with normal structure and function, then connect it to assessment findings and disease.</p>
 <ul><li><strong>What to understand first:</strong> define lymphedema, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-3">
           <summary>03 Assessment Guide</summary>
           <ul><li>Relevant inspection, palpation, movement, auscultation, vital signs or neurological checks.</li><li>Normal findings, abnormal findings and what each abnormality may indicate.</li><li>Patient history, risk factors and how the body system affects other systems.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-4">
           <summary>04 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use anatomy to explain symptoms and guide focused assessment.</li><li>Recognize findings that need urgent escalation.</li><li>Teach the patient using simple body-system language.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The learner can explain normal function, identify abnormal signs and connect them to nursing action.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-5">
           <summary>05 Patient Teaching and Revision Check</summary>
           <ul><li>Explain lymphedema in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Lymphadenitis%20Medical%20Nursing%20(III)%20nursing%20lecture" title="Lymphadenitis YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (4)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/image-1.webp" alt="Anatomy Diagram" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Anatomy Diagram</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Lymphadenitis.webp" alt="Lymphadenitis" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Lymphadenitis</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/lymphadenitis-patho.webp" alt="Lymphadenitis Patho" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Lymphadenitis Patho</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/cervical_lymphadenitis--swollen_lymph_node.webp" alt="Cervical Lymphadenitis Swollen Lymph Node" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Cervical Lymphadenitis Swollen Lymph Node</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Lymphadenitis%20Medical%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Lymphadenitis%20Medical%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

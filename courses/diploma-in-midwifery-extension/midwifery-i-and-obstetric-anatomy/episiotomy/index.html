@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,19 +97,39 @@
         <p>Episiotomy should be reviewed through safe maternal and newborn assessment, early recognition of danger signs, respectful communication and timely referral. Connect the definition to vital signs, bleeding, fetal or newborn wellbeing, patient education and local protocol requirements.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 14 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">EPISIOTOMY</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Indications for Episiotomy:</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">TYPES OF EPISIOTOMY:</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Precautions when giving episiotomy:</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Basic principles prior to repairing the perineum:</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Basic principles after repair:</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Method of Infiltration and Method of Performing:</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Repair Technique:</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Classification of Perineal Trauma:</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Complications of Perineal Trauma:</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 EPISIOTOMY</summary>
           <p>An episiotomy is a surgical procedure that involves making an incision on the perineum to widen the vaginal opening before childbirth.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Indications for Episiotomy:</summary>
           <p>To qicken delivery in the following situations: a. Pre-eclampsia and eclampsia. b. Cardiac diseases, to reduce strain on the mother. c. Maternal distress, to minimize strain during delivery. d. Fetal distress, aiming to prevent fetal death. e. Cord prolapse in the second stage of labor , while the baby is still alive.</p>
 <p>To prevent excessive trauma in the following cases: a. Rigid perineum. b. Forceps delivery. c. Face to pubis delivery.</p>
 <p>To reduce the risk of cerebral damage in the following circumstances: a. Premature births. b. Postmaturity. c. After the baby’s head emerges in breech deliveries. d. In cases of a narrow subpubic arch. e. After previous third-degree tears.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 TYPES OF EPISIOTOMY:</summary>
           <ul><li><strong>Lateral Incision:</strong> This incision is made laterally across the labia majora and can be challenging to repair.</li></ul>
 <p>Disadvantages :</p>
@@ -111,75 +143,83 @@
 <p>Note: Bilateral episiotomy is discouraged due to the potential risk of injury to the Bartholin’s glands.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Precautions when giving episiotomy:</summary>
           <ul><li><strong>Timing</strong> : Avoid performing the episiotomy too early or too late during labor.</li><li><strong>Presentation</strong> : In cephalic presentation, the head should be stretching the perineum, and in breech presentation, the anterior shoulder should be stretching the perineum before performing the episiotomy.</li><li><strong>Contraction</strong> <strong>Height</strong> : Give the episiotomy during a contraction to ensure better control and precision.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Basic principles prior to repairing the perineum:</summary>
           <ul><li><strong>Timely</strong> <strong>Repair</strong> : Perform the repair as soon as possible to minimize the risk of bleeding and perineal edema.</li><li><strong>Aseptic</strong> <strong>Technique</strong> : Ensure that the repair is done using proper aseptic techniques to reduce the risk of infection.</li><li><strong>Equipment</strong> <strong>Check</strong> : Verify that all necessary equipment is in place and count swabs and needles before and after the procedure to avoid leaving any foreign objects inside.</li><li><strong>Anesthesia</strong> : Make sure the wound is adequately anesthetized before starting the repair to minimize discomfort to the patient.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Basic principles after repair:</summary>
           <ul><li><strong>Hemostasis</strong> : Ensure complete hemostasis to prevent excessive bleeding.</li><li><strong>Post-repair Examination</strong> : Perform rectal and vaginal examinations to confirm the adequacy of the repair, ensuring no other tears have been missed, and verify that rectal mucosa has not been inadvertently repaired.</li><li><strong>Removal of Swabs</strong> : Double-check to ensure that all tampons or swabs used during the procedure have been removed.</li><li><strong>Detailed Documentation:</strong> Make detailed notes of the findings and the repair procedure for accurate medical records.</li><li><strong>Post-repair Care</strong> : Inform the woman about the use of appropriate analgesia (pain relief), hygiene practices, maintaining a good diet, and performing pelvic floor exercises to aid in recovery.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Method of Infiltration and Method of Performing:</summary>
           <p>Requirements :</p>
 <ul><li>A sterile episiotomy pack containing: Pair of episiotomy scissors.</li><li>Needle and cut gut.</li><li>Needle holder.</li><li>Sterile gauze and cotton swabs.</li><li>Sterile gloves.</li><li>Syringe.</li><li>Lignocaine.</li><li>Hibicet.</li><li>Ensure the procedure is performed under sterile conditions.</li><li>Explain the procedure to the mother to keep her informed.</li><li>Draw the required amount of lignocaine or local anesthesia (10mls of 0.5% and 5-7mls of 1%).</li><li>Swab the vulva to maintain cleanliness.</li><li>During a contraction, when the head or presenting part is distending the vulva, place two fingers of the left hand between the fetal head and the perineum to ensure that the drug is injected into the fetal scalp to avoid potential harm to the baby.</li><li>Introduce the needle into the perineum and withdraw the piston to check for any blood aspiration. If blood is aspirated, reposition the needle and repeat the procedure until no blood is withdrawn.</li><li>Insert two fingers into the vagina and position the blades at the peak of a contraction. Make a single clean cut approximately 3cm in length in a medial lateral direction.</li><li>Control hemorrhage by pressing a sterile swab on the area.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Repair Technique:</summary>
           <p>Before the midwife starts to repair the episiotomy:</p>
 <ul><li>Ensure the proper setting: Place the mother comfortably.</li><li>Remove any soiled linen from under the genitalia.</li><li>Adjust the light source to have a clear view inside the vagina.</li><li>Communicate with the mother, explain the repair procedure, and provide reassurance.</li><li>Put on fresh sterile gloves.</li><li>Check whether the previously administered local anesthesia is still effective. If the mother feels pain, administer more anesthesia before the repair.</li><li>Remove all clots from the birth canal.</li><li>Assess the extent of damage to the vagina and locate the apex of the episiotomy.</li><li>Insert a roll of vaginal pack and secure the end with artery forceps.</li><li>Start suturing the episiotomy from the apex.</li><li>Suture the vaginal mucosa using the continuous stitch technique. Pass the needle through the vaginal mucosa from behind and bring it out on the perineum wound.</li><li>Continue using the continuous suturing method all the way to the bottom of the wound to close the deep muscle layer. The same technique can be used on the skin.</li><li>Remove the vaginal pack, inspect the vagina, and insert a finger in the rectum to ensure closure and exclude involvement of the rectum.</li><li>Clean the mother after completing the repair.</li><li>Provide a pad for the mother’s comfort.</li><li>Advise the mother on caring for the episiotomy and provide necessary instructions.</li><li>Clear away and properly dispose of used materials.</li></ul>
 <p>Note: The typical healing time for an episiotomy is around 4-6 weeks, depending on the size of the incision and the type of suture material used to close the wound.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Classification of Perineal Trauma:</summary>
           <ul><li><strong>First Degree Tear:</strong> Injury to the perineal skin only.</li><li><strong>Second Degree Tear:</strong> Injury to the perineum involving perineal muscles but not the anal sphincter.</li><li><strong>Third Degree Tear:</strong> Injury to the perineum involving the anal sphincter.</li><li><strong>Fourth Degree Tear:</strong> Injury to the perineum involving the anal sphincter complex and anal epithelium.</li><li><strong>Isolated Buttonhole Injury of the Rectum:</strong> Injury to the rectal mucosa without injury to the anal sphincters.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Complications of Perineal Trauma:</summary>
           <ul><li>May become a 3rd degree tear.</li><li>Bleeding.</li><li>Infections.</li><li>Swelling.</li><li>Defect in wound closure.</li><li>Local pain and a short-term possibility of sexual dysfunction.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-11">
           <summary>11 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Episiotomy</strong> as a practical nursing topic, not only a memorized definition. Read the topic through the safety of two patients: the mother and the fetus or newborn.</p>
 <ul><li><strong>What to understand first:</strong> define episiotomy, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-12">
           <summary>12 Assessment Guide</summary>
           <ul><li>Maternal vital signs, bleeding, pain, contractions, uterine tone and danger signs.</li><li>Fetal or newborn wellbeing, feeding, temperature, breathing and activity.</li><li>History of pregnancy, parity, medications, allergies, investigations and referral risks.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-13">
           <summary>13 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Recognize danger signs early and escalate without delay.</li><li>Provide respectful communication, privacy, infection prevention and clear documentation.</li><li>Teach the mother what to monitor at home and when to return urgently.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> Mother and baby remain stable, danger signs are acted on early, and the family understands follow-up instructions.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-14">
           <summary>14 Patient Teaching and Revision Check</summary>
           <ul><li>Explain episiotomy in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Episiotomy%20Midwifery%20I%20and%20Obstetric%20Anatomy%20nursing%20lecture" title="Episiotomy YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (4)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Episiotomy.webp" alt="Episiotomy" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Episiotomy</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/3fdf099a9dc50515fe8755b2f43aa391.webp" alt="3fdf099a9dc50515fe8755b2f43aa391" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">3fdf099a9dc50515fe8755b2f43aa391</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/2ac628927d5e4471a13b0adb164c0aae.webp" alt="2ac628927d5e4471a13b0adb164c0aae" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">2ac628927d5e4471a13b0adb164c0aae</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/e8f1ac43f69c8413c2679a11ea071ddc.webp" alt="E8f1ac43f69c8413c2679a11ea071ddc" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">E8f1ac43f69c8413c2679a11ea071ddc</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Episiotomy%20Midwifery%20I%20and%20Obstetric%20Anatomy%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Episiotomy%20Midwifery%20I%20and%20Obstetric%20Anatomy%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,27 @@
         <p>Safe water supply should be reviewed through safe maternal and newborn assessment, early recognition of danger signs, respectful communication and timely referral. Connect the definition to vital signs, bleeding, fetal or newborn wellbeing, patient education and local protocol requirements.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 14 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Water</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">USES OF WATER</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">FACTORS THAT INFLUENCE AMOUNT OF WATER TO BE USED</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">THE WATER CYCLE</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">SOURCES OF WATER</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">SOURCES OF CONTAMINATION OF WATER</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">DANGERS OF CONTAMINATED WATER</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">PREVENTION OF CONTAMINATION OF WATER</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">STORAGE OF WATER</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">PURIFICATION OF WATER</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Water</summary>
           <p>Water is the liquid that forms the rivers, lakes, swamps, rain etc. and is the basis of fluids of living organisms, it is essential for life and forms 60% of body weight.</p>
 <p><strong>Composition:</strong> Water is composed of two parts hydrogen and one part oxygen (H₂O).</p>
@@ -94,25 +126,25 @@
 <ul><li><strong>PHYSICAL PROPERTY</strong> -It is colorless, odorless, and stainless and its boiling point is 100 degree centigrade. It assumes the shape of the container, has a specific gravity of 1.0.</li><li><strong>CHEMICAL PROPERTY</strong> -Neutral to litmus paper, is a universal solvent, reacts with hydroxide to form salt, and reacts with nonmetal to form acid.</li><li>Severe vomiting.</li><li>Severe diarrhea, cholera</li><li>Severe sweating.</li><li>Severe burns.</li><li>Poly-urea following diabetic disease.</li><li>Inadequate intake of water.</li><li>Prolonged heating by hot sun shine.</li><li>Through the lungs during expiration of carbon-dioxide from the lungs.</li><li>Through the kidney in form urine, in situations where over activation of kidney is involved either by an infection or anti-diuretic drugs.</li><li>Through the skin as in severe burns, severe sweating while working under hot sunshine or room even in diseases which results into sweating.</li><li>Through the gastro intestinal tract, i.e. through vomiting or diarrhea where by the intestinal lining is not in position of absorbing the required amount of water.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 USES OF WATER</summary>
           <p>NB. The body requires an average amount of water of (1½-2) liters a day to replace the lost amount and this maintains good health and functioning of the body.</p>
 <ul><li>It is needed for building all body tissues and is the basis for all body fluids and secretions such as blood, lymph, urine, gastric juices and respiration.</li><li>Provides some mineral salts.</li><li>Helps to prevent constipation.</li><li>Regulates the body temperature.</li><li>Helps in the execration of waste products from the body.</li><li>Replaces fluids lost from the body.</li><li>Washing the body, Utensils, Vehicles.</li><li>Cooking and cleaning vegetables.</li><li>Watering gardens, plants and fruits.</li><li>Used in water carriage systems.</li><li>Drinking for animals and humans.</li><li>Recreation like swimming, and industrial use.</li><li>Agricultural purposes.</li><li>Tourist attraction.</li><li>Means of transport.</li><li>Construction purposes.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 FACTORS THAT INFLUENCE AMOUNT OF WATER TO BE USED</summary>
           <ul><li><strong>Availability of water</strong> – People tend to misuse water when there is much supply and economize when there is scarcity.</li><li><strong>Climatic factor.</strong> People use water during hot condition more often for bathing and drinking.</li><li><strong>Distance</strong> – Fetching water from far distance is hard and therefore people tend to economize water.</li><li><strong>Activities</strong> – Grinding mills and irrigation takes a lot of water.</li><li><strong>Standard of living</strong> - people of advanced standard of living use a lot of water.</li></ul>
 <p>NB. Drinking water should be pure, colorless with no smell.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 THE WATER CYCLE</summary>
           <p>This is a circulation process of water in different stages.</p>
 <ul><li>Water goes in a cycle, it falls as rain and fall into the ground and some runs off as stream and gradually much of it collects into the rivers and sea.</li><li>From the sea, lakes, rivers, streams and any wet surfaces like forests, plants and respirations of man and animals. The water vapor rises into the land and as it cools, it condenses and forms clouds and later falls as rain.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 SOURCES OF WATER</summary>
           <p>Rain, Ocean, Sea, Lakes, Rivers, Swamps, springs, Wells, Glaciers {on top of the mountains}.</p>
 <p>Is a source of water for many people. It may be collected from the roofs by means of gutters and pipes. Rain water is pure but becomes contaminated as it falls through the atmosphere and collecting places. It should be purified before drinking.</p>
@@ -132,31 +164,31 @@
 <ul><li>Good for cooking, washing, cleaning utensils.</li><li>Easily forms lather hence does not waste soap.</li><li>Usually highly contaminated.</li><li>Needs purification all the time/expensive.</li><li>Not good for drinking, unpleasant taste.</li><li>Have no or very little minerals.</li><li>It dissolves lead which causes poisoning.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 SOURCES OF CONTAMINATION OF WATER</summary>
           <ul><li><strong>By humans</strong> - By dirty habits in or near water supply such as urinating, disposing refuse, bathing or washing clothes, swimming or playing and Seepage from latrines built too near to the water supply.</li><li><strong>Animals</strong> - Grazing, defecating, urinating or washing in water.</li><li>Dirty storage tanks or ports or leaving the pot uncovered.</li><li>Dirty containers user for collecting water or leaving the water uncovered.</li><li>Putting arms or cups into the water, a floater should be used leaving the water standing on the floor.</li><li>Using containers made from lead for collecting and storing the water, it can get spoiled if stored for long.</li></ul>
 <p>-Depositing of rubbish or chemical in the water.</p>
 <p>Such as lead pipes or lead container dissolved in water</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 DANGERS OF CONTAMINATED WATER</summary>
           <ul><li>It spreads diseases Typhoid and Paratyphoid, Dysentery, Diarrhea Hepatitis.</li><li>Poliomyelitis.</li><li>Guinea worms.</li><li>Bilharzias.</li><li>Hook worms, roundworms, pinworm, bilharzias.</li><li>Eye and ear infections.</li><li>Skin diseases.</li><li>Bilharzias.</li></ul>
 <p>NB. Mosquitoes breed in stagnant water and spread the organism of malaria, yellow fever, Dengue fever and filariasis, small black water flies. Which leaves in water may spread the micro-organisms causing river blindness {onchocerciasis}</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 PREVENTION OF CONTAMINATION OF WATER</summary>
           <ul><li>The water supply must be protected from children playing and animals defecating, urinating, disposing of refuse, bathing, washing clothes, swimming should not be allowed in or near water supply.</li><li>Parts of rivers and lakes used for domestic purposes and spring should be protected and fenced around. Wells should be dug deep and cemented or bricks to the first impermeable soil to prevent shallow and deep water mixing. If possible a pump should be fitted as a use of buckets may contaminate the water.</li><li>If a pump is not possible, a wall should be built around the well and have a good fitting lid/cover, Ion pipes should be used not lead. Pipes and pumps should be kept in good condition.</li><li>The ground around the well should be cemented with a drain to lead away wasted water.</li><li>Latrines, septic tanks or soak pits should be at least 50 meters from the water source.</li><li>The water should be kept in clean containers kept covered and raised off the ground.</li><li>Hands should be washed before handling containers.</li><li>A dipper should be used for removing the water and left floating and dipper not used for other purposes.</li><li>Hands should not be dipped in water.</li><li>Children should not be allowed near the water places.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 STORAGE OF WATER</summary>
           <p>In homes, water may be kept in clean pots or galvanized irons or cement tanks at the side of the house.</p>
 <ul><li><strong>WATER POTS.</strong> Water pots must be kept clean, covered raised off the ground, no hand dipping in a pot.</li><li><strong>TANKS.</strong> Made either by galvanized iron or concrete and built at the side of the house. Water is collected off the roofs by means of gutters and pipes leading to the tank. The tanks should be made in so that a person can enter in it and clean, but to have a tightly fitting lid to keep out insects and impurities. The openings where the water runs in should be covered with wire gauze to keep out mosquitoes and refuse. The tap for drawing off water should be at least 12 cm from the bottom of a tank to avoid drawing off the sediment from the tank. There should be a drain around the tank to carry away waste water. Arrangement should be made to reject the first rain water as it is highly contaminated.</li><li><strong>AT WATER WORKS.</strong> Water is stored at large scale and in a large covered ventilated tanks and pumped the towns, buildings and houses through pipes.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 PURIFICATION OF WATER</summary>
           <p>Water can be purified in two ways.</p>
 <ul><li>When water is moving slowly, solid matter such as mud, sand settle at the bottom.</li><li>Water plants absorb carbon dioxide and give out oxygen.</li><li>Sun light and oxygen kills many germs and prevent growth of others.</li><li>Some germs are eaten by the protozoa; protozoa are eaten by the insects and insects eaten by the fish with their larva.</li><li><strong>Boiling.</strong> Kills many germs and destroy in organic impurities. The water is allowed to boil for five minutes, it is then poured into a clean covered container and allowed to cool.</li><li><strong>Homemade filter.</strong> This consist of two clean water pots, some holes are drilled into the bottom of one pot and wire gauze is placed on top the holes and then stones. Gravels and sand in layers and impure water is poured on top, this pot is placed on top of another clean pot which is raised off the ground. The water filters through the, stones, gravel and sand into clean water pot underneath. <strong>DIAGRAM SHOWING HOME MADE FILTER.</strong></li><li><strong>Chlorinating.</strong> ¼ or four drops of chlorine or lime is added to 16 liters of water and left for ½ an hour, the water is then safe for drinking.</li><li><strong>Candle filter</strong> This consists of two containers; the top container has one or two candle filters. The impure water is then poured into this container and then placed on top of the bottom containers. This filter through the candle filters into the bottom container. There is a tap at the bottom side for withdrawing the clean water.</li><li><strong>Use of aqua tablets.</strong> One tablet of aqua is dropped into 20 liters of impure water and left for 30 minutes and after that the water is safe for drinking.</li></ul>
@@ -170,37 +202,48 @@
 <ul><li>List three sources of water and provide one major advantage and disadvantage for each.</li><li>What is the difference between <strong>hard water</strong> and <strong>soft water</strong> ?</li><li>Name three diseases that can be spread by contaminated water.</li><li>Describe the three-pot system for <strong>home water filtration</strong> . What is the purpose of each layer?</li><li>What are the four main steps in the <strong>large-scale purification</strong> of water?</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-11">
           <summary>11 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Safe water supply</strong> as a practical nursing topic, not only a memorized definition. Link cause, transmission, incubation, clinical features, treatment support and prevention.</p>
 <ul><li><strong>What to understand first:</strong> define safe water supply, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-12">
           <summary>12 Assessment Guide</summary>
           <ul><li>Temperature, pulse, respiratory status, hydration, pain, rash, wounds, stool, urine or sputum changes.</li><li>Exposure history, travel, contacts, vaccination status and comorbidities.</li><li>Specimen orders, isolation needs, antimicrobial history and danger signs.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-13">
           <summary>13 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use standard precautions and transmission-based precautions where needed.</li><li>Support hydration, nutrition, medicines, monitoring and early referral for severe disease.</li><li>Teach prevention, adherence, hygiene, safe water, vector control or contact tracing as relevant.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> Symptoms improve, complications are detected early, transmission risk is reduced and treatment is completed correctly.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-14">
           <summary>14 Patient Teaching and Revision Check</summary>
           <ul><li>Explain safe water supply in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Safe%20water%20supply%20Personal%20and%20communal%20health%20%26%20Microbiology%20nursing%20lecture" title="Safe water supply YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (7)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Safe-water-supply.webp" alt="Safe Water Supply" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Safe Water Supply</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/USES-OF-WATER.webp" alt="USES OF WATER" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">USES OF WATER</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/THE-WATER-CYCLE-1.webp" alt="THE WATER CYCLE 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">THE WATER CYCLE 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/SOURCES-OF-WATER-e1751876333102.webp" alt="SOURCES OF WATER E1751876333102" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">SOURCES OF WATER E1751876333102</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/DIAGRAM-SHOWING-SPRING-WATERS.gif" alt="DIAGRAM SHOWING SPRING WATERS" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">DIAGRAM SHOWING SPRING WATERS</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/STORAGE-OF-WATER-1.webp" alt="STORAGE OF WATER 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">STORAGE OF WATER 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/two-pot-homemade-water-filter-system.webp" alt="Two Pot Homemade Water Filter System" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Two Pot Homemade Water Filter System</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Safe%20water%20supply%20Personal%20and%20communal%20health%20%26%20Microbiology%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Safe%20water%20supply%20Personal%20and%20communal%20health%20%26%20Microbiology%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

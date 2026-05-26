@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,23 @@
         <p>Introduction to Pain should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (10)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Pain assessment</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Classification of Pain</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Factors that influence pain**</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Total pain**</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Principles for Assessing and Managing Pain</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Clinical Presentation of Pain</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Pain assessment</summary>
           <p>We cannot assess pain without understanding what pain is, right? Let us first explore pain!</p>
 <p>Pain is an unpleasant experience that involves both physical sensations and emotions, often connected to actual or possible harm to body tissues.</p>
@@ -101,67 +129,65 @@
 <ul><li>Direct effects of the disease, such as tumors infiltrating sensitive structures that cause pain</li><li>Treatment-related effects, like radiotherapy that can harm visceral, musculoskeletal, and nervous tissues.</li><li>Surgery, chemotherapy, and radiotherapy are all associated with potential side effects that may cause pain.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Classification of Pain</summary>
           <p>Pain comes in various forms and can be categorized based on its duration (acute or chronic) and its underlying physiological mechanism (nociceptive or neuropathic).</p>
 <p>It is common for multiple types of pain to coexist. To effectively assess and treat pain, it is important to identify the specific type(s) of pain being experienced</p>
 <ul><li>Type Cause Description Treatment</li><li><strong>Nociceptive</strong> Activation of intact nerve pathways Normal response to a stimulus Address underlying cause</li><li>Somatic pain Tissue injury to skin, muscle, bone Nagging, throbbing, aching sensation Standard pain medication (according to WHO ladder)</li><li>(e.g., toothache, burns)</li><li>Visceral pain Pain originating from organs Crampy, nagging sensation (e.g., crampy bowel pain) Additional medication</li><li><strong>Neuropathic pain</strong> Nerve pathway damage resulting in abnormal response to stimulus Burning, shooting, pricking, electric shock, numb sensations (e.g., neuropathy, herpes zoster) Antidepressants, anticonvulsants, +/- Opiates</li><li>Peripheral pain Damage to peripheral nerves Pain originating from peripheral nerves (e.g., nerve compression, chemotherapy-induced damage) Targeted nerve pain medications</li><li>Central pain Damage to the central nervous system Pain originating from the central nervous system (e.g., stroke, spinal cord injury) Neuropathic pain medications –</li><li><strong>Duration of Pain</strong></li><li>Acute Pain Definite injury or illness Characterized by definite onset, limited duration, and clinical signs of sympathetic overactivity (e.g., tachycardia, pallor) Address underlying cause</li><li>Chronic Pain Chronic pathological process Gradual or ill-defined onset, continues unabated (increase in intensity, and strength) may become severe No typical signs of sympathetic overactivity Address underlying cause</li><li><strong>Pain according to Situation</strong></li><li>Breakthrough Transitory exacerbation of pain on a controlled pain background Occurs on a background of otherwise controlled pain Adjust pain management plan as needed</li><li>Incident Pain Occurs in specific circumstances (e.g., after a particular movement) Occurs only in certain circumstances (e.g., after a particular movement) Address specific triggers or interventions</li><li>Procedural Pain Related to procedures or interventions Appropriate pain management during procedures</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 **Factors that influence pain**</summary>
           <ul><li>The patient’s mood</li><li>The patient’s morale</li><li>The meaning of the pain for the patient e.g. the meaning of pain in advanced cancer is</li><li>“I ‘m incurable”: I ‘m going to die.</li><li>Psychological and Spiritual Factors : Pain can be influenced by psychological factors, such as mood, morale, and the meaning of pain for the individual. Spiritual beliefs and practices may also impact pain perception.</li><li>Social Circumstances : Social factors, including support systems, relationships, and cultural influences, can affect the experience and management of pain.</li><li>Emotional Component of Pain : Pain is not purely a physical sensation but also involves an emotional component. Individuals may describe their pain using terms like agonizing, cruel, or terrible.</li><li>Integrated Multi-disciplinary Teams : Managing chronic pain often requires the involvement of various healthcare professionals working together as a team. This interdisciplinary approach ensures comprehensive care and improved outcomes.</li><li>Holistic Support : Providing holistic support to patients with chronic pain can greatly impact their quality of life. This support focuses on addressing feelings of helplessness, building resilience, and addressing the physical, emotional, and social aspects of pain.</li><li>Gender Differences : Biological, psychological, and social factors contribute to differences in how men and women experience pain. This includes variations in pain perception, response to treatment, and effectiveness of different pain management approaches.</li><li>Factors Increasing Pain Factors Decreasing Pain</li><li>Discomfort Relief of other symptoms</li><li>Insomnia Understanding</li><li>Fatigue Companionship</li><li>Anxiety Creative activity</li><li>Fear Relaxation</li><li>Anger Reduction in anxiety</li><li>Sadness Elevation in mood</li><li>Depression Analgesics</li><li>Boredom Anxiolytics</li><li>Antidepressants</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 **Total pain**</summary>
           <ul><li>The concept of total pain was developed by Cicely Saunders in 1960s.</li></ul>
 <p>She acknowledges that pain is not just a physical phenomenon. It encompasses physical, psychological, social and spiritual aspects of suffering.</p>
 <ul><li><strong>Physical</strong> : undesirable effects of treatment, insomnia, chronic fatigue</li><li><strong>Psychological</strong> : anger at delays in diagnosis, anger in treatment failure, disfigurement, fear of pain/death, feelings of helplessness, anger at friends who do not visit.</li><li><strong>Social</strong> : worry about family, Worry about finance, loss of job, loss of income, loss of social position.</li><li><strong>Spiritual</strong> : Why has this happened to me? Why does God allow me to suffer like this? Is there any meaning or purpose in life?</li><li>Severe pain in advanced cancer patients has negative physiological and psychological complications that may worsen an already bad situation.</li><li>Interaction of pain with other symptoms (e.g. nausea, constipation, shortness of breath, depression, anxiety, insomnia) may worsen the patient’s condition.</li><li>The patient’s functional status is further impaired.</li><li>The patient’s autonomy is challenged.</li><li>The patient’s dignity is challenged.</li><li>The patient and family may interpret pain as impending death.</li><li>Inadequate pain assessment</li><li>Inadequate knowledge about pain and its management</li><li>Concerns about possible side effects of pain medications</li><li>Patient and doctor’s attitudes, fears and misconceptions about pain and opioids.</li><li>Poorly accessible or unavailable pain management services.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Principles for Assessing and Managing Pain</summary>
           <ul><li>Comprehensive Approach: All aspects of total pain, including psychological, spiritual, social, cultural, and physical dimensions, should be addressed during pain assessment and management.</li><li>Multiple Causes of Pain: Pain can stem from various sources such as diseases (e.g., HIV), their consequences (e.g., opportunistic infections), treatments (e.g., chemotherapy), or concurrent disorders (e.g., arthritis).</li><li>Goal of Palliative Care: The aim of palliative care is to alleviate pain effectively, ensuring it does not significantly impact the patient’s quality of life.</li><li>Subjectivity of Pain: Pain is a subjective experience, relying on what the patient communicates and describes.</li><li>Guideline-based Management: Pain should be managed according to the guidelines provided by the World Health Organization (WHO) and the analgesic ladder.</li><li>Considerations in Pediatric Pain: Incident and procedural pain are particularly significant in children and should be addressed appropriately.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Clinical Presentation of Pain</summary>
           <p>Different types and causes of pain manifest with distinct clinical presentations:</p>
 <ul><li>Visceral Pain: This type of pain is not well localized and presents as a constant, aching sensation.</li><li>Bone Pain: Bone pain is well localized with local tenderness. It resembles a nagging toothache, worsens with movement and weight bearing, and is often caused by the release of prostaglandins.</li><li>Colic: Colic refers to gripping pain associated with spasms, typically occurring in the middle or upper abdomen (bowel) or related to micturition (bladder).</li><li>Raised Intracranial Pressure: Increased pressure within the skull results in a generalized headache that worsens in the mornings, when lying down, and during coughing. This type of pain may be accompanied by symptoms like nausea, projectile vomiting, and blurred vision.</li><li>Neuropathic Pain: Neuropathic pain is constant or aggravated by movement. It is described as burning, sharp, stabbing, shooting, or a nagging ache. It may be associated with altered sensation and can follow a dermatomal distribution.</li><li>Spiritual Pain: Spiritual pain is an emotional form of suffering, often expressed through dreams or nightmares.</li><li>Other Forms of Pain: Patients may exhibit refusal to take medication or engage in self-harming behaviors as active manifestations of pain.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-7">
           <summary>07 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Introduction to Pain</strong> as a practical nursing topic, not only a memorized definition. Focus on comfort, dignity, symptom control, communication and family support.</p>
 <ul><li><strong>What to understand first:</strong> define introduction to pain, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-8">
           <summary>08 Assessment Guide</summary>
           <ul><li>Pain and other symptoms, function, sleep, appetite, mood, spiritual distress and family concerns.</li><li>Medication response, side effects, wound or skin needs and end-of-life preferences.</li><li>Caregiver burden, home resources and urgent red flags.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-9">
           <summary>09 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Relieve distressing symptoms and prevent avoidable suffering.</li><li>Communicate honestly, respectfully and at the patient&#39;s pace.</li><li>Support family care, medication access, dignity and continuity.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> Symptoms are better controlled, patient preferences are respected and the family knows when to seek help.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-10">
           <summary>10 Patient Teaching and Revision Check</summary>
           <ul><li>Explain introduction to pain in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
+      
       <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Introduction%20to%20Pain%20Palliative%20Care%20Nursing%20nursing%20lecture" title="Introduction to Pain YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Introduction%20to%20Pain%20Palliative%20Care%20Nursing%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Introduction%20to%20Pain%20Palliative%20Care%20Nursing%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

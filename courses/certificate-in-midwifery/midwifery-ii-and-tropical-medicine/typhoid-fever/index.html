@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,12 +97,34 @@
         <p>Typhoid Fever should be reviewed through safe maternal and newborn assessment, early recognition of danger signs, respectful communication and timely referral. Connect the definition to vital signs, bleeding, fetal or newborn wellbeing, patient education and local protocol requirements.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 16 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">TYPHOID FEVER(Enteric fever)</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Causes</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Predisposing Factors/Causes:</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Transmission</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Transmission Routes:</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Signs and Symptoms of Typhoid Fever</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Clinical Presentation:</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Investigations for Typhoid Fever:</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Complications of Typhoid Fever:</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Management of Typhoid Fever</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Prevention:</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Test MCQ Questions</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-16" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 TYPHOID FEVER(Enteric fever)</summary>
           <p>Typhoid fever is an acute bacterial infection characterized by fever and is primarily spread through contaminated food and water.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Causes</summary>
           <p>Typhoid fever is caused by Salmonella typhi and Salmonella paratyphi A and B.</p>
 <ul><li>Enteric fever : A febrile inflammatory reaction due to the presence of bacteria in the intestines. Typhoid fever is a specific type of enteric fever caused by Salmonella Typhi .</li><li>Salmonellosis : A general term for infections caused by bacteria of the genus Salmonella . Typhoid fever is a specific type of salmonellosis caused by Salmonella Typhi .</li><li>Typhoid fever : A systemic infectious fever characterized by high fever, malaise, enteritis (inflammation of the intestines), rose-spot rash, and involvement of the lymphoid tissues (like the spleen) . It is caused by the bacterium Salmonella Typhi .</li></ul>
@@ -102,7 +136,7 @@
 <p>Commensalism : Salmonella species are common commensals in the gastrointestinal tract (GIT) of poultry, domestic pets, birds, and humans. However, Salmonella Typhi is unique in that it only affects humans.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Predisposing Factors/Causes:</summary>
           <ul><li>Inadequate hygiene : Poor handwashing after defecation/urination, especially in areas with inadequate sanitation, can lead to the spread of the bacteria.</li><li>Vectors : Flies, which can carry the bacteria on their bodies, can spread the infection.</li><li>Poor environmental hygiene : Lack of clean water, overcrowding, inadequate excreta disposal (lack of latrines) all contribute to the spread of typhoid fever.</li><li>Poor nutrition and poverty : Malnourished individuals and those living in poverty are more susceptible to infections, including typhoid fever.</li><li>Achlorhydria : Lack of stomach acid (HCl) can decrease the ability to kill the bacteria.</li><li>Schistosomiasis : This parasitic infection can compromise intestinal integrity, making it easier for bacteria to invade.</li><li>Homogenous sickle cell disease patients : Individuals with this genetic condition are more susceptible to infections.</li></ul>
 <p>Incidence :</p>
@@ -111,17 +145,17 @@
 <ul><li>The incubation period for typhoid fever is usually 2 to 3 weeks.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Transmission</summary>
           <ul><li>Typhoid fever is contracted by the ingestion of the bacteria in contaminated food or water.</li><li>Patients with acute illness can contaminate the surrounding water supply through stool, which contains a high concentration of the bacteria.</li><li>About 3-5% of patients become carriers of the bacteria after the acute illness. Some patients suffer a very mild illness that goes unrecognized, and these patients can become long-term carriers of the bacteria.</li><li>The bacteria multiply in the gallbladder, bile ducts, or liver and pass into the bowel.</li><li>The bacteria can survive for weeks in water or dried sewage.</li><li>The chronic carriers may have no symptoms and can be the source of new outbreaks of typhoid fever for many years.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Transmission Routes:</summary>
           <ul><li>Contact with formites : Contact with objects contaminated with feces or urine from patients or carriers.</li><li>Flies : Flies can carry the bacteria and spread it through contact with food or surfaces.</li><li>Ingestion : The most common route of transmission is through ingestion of contaminated food or water.</li><li>Ano-oral transmission : Direct transmission from feces to mouth, especially prevalent in settings with high carrier rates, like prisons.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Signs and Symptoms of Typhoid Fever</summary>
           <p>Classically, the course of untreated typhoid fever is divided into four stages, each lasting approximately one week.</p>
 <p><strong>First week:</strong></p>
@@ -135,7 +169,7 @@
 <p>To summarize;</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Clinical Presentation:</summary>
           <p>Week 1 (Week of Onset) :</p>
 <ul><li>Gradual onset : Symptoms typically develop gradually, but a sudden onset, especially with shivering and rigors (intense shaking chills), can occur in “paralytic typhoid.”</li><li>Progressive symptoms : Symptoms increase in severity over 3 to 4 days, often leading to bed rest.</li><li>Headache : A severe headache is common, accompanied by malaise, anorexia, limb pain, insomnia, and epistaxis (nosebleed).</li><li>Nausea and vomiting : The patient feels unwell, with nausea and vomiting.</li><li>Abdominal pain : Pain in the abdomen, often diffuse, with normal bowel movements or sounds initially. The abdomen may become distended with gas.</li><li>Constipation or diarrhea : Both constipation and diarrhea can occur.</li><li>Chest pain and cough : Chest pain and cough due to bronchitis are common.</li><li>Fever : The temperature rises steadily and remittently (fluctuates but does not return to normal) in a “step ladder” pattern, reaching 40-41°C within 24 to 48 hours. After a period of sustained fever, it starts to remit (decrease) at night and eventually resolves by lysis (gradual decrease).</li><li>Bradycardia : A slow pulse rate (70-90 bpm) is a classic sign of typhoid fever.</li><li>Splenomegaly and hepatomegaly: Enlargement of the spleen and liver.</li><li>Nerve deafness: Common in the first week.</li></ul>
@@ -147,14 +181,14 @@
 <ul><li>Convalescence : This is a period of gradual recovery.</li><li>Ulcer healing : The ulcers gradually granulate and heal between the 3rd and 5th week, usually without scar formation.</li><li>Improvement : The patient gradually improves, temperature returns to normal by lysis, and other symptoms subside.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Investigations for Typhoid Fever:</summary>
           <ul><li><strong>Stool Culture</strong> : Stool culture involves collecting a sample of the patient’s stool and incubating it under specific conditions to identify and isolate the causative bacteria, usually Salmonella typhi or Salmonella paratyphi. The presence of these bacteria in the stool confirms the diagnosis of typhoid fever.</li><li><strong>Blood Culture</strong> : Blood sample is collected and cultured in a suitable medium to identify and isolate the bacteria causing typhoid fever. A blood culture is an effective method to confirm the diagnosis, especially in the early stages of the disease when stool cultures might be negative.</li><li><strong>Widal Test</strong> : The Widal test is a serological test used to detect antibodies produced by the body in response to the infection by Salmonella typhi. The test measures the presence of specific antibodies, including anti-O and anti-H antibodies, in the patient’s blood. A positive Widal test suggests a recent or past infection with typhoid fever. However, it is important to note that the Widal test results should be interpreted cautiously, as false-positive results can occur due to cross-reactivity with other infections or previous vaccinations.</li></ul>
 <p><strong>Additional Investigations (optional):</strong></p>
 <ul><li><strong>Polymerase Chain Reaction (PCR)</strong> Test: PCR is a molecular diagnostic test that can detect the genetic material (DNA or RNA) of the Salmonella bacteria directly from clinical samples, such as blood or stool. PCR is a highly sensitive and specific method, and it can provide rapid results, aiding in early detection and timely treatment of typhoid fever.</li><li><strong>Typhoid Serology</strong> : Typhoid serology involves analyzing the patient’s blood for specific antibodies against Salmonella typhi. This test, similar to the Widal test, helps in confirming a recent or past infection, but it may have limitations in terms of sensitivity and specificity.</li><li><strong>Complete Blood Count (CBC)</strong> : A CBC is a routine blood test that provides information about the number and types of blood cells. In typhoid fever, the CBC may show leucopenia (low white blood cell count), eosinopenia (low eosinophil count), and relative lymphocytosis (increased lymphocyte percentage). These abnormalities can help in supporting the diagnosis of typhoid fever.</li><li><strong>Liver Function Tests (LFTs)</strong> : Liver function tests assess the health of the liver and its ability to function properly. In typhoid fever, liver involvement is common, and LFTs can reveal elevated liver enzymes and other liver-related abnormalities.</li><li><strong>Urinalysis</strong> : Urinalysis may be performed to check for the presence of white blood cells or other indicators of kidney involvement, which can occur in severe cases of typhoid fever.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Complications of Typhoid Fever:</summary>
           <p>I. <strong>Gastrointestinal Complications:</strong> A. Perforation : The ulcerated areas in the intestines can lead to perforation, causing leakage of intestinal contents into the abdominal cavity. This can result in severe abdominal pain and peritonitis. B. Hemorrhage <strong>:</strong> The erosion of blood vessels by ulcers can cause gastrointestinal bleeding, leading to blood loss and anemia. C. Peritonitis : Perforation of the intestine can lead to peritonitis, an inflammation of the peritoneum (the lining of the abdominal cavity), causing severe abdominal pain and tenderness.</p>
 <p>II. <strong>Gallbladder Complications:</strong> A. Cholecystitis : The infection can spread to the gallbladder, causing inflammation known as cholecystitis, which leads to abdominal pain, fever, and tenderness in the right upper abdomen.</p>
@@ -166,7 +200,7 @@
 <p>C. Mental Confusion : During the advanced stages of the disease, mental confusion and delirium may occur due to the systemic effects of the infection on the central nervous system.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Management of Typhoid Fever</summary>
           <ul><li><strong>Hospital Admission</strong> :</li><li>In severe cases of typhoid fever, hospital admission is necessary to provide close monitoring and appropriate medical care.</li><li><strong>Isolation or Barrier Nursing:</strong></li><li>Patients with typhoid fever should be isolated or barrier nursed to prevent the spread of the infection to others.</li><li><strong>Investigations:</strong></li><li>Blood for Culture and Sensitivity (C/S) should be performed during the first week to identify the causative bacteria and determine its sensitivity to antibiotics.</li><li>Full Blood Sample (FBS) analysis will reveal low Hemoglobin (Hb) levels, low White Blood Cell (WBC) count, and an increased Erythrocyte Sedimentation Rate (ESR).</li><li>The Widal test can be done around 10/7 days after the onset of symptoms to detect antibodies against typhoid bacilli.</li><li>Blood Smear (B/S) examination should be conducted to rule out malaria.</li><li>Stool analysis and urinalysis are important to assess gastrointestinal and urinary involvement in typhoid fever.</li><li><strong>Drug Therapy:</strong></li><li>Antibiotic therapy is a cornerstone of typhoid fever management: Ciprofloxacin at a dose of 500-750 mg twice daily for 10/7 (10 days).</li><li>Azithromycin at a dose of 10 mg/kg daily.</li><li>Cotrimoxazole at a dose of 960 mg twice daily for 3/7 (3 days) or as per a weight-based calculation for 10/7 (10 days).</li><li><strong>Long-Term Carriers:</strong></li><li>After signs have passed, stool tests should be conducted to check if Salmonella typhi bacilli are still present. Patients may become potential long-term carriers of the bacteria, requiring a 28-day course of antibiotics to eliminate the bacteria until they are free from it.</li><li><strong>Fluid and Electrolyte Management:</strong></li><li>Monitor intravenous (IV) fluid administration for rehydration.</li><li>Correct fluid and electrolyte imbalances with Normal Saline (N/S), Dextrose 5% (D5%) solutions, and oral fluids.</li><li><strong>Nutrition:</strong></li><li>Ensure adequate nutrition and provide a soft, easily digestible diet, unless the patient has abdominal complications or ileus.</li><li><strong>Antipyretics:</strong></li><li>Administer antipyretics like Paracetamol (PCM) to manage fever.</li><li><strong>Hygiene and Infection Control:</strong></li><li>Pay close attention to handwashing and limit close contact with individuals during the acute phase of the infection to prevent its spread.</li><li>Encourage proper waste disposal, covering of food, and proper food preparation to reduce contamination risks.</li><li>Encourage early screening and management to prevent the worsening of the disease.</li><li><strong>Proper Water Treatment and Storage:</strong></li><li>Educate patients on the proper treatment and storage of water to avoid waterborne transmission of the bacteria.</li><li><strong>Regular Follow-Up and Monitoring:</strong></li><li>Ensure regular follow-up and monitor for complications and clinical relapses.</li><li><strong>Management of Delirium:</strong></li><li>Encourage the use of Phenobarbital at a dose of 30-60 mg in case of delirium.</li></ul>
 <p>Treatment :</p>
@@ -180,12 +214,12 @@
 <ul><li>Rehydration : Provide intravenous fluids, nasogastric tube feeding, or oral rehydration solutions as needed to combat dehydration.</li><li>Temperature control : Implement tepid sponging and other measures to cool the patient’s temperature.</li><li>Hygiene : Maintain strict hygiene practices, including:</li><li>Skin care: Keep the patient’s skin clean and dry.</li><li>Mouth care: Provide oral hygiene to prevent mouth sores.</li><li>Nail care : Keep the patient’s nails trimmed and clean.</li><li>Perineal care : Keep the perineal area clean to prevent infection.</li><li>Personal protective equipment (PPE): Wear gloves, aprons, and goggles when handling anything from the patient to minimize exposure to bacteria.</li><li>Handwashing : Ensure frequent handwashing with soap and water and drying with clean towels.</li><li>Safe water and food: Use only treated or boiled water for drinking and cooking.</li><li>Disinfection : Dispose of wastes and excreta properly, disinfecting all contaminated items. Use disposable cups and plates whenever possible.</li><li>Non-disposable items : Disinfect non-disposable articles with concentrated disinfectants, replacing them regularly.</li><li>Linen treatment : Treat linens as infected material.</li><li>Terminal disinfection : Carry out terminal disinfection after the patient’s discharge.</li><li>Monitoring : Closely monitor the patient’s condition, particularly abdominal pain, diarrhea, constipation, and any signs of complications. Report any changes promptly.</li><li>Diet : Initially, provide a fluid diet high in calories, followed by a balanced, nutritious, soft diet (6-8 small meals).</li><li>Fluid and elimination : Monitor fluid intake and output, and assist with elimination as needed.</li><li>Psychological support: Offer emotional support to the patient.</li><li>Physiotherapy : Provide physiotherapy after the acute stage to help the patient regain strength and mobility.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 Prevention:</summary>
           <ul><li>Maintain cleanliness in the premises and ensure proper disposal of rubbish.</li><li>Keep hands clean and maintain trimmed fingernails.</li><li>Wash hands thoroughly with soap and water before eating or handling food and after using the toilet or changing diapers.</li><li>Drinking water should be free from microorganisms; it is preferable to boil water before consumption.</li><li>Avoid high-risk foods, such as raw or semi-cooked food.</li><li>During food preparation, wear clean, washable aprons, and caps.</li><li>Clean and wash food thoroughly, including scrubbing and rinsing fruits in clean water.</li><li>Store perishable food in the refrigerator, covering it properly.</li><li>Cook food thoroughly before consumption.</li><li>Consume food as soon as it is prepared.</li><li>If necessary, refrigerate cooked leftover food and consume it promptly. Reheat it thoroughly before consumption.</li><li>Exclude infected individuals and asymptomatic carriers from handling food and providing care to children.</li><li>Consider immunization, especially for those traveling to high-risk areas, where vaccines are available in oral and injectable forms.</li></ul>
         </details>
       
-        <details class="seo-lesson-section exam-section" open>
+        <details class="seo-lesson-section exam-section" id="section-12">
           <summary>12 Test MCQ Questions</summary>
           <p><strong>Answers:</strong></p>
 <ul><li>B – Contaminated food and water</li><li>B – Salmonella typhi</li><li>D – Cholecystitis</li><li>D – Blood culture</li><li>C – Ciprofloxacin</li><li>D – To allow close monitoring and provide appropriate medical care</li><li>A – Proper handwashing with soap and water</li><li>B – Peritonitis</li><li>A – Drinking untreated water from natural sources</li><li>A – Asymptomatic carriers and infected individuals</li></ul>
@@ -193,37 +227,45 @@
 <ul><li>Typhoid fever is primarily spread through contaminated food and water, making option B the correct answer.</li><li>Salmonella typhi is the bacterium responsible for causing typhoid fever, making option B the correct answer.</li><li>Cholecystitis is one of the gastrointestinal complications associated with typhoid fever, making option D the correct answer.</li><li>Blood culture is used to identify the presence of Salmonella typhi in the blood, making option D the correct answer.</li><li>Ciprofloxacin is one of the recommended antibiotics for treating typhoid fever, making option C the correct answer.</li><li>Hospital admission is recommended in severe cases of typhoid fever for close monitoring and appropriate medical care, making option D the correct answer.</li><li>Proper handwashing with soap and water is the primary preventive measure to avoid typhoid fever transmission, making option A the correct answer.</li><li>Peritonitis is a gastrointestinal complication that can occur due to typhoid fever, making option B the correct answer.</li><li>Drinking untreated water from natural sources is NOT a recommended step to prevent typhoid fever, making option A the correct answer.</li><li>Asymptomatic carriers and infected individuals should be excluded from handling food and providing care to children during a typhoid fever outbreak, making option A the correct answer.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-13">
           <summary>13 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Typhoid Fever</strong> as a practical nursing topic, not only a memorized definition. Study medicines through indication, safety checks, expected response, adverse effects and patient teaching.</p>
 <ul><li><strong>What to understand first:</strong> define typhoid fever, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-14">
           <summary>14 Assessment Guide</summary>
           <ul><li>Diagnosis or reason for the medicine, allergies, pregnancy status and previous reactions.</li><li>Current medicines, herbal products, renal or liver risk and baseline observations.</li><li>Dose, route, timing, dilution, expiry date and documentation requirements.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-15">
           <summary>15 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Apply the rights of medication administration and facility policy.</li><li>Monitor therapeutic response and class-specific adverse effects.</li><li>Educate the patient on purpose, timing, missed doses, warning symptoms and adherence.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The medicine produces the intended effect without preventable harm, and administration is accurately documented.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-16">
           <summary>16 Patient Teaching and Revision Check</summary>
           <ul><li>Explain typhoid fever in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Typhoid%20Fever%20Midwifery%20II%20%26%20Tropical%20medicine%20nursing%20lecture" title="Typhoid Fever YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (4)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Typhoid-Fever-Enteric-Fever.webp" alt="Typhoid Fever Enteric Fever" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Typhoid Fever Enteric Fever</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/cfbeee9e8c0f063649df6e977fa54e1e.webp" alt="Cfbeee9e8c0f063649df6e977fa54e1e" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Cfbeee9e8c0f063649df6e977fa54e1e</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/c9e42146b150847d3a7ffd2f8e5e4746.webp" alt="C9e42146b150847d3a7ffd2f8e5e4746" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">C9e42146b150847d3a7ffd2f8e5e4746</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/89cb7a443487aedf4d8dd2d39c6d71e6.webp" alt="89cb7a443487aedf4d8dd2d39c6d71e6" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">89cb7a443487aedf4d8dd2d39c6d71e6</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Typhoid%20Fever%20Midwifery%20II%20%26%20Tropical%20medicine%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Typhoid%20Fever%20Midwifery%20II%20%26%20Tropical%20medicine%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

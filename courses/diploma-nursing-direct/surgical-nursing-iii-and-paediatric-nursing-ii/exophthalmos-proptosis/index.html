@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,20 +97,39 @@
         <p>Exophthalmos / Proptosis should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 13 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Proptosis</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Causes and Risk Factors:</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Classifications of Proptosis:</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Pathophysiology</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Signs and Symptoms of Proptosis</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Diagnosis of Proptosis</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Differential Diagnosis</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Management of Proptosis</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Care for Patients with Proptosis</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Proptosis</summary>
           <p>Proptosis of the eye, also known as exophthalmos, is a condition where one or both eyes bulge or protrude from their normal position in the eye sockets.</p>
 <p>It can be caused by various factors affecting the structures around the eyes.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Causes and Risk Factors:</summary>
           <ul><li><strong>Thyroid Eye Disease:</strong> One of the common causes of proptosis is thyroid eye disease, also known as Graves’ ophthalmopathy. It occurs when the immune system mistakenly attacks the tissues around the eyes, causing inflammation and pushing the eyes forward.</li><li><strong>Orbital Cellulitis and Infections:</strong> Infections in the eye socket, known as orbital cellulitis, can lead to swelling and proptosis.</li><li><strong>Orbital Tumors:</strong> Benign or malignant tumors in the eye socket can cause the eyes to bulge out. These growths need to be evaluated and treated promptly.</li><li><strong>Trauma or Injury</strong> : Severe injuries to the eye or orbit can displace the eye from its normal position, resulting in proptosis.</li><li><strong>Allergic Reactions</strong> : Severe allergic reactions in and around the eyes can cause swelling and push the eyes forward.</li></ul>
 <p><strong>Risk Factors:</strong></p>
 <ul><li>Thyroid disorders, such as hyperthyroidism (overactive thyroid)</li><li>Previous history of eye injuries or surgeries</li><li>Family history of thyroid eye disease or other eye conditions</li><li>Certain infections that can affect the eye socket and surrounding tissues</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Classifications of Proptosis:</summary>
           <p>Proptosis, also known as exophthalmos, can be classified based on different criteria</p>
 <p><strong>Based on Onset:</strong> a. Acute Proptosis : Sudden onset of bulging eyes, often associated with infections, trauma, or inflammatory conditions. b. Chronic Proptosis: Gradual and persistent eye protrusion, frequently linked to conditions like thyroid eye disease or slow-growing tumors.</p>
@@ -114,13 +145,13 @@
 <ul><li><strong>Extraocular Muscles</strong> : These muscles control the movement of the eye in different directions.</li><li><strong>Fat Tissue</strong> : Provides cushioning and support for the eye within the orbit.</li><li><strong>Blood Vessels and Nerves</strong> : Supply nutrients and transmit sensory information to and from the eye.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Pathophysiology</summary>
           <p>Proptosis occurs when there is an abnormal increase in the volume of tissue within the orbit, causing the eye to bulge forward. This can happen due to swelling, growths, or displacement of structures within the eye socket. As a result of proptosis, the eye is pushed out of its normal position, which can lead to several effects:</p>
 <ul><li><strong>Visible Bulging</strong> : The affected eye(s) may appear more prominent than the other eye due to the forward displacement.</li><li><strong>Limited Eye Movement:</strong> Proptosis can hinder the normal movement of the eye because of the increased pressure within the confined space of the orbit.</li><li><strong>Exposure of the Eye Surface:</strong> The bulging eye may have difficulty closing fully, leading to problems with lubrication and dryness.</li><li><strong>Vision Problems</strong> : Proptosis can impact the alignment of the eyes, leading to double vision (diplopia) or blurred vision.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Signs and Symptoms of Proptosis</summary>
           <p>A. <strong>Bulging or Protruding Eye(s):</strong> One of the most noticeable signs of proptosis is when one or both eyes appear to bulge or protrude from their normal position within the eye sockets. The affected eye(s) may look larger and more prominent than usual, which can be concerning for the person experiencing this symptom.</p>
 <p>B. <strong>Redness and Swelling:</strong> Proptosis often leads to redness and swelling around the affected eye(s) and the surrounding tissues. The increased pressure within the eye socket can cause inflammation, making the eye area appear puffy and irritated.</p>
@@ -134,7 +165,7 @@
 <p>J. <strong>Pressure Sensation</strong> : Some individuals with proptosis may describe a feeling of pressure or heaviness around the eyes due to the increased tissue volume within the eye socket.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Diagnosis of Proptosis</summary>
           <p><strong>Clinical Examination by Healthcare Professionals:</strong> The first step in diagnosing proptosis involves a thorough clinical examination by healthcare professionals, such as ophthalmologists or eye specialists. During the examination, the following assessments may be performed:</p>
 <ul><li><strong>Visual Acuity Test</strong> : To assess how well the patient can see at various distances using an eye chart.</li><li><strong>Eye Movement Examination</strong> : To check for any limitations or abnormalities in the movement of the affected eye(s).</li><li><strong>Pupil Examination</strong> : To evaluate the size and reaction of the pupils to light.</li><li><strong>Eye Pressure Measurement:</strong> To check for increased intraocular pressure, which may be associated with certain eye conditions.</li><li><strong>Slit-Lamp Examination</strong> : A specialized microscope used to examine the front structures of the eye, including the cornea, iris, and lens.</li><li><strong>Fundoscopy</strong> : To visualize the back of the eye (retina and optic nerve) using an ophthalmoscope.</li></ul>
@@ -142,12 +173,12 @@
 <ul><li><strong>Magnetic Resonance Imaging (MRI):</strong> This non-invasive technique uses powerful magnets and radio waves to create detailed images of the eye, orbit, and surrounding soft tissues. MRI helps identify any abnormal growths, inflammation, or changes in the eye and orbital structures.</li><li><strong>Computed Tomography (CT Scan)</strong> : CT scans provide cross-sectional images of the eye and orbit, offering precise information about the bony structures and any abnormalities present. It helps in identifying fractures, tumors, or other conditions affecting the eye socket.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Differential Diagnosis</summary>
           <ul><li><strong>Thyroid Eye Disease (Graves’ Ophthalmopathy):</strong> This autoimmune condition is one of the common causes of proptosis and may be associated with other signs of hyperthyroidism.</li><li><strong>Orbital Cellulitis</strong> : An infection of the tissues around the eye, causing redness, swelling, and pain.</li><li><strong>Orbital Tumors</strong> : Benign or malignant growths that can push the eye forward.</li><li><strong>Allergic Reactions</strong> : Severe allergies can cause eye swelling and redness.</li><li><strong>Traumatic Eye Injury</strong> : Severe eye injuries may lead to eye displacement and proptosis.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Management of Proptosis</summary>
           <p><strong>Medical Management:</strong></p>
 <ul><li><strong>Treating Underlying Conditions</strong> (e.g., Thyroid Disorders): If proptosis is caused by an underlying condition like thyroid eye disease, the primary focus of treatment is managing the underlying disorder. For instance, in Graves’ ophthalmopathy, controlling the overactive thyroid with medications, radioactive iodine, or surgery may help stabilize or improve eye symptoms.</li><li><strong>Corticosteroids and Immunosuppressive Therapy</strong> : In certain cases of proptosis associated with inflammation or autoimmune conditions, corticosteroids may be prescribed. These anti-inflammatory medications help reduce swelling and inflammation around the eyes. In more severe cases, immunosuppressive therapy may be used to modulate the immune response and manage the underlying cause.</li></ul>
@@ -155,7 +186,7 @@
 <ul><li><strong>Orbital Decompression Surgery</strong> : Orbital decompression is a surgical procedure performed to alleviate pressure in the eye socket by creating additional space. It involves removing or reshaping parts of the bony orbit to allow the displaced eye to move back to a more normal position. This surgery is commonly used for patients with proptosis due to thyroid eye disease or other conditions causing compression of the optic nerve.</li><li><strong>Orbital Tumor Removal:</strong> If proptosis is caused by benign or malignant tumors within the orbit, surgical removal may be necessary. The goal is to excise the tumor while preserving the surrounding eye structures and restoring a more natural eye position.</li><li><strong>Eye Realignment Surgery:</strong> In cases of proptosis resulting from muscle imbalances or nerve problems, eye realignment surgery may be recommended. This procedure aims to reposition the affected eye(s) to improve alignment and reduce double vision.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Nursing Care for Patients with Proptosis</summary>
           <p>Patient Education:</p>
 <ul><li><strong>Understanding the Diagnosis</strong> and Treatment Plan: Nurses play a vital role in educating patients about their proptosis diagnosis, explaining the underlying cause, and discussing the treatment options available. They should ensure that patients comprehend the information, addressing any questions or concerns they may have.</li><li><strong>Eye Care and Hygiene:</strong> Nurses should provide guidance on proper eye care and hygiene practices to prevent complications like dry eyes and corneal exposure. This includes instructing patients on how to use lubricating eye drops, avoiding eye rubbing, and maintaining a clean eye area to reduce the risk of infections.</li></ul>
@@ -165,37 +196,48 @@
 <ul><li><strong>Addressing Psychological Impact</strong> : Having proptosis can significantly impact a patient’s emotional well-being and self-esteem. Nurses should provide empathetic support, actively listen to patients’ concerns, and offer reassurance to help alleviate anxiety or distress related to the condition.</li><li><strong>Encouraging Coping Mechanisms</strong> : Nurses can recommend stress-reducing techniques and coping mechanisms to help patients manage their emotions and cope with the challenges of living with proptosis. Encouraging patients to engage in hobbies, relaxation techniques, or support groups can be beneficial.</li><li><strong>Positioning the Patient After Surgery:</strong> Following orbital surgeries, nurses will help position the patient to minimize swelling and promote comfort. Elevating the head of the bed and keeping the patient’s head elevated can help reduce post-operative swelling and pressure around the eyes.</li><li><strong>Lubricating Eye Drops:</strong> For patients experiencing dry eye symptoms due to incomplete eye closure, artificial tears or lubricating eye drops can help keep the eyes moist and reduce discomfort.</li><li><strong>Eye Protection:</strong> Patients with proptosis should be advised to wear appropriate eye protection, such as safety glasses or goggles, to safeguard the eyes from potential injury.</li><li><strong>Eye Patching:</strong> In cases where there is significant corneal exposure, eye patches may be used to protect the cornea and promote healing.</li><li><strong>Vision Therapy:</strong> For patients with residual double vision, vision therapy exercises may be prescribed to help improve eye muscle coordination and reduce the impact of diplopia.</li><li><strong>Psychological Support</strong> : Dealing with proptosis and its effects on appearance and vision can be emotionally challenging for patients. Providing psychological support and counseling can help patients cope with the condition and boost self-esteem.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-10">
           <summary>10 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Exophthalmos / Proptosis</strong> as a practical nursing topic, not only a memorized definition. Prioritize airway, breathing, circulation, pain, asepsis, wound healing and early complication detection.</p>
 <ul><li><strong>What to understand first:</strong> define exophthalmos / proptosis, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-11">
           <summary>11 Assessment Guide</summary>
           <ul><li>Vital signs, pain, bleeding, perfusion, level of consciousness and injury pattern.</li><li>Wound appearance, drainage, odour, swelling, temperature and surrounding skin.</li><li>Fluid balance, mobility, nutrition, surgical site risk and ordered investigations.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-12">
           <summary>12 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Stabilize urgent problems first, then prepare for investigations or theatre care.</li><li>Maintain aseptic technique, pain control, wound care and documentation.</li><li>Prevent shock, infection, pressure injury, deep vein thrombosis and delayed healing.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The patient remains stable, wound healing progresses, pain is controlled and complications are recognized early.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-13">
           <summary>13 Patient Teaching and Revision Check</summary>
           <ul><li>Explain exophthalmos / proptosis in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Exophthalmos%20%2F%20Proptosis%20Surgical%20Nursing%20III%20and%20Paediatric%20Nursing%20(II)%20nursing%20lecture" title="Exophthalmos / Proptosis YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (7)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Proptosis.webp" alt="Proptosis" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Proptosis</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/signs-of-Proptosis.webp" alt="Signs Of Proptosis" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Signs Of Proptosis</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Diagnosing-Proptosis.webp" alt="Diagnosing Proptosis" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Diagnosing Proptosis</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/1ac55fa6b5d137cbb99112f03c621346.webp" alt="1ac55fa6b5d137cbb99112f03c621346" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">1ac55fa6b5d137cbb99112f03c621346</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/247b25ced1a3c1cf8e930d721d2f0d45.webp" alt="247b25ced1a3c1cf8e930d721d2f0d45" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">247b25ced1a3c1cf8e930d721d2f0d45</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/f2855ed467971b82bac33eac7ea5b5e0.webp" alt="F2855ed467971b82bac33eac7ea5b5e0" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">F2855ed467971b82bac33eac7ea5b5e0</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/f526fbb4b797be6f3232c07af5f28d5a.webp" alt="F526fbb4b797be6f3232c07af5f28d5a" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">F526fbb4b797be6f3232c07af5f28d5a</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Exophthalmos%20%2F%20Proptosis%20Surgical%20Nursing%20III%20and%20Paediatric%20Nursing%20(II)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Exophthalmos%20%2F%20Proptosis%20Surgical%20Nursing%20III%20and%20Paediatric%20Nursing%20(II)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

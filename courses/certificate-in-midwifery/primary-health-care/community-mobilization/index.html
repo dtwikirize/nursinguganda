@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,23 +97,40 @@
         <p>Community Mobilization should be reviewed through safe maternal and newborn assessment, early recognition of danger signs, respectful communication and timely referral. Connect the definition to vital signs, bleeding, fetal or newborn wellbeing, patient education and local protocol requirements.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (11)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Community Mobilization**</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Importance of effective community mobilization**</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**The Role of a Community Nurse in Community Mobilization**</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Steps taken during community mobilization**</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Methods of community mobilization**</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Opportunities for community mobilization**</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Factors that hinder community mobilization.</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 **Community Mobilization**</summary>
           <p>Community mobilization is a process that involves bringing individuals and groups together with a common purpose to plan, implement, and evaluate activities in a participatory and sustained manner.</p>
 <p>This follows Community Diagnosis</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 **Importance of effective community mobilization**</summary>
           <ul><li><strong>Encourages local ownership</strong> : Community mobilization empowers community members to take ownership of initiatives and solutions, leading to a sense of pride, responsibility, and accountability for the outcomes.</li><li><strong>Promotes sustainability of health programs</strong> : When communities actively participate in the planning, implementation, and evaluation of health programs, it increases the likelihood of sustainability beyond the initial phase. Communities are more likely to continue and support initiatives that they have been actively involved in.</li><li><strong>Motivates and involves community members</strong> : Community mobilization fosters motivation and active participation among community members. It creates a sense of belonging, purpose, and shared responsibility, leading to increased engagement in health-related activities.</li><li><strong>Builds community capacity:</strong> Through community mobilization, communities can develop their capacity to identify and address their own needs. It promotes knowledge sharing, skill development, and the utilization of local resources and expertise.</li><li><strong>Promotes sustainability and commitment</strong> : Effective community mobilization cultivates a long-term commitment to community change. It fosters a culture of collaboration, innovation, and continuous improvement, ensuring that positive changes are sustained over time.</li><li><strong>Advocacy for policy changes</strong> : Mobilized communities are more likely to advocate for policy changes to address their health needs. They can effectively engage with policymakers, raise awareness about key issues, and influence decisions that have a broader impact on the community’s well-being.</li><li><strong>Fosters unity and teamwork:</strong> Community mobilization brings people together, creating unity and fostering teamwork. It strengthens social togetherness, collaboration, and collective action towards common goals.</li><li><strong>Knowledge exchange</strong> : Through community mobilization, individuals have the opportunity to learn from each other, share experiences, and benefit from collective wisdom. This facilitates the adoption of best practices and innovative solutions.</li><li><strong>Increases effectiveness and efficiency:</strong> Mobilized communities are more effective and efficient in implementing interventions. They can identify and prioritize needs, allocate resources appropriately, and make informed decisions based on community-specific needs.</li><li><strong>Resource optimization</strong> : Community mobilization contributes additional resources to the response by leveraging community assets and networks. It maximizes the utilization of available resources, such as time, funds, skills, and expertise.</li><li><strong>Conflict resolution</strong> : Community mobilization facilitates the resolution of misunderstandings and conflicts through open dialogue, negotiation, and consensus-building. It promotes peaceful coexistence and cooperation among community members.</li><li><strong>Assessing community problems</strong> : Effective community mobilization enables a comprehensive assessment of community problems. It facilitates the identification of health issues, underlying causes, and potential solutions based on community needs and priorities.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 **The Role of a Community Nurse in Community Mobilization**</summary>
           <ul><li><strong>Developing an ongoing dialogue between community members</strong> : The community nurse facilitates open and continuous communication among community members, encouraging dialogue, active participation, and the sharing of ideas and concerns.</li><li><strong>Creating or strengthening community organizations</strong> : The nurse helps establish and strengthen community organizations, such as committees or community health groups, to provide a platform for community members to collaborate, plan, and implement health initiatives.</li><li><strong>Creating an empowering environment</strong> : The nurse fosters an environment that empowers individuals and communities to take charge of their health needs. This includes promoting self-efficacy, self-advocacy, and community-driven decision-making processes.</li><li><strong>Promoting community members’ participation:</strong> The nurse encourages community members to actively participate in health-related activities, such as community meetings, health campaigns, and awareness programs. This may involve conducting outreach efforts to engage community members and ensuring their voices are heard.</li><li><strong>Working in partnership with community members</strong> : The nurse collaborates with community members as equal partners in the planning, implementation, and evaluation of health initiatives. This includes respecting and valuing community members’ perspectives, knowledge, and expertise.</li><li><strong>Identifying and supporting the creative potential of communities</strong> : The nurse recognizes and supports the diverse skills, resources, and ideas within the community. They facilitate the exploration of various strategies and approaches that align with the community’s unique strengths and aspirations.</li><li><strong>Assisting in linking communities with external resources</strong> : The nurse acts as a bridge between the community and external resources, such as healthcare organizations, government agencies, and non-governmental organizations. They help community members access necessary support, services, and expertise.</li><li><strong>Committing enough time to work with communities</strong> : The nurse dedicates sufficient time and effort to engage with communities effectively. This involves building relationships, gaining trust, and investing in sustained partnerships to ensure meaningful community mobilization efforts.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 **Steps taken during community mobilization**</summary>
           <p><strong>Pre-entry phase (Preparing to mobilize)</strong></p>
 <p>✔ Select the mobilization team members and plan for other resources needed for mobilization.</p>
@@ -147,12 +176,12 @@
 <ul><li>This is done based on the results of evaluation and using the learnt lessons. It is aimed at improving the output of the planned and implemented project.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 **Methods of community mobilization**</summary>
           <ul><li><strong>Mass media</strong> : Advantages: Quick dissemination of messages and responses.</li><li>Disadvantages: Expensive, limited coverage, potential language barriers.</li><li><strong>Letter Writing</strong> : Advantages: Provides first-hand information, travels fast, can be kept for reference.</li><li>Disadvantages: Poor handwriting can affect readability, exclusion of visually impaired individuals, potential language barriers.</li><li><strong>Telephones</strong> : Advantages: Quick communication, first-hand information, room for feedback.</li><li>Disadvantages: Network problems, expensive to manage, potential health concerns, may discriminate against those with limited access to phones.</li><li><strong>Drumming, Whistles, and Horns</strong> : Advantages: Affordable, information travels quickly, culturally acceptable, non-discriminatory.</li><li>Disadvantages: May not be loud enough for larger communities, requires drumming skills, exclusion of hearing-impaired individuals.</li><li><strong>Posters</strong> : Advantages: Messages can travel quickly if well-placed, acts as a reminder when left in place.</li><li>Disadvantages: Easily removed or damaged, understanding limited to literate individuals, exclusion of visually impaired individuals, potential language barriers, expensive to produce.</li><li><strong>Announcements</strong> : Advantages: Quick dissemination of information, easy sensitization of the community.</li><li>Disadvantages: Language barriers, can be expensive, may not reach everyone, timing may not be optimal.</li><li><strong>Home Visiting</strong> : Advantages: Provides first-hand information, affordable.</li><li>Disadvantages: Tiresome and time-consuming, potential language barriers.</li><li><strong>Music, Dance, and Drama:</strong> Advantages: Attractive and engaging, non-discriminatory, effective in sensitizing people, fast message delivery.</li><li>Disadvantages: Language barriers, can be expensive, potential distortion of the message by the audience, prone to misinterpretation, requires prior preparations.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 **Opportunities for community mobilization**</summary>
           <ul><li><strong>Church Gatherings</strong> : Church services and gatherings provide a platform to reach a large number of community members.</li><li><strong>Funerals</strong> : Funerals are occasions where community members come together, providing an opportunity for mobilization and sharing of information.</li><li><strong>Political Rallies</strong> : Political rallies attract community members and can be utilized to raise awareness and engage the public in community initiatives.</li><li><strong>Markets</strong> : Markets are bustling community hubs where people gather, presenting an opportunity to disseminate information and engage with community members.</li><li><strong>Club Meetings:</strong> Community clubs and organizations offer a platform for mobilization, fostering community engagement and collaboration.</li><li><strong>Social Gatherings</strong> : Events such as weddings, cultural festivals, and community celebrations can be leveraged to mobilize the community and promote health initiatives.</li></ul>
 <p><strong>Special considerations for community mobilization include:</strong></p>
@@ -161,44 +190,56 @@
 <ul><li><strong>Good Leadership</strong> : Strong leadership plays a crucial role in motivating and mobilizing the community towards a common goal.</li><li><strong>Community Interests</strong> : Aligning mobilization efforts with the interests and needs of the community enhances participation and engagement.</li><li><strong>Motivation</strong> : Creating a sense of motivation and urgency within the community to address health issues encourages active involvement.</li><li><strong>Functional Community Organizations</strong> : Existing community structures and organizations can facilitate mobilization efforts by providing a framework for coordination and collaboration.</li><li><strong>Good Transport System and Roads</strong> : Accessible transportation infrastructure enables community members to participate in mobilization activities.</li><li><strong>Appropriate Communication</strong> : Using language and communication methods that are easily understandable by the community helps in effective mobilization.</li><li><strong>Stable Seasonality</strong> : Considering the seasonal variations in the community and planning activities during stable periods can enhance participation and engagement.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Factors that hinder community mobilization.</summary>
           <ul><li><strong>Unfunctional Community Organization</strong> : When community organizations or structures are not well-established or lack active participation, it can hinder effective mobilization efforts.</li><li><strong>Past Bad Experiences</strong> : Negative experiences or failures in previous mobilization attempts may create reluctance or resistance within the community.</li><li><strong>Corruption by Leaders</strong> : Corrupt leaders or authorities can undermine trust and hinder community mobilization efforts.</li><li><strong>Poor Approach to the Community:</strong> Inadequate understanding of the community’s needs, culture, and values can result in ineffective approaches that fail to resonate with community members.</li><li><strong>Difficult Communities</strong> : Some communities may present unique challenges, such as high levels of poverty, social unrest, or cultural barriers, which can derail mobilization efforts.</li><li><strong>Insecurity</strong> : Communities facing security threats or instability may be hesitant to engage in mobilization activities due to safety concerns.</li><li><strong>Diversity of Community Interests</strong> : Competing interests within the community can divert attention and resources away from mobilization efforts.</li><li><strong>Poor Planning</strong> : Inadequate planning, including overlapping community activities or lack of coordination, can hinder the success of mobilization initiatives.</li><li><strong>Tribal/Religious Conflicts</strong> : Intertribal or religious tensions can create divisions and hinder community collaboration.</li><li><strong>Rumors and Misconceptions</strong> : Spread of rumors, misinformation, or misconceptions about the mobilization activities can undermine trust and participation.</li></ul>
 <p>Problems anticipated or commonly encountered during community mobilization.</p>
 <ul><li><strong>Lack of Supportive Leaders:</strong> Resistance or lack of support from community leaders can hinder the success of mobilization programs.</li><li><strong>Negative Attitude of the Community:</strong> Community members may exhibit skepticism or resistance towards the proposed program or activity, affecting their participation.</li><li><strong>Community Division</strong> : Internal divisions or conflicts within the community can impede cooperation and hinder mobilization efforts.</li><li><strong>Punctuality Issues</strong> : Challenges in maintaining punctuality and ensuring attendance at meetings or activities can disrupt the mobilization process.</li><li><strong>Political/Religious Differences</strong> : Political or religious affiliations and differences can create barriers to community unity and collaboration.</li><li><strong>Transportation Challenges</strong> : Lack of accessible transportation, particularly in remote or difficult-to-reach locations, can limit community members’ participation.</li><li><strong>Lack of Trust:</strong> Community members may have concerns about the credibility or intentions of service providers, leading to a lack of trust and reluctance to engage.</li><li><strong>High Expectations</strong> : Communities may have high expectations for the outcomes or benefits of the mobilization program, which can pose challenges in meeting those expectations.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-8">
           <summary>08 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Community Mobilization</strong> as a practical nursing topic, not only a memorized definition. Move from individual illness to prevention, population risk, health education and continuity of care.</p>
 <ul><li><strong>What to understand first:</strong> define community mobilization, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-9">
           <summary>09 Assessment Guide</summary>
           <ul><li>Who is affected, where they live, risk factors, resources and barriers to care.</li><li>Environmental hygiene, nutrition, immunization, water, sanitation and health-seeking behaviour.</li><li>Community beliefs, leaders, household practices and surveillance data.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-10">
           <summary>10 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Promote prevention, early detection, referral and community participation.</li><li>Use clear health education matched to literacy, culture and available resources.</li><li>Document findings and coordinate with community health structures.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The community understands the message, risk is reduced and follow-up or referral pathways are active.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-11">
           <summary>11 Patient Teaching and Revision Check</summary>
           <ul><li>Explain community mobilization in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Community%20Mobilization%20Primary%20Health%20Care%20nursing%20lecture" title="Community Mobilization YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (10)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/COMMUNITY.webp" alt="COMMUNITY" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">COMMUNITY</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/51117a0c0889d0d3ec58ca02870ab868.webp" alt="51117a0c0889d0d3ec58ca02870ab868" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">51117a0c0889d0d3ec58ca02870ab868</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/1204b680a20406d41458313e4cc15405.webp" alt="1204b680a20406d41458313e4cc15405" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">1204b680a20406d41458313e4cc15405</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/4324436ace937ce780993fcbc5793681.webp" alt="4324436ace937ce780993fcbc5793681" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">4324436ace937ce780993fcbc5793681</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/20947ccd839372bc5fea9ef7b4203887.webp" alt="20947ccd839372bc5fea9ef7b4203887" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">20947ccd839372bc5fea9ef7b4203887</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/7a087cb61b037a987fda68d4fd9a8871.webp" alt="7a087cb61b037a987fda68d4fd9a8871" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">7a087cb61b037a987fda68d4fd9a8871</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/063254b81399e9c7b2206c072f18fec4.webp" alt="063254b81399e9c7b2206c072f18fec4" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">063254b81399e9c7b2206c072f18fec4</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/ed191b527f048671939dba60a9361426.webp" alt="Ed191b527f048671939dba60a9361426" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Ed191b527f048671939dba60a9361426</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Community%20Mobilization%20Primary%20Health%20Care%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <p style="color:var(--seo-muted);font-size:.85rem;margin:8px 0 0">2 more diagrams available — open the lesson for full illustrations.</p>
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Community%20Mobilization%20Primary%20Health%20Care%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

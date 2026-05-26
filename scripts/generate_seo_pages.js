@@ -5,9 +5,21 @@ const path = require("node:path");
 
 const ROOT = process.cwd();
 const DATA_FILE = path.join(ROOT, "assets", "data", "curriculum.json");
+const LESSON_IMAGES_MANIFEST_FILE = path.join(ROOT, "assets", "data", "lesson-images-manifest.json");
 const COURSES_ROOT = path.join(ROOT, "courses");
+
+// Lesson images manifest: slug → string[] of filenames in assets/images/lesson-images/
+// Written by inject_lesson_images_from_nurses_revision.js (and later NursesLabs variant).
+// If the file does not exist yet, we degrade gracefully with an empty map.
+const LESSON_IMAGES_MANIFEST = (() => {
+  try {
+    return JSON.parse(fs.readFileSync(LESSON_IMAGES_MANIFEST_FILE, "utf8"));
+  } catch {
+    return {};
+  }
+})();
 const SITE_URL = "https://nursinguganda.com";
-const CSS_VERSION = "34";
+const CSS_VERSION = "78";
 const NON_LESSON_TOPIC_RE = /^(terms|privacy policy|disclaimer|about(?: us)?|click here\b.*|want notes in pdf\??.*|home|blog|contact|whatsapp|support|login|register|share|comments?|(?:nurses|midwives)\s+revision|index)$/i;
 
 function escapeHtml(value) {
@@ -257,9 +269,12 @@ function pageShell({ file, title, description, canonical, appHash, breadcrumbsHt
     <link rel="icon" href="${rootRel}assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="${rootRel}assets/css/main.min.css?v=${CSS_VERSION}">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="${rootRel}assets/css/main.min.css?v=${CSS_VERSION}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="${rootRel}assets/css/main.min.css?v=${CSS_VERSION}"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -281,7 +296,6 @@ function pageShell({ file, title, description, canonical, appHash, breadcrumbsHt
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -289,9 +303,19 @@ function pageShell({ file, title, description, canonical, appHash, breadcrumbsHt
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     ${nav(rootRel, appHref)}
     <main class="seo-main">
       ${breadcrumbsHtml}
@@ -363,9 +387,6 @@ function youtubeUrl(programme, unit, topic) {
   return `https://www.youtube.com/results?search_query=${encodeURIComponent(`${topic.title} ${unit.title} nursing lecture`)}`;
 }
 
-function youtubeEmbedUrl(programme, unit, topic) {
-  return `https://www.youtube.com/embed?listType=search&list=${encodeURIComponent(`${topic.title} ${unit.title} nursing lecture`)}`;
-}
 
 function isLearningOutcomeSection(section) {
   return Boolean(section && /learning\s+(outcomes?|objectives?)/i.test(section.title || ""));
@@ -381,6 +402,72 @@ function isImportedAdminSection(section) {
     || /^(revision\s+questions?|review\s+questions?|multiple\s+choice\s+questions?|fill-?in\s+questions?|quiz|questions?)\b/i.test(title)
     || /references?\s*(?:\(|for|from|\b)/i.test(title)
     || /(?:from|in)\s+curriculum|learning[-\s]*working\s+assignments|practical\s+exercises|underpinning\s+knowledge|curriculum\s*$/i.test(title);
+}
+
+function imageAlt(filename) {
+  const name = filename
+    .replace(/\.[^.]+$/, "")
+    .replace(/[-_]+/g, " ")
+    .replace(/\d+x\d+$/i, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  // Generic filenames like "img45", "image 115", "fig 3" get a meaningful label
+  if (/^(img|image|figure|fig|photo|pic|illustration)\s*\d*$/i.test(name) || /^\d+$/.test(name)) {
+    return "Anatomy Diagram";
+  }
+  return name.replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+function renderLessonImagesSection(slug, rootRel) {
+  const allFilenames = LESSON_IMAGES_MANIFEST[slug];
+  if (!allFilenames || !allFilenames.length) return "";
+  const filenames = allFilenames.slice(0, 8);
+  const remaining = allFilenames.length - filenames.length;
+  const figures = filenames.map((filename) => {
+    const alt = escapeHtml(imageAlt(filename));
+    const src = `${rootRel}assets/images/lesson-images/${escapeHtml(filename)}`;
+    return (
+      `<figure style="margin:0;break-inside:avoid">` +
+      `<img src="${src}" alt="${alt}" loading="lazy" ` +
+      `style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block">` +
+      `<figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">${alt}</figcaption>` +
+      `</figure>`
+    );
+  }).join("\n          ");
+  const moreNote = remaining > 0 ? `<p style="color:var(--seo-muted);font-size:.85rem;margin:8px 0 0">${remaining} more diagram${remaining > 1 ? "s" : ""} available — open the lesson for full illustrations.</p>` : "";
+  return `
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (${allFilenames.length})</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          ${figures}
+        </div>
+        ${moreNote}
+      </details>`;
+}
+
+function renderTOC(sections) {
+  if (!sections || sections.length < 3) return "";
+  const count = sections.length;
+  const links = sections.map((section, i) =>
+    `<a href="#section-${i + 1}" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">${escapeHtml(section.title)}</a>`
+  ).join("\n          ");
+  const grid = `<div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))${count > 12 ? ";margin-top:12px" : ""}">
+          ${links}
+        </div>`;
+  // Short lessons: always-visible nav
+  if (count <= 12) {
+    return `
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (${count})</h2>
+        ${grid}
+      </nav>`;
+  }
+  // Long lessons: collapsible, closed by default
+  return `
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — ${count} sections (tap to expand)</summary>
+        ${grid}
+      </details>`;
 }
 
 function lessonSectionClass(title) {
@@ -399,7 +486,12 @@ function lessonSectionClass(title) {
 }
 
 function isLearningOutcomeText(value) {
-  return /learning\s+(outcomes?|objectives?)/i.test(String(value || ""));
+  const text = String(value || "").trim();
+  return /learning\s+(outcomes?|objectives?)/i.test(text)
+    || /by\s+the\s+end\s+of\s+this\s+(unit|lesson|course|topic)/i.test(text)
+    || /^(at\s+the\s+end\s+of|upon\s+completion|after\s+this\s+(unit|lesson))/i.test(text)
+    || /student\s+shall\s+be\s+able\s+to/i.test(text)
+    || /^(define|describe|explain|list|state|identify|discuss|outline|differentiate)\b/i.test(text);
 }
 
 function lessonExcerptFor(programme, unit, topic, lesson, max) {
@@ -470,20 +562,19 @@ function renderLessonPage(data, programme, unit, topic, previous, next) {
         <h2>Expanded Nursing Uganda Explanation</h2>
         <p>${escapeHtml(originalSeoExpansion(programme, unit, topic))}</p>
       </section>
+      ${renderTOC(sections)}
       ${sections.map((section, index) => `
-        <details class="seo-lesson-section${lessonSectionClass(section.title)}" open>
+        <details class="seo-lesson-section${lessonSectionClass(section.title)}"${index < 2 ? " open" : ""} id="section-${index + 1}">
           <summary>${String(index + 1).padStart(2, "0")} ${escapeHtml(section.title)}</summary>
           ${renderBlocks(section.blocks)}
         </details>
       `).join("")}
+      ${renderLessonImagesSection(slug, rootRel)}
       <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="${escapeHtml(youtubeEmbedUrl(programme, unit, topic))}" title="${escapeHtml(`${topic.title} YouTube lesson preview`)}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="${escapeHtml(youtubeUrl(programme, unit, topic))}" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="${escapeHtml(youtubeUrl(programme, unit, topic))}" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

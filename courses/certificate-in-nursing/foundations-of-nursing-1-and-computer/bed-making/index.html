@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,34 @@
         <p>Bed making should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 21 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Topic: Demonstrate bed making (PEX 1.4.1 - 1.4.9)</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Purpose of Bed Making</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Rule of Bed Making</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Types of Beds</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Appliances Used in Bed Making</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Prepare and Make an Unoccupied Bed (PEX 1.4.1)</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Demonstrate Stripping and Changing of Patient Linen (PEX 1.4.2)</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Prepare and Make an Occupied Bed (PEX 1.4.3)</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Prepare and Make a Closed Bed (with patient in bed)</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Prepare and Make an Admission Bed (PEX 1.4.4)</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Prepare and Make Bed for Burns (PEX 1.4.6)</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Prepare and Make Post-Operative Bed (PEX 1.4.7)</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Prepare and Make a Cardiac Bed (PEX 1.4.5)</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Prepare and Make a Divided Bed (PEX 1.4.8)</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Prepare and Make a Fracture Bed (PEX 1.4.9)</a>
+          <a href="#section-16" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">TO CHANGE THE BOTTOM SHEET FROM SIDE TO SIDE</a>
+          <a href="#section-17" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">TO CHANGE THE BOTTOM SHEET FROM TOP TO BOTTOM</a>
+          <a href="#section-18" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-19" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-20" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-21" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Topic: Demonstrate bed making (PEX 1.4.1 - 1.4.9)</summary>
           <p><strong>BED MAKING</strong> Bed making is a key nursing skill that is essential for the promotion of patient care, comfort, hygiene and wellbeing.</p>
 <p>Bed making requires technical and practical skills and consideration should be given to issues of safety, moving and handling and infection control practices.</p>
@@ -93,27 +132,27 @@
 <p>Two nurses should work together to make a bed and should face each other. Work from top to bottom of the bed except when putting on a counter pane (bed cover.)</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Purpose of Bed Making</summary>
           <ul><li>To keep the ward <strong>neat and tidy</strong> .</li><li>To keep/make the patient <strong>comfortable</strong> .</li><li>To prevent <strong>cross infection</strong> and complications such as bed sores.</li><li>For <strong>treatment of certain conditions</strong> e.g. shock or quickening of healing of the patient.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Rule of Bed Making</summary>
           <ul><li><strong>All equipment should be collected</strong> before starting the procedure.</li><li>Any conversation during bed making should not be on personal matters between the nurses but should be focused on the patient.</li><li><strong>Close adjacent windows</strong> to protect the patient from draught on a cold day.</li><li>Patient must never be exposed, <strong>screen the bed and close the ward to visitors</strong> .</li><li>The bed should be made <strong>free from crumbs and creases</strong> , so as to give maximum comfort to the patient.</li><li>Sheets have to be smooth and when tucking in, <strong>MITRE the corners</strong> .</li><li>Pillows and other bed accessories should be <strong>well arranged</strong> to give support and comfort where necessary.</li><li>When pillows are being shaken, the nurse should <strong>turn away from the patient</strong> and not over the patient.</li><li>The bed should be made in a way suitable for <strong>treating certain conditions</strong> such as shock and to prevent complications as a result of bad nursing.</li><li>Always use <strong>clean beddings and linen</strong> for each patient.</li><li>Always <strong>wash hands</strong> after making beds of infectious or septic patients before moving to the next bed.</li><li>Do not put any linen of another patient to the next patient’s bed.</li><li>If linen is dropped on the floor, it should not be used.</li><li>Always have a <strong>dirty linen container or hamper</strong> at hand in which to put dirty linen, never put it on the floor or carry the across the ward to prevent cross infection.</li><li>The patient’s face should not be covered with sheets or blankets.</li><li>The <strong>open end of a pillow case should face away</strong> from the main door or entrance of the ward.</li><li>Two nurses are required and they should work in harmony <strong>avoiding unnecessary movements</strong> of the bed and themselves.</li><li><strong>Extra assistance should be available</strong> and if necessary, one should be called upon to help lift the patient.</li><li>Do not make a bed when a <strong>sterile procedure is in progress</strong> in the ward.</li><li>Beddings from the infectious patients should first be <strong>soaked in a disinfectant</strong> e.g. jik (3.5%=3.5/0.5-1=6) 1.6,(6%=6/0.5-1=11)1.11 for 24 hours before washing.</li><li>Use <strong>large mackintoshes</strong> for incontinent patients to protect the beddings.</li><li>Use <strong>small mackintoshes</strong> at the head of the bed for unconscious or post operative patients.</li><li>Use a <strong>bed cradle</strong> over leaking wounds e.g. in burns.</li><li>Beds should be made in such a way that the patient can be put in without difficulty.</li><li>Allow room for the patient’s feet for <strong>free movement</strong> or turning when placing the top sheet over the patient.</li><li>Always <strong>wash hands</strong> before and after bed making.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Types of Beds</summary>
           <ul><li>Unoccupied bed/hospital bed</li><li>Occupied bed</li><li>Admission bed</li><li>Admission bed for burns</li><li>Operation/post-operative bed</li><li>Bed for complete rest</li><li>Cardiac bed</li><li>Divided bed</li><li>Plaster and fracture bed</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Appliances Used in Bed Making</summary>
           <ul><li><strong>Mackintosh/plastic sheet:</strong> Protects the beddings during procedures. Protects the beddings in case of vomitus, urine, blood, faeces from soiling the bed sheets and the mattress.</li><li><strong>Hot water bottles:</strong> To provide added warmth to the patient. The hot bottles must always be covered and the cover tight enough before use. Never place it directly on the patient’s skin to avoid burns.</li><li><strong>Bed cradle:</strong> To keep the weight of the bed sheets away from the patient’s affected area e.g. in burns.</li><li><strong>Bed blocks/bed elevators:</strong> To elevate the top or bottom of the bed e.g. in patients with shock, cardiac problems etc. To promote drainage in case of chest drainage.</li><li><strong>Backrest/bed rest:</strong> To help the patient sit up-right for those with chest problems (breathing difficulties), cardiac problems etc. different degrees of elevation can be made with pillows placed on top of the backrest.</li><li><strong>Sandbags:</strong> To prevent movement of limbs in the treatment of some conditions like fracture of the limbs.</li><li><strong>Air rings:</strong> These are place under the buttocks to relieve pressure so as to prevent bed sores.</li><li><strong>Foot rest:</strong> A small piece of wood or cloth rolled neatly at the foot of the bed for the patient to support his/her feet in-order to prevent slipping/falling down the bed.</li><li><strong>A cardiac table:</strong> It is the table place in front of the patient over the bed for meals, medicine or any leisure activity e.g. a magazine newspaper or work etc. it is used in patients with cardiac conditions in cardiac bed.</li><li><strong>Fracture boards:</strong> To make a firm surface for support and it is placed across the bed springs under the mattress.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Prepare and Make an Unoccupied Bed (PEX 1.4.1)</summary>
           <p>Is an empty bed and is fully covered with a counter pane to protect it from dust and dirt while waiting for the new patient for admission.</p>
 <p><strong>Purpose:</strong></p>
@@ -129,7 +168,7 @@
 <ul><li>Collect 1 st all the requirements needed.</li><li>Bring always the hamper with you.</li><li>Clear the room 1 st of unnecessary equipment e.g. kidney dishes, bed pans and the belongings of the patient or from the family.</li><li>Pull the bed from the wall.</li><li>Place the 2 chairs at the foot of the bed.</li><li>Wash hands.</li><li>Turn the mattress to see whether the spring cover is straight or complete springs (not broken.)</li><li>Replace the ground mackintosh then the bottom sheet and start to tuck in from the top (see that the right side is up). Mitre the corners, tuck in at the bottom and then the sides.</li><li>Replace the mackintosh/draw mackintosh, put at the height of the patient’s buttocks. Place the draw sheet covering the mackintosh completely.</li><li>Put on the top sheet, tuck in the bottom, mitre each corner and leave the top free.</li><li>Place the blanket on the bed then turn back the blanket and top sheet on top of the blanket.</li><li>Replace the pillow(s) to the bed (open ends away from the entrance) after shaking them.</li><li>Put the bed cover to the bed, tuck in the bottom only, mitre corners and leave the sides hanging down but make sure it is covering the whole bed.</li><li>Push back the patient’s bed to the original position.</li><li>Clear away and wash hands.</li><li>Document the procedure and replace the equipment to their place of storage.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Demonstrate Stripping and Changing of Patient Linen (PEX 1.4.2)</summary>
           <p><strong>STRIPPING THE BED</strong> This means undressing the bed or removing the bed linen from the in preparation to lay/make afresh.</p>
 <p><strong>Requirements:</strong> trolley</p>
@@ -138,7 +177,7 @@
 <ul><li>Collect 1 st all the requirements needed.</li><li>Bring always the hamper with you.</li><li>Clear the room 1 st of unnecessary equipment e.g. kidney dishes, bed pans and the belongings of the patient or from the family.</li><li>Pull the bed from the wall.</li><li>Place the 2 chairs at the foot of the bed.</li><li>Wash hands.</li><li>Un-tuck all the beddings first.</li><li>Take away the pillows and undress.</li><li>Fold the bed cover, blanket, top sheet in three, the bottom part should be on top and put on the chairs provided one by one. Fold the draw sheet and mackintosh, put on the chairs. Bottom sheet is also folded in three, bottom part 1 st as the top will be tucked in first when putting it on again.</li><li>Remove the ground mackintosh by rolling if off the bed and put to the chairs.</li><li>Re make the bed as required (refer to procedures for occupied or unoccupied bed).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Prepare and Make an Occupied Bed (PEX 1.4.3)</summary>
           <p><strong>OCCUPATION BED</strong> Is a suitable, comfortable and appropriate bed for hospitalized patients. It is made as usual and one corner of the linen is folded back at 90° to let the patient in.</p>
 <p><strong>Open bed:</strong> Patient is allowed out of bed.</p>
@@ -150,7 +189,7 @@
 <ul><li>Collect all the equipment needed.</li><li>Explain the procedure to the patient.</li><li>The patient is allowed out of bed when able.</li><li>Pull the bed from the wall.</li><li>Wash hands thoroughly and put on gloves.</li><li>Strip the bed and replace with clean linen.</li><li>The bed is made in the same way as the unoccupied bed except for the bed cover. Fold 1 st the blanket, then put the bed cover over the blanket and fold the top sheet back over the bed cover.</li><li>Fold half of the beddings back in a corner of 90° at the side of the locker, so that it is easy for the patient to get into the bed.</li><li>Push back the patient’s bed to the original position.</li><li>Clear away and wash hands.</li><li>Document or record the procedure.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Prepare and Make a Closed Bed (with patient in bed)</summary>
           <p><strong>With the patient in bed/closed bed</strong> The bed is made with the patient in, for a patient who is not able to get out of bed. It is usually done by two nurses.</p>
 <p><strong>Purpose:</strong></p>
@@ -161,7 +200,7 @@
 <ul><li>Collect the equipment needed.</li><li>Explain the procedure to the patient.</li><li>Screen the bed and close adjacent windows for privacy.</li><li>Pull the bed from the wall.</li><li>Wash hands thoroughly and put on gloves.</li><li>Place 2 chairs at the foot of the bed.</li><li>Remove all the pillows except one for the patient to rest his head.</li><li>Loosen the beddings on all sides and then strip the bed.</li><li>Turn the patient on his left, placing one pillow under his head. The nurse towards the side the patient is facing should support the patient so that he does not feel afraid of falling down.</li><li>Roll the draw sheet and mackintosh to the center of the bed near the patient’s back.</li><li>If the bottom sheet needs changing, roll it to the center of the bed near the back of the patient.</li><li>Place the clean bottom sheet to halfway the bed over the mattress. Make sure that the middle fold is in the middle of the bed. Tuck the head end first, mitre the corner at the top, bottom and then sides.</li><li>Bring back the mackintosh and draw sheet if clean, tuck them under the mattress.</li><li>Turn the patient on his right side, placing one pillow under his head, the nurse towards the side the patient is facing should support the patient.</li><li>The 2 nd nurse removes the soiled linen and puts the linen in the dirty linen container. Straightens out the bottom sheet, mackintosh, draw sheet and tuck them separately and firmly. Mitres the corners beginning from top then bottom and sides.</li><li>Turn the patient back to the center of the bed and support him whilst his pillows are plumped and arranged. Position the patient comfortably.</li><li>As soon as the top sheet has been replaced over the patient, the sheet or blanket covering him may be removed and replace the top bed clothes.</li><li>Ensure that the bed clothes are loose enough over the patient’s feet. A bed cradle may be used to support their weight if needed but in the absence of this, the patient is asked to cross one foot over the other whilst the bed is being made, ensuring plenty of room for his feet.</li><li>Push back the patient’s bed to the wall/original position.</li><li>Replace the patient’s locker and open the windows.</li><li>Clear away and wash hands.</li><li>Document the procedure.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Prepare and Make an Admission Bed (PEX 1.4.4)</summary>
           <p><strong>ADMISSION BED FOR NEW PATIENTS</strong> The bed is made for the newly admitted patients. It contains the pack that can be lifted off the bed or fixed on one side.</p>
 <p><strong>Requirements:</strong> trolley</p>
@@ -172,7 +211,7 @@
 <ul><li>Admit the patient between the admission sheets.</li><li>Cover the whole bed with a bed cover if the patient is not yet admitted to prevent dust and dirt.</li><li>Remove the admission sheets after the bed bath has been given to the patient.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 Prepare and Make Bed for Burns (PEX 1.4.6)</summary>
           <p><strong>ADMISSION BED FOR BURNS</strong> It is the bed made for new patient with burns only.</p>
 <p><strong>Requirements:</strong> trolley</p>
@@ -181,7 +220,7 @@
 <ul><li>Collect all the equipment needed.</li><li>Pull the bed from the wall.</li><li>Wash hands thoroughly.</li><li>Place the 2 chairs at the foot of the bed.</li><li>Make as an admission bed instead of admission sheets, use old or sterile sheets and make a pack.</li><li>Cover the pillows with the mackintosh covers before putting on the pillow cases.</li><li>Push back the bed to the original position.</li><li>Put/hang the mosquito net to protect the patient from flies.</li><li>Place the bed cradle over the affected area to relieve weight of the beddings over the affected part.</li><li>Bed blocks are used to elevate the foot of the bed if the patient is in shock.</li><li>If the patient is bathed on admission, the sheets are removed when it is completed. If patient is still in shock or the burns are extensive, then the sheet should be left until the patient has recovered from shock and the admission bath is then given.</li><li>Clear away and wash hands.</li><li>Document the procedure</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-12">
           <summary>12 Prepare and Make Post-Operative Bed (PEX 1.4.7)</summary>
           <p><strong>POST-OPERATIVE BED</strong> This bed is prepared to receive the patients who have undergone surgical procedures, recovering from the effects of anesthesia.</p>
 <p><strong>Purpose:</strong></p>
@@ -192,7 +231,7 @@
 <ul><li>Collect all the equipment required for the procedure.</li><li>Pull the bed from the wall.</li><li>Wash hands thoroughly.</li><li>Place the 2 chairs at the foot of the bed.</li><li>Strip the bed in the usual way.</li><li>Put all the dirty linen into the hamper.</li><li>Make a clean bed with clean linen, making it as the hospital bed but with a pack which can easily be removed when lifting the patient onto the bed.</li><li>Instead of the pillows, put the small mackintosh and towel across the top of the bed and tuck in at the top.</li><li>Push the bed back to the wall.</li><li>Put the pillow(s) on the chair/stools, which will be used later when the patient recovers.</li><li>Clear away and wash hands.</li><li>Document the procedure.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-13">
           <summary>13 Prepare and Make a Cardiac Bed (PEX 1.4.5)</summary>
           <p><strong>CARDIAC BED</strong> Is used to help the patient to assume a sitting up position; which can afford him great comfort with least strain. Cardiac bed is used for patients with heart diseases, those with dyspnoea to provide easy breathing.</p>
 <p><strong>Purpose:</strong></p>
@@ -203,7 +242,7 @@
 <ul><li>Collect the equipment needed.</li><li>Wash hands thoroughly.</li><li>Place the 2 chairs at the foot of the bed.</li><li>Prepare the bed as the open bed with the patient but in a sitting up position.</li><li>When making the bed, take care to see that the patient’s shoulders are covered if possible. It is better to use a bed jacket or shawl or a small blanket - the bed clothes will be restricting.</li><li>Place the back rest and pillows so as to support the patient in upright position and use a bed elevator or bed blocks to prevent the patient from slipping down the bed.</li><li>Place sandbags/board/small pillow/rolled cloth against the feet where necessary as foot support.</li><li>Push the bed back to its original position.</li><li>Place the cardiac table over the bed for the patient to use whilst reading or performing any tolerable activity.</li><li>Clear away and wash hands.</li><li>Document the procedure.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-14">
           <summary>14 Prepare and Make a Divided Bed (PEX 1.4.8)</summary>
           <p><strong>DIVIDED/AMPUTATION/STUMP BED</strong> The bed is used for the patients who have had an amputation of the leg or have had a fractures lie in extension or for pelvic examination or treatment. It is commonly used for patients whose leg(s) has been amputated in order to keep the stump visible and elevated.</p>
 <p><strong>Purpose:</strong></p>
@@ -214,7 +253,7 @@
 <ul><li>Collect the equipment needed for the procedure.</li><li>Pull the bed from the wall.</li><li>Wash hands thoroughly.</li><li>Place the 2 chairs at the foot of the bed.</li><li>Make the bed in two halves; across the middle or for the amputation bed at the level of amputation. The top half having a sheet, blanket and counter pane and then the bottom half having a sheet and the blanket. This may be too hot for the patient at day time, so the top blanket may be omitted. At night, however it is much colder and both blankets may be needed.</li><li>On completion push back the bed to its original position.</li><li>Clear away and wash hands.</li><li>Document the procedure.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-15">
           <summary>15 Prepare and Make a Fracture Bed (PEX 1.4.9)</summary>
           <p><strong>PLASTER AND FRACTURE BEDS</strong> Is used for a patient with fracture of the trunk or extremities to provide firm support by use of a fracture board placed under the mattress. Fracture bed is a hard firm bed designed for the patient with a fracture particularly of the spine, pelvis or femur.</p>
 <p><strong>Purpose:</strong></p>
@@ -225,7 +264,7 @@
 <ul><li>Collect the equipment needed.</li><li>Pull the bed from the wall.</li><li>Wash hands thoroughly.</li><li>Place 2 chair at the foot of the bed.</li><li>This bed is made as the occupied bed.</li><li>The fracture boards are made the same width as the bed, and their purpose is to make a firm surface for placed support. They are place across the bed springs under the mattress.</li><li>Put the bed cradle over the affected part, so as to lift the weight of the beddings from the patient.</li><li>Push back the bed to the original position.</li><li>Clear away and wash hands.</li><li>Document the procedure.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-16">
           <summary>16 TO CHANGE THE BOTTOM SHEET FROM SIDE TO SIDE</summary>
           <p>This method is used for changing the bottom sheet for most patients in the hospital especially those not able to move out of bed.</p>
 <p><strong>Requirements:</strong> trolley</p>
@@ -237,7 +276,7 @@
 <p><strong>NB.</strong> Some means should be used to prevent the patient in this position from slipping down the bed. This may be achieved by putting a sand bag or a pillow (with mackintosh cover) against the feet. This will also prevent foot drop or the foot of the bed may be raised on a bed elevator/bed blocks.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-17">
           <summary>17 TO CHANGE THE BOTTOM SHEET FROM TOP TO BOTTOM</summary>
           <p>This method is used for changing the bottom sheet when the patient is nursed in an upright position and must not be flat e.g. chronic heart disease.</p>
 <p><strong>Requirement:</strong> trolley</p>
@@ -248,37 +287,42 @@
 <ul><li>Collect all the equipment needed.</li><li>Explain the procedure to the patient.</li><li>Bring the equipment needed to the bedside.</li><li>Close the windows if necessary. Screen the bed if the ward is not closed.</li><li>Pull the bed from the wall.</li><li>Place the stools/chairs at the foot of the bed.</li><li>Wash hands thoroughly and put gloves.</li><li>Place the clean linen on the stools/chairs at the foot of the bed and the hamper besides the chairs/stools.</li><li>Fold the clean sheets across the width in three or roll them for easy placement.</li><li>Strip the top bed clothes as usual, leaving the sheet covering the patient on a hot day or a blanket and sheet on a cold day. Back rest and air ring, foot support are also removed.</li><li>Both nurses lift the patient carefully down the bed off the draw sheet.</li><li>One nurse supports the patient, while the other removes the draw sheet and mackintosh, and then rolls the soiled bottom sheet down as far as the patient’s back and straightens the mattress cover and ground mackintosh.</li><li>The same nurse puts in the clean sheet, tucking it at the top and on her side as far as the dirty linen. She then puts in the draw mackintosh and draw sheet, tucks on her side. Replace the backrest, pillows and air ring. Treat pressure areas if necessary.</li><li>Both nurses lift the patient back up the bed and make sure that the pillows are comfortable. Then tuck in the mackintosh and draw sheet, top side of the bottom sheet on the second side.</li><li>Draw the soiled sheet to the bottom of the bed from under the patient’s legs and put it in the hamper.</li><li>With the hand, brush any crumbs and creases from the mackintosh if present and the mattress and straighten them both. Pull the clean sheet down to the bottom of the bed and tuck in, mitre corners.</li><li>Put on the top bed clothes as usual, make the patient comfortable.</li><li>Push back the bed to its original position.</li><li>Clear away, remove the gloves and wash hands.</li><li>Document the procedure.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-18">
           <summary>18 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Bed making</strong> as a practical nursing topic, not only a memorized definition. Translate theory into safe decisions, accountability, communication and service improvement.</p>
 <ul><li><strong>What to understand first:</strong> define bed making, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-19">
           <summary>19 Assessment Guide</summary>
           <ul><li>The problem, stakeholders, available resources, policy requirements and ethical issues.</li><li>Risks to patients, staff, confidentiality, quality, costs and continuity.</li><li>Documentation, reporting lines, supervision and evaluation measures.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-20">
           <summary>20 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use evidence, policy and professional standards to guide action.</li><li>Communicate clearly, document decisions and protect confidentiality.</li><li>Evaluate whether the action improves safety, learning or service delivery.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The plan is documented, realistic, ethical and improves patient care or learning outcomes.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-21">
           <summary>21 Patient Teaching and Revision Check</summary>
           <ul><li>Explain bed making in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Bed%20making%20Foundations%20of%20Nursing%201%20and%20Computer%20nursing%20lecture" title="Bed making YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (1)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/bed-making-1024x576.webp" alt="Bed Making" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Bed Making</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Bed%20making%20Foundations%20of%20Nursing%201%20and%20Computer%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Bed%20making%20Foundations%20of%20Nursing%201%20and%20Computer%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

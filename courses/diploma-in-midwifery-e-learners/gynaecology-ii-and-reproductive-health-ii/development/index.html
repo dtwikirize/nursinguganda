@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,23 @@
         <p>Development should be reviewed through safe maternal and newborn assessment, early recognition of danger signs, respectful communication and timely referral. Connect the definition to vital signs, bleeding, fetal or newborn wellbeing, patient education and local protocol requirements.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (10)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Growth and Development in Adolescents</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Adolescents’ Reactions to Change and Behaviours</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Misconceptions/Myths Associated with Growth and Development</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Problems Faced by Adolescents as a Result of Body Changes</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Solutions to the Problems</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Developmental Stages of Adolescents</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Growth and Development in Adolescents</summary>
           <p>These changes are influenced by hormones and genetics.</p>
 <p>These changes are influenced by a combination of biological, psychological, and social factors</p>
@@ -105,12 +133,12 @@
 <ul><li>Formation of peer groups.</li><li>Independence from family.</li><li>Habit formation, including peer group associations, with possible involvement in activities like smoking and alcohol ingestion.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Adolescents’ Reactions to Change and Behaviours</summary>
           <ul><li>Adolescents Adults</li><li>Anxiety Overprotection</li><li>Shyness Anxiety</li><li>Depression Judgmental attitudes</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Misconceptions/Myths Associated with Growth and Development</summary>
           <p>Females:</p>
 <ul><li>Girls with big buttocks are presumed to be highly sexually active.</li><li>The notion that smaller breasts are more desirable.</li><li>Belief that engaging in sex can alleviate menstrual cramps.</li><li>Incorrect association of menstrual cramps with infertility.</li><li>Misunderstanding that the vagina is hollow, suggesting things can disappear in it.</li><li>Girls can supposedly only get pregnant after a year of menstruation.</li><li>Reliance on safe days as a contraception method.</li><li>The misconception that girls with thin hips are considered more attractive.</li><li>False belief that menstrual flow is unhygienic and results in unpleasant odors.</li><li>Uncircumcised girls are thought to be restless and sexually aroused all the time.</li><li>Girls starting menstruation are mistakenly assumed to have engaged in sexual intercourse.</li><li>The belief that hip enlargement is solely due to sexual activity.</li><li>False notion that menstrual flow leads to the loss of virginity (hymen).</li><li>Girls with small breasts are incorrectly assumed to lack sufficient milk to feed their babies.</li><li>Girls are perceived as never children; they are considered mature at any stage.</li><li>Breasts are believed to enlarge when touched by men.</li><li>A girl who does not give birth is compared to a mule with an arid womb.</li><li>During the rainy season, it is wrongly believed that every woman becomes fertile.</li><li>The idea that one should have children at a very young age.</li><li>False belief that sexual intercourse helps in treating skin issues such as spots and pimples.</li></ul>
@@ -118,52 +146,64 @@
 <ul><li>The misconception that a larger penis is better.</li><li>Belief that an erection implies the necessity for sexual activity.</li><li>Boys not growing beards are considered not yet men.</li><li>The misconception that only boys with hairy chests are considered attractive.</li><li>Girls are believed to be attracted only to tall, masculine boys.</li><li>Boys are thought to be capable of making girls pregnant only at the age of 18 years.</li><li>Boys with big toes are falsely believed to have a large penis.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Problems Faced by Adolescents as a Result of Body Changes</summary>
           <ul><li>Adolescents are confronted with societal expectations , including the pressure to exhibit adult behaviour, such as specific clothing choices and maintaining a high standard of living.</li><li>Emancipation from home becomes a challenge, coming from restrictions on activities like going out with members of the opposite sex, handling money, and coming home late. Adolescents may perceive these restrictions as excessive parental control.</li><li>Relationships with peer groups become crucial for adolescents, and they may continue to value their group even if they face exclusion or rejection at home.</li><li>Girls encounter various menstrual-related issues , acne problems, excessive sweating, vaginal discharge concerns, and changes in body size and shape during adolescence.</li><li>Boys experience challenges such as wet dreams , frequent erections, and notable changes in body size and shape.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Solutions to the Problems</summary>
           <ul><li>Promote Open Communication : Encourage parents and guardians to engage in open and honest communication with adolescents to better understand their concerns and perspectives.</li><li>Provide Comprehensive Education : Implement educational programs in schools that address not only the physical changes but also the emotional and psychological aspects of adolescence.</li><li>Foster Supportive Peer Environments : Create a supportive atmosphere within peer groups and schools to help adolescents navigate challenges collectively.</li><li>Offer Counseling Services : Establish accessible counselling services for adolescents to discuss their concerns, both related to body changes and broader life issues.</li><li>Parental Guidance Workshops : Conduct workshops for parents to equip them with effective strategies for guiding adolescents through this transitional phase.</li><li>Encourage Healthy Body Image : Promote positive body image through awareness campaigns to help adolescents accept and embrace their changing bodies.</li><li>Flexible Parental Boundaries : Advocate for balanced parental boundaries that allow for independence while maintaining necessary guidelines to ensure safety.</li><li>Incorporate Life Skills Education : Integrate life skills education into the curriculum, covering topics such as decision-making, communication, and conflict resolution.</li><li>Community Involvement : Involve the community in supporting adolescents, fostering understanding, and creating an environment conducive to their healthy development.</li><li>Accessible Health Resources : Ensure adolescents have access to health resources, including information about menstrual health, reproductive well-being, and mental health support.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Developmental Stages of Adolescents</summary>
           <ul><li>Early Adolescence (Approximately 10-14 years of age) Middle Adolescence (Approximately 15-16 years) Late Adolescence (Approximately 17-19 years)</li><li>Movement Toward Independence: Movement Toward Independence: Movement Toward Independence:</li><li>– Struggle with identity. – Self-involvement, alternating between high expectations and poor self-concept. – Firmer identity.</li><li>– Moodiness. – Complaints of parental interference. – Ability to delay gratification.</li><li>– Improved speech expression. – Strong concern with appearance and body. – Ability to think ideas through and express them.</li><li>– Expression of feelings through action. – Lowered opinion of parents, withdrawal. – Developed sense of humor.</li><li>– Growing importance of close friendships. – Effort to make new friends. – Stable interests.</li><li>– Less attention to parents, occasional rudeness. – Emphasis on the new peer group. – Greater emotional stability.</li><li>– Realization of parents’ imperfections. – Periods of sadness due to psychological loss of parents. – Ability to make independent decisions.</li><li>– Search for new relationships. – Examination of inner experiences. – Ability to compromise.</li><li>– Return to childish behavior. – Pride in one’s work.</li><li>– Peer group influences interests and clothing. – Self-reliance.</li><li>– Greater concern for others.</li><li>Future Interests and Cognitive Development: Future Interests and Cognitive Development: Future Interests and Cognitive Development:</li><li>– Increasing career interests. – Intellectual interests gain importance. – More defined work habits.</li><li>– Mostly interested in present and near future. – Sexual and aggressive energies directed into creative and career interests. – Higher concern for the future.</li><li>– Greater ability to work. – Thoughts about one’s role in life.</li><li>Sexuality: Sexuality: Sexuality:</li><li>– Girls ahead in development. – Concerns about sexual attractiveness. – Concerned with serious relationships.</li><li>– Shyness, blushing, modesty. – Frequently changing relationships. – Clear sexual identity.</li><li>– Experimentation with body (masturbation). – Exploration of heterosexuality with fears of homosexuality. – Capacities for tender and sensual love.</li><li>– Worries about normalcy. – Tenderness and fears toward opposite sex.</li><li>– Feelings of love and passion.</li><li>Ethics and Self-Direction: Ethics and Self-Direction: Ethics and Self-Direction:</li><li>– Rule and limit testing. – Development of ideals and role models. – Capable of useful insight.</li><li>– Occasional experimentation with substances. – Consistent evidence of conscience. – Stress on personal dignity and self-esteem.</li><li>– Capacity for abstract thought. – Greater capacity for setting goals. – Ability to set goals and follow through.</li><li>– Interest in moral reasoning. – Acceptance of social institutions and cultural traditions.</li><li>– Self-regulation of self-esteem.</li><li>Physical Changes: Physical Changes: Physical Changes:</li><li>– Height and weight gains. – Continued height and weight gains. – Most girls fully developed.</li><li>– Growth of pubic and underarm hair. – Growth of pubic and underarm hair. – Boys continue to gain height, weight, muscle mass, body hair.</li><li>– Increased body sweat. – Increased body sweat.</li><li>– Changes in skin and hair. – Changes in skin and hair.</li><li>– Breast development and menstruation in girls. – Breast development and menstruation in girls.</li><li>– Growth of testicles and penis in boys. – Growth of testicles and penis in boys.</li><li>– Nocturnal emissions (wet dreams). – Nocturnal emissions (wet dreams).</li><li>– Deepening of voice. – Deepening of voice.</li><li>– Growth of facial hair in boys. – Growth of facial hair in boys.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-7">
           <summary>07 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Development</strong> as a practical nursing topic, not only a memorized definition. Start with normal structure and function, then connect it to assessment findings and disease.</p>
 <ul><li><strong>What to understand first:</strong> define development, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-8">
           <summary>08 Assessment Guide</summary>
           <ul><li>Relevant inspection, palpation, movement, auscultation, vital signs or neurological checks.</li><li>Normal findings, abnormal findings and what each abnormality may indicate.</li><li>Patient history, risk factors and how the body system affects other systems.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-9">
           <summary>09 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use anatomy to explain symptoms and guide focused assessment.</li><li>Recognize findings that need urgent escalation.</li><li>Teach the patient using simple body-system language.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The learner can explain normal function, identify abnormal signs and connect them to nursing action.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-10">
           <summary>10 Patient Teaching and Revision Check</summary>
           <ul><li>Explain development in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Development%20Gynaecology%20II%20and%20Reproductive%20Health%20II%20nursing%20lecture" title="Development YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (8)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Concepts-of-Psychology-and-Psychological-Development-1-1024x295.webp" alt="Concepts Of Psychology And Psychological Development 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Concepts Of Psychology And Psychological Development 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Parts-of-the-Mind.webp" alt="Parts Of The Mind" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Parts Of The Mind</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Psychological-Development.webp" alt="Psychological Development" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Psychological Development</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/psychological-development-human-1.webp" alt="Psychological Development Human 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Psychological Development Human 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Cognitive-Development-1.webp" alt="Cognitive Development 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Cognitive Development 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Moral-Development.webp" alt="Moral Development" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Moral Development</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Social-Development.webp" alt="Social Development" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Social Development</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/b0ac65de865e4ade54614f29cdd66e90.webp" alt="B0ac65de865e4ade54614f29cdd66e90" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">B0ac65de865e4ade54614f29cdd66e90</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Development%20Gynaecology%20II%20and%20Reproductive%20Health%20II%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Development%20Gynaecology%20II%20and%20Reproductive%20Health%20II%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

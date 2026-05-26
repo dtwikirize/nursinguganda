@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,25 @@
         <p>Nephrotic syndrome should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (12)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Overview</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Pathophysiology of Nephrotic Syndrome.</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Signs and symptoms</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Causes of Nephrotic Syndrome</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Diagnosis and Investigations</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Treatment of Nephrotic Syndrome</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Interventions for Nephrotic Syndrome:</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Complications of Nephrotic Syndrome:</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Overview</summary>
           <p>NEPHROTIC SYNDROME.</p>
 <p>Nephrotic syndrome , or nephrosis , is a constellation of symptoms characterized by nephrotic range, massive proteinuria, edema, and hypoalbuminemia with or without hyperlipidemia.</p>
@@ -95,14 +125,14 @@
 <p>Additionally, the loss of immunoglobulins increases the risk of infection, while the loss of proteins that prevent clot formation puts patients at risk for blood clots.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Pathophysiology of Nephrotic Syndrome.</summary>
           <p>Nephrotic syndrome results from damage to the kidney’s glomeruli , the tiny blood vessels that filter waste and excess water from the blood and send them to the bladder as urine.</p>
 <p>Damage to the glomeruli from diabetes or even prolonged hypertension causes the membrane to become porous , so that small proteins such as albumin pass through the kidneys into urine.</p>
 <ul><li>Glomerular Filtration Barrier Disruption: The renal glomerulus, responsible for filtering blood entering the kidney, consists of capillaries with small pores. In nephrotic syndrome, inflammation or hyalinization affects the glomeruli, allowing proteins, including albumin, antithrombin, and immunoglobulins, to pass through the normally restrictive cell membrane.</li><li>Proteinuria: Increased permeability results in the leakage of proteins into the urine. Albumin, a key protein for maintaining oncotic pressure in the blood, is lost in significant amounts.</li><li>Hypoalbuminemia: Loss of albumin in the urine reduces the oncotic pressure in the blood. Reduced oncotic pressure leads to the accumulation of fluid in the interstitial tissues, causing edema.</li><li>Hyperlipidemia: Hypoalbuminemia triggers compensatory mechanisms in the liver. The liver increases the synthesis of proteins such as alpha-2 macroglobulin and lipoproteins. Elevated lipoprotein levels contribute to hyperlipidemia associated with nephrotic syndrome.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Signs and symptoms</summary>
           <p>Manifestation of glomerular disease, characterized by nephrotic range proteinuria and a triad of clinical findings associated with large urinary losses of protein : hypoalbuminaemia , edema and hyperlipidemia</p>
 <p>Weight Gain: Patients experience noticeable weight gain due to fluid retention . The retention of fluids, primarily as a result of massive proteinuria and reduced oncotic pressure, leads to increased body weight.</p>
@@ -124,7 +154,7 @@
 <p>Other features : May have features of the underlying cause, such as the rash associated with systemic lupus erythematosus, or the neuropathy associated with diabetes.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Causes of Nephrotic Syndrome</summary>
           <p>Nephrotic syndrome has many causes and may either be the result of a glomerular disease that can be either limited to the kidney, called primary nephrotic syndrome (primary glomerulonephrosis), or a condition that affects the kidney and other parts of the body, called secondary nephrotic syndrome and other genetic causes.</p>
 <p>Primary causes</p>
@@ -133,7 +163,7 @@
 <ul><li>Diabetic nephropathy : is a complication that occurs in some diabetics. Excess blood sugar accumulates in the kidney causing them to become inflamed and unable to carry out their normal function. This leads to the leakage of proteins into the urine.</li><li>Systemic lupus erythematosus : this autoimmune disease can affect a number of organs, among them the kidney, due to the deposit of immune complexes that are typical to this disease. The disease can also cause lupus nephritis.</li><li>Infections like; Syphilis: Kidney damage can occur during the secondary stage of this disease (between 2 and 8 weeks from onset). Hepatitis B: certain antigens present during hepatitis can accumulate in the kidneys and damage them. HIV: the virus’s antigens provoke an obstruction in the glomerular capillary’s lumen that alters normal kidney function.</li><li>Vasculitis : inflammation of the blood vessels at a glomerular level impedes the normal blood flow and damages the kidney.</li><li>Cancer : as happens in myeloma, the invasion of the glomeruli by cancerous cells disturbs their normal functioning.</li><li>Genetic disorders : congenital nephrotic syndrome is a rare genetic disorder in which the protein nephrin, a component of the glomerular filtration barrier, is altered.</li><li>Drugs ( e.g. gold salts, penicillin, captopril): gold salts can cause a more or less important loss of proteins in urine as a consequence of metal accumulation. Penicillin is nephrotoxic in patients with kidney failure and captopril can aggravate proteinuria.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Diagnosis and Investigations</summary>
           <p>Initial Assessment:</p>
 <ul><li>Obtain a thorough medical history, including any acute or chronic conditions, family history of kidney disease, and a review of systems to identify symptoms such as edema, fatigue, and foamy urine.</li><li>Perform a physical examination focusing on signs of fluid overload, such as edema and ascites, as well as other systemic findings.</li></ul>
@@ -149,7 +179,7 @@
 <ul><li>Consider genetic testing if there is a suspicion of hereditary causes of nephrotic syndrome, especially in pediatric cases or when there is a family history of kidney disease.</li><li>Assess for secondary causes of nephrotic syndrome, which may include tests for infectious diseases (like hepatitis B and C, HIV), diabetes mellitus control (HbA1c), and evaluation for malignancies if clinically indicated.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Treatment of Nephrotic Syndrome</summary>
           <p>Aims of Management.</p>
 <ul><li>To reduce edema</li><li>To correct hypoalbuminemia</li><li>To lower blood pressure</li><li>To reduce proteinuria</li><li>To prevent complications such as infection, thrombosis, and malnutrition</li></ul>
@@ -157,7 +187,7 @@
 <ul><li>Diuretics : Loop diuretics, such as furosemide, are the mainstay of treatment for edema. Thiazide diuretics, such as hydrochlorothiazide, can be added if needed.</li><li>Albumin : Albumin infusions may be necessary to correct hypoalbuminemia and reduce edema. Not used because they are expensive.</li><li>ACE inhibitors or ARBs : ACE inhibitors, such as lisinopril, or ARBs, such as losartan, are used to lower blood pressure and reduce proteinuria.</li><li>Corticosteroids : Prednisone is the most commonly used corticosteroid for the treatment of nephrotic syndrome. Prednisone is started at a dose of 1-2 mg/kg/day and then tapered over several weeks. Lack of response to prednisolone therapy for 4 weeks is an Indication for renal biopsy.</li><li>Immunosuppressive drugs : Immunosuppressive drugs, such as cyclophosphamide, are used to treat patients who do not respond to corticosteroids.</li><li>Statins : Statins, such as atorvastatin, are used to lower cholesterol levels.</li><li>Antiplatelet agents : Antiplatelet agents, such as aspirin, are used to prevent thrombosis.</li><li>Nutritional support : Nutritional support, including a high-protein diet, is important to prevent malnutrition.</li><li>Vitamin D and calcium supplements : Vitamin D and calcium supplements may be necessary to prevent hypocalcemia.</li><li>Antibiotics : Antibiotics are used to treat infections.</li><li>Vaccinations : Vaccinations against pneumococcal pneumonia and influenza are recommended for patients with nephrotic syndrome.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Nursing Interventions for Nephrotic Syndrome:</summary>
           <p>Fluid Volume Excess:</p>
 <ul><li>Elevate the child’s legs and feet to promote fluid drainage.</li><li>Monitor for signs of fluid overload , such as edema, ascites, and pleural effusions.</li><li>Restrict fluid intake as prescribed by the physician.</li><li>Administer diuretics, such as furosemide (Lasix), as prescribed to promote fluid excretion.</li><li>Monitor intake and output strictly and maintain accurate fluid balance charts.</li><li>Weigh the child daily to monitor fluid status.</li></ul>
@@ -173,7 +203,7 @@
 <ul><li>Monitor for complications of nephrotic syndrome, such as ascites, pleural effusion, generalized edema, coagulation disorders, thrombosis, recurrent infections, renal failure, growth retardation, and calcium and vitamin D deficiency.</li><li>Provide appropriate interventions and treatments for any complications that arise.</li><li>Educate the child and family about the potential complications of nephrotic syndrome and the importance of regular follow-up care.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Complications of Nephrotic Syndrome:</summary>
           <ul><li>Thromboembolic Disorders : Caused by decreased levels of antithrombin III, a protein that inhibits blood clotting. Antithrombin III is lost in the urine due to the increased permeability of the glomerular basement membrane. This can lead to the formation of blood clots in the veins (deep vein thrombosis) or arteries (pulmonary embolism).</li><li>Infections : Increased susceptibility to infections due to:</li><li>Loss of immunoglobulins and other protective proteins in the urine.</li><li>Decreased production of white blood cells.</li><li>Impaired immune cell function.</li><li>Common infections include pneumonia, cellulitis, and peritonitis.</li><li>Acute Kidney Failure : Caused by a decrease in blood volume (hypovolemia) due to fluid loss into the tissues (edema). Hypovolemia leads to decreased blood flow to the kidneys, which can damage the kidneys and cause acute kidney failure.</li><li>Pulmonary Edema : Caused by the loss of proteins from the blood plasma, which leads to a decrease in oncotic pressure. Decreased oncotic pressure allows fluid to leak out of the blood vessels into the lungs, causing pulmonary edema.</li><li>Hypothyroidism : Caused by the loss of thyroxine-binding globulin (TBG), a protein that binds to thyroid hormone and transports it in the blood. Decreased TBG levels lead to decreased levels of free thyroid hormone, which can cause hypothyroidism.</li><li>Vitamin D Deficiency : Caused by the loss of vitamin D-binding protein, a protein that binds to vitamin D and transports it in the blood. Decreased vitamin D-binding protein levels lead to decreased levels of free vitamin D, which can cause vitamin D deficiency.</li><li>Hypocalcemia : Caused by the loss of 25-hydroxycholecalciferol, the storage form of vitamin D. Vitamin D is necessary for the absorption of calcium from the intestines. Decreased vitamin D levels lead to decreased calcium absorption, which can cause hypocalcemia.</li><li>Microcytic Hypochromic Anemia: Caused by the loss of ferritin, a protein that stores iron in the body. Decreased ferritin levels lead to decreased iron stores, which can cause iron-deficiency anemia.</li><li>Protein Malnutrition : Caused by the loss of protein in the urine, which exceeds the amount of protein that is ingested. Protein malnutrition can lead to a number of health problems, including weakness, fatigue, and impaired immune function.</li><li>Growth Retardation : Can occur in children with nephrotic syndrome due to a number of factors, including:</li><li>Protein malnutrition.</li><li>Anorexia (reduced appetite).</li><li>Steroid therapy (which can suppress growth).</li><li>Cushing’s Syndrome : Can occur in patients with nephrotic syndrome who are treated with high doses of corticosteroids. Cushing’s syndrome is caused by the overproduction of the hormone cortisol, which can lead to a number of health problems, including weight gain, high blood pressure, and diabetes.</li></ul>
 <p>Related Question of Nephrotic Syndrome</p>
@@ -200,37 +230,42 @@
 <ul><li>Acute kidney failure.</li><li>Kidney necrosis.</li><li>Ascites.</li><li>Pyelonephritis.</li><li>Cardiac failure</li><li>Pulmonary embolism.</li><li>Atherosclerosis.</li><li>Deep venous thrombosis.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-9">
           <summary>09 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Nephrotic Syndrome</strong> as a practical nursing topic, not only a memorized definition. Start with normal structure and function, then connect it to assessment findings and disease.</p>
 <ul><li><strong>What to understand first:</strong> define nephrotic syndrome, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-10">
           <summary>10 Assessment Guide</summary>
           <ul><li>Relevant inspection, palpation, movement, auscultation, vital signs or neurological checks.</li><li>Normal findings, abnormal findings and what each abnormality may indicate.</li><li>Patient history, risk factors and how the body system affects other systems.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-11">
           <summary>11 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use anatomy to explain symptoms and guide focused assessment.</li><li>Recognize findings that need urgent escalation.</li><li>Teach the patient using simple body-system language.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The learner can explain normal function, identify abnormal signs and connect them to nursing action.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-12">
           <summary>12 Patient Teaching and Revision Check</summary>
           <ul><li>Explain nephrotic syndrome in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Nephrotic%20syndrome%20Paediatric%20Nursing%20(III)%20nursing%20lecture" title="Nephrotic syndrome YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (1)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Nephrotic-Syndrome-Nursing-Care-Plans.webp" alt="Nephrotic Syndrome Nursing Care Plans" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Nephrotic Syndrome Nursing Care Plans</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Nephrotic%20syndrome%20Paediatric%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Nephrotic%20syndrome%20Paediatric%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

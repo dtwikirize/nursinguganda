@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,14 +97,35 @@
         <p>Commonly used concepts used in Health Service Management should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 15 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">HEALTH SERVICE MANAGEMENT</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Definition of Terms</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">MANAGEMENT</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">DIFFERENCES BETWEEN THE LEADER AND THE MANAGER.</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Concepts of Management.</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">NURSING MANAGEMENT</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Roles of an effective Nursing Manager.</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Roles of Nursing Managers in Healthcare Facilities</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Challenges for Nurse Managers</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Solutions to the Challenges faced by Nurse Managers</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Management Theories and Styles</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 HEALTH SERVICE MANAGEMENT</summary>
           <p>It involves managing divisions, departments, units, or services within these organizations.</p>
 <p>The goal of teaching health services management (HSM) is to equip students with the skills necessary to effectively manage health services. Management involves getting things done by working with and through people to achieve organizational goals and objectives.</p>
 <p>Health Service Management involves getting people to work together harmoniously, utilizing resources effectively to deliver health services to individuals and the community they serve.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Definition of Terms</summary>
           <p>Management :</p>
 <ul><li>Management is the process of influencing others with the specific intention of getting them to perform effectively and contribute to meeting organizational goals. ( Drucker, 1967 )</li><li>Management is the process of making efficient use of resources and getting people to work harmoniously together to achieve organizational objectives/goals.</li><li>The process of getting work done through other people.</li></ul>
@@ -110,7 +143,7 @@
 <ul><li>Nursing management is the process of working through nursing personnel to promote and maintain health , prevent illness , and alleviate suffering .</li><li>The role of a nurse manager is to plan, organize, direct, and control available resources to provide effective and efficient care to groups of clients.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 MANAGEMENT</summary>
           <p>Management has been applied since the beginning of civilization. In communities, people have always worked together to grow crops, build temples, etc.</p>
 <p>The manager who is stiff causes “ a red tape ” i.e. a breakdown in organization. In proper management, information should flow from subordinates to the supervisors and vice-versa.</p>
@@ -121,12 +154,12 @@
 <p>Health Service Management means getting people to work together harmoniously using resources effectively to deliver health services to the individuals and the community they serve. ****</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 DIFFERENCES BETWEEN THE LEADER AND THE MANAGER.</summary>
           <ul><li>Leader Manager</li><li>May or may not have an official appointment. Appointed officially to the position.</li><li>Has the power and authority to enforce decisions as long as followers are willing to be led. Has power and authority to enforce decisions.</li><li>Influences others either formally or informally. Carries out predetermined policies, rules, and regulations.</li><li>Has a variety of roles beyond that of a manager. Carries out specific functions, duties, and responsibilities.</li><li>Manipulates resources (people, money, etc.) to achieve organizational goals. Strives to obtain results by making rules, remaining in control, and reacting to situations.</li><li>Achieves power through influence and charisma. Achieves power by virtue of his/her position.</li><li>Focuses on group process, information gathering, feedback, and empowering others. Performs all five functions of management.</li><li>Chooses to achieve goals through passion, heart, and charisma. Is accountable for self and subordinates’ behavior and performance.</li><li>Has individuals who believe in what they say, known as followers. Has subordinates who follow their rules.</li><li>Influences people to work willingly for group objectives. People follow them on a voluntary basis.</li><li>Has no well-defined accountability. Manager is accountable for self and subordinates’ behavior and performance.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Concepts of Management.</summary>
           <p>These are the most important concepts in health care management;</p>
 <ul><li>Effectiveness</li><li>Efficiency</li><li>Equity</li></ul>
@@ -138,14 +171,14 @@
 <ul><li>Equity refers to fairness and justice in the distribution of resources , opportunities , and outcomes .</li><li>It emphasizes equal treatment and consideration of all stakeholders. In management, equity involves ensuring that decisions and actions are unbiased and that everyone has equal access to resources, benefits, and opportunities. This can include promoting diversity and inclusion, addressing discrimination, and creating a supportive and inclusive work environment</li><li>Access to basic health care is a right to all people, however this does not happen in real life for many reasons. Health inequality is a result of unfair distribution of health services and may be associated with low economic status, poor geographical location, and other factors.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 NURSING MANAGEMENT</summary>
           <p>Nursing management is the body of knowledge related to performing the functions of planning, staffing, directing, organizing and controlling (evaluating) the activities of nursing.</p>
 <p>Nursing management is the field of nursing that focuses on leadership and overseeing of nurses.</p>
 <p>Nurse manager is a person responsible for translating the administrative reasons into operational plans and acting in the middle and first line level of hierarchy.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Roles of an effective Nursing Manager.</summary>
           <p>A nurse manager works along four main dimensions .The dimensions are geared towards her own development and offering quality and clinical standards.</p>
 <ul><li>Enhancing the patients experience by ;</li><li>Inspiring patients’ confidence.</li><li>Develops a culture of person centered care in their area of responsibility.</li><li>Is approachable, identifiable and accessible.</li></ul>
@@ -157,7 +190,7 @@
 <ul><li>Creates political and strategic awareness.</li><li>Contributes to service development.</li><li>Recognizes the links with national initiatives and advocates on behalf of patients.</li><li>Empowered clinical leader.</li><li>Inspires and motivates the team.</li><li>Has proper recognition of their role.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Roles of Nursing Managers in Healthcare Facilities</summary>
           <p>The American Organization of Nurse Executives (AONE) outlines six primary roles and functions of nurse managers :</p>
 <ul><li>Clinical Practice Excellence: Nurse managers are responsible for ensuring the delivery of high-quality patient care and maintaining clinical practice standards within their assigned units or areas.</li><li>Resource Management : They are accountable for managing human, fiscal, and material resources to support clinical nursing practice. This includes optimizing personnel, equipment, and supplies while considering cost-effectiveness.</li><li>Staff Development : Nurse managers facilitate the professional growth and development of their staff. They ensure that competency levels are maintained and that new skills are acquired to meet patient needs. They also provide support and guidance to students in nursing and other healthcare professions.</li><li>Compliance Assurance: Nurse managers are responsible for ensuring that their units and the healthcare facility comply with professional, regulatory, and government standards of care. They interpret and implement these standards and ensure that staff is aware of and adheres to them.</li><li>Strategic Planning : Nurse managers participate in strategic planning at the unit, department, and organizational levels. They develop and implement plans that support the overall goals of the healthcare facility and respond to changes in the healthcare environment.</li><li>Interdisciplinary Collaboration : Nurse managers promote cooperative relationships among different disciplines and departments to ensure effective nursing care delivery. They promote companionship, mutual respect, and support to strengthen teamwork and communication.</li></ul>
@@ -166,7 +199,7 @@
 <ul><li>Lead and motivate staff to achieve optimal performance</li><li>Implement evidence-based practices to improve patient outcomes</li><li>Manage budgets and allocate resources effectively</li><li>Advocate for patients and their families</li><li>Participate in quality improvement initiatives</li><li>Collaborate with other healthcare professionals to provide comprehensive care</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Challenges for Nurse Managers</summary>
           <p>Nurse managers face numerous challenges in today’s healthcare environment, including:</p>
 <ul><li>Managing in a constantly changing system : The healthcare system is constantly changing, with new technologies, regulations, and patient care processes emerging all the time. Nurse managers must be able to adapt to these changes quickly and effectively to ensure that their units and staff are providing the best possible care.</li><li>Delivering quality care within cost constraints : Healthcare costs are rising, and nurse managers are under pressure to deliver high-quality care while also managing costs. This can be a difficult balancing act, but it is essential to ensure that patients receive the care they need without breaking the bank.</li><li>Adapting to new technologies and practices : New technologies and practices are constantly being introduced into healthcare, and nurse managers must be able to evaluate and implement these new technologies and practices in a way that benefits patients and staff. This can be a challenge, especially for nurse managers who are not familiar with new technologies.</li><li>Managing diverse teams of professionals: Nurse managers often oversee teams of professionals from a variety of backgrounds and disciplines. This can be a challenge, as each profession has its own unique culture and set of expectations. Nurse managers must be able to create an inclusive team environment where everyone feels valued and respected.</li><li>Addressing staff shortages and burnout : Nurse shortages are a major problem in many parts of the country, and this can make it difficult for nurse managers to staff their units adequately. Nurse managers must also be aware of the signs and symptoms of burnout in their staff and take steps to prevent and address it.</li><li>Ensuring compliance with regulatory requirements : Nurse managers are responsible for ensuring that their units and staff comply with all applicable regulatory requirements. This can be a complex and time-consuming task, but it is essential to ensure that patients are receiving safe and quality care.</li></ul>
@@ -175,7 +208,7 @@
 <ul><li>Managing patient expectations</li><li>Dealing with difficult patients and families</li><li>Resolving conflicts between staff members</li><li>Advocating for patients and staff</li><li>Staying up-to-date on the latest clinical research and best practices.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Solutions to the Challenges faced by Nurse Managers</summary>
           <p>Challenge: Managing in a constantly changing system</p>
 <ul><li>Solution : Nurse managers must be able to adapt to change quickly and effectively. They must be able to identify and assess the impact of changes on their units and staff, and develop and implement strategies to address these changes. Nurse managers must also be able to communicate changes to staff and patients in a clear and concise manner.</li></ul>
@@ -202,42 +235,53 @@
 <ul><li>Solution : Nurse managers must be able to stay up-to-date on the latest clinical research and best practices. They must be able to identify and evaluate new research findings and determine their potential impact on patient care. Nurse managers must also be able to implement new best practices into their units and staff.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 Management Theories and Styles</summary>
           <p>Click Here</p>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-12">
           <summary>12 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Commonly used concepts used in Health Service Management</strong> as a practical nursing topic, not only a memorized definition. Translate theory into safe decisions, accountability, communication and service improvement.</p>
 <ul><li><strong>What to understand first:</strong> define commonly used concepts used in health service management, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-13">
           <summary>13 Assessment Guide</summary>
           <ul><li>The problem, stakeholders, available resources, policy requirements and ethical issues.</li><li>Risks to patients, staff, confidentiality, quality, costs and continuity.</li><li>Documentation, reporting lines, supervision and evaluation measures.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-14">
           <summary>14 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use evidence, policy and professional standards to guide action.</li><li>Communicate clearly, document decisions and protect confidentiality.</li><li>Evaluate whether the action improves safety, learning or service delivery.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The plan is documented, realistic, ethical and improves patient care or learning outcomes.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-15">
           <summary>15 Patient Teaching and Revision Check</summary>
           <ul><li>Explain commonly used concepts used in health service management in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Commonly%20used%20concepts%20used%20in%20Health%20Service%20Management%20Health%20Service%20Management%20and%20Entrepreneurship%20nursing%20lecture" title="Commonly used concepts used in Health Service Management YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (7)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/introduction-to-health-service-management.webp" alt="Introduction To Health Service Management" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Introduction To Health Service Management</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/MANAGEMENT-1.webp" alt="MANAGEMENT 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">MANAGEMENT 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/NURSING-MANAGEMENT-1024x536.webp" alt="NURSING MANAGEMENT" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">NURSING MANAGEMENT</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/ff0ac9ae6ce9006c5a7d61338f7d47c0.webp" alt="Ff0ac9ae6ce9006c5a7d61338f7d47c0" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Ff0ac9ae6ce9006c5a7d61338f7d47c0</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/676f95bc2bd4edc81712d45b9fe1bd1c.webp" alt="676f95bc2bd4edc81712d45b9fe1bd1c" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">676f95bc2bd4edc81712d45b9fe1bd1c</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/ec65da4dc1af873434d6fcbe9b2417bf.webp" alt="Ec65da4dc1af873434d6fcbe9b2417bf" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Ec65da4dc1af873434d6fcbe9b2417bf</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/4932fa6f051aa96ff23935cbe062c9ba.webp" alt="4932fa6f051aa96ff23935cbe062c9ba" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">4932fa6f051aa96ff23935cbe062c9ba</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Commonly%20used%20concepts%20used%20in%20Health%20Service%20Management%20Health%20Service%20Management%20and%20Entrepreneurship%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Commonly%20used%20concepts%20used%20in%20Health%20Service%20Management%20Health%20Service%20Management%20and%20Entrepreneurship%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

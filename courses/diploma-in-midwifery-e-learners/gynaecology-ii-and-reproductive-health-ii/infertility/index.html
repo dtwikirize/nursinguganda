@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,12 +97,32 @@
         <p>Infertility should be reviewed through safe maternal and newborn assessment, early recognition of danger signs, respectful communication and timely referral. Connect the definition to vital signs, bleeding, fetal or newborn wellbeing, patient education and local protocol requirements.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 14 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">INFERTILITY</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Types of infertility</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Forms of Infertility</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Causes of infertility</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Conditions that should be fulfilled for implantation to occur.</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">GENERAL INVESTIGATIONS</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">MANAGEMENT AND TREATMENT OF INFERTILITY.</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Interventions</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Prevention of Infertility</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Complications of Infertility</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 INFERTILITY</summary>
           <p>Infertility refers to failure to conceive in spite of regular unprotected sex during the child bearing age that is 15-49 years without any contraception for at least one year.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Types of infertility</summary>
           <p>Primary infertility</p>
 <ul><li>Primary infertility is the inability to conceive in a couple that has had no previous pregnancies .</li><li>Primary infertility is the term used for a couple who have never achieved a pregnancy at any time after 1 year of unprotected sex.</li></ul>
@@ -98,7 +130,7 @@
 <ul><li>Secondary infertility is where one has ever conceived but then stops to produce when she is not on any method of family planning.</li><li>Secondary Infertility also refers to a couple who have previously succeeded in achieving at least one pregnancy even if this ended in spontaneous abortion being unable to conceive again.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Forms of Infertility</summary>
           <p>Male Infertility</p>
 <ul><li>Male infertility means a man is not able to start a pregnancy with his female partner.</li></ul>
@@ -106,7 +138,7 @@
 <ul><li>Female infertility is defined as not being able to get pregnant (conceive) after one year (or longer) of unprotected sex.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Causes of infertility</summary>
           <ul><li>Depression : Mental health conditions, such as depression, can affect the ability of a man to engage in sexual intercourse since it can affect sustaining an erection. Stress and emotional factors may contribute to the release of immature or abnormal sperm.</li><li>Poor Sperm Movement: Factors like extreme heat, prolonged fever, or exposure to excessive heat can reduce sperm count, impair movement, and increase the number of abnormal sperm in semen.</li><li>Ejaculation Issues : Difficulties in ejaculation, including poor or failed ejaculation, can contribute to male infertility.</li><li>Hydrocele : Excessive fluid collection in the scrotum (hydrocele) can hinder proper sperm production, impacting fertility.</li><li>Varicocele : Varicose veins in the scrotum can affect blood supply and drainage, leading to increased temperatures and reduced sperm production. It may also impact ejaculation.</li><li>Drug-Induced Erectile Dysfunction: Certain medications, such as amebicides, anti-hypertensives (e.g., aldomet), and diabetic drugs, may cause erectile dysfunction, contributing to infertility.</li><li>Diseases like Mumps : Mumps can lead to orchitis, an inflammation of the testes, affecting sperm production.</li><li>Hormonal Imbalance : Inadequate production of testosterone hormone can result in the production of immature sperm.</li><li>Degenerative Changes in Sperm : Nitrofurantoin, a medication, can cause degenerative changes in sperm.</li><li>Lifestyle Factors: Excessive smoking, alcohol consumption, and obesity can negatively impact sperm quality and fertility.</li><li>Retrograde Ejaculation : Ejaculation into the bladder can occur, affecting fertility. This can be assessed through urinalysis after ejaculation.</li><li>Exposure to Toxins : Exposure to toxic chemicals or radiation can adversely affect spermatogenesis.</li><li>Genetic Factors: Genetic conditions like Klinefelter’s syndrome (XXY chromosomes) and Turner’s syndrome (45XO chromosomes) can lead to infertility in males.</li></ul>
 <p>Are best discussed under the following headings;</p>
@@ -127,14 +159,14 @@
 <ul><li>Systemic Diseases : Diseases like diabetes, hypertension, and renal failure can affect reproductive health.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Conditions that should be fulfilled for implantation to occur.</summary>
           <p>For successful implantation to occur, the following conditions must be fulfilled:</p>
 <ul><li>Two individuals engaging in unprotected sexual intercourse must be actively involved and share a mutual desire to conceive.</li><li>The sexual intercourse should involve the right sexual route, with the male ejaculating healthy semen containing normal spermatozoa into the female’s vagina.</li><li>Both individuals should be within the age range of conception, ranging between 14 to 49 years, to optimize the chances of successful fertilization and implantation.</li><li>The female partner must release a normal, healthy ova from her ovary during her menstrual cycle.</li><li>The released ovum must be fertilized by the sperm to form a zygote.</li><li>The fertilized ovum, or zygote, must then successfully implant itself in the lining of the uterus to initiate pregnancy.</li></ul>
 <p>NOTE : It is important to note that the term “ sterility ” should only be used when there is no available treatment to enable a couple to conceive, such as in cases where a man lacks testes or a woman lacks a uterus.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 GENERAL INVESTIGATIONS</summary>
           <p>All couples who complain of infertility should be investigated but the length to which the investigations should be carried out will vary. Both partners should be seen for the initial interview.</p>
 <ul><li>Female Investigations Male Investigations</li><li>1. History Taking 1. General Physical Examination</li><li>2. Urinalysis 2. Medical History</li><li>3. Full Blood Count 3. Semen Analysis</li><li>4. Pelvic Ultrasound Scan 4. Scrotal Ultrasound</li><li>5. Hysterosonography 5. Hormone Testing</li><li>6. Laparoscopy 6. Post-Ejaculation Urinalysis</li><li>7. Cervical Mucus Analysis 7. Genetic Tests</li><li>8. Endometrial Biopsy 8. Testicular Biopsy</li><li>9. Testing for Tubal Patency 9. Specialized Sperm Function Tests</li><li>– Tubal Insufflation/Rubin Test 10. Transrectal Scan</li><li>– Hysterosalpingography</li><li>10. Ovarian Reserve Testing</li><li>11. Post Coital Test (Sims Huhner Test)</li><li>Menstrual History : Menarche and length of menstrual periods.</li><li>Gynaecological History:</li><li>Previous contraceptive use and outcomes.</li><li>History of procedures like dilatation and curettage, salpingectomy.</li><li>Any history of abortions or suggestive Pelvic Inflammatory Diseases (PID).</li><li>Previous obstetric history, including pregnancies and children fathered.</li><li>Pelvic Infection History : History of pelvic infections.</li><li>General Health and Nutrition: Assess general health and nutritional status.</li><li>Age and Weight : Age of both partners and consider weight; very lean or obese women may face fertility challenges.</li><li>Visual Examination : Assess hair distribution, including pubic hair and general body hair.</li><li>Vaginal Examination : Confirm vaginal normality through visual examination and ultrasound.</li><li>Hormonal Investigations:</li><li>Check progesterone levels on day 21 of a 28-day cycle to assess ovulation.</li><li>Serial ultrasound for ovulation.</li><li>FSH and LH levels, especially in cases of premature menopause or ovary removal.</li><li>Special Tests:</li><li>Hysterosalpingogram to check tubal patency.</li><li>Post-coital test to assess sperm allergy.</li><li>Basal body temperature charting for ovulation confirmation.</li><li>Examination of cervical mucus for ovulation characteristics.</li><li>Blood progesterone level testing.</li><li>Histology : Premenstrual endometrial biopsy to show secretory changes after ovulation.</li><li>Laparoscopy : Tubal patency test, with methylene blue injection to observe spillage.</li><li>Tubal Insufflation: Carbon dioxide test via the vagina, coupled with X-rays to assess blockages.</li><li>Hysterosalpingogram : Radiographic test with opaque radio aqueous solution to check patency.</li><li>Post-Coital Test ( Huhner’s Test ): Conducted around ovulation to assess sperm motility and quantity.</li><li>Prolactin Tests : Conducted when prolactin levels are elevated.</li><li>Endometrial Biopsy : Performed 10-12 days after ovulation.</li><li>Transvaginal Ultrasound (TVS): Used for evaluation with certain contraindications and risks.</li><li>Obesity Assessment : Check for associations with diabetes mellitus, hypertension, and infertility.</li><li>Hair Distribution and Genitalia Development : Assess hair distribution and genitalia development.</li><li>Undescended Testis : Check for undescended testes, with corrective surgery before puberty if necessary.</li><li>Breast Examination : Check for breast enlargement indicating increased oestrogen levels.</li><li>Testes Examination : Assess testis size and position.</li><li>Blood Tests : Sperm Count/Seminal Fluid Analysis:</li><li>Normal count is ≥20 million/ml; below 10 million may indicate an issue (oligospermia).</li><li>Decreased androgen levels may indicate infertility.</li><li>Volume : Normal volume is ≥2 ml or 2.5ml.</li><li>pH : 7-8.</li><li>Total Sperm Count : More than 20 million/ml.</li><li>Liquefaction : Complete in 1 hour.</li><li>Motility : ≥50% with forward motility.</li><li>Morphology : 30% or more with normal shape.</li><li>Concentration : ≥20 million/ml.</li></ul>
@@ -142,7 +174,7 @@
 <ul><li>Azoospermia : Lack of sperms in semen.</li><li>Oligospermia : Few sperms, less than 20 million/ml.</li><li>Asthenospermia : Decreased sperm motility.</li><li>Teratospermia : Excessive abnormality of sperms in semen.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 MANAGEMENT AND TREATMENT OF INFERTILITY.</summary>
           <p>Management of infertility involves a range of strategies, including</p>
 <ul><li>Medication,</li><li>Surgery,</li><li>Artificial insemination, or advanced reproductive technologies.</li></ul>
@@ -193,53 +225,65 @@
 <ul><li>Anxiety and fear related to unknown procedures, treatment and outcome evidenced by the patient’s verbalization.</li><li>Low self esteem related to inability to conceive evidenced by low mood, negative attitude and social isolation.</li><li>Knowledge deficit related to the process of ovulation, pregnancy and sexual relationship evidenced by inadequate verbalization of correct sexual behavior information.</li><li>Knowledge deficit related to sexual anatomy and physiology/ causes of infertility evidenced by inadequate verbalization of related information.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Nursing Interventions</summary>
           <ul><li>Assessment : Conduct a thorough assessment of the patient’s medical history, reproductive health, and lifestyle factors influencing fertility.</li><li>Emotional Support : Provide empathetic support to address the emotional distress associated with infertility. Offer counseling or refer to mental health professionals when needed.</li><li>Educational Guidance : Offer education about the various causes of infertility, available treatments, and assisted reproductive technologies (ART) to empower patients with knowledge.</li><li>Lifestyle Modification : Collaborate with patients to identify and modify lifestyle factors that may impact fertility, such as smoking cessation, reducing alcohol intake, and maintaining a healthy diet.</li><li>Medication Education : Educate patients on the proper administration, potential side effects, and expected outcomes of fertility medications prescribed..</li><li>Fertility Monitoring : Instruct patients on methods of monitoring fertility, such as tracking ovulation cycles and recognizing fertile periods.</li><li>Assistive Reproductive Technologies (ART): Explain the processes and options associated with ART, including in vitro fertilization (IVF), intracytoplasmic sperm injection (ICSI), and other advanced techniques.</li><li>Infection Prevention : Emphasize the importance of preventing and treating reproductive infections that may contribute to infertility.</li><li>Nutritional Counselling : Collaborate with a dietitian to provide nutritional counselling, ensuring patients are aware of the impact of diet on fertility and overall reproductive health.</li><li>Sexual Health Education : Offer guidance on maintaining a healthy sexual relationship and addressing any concerns related to sexual dysfunction or discomfort.</li><li>Monitoring Medication Adherence : Regularly assess and monitor the patient’s adherence to prescribed medications and treatments, addressing any concerns or challenges.</li><li>Facilitate Support Groups : Arrange or recommend participation in support groups where patients can share experiences, coping strategies, and emotional support with others facing similar challenges.</li><li>Referral to Specialist : Collaborate with fertility specialists, reproductive endocrinologists, or other healthcare professionals to ensure a multidisciplinary approach to care.</li><li>Advocacy : Advocate for patients’ needs and ensure they have access to comprehensive fertility care, addressing any barriers or challenges they may face during the diagnostic and treatment process.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Prevention of Infertility</summary>
           <ul><li>Cease Smoking : Smoking is associated with reduced fertility in both men and women. Quitting smoking enhances reproductive health by improving sperm quality and reducing the risk of reproductive complications in women.</li><li>Moderate Alcohol Consumption : Excessive alcohol intake can adversely affect fertility. Limiting alcohol consumption promotes overall reproductive well-being. It is advisable for both partners to maintain moderation.</li><li>Adopt a Nutrient-Rich Diet: A well-balanced diet rich in essential nutrients supports reproductive health. Key elements include antioxidants, vitamins, and minerals that contribute to optimal hormonal balance and overall fertility.</li><li>Timed Intercourse: Understanding the menstrual cycle and engaging in timed intercourse during the fertile window increases the chances of conception. Regular sexual activity throughout the menstrual cycle is encouraged.</li><li>Stress Reduction Techniques : Chronic stress can impact fertility. Incorporating stress-reduction practices such as meditation, yoga, or mindfulness can contribute to a healthier reproductive environment.</li><li>Maintain a Healthy Weight : Both obesity and being underweight can affect fertility. Maintaining a healthy weight through regular exercise and a balanced diet supports hormonal balance and reproductive function.</li><li>Safe Sex Practices: Protecting against sexually transmitted infections (STIs) is crucial. STIs can lead to pelvic inflammatory diseases (PID) that may result in infertility. Consistent and correct use of barrier methods, like condoms, helps prevent STIs.</li><li>Regular Health Check-ups : Routine health check-ups for both partners can detect and address potential reproductive health issues early on. Identifying and managing health conditions timely contributes to fertility preservation.</li><li>Avoid Exposure to Environmental Toxins : Limit exposure to environmental pollutants and toxins, such as certain chemicals and radiation, which may impact fertility. Precautions in the workplace and living environment are essential.</li><li>Manage Chronic Health Conditions : Proper management of chronic conditions like diabetes, hypertension, and thyroid disorders is crucial. Uncontrolled health conditions may negatively impact fertility.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Complications of Infertility</summary>
           <ul><li>Depression : Experiencing infertility can lead to emotional distress and, in some cases, clinical depression. The frustration, disappointment, and uncertainty about the future can contribute to mental health challenges.</li><li>Strain on Relationships : Marital Challenges and Divorce: Infertility may strain relationships, leading to conflicts and challenges. The pressure to conceive can create emotional distance, and, in extreme cases, contribute to marital strain and even divorce.</li><li>Sexual Morality : The stress of infertility might impact the couple’s intimate life, leading to challenges in maintaining a healthy sexual relationship.</li><li>Polygamy : Cultural or societal expectations, combined with the desire for children, may lead some individuals to consider polygamy as a solution, introducing additional complexities to relationships.</li><li>Social Stigma : Societal attitudes towards fertility and parenthood can contribute to stigmatization, causing individuals or couples to feel isolated or judged.</li><li>Financial Strain : Economic Impact: Fertility treatments can be financially demanding. The cost of various procedures, medications, and assisted reproductive technologies may contribute to economic stress.</li><li>Health Risks and Treatment Complications : Health Concerns: Fertility treatments, especially hormonal interventions, may pose certain health risks.</li><li>Treatment Complications: Some fertility treatments carry risks and potential complications that individuals and couples need to be aware of.</li></ul>
 <p>Image References: https://www.invitra.com/en/female-sterility/</p>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-11">
           <summary>11 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Infertility</strong> as a practical nursing topic, not only a memorized definition. Prioritize airway, breathing, circulation, pain, asepsis, wound healing and early complication detection.</p>
 <ul><li><strong>What to understand first:</strong> define infertility, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-12">
           <summary>12 Assessment Guide</summary>
           <ul><li>Vital signs, pain, bleeding, perfusion, level of consciousness and injury pattern.</li><li>Wound appearance, drainage, odour, swelling, temperature and surrounding skin.</li><li>Fluid balance, mobility, nutrition, surgical site risk and ordered investigations.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-13">
           <summary>13 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Stabilize urgent problems first, then prepare for investigations or theatre care.</li><li>Maintain aseptic technique, pain control, wound care and documentation.</li><li>Prevent shock, infection, pressure injury, deep vein thrombosis and delayed healing.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The patient remains stable, wound healing progresses, pain is controlled and complications are recognized early.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-14">
           <summary>14 Patient Teaching and Revision Check</summary>
           <ul><li>Explain infertility in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Infertility%20Gynaecology%20II%20and%20Reproductive%20Health%20II%20nursing%20lecture" title="Infertility YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (13)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Infertility-Causes-Symptoms-Treatment.webp" alt="Infertility Causes Symptoms Treatment" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Infertility Causes Symptoms Treatment</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/types-of-infertility-primary-and-secondary.webp" alt="Types Of Infertility Primary And Secondary" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Types Of Infertility Primary And Secondary</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/forms-of-infertility-e1705661827992.webp" alt="Forms Of Infertility E1705661827992" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Forms Of Infertility E1705661827992</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/download-1024x435.webp" alt="Download" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Download</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/female-infertility-causes-2-e1705662121686.webp" alt="Female Infertility Causes 2 E1705662121686" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Female Infertility Causes 2 E1705662121686</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/female-infertility-treatment-e1705662995179.webp" alt="Female Infertility Treatment E1705662995179" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Female Infertility Treatment E1705662995179</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Nursing-Interventions-e1705663347116.webp" alt="Nursing Interventions E1705663347116" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Nursing Interventions E1705663347116</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Prevention-of-Infertility-e1705663456796.webp" alt="Prevention Of Infertility E1705663456796" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Prevention Of Infertility E1705663456796</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Infertility%20Gynaecology%20II%20and%20Reproductive%20Health%20II%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <p style="color:var(--seo-muted);font-size:.85rem;margin:8px 0 0">5 more diagrams available — open the lesson for full illustrations.</p>
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Infertility%20Gynaecology%20II%20and%20Reproductive%20Health%20II%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

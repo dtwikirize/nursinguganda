@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,29 +97,54 @@
         <p>Assess and classify a sick young infant 0-2 months should be reviewed through safe maternal and newborn assessment, early recognition of danger signs, respectful communication and timely referral. Connect the definition to vital signs, bleeding, fetal or newborn wellbeing, patient education and local protocol requirements.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 19 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">ASSESS AND CLASSIFY A SICK YOUNG INFANT 0-2 MONTHS</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">IMNCI PROCESS FOR THE SICK YOUNG INFANT</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Signs of severe disease</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">ASSESS, CLASSIFY AND TREAT THE YOUNG INFANT</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">CHECK FOR POSSIBLE SERIOUS BACTERIAL INFECTION OR VERY SEVERE DISEASE, PNEUMONIA AND LOCAL INFECTION</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">THEN CHECK FOR JAUNDICE</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">THEN ASSESS FOR DIARRHOEA</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">CHECK FOR HIV EXPOSURE AND INFECTION</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">THEN CHECK FOR TB</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">THEN CHECK FOR FEEDING PROBLEM OR LOW WEIGHT FOR AGE IN BREASTFED INFANTS</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">TREAT THE YOUNG INFANT</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">COUNSEL THE MOTHER</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">For Sick Young Infant with Possible Serious Bacterial Infection or Very Severe Disease</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">When to Return Immediately:</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Follow-up Care for Specific Conditions:</a>
+          <a href="#section-16" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-17" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-18" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-19" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 ASSESS AND CLASSIFY A SICK YOUNG INFANT 0-2 MONTHS</summary>
           <p>Young infants have special characteristics which must be considered when classifying their illness. They can become sick and die very quickly from serious bacterial infection but which may manifest themselves through general signs e.g. reduced movements, fever or even hypothermia, failure to breastfeed etc.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 IMNCI PROCESS FOR THE SICK YOUNG INFANT</summary>
           <ul><li>ASK : Child’s age ASK : What are the infant’s problems? ASK : Initial or follow-up visit for problems? MEASURE : Weight and temperature</li><li>Possible serious bacterial infection ( PSBI ) or very severe disease Pneumonia Local Infection All with severe disease require URGENT referral</li><li>MAIN SYMPTOMS Jaundice Diarrhea Feeding problem or LOW WEIGHT FOR AGE Possible HIV INFECTION, TB EXPOSURE</li><li>URGENT REFERRAL REQUIRED • IDENTIFY and give pre-referral treatment • URGENTLY REFER TREAT IN CLINIC • IDENTIFY TREATMENT • TREAT • COUNSEL caretaker • FOLLOW-UP CARE TREAT AT HOME • IDENTIFY TREATMENT • COUNSEL caretaker on home treatment • FOLLOW-UP CARE</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Signs of severe disease</summary>
           <ul><li>Not feeding.</li><li>Severe chest indrawing or Fast breathing.</li><li>Convulsions.</li><li>No movement/Lethargy.</li><li>Temperature too high or too low.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 ASSESS, CLASSIFY AND TREAT THE YOUNG INFANT</summary>
           <p>DO QUICK ASSESSMENT OF ALL SICK YOUNG INFANTS BIRTH UP TO 2 MONTHS*</p>
 <p>ASK THE MOTHER WHAT THE YOUNG INFANT’S PROBLEMS ARE</p>
 <ul><li>Determine if this is an initial or follow-up visit for this problem</li><li>If initial visit, assess the child and classify as follows:</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 CHECK FOR POSSIBLE SERIOUS BACTERIAL INFECTION OR VERY SEVERE DISEASE, PNEUMONIA AND LOCAL INFECTION</summary>
           <p>ASSESS :</p>
 <ul><li>ASK LOOK, LISTEN AND FEEL</li><li>Is the infant having difficulty in feeding? Has the infant had convulsions (fits) or twitching? ASK and LOOK: Is the infant not able to feed or breastfeed? Is there blood in the stool? Look for breathing: is the baby gasping or not breathing at all even when stimulated Count the breaths in one minute. Repeat the count if elevated. Look for severe chest indrawing Look and listen for grunting or wheezing. Look for nasal flaring. Look for central cyanosis and pulse oximetry where available Look and feel for bulging anterior fontanelle. Look at the umbilicus. Is it red or draining pus? Look for severe abdominal distension. Measure axillary temperature (or feel for fever or low body temperature) Look for skin pustules. Look For high pitched cry. Look at the young infant’s movements (Young infant must be Calm)</li></ul>
@@ -115,7 +152,7 @@
 <ul><li>SIGNS CLASSIFY AS IDENTIFY TREATMENT</li><li>Any of the following signs: Respiratory rate less than 20 breaths per minute or Convulsions or convulsing now or Not able to feed or breastfeed or Fast breathing (more than 60 breaths per minute) or Severe chest indrawing or Grunting or wheezing or Nasal flaring or Bulging anterior fontanelle or Pus draining from the ear or Fever (37.5 º C* or above or feels hot) or Very low body temperature (less than 35.5 º C* or Feels cold) or Movement only when stimulated or No movements at all. Blood in stool. Severe abdominal distension High pitched cry Oxygen saturation &amp;lt;90% POSSIBLE SERIOUS BACTERIAL INFECTION OR VERY SEVERE DISEASE • Immediately resuscitate using a bag and mask if the baby: – Is gasping or not breathing – Has a respiratory rate less than 20 breaths per minute • If convulsing now, give Phenobarbitone • Give the first dose of Benzylpenicillin &amp; Gentamicin. • Treat to prevent low blood sugar • Admit or refer URGENTLY to hospital** • Advise mother how to keep the infant warm on the way to the hospital. • Screen for possible TB disease and check for HIV • If oxygen saturation is less than 90%, start oxygen therapy and refer or admit • IF REFERRAL NOT POSSIBLE (see pg 37)</li><li>Red umbilicus or draining pus or Skin pustules. And none of the signs of very severe disease LOCAL BACTERIAL INFECTION • Give Flucloxacillin Syrup • Teach the mother to treat local infections at home. • Advise mother to give home care for the young infant. • Follow-up in 2 days • Screen for possible TB disease and check for HIV. • Advise mother when to return immediately</li><li>Fast breathing (60 breaths per minute or more) in infants 7 to 59 days old PNEUMONIA • Give amoxicillin for 7 days • Advise mother to give home care for the young infant • Follow up on day 4 of treatment</li><li>Temperature between 35.5 º C to 36.4 º C LOW BODY TEMPERATURE • Re-warm the young infant and reassess after 1 hour. (kangaroo warming) • Treat to prevent low blood sugar • Advise mother to give home care for the young infant • Advise mother when to return immediately</li><li>None of the signs of Very Severe Disease or Local Bacterial Infection INFECTION UNLIKELY • Advise mother to give home care for the young infant • Screen for possible TB disease and check for HIV. • Advise mother when to return immediately.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 THEN CHECK FOR JAUNDICE</summary>
           <p><strong>Physiological Jaundice:</strong></p>
 <ul><li>Physiological jaundice emerges between 48 to 72 hours after birth.</li><li>It reaches its peak intensity on days 4 and 5 in term babies and day 7 in preterm infants.</li><li>Generally, it disappears by day 14.</li><li>Physiological jaundice does not extend to the palms and soles, requiring no treatment.</li><li>If jaundice appears on the first day, persists for 14 days or more, and extends to palms and soles, it is considered severe jaundice and demands urgent attention.</li></ul>
@@ -125,26 +162,26 @@
 <ul><li>SIGNS CLASSIFY AS IDENTIFY TREATMENT</li><li>Any jaundice if age less than 24 hours or Yellow eyes, palms and soles at any age Any visible yellowness in a pre-term baby regardless of when it appears SEVERE JAUNDICE • Treat to prevent low blood sugar: • Refer URGENTLY to the hospital. • Advise mother how to keep the infant warm on the way or the Hospital. • Screen for possible TB disease</li><li>Yellowness appearing after 24 hours of age Yellowness in the eyes &amp; skin Palms and Soles NOT yellow JAUNDICE • Advise the mother to give home care for the young infant. • Advise mother to return immediately if eyes, palms and soles appear yellow • If young infant older than 14 days refer to hospital for assessment. • Follow up in 1 day</li><li>No jaundice JAUNDICE Advise mother to give home care for the young infant</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 THEN ASSESS FOR DIARRHOEA</summary>
           <ul><li>ASK LOOK</li><li>DOES THE YOUNG INFANT HAVE DIARRHOEA OR SIGNS OF DEHYDRATION? IF YES ASK: For how long? Does the child have diarrhoea? Is the child vomiting? Is the child able to feed? * What is diarrhoea in a young infant? A young infant has diarrhoea if the stools have changed from usual pattern and are many and watery (more water than faecal matter). The normally frequent or semi-solid stools of a breastfed baby are not diarrhoea. Infants Movements • Does the infant move on his/her own? • Does the infant move even when stimulated but then stops? • Does the infant not move at all? • Is the infant restless and irritable? • Look for sunken eyes. Pinch the skin of the abdomen. Does it go back: • Very slowly (longer than 2 seconds)? • Slowly? • Immediately? • Assess the young infant’s ability to feed • Assess the young infant’s urine output</li></ul>
 <p>Classify for DEHYDRATION</p>
 <ul><li>SIGNS CLASSIFY AS IDENTIFY TREATMENT</li><li>Two of the following signs: Movement only when stimulated or no movement at all. Sunken eyes Skin pinch goes back very slowly Child not passing urine. Child not able to feed. SEVERE DEHYDRATION If infant has no other severe classification: • Give fluid for severe dehydration (Plan C) OR If infant also has another severe classification: • Admit/Refer URGENTLY to hospital with mother or caregiver giving frequent sips of ORS on the way • Advise mother to continue breast feeding. • If child is not passing urine admit/refer urgently to hospital. • If child is not able to feed, admit/refer urgently to hospital.</li><li>Two of the following signs: Restless and irritable Sunken eyes Skin pinch goes back slowly. SOME DEHYDRATION • Give fluid and breast milk for some dehydration (Plan B) • Advise mother when to return immediately • Follow-up in 2 days if not improving • If infant also has VERY SEVERE CLASSIFICATION • Admit/Refer URGENTLY to hospital** with the mother giving frequent sips of ORS on the way if child has diarrhoea. • Advise mother to continue breast feeding • Follow-up in 3 days if not improving</li><li>Not enough signs to classify as some or severe dehydration. NO DEHYDRATION • Give fluids to treat diarrhoea at home and continue breast feeding at home (Plan A) • Give ORS and Zinc sulphate if child has diarrhoea • Advise mother when to return immediately • Follow-up in 2 days if not improving.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 CHECK FOR HIV EXPOSURE AND INFECTION</summary>
           <ul><li>ASK</li><li>• Has the mother and/or young infant had an HIV test? IF YES: • What is the mother’s HIV status?: Antibody test is POSITIVE Antibody test is NEGATIVE If mother is HIV positive and NO positive DNA PCR test in child ASK: Is the mother on ART and young infant on ARV prophylaxis? IF NO TEST: Mother and young infant status unknown Perform HIV test for the mother: If positive, perform DNA PCR test for the young infant IF the mother is NOT available, do an antibody test on the child. If positive, do a DNA PCR test.</li></ul>
 <p>CLASSIFY HIV STATUS</p>
 <ul><li>SIGNS CLASSIFY AS IDENTIFY TREATMENT</li><li>POSITIVE DNA PCR test in young infant CONFIRMED HIV INFECTION • Initiate ART, counsel and follow up existing infections • Initiate Cotrimoxazole prophylaxis • Assess child’s feeding and provide appropriate counseling to the mother/ caregiver • Advise the mother on home care • Offer routine follow up for growth, nutrition and development • Educate caregivers on adherence and its importance • Screen for possible TB disease at every visit. • For those who do not have TB disease, start Isoniazid prophylactic therapy (IPT). Screen for possible TB disease throughout IPT • Immunize as per schedule • Follow up monthly as per the national ART guidelines and offer comprehensive management of HIV. Refer to appropriate national ART guidelines for comprehensive HIV care of the child.</li><li>Mother HIV positive and negative DNA PCR in young infant. OR Mother HIV positive, young infant not yet tested. OR Positive antibody test in young infant whose mother is not available HIV EXPOSED • Treat, counsel and follow up existing infections • Initiate Cotrimoxazole prophylaxis • Start or continue PMTCT* prophylaxis as per the national recommendations • Assess child’s feeding and provide appropriate counseling to the mother/caregiver • Advise the mother on home care • Offer routine follow up for growth, nutrition and development • Screen for possible TB disease at every visit • Immunize as per schedule • Follow up monthly as per the national ART guidelines and offer comprehensive management of HIV. Refer to appropriate national ART guidelines for comprehensive care of the child.</li><li>Mother’s antibody test is NEGATIVE HIV NEGATIVE • Manage presenting conditions according to IMNCI and other recommended national guidelines • Advise the mother about feeding and about her own health.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 THEN CHECK FOR TB</summary>
           <ul><li>ASK LOOK AND FEEL</li><li>For symptoms suggestive of TB • Has the young infant had contact with a person with Pulmonary Tuberculosis or chronic cough? • Has the young infant had persistent fevers for 14 days or more? • Does the young infant have pneumonia which is not responding to standard therapy? • Has the young infant been coughing for 14 days or more? Look or feel for physical signs of TB • Determine weight for age – Weight less than 1.5kg? – Weight for age less than -3 Z score?</li><li>SIGNS CLASSIFY AS IDENTIFY TREATMENT</li><li>Presence of ANY of the symptoms and signs suggestive of TB OR weight less than 1.5kg or 3Z score with any symptom. PRESUMPTIVE TB • Refer to hospital for further assessment and management • Ask about the caregiver’s health and treat as necessary</li><li>A sick young infant with no TB symptoms or signs NO PRESUMPTIVE TB • Treat, counsel, and follow up existing infections • Ask about the caregiver’s health and treat as necessary</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 THEN CHECK FOR FEEDING PROBLEM OR LOW WEIGHT FOR AGE IN BREASTFED INFANTS</summary>
           <ul><li>ASK LOOK AND FEEL</li><li>Is the infant breastfed? If yes, how many times in 24 hours? Does the infant usually receive any other foods or drinks? If yes, how often? If yes, what do you use to feed the infant? Determine weight for age. – Weight less than 1.5 kg? – Weight for age less than -3 Z score? Look for ulcers or white patches in the mouth (thrush).</li><li>ASSESS BREASTFEEDING:</li><li>• Has the infant breast-fed in the previous hour? • If the infant has not fed in the previous hour, ask the mother to put her infant to the breast. Observe the breastfeed for 4 minutes. • (If the infant was fed during the last hour, ask the mother if she can wait and tell you when the infant is willing to feed again.) • Is the infant well attached? -not well attached? -good attachment? TO CHECK ATTACHMENT, LOOK FOR: – More areola seen above infant’s top lip than below bottom lip – Mouth wide open – Lower lip turned outwards – Chin touching breast (All of these signs should be present if the attachment is good).</li></ul>
 <p>• Is the infant suckling effectively (that is, slow deep sucks, sometimes pausing)?</p>
@@ -156,14 +193,14 @@
 <ul><li>Age Vaccine</li><li>Birth* BCG</li><li>bOPV-0</li><li>6 Weeks bOPV-1</li><li>DPT / HepB / Hib -1</li><li>PCV 10-1</li><li>ROTA 1</li><li>Give all missed doses on this visit.</li><li>Immunize sick infant unless being reffered</li><li>Include sick babies and those without a mother child health booklet.</li><li>If the child has no booklet, issue a new one today.</li><li>Advise the mother when to return for the next dose.</li><li>Assess the child’s growth and development milestones • Plot the child’s weight on his/her growth card (child health card or mother baby passport) • Ask mother about what the child is now able to do in terms of physical movement, communication and interaction. Assess the Child for ECD / other problems including Congenital Malformations Ask mother for any other problem or identified external malformations • Check child for any external malformations and abnormal signs • Refer infant to hospital, if they have any external malformations ECD-Early Childhood Development Assess the Mother’s Health Needs • Check if had full course of tetanus toxoid, if not, give an appointment. • Ask if pregnant , if so give an antenatal appointment. If not, ask if interested to talk about family planning. • Ask if RCT has been done and the results. • If mother is an adolescent, link to appropriate clinic or service provider for support.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 TREAT THE YOUNG INFANT</summary>
           <ul><li>– Gentamicin : Give 5 mg/kg/day in once daily injection. In low birthweight (&amp;lt;2.5kg) infants, give 4 mg/kg/day in once daily injection. To prepare the injection: From a 2 ml vial containing 40 mg/ml, remove 1 ml gentamicin from the vial and add 1 ml distilled water to make the required strength of 20 mg/ml. – Ampicillin : Give 50mg/kg IM * If referral is not possible, continue treatment for seven days</li><li>2. Prevent Low Blood Sugar</li><li>– If the young infant is able to breastfeed: Ask the mother to breastfeed the young infant. – If the young infant is not able to breastfeed but is able to swallow: Give 20–50 ml (10 ml/kg) expressed breastmilk before departure. If not possible to give expressed breastmilk, give 20–50 ml (10 ml/kg) sugar water. (To make sugar water: Dissolve 4 level teaspoons of sugar (20 grams) in a 200-ml cup of clean water.) – If the young infant is not able to swallow: Give 20–50 ml (10 ml/kg) of expressed breastmilk or sugar water by nasogastric tube.</li><li>3. Keep the Young Infant Warm on the Way to the Hospital</li><li>– Provide skin-to-skin contact, OR – Keep the young infant clothed or covered as much as possible all the time, especially in a cold environment. Dress the young infant with extra clothing, including a hat, gloves, and socks. Wrap the infant in a soft dry cloth and cover with a blanket.</li><li>4. Refer Urgently</li><li>– Write a referral note for the mother to take to the hospital. – If the infant also has SOME DEHYDRATION OR SEVERE DEHYDRATION and is able to drink: Give the mother some prepared ORS and ask her to give frequent sips of ORS on the way. Advise the mother to continue breastfeeding. – Use the appropriate plan, A, B or C.</li><li>– Follow the instructions below to teach the mother about each oral medicine to be given at home. Also, follow the instructions listed with each medicine’s dosage table. – Determine the appropriate medicines and dosage for the infant’s age or weight. – Tell the mother the reason for giving the medicine to the infant. – Demonstrate how to measure a dose. – Watch the mother practice measuring a dose by herself. – Ask the mother to give the dose to her infant. – Explain carefully how to give the medicine, then label and package the medicine. – If more than one medicine will be given, collect, count, and package each medicine separately. – Explain that all the tablets or syrups must be used for the course of treatment, even if the infant gets better. – Check the mother’s understanding before she leaves the clinic.</li><li>* Local Infection : Give oral amoxicillin twice daily for 5 days * Pneumonia (fast breathing alone) in infant 7–59 days old: Give oral amoxicillin twice daily for 7 days</li></ul>
 <p>AMOXICILLIN Desired range is 75 to 100 mg/kg/day divided into 2 daily oral doses. Give twice daily</p>
 <ul><li>WEIGHT(kg) Dispersible Tablet (250 mg) Per Dose Dispersible Tablet (125 mg) Per Dose Syrup (125 mg in 5 ml) Per dose</li><li>1.5 to 2.4 1/2 tablet 1 tablet 5 ml</li><li>2.5 to 3.9 1/2 tablet 1 tablet 5 ml</li><li>4.0 to 5.9 1 tablet 2 tablets 10 ml</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-12">
           <summary>12 COUNSEL THE MOTHER</summary>
           <p>TEACH THE CAREGIVER TO TREAT LOCAL INFECTIONS AT HOME</p>
 <p>Follow the instructions below for every oral drug to be given at home. Also, follow the instructions listed with each drug’s dosage table.</p>
@@ -207,7 +244,7 @@
 <ul><li>Breastfeeding poorly</li><li>Reduced activity</li><li>Becomes sicker</li><li>Develops a fever</li><li>Feels unusually cold</li><li>Develops fast breathing</li><li>Develops breathing problems</li><li>Palms or soles appear yellow.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-13">
           <summary>13 For Sick Young Infant with Possible Serious Bacterial Infection or Very Severe Disease</summary>
           <p>Clinical Severe Infection:</p>
 <p>If using a 2-day gentamicin regimen:</p>
@@ -230,13 +267,13 @@
 <ul><li>Ask if diarrhoea has stopped. Treatment:</li><li>If not stopped, assess and treat for diarrhoea.</li><li>If stopped, advise to continue exclusive breastfeeding and give zinc for 10 days.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-14">
           <summary>14 When to Return Immediately:</summary>
           <p>Advise the caretaker to return immediately if the young infant has any of these signs:</p>
 <ul><li>Breastfeeding poorly.</li><li>Reduced activity.</li><li>Becomes sicker.</li><li>Develops a fever.</li><li>Feels unusually cold.</li><li>Develops fast breathing.</li><li>Develops breathing difficulty.</li><li>Palms or soles appear yellow.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-15">
           <summary>15 Follow-up Care for Specific Conditions:</summary>
           <p>Feeding Problem:</p>
 <p>After 2 days, reassess feeding.</p>
@@ -248,37 +285,49 @@
 <ul><li>After 2 days, look for ulcers or white patches in the mouth (thrush).</li><li>Reassess feeding.</li><li>If thrush or mouth ulcers worsen or if there are problems with attachment or sucking, refer to the hospital.</li><li>If thrush or mouth ulcers are the same or better, and the baby is feeding well, continue with Gentian Violet or Nystatin for a total of 5 days.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-16">
           <summary>16 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Assess and classify a sick young infant 0-2 months</strong> as a practical nursing topic, not only a memorized definition. Adapt assessment and care to age, weight, development, caregiver knowledge and family support.</p>
 <ul><li><strong>What to understand first:</strong> define assess and classify a sick young infant 0-2 months, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-17">
           <summary>17 Assessment Guide</summary>
           <ul><li>Airway, breathing, circulation, hydration, temperature, feeding, activity and danger signs.</li><li>Weight-based medicines, immunization status, growth, development and caregiver concerns.</li><li>Signs that may be subtle in children, including lethargy, poor feeding, fast breathing or convulsions.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-18">
           <summary>18 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use age-appropriate communication and involve the caregiver.</li><li>Prevent dehydration, hypothermia, medication errors and delayed referral.</li><li>Teach home care, danger signs and follow-up clearly.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The child is clinically improving, caregiver instructions are understood and follow-up is arranged.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-19">
           <summary>19 Patient Teaching and Revision Check</summary>
           <ul><li>Explain assess and classify a sick young infant 0-2 months in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Assess%20and%20classify%20a%20sick%20young%20infant%200-2%20months%20Pediatric%20nursing%20I%20%26%20Palliative%20care%20nursing%20nursing%20lecture" title="Assess and classify a sick young infant 0-2 months YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (11)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/ASSESS-AND-CLASSIFY-A-SICK-YOUNG-INFANT-0-2-MONTHS.webp" alt="ASSESS AND CLASSIFY A SICK YOUNG INFANT 0 2 MONTHS" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">ASSESS AND CLASSIFY A SICK YOUNG INFANT 0 2 MONTHS</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/pneumonia.webp" alt="Pneumonia" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Pneumonia</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/JAUNDICE.webp" alt="JAUNDICE" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">JAUNDICE</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Diarrhoea.webp" alt="Diarrhoea" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Diarrhoea</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/ASSESS-hiv.webp" alt="ASSESS Hiv" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">ASSESS Hiv</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/BREASTFEEDING-ASSESS-1.webp" alt="BREASTFEEDING ASSESS 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">BREASTFEEDING ASSESS 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/IMMUNIZATION-BABY.webp" alt="IMMUNIZATION BABY" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">IMMUNIZATION BABY</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/baby-attaching-breast-1.webp" alt="Baby Attaching Breast 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Baby Attaching Breast 1</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Assess%20and%20classify%20a%20sick%20young%20infant%200-2%20months%20Pediatric%20nursing%20I%20%26%20Palliative%20care%20nursing%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <p style="color:var(--seo-muted);font-size:.85rem;margin:8px 0 0">3 more diagrams available — open the lesson for full illustrations.</p>
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Assess%20and%20classify%20a%20sick%20young%20infant%200-2%20months%20Pediatric%20nursing%20I%20%26%20Palliative%20care%20nursing%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

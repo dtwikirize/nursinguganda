@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,14 +97,33 @@
         <p>Roles of palliative care in Uganda should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 13 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Palliative Care</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**History of Palliative Care**</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Hospice in Africa**</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Need for palliative care**</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Philosophy/Roles of Palliative care**</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Attributes of Palliative Care</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Principles of Palliative Care</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Components of holistic care</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Models of Palliative Care</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Palliative Care</summary>
           <p>Palliative care is an approach that improves the quality of life of patients and families facing the problem associated with life threating illness through the prevention and relief of suffering by means of early identification and assessment and treatment of pain and other problems which are physical , psychological and spiritual. <strong>WHO definition</strong></p>
 <p>Palliative care is the <strong>Active</strong> <strong>Total</strong> <strong>Care</strong> of patients with life limiting disease and their families, when the disease is no longer responsive to curative medicine.</p>
 <p>Palliative care aims at achieving physical symptom relief but also extends far beyond it. It seeks to integrate physical, psychological, social and spiritual aspects of care so that patients may come to terms with their impending death as fully and constructively as they can.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 **History of Palliative Care**</summary>
           <p>In <strong>1960`s</strong> British Psychiatric John Hinton marked societal neglect and deficiency in the end of the life care. Hospices were sanctuaries provided by religious orders for the dying poor, providing food, clothes and shelter.</p>
 <p>Dame Cicely Saunders an oxford trained nurse noted the trouble of dying and the need for improved pain control . She was a doctor, nurse social worker and a writer. She was the founder of the “ <strong>Hospice Movement</strong> ” in 1918. In 1967 , Dame Cicely Saunders oversaw the building of the world’s first purpose built modern Hospice : St Christopher’s Hospice in London, England.</p>
@@ -107,25 +138,25 @@
 <p>Palliative care is the art and science of providing relief from illness – related suffering. Alleviation of suffering is needed for all patients who have curable and incurable illness <strong>. Hospice</strong> or <strong>end of life care</strong> can be used synonymous from <strong>palliative.</strong></p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 **Hospice in Africa**</summary>
           <p>Hospice has been established in the following countries: Zimbabwe, South Africa, Kenya, Uganda</p>
 <p><strong>In Uganda,</strong> Hospice services, **<strong> were started </strong>in Nsambya Hospital in 1993 by Dr. Anne Merriman<strong> and since then organizations as well as hospitals have come up to offer palliative care services in Uganda such as </strong>Hospice Africa Uganda (HAU)<strong> and </strong>Mild may Uganda.** These service has further been extended to other parts of the Country by training specialist nurses and clinical officers who then deliver this care.</p>
 <ul><li>To provide High Quality African Palliative Care for cancer / HIV AIDS patients in Uganda;</li><li>To strengthen and maintain capacity of HAU(Hospice Africa Uganda) to produce oral liquid morphine;</li><li>To provide high quality palliative care training in Africa;</li><li>To build and strengthen capacity of other African countries to deliver palliative care;</li><li>To strengthen research, innovations, advocacy and networking for palliative care in Uganda and Africa;</li><li>To ensure effective and efficient governance at HAU(Hospice Africa Uganda)</li><li>To enhance financial efficiency and sustainability.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 **Need for palliative care**</summary>
           <ul><li>WHO estimates 9 million new cases of cancer each year (50% in developing countries).</li><li>More than 80% disease presents late and is often incurable.</li><li>Pain occurs in more than 66% of patients with advanced cancer</li><li>5 million HIV+ people live in sub–Saharan Africa</li><li>20-50% HIV patients can expect to suffer from severe</li></ul>
 <p>****</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 **Philosophy/Roles of Palliative care**</summary>
           <ul><li>Affirms life.</li><li>Regards dying as a normal process.</li><li>Neither hastens nor postpones death.</li><li>Relieves pain and other distressing symptoms.</li><li>Integrates the psychological and spiritual aspects of care.</li><li>Offers support systems for patients to live as actively as possible until death</li><li>Offers support systems to help patients’ families cope during the patient’s illness and in their own bereavement.</li><li>Appropriate ethical considerations: Do good; do no harm, patient’s right to decide; and fairness.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Attributes of Palliative Care</summary>
           <p>Palliative care has a range of distinctive characteristics or attributes.</p>
 <p>In palliative care, “attributes” refers to the characteristics, features, or qualities that are associated with or define palliative care. These attributes are the essential elements that make up the nature and scope of palliative care as a specialized form of medical care.</p>
@@ -135,17 +166,17 @@
 <ul><li><strong>Pain and symptom control:</strong> Modern methods are used for pain relief, including oral morphine for severe pain, and symptom treatment and management.</li><li><strong>Supportive care</strong> : The psychological, social, spiritual and cultural needs of the patient and the family, including bereavement care, are attended to.</li><li>Focus on quality of life</li><li>Holistic approach</li><li>Multi disciplinary team (MDT)- doctor, nurse, physiotherapist, occupation therapist, social worker</li><li>Patient and family at center of care</li><li>Attention to details</li><li>Availability of essential drugs e.g. morphine</li><li>Peace, comfort and dignity of the patient and family.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Principles of Palliative Care</summary>
           <ul><li><strong>Patient centered</strong> : Palliative care revolves around the patient and their family. The focus is on maintaining hope with realistic goals, supporting the patient and their loved ones throughout different stages of the illness. Sustain hope with realistic goals in order to help patient and families cope in appropriate way through the different phase of the illness.</li><li><strong>Appropriate ethical consideration:</strong> There are many ethical issues that arise in care of all patients. Seek to do good or do no harm, patients’ rights must be considered to decide fairly. Palliative care involves navigating various ethical issues. Remember to balance doing what’s best for the patient while respecting their rights and autonomy.</li><li><strong>Continuum of treatment</strong> . This involves management of pain and other symptoms i.e. Palliative care begins from the time of diagnosis and extends beyond the patient’s passing. It includes pain and symptom management as well as providing bereavement care for the family after death. (bereavement care).</li><li><strong>Teamwork and partnership</strong> : Palliative care requires an interdisciplinary team to address the diverse needs of patients effectively. It is not easy to address all patients’ needs alone. An interdisciplinary team should be established to deal with all the problems. i.e. no single profession can address all issues that cause total pain. Team members share challenges facing the patient and plan effective management of the patient using their skill mix. A palliative care team includes: 1. Nurses 2. Doctor 3. Social workers 4. Religious leaders 5. Teachers 6. Community health providers &amp;gt; Others as appropriate.</li><li><strong>Holistic care approach:</strong> Holistic care treats the patients as a whole person, not just as a medical case. This approach focuses not only on physical care, but also psychological (emotional), social and spiritual care. This psychological and emotional support and care should be available for the caregivers as well as the patient, family members, community volunteers, professional care and support workers (health workers, counselors, social workers), before, during and after periods of care giving. <strong>Holistic care:</strong> this is care of whole person and is more than only drug and physical care</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Components of holistic care</summary>
           <ul><li><strong>Physical care:</strong> This involves the assessment and management of pain and other physical symptoms. Its important because if physical symptoms are with them if they controlled other aspects will be different to carry.</li><li><strong>Psychological care:</strong> Effective communication skills are crucial in caring for patients holistically. Providing emotional support, active listening, and compassionate understanding help patients cope with the emotional challenges they face.</li><li><strong>Spiritual care</strong> : This is important to terminally ill and it includes allowing patients to express their spirituality, praying with them if they request for arranging for an appropriate leader to visit them.</li><li><strong>Family support:</strong> The terminal phase of illness is often very difficult for patients’ family. Support therefore needs to be offered to the family. It includes spending time, listening and giving support to them.</li><li><strong>Social care</strong> : This incorporates discussion of social and family issue e.g. This could include considering the well-being of young children who may become orphans and discussing financial matters that can impact the patient and their family.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Models of Palliative Care</summary>
           <ul><li><strong>Health facilities based:</strong> Palliative care is provided either in hospital at the outpatient department or in other clinics as designated by the in-charge. Health Centers IV and Ill with palliative care trained health workers provide palliative care services using a facility palliative care team.</li><li><strong>Health facility Out-reach programs:</strong> specialist palliative care health workers travel to other center to provide palliative care. Palliative care in this modal is provided by palliative care trained health workers. The team moves to the community to provide palliative care services closer to the community. Facility outreach programs are important in that they bring the services nearer to the people. Hence patients do not have to walk long distances and a mass of people can be seen within their villages.</li><li><strong>Roadside clinics/stopovers:</strong> This is a model of care that enables patients who live far away from health facilities to access palliative care. Health care providers plan with patients and their caregivers to meet- in identified place along the route or on their way to an outreach. They make a stopover in an agreed place. The place location can be a trading Centre, under a tree, at a particular signpost or at a school.</li><li><strong>Facility day care:</strong> This is when a day is set aside for the patient and their caretaker to spend time with other patients in at the facility. This facility could be a hospital, health Centre a hospice. This activity enables recreation as well as socialization. Patients get to share their challenges encounter during the disease trajectory arid even counsel themselves. They interact as they enjoy lunch or tea, they also get an opportunity to see their nurses or doctors at the site and have they needs attended to.</li><li><strong>Community day care:</strong> It is similar to facility day care except it is done within the community. Health care workers move to the community and spend the day with patients at a designated area in the community, it could be at the church, health Centre community hall or someone’s home.</li><li><strong>Home based palliative care model:</strong> This means a delivery of a comprehensive package of care to the patient and the family at home. The package includes spiritual, psychological, pain and symptom management as well as support in activities of daily living. This model of care is best provided by a specialist palliative care team working in partnership with trained community health volunteers.</li></ul>
 <p><strong>Services offered during home based palliative care:</strong></p>
@@ -156,37 +187,49 @@
 <p>Time&#39;s up</p>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-10">
           <summary>10 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Hospice concept</strong> as a practical nursing topic, not only a memorized definition. Adapt assessment and care to age, weight, development, caregiver knowledge and family support.</p>
 <ul><li><strong>What to understand first:</strong> define hospice concept, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-11">
           <summary>11 Assessment Guide</summary>
           <ul><li>Airway, breathing, circulation, hydration, temperature, feeding, activity and danger signs.</li><li>Weight-based medicines, immunization status, growth, development and caregiver concerns.</li><li>Signs that may be subtle in children, including lethargy, poor feeding, fast breathing or convulsions.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-12">
           <summary>12 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use age-appropriate communication and involve the caregiver.</li><li>Prevent dehydration, hypothermia, medication errors and delayed referral.</li><li>Teach home care, danger signs and follow-up clearly.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The child is clinically improving, caregiver instructions are understood and follow-up is arranged.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-13">
           <summary>13 Patient Teaching and Revision Check</summary>
           <ul><li>Explain hospice concept in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Roles%20of%20palliative%20care%20in%20Uganda%20Palliative%20Care%20Nursing%20nursing%20lecture" title="Roles of palliative care in Uganda YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (34)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/PosterMaker_26012023_114051.webp" alt="PosterMaker 26012023 114051" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">PosterMaker 26012023 114051</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/clock.webp" alt="Clock" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Clock</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/c86a064a985af1fde387e1c947bef70e.webp" alt="C86a064a985af1fde387e1c947bef70e" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">C86a064a985af1fde387e1c947bef70e</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/31c980396afc8baee1d8f61a3de0c948.webp" alt="31c980396afc8baee1d8f61a3de0c948" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">31c980396afc8baee1d8f61a3de0c948</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/96a7f47f2aa497e76e41e2e51a0a9df0.webp" alt="96a7f47f2aa497e76e41e2e51a0a9df0" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">96a7f47f2aa497e76e41e2e51a0a9df0</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/42fef3556d10fe8e15b58d8156f8c44f.webp" alt="42fef3556d10fe8e15b58d8156f8c44f" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">42fef3556d10fe8e15b58d8156f8c44f</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/72b71eb4331c7dbb539a266112c2a122.webp" alt="72b71eb4331c7dbb539a266112c2a122" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">72b71eb4331c7dbb539a266112c2a122</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/69450fcf3e4193f82c4a6e002b0e2287.webp" alt="69450fcf3e4193f82c4a6e002b0e2287" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">69450fcf3e4193f82c4a6e002b0e2287</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Roles%20of%20palliative%20care%20in%20Uganda%20Palliative%20Care%20Nursing%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <p style="color:var(--seo-muted);font-size:.85rem;margin:8px 0 0">26 more diagrams available — open the lesson for full illustrations.</p>
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Roles%20of%20palliative%20care%20in%20Uganda%20Palliative%20Care%20Nursing%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

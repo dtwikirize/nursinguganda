@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,22 @@
         <p>Principles should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (9)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">OCCUPATIONAL HEALTH AND SAFETY</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Aims/Objectives of Occupational Safety and Health</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Principles of Occupational Health and Safety</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Components of Occupational Health and Safety in the Workplace</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Elements of the work</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 OCCUPATIONAL HEALTH AND SAFETY</summary>
           <p>Occupational health is an area of work in public health to promote and maintain the highest degree of physical, mental and social well-being of workers in all occupations . According to WHO</p>
 <p>Occupational health is also defined as the overall well-being—physically, mentally, and socially—of individuals in relation to their work and working environment.</p>
@@ -97,58 +124,67 @@
 <ul><li>Occupational Epidemiology : This field focuses on studying the occurrence of diseases in relation to work-related factors.</li><li>Occupational Biostatistics : It serves as a vital tool for quantitatively studying morbidity and mortality in humans, particularly in relation to workplace exposure.</li><li>Ergonomics : This discipline involves tailoring the job to fit the workers, encompassing the design of machines, tools, equipment, work layouts, methods, and environments. Its objective is to enhance human efficiency and well-being, thereby reducing industrial accidents and improving overall worker health and productivity.</li><li>Risk Assessment : The process of identifying and evaluating potential risks and hazards in the workplace to determine appropriate preventive measures. Example: Conducting a risk assessment to identify potential hazards associated with a chemical substance used in a laboratory.</li><li>Hazard Control : Implementing measures to eliminate or minimize workplace hazards and reduce the risk of accidents or injuries. Example: Installing safety guards on machinery to prevent workers from coming into contact with moving parts.</li><li>Personal Protective Equipment (PPE) : Equipment worn by workers to protect themselves from potential workplace hazards. Example: Safety goggles, gloves, and helmets used to protect workers from eye injuries, hand injuries, or head injuries.</li><li>Safety Training : Providing education and training to workers on occupational health and safety practices, procedures, and emergency protocols. Example: Conducting regular safety training sessions to ensure workers are aware of fire evacuation procedures and know how to respond in an emergency.</li><li>Incident Investigation : The process of examining workplace incidents, accidents, or near-miss events to identify their causes and implement corrective measures to prevent future occurrences. Example: Investigating a workplace fall to determine whether it was caused by inadequate safety measures or improper equipment usage.</li><li>Workplace Ergonomics : Designing and arranging workspaces, equipment, and tasks to fit the capabilities and limitations of the workers, promoting comfort, safety, and efficiency. Example: Adjusting the height and position of computer monitors to reduce neck strain and prevent musculoskeletal disorders.</li><li>Safety Culture : The shared values, beliefs, attitudes, and behaviors regarding workplace safety within an organization. Example: Encouraging open communication about safety concerns, recognizing and rewarding safe practices, and fostering a proactive approach to safety among employees.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Aims/Objectives of Occupational Safety and Health</summary>
           <ul><li>Promoting and maintaining the highest level of physical, mental, and social well-being for workers in all occupations. Example: Ensuring that workers have a safe and healthy work environment that contributes to their overall well-being.</li><li>Preventing workers from being affected by harmful working conditions that can negatively impact their health. Example: Implementing measures to protect workers from exposure to hazardous substances or dangerous equipment.</li><li>Protecting workers from work-related risks and hazards that may arise in their employment. Example: Establishing safety protocols and providing personal protective equipment (PPE) to minimize workplace accidents and injuries.</li><li>Creating and maintaining an occupational environment that is tailored to meet workers’ physiological and psychological needs. Example: Adapting workstations to ergonomic standards to prevent musculoskeletal disorders and promote comfort.</li><li>Ensuring that work is adjusted to suit individuals and that individuals are well-suited for their jobs. Example: Assigning tasks that match workers’ skills and capabilities, allowing them to perform their duties effectively and safely.</li><li>Alice’s First Day at Nurses Revision Hospital Alice was happy to start her new job as a nurse at Nurses Revision Hospital. She was healthy and excited about her new role. Promoting and Maintaining Well-Being : When Alice arrived, she noticed the hospital had a welcoming environment. The management prioritized the well-being of all employees. They ensured everyone had regular health check-ups, access to mental health resources, and social activities to foster a supportive community. Preventing Harmful Conditions : On her first day, Alice attended a training session where she learned about the importance of preventing harmful working conditions. The hospital had strict protocols to protect staff from exposure to hazardous substances, such as proper handling of chemicals and safe disposal of medical waste. Protecting from Risks and Hazards : Alice was provided with personal protective equipment (PPE), including gloves, masks, and gowns, to protect her from potential risks and hazards. The hospital also had safety protocols in place, like emergency evacuation plans and regular fire drills, to ensure everyone knew how to respond in case of an incident. Creating an Enabling Environment : Alice’s workstation was ergonomically designed. She had a comfortable chair, a properly adjusted computer screen, and a supportive mat to stand on. This setup helped prevent musculoskeletal disorders and promoted her comfort while working long shifts. Adjusting Work to Suit Individuals : The hospital management made sure that Alice’s tasks matched her skills and capabilities. They provided continuous training to help her develop her skills and assigned her tasks she was confident in handling. This approach ensured that Alice could perform her duties effectively and safely.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Principles of Occupational Health and Safety</summary>
           <ul><li>Protecting and promoting workers’ health by preventing and controlling occupational diseases and accidents and eliminating hazardous factors and conditions at work. Example: Implementing safety protocols and providing training to prevent accidents, as well as monitoring and addressing any potential occupational health hazards.</li><li>Developing and promoting healthy and safe work environments and organizations by adapting working conditions to meet the needs of workers. Example: Modifying workplace layouts or processes to reduce physical strain and improve worker well-being.</li><li>Enhancing workers’ physical, mental, and social well-being, supporting their professional and social development, and maintaining their capacity to work. Example: Offering health and wellness programs, promoting work-life balance, and providing opportunities for skill development and career growth.</li><li>Enabling workers to lead productive lives and contribute to sustainable development. Example: Supporting initiatives that foster a healthy work-life balance, job satisfaction, and employee engagement, which ultimately benefits both individuals and the organization.</li><li>Providing curative and rehabilitative services to address any health issues or injuries that may occur in the workplace. Example: Offering medical treatment, rehabilitation programs, and support for workers who experience work-related injuries or illnesses.</li><li>Ensuring immediate response through first aid and emergency measures for victims. Example: Establishing protocols for first aid training and having emergency response systems in place to provide prompt medical assistance when accidents occur.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Components of Occupational Health and Safety in the Workplace</summary>
           <ul><li>Availability of Regulations : Have occupational health and safety regulations within the workplace to ensure compliance and worker safety.</li><li>Safety Committee : Establishing an active and effective occupational health and safety committee to address and manage safety concerns and initiatives.</li><li>Hazard Control : Monitoring and managing workplace hazards to prevent potential health risks for employees.</li><li>Hygiene Maintenance : Overseeing cleanliness and sanitation facilities to maintain worker health and well-being.</li><li>Protective Device Standards : Regularly inspecting the health and safety standards of protective devices used in the workplace to ensure they meet requirements.</li><li>Health Examinations : Conducting various health assessments, including pre-employment, periodic, and special health examinations for workers.</li><li>Ergonomics : Tailoring work conditions to accommodate individual needs and enhance worker well-being.</li><li>First Aid Services : Providing access to first aid services to address injuries and illnesses promptly.</li><li>Training and Education : Offering health education and safety training to workers to increase awareness and knowledge.</li><li>Incident Reporting : Reporting incidents such as occupational deaths, diseases, injuries, disabilities, hazards, and their prevention measures to enhance workplace safety and prevent future occurrences.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Elements of the work</summary>
           <ul><li>The worker : The individual who performs the work or job e.g. a health worker</li><li>The tool : The machine the person doing a job uses e.g. injection syringe</li><li>The process : The steps the person who does a job takes to do the job e.g. steps of administering an IM injection.</li><li>The work environment : The place or situation in which a person who does the work lives in e.g. hospital, health care place.</li></ul>
 <p>The elements of work encompass the worker, the tool they utilize, the process they follow to perform the job, and the work environment they operate within. For example, a health worker (the worker ) administers an intramuscular injection using an injection syringe (the tool ) by following a specific set of steps (the process ), typically in a hospital or healthcare facility (the work environment ) .</p>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-6">
           <summary>06 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Introduction</strong> as a practical nursing topic, not only a memorized definition. Translate theory into safe decisions, accountability, communication and service improvement.</p>
 <ul><li><strong>What to understand first:</strong> define introduction, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-7">
           <summary>07 Assessment Guide</summary>
           <ul><li>The problem, stakeholders, available resources, policy requirements and ethical issues.</li><li>Risks to patients, staff, confidentiality, quality, costs and continuity.</li><li>Documentation, reporting lines, supervision and evaluation measures.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-8">
           <summary>08 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use evidence, policy and professional standards to guide action.</li><li>Communicate clearly, document decisions and protect confidentiality.</li><li>Evaluate whether the action improves safety, learning or service delivery.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The plan is documented, realistic, ethical and improves patient care or learning outcomes.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-9">
           <summary>09 Patient Teaching and Revision Check</summary>
           <ul><li>Explain introduction in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Principles%20Disaster%20Management%20and%20Occupational%20Health%20and%20Safety%20nursing%20lecture" title="Principles YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (5)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/PRINCIPLES-OF-TEACHING-AND-LEARNING.webp" alt="PRINCIPLES OF TEACHING AND LEARNING" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">PRINCIPLES OF TEACHING AND LEARNING</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/midwives-in-exams.webp" alt="Midwives In Exams" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Midwives In Exams</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/QUALITIES-CHARACTERISTICS-OF-GOOD-TEACHING-1-1024x768.webp" alt="QUALITIES CHARACTERISTICS OF GOOD TEACHING 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">QUALITIES CHARACTERISTICS OF GOOD TEACHING 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/MAXIMS-OF-TEACHING-1-1024x570.webp" alt="MAXIMS OF TEACHING 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">MAXIMS OF TEACHING 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/c5373a6e4047332a992813c739aa9068.webp" alt="C5373a6e4047332a992813c739aa9068" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">C5373a6e4047332a992813c739aa9068</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Principles%20Disaster%20Management%20and%20Occupational%20Health%20and%20Safety%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Principles%20Disaster%20Management%20and%20Occupational%20Health%20and%20Safety%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

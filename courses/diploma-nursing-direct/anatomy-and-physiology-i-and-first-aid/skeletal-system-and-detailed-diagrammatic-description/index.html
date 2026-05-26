@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,64 +97,91 @@
         <p>Skeletal system and detailed diagrammatic description should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section signature-section snapshot-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 21 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Snapshot</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Build The Idea</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Ward Mode</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Red Flags</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Exam Answer Map</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Introduction to the Skeletal System and its Components</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Clinical Extension: Fractures and Skeletal Injuries</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Functions of the Skeletal System</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Divisions of the Skeleton</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Bone Structure, Classification, and Anatomy of a Long Bone</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Microscopic Anatomy of Compact Bone, Bone Cells, and Remodeling</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Bone Formation and Growth (Ossification)</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Bone Fractures and Repair</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Detailed Look at the Axial and Appendicular Skeletons (Specific Bones)</a>
+          <a href="#section-16" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Joints (Articulations): Classification and Types</a>
+          <a href="#section-17" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Common Disorders of the Skeletal System (Including Joints)</a>
+          <a href="#section-18" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-19" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-20" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-21" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section signature-section snapshot-section" open id="section-1">
           <summary>01 Nursing Uganda Snapshot</summary>
           <p>The skeletal system is best revised as a living support, protection, movement, blood-forming and mineral-storage system. A nurse uses it to understand pain, deformity, movement limits, neurovascular risk and safe mobility.</p>
         </details>
       
-        <details class="seo-lesson-section signature-section build-section" open>
+        <details class="seo-lesson-section signature-section build-section" open id="section-2">
           <summary>02 Build The Idea</summary>
           <p>Start with normal bone and joint function, then ask what changes when injury, inflammation, infection, degeneration or mineral loss occurs.</p>
 <ul><li><strong>Framework:</strong> bones support posture and protect organs.</li><li><strong>Movement:</strong> muscles pull on bones across joints.</li><li><strong>Blood and minerals:</strong> marrow forms blood cells while bone stores calcium and phosphate.</li><li><strong>Repair:</strong> healing depends on alignment, blood supply, nutrition, immobilization and infection control.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section ward-section" open>
+        <details class="seo-lesson-section signature-section ward-section" id="section-3">
           <summary>03 Ward Mode</summary>
           <p>On the ward, skeletal knowledge becomes practical when a patient cannot walk, has pain after trauma, has a cast, or reports numbness and swelling.</p>
 <ul><li>Check pain, deformity, swelling, skin colour and temperature.</li><li>Compare movement, sensation and pulse on both sides.</li><li>Support the part before moving the patient.</li><li>Escalate severe pain, numbness, cold limb or suspected spinal injury.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section red-flags-section" open>
+        <details class="seo-lesson-section signature-section red-flags-section" id="section-4">
           <summary>04 Red Flags</summary>
           <ul><li>Increasing pain under a cast.</li><li>Numbness, tingling, blue or cold fingers or toes.</li><li>Loss of movement after trauma.</li><li>Back or neck injury with weakness or altered sensation.</li><li>Open wound with visible bone or severe bleeding.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-5">
           <summary>05 Patient Teaching</summary>
           <ul><li>Report severe pain, numbness, swelling, blue colour or inability to move digits.</li><li>Keep casts dry and avoid inserting objects under them.</li><li>Take calcium/protein-rich foods where appropriate and follow mobility instructions.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section exam-map-section" open>
+        <details class="seo-lesson-section signature-section exam-map-section" id="section-6">
           <summary>06 Exam Answer Map</summary>
           <ul><li>Define the skeletal system.</li><li>List functions: support, protection, movement, blood formation, mineral storage.</li><li>Classify bones and joints.</li><li>Add nursing relevance: assessment, fractures, mobility and complications.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Introduction to the Skeletal System and its Components</summary>
           <p>The <strong>skeletal system</strong> is the body&#39;s internal framework, providing structure, support, and protection. It&#39;s a dynamic and living system, not just dry bones in a museum! It&#39;s primarily composed of specialized connective tissues. In an adult human, the skeletal system typically consists of 206 bones, along with a network of cartilages, joints, and ligaments that connect them and facilitate movement.</p>
 <p>Understanding the skeletal system means understanding more than just bones:</p>
 <ul><li><strong>Bones:</strong> These are the primary organs of the skeletal system. They are rigid structures that form the framework, provide attachment points for muscles, and protect internal organs.</li><li><strong>Joints (Articulations):</strong> These are the sites where two or more bones meet. Joints are crucial for holding the skeleton together and, importantly, allowing for varying degrees of movement between bones.</li><li><strong>Cartilages:</strong> Flexible connective tissue found in various parts of the skeletal system. <strong>Articular cartilage</strong> covers the ends of bones within joints to reduce friction. Cartilage also connects ribs to the sternum (costal cartilage), forms the nose, ears, and structures like intervertebral discs and menisci.</li><li><strong>Ligaments:</strong> Tough, fibrous bands of dense regular connective tissue that connect <strong>bone to bone</strong> . They reinforce joints and provide stability, limiting excessive or abnormal movements.</li><li><strong>Tendons:</strong> While part of the muscular system, tendons are dense regular connective tissue bands that connect <strong>muscle to bone</strong> . They are essential for transmitting the force of muscle contraction to the skeleton to produce movement.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Clinical Extension: Fractures and Skeletal Injuries</summary>
           <p>A <strong>fracture</strong> is a break in the continuity of bone. In nursing practice it is studied with the skeletal system because bone structure, blood supply, periosteum, joints, muscles and nerves all influence the patient&#39;s pain, deformity, movement, circulation and healing.</p>
 <ul><li><strong>Common causes:</strong> direct trauma, twisting force, falls, road traffic injury, violent muscle contraction, repeated stress, osteoporosis, bone tumour, infection, malnutrition and ageing.</li><li><strong>Closed fracture:</strong> the bone is broken but the skin remains intact. Infection risk is lower, but bleeding, swelling and neurovascular compromise may still be serious.</li><li><strong>Open fracture:</strong> the wound communicates with the fracture site. Treat it as contaminated, cover with a sterile dressing, prevent further movement and refer urgently.</li><li><strong>Complete and incomplete fractures:</strong> complete fractures pass through the full width of bone, while incomplete fractures include greenstick and hairline injuries, especially in children or stress injuries.</li><li><strong>Pattern classification:</strong> transverse, oblique, spiral, comminuted, impacted, depressed, avulsion, compression and pathological fractures. The pattern helps predict stability and treatment.</li><li><strong>Priority assessment:</strong> pain, swelling, bruising, deformity, shortening, abnormal movement, crepitus, loss of function, wounds, bleeding and the mechanism of injury.</li><li><strong>Neurovascular checks:</strong> assess colour, warmth, capillary refill, distal pulses, sensation, movement, increasing pain and tightness before and after splints, casts or traction.</li><li><strong>Immediate nursing care:</strong> maintain airway and circulation if trauma is severe, control bleeding, immobilize the limb in the position found, elevate if appropriate, apply cold packs where safe, give analgesia as prescribed and prepare for X-ray or referral.</li><li><strong>Complications to remember:</strong> shock, haemorrhage, fat embolism, compartment syndrome, infection, delayed union, non-union, malunion, avascular necrosis, pressure injury under a cast and deep vein thrombosis.</li><li><strong>Patient teaching:</strong> keep the cast dry, do not insert objects under the cast, return urgently for numbness, blue fingers or toes, severe pain, swelling, foul smell, fever or inability to move digits.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Functions of the Skeletal System</summary>
           <p>The skeletal system performs several vital functions beyond just providing shape:</p>
 <ul><li><strong>Support:</strong> The bones form the rigid internal framework that supports the weight of the entire body, holds the soft tissues and organs in place, and maintains our overall shape and structure.</li><li><strong>Protection:</strong> Bones create protective enclosures for delicate and vital internal organs. The skull protects the brain, the vertebral column protects the spinal cord, the ribs and sternum protect the heart and lungs, and the pelvis protects the pelvic organs.</li><li><strong>Movement:</strong> Bones act as levers. Skeletal muscles attach to bones via tendons, and when these muscles contract, they pull on the bones, causing movement at the joints. The skeletal and muscular systems work together as the musculoskeletal system to enable locomotion and manipulation.</li><li><strong>Storage of Minerals and Fats:</strong> Bone tissue is the body&#39;s main reservoir for essential minerals, particularly calcium and phosphorus. These minerals are crucial for nerve impulse transmission, muscle contraction, blood clotting, and many other metabolic processes. Hormones regulate the release and storage of these minerals in bone to maintain mineral balance in the blood. Additionally, the internal cavities of long bones store fat in the form of yellow bone marrow, serving as an energy reserve.</li><li><strong>Blood Cell Formation (Hematopoiesis):</strong> The production of all blood cells (red blood cells, white blood cells, and platelets) occurs within the red bone marrow, which is housed in the spongy bone cavities of certain bones. This is a critical life-sustaining function of the skeletal system.</li><li><strong>Hormone Production:</strong> Bones are also recognized as playing an endocrine role. Osteoblasts produce the hormone <strong>Osteocalcin</strong> , which contributes to bone formation and seems to influence insulin secretion, glucose regulation, and energy metabolism.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Divisions of the Skeleton</summary>
           <p>For ease of study and to reflect functional differences, the adult human skeleton is divided into two main parts:</p>
 <ul><li><strong>Axial Skeleton:</strong> This part forms the long axis of the body, providing support and protection for the head, neck, and trunk. It includes the bones of the <strong>Skull</strong> , the <strong>Vertebral Column</strong> (spine), and the <strong>Bony Thorax</strong> (rib cage). The axial skeleton is primarily involved in protection, support, and weight-bearing. It consists of 80 bones.</li><li><strong>Appendicular Skeleton:</strong> This part consists of the bones of the <strong>Upper Limbs</strong> (arms, forearms, wrists, hands), the <strong>Lower Limbs</strong> (thighs, legs, ankles, feet), and the <strong>Girdles</strong> (Pectoral/shoulder girdle and Pelvic/hip girdle) that attach the limbs to the axial skeleton. The appendicular skeleton is primarily involved in locomotion and manipulation of the environment. It contains 126 bones.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 Bone Structure, Classification, and Anatomy of a Long Bone</summary>
           <p>Bones are complex organs, varying in shape and size, but sharing common structural features and composed of similar tissues.</p>
 <p>All bones in the body are composed of two types of osseous (bone) tissue:</p>
@@ -153,7 +192,7 @@
 <ul><li><strong>Diaphysis:</strong> This is the main, elongated shaft or body of the long bone. It is primarily constructed of a thick collar of compact bone surrounding a central cavity.</li><li><strong>Epiphysis (plural: Epiphyses):</strong> These are the enlarged ends of the long bone. Each long bone has a proximal epiphysis (nearer to the body trunk) and a distal epiphysis (further from the body trunk). The epiphyses have an outer shell of compact bone enclosing an interior filled with spongy bone. Joint surfaces of the epiphyses are covered with articular cartilage.</li><li><strong>Metaphysis:</strong> The narrow section of a long bone between the epiphysis and the diaphysis. In growing bone, this region contains the epiphyseal plate.</li><li><strong>Epiphyseal Line:</strong> In adult bones, the epiphyseal line is a remnant of the <strong>Epiphyseal Plate (Growth Plate)</strong> . The epiphyseal plate was a disc of hyaline cartilage in growing bones responsible for increasing bone length. Once longitudinal bone growth is complete (usually by late adolescence), the cartilage ossifies and is replaced by bone, leaving behind the epiphyseal line.</li><li><strong>Articular Cartilage:</strong> A layer of smooth, slippery hyaline cartilage covering the external surface of the epiphyses where they form a joint with another bone. It reduces friction and cushions stress during movement.</li><li><strong>Periosteum:</strong> A tough, fibrous, double-layered membrane covering the external surface of the diaphysis and parts of the epiphyses, except for the articular cartilage. The outer fibrous layer provides protection and attachment points for tendons and ligaments. The inner osteogenic layer contains osteoblasts and osteoclasts crucial for bone growth in width and repair. It is richly supplied with blood vessels and nerves.</li><li><strong>Endosteum:</strong> A delicate connective tissue membrane that lines the internal surfaces of the bone, including the surfaces of the trabeculae of spongy bone and the inside of the medullary cavity and central canals. It also contains osteoblasts and osteoclasts.</li><li><strong>Medullary Cavity (Marrow Cavity):</strong> The central, hollow cavity within the diaphysis of long bones. In adults, this cavity is primarily filled with yellow bone marrow (fat). In infants, it contains red bone marrow for blood cell production.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-12">
           <summary>12 Microscopic Anatomy of Compact Bone, Bone Cells, and Remodeling</summary>
           <p>Looking at bone tissue under a microscope reveals its organized structure, which contributes to its strength and dynamic nature.</p>
 <p>Compact bone tissue is not solid throughout; it is organized into structural units called <strong>Osteons</strong> (also known as Haversian systems). These are elongated, cylindrical structures that run parallel to the long axis of the bone, acting like tiny weight-bearing pillars. An osteon consists of:</p>
@@ -164,7 +203,7 @@
 <ul><li><strong>Bone Maintenance:</strong> Replaces old, brittle bone tissue with new, healthy tissue.</li><li><strong>Adaptation to Stress (Wolff&#39;s Law):</strong> Bone remodels in response to mechanical stress (weight-bearing and muscle pull). Areas under greater stress become stronger and thicker; areas with less stress (e.g., during prolonged bed rest) become weaker and thinner. This is why exercise is important for bone health.</li><li><strong>Calcium Homeostasis:</strong> Bone serves as the body&#39;s reservoir for calcium. Bone resorption by osteoclasts releases calcium into the bloodstream, helping to maintain blood calcium levels, which are critical for nerve and muscle function. This process is regulated by hormones like Parathyroid Hormone (PTH) and Calcitonin.</li><li><strong>Bone Repair:</strong> Remodeling is a crucial part of fracture healing.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-13">
           <summary>13 Bone Formation and Growth (Ossification)</summary>
           <p><strong>Ossification</strong> (or osteogenesis) is the process of bone tissue formation. In embryos, the skeleton is initially composed of more flexible tissues like hyaline cartilage and fibrous membranes. Ossification begins around the eighth week of embryonic development and continues throughout childhood and adolescence for bone growth, and throughout life for bone remodeling and repair.</p>
 <p>There are two main types of ossification:</p>
@@ -173,7 +212,7 @@
 <p>Bones increase in thickness or diameter through <strong>appositional growth</strong> . Osteoblasts in the periosteum secrete new bone matrix and lay down new layers of compact bone on the outer surface of the diaphysis. Simultaneously, osteoclasts on the endosteal surface (lining the medullary cavity) break down bone, widening the medullary cavity. Appositional growth can continue throughout life in response to increased stress (e.g., weight training).</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-14">
           <summary>14 Bone Fractures and Repair</summary>
           <p>A <strong>fracture</strong> is a break in the continuity of a bone. Fractures are common injuries that can occur due to trauma (falls, impacts), overuse (stress fractures), or weakened bone tissue (pathological fractures, e.g., due to osteoporosis or cancer). Understanding fracture types and the healing process is essential for nursing care, including assessment, immobilization, pain management, and monitoring for complications.</p>
 <p>Fractures are classified based on several criteria:</p>
@@ -182,7 +221,7 @@
 <ul><li><strong>Hematoma Formation:</strong> Immediately after the fracture, blood vessels in the bone and periosteum are torn, leading to bleeding. A large mass of clotted blood, called a <strong>hematoma</strong> , forms at the fracture site. Bone cells deprived of nutrients die. The site becomes swollen, painful, and inflamed.</li><li><strong>Fibrocartilaginous Callus Formation:</strong> Within a few days, soft granulation tissue (a soft callus) forms. Phagocytic cells (macrophages) clean up debris. Fibroblasts from the periosteum and endosteum produce collagen fibers that span the break. Chondroblasts form cartilage matrix. This mass of repair tissue, the <strong>fibrocartilaginous callus</strong> , is a temporary splint that connects the broken bone ends.</li><li><strong>Bony Callus Formation:</strong> Within a week, osteoblasts begin to form spongy bone. The fibrocartilaginous callus is converted into a hard, bony callus of spongy bone. This process continues until the bony callus is strong enough to hold the broken ends together, usually about 2 months later.</li><li><strong>Bone Remodeling:</strong> Over several months, the bony callus is remodeled. Excess bone material on the exterior and within the medullary cavity is removed by osteoclasts. Compact bone is laid down to reconstruct the shaft walls. The original shape and structure of the bone are restored, often leaving little or no evidence of the fracture line.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-15">
           <summary>15 Detailed Look at the Axial and Appendicular Skeletons (Specific Bones)</summary>
           <p>Let&#39;s take a closer look at the main components of the axial and appendicular skeletons. While memorizing every single bone marking isn&#39;t always necessary for basic nursing, recognizing the major bones and their general locations is fundamental for physical assessment, understanding imaging studies, and anticipating potential injuries or conditions.</p>
 <p>Forms the longitudinal axis of the body, providing support and protection.</p>
@@ -207,7 +246,7 @@
 <p>The bones of the foot are arranged to form three strong arches (two longitudinal - medial and lateral, and one transverse). These arches are supported by ligaments and tendons and are crucial for supporting the body&#39;s weight, distributing stress during standing, walking, and running, and providing leverage for propulsion.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-16">
           <summary>16 Joints (Articulations): Classification and Types</summary>
           <p><strong>Joints</strong> , also called <strong>articulations</strong> , are the sites where two or more bones meet. Joints serve two major functions for the body: they hold the bones together, providing stability to the skeleton, and they allow for movement (mobility) of the body parts. The structure of a joint determines its range of motion.</p>
 <p>This classification is based on the amount of movement the joint allows:</p>
@@ -220,7 +259,7 @@
 <ul><li><strong>Plane Joints (Gliding Joints):</strong> Have flat or slightly curved articulating surfaces that allow for gliding or sliding movements in one or two planes (uniaxial or biaxial), but no rotation around an axis. Examples: Intercarpal joints (between wrist bones), intertarsal joints (between ankle bones), joints between the articular processes of vertebrae.</li><li><strong>Hinge Joints:</strong> Have a cylindrical projection of one bone fitting into a trough-shaped surface on another bone. They allow for movement in a single plane (uniaxial) – specifically, flexion and extension, like the hinge of a door. Examples: Elbow joint (humerus and ulna), knee joint (modified hinge joint), ankle joint, interphalangeal joints (between finger and toe bones).</li><li><strong>Pivot Joints:</strong> Have a rounded end of one bone fitting into a sleeve or ring formed by another bone (and possibly ligaments). They allow for uniaxial rotation around a central axis. Examples: The joint between the atlas (C1) and the axis (C2) vertebrae, allowing head rotation (&quot;no&quot; movement); the proximal radioulnar joint, allowing pronation and supination of the forearm.</li><li><strong>Condyloid Joints (Ellipsoidal Joints):</strong> Have an oval articular surface of one bone fitting into a complementary oval depression in another. They allow for biaxial movement – flexion/extension and abduction/adduction. Examples: Radiocarpal joint (wrist joint), metacarpophalangeal joints (knuckle joints between metacarpals and phalanges), metatarsophalangeal joints (joints at the base of the toes).</li><li><strong>Saddle Joints:</strong> Both articulating surfaces have concave and convex areas, shaped like a saddle and the rider. They allow for biaxial movement (flexion/extension and abduction/adduction) with greater freedom than condyloid joints, and also allow for opposition (in the thumb). Example: The carpometacarpal joint of the thumb (between the trapezium carpal bone and the first metacarpal).</li><li><strong>Ball-and-Socket Joints:</strong> Have a spherical head of one bone fitting into a cuplike socket of another. These are the most freely movable joints, allowing for multiaxial movement in all planes – flexion/extension, abduction/adduction, rotation, and circumduction. Examples: The shoulder joint (glenohumeral joint, between the humerus and scapula), the hip joint (between the femur and coxal bone).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-17">
           <summary>17 Common Disorders of the Skeletal System (Including Joints)</summary>
           <p>The skeletal system, including bones and joints, is subject to various disorders that can cause pain, limited mobility, and affect overall health. Nurses frequently care for patients with these conditions.</p>
 <p>We&#39;ve covered these in detail earlier, but they are key skeletal system disorders:</p>
@@ -234,37 +273,49 @@
 <ul><li>Tortora, G.J. &amp; Derickson N.,P. (2006) Principles of Anatomy and Physiology; Harper and Row</li><li>Drake, R, et al. (2007). Gray&#39;s Anatomy for Students. London: Churchill Publishers</li><li>Snell, SR. (2004) Clinical Anatomy by Regions. Philadelphia: Lippincott Publishers</li><li>Marieb, E.N. (2004). Human Anatomy and physiology. London: Daryl Fox Publishers.</li><li>Young, B, et al. (2006). Wheater&#39;s Functional Histology: A Text and Colour Atlas: Churchill</li><li>Sadler, TW. (2009). Langman&#39;s Medical Embryology. Philadelphia: Lippincott Publishers</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-18">
           <summary>18 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Skeletal system</strong> as a practical nursing topic, not only a memorized definition. Connect structure, movement, pain, circulation, nerve function and safe mobility.</p>
 <ul><li><strong>What to understand first:</strong> define skeletal system, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-19">
           <summary>19 Assessment Guide</summary>
           <ul><li>Pain score, site, onset, deformity, swelling, bruising and ability to move.</li><li>Distal pulse, capillary refill, colour, warmth, sensation and movement.</li><li>Skin integrity, wounds, cast tightness, traction alignment and pressure areas.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-20">
           <summary>20 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Immobilize and protect the affected part while preventing further injury.</li><li>Control pain and swelling while monitoring neurovascular status.</li><li>Prevent complications such as compartment syndrome, infection, pressure injury and venous stasis.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> Pain is reduced, circulation and sensation remain intact, swelling is controlled and the patient mobilizes safely within the care plan.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-21">
           <summary>21 Patient Teaching and Revision Check</summary>
           <ul><li>Explain skeletal system in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Skeletal%20system%20and%20detailed%20diagrammatic%20description%20Anatomy%20and%20Physiology%20(I)%20and%20First%20Aid%20nursing%20lecture" title="Skeletal system and detailed diagrammatic description YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (15)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/skeletal-Systrem.webp" alt="Skeletal Systrem" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Skeletal Systrem</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Full-anterior-and-posterior-views-of-the-human-skeleton-with-major-bones-and-key-joints-labeled.webp" alt="Full Anterior And Posterior Views Of The Human Skeleton With Major Bones And Key Joints Labeled" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Full Anterior And Posterior Views Of The Human Skeleton With Major Bones And Key Joints Labeled</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/axial-skeleton-highlighted-or-color-coded-differently-from-the-appendicular-skeleton.webp" alt="Axial Skeleton Highlighted Or Color Coded Differently From The Appendicular Skeleton" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Axial Skeleton Highlighted Or Color Coded Differently From The Appendicular Skeleton</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/ClassificationofBonesontheBasisofShape-e1751439762811.webp" alt="ClassificationofBonesontheBasisofShape E1751439762811" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">ClassificationofBonesontheBasisofShape E1751439762811</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/603_Anatomy_of_Long_Bone-1.webp" alt="603 Anatomy Of Long Bone 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">603 Anatomy Of Long Bone 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Cross-section-diagram-of-a-bone-showing-the-outer-layer-of-compact-bone.webp" alt="Cross Section Diagram Of A Bone Showing The Outer Layer Of Compact Bone" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Cross Section Diagram Of A Bone Showing The Outer Layer Of Compact Bone</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/types-of-bone-cells-osteogenic-cell-osteoblast-osteocyte-osteoclast.webp" alt="Types Of Bone Cells Osteogenic Cell Osteoblast Osteocyte Osteoclast" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Types Of Bone Cells Osteogenic Cell Osteoblast Osteocyte Osteoclast</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/endochondral-ossification.webp" alt="Endochondral Ossification" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Endochondral Ossification</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Skeletal%20system%20and%20detailed%20diagrammatic%20description%20Anatomy%20and%20Physiology%20(I)%20and%20First%20Aid%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <p style="color:var(--seo-muted);font-size:.85rem;margin:8px 0 0">7 more diagrams available — open the lesson for full illustrations.</p>
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Skeletal%20system%20and%20detailed%20diagrammatic%20description%20Anatomy%20and%20Physiology%20(I)%20and%20First%20Aid%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

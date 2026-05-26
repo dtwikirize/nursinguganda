@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,13 +97,47 @@
         <p>Medicines used in pediatrics. should be reviewed through safe maternal and newborn assessment, early recognition of danger signs, respectful communication and timely referral. Connect the definition to vital signs, bleeding, fetal or newborn wellbeing, patient education and local protocol requirements.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 28 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">DRUGS USED IN PAEDIATRICS</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Considerations in Pediatric Pharmacology</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Ampicillin</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Gentamicin</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Benzyl Penicillin (Penicillin G)</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Amoxicillin</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Ciprofloxacin</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Rectal Artesunate</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Artemether/Lumefantrine (Coartem)</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Mebendazole</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Albendazole</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">4. Analgesics / Antipyretics</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Paracetamol (Acetaminophen)</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Folic Acid</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Iron (Ferrous Sulfate)</a>
+          <a href="#section-16" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Diazepam in Paediatrics</a>
+          <a href="#section-17" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nystatin in Pediatrics</a>
+          <a href="#section-18" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Griseofulvin in Pediatrics</a>
+          <a href="#section-19" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Clotrimazole in Pediatrics</a>
+          <a href="#section-20" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">OPIOID ANALGESICS</a>
+          <a href="#section-21" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Codeine</a>
+          <a href="#section-22" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Morphine</a>
+          <a href="#section-23" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Pethidine</a>
+          <a href="#section-24" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Naloxone</a>
+          <a href="#section-25" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-26" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-27" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-28" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 DRUGS USED IN PAEDIATRICS</summary>
           <p>The field of pediatric pharmacology focuses on the safe and effective use of medications in children, from infancy to adolescence .</p>
 <p>Pediatric patients require special consideration due to their developing physiology, which affects how drugs are absorbed, distributed, metabolized, and excreted. Here is an introduction to the key aspects of drugs used in pediatrics:</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Nursing Considerations in Pediatric Pharmacology</summary>
           <p>1. Developmental Pharmacokinetics :</p>
 <ul><li>Absorption : The gastrointestinal tract of infants and young children is still developing, which can affect the absorption of oral medications.</li><li>Distribution : The distribution of drugs can vary due to differences in body composition, such as higher total body water and lower fat content in infants.</li><li>Metabolism : The liver enzymes responsible for drug metabolism are not fully mature in newborns and infants, leading to slower drug clearance.</li><li>Excretion : Renal function is also immature in newborns, affecting the excretion of drugs and their metabolites.</li></ul>
@@ -103,7 +149,7 @@
 <ul><li>Many medications used in pediatrics are not specifically approved for use in children , leading to off-label prescribing based on clinical experience and available data.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Ampicillin</summary>
           <ul><li>Dose : 50 mg/kg</li><li>Class : Beta-lactam antibiotic, specifically a penicillin derivative.</li><li>Mechanism of Action : Inhibits bacterial cell wall synthesis by binding to penicillin-binding proteins.</li></ul>
 <p>Indications :</p>
@@ -114,7 +160,7 @@
 <ul><li>Monitor for allergic reactions (e.g., rash, difficulty breathing).</li><li>Assess renal function prior to administration.</li><li>Administer with caution in patients with a history of seizures.</li><li>Confirm proper dosing based on weight and age.</li><li>Pharmacokinetics : Ampicillin is absorbed in the gastrointestinal tract but is susceptible to degradation by stomach acids. It has good tissue penetration and crosses the placenta.</li><li>Adverse Effects : Diarrhea, allergic reactions, including anaphylaxis in susceptible patients.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Gentamicin</summary>
           <ul><li>Dose : 7.5 mg/kg</li><li>Class : Aminoglycoside antibiotic.</li><li>Mechanism of Action : Bactericidal, inhibits bacterial protein synthesis by binding to the 30S ribosomal subunit.</li></ul>
 <p>Indications :</p>
@@ -125,7 +171,7 @@
 <ul><li>Monitor renal function and drug levels (peak and trough).</li><li>Assess for signs of ototoxicity (e.g., tinnitus, dizziness).</li><li>Administer IV slowly to reduce the risk of toxicity.</li><li>Ensure hydration to minimize nephrotoxicity.</li><li>Pharmacokinetics : Poor oral absorption; given intravenously or intramuscularly. Mainly excreted through the kidneys.</li><li>Adverse Effects : Ototoxicity, nephrotoxicity, vestibular damage.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Benzyl Penicillin (Penicillin G)</summary>
           <ul><li>Dose : 50,000 IU/kg</li><li>Class : Beta-lactam antibiotic.</li><li>Mechanism of Action : Inhibits cell wall synthesis, particularly effective against Gram-positive bacteria.</li></ul>
 <p>Indications :</p>
@@ -136,7 +182,7 @@
 <ul><li>Monitor for allergic reactions after administration.</li><li>Review liver and renal function tests.</li><li>Administer via appropriate route and ensure correct dilution.</li><li>Educate families on signs of allergic reactions.</li><li>Pharmacokinetics : Poor oral absorption, so it is administered intramuscularly or intravenously.</li><li>Adverse Effects : Hypersensitivity reactions, including rash and anaphylaxis.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Amoxicillin</summary>
           <ul><li>Dose : Based on age.</li><li>2-12 months: 250 mg every 12 hours for 5 days</li><li>1-3 years: 500 mg every 12 hours for 5 days</li><li>3-5 years: 750 mg every 12 hours for 5 days</li><li>Class : Aminopenicillin.</li><li>Mechanism of Action : Inhibits bacterial cell wall synthesis.</li></ul>
 <p>Indications :</p>
@@ -147,7 +193,7 @@
 <ul><li>Observe for allergic reactions.</li><li>Administer with or without food (food may help with stomach upset).</li><li>Educate about the full course of treatment completion.</li><li>Assess for superinfection (e.g., oral thrush).</li><li>Pharmacokinetics : Well absorbed orally, widely distributed, and excreted in urine.</li><li>Adverse Effects : Rash, gastrointestinal disturbances like nausea and diarrhea.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Ciprofloxacin</summary>
           <ul><li>Dose : 15 mg/kg every 12 hours for 3 days.</li><li>If using a 500 mg tablet:</li><li>Child &amp;lt; 6 months: ¼ tab.</li><li>Child 6 months–5 years: ½ tab.</li><li>Class : Fluoroquinolone antibiotic.</li><li>Mechanism of Action : Inhibits bacterial DNA gyrase and topoisomerase IV, inhibiting DNA replication.</li></ul>
 <p>Indications :</p>
@@ -158,7 +204,7 @@
 <ul><li>Monitor for signs of tendon pain or rupture.</li><li>Educate on potential side effects (e.g., gastrointestinal symptoms).</li><li>Administer with caution in patients with seizure history.</li><li>Encourage hydration to prevent crystallization in urine.</li><li>Pharmacokinetics : Well absorbed orally but may be reduced by antacids. Mainly excreted unchanged in the urine.</li><li>Adverse Effects : Tendon rupture (rare but more frequent in children), photosensitivity, nausea.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Rectal Artesunate</summary>
           <ul><li>Dose : 10 mg/kg</li><li>Class : Antimalarial, artemisinin derivative.</li><li>Mechanism of Action : Produces reactive oxygen species that damage the parasite’s proteins and membranes.</li></ul>
 <p>Indications :</p>
@@ -169,7 +215,7 @@
 <ul><li>Monitor vital signs and blood glucose levels due to potential hypoglycemia.</li><li>Educate families on the administration technique.</li><li>Assess for neurologic changes or adverse reactions.</li><li>Ensure proper storage conditions for the medication.</li><li>Pharmacokinetics : Rapid absorption and action when given rectally. Metabolized in the liver.</li><li>Adverse Effects : Nausea, vomiting, dizziness, and occasional allergic reactions.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Artemether/Lumefantrine (Coartem)</summary>
           <ul><li>Dose : Every 12 hours for 3 days.</li><li>2-12 months : 1 tablet</li><li>1-3 years : 1 tablet</li><li>3-5 years : 2 tablets</li><li>Class : Antimalarial.</li><li>Mechanism of Action : Artemether kills rapidly, while lumefantrine has a longer half-life and helps prevent recrudescence.</li></ul>
 <p>Indications :</p>
@@ -180,7 +226,7 @@
 <ul><li>Monitor for cardiac effects (QT prolongation).</li><li>Administer with food to increase absorption.</li><li>Educate about possible side effects (nausea, headache).</li><li>Assess for resolution of malaria symptoms.</li><li>Pharmacokinetics : Oral absorption is enhanced with fatty meals.</li><li>Adverse Effects : Dizziness, weakness, and gastrointestinal disturbances.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Mebendazole</summary>
           <ul><li>Dose :</li><li>Child 1-2 years: 250 mg single dose.</li><li>Child &amp;gt; 2 years: 500 mg single dose.</li><li>Class : Anthelmintic.</li><li>Mechanism of Action : Inhibits the uptake of glucose by parasitic worms, leading to their immobilization and death.</li></ul>
 <p>Indications :</p>
@@ -191,7 +237,7 @@
 <ul><li>Administer with or without food; it is often preferred to take it with food for better absorption.</li><li>Monitor for gastrointestinal side effects (e.g., diarrhea).</li><li>Educate on hygiene measures to prevent reinfection.</li><li>Assess for any signs of infection or allergic reactions.</li><li>Pharmacokinetics : Poorly absorbed from the gastrointestinal tract, primarily excreted unchanged in the feces.</li><li>Adverse Effects : Abdominal pain, diarrhea, headache.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 Albendazole</summary>
           <ul><li>Dose :</li><li>Child 1-2 years: 200 mg single dose.</li><li>Child &amp;gt; 2 years: 400 mg single dose.</li><li>Class : Anthelmintic.</li><li>Mechanism of Action : Inhibits glucose uptake by helminths, disrupting their energy production.</li></ul>
 <p>Indications :</p>
@@ -202,12 +248,12 @@
 <ul><li>Monitor liver function tests during treatment.</li><li>Administer with food to enhance absorption.</li><li>Educate about potential side effects (e.g., headache, dizziness).</li><li>Assess for signs of hypersensitivity or allergic reactions.</li><li>Pharmacokinetics : Poor absorption; metabolized in the liver.</li><li>Adverse Effects : Nausea, vomiting, dizziness, headache.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-12">
           <summary>12 4. Analgesics / Antipyretics</summary>
           <p>More on Opioids later.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-13">
           <summary>13 Paracetamol (Acetaminophen)</summary>
           <ul><li>Dose : Every 6 hours (4 doses in 24 hours).</li><li>2 months–3 years: 125 mg.</li><li>3-5 years: 250 mg.</li><li>Class : Analgesic and antipyretic.</li><li>Mechanism of Action : Inhibits prostaglandin synthesis, reducing pain and fever.</li><li>Indications: Relief of mild to moderate pain, and fever reduction.</li></ul>
 <p>Indications :</p>
@@ -218,7 +264,7 @@
 <ul><li>Monitor for signs of overdose (e.g., nausea, vomiting).</li><li>Educate caregivers on dosage based on weight.</li><li>Assess liver function in patients with prolonged use.</li><li>Reinforce the importance of not exceeding the recommended dose.</li><li>Pharmacokinetics : Well absorbed orally; metabolized in the liver.</li><li>Adverse Effects : Hepatotoxicity in overdose, rash, nausea.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-14">
           <summary>14 Folic Acid</summary>
           <ul><li>Dose : 2.5 mg daily.</li><li>Class : Vitamin, essential for DNA synthesis.</li><li>Indications: Prevents and treats folic acid deficiency anemia, often given to malnourished children or those with megaloblastic anemia.</li></ul>
 <p>Indications :</p>
@@ -229,7 +275,7 @@
 <ul><li>Monitor for signs of deficiency (e.g., anemia symptoms).</li><li>Educate patients about the importance of diet rich in folate.</li><li>Assess history of medication use that affects folate metabolism.</li><li>Encourage supplementation before and during pregnancy.</li><li>Pharmacokinetics : Absorbed from the small intestine, metabolized in the liver.</li><li>Adverse Effects : Rare at therapeutic doses; may cause nausea or rash.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-15">
           <summary>15 Iron (Ferrous Sulfate)</summary>
           <ul><li>Dose : Once daily for 14 days.</li><li>Tablet 200 mg (1/2 tablet for children 1-5 years).</li><li>Syrup 25 mg/mL (1 mL for children &amp;lt; 1 year).</li><li>Class : Mineral supplement.</li><li>Mechanism of Action : Replenishes iron stores for hemoglobin synthesis.</li><li>Indications: Treatment of iron deficiency anemia.</li></ul>
 <p>Indications :</p>
@@ -240,7 +286,7 @@
 <ul><li>Monitor hemoglobin and hematocrit levels during therapy.</li><li>Administer on an empty stomach to enhance absorption (unless gastrointestinal upset occurs).</li><li>Assess for gastrointestinal side effects (constipation, nausea).</li><li>Educate on dietary sources of iron and adherence to therapy.</li><li>Adverse Effects : Constipation, gastrointestinal discomfort, dark stools.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-16">
           <summary>16 Diazepam in Paediatrics</summary>
           <p>Class : Benzodiazepine Pediatric Dose : 0.5 mg/kg (rectal)</p>
 <p>Key Points :</p>
@@ -253,7 +299,7 @@
 <ul><li>Monitor vital signs (respiration, heart rate) closely during treatment.</li><li>Assess for sedation levels and degree of muscle relaxation.</li><li>Educate families about the potential for dependence and withdrawal symptoms.</li><li>Administer the drug slowly intravenously (if applicable) to prevent hypotension.</li><li>Side Effects : Sedation, dizziness, hypotension, and respiratory depression. In children, excessive drowsiness and ataxia can occur.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-17">
           <summary>17 Nystatin in Pediatrics</summary>
           <p>Class : Antifungal (Polyene) Pediatric Dose : 1 mL (oral suspension), four times daily for 7 days</p>
 <p>Key Points :</p>
@@ -266,7 +312,7 @@
 <ul><li>Monitor for improvement of symptoms (e.g., resolution of thrush).</li><li>Instruct parents on proper administration techniques (oral and topical).</li><li>Assess for side effects (e.g., gastrointestinal upset).</li><li>Evaluate the necessity for concurrent antifungal medications in systemic infections.</li><li>Administration : Nystatin is given orally in the form of a suspension. For oral candidiasis, the suspension is swished in the mouth and swallowed.</li><li>Side Effects : Generally well-tolerated. Some children may experience mild gastrointestinal disturbances such as nausea, vomiting, or diarrhea. Rarely, allergic reactions like rash may occur.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-18">
           <summary>18 Griseofulvin in Pediatrics</summary>
           <p>Class : Antifungal (Fungistatic) Pediatric Dose :</p>
 <ul><li>10-20 mg/kg/day (depending on the type and severity of the fungal infection)</li></ul>
@@ -280,7 +326,7 @@
 <ul><li>Monitor for liver function tests periodically during therapy.</li><li>Assess for gastrointestinal side effects (nausea, vomiting).</li><li>Ensure patients comply with a full course of treatment to prevent recurrence.</li><li>Educate parents on the importance of using the medication consistently and checking for signs of fungal infection.</li><li>Administration : Administered orally. Absorption is enhanced when taken with fatty foods (e.g., milk or ice cream), which helps improve its efficacy.</li><li>Side Effects : Common side effects include gastrointestinal upset, headache, dizziness, fatigue, and skin rashes. Prolonged use may cause photosensitivity (increased sensitivity to sunlight).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-19">
           <summary>19 Clotrimazole in Pediatrics</summary>
           <p>Class : Antifungal (Imidazole) Pediatric Dose : 1% cream or lotion (applied topically)</p>
 <p>Key Points :</p>
@@ -293,7 +339,7 @@
 <ul><li>Monitor the skin for improvement of fungal infections.</li><li>Educate patients and parents on the proper application technique.</li><li>Instruct about maintaining skin hygiene to prevent recurrence of infection.</li><li>Assess for any signs of hypersensitivity reaction (rash, itching) after application.</li><li>Side Effects : Mild skin irritation, burning, and redness are the most common adverse effects</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-20">
           <summary>20 OPIOID ANALGESICS</summary>
           <p>Opioid analgesics are drugs derived from opium or synthetic analogs, primarily prepared from the poppy plant ( Papaver somniferum ). They are the most effective pain relievers available and are commonly used as first-line therapy for the management of:</p>
 <ul><li>Acute severe pain</li><li>Moderate to severe chronic pain associated with cancer, AIDS, or other life-threatening conditions</li></ul>
@@ -302,7 +348,7 @@
 <p>Mechanism of Action : Opioids relieve pain by mimicking the effects of endogenous opioid peptides (like endorphins), primarily by binding to the mu-opioid receptors. These receptors are found in both the ascending and descending pain pathways in the brain and spinal cord. By binding to these receptors, opioids alter pain perception and can produce euphoria and relaxation, which help alleviate the stress and emotional distress that often accompanies severe pain.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-21">
           <summary>21 Codeine</summary>
           <p>Available Preparations :</p>
 <ul><li>Tablets: 30 mg</li></ul>
@@ -322,7 +368,7 @@
 <ul><li>Encourage increased fluid and fiber intake to prevent constipation.</li><li>Avoid alcohol during codeine therapy.</li><li>Avoid abrupt discontinuation after prolonged use to prevent withdrawal symptoms.</li><li>Codeine is not recommended for productive cough.</li><li>Administer with food to minimize nausea and GI upset.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-22">
           <summary>22 Morphine</summary>
           <p>Type : Strong, centrally acting opioid analgesic.</p>
 <p>Available Preparations :</p>
@@ -351,7 +397,7 @@
 <ul><li>Avoid alcohol during morphine therapy.</li><li>Prolonged use may lead to dependence, and abrupt discontinuation should be avoided.</li><li>Caution patients about the potential for low blood pressure and blurred vision.</li><li>Naloxone can be used to treat morphine overdose.</li><li>Watch for urinary retention, especially in patients with prostatic hypertrophy.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-23">
           <summary>23 Pethidine</summary>
           <p>Type : Synthetic opioid, less potent than morphine but equally effective in pain management.</p>
 <p>Available Preparations :</p>
@@ -376,7 +422,7 @@
 <ul><li>Prolonged use may lead to physical dependence.</li><li>Use the lowest effective dose, especially in labor.</li><li>Avoid alcohol during therapy.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-24">
           <summary>24 Naloxone</summary>
           <p>Type : A drug that reverses the effects of opioid analgesics.</p>
 <p>Indications :</p>
@@ -391,37 +437,42 @@
 <ul><li>Monitor the patient’s response and adjust the dose as needed.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-25">
           <summary>25 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Medicines used in pediatrics.</strong> as a practical nursing topic, not only a memorized definition. Read the topic through the safety of two patients: the mother and the fetus or newborn.</p>
 <ul><li><strong>What to understand first:</strong> define medicines used in pediatrics., identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-26">
           <summary>26 Assessment Guide</summary>
           <ul><li>Maternal vital signs, bleeding, pain, contractions, uterine tone and danger signs.</li><li>Fetal or newborn wellbeing, feeding, temperature, breathing and activity.</li><li>History of pregnancy, parity, medications, allergies, investigations and referral risks.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-27">
           <summary>27 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Recognize danger signs early and escalate without delay.</li><li>Provide respectful communication, privacy, infection prevention and clear documentation.</li><li>Teach the mother what to monitor at home and when to return urgently.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> Mother and baby remain stable, danger signs are acted on early, and the family understands follow-up instructions.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-28">
           <summary>28 Patient Teaching and Revision Check</summary>
           <ul><li>Explain medicines used in pediatrics. in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Medicines%20used%20in%20pediatrics.%20Mental%20Health%20and%20Pharmacology%20ii%20nursing%20lecture" title="Medicines used in pediatrics. YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (1)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Medicines-Acting-on-Specific-Body-Systems.webp" alt="Medicines Acting On Specific Body Systems" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Medicines Acting On Specific Body Systems</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Medicines%20used%20in%20pediatrics.%20Mental%20Health%20and%20Pharmacology%20ii%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Medicines%20used%20in%20pediatrics.%20Mental%20Health%20and%20Pharmacology%20ii%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

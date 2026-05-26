@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,28 @@
         <p>Family planning should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 15 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Family Planning</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Where to get family planning services</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Counseling</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Screening</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Importance of family planning</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Available family planning methods in Uganda</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Natural methods of family planning</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Fertility awareness method</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Calendar /rhythm method</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Lactation amenorrhea method</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Standard Days Method (Moon beads/cycle beads)</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Family Planning</summary>
           <p>Family Planning is defined as a process through which individuals, couples make up an informed choice on how many children to have, when to have and how often to have so that each child born is expected and properly catered for in all ways.</p>
 <p>For instance, basic needs like good health, education, shelter, and all essential needs of humans are available.</p>
@@ -95,12 +128,12 @@
 <ul><li>Social mobilization events for any health services</li><li>Youth clubs and schools through family life education activities</li><li>Women and men organized clubs/groups</li><li>Work places</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Where to get family planning services</summary>
           <ul><li>Facility based outlets such as hospitals, health centers and dispensaries</li><li>Outreach services including mobile clinics and workplaces</li><li>Community based outlets e.g. community based distribution, drug shops and dispensing machines</li><li>Social marketing</li><li>Private sector facility such as clinics, maternity and nursing homes, pharmacies and drug retail shops</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Counseling</summary>
           <p>In order to promote informed choice, all clients seeking contraceptives are entitled, given accurate and adequate information about family planning methods available in the common settings. This is important for the initiation and continuation of family practice. Methods (of choice) of clients will be done individually and in a dignified manner. The discussion between the service provider and client must be private, confidential and should never include incentives or coercion for the adaptation of any method.</p>
 <p><strong>Initial counseling</strong> should include the following:</p>
@@ -109,32 +142,32 @@
 <ul><li>A review of the client ‘s satisfaction or problem with the method</li><li>A review of the client ‘s understanding of user instructions</li><li>Dispelling rumors and/or misconceptions, if any</li><li>In indicated, a review of change of the client’s reproductive goal necessitating the need for a long term or permanent method</li><li>Counseling on STIs and HIV/AIDs</li><li>Possible method failure</li><li>Information of common symptoms of breast and cervical cancer including available services for screening</li><li>Counseling is also important:</li><li>Where a contraceptive method has failed</li><li>There is regret for having had a permanent method</li><li>In cases of rape or defilement</li><li>Where there are is need for referral for appropriate care</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Screening</summary>
           <p>After a thorough counseling a client should then be ready to choose a contraceptive method. The next step is to screen for contraceptive use.</p>
 <ul><li>Clients opting for hormonal method should have the relevant health, social history taken and physical assessment carried out on the first or subsequent visits. Where indicated, do a complete physical check up to rule out contra-indications to method use. Where is not possible or necessary to perform routine physical assessment, the client should be screened by a qualified staff or FP trained service provider using a standard checklist to initiate or resupply oral contraceptive or Depo Provera. After screening, the important findings should be communicated to the client including any issues she/he may want clarification on. The client will then be provided with the appropriate or preferred method and important findings should be recorded according to the guidelines.</li></ul>
 <p>Where selected physical assessment or laboratory tests are indicated and is not possible to carry them out at a particular clinic, clients should be referred to a health unit equipped to provide the assessment test.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Importance of family planning</summary>
           <p><strong>a) To the mother</strong></p>
 <ul><li>Allows mother to recover physically and mentally from the effects of previous pregnancy</li><li>Offers ample time for a woman to actively participate in productive activities like farming and business.</li><li>It increases social bondage between the mother and her baby</li><li>It helps to reduce on maternal mortality and morbidity the couples due to pregnancy related complications</li><li>It promotes a happy marital life and enjoyment between the couples without fear of getting unwanted pregnancy.</li><li>Child receives adequate emotional and social support and as a result gets emotional maturity and stability</li><li>Allows adequate nutrition of the baby while in the womb and hence a healthy newborn</li><li>There is reduction of malnutrition as there is no early weaning and likely to have enough food for the child</li><li>The child gets fewer infections since immunity is</li><li>Reduces domestic violence in a home</li><li>Ability to meet basic needs like foods, medical care</li><li>Reduces the cost of living in a home hence the father is able to invest in productive</li><li>Healthy and productive people who enhance community stability and harmony</li><li>Reduces overcrowding hence available land can be maximize for productivity</li><li>There will be increased socio-economic development</li><li>Presence of bad characters in the community like street kids, smokers and other bad group in the community since parents have adequate time to provide for their</li><li>Reduces rapid population growth rate</li><li>Reduces the country‘s dependence on foreign aids</li><li>The government will be able to provide better social services and infrastructures like roads, health facilities</li><li>It is easy to budget for the people since the number of resources to the population is</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Available family planning methods in Uganda</summary>
           <p>**** The family planning methods can be broadly classified into: –</p>
 <ul><li>Natural family methods.</li><li>Hormonal /Artificial family planning.</li><li>Calendar/rhythm</li><li>Basal body temperature</li><li>Cervical mucus method</li><li>Lactation amenorrhea methods</li><li>Abstinence</li><li>Withdrawal/coitus interrupters</li><li><strong>Barrier methods</strong></li><li>Spermicides</li><li>Condoms</li><li>Intrauterine contraceptive devices (IUCDs)</li><li>Diaphragm</li><li><strong>Oral pills</strong> Combined oral contraceptives</li><li>Progesterone only pills</li><li>Emergency contraceptive pills</li><li>Implanon (1 rod capsule)</li><li>Jadelle (2 rod capsules)</li><li>Norplant (6 rod capsules)</li><li>Depo Provera</li><li>Injector plan</li><li>Sayana press</li><li>Noristerat</li><li>Tubal ligation (tubectomy) for women</li><li>Vasectomy for men</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Natural methods of family planning</summary>
           <p>These are also known as fertility awareness method. They are based on the following physiological conditions.</p>
 <ul><li>The lifespan of a sperm is 24 hours</li><li>The lifespan of an ovum is 48 hours</li><li>Menstruation takes place between <strong>1-16 days</strong> before the next period</li><li>They are safe with no side effects</li><li>Cheap</li><li>They are acceptable to many groups and religious that opposes the modern methods</li><li>They teach women about their own menstruation cycle and fertility</li><li>Couples have control over their methods</li><li>Help in planning a pregnancy</li><li>Some require substantial teaching before use</li><li>It is difficult as records on several cycles ought to be kept for proper references</li><li>Difficult to use if the period are irregular</li><li>Requires adjustment to sexual behaviors</li><li>Requires co-operation between the partners which in most cases is difficult</li><li>Do not protect against STIs/HIV/AIDs</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Fertility awareness method</summary>
           <p>**** Fertility awareness methods of family planning involve identification of the fertile days of the menstrual cycle (when pregnancy is most likely to occur) and avoiding sexual intercourse (or using barrier methods) during these days. The fertile days of the menstrual cycle can be determined by one of the following methods:</p>
 <ul><li>Basal body temperature (BBT)</li><li>Cervical mucus</li><li>Symptom- thermal (a combination of cervical mucus and BBT methods)</li><li>Calendar (rhythm) or Standard Days method, including cycle</li></ul>
@@ -146,7 +179,7 @@
 <ul><li>Breast feeding (especially until menses return)</li><li>Less than three postpartum menses</li><li>Irregular vaginal bleeding</li><li>Abnormal vaginal discharge</li><li>Disease that evaluates body temperature</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Calendar /rhythm method</summary>
           <ul><li>This is the only method approved o the Roman Catholic Church</li><li>Before starting to use this method, one needs to have an accurate record of menstrual cycles for about 6-8 months</li><li>The failure rate is between 20-30%</li><li>The method is referred to as ―safe days‖ because it aims at identifying days with least chance of conception</li><li>The woman should provide a record of her menstrual cycles to the health worker and then go into the calculation as shown below.</li></ul>
 <p>Fertile period is the time of the cycle when a woman has the ― <strong>highest</strong> ―chances of conception.</p>
@@ -173,13 +206,13 @@
 <ul><li>A client with cycle of 29 regular</li><li>A client with cycles of 24 &amp; 30 days respectively (irregular cycles)</li><li>A client with 27 day cycle (regular)</li><li>No cost</li><li>No side effects</li><li>Refer to general advantages of natural methods of family planning</li><li>Difficult to calculate the safe period reliably</li><li>Needs several months training to use these methods</li><li>Compulsory abstinence from sexual act during certain periods</li><li>Not applicable during lactation amenorrhea when the periods are irregular</li><li>Does not protect against STIs including HIV/AIDs</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Lactation amenorrhea method</summary>
           <ul><li>Immediately after birth, there is a period of naturally decreased fertility which can be prolonged by regular breastfeeding. The hormone responsible for the suppression of fertility is prolactin that controls milk production.</li><li>The effect of breast feeding on reducing fertility awareness is well known. However, LAM is a temporary 9 short- term) method of contraception. It is highly effective for the first six months after delivery, providing the woman breastfeed fully and remains amenorrhoeic.</li><li>In non- lactating mothers, prolactin gradually decreases within weeks after child birth reaching normal levels in about 4 weeks post-partum.</li><li>Regular nipple stimulation by sucking is necessary to maintain milk production and lactation amenorrhea method.</li><li>LAM may last up to 24 months during a regular prolactin release which inhibits the ovarian functions</li><li>When <strong>all three criteria of LAM are met</strong> , it is about 98%</li><li>Women who are fully breastfeeding <strong>and</strong></li><li>Who are amenorrhoeic (no menses) <strong>and</strong></li><li>Whose baby is not older than six months</li><li>Breast feeding whenever the baby desires (at least every four hours)</li><li>Night time feeding (at least every six hours)</li><li>Not substituting other food or drink in place of breast milk</li><li>Women whose menses have returned.</li><li>Women whose babies have turned six months old.</li><li>Women who have introduced supplementary feedings.</li></ul>
 <p><strong>Note:</strong> Women with HIV should be counseled about the infant feeding options to reduce risk of mother-to-child transmission and be supported in their choice. Women without reliable access to safe alternative feeding options should be encouraged to breast feed exclusively for six months</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 Standard Days Method (Moon beads/cycle beads)</summary>
           <p>The Standard Days Method® is a fertility awareness-based family planning method that identifies a fixed fertile window for women with cycles that are between 26 and 32 days long. For women with cycles in this range, the method identifies days 8 through 19 as potentially fertile days. A user simply tracks the start date of her period and the days of her cycle to know if she is on a day when pregnancy is possible or not.</p>
 <ul><li>They are string of colored beads</li><li>The colors of moon beads help you know the days when you can get pregnant</li><li>They also help you know the days you are not likely to get pregnant</li><li>To prevent a pregnancy do not have sex on the days you can get pregnant, or use a barrier method.</li></ul>
@@ -190,37 +223,45 @@
 <ul><li>Couples who communicate well and agree not to have unprotected sex when the woman is likely to get pregnant</li><li>Women who have failed to use other modern methods</li><li>Women who have cycles that is between 26 and 32 days</li><li><strong>Refer to natural methods</strong></li><li>More than 95% Effective</li><li>Side-Effect Free</li><li>Easy to Use</li><li>Inexpensive</li><li>Educational &amp; Empowering</li><li>The day you get your period, move the ring to the <strong>RED</strong> bead.</li><li>Also mark that day on the calendar</li><li>Move the ring, one bead each day</li><li>Do not have unprotected sex when the ring is on any <strong>WHITE</strong> bead. You can get pregnant on those days</li><li>You can have sex when the ring is on any brown beads. You are not likely to get pregnant on those days</li><li>Move the ring to the <strong>RED</strong> bead again when your next period starts. Skip over any beads that are left.</li><li>Had unprotected sex on a <strong>WHITE</strong> bead If she thinks she might be pregnant because she has not gotten her period.</li><li>If she gets her period before she reaches the <strong>DARK BROWN</strong> beads, this means that her cycle is shorter than 26 days.</li><li>If her period does not start by the <strong>DAY AFTER</strong> she reaches the last brown bead, this mean that her cycle is longer than 32</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-12">
           <summary>12 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Family planning</strong> as a practical nursing topic, not only a memorized definition. Move from individual illness to prevention, population risk, health education and continuity of care.</p>
 <ul><li><strong>What to understand first:</strong> define family planning, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-13">
           <summary>13 Assessment Guide</summary>
           <ul><li>Who is affected, where they live, risk factors, resources and barriers to care.</li><li>Environmental hygiene, nutrition, immunization, water, sanitation and health-seeking behaviour.</li><li>Community beliefs, leaders, household practices and surveillance data.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-14">
           <summary>14 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Promote prevention, early detection, referral and community participation.</li><li>Use clear health education matched to literacy, culture and available resources.</li><li>Document findings and coordinate with community health structures.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The community understands the message, risk is reduced and follow-up or referral pathways are active.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-15">
           <summary>15 Patient Teaching and Revision Check</summary>
           <ul><li>Explain family planning in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Family%20planning%20Gynaecology%20(I)%20and%20Reproductive%20Health(%20I)%20nursing%20lecture" title="Family planning YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (4)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Family-Planning-1024x657.webp" alt="Family Planning" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Family Planning</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/cfcfcf29fe06dd9c74ff8ffde6ca2e28.webp" alt="Cfcfcf29fe06dd9c74ff8ffde6ca2e28" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Cfcfcf29fe06dd9c74ff8ffde6ca2e28</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/4932fa6f051aa96ff23935cbe062c9ba.webp" alt="4932fa6f051aa96ff23935cbe062c9ba" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">4932fa6f051aa96ff23935cbe062c9ba</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/5313ae6a79d9c8017b2655cbfcaf9c3d.webp" alt="5313ae6a79d9c8017b2655cbfcaf9c3d" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">5313ae6a79d9c8017b2655cbfcaf9c3d</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Family%20planning%20Gynaecology%20(I)%20and%20Reproductive%20Health(%20I)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Family%20planning%20Gynaecology%20(I)%20and%20Reproductive%20Health(%20I)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

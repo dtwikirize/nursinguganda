@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,19 +97,39 @@
         <p>Last Office should be reviewed through safe maternal and newborn assessment, early recognition of danger signs, respectful communication and timely referral. Connect the definition to vital signs, bleeding, fetal or newborn wellbeing, patient education and local protocol requirements.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 14 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Objectives:</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Definition:</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Requirements:</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Procedure (Preliminary Steps &amp; First Phase):</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Points to Remember (Adult Last Offices):</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Objectives:</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Definition:</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Requirements (Perinatal Death):</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Procedure (Last Office in Perinatal Death):</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Points to Remember (Perinatal Death):</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Objectives:</summary>
           <ul><li>Define the term <strong>last offices</strong> .</li><li>Perform <strong>preliminary steps</strong> of last offices.</li><li>Identify the <strong>requirements</strong> for carrying out last offices.</li><li>Prepare the <strong>requirements</strong> for carrying out last offices.</li><li>Perform <strong>procedure</strong> of first phase of last offices.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Definition:</summary>
           <p><strong>Last offices</strong> (also known as post-mortem care or care of the deceased) is the care given to a deceased person to ensure a clean body and maintain dignity, respect, and prepare the body according to cultural, religious, and legal requirements.</p>
 <p><strong>Aims:</strong></p>
 <ul><li>To <strong>prepare the deceased</strong> for mortuary or a funeral home or morgue (a place where dead bodies are kept pending identification, autopsy or burial.</li><li>To <strong>minimize any risk of cross infection</strong> to relatives, health care workers or persons who may need to handle the deceased.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Requirements:</summary>
           <p>Trolley (Top Shelf):</p>
 <ul><li>Two jugs of warm and cold water</li><li>Small tray with: Soap in a dish</li><li>Nail brush</li><li>Vaseline or lubricant</li><li>Comb</li><li>Nail cutter</li><li>Pair of scissors</li><li>2 Receivers (kidney dishes)</li><li>Dissecting forceps (or artery forceps) - often for packing orifices</li><li>Mortuary labels with tapes (at least 3 - wrist, toe, and shroud)</li><li>A roll of toilet paper (or cotton wool)</li><li>Brown cotton wool in a bowl (for packing orifices) - <strong>Note:</strong> Brown cotton wool is less common now; plain cotton wool or gauze is typically used.</li><li>Dressing pack (or sterile pack with swabs)</li><li>Flannels (or washcloths)</li><li>Antiseptic lotion</li><li>Jik (or other disinfectant for surfaces/equipment)</li></ul>
@@ -107,73 +139,81 @@
 <ul><li>Hand washing equipment (access to sink, soap, water, towel)</li><li>Screens (for privacy)</li><li>Bucket for wastes (clinical and general)</li><li>Dirty linen container</li><li>Deceased Burial Clothes: Clean sheets</li><li>Dressing clothes as preferred by family/culture (e.g., Men - underwear, trousers, shirt, coat, tie; Traditional wear according to culture or religion).</li><li>Diapers/pads (if needed)</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Procedure (Preliminary Steps &amp; First Phase):</summary>
           <ul><li>Steps Action Rationale</li><li>1. Observe the <strong>general rules</strong> . Promotes adherence to <strong>standards</strong> and patient safety/dignity.</li><li>2. <strong>Confirm the patient has ceased breathing</strong> and check for absence of pulse, heart sounds, and pupillary reflexes. <strong>Note the exact time of death</strong> . To <strong>confirm death</strong> and for legal and documentation purposes. Ensures timely attendance by the medical team.</li><li>3. <strong>Notify the In-charge or Doctor</strong> immediately as soon as the patient ceases to breathe. To <strong>confirm death</strong> and for legal purposes. Ensures timely attendance by the medical team.</li><li>4. Provide a <strong>calm and respectful environment</strong> . Remove excess equipment from around the bed. Close adjacent windows and screen the bed/room for <strong>privacy</strong> . To promote <strong>serenity</strong> in the ward, respect the <strong>dignity</strong> of the deceased, and provide privacy for the procedure and the remaining patients/staff.</li><li>5. <strong>Inform the relatives or next of kin</strong> about the death with empathy and counsel them appropriately. Allow relatives time to be with the deceased if desired, providing them with privacy and support. Request relatives to bring burial clothes if applicable. Ask about cultural/religious preferences for handling the body. To <strong>support the grieving family</strong> , fulfill emotional needs, and gather information about specific requests or cultural/religious practices for handling the body.</li><li>6. Remove any <strong>jewelry, necklace, watches, or other valuables</strong> that have been worn by the deceased. <strong>Document</strong> these items carefully and hand them over to the next of kin or store them according to hospital policy, obtaining signatures on an accountability book/form. To prevent <strong>loss of personal effects</strong> and ensure proper handling and accountability.</li><li>7. Remove any <strong>tubes, catheters</strong> (e.g., IV lines, NG tubes, urinary catheters, drainage tubes) as per policy or doctor&#39;s order. Clamp or tie off puncture sites. <strong>Note</strong> : If a medico-legal case, tubes may need to remain in situ. To prepare the body for cleaning and dressing and to prevent leakage from sites. Prevents misinterpretation in medico-legal cases.</li><li>8. <strong>Stop any running IV infusions</strong> . Not applicable after death.</li><li>9. Put on <strong>protective wear</strong> (plastic apron, gloves). To prevent <strong>cross-infection</strong> and protect staff from contact with body fluids.</li><li>10. <strong>Strip the bed of soiled linen</strong> , carefully removing and placing it in the dirty linen container. If the body has soiled the bed, place a clean sheet under the body. If infectious disease, decontaminate linen in an antiseptic solution before sending to laundry. To maintain <strong>cleanliness</strong> of the environment and prevent spread of infection.</li><li>11. <strong>Clean the body thoroughly</strong> , providing a full wash (refer to Bed Bath procedure 5.1), paying attention to all areas. If necessary, shave the face (for males) or comb/style hair as preferred by the deceased or next of kin. To ensure the body is <strong>clean and presentable</strong> , respecting the <strong>dignity</strong> of the deceased. To maintain good memories for the family.</li><li>12. <strong>Final Care Given to the deceased</strong> : Laying out of the deceased is done with <strong>respect</strong> and according to the dead person&#39;s <strong>religious rights and cultural values</strong> . - <strong>Straighten the upper limbs</strong> and <strong>tie the lower limbs together</strong> at the big toes (ankles) with a bandage or piece of soft material. - <strong>Close the eyes gently</strong> if they cannot remain closed; place a wet swab over the eyelids if needed. - <strong>Close the mouth</strong> ; if necessary, place a small rolled towel under the chin or use a bandage around the head and chin to keep the mouth closed. Dentures should be left in place if possible. - <strong>Pack orifices</strong> (mouth, nostrils, anus, vagina in females) with cotton wool or gauze using forceps to prevent leakage of body fluids. Ensure packing is not visible. This is for continuity of <strong>respect</strong> of human beings even after death. To allow correct <strong>body alignment</strong> before rigor mortis sets in. To create a natural, <strong>peaceful appearance</strong> . To prevent <strong>soiling</strong> of the linen and body from natural discharges.</li><li>13. <strong>Dress the body</strong> in clean clothes or the burial clothes provided by the family, according to cultural/religious practices. If burial clothes are not available or used, use a clean shroud or mortuary sheet/body bag. To respect the <strong>dignity</strong> of the deceased and prepare the body for viewing or transfer.</li><li>14. Place a <strong>clean sheet</strong> over the body, covering up to the neck or as appropriate for cultural/religious viewing. To maintain <strong>modesty</strong> and dignity.</li><li>15. Fill out the <strong>mortuary labels</strong> with the particulars: name, age, date and time of death, ward, next of kin, any specific instructions (e.g., infectious precautions). <strong>Attach one label</strong> to the wrist, one to the ankle/toe, and one to the shroud/body bag. To ensure <strong>accurate identification</strong> of the deceased for legal and administrative purposes.</li><li>16. Assist with <strong>transferring the body to the mortuary trolley or body bag</strong> as per policy. To prepare the body for transfer.</li><li>17. Transport the body to the mortuary <strong>securely and respectfully</strong> . Ensures <strong>safe custody</strong> and transfer.</li><li>18. <strong>Document the procedure fully</strong> , including the time of death, time last offices were completed, care given, items removed (valuables, tubes) and their disposition, persons notified, and any specific instructions or cultural considerations followed. For <strong>continuity of care</strong> , monitoring, and <strong>legal record</strong> .</li><li>19. <strong>Clear away and disinfect</strong> all used equipment, surfaces (bed, locker, floor), and the room as per terminal disinfection policy. Dispose of waste appropriately. <strong>Wash hands</strong> . To prevent the <strong>spread of infection</strong> and maintain a clean environment.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Points to Remember (Adult Last Offices):</summary>
           <ul><li>Maintain a <strong>calm, quiet, and respectful atmosphere</strong> throughout the procedure.</li><li>Always handle the deceased body <strong>gently and with dignity</strong> .</li><li>Be <strong>sensitive to the cultural and religious beliefs</strong> of the patient and family regarding death and body preparation. Consult with the family or spiritual advisors if unsure.</li><li>If the death is a <strong>medico-legal case</strong> , follow specific protocols regarding removal of tubes, handling of clothing, and notification of authorities.</li><li>Ensure proper <strong>identification</strong> of the body with labels before transfer to the mortuary.</li><li><strong>Wash hands thoroughly</strong> before and after the procedure.</li><li><strong>Terminal disinfection</strong> of the patient&#39;s unit is essential.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Objectives:</summary>
           <ul><li>Define the term <strong>perinatal mortality</strong> .</li><li>Display the ability to <strong>break news of death</strong> and <strong>counsel the parents</strong> of a deceased baby.</li><li>Identify the <strong>requirements</strong> for carrying out last office to a deceased new born baby.</li><li>Prepare the <strong>requirements</strong> for carrying out last office to a deceased new born baby.</li><li>Perform <strong>last office</strong> of the deceased new born baby.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Definition:</summary>
           <p><strong>Perinatal mortality</strong> is the death of a baby in the first 28 days of life, including stillbirths (death before birth after 28 weeks gestation).</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Requirements (Perinatal Death):</summary>
           <p>Additional requirements to adult last office requirements:</p>
 <ul><li>Baby clothes (as provided by parents/family)</li><li>Diapers (or pads)</li><li>Small artery forceps (for packing orifices)</li><li>Small blanket or receiving cloth (for wrapping the baby)</li><li>Mortuary label (specifically for stillbirths/neonates)</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Procedure (Last Office in Perinatal Death):</summary>
           <ul><li>Steps Action Rationale</li><li>1. Observe the <strong>general rules</strong> . Promotes adherence to <strong>standards</strong> .</li><li>2. <strong>Communicate the news of the death</strong> to the mother and father empathetically, providing privacy and support. <strong>Counsel</strong> them appropriately about the cause of death (if known) and the next steps. To initiate <strong>coping mechanism</strong> and support the parents through their <strong>grief</strong> .</li><li>3. If the death was an intra-uterine fetal death (stillbirth), <strong>inform the mother and next of kin</strong> of what has happened and the next steps (e.g., delivery process). To provide necessary information and prepare the parents for the process ahead.</li><li>4. Ask the parents if they would like to <strong>see, hold, and spend time with the baby</strong> . Handle the baby gently and wrap in a clean cloth. Remove any tubes or lines. <strong>Wash hands</strong> and put on <strong>protective wear</strong> (gloves). To allow parents to <strong>bond with their baby</strong> , initiate the <strong>grieving process</strong> , and create <strong>memories</strong> . Maintains hygiene and safety.</li><li>5. Ask the parents if they would like to <strong>take a photo</strong> of their dead baby. A photo can be used for future <strong>remembrance</strong> and healing.</li><li>6. <strong>Bathe the baby gently</strong> with warm water and mild soap. Dry thoroughly with a soft towel. To provide a <strong>clean body</strong> , respecting the <strong>dignity</strong> of the deceased baby, and create a descent appearance.</li><li>7. <strong>Pack all orifices</strong> (mouth, nostrils, anus, and vagina if applicable) with cotton wool or gauze using small forceps. Ensure the packing is not visible. Apply a diaper. Packing reduces the risk of <strong>soiling</strong> the linen and body from natural discharges and prevents the spread of <strong>infection</strong> . Maintains cleanliness and dignity.</li><li>8. <strong>Dress the baby fully</strong> in the clothes provided by the parents or in clean hospital clothes. <strong>Wrap the baby completely</strong> in a clean blanket or receiving cloth. To make the baby <strong>presentable</strong> , respect the parents&#39; wishes, and provide a sense of comfort and completeness.</li><li>9. Fill the <strong>mortuary label</strong> with the necessary particulars: baby&#39;s name (if given), mother&#39;s name, date and time of birth (if born alive), date and time of death, sex, state if stillbirth or not, ward name. <strong>Attach the label securely</strong> to the baby&#39;s wrist or ankle. To ensure <strong>accurate identification</strong> of the deceased baby for legal, administrative, and ethical purposes.</li><li>10. Ask the mother and next of kin <strong>where the body is to be kept or sent</strong> (e.g., mortuary, specific location as per cultural practice). Inform them of the process for collecting the body. Promotes <strong>safe custody</strong> and transfer, builds <strong>confidence</strong> in the parents/next of kin, and ensures legal/cultural requirements are met.</li><li>11. <strong>Take the body to the mortuary</strong> well labeled, or hand over to the designated person according to policy/request, obtaining signatures on a handover form/accountability book. Enables identification and for ethical and legal purposes. Ensures <strong>accountability</strong> for the body.</li><li>12. <strong>Clear away and disinfect</strong> all used equipment and the environment as per policy. Dispose of waste appropriately. <strong>Wash hands</strong> . To prevent spread of <strong>infection</strong> and maintain cleanliness.</li><li>13. <strong>Document the procedure completely</strong> , including the time of death, time last offices were completed, care given, interactions with parents (seeing/holding baby, photos taken), disposition of the body, and any specific cultural considerations followed. For <strong>continuity of care</strong> , monitoring, and <strong>legal record</strong> . Essential documentation for perinatal deaths.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Points to Remember (Perinatal Death):</summary>
           <ul><li>Be exceptionally <strong>sensitive, supportive, and compassionate</strong> when caring for parents experiencing perinatal loss.</li><li>Allow parents <strong>adequate time to see and hold their baby</strong> if they wish. This is a vital part of the <strong>grieving process</strong> .</li><li>Provide <strong>privacy</strong> for the family. Ideally, the last offices for a perinatal death should be performed in a separate room, not in the main ward where other mothers with babies are present.</li><li>Ensure the environment is <strong>quiet</strong> and conducive to grieving.</li><li>Handle the baby <strong>gently and with the utmost respect</strong> throughout the procedure.</li><li>Follow hospital <strong>policy and cultural/religious practices</strong> regarding the disposition of the body.</li><li>Minimize <strong>psychological trauma</strong> for the mother and family.</li><li>Ensure appropriate <strong>follow-up support</strong> is offered to the parents.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-11">
           <summary>11 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Last Office</strong> as a practical nursing topic, not only a memorized definition. Turn the topic into practical nursing knowledge: meaning, assessment, care priorities, teaching and evaluation.</p>
 <ul><li><strong>What to understand first:</strong> define last office, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-12">
           <summary>12 Assessment Guide</summary>
           <ul><li>Key definitions, patient history, focused observations and risk factors.</li><li>Findings that are normal, abnormal or urgent.</li><li>Resources, referral needs and documentation requirements.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-13">
           <summary>13 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Protect safety, comfort, dignity and infection prevention.</li><li>Provide clear care, education and escalation when needed.</li><li>Evaluate response and record what changed.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The topic is understood in a way that supports safe nursing judgement and revision.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-14">
           <summary>14 Patient Teaching and Revision Check</summary>
           <ul><li>Explain last office in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Last%20Office%20Foundations%20of%20nursing%20II%2C%20Sociology%20and%20psychology%20nursing%20lecture" title="Last Office YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (4)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Last-Office.webp" alt="Last Office" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Last Office</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/steps-last-office.webp" alt="Steps Last Office" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Steps Last Office</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/LAST-OFFICE-IN-PERINATAL-DEATH.webp" alt="LAST OFFICE IN PERINATAL DEATH" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">LAST OFFICE IN PERINATAL DEATH</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/c3fbf1c7f87064bc04b1a32827fcefec.webp" alt="C3fbf1c7f87064bc04b1a32827fcefec" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">C3fbf1c7f87064bc04b1a32827fcefec</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Last%20Office%20Foundations%20of%20nursing%20II%2C%20Sociology%20and%20psychology%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Last%20Office%20Foundations%20of%20nursing%20II%2C%20Sociology%20and%20psychology%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

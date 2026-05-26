@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,13 +97,29 @@
         <p>Gastrostomy Feeding should be reviewed through safe maternal and newborn assessment, early recognition of danger signs, respectful communication and timely referral. Connect the definition to vital signs, bleeding, fetal or newborn wellbeing, patient education and local protocol requirements.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (10)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Perform Gastronomy Feeding</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Indications of Gastrostomy feeding</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Methods of feeding via a gastrostomy</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Types of Feeding Tubes</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Procedure for administration of Gastrostomy feeding.</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Complications of Gastrostomy Feeding</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Perform Gastronomy Feeding</summary>
           <p>Gastronomy Feeding is feeding of a patient by means of an opening directly into the stomach through the abdominal wall.</p>
 <p>They are commonly surgically inserted endoscopically through the abdominal wall, and held in place by an internal balloon or bumper and external fixator. Gastrostomy feeding is a successful method of enteral feeding providing daily nutritional requirements in specialist liquid form directly into a patient’s stomach via a flexible tube.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Indications of Gastrostomy feeding</summary>
           <p>Inability to Swallow Safely:</p>
 <ul><li>Dysphagia : Difficulty swallowing due to neurological disorders, muscular diseases, or structural abnormalities.</li><li>Aspiration risk : High risk of food or liquids entering the airway, leading to pneumonia.</li><li>Esophageal obstruction : Blockage of the esophagus due to tumors or strictures.</li><li>Carcinoma of the esophagus : Cancer of the esophagus.</li><li>Strictures of the esophagus : Narrowing of the esophagus, often due to inflammation or scar tissue.</li><li>Birth defects of the mouth : Congenital abnormalities affecting the mouth and swallowing ability.</li><li>Esophageal atresia : Congenital absence or closure of part of the esophagus.</li><li>Problems with sucking or swallowing : Difficulties in patients with debilitated diseases like stroke and dementia.</li></ul>
@@ -110,12 +138,12 @@
 <p>Operations of the upper gut : Procedures involving the alimentary canal, mouth, nose, and esophagus may necessitate gastrostomy feeding to allow for healing and recovery.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Methods of feeding via a gastrostomy</summary>
           <ul><li>Bolus feeding: A volume of liquid feed given usually via a gravity set over a short duration, e.g. 15–20 minutes. The feed is usually delivered via a gravity set, relying on the force of gravity to push the feed into the stomach.</li><li>Continuous feed : This is a feed given via an electronic feeding pump, which allows clinicians and home caregivers to deliver set amounts of enteral formula in a consistent manner, over a desired duration of time. The pump regulates the rate of feed delivery, ensuring a consistent and continuous flow into the stomach.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Types of Feeding Tubes</summary>
           <p>Feeding tubes are classified based on their length and retention mechanism:</p>
 <p>A. Long Tubes :</p>
@@ -124,7 +152,7 @@
 <ul><li>Firm Silicone Mushroom Retention: These tubes have a mushroom-shaped end that rests against the stomach lining, preventing accidental tube removal. Examples include Bard feeding tubes.</li><li>Balloon Retention: These tubes have a balloon near the end that is inflated inside the stomach, securing the tube in place. Examples include AMT MINI and MICKEY feeding tubes.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Procedure for administration of Gastrostomy feeding.</summary>
           <p>REQUIREMENTS</p>
 <p>A tray containing ;</p>
@@ -135,7 +163,7 @@
 <ul><li>Steps Action Rationale</li><li>1. Observe the general rules of nursing procedure.</li><li>2. Expose the gastrostomy catheter. To aid easy working.</li><li>3. Protect the bed linen with a mackintosh and towel. This prevents soiling of the bed.</li><li>4. Wash hands and check temperature of the feed. To prevent the spread of infection.</li><li>5. Aspirate and measure the stomach content before giving the feed. To ensure feeds are absorbed.</li><li>6. Pinch proximal end of the gastronomy tube and connect funnel after removing the spigot. To avoid air entry into the stomach.</li><li>7. Pour 10mls of water into the funnel, let it run through the tube slowly and followed by a prescribed amount of feed. Rinse the tube with 10m Is of warm boiled water. To ensure patent tube throughout the procedure.</li><li>8. Pinch and disconnect the funnel when feeding is over and replace the spigot. To prevent air entry into the stomach and backflow.</li><li>9. When the wound has not yet healed carry out gastrostomy toilet i.e. clean skin around the tube with normal saline and apply a protective cream e.g. Zinc Oxide and cover with dry dressing. To promote healing and prevent infection.</li><li>10 Record the type, food amount given, and time. Monitor input and output.</li><li>11. Provide oral hygiene, clean equipment and leave the patient comfortable. To prevent infection to the patient.</li><li>12. Clear the trolley and wash hands. To prevent cross infection.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Complications of Gastrostomy Feeding</summary>
           <p>1. Tube-Related Complications :</p>
 <ul><li>Tube Obstruction : Blockage of the tube due to thickened feed, medications, or debris.</li><li>Primary Malposition: Incorrect initial placement of the tube.</li><li>Perforation of the Intestinal Tract : A hole in the intestinal wall caused by the tube.</li><li>Secondary Displacement of the Feeding Tube : The tube coming out of the stomach or moving out of position.</li><li>Knotting of the Tube : The tube becoming tangled within itself.</li><li>Accidental Tube Removal : The tube being pulled out of the stomach.</li><li>Breakage and Leakage of the Tube : The tube becoming damaged and leaking.</li><li>Leakage and Bleeding from Insertion Site : Fluid or blood leaking from the opening where the tube enters the skin.</li></ul>
@@ -149,37 +177,42 @@
 <ul><li>Electrolyte Disturbances : Imbalances in the levels of electrolytes, such as sodium, potassium, and chloride.</li><li>Hyper- and Hypoglycemia : High or low blood sugar levels.</li><li>Vitamin and Trace Element Deficiency : Lack of essential vitamins and minerals.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-7">
           <summary>07 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Gastrostomy Feeding</strong> as a practical nursing topic, not only a memorized definition. Turn the topic into practical nursing knowledge: meaning, assessment, care priorities, teaching and evaluation.</p>
 <ul><li><strong>What to understand first:</strong> define gastrostomy feeding, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-8">
           <summary>08 Assessment Guide</summary>
           <ul><li>Key definitions, patient history, focused observations and risk factors.</li><li>Findings that are normal, abnormal or urgent.</li><li>Resources, referral needs and documentation requirements.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-9">
           <summary>09 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Protect safety, comfort, dignity and infection prevention.</li><li>Provide clear care, education and escalation when needed.</li><li>Evaluate response and record what changed.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The topic is understood in a way that supports safe nursing judgement and revision.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-10">
           <summary>10 Patient Teaching and Revision Check</summary>
           <ul><li>Explain gastrostomy feeding in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Gastrostomy%20Feeding%20Foundations%20of%20nursing%20II%2C%20Sociology%20and%20psychology%20nursing%20lecture" title="Gastrostomy Feeding YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (1)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Carry-out-adequate-feeding-of-patients.webp" alt="Carry Out Adequate Feeding Of Patients" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Carry Out Adequate Feeding Of Patients</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Gastrostomy%20Feeding%20Foundations%20of%20nursing%20II%2C%20Sociology%20and%20psychology%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Gastrostomy%20Feeding%20Foundations%20of%20nursing%20II%2C%20Sociology%20and%20psychology%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

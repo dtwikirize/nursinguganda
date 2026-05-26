@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,30 @@
         <p>Money matters for small business should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 17 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">MONEY MATTERS FOR SMALL BUSINESSES</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Sources of Money for Small Businesses</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Importance of Money in Small Businesses</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Financial Challenges Facing Small Businesses</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">General Barriers to Entrepreneurship in Uganda</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">How to Improve Entrepreneurship in Uganda</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Roles of Entrepreneurship in the Community</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Business exits and realizing value.</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Importances of business exits</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Types of exit strategies</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Realising Value / Evaluating an Existing Business</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Ways of evaluating an existing business before purchase include;</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">STRATEGIES FOR A SUCCESSFUL BUSINESS</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-16" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-17" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 MONEY MATTERS FOR SMALL BUSINESSES</summary>
           <p>Money matters involve issues related to finances, particularly personal and business finances .</p>
 <p>Money Matters For Small Businesses means that financial management is important for the success and survival of small businesses .</p>
@@ -95,50 +130,50 @@
 <p>These owners contribute the capital and often make key decisions. Small businesses usually employ a limited number of staff.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Sources of Money for Small Businesses</summary>
           <ul><li>Personal Savings: The owner’s initial capital.</li><li>Family and Friends : Financial support from personal networks.</li><li>Trade Credit : Delayed payment arrangements with suppliers.</li><li>Bootstrapping : Using personal savings, credit cards, or selling personal assets to fund the business initially. This minimizes early debt but limits growth potential.</li><li>Small Business Loans : Loans from banks, credit unions, or online lenders. These require a business plan, credit history, and collateral. Interest rates and repayment terms vary widely.</li><li>Venture Capital : Investment from firms specializing in high-growth potential businesses. This involves giving up equity in the company in exchange for funding. Suitable for businesses with significant scalability.</li><li>Angel Investors: Wealthy individuals who invest in startups and small businesses in exchange for equity. They often provide mentoring and guidance alongside funding.</li><li>Crowdfunding : Raising capital from a large number of individuals through online platforms like Kickstarter or Indiegogo. This can build brand awareness but requires a compelling campaign.</li><li>Government Grants &amp; Loans : Various government agencies offer grants and loans specifically for small businesses, often targeting specific industries or demographics. These usually have eligibility requirements.</li><li>Lines of Credit: A pre-approved amount of credit available to borrow as needed. This provides flexibility but typically carries higher interest rates than term loans.</li><li>Invoice Financing : Securing funding based on outstanding invoices. This helps improve cash flow by getting paid faster but may involve fees.</li><li>Merchant Cash Advances : Receiving a lump sum of money in exchange for a percentage of future credit card sales. This can be a quick solution but is often expensive.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Importance of Money in Small Businesses</summary>
           <ul><li>Medium of Exchange : Facilitates buying and selling of goods and services.</li><li>Maximizes Satisfaction and Profit : Helps in achieving consumer satisfaction and producer profitability.</li><li>Promotes Specialization : Encourages efficiency and higher productivity.</li><li>Facilitates Planning : Aids in production and consumption planning.</li><li>Startup Costs : Covering initial expenses like rent, equipment, inventory, marketing, and legal fees. Insufficient funding at this stage can cripple the business.</li><li>Operating Expenses : Meeting ongoing costs such as salaries, utilities, rent, and supplies. Consistent cash flow is essential for day-to-day operations.</li><li>Growth &amp; Expansion: Investing in new equipment, hiring more staff, expanding into new markets, or developing new products/services. Strategic financial planning fuels growth.</li><li>Debt Management : Managing loans and other debts responsibly. High debt levels can hinder growth and increase the risk of failure.</li><li>Emergency Funds : Having reserves to handle unexpected expenses or downturns in business. This provides a crucial buffer against unforeseen circumstances.</li><li>Profitability &amp; Sustainability: Generating sufficient revenue to cover expenses and generate profits. Profitability is vital for long-term survival and success.</li><li>Investor Confidence : Demonstrating sound financial management attracts investors and secures future funding opportunities. Strong financials build credibility.</li><li>Employee Compensation : Paying fair wages and providing benefits to attract and retain talent. This contributes to a productive and motivated workforce.</li><li>Tax Obligations : Meeting tax obligations on time and accurately. Failure to do so can result in penalties and legal issues.</li><li>Market Opportunities : Having sufficient capital to take advantage of new market opportunities or emerging trends can significantly improve chances of success.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Financial Challenges Facing Small Businesses</summary>
           <ul><li>Limited Cash Flow : Insufficient funds to sustain operations.</li><li>Excessive Debt: Over-reliance on borrowed funds.</li><li>Poor Marketing Strategies : Ineffective methods to attract customers.</li><li>Mixing Personal and Business Finances : Leads to poor financial management.</li><li>Inadequate Capital: Limited resources to grow the business.</li><li>Lack of Budgeting and Planning: Operating without a clear financial roadmap.</li><li>Cash Flow Problems : Inconsistent or insufficient revenue streams can lead to difficulty meeting short-term obligations like payroll and rent. This is especially acute for businesses with long payment cycles from clients.</li><li>Access to Capital : Securing loans or investments can be challenging due to stringent credit requirements, high interest rates, or a lack of collateral. This limits growth potential and investment in necessary improvements.</li><li>High Startup Costs: The initial investment required to launch a business can be substantial, particularly for businesses needing equipment, inventory, or significant marketing. This can create a significant hurdle for entrepreneurs with limited resources.</li><li>Debt Management : High levels of debt from loans or credit cards can strain finances and make it difficult to manage cash flow effectively. Poor debt management can lead to business failure.</li><li>Pricing Strategies: Balancing competitive pricing with profitability is a constant challenge. Underpricing can impact profitability, while overpricing can reduce sales.</li><li>Economic Downturns : Recessions or economic instability can drastically reduce consumer spending, impacting sales and profitability. Businesses with limited financial reserves are most vulnerable during such periods.</li><li>Inventory Management: Holding excessive inventory ties up capital, while insufficient inventory can lead to lost sales. Effective inventory management is crucial for optimizing cash flow.</li><li>Unexpected Expenses : Unforeseen costs like equipment repairs, legal fees, or emergency situations can disrupt cash flow and strain resources. Having an emergency fund is crucial for mitigating these risks.</li><li>Lack of Financial Literacy: Inadequate understanding of financial management principles, bookkeeping, and budgeting can lead to poor decision-making and financial mismanagement. Business owners need strong financial literacy skills.</li><li>Inflation : Rising prices of goods and services increase operating costs, squeezing profit margins. Businesses need strategies to adapt to inflationary pressures.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 General Barriers to Entrepreneurship in Uganda</summary>
           <ul><li>Shortage of Funds: Limited resources to start and sustain businesses.</li><li>Unsupportive Business Environment : Inadequate governmental regulations and support.</li><li>Employee Recruitment Challeng es : Difficulty in selecting skilled and motivated employees.</li><li>Severe Market Entry Regulations: Restrictive licensing, taxation, and lending policies.</li><li>Limited Opportunities: Few identified business prospects for entrepreneurs.</li><li>Inadequate Training : Insufficient education in entrepreneurship and technical skills.</li><li>Lack of Industry Experience : Entering unfamiliar markets without prior knowledge.</li><li>Other Barriers : Political instability, cultural factors, environmental changes, and fear of risks.</li><li>Access to Finance: Similar to the global small business challenge, securing loans or investments remains a significant barrier. The formal financial sector often lacks reach, leaving many entrepreneurs reliant on informal, high-interest sources.</li><li>Infrastructure Deficiencies : Poor roads, unreliable electricity, and limited internet access increase operational costs and hinder productivity, especially for businesses outside major urban areas.</li><li>Bureaucracy and Regulations : Navigating complex licensing procedures, permits, and taxes can be time-consuming and costly, discouraging potential entrepreneurs. Streamlined regulations are crucial.</li><li>Corruption : Bribery and corruption add extra costs and uncertainty, undermining the business environment and discouraging investment. Transparency and accountability are vital.</li><li>Limited Skills and Education : A lack of entrepreneurial skills, business management knowledge, and technical expertise limits the capacity of many aspiring entrepreneurs. Access to quality education and training programs is crucial.</li><li>Market Access : Reaching customers can be challenging, especially for businesses in remote areas with limited transport networks or access to retail channels. Improving market linkages is essential.</li><li>Land Tenure Issues : Uncertainty surrounding land ownership and access can deter investment and hinder business growth, particularly for businesses relying on land for operations. Clear land titles and secure tenure are critical.</li><li>Political Instability and Risk : Political instability or uncertainty can negatively impact investor confidence and hinder economic activity. A stable and predictable political environment encourages entrepreneurship.</li><li>Competition from Informal Businesses : The prevalence of informal businesses, often operating outside regulatory frameworks, can create unfair competition for formal businesses. Encouraging the formalization of the informal sector would help.</li><li>Lack of Business Support Services: Insufficient access to business incubators, mentorship programs, and other support services limits entrepreneurs’ capacity to build and scale their businesses.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 How to Improve Entrepreneurship in Uganda</summary>
           <ul><li>Tax Reduction : Lower taxes for entrepreneurs to boost business sustainability.</li><li>Training Programs : Government-led initiatives to improve business management skills.</li><li>Employee Development : Entrepreneurs should hire qualified and motivated staff.</li><li>Supportive Policies : Formulation of regulations that favor entrepreneurship.</li><li>Affordable Loans : Advocacy for lower interest rates to encourage borrowing.</li><li>Research and Networking : Entrepreneurs should explore markets, network, and gather insights.</li><li>Infrastructure Development : Investment in roads, markets, and utilities to ease operations.</li><li>Financial Support : Encourage group funding in villages for capital mobilization.</li><li>National Security : Stability to attract internal and external investments.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Roles of Entrepreneurship in the Community</summary>
           <ul><li>Revenue Generation : Entrepreneurs contribute to government income via taxes and compliance.</li><li>Improved Living Standards : Entrepreneurship reduces scarcity by increasing access to goods and services.</li><li>Innovation and Technology : Entrepreneurs introduce new production methods, ensuring efficiency and competitiveness.</li><li>Women Empowerment : Women-led enterprises promote gender equity and provide resources for community development.</li><li>Export Promotion : High-quality products attract international markets, earning foreign exchange.</li><li>Handicraft Exports : Traditional arts, such as mats and baskets, contribute to cultural preservation and export revenue.</li><li>Infrastructure Growth : Establishing businesses spurs development of roads, bridges, and other facilities.</li><li>Job Creation :</li><li>Direct Employment : Through self-employment opportunities.</li><li>Indirect Employment : Through small and large-scale businesses</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Business exits and realizing value.</summary>
           <p>Business Exit Strategy</p>
 <p>A business exit strategy is an e ntrepreneur’s strategic plan to sell his or her ownership in a company to investors or another company .</p>
 <p>It outlines the plan for how the owner will eventually sell or transfer ownership of their company, allowing them to realize the value they have built.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Importances of business exits</summary>
           <p>An exit strategy gives a business owner a way to reduce or liquidate his stake in a business and, if the business is successful, make a substantial profit. If the business is not successful, an exit strategy (or “exit plan”) enables the entrepreneur to limit losses. An exit strategy may also be used by an investor such as a venture capitalist in order to plan for a cash-out of an investment.</p>
 <ul><li>Financial Gain : A successful exit can generate significant financial returns for the owner, rewarding their hard work and investment.</li><li>Flexibility : Having an exit plan allows the owner to pursue other ventures or simply enjoy the fruits of their labor.</li><li>Risk Management : A well-defined exit strategy can mitigate financial losses if the business encounters challenges.</li><li>Succession Planning: For family-owned businesses, an exit strategy ensures a smooth transition to the next generation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Types of exit strategies</summary>
           <p>1. Merger and Acquisition (M&amp;A): This involves selling your company to another company, either through a merger or acquisition. This can be a lucrative option.</p>
 <p>2. Selling Stake to Partner/Investor : You can sell your ownership stake to an existing partner or investor. This can provide immediate liquidity while retaining some control over the company.</p>
@@ -150,14 +185,14 @@
 <p>8. Bankruptcy : This is a legal process that allows a company to restructure its debts and potentially continue operating. It should be considered only as a last resort due to its significant financial and legal implications.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 Realising Value / Evaluating an Existing Business</summary>
           <p>Buying an existing business can be a great opportunity, giving you an established brand, customers, and immediate income. But finding the right business to buy isn’t easy—it’s a time-consuming, costly, and sometimes frustrating process.</p>
 <p>Evaluating a business means assessing and analyzing various areas of a business to determine its value, potential risks, and viability . It involves thoroughly examining factors such as financial performance, market position, operations, assets, liabilities, reputation, and legal compliance.</p>
 <p>The purpose of evaluating a business is to gain a clear understanding of its strengths, weaknesses, opportunities, and threats before making a decision to buy or invest in it.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-12">
           <summary>12 Ways of evaluating an existing business before purchase include;</summary>
           <p>Personal Assessment and Criteria: First, consider if the business aligns with your interests, resources, and skills. Evaluate if it’s the right fit for you in terms of cash, credibility, skills, and contacts.</p>
 <p>Perform due diligence : This involves researching and confirming the details of the business to ensure you are buying what you expect and to assess its value. Create a team of experts including a banker, industry-specific accountant, attorney, and possibly a small business consultant to perform due diligence. During due diligence, focus on five critical areas:</p>
@@ -171,7 +206,7 @@
 <p>Confirm the business’ entity status : If the business is a partnership, corporation or limited liability company (LLC) or joint stock company, review entity documents and related records to ensure the business is registered and in good standing. Verify that the owner has the legal rights to sell the business.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-13">
           <summary>13 STRATEGIES FOR A SUCCESSFUL BUSINESS</summary>
           <p>The strategies are important for building a solid foundation of the business.</p>
 <p>Planning : Creating a roadmap for your business, outlining goals, strategies, and action steps. A business plan helps the business owner to think through issues and understand problems. It’s the shorter-term plan — 12 months — as compared to the longer-term strategy plan.</p>
@@ -190,37 +225,46 @@
 <ul><li>Leveraging Technology for Efficiency : Utilize technology to automate tasks, improve communication, and coordinate processes.</li><li>Improve Customer Experience : Implement technologies that improve customer interactions, such as online ordering systems, mobile apps.</li><li>Staying Ahead of the Curve : Embrace new technologies that can give your business a competitive edge and improve overall operations.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-14">
           <summary>14 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Successful strategies for small business</strong> as a practical nursing topic, not only a memorized definition. Translate theory into safe decisions, accountability, communication and service improvement.</p>
 <ul><li><strong>What to understand first:</strong> define successful strategies for small business, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-15">
           <summary>15 Assessment Guide</summary>
           <ul><li>The problem, stakeholders, available resources, policy requirements and ethical issues.</li><li>Risks to patients, staff, confidentiality, quality, costs and continuity.</li><li>Documentation, reporting lines, supervision and evaluation measures.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-16">
           <summary>16 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use evidence, policy and professional standards to guide action.</li><li>Communicate clearly, document decisions and protect confidentiality.</li><li>Evaluate whether the action improves safety, learning or service delivery.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The plan is documented, realistic, ethical and improves patient care or learning outcomes.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-17">
           <summary>17 Patient Teaching and Revision Check</summary>
           <ul><li>Explain successful strategies for small business in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Money%20matters%20for%20small%20business%20Health%20Service%20Management%20and%20Entrepreneurship%20nursing%20lecture" title="Money matters for small business YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (5)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Sources-of-Money-for-Small-Businesses-e1733400285537-1024x464.webp" alt="Sources Of Money For Small Businesses E1733400285537" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Sources Of Money For Small Businesses E1733400285537</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Business_Exit_Strategy-and-realising-value.webp" alt="Business Exit Strategy And Realising Value" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Business Exit Strategy And Realising Value</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Successful-Strategies-for-New-Business-1.webp" alt="Successful Strategies For New Business 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Successful Strategies For New Business 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/3d29a93ba4c208ede8ed92403f85d9f1.webp" alt="3d29a93ba4c208ede8ed92403f85d9f1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">3d29a93ba4c208ede8ed92403f85d9f1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/a6498463534299b9cd033b72f21619a4.webp" alt="A6498463534299b9cd033b72f21619a4" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">A6498463534299b9cd033b72f21619a4</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Money%20matters%20for%20small%20business%20Health%20Service%20Management%20and%20Entrepreneurship%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Money%20matters%20for%20small%20business%20Health%20Service%20Management%20and%20Entrepreneurship%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

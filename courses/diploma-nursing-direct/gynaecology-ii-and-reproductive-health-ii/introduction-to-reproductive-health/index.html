@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,22 @@
         <p>Introduction to Reproductive Health should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (9)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">INTRODUCTION TO REPRODUCTIVE HEALTH</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">COMPONENTS OF REPRODUCTIVE HEALTH</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Importance of reproductive health</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Problems being faced during the implementation of Reproductive Health in Uganda</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Ways through which Reproductive Health Services can be improved in Uganda.</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 INTRODUCTION TO REPRODUCTIVE HEALTH</summary>
           <p>Reproductive Health is an integral aspect of health care, included in the minimal health care package. The knowledge, skills, and attitude gained from this course will help students manage and counsel clients with health problems related to reproductive health.</p>
 <p>Reproductive Health is when a person is well, not only physically but also mentally and socially, in all matters related to the reproductive system and how it functions.</p>
@@ -95,7 +122,7 @@
 <ul><li>Satisfying, safe sex life.</li><li>Ability to reproduce.</li><li>Successful maternal and infant survival outcome.</li><li>Freedom to control reproduction.</li><li>Information about and access to safer, effective and affordable methods of family planning.</li><li>Ability to minimize gynecological disease throughout life.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 COMPONENTS OF REPRODUCTIVE HEALTH</summary>
           <p>Safe Motherhood:</p>
 <ul><li>Preconception care</li><li>Antenatal care</li><li>Maternal nutrition</li><li>Focused antenatal care</li><li>Immunization for tetanus, hepatitis B, etc.</li><li>EMTCT of HIV/AIDS</li><li>Clean safe delivery</li><li>Emergency obstetric care</li><li>Postnatal (newborn care) and postpartum care</li><li>Breastfeeding/infant feeding</li><li>IEC and community mobilization</li><li>Post-abortion care services</li><li>Comprehensive abortion care</li></ul>
@@ -117,18 +144,18 @@
 <ul><li>Anaemia</li><li>Unregulated fertility</li><li>Malnutrition</li><li>Infertility</li><li>STIs, HIV, and AIDS</li><li>Uterine fibroids</li><li>Maternal mortality and morbidity</li><li>Endometriosis</li><li>Poverty</li><li>Female Genital Mutilation</li><li>Gynaecological cancers</li><li>Sexual gender-based violence</li><li>Early marriage</li><li>Unintended pregnancy</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Importance of reproductive health</summary>
           <ul><li>Promotion of maternal and child health</li><li>Reduces maternal morbidity and mortality</li><li>Promotes free women‘s involvement in all matters related to reproductive health issues e.g. family planning</li><li>Promotes prompt treatment and detection of life threatening cases throughout reproductive life</li><li>It promotes safer sex practices and reduces the incidence of rampant sexual related abuses</li><li>Reduces government expenditure on reproductive related health issues thus promotes quality standard of living.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Problems being faced during the implementation of Reproductive Health in Uganda</summary>
           <p>The following are some of the problems being encountered during the implementation of reproductive health services in Uganda;</p>
 <ul><li>Low socio-economic status (poverty) : This is the major setback as many people in Uganda live within poverty level which in turn makes them unable to access even the least costly services. For instance, the Uganda Demographic Health Survey shows that mortality rates are high in women from low socio-economic status as these women are likely to be less privileged in the fields of nutrition, housing, quality education etc</li><li>Improper/underutilization of the existing services : This can be attributed to several factors that lead to the improper or inadequate use of the existing services. These factors include: Lack of Awareness and Education, Stigma and Cultural Barriers, Limited Access to Services, Cost and Affordability, e.t.c</li><li>Delivery of substandard care i.e. when the care provided is below the generally accepted level available at that particular coupled up shortages of resources and under-equipped facilities</li><li>Lack of communication and referral facilities : This could be due to poor coordination between lower health facilities with the higher ones backed-up by geographical barriers, transport means like ambulances etc.</li><li>Poor cultural perspectives on reproductive health ; variety of cultural practices are the basic obstacles to Reproductive Health Services for instance, female genital mutilation, early marriages, denying women to eat certain foods etc.</li><li>Lack of awareness by the community on issues related to reproductive health.</li><li>Inadequate supply of resources related to reproductive health. This therefore makes the little existing services disproportionately consumed by the overwhelming individuals who visit the health Centers.</li><li>Inadequate skilled staff specially trained on issues pertaining reproductive health. The number of skilled staff to deliver various Reproductive Health Services in Uganda is appalling as compared to the number of clients who desperately need the scarce services.</li><li>Improper evaluation and supervision of reproductive health services to ascertain its progress and successes .</li><li>Lack of support from men , opinion leaders and development partners as they are considered change agents in the community</li><li>Misappropriation and embezzlement of funds specially designed to facilitate reproductive health services.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Ways through which Reproductive Health Services can be improved in Uganda.</summary>
           <p>It is a coordinated long term effort within the families, opinion leaders, communities, and health systems.</p>
 <p>It also involves the national legislation and policies where action may vary in respect of an individual, and the government ought to make Reproductive Health a priority of public concern and to periodically evaluate the program to ascertain the successes.</p>
@@ -143,37 +170,49 @@
 <p>9. Male and Community Engagement : Establish community support groups, involve men in awareness campaigns. Conduct community meetings, involve male leaders in reproductive health initiatives, and celebrate positive male involvement.</p>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-6">
           <summary>06 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Introduction to Reproductive Health</strong> as a practical nursing topic, not only a memorized definition. Start with normal structure and function, then connect it to assessment findings and disease.</p>
 <ul><li><strong>What to understand first:</strong> define introduction to reproductive health, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-7">
           <summary>07 Assessment Guide</summary>
           <ul><li>Relevant inspection, palpation, movement, auscultation, vital signs or neurological checks.</li><li>Normal findings, abnormal findings and what each abnormality may indicate.</li><li>Patient history, risk factors and how the body system affects other systems.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-8">
           <summary>08 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use anatomy to explain symptoms and guide focused assessment.</li><li>Recognize findings that need urgent escalation.</li><li>Teach the patient using simple body-system language.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The learner can explain normal function, identify abnormal signs and connect them to nursing action.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-9">
           <summary>09 Patient Teaching and Revision Check</summary>
           <ul><li>Explain introduction to reproductive health in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Introduction%20to%20Reproductive%20Health%20Gynaecology%20(II)%20and%20Reproductive%20Health%20(II)%20nursing%20lecture" title="Introduction to Reproductive Health YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (12)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Introduction-to-Reproductive-Health.webp" alt="Introduction To Reproductive Health" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Introduction To Reproductive Health</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/COMPONENTS-OF-REPRODUCTIVE-HEALTH-1024x576.webp" alt="COMPONENTS OF REPRODUCTIVE HEALTH" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">COMPONENTS OF REPRODUCTIVE HEALTH</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Ways-through-which-Reproductive-Health-Services-can-be-improved-in-Uganda-1.webp" alt="Ways Through Which Reproductive Health Services Can Be Improved In Uganda 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Ways Through Which Reproductive Health Services Can Be Improved In Uganda 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/0ee0c1d294b66b90ebba4cbe80a298c8.webp" alt="0ee0c1d294b66b90ebba4cbe80a298c8" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">0ee0c1d294b66b90ebba4cbe80a298c8</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/2372b54e99c91cb8f6cab9720d47249e.webp" alt="2372b54e99c91cb8f6cab9720d47249e" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">2372b54e99c91cb8f6cab9720d47249e</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/9461515c4a76590f770531a78d4223b1.webp" alt="9461515c4a76590f770531a78d4223b1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">9461515c4a76590f770531a78d4223b1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/0e7a292d5abd092883276986da818073.webp" alt="0e7a292d5abd092883276986da818073" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">0e7a292d5abd092883276986da818073</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/ff222f5c5fdb3d944b16d93321c79682.webp" alt="Ff222f5c5fdb3d944b16d93321c79682" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Ff222f5c5fdb3d944b16d93321c79682</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Introduction%20to%20Reproductive%20Health%20Gynaecology%20(II)%20and%20Reproductive%20Health%20(II)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <p style="color:var(--seo-muted);font-size:.85rem;margin:8px 0 0">4 more diagrams available — open the lesson for full illustrations.</p>
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Introduction%20to%20Reproductive%20Health%20Gynaecology%20(II)%20and%20Reproductive%20Health%20(II)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

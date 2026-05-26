@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,18 +97,33 @@
         <p>Updated Introduction to Primary Health Care should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (9)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">PRIMARY HEALTH CARE (PHC)</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**The Global Strategy for Health for All by the Year 2000 (HFA2000) set the following guiding targets to be achieved by year 2000:**</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">What is primary health care?</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Global Health Targets</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Why is primary health care important?</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 PRIMARY HEALTH CARE (PHC)</summary>
           <p>PRIMARY HEALTH CARE (PHC) INTRODUCTION</p>
 <p>BACK GROUND AND FACTS ON PHC</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 **The Global Strategy for Health for All by the Year 2000 (HFA2000) set the following guiding targets to be achieved by year 2000:**</summary>
           <ul><li>Life expectancy at birth above 60 years</li><li>Infant mortality rate below 50 per 1000 live births</li><li>Under-5 mortality rate below 70 per 1000 live births.</li><li>About 930 million people worldwide are at risk of falling into poverty due to out-of- pocket health spending of 10% or more of there household budget.</li><li>Scaling up primary health care (PHC) interventions across low and middle-income countries could save 60 million lives and increase average life expectancy by 3.7 years by 2030.</li><li>Achieving the targets for PHC requires an additional investment of around US $ 200 to US$ 370 billion a year for a more comprehensive package of health services.</li><li>At the UN high level UHC meeting in 2019, countries committed to strengthening primary health care.</li><li>WHO recommends that every country allocate or reallocate an additional 1% of GDP to PHC from government and external funding sources.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 What is primary health care?</summary>
           <ul><li>The concept of PHC has been repeatedly reinterpreted and redefined in the years since 1978, leading to confusion about the term and its practice..</li><li>A clear and simple definition has been developed to facilitate the coordination of future PHC efforts at the global, national, and local levels and to guide their implementation:</li></ul>
 <p>PHC is a whole-of-society approach to health that aims at ensuring the highest possible level of health and well-being and their equitable distribution by focusing on people’s needs and as early as possible along the continuum from health promotion and disease p revention to treatment, rehabilitation and palliative care, and as close as feasible to people’s everyday environment . <strong>“</strong> <strong>WHO and UNICEF”</strong></p>
@@ -106,7 +133,7 @@
 <ul><li>Comprehensive integrated health services that embrace primary care as well as public health goods and functions as central pieces</li><li>Multi-sectoral policies and actions to address the upstream and wider determinants of health:</li><li>Engaging and empowering individuals. families, and communities for increased social participation and enhanced self-care and self-reliance in health.</li><li>For universal health coverage (UHC) to be truly universal, a shift is needed from health systems designed around diseases and institutions towards health systems designed for people, with people.</li><li>PHC is rooted in a commitment to social justice, equity, solidarity and participation.</li><li>PHC requires governments at all levels to underscore the importance of action beyond the health sector in order to pursue a whole-of government approach to health, including health-in-all-policies, a strong focus on equity and that encompass the entire life-course.</li><li>PHC addresses the broader determinants of health and focuses on the comprehensive and interrelated aspects of physical, mental and social health and wellbeing.</li><li>It provides whole-person care for health needs throughout the lifespan, not just for a set of specific diseases.</li><li>Primary health care ensures people receive quality comprehensive care – ranging from promotion and prevention to treatment, rehabilitation and palliative care as close as feasible to people’s everyday environment</li><li>In May 1998, the World Health Organization adopted a resolution in support of the new global Health for All policy.</li><li>The new policy, Health for All in the 21st Century, succeeds the Health for All by the Year 2000 strategy launched in 1977</li><li>In the new policy, the worldwide call for social justice is elaborated in key values, goals, objectives and targets.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Global Health Targets</summary>
           <ul><li><strong>Health equity:</strong> Childhood stunting -By 2005, health equity indices will be used within and between countries as a basis for promoting and monitoring equity in health. Initially equity will be assessed on the basis of a measure of child growth.</li><li><strong>Survival</strong> : Maternal mortality rates, child mortality rates, life expectancy-By 2020, the targets agreed at world conferences for maternal mortality rates (&amp;lt;100/100,000 live births). under 5 years or child mortality rates (&amp;lt;45/1000 live births) and life expectancy (&amp;gt;70 years) will be met.</li><li><strong>Reverse global trends of five major pandemics</strong> : By 2020, the worldwide burden of disease will be reduced substantially. This will be achieved by implementing sound disease control programs aimed at reversing the current trends of increasing incidence and disability caused by tuberculosis, HIV/AIDS, malaria, diseases related to tobacco and violence or trauma.</li><li><strong>Eradicate and eliminate certain diseases</strong> :</li><li>Measles will be eradicated by 2020. Lymphatic filariasis will be eliminated by the year 2020.</li><li>The transmission of Chagas’ discase will be interrupted by 2010.</li><li>Leprosy will be eliminated by 2010 and trachoma will be eliminated by 2020. In addition, vitamin A and iodine deficiencies will be eliminated before 2020.</li></ul>
 <p>and physical agents.</p>
@@ -114,42 +141,54 @@
 <ul><li>By 2010, research policies and institutional mechanisms will be operational at global, regional and country levels.</li><li>The Member States of WHO have to translate the Regional Health Policy into realistic national policies backed up by appropriate implementation plans.</li><li>WHO, on its part, will provide support to the Member States based on countries’ realities and needs, especially community health problems, the strengthening of health systems and services and the mobilization of countries and the international community for concerted action in the harmonization of national policies with regional and global policies.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Why is primary health care important?</summary>
           <ul><li>Member States have committed to primary health care renewal and implementation as the cornerstone of a sustainable health system for UHC, health related Sustainable Development Goals (SDGs) and health security.</li><li>PHC provides the ‘programmatic engine’ for UHC, the health-related SDGs and health security.</li><li>This commitment has been codified and reiterated in the Declaration of Astana, the accompanying World Health Assembly Resolution, the 2019 Global Monitoring Report on UHC, and the United Nations General Assembly high-level meeting on UHC.</li><li>UHC, the health-related SDGs and health security goals are ambitious but achievable.</li><li>Progress must be urgently accelerated, and P1C provides the means to do so.</li><li>PHC is the most inclusive, equitable, cost-effective and efficient approach to enhance people’s physical and mental health, as well as social well-being.</li><li>Evidence of wide-ranging impact of investment in PHC continues to grow around the world, particularly in times of crisis such as the COVID-19 pandemic.</li><li>Across the world, investments in PHC improve equity and access, health care performance, accountability of health systems, and health outcomes.</li><li>While some of these factors are directly related to the health system and access to health services,</li><li>The evidence is clear that a broad range of factors beyond health services play a critical role in shaping health and well-being.</li><li>These include social protection, food systems, education, and environmental factors, among others.</li><li>PHC is also critical to make health systems more resilient to situations of crisis, more proactive in detecting early signs of epidemics and more prepared to act early in response to surges in demand for services.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-6">
           <summary>06 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Updated Introduction to Primary Health Care</strong> as a practical nursing topic, not only a memorized definition. Move from individual illness to prevention, population risk, health education and continuity of care.</p>
 <ul><li><strong>What to understand first:</strong> define updated introduction to primary health care, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-7">
           <summary>07 Assessment Guide</summary>
           <ul><li>Who is affected, where they live, risk factors, resources and barriers to care.</li><li>Environmental hygiene, nutrition, immunization, water, sanitation and health-seeking behaviour.</li><li>Community beliefs, leaders, household practices and surveillance data.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-8">
           <summary>08 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Promote prevention, early detection, referral and community participation.</li><li>Use clear health education matched to literacy, culture and available resources.</li><li>Document findings and coordinate with community health structures.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The community understands the message, risk is reduced and follow-up or referral pathways are active.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-9">
           <summary>09 Patient Teaching and Revision Check</summary>
           <ul><li>Explain updated introduction to primary health care in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Updated%20Introduction%20to%20Primary%20Health%20Care%20Primary%20Health%20Care%20(PHC)%20and%20Community%20Based%20Health%20Care%20(CBHC)%20nursing%20lecture" title="Updated Introduction to Primary Health Care YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (30)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/phc-and-cbhc-1024x683.webp" alt="Phc And Cbhc" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Phc And Cbhc</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/85045b616471433afeca78ca955be728.webp" alt="85045b616471433afeca78ca955be728" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">85045b616471433afeca78ca955be728</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/8d9d9e099f6f0415d0940b8d24ff2179.webp" alt="8d9d9e099f6f0415d0940b8d24ff2179" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">8d9d9e099f6f0415d0940b8d24ff2179</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/4cf8f96448d11891bb76579f219d49b3.webp" alt="4cf8f96448d11891bb76579f219d49b3" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">4cf8f96448d11891bb76579f219d49b3</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/881e0b1e606297a30d35221f8eb920e3.webp" alt="881e0b1e606297a30d35221f8eb920e3" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">881e0b1e606297a30d35221f8eb920e3</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/a951aee076d5cc26aae5644db25c9bf1.webp" alt="A951aee076d5cc26aae5644db25c9bf1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">A951aee076d5cc26aae5644db25c9bf1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/d393a5b2f9f7f892efbd669e7b571c96.webp" alt="D393a5b2f9f7f892efbd669e7b571c96" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">D393a5b2f9f7f892efbd669e7b571c96</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/62b40c3ea149b8417dfb205a97bb9a3e.webp" alt="62b40c3ea149b8417dfb205a97bb9a3e" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">62b40c3ea149b8417dfb205a97bb9a3e</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Updated%20Introduction%20to%20Primary%20Health%20Care%20Primary%20Health%20Care%20(PHC)%20and%20Community%20Based%20Health%20Care%20(CBHC)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <p style="color:var(--seo-muted);font-size:.85rem;margin:8px 0 0">22 more diagrams available — open the lesson for full illustrations.</p>
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Updated%20Introduction%20to%20Primary%20Health%20Care%20Primary%20Health%20Care%20(PHC)%20and%20Community%20Based%20Health%20Care%20(CBHC)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

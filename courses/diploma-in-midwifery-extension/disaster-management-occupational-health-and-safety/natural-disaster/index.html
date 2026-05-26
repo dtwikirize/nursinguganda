@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,28 +97,45 @@
         <p>Natural disaster. should be reviewed through safe maternal and newborn assessment, early recognition of danger signs, respectful communication and timely referral. Connect the definition to vital signs, bleeding, fetal or newborn wellbeing, patient education and local protocol requirements.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (11)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">DISASTER</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Key words used in Disaster**</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Epidemiology of a disaster</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Causes of Disasters</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Disaster Action Phase</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Classification of Disasters</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Stages of emotional response</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 DISASTER</summary>
           <p>Disaster is also defined as a sudden/unexpected catastrophic event causing serious disruption of the functioning of a community or society that exceed the ability of the affected community or society to cope using its own resources.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 **Key words used in Disaster**</summary>
           <ul><li><strong>Vulnerability:</strong> Is lack of capacity to deal with potential threat. Lack of information, resources and technology. There are many aspects of vulnerability, arising from various physical, social, economic, and environmental factors. Examples may include: poor design and construction of buildings, inadequate protection of assets, lack of public information and awareness, limited official recognition of risks and preparedness measures, and disregard for wise environmental management There are four (4) main types of vulnerability: (a). <strong>Physical Vulnerability</strong> may be determined by aspects such as population density levels, remoteness of a settlement, the site, design and materials used for critical infrastructure and for housing. Example: Wooden homes are less likely to collapse in an earthquake, but are more vulnerable to fire. (b). <strong>Social Vulnerability</strong> refers to the inability of people, organizations and societies to withstand adverse impacts to hazards due to characteristics inherent in social interactions, institutions and systems of cultural values. It includes aspects related to levels of literacy and education, the existence of peace and security, access to basic human rights, systems of good governance, social equity, positive traditional values, customs and ideological beliefs and overall collective organizational systems Example: When flooding occurs some citizens, such as children, elderly and differently-able, may be unable to protect themselves or evacuate if necessary. (c). <strong>Economic Vulnerability</strong> . The level of vulnerability is highly dependent upon the economic status of individuals, communities and nations i.e. the poor are usually more vulnerable to disasters because they lack the resources to build sturdy structures and put other engineering measures in place to protect themselves from being negatively impacted by disasters. Example: Poorer families may live in squatter settlements because they cannot afford to live in safer (more expensive) areas. (d). <strong>Environmental Vulnerability</strong> . Natural resource depletion and resource degradation are key aspects of environmental vulnerability. Example: Wetlands, such as the Caroni Swamp, are sensitive to increasing salinity from sea water, and pollution from storm water runoff containing agricultural chemicals, eroded soils, etc.</li><li><strong>Disaster risk:</strong> Is the likelihood of specific hazard occupancy and its probable c onsequence for people, property and environment. (a). <strong>Acceptable risk</strong> : The extent to which a disaster risk is deemed acceptable or tolerable depends on existing social, economic, political, cultural, technical and environmental conditions. (b). <strong>Residual risk</strong> : is the disaster risk that remains even when effective disaster risk reduction measures are in place, and for which emergency response and recovery capacities must be maintained. T</li><li><strong>Intensity:</strong> Refers to a disaster agent’s ability to inflict damage and injury.</li><li><strong>Scope:</strong> Refers to the geographic area and social space dimension impacted by the disaster agent.</li><li><strong>Frequency:</strong> Refers to the number of times certain disasters occur in certain geographical locations that may give time to the community to take measures in preparation.</li><li><strong>Controllability:</strong> Refers to some control measures that can reduce the impact of the disaster. It helps the emergency planners.</li><li><strong>Triage:</strong> Refers to sorting out victims according to the extent of severity.</li><li><strong>Time:</strong> Refers to the period when certain disasters can last that can allow the affected people to vacate when there is a period of warning the community to vacate for protection.</li><li><strong>Capacity</strong> : The ability of a community to use all the available resources that can reduce risk level and disaster effects.</li><li><strong>Capacity building</strong> : It is the efforts to develop human skills within a community to reduce risk levels.</li><li><strong>Emergency</strong> : a state in which normal procedures are suspended and extra-ordinary measures are taken in order to avert a disaster, <strong>WHO.</strong></li><li><strong>Catastrophe</strong> : It is a large scope of impact event that affects multiple communities, produces very high levels of damage and social disruption, and sharply and concurrently interrupts community and lifeline services. A broad scope of impact impairs each community’s emergency response system and greatly limits extra community support.”</li><li><strong>Hazard</strong> : A natural or human-made event that threatens to adversely affects human life, property or activity to the extent of causing a disaster.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Epidemiology of a disaster</summary>
           <p>Epidemiology is divided into 3 parts namely i.e. Agent, host and environment</p>
 <ul><li><strong>DISASTER AGENT:</strong> The agent is the physical agent that actually causes the injury or destruction. (a). <strong>Primary agents</strong> include; falling, building, heat, winds or using water. (b). <strong>Secondary agents</strong> include; bacteria and viruses that produce contamination or infection after primary agents.</li><li><strong>HOST</strong> : These are the characteristics of humans that influence several of the disaster effects e.g. ages, immune status, pre-existing health status, degree of morbidity and emotional stability. The individuals who are mostly affected are the pregnant mothers, the elderly and the children because they are vulnerable.</li><li><strong>ENVIRONMENT</strong> : Environmental factors that affect outcome of disaster include; physical, chemical, biological and social factors. (a). <strong>Physical factors</strong> include; the time when disaster occurs, weather conditions, availability of good water supply and functionality facilities and others for example communication system. (b). <strong>Chemical factors</strong> . Influencing disasters include leakage of stored ground water or food supply that may directly affect human life when consumed. (c). <strong>Biological factors</strong> are those that occur as a result of contaminated water, waste disposal, and improper food storage. (d). <strong>Social factors</strong> are those factors that contribute to the individuals’ social support systems, loss of family members and changes in responsible roles.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Causes of Disasters</summary>
           <p>1. <strong>Geological and Climatic Changes:</strong> This causes disasters if they become extreme e.g. lack or insufficiency of rain for an extended period that severely disturbs the hydrologic cycle in an area. 2. <strong>Poverty:</strong> It generally makes people vulnerable to the impact of hazards because they settle on hills that are prone to landslide, along the riverside invaluably flood their banks 3. <strong>Population Growth</strong> : More people will be forced to live and work in unsafe areas which cause increasing numbers of people will be competing for limited amount of resources such as employment opportunities, and land which can lead to conflict; this conflict may result in crisis—induced migration thereby resulting in disasters. 4. <strong>Rapid Urbanization</strong> : It is characterized by rural poor moving to metropolitan areas in search of economic opportunities and security which may cause them not find safe and desirable places to build their houses that can lead to human-made disasters. 5. <strong>Transitions in Cultural Practices</strong> : This involves cultural Introduction of new construction material to build houses or materials used incorrectly may lead to house that cannot withstand earthquake. 6. <strong>Environmental Degradation</strong> : Drought conditions exacerbated by poor cropping patterns, overgrazing, the stripping of topsoil, poor conservation techniques, depletion of both surface and subsurface water supply. 7. <strong>Lack of Awareness and Information</strong> : Lack of knowledge about protective measures, safe locations, safe evacuation routes and procedures that can be accessed during a disaster can lead to community to experience impacts of the disaster since they don’t know how to reduce the effects. 8. <strong>War and Civil Strife</strong> : Includes competition for scarce resources, religious or ethnic intolerance and ideological differences e.g. the Rwandan massacre.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Disaster Action Phase</summary>
           <p>These are the steps in which a disaster will occur There are <strong>three</strong> phases to any disaster. The actions on emergency personnel and others professional depend on which of the disaster is at hand.</p>
 <ul><li>Pre-impact Phase</li><li>Impact Phase</li><li>Post Impact Phase</li></ul>
@@ -115,7 +144,7 @@
 <p><strong>POST IMPACT PHASE</strong> : This is a period of recovery from emergency phase and ends with return of normal community order and functioning. The phase may live longer and care must be given. The role of a nurse is to counsel, start rehabilitation, and sensitize the community for empowerment to start income generating activities</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Classification of Disasters</summary>
           <ul><li>Natural Disasters.</li><li>Human made Disasters</li></ul>
 <p>A natural disaster is a major adverse event or disaster resulting from natural processes of the Earth.</p>
@@ -124,44 +153,49 @@
 <ul><li>SUDDEN OCCURANCE (MONOCAUSAL) PROGRESSIVE OCCURRENCE (MULTICAUSAL)</li><li>FIRE WAR</li><li>EXPLOSION ECONOMIC CRISIS</li><li>COLLISION</li><li>SHIPWRECK</li><li>STRUCTURAL COLLAPSE</li><li>ENVIRONMENTAL POLLUTION</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Stages of emotional response</summary>
           <p>Victims of disaster usually go through 4 stages of emotional response.</p>
 <ul><li><strong>Denial stage</strong> : Period when victims deny the magnitude of the problem or more likely may understand the problems but seems unaffected emotionally.</li><li><strong>Strong Emotional Response</strong> : It is a stage when the person is aware but regards it as overwhelming and unbearable. Common reaction during this stage is fighting of feel, weeping, speaking with difficulty, trembling, and sadness. It is a period of counselling and reassurance.</li><li><strong>Acceptance stage</strong> : It is the time when victims begin to accept either being handicapped with one leg.” I accept disaster, I try to make a decision for what to do next and develop hope.” The role of a Health worker is to help victim develop decision making, and take specific action.</li><li><strong>Recovery stage:</strong> It is a stage of recovery from crisis reaction. Victims feel that they are back to normal and routines become important again and sense of wellbeing is restored. Ability to make decision and carry out plans, returns victims, develops realistic memory. The role of a nurse is to resettle the victims and discuss issues of empowerment if facilities are accessed.</li></ul>
 <p>Take your QUIZ about the above by clicking HERE.</p>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-8">
           <summary>08 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Introduction.</strong> as a practical nursing topic, not only a memorized definition. Translate theory into safe decisions, accountability, communication and service improvement.</p>
 <ul><li><strong>What to understand first:</strong> define introduction., identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-9">
           <summary>09 Assessment Guide</summary>
           <ul><li>The problem, stakeholders, available resources, policy requirements and ethical issues.</li><li>Risks to patients, staff, confidentiality, quality, costs and continuity.</li><li>Documentation, reporting lines, supervision and evaluation measures.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-10">
           <summary>10 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use evidence, policy and professional standards to guide action.</li><li>Communicate clearly, document decisions and protect confidentiality.</li><li>Evaluate whether the action improves safety, learning or service delivery.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The plan is documented, realistic, ethical and improves patient care or learning outcomes.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-11">
           <summary>11 Patient Teaching and Revision Check</summary>
           <ul><li>Explain introduction. in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Natural%20disaster.%20Disaster%20Management%2C%20Occupational%20Health%20and%20Safety%20nursing%20lecture" title="Natural disaster. YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (1)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/clock.webp" alt="Clock" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Clock</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Natural%20disaster.%20Disaster%20Management%2C%20Occupational%20Health%20and%20Safety%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Natural%20disaster.%20Disaster%20Management%2C%20Occupational%20Health%20and%20Safety%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

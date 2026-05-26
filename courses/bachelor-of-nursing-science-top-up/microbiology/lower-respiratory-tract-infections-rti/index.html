@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,47 +97,93 @@
         <p>Lower Respiratory Tract Infections (RTI) links cause, transmission, prevention, assessment and treatment support. Good nursing notes should include infection prevention, danger signs, adherence support and community health education.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 40 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Respiratory Tract Infections (RTI)</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">1. Anatomy of the Respiratory System</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">A. Upper Respiratory System (URTI)</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">B. Lower Respiratory System (LRTI)</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Why the Divide Matters</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">A. The Common Cold (Infectious Rhinitis)</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">B. Pharyngitis / Tonsillitis</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Strep Throat &amp; The Centor Criteria</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">C. Epiglottitis</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">D. Otitis Media (Middle Ear Infection)</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">E. Sinusitis</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">F. Specimen Collection for URTIs</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">3. Lower Respiratory Tract Infection (LRTI) Syndromes</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Clinical Presentation of LRTIs</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Why does Pneumonia cause &quot;Pleuritic&quot; Chest Pain?</a>
+          <a href="#section-16" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">4. Pathogenesis and Respiratory Defenses</a>
+          <a href="#section-17" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Routes of Entry</a>
+          <a href="#section-18" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Respiratory Defense Systems</a>
+          <a href="#section-19" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Upper Airway Filters</a>
+          <a href="#section-20" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Lower Airway (Alveolar) Defenses</a>
+          <a href="#section-21" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Impaired Respiratory Defenses</a>
+          <a href="#section-22" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">A. Community Acquired Pneumonia (CAP)</a>
+          <a href="#section-23" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">B. Nosocomial (Hospital-Acquired) Pneumonia</a>
+          <a href="#section-24" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">C. Lung Abscess</a>
+          <a href="#section-25" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">A. Specimen Collection</a>
+          <a href="#section-26" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">B. Transportation and Rejection Rules</a>
+          <a href="#section-27" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">CRITERIA FOR REJECTING SAMPLES (Exam Alert!)</a>
+          <a href="#section-28" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">C. Processing Sputum in the Lab</a>
+          <a href="#section-29" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">D. Microscopic Examination (Gram Stain) &amp; Quality Control</a>
+          <a href="#section-30" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Grading Sputum Quality per Low Power Field (LPF*)</a>
+          <a href="#section-31" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">A. The Problem with Oral Flora (Anaerobes)</a>
+          <a href="#section-32" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">B. Sputum and Endotracheal Suction Culture Evaluation</a>
+          <a href="#section-33" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">STRICT REPORTING RULES</a>
+          <a href="#section-34" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">C. Tests for the Immunocompromised Host</a>
+          <a href="#section-35" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Lower Respiratory Tract Infections (LRTIs)</a>
+          <a href="#section-36" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Lower Respiratory Tract Infections (LRTIs)</a>
+          <a href="#section-37" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-38" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-39" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-40" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Respiratory Tract Infections (RTI)</summary>
           <p>This master guide provides an exhaustive look into Respiratory Tract Infections. It covers everything from the foundational anatomy and natural defenses of the lungs, to the specific clinical syndromes of the upper and lower respiratory tracts, and finally the rigorous laboratory protocols required to accurately diagnose these potentially life-threatening diseases.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 1. Anatomy of the Respiratory System</summary>
           <p>To understand respiratory infections, we must first divide the respiratory tract into two main anatomical and functional compartments. The <strong>vocal cords</strong> roughly serve as the dividing line between the two.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 A. Upper Respiratory System (URTI)</summary>
           <ul><li><strong>Structures:</strong> Nose, pharynx (throat), and associated structures (middle ear, sinuses, tonsils).</li><li><strong>Primary Purpose:</strong> To take in environmental air, and then warm, filter, and moisten it before it reaches the delicate lungs. It acts as the body&#39;s natural HVAC (Heating, Ventilation, and Air Conditioning) system.</li><li><strong>Clinical Significance:</strong> This is the most common site of infections in the human body. Because it is the first point of contact with the outside world, it constantly encounters viruses and bacteria.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 B. Lower Respiratory System (LRTI)</summary>
           <ul><li><strong>Structures:</strong> Larynx (voice box), trachea (windpipe), bronchi, bronchioles, and alveoli (air sacs).</li><li><strong>Primary Purpose:</strong> Ventilation (moving air in and out) and true gas exchange (swapping oxygen for carbon dioxide in the blood).</li><li><strong>Clinical Significance:</strong> Infections here are generally much more severe, potentially life-threatening, and harder to clear than URTIs because any inflammation here directly compromises oxygenation.</li></ul>
 <p>Specific pathogens love specific anatomical sites due to distinct cellular receptors and temperature preferences. For example:</p>
 <ul><li><strong>Pharynx:</strong> Adenoviral pharyngitis, Strep throat, Diphtheria.</li><li><strong>Larynx/Epiglottis:</strong> Laryngitis, Epiglottitis.</li><li><strong>Lungs/Alveoli:</strong> Pneumonia, Tuberculosis, Histoplasmosis, Coccidioidomycosis, RSV, Legionnaire&#39;s disease.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Why the Divide Matters</summary>
           <p>When a patient presents to the ER with a cough, the doctor&#39;s immediate goal is to determine if it&#39;s an URTI or an LRTI. URTIs are usually viral, benign, and sent home with supportive care. LRTIs (like pneumonia) often require chest X-rays, blood work, IV antibiotics, and hospital admission. Differentiating the two saves lives and resources.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 A. The Common Cold (Infectious Rhinitis)</summary>
           <p>The common cold is a mild, self-limiting viral infection of the upper respiratory mucosa.</p>
 <ul><li><strong>Causative Agents:</strong> Rhinovirus (most common, accounting for 30-50%), Coronaviruses, RSV (Respiratory Syncytial Virus), and Parainfluenza virus.</li><li><strong>Epidemiology:</strong> Highly common in the cooler, winter months in temperate climates, and during the rainy season in tropical areas (like Uganda).</li><li><strong>Presentation:</strong> Rhinitis (runny, stuffy nose), mild headache, and conjunctival suffusion (red, watery eyes).</li></ul>
 <p><strong>Clinical Pearl - The Danger of Antibiotic Misuse:</strong> Because these are exclusively viral, antibiotics are completely useless. Treatment is purely symptomatic (decongestants, rest, hydration). Overprescribing antibiotics for the common cold is the leading driver of global antibiotic resistance. Educating the patient is the most important treatment!</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 B. Pharyngitis / Tonsillitis</summary>
           <p>An inflammatory syndrome of the pharynx (sore throat) caused by various microorganisms.</p>
 <ul><li><strong>Causes:</strong> The vast majority are viral (Rhinovirus, Coronavirus, Adenovirus, Herpes Simplex Virus, Parainfluenza, Influenza, Coxsackievirus, Epstein-Barr virus, Cytomegalovirus). It often occurs as part of a broader common cold or flu syndrome.</li><li><strong>Bacterial Causes:</strong> The most significant bacterial cause is Group A Streptococcus ( Streptococcus pyogenes ), accounting for 5% to 20% of cases. Other rare bacterial causes include Neisseria gonorrhoeae (from oral sex) and Corynebacterium spp. (Diphtheria).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Strep Throat &amp; The Centor Criteria</summary>
           <p>A 10-year-old presents with a sudden, severe sore throat, fever, and swollen neck lymph nodes, but NO cough. Looking in the mouth, you see white exudates (pus) on the tonsils.</p>
 <p><strong>The Centor Criteria</strong> is used by doctors to score the likelihood of Bacterial Strep Throat vs a Viral sore throat:</p>
@@ -133,21 +191,21 @@
 <p>A high score justifies a rapid strep test or empirical antibiotics. This is classic Group A Strep. We must treat this with Penicillin not just to cure the throat, but to prevent a dangerous autoimmune complication later known as <strong>Rheumatic Fever</strong> , which can permanently damage heart valves!</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 C. Epiglottitis</summary>
           <p>A severe, life-threatening inflammation of the epiglottis (the flap that covers the windpipe during swallowing). If it swells too much, it completely blocks the airway, suffocating the patient.</p>
 <ul><li><strong>Epidemiology:</strong> Usually occurs in cooler months. Historically affected young children (ages 2-7).</li><li><strong>Causative Organisms:</strong> Haemophilus influenzae type b (now rare due to the highly successful Hib vaccine!), Streptococcus pyogenes , and Pneumococcus.</li><li><strong>Clinical Presentation:</strong> The child will appear highly toxic, drooling (because it hurts too much to swallow their own saliva), and leaning forward in a &quot;Tripod Position&quot; to keep their airway open. A lateral neck X-ray will reveal the classic <strong>&quot;Thumbprint Sign&quot;</strong> (the swollen epiglottis looks like a thumb pressing into the airway).</li></ul>
 <p><strong>Diagnostic Rule (Life or Death):</strong> Blood culture is the gold standard. <strong>NEVER stick a throat swab or tongue depressor into the mouth of a child suspected of having epiglottitis!</strong> Doing so can trigger a reflex spasm that snaps the airway completely shut, killing the child instantly in the clinic. Secure the airway first (often in the OR) before any examination.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 D. Otitis Media (Middle Ear Infection)</summary>
           <p>Inflammation of the middle ear space, located right behind the eardrum (tympanic membrane or TM).</p>
 <p><strong>Anatomical Deep Dive: Why Kids Get It More:</strong> Children are far more prone to Otitis Media than adults because a child&#39;s Eustachian tube (the tube connecting the middle ear to the throat) is shorter, narrower, and more horizontal. This makes it incredibly easy for bacteria from the throat to crawl up into the ear, and very difficult for the ear to drain fluid out.</p>
 <ul><li><strong>Clinical Confirmation:</strong> Requires an acute onset of symptoms.</li><li><strong>Signs of Effusion (fluid build-up):</strong> Using a pneumatic otoscope, a doctor will see a bulging Tympanic Membrane, limited mobility of the eardrum when puffing air at it, an air-fluid level, or otorrhoea (pus draining out if the eardrum ruptures).</li><li><strong>Symptoms:</strong> Erythema (redness) of the TM, and distinct, severe otalgia (ear pain) that often interferes with a child&#39;s sleep. The child may constantly tug at their ear.</li><li><strong>Causative Organisms:</strong> Streptococcus pneumoniae (Most common)</li><li>Haemophilus influenzae</li><li>Moraxella catarrhalis</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 E. Sinusitis</summary>
           <p>Bacterial or viral infection of the paranasal sinuses. It is classified strictly by timeframes:</p>
 <ul><li><strong>Acute Bacterial Sinusitis:</strong> Infection lasting less than 30 days, where symptoms resolve completely afterwards.</li><li><strong>Subacute Bacterial Sinusitis:</strong> Lasting between 30 and 90 days, resolving completely.</li><li><strong>Recurrent Acute Bacterial Sinusitis:</strong> Multiple episodes, each lasting less than 30 days, separated by asymptomatic intervals of at least 10 days.</li><li><strong>Chronic Sinusitis:</strong> An episode lasting longer than 90 days. Patients have persistent residual symptoms like chronic cough, rhinorrhoea (runny nose), or nasal obstruction. Even if &quot;new&quot; acute symptoms resolve, underlying residual symptoms do not.</li></ul>
@@ -155,96 +213,96 @@
 <p><strong>Pathogens:</strong> Exactly the same top three as Otitis Media! Streptococcus pneumoniae (causes 30% of cases), Haemophilus influenzae , and Moraxella catarrhalis .</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-12">
           <summary>12 F. Specimen Collection for URTIs</summary>
           <ul><li><strong>Common Samples:</strong> Throat swabs, nasopharyngeal swabs/washes, and oral cavity scrapings.</li><li><strong>Lab Protocol:</strong> Routine throat swabs are automatically screened only for Group A Streptococci. If a doctor suspects something else (like Neisseria gonorrhoeae or Bordetella pertussis /Whooping cough), they must request it specifically so the lab uses special agar plates (e.g., Regan-Lowe or Bordet-Gengou agar for Pertussis).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-13">
           <summary>13 3. Lower Respiratory Tract Infection (LRTI) Syndromes</summary>
           <p>LRTIs include conditions like <strong>Bronchitis</strong> (airway inflammation), <strong>Bronchiolitis</strong> (small airway inflammation, uniquely common in infants under 2, often driven by RSV), <strong>Pneumonia</strong> (infection of the alveoli/lung tissue itself), and <strong>Lung abscesses</strong> (pockets of pus/dead tissue in the lung).</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-14">
           <summary>14 Clinical Presentation of LRTIs</summary>
           <ul><li><strong>Acute Systemic Symptoms:</strong> Fever, chills, back pain, myalgias (muscle aches), arthralgias (joint pain), headache, malaise, nausea, and vomiting.</li><li><strong>Chest-Specific Symptoms:</strong> Deep cough, chest pain (often pleuritic—hurts when taking a deep breath), rales (crackling sounds heard via stethoscope representing fluid in the alveoli), wheezing, and a noisy chest.</li><li><strong>Severe Signs:</strong> Characteristic white patches (infiltrates/consolidation) on chest X-rays, and increasing respiratory distress (which may become so severe the patient requires mechanical ventilation/life support).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-15">
           <summary>15 Why does Pneumonia cause &quot;Pleuritic&quot; Chest Pain?</summary>
           <p>Interestingly, the actual lung tissue (parenchyma) has absolutely zero pain receptors. You cannot feel pneumonia growing inside the lung. However, the pleura (the thin membrane wrapping around the outside of the lungs and lining the inside of the rib cage) is densely packed with pain nerves. When the lung infection reaches the edge of the lung and inflames the pleura (Pleurisy), the two inflamed pleural layers rub together like sandpaper every time the patient takes a deep breath, causing sharp, stabbing, &quot;pleuritic&quot; pain.</p>
 <p><strong>Diagnosis:</strong> Heavily depends on the clinical presentation and the age of the patient, supported by minimum laboratory (sputum culture, blood tests) and radiologic (X-ray) investigations.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-16">
           <summary>16 4. Pathogenesis and Respiratory Defenses</summary>
           <p>The lungs are naturally sterile. The development of a pulmonary infection indicates a failure somewhere. It means either: 1) A defect in the host&#39;s immune defenses, 2) Exposure to a massively virulent (aggressive) microorganism, or 3) An overwhelming inoculum (breathing in a massive dose of bacteria at once).</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-17">
           <summary>17 Routes of Entry</summary>
           <ul><li><strong>Aspiration:</strong> Breathing in resident flora (normal bacteria) from the upper airway/mouth down into the lungs (especially while asleep or unconscious). Microaspiration happens in small amounts to everyone during sleep, but the immune system handles it. Macroaspiration happens when someone vomits and inhales a massive volume of fluid/bacteria, often leading to deadly pneumonia.</li><li><strong>Inhalation:</strong> Breathing in aerosolized infected droplets from the air (e.g., someone coughing TB or COVID-19).</li><li><strong>Metastatic Seeding:</strong> Less frequent. Bacteria traveling through the bloodstream from an infection elsewhere in the body (like a heart valve infection/endocarditis) and landing in the lungs.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-18">
           <summary>18 The Respiratory Defense Systems</summary>
           <p>The body has layers of defenses: anatomic barriers, humoral (antibody) immunity, cell-mediated immunity, and phagocytes.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-19">
           <summary>19 Upper Airway Filters</summary>
           <ul><li><strong>Physical Barriers:</strong> Air is filtered in the anterior nares (nostrils). Large particles greater than 10µm are trapped by nose hairs and removed.</li><li><strong>Mucociliary Escalator:</strong> Ciliated epithelium (cells with tiny sweeping hairs) and thick mucus trap larger particles. The hairs sweep the dirty mucus upward toward the throat to be swallowed or spit out. Cough reflexes violently expel large particles.</li><li><strong>Chemical &amp; Fluid Defenses:</strong> In the oropharynx, the constant flow of saliva, the natural sloughing (shedding) of skin cells, local complement proteins, and antimicrobial peptides/enzymes destroy or wash away pathogens. Mucosal IgA (an antibody) is highly present and provides antibacterial and antiviral activity.</li><li><strong>Bacterial Counter-attack:</strong> Clever microorganisms use adhesins (sticky proteins) to aggressively bind and colonize the URTI epithelia, preventing themselves from being washed away.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-20">
           <summary>20 Lower Airway (Alveolar) Defenses</summary>
           <p>Microorganisms with very small diameters (0.2 to 2µm) can bypass the mucus and reach the terminal alveoli (deepest air sacs). <strong>Importantly, no mucociliary apparatus (no sweeping hairs) exists down here!</strong></p>
 <ul><li><strong>Chemical Opsonins:</strong> The fluid lining the alveoli contains surfactant, IgG antibodies, fibronectin, and complement. These act as &quot;opsonins&quot;—they coat the bacteria, acting like a bright neon sign that says &quot;EAT ME&quot; to immune cells.</li><li><strong>Alveolar Macrophages:</strong> The resident guard cells of the lungs. They patrol the alveoli and eat (phagocytose) the opsonized bacteria.</li><li><strong>Inflammatory Cascade (The Cytokine Storm):</strong> If the number of bacteria overwhelms the macrophages, the macrophages secrete cytokines and chemokines (chemical alarm signals). This triggers a massive inflammatory response, recruiting millions of neutrophils from the blood into the lungs. The blood vessels leak fluid into the alveoli to help the neutrophils cross over, filling the air sacs with pus and fluid. This entire pathological process is what we call <strong>Pneumonia</strong> .</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-21">
           <summary>21 Impaired Respiratory Defenses</summary>
           <p>Why do some people get pneumonia easily? Impaired defenses result from:</p>
 <ul><li><strong>Altered Consciousness:</strong> Sleep, seizures, coma, drug overdoses, or general anaesthesia. If you are unconscious, you lose your gag and cough reflexes. You silently inhale your own saliva (and mouth bacteria) into your lungs.</li><li><strong>Alcohol Intoxication:</strong> Alcohol paralyzes the white blood cells and dulls the gag reflex.</li><li><strong>Viral Infections:</strong> A prior flu virus destroys the ciliated epithelial cells, leaving the lungs wide open for a secondary bacterial pneumonia (like S. aureus ).</li><li><strong>Iatrogenic manipulations:</strong> NG (Nasogastric) tubes or breathing tubes physically hold the airway open, providing a slide for bacteria to bypass the vocal cords.</li><li><strong>Old age:</strong> Weakened immune systems and weaker cough muscles.</li><li><strong>Congenital Defects:</strong> Kartagener’s syndrome: A genetic disease where the patient&#39;s cilia (sweeping hairs) are paralyzed from birth. They suffer constant respiratory infections.</li><li>Cystic Fibrosis: A mutation in the CFTR chloride channel causes respiratory mucus to become incredibly thick and sticky, paralyzing the mucociliary escalator and acting as a breeding ground for Pseudomonas aeruginosa .</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-22">
           <summary>22 A. Community Acquired Pneumonia (CAP)</summary>
           <p>Pneumonia caught out in the general public. We generally divide these into &quot;Typical&quot; (Classic lobar pneumonia, severe symptoms) and &quot;Atypical&quot; (Walking pneumonia, milder symptoms, extra-pulmonary manifestations).</p>
 <p><strong>Pathogens include:</strong></p>
 <ul><li><strong>Streptococcus pneumoniae</strong> (The absolute #1 cause globally of Typical CAP).</li><li><strong>Haemophilus influenzae</strong> &amp; M. catarrhalis</li><li><strong>Atypicals:</strong> Legionella species (often from contaminated AC water towers), Mycoplasma pneumoniae (classic &quot;walking pneumonia&quot; in young adults), Chlamydia species .</li><li><strong>Klebsiella species:</strong> Common in alcoholics and diabetics. Clinical Pearl: Klebsiella has a massive sugar capsule that destroys lung tissue and causes bleeding, leading to the coughing up of thick, bloody, <strong>&quot;currant jelly&quot; sputum</strong> .</li><li><strong>Enteric gram-negative bacilli</strong></li><li><strong>Staphylococcus aureus:</strong> (Often follows a viral flu).</li><li><strong>Influenza viruses</strong></li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-23">
           <summary>23 B. Nosocomial (Hospital-Acquired) Pneumonia</summary>
           <p>Pneumonia caught after being admitted to the hospital (often via ventilators). These bugs are notoriously resistant to antibiotics.</p>
 <ul><li><strong>Enterobacteriaceae:</strong> K. pneumoniae , E. coli , Enterobacter spp , Serratia marcescens .</li><li><strong>Pseudomonas aeruginosa:</strong> Extremely dangerous, heavily drug-resistant, common in ICU ventilator patients.</li><li><strong>Staphylococcus aureus:</strong> (Often MRSA - Methicillin Resistant).</li><li>In <strong>immunocompromised hosts</strong> (HIV/AIDS, Chemo patients), normally harmless fungal and viral pathogens play a massive role in causing disease.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-24">
           <summary>24 C. Lung Abscess</summary>
           <p>Occurs when a microbial infection is so severe it causes actual necrosis (death/rotting) of the lung parenchyma (tissue), producing cavities. These cavities often break open into larger airways, causing the patient to cough up foul-smelling, highly purulent (pus-filled) sputum.</p>
 <ul><li><strong>Primary Cause:</strong> Commonly caused by oral anaerobes following an aspiration event (e.g., passing out drunk and inhaling vomit). Note: Inhaling pure gastric acid also causes &quot;Mendelson&#39;s syndrome,&quot; a severe chemical pneumonitis that destroys lung tissue even before bacteria take over.</li><li><strong>Other Causes:</strong> Staphylococcus aureus , Pseudomonas aeruginosa , enteric gram-negative rods, Pasteurella multocida (from animal bites), Burkholderia , Haemophilus influenzae (types b and c), Legionella , Group A strep, Streptococcus pneumoniae , Streptococcus milleri group , Nocardia , Rhodococcus , Corynebacterium pseudodiphtheriticum , and Actinomyces .</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-25">
           <summary>25 A. Specimen Collection</summary>
           <p>Sputum is the most commonly collected specimen.</p>
 <ul><li><strong>How to collect:</strong> The patient should stand or sit upright in bed. They must take a very deep breath to fill the lungs, empty it, then take another and cough as hard and as deeply as possible from the chest (not just clearing the throat).</li><li>The sputum brought up must be spit into a wide mouth, screw-capped container. Tighten the cap and send it immediately to the lab.</li><li><strong>Induced Sputum:</strong> If a patient is too weak or dry to produce sputum, a healthcare worker assists them. The patient breathes in aerosolized droplets of a hypertonic solution (15% sodium chloride and 10% glycerin) for about 10 minutes. This draws water into the airways and forces a productive cough, avoiding invasive procedures like bronchoscopy.</li><li><strong>Other Specimens:</strong> Bronchoalveolar lavage (BAL), Bronchial washes, Transbronchial biopsies, Tracheal aspirates.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-26">
           <summary>26 B. Transportation and Rejection Rules</summary>
           <ul><li>Sputum must be transported to the lab in <strong>&amp;lt;2 hours</strong> . If a delay is anticipated, it MUST be refrigerated (otherwise normal mouth bacteria will overgrow and ruin the sample).</li><li>Handle all samples using universal precautions (treat every sample as if it has TB or COVID).</li><li><strong>Quantity:</strong> Sputum of less than 2ml should NOT be processed unless it is obviously purulent (pure pus).</li><li>Only 1 sputum sample per 24 hours is accepted by the lab to avoid redundant testing.</li></ul>
         </details>
       
-        <details class="seo-lesson-section exam-section" open>
+        <details class="seo-lesson-section exam-section" id="section-27">
           <summary>27 CRITERIA FOR REJECTING SAMPLES (Exam Alert!)</summary>
           <p>The lab will throw the sample in the trash if:</p>
 <ul><li>Mismatch of information on the label vs. the lab request form (Safety issue).</li><li>Inappropriate transport temperature or excessive delay in transport.</li><li>Inappropriate transport medium (e.g., receiving a sputum in a chemical fixative like formalin, which instantly kills all bacteria making culture impossible, or receiving a dried-out specimen).</li><li>Sample has questionable relevance (e.g., mostly saliva).</li><li>Insufficient quantity (&amp;lt;2ml).</li><li>Leakage (Container was not screwed tight, posing a biohazard risk to the courier and lab tech).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-28">
           <summary>28 C. Processing Sputum in the Lab</summary>
           <ul><li><strong>Safety First:</strong> Process specimens inside a Biological Safety Cabinet! Aerosols generated during mixing can result in lab-acquired respiratory infections (like TB).</li><li>Process rapidly, giving priority to emergency department and inpatient specimens.</li><li><strong>Selection:</strong> The lab tech will visually inspect the cup and physically select the most purulent (yellow/green pus) or most blood-tinged portion of the specimen to test, as this is where the pathogen lives.</li></ul>
 <p><strong>Culture Media Chosen:</strong></p>
@@ -253,31 +311,31 @@
 <p>Cooked blood that releases internal nutrients (Factor V and X). Essential for growing fastidious (fussy) bugs like Haemophilus influenzae that cannot burst red blood cells themselves.</p>
         </details>
       
-        <details class="seo-lesson-section exam-section" open>
+        <details class="seo-lesson-section exam-section" id="section-29">
           <summary>29 D. Microscopic Examination (Gram Stain) &amp; Quality Control</summary>
           <p>Before culturing, a Gram stain smear is performed immediately on all lower respiratory tract specimens. This serves two vital purposes:</p>
 <ul><li><strong>Check for Contamination:</strong> To determine if the sample is just spit (oropharyngeal contamination). We look for <strong>Squamous Epithelial Cells (SECs)</strong> . These cells line the mouth. If we see a lot of them, the patient just spit in the cup.</li><li><strong>Identify Pathogens:</strong> To identify the most likely pathogen by looking for the predominant organisms specifically associated with <strong>White Blood Cells (Neutrophils/WBCs)</strong> , which indicate true infection.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-30">
           <summary>30 Grading Sputum Quality per Low Power Field (LPF*)</summary>
           <ul><li>Cell Type None Few Moderate Numerous</li><li><strong>Squamous Epithelial Cells (SECs) / LPF</strong> 0 1-9 10-24 &amp;gt;25</li><li><strong>Neutrophils (WBCs) / LPF</strong> 0 1-9 10-24 &amp;gt;25</li></ul>
 <p>Nurses and doctors often get frustrated when the microbiology lab rejects a sputum sample. <strong>Rejection Rule:</strong> If abundant SECs are seen (&amp;gt;25 per LPF), this indicates heavy oropharyngeal contamination. The specimen is graded as an unsatisfactory sample, rejected, and a new sample is requested. If the lab cultured a spit sample, they would isolate dozens of normal mouth bacteria, potentially leading the doctor to prescribe massive, unnecessary antibiotics for a false pneumonia diagnosis.</p>
 <ul><li>If no SECs are found: Report &quot;No epithelial cells seen&quot;.</li><li>When looking for bugs, the tech concentrates on areas surrounded by WBCs.</li><li>Determine if there is a predominant organism (defined as &amp;gt; 10 per High Power Oil Immersion Field [HPF**]).</li><li>If no predominant bug is present, the lab simply reports &quot;mixed gram-positive and gram-negative flora&quot; (meaning normal mouth bacteria).</li><li><strong>Gram Stain Reporting Rule:</strong> Be descriptive, but cautious. Keep reports short and avoid line-listing every single morphotype seen. Example of a good report: &quot;Moderate neutrophils. Moderate Gram positive diplococci suggestive of Streptococcus pneumoniae. Few bacteria suggestive of oral flora.&quot;</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-31">
           <summary>31 A. The Problem with Oral Flora (Anaerobes)</summary>
           <p>Because the mouth is packed with normal anaerobic bacteria, sputum specimens, bronchial washings, and endotracheal tube aspirates are <strong>NEVER inoculated to enriched broth or incubated anaerobically</strong> . If we did, we would grow massive amounts of normal mouth bugs, completely obscuring the true pathogen and confusing the doctor.</p>
 <p><strong>Rule:</strong> ONLY highly invasive, sterile specimens obtained by percutaneous aspiration (needle through the neck/chest) or by a protected bronchial brush are suitable for anaerobic culture.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-32">
           <summary>32 B. Sputum and Endotracheal Suction Culture Evaluation</summary>
           <ul><li>Identify and perform antibiotic susceptibility testing on only 2-3 potential pathogens seen as predominant on the Gram stain. If you isolate more than one or two pathogens, it strongly suggests oropharyngeal contamination, and clinical correlation with the doctor is required before reporting.</li><li>If you grow Alpha-hemolytic strep → You must perform tests to rule out S. pneumoniae .</li><li>If you grow Yeast → You only care to rule out Cryptococcus neoformans . Ignore normal oral Candida .</li><li>If you grow S. aureus or Gram-negative bacilli, but in quantities less than the normal oral flora: Just quantify it, limit the Identification, do NO susceptibility testing, and add a comment that the organism was &quot;not predominant on stain&quot;.</li><li>Always fully identify any moulds, Mycobacteria (TB), or Nocardia spp .</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-33">
           <summary>33 STRICT REPORTING RULES</summary>
           <ul><li>Streptococcus pyogenes (Group A Strep)</li><li>Group B streptococci (Specifically in the pediatric/neonatal population)</li><li>Francisella tularensis (Tularemia / Bioterrorism threat)</li><li>Bordetella spp. (especially Bordetella bronchiseptica &amp; pertussis )</li><li>Yersinia pestis (The Bubonic/Pneumonic Plague!)</li><li>Nocardia spp.</li><li>Bacillus anthracis (Anthrax!)</li><li>Cryptococcus neoformans</li><li>Molds (that are not considered basic saprophytic/environmental contaminants)</li><li>Neisseria gonorrhoeae</li></ul>
 <p><strong>2. ALWAYS REPORT, BUT DO NOT MAKE EXTRA EFFORT TO FIND LOW NUMBERS</strong> (Unless seen on the original smear):</p>
@@ -288,56 +346,61 @@
 <ul><li>Pseudomonas aeruginosa</li><li>Stenotrophomonas maltophilia</li><li>Acinetobacter spp.</li><li>Burkholderia spp.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-34">
           <summary>34 C. Tests for the Immunocompromised Host</summary>
           <p>Patients with HIV/AIDS, cancer, or on transplant medications have no immune system. Normal rules do not apply. Because they lack cell-mediated immunity (CD4 T-cells), they require aggressive, comprehensive testing from respiratory samples to look for opportunistic infections that a healthy person would instantly fight off:</p>
 <ul><li><strong>Routine Aerobic bacterial culture</strong></li><li><strong>Fungal stain and culture</strong> (looking for deadly invasive Aspergillosis or Histoplasmosis )</li><li><strong>Mycobacterial stain (Acid Fast) and culture</strong> (for TB)</li><li><strong>Viral culture</strong></li><li><strong>Pneumocystis jirovecii staining:</strong> A classic, deadly fungal pneumonia seen almost exclusively in advanced HIV/AIDS patients when their CD4 count drops below 200.</li><li><strong>Legionella culture</strong></li></ul>
 <p>Quick Quiz</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-35">
           <summary>35 Lower Respiratory Tract Infections (LRTIs)</summary>
           <p>Microbiology - mobile-friendly and focused practice.</p>
 <p><strong>Privacy:</strong> Your details are used only for quiz tracking and certificates.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-36">
           <summary>36 Lower Respiratory Tract Infections (LRTIs)</summary>
           <p>Microbiology</p>
 <p>Here is your quick performance summary.</p>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-37">
           <summary>37 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Lower Respiratory Tract Infections (RTI)</strong> as a practical nursing topic, not only a memorized definition. Link cause, transmission, incubation, clinical features, treatment support and prevention.</p>
 <ul><li><strong>What to understand first:</strong> define lower respiratory tract infections (rti), identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-38">
           <summary>38 Assessment Guide</summary>
           <ul><li>Temperature, pulse, respiratory status, hydration, pain, rash, wounds, stool, urine or sputum changes.</li><li>Exposure history, travel, contacts, vaccination status and comorbidities.</li><li>Specimen orders, isolation needs, antimicrobial history and danger signs.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-39">
           <summary>39 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use standard precautions and transmission-based precautions where needed.</li><li>Support hydration, nutrition, medicines, monitoring and early referral for severe disease.</li><li>Teach prevention, adherence, hygiene, safe water, vector control or contact tracing as relevant.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> Symptoms improve, complications are detected early, transmission risk is reduced and treatment is completed correctly.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-40">
           <summary>40 Patient Teaching and Revision Check</summary>
           <ul><li>Explain lower respiratory tract infections (rti) in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Lower%20Respiratory%20Tract%20Infections%20(RTI)%20Microbiology%20nursing%20lecture" title="Lower Respiratory Tract Infections (RTI) YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (1)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Respiratory-System-Anatomy-and-Physiology-Nursing-Study-Guide.webp" alt="Respiratory System Anatomy And Physiology Nursing Study Guide" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Respiratory System Anatomy And Physiology Nursing Study Guide</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Lower%20Respiratory%20Tract%20Infections%20(RTI)%20Microbiology%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Lower%20Respiratory%20Tract%20Infections%20(RTI)%20Microbiology%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,56 @@
         <p>The Respiratory system should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 43 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Introduction to the Respiratory System</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Key Processes of Respiration:</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Anatomy of the Respiratory System</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Nose and Nasal Cavity</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Functions of the Nose and Nasal Cavity:</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Pharynx (Throat)</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Divisions of the Pharynx:</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Functions of the Pharynx:</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Larynx (Voice Box)</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Vocal Cords:</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Functions of the Larynx:</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Trachea (Windpipe)</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Functions of the Trachea:</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Bronchi and the Bronchial Tree</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Primary Bronchi:</a>
+          <a href="#section-16" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Respiratory Bronchioles and Alveoli:</a>
+          <a href="#section-17" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Respiratory Zone: Alveoli</a>
+          <a href="#section-18" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Bronchial Tree:</a>
+          <a href="#section-19" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Structural Changes Down the Tree:</a>
+          <a href="#section-20" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Lungs and Pleura</a>
+          <a href="#section-21" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Gross Anatomy:</a>
+          <a href="#section-22" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Pleura:</a>
+          <a href="#section-23" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Breathing (Pulmonary Ventilation):</a>
+          <a href="#section-24" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Muscles of Respiration:</a>
+          <a href="#section-25" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Breathing Cycle:</a>
+          <a href="#section-26" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Lung Volumes and Capacities</a>
+          <a href="#section-27" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Gas Exchange (External and Internal Respiration)</a>
+          <a href="#section-28" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Gas Transport in Blood (Transport of Gases in the Bloodstream)</a>
+          <a href="#section-29" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Oxygen Transport:</a>
+          <a href="#section-30" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Carbon Dioxide Transport:</a>
+          <a href="#section-31" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Control of Respiration</a>
+          <a href="#section-32" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Neural Control:</a>
+          <a href="#section-33" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Chemical Control (Chemoreceptors):</a>
+          <a href="#section-34" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Regulation of Breathing(Control of Respiration)</a>
+          <a href="#section-35" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Factors Influencing Respiration:</a>
+          <a href="#section-36" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Consequences of Ageing on the Respiratory System:</a>
+          <a href="#section-37" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Physiological Variables Affecting Breathing</a>
+          <a href="#section-38" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Ageing and the Respiratory System</a>
+          <a href="#section-39" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Common Deviations from Normal Structure and Function (Disorders)</a>
+          <a href="#section-40" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-41" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-42" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-43" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Introduction to the Respiratory System</summary>
           <p>The respiratory system is a group of organs and tissues responsible for breathing. Its primary role is to provide a continuous supply of oxygen from the atmospheric air to the body&#39;s cells and to remove the waste product, carbon dioxide. This process is essential for cellular respiration, the metabolic process that generates ATP (energy) for all cellular activities.</p>
 <p>The respiratory system is responsible for breathing (moving air in and out of the lungs) and exchanging gases (oxygen and carbon dioxide).</p>
@@ -95,19 +156,19 @@
 <p><strong>Air Conditioning:</strong> The air we breathe from the environment can be cold, dry, dirty, or have different temperatures. As air travels through the air passages to the lungs, it is warmed or cooled to body temperature, moistened (saturated with water vapour), and filtered (cleaned) of dust, microbes, and other particles. This prepares the air before it reaches the delicate lungs.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Key Processes of Respiration:</summary>
           <p>The overall process of respiration involves four distinct events:</p>
 <ul><li><strong>Pulmonary Ventilation (Breathing):</strong> The mechanical process of moving air into and out of the lungs.</li><li><strong>External Respiration:</strong> The exchange of gases (oxygen and carbon dioxide) between the air in the alveoli of the lungs and the blood in the pulmonary capillaries.</li><li><strong>Transport of Respiratory Gases:</strong> The cardiovascular system transports oxygen from the lungs to the body tissues and carbon dioxide from the tissues back to the lungs.</li><li><strong>Internal Respiration:</strong> The exchange of gases between the blood in the systemic capillaries and the body&#39;s tissue cells.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Anatomy of the Respiratory System</summary>
           <p>The organs of the respiratory system are commonly divided into two tracts:</p>
 <ul><li><strong>Upper Respiratory Tract:</strong> Includes the nose, nasal cavity, pharynx, and associated structures.</li><li><strong>Lower Respiratory Tract:</strong> Includes the larynx, trachea, bronchi, and lungs.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 The Nose and Nasal Cavity</summary>
           <p>The nose is the main route for air entry into the respiratory system.</p>
 <p><strong>Location:</strong> The nose is on the face, and the nasal cavity is a large space behind the nose, divided into two sides by a wall called the septum.</p>
@@ -115,29 +176,29 @@
 <ul><li><strong>Septum:</strong> The anterior part is made of hyaline cartilage, while the posterior bony part is formed by the vomer and the perpendicular plate of the ethmoid bone.</li><li><strong>Roof:</strong> Formed by the cribriform plate of the ethmoid bone and parts of the sphenoid, frontal, and nasal bones.</li><li><strong>Floor:</strong> Formed by the hard palate (composed of the maxilla and palatine bones) and the muscular soft palate.</li><li><strong>Walls:</strong> The lateral walls are formed by the maxilla, ethmoid bone, and the inferior nasal conchae. The medial wall is the septum.</li><li><strong>Conchae (or Turbinates):</strong> Three bony projections (superior, middle, and inferior) on each lateral wall that greatly increase the surface area and create turbulence in the inhaled air.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Functions of the Nose and Nasal Cavity:</summary>
           <ul><li><strong>Warming:</strong> The nasal cavity is lined with a mucous membrane that has an immense blood supply (high vascularity). As air flows past, it is rapidly warmed. This high vascularity is also why nosebleeds (epistaxis) can result in significant blood loss.</li><li><strong>Filtering and Cleaning:</strong> Coarse hairs in the nostrils (anterior nares) trap larger particles. Smaller particles like dust and bacteria are trapped in the sticky mucus.</li><li><strong>Humidification:</strong> As air travels over the moist mucosal surface, it becomes saturated with water vapor, preventing the delicate lung tissues from drying out.</li><li><strong>Olfaction (Sense of Smell):</strong> The roof of the nasal cavity contains the olfactory epithelium, where receptors for the sense of smell are located.</li><li><strong>Protective Reflex:</strong> Irritation of the nasal mucosa triggers the sneeze reflex, a forceful expulsion of air to clear the passages of irritants.</li><li><strong>Passageway for air:</strong> Air enters through the nostrils (anterior nares) and passes through the nasal cavity to the back of the throat (pharynx).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 The Pharynx (Throat)</summary>
           <p>The pharynx is a muscular tube, approximately 12-14 cm long, that serves as a passageway for both air and food. It extends from the base of the skull to the level of the 6th cervical vertebra.</p>
 <p><strong>Location:</strong> The tube at the back of the mouth and nasal cavity, extending down to the oesophagus and larynx.</p>
 <p><strong>Structure:</strong> Divided into three parts (nasopharynx, oropharynx, laryngopharynx). It has a lining that changes from ciliated (in the nasopharynx, continuous with the nose) to stratified squamous epithelium (in the oropharynx and laryngopharynx, continuous with the mouth) for protection from food. It contains muscle in its walls.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Divisions of the Pharynx:</summary>
           <ul><li><strong>Nasopharynx:</strong> The superior portion, located directly behind the nasal cavity. It is an air-only passageway. The pharyngeal tonsils (adenoids) and the openings of the auditory (Eustachian) tubes are located here.</li><li><strong>Oropharynx:</strong> The middle portion, located behind the oral cavity. It is a common passageway for both food and air. The palatine tonsils are found on its lateral walls.</li><li><strong>Laryngopharynx:</strong> The inferior portion, extending from the epiglottis to the larynx. It is also a common passageway for food and air, and it is where the respiratory and digestive pathways diverge.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Functions of the Pharynx:</summary>
           <ul><li><strong>Passageway for Air and Food:</strong> Directs air towards the larynx and food towards the esophagus.</li><li><strong>Warming and Humidifying:</strong> Continues the process started in the nasal cavity.</li><li><strong>Hearing:</strong> The auditory tubes open into the nasopharynx, allowing pressure to be equalized between the middle ear and the atmosphere, which is crucial for protecting the eardrum.</li><li><strong>Protection:</strong> The tonsils (lymphoid tissue) provide immune surveillance against inhaled or ingested pathogens.</li><li><strong>Speech:</strong> The pharynx acts as a resonating chamber, helping to give the voice its unique characteristics.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 The Larynx (Voice Box)</summary>
           <p>The larynx is a complex cartilaginous structure that connects the pharynx to the trachea.</p>
 <p><strong>Location:</strong> Situated at the top of the trachea, in front of the pharynx.</p>
@@ -145,32 +206,32 @@
 <ul><li><strong>Thyroid Cartilage:</strong> The largest cartilage, made of hyaline cartilage. Its anterior projection forms the laryngeal prominence, commonly known as the <strong>Adam&#39;s apple</strong> , which is more prominent in males after puberty.</li><li><strong>Cricoid Cartilage:</strong> A ring-shaped hyaline cartilage located below the thyroid cartilage. It is the only complete ring of cartilage in the airway.</li><li><strong>Arytenoid Cartilages:</strong> Paired, pyramid-shaped hyaline cartilages that anchor the vocal cords.</li><li><strong>Epiglottis:</strong> A leaf-shaped elastic cartilage. During swallowing, the larynx moves superiorly, and the epiglottis tips down to cover the laryngeal opening, preventing food and drink from entering the trachea.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Vocal Cords:</summary>
           <p>The larynx contains two pairs of mucosal folds:</p>
 <ul><li><strong>True Vocal Cords (Vocal Folds):</strong> Vibrate as air is expelled from the lungs, producing sound.</li><li><strong>False Vocal Cords (Vestibular Folds):</strong> Superior to the true vocal cords; they do not produce sound but help close the glottis during swallowing.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 Functions of the Larynx:</summary>
           <ul><li><strong>Production of Sound (Phonation):</strong> Sound is produced when the true vocal cords vibrate. Pitch is controlled by the length and tension of the cords; volume is determined by the force of air passing over them; resonance is created by the pharynx, mouth, nasal cavity, and paranasal sinuses.</li><li><strong>Protection of the Lower Respiratory Tract:</strong> The epiglottis acts as a switching mechanism to route food and air into their proper channels.</li><li><strong>Passageway for Air:</strong> Provides an open (patent) airway between the pharynx and trachea.</li><li><strong>Air Conditioning:</strong> Continues to warm, filter, and humidify inspired air.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-12">
           <summary>12 The Trachea (Windpipe)</summary>
           <p>The trachea is a flexible tube, about 10-12 cm long, that extends from the larynx into the mediastinum, where it divides into the two primary bronchi.</p>
 <p><strong>Structure:</strong> The wall of the trachea is composed of three layers and is supported by 16-20 C-shaped rings of hyaline cartilage.</p>
 <ul><li>The cartilage rings are incomplete posteriorly, where the trachea lies against the esophagus. This allows the esophagus to expand as food is swallowed.</li><li>The open posterior part is spanned by the trachealis muscle (smooth muscle) and connective tissue.</li><li><strong>Mucociliary Escalator:</strong> The inner lining of the trachea is ciliated columnar epithelium containing mucus-secreting goblet cells. The cilia beat continuously in an upward direction, propelling mucus loaded with debris toward the pharynx, where it can be swallowed or coughed out.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-13">
           <summary>13 Functions of the Trachea:</summary>
           <ul><li><strong>Support and Patency:</strong> The cartilage rings keep the trachea permanently open to allow the free passage of air.</li><li><strong>Mucociliary Escalator:</strong> Traps and removes particles from the airway.</li><li><strong>Cough Reflex:</strong> Nerve endings in the trachea are sensitive to irritation and can trigger a powerful cough to expel irritants.</li><li><strong>Air Conditioning:</strong> Continues warming, filtering, and humidifying air.</li></ul>
 <p><strong>Functions related to respiration:</strong></p>
 <ul><li><strong>Passageway for air:</strong> Carries air from the larynx to the bronchi.</li><li><strong>Support and Patency:</strong> The cartilage rings ensure the airway stays open.</li><li><strong>Mucociliary Escalator:</strong> The ciliated lining and mucus trap particles and sweep them upwards towards the larynx, where they are swallowed or coughed up. This is a very important cleaning mechanism.</li><li><strong>Cough Reflex:</strong> If the lining is irritated, it triggers a cough, which forcefully expels air and irritants from the airway.</li><li><strong>Warming, humidifying, and filtering:</strong> Continues air conditioning.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-14">
           <summary>14 The Bronchi and the Bronchial Tree</summary>
           <p>The trachea divides at a point called the <strong>carina</strong> into the right and left primary bronchi.</p>
 <p><strong>Location:</strong> The trachea splits into two main tubes called primary bronchi (one to each lung). These then branch repeatedly into smaller and smaller tubes within the lungs, like branches of a tree.</p>
@@ -180,19 +241,19 @@
 <ul><li><strong>Passageway for air:</strong> Carry air from the trachea deep into the lungs.</li><li><strong>Control of Air Entry:</strong> The smooth muscle in the walls can contract (narrowing - bronchoconstriction) or relax (widening - bronchodilation), controlling how much air flows into the lungs. This is controlled by the nervous system.</li><li><strong>Protection:</strong> Mucociliary escalator (in larger bronchi) continues cleaning.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-15">
           <summary>15 Primary Bronchi:</summary>
           <ul><li><strong>Right Primary Bronchus:</strong> Wider, shorter, and more vertical than the left. As a result, inhaled foreign objects are more likely to become lodged in the right bronchus.</li><li><strong>Left Primary Bronchus:</strong> Longer, narrower, and more horizontal.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-16">
           <summary>16 Respiratory Bronchioles and Alveoli:</summary>
           <p><strong>Location:</strong> The smallest bronchioles lead to even tinier tubes called respiratory bronchioles, which end in clusters of air sacs called alveoli (singular: alveolus). These are the very small, delicate parts of the lungs.</p>
 <p><strong>Structure:</strong></p>
 <ul><li><strong>Alveoli:</strong> Tiny, thin-walled sacs (like tiny balloons) where gas exchange happens. An adult lung has about 150 million alveoli, providing a huge surface area for gas exchange.</li><li><strong>Respiratory Membrane:</strong> The thin barrier between the air in the alveoli and the blood in the capillaries. It&#39;s made of the single cell layer of the alveolar wall and the single cell layer of the capillary wall, fused together. This very thin barrier (about 0.5 µm thick) is essential for quick gas diffusion.</li><li><strong>Surfactant:</strong> The lining of the alveoli is covered with a watery film. Special cells in the alveoli (septal cells) produce a substance called surfactant, which is a fat-protein mixture. Surfactant reduces the surface tension of the watery film, preventing the alveoli from collapsing completely between breaths and making it easier to inflate the lungs.</li><li><strong>Capillary Network:</strong> Each alveolus is surrounded by a dense network of tiny blood vessels called capillaries.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-17">
           <summary>17 The Respiratory Zone: Alveoli</summary>
           <p>The respiratory zone is where gas exchange occurs. It consists of respiratory bronchioles, alveolar ducts, and alveoli (air sacs).</p>
 <p><strong>Alveoli:</strong> The primary sites of gas exchange. There are millions of alveoli in the lungs, providing an enormous surface area. They are surrounded by a dense network of pulmonary capillaries.</p>
@@ -201,18 +262,18 @@
 <p><strong>Surfactant:</strong> A detergent-like fluid secreted by Type II pneumocytes in the alveoli. It reduces the surface tension of the alveolar fluid, which is crucial for preventing the alveoli from collapsing during expiration.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-18">
           <summary>18 The Bronchial Tree:</summary>
           <p>Upon entering the lungs at the hilum, the primary bronchi subdivide into a branching network of airways.</p>
 <p>Primary Bronchi → Secondary (Lobar) Bronchi → Tertiary (Segmental) Bronchi → Bronchioles → Terminal Bronchioles.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-19">
           <summary>19 Structural Changes Down the Tree:</summary>
           <ul><li><strong>Cartilage:</strong> The amount of cartilage decreases, transitioning from rings to irregular plates, and is absent in the bronchioles.</li><li><strong>Smooth Muscle:</strong> The amount of smooth muscle increases relative to the diameter of the airway. This allows for the regulation of airflow (bronchodilation and bronchoconstriction).</li><li><strong>Epithelium:</strong> The lining changes from ciliated columnar to cuboidal epithelium, and goblet cells disappear in the smaller airways.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-20">
           <summary>20 The Lungs and Pleura</summary>
           <p>The lungs are paired, cone-shaped organs that occupy most of the thoracic cavity.</p>
 <p><strong>Location:</strong> There are two lungs, one on each side of the chest, filling most of the thoracic cavity.</p>
@@ -221,18 +282,18 @@
 <p><strong>Pulmonary Blood Supply:</strong> The lungs receive blood from the heart through the pulmonary artery (carrying deoxygenated blood from the right ventricle). This artery branches extensively within the lungs, forming the capillary networks around the alveoli. Oxygenated blood returns to the heart through the pulmonary veins (entering the left atrium).</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-21">
           <summary>21 Gross Anatomy:</summary>
           <ul><li><strong>Apex:</strong> The superior tip of the lung.</li><li><strong>Base:</strong> The inferior surface that rests on the diaphragm.</li><li><strong>Lobes:</strong> The right lung is larger and is divided into three lobes (superior, middle, inferior). The left lung is smaller to accommodate the heart (cardiac notch) and has only two lobes (superior, inferior).</li><li><strong>Hilum:</strong> An indentation on the medial surface where the primary bronchi, pulmonary blood vessels, lymphatic vessels, and nerves enter and leave the lung.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-22">
           <summary>22 The Pleura:</summary>
           <p>The lungs are enclosed by a double-layered serous membrane called the pleura.</p>
 <ul><li><strong>Parietal Pleura:</strong> Lines the thoracic wall and the superior surface of the diaphragm.</li><li><strong>Visceral Pleura:</strong> Covers the external surface of the lungs.</li><li><strong>Pleural Cavity:</strong> A potential space between the two layers containing a thin film of pleural fluid. This fluid acts as a lubricant, allowing the lungs to glide smoothly during breathing, and creates surface tension that helps keep the lungs inflated.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-23">
           <summary>23 Breathing (Pulmonary Ventilation):</summary>
           <p>The process of moving air into the lungs (inspiration) and out of the lungs (expiration). This happens because of changes in the volume and pressure inside the chest cavity, driven by the muscles of breathing. Air always flows from an area of higher pressure to an area of lower pressure.</p>
 <p><strong>Inspiration (Breathing In):</strong> This is an active process requiring muscle contraction. The main muscles are the diaphragm (a dome-shaped muscle below the lungs) and the external intercostal muscles (between the ribs).</p>
@@ -242,22 +303,22 @@
 <p><strong>Forced Breathing:</strong> During exercise or difficulty breathing, other muscles (accessory muscles) help increase the chest volume during inspiration and actively push air out during expiration (using internal intercostal and abdominal muscles).</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-24">
           <summary>24 Muscles of Respiration:</summary>
           <ul><li><strong>Diaphragm:</strong> A dome-shaped muscle that forms the floor of the thoracic cavity. It is the primary muscle of inspiration.</li><li><strong>Intercostal Muscles:</strong> Muscles located between the ribs. <strong>External Intercostals:</strong> Elevate the rib cage during inspiration.</li><li><strong>Internal Intercostals:</strong> Depress the rib cage during forced expiration.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-25">
           <summary>25 The Breathing Cycle:</summary>
           <ul><li><strong>Inspiration (Inhalation):</strong> An active process. The diaphragm contracts and flattens, and the external intercostal muscles contract, lifting the rib cage up and out. This increases the volume of the thoracic cavity, which decreases the pressure inside the lungs. Air flows into the lungs, down its pressure gradient.</li><li><strong>Expiration (Exhalation):</strong> A passive process during quiet breathing. The diaphragm and external intercostals relax. The natural elasticity of the lungs causes them to recoil, decreasing the thoracic volume and increasing the pressure inside. Air flows out of the lungs. Forced expiration is an active process involving the internal intercostals and abdominal muscles.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-26">
           <summary>26 Lung Volumes and Capacities</summary>
           <ul><li><strong>Tidal Volume (TV):</strong> The amount of air inhaled or exhaled with each normal breath at rest (~500 mL).</li><li><strong>Inspiratory Reserve Volume (IRV):</strong> The extra volume of air that can be forcibly inhaled after a normal tidal inspiration.</li><li><strong>Expiratory Reserve Volume (ERV):</strong> The extra volume of air that can be forcibly exhaled after a normal tidal expiration.</li><li><strong>Residual Volume (RV):</strong> The volume of air that remains in the lungs even after a maximal exhalation. This keeps the alveoli open.</li><li><strong>Vital Capacity (VC):</strong> The maximum amount of air that can be exhaled after a maximal inhalation (VC = TV + IRV + ERV).</li><li><strong>Total Lung Capacity (TLC):</strong> The maximum amount of air the lungs can hold (TLC = VC + RV).</li><li><strong>Anatomical Dead Space:</strong> The volume of air that remains in the conducting airways (trachea, bronchi) and does not participate in gas exchange (~150 mL).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-27">
           <summary>27 Gas Exchange (External and Internal Respiration)</summary>
           <p>This happens in two places:</p>
 <p><strong>External Respiration (at the Lungs):</strong> Exchange of gases between the air in the alveoli and the blood in the pulmonary capillaries.</p>
@@ -270,106 +331,118 @@
 <ul><li>Blood arriving at the tissues is high in oxygen and low in carbon dioxide.</li><li>Oxygen moves from the blood in the capillaries (where oxygen concentration is high) into the body tissues (where it&#39;s low) by diffusion.</li><li>Carbon dioxide (a waste product of cell activity) moves from the body tissues (where carbon dioxide concentration is high) into the blood in the capillaries (where it&#39;s low) by diffusion.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-28">
           <summary>28 Gas Transport in Blood (Transport of Gases in the Bloodstream)</summary>
           <ul><li><strong>Oxygen:</strong> Mostly carried bound to haemoglobin inside red blood cells. A small amount is dissolved in plasma. Haemoglobin picks up oxygen in the lungs and releases it in the tissues where it is needed.</li><li><strong>Carbon Dioxide:</strong> Carried in the blood in three ways: mostly as bicarbonate ions in the plasma, some bound to haemoglobin, and a small amount dissolved in plasma. Carbon dioxide is picked up in the tissues and transported to the lungs to be breathed out.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-29">
           <summary>29 Oxygen Transport:</summary>
           <ul><li><strong>98.5%</strong> is bound to hemoglobin (Hb) in red blood cells, forming oxyhemoglobin (HbO₂).</li><li><strong>1.5%</strong> is dissolved in the plasma.</li><li>The binding of oxygen to hemoglobin is reversible. Factors that promote the release (dissociation) of oxygen at the tissues include: low PO₂, high PCO₂, low pH (acidity), and high temperature.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-30">
           <summary>30 Carbon Dioxide Transport:</summary>
           <ul><li><strong>70%</strong> is transported as bicarbonate ions (HCO₃⁻) in the plasma. This is the most important mechanism and plays a crucial role in buffering blood pH.</li><li><strong>23%</strong> is bound to hemoglobin, forming carbaminohemoglobin.</li><li><strong>7%</strong> is dissolved in the plasma.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-31">
           <summary>31 Control of Respiration</summary>
           <p>Breathing is largely an involuntary process controlled by respiratory centers in the brainstem.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-32">
           <summary>32 Neural Control:</summary>
           <ul><li><strong>Medulla Oblongata:</strong> Contains the primary respiratory rhythmicity center that sets the basic pace and rhythm of breathing.</li><li><strong>Pons:</strong> Contains centers (pneumotaxic and apneustic) that modify and fine-tune the breathing rhythm.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-33">
           <summary>33 Chemical Control (Chemoreceptors):</summary>
           <p>These receptors monitor chemical changes in the blood and cerebrospinal fluid (CSF) and send signals to the respiratory centers.</p>
 <ul><li><strong>Central Chemoreceptors:</strong> Located in the medulla, they are highly sensitive to changes in PCO₂ (and thus pH) of the CSF. An increase in PCO₂ is the most powerful stimulus for increasing the rate and depth of breathing.</li><li><strong>Peripheral Chemoreceptors:</strong> Located in the aortic arch and carotid arteries. They are sensitive to changes in blood PCO₂, pH, and, to a lesser extent, PO₂.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-34">
           <summary>34 Regulation of Breathing(Control of Respiration)</summary>
           <p>Beyond the main neural centers and chemoreceptors, several other factors can influence the rate and depth of breathing.</p>
 <p>Breathing is mostly an involuntary process controlled by the brain, but you can consciously control it sometimes (e.g., when speaking).</p>
 <ul><li>The main control center is in the brainstem (medulla and pons), called the respiratory centre. It sends signals to the breathing muscles.</li><li>Chemoreceptors in the brain and large arteries (aorta and carotid arteries) sense the levels of oxygen and carbon dioxide in the blood.</li><li>If carbon dioxide levels rise or oxygen levels fall, these chemoreceptors send signals to the respiratory centre, telling it to increase the rate and depth of breathing to correct the levels. The body is very sensitive to changes in carbon dioxide levels.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-35">
           <summary>35 Factors Influencing Respiration:</summary>
           <ul><li><strong>Exercise:</strong> During physical activity, the body&#39;s demand for oxygen increases, and the production of carbon dioxide by exercising muscles rises significantly. This increased PCO₂ is a powerful stimulus for both central and peripheral chemoreceptors, leading to an increase in both the rate and depth of respiration to meet the metabolic needs of the muscles.</li><li><strong>Higher Brain Centers:</strong> Although breathing is largely involuntary, we have conscious control over it through the cerebral cortex. This allows for activities like: <strong>Speech and Singing:</strong> We intentionally manipulate our breathing patterns to produce sound.</li><li><strong>Emotional Displays:</strong> Strong emotions like crying, laughing, fear, or anxiety can significantly alter the breathing pattern via the limbic system and hypothalamus.</li><li><strong>Drugs:</strong> Certain substances can affect the respiratory centers. Sedatives, alcohol, and opioids (like morphine) can depress the respiratory center, leading to slower, shallower breathing.</li><li><strong>Body Temperature:</strong> The metabolic rate of the body is linked to temperature. In a fever (hyperthermia), metabolic rate increases, leading to increased respiration.</li><li>In low body temperature (hypothermia), metabolic and respiratory rates are depressed.</li><li><strong>Other Reflexes:</strong> Activities like swallowing, sneezing, and coughing cause temporary changes in the respiratory pattern to protect the airways.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-36">
           <summary>36 Consequences of Ageing on the Respiratory System:</summary>
           <ul><li>The elasticity of the lungs decreases, reducing their ability to recoil passively during expiration.</li><li>The chest wall becomes more rigid, and respiratory muscles weaken, which can decrease the vital capacity.</li><li>The sensitivity of chemoreceptors may decline.</li><li>There is a higher risk of respiratory infections like pneumonia due to a less efficient mucociliary escalator and a decline in immune function.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-37">
           <summary>37 Physiological Variables Affecting Breathing</summary>
           <p>For pulmonary ventilation to be effective, three key physical factors must be considered. These factors determine the effort required to breathe.</p>
 <ul><li><strong>Elasticity:</strong> This is the natural ability of the lung tissue to recoil, or return to its normal shape, after being stretched during inspiration. The elastic fibers in the lung&#39;s connective tissue are responsible for this property. Elastic recoil is the primary driving force behind quiet, passive expiration. Clinical Correlation: In diseases like emphysema, the elastic tissue is destroyed, leading to a loss of elasticity. This makes expiration difficult and requires muscular effort (forced expiration).</li><li><strong>Compliance:</strong> This is a measure of the &quot;stretchability&quot; of the lungs, or the ease with which the lungs and thoracic wall can be expanded. It describes the effort required to inflate the alveoli. <strong>High Compliance:</strong> Means the lungs stretch easily (like a well-used balloon).</li><li><strong>Low Compliance:</strong> Means the lungs resist expansion and require more effort to inflate (like a new, stiff balloon). Compliance can be decreased by conditions that make the lungs stiffer, such as pulmonary fibrosis (scarring) or a lack of surfactant.</li><li><strong>Airway Resistance:</strong> This is the friction or drag that air encounters as it flows through the respiratory passages. The diameter of the airways is the most important factor determining resistance. <strong>Bronchodilation:</strong> An increase in the diameter of the bronchioles (caused by sympathetic stimulation) decreases resistance and allows for greater airflow.</li><li><strong>Bronchoconstriction:</strong> A decrease in the diameter of the bronchioles (caused by parasympathetic stimulation, histamine, or irritants) increases resistance and makes breathing more difficult.</li></ul>
 <p>Clinical Correlation: In asthma, inflammation and bronchoconstriction dramatically increase airway resistance, leading to wheezing and difficulty breathing.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-38">
           <summary>38 Ageing and the Respiratory System</summary>
           <p>As people get older, changes naturally occur in the respiratory system:</p>
 <ul><li>The lungs become less elastic, making it harder to breathe out effectively. This can cause smaller airways to collapse.</li><li>The rib cage becomes stiffer, and the breathing muscles may become weaker, reducing the amount of air that can be moved in and out of the lungs.</li><li>The mucus production may decrease, and the cilia may become less effective at clearing mucus and particles, increasing the risk of infections.</li><li>The reflexes (like coughing) may become less sensitive.</li><li>The body&#39;s response to low oxygen or high carbon dioxide may become less efficient.</li></ul>
 <p>These changes can make older adults more prone to breathing problems and infections.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-39">
           <summary>39 Common Deviations from Normal Structure and Function (Disorders)</summary>
           <p>When parts of the respiratory system are not working normally, it leads to symptoms like coughing, difficulty breathing (dyspnoea), wheezing, chest pain, and fever. Disorders can affect different parts of the system:</p>
 <ul><li><strong>Upper Respiratory Tract Infections:</strong> Common infections like the common cold (usually viral, causes runny nose, sore throat) and influenza (viral, more severe symptoms like fever, muscle pain). Can also include sinusitis (inflammation of sinuses) and tonsillitis (inflammation of tonsils).</li><li><strong>Laryngitis:</strong> Inflammation of the larynx, often causing hoarseness or loss of voice.</li><li><strong>Bronchitis:</strong> Inflammation of the bronchi. Can be acute (often follows a cold, with cough) or chronic (long-term, with persistent cough and mucus, often due to smoking). Chronic bronchitis involves increased mucus and narrowing airways.</li><li><strong>Emphysema:</strong> Damage to the walls of the alveoli, causing them to lose elasticity and break down. This reduces the surface area for gas exchange and makes it hard to breathe out, trapping air in the lungs. Often linked to smoking.</li><li><strong>Asthma:</strong> A condition where the airways (bronchioles) become inflamed and narrow temporarily (bronchoconstriction) in response to certain triggers (like allergens or cold air). This makes it difficult to breathe, causing wheezing and shortness of breath. It involves inflammation, increased mucus, and muscle tightening in the airways.</li><li><strong>Pneumonia:</strong> An infection of the alveoli in the lungs, where air sacs fill with fluid and pus, making gas exchange difficult. It can be caused by bacteria, viruses, or fungi.</li><li><strong>Tuberculosis (TB):</strong> A serious bacterial infection of the lungs (though it can affect other body parts). It is caused by Mycobacterium tuberculosis and leads to inflammation and damage in the lung tissue.</li><li><strong>Lung Collapse (Atelectasis):</strong> Occurs when a part of the lung (or the whole lung) deflates or collapses. Can be caused by a blockage in an airway (preventing air from reaching that part) or by air or fluid building up in the space outside the lung (pleural cavity), pushing on the lung.</li><li><strong>Pneumothorax:</strong> Air in the pleural cavity, causing the lung to collapse. Can happen spontaneously or due to injury.</li><li><strong>Pleural Effusion:</strong> Excess fluid in the pleural cavity, causing the lung to collapse. Can be due to heart failure, infection, or other conditions.</li><li><strong>Pneumoconioses:</strong> Lung diseases caused by inhaling dusts (like coal dust - coal worker&#39;s pneumoconiosis, or silica dust - silicosis) over a long time. Leads to inflammation and fibrosis (scarring) in the lungs, making them stiff and reducing lung function.</li><li><strong>Lung Tumours:</strong> Abnormal growths in the lung tissue. Can be benign (non-cancerous) or malignant (cancerous). Lung cancer is often linked to smoking and can grow locally or spread to other parts of the body.</li></ul>
 <p>These are just some examples of how the normal structure and function of the respiratory system can be affected, leading to different illnesses. Understanding the normal state helps us recognize when things deviate and a person needs care.</p>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-40">
           <summary>40 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>The Respiratory system</strong> as a practical nursing topic, not only a memorized definition. Start with normal structure and function, then connect it to assessment findings and disease.</p>
 <ul><li><strong>What to understand first:</strong> define the respiratory system, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-41">
           <summary>41 Assessment Guide</summary>
           <ul><li>Relevant inspection, palpation, movement, auscultation, vital signs or neurological checks.</li><li>Normal findings, abnormal findings and what each abnormality may indicate.</li><li>Patient history, risk factors and how the body system affects other systems.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-42">
           <summary>42 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use anatomy to explain symptoms and guide focused assessment.</li><li>Recognize findings that need urgent escalation.</li><li>Teach the patient using simple body-system language.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The learner can explain normal function, identify abnormal signs and connect them to nursing action.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-43">
           <summary>43 Patient Teaching and Revision Check</summary>
           <ul><li>Explain the respiratory system in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=The%20Respiratory%20system%20Anatomy%20%26%20Physiology%202%20nursing%20lecture" title="The Respiratory system YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (15)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/The-Respiratory-System.webp" alt="The Respiratory System" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">The Respiratory System</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/nasal-cavity-pharynx-larynx-trachea-bronchi-and-lungs.webp" alt="Nasal Cavity Pharynx Larynx Trachea Bronchi And Lungs" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Nasal Cavity Pharynx Larynx Trachea Bronchi And Lungs</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/nasal-septum-1-e1751966588819.webp" alt="Nasal Septum 1 E1751966588819" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Nasal Septum 1 E1751966588819</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/the-three-divisions-of-the-pharynx-1-e1751966831166.webp" alt="The Three Divisions Of The Pharynx 1 E1751966831166" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">The Three Divisions Of The Pharynx 1 E1751966831166</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/anterior-and-posterior-views-of-the-larynx-1-2.webp" alt="Anterior And Posterior Views Of The Larynx 1 2" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Anterior And Posterior Views Of The Larynx 1 2</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/nterior-view-of-the-trachea.webp" alt="Nterior View Of The Trachea" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Nterior View Of The Trachea</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/bronchial-tree-from-the-trachea-to-the-alveoli-1.webp" alt="Bronchial Tree From The Trachea To The Alveoli 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Bronchial Tree From The Trachea To The Alveoli 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/pulmonary-circulation-1-1.webp" alt="Pulmonary Circulation 1 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Pulmonary Circulation 1 1</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=The%20Respiratory%20system%20Anatomy%20%26%20Physiology%202%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <p style="color:var(--seo-muted);font-size:.85rem;margin:8px 0 0">7 more diagrams available — open the lesson for full illustrations.</p>
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=The%20Respiratory%20system%20Anatomy%20%26%20Physiology%202%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

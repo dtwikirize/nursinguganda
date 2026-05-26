@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,22 +97,43 @@
         <p>Breastfeeding and its effects on child growth and development should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 15 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nutrition in Children</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Defining Key Terms</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Classification of Foods and Nutrients</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nutritional Requirements in Children</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Breastfeeding: The Optimal Infant Nutrition</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Preparation for Breastfeeding</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Initiation of Breastfeeding</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Indicators of Adequate Breastfeeding (Signs of Sufficient Milk Intake)</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Composition of Breast Milk</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Techniques of Breastfeeding</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment of Nutritional Status</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Nutrition in Children</summary>
           <p>Balanced and sufficient nutritional intake is paramount for children. It serves multiple critical functions: promoting optimal growth and development, protecting and maintaining health, preventing nutritional deficiency conditions and various illnesses, and building reserves for periods of starvation or dietary stress. The term &#39;nutrition&#39; itself is derived from &#39;nutricus&#39;, meaning &#39;to suckle at the breast&#39;, highlighting its fundamental connection to early life sustenance.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Defining Key Terms</summary>
           <ul><li><strong>Nutrition:</strong> More broadly, nutrition is the intricate process by which consumed food is utilized for the nourishment and structural and functional efficacy of every cell in the body. In essence, it is the science that explores the relationship between food and health.</li><li><strong>Food:</strong> Refers to anything that nourishes the body, encompassing solids, liquids, and semi-solids. Food provides the essential components for growth, energy, and bodily functions.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Classification of Foods and Nutrients</summary>
           <ul><li><strong>Food Classification:</strong> Foods are typically classified based on their primary macronutrient content: proteins, fats, and carbohydrates. They also contain essential micronutrients like vitamins and minerals. Foods can be categorized by their origin, such as animal (e.g., meat, dairy) or vegetable (e.g., fruits, vegetables, grains).</li><li><strong>Nutrients:</strong> These are the organic and inorganic complexes derived from food that the body requires for proper functioning. There are approximately 50 different essential nutrients that are normally supplied through the foods we eat.</li><li><strong>Macronutrients vs. Micronutrients:</strong> <strong>Macronutrients:</strong> Needed in larger quantities, these provide energy and building blocks for the body. This category includes carbohydrates, proteins, and fats.</li><li><strong>Micronutrients:</strong> Required in much smaller amounts, these are vital for various metabolic processes, enzyme functions, and overall health. This category includes vitamins and minerals.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Nutritional Requirements in Children</summary>
           <p>Nutritional requirements vary significantly among individuals, influenced by metabolic differences, genetic predisposition, age, sex, and activity levels. It&#39;s crucial to understand that no single food, except for mother&#39;s milk (for infants), meets all the essential nutritional requirements for a baby.</p>
 <p>The primary components of a child&#39;s nutritional needs include:</p>
@@ -129,79 +162,84 @@
 <p>Minerals are inorganic elements essential for a wide range of physiological functions. They are required by the human body for growth, repair of tissues, and regulation of vital body functions. Minerals often act as catalysts in biochemical reactions, facilitating enzyme activity. More than 50 different minerals are found in the human body, all of which must be derived from the foods we eat (e.g., calcium for bones, iron for blood, zinc for immunity).</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Breastfeeding: The Optimal Infant Nutrition</summary>
           <p>Breastfeeding is widely recognized as the safest, cheapest, and best natural feeding method for infants. It comprehensively meets the nutritional, emotional, and psychological needs of the infant. Tragically, many infants in vulnerable populations die from preventable illnesses like diarrhea and acute respiratory infections partly due to insufficient breastfeeding practices. Breastfeeding offers numerous advantages:</p>
 <ul><li><strong>Nutritive Value:</strong> Breast milk contains all the essential nutrients in the right proportions needed for optimal growth and development of a baby up to 6 months of age. Its composition dynamically changes to meet the baby&#39;s evolving needs.</li><li><strong>Digestibility:</strong> Breast milk is easily digestible because it contains unique proteins that form soft curds, which are gentle on an infant&#39;s immature digestive system. It also contains the enzyme lipase, which aids in the digestion of fats and provides easily absorbable free fatty acids.</li><li><strong>Protective Value (Immunological Benefits):</strong> It is rich in critical immune factors, including IgA, IgM antibodies, macrophages, lymphocytes, lysozyme, and interferon. These components provide passive immunity, making a breastfed baby significantly less likely to develop infections, especially gastrointestinal and respiratory tract infections.</li><li><strong>Psychological Benefits:</strong> Breastfeeding promotes a profound close physical and emotional bond between mother and infant through frequent skin-to-skin contact, eye contact, and interaction, fostering security and attachment.</li><li><strong>Uterine Involution:</strong> Helps reduce the chance of postpartum hemorrhage by stimulating uterine contractions and aids in better uterine involution (the process by which the uterus returns to its pre-pregnancy size).</li><li><strong>Iron Stores Recovery:</strong> Promotes the recovery of maternal iron stores, reducing the risk of postpartum anemia.</li><li><strong>Natural Contraception:</strong> Provides a natural, though not foolproof, form of contraception, protecting the mother from pregnancy for the first 6 months, particularly when breastfeeding is carried out exclusively (Lactational Amenorrhea Method - LAM).</li><li><strong>Sense of Fulfillment:</strong> Provides a deep sense of satisfaction and fulfillment for the mother, contributing to maternal well-being.</li><li><strong>Weight Loss:</strong> Improves maternal slimming by consuming extra fat accumulated during pregnancy, as lactation requires significant energy expenditure.</li><li><strong>Convenience:</strong> It is highly convenient and time-saving, requiring no preparation, sterilization, or specific temperatures.</li><li><strong>Economical:</strong> Breastfeeding is economical, saving families significant money that would otherwise be spent on formula, bottles, and sterilization equipment.</li><li><strong>Environmental:</strong> Reduces environmental waste associated with formula production and packaging.</li><li><strong>Public Health:</strong> Contributes to healthier communities by reducing infant morbidity and mortality rates.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Preparation for Breastfeeding</summary>
           <p>Successful breastfeeding begins long before delivery:</p>
 <ul><li><strong>Antenatal Period:</strong> Preparation must begin during the antenatal period (pregnancy).</li><li><strong>Education on Benefits:</strong> Mothers should be thoroughly educated about the extensive benefits of breastfeeding for both themselves and their babies.</li><li><strong>Breast Examination:</strong> Examination of the breasts to identify any potential problems (e.g., inverted nipples) that might affect latch and provide solutions.</li><li><strong>Maternal Health:</strong> Prevention of micronutrient deficiencies in the mother, along with advice on rest, regular exercise, and hygienic measures, contributes to successful lactation.</li><li><strong>Counseling and Support:</strong> Antenatal counseling and strong family support are crucial for building the mother&#39;s confidence and preparing her for the breastfeeding journey.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Initiation of Breastfeeding</summary>
           <p>Early and proper initiation of breastfeeding is critical:</p>
 <ul><li><strong>Immediate Initiation:</strong> Breastfeeding should be initiated within the first half an hour to one hour of birth, or as soon as possible after delivery, known as &quot;immediate&quot; or &quot;early&quot; initiation.</li><li><strong>Benefits of Early Suckling:</strong> Early suckling provides warmth and security for the newborn and ensures they receive colostrum, the &quot;first milk.&quot;</li><li><strong>Exclusive Breastfeeding:</strong> Mothers should be strongly advised for exclusive breastfeeding up to 6 months. This means giving no food or drink other than breast milk to neonates.</li><li><strong>Avoidance of Supplements:</strong> This includes no water, glucose water, animal milk, gripe water, indigenous medicines, or routine vitamin and mineral drops/syrups unless medically indicated.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Indicators of Adequate Breastfeeding (Signs of Sufficient Milk Intake)</summary>
           <p>Parents can look for several signs to confirm their baby is getting enough breast milk:</p>
 <ul><li><strong>Audible Swallowing:</strong> Hearing the baby swallow during feeds.</li><li><strong>Let-down Sensation:</strong> The mother may feel a tingling or fullness as milk is released from the breast.</li><li><strong>Wet Nappies:</strong> 6 or more wet nappies (diapers) in 24 hours.</li><li><strong>Breast Changes:</strong> Breasts feeling full before a feed and noticeably softer afterwards.</li><li><strong>Bowel Movements:</strong> Frequent, soft bowel movements, typically 3-8 times in 24 hours (can decrease after the first few weeks).</li><li><strong>Average Weight Gain:</strong> Consistent and appropriate weight gain as monitored by a healthcare professional.</li><li><strong>Baby&#39;s Demeanor:</strong> Baby sleeps well, does not cry excessively, has good muscle tone, and healthy skin.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Composition of Breast Milk</summary>
           <p>Breast milk composition dynamically changes at different stages in the postnatal period to precisely fulfill the evolving needs of the baby:</p>
 <ul><li><strong>Colostrum:</strong> Secreted during the first 3 days after delivery.</li><li>Characterized by its thick, yellow appearance and small quantities.</li><li>Extremely rich in antibodies and immune cells, along with higher amounts of proteins and fat-soluble vitamins, providing crucial early protection.</li><li><strong>Transitional Milk:</strong> Secreted during the first 2 weeks of the postnatal period, following colostrum.</li><li>Bridge between colostrum and mature milk, with increased fat and sugar content as the milk volume increases.</li><li><strong>Mature Milk:</strong> Secreted from 10-12 days after delivery onwards.</li><li>Appears more watery but contains all the necessary nutrients in balanced proportions for optimal growth and development of the baby.</li><li><strong>Preterm Milk:</strong> Produced by mothers who deliver prematurely.</li><li>Contains specific nutrients and higher protein content tailored to the unique developmental needs and increased vulnerability of premature infants.</li><li><strong>Foremilk:</strong> The milk obtained at the beginning of a feed.</li><li>It is more watery and contains more proteins, sugar (lactose), vitamins, and minerals, primarily quenching the baby&#39;s thirst.</li><li><strong>Hindmilk:</strong> The milk obtained towards the end of a feed, after the foremilk.</li><li>Provides significantly more fat and thus more energy, crucial for the baby&#39;s growth and satiety. It&#39;s important for babies to get enough hindmilk.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Techniques of Breastfeeding</summary>
           <p>Proper technique ensures comfortable and effective breastfeeding for both mother and baby:</p>
 <ul><li><strong>Maternal Comfort:</strong> The mother should be comfortable and relaxed, both physically and mentally, before initiating a breastfeed.</li><li><strong>Correct Positioning:</strong> Ensure correct positioning of both the mother and the baby. The baby should be tummy-to-tummy with the mother, ear, shoulder, and hip in a straight line, and the head and body supported.</li><li><strong>Latching:</strong> Proper latching is crucial. The baby&#39;s chin should touch the breast, the cheek should touch the nipple, and the baby should open their mouth wide (rooting reflex). The nipple and most of the areola (the dark area around the nipple) should go into the baby&#39;s mouth, not just the nipple. This ensures effective milk transfer and prevents nipple soreness.</li><li><strong>Feeding Frequency:</strong> Breastfeeding can be offered at 1-2 hour intervals initially, and then on self-demand by the baby (feeding whenever the baby shows hunger cues).</li><li><strong>Duration of Feeding:</strong> The duration of a feed should be continued until the baby is satisfied and releases the breast on their own.</li><li><strong>Burping:</strong> Gently burp the baby after feeding to release swallowed air. However, if the baby has a good latch that prevents air entry, burping may not always be necessary.</li><li><strong>Post-Feeding Position:</strong> After feeding, the baby should be placed on their right side. Babies often fall asleep after feeding.</li><li><strong>Exclusive Breastfeeding Duration:</strong> Breastfeeding should be continued exclusively up to 6 months, as frequent suckling helps maintain an adequate milk supply for the baby.</li><li><strong>Complementary Feeding:</strong> At 6 months, complementary foods should be introduced, gradually and progressively, alongside continued breastfeeding up to 2 years or beyond. This is the process of transitioning the baby from solely breast milk to a varied family diet.</li><li><strong>Maternal Hygiene:</strong> The mother should maintain good hygienic measures, including daily bathing and washing breasts during baths, and wearing clean clothing to prevent contamination of breast milk.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 Assessment of Nutritional Status</summary>
           <p>The nutritional status of an individual is a complex interplay of the adequacy of food intake (both in quality and quantity) and the individual&#39;s physical health. The purpose of nutritional assessment is to detect nutritional problems early and to develop a tailored plan to meet the child&#39;s specific nutritional needs. Common methods include:</p>
 <ul><li><strong>Dietary History:</strong> Involves collecting detailed information about the child&#39;s food intake, including types and quantities of cereals, pulses (legumes), vegetables, fruits, milk, meat, fish, eggs, oils, and sugar. This provides insight into dietary patterns and potential deficiencies or excesses.</li><li><strong>Clinical Examination:</strong> A thorough head-to-toe physical examination is performed to detect clinical signs of nutritional deficiency states. These can include hair changes (e.g., sparse, discolored hair in protein deficiency), anemia (pale conjunctiva), edema (swelling, often in severe protein deficiency), bleeding gums (Vitamin C deficiency), dental caries (poor oral hygiene/sugar intake), and enlarged thyroid gland (iodine deficiency).</li><li><strong>Anthropometry:</strong> A very valuable and widely used index for evaluating nutritional status. It involves taking precise body measurements, which are then compared to standardized growth charts. Key anthropometric measurements include: <strong>Height/Length:</strong> For assessing linear growth and identifying stunting.</li><li><strong>Weight:</strong> For assessing overall nutritional status and identifying underweight or overweight.</li><li><strong>Skinfold Thickness:</strong> Measures subcutaneous fat, indicating body fat reserves.</li><li><strong>Arm Circumference:</strong> Mid-upper arm circumference (MUAC) is a quick screening tool for acute malnutrition.</li><li><strong>Head Circumference:</strong> Important for infants and toddlers as an indicator of brain growth.</li><li><strong>Chest Circumference:</strong> Less commonly used alone but can be part of overall body proportion assessment.</li><li><strong>Biochemical Evaluation and Lab Tests:</strong> These involve the estimation of nutrient levels and their concentration in body fluids (e.g., blood tests for iron, vitamins). They can also assess enzyme levels or detect abnormal amounts of metabolites that indicate nutritional imbalances. While highly accurate, these tests are often time-consuming and expensive, usually performed in more complicated or ambiguous conditions.</li><li><strong>Functional Assessment:</strong> Emerging as an important aspect of diagnostic tools, functional assessments evaluate how nutritional status impacts the body&#39;s physiological functions. Examples include tests for nerve function (e.g., in thiamine deficiency) or assessing the working capacity of the heart (e.g., in severe malnutrition affecting cardiac muscle).</li><li><strong>Radiology:</strong> Radiological imaging can detect physical signs of nutritional deficiencies affecting skeletal health. Examples include: <strong>Retardation of Bone Age:</strong> Indicates chronic malnutrition affecting skeletal maturation.</li><li><strong>Osteoporosis:</strong> Can be seen in prolonged calcium or Vitamin D deficiency.</li><li><strong>Classical Signs of Scurvy or Rickets:</strong> Specific bone changes indicative of severe Vitamin C or Vitamin D deficiency, respectively.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-12">
           <summary>12 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Breastfeeding and its effects on child growth and development</strong> as a practical nursing topic, not only a memorized definition. Adapt assessment and care to age, weight, development, caregiver knowledge and family support.</p>
 <ul><li><strong>What to understand first:</strong> define breastfeeding and its effects on child growth and development, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-13">
           <summary>13 Assessment Guide</summary>
           <ul><li>Airway, breathing, circulation, hydration, temperature, feeding, activity and danger signs.</li><li>Weight-based medicines, immunization status, growth, development and caregiver concerns.</li><li>Signs that may be subtle in children, including lethargy, poor feeding, fast breathing or convulsions.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-14">
           <summary>14 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use age-appropriate communication and involve the caregiver.</li><li>Prevent dehydration, hypothermia, medication errors and delayed referral.</li><li>Teach home care, danger signs and follow-up clearly.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The child is clinically improving, caregiver instructions are understood and follow-up is arranged.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-15">
           <summary>15 Patient Teaching and Revision Check</summary>
           <ul><li>Explain breastfeeding and its effects on child growth and development in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Breastfeeding%20and%20its%20effects%20on%20child%20growth%20and%20development%20Paediatric%20Nursing%20(i)%20nursing%20lecture" title="Breastfeeding and its effects on child growth and development YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (1)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Breastfeeding-Nursing-Notes-Study-Guides.webp" alt="Breastfeeding Nursing Notes Study Guides" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Breastfeeding Nursing Notes Study Guides</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Breastfeeding%20and%20its%20effects%20on%20child%20growth%20and%20development%20Paediatric%20Nursing%20(i)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Breastfeeding%20and%20its%20effects%20on%20child%20growth%20and%20development%20Paediatric%20Nursing%20(i)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

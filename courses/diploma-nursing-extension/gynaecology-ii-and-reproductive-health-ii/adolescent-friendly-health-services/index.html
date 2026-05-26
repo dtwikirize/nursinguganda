@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,23 @@
         <p>Adolescent friendly health services should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (10)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">ADOLESCENT FRIENDLY HEALTH SERVICES</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Factors Restraining Adolescents from Accessing Adolescent-Friendly Health Services (ADFHS)</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Rationale for Implementing Adolescent-Friendly Services</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Objectives of Adolescent-Friendly Services:</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Potential Sites for Information and Services for Adolescents:</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Minimum Package for Adolescent-Friendly Health Services:</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 ADOLESCENT FRIENDLY HEALTH SERVICES</summary>
           <p>Adolescent-friendly health services refer to those services that are geographically accessible, affordable, acceptable, welcoming, and provide confidentiality for adolescents.</p>
 <p>These services are specifically made for the youth, addressing their reproductive health needs. They include counselling , contraceptive services , post-abortion care , Voluntary Counseling and Testing (VCT) , and STI information and management , including referrals.</p>
@@ -95,24 +123,24 @@
 <p>Adolescents and young people need to be reached with adolescent-friendly services (ADFHS) to mitigate the multiple health challenges and behavioural risks that they are faced with. This has to be done in a manner that ensures availability and accessibility by all young people including those in conflict and hard to reach areas.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Factors Restraining Adolescents from Accessing Adolescent-Friendly Health Services (ADFHS)</summary>
           <ul><li>High Cost of Health Care : Financial constraints make healthcare services less accessible for adolescents.</li><li>Long Distances to Health Units : Geographical barriers, especially in remote areas, limit physical access to health facilities.</li><li>Poor Access to Information : Limited availability of accurate health information affects adolescents’ ability to make informed decisions about their health.</li><li>Poor Transport and Communication Systems : Inadequate infrastructure hampers transportation to health facilities and communication about available services.</li><li>Poor Staffing at Service Points : Insufficient staffing levels result in delays and reduced service quality.</li><li>Negative Attitudes and Behaviours of Health Staff: Open rudeness and disrespectful behaviour by some health workers create an unwelcoming environment, discouraging adolescents from seeking assistance, particularly regarding sensitive topics such as sexually transmitted diseases (STDs).</li><li>Lack of Confidentiality : Concerns about breaches of confidentiality and unprofessional behaviour from service providers affect adolescents from using available services.</li><li>Lack of Parental Support : Adolescents may face challenges when seeking services without the support or understanding of their parents.</li><li>Scarcity of Adolescent-Friendly Services : The concentration of such services in urban areas limits accessibility for adolescents in rural settings.</li><li>Lack of Confidence in Services : Doubts about the quality and effectiveness of services contribute to hesitancy in seeking healthcare.</li><li>Shortage of Health Education (IEC): Insufficient health education leads to a lack of awareness about available services and health-related issues.</li><li>Chronic Shortages of Supplies : Limited availability of essential supplies, including contraceptives and counselling services, poses a barrier to comprehensive care.</li><li>High-Risk Behaviours: Engagement in risky behaviours, such as substance abuse, transactional sex, and homelessness, further complicates adolescents’ health challenges.</li><li>Harsh Socio-economic Conditions : Household poverty, unemployment, child labour, street children, and parental neglect create conditions that contribute to dropping out of school and high illiteracy, especially among girls.</li><li>Cultural Barriers : Traditional beliefs and practices may clash with modern healthcare, creating resistance.</li><li>Stigma and Discrimination : Fear of judgement and discrimination from the community may prevent adolescents from seeking healthcare.</li><li>Legal Restrictions : Legal constraints and age-related barriers may limit adolescents’ autonomy in accessing certain services.</li><li>Limited Youth-Friendly Spaces : Insufficient designated spaces for adolescents within health facilities hinder comfort and privacy.</li><li>Technological Gaps : Limited access to digital health resources may impede adolescents’ ability to obtain information and services online.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Rationale for Implementing Adolescent-Friendly Services</summary>
           <p>In the past, reproductive health services that had been offered to adolescents and young people through the adolescent-friendly approach were fragmented, varied and incomplete.</p>
 <p>For adolescents to achieve their full potential they need to be provided with opportunities to:</p>
 <ul><li>Live in a Safe and Supportive Environment: Foster an environment that ensures the safety and well-being of adolescents.</li><li>Acquire Accurate Information and Values about Health and Development Needs : Provide comprehensive and reliable information that aligns with the health and developmental requirements of adolescents.</li><li>Build Life Skills for Health Protection : Equip adolescents with essential life skills that empower them to protect and safeguard their health effectively.</li><li>Obtain Counselling Services : Offer counselling services to address the challenges and concerns faced by adolescents.</li><li>Access a Wide Range of Services Catering to Health Needs : Ensure accessibility to a diverse range of services specifically designed to meet the multiple health needs of adolescents.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Objectives of Adolescent-Friendly Services:</summary>
           <ul><li>Identify Critical Adolescent Health and Development Gaps : Systematically assess and address the unmet health and developmental needs of adolescents.</li><li>Promote Good Health-Seeking Behaviour in Adolescents : Encourage and instil positive health-seeking behaviours among adolescents to empower them in making informed decisions about their well-being.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Potential Sites for Information and Services for Adolescents:</summary>
           <ul><li>Home : Empower families to provide a nurturing environment that promotes open communication and support.</li><li>Health Institutions : Incorporate adolescent-friendly services within healthcare settings to ensure accessibility and confidentiality.</li><li>School : Establish health education programs within schools to impart essential knowledge and skills to adolescents.</li><li>Youth Organizations : Collaborate with youth-focused organizations to reach adolescents through community engagement and targeted initiatives.</li><li>Mass Media : Utilize mass media platforms to disseminate accurate information and engage adolescents on relevant health topics.</li></ul>
 <p>Target Groups for Adolescent-Friendly Health Services</p>
@@ -133,7 +161,7 @@
 <ul><li>Alcohol and substance abuse</li><li>Rape and defilement</li><li>Early unwanted pregnancies</li><li>Unsafe abortion</li><li>Female genital mutilation</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Minimum Package for Adolescent-Friendly Health Services:</summary>
           <p>The minimum package for Adolescent-Friendly Health Services outlines essential components and services that should be included in healthcare provisions tailored for adolescents. Each element in the package aims to address the specific needs and challenges faced by adolescents in their reproductive health.</p>
 <p>Clinical care for sexual and gender-based violence:</p>
@@ -156,37 +184,47 @@
 <ul><li>Educational programs focusing on life skills, such as decision-making and communication, with recreational activities to promote overall development.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-7">
           <summary>07 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Adolescent friendly health services</strong> as a practical nursing topic, not only a memorized definition. Start with normal structure and function, then connect it to assessment findings and disease.</p>
 <ul><li><strong>What to understand first:</strong> define adolescent friendly health services, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-8">
           <summary>08 Assessment Guide</summary>
           <ul><li>Relevant inspection, palpation, movement, auscultation, vital signs or neurological checks.</li><li>Normal findings, abnormal findings and what each abnormality may indicate.</li><li>Patient history, risk factors and how the body system affects other systems.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-9">
           <summary>09 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use anatomy to explain symptoms and guide focused assessment.</li><li>Recognize findings that need urgent escalation.</li><li>Teach the patient using simple body-system language.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The learner can explain normal function, identify abnormal signs and connect them to nursing action.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-10">
           <summary>10 Patient Teaching and Revision Check</summary>
           <ul><li>Explain adolescent friendly health services in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Adolescent%20friendly%20health%20services%20Gynaecology%20(II)%20and%20Reproductive%20Health%20(II)%20nursing%20lecture" title="Adolescent friendly health services YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (6)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/ADOLESCENT-FRIENDLY-HEALTH-SERVICES-e1706680195253.webp" alt="ADOLESCENT FRIENDLY HEALTH SERVICES E1706680195253" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">ADOLESCENT FRIENDLY HEALTH SERVICES E1706680195253</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Factors-Restraining-Adolescents-from-Accessing-Adolescent-Friendly-Health-Services-ADFHS.webp" alt="Factors Restraining Adolescents From Accessing Adolescent Friendly Health Services ADFHS" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Factors Restraining Adolescents From Accessing Adolescent Friendly Health Services ADFHS</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Target-Groups-for-Adolescent-Friendly-Health-Services-1024x683.webp" alt="Target Groups For Adolescent Friendly Health Services" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Target Groups For Adolescent Friendly Health Services</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Characteristics-of-Adolescent-Friendly-Services-e1706680920311.webp" alt="Characteristics Of Adolescent Friendly Services E1706680920311" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Characteristics Of Adolescent Friendly Services E1706680920311</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/66ebb20d-cc83-4c4d-9b83-9bf2a502cef6-e1706681243696.webp" alt="66ebb20d Cc83 4c4d 9b83 9bf2a502cef6 E1706681243696" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">66ebb20d Cc83 4c4d 9b83 9bf2a502cef6 E1706681243696</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/0f574bc2e500b832baf17788991bffc9.webp" alt="0f574bc2e500b832baf17788991bffc9" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">0f574bc2e500b832baf17788991bffc9</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Adolescent%20friendly%20health%20services%20Gynaecology%20(II)%20and%20Reproductive%20Health%20(II)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Adolescent%20friendly%20health%20services%20Gynaecology%20(II)%20and%20Reproductive%20Health%20(II)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

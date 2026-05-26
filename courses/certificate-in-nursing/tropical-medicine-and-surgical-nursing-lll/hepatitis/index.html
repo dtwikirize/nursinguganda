@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,23 +97,48 @@
         <p>Hepatitis should be studied as a medication-safety topic: indication, dose, route, timing, contraindications, expected effects, adverse effects, documentation and patient teaching all matter.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 19 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">HEPATITIS</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Types of Hepatitis</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Viral Hepatitis</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Clinical Features of Viral Hepatitis (Phases)</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Investigations for Viral Hepatitis</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Hepatitis A (HAV)</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Hepatitis B (HBV)</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Hepatitis C (HCV)</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Hepatitis D (HDV - Delta Agent)</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Hepatitis E (HEV)</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Hepatitis G (HGV)</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">NON-VIRAL HEPATITIS</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Complications of Hepatitis</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Aims of Management</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Care Plan</a>
+          <a href="#section-16" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-17" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-18" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-19" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 HEPATITIS</summary>
           <p><strong>Hepatitis</strong> is an inflammation of the liver. While it can be caused by exposure to certain chemicals, drugs, or autoimmune processes, it is most commonly caused by a viral infection.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Types of Hepatitis</summary>
           <ul><li><strong>Viral Hepatitis:</strong> Caused by a group of specific viruses (Hepatitis A, B, C, D, E, G). This is the most common form.</li><li><strong>Non-viral Hepatitis:</strong> Inflammation resulting from exposure to toxins (e.g., alcohol, industrial chemicals) or as a side effect of certain drugs (drug-induced hepatitis).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Viral Hepatitis</summary>
           <p>Viral hepatitis is a systemic viral infection in which necrosis and inflammation of liver cells produce a characteristic cluster of clinical, biochemical, and cellular changes. It is marked by liver-cell destruction, necrosis, and autolysis.</p>
 <ul><li><strong>Course:</strong> Viral hepatitis can be <strong>acute</strong> (short-term) or <strong>chronic</strong> (long-term, lasting more than 6 months). Hepatitis B, C, and D viruses can cause chronic hepatitis.</li><li><strong>Prognosis:</strong> The prognosis is generally good for acute hepatitis, but it becomes poor if complications like hepatic encephalopathy develop.</li><li><strong>Types:</strong> The main types are caused by viruses A, B, C, D, and E. Hepatitis F and G are rare.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Clinical Features of Viral Hepatitis (Phases)</summary>
           <p>The clinical manifestations of viral hepatitis can be classified into three phases.</p>
 <p>This is the initial phase before the onset of jaundice. Symptoms are often non-specific and flu-like.</p>
@@ -112,12 +149,12 @@
 <ul><li>Malaise and easy fatigability tend to persist.</li><li>Hepatomegaly may continue but usually subsides.</li><li>Appetite returns, and symptoms gradually improve.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Investigations for Viral Hepatitis</summary>
           <ul><li><strong>Liver Function Tests (LFTs):</strong> To detect liver abnormalities. Typically shows markedly elevated levels of Alanine Aminotransferase (ALT) and Aspartate Aminotransferase (AST).</li><li><strong>Viral Antigen and Antibody Tests (Serology):</strong> Blood tests are crucial to identify the specific type of hepatitis virus (e.g., Anti-HAV for Hepatitis A, HBsAg for Hepatitis B, Anti-HCV for Hepatitis C). Stool analysis can be done for Hepatitis A antigens.</li><li><strong>Abdominal Ultrasound Scan:</strong> To assess the size and texture of the liver and spleen and to rule out other causes of liver disease or obstruction.</li><li><strong>Blood for HIV Serology:</strong> To rule out co-infection, as HIV shares transmission routes with Hepatitis B and C.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Hepatitis A (HAV)</summary>
           <p>Hepatitis A, formerly known as infectious hepatitis, is caused by an RNA virus of the genus Enterovirus . It typically causes an acute, self-limiting illness and does not lead to chronic infection.</p>
 <ul><li><strong>Mode of Transmission:</strong> Primarily the <strong>fecal-oral route</strong> . This occurs through ingestion of food or liquids contaminated with the virus, poor sanitation, and close person-to-person contact.</li><li><strong>High-Risk Settings:</strong> Outbreaks are common in areas of overcrowding, poor sanitation, day-care centers, and other institutional settings.</li><li><strong>Infectious Period:</strong> The virus is found in the stool of infected patients before symptoms begin and during the first few days of illness.</li><li><strong>Incubation Period:</strong> Ranges from 2 to 6 weeks (15-50 days), with an average of about 4 weeks (30 days). The illness typically lasts for 4 to 8 weeks.</li><li><strong>Hygiene:</strong> Regular and proper hand washing with clean water and soap is the single most effective preventive measure.</li><li><strong>Sanitation:</strong> Ensuring a safe water supply (boiling drinking water) and proper sewage disposal.</li><li><strong>Immunization (Pre-exposure Prophylaxis):</strong> Vaccination with the hepatitis A vaccine provides long-term protection. It is recommended for travelers to endemic areas.</li><li><strong>Post-exposure Prophylaxis:</strong> Administration of immune globulin (if not previously vaccinated) can prevent infection if given within 2 weeks of exposure to household members or sexual contacts.</li><li><strong>Health Education:</strong> Educating the public about safe food handling, personal hygiene, and transmission routes.</li></ul>
@@ -125,7 +162,7 @@
 <ul><li>Encourage bed rest during the acute stage to reduce metabolic demands on the liver.</li><li>Promote a nutritious, well-balanced diet. Small, frequent feedings may be better tolerated, supplemented by IV glucose if anorexia is severe.</li><li>Promote gradual but progressive ambulation to hasten recovery. Patients are usually managed at home unless symptoms are severe.</li><li>Instruct the patient and family on diet, rest, hygiene measures (especially hand washing) to prevent spread, and avoidance of alcohol, which is hepatotoxic.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Hepatitis B (HBV)</summary>
           <p>Hepatitis B is caused by a DNA virus (HBV). It can cause both acute and chronic liver disease. About 10% of infected adults progress to a chronic carrier state, which poses a major worldwide risk for developing cirrhosis and hepatocellular carcinoma.</p>
 <ul><li><strong>Mode of Transmission:</strong> Transmitted primarily through <strong>blood and body fluids</strong> . The virus is found in blood, saliva, semen, and vaginal secretions and can be transmitted through breaks in the skin or mucous membranes.</li><li><strong>Incubation Period:</strong> HBV has a long incubation period, ranging from 1 to 6 months.</li><li><strong>Pathophysiology:</strong> The virus replicates in the liver and can remain in the serum for long periods, allowing for transmission.</li><li>Frequent exposure to blood, blood products, or other body fluids.</li><li><strong>Health care workers:</strong> Especially those in hemodialysis, oncology, and surgery, or those at risk for needlestick injuries.</li><li>Patients undergoing hemodialysis.</li><li>IV drug users (sharing needles).</li><li>Individuals with multiple sexual partners or engaging in unprotected sex.</li><li>Close contact with a person who is a chronic carrier of HBV.</li><li>Receipt of blood products or organ transplants before routine screening was implemented.</li></ul>
@@ -133,31 +170,31 @@
 <ul><li><strong>Immunization:</strong> The hepatitis B vaccine is the mainstay of prevention. It is recommended for all children, health workers, and other high-risk populations.</li><li><strong>Screening:</strong> Continued screening of blood donors for hepatitis B surface antigen (HBsAg) to reduce transmission risk.</li><li><strong>Infection Control:</strong> Use of disposable syringes, needles, and lancets.</li><li>Good personal hygiene and daily disinfection of work areas.</li><li>Use of gloves (Standard Precautions) when handling any blood or body fluids.</li><li><strong>Safe Practices:</strong> Safe sexual practices (e.g., condom use) and safe transfusion practices.</li><li><strong>Antiviral Therapy:</strong> For chronic HBV, medications like Alpha-interferon, Lamivudine, or Adefovir may be prescribed to suppress viral replication.</li><li><strong>Supportive Care:</strong> Bed rest and restriction of activities until liver enlargement and LFTs begin to resolve.</li><li>Maintain adequate nutrition. A diet low in protein may be necessary if the liver&#39;s ability to metabolize protein byproducts is impaired.</li><li>Administer antiemetics for nausea and vomiting.</li><li>Hospitalization and IV fluid therapy may be required for persistent vomiting and dehydration.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Hepatitis C (HCV)</summary>
           <p>Hepatitis C is caused by the hepatitis C virus. A significant portion of cases become chronic, making HCV a leading cause of cirrhosis, liver cancer, and liver transplantation.</p>
 <ul><li><strong>Transmission:</strong> Primarily transmitted by <strong>parenteral (blood-borne)</strong> means. This includes sharing contaminated needles (IV drug use), needlestick injuries in healthcare workers, and receipt of infected blood transfusions or organ transplants (though this is rare now due to screening). Sexual transmission is less common but possible.</li><li><strong>Incubation Period:</strong> Ranges from 15 to 160 days, with an average of 50 days.</li><li><strong>Clinical Course:</strong> The course is similar to hepatitis B, but symptoms are often milder or asymptomatic. However, a chronic carrier state occurs frequently, which significantly increases the risk for cirrhosis and liver cancer.</li><li><strong>Medical Management:</strong> Combination therapy with antiviral drugs like ribavirin and interferon has been used. Newer direct-acting antiviral (DAA) agents are now the standard of care, offering very high cure rates.</li><li>Recipient of blood products or organ transplants before 1992.</li><li>Health care and public safety workers after needlestick injuries or mucosal exposure to blood.</li><li>Children born to women infected with HCV.</li><li>Past or current illicit IV or injection drug use.</li><li>Past treatment with chronic hemodialysis.</li><li>Having unprotected sex with an infected partner or multiple partners.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Hepatitis D (HDV - Delta Agent)</summary>
           <p>Hepatitis D is a unique virus that requires the hepatitis B surface antigen (HBsAg) for its replication. Therefore, HDV infection can only occur in patients who are also infected with hepatitis B.</p>
 <ul><li><strong>Risk:</strong> Only patients with hepatitis B are at risk for hepatitis D. It can occur as a co-infection (infected with HBV and HDV at the same time) or a superinfection (a chronic HBV carrier later gets infected with HDV).</li><li><strong>Transmission:</strong> Primarily through blood and sexual contact, similar to HBV. It is common in IV drug users and hemodialysis patients.</li><li><strong>Incubation Period:</strong> Varies from 21 to 140 days, with an average of 35 days.</li><li><strong>Clinical Course:</strong> Symptoms are similar to hepatitis B, but patients with HDV superinfection are more likely to have a severe, fulminant hepatitis and progress to chronic active hepatitis and cirrhosis.</li><li><strong>Treatment:</strong> Treatment is similar to other forms of hepatitis; there is no specific therapy for HDV. Prevention of HBV with vaccination also prevents HDV infection.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Hepatitis E (HEV)</summary>
           <p>Hepatitis E is caused by the hepatitis E virus and is clinically similar to hepatitis A.</p>
 <ul><li><strong>Transmission:</strong> Transmitted by the <strong>fecal-oral route</strong> , principally through contaminated water and poor sanitation.</li><li><strong>Incubation Period:</strong> Estimated to range from 15 to 65 days, with an average of 42 days.</li><li><strong>Clinical Course:</strong> Generally resembles hepatitis A, with a self-limited course and an abrupt onset. Jaundice is almost always present. HEV <strong>does not</strong> develop into a chronic form. However, it can be particularly severe in pregnant women, with a high mortality rate.</li><li><strong>Prevention:</strong> The major method of prevention is avoiding exposure through good hand hygiene and ensuring safe drinking water. The effectiveness of immune globulin is uncertain.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 Hepatitis G (HGV)</summary>
           <p>Hepatitis G is a less common and less understood form of hepatitis.</p>
 <ul><li><strong>Transmission:</strong> It is primarily a post-transfusion hepatitis, transmitted through contaminated blood.</li><li><strong>Incubation Period:</strong> 14 to 145 days.</li><li><strong>Clinical Significance:</strong> Its role in causing significant liver disease is still being debated. The risk factors for infection are similar to those for hepatitis C.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-12">
           <summary>12 NON-VIRAL HEPATITIS</summary>
           <p>Non-viral hepatitis is an inflammation of the liver that results from exposure to certain chemicals or drugs, rather than a viral infection. These substances can have toxic effects on the liver, leading to acute liver cell necrosis (toxic hepatitis).</p>
 <ul><li><strong>Toxic Hepatitis:</strong> Caused by exposure to hepatotoxic chemicals.</li><li><strong>Drug-Induced Hepatitis:</strong> Caused by a reaction to certain medications.</li><li><strong>Hepatotoxic Chemicals:</strong> Exposure can be through ingestion, inhalation, or injection. Examples include carbon tetrachloride, trichloroethylene, phosphorus, chloroform, and gold compounds.</li><li><strong>Drugs:</strong> Many drugs can be hepatotoxic, especially with overdose or in susceptible individuals. Common examples include <strong>acetaminophen (paracetamol)</strong> , isoniazid, halothane, certain antibiotics, and anesthetic agents.</li></ul>
@@ -167,18 +204,18 @@
 <ul><li><strong>Strict avoidance of alcohol</strong> during the acute illness and for at least 6 months after recovery.</li><li>Avoidance of other potentially hepatotoxic substances, including certain medications, herbal remedies, illicit drugs, and toxins.</li><li>Early detection and treatment of the acute illness.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-13">
           <summary>13 Complications of Hepatitis</summary>
           <p>While many cases of acute viral hepatitis resolve without issue, serious and life-threatening complications can occur, particularly with chronic infections (HBV, HCV).</p>
 <ul><li><strong>Chronic Hepatitis:</strong> Persistent liver inflammation lasting more than 6 months, which can lead to more severe complications.</li><li><strong>Fulminant Hepatic Failure:</strong> A rare but severe complication of acute hepatitis, characterized by the sudden and massive destruction of liver cells, leading to liver failure.</li><li><strong>Liver Cirrhosis:</strong> Irreversible scarring of the liver tissue, which disrupts liver structure and function. This is a major long-term complication of chronic hepatitis B and C.</li><li><strong>Hepatocellular Carcinoma (Hepatic Cancer):</strong> Chronic HBV and HCV infections are primary risk factors for the development of liver cancer.</li><li><strong>Aplastic Anemia:</strong> A rare complication where the bone marrow fails to produce enough blood cells.</li><li><strong>Renal Failure:</strong> Can occur as part of a systemic response to severe liver disease (hepatorenal syndrome).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-14">
           <summary>14 Aims of Management</summary>
           <ul><li>To relieve signs and symptoms.</li><li>To minimize liver inflammation and prevent further liver damage.</li><li>To prevent complications.</li><li>To prevent transmission to others.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-15">
           <summary>15 Nursing Care Plan</summary>
           <p>The patient is admitted to a medical ward, ideally in an isolated or well-ventilated room if the type of hepatitis requires it (e.g., contact precautions for HAV). Place the patient on complete bed rest initially to decrease the metabolic demands on the liver. Record all patient particulars in the admission book.</p>
 <p>Establish a therapeutic rapport with the patient and their relatives. Provide counseling and clear information about the condition, its transmission, and the treatment plan to allay anxiety and promote cooperation.</p>
@@ -195,37 +232,44 @@
 <ul><li><strong>Medication:</strong> Take all medications as prescribed and complete the full course.</li><li><strong>Rest:</strong> Emphasize the need for adequate rest to allow the liver to regenerate.</li><li><strong>Diet:</strong> Continue a well-balanced diet. <strong>Strictly avoid alcohol</strong> as it is toxic to the liver.</li><li><strong>Hygiene:</strong> Reinforce infection control measures, especially hand washing, to prevent transmission.</li><li><strong>Follow-up:</strong> Return for review on the scheduled date for follow-up blood work and assessment. Advise them to return earlier if symptoms worsen or complications arise.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-16">
           <summary>16 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Hepatitis</strong> as a practical nursing topic, not only a memorized definition. Study medicines through indication, safety checks, expected response, adverse effects and patient teaching.</p>
 <ul><li><strong>What to understand first:</strong> define hepatitis, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-17">
           <summary>17 Assessment Guide</summary>
           <ul><li>Diagnosis or reason for the medicine, allergies, pregnancy status and previous reactions.</li><li>Current medicines, herbal products, renal or liver risk and baseline observations.</li><li>Dose, route, timing, dilution, expiry date and documentation requirements.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-18">
           <summary>18 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Apply the rights of medication administration and facility policy.</li><li>Monitor therapeutic response and class-specific adverse effects.</li><li>Educate the patient on purpose, timing, missed doses, warning symptoms and adherence.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The medicine produces the intended effect without preventable harm, and administration is accurately documented.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-19">
           <summary>19 Patient Teaching and Revision Check</summary>
           <ul><li>Explain hepatitis in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Hepatitis%20Tropical%20Medicine%20and%20Surgical%20nursing%20lll%20nursing%20lecture" title="Hepatitis YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (3)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Hepatitis-B-h-1-1024x536.webp" alt="Hepatitis B H 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Hepatitis B H 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Clinical-Features-of-Viral-Hepatitis-Phases.gif" alt="Clinical Features Of Viral Hepatitis Phases" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Clinical Features Of Viral Hepatitis Phases</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Management-of-a-Patient-with-Hepatitis.webp" alt="Management Of A Patient With Hepatitis" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Management Of A Patient With Hepatitis</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Hepatitis%20Tropical%20Medicine%20and%20Surgical%20nursing%20lll%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Hepatitis%20Tropical%20Medicine%20and%20Surgical%20nursing%20lll%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

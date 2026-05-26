@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,28 @@
         <p>Principles of management should be reviewed through safe maternal and newborn assessment, early recognition of danger signs, respectful communication and timely referral. Connect the definition to vital signs, bleeding, fetal or newborn wellbeing, patient education and local protocol requirements.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 15 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">MANAGEMENT STYLES</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">MANAGEMENT THEORIES</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">CLASSICAL ORGANIZATION THEORY</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">THEORY OF BUREAUCRACY( Max Weber’s)</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">SCIENTIFIC MANAGEMENT THEORY(Taylor)</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">CONTINGENCY THEORY ( Fred Fiedler )</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">HUMAN RELATION THEORY ( Elton Mayo)</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">BEHAVIORAL SCIENCE THEORY (Douglas McGregor)</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">ADMINISTRATIVE THEORY (Henri Fayol)</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">PRINCIPLES OF MANAGEMENT</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Functions of management.</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 MANAGEMENT STYLES</summary>
           <p>Management styles in nursing refer to the different approaches and strategies that nurse leaders use to manage their teams and achieve organizational goals .</p>
 <p>These styles can have a significant impact on job satisfaction, nurse retention rates, quality of care, and patient outcomes.</p>
@@ -98,7 +131,7 @@
 <p>Managers using this style usually explain or get agreement on what has to be accomplished and when it must be completed. The how-to-do-it part of the equation is left up to the employee. Responsibility and authority are given to employees to get the job done.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 MANAGEMENT THEORIES</summary>
           <p>Understanding management theories is important for developing effective management styles, especially in roles like building up nurse leaders. There are four key theories focused on management, particularly for nurse managers:</p>
 <p>1.Classical organization theory</p>
@@ -108,7 +141,7 @@
 <p>4. Behavioral science theory.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 CLASSICAL ORGANIZATION THEORY</summary>
           <p>During the 19th century, there was a significant shift in societies from agricultural and non-mechanized practices to commercial and industrial ones, due to the industrial revolution. This led to the establishment of new manufacturing processes, increased industrialization, and the emergence of large groups of people working together. People began working alongside machinery, and companies sought more efficient ways to address the new challenges and enhance productivity. As a result, there was a growing interest in organizing people effectively and managing resources in a manner that would maximize profits.</p>
 <p>As a reaction to all of these changes taking part in the world back then, the classical management theory emerged.</p>
@@ -122,14 +155,14 @@
 <p>The ideas of Max Weber, Frederick Taylor and Henri Fayol all came together to form a foundation of what’s called today classical management theory which is actually considered as the basis of all the other managerial theories that came later.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 THEORY OF BUREAUCRACY( Max Weber’s)</summary>
           <p>Max Weber’s theory of bureaucracy is a management approach that proposes a specific way to organize and run an organization. It emphasizes the importance of a rigid hierarchical structure, strict rules and regulations, and standardized processes. Weber believed that bureaucracy was the most efficient and effective way to manage large organizations and achieve maximum productivity.</p>
 <p>Key principles of Max Weber’s theory of bureaucracy</p>
 <ul><li>Hierarchy : The organization is structured into a clear hierarchy of authority, with each level having specific responsibilities and reporting to the level above it.</li><li>Division of Labor: Tasks and responsibilities are divided among employees based on their specialized skills and competencies. This specialization allows for increased efficiency and effectiveness.</li><li>Formal Selection : Employees are selected based on their technical qualifications and skills, which are acquired through training, education, and experience. Formal selection ensures that employees are well-suited for their roles.</li><li>Rules and Regulations : Bureaucratic organizations rely on a set of formal rules and regulations that govern behavior, decision-making, and processes. These rules provide clarity and consistency in how work is performed.</li><li>Impersonality : Interactions within a bureaucratic organization are based on formal rules and procedures rather than personal relationships. This helps to prevent favoritism and ensures fairness.</li><li>Career Orientation : Bureaucratic organizations provide opportunities for employees to advance their careers based on their expertise and experience. This allows for the optimal utilization of human capital.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 SCIENTIFIC MANAGEMENT THEORY(Taylor)</summary>
           <p>Around a century ago, Frederick Taylor argued for enhanced efficiency in jobs through thorough analysis. With well-designed tasks and adequate incentives, workers could achieve higher productivity . For example, Taylor advocated for paying based on output rather than hours worked, creating incentives for efficient work. In health care, the equivalent would be by the number of patients bathed or visited at home rather than by the number of hours worked. This would create an incentive to get the most work done in the least amount of time.</p>
 <ul><li>Frederick Taylor’s scientific management theory, also known as the classical management theory , focuses on improving efficiency and productivity in the workplace.</li><li>Taylor believed that jobs should be simplified and optimized to increase productivity. He emphasized the importance of managers interacting with their subordinates to enhance efficiency.</li><li>His theory is based on four principles: the scientific approach to work, scientific selection and training of employees, collaboration between employees and employers, and the division of work and responsibilities among employees.</li><li>Taylor’s approach has gained traction in today’s business climate, where there is a focus on work-life balance and employee satisfaction.</li></ul>
@@ -152,7 +185,7 @@
 <ul><li>Trained his workers to follow the time of completing their works. Therefore the most productive workers were hired even when they paid them an incentive.</li><li>Labour costs were reduced as a result.</li><li>Responsibilities of management were separated from the functions of workers.</li><li>Developed a systematic approach to determine the most efficient means of action.</li><li>Consider that the management function is to plan.</li><li>Increased production and higher profit e.g. in a health services delivery of a profit making organization, good production will lead to increase in clients therefore increasing high profits.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 CONTINGENCY THEORY ( Fred Fiedler )</summary>
           <p>Fred Fiedler’s contingency theory suggests that there is no one-size-fits-all approach to management. Instead, the most effective management style depends on the specific situation.</p>
 <p>Fiedler proposed that the effectiveness of a leader depends on the match between their leadership style and the favorableness of the situation, which is determined by factors such as task structure, leader-member relations, and position power.</p>
@@ -171,7 +204,7 @@
 <ul><li>Inconsistency : Employees may find it challenging to adapt to different leadership styles depending on the situation, leading to confusion and uncertainty.</li><li>Lack of Autonomy : In situations where leaders have high control and influence, employees may feel restricted in their decision-making and autonomy.</li><li>Potential for Bias : The effectiveness of Contingency Theory relies on the leader’s assessment of the situation, which may introduce bias and subjective judgments.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 HUMAN RELATION THEORY ( Elton Mayo)</summary>
           <p>The Human Relations Theory, developed by Elton Mayo, emphasizes the importance of social relationships and group dynamics in the workplace . Mayo’s research, particularly the Hawthorne studies, highlighted the impact of social factors on employee productivity and motivation.</p>
 <p>Human relation theory concentrates on the impact of individuals on an organization’s success or failure . Instead of solely focusing on the organization’s structure, managers encourage the development of employees’ potential and help them meet their needs for recognition, accomplishment, and a sense of belonging.</p>
@@ -191,7 +224,7 @@
 <ul><li>Potential conflicts and disagreements within the workplace.</li><li>Pressure to conform to group norms and expectations.</li><li>Limited individual autonomy in decision-making.</li><li>Potential for favoritism or bias in social relationships.</li><li>Possibility of blurred boundaries between work and personal life.</li><li>Increased workload due to informal expectations.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 BEHAVIORAL SCIENCE THEORY (Douglas McGregor)</summary>
           <p>The behavioral management theory is often called the human relations movement because it addresses the human dimension of work . Maslow’s Hierarchy of needs also lies under behavioral science theory.</p>
 <p>Theory X assumes that employees dislike work and must be directed and controlled , while Theory Y suggests that employees can find satisfaction in their work and are self-motivated .</p>
@@ -210,7 +243,7 @@
 <ul><li>Advantages to Organizations Disadvantages to Organizations</li><li>– Fosters a positive work culture and environment – May result in decreased control over employees</li><li>– Encourages creativity and innovation – Can be challenging to implement in certain industries or contexts</li><li>– Increases employee motivation and satisfaction – Requires a higher level of trust in employees</li><li>– Leads to higher levels of employee engagement – May result in slower decision-making processes</li><li>– Promotes adaptability and flexibility – Potential for conflicts between management and employees</li><li>Advantages to Employees Disadvantages to Employees</li><li>– Offers opportunities for autonomy and self-direction – May increase stress due to higher levels of responsibility</li><li>– Promotes personal and professional growth – Requires a higher level of self-motivation</li><li>– Recognizes and values employee contributions – Can lead to increased workload</li><li>– Provides opportunities for skill development – Increases pressure to perform</li><li>– Fosters a positive work-life balance – Requires a higher level of accountability</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 ADMINISTRATIVE THEORY (Henri Fayol)</summary>
           <p>Administrative theory is the oldest theory and is sometimes referred to as traditional management theory . It considers the organization as a whole , rather than solely focusing on production .</p>
 <p>Henri Fayol , a prominent contributor to this theory, identified the functions of managers and concluded that management is universal . He advocated for specialization, equal treatment, stability of personnel, and the teaching of management in colleges.</p>
@@ -220,7 +253,7 @@
 <ul><li>It makes organization to be viewed as a whole rather than focusing solely on production.</li><li>It gives the view of control, authority, responsibility and accountability.</li><li>He studied the functions of managers and concluded that management is universal. He believed that;</li><li>All managers have the responsibilities of planning, organizing, issuing orders, coordinating, and controlling.</li><li>He derived general principles of administration from his observations.</li><li>He believed in the division of work.</li><li>He argued that specialization increases efficiency.</li><li>Advocated that there is a place for everything and everything in its place.</li><li>He developed group harmony through equal treatment and stability of tenure of personnel.</li><li>He also urged that management be taught in colleges.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 PRINCIPLES OF MANAGEMENT</summary>
           <p>Henri Fayol, a renowned French mining engineer, developed a set of principles known as the Principles of Administrative Theory .</p>
 <p>Principles of management are the means by which one actually manages , that is, gets things done through others—individually, in groups, or in organizations.</p>
@@ -241,42 +274,40 @@
 <ul><li>Achievement of Organizational Goals : Effective management ensures that organizations are able to set and achieve their goals. Managers develop strategic plans, define objectives, allocate resources, and coordinate efforts to ensure that the organization’s objectives are met.</li><li>Efficient Resource Utilization: Management helps in optimizing the use of available resources such as human capital, financial assets, and technological resources. By effectively allocating resources and avoiding wastage, management enhances productivity and reduces costs.</li><li>Decision Making: Managers are responsible for making important decisions that impact the organization. Through their expertise and experience, managers analyze information, evaluate alternatives, and make informed decisions to address challenges and capitalize on opportunities.</li><li>Motivation and Employee Engagement: Effective management creates a positive work environment and motivates employees to perform at their best. Managers inspire and empower their teams, provide guidance and support, recognize achievements, and foster a culture of collaboration and innovation.</li><li>Conflict Resolution: Conflicts and disagreements are inevitable in any organization. Skilled managers are equipped with conflict resolution techniques and can mediate disputes, promote understanding, and maintain harmonious relationships among team members.</li><li>Adaptability and Change Management: In a dynamic business environment, adaptability is crucial. Managers play a key role in identifying changes, formulating strategies to respond to them, and guiding the organization through transitions effectively.</li><li>Enhancing Communication and Coordination: Effective management facilitates communication and coordination among different levels and departments within an organization. Clear communication channels, efficient information sharing, and collaborative efforts are vital for organizational success.</li><li>Risk Management : Managers assess and manage risks that an organization may face. They identify potential risks, develop contingency plans, and implement risk mitigation strategies to protect the organization’s interests.</li><li>Continuous Improvement: Management encourages a culture of continuous improvement by promoting innovation, conducting performance evaluations, and implementing feedback mechanisms. This helps organizations stay competitive and adapt to evolving market conditions.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 Functions of management.</summary>
           <p>Click Here</p>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-12">
           <summary>12 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Management theories and Styles</strong> as a practical nursing topic, not only a memorized definition. Translate theory into safe decisions, accountability, communication and service improvement.</p>
 <ul><li><strong>What to understand first:</strong> define management theories and styles, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-13">
           <summary>13 Assessment Guide</summary>
           <ul><li>The problem, stakeholders, available resources, policy requirements and ethical issues.</li><li>Risks to patients, staff, confidentiality, quality, costs and continuity.</li><li>Documentation, reporting lines, supervision and evaluation measures.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-14">
           <summary>14 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use evidence, policy and professional standards to guide action.</li><li>Communicate clearly, document decisions and protect confidentiality.</li><li>Evaluate whether the action improves safety, learning or service delivery.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The plan is documented, realistic, ethical and improves patient care or learning outcomes.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-15">
           <summary>15 Patient Teaching and Revision Check</summary>
           <ul><li>Explain management theories and styles in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
+      
       <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Principles%20of%20management%20Health%20service%20management%20and%20entrepreneurship%20nursing%20lecture" title="Principles of management YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Principles%20of%20management%20Health%20service%20management%20and%20entrepreneurship%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Principles%20of%20management%20Health%20service%20management%20and%20entrepreneurship%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

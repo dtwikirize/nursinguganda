@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,42 +97,86 @@
         <p>Specific anti-microbial agents should be reviewed through safe maternal and newborn assessment, early recognition of danger signs, respectful communication and timely referral. Connect the definition to vital signs, bleeding, fetal or newborn wellbeing, patient education and local protocol requirements.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 38 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">ANTIBIOTICS</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Classification of Antibiotics</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Mechanism of Action</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Spectrum of Activity</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Chemical Structure</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">BETA-LACTAM ANTIBIOTICS</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">PENICILLINS</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Side Effects</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">AMPICILLIN</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">AMOXICILLIN</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">CLOXACILLIN</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">AMOXICILLIN + CLAVULANIC ACID</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">CEPHALOSPORINS</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">CEFTRIAXONE</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">CARBAPENEMS</a>
+          <a href="#section-16" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">MACROLIDES</a>
+          <a href="#section-17" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Erythromycin</a>
+          <a href="#section-18" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Azithromycin</a>
+          <a href="#section-19" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">TETRACYCLINES</a>
+          <a href="#section-20" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Types of Tetracyclines:</a>
+          <a href="#section-21" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Tetracycline</a>
+          <a href="#section-22" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Doxycycline</a>
+          <a href="#section-23" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">AMINOGLYCOSIDES</a>
+          <a href="#section-24" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Types of Aminoglycosides:</a>
+          <a href="#section-25" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Gentamicin</a>
+          <a href="#section-26" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">SULPHONAMIDES &amp; TRIMETHOPRIM</a>
+          <a href="#section-27" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Types of Sulphonamides:</a>
+          <a href="#section-28" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Cotrimoxazole (Trimethoprim + Sulfamethoxazole)</a>
+          <a href="#section-29" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">QUINOLONES</a>
+          <a href="#section-30" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Classification of Quinolones:</a>
+          <a href="#section-31" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nalidixic Acid</a>
+          <a href="#section-32" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Ciprofloxacin</a>
+          <a href="#section-33" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">NITROIMIDAZOLES</a>
+          <a href="#section-34" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">METRONIDAZOLE</a>
+          <a href="#section-35" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-36" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-37" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-38" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 ANTIBIOTICS</summary>
           <p>Antibiotics are chemical substances derived from microorganisms that either inhibit the growth of or destroy other microorganisms .</p>
 <p>They are pivotal in combating bacterial infections and are divided into two primary categories:</p>
 <ul><li>Bacteriostatic Antibiotics : Inhibit bacterial growth.</li><li>Bactericidal Antibiotics : Directly kill bacteria.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Classification of Antibiotics</summary>
           <p>Antibiotics can be classified based on their:</p>
 <ul><li>Mechanism of Action</li><li>Spectrum of Activity</li><li>Chemical Structure</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Mechanism of Action</summary>
           <ul><li>Type Description Examples</li><li>Bacteriostatic Inhibit bacterial growth, relying on the immune system to eliminate the pathogen. Tetracyclines, Chloramphenicol, Erythromycin</li><li>Bactericidal Kill bacteria directly, do not depend on the immune system. Penicillins, Cephalosporins, Aminoglycosides, Fluoroquinolones</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Spectrum of Activity</summary>
           <ul><li>Type Description Examples</li><li>Narrow Spectrum Effective against a limited group of bacteria (e.g., Gram-positive or Gram-negative). Penicillin G, Aminoglycosides, Clindamycin</li><li>Broad Spectrum Effective against a wide variety of Gram-positive and Gram-negative bacteria. Tetracyclines, Ciprofloxacin, Chloramphenicol</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Chemical Structure</summary>
           <ul><li>Class Examples Mechanism of Action</li><li>Beta-Lactams Penicillins, Cephalosporins, Carbapenems Inhibit bacterial cell wall synthesis</li><li>Macrolides Erythromycin, Azithromycin, Clarithromycin Inhibit bacterial protein synthesis by binding to the 50S ribosomal subunit</li><li>Tetracyclines Tetracycline, Doxycycline, Minocycline Inhibit protein synthesis by binding to the 30S ribosomal subunit</li><li>Aminoglycosides Gentamicin, Amikacin Inhibit protein synthesis by binding to the 30S ribosomal subunit, bactericidal</li><li>Quinolones Ciprofloxacin, Levofloxacin Inhibit bacterial DNA gyrase and topoisomerase IV</li><li>Sulphonamides Cotrimoxazole, Sulphadoxine Inhibit folic acid synthesis, essential for bacterial DNA replication</li><li>Nitroimidazoles Metronidazole, tinidazole, nimorazole, Disrupt the DNA of the susceptible bacteria and inhibit the protein synthesis of the cell wall leading to cell death; they act as bactericidal and antimicrobial agents.</li><li>During Pregnancy Penicillins and Cephalosporins are drugs of choice in pregnancy and breastfeeding . In pregnancy, avoid quinolones , tetracyclines , aminoglycosides , unless severe or life threatening infection, high dose metronidazole , trimethoprim ( in first trimester – folate antagonist) and nitrofurantoin ( at term – risk of neonatal haemolysis). British National Formulary (BNF) guidance with respect to antibiotic use in pregnancy states: penicillins and cephaloridines are safe to use throughout pregnancy sulfonamides interfere with the bile conjugating mechanism of the neonate, thus sulphonamides should be avoided if delivery is imminent tetracyclines should not be used in pregnancy. This group of drugs stains developing bone and teeth in the foetus. Also the use of tetracyclines, when administered intramuscularly, has occasionally produced maternal liver failure erythromycin – not known to be harmful metronidazole – manufacturer advises avoidance of high-dose regimens streptomycin may cause foetal auditory nerve damage trimethoprim – this is safe after the first trimester. However, the sulfonamide warning applies for trimethoprim – sulfonamide preparations Breastfeeding Penicillins and Cephalosporins are drugs of choice in breastfeeding. Penicillins in breastfeeding : all penicillin antibitotics can be used during breastfeeding with precautionary infant monitoring flucloxacillin, phenoxymethylpenicillin (penicillin V) and the broad-spectrum penicillins, such as amoxicillin and ampicillin, are the preferred choices as there is more evidence and experience to support their use pharmacokinetic properties and characteristics of all the penicillins are very similar although protein binding and bioavailability vary between the different penicillins, they are all acidic in nature and therefore only negligible quantities pass into milk treatment choice should be primarily based on clinical indications and in line with national and local antimicrobial policy, with suitability in breastfeeding as a secondary consideration ideally treatment should be at the lowest therapeutic dose for shortest duration of time A review has stated : Safe for administration: aminoglycosides amoxicillin amoxicillin-clavulanate antitubercular drugs cephalosporins macrolides trimethoprim-sulfamethoxazole trimethoprim – the BNF states that ‘..short-term use not known to be harmful’ Effects not known/to be used with caution: chloramphenicol clindamycin dapsone mandelic acid nalidixic acid nitrofurantoin – the BNF states ‘..avoid; only small amounts in milk but could be enough to produce haemolysis in G6PD-deficient infants..’ tetracyclines Not recommended: quinolones</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 BETA-LACTAM ANTIBIOTICS</summary>
           <p>Definition: Beta-lactam antibiotics are a class of antibiotics characterized by a beta-lactam ring in their chemical structure. They primarily include:</p>
 <ul><li>Penicillins</li><li>Cephalosporins</li><li>Carbapenems</li></ul>
 <p>Mechanism of Action: Beta-lactam antibiotics inhibit bacterial cell wall synthesis by targeting peptidoglycan, a crucial component that provides rigidity to bacterial cell walls. They inhibit transpeptidases, also known as penicillin-binding proteins (PBPs), which are essential for peptidoglycan synthesis.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 PENICILLINS</summary>
           <p>Origin: Penicillins are derived from the fungus Penicillium chrysogenum .</p>
 <p>Classification:</p>
@@ -138,7 +194,7 @@
 <ul><li>Pneumococcal Infections: Pneumonia, meningitis, osteomyelitis.</li><li>Streptococcal Infections: Pharyngitis, sinusitis, pneumonia, endocarditis.</li><li>Meningococcal Infections</li><li>Other Infections: Syphilis, diphtheria, tetanus, gas gangrene, anthrax, necrotizing fasciitis, prevention of rheumatic fever, bites, and mouth infections.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Side Effects</summary>
           <ul><li>Allergic Reactions: Skin rashes, urticaria, fever, bronchospasm, serum sickness, anaphylaxis.</li><li>Neurological: Confusion, muscle twitching, convulsions, coma (from large doses).</li><li>Injection Site Reactions: Pain at the site of injection, thrombophlebitis with intravenous administration.</li></ul>
 <p>Drug Interactions</p>
@@ -147,7 +203,7 @@
 <ul><li>Intramuscular administration of benzyl penicillin can be painful.</li><li>Intravenous penicillin must be given separately to avoid incompatibility.</li><li>Avoid large doses of intravenous benzyl penicillin to prevent convulsions.</li><li>Administer benzathine penicillin as two injections at separate sites.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 AMPICILLIN</summary>
           <p>Description: Ampicillin is a semisynthetic penicillin with broad-spectrum activity against both gram-positive and gram-negative bacteria.</p>
 <p>Pharmacokinetics:</p>
@@ -165,7 +221,7 @@
 <ul><li>Take oral ampicillin 30 minutes before food.</li><li>Monitor for allergic reactions after administration.</li><li>Avoid mixing aminoglycosides with ampicillin during IV administration.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 AMOXICILLIN</summary>
           <p>Dosage: 250-500 mg every 8 hours.</p>
 <p>Pharmacokinetics:</p>
@@ -182,7 +238,7 @@
 <ul><li>Ensure the client completes the prescribed course of treatment.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 CLOXACILLIN</summary>
           <p>Description: Cloxacillin is resistant to destruction by penicillinase, making it effective against beta-lactamase-producing Staphylococcus aureus .</p>
 <p>Pharmacokinetics :</p>
@@ -199,7 +255,7 @@
 <ul><li>Administer on an empty stomach or one hour before meals.</li><li>Complete the prescribed treatment to avoid relapse.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-12">
           <summary>12 AMOXICILLIN + CLAVULANIC ACID</summary>
           <p>Mechanism: Clavulanic acid binds to beta-lactamase, protecting amoxicillin from degradation.</p>
 <p>Indications :</p>
@@ -214,7 +270,7 @@
 <ul><li>Take with meals to minimize gastrointestinal disturbance.</li><li>Maintain adequate hydration to prevent crystalluria.</li><li>Store parenteral clavulanic acid immediately after mixing; tablets in airtight containers due to degradation risk.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-13">
           <summary>13 CEPHALOSPORINS</summary>
           <p>Description: Cephalosporins are semisynthetic beta-lactam antibiotics that are broad-spectrum and less susceptible to beta-lactamases. They are used when penicillins prove ineffective.</p>
 <p>Mechanism of Action : Cephalosporins are bactericidal, inhibiting bacterial cell wall synthesis.</p>
@@ -223,7 +279,7 @@
 <p>PHARMACOKINETICS OF CEPHALOSPORINS</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-14">
           <summary>14 CEFTRIAXONE</summary>
           <p>Definition: Ceftriaxone is a broad-spectrum cephalosporin antibiotic, primarily used to treat various bacterial infections. It is effective against a wide range of Gram-positive and Gram-negative bacteria.</p>
 <p>Mechanism of Action:</p>
@@ -257,7 +313,7 @@
 <ul><li>Advise patients to report any signs of rash, itching, or swelling.</li><li>Instruct on the importance of completing the full course of antibiotics.</li><li>Inform about potential side effects, including diarrhea, and when to seek medical attention.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-15">
           <summary>15 CARBAPENEMS</summary>
           <p>Description: Carbapenems are broad-spectrum beta-lactam antibiotics resistant to most beta-lactamases.</p>
 <p>Examples:</p>
@@ -276,7 +332,7 @@
 <ul><li>Monitor renal function and signs of hypersensitivity.</li><li>Educate patients about potential side effects.</li><li>Administer as a slow IV infusion.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-16">
           <summary>16 MACROLIDES</summary>
           <p>Macrolides are a group of antibiotics derived from Streptomyces species. They exhibit primarily bacteriostatic activity but can be bactericidal against some bacteria at higher concentrations.</p>
 <p>Mechanism of Action:</p>
@@ -285,7 +341,7 @@
 <ul><li>Erythromycin</li><li>Azithromycin</li><li>Clarithromycin</li><li>Roxithromycin</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-17">
           <summary>17 Erythromycin</summary>
           <p>Available Preparations:</p>
 <ul><li>Tablet: 250 mg</li><li>Powder for Oral Suspension: 125 mg/5 mL</li></ul>
@@ -305,7 +361,7 @@
 <ul><li>Administer on an empty stomach for optimal absorption unless gastrointestinal upset occurs, in which case it can be taken with food.</li><li>Inform the patient about potential drug interactions and the necessity to consult a healthcare provider before taking additional medications.</li><li>Monitor liver function, and discontinue use if severe hepatic dysfunction occurs.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-18">
           <summary>18 Azithromycin</summary>
           <p>Available Preparations:</p>
 <ul><li>Capsules/Tablets: 250 mg, 500 mg</li><li>Powder for Oral Suspension: 200 mg/5 mL</li></ul>
@@ -325,19 +381,19 @@
 <ul><li>Shake the suspension well before use.</li><li>Administer on an empty stomach (one hour before or two hours after meals).</li><li>Once-daily dosing is recommended due to its long half-life.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-19">
           <summary>19 TETRACYCLINES</summary>
           <p>Tetracyclines are broad-spectrum antibacterial drugs derived from Streptomyces species. They are effective against both gram-positive and gram-negative bacteria and are active against organisms like mycoplasma, chlamydiae, spirochetes, and rickettsiae. However, due to widespread bacterial resistance, they are no longer the first-line treatment for many infections.</p>
 <p>Mode of Action:</p>
 <ul><li>Bacteriostatic, inhibiting bacterial protein synthesis by reversibly binding to the 30S subunit of the bacterial ribosome.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-20">
           <summary>20 Types of Tetracyclines:</summary>
           <ul><li>Tetracycline</li><li>Doxycycline</li><li>Minocycline</li><li>Oxytetracycline</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-21">
           <summary>21 Tetracycline</summary>
           <p>Available Preparations:</p>
 <ul><li>Capsules 250mg</li><li>Eye ointment 1%</li><li>Skin ointment 3%</li></ul>
@@ -353,7 +409,7 @@
 <ul><li>Anorexia</li><li>Nausea</li><li>Diarrhea</li><li>Sore throat</li><li>Photosensitivity</li><li>Epigastric distress</li><li>Vomiting</li><li>Stomatitis</li><li>Headache</li><li>Hypersensitivity reactions</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-22">
           <summary>22 Doxycycline</summary>
           <p>Available Preparations:</p>
 <ul><li>Capsules 100mg</li><li>Tablets 100mg</li></ul>
@@ -373,19 +429,19 @@
 <ul><li>Should be taken with plenty of water to reduce esophageal irritation risk.</li><li>Avoid use in children below 12 years.</li><li>Photosensitivity may occur with prolonged sun exposure.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-23">
           <summary>23 AMINOGLYCOSIDES</summary>
           <p>Aminoglycosides are antibacterial drugs derived from Actinomycetes species ( Streptomyces and Micromonospora ). They are poorly absorbed from the gastrointestinal tract, so they are administered via injection for systemic infections or topically for skin, mucous membrane, and ocular infections. Co-administration with cell wall-acting drugs like penicillins enhances their effectiveness.</p>
 <p>Mode of Action:</p>
 <ul><li>Bactericidal, inhibiting protein synthesis by irreversibly binding to the 30S ribosomal subunit and causing cell membrane damage.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-24">
           <summary>24 Types of Aminoglycosides:</summary>
           <ul><li>Gentamicin</li><li>Streptomycin</li><li>Tobramycin</li><li>Paromomycin</li><li>Amikacin</li><li>Neomycin</li><li>Kanamycin</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-25">
           <summary>25 Gentamicin</summary>
           <p>Available Preparations:</p>
 <ul><li>Injection 80mg/2mL</li><li>Ear/Eye drops 0.3%</li><li>Skin ointment 0.1%</li></ul>
@@ -405,21 +461,21 @@
 <ul><li>Administer penicillins or cephalosporins at least one hour before or after gentamicin to avoid incompatibility.</li><li>Adjust dose in renal impairment.</li><li>Use cautiously in elderly patients due to the risk of renal and auditory impairment.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-26">
           <summary>26 SULPHONAMIDES &amp; TRIMETHOPRIM</summary>
           <p>Sulphonamides are a class of antibacterial agents structurally related to para-aminobenzoic acid (PABA). Their therapeutic importance has decreased due to widespread resistance. Trimethoprim is often combined with sulphonamides, specifically sulfamethoxazole, to form co-trimoxazole, increasing their effectiveness.</p>
 <p>Mode of Action:</p>
 <ul><li>Sulphonamides are bacteriostatic, inhibiting bacterial folic acid synthesis.</li><li>Trimethoprim blocks bacterial dihydrofolate reductase, further inhibiting folate synthesis.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-27">
           <summary>27 Types of Sulphonamides:</summary>
           <ul><li>Cotrimoxazole (Trimethoprim + Sulfamethoxazole)</li><li>Sulphadiazine</li><li>Sulfasalazine</li><li>Sulphamethoxazole</li><li>Silver sulphadiazine</li><li>Sulphadoxine</li></ul>
 <p>Classification of Sulphonamides:</p>
 <ul><li>Rapidly absorbed and excreted: Sulphamethoxazole, Sulphadiazine</li><li>Poorly absorbed, active in bowel lumen: Sulfasalazine</li><li>Topical use: Silver sulphadiazine</li><li>Long-acting: Sulphadoxine</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-28">
           <summary>28 Cotrimoxazole (Trimethoprim + Sulfamethoxazole)</summary>
           <p>Available Preparations:</p>
 <ul><li>Tablets: 480mg, 960mg</li><li>Oral suspension: 240mg/5mL</li><li>Injection for infusion: 960mg/3mL</li></ul>
@@ -439,17 +495,17 @@
 <ul><li>Ensure patients on co-trimoxazole take plenty of fluids to reduce crystalluria and potential kidney damage.</li><li>Monitor patients closely for life-threatening reactions and discontinue if any signs appear.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-29">
           <summary>29 QUINOLONES</summary>
           <p>Quinolones are a class of synthetic antibacterial agents that inhibit bacterial DNA synthesis by targeting DNA gyrase and topoisomerase IV. They are bactericidal and effective against a broad range of gram-negative and some gram-positive bacteria. Quinolones are classified into generations based on their spectrum of activity.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-30">
           <summary>30 Classification of Quinolones:</summary>
           <ul><li>First-generation: Nalidixic acid</li><li>Second-generation: Ciprofloxacin, Norfloxacin, Ofloxacin, Pefloxacin, Lomefloxacin</li><li>Third-generation: Levofloxacin, Sparfloxacin, Gatifloxacin, Moxifloxacin</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-31">
           <summary>31 Nalidixic Acid</summary>
           <p>Available Preparations:</p>
 <ul><li>Tablets: 500mg</li></ul>
@@ -469,7 +525,7 @@
 <ul><li>Advise patients to take nalidixic acid on an empty stomach, preferably one hour before meals.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-32">
           <summary>32 Ciprofloxacin</summary>
           <p>Available Preparations:</p>
 <ul><li>Tablets: 500mg, 1g</li><li>Injection: 200/100mL</li><li>Eye drops: 0.3% w/v</li></ul>
@@ -489,13 +545,13 @@
 <ul><li>Ciprofloxacin should be taken one hour before or two hours after meals for optimal absorption.</li><li>Advise patients to drink plenty of fluids while on ciprofloxacin.</li><li>Patients should avoid taking dairy products, antacids, iron, zinc, or calcium supplements with ciprofloxacin.</li><li>Ciprofloxacin may increase the effects of caffeine, so advise patients to reduce caffeine intake.</li><li>It may worsen seizures in epileptic patients.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-33">
           <summary>33 NITROIMIDAZOLES</summary>
           <p>Nitroimidazoles are a class of antimicrobial agents that are primarily effective against anaerobic bacteria and protozoa. They work by disrupting DNA synthesis in these microorganisms.</p>
 <p>Mechanism of Action: Nitroimidazoles, including metronidazole, are prodrugs that require reduction by anaerobic bacteria or protozoa to become active. The reduced form interacts with DNA, causing strand breakage and inhibiting nucleic acid synthesis, ultimately leading to cell death.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-34">
           <summary>34 METRONIDAZOLE</summary>
           <p>Description: Metronidazole is a synthetic nitroimidazole antibiotic with antiprotozoal and antibacterial properties, particularly effective against anaerobic bacteria and certain protozoa such as Trichomonas vaginalis , Entamoeba histolytica , and Giardia lamblia .</p>
 <p>Pharmacokinetics:</p>
@@ -514,37 +570,42 @@
 <ul><li>Administering Medication: Metronidazole can be given orally or intravenously; for intravenous administration, infuse slowly to prevent infusion reactions.</li><li>Patient Education:</li><li>Instruct patients to avoid alcohol during treatment and for at least 48 hours after discontinuation.</li><li>Advise patients about potential side effects, including gastrointestinal disturbances and metallic taste.</li><li>Monitoring:</li><li>Monitor liver function tests, especially in patients with hepatic impairment.</li><li>Assess for signs of peripheral neuropathy, particularly with prolonged use.</li><li>Ensure patients complete the full course of therapy to prevent resistance.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-35">
           <summary>35 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Specific anti-microbial agents</strong> as a practical nursing topic, not only a memorized definition. Read the topic through the safety of two patients: the mother and the fetus or newborn.</p>
 <ul><li><strong>What to understand first:</strong> define specific anti-microbial agents, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-36">
           <summary>36 Assessment Guide</summary>
           <ul><li>Maternal vital signs, bleeding, pain, contractions, uterine tone and danger signs.</li><li>Fetal or newborn wellbeing, feeding, temperature, breathing and activity.</li><li>History of pregnancy, parity, medications, allergies, investigations and referral risks.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-37">
           <summary>37 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Recognize danger signs early and escalate without delay.</li><li>Provide respectful communication, privacy, infection prevention and clear documentation.</li><li>Teach the mother what to monitor at home and when to return urgently.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> Mother and baby remain stable, danger signs are acted on early, and the family understands follow-up instructions.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-38">
           <summary>38 Patient Teaching and Revision Check</summary>
           <ul><li>Explain specific anti-microbial agents in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Specific%20anti-microbial%20agents%20Mental%20Health%20and%20Pharmacology%20nursing%20lecture" title="Specific anti-microbial agents YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (1)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Antimicrobial-Agents-700x224-1-e1736312501707.webp" alt="Antimicrobial Agents 700x224 1 E1736312501707" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Antimicrobial Agents 700x224 1 E1736312501707</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Specific%20anti-microbial%20agents%20Mental%20Health%20and%20Pharmacology%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Specific%20anti-microbial%20agents%20Mental%20Health%20and%20Pharmacology%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

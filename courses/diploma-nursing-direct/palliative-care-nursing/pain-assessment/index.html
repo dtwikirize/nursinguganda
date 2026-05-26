@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,23 @@
         <p>Pain Assessment should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (10)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment OF Pain</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">PQRST Pain Assessment</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Pain Assessment Tools</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Types of pain assessment tools.</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Pain assessment in children</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Process of Pain in Children</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Assessment OF Pain</summary>
           <p>Assessment Introduction .</p>
 <p>To effectively manage pain, it is important to begin with a thorough assessment. This includes conducting a comprehensive physical examination and considering other factors that may influence the pain, such as psychological, social, cultural, and spiritual aspects. We covered Pain already, incase you want to view Pain Introduction, Click Here.</p>
@@ -96,7 +124,7 @@
 <ul><li>Onset of Pain : When did the pain start?</li><li>Nature of Pain : What does the pain feel like?</li><li>Site and Radiation of Pain : Where is the pain located and does it spread to other areas?</li><li>Type of Pain : What type of pain is it?</li><li>Duration of Pain and Changes : How long has the pain been present and has it changed over time?</li><li>Precipitating/Aggravating or Relieving Factors : What triggers or worsens the pain? Are there any factors that provide relief? Also, consider how the pain affects the patient’s functional ability, mood, and sleep.</li><li>Effect of Previous Medications : Assess the effectiveness and any side effects of previous pain medications.</li><li>Meaning of Pain to the Patient : Understand the patient’s perspective on the pain and its significance , especially if it relates to their deterioration or end-of-life concerns.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 PQRST Pain Assessment</summary>
           <ul><li><strong>Precipitating and relieving factors</strong> : What makes your pain better or worse?</li><li><strong>Quality of pain</strong> : How would you describe your pain? What does it feel like?</li><li><strong>Radiation of pain</strong> : Does the pain stay in one place or move around your body?</li><li><strong>Site and severity of pain</strong> : Where is your pain? (Use a body chart) How bad is it? (Use a pain rating scale)</li><li><strong>Timing and previous treatment for pain</strong> : How often do you experience the pain? Does it occur at specific times? Have you received any previous pain treatments?</li></ul>
 <p>PQRST Pain Assessment</p>
@@ -104,7 +132,7 @@
 <p>In a PQRST pain assessment, these questions help gather important information about the pain, its location, factors that worsen or alleviate it, the quality of the pain, any radiation or spread, its severity and impact on daily life, timing patterns, and the patient’s thoughts and fears related to the pain.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Pain Assessment Tools</summary>
           <p>Pain assessment tools are helpful in evaluating and monitoring a patient’s pain. These tools provide a way to measure and track the severity of pain over time. They are particularly useful for:</p>
 <ul><li>Determining the intensity of the patient’s pain.</li><li>Monitoring changes in pain levels as treatment progresses.</li><li>Assessing the effectiveness of interventions.</li></ul>
@@ -114,7 +142,7 @@
 <p>There are various pain measurement tools available for both adults and children. One useful tool is a body chart, where individuals can mark the areas where they experience pain.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Types of pain assessment tools.</summary>
           <ul><li><strong>The Numerical Rating Scale</strong></li></ul>
 <p>One common type of pain assessment tool is the Numerical Rating Scale. The patient is asked to rate their pain intensity on a numerical scale, typically ranging from 0 (indicating no pain) to 10 (indicating the worst pain imaginable). Alternatively, a simplified version of the scale may use a range of 0-5. Another variation is the verbal-descriptor scale, which includes descriptive terms such as “mild pain,” “mild-to-moderate pain,” and “moderate pain.”</p>
@@ -126,7 +154,7 @@
 <p>It’s important to provide proper training to the patient on how to use this tool accurately. Make sure they understand that they are rating their pain level and not their emotions. It’s worth noting that experiences with the Faces Scale in Africa have varied, with many individuals preferring the hand scale for pain assessment.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Pain assessment in children</summary>
           <p>Pain management in children is complex. Although there are similarities with pain management in adults, there are specific considerations for children.</p>
 <ul><li>Myths Facts</li><li>Newborns do not feel pain Newborns have the ability to perceive pain</li><li>Young children cannot process or remember pain Children of all ages can experience and remember pain</li><li>Children become accustomed to repeated painful procedures Repeated painful procedures can still cause distress and pain</li><li>Children are unable to tell where it hurts Children can indicate the location of their pain</li><li>Opioids should be avoided due to addiction risk Psychological addiction to opioids is rare in children</li><li>Incomplete myelination or immature pain cortex means children don’t feel pain Proper nociception (pain perception) is possible without complete myelination</li><li>Younger children have higher pain sensitivity Pain tolerance generally increases with age</li><li>Children always communicate when they have pain Children may not always express pain due to fear or inadequate communication skills</li><li>Children are not aware they have chronic pain Children may not recognize or understand chronic pain</li></ul>
@@ -136,43 +164,54 @@
 <ul><li>Limited availability of age-appropriate and validated pain assessment tools.</li><li>Lack of knowledge regarding appropriate tools for different age groups in children.</li><li>Insufficient training in the use and implementation of pain assessment tools.</li><li>Difficulty in interpreting pain scores.</li><li>Challenges in distinguishing between anxiety and psychological pain.</li><li>Limited understanding of children’s pain experiences.</li><li>Factors that may inhibit children from reporting their pain, such as fear of doctors or nurses, fear of illness, reluctance to bother caregivers, avoidance of injections, and eagerness to leave the hospital</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Assessment Process of Pain in Children</summary>
           <p>To effectively assess pain in children, a standardized tool or guideline can be valuable in tracking changes in pain over time. One such tool is the QUESTT tool, which stands for:</p>
 <ul><li><strong>Q</strong> – Question the child (if able to respond) or the parent/caregiver (if the child is unable to communicate).</li><li><strong>U</strong> – Use pain rating scales, if appropriate, to quantify the child’s pain.</li><li><strong>E</strong> – Evaluate the child’s behavior and physiological changes that may indicate pain.</li><li><strong>S</strong> – Secure the involvement of parents in assessing and managing the child’s pain.</li><li><strong>T</strong> – Take into account the cause or source of the pain.</li><li><strong>T</strong> – Take necessary action based on the assessment findings and continuously evaluate the effectiveness of interventions.</li><li>Step Questions/Tools</li><li>U – Use of pain rating scales – Eland Body scale: This tool helps to assess multiple sites and differing intensities. Get the child to assign colors to the different categories e.g. no pain – green. Little pain – yellow, moderate pain – orange and severe pain – red. Ask them to colour in the bodies where their pain is, using the different colors to depict different levels of pain in different areas.</li><li>– Faces Scale</li><li>– Hand Scale</li><li>Evaluate behavior and physiological changes Observe behavioral and physiological responses to pain</li><li>Secure the caregivers involvement 1. Listen to mothers, fathers, and caregivers</li><li>2. Include them in decision-making</li><li>3. Consider their insights into subtle changes in behavior</li><li>4. Seek their input on comforting strategies for the child</li><li>Take the cause of pain into account 1. Consider the underlying problem/pathophysiology</li><li>2. Obtain descriptions of the type of pain to determine its cause</li><li>Take action and evaluate results 1. Assess pain, develop a treatment plan</li><li>2. Reassess using pain rating scales</li><li>3. Adjust the treatment plan accordingly</li><li>4. Utilize pain diaries for continuous re-evaluation in chronic pain cases</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-7">
           <summary>07 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Pain Assessment</strong> as a practical nursing topic, not only a memorized definition. Focus on comfort, dignity, symptom control, communication and family support.</p>
 <ul><li><strong>What to understand first:</strong> define pain assessment, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-8">
           <summary>08 Assessment Guide</summary>
           <ul><li>Pain and other symptoms, function, sleep, appetite, mood, spiritual distress and family concerns.</li><li>Medication response, side effects, wound or skin needs and end-of-life preferences.</li><li>Caregiver burden, home resources and urgent red flags.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-9">
           <summary>09 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Relieve distressing symptoms and prevent avoidable suffering.</li><li>Communicate honestly, respectfully and at the patient&#39;s pace.</li><li>Support family care, medication access, dignity and continuity.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> Symptoms are better controlled, patient preferences are respected and the family knows when to seek help.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-10">
           <summary>10 Patient Teaching and Revision Check</summary>
           <ul><li>Explain pain assessment in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Pain%20Assessment%20Palliative%20Care%20Nursing%20nursing%20lecture" title="Pain Assessment YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (7)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Pain-assessment-1.webp" alt="Pain Assessment 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Pain Assessment 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/classification-of-pain.webp" alt="Classification Of Pain" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Classification Of Pain</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/85045b616471433afeca78ca955be728.webp" alt="85045b616471433afeca78ca955be728" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">85045b616471433afeca78ca955be728</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/493580b495b8fb63991f4c6468972f77.webp" alt="493580b495b8fb63991f4c6468972f77" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">493580b495b8fb63991f4c6468972f77</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/0edc1c65dfff572a515c2c4ff2856a89.webp" alt="0edc1c65dfff572a515c2c4ff2856a89" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">0edc1c65dfff572a515c2c4ff2856a89</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/5a3f8f9da4c1b74819716936b337eecb.webp" alt="5a3f8f9da4c1b74819716936b337eecb" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">5a3f8f9da4c1b74819716936b337eecb</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/a6498463534299b9cd033b72f21619a4.webp" alt="A6498463534299b9cd033b72f21619a4" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">A6498463534299b9cd033b72f21619a4</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Pain%20Assessment%20Palliative%20Care%20Nursing%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Pain%20Assessment%20Palliative%20Care%20Nursing%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

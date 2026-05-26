@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,14 +97,28 @@
         <p>Hyperaldosteronism should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (8)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Hyperaldosteronism</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Types of Aldosteronism</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Complications of Aldosteronism:</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Care Plan: Hyperaldosteronism</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Hyperaldosteronism</summary>
           <p>Aldosteronism refers to an abnormal excess of aldosterone, a hormone produced by the adrenal glands. Aldosterone plays a big role in regulating sodium and water balance in the body, thereby influencing blood pressure .</p>
 <p>Aldosterone is a major mineralocorticoid hormone produced by the adrenal gland , in the zona glomerulosa , which is the outermost layer of the adrenal cortex. Aldosterone plays an important role in the regulation of sodium and water in the body, thereby maintaining and having an effect on blood pressure.</p>
 <p>It is a type under ALDOSTERONISM, so therefore, let’s start from the very beginning.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Types of Aldosteronism</summary>
           <p>Aldosteronism is broadly classified into two categories:</p>
 <p>This condition is characterized by excessive aldosterone production due to a problem within the adrenal glands themselves . This leads to sodium retention, potassium loss, and ultimately, a combination of hypokalemia (low potassium) and hypertension.</p>
@@ -114,7 +140,7 @@
 <ul><li>Angiotensin-Converting Enzyme (ACE) Inhibitors : Captopril, enalapril, etc., are effective in blocking the production of Angiotensin II, which in turn reduces aldosterone levels.</li><li>Angiotensin II Receptor Blockers (ARBs) : Losartan, etc., block the action of Angiotensin II, lowering blood pressure and aldosterone levels.</li><li>Spironolactone : Can be used to directly block the action of aldosterone.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Complications of Aldosteronism:</summary>
           <p>High Blood Pressure Complications : Persistent hypertension can lead to:</p>
 <ul><li>Heart attack</li><li>Heart failure</li><li>Stroke</li><li>Kidney disease or failure</li></ul>
@@ -124,7 +150,7 @@
 <ul><li>Metabolic alkalosis</li><li>Kidney stones</li><li>Bone loss</li><li>Diabetes</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Nursing Care Plan: Hyperaldosteronism</summary>
           <p>Patient Data: A patient diagnosed with hyperaldosteronism presents with hypertension , muscle weakness , fatigue , polyuria , polydipsia , and hypokalemia . Lab results show elevated aldosterone levels , low potassium levels , and metabolic alkalosis .</p>
 <ul><li>Assessment Nursing Diagnosis Goals/Expected Outcomes Nursing Interventions Rationale Evaluation</li><li>Patient presents with persistent hypertension, headache, blurred vision, and increased blood pressure readings. Decreased Cardiac Output related to hypertension and electrolyte imbalance as evidenced by elevated BP (e.g., 160/100 mmHg), palpitations, and headache. – Patient’s blood pressure will be maintained within normal limits. – Patient will verbalize understanding of hypertension management. – Patient will adhere to prescribed antihypertensive medications. 1. Monitor blood pressure, heart rate, and signs of hypertensive crisis. 2. Administer prescribed antihypertensive medications (e.g., spironolactone, calcium channel blockers). 3. Educate the patient on lifestyle modifications (low-sodium diet, weight control). 4. Monitor for complications like left ventricular hypertrophy and heart failure. 5. Prepare the patient for surgical adrenalectomy if indicated. 1. Prevents complications from sustained hypertension. 2. Spironolactone blocks aldosterone effects and helps control BP. 3. Lifestyle changes enhance BP control and prevent worsening of symptoms. 4. Early detection prevents cardiac complications. 5. Surgery may be necessary for aldosterone-secreting tumors (Conn’s syndrome). – Patient maintains stable BP without complications. – Patient verbalizes adherence to lifestyle and medication regimen.</li><li>Patient has hypokalemia as evidenced by muscle weakness, fatigue, leg cramps, and ECG changes. Impaired water- electrolyte Imbalance related to excessive aldosterone secretion as evidenced by serum potassium &amp;lt;3.5 mEq/L and muscle weakness. – Patient’s potassium levels will return to normal (3.5–5.0 mEq/L). – Patient will demonstrate knowledge of potassium-rich dietary sources. – Patient will remain free from cardiac arrhythmias. 1. Monitor serum potassium levels and ECG for arrhythmias. 2. Administer potassium supplements as prescribed. 3. Encourage potassium-rich foods (bananas, oranges, spinach). 4. Educate about the importance of medication adherence (spironolactone to conserve potassium). 5. Monitor urinary output and renal function. 1. Hypokalemia can cause life-threatening arrhythmias. 2. Corrects potassium deficit and prevents complications. 3. Helps maintain normal potassium levels naturally. 4. Spironolactone prevents potassium loss by blocking aldosterone. 5. Ensures potassium is not lost excessively through urine. – Patient maintains normal potassium levels. – No signs of arrhythmias or muscle weakness. – Patient adheres to dietary recommendations.</li><li>Patient reports excessive thirst (polydipsia) and frequent urination (polyuria). Inadequate Fluid Volume related to excessive urinary loss due to aldosterone excess as evidenced by increased urine output and dehydration signs. – Patient’s fluid balance will be maintained. – Patient will report decreased thirst and normal urine output. – Patient’s serum sodium and potassium levels will remain within normal limits. 1. Monitor intake and output, daily weights, and signs of dehydration. 2. Encourage adequate fluid intake unless contraindicated. 3. Administer IV fluids (e.g., isotonic saline) if severe dehydration occurs. 4. Educate patient on fluid replacement strategies. 5. Monitor serum sodium levels to prevent hypernatremia. 1. Early detection of dehydration prevents complications. 2. Prevents dehydration-related symptoms. 3. IV fluids help restore intravascular volume. 4. Prevents excessive thirst and compensatory fluid loss. 5. Prevents sodium imbalances that can worsen symptoms. – Patient maintains normal hydration. – No signs of excessive thirst or dehydration. – Serum sodium remains stable.</li><li>Patient expresses anxiety about condition and potential need for surgery. Excessive Anxiety related to uncertainty about disease and treatment as evidenced by patient verbalizing concerns about long-term health and surgery. – Patient will verbalize reduced anxiety. – Patient will demonstrate understanding of the condition and treatment. – Patient will actively participate in care decisions. 1. Assess anxiety level and provide emotional support. 2. Educate the patient on hyperaldosteronism, treatment options, and expected outcomes. 3. Encourage expression of fears and concerns. 4. Provide information on surgical adrenalectomy if indicated. 5. Offer relaxation techniques (deep breathing, guided imagery). 1. Helps identify the patient’s emotional needs. 2. Increases understanding and reduces fear of the unknown. 3. Promotes coping and psychological well-being. 4. Helps patient make informed treatment decisions. 5. Helps reduce stress and its physiological effects. – Patient verbalizes reduced anxiety. – Patient demonstrates understanding of condition. – Patient actively participates in treatment.</li><li>Patient reports difficulty engaging in daily activities due to muscle weakness and fatigue. Activity Intolerance related to hypokalemia-induced muscle weakness as evidenced by patient reporting fatigue and inability to perform normal activities. – Patient will report improved energy levels. – Patient will tolerate activities of daily living without excessive fatigue. – Patient will participate in gradual activity progression. 1. Assess muscle strength, fatigue levels, and ability to perform daily activities. 2. Encourage rest periods between activities. 3. Provide a potassium-rich diet and encourage adherence to medications. 4. Assist with activities as needed but encourage independence. 5. Monitor for muscle cramps, arrhythmias, and weakness progression. 1. Identifies severity of fatigue and weakness. 2. Prevents overexertion and worsening of symptoms. 3. Correcting potassium levels restores muscle function. 4. Promotes independence while ensuring safety. 5. Early detection prevents severe complications. – Patient tolerates daily activities without excessive fatigue. – Muscle strength improves. – No signs of severe weakness or arrhythmias.</li></ul>
@@ -133,37 +159,45 @@
 <ul><li>Medications : Spironolactone (Aldactone) as first-line treatment; Eplerenone as an alternative.</li><li>Surgical Treatment : Adrenalectomy for patients with unilateral adrenal adenomas.</li><li>Dietary Modifications : Potassium-rich, low-sodium diet to counteract aldosterone effects.</li><li>Monitoring : BP, electrolytes, renal function, and cardiac status.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-5">
           <summary>05 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Hyperaldosteronism</strong> as a practical nursing topic, not only a memorized definition. Start with normal structure and function, then connect it to assessment findings and disease.</p>
 <ul><li><strong>What to understand first:</strong> define hyperaldosteronism, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-6">
           <summary>06 Assessment Guide</summary>
           <ul><li>Relevant inspection, palpation, movement, auscultation, vital signs or neurological checks.</li><li>Normal findings, abnormal findings and what each abnormality may indicate.</li><li>Patient history, risk factors and how the body system affects other systems.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-7">
           <summary>07 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use anatomy to explain symptoms and guide focused assessment.</li><li>Recognize findings that need urgent escalation.</li><li>Teach the patient using simple body-system language.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The learner can explain normal function, identify abnormal signs and connect them to nursing action.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-8">
           <summary>08 Patient Teaching and Revision Check</summary>
           <ul><li>Explain hyperaldosteronism in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Hyperaldosteronism%20Medical%20Nursing%20(III)%20nursing%20lecture" title="Hyperaldosteronism YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (4)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Hyperaldosteronism.webp" alt="Hyperaldosteronism" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Hyperaldosteronism</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Types-of-Aldosteronism-1.webp" alt="Types Of Aldosteronism 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Types Of Aldosteronism 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/5fbee60ce7fe165ec33e82f6ded71587.webp" alt="5fbee60ce7fe165ec33e82f6ded71587" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">5fbee60ce7fe165ec33e82f6ded71587</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/587fe266b84d9719fc3addc3487ac93f.webp" alt="587fe266b84d9719fc3addc3487ac93f" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">587fe266b84d9719fc3addc3487ac93f</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Hyperaldosteronism%20Medical%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Hyperaldosteronism%20Medical%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

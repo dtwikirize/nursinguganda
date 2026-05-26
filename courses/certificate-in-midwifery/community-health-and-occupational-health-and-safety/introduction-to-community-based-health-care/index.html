@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,53 +97,74 @@
         <p>Introduction to community based health care should be reviewed through safe maternal and newborn assessment, early recognition of danger signs, respectful communication and timely referral. Connect the definition to vital signs, bleeding, fetal or newborn wellbeing, patient education and local protocol requirements.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 15 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Introduction</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The need for PHC and CBHC arises from the following.</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Objectives of CBHC</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">CBHC activities</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Advantages of CBHC</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Disadvantages of CBHC</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Source of the CBHC services</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Village Health Team (Community Based Workers)</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Roles or responsibilities of village health team</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Basic health services done by the VHT</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">TECHNIQUES USED TO ESTABLISH COMMUNITY HEALTH ACTIVITIES</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Introduction</summary>
           <p>Community Based Health Care (CBHC) is part of Primary Health Care (PHC) while more concerned with people. CBHC is viewed in the context that when giving care to patients, you must put in mind that client needs continuous care even when you have left. It shows that community participation is very important and doesn’t work in isolation when giving care, involve them in plan so that they take responsibility. Since most of resources come from the community like food and other materials. It will be simple if you can teach them how to make use of them in the care.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 The need for PHC and CBHC arises from the following.</summary>
           <ul><li><strong>Most illnesses can be prevented</strong> : the most common illnesses are preventable or controllable, either by the people themselves or a combined effort between the people and government or other partner (NGO) services e.g. malaria.</li><li><strong>Morbidity and Mortality rates can be reduced</strong> : a reduction in this suffering can only happen if there is more “encouragement” and “enablement” of individuals and communities together to have a positive attitude towards preventive habits and to be willing to take part in improving their local amenities, rather than expecting the people to go to the health services and development projects.</li><li>The encouraging and enabling cannot go on within the walls of the hospitals and health centers; it must go on in the villages and homes.</li><li><strong>Coverage of health services:</strong> even if there was full service in the health units, there are still few e.g. dental and mental services and they are mainly located in towns and rural population have little access to essential health care.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Objectives of CBHC</summary>
           <p>The main objective of CBHC is to encourage and enable the community to take care for its own health and welfare, if the community can,</p>
 <ul><li>Identify its own health problems</li><li>Find solutions for those problems</li><li>Make its own decisions</li><li>Find (identify) resources outside the community</li><li>Evaluate its actions and replan</li><li>Together and individually make healthy behaviors into common practices and habits.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 CBHC activities</summary>
           <ul><li>Provision of information, education and training concerning prevailing health problems in communities and the methods of preventing and controlling them</li><li>Promotion of proper nutrition,</li><li>Maternal and child care;</li><li>Immunization against the major infectious diseases;</li><li>Prevention and control of locally endemic diseases such as diarrheal diseases, acute respiratory infection and malaria;</li><li>Reproductive health services, including family planning and the prevention and control of sexually transmitted infections with particular emphasis on HIV/AIDS;</li><li>Appropriate treatment for common diseases and injuries; ;</li><li>Community Mental health;</li><li>Rehabilitation for people with disabilities and</li><li>School health activities</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Advantages of CBHC</summary>
           <ul><li>Community becomes responsible to care for their own health problems.</li><li>Empowers community to take systematic care of their health using available means at affordable costs.</li><li>Helps the community members in planning, making decision, implementation and evaluation of health care approach in the community</li><li>Gives the communities sense of ownership and belonging in the health care system.</li><li>It cuts down costs of health care delivery</li><li>It reduces on dependency the government and donors,</li><li>Helps health workers to have knowledge base in family theory, principle of communication, group dynamic and cultural diversity in care of the patients at community level.</li><li>CBHC forces distance by giving services nearest to the community members, hence become easily accessible.</li><li>Creates awareness with – in the community on various health issues.</li><li>Individual families and communities are actively involved in health activities</li><li>Promotes holistic care that is physical, psychologically, spiritually and culturally.</li><li>Bridges the gap between community and extension worker e.g. from other ministries e.g. Agriculture.</li><li>It promotes unity</li><li>Helps to get appropriate action</li><li>Improves the quality of life</li><li>Community development</li><li>Early identification of the individual</li><li>Mutual interaction</li><li>Uplifts the standards of living</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Disadvantages of CBHC</summary>
           <ul><li>Diagnosis is made on assumption in most cases no investigations</li><li>Increases stigma.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Source of the CBHC services</summary>
           <ul><li>TASO (The AIDS Support Organization)</li><li>UWESO (Uganda Women’s Effort To Save Orphans)</li><li>CGC (Concern for the Girl Child)</li><li>Hospice that provides palliative care services</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Village Health Team (Community Based Workers)</summary>
           <p>The structure is put in place to facilitate the process of community mobilization, empowerment and participation in delivery, management and implementation of health services at house hold level. The overall goal of the village health team/ committee is to a chieve an improved quality of life by strengthening service delivery at house hold level.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Roles or responsibilities of village health team</summary>
           <ul><li>Facilitate the community to identify an recognize their health problems</li><li>Mobilize community for health programs e.g. immunization, malaria control etc</li><li>To collect information and maintenance of record book of house hold members and use it for planning and other programs.</li><li>Serves as a link between the community and health providers.</li><li>Follow up patients or clients</li><li>Conduct home visit</li><li>Identify individuals who need care at and outside their homes and refer appropriately.</li><li>Provide basic health message for behavioral change.</li><li>Distribution of drugs, supplies, information , communication, materials , insect treated nets.</li><li>Serves as role model in the community, collaborate with other community structures or other ministries.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Basic health services done by the VHT</summary>
           <p>Advice and information will be given on: <strong>Diseases</strong> &amp;gt; Giving treatment and managing simple illness at home &amp;gt; Sexually transmitted diseases (HIV/AIDS, ) &amp;gt; Tuberculosis (TB) <strong>Family</strong> &amp;gt; Family Planning (child spacing) &amp;gt; Pregnancy, delivery and care of new born baby &amp;gt; Adolescent sexual and reproductive health &amp;gt; Breast feeding &amp;gt; Food and nutrition &amp;gt; Abuse and violence &amp;gt; Immunization &amp;gt; Mental health <strong>The home</strong> &amp;gt; Water and sanitation &amp;gt; Hygiene &amp;gt; First Aid</p>
 <p><strong>How will the basic health services be done?</strong> &amp;gt; Community mapping &amp;gt; Community registers &amp;gt; Home visits &amp;gt; Talking with neighbors about health issues which have been found.</p>
@@ -145,43 +178,55 @@
 <p><strong>A CORP has to carry out the following duties/ responsibilities:-</strong> &amp;gt; Home Visiting and advising and personal hygiene and environmental sanitation. &amp;gt; Advising and educating communities on matters related to:- – Food production and Nutrition – Prevention of diseases – Use of safe water. – Identify health problems (concerns) and prioritize together with community members. &amp;gt; Keeping records and using them for organizing, prioritizing, implementing, monitoring, and evaluation of health services. &amp;gt; Identifying individual and families at risk and refer them for further management.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 TECHNIQUES USED TO ESTABLISH COMMUNITY HEALTH ACTIVITIES</summary>
           <p><strong>Below are the steps taken to establish community health activity.</strong></p>
 <ul><li>Community approach</li><li>Community entry</li><li>Community Assessment</li><li>Community situation analysis (Diagnosis)</li><li>Community mobilization</li><li>Community participation</li><li>Community organization</li><li>Community empowerment</li><li>Community based rehabilitative services for disabled and disadvantaged groups</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-12">
           <summary>12 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Introduction to community based health care</strong> as a practical nursing topic, not only a memorized definition. Move from individual illness to prevention, population risk, health education and continuity of care.</p>
 <ul><li><strong>What to understand first:</strong> define introduction to community based health care, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-13">
           <summary>13 Assessment Guide</summary>
           <ul><li>Who is affected, where they live, risk factors, resources and barriers to care.</li><li>Environmental hygiene, nutrition, immunization, water, sanitation and health-seeking behaviour.</li><li>Community beliefs, leaders, household practices and surveillance data.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-14">
           <summary>14 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Promote prevention, early detection, referral and community participation.</li><li>Use clear health education matched to literacy, culture and available resources.</li><li>Document findings and coordinate with community health structures.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The community understands the message, risk is reduced and follow-up or referral pathways are active.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-15">
           <summary>15 Patient Teaching and Revision Check</summary>
           <ul><li>Explain introduction to community based health care in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Introduction%20to%20community%20based%20health%20care%20Community%20health%20and%20Occupational%20health%20and%20safety%20nursing%20lecture" title="Introduction to community based health care YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (14)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/PosterMaker_19012023_193247.webp" alt="PosterMaker 19012023 193247" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">PosterMaker 19012023 193247</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/137c9e02983672bffc30e19d7ed38801.webp" alt="137c9e02983672bffc30e19d7ed38801" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">137c9e02983672bffc30e19d7ed38801</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/f23867c8711b5436df6bf554d27afffa.webp" alt="F23867c8711b5436df6bf554d27afffa" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">F23867c8711b5436df6bf554d27afffa</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/2b94a3ec0af0346c9733e7dd1e2f35ee.webp" alt="2b94a3ec0af0346c9733e7dd1e2f35ee" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">2b94a3ec0af0346c9733e7dd1e2f35ee</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/146874b9d041f5c6c7c284b8a56250e7.webp" alt="146874b9d041f5c6c7c284b8a56250e7" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">146874b9d041f5c6c7c284b8a56250e7</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/51349dcba68f56e69233c1f731ff0abb.webp" alt="51349dcba68f56e69233c1f731ff0abb" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">51349dcba68f56e69233c1f731ff0abb</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/c2f18e74f4e819b531465a97a0e134c2.webp" alt="C2f18e74f4e819b531465a97a0e134c2" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">C2f18e74f4e819b531465a97a0e134c2</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/b5fa00155ac1e2ff5bcdb6045dbbe7bf.webp" alt="B5fa00155ac1e2ff5bcdb6045dbbe7bf" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">B5fa00155ac1e2ff5bcdb6045dbbe7bf</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Introduction%20to%20community%20based%20health%20care%20Community%20health%20and%20Occupational%20health%20and%20safety%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <p style="color:var(--seo-muted);font-size:.85rem;margin:8px 0 0">6 more diagrams available — open the lesson for full illustrations.</p>
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Introduction%20to%20community%20based%20health%20care%20Community%20health%20and%20Occupational%20health%20and%20safety%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

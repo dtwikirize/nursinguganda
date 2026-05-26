@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,18 @@
         <p>Congenital Toxoplasmosis should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (5)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Overview</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Overview</summary>
           <p>Congenital toxoplasmosis is a disease that occurs in fetuses or new-borns infected with Toxoplasma gondii , a protozoan parasite, which is transmitted from mother to fetus.</p>
 <p>Congenital Toxoplasmosis is an infection of a fetus or newborn baby with the parasite Toxoplasma gondii, acquired in utero from an infected mother.</p>
@@ -123,37 +146,49 @@
 <ul><li><strong>Cook Meat Thoroughly:</strong> Ensure all meat, especially pork, lamb, and venison, is cooked to safe internal temperatures (e.g., 160°F/71°C for ground meat, 145°F/63°C for whole cuts with a 3-minute rest time) until no pink remains and juices run clear. Freezing meat to -4°F (-20°C) for several days can also kill tissue cysts.</li><li><strong>Wash Fruits and Vegetables:</strong> Thoroughly wash all raw fruits and vegetables before consumption, especially those grown in gardens where cats might roam.</li><li><strong>Avoid Raw/Undercooked Meat:</strong> Refrain from eating raw or undercooked meat, including cured meats unless they have been previously frozen.</li><li><strong>Prevent Cross-Contamination:</strong> Use separate cutting boards and utensils for raw meat and produce. Wash hands, cutting boards, and all utensils thoroughly with hot, soapy water after contact with raw meat.</li><li><strong>Cat Litter Box Management:</strong> Avoid Cleaning: Ideally, pregnant women should avoid changing cat litter boxes. If unavoidable, wear gloves and wash hands thoroughly afterwards.</li><li>Daily Cleaning: Have someone else clean the litter box daily, as Toxoplasma oocysts do not become infective until 1-5 days after being shed in feces.</li><li>Dispose Safely: Dispose of cat feces carefully, ideally by flushing or bagging and placing in sealed waste.</li><li><strong>Gardening and Soil Contact:</strong> Wear Gloves: Wear gloves when gardening or handling soil, sand, or anything that might be contaminated with cat feces.</li><li>Wash Hands: Wash hands thoroughly with soap and water after outdoor activities.</li><li><strong>Sandboxes:</strong> Cover children&#39;s sandboxes when not in use to prevent cats from using them as litter boxes.</li><li><strong>Keep Cats Indoors:</strong> This prevents them from hunting and eating infected rodents or birds, which are sources of Toxoplasma .</li><li><strong>Avoid Feeding Raw Meat:</strong> Do not feed raw or undercooked meat to cats.</li><li><strong>No New Cats During Pregnancy:</strong> Avoid acquiring new cats during pregnancy, especially stray or feral cats, unless they have been tested for Toxoplasma .</li><li><strong>Maternal Serological Screening:</strong> Universal Screening: Some countries (e.g., France, Austria) implement universal serological screening for Toxoplasma at the beginning of pregnancy (first trimester).</li><li>Targeted Screening: In other regions (e.g., USA), screening is often targeted only to women who develop symptoms suggestive of infection or have known exposure.</li><li>Benefits of Screening: Early detection of maternal seroconversion allows for prompt initiation of spiramycin, which can significantly reduce the risk of vertical transmission.</li><li><strong>Neonatal Screening (Controversial/Not Universal):</strong> Some regions implement universal neonatal screening using cord blood or dried blood spots to detect Toxoplasma antibodies (e.g., IgM, IgA, or IgG avidity patterns) or PCR. Benefits include identifying congenitally infected infants (including asymptomatic ones) who can then receive treatment.</li><li><strong>Animal Control:</strong> Efforts to control feral cat populations in certain areas.</li><li><strong>Water Treatment:</strong> Ensuring safe drinking water to prevent oocyst ingestion.</li><li><strong>Public Education Campaigns:</strong> Raising awareness about Toxoplasma and its prevention methods among the general population, especially women of childbearing age.</li><li><strong>Risk for Infection</strong> , related to compromised immune system and presence of parasitic infection.</li><li><strong>Inadequate protein energy nutritional intake</strong> , related to increased metabolic demands, poor feeding, or gastrointestinal disturbances (e.g., jaundice, hepatosplenomegaly).</li><li><strong>Risk for Delayed Development</strong> , related to neurological damage, visual impairment, or hearing deficits.</li><li><strong>Impaired Physical Mobility</strong> , related to neurological damage (e.g., hydrocephalus, spasticity) and developmental delays.</li><li><strong>Acute Pain</strong> , related to inflammation (e.g., active chorioretinitis, CNS inflammation) or surgical interventions (e.g., shunt placement).</li><li><strong>Compromised Family Coping</strong> , related to chronic illness, uncertain prognosis, and demands of prolonged treatment and care.</li><li><strong>Inadequate health Knowledge (Parents)</strong> , related to disease process, treatment regimen, potential complications, and long-term care needs.</li><li><strong>Risk for Caregiver Role Strain</strong> , related to complexity of care, financial burden, emotional stress, and lack of support systems.</li><li><strong>Excessive Anxiety (Parents)</strong> , related to diagnosis, prognosis, potential for sequelae, and future care needs.</li><li>Intervention Category Action &amp; Rationale</li><li><strong>1. Infection Control &amp; Medication Management</strong> <strong>Administer Anti-parasitic Medications:</strong> Ensure timely and accurate administration of pyrimethamine, sulfadiazine, and leucovorin as prescribed. Educate parents on adherence. <strong>Monitor Side Effects:</strong> Hematological: Monitor CBC results (anemia, neutropenia, thrombocytopenia). Educate parents on signs of bleeding/infection. Renal/Hepatic: Monitor renal/liver function tests. Educate on signs of jaundice, dark urine. Skin: Assess for rash (sulfadiazine side effect). <strong>Leucovorin Administration:</strong> Critical for preventing myelosuppression from pyrimethamine. <strong>Infection Prevention:</strong> Implement standard precautions. Teach hand hygiene to protect infant from environmental infections (especially if neutropenic).</li><li><strong>2. Nutritional Support</strong> <strong>Assess Feeding Patterns:</strong> Observe for difficulties with sucking/swallowing or aspiration. <strong>Optimize Feeding:</strong> Small, frequent feedings. Specialized nipples if needed. Gavage/gastrostomy if oral intake insufficient. <strong>Monitor Growth:</strong> Weigh regularly, plot growth, monitor intake/output. <strong>Manage Jaundice:</strong> Monitor bilirubin, assist with phototherapy if prescribed.</li><li><strong>3. Developmental and Sensory Support</strong> <strong>Early Intervention Referrals:</strong> Physical, occupational, speech therapy. <strong>Sensory Stimulation:</strong> Age-appropriate stimulation (visual tracking, tactile). <strong>Promote Mobility:</strong> Position to prevent contractures, promote normal development. <strong>Ophthalmological Care:</strong> Ensure regular dilated eye exams. Educate parents on signs of active chorioretinitis (redness, photophobia). <strong>Hearing Screening:</strong> Advocate for regular screenings.</li><li><strong>4. Pain Management</strong> <strong>Assess Pain:</strong> Use age-appropriate scales. <strong>Administer Meds:</strong> Analgesics/Corticosteroids as prescribed. <strong>Comfort Measures:</strong> Swaddling, gentle handling, reduced environmental stimuli.</li><li><strong>5. Psychosocial &amp; Educational Support</strong> <strong>Educate Comprehensively:</strong> Clear info on disease, prognosis, treatment, complications. Use written materials. <strong>Emotional Support:</strong> Allow expression of fears/grief. Provide empathetic listening. <strong>Connect to Resources:</strong> Support groups, social workers, financial aid. <strong>Promote Self-Care:</strong> Encourage parents to maintain their own well-being. <strong>Advocacy:</strong> Ensure access to specialists/services. <strong>Empowerment:</strong> Involve parents in care planning. <strong>Prevention Education:</strong> For future pregnancies.</li><li><strong>6. Long-Term Follow-up Coordination</strong> <strong>Schedule Appointments:</strong> Help organize appointments with multiple specialists (infectious disease, ophthalmology, neurology). <strong>Maintain Records:</strong> Encourage parents to keep comprehensive records.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" open id="section-2">
           <summary>02 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Congenital Toxoplasmosis</strong> as a practical nursing topic, not only a memorized definition. Prioritize airway, breathing, circulation, pain, asepsis, wound healing and early complication detection.</p>
 <ul><li><strong>What to understand first:</strong> define congenital toxoplasmosis, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-3">
           <summary>03 Assessment Guide</summary>
           <ul><li>Vital signs, pain, bleeding, perfusion, level of consciousness and injury pattern.</li><li>Wound appearance, drainage, odour, swelling, temperature and surrounding skin.</li><li>Fluid balance, mobility, nutrition, surgical site risk and ordered investigations.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-4">
           <summary>04 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Stabilize urgent problems first, then prepare for investigations or theatre care.</li><li>Maintain aseptic technique, pain control, wound care and documentation.</li><li>Prevent shock, infection, pressure injury, deep vein thrombosis and delayed healing.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The patient remains stable, wound healing progresses, pain is controlled and complications are recognized early.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-5">
           <summary>05 Patient Teaching and Revision Check</summary>
           <ul><li>Explain congenital toxoplasmosis in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Congenital%20Toxoplasmosis%20Surgical%20Nursing%20III%20and%20Paediatric%20Nursing%20(II)%20nursing%20lecture" title="Congenital Toxoplasmosis YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (14)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Congenital-toxoplasmosis-1024x576.webp" alt="Congenital Toxoplasmosis" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Congenital Toxoplasmosis</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Congenital-toxoplasmosis-lifecycle.webp" alt="Congenital Toxoplasmosis Lifecycle" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Congenital Toxoplasmosis Lifecycle</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/transmission-toxoplasmosis-2.webp" alt="Transmission Toxoplasmosis 2" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Transmission Toxoplasmosis 2</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/toxoplasmosis-lifecycle.webp" alt="Toxoplasmosis Lifecycle" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Toxoplasmosis Lifecycle</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/sulphadiazine-tablets-ip-500x500-1.webp" alt="Sulphadiazine Tablets Ip 500x500 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Sulphadiazine Tablets Ip 500x500 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Package_26631.webp" alt="Package 26631" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Package 26631</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/221aec0199d8e1b6ebaa284585f3e471.webp" alt="221aec0199d8e1b6ebaa284585f3e471" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">221aec0199d8e1b6ebaa284585f3e471</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/fe66a8b217f06f52eb6d3f5f046ec47f.webp" alt="Fe66a8b217f06f52eb6d3f5f046ec47f" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Fe66a8b217f06f52eb6d3f5f046ec47f</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Congenital%20Toxoplasmosis%20Surgical%20Nursing%20III%20and%20Paediatric%20Nursing%20(II)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <p style="color:var(--seo-muted);font-size:.85rem;margin:8px 0 0">6 more diagrams available — open the lesson for full illustrations.</p>
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Congenital%20Toxoplasmosis%20Surgical%20Nursing%20III%20and%20Paediatric%20Nursing%20(II)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

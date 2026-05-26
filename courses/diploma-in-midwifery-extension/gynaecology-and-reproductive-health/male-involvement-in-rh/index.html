@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,23 @@
         <p>Male involvement in RH should be reviewed through safe maternal and newborn assessment, early recognition of danger signs, respectful communication and timely referral. Connect the definition to vital signs, bleeding, fetal or newborn wellbeing, patient education and local protocol requirements.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (10)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**MALE INVOLVEMENT IN REPRODUCTIVE HEALTH SERVICES**</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Importance of Male Involvement**</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Reproductive Health Needs and Services for Men (Male reproductive health needs)**</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Social and Reproductive Health Responsibility of Men**</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Social Norms, Beliefs, Practices and Taboos:**</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Strategies to Increase Male Involvement in Reproductive Health**</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 **MALE INVOLVEMENT IN REPRODUCTIVE HEALTH SERVICES**</summary>
           <p>This can be in the form of seeking and sharing reproductive health information and services with their partners and friends. Sharing domestic chores and child rearing responsibilities is another form of male involvement, joint decision-making between men and their partners will improve the utilization of family planning, STI and EMTCT services.</p>
 <p>Male involvement is embedded in the International Conference on Population and Development Program of Action which includes male responsibilities and participation as critical aspects for improving reproductive health outcomes, achieving gender equality, equity and empowering women. This mandate contributes to broadening the concept of gender so that it now includes men.</p>
@@ -98,7 +126,7 @@
 <p>In fact, neglecting to provide information and services for men can detract from women’s overall health. For example, men who are educated about reproductive health issues are more likely to support their partners in decisions on contraceptive use and family planning, support that may be essential if women are to practice safe sex or avoid unwanted pregnancy. Moreover, if men are knowledgeable about reproductive health issues and can communicate about them with their partners, they are more likely to be supportive during pregnancy and may make better health care decisions: for example, by ensuring that their partner receives emergency obstetric services when needed, rather than delaying recourse to such care. The effect of men’s attitudes and behavior on women’s health is perhaps most obvious in regard to the pandemic of AIDS and other STDs. Programs that educate, test and treat only one partner will not be effective in safeguarding the continued health of both. Men need to share the responsibility of disease prevention, as well as the risks and benefits of contraception.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 **Importance of Male Involvement**</summary>
           <p>Involving men in reproductive health services benefits men and women, community and the service provider</p>
 <p>**<strong> </strong>Reasons for Involving Men in Reproductive Health**</p>
@@ -107,57 +135,65 @@
 <ul><li><strong>Primary health center (PHC) programs</strong> not geared to meet men’s needs</li><li><strong>Unfavorable social and cultural climate.</strong> Cultural factors have limited men’s abilities to take an active role in family planning practice and reproductive health decision making.</li><li><strong>Services aimed at women and children</strong> . Most family planning and reproductive health services are designed to meet women‘s or children‘s needs and, as a result, men often do not consider them as a source of information and services. Many may be inconvenient or unwelcoming to men, and providers may not have the training or skills necessary to meet men‘s reproductive health needs. Men also may be embarrassed about visiting a facility that primarily serves women.</li><li><strong>Limited number of male contraceptives available</strong> . As mentioned above, available male methods are limited to condoms, natural family planning, vasectomy, and withdrawal. Like contraceptives for women, each of these methods has advantages and disadvantages and each potential client will have to decide for himself whether a particular method will meet his needs. While research is ongoing on new methods for men (including hormonal injections and implants), it is unlikely that a new method will be widely available for several years.</li><li><strong>Rumors and misinformation</strong> . Because of the general lack of access to accurate information about male contraceptive methods, many men and women may not know how to use them correctly or may have misperceptions and fears that prevent them from using the methods. For instance, men may be un- willing to consider using vasectomy because they equate it with castration or believe that it leads to impotence; similarly, they may be unwilling to use condoms because they believe condoms will reduce sexual satisfaction or cause an allergic reaction.</li><li><strong>Provider bias against male methods.</strong> Providers also may have misconceptions or biases about male methods or men‘s roles in family planning. As a result, they may not present information about male methods or assume that men are not interested. Concerns about the lower effectiveness of some male methods can be addressed through counseling about correct and consistent use as well as by offering emergency contraceptive pills to users as a backup in case condoms are not used properly or break.</li><li><strong>Unfavorable social or religious climate.</strong> In societies where sexual matters are not discussed openly, men may feel uncomfortable talking about their family planning needs and sexual concerns with their partners and with health educators. Young men may face particularly strong social pressures that prevent them from seeking reproductive health information and services. In addition, some men may believe that practicing</li><li>contraception is contrary to the teaching of their religion. Priority given to women‘s health services. Many programs are reluctant to invest time and money to reach men with information and services when their female clients have significant unmet health and family planning needs.</li><li>PHC service providers are mostly female</li><li>Priorities to women and child care services</li><li>Health workers attitude were some Providers have bias against male involvement</li><li>Lack of information and knowledge</li><li>Limited communication between spouses about FP needs</li><li>Health centre resource constraints such as lack of enough male H/W, lack of male clinics</li><li>Psychological factors (mindset and shyness of men)</li><li>Difficult reaching couple with health information before pregnancy</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 **Reproductive Health Needs and Services for Men (Male reproductive health needs)**</summary>
           <ul><li><strong>Information:</strong></li><li>Basic sexual and reproductive health education ****</li><li>Genital health and hygiene ****</li><li>Healthy relationships ****</li><li>Pregnancy prevention ****</li><li>STI including HIV ****</li><li>Fatherhood ****</li><li>Where and how to obtain other services (violence, sexual abuse, genetic counseling etc.)</li><li>Contraception</li><li>Reproductive physiology</li><li>Sexuality</li><li>Pregnancy</li><li>Birth preparedness</li><li>Male reproductive cancers</li><li>Sexual and gender based violence</li><li>Fertility and infertility ****</li><li><strong>Skills:</strong></li><li>Pregnancy and STI prevention and sex/sexual skills ****</li><li>Fatherhood skills ****</li><li><strong>Preventive health care services:</strong></li><li>Sexual and reproductive history ****</li><li>Cancer screening ****</li><li>Substance abuse screening ****</li><li>Mental health assessment ****</li><li>Physical examination ****</li><li>Links to other services, if needed ****</li><li><strong>Clinical diagnosis and treatment</strong></li><li>Testing for STIs, including HIV ****</li><li>Diagnosis of and treatment for sexual dysfunction ****</li><li>Fertility evaluation ****</li><li>Contraceptive services (vasectomy) treatment of urologic disease: vasectomy reversal ****</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 **Social and Reproductive Health Responsibility of Men**</summary>
           <ul><li>Discussing contraceptive with the partner</li><li>Discussing and utilizing STI/HIV screening services with partners</li><li>Escorting partners to antenatal care, delivery and postnatal care services</li><li>Men should only marry partners who are 18 years and above</li><li>Abstain from sex until marriage</li><li>Use condoms to prevent STI/HIV and unwanted pregnancies</li><li>Have good relationship with partner especially during pregnancy, labor and puerperium</li><li>Provide moral and financial support to the partners during pregnancy, child birth and postnatal</li><li>Provide support to the partner for infant feeding choices</li><li>Help bringing up children</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 **Social Norms, Beliefs, Practices and Taboos:**</summary>
           <ul><li>Promiscuity</li><li>Power imbalances where male dominance is the norm</li><li>Inadequate dialogue(lack of communication between spouses)</li><li>Inadequate participation of men in child care</li><li>Assigned roles due to gender biases example men do not cook therefore cannot assist their wives during pregnancy</li><li>Early marriage is culturally accepted</li><li>Wife inheritance</li><li>Polygamy</li><li>Competition among wives</li><li>Poverty</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 **Strategies to Increase Male Involvement in Reproductive Health**</summary>
           <ul><li>Working with young men to influence gender biases for better reproductive health (e.g. in school)</li><li>Integrate the desired services to address needs of men in the existing services</li><li>Improved services at existing clinics.</li><li>Sensitize the general community to re-address gender biases which have negative impacts on reproductive health</li><li>Build capacity of health workers to involve men in reproductive health services</li><li>Develop information, education and communication and advocacy materials, address male involvement/responsibilities in reproductive health services.</li><li>RH information and services should focus the couple rather than the individual.</li><li>Remove myths about condom and vasectomy.</li><li>Service providers to be sensitized for men’s reproductive health needs.</li><li>In RH health clinics, a arrangement health services may increase the male clientele.</li><li>Separate clinic for males.</li><li>Workplace services.</li><li>Community-based services.</li><li>Commercial and social marketing.</li><li>Increase contraceptive choice for men.</li><li>Train providers about male FP/RH needs.</li><li>Culturally appropriate messages</li><li>Male health workers</li><li>Engaging different institutions such as MoH and NGOs</li><li>Develop guidelines on male involvement in RH</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-7">
           <summary>07 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Male involvement in RH</strong> as a practical nursing topic, not only a memorized definition. Read the topic through the safety of two patients: the mother and the fetus or newborn.</p>
 <ul><li><strong>What to understand first:</strong> define male involvement in rh, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-8">
           <summary>08 Assessment Guide</summary>
           <ul><li>Maternal vital signs, bleeding, pain, contractions, uterine tone and danger signs.</li><li>Fetal or newborn wellbeing, feeding, temperature, breathing and activity.</li><li>History of pregnancy, parity, medications, allergies, investigations and referral risks.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-9">
           <summary>09 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Recognize danger signs early and escalate without delay.</li><li>Provide respectful communication, privacy, infection prevention and clear documentation.</li><li>Teach the mother what to monitor at home and when to return urgently.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> Mother and baby remain stable, danger signs are acted on early, and the family understands follow-up instructions.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-10">
           <summary>10 Patient Teaching and Revision Check</summary>
           <ul><li>Explain male involvement in rh in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Male%20involvement%20in%20RH%20Gynaecology%20and%20Reproductive%20Health%20nursing%20lecture" title="Male involvement in RH YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (4)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/MALE-INVOLVEMENT-IN-REPRODUCTIVE-HEALTH-SERVICES.webp" alt="MALE INVOLVEMENT IN REPRODUCTIVE HEALTH SERVICES" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">MALE INVOLVEMENT IN REPRODUCTIVE HEALTH SERVICES</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/27a793bf574170ee5b62cff3457b3150.webp" alt="27a793bf574170ee5b62cff3457b3150" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">27a793bf574170ee5b62cff3457b3150</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/20947ccd839372bc5fea9ef7b4203887.webp" alt="20947ccd839372bc5fea9ef7b4203887" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">20947ccd839372bc5fea9ef7b4203887</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/4932fa6f051aa96ff23935cbe062c9ba.webp" alt="4932fa6f051aa96ff23935cbe062c9ba" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">4932fa6f051aa96ff23935cbe062c9ba</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Male%20involvement%20in%20RH%20Gynaecology%20and%20Reproductive%20Health%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Male%20involvement%20in%20RH%20Gynaecology%20and%20Reproductive%20Health%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

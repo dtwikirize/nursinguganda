@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,19 +97,64 @@
         <p>HIV and PMTCT should be reviewed through safe maternal and newborn assessment, early recognition of danger signs, respectful communication and timely referral. Connect the definition to vital signs, bleeding, fetal or newborn wellbeing, patient education and local protocol requirements.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 39 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">HIV AND PREGNANCY</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Types of HIV</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Modes of HIV Transmission</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Maternal Factors:</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Labour and Delivery Factors:</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Postnatal Feeding Factors:</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Phases of HIV Entry into Host Cells</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Clinical Manifestations of HIV/AIDS</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Clinical Stage I:</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Clinical Stage II:</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Clinical Stage III:</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Clinical Stage IV:</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Pre and Post-Counselling and Consent: Essential for all diagnostic procedures unless in specific circumstances:</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Criteria for Diagnosis : Diagnosis based on:</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Testing Protocol : Testing for Adults and Children &amp;gt;18 Months:</a>
+          <a href="#section-16" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Diagnostic Tests</a>
+          <a href="#section-17" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Considerations: Testing should consider:</a>
+          <a href="#section-18" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Immediate Connection to HIV Care</a>
+          <a href="#section-19" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">HIV Testing Provision Protocol</a>
+          <a href="#section-20" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Principles of HIV Testing Services (HTS)</a>
+          <a href="#section-21" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Linkage from HIV Testing to Prevention, Care, and Treatment</a>
+          <a href="#section-22" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Types of Linkages:</a>
+          <a href="#section-23" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Treatment Modalities of HIV/AIDS</a>
+          <a href="#section-24" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Antiretroviral Drug Treatment</a>
+          <a href="#section-25" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Available ARVs in Uganda</a>
+          <a href="#section-26" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Recommended First Line Regimens in Adults, Adolescents, Pregnant Women and Children</a>
+          <a href="#section-27" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Monitoring of ARV Treatment</a>
+          <a href="#section-28" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Methods of Monitoring ARV Treatment</a>
+          <a href="#section-29" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Viral Load Monitoring</a>
+          <a href="#section-30" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">CD4 Monitoring</a>
+          <a href="#section-31" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Other Laboratory Tests</a>
+          <a href="#section-32" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">HIV AND PREGNANCY</a>
+          <a href="#section-33" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Factors Affecting Perinatal Transmission</a>
+          <a href="#section-34" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Strategies for Prevention of Mother-to-Child Transmission (PMTCT):</a>
+          <a href="#section-35" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Components of a Comprehensive HIV Prevention Program:</a>
+          <a href="#section-36" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-37" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-38" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-39" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 HIV AND PREGNANCY</summary>
           <p>HIV (Human Immunodeficiency Virus) is a virus that attacks the body’s immune system, specifically the CD4 cells (T cells), which are important for immune defence.</p>
 <p>If untreated, HIV can lead to AIDS (Acquired Immunodeficiency Syndrome), a condition where the immune system is severely weakened .</p>
 <p>HIV is a lenti-virus (slow and long acting) and belongs to the Retroviruses group . HIV invades the helper T cells to replicate itself thereby limiting the body’s ability to fight infection . HIV is the virus that causes AIDS, and it has no cure</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Types of HIV</summary>
           <ul><li>HIV-1 : This is the most common and widespread type of HIV, accounting for the vast majority of HIV infections globally. It is highly infectious and has several subtypes (or clades), labelled A through K. HIV-1 is the primary cause of the global HIV pandemic and is more aggressive in its progression to AIDS compared to HIV-2.</li><li>HIV-2 : This type is less common and primarily found in West Africa. It is less transmissible and generally progresses more slowly to AIDS than HIV-1. There are fewer subtypes of HIV-2, labelled A through H.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Modes of HIV Transmission</summary>
           <p>1. Sexual Contact :</p>
 <ul><li>Unprotected Vaginal Sex : HIV can be transmitted through vaginal fluids and semen during unprotected vaginal intercourse..</li></ul>
@@ -111,7 +168,7 @@
 <ul><li>Tattooing and Piercing: If non-sterile needles are used, there is a risk of HIV transmission.</li><li>Contact Sports: Although extremely rare, transmission can occur if both participants have open wounds.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Maternal Factors:</summary>
           <p>1. Viral Load and Immune Status:</p>
 <ul><li>High Viral Load : Higher levels of HIV in the mother’s blood increase the risk of transmission to the baby.</li><li>Low CD4 Count: A weakened immune system due to low CD4 counts enhances transmission risk.</li><li>Maternal Acquisition of HIV : New HIV infections during pregnancy or lactation significantly increase transmission risk.</li></ul>
@@ -125,7 +182,7 @@
 <ul><li>Poor Maternal Nutrition : Malnutrition can weaken the mother’s immune system, increasing the risk of transmission.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Labour and Delivery Factors:</summary>
           <p>6. Delivery Method:</p>
 <ul><li>Vaginal Delivery: Higher risk of transmission compared to elective caesarean section, especially if the mother has a high viral load.</li><li>Prolonged/Difficult Labour : Increased exposure to maternal fluids during extended or complicated labour can raise the risk.</li></ul>
@@ -137,7 +194,7 @@
 <ul><li>Use of invasive monitoring or procedures during labour can increase the risk of HIV transmission.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Postnatal Feeding Factors:</summary>
           <p>10. Breastfeeding Practices:</p>
 <ul><li>Prolonged Breastfeeding : Longer duration of breastfeeding increases the risk of HIV transmission.</li><li>Breast Health : Conditions like sore nipples, abscesses, or mastitis can increase the risk.</li><li>Mixed Feeding: Combining breastfeeding with other foods or fluids increases transmission risk. Exclusive breastfeeding for the first 3-6 months does not show excess transmission compared to formula feeding alone.</li></ul>
@@ -147,52 +204,52 @@
 <ul><li>Oral Thrush : Presence of oral thrush in breastfed infants can increase the risk of HIV transmission.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Phases of HIV Entry into Host Cells</summary>
           <ul><li>Binding : The HIV virus first attaches to the CD4 receptors on the surface of the host cell, typically a type of immune cell called a CD4+ T lymphocyte. HIV’s envelope protein, gp120, specifically binds to the CD4 receptor. This interaction triggers a conformational change in gp120 that allows it to also interact with a co-receptor, usually CCR5 or CXCR4, on the host cell surface. This dual receptor binding is essential for the virus to proceed to the next step.</li><li>Fusion : After binding, the HIV viral envelope fuses with the host cell membrane, allowing the viral contents to enter the host cell. The conformational change in gp120 caused by CD4 and co-receptor binding exposes another viral protein, gp41. gp41 facilitates the merging of the viral envelope with the host cell membrane, creating a fusion pore through which the viral capsid containing the viral RNA and enzymes can enter the host cell cytoplasm.</li><li>Reverse Transcription: Once inside the host cell, the viral RNA genome is reverse transcribed into DNA. The enzyme reverse transcriptase, carried within the viral capsid, converts the single-stranded viral RNA into double-stranded DNA. This process is error-prone, leading to a high mutation rate which contributes to the virus’s ability to evade the immune system and develop drug resistance.</li><li>Integration : The newly synthesized viral DNA is integrated into the host cell’s genome. The viral DNA is transported into the host cell nucleus, where the enzyme integrase integrates it into the host cell’s DNA. This integrated viral DNA is known as a provirus and can remain dormant for a period before becoming active.</li><li>Replication : Once integrated, the viral DNA can be transcribed and translated to produce new viral RNA and proteins. The host cell’s machinery reads the integrated viral DNA and begins to produce viral RNA. Some of this RNA will serve as genomes for new viral particles, while others will be used to produce viral proteins through the process of translation.</li><li>Assembly : New viral particles are assembled within the host cell. The newly made viral RNA and proteins are transported to the host cell’s surface, where they assemble into new immature viral particles. This assembly process involves the gathering of viral components into a budding virion.</li><li>Budding : The new viral particles bud off from the host cell, acquiring an envelope from the host cell membrane in the process. The immature viral particles bud off from the host cell, during which they incorporate a portion of the host cell’s membrane as their envelope. The viral enzyme protease then cleaves certain viral precursor proteins into their mature forms, resulting in a fully mature and infectious virus ready to infect other cells.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Clinical Manifestations of HIV/AIDS</summary>
           <p>The World Health Organization (WHO) has established a staging system to classify HIV infection and disease progression:</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Clinical Stage I:</summary>
           <ul><li>Asymptomatic : No symptoms of HIV-related illness.</li><li>Persistent Generalized Lymphadenopathy : Enlargement of lymph nodes lasting more than three months.</li><li>Performance Scale 1: Asymptomatic with normal activity level.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Clinical Stage II:</summary>
           <ul><li>Moderate Weight Loss: Less than 10% of presumed or measured body weight lost.</li><li>Minor Muco-cutaneous Manifestations: Skin conditions like seborrheic dermatitis, prurigo, or fungal nail infections.</li><li>Herpes Zoster: History of shingles within the last five years.</li><li>Recurrent Upper Respiratory Tract Infections : Such as bacterial sinusitis, tonsillitis, or otitis media.</li><li>Performance Scale 2: Symptomatic but normal activity level.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 Clinical Stage III:</summary>
           <ul><li>Severe Weight Loss : More than 10% of presumed or measured body weight lost.</li><li>Unexplained Chronic Diarrhoea: Lasting more than one month.</li><li>Unexplained Prolonged Fever: Constant or intermittent, lasting more than one month.</li><li>Oral Candidiasis : Oral thrush, a fungal infection.</li><li>Oral Hairy Leukoplakia : White patches on the tongue or mouth.</li><li>Pulmonary Tuberculosis : Active TB infection.</li><li>Severe Bacterial Infections : Such as pneumonia, pyomyositis, or bacteremia.</li><li>Acute Necrotizing Ulcerative Gingivitis : Severe gum disease.</li><li>Unexplained Anaemia, Neutropenia, or Thrombocytopenia: Abnormal blood counts.</li><li>Performance Scale 3 : Bedridden for less than 50% of the day during the last month.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-12">
           <summary>12 Clinical Stage IV:</summary>
           <ul><li>HIV Wasting Syndrome: Weight loss of more than 10% with chronic diarrhoea or prolonged fever.</li><li>Pneumocystis Pneumonia (PCP) : A severe fungal lung infection.</li><li>Toxoplasmosis of the Brain : Brain infection caused by the Toxoplasma parasite.</li><li>Cryptosporidiosis : Parasitic infection causing prolonged diarrhea.</li><li>Cytomegalovirus Infection : A viral infection affecting various organs.</li><li>Progressive Multifocal Leukoencephalopathy (PML) : Brain infection causing neurological symptoms.</li><li>Lymphoma : Cancer of the lymphatic system.</li><li>Kaposi’s Sarcoma: Cancerous skin lesions caused by a herpesvirus.</li><li>HIV Encephalopathy: Cognitive and/or motor dysfunction due to HIV infection.</li><li>Atypical Disseminated Leishmaniasis : Parasitic infection affecting multiple organs.</li><li>Symptomatic HIV-Associated Nephropathy or Cardiomyopathy : Kidney or heart disease associated with HIV.</li><li>Performance Scale 4: Bedridden for more than 50% of the day during the last month.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-13">
           <summary>13 Pre and Post-Counselling and Consent: Essential for all diagnostic procedures unless in specific circumstances:</summary>
           <ul><li>Testing of very sick, unconscious, symptomatic, or mentally ill individuals by healthcare teams for better patient management.</li><li>Routine testing for individuals likely to pose a risk of HIV infection to others, such as pregnant and breastfeeding mothers, sexual offenders and survivors, and blood or organ donors. These individuals must still be given the opportunity to know their status.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-14">
           <summary>14 Criteria for Diagnosis : Diagnosis based on:</summary>
           <ul><li>Clinical Staging Criteria.</li><li>Positive HIV Blood Test: Confirmation of HIV infection through serological (antibody) testing.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-15">
           <summary>15 Testing Protocol : Testing for Adults and Children &amp;gt;18 Months:</summary>
           <ul><li>Serological (Antibody) Testing: Most common method. Due to the window period between infection and antibody production, negative individuals should be re-tested after three months if exposed.</li><li>Reactive Rapid Test: Requires confirmation before diagnosis.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-16">
           <summary>16 Diagnostic Tests</summary>
           <p>Screening Tests:</p>
 <ul><li>ELISA (Enzyme-Linked Immunosorbent Assay) AglAb Tests : Commonly used to screen blood donations to exclude those in the window period.</li></ul>
@@ -200,17 +257,17 @@
 <ul><li>PCR (Polymerase Chain Reaction) Tests: Nucleic-Acid Amplification Testing (NAT) detects genetic material of HIV itself, not antibodies or antigens.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-17">
           <summary>17 Considerations: Testing should consider:</summary>
           <ul><li>Clinical status, medical history, and risk factors of the individual being tested.</li><li>Use of tests in conjunction with patient assessment for accurate diagnosis and appropriate care.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-18">
           <summary>18 Immediate Connection to HIV Care</summary>
           <ul><li>If positive, immediate referral to HIV care services for management and treatment initiation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-19">
           <summary>19 HIV Testing Provision Protocol</summary>
           <p>Step 1: Pre-Test Information and Counseling</p>
 <ul><li>Provide information on HIV transmission, prevention measures, and testing benefits.</li><li>Discuss potential test results, available services, and ensure consent and confidentiality.</li><li>Conduct individual risk assessment and complete necessary documentation.</li></ul>
@@ -223,18 +280,18 @@
 <ul><li>Provide information on available services and assist in completing referral forms.</li><li>Upon enrollment in services, record pre-ART enrollment numbers and transfer relevant information to ART registers.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-20">
           <summary>20 Principles of HIV Testing Services (HTS)</summary>
           <ul><li>Confidentiality : Ensure privacy and confidentiality of test results.</li><li>Consent : Obtain informed consent from individuals before testing.</li><li>Counselling : Offer supportive counselling before and after testing.</li><li>Correct Test Resul t: Ensure accuracy of test results through proper testing procedures.</li><li>Connection to Other Services : Facilitate access to appropriate services for individuals testing positive.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-21">
           <summary>21 Linkage from HIV Testing to Prevention, Care, and Treatment</summary>
           <p>Linkage is the process of connecting individuals who test positive for HIV to the necessary services.</p>
 <p>Successful linkage to care ensures that patients receive the services they need. For HIV-positive clients, linkage should occur promptly, within seven days if within the same facility, and within 30 days for referrals between facilities or from the community. Lay providers are recommended as linkage facilitators.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-22">
           <summary>22 Types of Linkages:</summary>
           <ul><li>Internal Facility Linkage : Connecting patients within the same facility.</li><li>Inter-Facility Linkage: Connecting patients to another facility.</li><li>Community-Facility Linkage : Connecting clients from the community to a health facility.</li></ul>
 <p>Internal Facility Linkage Steps:</p>
@@ -243,12 +300,12 @@
 <ul><li>Inter-Facility Linkage : Refers to connecting patients to another facility. The referring facility should track referred patients and ensure enrollment within 30 days.</li><li>Community-Facility Linkage : Connects clients from the community to a health facility. Utilize community health systems and mobilize peer leaders for outreach and follow-up. Linkage should occur within 30 days after diagnosis.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-23">
           <summary>23 Treatment Modalities of HIV/AIDS</summary>
           <ul><li>Treatment Modality Description</li><li>Antiretroviral Therapy (ART) Suppresses viral load to undetectable levels, reducing morbidity, mortality, and transmission of HIV.</li><li>Treatment of Acute Bacterial Infections Addresses immediate bacterial infections.</li><li>Prophylaxis and Treatment of Opportunistic Infections Prevents and manages opportunistic infections.</li><li>Maintenance of Good Nutrition Ensures adequate nutrition to support overall health.</li><li>Immunization Administers vaccines to prevent opportunistic infections.</li><li>Management of AIDS-Defining Illnesses Addresses specific illnesses associated with advanced HIV infection.</li><li>Psychological Support for the Family Provides emotional support and guidance for affected families.</li><li>Palliative Care for the Terminally Ill Offers comfort and support for patients nearing the end of life.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-24">
           <summary>24 Antiretroviral Drug Treatment</summary>
           <p>Goal of ART: Suppress viral load to undetectable levels, reducing morbidity, mortality, and transmission of HIV.</p>
 <p>When to Initiate ARV:</p>
@@ -257,12 +314,12 @@
 <ul><li>Assess for opportunistic infections, defer ART if TB or cryptococcal meningitis present.</li><li>Offer ART on the same day through an opt-out approach.</li><li>If not ready for same-day initiation, agree on a timely ART preparation plan.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-25">
           <summary>25 Available ARVs in Uganda</summary>
           <ul><li>Drug Class Examples</li><li>Nucleoside Reverse Transcriptase Inhibitors (NRTIs): Incorporate into the DNA of the virus, thereby stopping the building process. Tenofovir (TDF), Zidovudine (AZT), Lamivudine (3TC), Abacavir (ABC)</li><li>Non-Nucleoside Reverse Transcriptase Inhibitors (NNRTIs): stop HIV production by binding directly onto the reverse transcriptase enzyme, and prevent the conversion of RNA to DNA. Efavirenz (EFV), Nevirapine (NVP), Etravirine (ETV)</li><li>Integrase Inhibitors: interfere with the HIV DNA’s ability to insert itself into the host DNA and copy itself. Dolutegravir (DTG), Raltegravir (RAL)</li><li>Protease Inhibitors (PIs) : prevent HIV from being successfully assembled and released from the infected CD4 cell. Atazanavir (ATV), Lopinavir (LPV), Darunavir (DRV)</li><li>Entry Inhibitors : prevent the HIV virus particle from infecting the CD4 cell. Enfuvirtide (T-20), Maraviroc</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-26">
           <summary>26 Recommended First Line Regimens in Adults, Adolescents, Pregnant Women and Children</summary>
           <p>HIV management guidelines are constantly being updated according to evidence and public policy decisions. Always refer to the latest official guidelines.</p>
 <p>The 2022 guidelines recommend DOLUTEGRAVIR (DTG) an integrase inhibitor as the anchor ARV in the preferred first and second-line treatment regimens for all HIV infected clients; children, adolescents, men, women (including pregnant women, breastfeeding women, adolescent girls and women of child bearing potential).</p>
@@ -273,42 +330,42 @@
 <ul><li>For clients on an ABC-3TC-DTG based regimen weighing &amp;gt;25 kg, use the fixed-dose combination of Abacavir/Lamivudine/Dolutegravir 600/300/50 mg instead of the separate pills of Abacavir/Lamivudine 600/300 mg plus Dolutegravir 50 mg.</li><li>Use Abacavir/Lamivudine 600/300 mg for patients on the following regimens: ABC-3TC-ATV/r, ABC-3TC-LPV/r, and ABC-3TC-DRV/r.</li><li>Use the single pill of Dolutegravir 50 mg for patients on AZT-3TC-DTG based regimens.</li><li>For eligible patients on ATV/r and LPV/r, optimize to Dolutegravir.</li><li>For PrEP, while the guidelines provide options for the use of either TDF/3TC 300/300 mg or TDF/FTC 300/200 mg, use TDF/FTC 300/200 mg for PrEP in terms of programmatic implementation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-27">
           <summary>27 Monitoring of ARV Treatment</summary>
           <p>The monitoring of patients on antiretroviral therapy (ART) serves several purposes:</p>
 <ul><li>Assess Response to ART and Diagnose Treatment Failure</li><li>Ensure Safety of Medicines: Identify Side Effects and Toxicity</li><li>Evaluate Adherence to ART</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-28">
           <summary>28 Methods of Monitoring ARV Treatment</summary>
           <p>1. Clinical Monitoring : Involves medical history and physical examination.</p>
 <p>2. Laboratory Monitoring : Includes various laboratory tests.</p>
 <ul><li>Viral Load Monitoring : Preferred for assessing response to ART and diagnosing treatment failure.</li><li>CD4 Monitoring : Recommended in specific scenarios.</li><li>Other Minor Laboratory Tests : Includes tests for specific indications.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-29">
           <summary>29 Viral Load Monitoring</summary>
           <ul><li>Preferred method for monitoring ART response. A patient who has been on ART for more than 6 months and is responding to ART should have viral suppression (VL &amp;lt;1000 copies/ml) irrespective of the sample type (either DBS or plasma).</li><li>Provides an early and more accurate indication of treatment failure and the need to switch from first line to second-line drugs, hence reducing the accumulation of drug resistance mutations and improving clinical outcomes.</li><li>Early and accurate indication of treatment failure.</li><li>Differentiates between treatment failure and non-adherence.</li><li>Recommended frequency: Every six months for children and adolescents under 19 years.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-30">
           <summary>30 CD4 Monitoring</summary>
           <ul><li>Baseline CD4 count is essential for assessing opportunistic infection risk.</li><li>Recommended for patients with high viral load or advanced clinical disease.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-31">
           <summary>31 Other Laboratory Tests</summary>
           <ul><li>Tests Indication</li><li>CrAg Screen for cryptococcal infection</li><li>Complete Blood Count (CBC) Assess anaemia risk</li><li>TB Tests Suspected tuberculosis</li><li>Serum Creatinine Assess kidney function</li><li>ALT, AST Evaluate liver function</li><li>Lipid Profile, Blood Glucose Assess metabolic health</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-32">
           <summary>32 HIV AND PREGNANCY</summary>
           <p>In 2004, the WHO reported that 40 million people were infected with HIV/AIDS, including 17.6 million women, 2.7 million children, and 13 million orphans worldwide. In 2005, 700,000 children became infected with HIV, with approximately 95% arising from mother-to-child transmission of HIV (MTCT). Ninety percent of new infections in children occur in Africa due to the near non-existence of PMTCT interventions.</p>
 <p>Mother-to-child transmission (MTCT) is the vertical transmission of HIV from mother to child that occurs during pregnancy , childbirth , and breastfeeding . The most probable point of transmission occurs in the late third trimester and even more so during the intrapartum period. In some areas of the world, MTCT has been virtually eliminated thanks to the availability of specific interventions to reduce the risk of transmission. These interventions include:</p>
 <ul><li>Effective voluntary and confidential testing and counselling.</li><li>Access to Antiretroviral Therapy (ART).</li><li>Safe delivery practices.</li><li>Availability and safe use of breast milk substitutes.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-33">
           <summary>33 Factors Affecting Perinatal Transmission</summary>
           <p>HIV-related Factors:</p>
 <ul><li>Viral load : The higher the viral load, the greater the risk of transmission.</li><li>Strain variation (genotype) : HIV1 or 2.</li><li>Biological growth characteristics.</li><li>CD4 cell count : Lower CD4 count or decreased CD4 ratio is associated with increased risk of transmission.</li></ul>
@@ -320,47 +377,45 @@
 <ul><li>Without ART, the risk of transmission through breastfeeding by an infected mother may increase the risk to a total of 20-45%.</li><li>Where breastfeeding is common and prolonged, transmission through breastfeeding may account for up to half of HIV infections in infants and young children.</li><li>Early findings show a low rate of transmission through breastfeeding in the first 3 months in infants receiving prophylaxis with either Lamivudine or Nevirapine.</li><li>The risk can be reduced to under 2% by a combination of antiretroviral prophylaxis during pregnancy and delivery, and to the neonate, with elective cesarean section and avoidance of breastfeeding.</li><li>Availability of safe breast milk substitutes must be considered, including a safe water supply, when educating and counseling women to avoid breastfeeding.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-34">
           <summary>34 Strategies for Prevention of Mother-to-Child Transmission (PMTCT):</summary>
           <ul><li>Primary prevention of HIV among prospective parents.</li><li>Prevention of unwanted pregnancy among HIV-infected women.</li><li>Prevention of MTCT among HIV-infected mothers through:</li><li>Provision of voluntary confidential counseling and testing.</li><li>Antiretroviral agents.</li><li>Safe delivery practices.</li><li>Safe infant feeding practices.</li><li>Support for the affected family and the community at large. Education and counseling services may help the woman’s family understand the issues and thus support the woman in her choice to prevent transmission of HIV to her baby.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-35">
           <summary>35 Components of a Comprehensive HIV Prevention Program:</summary>
           <ul><li>Health education, provision of information, and counseling on HIV prevention and care, including MTCT.</li><li>Voluntary confidential counseling and testing services that are acceptable and accessible.</li><li>Quality and focused antenatal care.</li><li>Safe delivery practices.</li><li>Support and counseling on infant feeding practices.</li><li>Family planning services.</li><li>Community mobilization and education to decrease stigma and discrimination against, as well as to increase support for, HIV-positive clients.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-36">
           <summary>36 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>HIV and PMTCT</strong> as a practical nursing topic, not only a memorized definition. Read the topic through the safety of two patients: the mother and the fetus or newborn.</p>
 <ul><li><strong>What to understand first:</strong> define hiv and pmtct, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-37">
           <summary>37 Assessment Guide</summary>
           <ul><li>Maternal vital signs, bleeding, pain, contractions, uterine tone and danger signs.</li><li>Fetal or newborn wellbeing, feeding, temperature, breathing and activity.</li><li>History of pregnancy, parity, medications, allergies, investigations and referral risks.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-38">
           <summary>38 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Recognize danger signs early and escalate without delay.</li><li>Provide respectful communication, privacy, infection prevention and clear documentation.</li><li>Teach the mother what to monitor at home and when to return urgently.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> Mother and baby remain stable, danger signs are acted on early, and the family understands follow-up instructions.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-39">
           <summary>39 Patient Teaching and Revision Check</summary>
           <ul><li>Explain hiv and pmtct in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
+      
       <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=HIV%20and%20PMTCT%20Midwifery%20II%20nursing%20lecture" title="HIV and PMTCT YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=HIV%20and%20PMTCT%20Midwifery%20II%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=HIV%20and%20PMTCT%20Midwifery%20II%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

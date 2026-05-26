@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,26 +97,45 @@
         <p>School Health Program should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 13 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**SCHOOL HEALTH PROGRAM**</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Core Objectives of the School Health Program**</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Importance of School Health**</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**School health components (key elements)**</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Recommended School Screening Examination</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**School Health Inspection**</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Implementation Strategies of School Health**</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Potential Benefits from Health Services:**</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Role of Community Nurse in School Health Program:**</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 **SCHOOL HEALTH PROGRAM**</summary>
           <p>School Health Program is a strategic endeavor designed to elevate the quality of life for students while fostering a culture of proactive health awareness. Its fundamental purpose is to instill a sense of responsibility towards one’s well-being among students, their families, and school staff.</p>
 <p>The School Health Program is like a special plan that helps students, their families, and school staff learn about staying healthy. It’s not just about books and classes; it’s also about taking care of our bodies and minds. This program makes sure that students have the tools they need to learn and grow in a healthy way.</p>
 <p>The programmes are to improve the quality of life and promote healthy seeking behavior to health positive school children; their families with staff.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 **Core Objectives of the School Health Program**</summary>
           <ul><li><strong>Promoting Health and Self-Care:</strong> The program aims to empower students with the knowledge and skills to value and maintain their own health. It encourages them to adopt healthy lifestyles and instills a lifelong commitment to well-being.</li><li><strong>Early Detection and Care:</strong> Timely identification of health deviations is crucial. The School Health Program strives to recognize signs of disease and abnormalities in their early stages, facilitating prompt intervention, treatment, and follow-up.</li><li><strong>Disease Prevention:</strong> Combating both communicable and non-communicable diseases is a priority. By imparting knowledge and promoting healthy practices, the program acts as a shield against illnesses that can hinder learning.</li><li><strong>Creating a Nurturing Environment:</strong> The program recognizes that a supportive environment is vital for the holistic development of students. It strives to provide a safe, nurturing space that promotes their physical, mental, social, emotional, and moral well-being.</li><li><strong>Optimizing Education:</strong> A healthy body and mind optimize the learning process. The School Health Program aims to help students capitalize on educational opportunities by ensuring they are in the best possible health.</li><li><strong>Fostering Health Consciousness:</strong> Beyond students, the program extends its impact to parents and teachers. It encourages them to embrace a health-conscious mindset, fostering the right attitudes towards health and illness.</li><li><strong>Empowering with Knowledge:</strong> Knowledge is a potent tool for prevention. The School Health Program empowers students and stakeholders with the essential information and skills needed for preventive health measures at various levels.</li></ul>
 <p>In Summary,</p>
 <ul><li>Promote health and develop concern for their own health.</li><li>Detect disease and deviation from normal heath at an early stage and arrange for promotion, treatment and follow up.</li><li>Prevent communicable disease and non – communicable disease.</li><li>Provide a healthy and safe environment in all rounds for development of child physical, mental, social, emotional and moral well-being.</li><li>Help children to make the best use of educational facilities.</li><li>Help children, their parents and teachers to be health conscious and develop the right attitude towards health and illness.</li><li>Increase the basic knowledge and skills of children and those concerned in their welfare in all levels of prevention.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 **Importance of School Health**</summary>
           <ul><li><strong>Empowering Health Education:</strong> The school health program plays a crucial role in spreading knowledge and changing behaviors among different groups, including students, teachers, parents, and school management. It raises awareness and guides positive health choices.</li><li><strong>Ensuring Clean Water:</strong> The program ensures that the school’s water sources are used properly and kept clean. This is essential for maintaining a healthy environment.</li><li><strong>Maintaining Sanitation:</strong> A clean and safe environment is crucial for learning. The program focuses on providing proper sanitation facilities such as clean latrines, well-kept rooms, hygienic dormitories, and spaces for handwashing and sanitary disposal.</li><li><strong>Medical and Dental Care:</strong> The program ensures that students and staff have access to medical and dental care. Regular check-ups and health awareness campaigns are part of this effort.</li><li><strong>Fighting Communicable Diseases:</strong> Schools can be breeding grounds for diseases like malaria, diarrhea, HIV/STIs, skin issues, and tuberculosis. The program works to prevent and manage such health threats.</li><li><strong>Addressing Non-Communicable Health Issues:</strong> Apart from infectious diseases, students and staff may also face non-communicable health concerns like dental problems, mental health issues, psychological challenges, and injuries.</li><li><strong>Promoting Nutritional Health:</strong> Proper nutrition is vital for learning. The program ensures that both day and boarding schools offer nutritious meals, fruits, and drinks to students.</li><li><strong>Creating a Healthy Environment:</strong> The school health program fosters a positive psychological atmosphere. It reinforces rules against harmful practices such as smoking, alcoholism, drug abuse, unsafe sexual behaviors, and violence.</li><li><strong>Providing Support Services:</strong> Counseling and adolescent health services are an integral part of the program, helping students cope with various challenges they may face.</li><li><strong>Community Engagement:</strong> The program encourages active involvement between the school and the community. This collaboration extends to community-based primary health care activities like cleaning, protecting natural resources, improving infrastructure, and supporting immunization efforts.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 **School health components (key elements)**</summary>
           <ul><li>Health Service Environmental Protection and Control Health Education</li><li>-Early detection – Construction of toilets and waste disposal – Teaching about first aids</li><li>– Health screening – Use of toilet – Teaching about personal hygiene</li><li>– School child nutrition and feeding practices – Water supply – Teaching about environmental sanitation</li><li>– Sanitation – Proper waste disposal – Sex education</li><li>– Life skill education – Cleanliness of the compound – Nutrition education</li><li>– Medical and dental services for schools – Extra-ordinary activities (e.g., club)</li><li>– School psychosocial environment</li><li>– Sexual and reproductive health</li><li>– Treatment of minor ailments</li><li>– Surveillance of immunization status</li><li>– Case finding for early detection of health problems</li><li>– Case management</li><li>– Counseling</li><li>– Care of pupils/students with special health needs</li><li>– Health promotion</li><li>– Minimum routine examination (e.g., of common eye problems and intestinal parasitosis and their Rx)</li><li>– Simple first Aid facilities</li><li>– Accident control (fall injury, burn injury, cut injury, traffic accident, drowning, snake bite)</li></ul>
 <p><strong>Describe the school health components?</strong></p>
@@ -120,7 +151,7 @@
 <ul><li>Engaging students in clubs or activities focused on health promotion and awareness.</li><li>Encouraging students to actively participate in community-based primary health care activities.</li></ul>
         </details>
       
-        <details class="seo-lesson-section exam-section" open>
+        <details class="seo-lesson-section exam-section" id="section-5">
           <summary>05 Recommended School Screening Examination</summary>
           <p>The recommended school screening examination encompasses a variety of assessments to ensure the well-being of students. The components of this examination include:</p>
 <p><strong>Growth and Vital Signs:</strong></p>
@@ -149,7 +180,7 @@
 <ul><li>Through assessment.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 **School Health Inspection**</summary>
           <p><strong>Purpose and Approach:</strong> School health inspection is a critical process carried out by a team of health workers to ensure that the school environment is conducive to maintaining good health. The aim is to create a healthful and safe setting for students. Several key aspects are considered during this inspection.</p>
 <p><strong>Location of the School:</strong></p>
@@ -170,7 +201,7 @@
 <ul><li>Fostering a warm and supportive environment at school is essential for the emotional development of students.</li><li>Reducing unnecessary tension and frustration contributes to a positive emotional climate.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 **Implementation Strategies of School Health**</summary>
           <p><strong>Multi-Sectoral Approach:</strong></p>
 <ul><li>Involves engaging all stakeholders in school health, regardless of their level of involvement.</li><li>Collaboration among various entities ensures a comprehensive approach.</li></ul>
@@ -188,7 +219,7 @@
 <ul><li>Regular supervision, monitoring, and evaluation ensure the effectiveness and sustainability of school health programs.</li><li>These processes allow for adjustments and improvements as needed.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 **Potential Benefits from Health Services:**</summary>
           <p><strong>Health Benefits:</strong></p>
 <ul><li>Improved health status of school children, who are future parents and leaders.</li><li>Positive spillover effects that impact health status indicators.</li></ul>
@@ -198,42 +229,54 @@
 <ul><li>Adoption of hygienic practices, such as using sanitary facilities and safe water sources, becomes a cultural norm.</li><li>Positive health practices cultivated through school health programs extend to both students and the community.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 **Role of Community Nurse in School Health Program:**</summary>
           <ul><li>As a vital member of the school health team, the nurse participates in planning and coordinating health programs.</li><li>The nurse serves as a school health consultant, offering expertise in health-related matters.</li><li>Overseeing the establishment and maintenance of a safe and healthful environment within the school setting.</li><li>Demonstrating proper techniques for teacher health inspections and related procedures.</li><li>Assisting in screening physical, mental, and special examinations of school children.</li><li>Contributing to communicable disease control efforts.</li><li>Playing a pivotal role in setting up facilities and demonstrating first aid procedures.</li><li>Conducting health programs within the school.</li><li>Assisting in school medical examinations and follow-up procedures.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-10">
           <summary>10 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>School Health Program</strong> as a practical nursing topic, not only a memorized definition. Move from individual illness to prevention, population risk, health education and continuity of care.</p>
 <ul><li><strong>What to understand first:</strong> define school health program, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-11">
           <summary>11 Assessment Guide</summary>
           <ul><li>Who is affected, where they live, risk factors, resources and barriers to care.</li><li>Environmental hygiene, nutrition, immunization, water, sanitation and health-seeking behaviour.</li><li>Community beliefs, leaders, household practices and surveillance data.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-12">
           <summary>12 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Promote prevention, early detection, referral and community participation.</li><li>Use clear health education matched to literacy, culture and available resources.</li><li>Document findings and coordinate with community health structures.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The community understands the message, risk is reduced and follow-up or referral pathways are active.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-13">
           <summary>13 Patient Teaching and Revision Check</summary>
           <ul><li>Explain school health program in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=School%20Health%20Program%20Primary%20Health%20Care%20(PHC)%20and%20Community%20Based%20Health%20Care%20(CBHC)%20nursing%20lecture" title="School Health Program YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (12)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/School-Health-Program.webp" alt="School Health Program" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">School Health Program</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/97d6cd199189f3ff794169b8a5dba890.webp" alt="97d6cd199189f3ff794169b8a5dba890" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">97d6cd199189f3ff794169b8a5dba890</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/bb92d3af97d7a804203fa3377aabeaff.webp" alt="Bb92d3af97d7a804203fa3377aabeaff" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Bb92d3af97d7a804203fa3377aabeaff</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/5a3f8f9da4c1b74819716936b337eecb.webp" alt="5a3f8f9da4c1b74819716936b337eecb" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">5a3f8f9da4c1b74819716936b337eecb</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/51536beb58d9947b7229f03ef5be059a.webp" alt="51536beb58d9947b7229f03ef5be059a" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">51536beb58d9947b7229f03ef5be059a</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/8106a026091ca9b2a804f20ca8372e06.webp" alt="8106a026091ca9b2a804f20ca8372e06" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">8106a026091ca9b2a804f20ca8372e06</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/0abc370a581e7119fb33b85e961ec40f.webp" alt="0abc370a581e7119fb33b85e961ec40f" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">0abc370a581e7119fb33b85e961ec40f</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/4df1dfae0a43fbc7154d152bf0197b1f.webp" alt="4df1dfae0a43fbc7154d152bf0197b1f" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">4df1dfae0a43fbc7154d152bf0197b1f</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=School%20Health%20Program%20Primary%20Health%20Care%20(PHC)%20and%20Community%20Based%20Health%20Care%20(CBHC)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <p style="color:var(--seo-muted);font-size:.85rem;margin:8px 0 0">4 more diagrams available — open the lesson for full illustrations.</p>
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=School%20Health%20Program%20Primary%20Health%20Care%20(PHC)%20and%20Community%20Based%20Health%20Care%20(CBHC)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

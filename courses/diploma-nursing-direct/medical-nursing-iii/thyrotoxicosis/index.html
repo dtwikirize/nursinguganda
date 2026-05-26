@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,18 +97,36 @@
         <p>Thyrotoxicosis should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (12)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">THYROTOXICOSIS.</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The thyroid gland is located in the lower portion of the neck in front of the larynx and the trachea at the level of 5th, 6th &amp; 7th cervical and the 1st thoracic vertebrae.</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Common Terms</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Why we need the Thyroid Gland &amp; Hormones</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Causes of Hyperthyroidism and/or Thyrotoxicosis</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Signs and symptoms of Thyrotoxicosis</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Diagnosis and Investigation</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Management of Thyrotoxicosis</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 THYROTOXICOSIS.</summary>
           <p>Hyperthyroidism is the condition that occurs due to excessive production of thyroid hormone by the thyroid gland. Some, however, use the terms interchangeably</p>
 <p>Overactive thyroid, is called hyperthyreosis/Hyperthyroidism</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 The thyroid gland is located in the lower portion of the neck in front of the larynx and the trachea at the level of 5th, 6th &amp; 7th cervical and the 1st thoracic vertebrae.</summary>
           <p>It is a highly vascular gland that weighs about 25 g and resembles a butterfly shape. It has two lobes , one on either side. The lobes are joined by isthmus in front of the trachea Its major function is to produce thyroid hormone ( T3 and T4 and calcium ). These hormones are responsible for growth and regulating metabolic rate</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Common Terms</summary>
           <p>a. Hyperthyroidism : Hyperthyroidism is a medical condition characterized by excessive production of thyroid hormones by the thyroid gland. This overactivity of the thyroid gland leads to an increased metabolic rate in the body, resulting in symptoms such as weight loss, rapid heartbeat, irritability, heat intolerance, and tremors.</p>
 <p>b. Thyrotoxicosis : Thyrotoxicosis is a condition in which there is an excess of thyroid hormones circulating in the bloodstream . It can be caused by various factors, including hyperthyroidism (excessive thyroid hormone production), inflammation of the thyroid gland, or external sources of thyroid hormone intake. The symptoms of thyrotoxicosis are similar to those of hyperthyroidism.</p>
@@ -109,7 +139,7 @@
 <p>i. Thyroid storm: Thyroid storm, also known as thyrotoxic crisis , is a life-threatening condition characterized by an extreme and sudden exacerbation of the symptoms of hyperthyroidism . It usually occurs in individuals with untreated or poorly controlled hyperthyroidism, often as a result of Graves’ disease. Symptoms include high fever, severe agitation, delirium, rapid heartbeat, high blood pressure, vomiting, diarrhea, and jaundice. Thyroid storm requires immediate medical attention and hospitalization. Treatment includes medications to block the production and release of thyroid hormones, as well as supportive care to manage symptoms and stabilize vital signs.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Why we need the Thyroid Gland &amp; Hormones</summary>
           <p>1. Regulation of Metabolism : The thyroid gland plays a central role in regulating metabolism, influencing the rate at which cells convert nutrients into energy. It does so by producing and releasing thyroid hormones ( triiodothyronine or T3 and thyroxine or T4 ), which control the body’s metabolic processes.</p>
 <p>2. Body Temperature Control : Thyroid hormones help regulate body temperature by influencing heat production and heat loss mechanisms. They help maintain the body’s core temperature within a normal range.</p>
@@ -123,7 +153,7 @@
 <p>10. Maintenance of Healthy Skin, Hair, and Nails : Optimal thyroid function is important for maintaining healthy skin, hair, and nails. Thyroid hormones contribute to the growth, maintenance, and integrity of these structures.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Causes of Hyperthyroidism and/or Thyrotoxicosis</summary>
           <ul><li>Graves’ Disease : An autoimmune disease, Graves’ disease is the most common etiology worldwide, with a prevalence of 50-80%. It is often linked to varying iodine levels in the diet. Graves’ disease is more prevalent in females, occurring eight times more frequently in women than in men, and is commonly diagnosed in young females aged 20-40 years.</li><li>Toxic Thyroid Adenoma : Common in Switzerland (53%), this etiology is believed to be atypical due to a low level of dietary iodine in the country. It involves the development of a toxic adenoma in the thyroid.</li><li>Toxic Multinodular Goiter: This condition is characterized by the presence of multiple nodules in the thyroid gland, contributing to excessive thyroid hormone production.</li><li>Thyroiditis : Inflammation of the thyroid, such as Hashimoto’s thyroiditis (immune-mediated hypothyroidism) and subacute thyroiditis (de Quervain’s), can initially lead to excess thyroid hormone secretion and progress to gland dysfunction, resulting in hypothyroidism.</li><li>Medication and Exogenous Thyroid Hormone: Consumption of excess thyroid hormone tablets or ingestion of ground beef contaminated with thyroid tissue can cause hyperthyroidism. Amiodarone, an antiarrhythmic drug, may lead to under- or overactivity of the thyroid.</li><li>Postpartum Thyroiditis (PPT) : Affecting about 7% of women after childbirth, PPT undergoes several phases, with the initial phase being hyperthyroidism. This usually corrects itself without treatment.</li><li>Struma Ovarii: A rare form of monodermal teratoma containing mostly thyroid tissue, leading to hyperthyroidism.</li><li>Excess Iodine Consumption : Particularly from algae like kelp, can contribute to hyperthyroidism.</li><li>Excessive Thyroid Hormone Supplements : Taking too much thyroid hormone in the form of supplements, such as levothyroxine, can lead to thyrotoxicosis.</li><li>Pituitary Adenoma : Hypersecretion of thyroid-stimulating hormone (TSH) due to a pituitary adenoma accounts for less than 1 percent of hyperthyroidism cases.</li></ul>
 <p>****</p>
@@ -131,7 +161,7 @@
 <ul><li>Autoimmune Disorders: Autoimmune disorders, such as Hashimoto’s thyroiditis and Graves’ disease, are among the most common causes of thyroid problems. In Hashimoto’s thyroiditis, the immune system attacks and damages the thyroid gland, leading to hypothyroidism. In Graves’ disease, the immune system stimulates the thyroid gland, causing excessive production of thyroid hormones and resulting in hyperthyroidism.</li><li>Iodine Deficiency or Excess : Adequate iodine intake is crucial for proper thyroid function, as iodine is a key component in the synthesis of thyroid hormones. An inadequate intake of iodine can lead to hypothyroidism and goiter. Conversely, excessive iodine intake can disrupt thyroid function and potentially cause hyperthyroidism. Governments provide iodized table salts as a way to avoid less iodine intake.</li><li>Thyroid Nodules: Thyroid nodules are abnormal growths or lumps that form within the thyroid gland. They can be benign (noncancerous) or malignant (cancerous). Thyroid nodules may cause problems by affecting hormone production or through physical compression of surrounding structures, leading to symptoms or requiring medical intervention.</li><li>Medications and Medical Treatments : Certain medications and medical treatments can interfere with thyroid function. For example, certain drugs, such as lithium, can contribute to hypothyroidism or hyperthyroidism. Radiation therapy to the head and neck region, often used in the treatment of certain cancers, can also affect thyroid function.</li><li>Congenital Thyroid Disorders : Some individuals may be born with congenital thyroid disorders, such as congenital hypothyroidism. This condition occurs when the thyroid gland does not develop properly or is absent at birth, resulting in inadequate thyroid hormone production. Early detection and treatment are critical to prevent developmental and growth problems.</li><li>Genetic Factors: Genetic factors can contribute to an increased risk of developing thyroid problems. Certain gene mutations or a family history of thyroid disorders may predispose individuals to conditions like thyroid cancer or autoimmune thyroid diseases.</li><li>Inflammation and Infection : Inflammation of the thyroid gland, known as thyroiditis, can disrupt thyroid function. Viral or bacterial infections can also affect the thyroid gland and potentially lead to thyroid problems.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Signs and symptoms of Thyrotoxicosis</summary>
           <p>Thyroid hormone plays a crucial role in normal cellular function . When in excess , it not only over-stimulates metabolism but also increases the effects of the sympathetic nervous system , leading to a “ speeding up ” of various body systems. This results in symptoms resembling an overdose of epinephrine (adrenaline). Hyperthyroidism may manifest with various symptoms, and while some individuals may be asymptomatic, others may experience significant clinical signs.</p>
 <p>Symptoms</p>
@@ -148,7 +178,7 @@
 <ul><li>Exophthalmos or proptosis , the protrusion of the eyeball , is unique to hyperthyroidism caused by Graves’ disease. It results from immune-mediated inflammation in the retro-orbital fat , leading to forward protrusion of the eyes. Exophthalmos , when present with hyperthyroidism, is diagnostic of Graves’ disease.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Diagnosis and Investigation</summary>
           <ul><li>Physical examination : enlarged, bumpy or tender gland through the neck, Eyes for swelling, redness or bulging, Heart for for a rapid heartbeat and irregular heartbeats, Hands for tremors, Skin if its moist and warm.</li></ul>
 <p>Blood Tests:</p>
@@ -170,7 +200,7 @@
 <ul><li>Administered orally to destroy or reduce the activity of the overactive thyroid gland. Side effects may include temporary worsening of hyperthyroid symptoms, neck tenderness, and radiation sickness.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Management of Thyrotoxicosis</summary>
           <p>Aims</p>
 <ul><li>To reduce the activity of the thyroid gland</li><li>To reduce heart rate (hypertension)</li><li>To remove part of thyroid gland</li></ul>
@@ -201,37 +231,49 @@
 <ul><li>Heart Problems: Elevated thyroid hormones can lead to increased heart rate (tachycardia) and irregular heart rhythms (arrhythmias), such as atrial fibrillation. Chronic strain on the heart may result in heart failure or other cardiovascular complications.</li><li>Osteoporosis : Hyperthyroidism can accelerate bone turnover, leading to decreased bone density and an increased risk of osteoporosis. Imbalances in calcium and vitamin D metabolism may further contribute to bone loss.</li><li>Thyroid Storm : In rare cases, untreated or severe hyperthyroidism can progress to a life-threatening condition known as thyroid storm. This involves a sudden and severe exacerbation of hyperthyroid symptoms, leading to high fever, extreme tachycardia, and organ failure.</li><li>Eye Complications (Graves’ Ophthalmopathy): Graves’ disease, a common cause of hyperthyroidism, is associated with eye complications. Immune-mediated inflammation in the eye tissues can lead to proptosis (bulging eyes), double vision, and in severe cases, vision impairment.</li><li>Skin and Hair Issues : Hyperthyroidism may affect skin and hair health. Thinning of the skin and fine, brittle hair are common symptoms. In some cases, individuals may experience skin changes such as redness or swelling.</li><li>Psychological Complications : Chronic anxiety, emotional lability, and irritability associated with hyperthyroidism can contribute to psychological complications. Severe cases may lead to mental health issues such as depression or exacerbate pre-existing conditions.</li><li>Menstrual Irregularities: Altered levels of thyroid hormones can impact the menstrual cycle in women. Menstrual flow may lighten, and periods may become irregular, with longer cycles than usual.</li><li>Muscle Weakness and Wasting : Hyperthyroidism can lead to muscle weakness, especially in the upper arms and thighs. In severe cases, prolonged muscle breakdown may result in muscle wasting.</li><li>Gastrointestinal Issues : Increased bowel movements and diarrhea are common symptoms of hyperthyroidism. Chronic gastrointestinal issues may lead to nutritional deficiencies and weight loss.</li><li>Impaired Concentration and Memory : Cognitive function may be affected, causing difficulties in concentration and memory. The combination of anxiety and hormonal imbalances can contribute to cognitive impairment.</li><li>Thyroid Crisis (Thyroid Storm): In extreme cases, uncontrolled hyperthyroidism can progress to a thyroid crisis or storm. This life-threatening condition involves a sudden surge in symptoms, including hyperthermia, cardiovascular collapse, and neurological dysfunction.</li><li>Pregnancy Complications : Hyperthyroidism during pregnancy can pose risks to both the mother and the developing fetus. Complications may include preterm birth, low birth weight, and maternal heart issues.</li><li>Liver and Kidney Dysfunction: Prolonged hyperthyroidism may impact liver and kidney function. Elevated thyroid hormones can affect organ metabolism and contribute to dysfunction over time.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-9">
           <summary>09 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Thyrotoxicosis</strong> as a practical nursing topic, not only a memorized definition. Start with normal structure and function, then connect it to assessment findings and disease.</p>
 <ul><li><strong>What to understand first:</strong> define thyrotoxicosis, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-10">
           <summary>10 Assessment Guide</summary>
           <ul><li>Relevant inspection, palpation, movement, auscultation, vital signs or neurological checks.</li><li>Normal findings, abnormal findings and what each abnormality may indicate.</li><li>Patient history, risk factors and how the body system affects other systems.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-11">
           <summary>11 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use anatomy to explain symptoms and guide focused assessment.</li><li>Recognize findings that need urgent escalation.</li><li>Teach the patient using simple body-system language.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The learner can explain normal function, identify abnormal signs and connect them to nursing action.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-12">
           <summary>12 Patient Teaching and Revision Check</summary>
           <ul><li>Explain thyrotoxicosis in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Thyrotoxicosis%20Medical%20Nursing%20(III)%20nursing%20lecture" title="Thyrotoxicosis YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (15)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/thyrotoxicosis.webp" alt="Thyrotoxicosis" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Thyrotoxicosis</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/image-e1703395457819.webp" alt="Image E1703395457819" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Image E1703395457819</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/types-of-thyroid-diseases-e1703395683813-1024x558.webp" alt="Types Of Thyroid Diseases E1703395683813" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Types Of Thyroid Diseases E1703395683813</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/uses-of-thyroid-e1703395871298-1024x602.webp" alt="Uses Of Thyroid E1703395871298" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Uses Of Thyroid E1703395871298</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/causes-of-throtoxicosis-1-e1703396255152.webp" alt="Causes Of Throtoxicosis 1 E1703396255152" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Causes Of Throtoxicosis 1 E1703396255152</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Signs-and-symptoms-of-thyrotoxicosis.webp" alt="Signs And Symptoms Of Thyrotoxicosis" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Signs And Symptoms Of Thyrotoxicosis</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/signs-of-Proptosis.webp" alt="Signs Of Proptosis" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Signs Of Proptosis</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Diagnosis-and-Investigation-of-thyrotoxicosis-683x1024.webp" alt="Diagnosis And Investigation Of Thyrotoxicosis" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Diagnosis And Investigation Of Thyrotoxicosis</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Thyrotoxicosis%20Medical%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <p style="color:var(--seo-muted);font-size:.85rem;margin:8px 0 0">7 more diagrams available — open the lesson for full illustrations.</p>
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Thyrotoxicosis%20Medical%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

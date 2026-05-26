@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,25 @@
         <p>Conflict and conflict resolution should be reviewed through safe maternal and newborn assessment, early recognition of danger signs, respectful communication and timely referral. Connect the definition to vital signs, bleeding, fetal or newborn wellbeing, patient education and local protocol requirements.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (12)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">CONFLICT RESOLUTION</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Types/Levels of conflicts</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">General causes of conflicts</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">STAGES OF CONFLICT</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">CONFLICT MANAGEMENT</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">APPROACHES USED IN CONFLICT MANAGEMENT</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">USING THE TOOL: A CONFLICT RESOLUTION PROCESS</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">How to prevent conflicts</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 CONFLICT RESOLUTION</summary>
           <p>A conflict is any discontent or dissatisfaction that affects the organizational performance .</p>
 <p>A conflict is a situation when the interests, needs, goals or values of involved parties interfere with one another .</p>
@@ -93,17 +123,17 @@
 <p>A conflict is not the same as a problem. It only becomes a problem after failing to resolve it.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Types/Levels of conflicts</summary>
           <ul><li>Intrapersonal /personal conflict : This conflict occurs within us. They occur when we are not happy with ourselves or when we are torn between choices we need to make or when we are frustrated with our goals/accomplishments. These conflicts often lead to conflict with others.</li><li>Interpersonal conflict : This conflict happens between 2 or more people with differing values, goals and beliefs. Most common type of conflict . Interpersonal conflicts usually arise in the workplace due to natural differences in human personality, human needs, beliefs or work ethics. Has a tendency of resolving itself because conflicting parties are not able to continue in a tense situation for a long time (hence time is a healing factor).</li><li>Social / inter group conflict : This conflict happens between 2 or more groups of people. These could be departments or organizations.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 General causes of conflicts</summary>
           <ul><li>Communication : In hospitals, conflicts often arise due to unclear, infrequent or ineffective communication, can lead to misunderstandings, frustration. This can manifest through lack of feedback, misunderstandings, withholding information, criticism, etc. For instance, A doctor may not communicate effectively with a nurse about a patient’s care plan, leading to confusion and potential errors.</li><li>Personal causes of conflict: Ego, personal biases, and lack of empathy can contribute to conflicts among healthcare professionals. For example, differences in personalities or perceived disrespect between nurses and physicians may lead to friction.</li><li>Process causes of conflict: Disagreements about how things should be done can lead to conflict For instance, Two nurses may disagree on the best way to manage a patient’s pain, leading to a heated debate and delayed treatment.</li><li>Preferred methods : Healthcare professionals may clash over their preferred methods of performing clinical procedures or administering patient care. Individuals may believe their way of doing things is superior and insist others follow their methods For instance, A senior doctor may insist on using a specific surgical technique, even though newer, more efficient methods are available.</li><li>Sharing or scarcity of resources : Limited resources, such as personnel, budgets, and medical equipment, competition and conflict can arise. For example, Two departments may compete for the same operating room time, leading to delays and frustration for both teams.</li><li>Personality style differences : Differences in personality like Introverts vs. extroverts, Judgers vs. perceivers, values, attitudes, needs, expectations, perceptions, and social styles can lead to misunderstandings and conflict.</li><li>Power struggles : The desire for control and power can be a significant source of conflict. For example, Individuals may compete for promotions, leadership roles, or recognition, others may use their power to manipulate or intimidate others.</li><li>Values : Differences in values can lead to conflict when individuals judge others based on their own beliefs. For instance, Ethical dilemmas, Individuals may disagree on the right course of action in ethically challenging situations, A doctor may refuse to perform an abortion due to religious beliefs, leading to conflict with a patient who requests the procedure.</li><li>Lack of role clarification/job description: Unclear job roles or responsibilities can lead to conflicts among hospital staff members over task assignments or accountability for patient care outcomes.</li><li>Poor processes : IInefficient or outdated processes can create frustration and delays.</li><li>Lack of performance standards : Unclear expectations can lead to confusion and conflict over performance evaluations.</li><li>Inadequate resources : Shortages of staff, supplies, or funding can exacerbate conflicts over workload distribution, resource allocation, or access to essential healthcare services.</li><li>Unreasonable time constraints : Tight schedules or unrealistic deadlines may lead to conflicts among healthcare professionals over competing priorities or work-life balance issues.</li><li>Lack of cooperation : Individuals may be unwilling to work together or share information, leading to conflict.</li><li>Lack of trust : Mistrust among hospital staff members can hinder effective communication, teamwork hence conflicts.</li><li>Poorly defined goals : Ambiguity or inconsistency in organizational objectives can fuel conflicts over strategic direction, departmental priorities, or performance expectations.</li><li>Inadequate skills : Skill gaps or deficiencies among healthcare professionals can lead to conflicts over competency, proficiency, or training needs, affecting patient care quality and safety.</li><li>Threat to status: Perceived challenges to professional status or authority can trigger conflicts among healthcare professionals seeking recognition, respect, or influence within the hospital hierarchy.</li><li>Unpredictable policies : Inconsistencies or frequent changes in hospital policies, procedures, or protocols may fuel conflicts over compliance, adherence, or interpretation, causing confusion and frustration among staff members.</li><li>Resistance to change : Conflicts may arise when healthcare professionals resist organizational changes, innovations, or quality improvement initiatives, citing concerns over workflow disruption, job security, or patient care implications.</li><li>Stress : High levels of job-related stress or burnout among healthcare professionals can exacerbate conflicts in hospital settings, affecting morale and productivity.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 STAGES OF CONFLICT</summary>
           <ul><li>Latent conflict.</li><li>Conflict Emergency.</li><li>Conflict Escalation.</li><li>Hurting/Stalemate.</li><li>De-escalation</li><li>Settlement/ Resolution</li><li>Post conflict peace building and reconciliation.</li></ul>
 <p>At Nurses Revision hospital, the surgical ward is abuzz with activity. Nurse Sarah, a seasoned veteran with years of experience, firmly believes in the traditional method of patient care documentation. She prefers to rely on her clinical judgment when providing care to her patients. Sarah is accustomed to documenting patient assessments and interventions in their files, without the structure of formal nursing care plans.</p>
@@ -125,12 +155,12 @@
 <p>Latent conflict.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 CONFLICT MANAGEMENT</summary>
           <p>Conflict management is the practice of identifying and handling a conflict in a sensible, fair and efficient manner.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 APPROACHES USED IN CONFLICT MANAGEMENT</summary>
           <ul><li>The conflict styles.</li><li>Competition (win-lose situation)</li><li>Accommodation (win-win situation)</li><li>Avoidance (lose-lose situation)</li><li>Compromise (lose-lose situation)</li><li>Collaboration (win-win situation)</li><li>The “interest-based relational approach”.</li><li>The tool-conflict resolution process.</li></ul>
 <p>The conflict resolution styles.</p>
@@ -159,7 +189,7 @@
 <ul><li>Assure privacy</li><li>Empathize than sympathize</li><li>Listen actively</li><li>Maintain equity</li><li>Focus on issue, not on personality</li><li>Avoid blame</li><li>Identify key theme</li><li>Re-state key theme frequently</li><li>Encourage feedback</li><li>Identify alternate solutions</li><li>Give your positive feedback</li><li>Agree on an action plan</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 USING THE TOOL: A CONFLICT RESOLUTION PROCESS</summary>
           <p>This involves the following steps,</p>
 <p>1. Set the scene.</p>
@@ -175,7 +205,7 @@
 <ul><li>By this stage, the conflict may be resolved: Both sides may better understand the position of the other, and a mutually satisfactory solution may be clear to all.</li><li>However you may also have uncovered real differences between your positions. This is where a technique like win-win negotiation can be useful to find a solution that, at least to some extent, satisfies everyone.</li><li>There are three guiding principles here: Be Calm, Be Patient, and Have Respect.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 How to prevent conflicts</summary>
           <p>1. Communicate effectively:</p>
 <ul><li>Be clear and concise in your communication. Avoid using jargon or technical terms that your team members may not understand.</li><li>Be open and honest. Share your thoughts and feelings openly, and encourage your team members to do the same.</li><li>Listen actively. Pay attention to what your team members are saying, and try to understand their point of view.</li><li>Ask questions. If you’re unsure about something, ask for clarification.</li><li>Give feedback. Let your team members know how they’re doing, and offer constructive feedback when needed.</li></ul>
@@ -197,37 +227,49 @@
 <ul><li>Lead by example and demonstrate the behaviors you expect from your team.</li><li>Be positive, respectful, and professional.</li><li>Be willing to admit your mistakes and learn from them.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-9">
           <summary>09 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Conflict resolution</strong> as a practical nursing topic, not only a memorized definition. Translate theory into safe decisions, accountability, communication and service improvement.</p>
 <ul><li><strong>What to understand first:</strong> define conflict resolution, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-10">
           <summary>10 Assessment Guide</summary>
           <ul><li>The problem, stakeholders, available resources, policy requirements and ethical issues.</li><li>Risks to patients, staff, confidentiality, quality, costs and continuity.</li><li>Documentation, reporting lines, supervision and evaluation measures.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-11">
           <summary>11 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use evidence, policy and professional standards to guide action.</li><li>Communicate clearly, document decisions and protect confidentiality.</li><li>Evaluate whether the action improves safety, learning or service delivery.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The plan is documented, realistic, ethical and improves patient care or learning outcomes.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-12">
           <summary>12 Patient Teaching and Revision Check</summary>
           <ul><li>Explain conflict resolution in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Conflict%20and%20conflict%20resolution%20Health%20Services%20Management%20%26%20Entrepreneurship%20nursing%20lecture" title="Conflict and conflict resolution YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (11)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/conflict.webp" alt="Conflict" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Conflict</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Types-of-conflicts-e1714557657630.webp" alt="Types Of Conflicts E1714557657630" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Types Of Conflicts E1714557657630</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Stages-of-conflict-1-1024x546.webp" alt="Stages Of Conflict 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Stages Of Conflict 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/The-conflict-resolution-styles-1.webp" alt="The Conflict Resolution Styles 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">The Conflict Resolution Styles 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/2e73c820a9e2f7b21e167814e504719e.webp" alt="2e73c820a9e2f7b21e167814e504719e" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">2e73c820a9e2f7b21e167814e504719e</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/USING-THE-TOOL-A-CONFLICT-RESOLUTION-PROCESS.webp" alt="USING THE TOOL A CONFLICT RESOLUTION PROCESS" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">USING THE TOOL A CONFLICT RESOLUTION PROCESS</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/870e590d93ee36728ac67e67b64b274a.webp" alt="870e590d93ee36728ac67e67b64b274a" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">870e590d93ee36728ac67e67b64b274a</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/7c91eb2838a97f52227ba6112deca44c.webp" alt="7c91eb2838a97f52227ba6112deca44c" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">7c91eb2838a97f52227ba6112deca44c</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Conflict%20and%20conflict%20resolution%20Health%20Services%20Management%20%26%20Entrepreneurship%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <p style="color:var(--seo-muted);font-size:.85rem;margin:8px 0 0">3 more diagrams available — open the lesson for full illustrations.</p>
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Conflict%20and%20conflict%20resolution%20Health%20Services%20Management%20%26%20Entrepreneurship%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

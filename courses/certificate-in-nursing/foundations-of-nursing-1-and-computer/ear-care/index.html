@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,14 +97,42 @@
         <p>Ear Care, should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 22 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Demonstrate care and treatment of pressure areas (e.g hands and feet) (PEX 1.6.3)</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">TREATMENT OF PRESSURE AREAS</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Demonstrate Washing of Patient&#39;s Hair (PEX 1.6.4)</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Carry out Treatment of Infested Hair (PEX 1.6.5)</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Care of the Patient&#39;s Eyes and Ears (PEX 1.6.6)</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Eye Care</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Instillation of Eye Drops</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Application of Eye Ointment</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Eye Irrigation</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Warm Eye Compress</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Cold Eye Compress</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Ear Care</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Ear Irrigation/Syringing</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Instillation of Medication into the Ear</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Irrigation of the nose</a>
+          <a href="#section-16" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nasal Instillations</a>
+          <a href="#section-17" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Perineal Care</a>
+          <a href="#section-18" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Catheter Care/Hygiene</a>
+          <a href="#section-19" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-20" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-21" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-22" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Demonstrate care and treatment of pressure areas (e.g hands and feet) (PEX 1.6.3)</summary>
           <p>Pressure areas are parts of the body susceptible to developing pressure sores (bedsores) due to prolonged pressure, friction, and moisture. Proper care and treatment are essential for prevention and healing.</p>
 <p><strong>This PEX focuses on demonstrating the skills required for:</strong></p>
 <ul><li>Identifying patients at high risk for pressure sores.</li><li>Inspecting pressure areas (such as heels, elbows, sacrum, etc.) for signs of redness, warmth, or breakdown.</li><li>Implementing preventive measures, including repositioning, using pressure-reducing devices, and maintaining skin hygiene.</li><li>Providing care for existing pressure sores (if applicable and within scope of practice).</li><li>Documenting skin assessments and interventions.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 TREATMENT OF PRESSURE AREAS</summary>
           <p><strong>Pressure areas</strong> These are places which are liable to pressure sores due to weight applied heavily and the tissue is compressed between the bed and the bony prominence. The blood supply to the area is interfered with and the skin gives way, this is called a decubitus ulcer.</p>
 <p><strong>Pressure sore/bed sore/decubitus ulcer:</strong> Is an ulcer occurring on the skin of any bedridden patient particularly over bony prominences or where two skin surfaces press against each other. Due to constant pressure circulation becomes inadequate and finally death of tissues occurs.</p>
@@ -119,7 +159,7 @@
 <ul><li>Collect the equipment required for the procedure.</li><li>Explain the procedure to the patient.</li><li>Screen the bed for privacy.</li><li>Position the patient exposing the part to be treated.</li><li>Wash hands thoroughly and put on gloves then flannel.</li><li>Apply soap to a dump flannel; wash the area in circular movements.</li><li>Dry the area and massage with oil/Vaseline in circular motion. Do not massage over reddened or inflamed area itself but start just outside the affected area and move outwards in a circle to stimulate circulation.</li><li>The bed is then straightened out and the patient is made comfortable. Bed line is changed if necessary.</li><li>Clear away and wash hands and dry.</li><li>Record and report the findings to the nurse in-charge or the physician.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Demonstrate Washing of Patient&#39;s Hair (PEX 1.6.4)</summary>
           <p>(Note: While your notes describe bed bath procedures, a specific section for washing patient&#39;s hair was not detailed. This PEX would involve demonstrating this practical skill.)</p>
 <p>Washing a patient&#39;s hair when they are unable to do it themselves is important for hygiene and comfort.</p>
@@ -127,7 +167,7 @@
 <ul><li>Prepare the necessary equipment (basin, water, shampoo, towels, waterproof sheeting).</li><li>Position the patient comfortably and safely to protect the bed linen from water.</li><li>Wash the patient&#39;s hair gently and thoroughly.</li><li>Rinse and dry the hair properly.</li><li>Ensure the patient is comfortable after the procedure.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Carry out Treatment of Infested Hair (PEX 1.6.5)</summary>
           <p>(Note: A specific section for treating infested hair was not detailed in your notes. This PEX would involve demonstrating this practical skill.)</p>
 <p>Treating infested hair (e.g., with lice) is important for patient hygiene and preventing spread.</p>
@@ -135,14 +175,14 @@
 <ul><li>Identify infested hair.</li><li>Prepare and use appropriate treatment products (e.g., medicated shampoo, comb).</li><li>Follow isolation precautions to prevent spread during treatment.</li><li>Thoroughly comb through the hair to remove nits and lice.</li><li>Clean equipment and dispose of waste properly after treatment.</li><li>Educate the patient/family on preventing re-infestation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Care of the Patient&#39;s Eyes and Ears (PEX 1.6.6)</summary>
           <p>Providing proper care for the patient&#39;s eyes and ears is essential for hygiene, comfort, and preventing complications.</p>
 <p><strong>This PEX focuses on demonstrating the skills required for:</strong></p>
 <ul><li>Cleaning the patient&#39;s eyes correctly (as detailed in the &#39;Eye Care&#39; section below).</li><li>Providing ear care, including cleaning the external ear canal (as detailed in the &#39;Ear Care&#39; section below).</li><li>Identifying signs of infection or other issues in the eyes or ears and reporting them.</li><li>Administering eye drops or ointment (as detailed in the &#39;Eye Care&#39; section below).</li><li>Administering ear drops (as detailed in the &#39;Ear Care&#39; section below).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Eye Care</summary>
           <p><strong>EYE CARE</strong> Eye care helps to prevent infection and to maintain their function. Hygienic care of the eye is always done as part of the general bathing procedure.</p>
 <p><strong>Reasons for eye care:</strong></p>
@@ -157,7 +197,7 @@
 <ul><li>Collect the equipment needed.</li><li>Explain the procedure to the patient.</li><li>Position the patient flat if the condition allows/permits or in sitting up position.</li><li>Wash hands.</li><li>Wet the swabs in sterile saline or plain water.</li><li>Stand in front of the patient and clean the eyes with sterile swabs.</li><li>Squeeze the excessive fluid from the swab and gently wipe the eye lids from the inner to the outer canthus.</li><li>Use one swab for one swabbing and separate swabs for each eye.</li><li>When the eyes are clean, wipe the face with face towel.</li><li>Instill any medication if required.</li><li>Leave the patient comfortable.</li><li>Clear away and wash hands.</li><li>Record and report the procedure to the nurse in-charge.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Instillation of Eye Drops</summary>
           <p><strong>Reasons:</strong> As treatment of bacterial infection, As anesthesia, Diagnostic purpose</p>
 <p><strong>Requirements:</strong> Tray containing; Pipette in galipot (sterile) or drop bottle, Galipot of swabs, Treatment sheet</p>
@@ -165,14 +205,14 @@
 <ul><li>Collect the equipment needed.</li><li>Explain the procedure to the patient.</li><li>Check the prescription and note the eye to be treated.</li><li>Position the patient in sitting up or lying down position.</li><li>Wash hands.</li><li>A swab is placed down the lower lid up to the lash margin.</li><li>The patient is asked to look up and drop is instilled onto the lower fornix.</li><li>The swab is kept on the lid until the patient closes the eye and any tears are absorbed in the swab.</li><li>Patient is left comfortable</li><li>Clear away and wash hand</li><li>Report and record the procedure on the patient’s chart.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Application of Eye Ointment</summary>
           <p><strong>Requirements:</strong> A tray containing; Eye ointment, Galipot of swabs, Treatment sheet</p>
 <p><strong>Procedure:</strong></p>
 <ul><li>Collect the equipment needed.</li><li>Explain the procedure to the patient.</li><li>Position the patient in sitting up or lying down position.</li><li>The swab is placed on the lower lid; the upper lid is drawn up.</li><li>The nozzle of the eye ointment tube is placed 1cm away from the lower lid and the ointment is pressed horizontally onto the lower lid from within outward.</li><li>Any surplus ointment is gently wiped off with a swab.</li><li>Leave the patient comfortable.</li><li>Clear away and wash hands.</li><li>Report and record the procedure on the patient’s chart.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Eye Irrigation</summary>
           <p>Washing of the conjunctiva sack with a stream of fluid (water).</p>
 <p><strong>Purpose:</strong> To remove foreign body from the eye, To remove chemicals which have been accidentally splashed into the eye(s), To wash out discharge, Before administration of medication, In preparation for eye operations</p>
@@ -184,7 +224,7 @@
 <ul><li>When irrigating both eyes, ask the patient to tilt his head towards the side being irrigated to avoid contamination.</li><li>For chemical burns irrigate each eye for at least 15 minutes with normal saline solution to dilute and wash out the harsh chemicals.</li><li>If the patient cannot identify the specific chemical, use litmus paper to determine if the chemical is acid or alkaline or to be sure the eye has been irrigated adequately.</li><li>An irrigation fluid may be pre-packed in a disposable set for use or a sterile 50ml syringe may be used.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Warm Eye Compress</summary>
           <p>Is the placing of the warm compress/pack over the affected area or eye.</p>
 <p><strong>Indications:</strong> To relieve discomfort/pain, To reduce inflammation, To enhance absorption of drugs, To promote drainage of superficial infections</p>
@@ -194,7 +234,7 @@
 <ul><li>Identify the patient and the eye to be treated.</li><li>Collect the equipment needed for the procedure.</li><li>Explain the procedure to the patient to obtain consent.</li><li>Provide privacy to the patient.</li><li>Position the patient in sitting up or lying down position for this procedure.</li><li>Wash hands and put on gloves.</li><li>Place the bowl with the solution in the bowl with warm water.</li><li>Place the swabs in the warm water/solution.</li><li>Squeeze out the excess solution.</li><li>Instruct the patient to close his/her eye, gently apply the swab on top of the affected eye. If the patient complains the compress is too hot, remove it immediately.</li><li>Change the compress every few minutes for the prescribed length of time.</li><li>Use a dry swab to clean and dry the patients’ face.</li><li>If required apply eye drops/ointment.</li><li>Leave the patient comfortable.</li><li>Clear away and wash hands.</li><li>Record and report the procedure /findings to the physician or nurse in charge.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 Cold Eye Compress</summary>
           <p>Is placing of a cold compress/pack over the affected area or eye to relieve discomfort.</p>
 <p><strong>Indication:</strong> To reduce swelling or bleeding, To ease peri-orbital discomfort, To relieve itching</p>
@@ -204,12 +244,12 @@
 <ul><li>Identify the patient and which eye to be treated.</li><li>Collect the equipment needed for the procedure.</li><li>Explain the procedure to the patient or caretaker.</li><li>Position the patient to lie down for this procedure.</li><li>Place the mackintosh and towel to protect the patient’s clothes.</li><li>Place the ice or clips in the plastic bag or glove to make an ice pack (keep the ice pack small to avoid excess pressure on the eye).</li><li>Remove excess air from the bag or glove and tie a knot at the end.</li><li>Wash hands, dry and put on glove.</li><li>Moisten the swab with the solution.</li><li>Place the moist swab over the affected closed eye (the swab helps to conduct the cold from the ice pack).</li><li>Place the ice pack on top of the gauze and tape it onto the place.</li><li>If the patient complains that the compress is too cold, remove it immediately.</li><li>After 15-20 minutes, remove the tape, ice pack and gauze.</li><li>Use the dry swab to clean and dry the patients face.</li><li>If required apply eye drops/ointment if required.</li><li>Leave the patient comfortable and clear away.</li><li>Wash hand and document the procedure and findings.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-12">
           <summary>12 Ear Care</summary>
           <p><strong>EAR CARE</strong></p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-13">
           <summary>13 Ear Irrigation/Syringing</summary>
           <p>Is the washing of the external auditory canal with a stream of fluid.</p>
 <p><strong>Purpose:</strong></p>
@@ -224,7 +264,7 @@
 <ul><li>If the patient complains of pain, the procedure is stopped immediately.</li><li>The irrigation solution should at least at room temperature.</li><li>If irrigation does not dislodge the wax, instill several drops of prescribed glycerin, carbonide peroxide or other solutions as directed, 2 to 3 times daily which helps to soften and loosen impaction.</li><li>Take care not to irrigate an older adult’s ears with cool water, it can cause dizziness.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-14">
           <summary>14 Instillation of Medication into the Ear</summary>
           <p>Is the administration or introduction of medication into the ear.</p>
 <p><strong>Purpose:</strong> To soften the ear wax for removal, To reduce localized inflammation and destroy infective organisms in the external ear canal, To relieve pain, To facilitate the removal of a foreign body.</p>
@@ -234,14 +274,14 @@
 <ul><li>Collect the equipment needed for the procedure.</li><li>Identify and explain the procedure to the patient, assess for allergy to certain medication, redness/abrasion in the pinna or meatus, type and amount of discharge, complaints of discomfort specific drug reactions and patient knowledge about the medication to be administered and the purpose.</li><li>Check the medication order for the name, dose, time, amount and the ear to be treated.</li><li>Position the patient to a comfortable position to assume during and after instillation (lie on the side with the ear being treated uppermost).</li><li>Obtain assistance in case of children or infants, to immobilize them.</li><li>Clean the meatus of ear canal, using cotton tipped applicators. Use normal saline if necessary.</li><li>Warm the container in the hand or by placing it for a short time in warm water. Do not instill cold medicine in the ear (irritation).</li><li>Fill the ear dropper partially with medication (prescribed amount).</li><li>Straighten auditory canal and instill the correct number of drops along the side of ear canal by holding the dropper 1cm (1/2inch) above ear canal.</li><li>Press gently and firmly onto the tragus of the ear.</li><li>Instruct the patient to remain in that position for about 5 minutes.</li><li>Place a small piece of cotton fluff loosely at the meatus of auditory canal for 15-20 minutes.</li><li>Assess the patients’ comfort, response and check for the discharge from the ear.</li><li>On completion make the patient comfortable</li><li>Clear away and wash hands.</li><li>Report and document the procedure, medication given, dose (number of drops and patients’ response).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-15">
           <summary>15 Irrigation of the nose</summary>
           <p>Is the washing out or the nasal cavity.</p>
 <p><strong>Procedure:</strong></p>
 <ul><li>Collect the equipment needed for the procedure.</li><li>Explain the procedure to the patient.</li><li>Provide the privacy to the patient</li><li>Position the patient in recumbent position if the condition allows.</li><li>Inspect the condition of the nose and sinuses, clean the patient’s nose.</li><li>The easiest and safest way is to ask the patient to sniff in an alkaline solution into the nose and spit it out.</li><li>Repeat the procedure until the nose is clear.</li><li>Instill the medication if prescribed.</li><li>Make the patient comfortable</li><li>Clear away, clean, dry and replace the re-useable article in safe place for the next use.</li><li>Wash hands</li><li>Report and document the procedure, medication given, dose (number of drops) and the patient’ response.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-16">
           <summary>16 Nasal Instillations</summary>
           <p>Is the process by which a liquid is introduced into the nasal cavity drop by drop.</p>
 <p><strong>Purpose:</strong> To treat allergies, To treat sinus infection, To treat nasal congestion, To give local anaesthesia</p>
@@ -252,7 +292,7 @@
 <ul><li>Identify the patient to be given medication and review the physician’s order.</li><li>Collect the equipment needed for the procedure.</li><li>Explain the procedure to the patient to obtain consent and help alley anxiety. Tell the patient what to expect e.g. burning sensation or stinging of mucosa or choking sensation as the medication trickles into the throat.</li><li>Bring the equipment to bedside or near the patient.</li><li>Provide privacy to the patient.</li><li>Position the patient in a comfortable position.</li><li>Determine which sinus is affected by referring to medical record, assess the patient’s medical history (hypertension, heart disease diabetes and hyperthyroidism and ask about known allergies to nasal instillations.</li><li>Wash hands and put on gloves if the patient has nasal discharge.</li><li>Inspect the condition of the nose and sinuses using penlight. Palpate sinuses for tenderness.</li><li>Instruct the patient to clear or blow nose gently unless contraindicated (increased intracranial pressure or nose bleeding).</li><li>Tilt the head backwards and support with a non dominant hand</li><li>Instruct the patient to breathe through the mouth</li><li>Hold the dropper 1cm above the nares and instill/administer the number of drops towards the midline of ethmoid bone.</li><li>Ask the patient to remain in that position for 5 minutes and then offer face tissue to blot the running nose but caution the patient against blowing for several minutes.</li><li>Assist the patient to a comfortable position after absorption of medication.</li><li>Clear away and discard off the used supplies and then wash hands.</li><li>Record the procedure, finding, medication, number of drops, the nostril used, time given and patient’s response.</li><li>Observe the patient for 15-30 minutes for side effect after administration of drug.</li><li>Ask if the patient is able to breathe through the nose, if not administer the nasal decongestant and ask the patient to occlude one nostril at a time and breathe deeply.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-17">
           <summary>17 Perineal Care</summary>
           <p><strong>PERINEAL CARE</strong> Is the cleaning the perineum from the cleanest to the less clean area including external genitalia and surrounding areas, the urethral orifice to the anal orifice.</p>
 <p><strong>Purpose:</strong></p>
@@ -270,7 +310,7 @@
 <ul><li>Collect all the equipment needed</li><li>Explain the procedure to the patient</li><li>Provide privacy</li><li>Position the patient in dorsal recumbent position.</li><li>Wash hands thoroughly and put on gloves.</li><li>Fold back the bed clothes to the foot of the bed, leaving the patient covered to the waist with top sheet.</li><li>Place the mackintosh and towel under the buttocks.</li><li>Remove soiled pad if any for the case of female patients and place in a receiver on the bottom of the trolley.</li><li>Wash abdomen, inside the thighs and buttocks using soap, water and flannel. Rinse and dry thoroughly with the patient’s towel.</li><li>Wash hands and put on gloves.</li><li>Put the bed pan in position.</li><li>Holding the jug at the level of symphysis pubis, pour water/lotion over the perineum to wash off the discharge (females). For the male patient cleanse the penis.</li><li>Hold the swabs with forceps or sterile gloved hand and clean from above downwards towards the anal canal.</li><li>Use one swab for one swabbing.</li><li>For female patient clean the perineum from the middle outward in the following order; the vulva, the labia majora on both sides, inside of the labia minora on both sides, then vestibule and dry thoroughly. Clean the perineal region and anus well. Gently visualize vulva for debris</li><li>If male patient clean the fore penis using circular motions from underneath upwards and the rest of it using up- downwards sweeps to scrotum and clean the anal area thoroughly and dry. Carefully examine gluteal folds, scrotal folds.</li><li>Remove the bed pan by supporting the hips. Turn the patient to one side and dry the buttocks.</li><li>Apply the medicine and pad if necessary.</li><li>Remove the mackintosh if any extra one is used, if not dry the mackintosh and remake the bed, leave the patient comfortable.</li><li>Clear away, clean and replace the equipment to the appropriate place of storage.</li><li>Remove the gloves and Wash hands.</li><li>Record the procedure and report any abnormality seen on the patient to the nurse in-charge or physician.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-18">
           <summary>18 Catheter Care/Hygiene</summary>
           <p><strong>CATHETER CARE/HYGIENE</strong> Is the maintenance in the cleanliness of the surrounding area around the urethra to decrease contamination of the catheter by bacterial flora.</p>
 <p><strong>Before procedure you should:</strong></p>
@@ -286,37 +326,35 @@
 <ul><li>Collect all equipment needed.</li><li>Explain the procedure to the patient.</li><li>Provide adequate privacy by screening the bed and closing the adjacent windows if any.</li><li>Position the patient in supine position.</li><li>Wash hands and put on gloves.</li><li>Place the mackintosh and towel beneath the buttocks</li><li>Carry out perineal care and after the perineal care, cleanse meatus if there is excessive purulent drainage with non-irritating antiseptic lotion.</li><li>Cleanse catheter from meatus out to end of catheter, taking care not to pull out the catheter.</li><li>Repeat catheter care any time it becomes soiled with stool or other drainage.</li><li>On completion, make the patient comfortable.</li><li>Clear away, clean and replace the equipment. Remove gloves and wash hands thoroughly and dry.</li><li>Record the procedure in the patient’s chart and report the findings to the nurse in-charge of physician.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-19">
           <summary>19 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Care and Treatment of Pressure Sores</strong> as a practical nursing topic, not only a memorized definition. Translate theory into safe decisions, accountability, communication and service improvement.</p>
 <ul><li><strong>What to understand first:</strong> define care and treatment of pressure sores, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-20">
           <summary>20 Assessment Guide</summary>
           <ul><li>The problem, stakeholders, available resources, policy requirements and ethical issues.</li><li>Risks to patients, staff, confidentiality, quality, costs and continuity.</li><li>Documentation, reporting lines, supervision and evaluation measures.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-21">
           <summary>21 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use evidence, policy and professional standards to guide action.</li><li>Communicate clearly, document decisions and protect confidentiality.</li><li>Evaluate whether the action improves safety, learning or service delivery.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The plan is documented, realistic, ethical and improves patient care or learning outcomes.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-22">
           <summary>22 Patient Teaching and Revision Check</summary>
           <ul><li>Explain care and treatment of pressure sores in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
+      
       <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Ear%20Care%2C%20Foundations%20of%20Nursing%201%20and%20Computer%20nursing%20lecture" title="Ear Care, YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Ear%20Care%2C%20Foundations%20of%20Nursing%201%20and%20Computer%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Ear%20Care%2C%20Foundations%20of%20Nursing%201%20and%20Computer%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

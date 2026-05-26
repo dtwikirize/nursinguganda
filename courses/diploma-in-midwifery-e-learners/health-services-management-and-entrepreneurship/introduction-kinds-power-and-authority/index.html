@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,27 @@
         <p>Introduction, Kinds, Power and Authority should be reviewed through safe maternal and newborn assessment, early recognition of danger signs, respectful communication and timely referral. Connect the definition to vital signs, bleeding, fetal or newborn wellbeing, patient education and local protocol requirements.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 14 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">LEADERSHIP INTRODUCTION</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Kinds of leadership.</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Factors that affect efficient leadership</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Qualities of a Good Leader</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">POWER AND AUTHORITY IN LEADERSHIP</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">TYPES OF POWER/BASES OF POWER</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Importances of Power/Reasons Why Power is Used</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Rules for Using Power in Organizations</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Types of Authority in Organizations</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">DIFFERENCE/SIMILARITIES AND RELATIONSHIP BETWEEN MANAGEMENT AND LEADERSHIP</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 LEADERSHIP INTRODUCTION</summary>
           <p>Leadership does not mean dominating the subordinates as it is the case with leadership; however, the leader’s job is to get work done by other people, and make people willingly want to accomplish something. So effective leadership means effective and productive group performance.</p>
 <p>Leadership is the process of influencing the thoughts and actions of other people to attain the desired objectives.</p>
@@ -94,7 +126,7 @@
 <p>A leader is an influential person who has the ability to lead a group or department without necessarily holding a formal position .</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Kinds of leadership.</summary>
           <p>A leader may be formal or informal .</p>
 <ul><li>Formal leadership : A leader is formal if he has legitimate authority conferred to him by position in organization and described in job description.</li><li>Informal leadership : leadership is informal when a staff member who does not have a specified management role, not appointed, exercises leadership.</li></ul>
@@ -102,18 +134,18 @@
 <ul><li>Effectiveness is the d egree to which an objective is being or has been achieved . e.g. if a health unit sets 100 children to be immunized against measles in a particular week and achieves 95%, we shall say the work has been managed effectively. The effective manager is one who achieves the set objective or target.</li><li>Efficiency is the measure of the relationship between the results obtained (output) and the effort-resources (input) expended. This concept has a focus on people, or human resources, and on the way they work. It also involves time put in and money and other resources to perform a particular task. Efficiency can also mean the ability to produce satisfactory results with an economy of effort and a minimum wastage. We can simply put it that an efficient manager is one who achieves his targets/objectives with the planned available resources . The more minimal the resources (input) the manager uses to achieve the maximum results (output) the more efficient he is.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Factors that affect efficient leadership</summary>
           <p>Factors that affect efficient leadership can be both internal and external.</p>
 <ul><li>Lack of devotion on the part of the leader : A leader who lacks dedication and commitment to their role may struggle to inspire and motivate their team. Devotion is important for effective leadership as it sets an example for others to follow.</li><li>Task/position-centered approach : Leaders who focus solely on completing tasks and meeting goals without considering the needs and expectations of their team members may hinder efficient leadership. A leader should prioritize building relationships, understanding individual strengths, and providing support to ensure the team’s success.</li><li>Conflicts between needs and expectations : Conflicts can arise when there is a mismatch between the needs and expectations of the leader and their team members. It is important for leaders to be aware of these conflicts and find ways to address them through effective communication, collaboration, and compromise.</li><li>Failure to get feedback : Leaders who do not actively seek feedback from their team members may miss out on valuable information and perspectives. Feedback is important for growth and improvement, and leaders should create a culture that encourages open and honest feedback.</li><li>Inflexibility in decision-making : Leaders who are rigid and unwilling to adapt their decision-making approach may hinder efficient leadership. It is important for leaders to be open to new ideas, consider different perspectives, and be willing to adjust their decisions based on changing circumstances.</li><li>Unwillingness to accept criticism : Leaders who are resistant to criticism may create a negative work environment and hinder efficient leadership. Constructive criticism helps leaders identify areas for improvement. Leaders should be open to feedback and view criticism as an opportunity for growth.</li><li>Ineffective delegation : Leaders who struggle with delegation often take on too much themselves, which can lead to burnout and hinder their ability to focus on strategic projects. Effective delegation involves identifying tasks that can be delegated and providing the necessary support and guidance to team members.</li><li>Poor communication : Communication is essential for effective leadership. Leaders need to establish open and transparent communication channels, listen to their team members, and address any concerns or issues. Without effective communication, shared goals may not be reached, and misunderstandings can occur.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Qualities of a Good Leader</summary>
           <ul><li>Authenticity : A great leader is genuine and stays true to who they are, showing their best qualities and building trust with others.</li><li>Curiosity : Great leaders have a mindset of curiosity, constantly seeking new experiences, perspectives, and possibilities.</li><li>Analytical power : Leadership requires the ability to break down complex problems, identify root causes, and make informed decisions based on data and expertise.</li><li>Adaptability : Good leaders are able to adjust to ever-shifting demands and embrace new opportunities and challenges.</li><li>Creativity : Leaders cultivate an environment that nurtures creativity in others and recognizes the value of different perspectives and innovative ideas.</li><li>Resilience : Successful leaders exhibit resilience, i.e they withstand and recover quickly from difficulties and seek input from others to stay on course.</li><li>Empathy : Understanding and connecting with others on an emotional level is a key trait of strong leadership, improving relationships and building trust.</li><li>Flexibility : Good leaders are adaptable and open to change, willing to adjust their plans and strategies as needed.</li><li>Vision : Leaders have a clear vision of where they want to go and inspire others to work towards that vision.</li><li>Confidence : A good leader exudes confidence, inspiring trust and providing reassurance to their team.</li><li>Competence : Leaders possess the necessary skills and knowledge to effectively lead and guide their team.</li><li>Credibility : Good leaders are trustworthy and have a track record of delivering on their promises.</li><li>Action-oriented : Leaders take initiative and are proactive in driving progress and achieving goals.</li><li>Hopeful : Effective leaders instill hope and optimism in their team, even in challenging times.</li><li>Ability to lead and follow: Good leaders know when to take charge and lead, but also recognize the importance of listening and following others’ expertise.</li><li>Trustworthiness : Leaders are reliable and trustworthy, creating an environment of trust and transparency.</li><li>Optimism : Positive leaders maintain an optimistic outlook, inspiring and motivating their team.</li><li>Caring : Good leaders genuinely care about the well-being and success of their team members.</li><li>Ability to bring out the best in people : Effective leaders have the ability to recognize and develop the strengths of their team members, bringing out their full potential.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 POWER AND AUTHORITY IN LEADERSHIP</summary>
           <p>For effective leadership, one should exercise power and authority.</p>
 <p>Power :</p>
@@ -124,7 +156,7 @@
 <ul><li>That is to say; Authority= power (The potential ability to induce people to accept orders) + legitimacy (The acceptance of the exercised power-acting on the orders given);</li><li>Authority is a right(legitimacy) to give orders and the power to exert obedience. It is a legitimate right to give orders and the power to exert obedience.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 TYPES OF POWER/BASES OF POWER</summary>
           <p>There are mainly five types of powers divided into two categories namely: Position Powers and Personal Powers . Each of these also has subsets of powers.</p>
 <p>A Person in a Managerial Position has:</p>
@@ -138,7 +170,7 @@
 <p>5. Referent power . Referent power in healthcare refers to the influence a leader or healthcare professional has based on their personal qualities, charisma, and the admiration and respect they receive from others. It is derived from the attractiveness of the leader’s personality, values, or beliefs, rather than their formal position or expertise. Referent power refers to the influence that a manager has over others. The In-charge needs to have influence over other team members through good practices that may attract them to stay on and work for the organization.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Importances of Power/Reasons Why Power is Used</summary>
           <p>Power is the ability to influence others and achieve desired outcomes. The most common reasons why power is used include:</p>
 <p>1. To Gain a Competitive Advantage : Power can provide an edge over competitors in the market, allowing organizations to secure resources, market share, and influence.</p>
@@ -150,12 +182,12 @@
 <ul><li>To Protect Interests: Power can be used to safeguard the interests of individuals or groups.</li><li>To Maintain Control: Power can help maintain order and stability within organizations and societies.</li><li>To Influence Policy: Power can be used to shape public policy and advocate for specific causes.</li><li>To Enhance Reputation : Power can enhance an individual’s or organization’s reputation and credibility.</li><li>To Achieve Personal Goals : Power can be used to fulfill personal ambitions and aspirations.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Rules for Using Power in Organizations</summary>
           <ul><li>Use the least amount of power you can to be effective in your interactions with others. It is important to avoid excessive or unnecessary use of power. Instead, focus on achieving your goals while maintaining positive relationships with others.</li><li>Use power appropriate to the situation. Different situations may require different levels or types of power. Assess the situation and consider the potential impact of your power on others before using it.</li><li>Learn when not to use power . Recognize that there are situations where using power may not be the most effective or appropriate approach. For example, in collaborative or team-based settings, it may be more beneficial to rely on influence and persuasion rather than asserting power.</li><li>Focus on the problem, not the person . When using power, direct it towards addressing the issue at hand rather than targeting individuals.</li><li>Make polite requests, never arrogant demands. When exercising power, communicate your needs or expectations in a respectful and considerate manner. Arrogant demands can create resistance and damage relationships, while polite requests are more likely to be received positively.</li><li>Use coercion only when other methods do not work . Coercive power should be a last resort and used sparingly. Exhaust other options, such as persuasion or negotiation, before resorting to coercion. This helps maintain trust and minimize negative consequences.</li><li>Keep informed to retain your credibility when using your expert power . Expert power is obtained from knowledge and expertise. To effectively use this power, it is important to stay updated and informed in your field. Continuously develop your skills and knowledge to maintain credibility and influence others.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Types of Authority in Organizations</summary>
           <p>Structural Authority/Bureaucratic/Rational/Legitimate Authority : This type of authority is derived from the position one holds within the structure of the organization. It is based on job descriptions, responsibilities, rank, seniority, and formal organizational hierarchy.</p>
 <p>Expert Authority : Expert authority is derived from an individual’s knowledge, skills, and experience in a specific area. It is based on the perception that the person has specialized expertise and can provide valuable information.</p>
@@ -165,44 +197,42 @@
 <ul><li>Physical Authority : Authority based on physical superiority of an individual.</li><li>Parental Authority : God-given authority based on the relationship between parents and their children.</li><li>Clerical Authority : Authority based on the relationship between religious leaders and the laymen.</li><li>Economic Authority: Authority based on the ability to control money or material possessions.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 DIFFERENCE/SIMILARITIES AND RELATIONSHIP BETWEEN MANAGEMENT AND LEADERSHIP</summary>
           <ul><li>Leadership/Leaders Management/Managers</li><li>A leader may or may not have an official appointment. Appointed officially to the position.</li><li>Leaders have the power and authority to enforce decisions as long as followers are willing to be led. Managers have power and authority to enforce decisions using their position.</li><li>Leaders influence others either formally or informally. Use interpersonal skills to achieve results/goals. Managers carry out predetermined policies, rules, and regulations. Use rules, policies to achieve results/goals.</li><li>Take risks and explore new ideas. Maintain an orderly, controlled, rational, and equitable structure. / Risk-averse. Maintain an orderly, controlled, rational, and equitable structure. / Risk-averse.</li><li>Relate to people personally in an emphatic manner. Relate to people according to their roles or work expectations.</li><li>Leaders feel rewarded from personal achievements. Managers feel rewarded when fulfilling organizational goals or mission.</li><li>Leaders may or may not be successful as a manager. They are managers as long as they hold the appointment. N/A</li><li>Addresses “why”, “What” What should be done and why? – Why are things done and going on that way, Why such results? Addresses “how” and “when”. When and How can the activity/work be done, results be achieved?</li><li>Leadership inspires, motivates, and influences people. Management controls and clarifies to people.</li><li>Leadership is service and people-focused. Management is profit and result-focused.</li><li>Leadership is strategy-focused. Concerned with bigger, long-term objectives. Management is focused on short-term objectives, day-to-day operations/activities.</li><li>Leadership is concerned with fulfillment of goals. Management is concerned with performance of activities that lead to fulfillment of goals.</li><li>Leadership is concerned with versatility/creativity of employees. Management is concerned and preoccupied by consistency to standards of operations and procedures.</li><li>Leadership is concerned with alignment of whatever goes on in the organization to policy and set standards and goals. Management is concerned with accountability to the leadership of what is achieved and whether it’s achieved to the required standard and expectation.</li><li>Leadership is concerned with aligning the people brought in the organization to the organizational policies, mission, and vision. Management plans and staffs the organization.</li><li>Leadership is more people-focused. Management is more task-focused and achievement of work targets.</li><li>Leadership originates. Management Initiates.</li></ul>
 <p>Similarities</p>
 <ul><li>They both share success and failure.</li><li>They both work with focus, and communication is vital to both.</li><li>They both typically evaluate employees.</li><li>They are both accountable for results.</li><li>They use metrics to measure performance.</li><li>They both follow a vision and make their people follow that vision.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-11">
           <summary>11 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Leadership in Healthcare delivery</strong> as a practical nursing topic, not only a memorized definition. Translate theory into safe decisions, accountability, communication and service improvement.</p>
 <ul><li><strong>What to understand first:</strong> define leadership in healthcare delivery, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-12">
           <summary>12 Assessment Guide</summary>
           <ul><li>The problem, stakeholders, available resources, policy requirements and ethical issues.</li><li>Risks to patients, staff, confidentiality, quality, costs and continuity.</li><li>Documentation, reporting lines, supervision and evaluation measures.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-13">
           <summary>13 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use evidence, policy and professional standards to guide action.</li><li>Communicate clearly, document decisions and protect confidentiality.</li><li>Evaluate whether the action improves safety, learning or service delivery.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The plan is documented, realistic, ethical and improves patient care or learning outcomes.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-14">
           <summary>14 Patient Teaching and Revision Check</summary>
           <ul><li>Explain leadership in healthcare delivery in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
+      
       <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Introduction%2C%20Kinds%2C%20Power%20and%20Authority%20Health%20Services%20Management%20%26%20Entrepreneurship%20nursing%20lecture" title="Introduction, Kinds, Power and Authority YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Introduction%2C%20Kinds%2C%20Power%20and%20Authority%20Health%20Services%20Management%20%26%20Entrepreneurship%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Introduction%2C%20Kinds%2C%20Power%20and%20Authority%20Health%20Services%20Management%20%26%20Entrepreneurship%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

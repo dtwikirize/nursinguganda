@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,25 +97,60 @@
         <p>Emotions should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 29 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Emotions</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Three Components of Emotion</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Major Theories of Emotion</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Types of Emotions</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Physiology of Emotions</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Effects of Emotions on the Body and Mind</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Sociology of Emotions</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Common Defense Mechanisms</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Controlling Emotions (General Strategies for Individuals)</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Emotional Intelligence (EQ) in Nursing</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Management of Patients with Different Emotional States and Role of a Nurse</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Motivation</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Types of Motivation</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Motivational Cycle</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Theories of Motivation</a>
+          <a href="#section-16" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Significance of Motivation in Nursing</a>
+          <a href="#section-17" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Frustrations</a>
+          <a href="#section-18" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Sources of Frustration</a>
+          <a href="#section-19" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Reactions to Frustration</a>
+          <a href="#section-20" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Conflicts</a>
+          <a href="#section-21" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Types of Motivational Conflicts (Lewin’s Classification)</a>
+          <a href="#section-22" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Conflict Resolution Strategies</a>
+          <a href="#section-23" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Attitude and Perception</a>
+          <a href="#section-24" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Attitude</a>
+          <a href="#section-25" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Perception</a>
+          <a href="#section-26" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-27" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-28" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-29" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Emotions</summary>
           <p>The word &quot;emotion&quot; is derived from the Latin word &quot;emovere,&quot; meaning &quot;to move away, from, to excite, or to stir.&quot; Therefore, an emotion can be understood as:</p>
 <ul><li>A state of an individual that deprives him or her of equilibrium.</li><li>Psycho-physiological states arising from either pleasant or unpleasant feelings.</li><li>Strong feelings of excitement or perturbation, which may be pleasant or unpleasant, and are usually accompanied by an impulse to carry out a certain activity.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Three Components of Emotion</summary>
           <p>To fully understand emotion in a psychological context, it is helpful to break it down into three distinct but interacting components:</p>
 <ul><li><strong>Subjective Experience (Cognitive):</strong> This is the personal, conscious awareness of the feeling (e.g., &quot;I feel afraid&quot;). It involves the labeling of the emotion based on the situation.</li><li><strong>Physiological Response (Biological):</strong> The internal physical changes that occur, such as heart rate increasing, sweating, or hormonal shifts (adrenaline).</li><li><strong>Behavioral/Expressive Response:</strong> The outward signs of the emotion, such as facial expressions (smiling, frowning), body language (clenching fists), or tone of voice.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Major Theories of Emotion</summary>
           <p>Psychologists have proposed several theories to explain the relationship between the physiological reaction and the subjective experience of emotion:</p>
 <ul><li><strong>James-Lange Theory:</strong> Suggests that the physiological reaction happens first , and the brain interprets this physical change as an emotion. (e.g., &quot;I am trembling, therefore I must be afraid&quot;).</li><li><strong>Cannon-Bard Theory:</strong> Argues that the physiological reaction and the emotional experience happen simultaneously and independently. One does not cause the other.</li><li><strong>Schachter-Singer (Two-Factor) Theory:</strong> Proposes that emotion is a result of physiological arousal plus a cognitive label. We feel arousal, look to the environment to explain it, and then label the emotion accordingly.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Types of Emotions</summary>
           <p>While there are numerous emotional states, they can broadly be categorized into primary emotions from which others stem. The basic types commonly identified are anger (annoyance), fear, and love. Other descriptive terms often represent variations, degrees, or combinations of these core emotions:</p>
 <ul><li><strong>Anger:</strong> Includes annoyance, frustration, irritation, rage.</li><li><strong>Fear:</strong> Includes worry, anxiety (mild and continuous fear), apprehension, fright, terror.</li><li><strong>Love:</strong> Includes joy, happiness, liking, affection, desire, willingness, wanting, attraction.</li><li><strong>Other:</strong> Emotions like sadness, surprise, jealousy, and envy are often seen as combinations or more complex forms of these basic emotions. For instance, jealousy and envy can be a combination of love, anger, and fear.</li></ul>
@@ -112,7 +159,7 @@
 <ul><li>Happiness</li><li>Sadness</li><li>Fear</li><li>Disgust</li><li>Anger</li><li>Surprise</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Physiology of Emotions</summary>
           <p>Both the expression and experience of emotions are deeply rooted in physiological arousal, primarily reflecting the activity of the Autonomic Nervous System (ANS). The ANS has a vast network of fibers that connect to all internal organs. It comprises two main divisions:</p>
 <ul><li><strong>Sympathetic Nervous System:</strong> When activated by psychological and physical threats, it stimulates the secretion of epinephrine (adrenaline) and norepinephrine (noradrenaline) from the adrenal glands into the bloodstream. This prepares the body for &quot;fight or flight&quot; responses, increasing heart rate, blood pressure, and energy availability.</li><li><strong>Parasympathetic Nervous System:</strong> This division works to calm the body, promoting &quot;rest and digest&quot; functions and returning physiological systems to a baseline state.</li></ul>
@@ -121,37 +168,37 @@
 <ul><li><strong>Amygdala:</strong> Critical for processing fear and aggression. It acts as an alarm system, assessing threats before the conscious mind even fully processes them.</li><li><strong>Hippocampus:</strong> Linked to memory. It helps form memories of emotional events (e.g., remembering a place where you felt safe vs. threatened).</li><li><strong>Hypothalamus:</strong> Regulates the ANS and triggers the release of hormones, effectively translating the brain&#39;s emotional state into physical changes in the body.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Effects of Emotions on the Body and Mind</summary>
           <p>While emotions are a natural part of human experience, intense or prolonged emotional states, particularly unpleasant ones, can have significant detrimental effects on both physical and mental health:</p>
 <ul><li><strong>Inhibition of Cognitive Functions:</strong> During strong emotions, cognitive processes such as thinking, reasoning, and memory can be inhibited or impaired.</li><li><strong>Physiological Disruptions:</strong> Digestion can slow or stop during intense emotional states.</li><li><strong>Gastrointestinal Issues:</strong> Prolonged emotional stress can lead to excessive production of hydrochloric acid in the stomach, contributing to conditions like peptic ulcers. This is often seen in individuals who experience chronic worry.</li><li><strong>Psychosomatic Disorders:</strong> A significant number of diseases are known to be a direct or indirect result of prolonged emotional distress. These include: Certain forms of hypertension (high blood pressure)</li><li>Heart diseases</li><li>Asthmatic conditions</li><li>Impotence</li><li>Various skin diseases</li><li>Migraine headaches</li><li><strong>Worsening Patient Condition:</strong> For individuals who are ill, emotional distress can worsen their condition and significantly delay recovery.</li><li><strong>Energy Release for Survival:</strong> The physical tension experienced during fear, for instance, is a survival response common to all mammals. It prepares the body to either &quot;stay and fight&quot; or &quot;run away,&quot; both requiring a surge of strength and energy. Physical changes facilitated by the body during intense emotions, such as increased breathing and heart rate, are designed to release more energy to the tissues by enhancing oxygen and glucose delivery for metabolism.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 The Sociology of Emotions</summary>
           <p>In sociology, emotions are not just biological reactions but are also shaped by social structures and cultural norms. Nurses must understand the social context of their patients&#39; emotions.</p>
 <ul><li><strong>Emotional Labor:</strong> Defined by Arlie Hochschild, this refers to the effort required to manage feelings and facial expressions as part of one&#39;s job. Nurses perform emotional labor constantly (e.g., remaining calm and smiling while dealing with a difficult patient or hiding disgust while dressing a severe wound).</li><li><strong>Feeling Rules:</strong> Every society has unwritten rules about what we should feel in certain situations (e.g., feeling sad at a funeral, feeling happy at a wedding). Patients may experience distress if they feel their emotions do not match these societal expectations.</li><li><strong>Cultural Variations:</strong> Different cultures have different &quot;display rules.&quot; Some cultures encourage the open expression of pain and grief, while others value stoicism and silence. A nurse must interpret emotions through a culturally competent lens.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Common Defense Mechanisms</summary>
           <p>According to psychoanalytic theory (Freud), individuals often use unconscious strategies to cope with negative emotions and anxiety. Nurses often encounter these in patients:</p>
 <ul><li><strong>Denial:</strong> Refusing to accept reality (e.g., a patient refusing to believe a cancer diagnosis).</li><li><strong>Displacement:</strong> Redirecting emotions from the original source to a safer target (e.g., a patient angry at the doctor yelling at the nurse).</li><li><strong>Projection:</strong> Attributing one&#39;s own unacceptable feelings to others (e.g., a hostile patient accusing the nurse of being hostile).</li><li><strong>Regression:</strong> Reverting to an earlier stage of development (e.g., an adult patient becoming childlike and dependent during illness).</li><li><strong>Rationalization:</strong> Creating logical excuses for illogical feelings or behaviors.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Controlling Emotions (General Strategies for Individuals)</summary>
           <p>Given the potential harm of prolonged or intense negative emotions, especially when experienced during challenging life events, learning to manage them is crucial. While personality plays a role in how individuals react, certain strategies can help in controlling emotional responses:</p>
 <ul><li><strong>Prepare for Traumatic Experiences:</strong> It&#39;s important not to shut your mind to the inevitability of certain difficult events (e.g., loss of loved ones, failure). By contemplating how you might react to such possibilities, you can mentally prepare, making the actual occurrence less intensely upsetting. This involves being realistic, not pessimistic.</li><li><strong>Accept Your Emotions:</strong> Acknowledge and accept that you have emotions. Do not pretend to be unaffected by disappointment or try to hide feelings like love. Suppression can be counterproductive.</li><li><strong>Avoid Isolation:</strong> If you are facing problems, do not isolate yourself. Mix with friends and fully participate in social activities, whether work-related or recreational. Social support is vital.</li><li><strong>Develop Problem-Solving Skills:</strong> Learning to successfully solve problems builds confidence and reduces feelings of hopelessness or helplessness when challenged by emotions.</li><li><strong>Examine the Objective Situation:</strong> Try to objectively assess the situation that is causing emotional distress. Understanding the facts can help in managing your reactions.</li><li><strong>Gain Perspective:</strong> Remind yourself that many people in the world face worse situations but have coped and continued living. This can help in contextualizing your own struggles.</li><li><strong>Manage Public Speaking Anxiety:</strong> If you fear public speaking, remind yourself that you are capable. Stay calm, take deep breaths, start with short sentences, and gradually build confidence.</li><li><strong>Get Enough Rest:</strong> Aim for 7-9 hours of sleep. Insufficient sleep can lead to more intense emotional responses to routine upsets.</li><li><strong>Eat Well and Exercise:</strong> A healthy diet makes you less vulnerable to illnesses and can positively influence mood. Exercise promotes cardiovascular health and the production of endorphins, brain chemicals that help maintain calmness.</li><li><strong>Learn to Soothe Yourself:</strong> Focus on your strengths and work to change negative self-judgments. Develop personal strategies for self-comfort.</li><li><strong>Seek Information:</strong> Gather information about the stress or emotional challenge you are facing. Knowledge can help defeat fear and uncertainty.</li><li><strong>Talk to Trusted Others:</strong> Cultivate a small circle of 2-3 trusted individuals (family or friends) with whom you can share your most intimate thoughts and feelings without judgment.</li><li><strong>Plan Emotional Responses:</strong> If you find certain emotions consistently cause you trouble, proactively think through how you want to respond the next time you experience similar feelings (e.g., anger, fear, sadness).</li><li><strong>Incorporate Enjoyable Activities:</strong> Dedicate time each day to something fun or enjoyable. This serves as a mental vacation from worries and troubles.</li><li><strong>Help Others:</strong> Assisting others in similar circumstances can provide a new perspective on your own situation and foster a sense of purpose.</li><li><strong>Consider Therapy:</strong> If intense negative emotions significantly interfere with daily functioning, professional help from a therapist or counselor may be necessary.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Emotional Intelligence (EQ) in Nursing</summary>
           <p>Emotional Intelligence is the ability to recognize, understand, and manage our own emotions and the emotions of others. It is a critical skill for nurses. High EQ involves:</p>
 <ul><li><strong>Self-Awareness:</strong> Recognizing one&#39;s own emotional triggers and states.</li><li><strong>Self-Regulation:</strong> Controlling impulsive feelings and behaviors (e.g., remaining professional when provoked).</li><li><strong>Motivation:</strong> Using emotions to pursue goals with energy and persistence.</li><li><strong>Empathy:</strong> Understanding the emotional makeup of other people; essential for patient care.</li><li><strong>Social Skills:</strong> Managing relationships and building networks.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 Management of Patients with Different Emotional States and Role of a Nurse</summary>
           <p>Emotions can significantly impact a patient&#39;s recovery. Therefore, it is crucial for healthcare professionals, especially nurses, to help patients manage their emotional states effectively.</p>
 <p><strong>Desired Attitude and Role of a Nurse in Managing Patients with Emotional States:</strong></p>
@@ -160,72 +207,72 @@
 <ul><li><strong>Compassion Fatigue:</strong> A condition characterized by physical and emotional exhaustion resulting from the chronic exposure to patients&#39; suffering. It is often called the &quot;cost of caring.&quot;</li><li><strong>Signs:</strong> Reduced ability to feel empathy, irritability, fatigue, and dreading going to work.</li><li><strong>Prevention:</strong> Requires strict boundaries between work and home life, debriefing difficult cases with colleagues, and prioritizing self-care routines.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-12">
           <summary>12 Motivation</summary>
           <p>Motivation is derived from the Latin word &quot;movere,&quot; meaning &quot;to move.&quot; It is the driving force that initiates, guides, and maintains goal-oriented behaviors. In a healthcare context, understanding motivation is essential for encouraging patient compliance and managing staff effectively.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-13">
           <summary>13 Types of Motivation</summary>
           <ul><li><strong>Intrinsic Motivation:</strong> Driven by internal rewards. The behavior is performed because it is personally satisfying or rewarding (e.g., a nurse studying because they love learning about anatomy).</li><li><strong>Extrinsic Motivation:</strong> Driven by external rewards or the avoidance of punishment (e.g., working overtime to earn extra money or following protocols to avoid disciplinary action).</li><li><strong>Unconscious Motivation:</strong> Hidden impulses and drives that influence behavior without the individual&#39;s conscious awareness (a concept central to Freudian psychology).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-14">
           <summary>14 The Motivational Cycle</summary>
           <p>Motivation is often viewed as a cycle consisting of three stages:</p>
 <ul><li><strong>Need (Drive):</strong> A state of deficiency or lack (e.g., hunger, need for safety).</li><li><strong>Instrumental Behavior:</strong> The action taken to satisfy the need (e.g., looking for food, visiting a doctor).</li><li><strong>Goal (Relief):</strong> The achievement of the desire, resulting in the reduction of the drive and a temporary state of equilibrium.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-15">
           <summary>15 Theories of Motivation</summary>
           <p>Abraham Maslow proposed that human motivation is arranged in a hierarchy. Lower-level needs must be met before higher-level needs become motivating factors.</p>
 <ul><li><strong>Physiological Needs (Base):</strong> Basic survival needs: air, water, food, sleep, homeostasis. ( Nursing implication: Ensure patient can breathe, eat, and rest ).</li><li><strong>Safety Needs:</strong> Security of body, employment, resources, health. ( Nursing implication: Prevent falls, infection control, job security for staff ).</li><li><strong>Love/Belonging Needs:</strong> Friendship, family, intimacy. ( Nursing implication: Allow family visits, therapeutic nurse-patient relationship ).</li><li><strong>Esteem Needs:</strong> Self-esteem, confidence, achievement, respect of others.</li><li><strong>Self-Actualization (Top):</strong> Achieving one&#39;s full potential, including creative activities.</li></ul>
 <p>Freud suggested that motivation is driven by two unconscious instincts: Eros (life instinct/survival/sex) and Thanatos (death instinct/aggression).</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-16">
           <summary>16 Significance of Motivation in Nursing</summary>
           <ul><li><strong>Patient Adherence:</strong> Motivating patients to follow treatment plans, take medication, and attend therapy.</li><li><strong>Lifestyle Changes:</strong> Helping patients find the drive to quit smoking, lose weight, or exercise.</li><li><strong>Learning:</strong> Motivation is a prerequisite for learning; a patient must want to learn about their condition to understand it.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-17">
           <summary>17 Frustrations</summary>
           <p>Frustration is the emotional state that occurs when a person is blocked from reaching a desired goal or satisfying a need. It is a common experience in hospital settings for both patients (delayed recovery) and staff (lack of resources).</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-18">
           <summary>18 Sources of Frustration</summary>
           <ul><li><strong>External Factors:</strong> Physical Obstacles: Locked doors, traffic jams, lack of money, drought.</li><li>Social/Legal Obstacles: Rules, regulations, cultural norms that restrict behavior.</li><li><strong>Internal (Personal) Factors:</strong> Physical Limitations: Illness, disability, or lack of physical strength.</li><li>Psychological Limitations: Lack of intelligence, skill, or confidence; conflicting desires.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-19">
           <summary>19 Reactions to Frustration</summary>
           <p>Individuals respond to frustration in various ways, often depending on their personality and the severity of the obstacle:</p>
 <ul><li><strong>Aggression (Direct):</strong> Attacking the source of the frustration (e.g., a patient shouting at a nurse because the doctor is late).</li><li><strong>Displaced Aggression:</strong> Directing anger toward a safer target rather than the actual source (e.g., kicking a door or yelling at a spouse after a bad day at work).</li><li><strong>Regression:</strong> Reverting to childish behaviors like crying, sulking, or throwing tantrums.</li><li><strong>Withdrawal/Apathy:</strong> Giving up and becoming indifferent. This is common in chronic illness when patients feel helpless.</li><li><strong>Compromise/Substitution:</strong> Accepting a different goal or solution (e.g., if a student cannot become a doctor, they may choose to become a nurse).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-20">
           <summary>20 Conflicts</summary>
           <p>Conflict is a psychological state of tension resulting from the presence of two or more opposing needs, drives, or wishes. It often arises when a person must choose between incompatible options.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-21">
           <summary>21 Types of Motivational Conflicts (Lewin’s Classification)</summary>
           <ul><li><strong>Approach-Approach Conflict:</strong> Choosing between two desirable alternatives. (e.g., Choosing between two great job offers). This is usually the least stressful conflict.</li><li><strong>Avoidance-Avoidance Conflict:</strong> Choosing between two undesirable alternatives. (e.g., A patient must choose between risking a dangerous surgery or continuing to suffer from a painful illness). This causes high anxiety (&quot;caught between a rock and a hard place&quot;).</li><li><strong>Approach-Avoidance Conflict:</strong> A single goal has both positive and negative aspects. (e.g., A person wants to eat sugar because it tastes good [approach] but fears diabetes [avoidance]). This causes vacillation (wavering back and forth).</li><li><strong>Double Approach-Avoidance Conflict:</strong> Choosing between two complex goals, both of which have pros and cons. (e.g., Choosing between a high-paying job in a city you hate vs. a low-paying job in a city you love).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-22">
           <summary>22 Conflict Resolution Strategies</summary>
           <p>In a clinical setting, nurses must help resolve conflicts:</p>
 <ul><li><strong>Clarification:</strong> Helping the patient clearly identify the pros and cons of their choices.</li><li><strong>Information Giving:</strong> Reducing uncertainty by explaining medical facts.</li><li><strong>Active Listening:</strong> Allowing the patient to vent feelings associated with the conflict.</li><li><strong>Collaboration:</strong> Working together to find a &quot;middle ground&quot; solution.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-23">
           <summary>23 Attitude and Perception</summary>
           <p>Attitudes and perceptions are the lenses through which individuals view the world. They dictate how a patient views their illness and how a nurse views their patient.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-24">
           <summary>24 Attitude</summary>
           <p>An attitude is a relatively stable predisposition to respond to a person, object, or idea in a consistently favorable or unfavorable way.</p>
 <ul><li><strong>A - Affective (Feeling):</strong> The emotional reaction. (e.g., &quot;I am scared of injections.&quot;)</li><li><strong>B - Behavioral (Action):</strong> The tendency to act. (e.g., &quot;I will avoid going to the doctor.&quot;)</li><li><strong>C - Cognitive (Belief):</strong> The thoughts and beliefs. (e.g., &quot;Injections are painful and unnecessary.&quot;)</li><li><strong>Adaptive/Utilitarian:</strong> Helping us gain rewards and avoid punishment.</li><li><strong>Ego-Defensive:</strong> Protecting our self-esteem (e.g., holding a prejudice against others to feel superior).</li><li><strong>Value-Expressive:</strong> Allowing us to express our core values and identity.</li><li><strong>Knowledge:</strong> Helping us organize and understand the complex world.</li></ul>
@@ -233,43 +280,48 @@
 <ul><li><strong>Provide Credible Information:</strong> Use facts from trusted sources.</li><li><strong>Use Fear Appeals (Cautiously):</strong> Highlighting the dangers of non-compliance (must be paired with a solution).</li><li><strong>Role Modeling:</strong> Demonstrating healthy behaviors.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-25">
           <summary>25 Perception</summary>
           <p>Perception is the cognitive process of selecting, organizing, and interpreting sensory information to give meaning to the environment. It is how we make sense of what we see, hear, and feel.</p>
 <ul><li><strong>Input/Sensation:</strong> Sensory organs receive stimuli.</li><li><strong>Selection:</strong> The brain chooses which stimuli to pay attention to (we ignore background noise to hear a conversation).</li><li><strong>Organization:</strong> The brain arranges stimuli into patterns (Gestalt principles).</li><li><strong>Interpretation:</strong> Assigning meaning based on past experiences, culture, and memory.</li><li><strong>Physiological Factors:</strong> Poor eyesight, hearing loss, fatigue, or pain can distort perception.</li><li><strong>Psychological Factors:</strong> Mood, motivation, and expectations. (e.g., A hungry person perceives food smells more acutely).</li><li><strong>Social/Cultural Factors:</strong> Cultural background dictates how we interpret pain, touch, and eye contact.</li><li><strong>Illusion:</strong> A misinterpretation of a real external stimulus (e.g., Mistaking a hanging coat for a person in the dark).</li><li><strong>Hallucination:</strong> A sensory perception without any external stimulus (e.g., Hearing voices when no one is speaking). Common in psychiatric disorders.</li><li><strong>Stereotyping:</strong> Generalizing a group of people based on a few characteristics, often leading to bias in healthcare.</li><li><strong>Halo Effect:</strong> Forming a general impression of a person based on a single characteristic (e.g., Assuming a well-dressed patient is compliant and intelligent).</li><li><strong>Assessment:</strong> Check if the patient is oriented to time, place, and person.</li><li><strong>Validation:</strong> Do not assume; ask the patient to explain what they are experiencing.</li><li><strong>Environment:</strong> Reduce sensory overload (noise, lights) to help patients with perceptual difficulties.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-26">
           <summary>26 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Emotions</strong> as a practical nursing topic, not only a memorized definition. Turn the topic into practical nursing knowledge: meaning, assessment, care priorities, teaching and evaluation.</p>
 <ul><li><strong>What to understand first:</strong> define emotions, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-27">
           <summary>27 Assessment Guide</summary>
           <ul><li>Key definitions, patient history, focused observations and risk factors.</li><li>Findings that are normal, abnormal or urgent.</li><li>Resources, referral needs and documentation requirements.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-28">
           <summary>28 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Protect safety, comfort, dignity and infection prevention.</li><li>Provide clear care, education and escalation when needed.</li><li>Evaluate response and record what changed.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The topic is understood in a way that supports safe nursing judgement and revision.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-29">
           <summary>29 Patient Teaching and Revision Check</summary>
           <ul><li>Explain emotions in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Emotions%20Foundations%20of%20Nursing%202%2C%20Sociology%20and%20psychology%20nursing%20lecture" title="Emotions YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (1)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Emotions-1-1024x614.webp" alt="Emotions 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Emotions 1</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Emotions%20Foundations%20of%20Nursing%202%2C%20Sociology%20and%20psychology%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Emotions%20Foundations%20of%20Nursing%202%2C%20Sociology%20and%20psychology%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

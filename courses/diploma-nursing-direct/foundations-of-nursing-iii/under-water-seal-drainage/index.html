@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,25 @@
         <p>Under Water Seal Drainage should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (12)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">UNDER WATER SEAL DRAINAGE</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Conditions necessitating Underwater Seal Drainage</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Indications of Water Seal Drainage</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Site for Chest Tube Insertion</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Types of Drainage Systems</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Factors Affecting Water Seal Drainage</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Requirements for Under Water Seal Drainage (UWSD)</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Procedure for Underwater Seal Drainage (UWSD)</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 UNDER WATER SEAL DRAINAGE</summary>
           <p>Under water seal drainage is a system that allows drainage of the pleural space using an airtight system to maintain sub-atmospheric intrapleural pressure .</p>
 <p>It’s used when air or fluid gets trapped in the pleural space .</p>
@@ -96,20 +126,20 @@
 <ul><li>The underwater seal acts as a one-way valve.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Conditions necessitating Underwater Seal Drainage</summary>
           <ul><li>Traumatic Pneumothorax: This happens when an injury to the chest (like a car accident or stab wound) causes air to leak into the pleural space, collapsing the lung.</li><li>Hemopneumothorax : This is a combination of air and blood in the pleural space. It can also be caused by trauma.</li><li>Spontaneous Pneumothorax : Sometimes, a lung can collapse on its own, without an obvious injury. This is more common in tall, thin young adults or people with lung diseases.</li><li>Iatrogenic Pneumothorax: This occurs unintentionally as a result of a medical procedure, such as inserting a central line or during a lung biopsy.</li><li>Broncho-pleural Fistula : This is an abnormal connection between an airway in the lung (bronchus) and the pleural space, causing air to leak into the pleural space.</li><li>Emphysema : A chronic lung disease where air sacs in the lungs are damaged. In some cases, it can lead to air leaks into the pleural space.</li><li>Malignancy : Lung cancers or other cancers in the chest can sometimes cause fluid buildup in the pleural space (pleural effusion).</li><li>Pleural Effusion : This is the buildup of excess fluid in the pleural space. It can be caused by various conditions like heart failure, pneumonia, or cancer.</li><li>Thoracic or Thoraco-abdominal Surgeries : After surgeries in the chest or upper abdomen, chest tubes are often placed to drain air and fluid and prevent complications.</li></ul>
 <p>In short : Any condition that causes air or fluid to accumulate in the pleural space and disrupt normal lung function may require water seal drainage.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Indications of Water Seal Drainage</summary>
           <p>The goals of water seal drainage are to:</p>
 <ul><li>Permit Drainage of Air and Fluid: The most direct purpose is to remove unwanted air, blood, or fluid from the pleural cavity. This helps to relieve pressure and allow the lung to re-expand.</li><li>Establish Normal Negative Pressure : The pleural space normally has a negative pressure, which is essential for keeping the lungs inflated. Water seal drainage helps to restore this negative pressure. Think of it like sucking air out of a balloon to make it inflate inside a jar.</li><li>Promote Lung Expansion: By removing air and fluid and restoring negative pressure, water seal drainage allows the collapsed lung to re-inflate and function properly.</li><li>Equalize Pressure on Both Sides of the Thoracic Cavity: Conditions like pneumothorax can disrupt the pressure balance in the chest. Water seal drainage helps to restore this balance.</li><li>Prevent Tension Pneumothorax : In a tension pneumothorax, air keeps getting trapped in the pleural space and cannot escape, leading to dangerous pressure buildup that can compress the heart and major blood vessels. Water seal drainage prevents this life-threatening situation by providing an escape route for the air.</li><li>Provide Continuous Suction (if needed) : In some cases, gravity alone may not be enough to drain the air or fluid, or to re-expand the lung quickly. In these situations, gentle suction may be added to the water seal drainage system to assist the process.</li></ul>
 <p>In essence : Water seal drainage aims to bring the lung back to its normal, healthy state by removing obstacles and restoring the necessary pressure for it to function.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Site for Chest Tube Insertion</summary>
           <p>Where is the Chest Tube Inserted? The location of the chest tube depends on the reason for drainage:</p>
 <p>For Thoracic Surgery (usually two tubes):</p>
@@ -121,7 +151,7 @@
 <ul><li>Location : In the front or side of the chest.</li><li>Intercostal Space : Usually placed in the 2nd or 3rd intercostal space along the mid-clavicular line (in line with the middle of your collarbone) or anterior axillary line (front of your armpit).</li><li>Purpose : To remove air from the pleural space, allowing the lung to re-expand. Since air rises, a higher placement is effective for pneumothorax.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Types of Drainage Systems</summary>
           <p>Water seal drainage systems can be categorized based on the number of bottles (or chambers in modern systems). The basic principle remains the same, but complexity increases with more bottles.</p>
 <p>Components :</p>
@@ -149,7 +179,7 @@
 <p>Modern Systems: Today, many systems use pre-assembled, disposable plastic units that combine the functions of these bottles into chambers within a single unit. These are often referred to as multi-chamber drainage systems and are more convenient and easier to manage, but the underlying principles are the same as the bottle systems.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Factors Affecting Water Seal Drainage</summary>
           <p>Several factors can influence how well a water seal drainage system works. Knowing these factors is key for effective nursing care and management.</p>
 <p>1. Proper Placement of Chest Catheter (Chest Tube) : Rationale : Correct placement is key for effective drainage. As discussed earlier, tubes placed high are for air, and tubes placed low are for fluid.</p>
@@ -180,49 +210,60 @@
 <ul><li>Movement on Bed : Encourage gentle movement in bed (turning side to side, repositioning). Movement helps to shift fluid and air within the pleural space, promoting drainage.</li><li>Coughing and Deep Breathing : Encourage the patient to cough and deep breathe regularly.</li><li>Intrapleural and Intrapulmonary Pressure : Coughing and deep breathing help to increase intrapleural and intrapulmonary pressure, which can assist in expelling air and fluid from the pleural space and promote lung expansion.</li><li>Walking (if appropriate): If medically appropriate and ordered by the physician, ambulation (walking) can also be beneficial, as it encourages deeper breathing and overall lung function.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Requirements for Under Water Seal Drainage (UWSD)</summary>
           <ul><li>STERILE TROLLEY – Top Shelf</li><li>A trocar and cannula, intercostal tubing, and an introducer</li><li>Artery forceps in a receiver</li><li>Scalpel</li><li>Suturing material</li><li>Safety pin</li><li>A large Winchester bottle containing water or normal saline to a level of about 6cm</li><li>A rubber cork pierced by a short and long glass tube or by rigid plastic tubes</li><li>Bottom Shelf</li><li>A pair of gloves</li><li>Chest X-ray investigations and ultrasound scan results</li><li>A dressing pack</li><li>A patient’s file</li><li>Bedside</li><li>Hand washing equipment</li><li>Suction machine</li><li>Screen</li><li>Patient’s file</li><li>Emergency tray</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Procedure for Underwater Seal Drainage (UWSD)</summary>
           <ul><li>Step Action Rationale</li><li>Preparation of equipment</li><li>1 Preferably a graduated bottle is used For correct reading of the drainage fluid</li><li>2 Assist Doctor to submerge the long tube in the water at 2 to 3 cm but must not touch the bottom of the bottle. The short tube acts as an escape route for air in the vacuum space in the bottle. To prevent air from going to pleural cavity</li><li>3 Assist the Doctor to connect the tube to the top of the under-water to the patient’s intercostal drainage tube. To drain fluid from the pleural cavity</li><li>Procedure</li><li>1 Explain the procedure carefully to the patient; to understand the importance of limited movements during the period of UWSD. Explanation encourages patients cooperation and relieves anxiety</li><li>2 Take the trolley to the bedside, screen the bed and close nearby windows. To provide privacy</li><li>3 Wash and dry hands and be ready to assist the doctor. Promote hygiene measures</li><li>4 Position the patient leaning over the bed table supported by pillows. The patient’s arm which is on the side where the tube will be inserted must be placed forward and supported by a nurse. This position gives best access to the second or third intercostal space</li><li>5 Observe the patient’s colour, pulse and respirations throughout the procedure. To detect any change in patient condition and manage accordingly</li><li>6 The doctor cleans the patient’s skin, places a drape in position and injects local anaesthesia. A scalpel is used to make an incision through the skin and muscle of the intercostal space. Using the introducer, the tubing is inserted and secures it with a stitch. Local anaesthesia helps to relieve pain</li><li>7 The nurse connects the tube to the UWSD bottle once the introducer is removed, then clamps the tube with two pairs of clamps until all the connections of the apparatus are sealed. To be able to clip the tube so as to prevent air going to the lungs</li><li>8 Remove the clamps and check the functioning of the apparatus by noting if the fluid in the tube rises and falls in rhythm with the patient’s respirations. To ensure that the system is air tight and no air leakages and no risk of emphysema.</li><li>9 Apply a dressing to the wound. A dressing makes an airtight seal at the incision site and prevents infection.</li><li>10 Wash hands, clear away the equipment and leave the patient comfortable. To prevent spread of infections</li><li>Changing the bottle</li><li>11 • Securely clamp off the drain with two clamps but for a short time. • Disconnect the tubing and put used apparatus to one side. • Connect new tubing and bottle and remove the clamps. Minimise re-infection of the patient.</li><li>12 Monitor the fluid in tubing whether it is moving up and down in rhythm with the patient’s respiration rate. To ensure that the tube is in situ and functioning.</li><li>13 Record the amount of drainage on the fluid balance chart and note any abnormalities. For effective assessment of progress of therapy and the patient</li><li>Wash hands, Clear away and clean the used apparatus and equipment. To prevent spread of infections</li></ul>
 <p>Points to remember</p>
 <ul><li>Make sure that all connections are secure to avoid leakages</li><li>Check that the patient is not compressing or kicking any part of the drainage system, to avoid obstructing the tube.</li><li>The bottle must always remain below the level of the patient’s chest and should preferably be in a stand to avoid being easily knocked over, to prevent back flow of fluid from drainage chamber to pleural cavity and to maintain the water seal.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-9">
           <summary>09 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Under Water Seal Drainage</strong> as a practical nursing topic, not only a memorized definition. Turn the topic into practical nursing knowledge: meaning, assessment, care priorities, teaching and evaluation.</p>
 <ul><li><strong>What to understand first:</strong> define under water seal drainage, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-10">
           <summary>10 Assessment Guide</summary>
           <ul><li>Key definitions, patient history, focused observations and risk factors.</li><li>Findings that are normal, abnormal or urgent.</li><li>Resources, referral needs and documentation requirements.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-11">
           <summary>11 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Protect safety, comfort, dignity and infection prevention.</li><li>Provide clear care, education and escalation when needed.</li><li>Evaluate response and record what changed.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The topic is understood in a way that supports safe nursing judgement and revision.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-12">
           <summary>12 Patient Teaching and Revision Check</summary>
           <ul><li>Explain under water seal drainage in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Under%20Water%20Seal%20Drainage%20Foundations%20of%20Nursing%20(III)%20nursing%20lecture" title="Under Water Seal Drainage YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (7)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Under-water-seal-drainage-3-bottles.webp" alt="Under Water Seal Drainage 3 Bottles" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Under Water Seal Drainage 3 Bottles</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Pleural-Space-underwater-seal-drainage-1-1024x1013.webp" alt="Pleural Space Underwater Seal Drainage 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Pleural Space Underwater Seal Drainage 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Common-insertion-site-of-chest-tube-for-air-and-fluid.webp" alt="Common Insertion Site Of Chest Tube For Air And Fluid" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Common Insertion Site Of Chest Tube For Air And Fluid</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Under-water-seal-drainage-1-bottle.webp" alt="Under Water Seal Drainage 1 Bottle" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Under Water Seal Drainage 1 Bottle</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Under-water-seal-drainage-2-bottles.webp" alt="Under Water Seal Drainage 2 Bottles" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Under Water Seal Drainage 2 Bottles</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/1682bcbc3252861a528599f12364c43a.webp" alt="1682bcbc3252861a528599f12364c43a" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">1682bcbc3252861a528599f12364c43a</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/ffe03fa944e6ac1e9f11c3348543fbec.webp" alt="Ffe03fa944e6ac1e9f11c3348543fbec" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Ffe03fa944e6ac1e9f11c3348543fbec</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Under%20Water%20Seal%20Drainage%20Foundations%20of%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Under%20Water%20Seal%20Drainage%20Foundations%20of%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

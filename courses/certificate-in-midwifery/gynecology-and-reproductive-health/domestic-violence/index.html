@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,31 @@
         <p>Domestic violence should be reviewed through safe maternal and newborn assessment, early recognition of danger signs, respectful communication and timely referral. Connect the definition to vital signs, bleeding, fetal or newborn wellbeing, patient education and local protocol requirements.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 18 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Gender Based Violence (GBV)</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Forms of Violence in Uganda</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Settings Where Gender-Based Violence Can Occur</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Predisposing Factors of Sexual and Gender-Based Violence</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Risk Groups for Sexual and Gender-Based Violence</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Reasons for Staying in an Abusive Relationship</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Characteristics of Those Who Are Abused</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Impacts of Sexual and Gender-Based Violence</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Ways through which Sexual Gender-based Violence can be reduced in Uganda</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Roles of leaders on SGBV in their community</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Control and prevention of Sexual Gender-based Violence</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Reasons Why the Community and Leaders Should Be Concerned About SGBV</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Roles of health workers in managing victims and addressing gender-based violence</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Sources of Help for Victims of SGBV</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-16" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-17" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-18" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Gender Based Violence (GBV)</summary>
           <p>Gender based violence is any act that results in physical, sexual or psychological harm or suffering to women, men and children.</p>
 <p>Key terms related to Gender-based Violence</p>
@@ -127,7 +163,7 @@
 <ul><li>Example : The belief that girls should be obedient and boys should be brave.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Forms of Violence in Uganda</summary>
           <p>Domestic Violence</p>
 <ul><li>Wife Battering : Physical abuse of wives by their husbands.</li><li>Oppression : Controlling behaviors that limit a partner’s freedom and autonomy.</li><li>Intimidation : Using threats and fear to control a partner.</li><li>Emotional Abuse : Verbal insults, humiliation, and constant criticism.</li><li>Economic Abuse : Controlling a partner’s access to financial resources.</li><li>Isolation : Preventing a partner from interacting with friends, family, or community.</li></ul>
@@ -141,7 +177,7 @@
 <ul><li>Sexual Harassment and Intimidation : Occurring in workplaces, religious institutions, and schools.</li><li>Coercion : Forcing someone to act against their will through threats or manipulation.</li><li>Arbitrary Deprivation of Liberty : Unjustified detention or restriction of movement.</li><li>Belief in Large Families : Pressure to have many children, leading to health risks and economic strain.</li><li>Forced Sex : Men having non-consensual sex with their partners.</li><li>Institutional Violence : Violence perpetrated or condoned by institutions such as the government or religious bodies.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Settings Where Gender-Based Violence Can Occur</summary>
           <p>Family</p>
 <ul><li>Battering of Women : Physical abuse within the home.</li><li>Sexual Abuse of Children : Incest and other forms of sexual abuse within the family.</li><li>Emotional Abuse : Verbal and psychological harm inflicted by family members.</li><li>Neglect : Failure to provide basic needs such as food, shelter, and healthcare.</li></ul>
@@ -151,7 +187,7 @@
 <ul><li>Poorly Drafted or Unenforceable Laws : Legal frameworks that do not adequately protect victims.</li><li>Violence by Law Enforcement : Abuse of power by police and other authorities.</li><li>Lack of Facilities : Inadequate healthcare and support services for victims.</li><li>Education : Insufficient education on prevention and treatment of violence.</li><li>Corruption : Officials taking bribes to ignore or condone violence.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Predisposing Factors of Sexual and Gender-Based Violence</summary>
           <p>Socio-Economic Factors</p>
 <ul><li>Low Socio-Economic Status : Poverty and lack of education increasing vulnerability.</li><li>Women’s Low Status : Cultural and social norms that devalue women.</li><li>Dependence on Men : Economic and decision-making dependence.</li></ul>
@@ -163,7 +199,7 @@
 <ul><li>Abduction : Kidnapping leading to sexual abuse and exploitation.</li><li>Land Wrangle : Property disputes leading to violence against women.</li><li>Conflict : War and displacement increasing vulnerability.</li><li>Poor Role Modeling : Lack of positive examples for children.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Risk Groups for Sexual and Gender-Based Violence</summary>
           <p>Vulnerable Populations</p>
 <ul><li>All Children and Women : Higher risk due to power imbalances and cultural norms.</li><li>Adolescents : Vulnerable to peer pressure and exploitation.</li><li>Displaced Persons : Including refugees and internally displaced people.</li><li>People with Disabilities : Increased risk of abuse and neglect.</li><li>Prisoners : Vulnerable to abuse by authorities and other inmates.</li><li>Men : Often reluctant to report violence due to fear of stigma.</li><li>Pregnant Mothers : Vulnerable to domestic violence and lack of support.</li></ul>
@@ -174,7 +210,7 @@
 <p>Domestic violence is a specific form of GBV that occurs within the family or intimate relationships, GBV is a broader concept that encompasses any form of violence directed at individuals based on their gender.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Reasons for Staying in an Abusive Relationship</summary>
           <p>Hope for Change :</p>
 <ul><li>Belief that the abuser will change their behavior.</li><li>Optimism that the relationship can improve.</li><li>Faith in the abuser’s promises to stop the abuse.</li></ul>
@@ -202,7 +238,7 @@
 <ul><li>Limited options for housing, employment, and financial support.</li><li>Fear of homelessness or poverty if the relationship ends.</li><li>Belief that there are no better alternatives to the current situation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Characteristics of Those Who Are Abused</summary>
           <p>Belief That Violence Gives Immediate Results :</p>
 <ul><li>The abuser believes that violence is an effective way to control and dominate the victim.</li><li>The abuser uses violence to achieve immediate compliance and obedience.</li></ul>
@@ -222,7 +258,7 @@
 <ul><li>The abuser shows little or no concern for the victim’s feelings and well-being.</li><li>The abuser is unable or unwilling to understand the impact of their actions on the victim.</li><li>The abuser prioritizes their own needs and desires over the victim’s.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Impacts of Sexual and Gender-Based Violence</summary>
           <p>Sexual and gender-based violence (SGBV) has profound and lasting effects on survivors, impacting their physical, mental, and social well-being. The impacts can be categorized into physical, psychological, social, and economic dimensions.</p>
 <p>Physical Impacts</p>
@@ -266,24 +302,24 @@
 <ul><li>Challenges in accessing justice and legal support.</li><li>Difficulty navigating the legal system and seeking redress.</li><li>Fear of reporting abuse due to lack of trust in the justice system.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Ways through which Sexual Gender-based Violence can be reduced in Uganda</summary>
           <p>Sexual and gender-based violence should be recognized as an important public health matter. Therefore, everyone in the community can contribute tremendously to reducing the acts of sexual gender-based violence by actively doing the following:</p>
 <ul><li>Leaders should spearhead sensitization of communities on the impacts of sexual gender-based violence throughout the country.</li><li>Reporting all acts of violence to the health centers, police, and other relevant authorities.</li><li>Ensuring that those who commit these acts are punished appropriately.</li><li>Some of the current measures to punish the perpetrators should be revised and made stronger to deter people from committing acts of violence.</li><li>Communities should be encouraged to stop the culture of silence which hampers victims from reporting fearing the repercussions e.g. imprisonment and stigmatization.</li><li>Advocacy to reduce sexual and gender-based violence must be intensified at all levels.</li><li>Review the legal systems to improve the court relationship between the legal officers and the victims.</li><li>Improve the relationship between the legal and other practitioners during court session.</li><li>Health workers should be supported to undertake their roles to manage and care for survivors of Sexual Gender-based Violence.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Roles of leaders on SGBV in their community</summary>
           <p>The following ways can be used by leaders to fight Sexual Gender-based Violence by:</p>
 <ul><li>Speaking out against Sexual Gender-based Violence at every opportunity for instance during community meetings, campaigns, fundraising, funerals, drinking places.</li><li>Leaders should strive to act as role models by avoiding being perpetrators of SGBV.</li><li>Assisting victims to get help and to see that the culprits such as defilers, rapists, men who batter their wives are reported to the police and punished appropriately.</li><li>Leaders can form counseling groups to help men, children and women who are perpetrators of Sexual Gender-based Violence.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 Control and prevention of Sexual Gender-based Violence</summary>
           <ul><li>Improve girl child education at all level.</li><li>Reducing the high level of poor socio-economic status will in long run reduce women vulnerability to violence.</li><li>Increasing awareness of women‘s rights and responsibilities related to owning property and assets.</li><li>Reviewing and amending laws that safeguard women‘s rights.</li><li>Strengthening nationwide/community wide efforts to challenge the widespread tolerance and acceptance of violence against women.</li><li>Encouraging parents to bring up children who respect the rights of individuals as men or women, boys or girls</li><li>Supporting parents to bring up their boys and girls as equal partners</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-12">
           <summary>12 Reasons Why the Community and Leaders Should Be Concerned About SGBV</summary>
           <p>Damages Social Bonds :</p>
 <ul><li>Isolation of Victims : Women and girls who are sexually abused often isolate themselves or are isolated by their families and communities, leading to a breakdown in social cohesion.</li><li>Community Division : The stigma and shame associated with SGBV can create divisions within communities, affecting trust and cooperation.</li><li>Social Exclusion : Victims may face social exclusion, further damaging community bonds and support networks.</li><li>Intergenerational Impact : The trauma experienced by victims can affect future generations, perpetuating a cycle of abuse and social dysfunction.</li></ul>
@@ -301,13 +337,13 @@
 <ul><li>Perpetuation of Harmful Practices : SGBV can reinforce harmful cultural and social norms, such as gender inequality and patriarchal attitudes, perpetuating a cycle of abuse.</li><li>Challenge to Traditional Values: Addressing SGBV may require challenging deeply ingrained cultural and social norms, which can be met with resistance and backlash.</li><li>Community Values: SGBV can undermine community values of respect, dignity, and equality, affecting the overall well-being and cohesion of the community.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-13">
           <summary>13 Roles of health workers in managing victims and addressing gender-based violence</summary>
           <p>This is important to note that health workers play instrumental roles in ensuring that families and victims of gender-based violence are professionally attended and see that the victims get justice. Therefore, the following cited are some of roles of health worker in gender-based violence management;</p>
 <ul><li>Offering psychosocial support and counseling services to the affected families and individuals.</li><li>Liaising with people and other stakeholders to see that the perpetrator (culprits) is brought to book to prevent possibility of reoccurrences.</li><li>Collecting victim‘s medical information and performing required medical examination to promote continuity of care.</li><li>Creating a friendly and confidential environment (shelter) where victims needs are addressed.</li><li>Offering timely and appropriate referral services as needed.</li><li>Establishing and promoting strict reporting of all gender-based violence related cases to responsible authority and ensure victims get fair justice.</li><li>Ensuring and maintaining constant follow-up care of all affected families or victims.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-14">
           <summary>14 Sources of Help for Victims of SGBV</summary>
           <p>Police :</p>
 <ul><li>Reporting and Investigation : Victims can report incidents of SGBV to the police, who are responsible for investigating and taking legal action against perpetrators.</li><li>Protection and Support : Police can provide immediate protection and support to victims, including referrals to other services.</li></ul>
@@ -332,37 +368,49 @@
 <p>Note: In some African cultures, beating a woman or girls is part of the disciplining process; in fact some women even willingly accept to be beaten</p>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-15">
           <summary>15 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Gender/sexual based violence</strong> as a practical nursing topic, not only a memorized definition. Read the topic through the safety of two patients: the mother and the fetus or newborn.</p>
 <ul><li><strong>What to understand first:</strong> define gender/sexual based violence, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-16">
           <summary>16 Assessment Guide</summary>
           <ul><li>Maternal vital signs, bleeding, pain, contractions, uterine tone and danger signs.</li><li>Fetal or newborn wellbeing, feeding, temperature, breathing and activity.</li><li>History of pregnancy, parity, medications, allergies, investigations and referral risks.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-17">
           <summary>17 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Recognize danger signs early and escalate without delay.</li><li>Provide respectful communication, privacy, infection prevention and clear documentation.</li><li>Teach the mother what to monitor at home and when to return urgently.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> Mother and baby remain stable, danger signs are acted on early, and the family understands follow-up instructions.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-18">
           <summary>18 Patient Teaching and Revision Check</summary>
           <ul><li>Explain gender/sexual based violence in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Domestic%20violence%20Gynecology%20%26%20Reproductive%20health%20nursing%20lecture" title="Domestic violence YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (11)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/AGGRESSION-AND-VIOLENCE.webp" alt="AGGRESSION AND VIOLENCE" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">AGGRESSION AND VIOLENCE</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Causes-of-Aggression-and-Violence.webp" alt="Causes Of Aggression And Violence" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Causes Of Aggression And Violence</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Indicators-Warning-Signs-of-Aggression-and-Violence.webp" alt="Indicators Warning Signs Of Aggression And Violence" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Indicators Warning Signs Of Aggression And Violence</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Assessment-and-Prediction-of-Aggression-and-Violence.webp" alt="Assessment And Prediction Of Aggression And Violence" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Assessment And Prediction Of Aggression And Violence</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Nursing-Exam-Scenario-on-Managing-an-Aggressive-Patient.webp" alt="Nursing Exam Scenario On Managing An Aggressive Patient" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Nursing Exam Scenario On Managing An Aggressive Patient</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/137c9e02983672bffc30e19d7ed38801.webp" alt="137c9e02983672bffc30e19d7ed38801" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">137c9e02983672bffc30e19d7ed38801</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/16ddeb08ca943b799a555167a46e167b.webp" alt="16ddeb08ca943b799a555167a46e167b" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">16ddeb08ca943b799a555167a46e167b</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/a90143aceac56c2495cc3036bd64969a.webp" alt="A90143aceac56c2495cc3036bd64969a" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">A90143aceac56c2495cc3036bd64969a</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Domestic%20violence%20Gynecology%20%26%20Reproductive%20health%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <p style="color:var(--seo-muted);font-size:.85rem;margin:8px 0 0">3 more diagrams available — open the lesson for full illustrations.</p>
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Domestic%20violence%20Gynecology%20%26%20Reproductive%20health%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

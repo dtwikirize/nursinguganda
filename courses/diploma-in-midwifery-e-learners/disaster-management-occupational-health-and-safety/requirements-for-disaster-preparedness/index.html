@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,21 +97,35 @@
         <p>Requirements for disaster preparedness. should be reviewed through safe maternal and newborn assessment, early recognition of danger signs, respectful communication and timely referral. Connect the definition to vital signs, bleeding, fetal or newborn wellbeing, patient education and local protocol requirements.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (8)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Stages of disaster management</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Objectives of Disaster Management</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Disaster Management Cycle**</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Community Participation in Disaster Management</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Stages of disaster management</summary>
           <p>Disaster Management encompasses a comprehensive range of activities, programs, and measures that can be undertaken before, during, and after a disaster.</p>
 <p>Its primary purpose is to prevent a disaster, minimize its impact, and facilitate recovery from the resulting losses.</p>
 <p>Disaster Management is an ongoing and integrated process that involves planning and implementing measures across various sectors and disciplines. Its aim is to minimize the loss of life, disability, suffering, and damage experienced by disaster victims.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Objectives of Disaster Management</summary>
           <ul><li>Risk Prevention and Reduction : Efforts to prevent and decrease the likelihood of hazards occurring in the first place.</li><li>Hazard Mitigation : Actions taken to lessen the effects of hazards on vulnerable populations and infrastructure.</li><li>Emergency Preparedness : Preparing for potential disasters by developing response plans, training personnel, and stockpiling essential resources.</li><li>Effective and Rapid Response : Swift and efficient response to a disaster to mitigate its impact and provide immediate assistance to affected individuals.</li><li>Recovery and Rehabilitation: Implementation of programs and initiatives aimed at restoring the affected community and supporting the physical, emotional, and socio-economic recovery of disaster victims.</li><li>Pre-Disaster Stage (Before a disaster) : During this stage, proactive measures are taken to minimize human and property losses caused by potential hazards. It involves various actions such as conducting awareness campaigns, strengthening weak structures, developing disaster management plans at the household and community level, and implementing mitigation and preparedness activities.</li><li>Disaster Occurrence Stage (During a disaster) : This stage focuses on addressing the immediate needs of the affected population and minimizing their suffering. It entails carrying out emergency response activities, ensuring the provision of essential services, and coordinating rescue and relief efforts to provide timely assistance and support to those impacted by the disaster.</li><li>Post-Disaster Stage (After a disaster) : Following a disaster, the emphasis shifts towards initiating recovery and rehabilitation measures for affected communities. Response and recovery activities are undertaken to restore essential services, rebuild infrastructure, provide medical aid, facilitate livelihood restoration, and support the affected population in achieving early recovery and long-term resilience.</li></ul>
 <p><strong>Key personnel in disaster management</strong></p>
 <ul><li>Category Key Personnel</li><li>Health Care Community – Hospitals</li><li>– Medical Examiners</li><li>– Mental Health Professionals</li><li>– Pharmacies</li><li>– Public Health Departments</li><li>– Rescue Personnel</li><li>Non-Health Care Community – Firefighters</li><li>– Municipal or Government Officials</li><li>– Media</li><li>– Medical Supply Manufacturers</li><li>– Police</li><li>– Morticians</li><li>– Funeral Directors</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 **Disaster Management Cycle**</summary>
           <p><strong>Disaster management cycle has four phases</strong></p>
 <p>These include the following</p>
@@ -140,7 +166,7 @@
 <p>By actively engaging in these recovery activities, nurses contribute significantly to the restoration and resilience of the community</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Community Participation in Disaster Management</summary>
           <p>Introduction</p>
 <p>Community participation in disaster management refers to the process where individuals, families, and communities take responsibility for promoting their own health and welfare during times of crisis. The Community Health Nurse (CHN) plays a crucial role in connecting professional experts in disaster management with the community. It involves community members taking the initiative to develop and sustain their own disaster management plans, utilizing locally available resources for planning, implementing, monitoring, and evaluating programs.</p>
@@ -151,37 +177,49 @@
 <ul><li>Systematically identifying problems.</li><li>Soliciting innovative ideas and solutions.</li><li>Creating a sense of belonging among community members.</li><li>Facilitating the better utilization of resources.</li><li>Providing faster communication channels.</li><li>Allowing participatory decision-making at the local level.</li><li>Ensuring effective and timely monitoring.</li><li>Involving individuals from all social classes within the local community.</li><li><strong>Individual and Community-Level Actions</strong> : Many actions required for disaster management and preparedness are at the individual or community level. Community participation ensures that these actions are effectively carried out, leading to a more comprehensive and coordinated response.</li><li><strong>Utilization of Limited Resources</strong> : The state has limited resources, and in times of disaster, these resources may not be sufficient to address all the needs. Active community participation becomes essential to supplement and complement the available resources, maximizing their impact.</li><li><strong>Promotion of Self-Sufficiency</strong> : Engaging in community participation motivates individuals to become self-sufficient and reduces their dependence on external assistance. By taking an active role in disaster management, communities can develop their capacity to handle future challenges more effectively.</li><li><strong>Ongoing Progress Review:</strong> Community participation facilitates regular review of the progress of disaster management activities. This continuous evaluation helps guide the program in a definitive direction, ensuring that the efforts remain focused and aligned with the evolving needs of the community.</li><li><strong>Effective Communication and Problem Identification:</strong> Community participation enables the implementing agency to interact and exchange views with community members. This interaction provides a platform to identify and understand the specific problems faced by the community during a disaster. It also allows for the provision of necessary assistance tailored to their unique needs and circumstances.</li><li><strong>Search and Rescue</strong> : Swift and systematic search and rescue operations to locate and extract individuals who are trapped or in immediate danger.</li><li><strong>Evacuation</strong> : Safely relocating individuals from areas at high risk or those affected by the disaster to designated evacuation centers or safer locations.</li><li><strong>Victim Care</strong> : Providing immediate medical attention, administering first aid, identifying casualties, arranging medical evacuations, hospitalization, and managing the proper disposal of deceased individuals.</li><li><strong>Shelter</strong> : Establishing temporary shelters for displaced individuals, ensuring safe and adequate living conditions. Urgent repairs to damaged houses may also be necessary.</li><li><strong>Food Distribution</strong> : Assessing the damage to crops and food stocks, estimating available food reserves, and distributing food and fodder to affected communities.</li><li><strong>Communication</strong> : Clearing and restoring key communication channels such as roads, rail systems, airfields, and communication networks to ensure effective coordination and information dissemination.</li><li><strong>Water and Power Supplies</strong> : Restoring and maintaining access to clean water sources and ensuring the availability of power supply to affected areas.</li><li><strong>Temporary Subsistence Supplies</strong> : Providing essential items like clothing, cooking utensils, and other immediate necessities to meet the basic needs of affected individuals.</li><li><strong>Health and Sanitation:</strong> Establishing healthcare facilities, ensuring access to necessary medical supplies, implementing sanitation measures to prevent the outbreak of diseases in overcrowded and unsanitary conditions.</li><li><strong>Public Information</strong> : Disseminating accurate and timely information to the public about safety measures, available assistance, and resources during the disaster.</li><li><strong>Security</strong> : Ensuring the safety and security of affected communities by maintaining law and order, preventing looting or other criminal activities.</li><li><strong>Quick Damage Assessment:</strong> Conducting rapid assessments to determine the extent of damage to infrastructure, buildings, and key services.</li><li><strong>Needs Assessment:</strong> Evaluating the ongoing needs of the community in terms of housing, healthcare, livelihoods, and other essential services.</li><li><strong>House Repairs</strong> : Facilitating the repair and rehabilitation of damaged houses to provide safe and habitable living conditions for affected individuals.</li><li><strong>Reconstruction</strong> : Planning and implementing long-term reconstruction efforts to rebuild infrastructure, public facilities, and community assets that were destroyed or severely damaged.</li><li><strong>Economic Rehabilitation:</strong> Supporting the recovery and revitalization of local economies through job creation, livelihood restoration, and financial assistance to affected businesses.</li><li><strong>Social Rehabilitation</strong> : Providing psychosocial support, counseling services, and community programs to help individuals cope with trauma and rebuild social support networks.</li><li><strong>Compensation and Insurance:</strong> Ensuring fair compensation for losses suffered by individuals and communities, including insurance claims and assistance programs.</li><li><strong>Conservation of Produce</strong> : Implementing measures to preserve and utilize damaged crops or produce to prevent further loss and support food security.</li><li><strong>Immediate Agricultural Rehabilitation</strong> : Undertaking initiatives to restore agricultural activities, such as providing seeds, fertilizers, and tools, and assisting farmers in resuming cultivation.</li><li><strong>Strengthening Response Aspects</strong> : Enhancing and improving all aspects of disaster response, including rescue operations, medical services, education, shelter provision, communication systems, water and power supplies, temporary aid distribution, health and sanitation, public information, security, and construction requirements.</li><li><strong>Strengthening of Counter Disaster Resources</strong> : Reinforcing and developing capacities in various sectors such as policy directions, police, agriculture, ambulance services, broadcasting, civil aviation, education, electricity and water supplies, environment, fire services, finance, fisheries, forestry, irrigation, labor, lands and survey, meteorology, public works, social welfare, and transport.</li><li><strong>Strengthening of Warning Systems</strong> : Upgrading early warning systems, improving disaster monitoring, and enhancing communication channels to ensure timely and effective dissemination of alerts and advisories.</li><li><strong>Public Awareness</strong> : Conducting awareness campaigns and community education programs to enhance disaster preparedness, risk reduction, and community resilience.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-5">
           <summary>05 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>The stages of disaster management.</strong> as a practical nursing topic, not only a memorized definition. Translate theory into safe decisions, accountability, communication and service improvement.</p>
 <ul><li><strong>What to understand first:</strong> define the stages of disaster management., identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-6">
           <summary>06 Assessment Guide</summary>
           <ul><li>The problem, stakeholders, available resources, policy requirements and ethical issues.</li><li>Risks to patients, staff, confidentiality, quality, costs and continuity.</li><li>Documentation, reporting lines, supervision and evaluation measures.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-7">
           <summary>07 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use evidence, policy and professional standards to guide action.</li><li>Communicate clearly, document decisions and protect confidentiality.</li><li>Evaluate whether the action improves safety, learning or service delivery.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The plan is documented, realistic, ethical and improves patient care or learning outcomes.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-8">
           <summary>08 Patient Teaching and Revision Check</summary>
           <ul><li>Explain the stages of disaster management. in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Requirements%20for%20disaster%20preparedness.%20Disaster%20Management%2C%20Occupational%20Health%20and%20Safety%20nursing%20lecture" title="Requirements for disaster preparedness. YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (20)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/disaster-management-and-occupational-health.webp" alt="Disaster Management And Occupational Health" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Disaster Management And Occupational Health</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/DISASTER-1024x768.webp" alt="DISASTER" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">DISASTER</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/types-of-disasters.webp" alt="Types Of Disasters" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Types Of Disasters</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/DISASTER-P.webp" alt="DISASTER P" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">DISASTER P</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/673fcba9faf5fb13cd51a9c8cf0db23a.webp" alt="673fcba9faf5fb13cd51a9c8cf0db23a" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">673fcba9faf5fb13cd51a9c8cf0db23a</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/ff6cef58202afcf3b39103b010bc6f45.webp" alt="Ff6cef58202afcf3b39103b010bc6f45" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Ff6cef58202afcf3b39103b010bc6f45</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/274ba79acde9c9e55d28472de926bf0d.webp" alt="274ba79acde9c9e55d28472de926bf0d" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">274ba79acde9c9e55d28472de926bf0d</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/33c38b4159a79499240fc13a2ab3ca21.webp" alt="33c38b4159a79499240fc13a2ab3ca21" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">33c38b4159a79499240fc13a2ab3ca21</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Requirements%20for%20disaster%20preparedness.%20Disaster%20Management%2C%20Occupational%20Health%20and%20Safety%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <p style="color:var(--seo-muted);font-size:.85rem;margin:8px 0 0">12 more diagrams available — open the lesson for full illustrations.</p>
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Requirements%20for%20disaster%20preparedness.%20Disaster%20Management%2C%20Occupational%20Health%20and%20Safety%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

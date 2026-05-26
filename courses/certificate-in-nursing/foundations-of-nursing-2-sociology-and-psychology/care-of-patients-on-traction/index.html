@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,24 @@
         <p>Care of patients on traction should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (11)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Orthopedic Care</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Orthopedic Techniques</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Types of Bandages</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">ORTHOPAEDIC SPLINTS</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Pre-Splinting Preparation</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Splint Application Process</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Traction</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Orthopedic Care</summary>
           <p>Orthopedic care is concerned with preventing, recognizing, and treating injuries, diseases, and ailments that affect the musculoskeletal system of the body .</p>
 <p>This system consists of muscles, tendons, ligaments, and other connective tissues that enable a human being to perform physical activity.</p>
@@ -106,7 +135,7 @@
 <ul><li>Back Pain : A widespread issue that can be caused by a variety of factors, including muscle strain, spinal problems, and disc herniation.</li><li>Carpal Tunnel Syndrome : A condition affecting the median nerve in the wrist, causing numbness and tingling in the hand.</li><li>Knee Pain : Can be caused by osteoarthritis, injuries, or overuse.</li><li>Shoulder Pain : Can be caused by rotator cuff tears, arthritis, or nerve compression.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Orthopedic Techniques</summary>
           <ul><li>Dressings and Bandaging</li><li>Traction</li><li>Splints</li><li>Non-surgical procedures</li><li>Surgical procedures (such as ligament repair)</li></ul>
 <p>A dressing is a sterile material applied to a wound or surgical site to promote healing and protect it from infection or further injury.</p>
@@ -123,7 +152,7 @@
 <ul><li>To Cover and Retain Dressings: Bandages help keep dressings securely in place, ensuring proper protection for the wound.</li><li>To Protect a Wound : They offer a barrier against dirt, bacteria, and other contaminants that can lead to infection.</li><li>To Support Injuries : Bandages provide support for injured areas, such as sprains, aiding in immobilization and stability.</li><li>To Compress : They apply pressure to control bleeding or reduce swelling by compressing the affected area.</li><li>To Secure Dressings: Bandages keep dressings in place, ensuring that the wound is adequately protected and that the dressing functions effectively.</li><li>To Immobilize Fractures : Certain bandages, such as plaster of Paris casts, immobilize fractures, allowing them to heal properly.</li><li>To Control Bleeding: Bandages help apply pressure to a wound, assisting in controlling bleeding.</li><li>To Restrict Movement : Bandages can limit movement in injured areas, promoting healing and reducing pain.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Types of Bandages</summary>
           <p>1. Triangular Bandages: This type of bandage is used in emergency treatment and first aid. It can be utilized for:</p>
 <ul><li>Head Bandage: Used to cover and protect head injuries.</li><li>Sling : Provides support for an injured arm.</li></ul>
@@ -142,7 +171,7 @@
 <ul><li>Steps Action Rationale</li><li>A. Figure of Eight</li><li>1 Observe general rules of all nursing procedures. To maintain standards.</li><li>2 Put the patient in a comfortable position exposing the affected part. To promote comfort, circulation, and prevent deformity.</li><li>3 Hold bandage with the drum facing upwards. Allows application of even tension and pressure.</li><li>4 Wrap bandage around the limb twice below the joint. To stabilize the bandage and provide firmness.</li><li>5 Use alternating ascending and descending turns to form a figure of eight; overlap each turn by one half to two-thirds the width of the strip. To promote venous return and reduce edema.</li><li>6 Wrap bandage around the limb twice, above the joint to anchor it and secure it with a clip or safety pin. To prevent venous complications early.</li><li>7 Elevate the bandaged extremity for 15 to 30 minutes after application of bandage. To promote venous return and reduce edema.</li><li>8 Assess the skin for color, integrity, pain, and temperature. To detect complications early.</li><li>9 Leave the patient comfortable and clear away. Maintain standards.</li><li>B. Spiral Bandaging (e.g., bandaging the ear)</li><li>1 Make a fixing turn around the head. As above.</li><li>2 Bring the bandage under the ear and straight over the head and down the back, leaving the other ear unbandaged. To provide comfort.</li><li>3 Repeat these turns three or four times until the affected ear is gradually covered. As above.</li><li>4 Finish with a fixing turn and secure the bandage at the center of the forehead using a safety pin or tape. To stabilize the bandage.</li><li>C. Divergent Spica (pattern used to cover a dressing wound at a fixed joint e.g., knee, heel, or elbow)</li><li>1 Make two turns over the center of the joint. To stabilize the joint.</li><li>2 Now make alternate turns above and below these turns forming a pattern at each side of the joint. To provide support and stability.</li><li>D. Triangular Bandaging (Arm sling)</li><li>1 Place the injured arm across the patient’s chest so that the fingers almost touch the opposite shoulder. To mobilize and relieve pain.</li><li>2 Place one corner of the bandage over the uninjured part with the right angled corner just above the level of the elbow of the injured side. Proper alignment of the arm.</li><li>3 Tuck the other end of the bandage well beneath the forearm and elbow.</li><li>4 Carry the remaining ends around the neck and tie the ends with a reef knot, which lies in the hollow above the clavicle on the injured side.</li><li>5 The right angle is folded and pinned to enclose the elbow.</li><li>6 Place a pad under the knot if it seems likely to cause pressure. To prevent skin irritation.</li><li>E. Bandaging the Eye</li><li>1 Facing the patient, hold the eye pad in position until the bandage covers it. To secure the bandage.</li><li>2 Begin from the affected side to the normal side across the forehead and round the head in a fixing turn, then from the back of the head the bandage comes under the eye, covering the nasal side of the pad and straight over the head and down the back.</li><li>3 The next turn comes under the ear, overlaps the eye turn, crosses the fixing turn at the same point as the other, then overlaps it crosses the head and comes round to the front.</li><li>4 Fix a pin should be in the center of the forehead.</li><li>F. Capeline Bandage (Use a double-headed roller bandage)</li><li>1 Position patient in sitting up position and stand behind the patient. To promote convenience to apply the head bandage.</li><li>2 Place the center of the outer surface of the bandage in the center of the forehead.</li><li>3 Bring the head of the bandage around over the temples and above the ears to the nape of the neck when the ends are crossed. Ensure that the ear is not covered.</li><li>4 Bring the upper bandage around the head and the other head of the bandage over the center of the top of the scalp and then to the root and nose. To ensure firmness and neatness.</li><li>5 Bring the bandage which circles the victim’s head over the fore head covering and fixing the bandage which crosses the scalp. The bandage is then brought back over the scalp.</li><li>6 Ensure that each turn of the bandage covers 2/3 of the previous turn. Adheres snugly to the body part.</li><li>7 Cross it again at the back and fix it using encircling bandage and turn back over the scalp to the opposite side at the central line covering the other margin of its original turn.</li><li>8 Repeat the back and forward turns to alternate side of the center, each one begin in front by the encircling bandage until the whole scalp is covered.</li><li>G. Recurrent Bandaging</li><li>1 Overlap each layer of bandage by half to two-thirds the width of the strip; wrap firmly but not tightly as you work, ask the patient if it feels comfortable. Loosen the bandage if there is tingling, itching, numbness, or pain. To provide firmness.</li><li>2 Stand facing the patient and take a fixing turn. To observe the facial expression.</li><li>3 Carry the bandage upward across the front of the limb at 45° rounds behind it at the same level and downwards over the front to cross the first turn at a right angle. To provide firmness and neatness.</li><li>4 Repeat these turns until the limb has been sufficiently covered.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 ORTHOPAEDIC SPLINTS</summary>
           <p>Orthopaedic splints are medical devices used to immobilize, support, or protect a broken, fractured, or injured limb or joint .</p>
 <p>They are made from materials such as plaster, fiberglass, or various synthetic materials, and can be either rigid or flexible. Splints are designed to prevent movement in the injured area, thereby facilitating healing and preventing further injury.</p>
@@ -157,12 +186,12 @@
 <ul><li>Equipment Purpose</li><li>Sheet or towel Protects patient’s clothing.</li><li>Stockinette Soft stretchable fabric placed under the splint for skin protection.</li><li>Under-cast padding (cotton padding) Provides cushioning and prevents skin irritation.</li><li>Plaster or padded fiberglass Forms the rigid supportive structure of the splint.</li><li>Water bucket (cool water) Activates plaster or fiberglass materials.</li><li>Elastic bandage Secures the splint in place while allowing for swelling.</li><li>Sling (for upper extremity injuries) Supports the injured limb.</li><li>C-arm X-ray (if fracture reduction is attempted) Confirms proper alignment of fractured bones before splint application.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Pre-Splinting Preparation</summary>
           <p>Ensure adequate pain management – Provide analgesia or sedation as necessary to promote muscle relaxation and facilitate fracture reduction . Address soft tissue injuries – Clean and dress any open wounds before applying the splint. Prepare the affected area – Apply a stockinette circumferentially around the injury, ensuring it extends beyond the splinting area to protect the skin.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Splint Application Process</summary>
           <p>Pad bony prominences (e.g., elbow, knee, calcaneus) with 1–2 cm of soft padding to prevent pressure sores or necrosis. Apply 2–3 layers of cast padding (0.25 cm to 0.5 cm) to provide additional cushioning. Reduce any fracture by restoring bone length, alignment, and rotation (radiographic confirmation may be required). Activate plaster or fiberglass sheets by saturating them in cool water . Layer and laminate the splinting material , pressing the sheets together to increase strength . Mold the splint around the injured area, ensuring proper support and resistance to deforming forces . Do not completely encircle the limb – Splints must accommodate for swelling . If circumferential overlap occurs, the splint should be cut open after setting . Fold the stockinette edges over the splint to protect the skin from sharp plaster or fiberglass edges. Secure the splint with an elastic bandage – Apply it loosely to hold the splint in place while allowing for soft tissue expansion. Avoid direct contact with the skin. Reassess the patient’s neurovascular status – Check for pulses, capillary refill, sensation, and motor function . Any compromise requires immediate splint removal and reassessment . 11. Educate the patient about splint care, warning signs (e.g., numbness, swelling, pain), and follow-up instructions.</p>
 <p>Splints are categorized based on their location and function .</p>
@@ -174,42 +203,49 @@
 <ul><li>Complication Cause &amp; Risk Factors</li><li>Loss of fracture reduction Movement or improper molding of the splint may cause the fracture to shift out of alignment.</li><li>Skin irritation or breakdown Inadequate padding or excessive pressure may result in skin ulcers or irritation.</li><li>Joint stiffness Prolonged immobilization can lead to decreased range of motion.</li><li>Thermal injury Plaster generates heat when setting, and excessive layers may cause burns.</li><li>Neurovascular compromise Tight splints may cause acute carpal tunnel syndrome or nerve compression.</li><li>Compartment syndrome If a splint becomes circumferential (like a cast), it may increase pressure, leading to vascular compromise and tissue ischemia.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Traction</summary>
           <p>Click Here</p>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-8">
           <summary>08 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Care of patients on traction</strong> as a practical nursing topic, not only a memorized definition. Connect structure, movement, pain, circulation, nerve function and safe mobility.</p>
 <ul><li><strong>What to understand first:</strong> define care of patients on traction, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-9">
           <summary>09 Assessment Guide</summary>
           <ul><li>Pain score, site, onset, deformity, swelling, bruising and ability to move.</li><li>Distal pulse, capillary refill, colour, warmth, sensation and movement.</li><li>Skin integrity, wounds, cast tightness, traction alignment and pressure areas.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-10">
           <summary>10 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Immobilize and protect the affected part while preventing further injury.</li><li>Control pain and swelling while monitoring neurovascular status.</li><li>Prevent complications such as compartment syndrome, infection, pressure injury and venous stasis.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> Pain is reduced, circulation and sensation remain intact, swelling is controlled and the patient mobilizes safely within the care plan.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-11">
           <summary>11 Patient Teaching and Revision Check</summary>
           <ul><li>Explain care of patients on traction in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Care%20of%20patients%20on%20traction%20Foundations%20of%20Nursing%202%2C%20Sociology%20and%20psychology%20nursing%20lecture" title="Care of patients on traction YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (3)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/care-of-patientd-ears-nursing.webp" alt="Care Of Patientd Ears Nursing" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Care Of Patientd Ears Nursing</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Indications-for-Ear-Irrigation-e1719847395239-1024x543.webp" alt="Indications For Ear Irrigation E1719847395239" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Indications For Ear Irrigation E1719847395239</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Equipment.webp" alt="Equipment" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Equipment</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Care%20of%20patients%20on%20traction%20Foundations%20of%20Nursing%202%2C%20Sociology%20and%20psychology%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Care%20of%20patients%20on%20traction%20Foundations%20of%20Nursing%202%2C%20Sociology%20and%20psychology%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

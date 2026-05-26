@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,28 @@
         <p>Acute conversional dissociative disorders should be reviewed through safe maternal and newborn assessment, early recognition of danger signs, respectful communication and timely referral. Connect the definition to vital signs, bleeding, fetal or newborn wellbeing, patient education and local protocol requirements.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 15 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Psychiatric disorders related to maternal child health</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">A. Puerperal Blues (Postpartum “Baby Blues”) :</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">B. Postpartum Depression (PPD) :</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">C. Postpartum Psychosis :</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Postpartum Psychosis</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Signs and Symptoms:</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Management:</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Care Plan for Puerperal Psychosis</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Conversion disorder</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Clinical Presentation</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Management of Conversion Disorder</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Psychiatric disorders related to maternal child health</summary>
           <p>Psychiatric disorders that can affect mothers include:</p>
 <ul><li>Depression : A common disorder that can occur during pregnancy and the postpartum period</li><li>Anxiety : A common disorder that can occur during pregnancy and the postpartum period</li><li>Postpartum psychosis(Puerperal or postnatal psychosis) : A disorder that usually manifests as bipolar disorder</li><li>Post-traumatic stress disorder :</li><li>Schizophrenia : A disorder that can be increased by maternal viral infection</li></ul>
@@ -96,20 +129,20 @@
 <ul><li>Poverty</li><li>Migration</li><li>Extreme stress</li><li>Exposure to violence</li><li>Emergency and conflict situations</li><li>Natural disasters</li><li>Low social support</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 A. Puerperal Blues (Postpartum “Baby Blues”) :</summary>
           <p>A transient mood disorder characterized by emotional lability, tearfulness, anxiety, irritability, and insomnia . It usually begins 2-3 days postpartum and resolves within 2 weeks.</p>
 <p>Postpartum blues, also known as baby blues and maternity blues, is a very common but self-limited condition that begins shortly after childbirth and can present with a variety of symptoms such as mood swings, irritability, and tearfulness .</p>
 <ul><li>Prevalence : Affects approximately 50% of postpartum women.</li><li>Causes : The exact etiology is unknown, but likely involves hormonal shifts (particularly a drop in estrogen and progesterone), sleep deprivation, and the psychological stress of adjusting to motherhood. Altered neurotransmitter function (implied by lowered tryptophan levels) is suspected.</li><li>Predisposing Factors : While relatively common, pre-existing anxiety or mood disorders may increase the intensity and duration.</li><li>Antepartum / Intrapartum Predisposing Factors : Difficult labor, unplanned pregnancy, and lack of social support can exacerbate the symptoms.</li><li>Assessment : Diagnosis is primarily clinical, based on the presence of characteristic symptoms. No specific investigations are usually required.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 B. Postpartum Depression (PPD) :</summary>
           <p>A more severe and persistent mood disorder characterized by depressed mood, loss of interest or pleasure, fatigue, changes in appetite and sleep, feelings of worthlessness or guilt, difficulty concentrating, and recurrent thoughts of death or suicide . Symptoms typically emerge more gradually over the first 4-6 months postpartum, but onset can be earlier.</p>
 <ul><li>Prevalence : Affects 10-20% of postpartum women.</li><li>Causes : A complex interplay of hormonal changes (hypothalamic-pituitary-adrenal axis dysregulation), genetic predisposition, stressful life events, and lack of social support.</li><li>Predisposing Factors : History of depression or anxiety, family history of mood disorders, stressful life events, lack of social support, young maternal age, and difficult pregnancy or delivery.</li><li>Antepartum/Intrapartum Predisposing Factors : Cesarean delivery, difficult labor, neonatal complications, and unmet expectations about motherhood contribute to risk.</li><li>Assessment : Diagnosis is clinical, based on the DSM-5 criteria for major depressive disorder. Investigations are typically not necessary unless other medical conditions are suspected.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 C. Postpartum Psychosis :</summary>
           <p>A rare but serious condition characterized by the sudden onset of psychotic symptoms such as hallucinations, delusions, disorganized thinking, and mood disturbances (mania or depression) . It can include significant risk of self-harm or harm to the infant.</p>
 <ul><li>Prevalence : Affects 0.14-0.26% of postpartum women.</li><li>Causes : Likely involves a combination of hormonal changes, genetic predisposition (strong family history of psychosis), and possibly peripartum infections (Although direct microbial involvement is not definitive).</li><li>Predisposing Factors: Pre-existing psychotic disorder (e.g., schizophrenia, bipolar disorder), family history of psychosis, and history of postpartum psychosis.</li><li>Antepartum/Intrapartum Predisposing Factors: Pregnancy-related stress can exacerbate existing vulnerabilities.</li><li>Assessment : Diagnosis is clinical, based on the presence of psychotic symptoms. Investigations may include blood tests to rule out other medical conditions.</li><li>Microbes : While not directly causative, infections during pregnancy may contribute to the risk in some individuals by altering immune responses and interacting with hormonal changes, though this is not consistently established.</li></ul>
@@ -129,7 +162,7 @@
 <ul><li>Untreated PPD : Can lead to chronic depression, relationship problems, impaired parenting, and increased risk of suicide.</li><li>Postpartum Psychosis : Can result in significant functional impairment, long-term mental health problems, and potentially harm to the mother or infant.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Postpartum Psychosis</summary>
           <p>Postpartum psychosis is a s evere mental illness affecting women after childbirth or abortion .</p>
 <p>It’s a psychiatric emergency requiring immediate intervention. While it can emerge anytime within the first three months postpartum, the most common onset is within the first two to three weeks, sometimes as early as 3-10 days after delivery or within several weeks.</p>
@@ -146,7 +179,7 @@
 <ul><li>Neurological Events : Stroke (ischemic or hemorrhagic) affecting brain regions regulating mood and cognition.</li><li>Electrolyte Imbalances : Severe disturbances in sodium, potassium, or other electrolytes can disrupt brain function, leading to psychotic symptoms.</li><li>Metabolic Issues : Hypo/hyperglycemia (low/high blood sugar) or thyroid abnormalities (hypo/hyperthyroidism) can impact brain chemistry.</li><li>Nutritional Deficiencies: Deficiencies in B vitamins (B12, folate, thiamine) can affect neurotransmitter production.</li><li>Infections : Severe infections (sepsis) can trigger a wide range of psychiatric symptoms.</li><li>Medication Side Effects : Certain medications can have psychiatric side effects.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Signs and Symptoms:</summary>
           <p>Symptoms vary but generally involve a mix of psychotic and mood-related features:</p>
 <p>1. Psychotic Symptoms: These involve a break from reality:</p>
@@ -159,7 +192,7 @@
 <ul><li>Suicide : A high risk, as intense despair and hopelessness can be overwhelming.</li><li>Infanticide : Tragically, in rare cases, mothers experiencing hallucinations or delusions may harm their infant.</li><li>Neglect : The mother’s inability to care for the infant due to severe symptoms.</li><li>Impaired Mother-Infant Bonding : The severe emotional and psychological disturbances hinder the ability to form a secure attachment with the baby.</li><li>Relationship Strain : The illness impacts relationships with partners and family members.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Management:</summary>
           <p>Treatment is crucial and typically involves a multidisciplinary approach:</p>
 <ul><li>Immediate Hospitalization : Usually required for safety, particularly if there’s a risk of self-harm or harm to the infant.</li><li>Medication (Pharmacotherapy): Antipsychotic medications to address psychotic symptoms, antidepressants to manage mood disorders, and anxiolytics (anti-anxiety medications) to reduce anxiety.</li><li>Psychotherapy: Individual and family therapy to provide support, coping skills, and address underlying psychological issues.</li><li>Education and Support : For the mother, family, and support network. Support groups can be beneficial.</li><li>Social Support: Crucial in aiding the mother’s recovery, involving family, friends, and support groups.</li><li>Child Protection Services : May be involved if there are concerns about the infant’s safety.</li><li>ECT (Electroconvulsive Therapy) : Reserved for severe cases where other treatments are ineffective.</li><li>Other Interventions : Rest, adequate nutrition.</li><li>Post-Discharge Care : Continued monitoring and support are crucial to prevent relapse.</li></ul>
@@ -182,59 +215,70 @@
 <ul><li>Prevention of infections : Prompt treatment of infections during pregnancy and postpartum.</li><li>Early identification of high-risk mothers : Screening for risk factors during antenatal care.</li><li>Prophylactic treatment for identified risk factors: Medication or other interventions to reduce relapse risk.</li><li>Proper management of mental illness in pregnant women: Early intervention and treatment of pre-existing mental health conditions.</li><li>Genetic counseling : For couples with a family history of mental illness.</li><li>Empowering mothers economically: Support to improve socioeconomic conditions.</li><li>Timely referral for labor complications: Addressing physical challenges to reduce stress.</li><li>Good nurse-patient therapeutic relationship : Building trust and providing emotional support.</li><li>Proper monitoring during labor (partographs): Close observation to identify and manage complications.</li><li>Psychological support for mothers experiencing loss or caring for infants with abnormalities: Addressing grief and providing coping strategies.</li><li>Proper management of the second stage of labor: Avoiding birth injuries through appropriate interventions.</li><li>Timely Cesarean section (C/S) for prolonged or obstructed labor : Minimizing complications and trauma.</li><li>Proper newborn resuscitation and care : Reducing stress related to newborn health concerns.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Nursing Care Plan for Puerperal Psychosis</summary>
           <ul><li>Assessment Nursing Diagnosis Goals/Expected Outcomes Interventions Rationale Evaluation</li><li>Subjective Data: – Patient or family reports sudden mood swings and unusual behavior – Complaints of confusion or hallucinations Objective Data: – Observed symptoms of agitation, confusion, and hallucinations – Signs of severe mood swings or psychotic episodes – Patient appears disoriented or detached from reality Risk for Injury related to impaired judgment and altered thought processes as evidenced by hallucinations, confusion, and impaired reality orientation The patient will remain free from self-harm or injury during hospitalization and achieve improved orientation to reality – Provide a safe and structured environment by removing harmful objects from the patient’s surroundings – Assign close supervision, including 1:1 observation if needed – Administer prescribed medications, such as antipsychotics or mood stabilizers, as directed – Educate family members on the importance of monitoring and safe practices – Assess risk factors regularly and modify interventions accordingly – A safe environment reduces the risk of harm due to impaired judgment or psychotic behaviors – Close supervision ensures prompt intervention if self-harming or aggressive behaviors occur – Medication helps stabilize mood and manage psychotic symptoms, aiding in the patient’s safety – Family education enhances support at home and improves safety awareness – Continuous assessment ensures proactive adjustments to the care plan for patient safety – Patient remains injury-free and demonstrates increased awareness of their surroundings</li><li>Subjective Data: – Family reports difficulty coping with patient’s unpredictable behavior – Patient displays emotional distress Objective Data: – Patient exhibits emotional instability and fear – Family members express concern and distress Excessive anxiety related to sudden onset of psychiatric symptoms and altered mental status as evidenced by emotional instability and fear. The patient will demonstrate decreased anxiety levels and express feelings of safety within 3 days – Establish rapport with the patient by providing a calm, supportive presence – Use therapeutic communication techniques to listen actively and validate feelings – Involve the patient in care planning decisions as appropriate to provide a sense of control – Encourage family involvement in supportive care – Provide brief, clear explanations to the patient regarding interventions – Establishing rapport builds trust and reduces feelings of isolation and anxiety – Validation helps the patient feel understood and supported – Involvement in care promotes a sense of control and reduces helplessness – Family support reinforces emotional stability and helps reduce anxiety – Clear communication helps ease confusion and minimizes distress – Patient verbalizes decreased anxiety and reports feeling supported and safe</li><li>Subjective Data: – Patient appears unaware of her condition and the need for treatment Objective Data: – Non-compliance with prescribed treatments – Expressions of denial or lack of insight regarding her condition Inadequate health Knowledge related to lack of understanding about puerperal psychosis and need for treatment as evidenced by expressions of denial or lack of insight regarding her condition The patient and family will verbalize an understanding of puerperal psychosis and the importance of ongoing treatment by discharge – Educate the patient and family about puerperal psychosis, including its causes, symptoms, and treatment options – Provide written materials for reference on symptoms, management, and coping strategies – Use simple language and repeat important information to reinforce understanding – Encourage family members to attend counseling sessions if available – Collaborate with mental health professionals to facilitate ongoing therapy or support groups post-discharge – Knowledge empowers the patient and family to recognize symptoms and understand the importance of treatment – Written materials provide additional support for retention of information – Simple language reduces confusion and improves learning – Counseling sessions support coping and improve family understanding of patient care – Continued mental health support ensures long-term management of symptoms – Patient and family verbalize an understanding of the condition and demonstrate willingness to engage in ongoing care</li><li>Subjective Data: – Patient exhibits inappropriate emotional responses or appears indifferent to her newborn Objective Data: – Limited interaction with her infant – Displays signs of impaired bonding with her child Impaired Parenting related to psychotic symptoms and emotional instability as evidenced by signs of impaired bonding with her child The patient will begin to engage positively with her newborn and show interest in developing a mother-infant bond within 7 days – Facilitate safe, supervised mother-infant bonding sessions as appropriate – Encourage skin-to-skin contact or gentle interaction when the patient is calm and receptive – Educate the patient on the importance of mother-infant bonding for both her and the baby’s well-being – Provide emotional support and reassurance to reduce fear of interaction with the infant – Involve family in infant care to offer support and positive reinforcement – Structured bonding sessions enhance maternal confidence and promote a connection with the infant – Skin-to-skin contact fosters maternal-infant bonding and reduces stress – Education on bonding importance helps motivate the patient toward positive interactions – Emotional support decreases fear and enhances confidence in parenting – Family involvement provides a supportive environment, strengthening the mother’s sense of security – Patient demonstrates improved interest in bonding with the newborn and engages in positive interactions</li><li>Subjective Data: – Family expresses concern over patient’s behavior and ability to care for herself and the newborn Objective Data: – Family shows signs of emotional exhaustion and distress – Limited understanding of the patient’s mental health condition Caregiver Role Strain related to the demands of supporting a family member with puerperal psychosis as evidenced by the family showing signs of emotional exhaustion and distress. The family will express improved coping skills and demonstrate understanding of the patient’s needs and condition – Provide emotional support to family members, acknowledging their concerns and challenges – Educate family on puerperal psychosis, emphasizing it is treatable and not due to personal failure – Encourage family to seek respite care or delegate caregiving tasks to prevent burnout – Refer family to support groups or mental health resources – Encourage regular communication with the healthcare team to address concerns – Emotional support validates the family’s experience, helping them feel understood – Education reduces stigma and enhances understanding of the condition – Respite care prevents caregiver burnout and enhances family resilience – Support groups provide an outlet for emotional expression and advice – Ongoing communication keeps the family informed and involved in patient care – Family reports improved understanding of the condition, demonstrates coping strategies, and shows reduced signs of emotional distress</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Conversion disorder</summary>
           <p>Conversion disorder , also known as functional neurological disorder (FND) , is a psychiatric condition that causes physical symptoms that cannot be explained by a medical or neurological condition.</p>
 <p>These symptoms are real to the person experiencing them, but are not intentional or under their conscious control.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Clinical Presentation</summary>
           <p>Conversion disorder is a medical problem involving the function of the nervous system ; specifically, the brain and body’s nerves are unable to send and receive signals properly . As a result of this communication problem, patients with conversion disorders may have difficulty moving their limbs or have problems with one or more of their senses .</p>
 <ul><li>Symptoms</li><li>Movement Weakness, paralysis, tremors, twitching, difficulty walking, drop attacks</li><li>Senses Blindness, double vision, hearing problems, deafness, loss of sense of smell or touch</li><li>Speech Inability to speak, slurred speech, stuttering, speaking in a whisper</li><li>Other Difficulty swallowing, incontinence, balance problems, hallucinations, psychogenic non-epileptic seizures (PNES)</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 Management of Conversion Disorder</summary>
           <p>Conversion disorder is usually treatable through therapy, such as cognitive behavioural therapy, stress reduction and distraction techniques, or physiotherapy or occupational therapy.</p>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-12">
           <summary>12 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Common mental/ psychiatric conditions in midwifery practice</strong> as a practical nursing topic, not only a memorized definition. Read the topic through the safety of two patients: the mother and the fetus or newborn.</p>
 <ul><li><strong>What to understand first:</strong> define common mental/ psychiatric conditions in midwifery practice, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-13">
           <summary>13 Assessment Guide</summary>
           <ul><li>Maternal vital signs, bleeding, pain, contractions, uterine tone and danger signs.</li><li>Fetal or newborn wellbeing, feeding, temperature, breathing and activity.</li><li>History of pregnancy, parity, medications, allergies, investigations and referral risks.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-14">
           <summary>14 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Recognize danger signs early and escalate without delay.</li><li>Provide respectful communication, privacy, infection prevention and clear documentation.</li><li>Teach the mother what to monitor at home and when to return urgently.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> Mother and baby remain stable, danger signs are acted on early, and the family understands follow-up instructions.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-15">
           <summary>15 Patient Teaching and Revision Check</summary>
           <ul><li>Explain common mental/ psychiatric conditions in midwifery practice in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Acute%20conversional%20dissociative%20disorders%20Mental%20Health%20and%20Pharmacology%20nursing%20lecture" title="Acute conversional dissociative disorders YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (7)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/glomerulonephritis-1-1-1.webp" alt="Glomerulonephritis 1 1 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Glomerulonephritis 1 1 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Common-Etiologies-Causes-of-Acute-Glomerulonephritis.webp" alt="Common Etiologies Causes Of Acute Glomerulonephritis" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Common Etiologies Causes Of Acute Glomerulonephritis</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Pathophysiology-of-Acute-Glomerulonephritis.webp" alt="Pathophysiology Of Acute Glomerulonephritis" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Pathophysiology Of Acute Glomerulonephritis</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Clinical-Manifestations-of-Acute-Glomerulonephritis.webp" alt="Clinical Manifestations Of Acute Glomerulonephritis" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Clinical Manifestations Of Acute Glomerulonephritis</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Management-of-Glomerulonephritis-1-e1743766156681.webp" alt="Management Of Glomerulonephritis 1 E1743766156681" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Management Of Glomerulonephritis 1 E1743766156681</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/93f17ddb5f2c925ea18fbdc62ddf9101.webp" alt="93f17ddb5f2c925ea18fbdc62ddf9101" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">93f17ddb5f2c925ea18fbdc62ddf9101</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/4d9f0ac1543196459154e8e250ed7da1.webp" alt="4d9f0ac1543196459154e8e250ed7da1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">4d9f0ac1543196459154e8e250ed7da1</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Acute%20conversional%20dissociative%20disorders%20Mental%20Health%20and%20Pharmacology%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Acute%20conversional%20dissociative%20disorders%20Mental%20Health%20and%20Pharmacology%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

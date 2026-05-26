@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,24 @@
         <p>Community situation Analysis (Diagnosis) should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (11)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Community Diagnosis**</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Objectives of Community Diagnosis</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Goals of Community Diagnosis</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">**Content of community diagnosis (sample)**</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Process / stages of carrying out community diagnosis</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Roles of a Nurse in Community Diagnosis</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Related Question</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 **Community Diagnosis**</summary>
           <p>Community diagnosis refers to the process of collecting quantitative and qualitative data about a community to understand the health status of individuals, families, and the community as a whole.</p>
 <p>It involves identifying and quantifying health problems, assessing their causes and correlates , and determining the population groups at risk or in need of healthcare interventions.</p>
@@ -94,12 +123,12 @@
 <p>The process of community diagnosis involves gathering data from various sources within the community, including household heads, health units, local authorities, women’s clubs, youth clubs, and extension workers, among others. This data collection aims to provide a holistic understanding of the community’s health needs, challenges, and resources. This follows Community Assessment .</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Objectives of Community Diagnosis</summary>
           <ul><li><strong>Analyze health status</strong> : Community diagnosis aims to assess the health status of individuals, families, and the community as a whole. It involves collecting and analyzing data on mortality rates, morbidity rates, prevalence of diseases, and other health indicators to understand the current health situation.</li><li><strong>Evaluate health resources, services, and systems of care</strong> : Community diagnosis involves assessing the availability, accessibility, and quality of health resources, services, and systems within the community. This evaluation helps identify gaps, strengths, and weaknesses in the healthcare infrastructure.</li><li><strong>Assess attitudes toward community health services and issues</strong> : Community diagnosis seeks to understand the attitudes, perceptions, and beliefs of community members regarding health services and health-related issues. This assessment helps in designing interventions that are culturally appropriate and acceptable to the community.</li><li><strong>Identify priorities, establish goals, and determine courses of action to improve health status</strong> : Based on the analysis of health status, resources, and community attitudes, community diagnosis helps in identifying priority areas for intervention. It helps establish goals and develop strategies to improve the health status of the community.</li><li><strong>Establish an epidemiologic baseline for measuring improvement over time</strong> : Community diagnosis provides a baseline for measuring changes and improvements in health status over time. It helps in monitoring and evaluating the effectiveness of interventions and programs implemented to address the identified health issues.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Goals of Community Diagnosis</summary>
           <ul><li><strong>Analyze the health status of the community:</strong> Community diagnosis aims to assess the overall health status of the community, including the prevalence of diseases, health behaviors, and the determinants of health. It provides a comprehensive understanding of the health issues and needs of the community.</li><li><strong>Evaluate the health resources and systems of care within the community</strong> : Community diagnosis involves evaluating the availability, accessibility, and quality of health resources, services, and systems in the community. This assessment helps identify strengths, weaknesses, and gaps in healthcare delivery.</li><li><strong>Assess attitudes towards community health services</strong> : Community diagnosis aims to understand the attitudes, perceptions, and beliefs of community members towards health services and healthcare providers. This assessment helps in identifying barriers to accessing and utilizing healthcare and enables the development of strategies to address them.</li><li><strong>Increase levels of awareness about prevailing negative factors</strong> : Community diagnosis helps raise awareness about the existing negative factors that contribute to poor health outcomes in the community. By identifying and highlighting these factors, community members, healthcare providers, and policymakers can work together to address them and promote positive health behaviors.</li></ul>
 <p><strong>Goals</strong> : The goals mentioned (analyzing the health status, evaluating health resources and systems of care, assessing attitudes towards community health services, increasing levels of awareness about negative factors) represent the overall intentions and purposes of community diagnosis. They provide a broad framework for the process and guide the overall direction of the assessment.</p>
@@ -107,12 +136,12 @@
 <p>In summary, goals represent the broader purpose or direction, while objectives are specific, measurable targets that contribute to achieving the goals.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 **Content of community diagnosis (sample)**</summary>
           <ul><li>Demographic Information: Who lives in the community ?</li><li>Number of households/families</li><li>Number of adults, including male-to-female ratio</li><li>Number of children, including male-to-female ratio</li><li>Geographical Location: Where do they live ?</li><li>Identification of the specific locations of houses within the community</li><li>Socioeconomic Status: How do they live ?</li><li>Source of income for community members</li><li>Source of food supply</li><li>Income distribution within the community</li><li>Community Problems: What problems do they have ?</li><li>Identification of general problems faced by the community, including security concerns</li><li>Health-related problems prevalent in the community</li><li>Community Resources: What resources do they have ?</li><li>Industrial or agricultural facilities available within the community</li><li>Schools and educational institutions</li><li>Markets and business centers</li><li>Health facilities, including clinics or hospitals</li><li>Water supply sources and quality</li><li>Sanitary facilities, such as toilets and waste management systems</li><li>Road network and transportation infrastructure</li><li>Access to information sources like radio or newspapers</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Process / stages of carrying out community diagnosis</summary>
           <ul><li>Initiation</li><li>Data collection and Analysis</li><li>Diagnosis</li><li>Dissemination</li><li>Prioritization</li><li>Action Plan</li></ul>
 <p>1. Initiation phase</p>
@@ -134,12 +163,12 @@
 <ul><li>Helps to identify community needs and problems</li><li>It provides data as a prerequisite for planning, implementation and evaluation of successful community based health and development programmes.</li><li>Helps to decide strategies for community involvement</li><li>It gives an opportunity for the community to learn about itself i.e. the community becomes conscious of its existing problems and finds solutions.</li><li>Helps to match project organizations and services to community needs.</li><li>Helps to understand about the social, cultural and environmental characteristics of the community.</li><li>To create opportunities for Intersectoral collaboration and media involvement</li><li>It helps to obtain up-to-date information about the community quality is necessary for effective planning, Monitoring with evaluation for development.</li><li>It helps to improve community level of awareness about the prevailing factors that affect their health and general development.</li><li>It helps the community to prioritize their problems before implementation.</li><li>It fosters community participation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Roles of a Nurse in Community Diagnosis</summary>
           <ul><li><strong>Data Collection</strong> : Nurses play a crucial role in collecting relevant data about the health status of individuals, families, and communities. They gather information through interviews, surveys, and observations.</li><li><strong>Assessment</strong> : Nurses assess the health needs and concerns of individuals and the community as a whole. They identify risk factors, social determinants of health, and existing health problems through comprehensive assessments.</li><li><strong>Collaboration</strong> : Nurses collaborate with other healthcare professionals, community leaders, and stakeholders to gather diverse perspectives and insights. They work as part of a multidisciplinary team to ensure comprehensive data collection and analysis.</li><li><strong>Health Education</strong> : Nurses educate community members about the importance of community diagnosis, encourage participation, and explain the relevance of data collection in improving health outcomes.</li><li><strong>Data Analysis</strong> : Nurses contribute to the analysis of collected data by interpreting and summarizing the findings. They assist in identifying patterns, trends, and health priorities to inform the community diagnosis process.</li><li><strong>Planning and Implementation</strong> : Nurses collaborate with the healthcare team to develop action plans based on the community diagnosis. They help in setting goals, defining interventions, and implementing strategies to address identified health needs.</li><li><strong>Advocacy</strong> : Nurses advocate for the community’s health needs and concerns based on the findings of the community diagnosis. They raise awareness about key issues and work towards ensuring equitable access to healthcare services.</li><li><strong>Evaluation</strong> : Nurses participate in the evaluation of interventions and programs implemented based on the community diagnosis. They assess the effectiveness of the strategies and make recommendations for improvement.</li><li><strong>Health Promotion</strong> : Nurses engage in health promotion activities within the community, empowering individuals and groups to make informed decisions about their health. They support community members in adopting healthy behaviors and lifestyles.</li><li><strong>Collaborative Partnerships</strong> : Nurses collaborate with community organizations, government agencies, and non-governmental organizations to leverage resources and strengthen community health initiatives based on the findings of the community diagnosis.</li></ul>
         </details>
       
-        <details class="seo-lesson-section exam-section" open>
+        <details class="seo-lesson-section exam-section" id="section-7">
           <summary>07 Related Question</summary>
           <p>4. (a) Define the term community diagnosis.</p>
 <p>Community diagnosis is defined as a comprehensive assessment of the state of the entire community in relation to its social, political, economic, physical and biological environment.</p>
@@ -160,37 +189,43 @@
 <ul><li>Helps to identify community needs and problems</li><li>It provides data as a prerequisite for planning, implementation and evaluation of successful community based health and development programmes.</li><li>Helps to decide strategies for community involvement</li><li>It gives an opportunity for the community to learn about itself i.e. the community becomes conscious of its existing problems and finds solutions.</li><li>Helps to match project organizations and services to community needs.</li><li>Helps to understand about the social, cultural and environmental characteristics of the community.</li><li>To create opportunities for Intersectoral collaboration and media involvement</li><li>It helps to obtain up-to-date information about the community quality is necessary for effective planning, Monitoring with evaluation for development.</li><li>It helps to improve community level of awareness about the prevailing factors that affect their health and general development.</li><li>It helps the community to prioritize their problems before implementation.</li><li>It fosters community participation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-8">
           <summary>08 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Community situation Analysis (Diagnosis)</strong> as a practical nursing topic, not only a memorized definition. Move from individual illness to prevention, population risk, health education and continuity of care.</p>
 <ul><li><strong>What to understand first:</strong> define community situation analysis (diagnosis), identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-9">
           <summary>09 Assessment Guide</summary>
           <ul><li>Who is affected, where they live, risk factors, resources and barriers to care.</li><li>Environmental hygiene, nutrition, immunization, water, sanitation and health-seeking behaviour.</li><li>Community beliefs, leaders, household practices and surveillance data.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-10">
           <summary>10 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Promote prevention, early detection, referral and community participation.</li><li>Use clear health education matched to literacy, culture and available resources.</li><li>Document findings and coordinate with community health structures.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The community understands the message, risk is reduced and follow-up or referral pathways are active.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-11">
           <summary>11 Patient Teaching and Revision Check</summary>
           <ul><li>Explain community situation analysis (diagnosis) in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Community%20situation%20Analysis%20(Diagnosis)%20Primary%20Health%20Care%20(PHC)%20and%20Community%20Based%20Health%20Care%20(CBHC)%20nursing%20lecture" title="Community situation Analysis (Diagnosis) YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (2)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Your-paragraph-text.webp" alt="Your Paragraph Text" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Your Paragraph Text</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/70e87415dc11639d5cf1fad9bb1d15c0.webp" alt="70e87415dc11639d5cf1fad9bb1d15c0" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">70e87415dc11639d5cf1fad9bb1d15c0</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Community%20situation%20Analysis%20(Diagnosis)%20Primary%20Health%20Care%20(PHC)%20and%20Community%20Based%20Health%20Care%20(CBHC)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Community%20situation%20Analysis%20(Diagnosis)%20Primary%20Health%20Care%20(PHC)%20and%20Community%20Based%20Health%20Care%20(CBHC)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

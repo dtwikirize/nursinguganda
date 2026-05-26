@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,28 @@
         <p>Prepare for neural assessment should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section exam-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 15 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">NEUROLOGICAL EXAMINATION</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Key Components of a Neurological Exam</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Indications for a Neurological Exam</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Equipment for the Procedure:</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Bedside Equipment:</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">TASK: PREPARATION OF A NEUROLOGICAL TRAY AND MENTIONING USES OF ITEMS</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Mental Status:</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Evaluation of the cranial nerves:</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nurses role in neurological examination</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">GLASGOW COMA SCALE MONITORING</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">GRADING</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section exam-section" open id="section-1">
           <summary>01 NEUROLOGICAL EXAMINATION</summary>
           <p>Neurological examination is a type of patient assessment which aims at detecting the functions of the cranial nerves in relation to the five senses.</p>
 <p>What is a neurological exam?</p>
@@ -95,13 +128,13 @@
 <p>It is also an evaluation of a person’s nervous system . The nervous system consists of the brain , the spinal cord , and the nerves from these areas.</p>
         </details>
       
-        <details class="seo-lesson-section exam-section" open>
+        <details class="seo-lesson-section exam-section" open id="section-2">
           <summary>02 Key Components of a Neurological Exam</summary>
           <p>There are many aspects of this exam, including an assessment of motor and sensory skills , balance and coordination , mental status (the patient’s level of awareness and interaction with the environment), reflexes , and functioning of the nerves.</p>
 <ul><li>Mental Status Examination : Evaluates cognition, memory, orientation, and language skills. Includes tests such as recalling words, following commands, and responding to questions.</li><li>Cranial Nerve Assessment : Examines the twelve cranial nerves, responsible for functions like facial movement, swallowing, and vision.</li><li>Motor Function and Muscle Strength : Tests muscle tone, strength, and involuntary movements. Evaluates for conditions like paralysis, muscle atrophy, or tremors.</li><li>Reflexes : Assesses deep tendon reflexes (e.g., knee-jerk reflex), Babinski reflex, and other involuntary responses. Used to detect spinal cord or nerve root damage.</li><li>Coordination and Balance : Includes tests such as the finger-to-nose test, heel-to-shin test, and Romberg test. Assesses cerebellar function and motor control.</li><li>Gait Analysis (Walking Assessment) : Observes walking patterns, step length, and postural stability. Used to detect conditions like Parkinson’s disease, ataxia, or nerve damage.</li><li>Sensory Function Evaluation: Checks the ability to feel pain, temperature, vibration, and proprioception. Helps diagnose neuropathies, spinal cord disorders, or stroke-related sensory loss.</li></ul>
         </details>
       
-        <details class="seo-lesson-section exam-section" open>
+        <details class="seo-lesson-section exam-section" id="section-3">
           <summary>03 Indications for a Neurological Exam</summary>
           <p>A complete neurological exam may be performed in the following situations:</p>
 <p>Routine Physical Exam : As part of a general health assessment, especially in older adults or individuals with risk factors for neurological disorders.</p>
@@ -119,82 +152,94 @@
 <p>When performing the exam, ensure that substances used to assess taste, smell, touch, or feeling are not visible to the patient . This prevents the patient from identifying the substance by sight, which could lead to inaccurate results.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Equipment for the Procedure:</summary>
           <ul><li>Ophthalmoscope or Torch : To assess pupil dilation and constriction (eye reaction).</li><li>Snellen Chart : For visual acuity testing.</li><li>Otoscope : For ear examination.</li><li>Tuning Fork : To evaluate hearing.</li><li>Pins or Needles : For testing sense of touch (e.g., pain or sensation loss).</li><li>Cotton Wool (in a gallipot) : For tactile sensation.</li><li>Hot/Cold Water Bottle : To assess the sense of touch and taste.</li><li>Salt and Sugar Bottles : For taste assessment.</li><li>Coffee or Lemon Bottle : For smell testing.</li><li>Nasal Speculum : For nasal inspection.</li><li>Tape Measure : To measure areas with sensory loss.</li><li>Skin Pencil : To mark areas with no sense of touch.</li><li>Patellar Hammer: For tendon and motor reflex testing.</li></ul>
 <p>Note: If assessing a patient’s gait, have them walk to observe their movements.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Bedside Equipment:</summary>
           <ul><li>Hand-washing materials</li><li>Privacy screen</li><li>Safety box</li><li>Adequate bedside lighting</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 TASK: PREPARATION OF A NEUROLOGICAL TRAY AND MENTIONING USES OF ITEMS</summary>
           <ul><li>No. Areas to be assessed Score Done Partially Done Not Done</li><li>1 Prepares the following and mentions the use of each</li><li>– Torch to test pupils’ reaction to light ½</li><li>2 – Tuning fork to test the sense of hearing 1</li><li>3 – Patella hammer to test the knee jerk and plantar reflex 1</li><li>4 – Pungent smell substance e.g. garlic to test the sense of smell 1</li><li>5 – Cotton wool to test the sensation of light touch 1</li><li>6 – Bottle of cold water to test the sensation of cold touch and temperature 1</li><li>7 – Bottle of hot water to test the sensation of hotness temperature 1</li><li>– Blunt pins and sharp pins to test the sensation of painful stimuli</li><li>8 – Sugar applied to the middle of the tongue to test the sense of sweetness ½</li><li>10 – Salt applied to the tip of the tongue to test the sense of saltiness ½</li><li>11 – Bitter substance applied at the back of the tongue to test the sense of bitterness ½</li><li>12 – Snellen’s chart 1</li><li>13 – Colored chalk for sight 1</li><li>Total 10</li></ul>
 <p>Components of a Neurological Exam</p>
 <p>The neurological exam typically includes the following assessments:</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Mental Status:</summary>
           <ul><li>Level of Awareness : Assessed through conversation to determine the patient’s awareness of person, place, and time.</li><li>Attentiveness : Evaluate whether the patient stays focused or requires frequent redirection.</li><li>Orientation : Check orientation to self, place, and time. Disorientation to time typically occurs before place or person, and disorientation to self often indicates a psychiatric issue.</li><li>Speech and Language: Assess fluency, repetition, comprehension, reading, writing, and naming.</li><li>Memory : Evaluate both registration and retention capabilities.</li><li>Higher Intellectual Function : Assess general knowledge, abstraction, judgment, insight, and reasoning abilities.</li><li>Mood and Affect : Evaluate mood and emotional expression, primarily to determine if psychiatric conditions are affecting the neurological assessment.</li></ul>
 <p>CLICK HERE FOR MORE ABOUT MENTAL STATE EXAMINATION</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Evaluation of the cranial nerves:</summary>
           <p>There are 12 cranial nerves. During a complete neurological exam, most of these nerves are evaluated to help determine the functioning of the brain:</p>
 <ul><li>Cranial nerve I (olfactory nerve) : This is the nerve of smell. The patient may be asked to identify different smells with his or her eyes closed.</li><li>Cranial nerve II (optic nerve) : This nerve carries vision to the brain. A visual test may be given and the patient’s eye may be examined with a special light.</li><li>Cranial nerve III (oculomotor) : This nerve is responsible for pupil size and certain movements of the eye. The patient’s healthcare provider may examine the pupil (the black part of the eye) with a light and have the patient follow the light in various directions.</li><li>Cranial nerve IV (trochlear nerve) : This nerve also helps with the movement of the eyes.</li><li>Cranial nerve V (trigeminal nerve) : This nerve allows for many functions, including the ability to feel the face, inside the mouth, and move the muscles involved with chewing. The patient’s healthcare provider may touch the face at different areas and watch the patient as he or she bites down.</li><li>Cranial nerve VI (abducens nerve) : This nerve helps with the movement of the eyes. The patient may be asked to follow a light or finger to move the eyes.</li><li>Cranial nerve VII (facial nerve) : This nerve is responsible for various functions, including the movement of the face muscle and taste. The patient may be asked to identify different tastes (sweet, sour, bitter), asked to smile, move the cheeks, or show the teeth.</li><li>Cranial nerve VIII (acoustic nerve) : This nerve is the nerve of hearing. A hearing test may be performed on the patient.</li><li>Cranial nerve IX (glossopharyngeal nerve) : This nerve is involved with taste and swallowing. Once again, the patient may be asked to identify different tastes on the back of the tongue. The gag reflex may be tested.</li><li>Cranial nerve X (vagus nerve) : This nerve is mainly responsible for the ability to swallow, the gag reflex, some taste, and part of speech. The patient may be asked to swallow and a tongue blade may be used to elicit the gag response.</li><li>Cranial nerve XI (accessory nerve ) : This nerve is involved in the movement of the shoulders and neck. The patient may be asked to turn his or her head from side to side against mild resistance, or to shrug the shoulders.</li><li>Cranial nerve XII (hypoglossal nerve) : The final cranial nerve is mainly responsible for movement of the tongue. The patient may be instructed to stick out his or her tongue and speak.</li></ul>
         </details>
       
-        <details class="seo-lesson-section exam-section" open>
+        <details class="seo-lesson-section exam-section" id="section-9">
           <summary>09 Nurses role in neurological examination</summary>
           <ul><li>Provide a clam, suitable environment</li><li>Collect the personal data with patient &amp; family members</li><li>Set the equipment needed for neurological examination</li><li>Assess the current level of consciousness, monitor vital parameters – temperature, pulse, respiration, blood pressure, pupillary reaction, whether decelerating or decorticating.</li><li>Thorough mental status examination should be done &amp; recorded</li><li>Assessment of cranial nerves should be done correctly &amp; recorded.</li><li>Assessment of motor, sensory &amp; cerebellar functions should be done &amp; be recorded accurately.</li><li>During the examination, she should maintain good support with patients &amp; family members.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 GLASGOW COMA SCALE MONITORING</summary>
           <ul><li>EYE OPENING VERBAL RESPONSE MOTOR RESPONSE SCORE</li><li>None None None 1</li><li>Eyes open to pain Incomprehensible speech or sounds Abnormal Extension 2</li><li>Eyes open to verbal Command Inappropriate responses Abnormal Flexion 3</li><li>Eyes open spontaneously Confused conversation Withdrawals from pain 4</li><li>Oriented Localizes pain 5</li><li>Obeys Commands 6</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 GRADING</summary>
           <ul><li>A score of 13 above mild Level of Consciousness</li><li>A score between 9-12 moderate Level of Consciousness</li><li>A score below 8 severe Level of Consciousness</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-12">
           <summary>12 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Prepare for neural assessment</strong> as a practical nursing topic, not only a memorized definition. Turn the topic into practical nursing knowledge: meaning, assessment, care priorities, teaching and evaluation.</p>
 <ul><li><strong>What to understand first:</strong> define prepare for neural assessment, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-13">
           <summary>13 Assessment Guide</summary>
           <ul><li>Key definitions, patient history, focused observations and risk factors.</li><li>Findings that are normal, abnormal or urgent.</li><li>Resources, referral needs and documentation requirements.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-14">
           <summary>14 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Protect safety, comfort, dignity and infection prevention.</li><li>Provide clear care, education and escalation when needed.</li><li>Evaluate response and record what changed.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The topic is understood in a way that supports safe nursing judgement and revision.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-15">
           <summary>15 Patient Teaching and Revision Check</summary>
           <ul><li>Explain prepare for neural assessment in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Prepare%20for%20neural%20assessment%20Foundations%20of%20Nursing%20(III)%20nursing%20lecture" title="Prepare for neural assessment YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (14)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/nueral-assessment-tools-1024x458.webp" alt="Nueral Assessment Tools" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Nueral Assessment Tools</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/NEUROLOGICAL-ASSESSMENT-e1742366675133-705x1024.webp" alt="NEUROLOGICAL ASSESSMENT E1742366675133" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">NEUROLOGICAL ASSESSMENT E1742366675133</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/cranial-nerves-1024x562.webp" alt="Cranial Nerves" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Cranial Nerves</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/cranial-nerves-mnemonic-1024x543.webp" alt="Cranial Nerves Mnemonic" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Cranial Nerves Mnemonic</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/glassgow-coma-scale.webp" alt="Glassgow Coma Scale" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Glassgow Coma Scale</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/5c98e8db479131d8c0921a239b09dd4b.webp" alt="5c98e8db479131d8c0921a239b09dd4b" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">5c98e8db479131d8c0921a239b09dd4b</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/137c9e02983672bffc30e19d7ed38801.webp" alt="137c9e02983672bffc30e19d7ed38801" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">137c9e02983672bffc30e19d7ed38801</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/bd7e42a441153c065cd4d1bba003c8f3.webp" alt="Bd7e42a441153c065cd4d1bba003c8f3" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Bd7e42a441153c065cd4d1bba003c8f3</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Prepare%20for%20neural%20assessment%20Foundations%20of%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <p style="color:var(--seo-muted);font-size:.85rem;margin:8px 0 0">6 more diagrams available — open the lesson for full illustrations.</p>
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Prepare%20for%20neural%20assessment%20Foundations%20of%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

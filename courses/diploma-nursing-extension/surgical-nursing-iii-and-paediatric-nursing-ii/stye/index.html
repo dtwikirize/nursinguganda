@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,14 +97,32 @@
         <p>Stye should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (12)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Stye or Hordeolum</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Types of Stye</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Clinical Features (Signs and Symptoms)</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Management of a Stye</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Interventions</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Care Plan</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Complications</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Prevention</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Stye or Hordeolum</summary>
           <p>A stye is a <strong>painful, red lump</strong> that forms on the edge of the eyelid. It is an <strong>acute infection</strong> of a small gland in the eyelid, most commonly caused by the bacterium <strong>Staphylococcus aureus</strong> . The medical term is <strong>Hordeolum</strong> .</p>
 <p>A stye is a <strong>localized infection</strong> of the hair follicles or sebaceous glands of the eyelids.</p>
 <p>A stye is a <strong>staphylococcal abscess</strong> that may occur on either the external or internal margin of the eyelids.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Types of Stye</summary>
           <p>This is the most common type, appearing on the outer edge of the eyelid. It is an infection of an eyelash follicle or a gland of Zeis or Moll. <strong>External styes are generally more painful than internal styes</strong> because they form on the surface of the eyelid, often along the lash line, involving many nerve endings, making them tender and noticeable.</p>
 <ul><li><strong>Location:</strong> Outer edge of the eyelid, at the lash line.</li><li><strong>Cause:</strong> Acute bacterial infection of an eyelash follicle or a sebaceous gland (Gland of Zeis or Moll).</li><li><strong>Pain Level:</strong> Typically more acutely painful, sharp, and localized tenderness.</li><li><strong>Appearance:</strong> Often resembles a small, red, tender pimple or boil, sometimes with a visible head.</li></ul>
@@ -102,7 +132,7 @@
 <ul><li><strong>Location:</strong> Usually forms deeper in the eyelid, away from the lid margin.</li><li><strong>Cause:</strong> Blocked Meibomian gland, leading to sterile inflammation; often a sequela of an untreated internal stye.</li><li><strong>Pain Level:</strong> Generally painless and non-tender after the initial inflammatory phase subsides.</li><li><strong>Appearance:</strong> A firm, round, non-tender lump in the eyelid; typically no acute redness unless secondarily infected.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Clinical Features (Signs and Symptoms)</summary>
           <p>The signs and symptoms of a stye are very distinct. You will see and hear the following from your patient:</p>
 <ul><li><strong>A visible lump:</strong> A noticeable red lump appears on the top or bottom eyelid.</li><li><strong>Swelling and Redness:</strong> The area is red and swollen. Sometimes a small area is affected, but sometimes the entire eyelid swells up.</li><li><strong>Pain and Tenderness:</strong> The lump is painful, and it is tender when touched.</li><li><strong>Itching and Burning:</strong> Patients often complain of itching in the early stages, as well as a burning sensation in the eye.</li><li><strong>Pus Formation:</strong> A tiny, yellowish spot (pus point) develops at the center of the swollen area after 2-3 days, right before it may burst spontaneously.</li><li><strong>Eye Discomfort:</strong> Patients feel a gritty sensation, as if a foreign body is in the eye. There is also discomfort during blinking.</li><li><strong>Watering and Discharge:</strong> The eye may water excessively (tearing) and can have mucous discharge. This can lead to crusting of the eyelid margins, especially upon waking.</li><li><strong>Sensitivity to Light (Photophobia):</strong> The eye becomes very sensitive to bright light.</li><li><strong>Blurred Vision:</strong> In some cases, vision may be temporarily blurred due to the swelling or discharge.</li></ul>
@@ -110,64 +140,76 @@
 <ul><li>Redness on the affected area</li><li>Pain</li><li>Tenderness</li><li>Itching</li><li>Photophobia</li><li>Pus formation</li><li>Yellowish swelling 3 days b4 opening spontaneously</li><li>May burst spontaneously</li><li>Itching in the early stages</li><li>A lump on the top or bottom eyelid</li><li>Swelling, pain &amp; tenderness</li><li>Pus formation</li><li>Watering of the eye</li><li>Eye is sensitive to light</li><li>Small area of the eyelid is swollen but sometimes the entire eyelid swells up</li><li>Tiny, yellowish spot develops at the center of the swollen area</li><li>Discomfort during blinking</li><li>Sensation of a foreign body in the eye</li><li>Mucous discharge in the eye</li><li>Blurred vision</li><li>Crusting of the eyelid margins</li><li>Burning in the eye</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Management of a Stye</summary>
           <p>The goals are to</p>
 <ul><li>relieve pain, promote drainage, and prevent the spread of infection. Most styes will heal spontaneously with simple care.</li><li>Usually the stye will heal spontaneously</li><li>Avoid rubbing the eye as this might spread the infection</li><li>Apply a warm/ hot compress to the eye for 10 minutes</li><li>Apply tetracycline eye ointment 1% 2-4 times daily until 2 days after symptoms have disappeared</li><li>Remove the eye lash when it’s loose</li><li>When the forms in one of the deeper glands of the eyelid a condition is called internal hordeolum</li><li>The pain and other symptoms are usually more severe.</li><li>Because this type of the stye rarely ruptures by it self, a doctor may have to open it to drain the pus</li><li><strong>Warm Compresses:</strong> This is the most important treatment. Apply a clean cloth soaked in warm water to the closed eye for 10-15 minutes, 3-4 times a day . This helps drainage.</li><li><strong>Lid Hygiene:</strong> Gently clean the eyelid margins to remove crusts and bacteria.</li><li><strong>Important Advice:</strong> Tell the patient to NEVER squeeze or rub the stye , as this can spread the infection deeper.</li><li><strong>Eyelash Removal:</strong> You can gently remove an eyelash if it is loose and coming directly from the center of the stye, as this can help it drain.</li><li><strong>Topical Antibiotics:</strong> A clinician may prescribe Tetracycline 1% eye ointment or Chloramphenicol eye ointment, applied 2-4 times daily until 2 days after symptoms have disappeared.</li><li><strong>Pain Relief:</strong> Simple analgesics like Paracetamol can be used for pain.</li><li><strong>Oral Antibiotics:</strong> These are reserved for severe infections or if the infection spreads to the surrounding skin (preseptal cellulitis).</li><li><strong>Incision and Drainage (I&amp;D):</strong> This procedure is performed if resolution does not begin in the next 48 hours after warm compresses are started, especially for a painful internal hordeolum.</li><li><strong>Procedure:</strong> The procedure consists of the doctor numbing the area, making a very small incision on the inner or outer surface of the eyelid, and draining the pus. Very small sutures may be used to close the lesion.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Nursing Interventions</summary>
           <p>Your role as a nurse is central to effective management and prevention.</p>
 <ul><li><strong>Assess and Differentiate:</strong> Conduct a thorough assessment of the patient’s eye, taking a good history to differentiate between a stye and other conditions like a chalazion or cellulitis. Assess pain using a pain scale.</li><li><strong>Educate on Warm Compresses:</strong> Demonstrate the correct technique for warm compresses—using a clean cloth, ensuring the water is warm (not hot), and applying for the right duration and frequency.</li><li><strong>Reinforce the &quot;No Squeeze&quot; Rule:</strong> Emphatically explain why squeezing or rubbing is dangerous and can lead to a much worse infection like cellulitis.</li><li><strong>Promote Eyelid Hygiene:</strong> Teach the patient and their family how to gently clean the eyelids with warm water and a clean cotton ball to remove crusts and reduce bacterial load.</li><li><strong>Administer Medications Safely:</strong> If prescribed, teach the patient the correct way to apply eye ointment or drops without contaminating the tube/bottle tip and without touching the eye itself.</li><li><strong>Implement Infection Control Measures:</strong> Stress the importance of rigorous hand washing before and after touching the eye. Advise against sharing towels, pillowcases, and facecloths.</li><li><strong>Monitor for Complications:</strong> Continuously assess for signs of worsening infection, such as increased swelling, severe pain, changes in vision, or fever. Know the red flags for referring to a doctor immediately.</li><li><strong>Provide Pain and Comfort Management:</strong> Administer prescribed analgesics and reassure the patient that styes are common and usually resolve with proper care. This reduces anxiety.</li><li><strong>Offer Nutritional Advice:</strong> Suggest a healthy diet rich in vitamins A and C to support immune function and promote healing.</li><li><strong>Provide Clear Discharge and Prevention Advice:</strong> Give clear, simple instructions on how to prevent recurrence, focusing on makeup hygiene, not rubbing eyes, and managing underlying conditions like blepharitis.</li><li><strong>Document Everything:</strong> Accurately document all assessments, interventions, patient education provided, and the patient&#39;s response to treatment in the nursing notes.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Nursing Care Plan</summary>
           <ul><li>Assessment Nursing Diagnosis Planning (Goals) Implementation: Interventions Implementation: Rationale Evaluation</li><li><strong>Subjective:</strong> Patient states, &quot;My eyelid is very sore.&quot; <strong>Objective:</strong> Localised, red, swollen, tender lump on the upper eyelid margin. <strong>Acute Pain</strong> related to the inflammatory process and pressure from abscess <strong>as evidenced by</strong> patient&#39;s verbal report and tenderness on palpation. Patient will report a reduction in pain within 24 hours. Patient will demonstrate correct application of warm compress. 1. Teach and demonstrate application of warm compresses for 10-15 mins, 4x daily. 2. Administer prescribed analgesics. 3. Advise patient to avoid touching the stye. 1. Heat promotes drainage, which relieves pressure and pain. 2. Analgesics provide systemic pain relief. 3. Pressure worsens pain and risks spreading infection. <strong>Goal Met.</strong> Patient reports pain has decreased and correctly shows how to apply a warm compress.</li><li><strong>Objective:</strong> Patient wears contact lenses and heavy eye makeup. Asks, &quot;Why do I keep getting these?&quot; <strong>Deficient Knowledge</strong> related to disease process, self-care, and prevention strategies <strong>as evidenced by</strong> patient&#39;s question and identified risk factors. By end of session, patient will verbalize 3 key preventive measures. 1. Educate on strict hand hygiene. 2. Instruct on not sharing cosmetics/towels. 3. Advise to remove makeup nightly and discard old products. 4. Instruct to avoid wearing contact lenses until healed. 1. Reduces bacterial transfer to the eye. 2. Prevents cross-contamination. 3. Empowers patient to modify risk factors and prevent recurrence. 4. Prevents trapping bacteria and irritating the eye. <strong>Goal Met.</strong> Patient correctly lists hand washing, not sharing makeup, and removing makeup as preventive measures.</li><li><strong>Objective:</strong> Pus point is visible on the stye. Patient lives in close quarters with siblings. <strong>Risk for Infection</strong> related to the presence of an active bacterial lesion and potential for poor hygiene. Patient and family will remain free from signs of spreading infection throughout the illness. 1. Emphasize that personal items (towels) must not be shared. 2. Instruct to wash hands after touching the eye or applying medication. 3. Teach correct application of antibiotic ointment if prescribed. 1. Staph bacteria are easily transmitted via contaminated items. 2. Prevents auto-inoculation and spreading to others. 3. Topical antibiotics treat the local infection and reduce bacterial load. <strong>Goal Met.</strong> The stye resolved without spreading. No other family members developed styes.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Complications</summary>
           <ul><li><strong>Chalazion:</strong> An internal stye may heal and leave a painless lump.</li><li><strong>Preseptal Cellulitis:</strong> The infection spreads to the whole eyelid. This needs urgent antibiotic treatment.</li><li><strong>Orbital Cellulitis:</strong> A medical emergency where the infection goes behind the eye. Refer immediately.</li><li><strong>Recurrence:</strong> Styes can come back, especially with poor hygiene.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Prevention</summary>
           <ul><li><strong>Good Personal Hygiene:</strong> Proper and regular hand washing is the most important preventive measure.</li><li><strong>Face Washing:</strong> Keep the face, especially the eye area, clean.</li><li><strong>Makeup Hygiene:</strong> Never share cosmetics or eye makeup tools. Remove all makeup every night. Discard old or contaminated eye makeup (every 3-6 months).</li><li><strong>Do Not Share Personal Items:</strong> Avoid sharing towels, flannels, or pillowcases.</li><li>Good personal hygiene,Proper hand washing</li><li>Regular washing of the face</li><li>Remove any loose eyelashes</li><li>it is recommended to never share cosmetics or cosmetic eye tools with other people</li><li>It is also recommended to remove makeup every night before going to sleep and discard old or contaminated eye makeup.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-9">
           <summary>09 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Stye</strong> as a practical nursing topic, not only a memorized definition. Study medicines through indication, safety checks, expected response, adverse effects and patient teaching.</p>
 <ul><li><strong>What to understand first:</strong> define stye, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-10">
           <summary>10 Assessment Guide</summary>
           <ul><li>Diagnosis or reason for the medicine, allergies, pregnancy status and previous reactions.</li><li>Current medicines, herbal products, renal or liver risk and baseline observations.</li><li>Dose, route, timing, dilution, expiry date and documentation requirements.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-11">
           <summary>11 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Apply the rights of medication administration and facility policy.</li><li>Monitor therapeutic response and class-specific adverse effects.</li><li>Educate the patient on purpose, timing, missed doses, warning symptoms and adherence.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The medicine produces the intended effect without preventable harm, and administration is accurately documented.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-12">
           <summary>12 Patient Teaching and Revision Check</summary>
           <ul><li>Explain stye in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Stye%20Surgical%20Nursing%20III%20and%20Paediatric%20Nursing%20(II)%20nursing%20lecture" title="Stye YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (12)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/stye-stye.webp" alt="Stye Stye" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Stye Stye</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/STYE-HORDEOLUM-types-internal-stye-and-external-stye-1.webp" alt="STYE HORDEOLUM Types Internal Stye And External Stye 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">STYE HORDEOLUM Types Internal Stye And External Stye 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/STYE-HORDEOLUM-1.webp" alt="STYE HORDEOLUM 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">STYE HORDEOLUM 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/47052b50d98f4d160f832f1941a8590b.webp" alt="47052b50d98f4d160f832f1941a8590b" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">47052b50d98f4d160f832f1941a8590b</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/79e42ad8e622a425dc20be9641ba56fd.webp" alt="79e42ad8e622a425dc20be9641ba56fd" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">79e42ad8e622a425dc20be9641ba56fd</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/b4094e16000d400f801e72f33d29594e.webp" alt="B4094e16000d400f801e72f33d29594e" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">B4094e16000d400f801e72f33d29594e</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/46390bb223f0547a3f1b0b49577826cb.webp" alt="46390bb223f0547a3f1b0b49577826cb" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">46390bb223f0547a3f1b0b49577826cb</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/54afd52bdb8159f661213d4b135c69b5.webp" alt="54afd52bdb8159f661213d4b135c69b5" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">54afd52bdb8159f661213d4b135c69b5</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Stye%20Surgical%20Nursing%20III%20and%20Paediatric%20Nursing%20(II)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <p style="color:var(--seo-muted);font-size:.85rem;margin:8px 0 0">4 more diagrams available — open the lesson for full illustrations.</p>
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Stye%20Surgical%20Nursing%20III%20and%20Paediatric%20Nursing%20(II)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

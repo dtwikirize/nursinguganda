@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,140 +97,189 @@
         <p>Classification and types of Microorganisms should be studied as a way of organizing medicines by therapeutic use, mechanism, chemical group, body-system effect and safety profile. For nursing practice, classification helps predict indications, adverse effects, contraindications and the observations required after administration.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 43 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Overview</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">What is Microbiology?</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Importance of Microbiology for Nurses and Midwives in Uganda</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">A Brief History of Microbiology</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Five Kingdom System</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Prokaryotes vs. Eukaryotes</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Key Differences Between Prokaryotic and Eukaryotic Cells</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Definition of key terms</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Microorganisms can be classified as:</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Opportunistic Pathogens</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Primary Pathogens</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">General Characteristics and Structure of Bacteria</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Cell Envelope (Outer Layers):</a>
+          <a href="#section-14" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Internal Structures:</a>
+          <a href="#section-15" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Appendages (External Structures):</a>
+          <a href="#section-16" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">3.2. Classification of Bacteria</a>
+          <a href="#section-17" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">1. Morphology (Shape and Arrangement):</a>
+          <a href="#section-18" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">2. Gram Staining:</a>
+          <a href="#section-19" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">3. Ziehl-Neelsen (Acid-Fast) Staining:</a>
+          <a href="#section-20" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">4. Oxygen Requirements:</a>
+          <a href="#section-21" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Bacterial Growth and Reproduction</a>
+          <a href="#section-22" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Bacterial Growth Curve:</a>
+          <a href="#section-23" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Requirements for Bacterial Growth</a>
+          <a href="#section-24" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Endospores</a>
+          <a href="#section-25" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Chapter 4: Principles of Infectious Disease</a>
+          <a href="#section-26" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Key Terminology</a>
+          <a href="#section-27" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Host-Microbe Relationships</a>
+          <a href="#section-28" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">The Chain of Infection</a>
+          <a href="#section-29" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Clinically Important Bacteria</a>
+          <a href="#section-30" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">General Characteristics of Viruses</a>
+          <a href="#section-31" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Structure of a Virus</a>
+          <a href="#section-32" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Viral Replication Cycle</a>
+          <a href="#section-33" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">8.2. Clinically Important Viruses</a>
+          <a href="#section-34" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">General Characteristics of Fungi</a>
+          <a href="#section-35" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Morphology of Fungi</a>
+          <a href="#section-36" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Fungal Diseases (Mycoses)</a>
+          <a href="#section-37" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">8.3. Clinically Important Fungi and Protozoa</a>
+          <a href="#section-38" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Protozoa</a>
+          <a href="#section-39" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Helminths (Parasitic Worms)</a>
+          <a href="#section-40" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-41" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-42" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-43" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 Overview</summary>
           <p>This module introduces students to the concept of Microbiology and its importance to medical science. It covers the classification of microorganisms, their characteristics, their role in spreading infection and disease, simple microbial laboratory tests, and concepts of immunity and immunization.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 What is Microbiology?</summary>
           <p><strong>Microbiology</strong> is the scientific study of microorganisms (or microbes), which are living organisms that are too small to be seen with the naked eye. These organisms are typically less than 0.1mm in dimension and can only be viewed using a microscope.</p>
 <p>The field includes several branches, each focusing on a specific type of microorganism:</p>
 <ul><li><strong>Bacteriology:</strong> The study of bacteria.</li><li><strong>Virology:</strong> The study of viruses.</li><li><strong>Mycology:</strong> The study of fungi.</li><li><strong>Protozoology:</strong> The study of protozoa.</li><li><strong>Phycology:</strong> The study of algae.</li><li><strong>Parasitology:</strong> The study of parasites, which includes pathogenic protozoa and helminths (worms).</li><li><strong>Immunology:</strong> The study of the immune system&#39;s response to infection.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 The Importance of Microbiology for Nurses and Midwives in Uganda</summary>
           <p>A strong understanding of microbiology is essential for safe and effective nursing and midwifery practice. Communicable (infectious) diseases are a major cause of illness and death in Uganda, with malaria, HIV/AIDS, and tuberculosis being major public health concerns.</p>
 <p>This knowledge helps a nurse or midwife to:</p>
 <ul><li><strong>Prevent and Control Infections:</strong> Understand how pathogenic organisms enter the body, spread, and cause disease, which is the foundation for infection prevention and control (IPC) . This includes practices like hand hygiene, sterilization, and proper use of personal protective equipment (PPE).</li><li><strong>Understand Disease Processes:</strong> Learn how specific microbes cause the signs and symptoms seen in patients. For example, understanding that Plasmodium falciparum infects red blood cells helps explain the fever cycles and anemia in malaria patients.</li><li><strong>Ensure Proper Specimen Collection:</strong> Learn the correct techniques for collecting, handling, and transporting specimens (like blood, sputum, or swabs) for laboratory examination to ensure accurate diagnosis.</li><li><strong>Interpret Laboratory Reports:</strong> Understand the meaning of lab results (e.g., a &quot;Gram-positive&quot; result or &quot;acid-fast bacilli seen&quot;) to contribute effectively to patient care.</li><li><strong>Administer Antimicrobials Correctly:</strong> Know why certain drugs (like antibiotics, antivirals, or antifungals) are used for specific infections and understand the growing danger of antimicrobial resistance (AMR).</li><li><strong>Promote Public Health:</strong> Educate patients, families, and communities on disease prevention, sanitation, safe drinking water, and the importance of immunisation. This is crucial for controlling outbreaks of diseases like cholera and measles.</li><li><strong>Manage Maternal and Newborn Health:</strong> A key role for midwives is to prevent and manage infections specific to pregnancy and childbirth, such as puerperal sepsis (childbed fever), neonatal tetanus, and infections in the newborn.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 A Brief History of Microbiology</summary>
           <ul><li><strong>Antonie van Leeuwenhoek (1632-1723):</strong> A Dutch scientist often called the &quot;Father of Microbiology.&quot; Using a microscope he designed, he was the first to observe and describe microorganisms, which he called &quot;animalcules.&quot; He notably discovered protozoa like Giardia lamblia and was the first to describe red blood cells.</li><li><strong>Edward Jenner (1749-1823):</strong> An English physician who pioneered the concept of vaccination. He observed that milkmaids who had contracted the mild disease cowpox were immune to the deadly smallpox. In 1796, he famously inoculated a boy with material from a cowpox lesion, who then became resistant to smallpox. This laid the foundation for modern immunology.</li><li><strong>Ignaz Semmelweis (1818-1865):</strong> A Hungarian obstetrician who discovered that childbed fever (puerperal sepsis) was contagious and could be drastically reduced by hand disinfection. He insisted doctors wash their hands with a chlorinated lime solution after performing autopsies, which cut maternal mortality in his ward by 90%. His ideas were tragically ridiculed by his colleagues at the time.</li><li><strong>Louis Pasteur (1822-1895):</strong> A French chemist and microbiologist whose work was revolutionary. He demonstrated that microbes were responsible for fermentation and food spoilage.</li><li>He developed pasteurization, a process of heating liquids to kill most bacteria and molds.</li><li>He definitively disproved the theory of spontaneous generation.</li><li>His work led to the <strong>&quot;Germ Theory of Disease,&quot;</strong> which proved that many diseases are caused by microorganisms.</li><li>He developed vaccines for anthrax and rabies.</li><li><strong>Joseph Lister (1827-1912):</strong> An English surgeon regarded as the &quot;Founder of Antiseptic Surgery.&quot; Applying Pasteur&#39;s germ theory, he used carbolic acid (phenol) to disinfect surgical instruments, the patient&#39;s skin, and the air, dramatically reducing post-operative infections and death rates.</li><li><strong>Robert Koch (1843-1910):</strong> A German physician who is considered one of the founders of modern bacteriology. He was the first to grow bacteria on a solid culture medium (agar).</li><li>He identified the specific bacteria that caused anthrax, tuberculosis ( Mycobacterium tuberculosis ), and cholera ( Vibrio cholerae ).</li><li>He developed <strong>Koch&#39;s Postulates</strong> , a set of criteria to establish a causal relationship between a specific microbe and a specific disease.</li><li><strong>Alexander Fleming (1881-1955):</strong> A Scottish physician who, in 1928, discovered the first antibiotic. He observed that a mold, Penicillium notatum , had contaminated one of his bacterial cultures and was killing the bacteria around it. He named the active substance <strong>penicillin</strong> , paving the way for the age of antibiotics.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 The Five Kingdom System</summary>
           <ul><li><strong>Monera:</strong> Unicellular, <strong>prokaryotic</strong> organisms (e.g., bacteria).</li><li><strong>Protista:</strong> Mostly unicellular, <strong>eukaryotic</strong> organisms (e.g., amoeba, paramecium).</li><li><strong>Fungi:</strong> Eukaryotic, absorb nutrients (e.g., yeasts, molds).</li><li><strong>Plantae:</strong> Multicellular, eukaryotic, photosynthetic organisms.</li><li><strong>Animalia:</strong> Multicellular, eukaryotic organisms that ingest food.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 Prokaryotes vs. Eukaryotes</summary>
           <p>All living organisms are classified into two broad categories based on their cellular structure: prokaryotes and eukaryotes.</p>
 <ul><li><strong>Prokaryotes:</strong> These are unicellular organisms that <strong>lack a true, membrane-bound nucleus</strong> . Their genetic material (a single, circular chromosome) is located in a region of the cytoplasm called the nucleoid . They also lack other membrane-bound organelles like mitochondria. Bacteria are prokaryotes.</li><li><strong>Eukaryotes:</strong> These are organisms whose cells <strong>contain a true nucleus</strong> enclosed by a nuclear membrane. Their genetic material consists of multiple, linear chromosomes. They also have various other membrane-bound organelles. Fungi, protozoa, plants, and animals (including humans) are all eukaryotes.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Key Differences Between Prokaryotic and Eukaryotic Cells</summary>
           <ul><li>Feature Prokaryotes Eukaryotes</li><li><strong>Nucleus</strong> Absent; genetic material is in the nucleoid. Present; enclosed by a nuclear membrane.</li><li><strong>Organelles</strong> No membrane-bound organelles. Membrane-bound organelles present (mitochondria, etc.).</li><li><strong>Chromosome</strong> Single, circular DNA molecule. Multiple, linear DNA molecules.</li><li><strong>Cell Wall</strong> Usually present; complex, contains peptidoglycan (in bacteria). Present in fungi (chitin) and plants (cellulose); absent in animal and protozoan cells.</li><li><strong>Ribosomes</strong> Smaller (70S). Larger (80S).</li><li><strong>Reproduction</strong> Asexual (Binary Fission). Asexual (Mitosis) or Sexual (Meiosis).</li><li><strong>Size</strong> Typically small (0.5-5.0 µm). Typically larger (10-100 µm).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Definition of key terms</summary>
           <ul><li><strong>Pathogenicity:</strong> The ability of a pathogenic microorganism to cause disease.</li><li><strong>Virulence:</strong> A measure of a microbe’s ability to cause disease; its degree of pathogenicity .</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Microorganisms can be classified as:</summary>
           <ul><li><strong>Non-pathogens:</strong> Microorganisms which do not cause disease.</li><li><strong>Pathogens:</strong> Microorganisms capable of causing disease.</li></ul>
 <p>Pathogens are further divided into two groups:</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-10">
           <summary>10 Opportunistic Pathogens</summary>
           <p>These are microorganisms capable of causing disease <strong>only when the host&#39;s defenses are compromised</strong> . The majority of opportunistic pathogens are part of the normal flora.</p>
 <ul><li>Pathogen Normal Site Opportunistic Disease</li><li><strong>Candida albicans</strong> Vagina and GIT Oral and vaginal candidiasis, intestinal candidiasis</li><li><strong>Escherichia coli (E.coli)</strong> Colon Urinary tract infection (UTI)</li><li><strong>Clostridium difficile</strong> Gut Pseudomembranous colitis (often following antibiotic therapy)</li><li><strong>Staphylococcus aureus</strong> Skin Skin and soft tissue infections (e.g., in a wound)</li><li><strong>Pneumocystis jirovecii</strong> Airways (nose, throat) Pneumonia (especially in immunocompromised, like HIV/AIDS patients)</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-11">
           <summary>11 Primary Pathogens</summary>
           <p>These are microorganisms capable of causing disease <strong>even when the host&#39;s defense mechanisms are intact</strong> (i.e., in a healthy person). Primary pathogens have virulence factors that allow them to overcome host defenses.</p>
 <ul><li>Pathogen Disease What is Affected</li><li><strong>Neisseria gonorrhoeae</strong> Gonorrhea Humans</li><li><strong>Bacillus anthracis</strong> Anthrax Humans and animals</li><li><strong>Salmonella typhi</strong> Typhoid Fever Humans</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-12">
           <summary>12 General Characteristics and Structure of Bacteria</summary>
           <p>Bacteria are unicellular prokaryotic microorganisms. A typical bacterial cell consists of the following structures:</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-13">
           <summary>13 Cell Envelope (Outer Layers):</summary>
           <ul><li><strong>Capsule (or Slime Layer):</strong> An outer, viscous layer, usually made of polysaccharides. The capsule helps bacteria adhere to surfaces (like host cells), protects them from being engulfed by immune cells (phagocytosis), and prevents dehydration.</li><li><strong>Cell Wall:</strong> A rigid layer outside the plasma membrane, primarily composed of peptidoglycan . The cell wall provides structural support, maintains the characteristic shape of the bacterium, and protects it from osmotic lysis (bursting). It is the basis for Gram staining.</li><li><strong>Plasma (Cytoplasmic) Membrane:</strong> A phospholipid bilayer that encloses the cytoplasm. It acts as a selective barrier, controlling the passage of substances into and out of the cell. It is also the site of energy production and synthesis of cell wall components.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-14">
           <summary>14 Internal Structures:</summary>
           <p>The cytoplasm is the gel-like substance inside the plasma membrane, containing water, enzymes, nutrients, and the cell&#39;s internal structures.</p>
 <ul><li><strong>Nucleoid:</strong> The region where the single, coiled, circular chromosome (DNA) is located. There is no nuclear membrane.</li><li><strong>Ribosomes:</strong> Sites of protein synthesis. They are smaller (70S) than those in eukaryotes.</li><li><strong>Plasmids:</strong> Small, circular, extrachromosomal pieces of DNA that replicate independently. They often carry genes for antibiotic resistance and toxin production.</li><li><strong>Inclusion Bodies:</strong> Granules used for storing nutrients like starch, glycogen, or phosphate.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-15">
           <summary>15 Appendages (External Structures):</summary>
           <ul><li><strong>Flagella (singular: flagellum):</strong> Long, whip-like filaments that enable movement (motility).</li><li><strong>Pili (singular: pilus) or Fimbriae:</strong> Short, hair-like appendages on the surface. They are used for attachment to host cells and for conjugation (transfer of genetic material between bacteria).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-16">
           <summary>16 3.2. Classification of Bacteria</summary>
           <p>Medically important bacteria are classified based on several criteria:</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-17">
           <summary>17 1. Morphology (Shape and Arrangement):</summary>
           <ul><li><strong>Cocci (Spherical):</strong> Diplococci: in pairs (e.g., Neisseria gonorrhoeae)</li><li>Streptococci: in chains (e.g., Streptococcus pyogenes)</li><li>Staphylococci: in grape-like clusters (e.g., Staphylococcus aureus)</li><li><strong>Bacilli (Rod-shaped):</strong> Single bacillus</li><li>Diplobacilli: in pairs</li><li>Streptobacilli: in chains</li><li>Coccobacilli: short, oval rods (e.g., Bordetella pertussis)</li><li><strong>Spirilla (Spiral-shaped):</strong> Vibrio: comma-shaped (e.g., Vibrio cholerae)</li><li>Spirillum: rigid, spiral shape</li><li>Spirochete: flexible, corkscrew shape (e.g., Treponema pallidum)</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-18">
           <summary>18 2. Gram Staining:</summary>
           <p>This is the most important differential stain in bacteriology, dividing bacteria into two main groups.</p>
 <ul><li><strong>Gram-Positive Bacteria:</strong> Have a <strong>thick peptidoglycan layer</strong> in their cell wall, which retains the primary crystal violet stain and appears purple/violet .</li><li><strong>Gram-Negative Bacteria:</strong> Have a <strong>thin peptidoglycan layer</strong> and an outer lipid membrane. They do not retain the primary stain and are counterstained by safranin, appearing pink/red .</li><li><strong>Primary Stain (Crystal Violet):</strong> All cells stain purple.</li><li><strong>Mordant (Gram&#39;s Iodine):</strong> Forms a large crystal violet-iodine (CV-I) complex within the cells.</li><li><strong>Decolorisation (Alcohol/Acetone):</strong> This is the key differential step. In Gram-positive cells, the alcohol dehydrates the thick peptidoglycan wall, shrinking the pores and trapping the CV-I complex inside. The cell remains purple.</li><li>In Gram-negative cells, the alcohol dissolves the outer membrane and the thin peptidoglycan layer cannot retain the CV-I complex. The cell becomes colourless.</li><li><strong>Counterstain (Safranin):</strong> Stains the colourless Gram-negative cells pink/red. Gram-positive cells remain purple.</li><li>Prepare a smear and heat-fix it.</li><li>Apply crystal violet solution (leave it for one minute).</li><li>Wash the slide with water.</li><li>Apply iodine solution (leave it for one minute).</li><li>Wash the slide with water.</li><li>Decolorize with acetone (for 5 seconds only).</li><li>Now gram-positive bacteria are still visible (violet colored) but gram-negative bacteria are no longer visible.</li><li>Wash immediately in water.</li><li>Apply safranin (the counter stain) (for 30 seconds).</li><li>Wash the slide with water.</li><li>Blot and dry in air.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-19">
           <summary>19 3. Ziehl-Neelsen (Acid-Fast) Staining:</summary>
           <p>This stain is used for bacteria with a waxy, lipid-rich cell wall (containing mycolic acid) that resists Gram staining, primarily Mycobacterium species.</p>
 <ul><li><strong>Primary Stain (Carbolfuchsin):</strong> The smear is flooded with the red stain and <strong>heated</strong> (steamed). The heat helps the stain penetrate the waxy mycolic acid layer. All cells appear red.</li><li><strong>Decolorisation (Acid-Alcohol):</strong> This is the differential step. <strong>Acid-Fast Bacilli (AFB)</strong> have a high concentration of mycolic acid, which resists decolorisation by the acid-alcohol and they <strong>remain red</strong> .</li><li>Non-acid-fast cells lack this waxy layer, are easily decolourised, and become colourless.</li><li><strong>Counterstain (Methylene Blue):</strong> Stains the colourless background cells and non-acid-fast organisms <strong>blue</strong> .</li><li><strong>Result:</strong> Acid-fast bacteria (like M. tuberculosis ) appear red against a blue background.</li><li>Prepare a smear and heat-fix it.</li><li>Cover the smear with a piece of blotting paper (absorbent paper).</li><li>Flood with carbol fuchsin.</li><li>Steam for 5 minutes by heating slide on a rack over a boiling water bath. Keep adding stain to avoid drying out the slide.</li><li>Allow the slide to cool.</li><li>Wash with water.</li><li>Decolorize with acid-alcohol adding it drop by drop until the dye no longer runs off from the slide.</li><li>Wash with water.</li><li>Apply counterstain (methylene blue) for one minute.</li><li>Wash with water.</li><li>Blot and dry in air.</li></ul>
 <p>On examination with light microscope acid-fast bacteria will appear red; non-acidfast will appear blue.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-20">
           <summary>20 4. Oxygen Requirements:</summary>
           <ul><li><strong>Obligate Aerobes:</strong> Require oxygen to grow (e.g., Mycobacterium tuberculosis ).</li><li><strong>Facultative Anaerobes:</strong> Can grow with or without oxygen (most pathogens, e.g., E. coli ).</li><li><strong>Obligate Anaerobes:</strong> Grow only in the absence of oxygen; oxygen is toxic to them (e.g., Clostridium tetani ).</li><li><strong>Microaerophiles:</strong> Require low concentrations of oxygen.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-21">
           <summary>21 Bacterial Growth and Reproduction</summary>
           <ul><li><strong>Reproduction:</strong> Bacteria reproduce asexually by a process called binary fission , where one cell divides into two identical daughter cells.</li><li><strong>Generation Time (Doubling Time):</strong> The time it takes for a bacterial population to double. This varies widely: E. coli: ~20 minutes</li><li>Mycobacterium tuberculosis: ~24 hours</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-22">
           <summary>22 The Bacterial Growth Curve:</summary>
           <p>When bacteria are introduced into a new environment (like a host or culture medium), their population follows a predictable pattern with four phases:</p>
 <ul><li><strong>Lag Phase:</strong> A period of adjustment. The bacteria are metabolically active and increasing in size, but there is little to no cell division as they adapt to the new environment.</li><li><strong>Log (Exponential) Phase:</strong> The period of most rapid growth. The number of cells increases exponentially as they divide at a constant rate. This is when bacteria are most metabolically active and most susceptible to antibiotics.</li><li><strong>Stationary Phase:</strong> The growth rate slows down and becomes equal to the death rate. This is due to the depletion of essential nutrients, accumulation of toxic waste products, and changes in pH.</li><li><strong>Death (Decline) Phase:</strong> The death rate exceeds the growth rate, and the number of viable cells decreases.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-23">
           <summary>23 Requirements for Bacterial Growth</summary>
           <ul><li><strong>Nutrients:</strong> Major Elements: Carbon, Nitrogen, Hydrogen, Phosphorus, Sulphur for building cellular components.</li><li>Trace Elements: Small amounts of metal ions like zinc and iron needed as cofactors for enzymes.</li><li><strong>Temperature:</strong> Most pathogenic bacteria are mesophiles , growing best at moderate temperatures (20-40°C), with an optimum around human body temperature (37°C).</li><li><strong>pH:</strong> Most pathogens are neutrophils , preferring a neutral pH between 6.5 and 7.5.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-24">
           <summary>24 Endospores</summary>
           <p>Some bacteria, notably those of the <strong>Bacillus</strong> and <strong>Clostridium</strong> genera, can form a highly resistant, dormant structure called an <strong>endospore</strong> . This is not a form of reproduction. An endospore forms inside the bacterial cell when environmental conditions become unfavorable (e.g., lack of nutrients, extreme heat, drying). Spores can survive for many years and are resistant to heat, desiccation, and chemical disinfectants. When conditions become favorable again, the spore can germinate back into a vegetative (active) cell. This is clinically important for diseases like tetanus ( Clostridium tetani ) and gas gangrene ( Clostridium perfringens ).</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-25">
           <summary>25 Chapter 4: Principles of Infectious Disease</summary>
           <p>Imagine your body as a house, and tiny living things called microbes are trying to get in. Most microbes are harmless, but some, called pathogens, are like uninvited guests who want to cause trouble.</p>
 <p>An infectious disease happens when one of these troublemaking microbes gets into your body and starts causing damage. This damage changes how your body works, and you start to notice signs (like a fever) and symptoms (like feeling tired).</p>
@@ -229,112 +290,117 @@
 <ul><li>Infectious diseases are when tiny bad microbes hurt your body.</li><li>A pathogen is a microbe that can cause disease.</li><li>Virulence is how strong or dangerous a pathogen is.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-26">
           <summary>26 Key Terminology</summary>
           <ul><li><strong>Pathogen:</strong> A microorganism capable of causing disease.</li><li><strong>Pathogenicity:</strong> The ability of a microorganism to cause disease.</li><li><strong>Virulence:</strong> The degree or measure of a microbe&#39;s pathogenicity. Highly virulent pathogens are more likely to cause severe disease.</li><li><strong>Infection:</strong> The invasion and multiplication of pathogenic microorganisms in a host&#39;s body.</li><li><strong>Aetiology:</strong> The study of the cause of a disease.</li><li><strong>Pathogenesis:</strong> The mechanism by which a disease develops, from initial infection to the final expression of disease.</li><li><strong>Epidemiology:</strong> The study of the distribution (who, where, when) and determinants (why, how) of diseases in populations.</li><li><strong>Endemic:</strong> The constant presence of a disease within a specific geographic area or population (e.g., malaria in many parts of Uganda).</li><li><strong>Epidemic:</strong> A sudden increase in the number of cases of a disease above what is normally expected in that population in that area.</li><li><strong>Pandemic:</strong> An epidemic that has spread over several countries or continents, usually affecting a large number of people (e.g., COVID-19).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-27">
           <summary>27 Host-Microbe Relationships</summary>
           <ul><li><strong>Symbiosis:</strong> A close and long-term interaction between two different biological species. Commensalism: One organism benefits, and the other is unaffected. For example, some bacteria on our skin.</li><li>Mutualism: Both organisms benefit. For example, E. coli in the gut produces Vitamin K, which is beneficial for the human host.</li><li>Parasitism: One organism (the parasite) benefits at the expense of the other (the host). All pathogenic microbes are parasites.</li><li><strong>Normal Flora (Microbiota):</strong> The vast community of microorganisms that live on and inside a healthy person without causing disease. They are found on the skin, in the mouth, gut, and upper respiratory tract. They are beneficial as they can prevent colonization by pathogens.</li><li><strong>Opportunistic Pathogens:</strong> Microorganisms that do not normally cause disease in a healthy person but can become pathogenic if the opportunity arises. This can happen when: The host&#39;s immune system is weakened (e.g., in HIV/AIDS, malnutrition, or on chemotherapy).</li><li>The microbe gains access to a part of the body where it is not normally found (e.g., E. coli from the gut causing a urinary tract infection).</li><li>The normal flora is disrupted (e.g., antibiotic use killing good bacteria, allowing Candida albicans to cause thrush).</li><li><strong>Primary Pathogens:</strong> Microbes that can cause disease in a healthy host with intact immune defences.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-28">
           <summary>28 The Chain of Infection</summary>
           <p>For an infection to occur and spread, a series of six links must be present and connected. As a nurse or midwife, your goal is to break this chain at any point.</p>
 <ul><li><strong>Infectious Agent:</strong> The pathogen (bacteria, virus, etc.).</li><li><strong>Reservoir:</strong> The place where the pathogen lives, grows, and multiplies (e.g., a person, an animal, contaminated water, or soil).</li><li><strong>Portal of Exit:</strong> The path by which the pathogen leaves the reservoir (e.g., through respiratory droplets from a cough, in faeces, blood, or from a skin lesion).</li><li><strong>Mode of Transmission:</strong> How the pathogen travels from the reservoir to the new host. Contact: Direct (person-to-person) or Indirect (via a contaminated object, or &#39;fomite&#39;).</li><li>Droplet: Spread through large respiratory droplets (e.g., from sneezing) that travel short distances.</li><li>Airborne: Spread through very small particles that can remain suspended in the air for longer periods.</li><li>Vehicle: Through a medium like contaminated food, water, or blood.</li><li>Vector: Through an insect or animal (e.g., mosquitoes transmitting malaria).</li><li><strong>Portal of Entry:</strong> The path by which the pathogen enters a new host (e.g., through the mouth, nose, a break in the skin, or the genital tract).</li><li><strong>Susceptible Host:</strong> An individual who is at risk of infection (e.g., someone who is unvaccinated, immunocompromised, very young, or elderly).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-29">
           <summary>29 Clinically Important Bacteria</summary>
           <ul><li>Organism Gram Stain &amp; Shape Key Characteristics Associated Diseases</li><li><strong>Staphylococcus aureus</strong> Gram-positive cocci (in clusters) Facultative anaerobe, often found on skin/nose, produces many toxins, catalase-positive. Skin infections (boils, abscesses), cellulitis, osteomyelitis, pneumonia, food poisoning, toxic shock syndrome, nosocomial infections.</li><li><strong>Corynebacterium diphtheriae</strong> Gram-positive bacillus (club-shaped) Non-motile, arranged in &quot;Chinese letter&quot; patterns. Toxin-producing strains cause disease. Diphtheria (characterised by a pseudomembrane in the throat, fever, and potential heart/nerve damage).</li><li><strong>Clostridium species</strong> Gram-positive bacillus Obligate anaerobes, spore-forming, produce powerful exotoxins. C. tetani causes Tetanus. C. perfringens causes Gas gangrene. C. botulinum causes Botulism. C. difficile causes pseudomembranous colitis.</li><li><strong>Bacillus anthracis</strong> Gram-positive bacillus Spore-forming, aerobic, encapsulated. Anthrax.</li><li><strong>Bordetella pertussis</strong> Gram-negative coccobacillus Obligate aerobe, encapsulated, produces toxins that damage respiratory cilia. Pertussis (Whooping Cough).</li><li><strong>Escherichia coli (E. coli)</strong> Gram-negative bacillus Facultative anaerobe, motile, part of normal gut flora. Urinary Tract Infections (UTIs), gastroenteritis (diarrhoea), neonatal meningitis.</li><li><strong>Salmonella species</strong> Gram-negative bacillus Motile, facultative anaerobe. S. Typhi causes Typhoid fever. Other species cause enterocolitis (food poisoning).</li><li><strong>Vibrio cholerae</strong> Gram-negative (curved rod) Single polar flagellum, facultative anaerobe. Cholera (profuse, watery diarrhoea).</li><li><strong>Pseudomonas aeruginosa</strong> Gram-negative bacillus Motile, obligate aerobe, known for its resistance. Pneumonia (especially in hospital settings), burn wound infections, UTIs.</li><li><strong>Mycobacterium tuberculosis</strong> Acid-Fast bacillus Lipid-rich cell wall (mycolic acid), obligate aerobe, slow-growing. Tuberculosis (TB).</li><li><strong>Neisseria species</strong> Gram-negative diplococci Often found in pairs. N. gonorrhoeae causes Gonorrhoea. N. meningitidis causes Meningitis.</li><li><strong>Treponema pallidum</strong> Gram-negative spirochete Spiral-shaped, highly motile, stains poorly with Gram stain. Syphilis.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-30">
           <summary>30 General Characteristics of Viruses</summary>
           <ul><li>Viruses are <strong>acellular</strong> , meaning they are not cells. They lack cytoplasm and cellular organelles.</li><li>They are <strong>obligate intracellular parasites</strong> , meaning they can only replicate inside a living host cell.</li><li>They are very small, ranging from 20 to 300 nanometres.</li><li>A complete, infectious viral particle is called a <strong>virion</strong> .</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-31">
           <summary>31 Structure of a Virus</summary>
           <p>A virus consists of:</p>
 <ul><li><strong>Genome (Nucleic Acid):</strong> The genetic core, which can be either DNA or RNA , but never both.</li><li><strong>Capsid:</strong> A protein coat that surrounds and protects the genome. The shape of the capsid can be icosahedral (spherical), helical (rod-shaped), or complex. The genome and capsid together are called the nucleocapsid .</li><li><strong>Envelope (Present in some viruses):</strong> A lipid bilayer membrane that is acquired from the host cell membrane as the virus exits. Viruses with this layer are called enveloped viruses (e.g., HIV, Influenza virus). Viruses without it are called non-enveloped or naked viruses (e.g., Poliovirus).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-32">
           <summary>32 Viral Replication Cycle</summary>
           <p>Viruses multiply by taking over the host cell&#39;s machinery. The cycle has five main steps:</p>
 <ul><li><strong>Adsorption (Attachment):</strong> The virus attaches to specific receptor proteins on the surface of the host cell.</li><li><strong>Penetration and Uncoating:</strong> The virus or its genome enters the host cell. The capsid is removed, releasing the nucleic acid into the cytoplasm.</li><li><strong>Synthesis:</strong> The viral genome directs the host cell to produce viral components: new viral nucleic acid and viral proteins (like capsid proteins).</li><li><strong>Assembly (Maturation):</strong> The newly synthesized viral components are assembled into new, complete virions.</li><li><strong>Release:</strong> The new virions are released from the host cell. This can occur by lysis (bursting) of the host cell, which kills it, or by budding from the cell surface (common for enveloped viruses).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-33">
           <summary>33 8.2. Clinically Important Viruses</summary>
           <ul><li>Virus Genome Envelope Key Features / Associated Diseases</li><li><strong>Human Immunodeficiency Virus (HIV)</strong> RNA Enveloped Retrovirus (contains reverse transcriptase enzyme). Causes Acquired Immunodeficiency Syndrome (AIDS).</li><li><strong>Hepatitis B Virus (HBV)</strong> DNA Enveloped Causes acute and chronic Hepatitis B; can lead to cirrhosis and liver cancer.</li><li><strong>Hepatitis A Virus (HAV)</strong> RNA Non-enveloped Causes acute Hepatitis A (Infectious hepatitis), transmitted via faecal-oral route.</li><li><strong>Hepatitis C Virus (HCV)</strong> RNA Enveloped Causes acute and chronic Hepatitis C; a major cause of chronic liver disease.</li><li><strong>Rotavirus</strong> RNA Non-enveloped Leading cause of severe dehydrating gastroenteritis in infants and young children.</li><li><strong>Poliovirus</strong> RNA Non-enveloped Causes Poliomyelitis, which can lead to paralysis.</li><li><strong>Measles Virus</strong> RNA Enveloped Causes Measles, a highly contagious disease with fever, rash, and cough.</li><li><strong>Influenza Virus</strong> RNA Enveloped Causes Influenza (the flu), a respiratory illness.</li><li><strong>Rabies Virus</strong> RNA Enveloped Bullet-shaped virus. Causes Rabies, a fatal neurological disease transmitted by animal bites.</li><li><strong>Herpes Simplex Virus (HSV)</strong> DNA Enveloped HSV-1 causes cold sores (herpes labialis). HSV-2 primarily causes genital herpes. Both can cause encephalitis.</li><li><strong>Adenovirus</strong> DNA Non-enveloped Causes respiratory infections (sore throat, pneumonia) and conjunctivitis (&quot;pink eye&quot;).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-34">
           <summary>34 General Characteristics of Fungi</summary>
           <ul><li>Fungi are <strong>eukaryotic</strong> organisms.</li><li>They have a rigid cell wall composed mainly of <strong>chitin</strong> .</li><li>They are non-motile.</li><li>They are <strong>heterotrophs</strong> , obtaining nutrients by absorbing them from the environment. Saprophytes: Live on dead organic matter.</li><li>Parasites: Live on or in living organisms.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-35">
           <summary>35 Morphology of Fungi</summary>
           <p>Pathogenic fungi exist in these basic forms:</p>
 <ul><li><strong>Yeasts:</strong> Unicellular, round or oval cells that reproduce asexually by budding (e.g., Candida albicans ).</li><li><strong>Moulds (Molds):</strong> Multicellular organisms that grow as long, filamentous, tube-like structures called hyphae . A mass of hyphae is called a mycelium . Moulds reproduce via spores (e.g., Aspergillus ).</li><li><strong>Dimorphic Fungi:</strong> Can exist as either a yeast or a mould depending on the temperature. They typically grow as a mould in the environment (at 25°C) and as a yeast in the human body (at 37°C). (e.g., Histoplasma capsulatum ).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-36">
           <summary>36 Fungal Diseases (Mycoses)</summary>
           <p>Fungal infections are classified based on the location in the body:</p>
 <ul><li><strong>Superficial (Cutaneous) Mycoses:</strong> Infections limited to the outermost layers of the skin, hair, and nails. Caused by dermatophytes . Examples include Tinea infections (ringworm) and Pityriasis versicolor.</li><li><strong>Subcutaneous Mycoses:</strong> Infections of the dermis, subcutaneous tissues, and muscle, often resulting from a puncture wound.</li><li><strong>Systemic Mycoses:</strong> Deep infections that originate primarily in the lungs and can spread to other organs. These can infect even healthy individuals. Examples include Histoplasmosis and Coccidioidomycosis.</li><li><strong>Opportunistic Mycoses:</strong> Infections that occur mainly in individuals with weakened immune systems (e.g., patients with HIV/AIDS or cancer). Examples include Candidiasis (thrush), Aspergillosis, and Cryptococcosis.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-37">
           <summary>37 8.3. Clinically Important Fungi and Protozoa</summary>
           <ul><li>Organism Type Key Features / Associated Diseases</li><li><strong>Candida albicans</strong> Fungus (Yeast) Opportunistic pathogen. Causes Candidiasis (Thrush - oral or vaginal) and systemic infections.</li><li><strong>Cryptococcus neoformans</strong> Fungus (Yeast) Encapsulated yeast. Causes Cryptococcal meningitis, especially in AIDS patients.</li><li><strong>Pneumocystis jirovecii</strong> Fungus Opportunistic pathogen. Causes severe Pneumonia (PCP) in immunocompromised individuals.</li><li><strong>Entamoeba histolytica</strong> Protozoa (Amoeba) Transmitted via contaminated food/water. Causes Amoebic dysentery (Amoebiasis).</li><li><strong>Giardia lamblia</strong> Protozoa (Flagellate) Transmitted via contaminated water. Causes Giardiasis (prolonged, foul-smelling diarrhoea).</li><li><strong>Trichomonas vaginalis</strong> Protozoa (Flagellate) Sexually transmitted. Causes Trichomoniasis (vaginitis).</li><li><strong>Trypanosoma brucei</strong> Protozoa (Flagellate) Transmitted by the tsetse fly. Causes African Trypanosomiasis (Sleeping Sickness).</li><li><strong>Plasmodium species</strong> Protozoa (Sporozoa) Transmitted by the Anopheles mosquito. Causes Malaria.</li><li><strong>Toxoplasma gondii</strong> Protozoa (Sporozoa) Transmitted by ingesting cysts from cat faeces or undercooked meat. Can cause severe congenital infection.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-38">
           <summary>38 Protozoa</summary>
           <ul><li><strong>General Characteristics:</strong> Protozoa are unicellular, eukaryotic microorganisms. Many are motile. The active, feeding, and reproducing stage is called a <strong>trophozoite</strong> .</li><li>Some can form a dormant, protective <strong>cyst</strong> to survive in harsh conditions.</li><li><strong>Classification (based on motility):</strong> Amoebas (Sarcodina): Move using <strong>pseudopodia</strong> (&quot;false feet&quot;), which are extensions of the cytoplasm (e.g., Entamoeba histolytica ).</li><li>Flagellates (Mastigophora): Move using one or more whip-like <strong>flagella</strong> (e.g., Giardia lamblia, Trypanosoma ).</li><li>Ciliates (Ciliophora): Move using numerous short, hair-like <strong>cilia</strong> (e.g., Balantidium coli ).</li><li>Sporozoa (Apicomplexa): Generally non-motile in their adult forms. They are obligate intracellular parasites with complex life cycles (e.g., Plasmodium species, the cause of malaria).</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-39">
           <summary>39 Helminths (Parasitic Worms)</summary>
           <ul><li><strong>General Characteristics:</strong> Helminths are multicellular, eukaryotic organisms (worms). They are much larger than other microbes but their eggs and larvae are microscopic, which is why they are studied in microbiology.</li><li><strong>Classification:</strong> Cestodes (Tapeworms): Flat, ribbon-like, segmented worms. They have a head ( <strong>scolex</strong> ) with suckers or hooks for attachment. They absorb nutrients through their body surface. (e.g., Taenia solium - pork tapeworm).</li><li>Trematodes (Flukes): Leaf-shaped, unsegmented worms. (e.g., Schistosoma species, the cause of Bilharzia/Schistosomiasis).</li><li>Nematodes (Roundworms): Cylindrical, unsegmented worms with tapering ends and a complete digestive tract. (e.g., Ascaris lumbricoides - giant roundworm, Hookworms).</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-40">
           <summary>40 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Concepts of Microbiology</strong> as a practical nursing topic, not only a memorized definition. Link cause, transmission, incubation, clinical features, treatment support and prevention.</p>
 <ul><li><strong>What to understand first:</strong> define concepts of microbiology, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-41">
           <summary>41 Assessment Guide</summary>
           <ul><li>Temperature, pulse, respiratory status, hydration, pain, rash, wounds, stool, urine or sputum changes.</li><li>Exposure history, travel, contacts, vaccination status and comorbidities.</li><li>Specimen orders, isolation needs, antimicrobial history and danger signs.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-42">
           <summary>42 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use standard precautions and transmission-based precautions where needed.</li><li>Support hydration, nutrition, medicines, monitoring and early referral for severe disease.</li><li>Teach prevention, adherence, hygiene, safe water, vector control or contact tracing as relevant.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> Symptoms improve, complications are detected early, transmission risk is reduced and treatment is completed correctly.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-43">
           <summary>43 Patient Teaching and Revision Check</summary>
           <ul><li>Explain concepts of microbiology in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Classification%20and%20types%20of%20Microorganisms%20Personal%20and%20Communal%20health%20%26%20Microbiology%20nursing%20lecture" title="Classification and types of Microorganisms YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (1)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Drug-Classification-legal-prescription-schedule.webp" alt="Drug Classification Legal Prescription Schedule" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Drug Classification Legal Prescription Schedule</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Classification%20and%20types%20of%20Microorganisms%20Personal%20and%20Communal%20health%20%26%20Microbiology%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Classification%20and%20types%20of%20Microorganisms%20Personal%20and%20Communal%20health%20%26%20Microbiology%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

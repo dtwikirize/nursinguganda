@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,26 @@
         <p>Cerebral palsy should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 13 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">CEREBRAL PALSY.</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Causes of Cerebral Palsy</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Pathological effects of Cerebral Palsy on different body functions.</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Classification/Types of Cerebral Palsy</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">1. Clinical Assessment :</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">2. Neuroimaging :</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">3. Blood Tests :</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">4. Electroencephalogram (EEG):</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Prevention of Cerebral Palsy.</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 CEREBRAL PALSY.</summary>
           <p>Cerebral palsy is defined as a group of permanent disorders of the development of movement and posture , causing activity limitation, that are attributed to non-progressive disturbances that occurred in the developing fetal or infant brain .”</p>
 <p>If your body was a computer, the brain would be the mainframe . It controls mostly everything.</p>
@@ -94,7 +125,7 @@
 <p>Cerebral palsy is the most common movement disorder in children. It occurs in about 1 per 323 live births. Cerebral palsy has been documented throughout history, with the first known descriptions occurring in the work of Hippocrates in the 5th century BCE.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Causes of Cerebral Palsy</summary>
           <p>Most often, the problems occur during pregnancy; however, they may also occur during childbirth or shortly after birth, however, other causes are unknown.</p>
 <p>Structural problems in the brain are seen in 80% of cases, most commonly within the white matter. More than three-quarters of cases are believed to result from issues that occur during pregnancy. Most children who are born with cerebral palsy have more than one risk factor associated with Cerebral Palsy.</p>
@@ -162,7 +193,7 @@
 <ul><li>Scoliosis ; Abnormal sideways curvature of the spine.</li><li>Hip dislocation ; Displacement of the hip joint.</li><li>Skeletal deformities ; Abnormalities in bone structure and shape.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Pathological effects of Cerebral Palsy on different body functions.</summary>
           <p>Urinary System: Lower Urinary Tract Symptoms:</p>
 <ul><li>Excessive storage issues are more prevalent than voiding issues.</li><li>Pelvic floor overactivity in some cases leads to upper urinary tract dysfunction.</li></ul>
@@ -202,7 +233,7 @@
 <ul><li>Digestive issues like constipation, vomiting, and bowel obstruction can arise due to impaired muscle coordination in the digestive system.</li><li>Dietary modifications, medications, and bowel management techniques can help manage these issues and improve digestive function.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Classification/Types of Cerebral Palsy</summary>
           <p>Cerebral Palsy is classified by the types of motor impairment of the limbs or organs, and by restrictions to the activities an affected person may perform.</p>
 <p>There are three main Cerebral Palsy classifications by motor impairment:</p>
@@ -219,7 +250,7 @@
 <ul><li>Characteristics : Highly heterogeneous and unpredictable, combining features of spastic, ataxic, and athetoid Cerebral Palsy to varying degrees.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 1. Clinical Assessment :</summary>
           <p>History and Physical Examination :</p>
 <ul><li>Thorough medical history to understand prenatal, perinatal, and postnatal factors.</li><li>Comprehensive physical examination to assess motor skills, reflexes, muscle tone, coordination, and other developmental milestones.</li></ul>
@@ -227,7 +258,7 @@
 <ul><li>Especially effective in infants under four months.</li><li>Observes spontaneous movements to detect abnormalities and assess overall motor function.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 2. Neuroimaging :</summary>
           <p>MRI (Magnetic Resonance Imaging):</p>
 <ul><li>Preferred over CT due to higher diagnostic yield and safety.</li><li>Provides detailed images of the brain’s structure, helping identify lesions or abnormalities.</li><li>Useful when the cause of cerebral palsy is unclear.</li></ul>
@@ -235,13 +266,13 @@
 <ul><li>An alternative when MRI is not feasible.</li><li>Provides detailed cross-sectional images of the brain.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 3. Blood Tests :</summary>
           <p>Metabolic Screening :</p>
 <ul><li>Blood tests to rule out metabolic disorders that might present with symptoms similar to cerebral palsy.</li><li>Includes tests for genetic and biochemical abnormalities.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 4. Electroencephalogram (EEG):</summary>
           <ul><li>Detects abnormal brain activity, especially in cases where seizures or epilepsy symptoms are present.</li><li>Rules out or confirms any underlying electrical abnormalities in the brain.</li></ul>
 <p>5. Genetic Testing :</p>
@@ -268,7 +299,7 @@
 <ul><li>Cerebral Palsy is not a progressive disorder (meaning the brain damage does not worsen), but the symptoms can become more severe over time.</li><li>A person with the disorder may improve somewhat during childhood if he or she receives extensive care</li><li>Some individuals with cerebral palsy require personal assistant services for all activities of daily living.</li><li>Puberty in young adults with cerebral palsy may be delayed due to nutritional deficiencies.</li><li>Cerebral palsy can significantly reduce a person’s life expectancy, depending on the severity of the condition and the quality of care with which they are provided.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Prevention of Cerebral Palsy.</summary>
           <p>Pre-pregnancy and pregnancy:</p>
 <ul><li>Prenatal care : Early and regular prenatal checkups for monitoring both mother and baby’s health and identifying potential risks like infections, gestational diabetes, or high blood pressure, which can all contribute to Cerebral Palsy.</li><li>Vaccinations : Ensuring that all recommended vaccinations are received , especially those that protect against infections harmful to the developing fetus, such as rubella, cytomegalovirus, and influenza.</li><li>Healthy lifestyle : Maintaining a healthy weight, eating a balanced diet rich in vitamins and minerals, exercising regularly, and avoiding smoking, alcohol, and drugs are all essential for a healthy pregnancy and reducing the risk of Cerebral Palsy.</li><li>Manage chronic conditions : In case of pre-existing health conditions like diabetes or high blood pressure, actively manage them well to minimize potential complications during pregnancy.</li></ul>
@@ -276,37 +307,49 @@
 <ul><li>Safe delivery practices : Carrying out delivery from a designated hospital or maternity center and managing any associated birth issued can help ensure a safe and low-risk delivery, minimizing the risk of birth complications that can contribute to Cerebral Palsy.</li><li>Postpartum care : Regular checkups for both mother and baby after birth for monitoring development and promptly addressing any potential issues.</li><li>Vaccinations for baby : Ensure the child receives all recommended vaccinations on time, as they protect against potentially Cerebral Palsy-causing infections like meningitis and encephalitis.</li><li>Preventing head injuries : Implementing safety measures at home and during car rides, using age-appropriate helmets for activities like bike riding, and closely supervising children around water can significantly reduce the risk of head injuries, a potential cause of Cerebral Palsy.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-10">
           <summary>10 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Cerebral palsy</strong> as a practical nursing topic, not only a memorized definition. Adapt assessment and care to age, weight, development, caregiver knowledge and family support.</p>
 <ul><li><strong>What to understand first:</strong> define cerebral palsy, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-11">
           <summary>11 Assessment Guide</summary>
           <ul><li>Airway, breathing, circulation, hydration, temperature, feeding, activity and danger signs.</li><li>Weight-based medicines, immunization status, growth, development and caregiver concerns.</li><li>Signs that may be subtle in children, including lethargy, poor feeding, fast breathing or convulsions.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-12">
           <summary>12 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Use age-appropriate communication and involve the caregiver.</li><li>Prevent dehydration, hypothermia, medication errors and delayed referral.</li><li>Teach home care, danger signs and follow-up clearly.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The child is clinically improving, caregiver instructions are understood and follow-up is arranged.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-13">
           <summary>13 Patient Teaching and Revision Check</summary>
           <ul><li>Explain cerebral palsy in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Cerebral%20palsy%20Paediatric%20Nursing%20(III)%20nursing%20lecture" title="Cerebral palsy YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (11)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/CEREBRAL-PALSY.webp" alt="CEREBRAL PALSY" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">CEREBRAL PALSY</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Causes-of-Cerebral-Palsy-e1703153472697.webp" alt="Causes Of Cerebral Palsy E1703153472697" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Causes Of Cerebral Palsy E1703153472697</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Signs-and-Symptoms-of-Cerebral-Palsy-CP-e1703153681866.webp" alt="Signs And Symptoms Of Cerebral Palsy CP E1703153681866" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Signs And Symptoms Of Cerebral Palsy CP E1703153681866</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/CEREBRAL-PALSY-hypotonia.webp" alt="CEREBRAL PALSY Hypotonia" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">CEREBRAL PALSY Hypotonia</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/CEREBRAL-PALSY-pathology.webp" alt="CEREBRAL PALSY Pathology" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">CEREBRAL PALSY Pathology</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Associated-disorders.webp" alt="Associated Disorders" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Associated Disorders</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Classification-Types-of-Cerebral-Palsy-e1703154255791-1024x545.webp" alt="Classification Types Of Cerebral Palsy E1703154255791" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Classification Types Of Cerebral Palsy E1703154255791</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Diagnosis-and-Investigations-cerebral-palsy-1024x683.webp" alt="Diagnosis And Investigations Cerebral Palsy" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Diagnosis And Investigations Cerebral Palsy</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Cerebral%20palsy%20Paediatric%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <p style="color:var(--seo-muted);font-size:.85rem;margin:8px 0 0">3 more diagrams available — open the lesson for full illustrations.</p>
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Cerebral%20palsy%20Paediatric%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

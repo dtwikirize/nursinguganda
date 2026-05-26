@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,7 +97,26 @@
         <p>Hydrocele should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <details style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <summary style="cursor:pointer;font-family:var(--seo-heading);font-size:1.05rem;font-weight:700;color:var(--seo-navy)">Contents — 13 sections (tap to expand)</summary>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:12px">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">HYDROCELE</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Anatomy of the Scrotum.</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Etiology/Causes of a Hydrocele</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Pathophysiology</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Types of hydrocele</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">CLASSIFICATIONS OF HYDROCELES</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Diagnosis and Investigations</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Management and Treatment of Hydroceles</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Complications of Hydroceles</a>
+          <a href="#section-10" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-11" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-12" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-13" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </details>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 HYDROCELE</summary>
           <p>A hydrocele is a fluid collection within the tunica vaginalis of the scrotum or along the spermatic cord.</p>
 <p>A hydrocele is accumulation of serous fluid within the tunica vaginalis that produces swelling in the inguinal region or scrotum.</p>
@@ -93,24 +124,24 @@
 <p>In infants it is usually as a result of incomplete closure of the processus vaginalis . It may or may not be associated with inguinal hernia. In older boys and men it may be idiopathic.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Anatomy of the Scrotum.</summary>
           <p>Scrotum , is a thin external sac of skin that is divided into two compartments ; each compartment contains one of the two testes , the glands that produce sperm , and one of the epididymis , where the sperm is stored.</p>
 <ul><li>The function of the scrotum is to protect the testes and to keep them at a temperature below the normal body temperature. The scrotum thus protrudes from the body wall. When contracted, it conserves heat; while relaxed it is smooth and elongated, permitting the circulation of air that effects cooling. The relatively cool temperature of the scrotum is thought to be important for the production of viable sperm.</li><li>A vertical septum of subcutaneous tissue in the center divides it into two parts, each containing one testis.</li><li>Smooth muscle fibers, called the dartos muscle , in the subcutaneous tissue contract to give the scrotum its wrinkled appearance. When these fibers are relaxed, the scrotum is smooth.</li><li>The cremaster muscle consists of skeletal muscle fibers and controls the position of the scrotum and testes. When it is cold or a man is sexually aroused, this muscle contracts to pull the testes closer to the body for warmth.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Etiology/Causes of a Hydrocele</summary>
           <p>The causes of hydrocele can be categorized into four main factors:</p>
 <ul><li>Excessive production of fluid within the sac : This occurs when there is an overproduction of fluid within the sac surrounding the testicle e.g. in acute/chronic epididymo-orchitis.</li><li>Defective absorption of fluid: This refers to a situation where the normal absorption of fluid within the sac is impaired, leading to the accumulation of fluid e.g. in testicular tumors, Hematocele.</li><li>Interference with lymphatic drainage of scrotal structures : Certain conditions, such in case of elephantiasis, torsion of testis , can disrupt the normal drainage of lymphatic fluid from the scrotal area, resulting in the development of a hydrocele.</li><li>Connection with a hernia of the peritoneal cavity : In the congenital variety, a hydrocele may be associated with a hernia of the peritoneal cavity, leading to the presentation of a hydrocele of the cord e.g. in patent tunica vaginalis.</li><li>Direct Injury or inflammation of the testes</li><li>Prematurity</li><li>Testicular tumors</li><li>Infections in the testicle or the epididymitis</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Pathophysiology</summary>
           <ul><li>During the seventh month of fetal development, the testicles move from the abdomen into the scrotum.</li><li>When the testicle travels downward, a remnant piece of peritoneum wrapped around the testicle, called the tunica vaginalis and this allows fluid present in the abdominal cavity to surround the testicle.</li><li>This sac usually closes before birth, preventing additional fluid from going from the abdomen into the scrotum, and the fluid is gradually absorbed within the first year of life.</li><li>When the sac remains open tunica vaginalis is patent and connects with the general peritoneal cavity leading to development of a communicating Hydrocele.</li><li>The communication is usually too small to allow herniation of intra-abdominal contents. Digital pressure on the Hydrocele does not usually empty it, but the Hydrocele fluid may drain into the peritoneal cavity when the child is lying down.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Types of hydrocele</summary>
           <p>Non-communicating Hydrocele</p>
 <ul><li>Here there is no connection between the abdominal cavity and the sac around the testicle in the scrotum.</li><li>This type of Hydrocele is often found in newborns and these often resolve or go away over time.</li><li>It may take up to one year for this to happen, but as long as the swelling is decreasing, it can be safely observed.</li></ul>
@@ -118,7 +149,7 @@
 <ul><li>Here the sac does not close and this means that the fluid around the testicle can flow back up into the abdomen.</li><li>It is noticeable that the Hydrocele looks smaller early in the day and larger in the evening; the pressure changes cause the fluid to flow back into the abdomen.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-6">
           <summary>06 CLASSIFICATIONS OF HYDROCELES</summary>
           <p>Primary hydrocele: A primary hydrocele is characterized by a soft, painless swelling that is usually large in size and makes it difficult to feel the testis. Transillumination can demonstrate the presence of fluid. Although these hydroceles are often asymptomatic, their large size can cause inconvenience and, if left untreated, may lead to atrophy of the testis due to compression or obstruction of blood supply. Early diagnosis during a complete physical examination may reveal small hydroceles in which the testis can be easily palpated within a lax hydrocele. However, in cases where the hydrocele sac is dense, ultrasound imaging is necessary to visualize the testis and reveal any underlying abnormalities. Primary hydroceles are usually painless, similar to testicular tumors.</p>
 <p>A common method of diagnosing a primary hydrocele is through transillumination, where shining a strong light through the enlarged scrotum will pass light in the case of a primary hydrocele, while a tumor will not, except in the case of a malignancy with reactive hydrocele.</p>
@@ -137,13 +168,13 @@
 <p>Other predisposing factors for secondary hydroceles include acute/chronic epididymo-orchitis, testicular torsion, testicular tumors, hematocele, filarial hydrocele, post herniorrhaphy, and hydrocele of a herniated sac.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-7">
           <summary>07 Diagnosis and Investigations</summary>
           <p>Through Clinical Presentation: A primary hydrocele is described as having the following characteristics/presentations.</p>
 <ul><li>Fluctuating Size : The swollen area may vary in size, being smaller in the morning and larger later in the day. This fluctuation is known as a positive fluctuation test.</li><li>Discomfort : Patients may experience discomfort due to the heaviness of the swollen scrotum.</li><li>Scrotal Swelling : Hydroceles can present as painless unilateral or bilateral scrotal swelling.</li><li>Transillumination : When examined with a focused beam of light, the scrotum transilluminates, displaying a uniform glow without any internal shadows. Transillumination positive.</li><li>Impulse on Coughing : In most cases, the impulse on coughing is negative, although it may be positive in congenital hydroceles .</li><li>Reducibility : Hydroceles are usually non-reducible , meaning they cannot be easily pushed back into the abdomen. Reducibility absent.</li><li>Palpable Fullness : Upon examination, hydroceles present as a soft, non-tender fullness within the scrotum, which can be felt. Testis cannot be palpated separately. (exception – funicular hydrocele, encysted hydrocele)</li><li>Laboratory studies. laboratory studies may be indicated to exclude other surgical or medical conditions that may be in the differential diagnosis.</li><li>Ultrasonography . Ultrasonography provides excellent detail of the testicular parenchyma; spermatoceles can be clearly distinguished from hydroceles on sonograms, a testicular tumor can also be identified.</li><li>Duplex ultrasonography. Duplex studies provide information regarding testicular blood flow when a hydrocele may be associated with chronic torsion.</li><li>Plain abdominal radiography . Plain radiography may be useful for distinguishing an acute hydrocele from a hernia.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-8">
           <summary>08 Management and Treatment of Hydroceles</summary>
           <ul><li>Observation for Infants: Most hydroceles appearing in the first year of life often resolve without treatment and therefore require only observation.</li><li>Surgical Removal : Hydroceles that persist after the first year or occur later in life may require surgical removal through a procedure known as hydrocelectomy , as they have little tendency towards regression. The method of choice for surgical removal is an open operation under general or spinal anesthesia for adults, and general anesthesia for children. Local infiltration anesthesia is not recommended due to its inability to relieve abdominal pain caused by traction on the spermatic cord.</li><li>Aspiration Precautions: If a testicular tumor is suspected, a hydrocele should not be aspirated, as this can lead to the dissemination of malignant cells. Ultrasonography should be used to clinically exclude the presence of a tumor. If no tumor is present, the hydrocele fluid can be aspirated with a needle and syringe.</li><li>Post-operative Care : After surgery, the scrotum should be supported, and ice bags can be used to alleviate pain. Regular changes of surgical dressings, observation of drainage, and monitoring for complications are necessary to prevent re-operation.</li><li>Complications Management : In cases with the presence of complications, open operation with or without orchiectomy may be preferred, depending on the severity of the complications.</li><li>Jaboulay’s Procedure : After aspiration of a primary hydrocele, fluid reaccumulates over the following months, necessitating periodic aspiration or operation. For younger patients, operation is usually preferred, while the elderly or unfit can have aspirations repeated whenever the hydrocele becomes uncomfortably large. Sclerotherapy is an alternative method, involving the injection of 6% aqueous phenol with 1% lidocaine for analgesia, which can inhibit reaccumulation. Multiple treatments may be necessary.</li><li>Aspiration and Sclerosing Agents: Aspiration of the hydrocele contents and injection with sclerosing agents, sometimes with tetracyclines, can be effective but is often very painful. However, these alternative treatments are generally regarded as unsatisfactory due to the high incidence of recurrences and the frequent necessity for repetition of the procedure.</li></ul>
 <p>Surgical Management.</p>
@@ -167,7 +198,7 @@
 <p>10. Provide age-appropriate activities . Offer age-appropriate activities and play opportunities to promote the child’s emotional well-being and assist with their recovery. Arrange for appropriate entertainment and distraction to alleviate anxiety and boredom during hospitalization.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-9">
           <summary>09 Complications of Hydroceles</summary>
           <ul><li>Hematocele Formation : Hematocele, a collection of blood within the sac, can occur due to spontaneous bleeding into the sac or as a result of trauma. If not drained, it may lead to the formation of a clotted hematocele.</li><li>Calcification of the Sac : The sac may calcify, leading to the formation of a clotted hydrocele, often resulting from a slow, painless ooze of blood into the tunica vaginalis. This can make it difficult to differentiate from a testicular tumor.</li><li>Postherniorrhaphy Hydrocele: A relatively rare complication of inguinal hernia repair, possibly due to disruption of the lymphatics draining the scrotal contents.</li><li>Infection and Pyocele : Infection may lead to the formation of pyocele, a collection of pus within the sac.</li><li>Testicular Atrophy : Long-standing cases of hydrocele may lead to atrophy of the testis.</li><li>Rupture : Rupture of the sac may occur due to trauma or spontaneously. In some cases, absorption of the fluid may lead to a cure.</li><li>Herniation : In long-standing cases, the hydrocele sac may herniate through the dartos muscle.</li></ul>
 <p><strong>Test Questions</strong></p>
@@ -189,37 +220,49 @@
 <ul><li><strong>Option D:</strong> Swelling and bruising of the surgical site is a usual occurrence right after the surgery. Elevation of the scrotal area and anti-inflammatory agents can be administered as ordered by the physician.</li><li><strong>Option A:</strong> Aspirin is not the drug of choice given for pediatric patients.</li><li><strong>Option B:</strong> Answering questions could relieve the anxiety felt by the family and the patient.</li><li><strong>Option C:</strong> Swelling and bruising are normal occurrences for the patient after the surgery.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-10">
           <summary>10 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Hydrocele</strong> as a practical nursing topic, not only a memorized definition. Prioritize airway, breathing, circulation, pain, asepsis, wound healing and early complication detection.</p>
 <ul><li><strong>What to understand first:</strong> define hydrocele, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-11">
           <summary>11 Assessment Guide</summary>
           <ul><li>Vital signs, pain, bleeding, perfusion, level of consciousness and injury pattern.</li><li>Wound appearance, drainage, odour, swelling, temperature and surrounding skin.</li><li>Fluid balance, mobility, nutrition, surgical site risk and ordered investigations.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-12">
           <summary>12 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Stabilize urgent problems first, then prepare for investigations or theatre care.</li><li>Maintain aseptic technique, pain control, wound care and documentation.</li><li>Prevent shock, infection, pressure injury, deep vein thrombosis and delayed healing.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The patient remains stable, wound healing progresses, pain is controlled and complications are recognized early.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-13">
           <summary>13 Patient Teaching and Revision Check</summary>
           <ul><li>Explain hydrocele in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Hydrocele%20Paediatric%20Nursing%20(III)%20nursing%20lecture" title="Hydrocele YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (12)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Hydrocele.webp" alt="Hydrocele" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Hydrocele</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Anatomy-of-the-Scrotum.webp" alt="Anatomy Of The Scrotum" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Anatomy Of The Scrotum</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Etiology-Causes-of-a-Hydrocele.webp" alt="Etiology Causes Of A Hydrocele" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Etiology Causes Of A Hydrocele</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/types-of-hydrocele.webp" alt="Types Of Hydrocele" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Types Of Hydrocele</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/CLASSIFICATIONS-OF-HYDROCELES-1-1024x724.webp" alt="CLASSIFICATIONS OF HYDROCELES 1" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">CLASSIFICATIONS OF HYDROCELES 1</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Congenital-Hydrocele.gif" alt="Congenital Hydrocele" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Congenital Hydrocele</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Diagnosis-and-Investigations-transillumination-e1703607401821.webp" alt="Diagnosis And Investigations Transillumination E1703607401821" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Diagnosis And Investigations Transillumination E1703607401821</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/Complications-of-Hydroceles-e1703608036918.webp" alt="Complications Of Hydroceles E1703608036918" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Complications Of Hydroceles E1703608036918</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Hydrocele%20Paediatric%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        <p style="color:var(--seo-muted);font-size:.85rem;margin:8px 0 0">4 more diagrams available — open the lesson for full illustrations.</p>
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Hydrocele%20Paediatric%20Nursing%20(III)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

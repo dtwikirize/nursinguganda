@@ -15,9 +15,12 @@
     <link rel="icon" href="../../../../assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/main.min.css?v=33">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="../../../../assets/css/main.min.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../../assets/css/main.min.css?v=78"></noscript>
     <style>
+      html{scroll-behavior:smooth}
       :root{--seo-primary:#1A5F7A;--seo-cyan:#00BCD4;--seo-navy:#0D2137;--seo-accent:#9B4F72;--seo-bg:#F4F7F9;--seo-card:#FFFFFF;--seo-border:#D9E6EC;--seo-text:#1E2D3D;--seo-muted:#5F7D8E;--seo-heading:"Lora",Georgia,serif;--seo-body:"DM Sans",Arial,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
@@ -39,7 +42,6 @@
       .seo-button{align-items:center;background:var(--seo-accent);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-primary)}
       .seo-disclaimer,.seo-affiliate{border:1px solid #bfe5ed;border-radius:12px;background:#edf9fb;color:#456879;margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
-      .seo-video-preview{aspect-ratio:16/9;background:#000;border:1px solid var(--seo-border);border-radius:12px;overflow:hidden}.seo-video-preview iframe{border:0;display:block;height:100%;width:100%}
       .seo-footer{border-top:1px solid var(--seo-border);color:var(--seo-muted);margin-top:44px;padding-top:24px}.seo-footer a{color:var(--seo-primary);font-weight:800;margin-right:12px}
       @media(max-width:720px){.seo-header{align-items:flex-start;flex-direction:column}.seo-hero{border-radius:0;margin-left:calc(clamp(16px,4vw,40px)*-1);margin-right:calc(clamp(16px,4vw,40px)*-1)}}
     </style>
@@ -47,9 +49,19 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
       window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+      // Open a <details> element when a TOC anchor link targets it
+      document.addEventListener("click", function(e) {
+        var a = e.target.closest("a[href^='#']");
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
     </script>
   </head>
   <body class="seo-page">
+    <a href="#" aria-label="Back to top" title="Back to top" style="align-items:center;background:var(--seo-primary);border-radius:999px;bottom:24px;box-shadow:0 4px 14px rgba(0,0,0,.28);color:#fff;display:flex;font-size:1.2rem;font-weight:900;height:46px;justify-content:center;position:fixed;right:22px;text-decoration:none;width:46px;z-index:50">↑</a>
     <header class="seo-header">
     <a class="brand" href="../../../../" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
@@ -85,25 +97,40 @@
         <p>Apnea should be understood beyond a short definition. Link the concept to patient history, focused assessment, common risks, nursing priorities, documentation and evaluation of outcomes.</p>
       </section>
       
-        <details class="seo-lesson-section" open>
+      <nav aria-label="Page sections" style="background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 2px 8px rgba(13,33,55,.05);padding:18px;margin-bottom:4px">
+        <h2 style="color:var(--seo-navy);font-family:var(--seo-heading);font-size:1.05rem;margin:0 0 12px">Contents (9)</h2>
+        <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+          <a href="#section-1" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">APNEA</a>
+          <a href="#section-2" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Types of Apnea</a>
+          <a href="#section-3" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Causes of Apnea</a>
+          <a href="#section-4" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Clinical features of apnea</a>
+          <a href="#section-5" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing care plan for a pediatric patient with Apnea</a>
+          <a href="#section-6" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Uganda Clinical Lens</a>
+          <a href="#section-7" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Assessment Guide</a>
+          <a href="#section-8" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Nursing Priorities, Rationales and Outcomes</a>
+          <a href="#section-9" style="background:#eef4f8;border:1px solid var(--seo-border);border-radius:8px;color:var(--seo-primary);display:block;font-size:.88rem;font-weight:600;padding:8px 12px;text-decoration:none">Patient Teaching and Revision Check</a>
+        </div>
+      </nav>
+      
+        <details class="seo-lesson-section" open id="section-1">
           <summary>01 APNEA</summary>
           <p>It is often associated with Bradycardia and cyanosis . Bradycardia (below 80-100 beats /minute) appears 30 seconds after cessation of respiration.</p>
 <p>Apnea is more common in preterm infants , and in this case, it is referred to as Apnea of prematurity and requires a specific assessment and treatment. It is rare among full-term healthy infants and if present, usually indicates an underlying pathology.</p>
 <p>Apnea is a disorder of respiratory control and may be: obstructive , central , or mixed .</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" open id="section-2">
           <summary>02 Types of Apnea</summary>
           <ul><li>Central Apnea : This occurs due to a depressed respiratory center. This means it is caused by a failure of the brain to send the necessary signals to the muscles involved in breathing.</li><li>Obstructive Apnea : Occurs due to obstruction of the airway. This type is caused by a blockage of the airway, often due to the soft tissues of the throat collapsing during sleep.</li><li>Mixed Apnea : This type is a combination of both central and obstructive apnea.</li></ul>
 <p>NB: Short episodes of apnea are usually central whereas prolonged ones are often mixed.</p>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-3">
           <summary>03 Causes of Apnea</summary>
           <ul><li>Immature Respiratory System : Premature babies have underdeveloped respiratory systems, making them more susceptible to apnea.</li><li>Brain Immaturity: The brains of premature babies are still developing, and they may not be able to regulate breathing as effectively as full-term babies.</li><li>Neurological Problems : Some premature babies may have neurological problems that affect their breathing.</li><li>Systemic disorders : e.g</li><li>Cardiovascular : Anemia, hypo / hypertension, patent ductus arteriosus,coarctation of the aorta (conditions that impair oxygenation)</li><li>Central nervous system : Intraventricular haemorrhage, intracranial haemorrhage, brainstem infarction or anomalies, birth trauma, congenital malformations (conditions that will increase intracranial pressure)</li><li>Respiratory : Pneumonia, intrinsic / extrinsic mass or lesions causing airway obstruction, upper airway collapse, atelectasis, respiratory distress syndrome, meconium aspiration, pulmonary haemorrhage (conditions that cause impairment of ventilation and oxygenation)</li><li>Gastrointestinal : Oral feeding, bowel movement, gastro esophageal reflux, necrotizing enterocolitis</li><li>Metabolic : Hypoglycemia, hypocalcaemia, hypo / hypernatraemia, hyperammonemia, low organic acids, hypo / hyperthermia</li><li>Infection : Respiratory infections can worsen apnea in premature babies e.g meningitis or encephalitis.</li><li>Medications : Certain medications used in premature babies can also cause apnea. Maternal prenatal exposure drugs through transplacental transfer and postnatal exposure e.g. opiates, high levels of phenobarbitone, or other sedatives, general anesthetic.</li><li>Pain : Acute and chronic.</li><li>Head and neck poorly positioned</li><li>Toxin exposure</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-4">
           <summary>04 Clinical features of apnea</summary>
           <ul><li>Episodes of no breathing : This is the most obvious sign of apnea.</li><li>Decreased heart rate( Bradycardia): Apnea can also cause a decrease in heart rate.</li><li>Change in skin color( Cyanosis ): The baby’s skin may turn blue or pale during an episode of apnea.</li><li>Irritability : Some babies with AOP may be irritable or fussy.</li><li>Poor feeding : Apnea can make it difficult for babies to feed.</li></ul>
 <p>Management of Apnea</p>
@@ -125,42 +152,54 @@
 <ul><li>Documentation : Ensure all apnea episodes are well documented, including the interventions required to correct them, the frequency of episodes, and their duration.</li><li>Parental Education:</li><li>Explain the cause of apnea and the rationale behind treatment approaches (e.g., antibiotics for infection).</li><li>Reassure parents that AOP is a common occurrence in premature infants and will typically resolve by 34 weeks gestation.</li><li>Clearly explain all interventions, such as caffeine administration, continuous positive airway pressure (CPAP), or mechanical ventilation, and emphasize their importance in managing the condition.</li></ul>
         </details>
       
-        <details class="seo-lesson-section" open>
+        <details class="seo-lesson-section" id="section-5">
           <summary>05 Nursing care plan for a pediatric patient with Apnea</summary>
           <ul><li>Assessment Nursing Diagnosis Goals/Expected Outcomes Interventions Rationale Evaluation</li><li>1. Child presents with episodes of apnea lasting more than 20 seconds, cyanosis, and bradycardia (heart rate &amp;lt; 100 bpm). Ineffective Breathing Pattern related to immature respiratory control as evidenced by episodes of apnea, cyanosis, and bradycardia. The child will maintain effective breathing patterns with no episodes of apnea, and oxygen saturation will remain above 95%. – Continuously monitor the child’s respiratory rate, effort, and oxygen saturation using a cardiorespiratory monitor. – Position the child in a supine or side-lying position with the head slightly elevated to facilitate airway patency. – Administer oxygen as prescribed to maintain adequate oxygenation during and after apneic episodes. – Stimulate the child gently (e.g., rub the back or flick the soles) during apneic episodes to prompt breathing. – Prepare for possible resuscitation if apnea persists despite stimulation. Continuous monitoring helps detect apneic episodes and guide interventions. Proper positioning promotes airway patency and reduces the risk of obstructive apnea. Administering oxygen improves oxygenation during apneic episodes. Gentle stimulation often restarts breathing in infants with apnea. Resuscitation may be necessary in severe cases to restore breathing. The child maintains a normal breathing pattern, with no further episodes of apnea, and oxygen saturation remains within the target range.</li><li>2. Child exhibits signs of fatigue and decreased responsiveness between apneic episodes. Activity Intolerance related to recurrent apneic episodes as evidenced by fatigue and decreased responsiveness. The child will exhibit improved activity tolerance with increased periods of alertness and responsiveness. – Allow for rest periods between feedings and activities to reduce fatigue. – Monitor the child’s energy levels and responsiveness closely, adjusting activity levels as needed. – Educate parents on the importance of providing a calm, low-stimulation environment to promote rest. – Provide small, frequent feedings to minimize energy expenditure during feeding. Rest periods help conserve the child’s energy and prevent excessive fatigue. Close monitoring allows for timely adjustments to activity levels based on the child’s energy reserves. A calm environment reduces stress and supports the child’s recovery. Small, frequent feedings reduce the effort required during feeding, conserving energy. The child demonstrates improved activity tolerance, with increased alertness and responsiveness between rest periods.</li><li>3. Parents express anxiety about the child’s condition and fear of apneic episodes occurring at home. Anxiety related to fear of apneic episodes and uncertainty about the child’s condition as evidenced by parental verbalization of concern. The parents will verbalize understanding of the child’s condition and demonstrate confidence in managing apneic episodes at home. – Provide clear, concise information to the parents about apnea, including causes, signs, and interventions. – Teach parents how to monitor the child’s breathing and how to respond to apneic episodes at home, including the use of home monitoring equipment if prescribed. – Offer emotional support and reassurance, acknowledging the parents’ feelings and concerns. – Encourage parents to ask questions and participate in the child’s care to increase their confidence. Educating parents helps reduce anxiety by providing them with the knowledge and skills needed to manage the child’s condition. Hands-on teaching and use of monitoring equipment empower parents to respond effectively to apneic episodes. Emotional support reassures parents and validates their concerns. Involving parents in care increases their confidence and sense of control. The parents verbalize understanding of the child’s condition, demonstrate correct management of apneic episodes, and express increased confidence in caring for their child at home.</li><li>4. Child is at risk for impaired gas exchange due to recurrent apneic episodes. Risk for Impaired Gas Exchange related to apneic episodes and immature respiratory control. The child will maintain adequate gas exchange as evidenced by normal oxygen saturation levels and absence of cyanosis. – Monitor oxygen saturation and signs of respiratory distress continuously, intervening promptly during apneic episodes. – Administer supplemental oxygen as needed to maintain target oxygen saturation levels. – Provide continuous positive airway pressure (CPAP) or mechanical ventilation if prescribed to support the child’s respiratory efforts. – Monitor arterial blood gases (ABGs) or transcutaneous CO2 levels if indicated to assess gas exchange. Continuous monitoring allows for prompt intervention during episodes of impaired gas exchange. Supplemental oxygen supports adequate oxygenation during apneic episodes. CPAP or mechanical ventilation provides respiratory support in cases of severe or persistent apnea. Monitoring ABGs or CO2 levels provides information on the child’s gas exchange status, guiding treatment.</li><li>5. Child is at risk for infection due to immature immune system and potential for aspiration during apneic episodes. Risk for Infection related to immature immune system and potential aspiration. The child will remain free from infection as evidenced by normal temperature, white blood cell count, and absence of signs of infection. – Practice strict hand hygiene and aseptic technique during all care and procedures. – Monitor for signs of infection, including fever, increased WBC count, and changes in respiratory status. – Provide prophylactic antibiotics if prescribed, especially in cases of suspected aspiration. – Educate parents on infection prevention measures, including proper feeding techniques to minimize the risk of aspiration. Strict hand hygiene and aseptic technique reduce the risk of introducing pathogens. Early detection and treatment of infection are crucial to prevent complications. Prophylactic antibiotics may reduce the risk of infection following aspiration events. Parental education ensures adherence to infection prevention practices at home.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section clinical-lens-section" open>
+        <details class="seo-lesson-section signature-section clinical-lens-section" id="section-6">
           <summary>06 Nursing Uganda Clinical Lens</summary>
           <p>Use <strong>Apnea</strong> as a practical nursing topic, not only a memorized definition. Prioritize airway, breathing, circulation, pain, asepsis, wound healing and early complication detection.</p>
 <ul><li><strong>What to understand first:</strong> define apnea, identify the normal or expected pattern, then explain what changes when the patient is unwell.</li><li><strong>Why it matters in care:</strong> the nurse must recognize risk early, explain findings clearly, document accurately and know when to escalate.</li><li><strong>How to revise it:</strong> connect each point to assessment, nursing diagnosis or care problem, intervention, rationale and evaluation.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section assessment-section" open>
+        <details class="seo-lesson-section signature-section assessment-section" id="section-7">
           <summary>07 Assessment Guide</summary>
           <ul><li>Vital signs, pain, bleeding, perfusion, level of consciousness and injury pattern.</li><li>Wound appearance, drainage, odour, swelling, temperature and surrounding skin.</li><li>Fluid balance, mobility, nutrition, surgical site risk and ordered investigations.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section care-plan-section" open>
+        <details class="seo-lesson-section signature-section care-plan-section" id="section-8">
           <summary>08 Nursing Priorities, Rationales and Outcomes</summary>
           <ul><li>Stabilize urgent problems first, then prepare for investigations or theatre care.</li><li>Maintain aseptic technique, pain control, wound care and documentation.</li><li>Prevent shock, infection, pressure injury, deep vein thrombosis and delayed healing.</li></ul>
 <p>The rationale for these priorities is patient safety: nursing actions should prevent deterioration, reduce discomfort, support recovery and create clear evidence for the next caregiver.</p>
 <ul><li><strong>Expected outcome:</strong> The patient remains stable, wound healing progresses, pain is controlled and complications are recognized early.</li></ul>
         </details>
       
-        <details class="seo-lesson-section signature-section teaching-section" open>
+        <details class="seo-lesson-section signature-section teaching-section" id="section-9">
           <summary>09 Patient Teaching and Revision Check</summary>
           <ul><li>Explain apnea in simple language the patient or caregiver can repeat back.</li><li>Teach warning signs, medicine or follow-up instructions, hygiene or lifestyle points where relevant.</li><li>For exams, prepare a short answer using: definition, causes or risk factors, signs, assessment, management, complications and prevention.</li><li>For ward practice, document baseline findings, actions taken, patient response and the plan for review.</li></ul>
         </details>
       
-      <section class="seo-panel seo-video">
-        <h2>YouTube Video Preview</h2>
-        <div class="seo-video-preview">
-          <iframe src="https://www.youtube.com/embed?listType=search&amp;list=Apnea%20Surgical%20Nursing%20III%20and%20Paediatric%20Nursing%20(II)%20nursing%20lecture" title="Apnea YouTube lesson preview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      
+      <details class="seo-lesson-section" id="lesson-images">
+        <summary>Illustrations and Diagrams (8)</summary>
+        <div class="lesson-images-section" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:8px 0">
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/apnea-in-newborns.webp" alt="Apnea In Newborns" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Apnea In Newborns</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/apnea-cpap.webp" alt="Apnea Cpap" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">Apnea Cpap</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/274ba79acde9c9e55d28472de926bf0d.webp" alt="274ba79acde9c9e55d28472de926bf0d" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">274ba79acde9c9e55d28472de926bf0d</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/9683cc2fbf5a4eebfcce335c1a52013b.webp" alt="9683cc2fbf5a4eebfcce335c1a52013b" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">9683cc2fbf5a4eebfcce335c1a52013b</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/f14ac68ae9f2d2495ac35b78e33fae7a.webp" alt="F14ac68ae9f2d2495ac35b78e33fae7a" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">F14ac68ae9f2d2495ac35b78e33fae7a</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/398362d65f3a758cf1634c2b36e8e66e.webp" alt="398362d65f3a758cf1634c2b36e8e66e" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">398362d65f3a758cf1634c2b36e8e66e</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/323818b04b3c25712d9083dbb61c3985.webp" alt="323818b04b3c25712d9083dbb61c3985" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">323818b04b3c25712d9083dbb61c3985</figcaption></figure>
+          <figure style="margin:0;break-inside:avoid"><img src="../../../../assets/images/lesson-images/5e291b5cbc3ba4ad53dbe68506d9530d.webp" alt="5e291b5cbc3ba4ad53dbe68506d9530d" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--seo-border);display:block"><figcaption style="font-size:.82rem;color:var(--seo-muted);margin-top:4px;text-align:center">5e291b5cbc3ba4ad53dbe68506d9530d</figcaption></figure>
         </div>
-        <p>Preview related nursing lectures here, then open YouTube if you want the full search results.</p>
-        <p class="seo-affiliate">External link notice: YouTube and other linked services may use their own cookies and terms.</p>
-        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Apnea%20Surgical%20Nursing%20III%20and%20Paediatric%20Nursing%20(II)%20nursing%20lecture" target="_blank" rel="noopener">Watch Topic Videos</a>
+        
+      </details>
+      <section class="seo-panel seo-video">
+        <h2>Related Video Lectures</h2>
+        <p>Watch nursing lecture videos on YouTube for this topic. Opens in a new tab.</p>
+        <a class="seo-button secondary" href="https://www.youtube.com/results?search_query=Apnea%20Surgical%20Nursing%20III%20and%20Paediatric%20Nursing%20(II)%20nursing%20lecture" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <p class="seo-affiliate" style="margin-top:10px">External link: YouTube may use its own cookies and terms. Nursing Uganda is not affiliated with YouTube.</p>
       </section>
       <section class="seo-panel">
         <h2>Reference Books And PDFs</h2>

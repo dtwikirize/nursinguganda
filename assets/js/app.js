@@ -6412,6 +6412,34 @@ function careerJobApplyUrl(employer, title, isExternal) {
     : `mailto:info@nursinguganda.com?subject=${encodeURIComponent(title)}`;
 }
 
+// Per-job descriptions — more meaningful than a generic template
+const JOB_DESCRIPTIONS = {
+  "mulago-graduate-nurse":  "Uganda's largest public hospital offers a structured graduate rotation across medical, surgical, paediatric and emergency wards, helping new nurses build clinical confidence and UNMC portfolio hours.",
+  "aga-khan-theatre-nurse": "Aga Khan Hospital Uganda operates a busy surgical unit and seeks a trained scrub or scout nurse to manage sterile fields, instrument counts and perioperative patient safety across elective and emergency theatre lists.",
+  "unhcr-community-health": "UNHCR's public health unit in Arua requires a nurse to deliver primary care, vaccination outreach, mental health first aid and nutrition support to displaced populations across the West Nile region.",
+  "msf-icu-nurse":          "MSF Uganda operates a high-acuity ICU and seeks an experienced critical care nurse capable of managing ventilated patients, arterial lines and fluid resuscitation under humanitarian field protocols.",
+  "who-surveillance-nurse": "WHO Uganda's disease surveillance programme requires a senior nurse officer to coordinate outbreak alerts, investigate cases, train district teams and maintain IDSR data quality across health facilities.",
+  "red-cross-volunteer":    "Uganda Red Cross volunteers in Gulu support emergency health response, first aid training and community disaster preparedness — ideal for student nurses seeking humanitarian exposure with a travel allowance.",
+  "moh-midwife":            "The Ministry of Health is recruiting skilled midwives for Mbarara district health facilities to conduct deliveries, provide antenatal and postnatal care, and contribute to maternal mortality reduction targets.",
+  "nakasero-paediatric":    "Nakasero Hospital's paediatric unit seeks a dedicated nurse for inpatient child care, neonatal monitoring, immunisation support and family-centred care across a busy private paediatric ward.",
+  "ihk-mental-health":      "International Hospital Kampala requires a part-time mental health nurse to assess psychiatric inpatients, administer medication, support counselling sessions and coordinate discharge planning within a multidisciplinary team.",
+  "nile-internship":        "Nile Community Clinic in Jinja offers 8–12 week supervised internships for student nurses and midwives needing clinical placement hours in outpatient, maternal and community health settings.",
+  "kisumu-nurse":           "Kisumu County Hospital in western Kenya recruits experienced staff nurses for general ward rotations, offering a competitive local government salary and structured professional development pathways.",
+  "nairobi-midwife":        "A Nairobi private maternal centre seeks a registered midwife with active normal delivery skills, antenatal care experience and the ability to support high-risk pregnancy management.",
+  "nhs-band5":              "NHS Manchester Trust offers Tier 2 visa sponsorship for Uganda-registered nurses with NMC eligibility, to work in general medical or surgical wards on permanent Band 5 contracts with full relocation support.",
+  "nhs-theatre":            "Birmingham NHS Trust requires an experienced scrub nurse or ODP for a busy surgical suite covering orthopaedic, general and vascular lists, with strong Band 6 development and leadership prospects.",
+  "aged-care-australia":    "Melbourne aged care provider seeks a compassionate RN for residential aged care, including medication management, care planning, family communication and AHPRA regulatory compliance.",
+  "icu-australia":          "Queensland Health ICU contract for a senior critical care nurse with ventilator, arterial line and haemodynamic monitoring experience at a major Brisbane tertiary referral hospital.",
+  "dubai-dha":              "Dubai-based recruiter sourcing DHA-licensed nurses for general medical wards across public and private hospitals, with competitive AED salary, employer visa processing and housing allowance.",
+  "abu-dhabi-paeds":        "SEHA Abu Dhabi Medical City requires a skilled paediatric nurse for inpatient child care, NICU support and family education, with DOH licence assistance provided for eligible candidates.",
+  "saudi-midwife":          "A Riyadh Saudi Ministry of Health affiliate seeks a qualified midwife for a labour ward contract covering normal deliveries, CTG interpretation and postnatal mother-baby care.",
+  "qatar-theatre":          "Hamad Medical Corporation-affiliated theatre unit in Doha requires a senior scrub nurse across general, orthopaedic and urology surgical lists, with QCHP registration support and a tax-free salary.",
+  "reliefweb-field-nurse":  "NGO humanitarian field nurse for displaced populations in South Sudan, delivering primary care, emergency triage, antenatal services and health promotion in low-resource camp and field settings.",
+  "who-consultant":         "WHO Africa Region nursing consultancy for a senior professional with public health expertise to support health systems strengthening, policy review and clinical guideline development across multiple countries.",
+  "clinic-parttime":        "Kampala Family Clinic offers flexible part-time nursing shifts covering outpatient consultations, injections, wound care and minor procedures — a good option for experienced nurses seeking work-life balance.",
+  "mental-health-ngo":      "StrongMinds Uganda delivers group therapy for depression in Mbale and seeks a nurse with mental health experience to facilitate sessions, train community health workers and monitor patient outcomes."
+};
+
 function careerJobs() {
   // Prefer live JSON loaded at startup (state.careerJobs), else fall back to seed
   if (state.careerJobs && state.careerJobs.length) return state.careerJobs;
@@ -6446,7 +6474,7 @@ function careerJobs() {
     duration: type === "Contract" ? "6-24 months" : type === "Internship" ? "8-12 weeks" : "Permanent",
     applyUrl: careerJobApplyUrl(employer, title, isExternal),
     source: "seed",
-    description: `${title} opportunity for Uganda nursing and midwifery professionals seeking structured growth, safe practice and patient-centred care.`,
+    description: JOB_DESCRIPTIONS[id] || `${title} opportunity for Uganda nursing and midwifery professionals seeking structured growth, safe practice and patient-centred care.`,
     responsibilities: [
       "Deliver safe nursing care and accurate documentation.",
       "Collaborate with multidisciplinary teams and follow facility protocols.",
@@ -6631,7 +6659,11 @@ function careerAvatar(name, size = "") {
 }
 
 function renderCareerHero() {
-  const jobCount = careerJobs().length;
+  const jobs = careerJobs();
+  const jobCount = jobs.length;
+  const countriesCount = new Set(jobs.map(j => j.region)).size;
+  const levelsCount   = new Set(jobs.map(j => j.level)).size;
+  const specialitiesCount = new Set(jobs.map(j => j.speciality)).size;
   return `
     <section class="careers-hero">
       <div class="careers-hero-overlay" aria-hidden="true"></div>
@@ -6661,15 +6693,15 @@ function renderCareerHero() {
               <span>Active Listings</span>
             </div>
             <div class="careers-stat-card">
-              <strong>7</strong>
+              <strong>${countriesCount}</strong>
               <span>Countries</span>
             </div>
             <div class="careers-stat-card">
-              <strong>8</strong>
+              <strong>${levelsCount}</strong>
               <span>Career Levels</span>
             </div>
             <div class="careers-stat-card">
-              <strong>12+</strong>
+              <strong>${specialitiesCount}</strong>
               <span>Specialities</span>
             </div>
           </div>
@@ -6862,7 +6894,7 @@ function renderEmployerSpotlight() {
               <p>${escapeHtml(employer.location)} · ${escapeHtml(employer.type)}</p>
               <div class="career-badge-row">${employer.roles.map((role) => careerBadge(role, "speciality")).join("")}</div>
               ${employer.hiring ? `<span class="hiring-badge">${icon("badgeCheck")} Currently Hiring</span>` : ""}
-              <a href="/careers">View Jobs ${icon("arrowRight")}</a>
+              <a href="/careers" data-career-mode="jobs" data-career-employer="${escapeHtml(employer.name)}">${employer.hiring ? "View Jobs" : "See Profile"} ${icon("arrowRight")}</a>
             </article>
           `;}).join("")}
         </div>
@@ -6879,7 +6911,7 @@ function renderJobAlerts() {
         <div>
           <h2>Never Miss a Nursing Job</h2>
           <p>Get new jobs matching your preferences delivered to your inbox</p>
-          <small>No spam. Unsubscribe anytime.</small>
+          <small>No spam. Unsubscribe anytime. <em>Email alerts are in beta — we'll confirm your spot when activated.</em></small>
         </div>
         <form class="career-alert-form" data-career-alert-form>
           <input type="email" placeholder="Email address" aria-label="Email address" required>
@@ -7038,13 +7070,13 @@ function renderCareerPathways() {
 
 function countryGuides() {
   return [
-    ["🇬🇧", "United Kingdom", "NHS · NMC Registration", "GBP 28,000-40,000", "NMC", "OSCE + CBT", "Health & Care Worker Visa", ["UNMC Certificate", "IELTS 7.0+", "Good Standing Letter", "Degree preferred"], 3, "6-18 months"],
-    ["🇦🇺", "Australia", "AHPRA registration", "AUD 75,000-110,000", "AHPRA", "NCLEX / IELTS", "Subclass 190 / 482", ["UNMC registration", "English test", "Skills assessment", "Experience evidence"], 4, "9-24 months"],
-    ["🇦🇪", "UAE", "DHA · HAAD · MOH exam", "AED 6,000-10,000", "DHA / DOH / MOH", "Prometric exam", "Employer visa", ["Two years experience", "DataFlow verification", "Good standing", "Agency screening"], 3, "3-9 months"],
-    ["🇸🇦", "Saudi Arabia", "SCFHS registration", "SAR 5,000-9,000", "SCFHS", "Prometric exam", "Employer visa", ["Certificate verification", "Experience letters", "Good standing", "Medical check"], 3, "3-10 months"],
-    ["🇶🇦", "Qatar", "QCHP registration", "QAR 8,000-12,000", "QCHP", "Prometric exam", "Employer visa", ["DataFlow", "Experience evidence", "Good standing", "Interview"], 3, "4-10 months"],
-    ["🇿🇦", "South Africa", "SANC registration", "ZAR 260,000-430,000", "SANC", "SAQA recognition", "Work visa", ["SAQA evaluation", "Council verification", "Good standing", "English documents"], 4, "9-18 months"],
-    ["🇰🇪", "Kenya/Tanzania", "EAC mobility", "Regional scale", "National councils", "Council recognition", "Regional work permit", ["UNMC status", "Good standing", "Transcript", "Employer letter"], 2, "2-6 months"]
+    ["🇬🇧", "United Kingdom", "NHS · NMC Registration", "GBP 28,000-40,000", "NMC", "OSCE + CBT", "Health & Care Worker Visa", ["UNMC Certificate", "IELTS 7.0+", "Good Standing Letter", "Degree preferred"], 3, "6-18 months", "https://www.nmc.org.uk/registration/joining-the-register/nurses-and-midwives/"],
+    ["🇦🇺", "Australia", "AHPRA registration", "AUD 75,000-110,000", "AHPRA", "NCLEX / IELTS", "Subclass 190 / 482", ["UNMC registration", "English test", "Skills assessment", "Experience evidence"], 4, "9-24 months", "https://www.ahpra.gov.au/Registration/New-Registrants.aspx"],
+    ["🇦🇪", "UAE", "DHA · HAAD · MOH exam", "AED 6,000-10,000", "DHA / DOH / MOH", "Prometric exam", "Employer visa", ["Two years experience", "DataFlow verification", "Good standing", "Agency screening"], 3, "3-9 months", "https://www.dha.gov.ae/en/DHA-Individual-License/Pages/Nurses.aspx"],
+    ["🇸🇦", "Saudi Arabia", "SCFHS registration", "SAR 5,000-9,000", "SCFHS", "Prometric exam", "Employer visa", ["Certificate verification", "Experience letters", "Good standing", "Medical check"], 3, "3-10 months", "https://www.scfhs.org.sa/en/Registration/"],
+    ["🇶🇦", "Qatar", "QCHP registration", "QAR 8,000-12,000", "QCHP", "Prometric exam", "Employer visa", ["DataFlow", "Experience evidence", "Good standing", "Interview"], 3, "4-10 months", "https://qchp.com.qa/Nurse/"],
+    ["🇿🇦", "South Africa", "SANC registration", "ZAR 260,000-430,000", "SANC", "SAQA recognition", "Work visa", ["SAQA evaluation", "Council verification", "Good standing", "English documents"], 4, "9-18 months", "https://www.sanc.co.za/registration/"],
+    ["🇰🇪", "Kenya/Tanzania", "EAC mobility", "Regional scale", "National councils", "Council recognition", "Regional work permit", ["UNMC status", "Good standing", "Transcript", "Employer letter"], 2, "2-6 months", "https://www.nursing.or.ke/"]
   ];
 }
 
@@ -7054,7 +7086,7 @@ function renderInternationalGuides() {
       <div class="container">
         <div class="section-head"><div><h2>Work Abroad as a Nurse</h2><p>Your Uganda qualification can open doors globally. Here's what you need for each destination.</p></div></div>
         <div class="country-grid">
-          ${countryGuides().map(([flag, country, subtitle, salary, body, exam, visa, requirements, difficulty, timeline]) => `
+          ${countryGuides().map(([flag, country, subtitle, salary, body, exam, visa, requirements, difficulty, timeline, regUrl]) => `
             <article class="country-card">
               <header><span>${flag}</span><div><h3>${escapeHtml(country)}</h3><p>${escapeHtml(subtitle)}</p></div></header>
               <div class="country-facts">
@@ -7065,7 +7097,7 @@ function renderInternationalGuides() {
               </div>
               <div class="country-requirements"><strong>Requirements:</strong>${requirements.map((item) => `<span>${icon("checkCircle")} ${escapeHtml(item)}</span>`).join("")}</div>
               <div class="country-rating"><span>${"●".repeat(difficulty)}${"○".repeat(5 - difficulty)}</span><em>${difficulty > 3 ? "Challenging" : difficulty > 2 ? "Moderate" : "Accessible"}</em><strong>${escapeHtml(timeline)}</strong></div>
-              <a href="/careers">View Full Guide ${icon("arrowRight")}</a>
+              <a href="${escapeHtml(regUrl)}" target="_blank" rel="noopener noreferrer">Official Registration Guide ${icon("externalLink")}</a>
             </article>
           `).join("")}
         </div>
@@ -7115,7 +7147,7 @@ function renderCareerResources() {
     ["Cover Letter Guide", "Sample nursing cover letters and phrases that work.", "Open Guide", "Free"],
     ["Interview Preparation", "20 common questions, STAR examples and panel preparation.", "Practice", "Free"],
     ["Nursing Portfolio Guide", "What to include and how to present it digitally.", "Open Guide", "Coming Soon"],
-    ["Salary Guide Uganda 2024", "Salary ranges by level, speciality and sector.", "View Guide", "Free"]
+    ["Salary Guide Uganda 2025", "Salary ranges by level, speciality and sector.", "View Guide", "Free"]
   ];
   return `
     <section id="cv-resources" class="section career-hub-section">
@@ -7662,16 +7694,130 @@ function renderCareers() {
   `;
 }
 
+// Resource-specific checklist content for career resource downloads
+const RESOURCE_CHECKLISTS = {
+  "Uganda Nursing CV Template": {
+    intro: "Uganda Nursing CV — Key Sections to Include",
+    items: [
+      "Personal details: full name, UNMC registration number, phone, email",
+      "Professional summary: 2-3 sentences on your level, speciality and key strength",
+      "Clinical experience: facility, role, dates, key duties and achievements",
+      "Education: certificate/diploma/degree, institution, year, grades",
+      "UNMC registration status and licence expiry date",
+      "CPD activities: trainings, workshops, seminars attended",
+      "Speciality skills: specific clinical procedures you are competent in",
+      "Languages spoken and community languages if applicable",
+      "Two professional referees (name, title, organisation, contact)"
+    ]
+  },
+  "International Nursing CV Template": {
+    intro: "International Nursing CV (UK/Australia Style) — Key Sections",
+    items: [
+      "Professional registration: NMC/AHPRA number or eligibility status",
+      "Personal statement: 4-6 lines covering speciality, values and career aim",
+      "Employment history in reverse chronological order",
+      "Evidence of clinical competencies and mandatory training",
+      "English language test results (IELTS/OET band scores)",
+      "Continuing Professional Development (CPD) log summary",
+      "Achievements: awards, quality improvement projects, presentations",
+      "References: available on request (do not include contact details)"
+    ]
+  },
+  "Cover Letter Guide": {
+    intro: "Nursing Cover Letter — Structure Checklist",
+    items: [
+      "Opening paragraph: state the post and where you saw it",
+      "Why this employer: show you know the facility or organisation",
+      "Clinical fit: match your skills/experience to their job description",
+      "Career motivation: why this role, why now",
+      "Evidence: one specific clinical achievement or patient outcome",
+      "Professionalism: mention your registration and language skills if relevant",
+      "Closing: state availability, thank the reader, invite interview"
+    ]
+  },
+  "Interview Preparation": {
+    intro: "Nursing Interview Preparation Checklist",
+    items: [
+      "Research the facility: services, values, patient population",
+      "Review the job description and match it to your experience",
+      "Prepare STAR examples for 5 common clinical scenarios",
+      "Know your registration status and CPD hours",
+      "Prepare 3 questions to ask the panel",
+      "Check uniform/attire requirements before the interview",
+      "Bring: printed CV, registration certificate, ID, transcripts",
+      "Confirm time, location (or video link) the day before"
+    ]
+  },
+  "Nursing Portfolio Guide": {
+    intro: "Nursing Portfolio — What to Include",
+    items: [
+      "Registration and licence documentation",
+      "Academic certificates and transcripts",
+      "CPD evidence: certificates, attendance sheets, reflections",
+      "Clinical placement records and competency sign-offs",
+      "Performance appraisals or supervisor feedback",
+      "In-service training and workshop certificates",
+      "Any publications, presentations or quality improvement work",
+      "Reference letters from supervisors or educators"
+    ]
+  },
+  "Salary Guide Uganda 2025": {
+    intro: "Uganda Nursing Salary Reference Guide 2025",
+    items: [
+      "Student/Intern: UGX 300K-600K (allowance only)",
+      "Staff Nurse (Graduate): UGX 1.2M-2.0M per month",
+      "Staff Nurse (Experienced): UGX 2.0M-3.0M per month",
+      "Senior Staff Nurse: UGX 3.0M-4.2M per month",
+      "Charge Nurse / Ward In-Charge: UGX 3.5M-4.5M per month",
+      "Nursing Officer: UGX 4.0M-5.5M per month",
+      "Principal Nursing Officer: UGX 5.5M-7.0M per month",
+      "Chief Nursing Officer: UGX 7.0M+ per month",
+      "ICU/Theatre speciality uplift: +20-35% above general ward rate",
+      "NGO/International Agency roles: USD/competitive package — not UGX scale"
+    ]
+  }
+};
+
 function downloadCareerChecklist(title) {
   const safeTitle = String(title || "career-checklist");
+  // Check licensing guides first
   const guide = licensingGuides().find(([guideTitle]) => guideTitle === safeTitle);
-  const docs = guide ? guide[3] : ["Updated CV", "Registration certificate", "Academic transcript", "Good standing letter", "Referees"];
+  if (guide) {
+    const [, , steps, docs] = guide;
+    const stepList = (steps || "").split("|").filter(Boolean);
+    const content = [
+      `${safeTitle} — Nursing Uganda Checklist`,
+      "─".repeat(50),
+      "",
+      "STEPS",
+      ...stepList.map((s, i) => `  ${i + 1}. ${s}`),
+      "",
+      "DOCUMENTS REQUIRED",
+      ...docs.map((doc) => `  [ ] ${doc}`),
+      "",
+      "─".repeat(50),
+      "Source: nursinguganda.com | Print or save as PDF."
+    ].join("\n");
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(new Blob([content], { type: "text/plain" }));
+    link.download = `${slugify(safeTitle)}-checklist.txt`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    return;
+  }
+  // Check resource-specific content
+  const resource = RESOURCE_CHECKLISTS[safeTitle];
+  const intro = resource ? resource.intro : safeTitle;
+  const items = resource ? resource.items : ["Updated CV", "Registration certificate", "Academic transcript", "Good standing letter", "Two professional referees"];
   const content = [
-    `${safeTitle} - Nursing Uganda Checklist`,
+    `${intro}`,
+    "─".repeat(60),
     "",
-    ...docs.map((doc) => `[ ] ${doc}`),
+    ...items.map((item) => `  [ ] ${item}`),
     "",
-    "Print this checklist or save it as PDF from your browser."
+    "─".repeat(60),
+    "Source: nursinguganda.com | Print or save as PDF."
   ].join("\n");
   const link = document.createElement("a");
   link.href = URL.createObjectURL(new Blob([content], { type: "text/plain" }));
@@ -7758,83 +7904,314 @@ function medicalInstrumentCategories() {
     return state.medicalInstrumentLibrary.categories;
   }
 
+  // Items format: [name, use, preparation, safety, examPoints[], types]
   const categoryData = [
     {
       title: "Assessment And Vital Signs",
       body: "Tools used for baseline observations, triage and routine patient monitoring.",
       items: [
-        ["Stethoscope", "Auscultates heart, lung and bowel sounds.", "Clean earpieces and diaphragm before and after use.", "Do not press too hard during chest assessment."],
-        ["Blood pressure machine", "Measures systolic and diastolic blood pressure.", "Select the correct cuff size and position at heart level.", "Avoid measuring on an injured arm or arm with an IV line."],
-        ["Thermometer", "Checks body temperature.", "Use the correct route and disinfect reusable probes.", "Document route because oral, axillary and rectal readings differ."],
-        ["Pulse oximeter", "Measures oxygen saturation and pulse rate.", "Place on a warm clean finger or toe.", "Poor perfusion, nail polish and movement may affect readings."],
-        ["Glucometer", "Checks capillary blood glucose.", "Use a clean lancet and compatible test strip.", "Dispose of sharps safely and follow infection prevention."]
+        ["Stethoscope",
+         "Auscultates heart, lung and bowel sounds during clinical assessment. Essential for detecting murmurs, crackles, wheeze and absent bowel sounds.",
+         "Clean earpieces and diaphragm with an alcohol wipe before and after each patient. Warm the diaphragm by rubbing it before chest placement.",
+         "Do not press too hard during auscultation. Ensure earpieces are angled forward for effective sound transmission and do not share without decontamination.",
+         ["Name the instrument: stethoscope; used for auscultation of body sounds.", "State its uses: heart sounds (S1/S2), lung sounds (wheeze, crackle, absent), bowel sounds.", "Identify parts: earpieces, tubing, diaphragm (high frequency sounds) and bell (low frequency sounds).", "Preparation: clean diaphragm with alcohol wipe; warm before placing on skin.", "Safety: decontaminate between patients; do not share without cleaning.", "Auscultate apex, pulmonary and tricuspid areas for heart; two anterior and two posterior lung fields."],
+         "Diaphragm side (high-pitched sounds) and bell side (low-pitched); adult and paediatric models"],
+        ["Blood pressure machine",
+         "Measures systolic and diastolic blood pressure. Normal adult reading is below 120/80 mmHg.",
+         "Select the correct cuff size — the bladder should encircle at least 80% of the upper arm. Position the arm at heart level with the palm facing up.",
+         "Never measure on an injured, cannulated or fistula arm. Avoid measuring immediately after exertion, pain or anxiety.",
+         ["Name the instrument; state it measures blood pressure in mmHg.", "State normal adult range: systolic below 120 mmHg, diastolic below 80 mmHg.", "State correct cuff selection: bladder should cover 80% of upper arm circumference.", "Position: patient seated, arm supported at heart level, palm facing up.", "Preparation: confirm manometer reads zero, check tubing for cracks and cuff inflation.", "Safety: never use on a fistula arm, arm with IV access or post-mastectomy side."],
+         "Aneroid (manual), digital automatic; cuff sizes: infant, child, standard adult, large adult"],
+        ["Thermometer",
+         "Measures body temperature in degrees Celsius. Normal oral temperature is 36.1–37.2°C; rectal is 0.5°C higher and axillary 0.5°C lower.",
+         "Select the correct route for the patient. Clean reusable probes with alcohol wipe or use disposable probe covers.",
+         "Always document the route alongside the reading. Rectal thermometers are contraindicated in patients with rectal surgery, neutropenia or low platelet count.",
+         ["Name the instrument: thermometer; measures temperature in degrees Celsius.", "State normal ranges: oral 36.1–37.2°C, axillary 35.5–37.0°C, rectal 36.6–38.0°C.", "Identify types: digital oral, tympanic (ear), infrared forehead, axillary.", "Preparation: select correct route, use probe cover or clean probe, wait for stable reading.", "Safety: always document the route; rectal route is contraindicated after rectal surgery.", "Fever is defined as above 38°C; hypothermia as below 35°C."],
+         "Digital oral, tympanic (ear), temporal (forehead), axillary, rectal"],
+        ["Pulse oximeter",
+         "Measures peripheral oxygen saturation (SpO2) and pulse rate non-invasively using a light sensor. Normal SpO2 in healthy adults is 95–100%.",
+         "Place the probe on a warm, clean fingertip. Remove nail polish if present and ensure the finger is still.",
+         "Poor peripheral perfusion, cold extremities, nail polish, movement and carbon monoxide exposure can all affect accuracy. Always interpret alongside respiratory rate and patient appearance.",
+         ["Name the instrument; state it measures oxygen saturation (SpO2) and pulse rate.", "State normal SpO2 range: 95–100% in healthy adults; 92–95% may be acceptable in stable COPD.", "Apply on a warm fingertip; remove nail varnish; wait for stable waveform.", "Preparation: ensure probe fits snugly; position hand at rest; wait before recording.", "Safety: inaccurate in cold extremities, shock, arrhythmias and carbon monoxide poisoning.", "Always pair SpO2 with respiratory rate, skin colour and work of breathing."],
+         "Finger clip (adult and paediatric), handheld probe, wrist and neonatal wrap-around types"],
+        ["Glucometer",
+         "Measures capillary blood glucose at the bedside. Normal fasting glucose is 3.9–5.5 mmol/L (70–99 mg/dL).",
+         "Use calibrated, in-date strips matched to the device. Perform hand hygiene, wipe the fingertip and use a new lancet for each patient.",
+         "Never share lancets between patients. Document the result with time, site and patient name.",
+         ["Name the instrument: glucometer; measures capillary blood glucose.", "State normal fasting glucose: 3.9–5.5 mmol/L; above 7.0 mmol/L fasting is diagnostic of diabetes.", "Preparation: calibrate device, check strip expiry, perform hand hygiene before and after.", "Technique: fingerstick on the side of the fingertip; apply blood to strip promptly.", "Sharps safety: dispose lancet directly into sharps container immediately after use.", "Document result, time, patient name and action taken for any abnormal reading."],
+         "Portable handheld; test strips vary by brand and must match the device model"],
+        ["Percussion hammer",
+         "Elicits deep tendon reflexes during neurological assessment. Used on the patellar, Achilles, biceps and brachioradialis tendons.",
+         "Hold the handle at the end and use a swift wrist flick to strike the tendon directly. Ensure the patient's limb is relaxed and correctly positioned.",
+         "Do not strike with excessive force. Compare both sides and grade reflexes consistently from 0 (absent) to 4+ (very brisk with clonus).",
+         ["Name the instrument: tendon or percussion hammer; used for deep tendon reflex testing.", "State reflex sites and spinal levels: patellar L3–L4, Achilles S1–S2, biceps C5–C6.", "Technique: hold handle at the end; use a quick wrist-flick motion; strike tendon directly.", "Normal response: brisk reflex; abnormal findings — absent suggests lower motor neurone lesion, exaggerated suggests upper motor neurone lesion.", "If reflexes absent: reinforce using Jendrassik manoeuvre (patient interlocks and pulls fingers).", "Grade and compare bilaterally; document symmetry and grade in patient notes."],
+         "Taylor (tomahawk) style, Queen Square style; adult and paediatric sizes"],
+        ["Penlight",
+         "A handheld torch used to assess pupil reaction and inspect the oral cavity, throat, ears and wound areas.",
+         "Test pupils in a dimly lit room for accurate assessment. Move the light from the side rather than directly in front of the face.",
+         "Do not shine directly into the eye for a prolonged period. Document pupil size in millimetres, shape, and both direct and consensual reactions separately.",
+         ["Name the instrument: penlight or diagnostic torch; used for pupil assessment and cavity inspection.", "State normal pupil size: 2–5 mm; equal bilaterally; round shape; brisk reaction to light.", "Test direct response (ipsilateral pupil constricts) and consensual response (contralateral constricts).", "Abnormal findings to report: unequal pupils, absent reaction, dilated fixed pupils — neurological emergency.", "Preparation: test in reduced lighting; approach from the side; move light briskly.", "Document each eye separately: size in mm, equality, shape and reaction speed (brisk, sluggish, absent)."],
+         "Penlight with clip, diagnostic handle; pupil gauge scale often printed on casing"],
+        ["Peak flow meter",
+         "Measures peak expiratory flow rate (PEFR) in litres per minute to assess airway obstruction in asthma and COPD management.",
+         "The patient stands or sits upright, takes a full deep breath, seals the lips around the mouthpiece and blows out as hard and fast as possible.",
+         "Record the best of three attempts. Compare the result to the patient's personal best or predicted value for their height, age and sex.",
+         ["Name the instrument: peak flow meter; measures peak expiratory flow rate (PEFR) in L/min.", "Normal PEFR varies by age, sex and height; always compare to patient's personal best.", "Instruct patient: stand or sit upright, full breath in, lips sealed, one hard fast exhalation.", "Record best of three attempts; below 50% of personal best requires urgent clinical action.", "Safety: use a clean mouthpiece or disposable filter for each patient.", "OSCE zones: green above 80%, yellow 50–80%, red below 50% of personal best."],
+         "Standard adult (60–800 L/min), paediatric (30–400 L/min); low-range for severe disease"]
       ]
     },
     {
       title: "Injection And IV Care",
       body: "Equipment used for safe injections, cannulation, fluids and medication administration.",
       items: [
-        ["Syringes", "Draws and administers measured medication volumes.", "Check size, sterility and expiry before use.", "Use one syringe for one patient and one procedure only."],
-        ["Needles", "Pierces tissue or vial rubber for injections and drug preparation.", "Choose gauge and length according to route and patient.", "Never recap used needles unless local safety policy requires a protected method."],
-        ["IV cannula", "Provides venous access for fluids and medications.", "Prepare skin, select vein and secure after insertion.", "Monitor for infiltration, phlebitis and infection."],
-        ["Giving set", "Connects IV fluid container to venous access.", "Prime the line and remove air before connection.", "Regulate flow rate and check patient response."],
-        ["Tourniquet", "Temporarily distends veins for cannulation or blood sampling.", "Apply above the intended site and release promptly.", "Do not leave on for prolonged periods."]
+        ["Syringes",
+         "Draw and deliver accurate, measured volumes of medication, fluid or blood. Available in multiple sizes and tip configurations for different routes.",
+         "Check the size, sterility, packaging integrity and expiry before use. Draw up medication using aseptic technique without contaminating the barrel.",
+         "Use each syringe for one patient and one procedure only. Discard directly into a sharps container without recapping the needle.",
+         ["Name the instrument: syringe; used for accurate measurement and delivery of fluids or medication.", "Identify parts: barrel (graduated), plunger, tip (Luer-lock or slip-tip).", "Select correct size: 1 mL for insulin/tuberculin, 5–10 mL for IM or IV, 20–60 mL for irrigation.", "Preparation: check packaging, sterility and expiry; draw up without contaminating the barrel.", "Safety: one syringe equals one patient and one procedure only; never share.", "Disposal: into sharps container immediately after use; do not recap or bend the needle."],
+         "1 mL tuberculin, 2.5 mL, 5 mL, 10 mL, 20 mL, 50/60 mL; Luer-lock and slip-tip variants"],
+        ["Needles",
+         "Pierce tissue, skin or vial septa for injections, drug preparation and blood sampling. Higher gauge number means a finer needle diameter.",
+         "Select gauge and length based on the injection route and patient body size. Check packaging and confirm the bevel is undamaged before use.",
+         "Never recap a used needle with two hands. Use the single-hand scoop technique only when recapping is unavoidable under local policy.",
+         ["Name the instrument: hypodermic needle; used to pierce tissue or vial septa for injections.", "State gauge selection by route: IM 21–23G, subcutaneous 25–27G, IV 18–22G, intradermal 25–27G.", "Higher gauge number equals finer needle; lower gauge equals wider bore.", "Preparation: remove cover without contaminating the bevel; choose correct gauge for drug viscosity.", "Safety: never recap with two hands; use one-hand scoop method only if absolutely required.", "Disposal: directly into sharps bin immediately after use; never force, bend or break a needle."],
+         "Gauges 18G to 27G; lengths 10 mm to 40 mm; colour-coded by gauge in many systems"],
+        ["IV cannula",
+         "Provides continuous venous access for fluids, blood products and intravenous medication. Inserted percutaneously and secured with a transparent dressing.",
+         "Select the vein, clean skin with antiseptic, apply tourniquet, insert bevel-up at 15–30°, advance into vein on flashback of blood, remove stylet and secure.",
+         "Flush after insertion to confirm patency. Monitor every shift for infiltration, phlebitis, pain and swelling.",
+         ["Name the instrument: peripheral IV cannula; provides continuous venous access.", "State gauge and colour coding: 14G grey (major trauma), 16G brown, 18G green, 20G pink, 22G blue.", "Insertion technique: bevel up at 15–30°, advance on blood flashback, remove stylet, flush.", "Preparation: tourniquet 10 cm above site, clean skin, let it dry, prime extension set.", "Safety: confirm blood return and patency; observe for swelling (infiltration) and redness (phlebitis).", "Change peripheral cannula site every 72–96 hours or sooner if complications appear."],
+         "14G–24G; colour-coded; with or without injection port; winged butterfly for fragile veins"],
+        ["Giving set",
+         "Connects an IV fluid container to a patient's venous access for controlled fluid delivery. Standard giving sets deliver 20 drops per mL.",
+         "Spike the bag aseptically, squeeze the drip chamber to half-full, prime the tubing fully to remove all air bubbles before connecting to the patient.",
+         "Calculate and set the correct flow rate. Change the giving set every 72 hours for standard fluids, every 24 hours for blood products.",
+         ["Name the instrument: IV giving set; connects IV fluid to the patient's venous access.", "Identify components: spike, drip chamber, roller clamp, injection port, connector.", "Drop factor: standard 20 drops/mL; blood or colloid set 15 drops/mL; micro-drip 60 drops/mL.", "Priming: spike bag, squeeze drip chamber to half, open clamp to fill line, check no air bubbles.", "Safety: remove all air before connecting to patient; label tubing with start date and time.", "Change every 72 hours for standard IV fluids and every 24 hours for blood and lipid infusions."],
+         "Standard (20 drops/mL), blood (15 drops/mL), burette or micro-drip (60 drops/mL), paediatric sets"],
+        ["Tourniquet",
+         "Temporarily distends veins to improve visibility and access for blood sampling or IV cannulation. Applied 5–10 cm proximal to the intended site.",
+         "Apply firmly enough to distend the vein without causing discoloration. Ask the patient to clench and open the fist several times.",
+         "Release the tourniquet as soon as blood flow begins or the cannula is secured. Never leave in place for longer than two minutes.",
+         ["Name the instrument: tourniquet; temporarily distends veins for venous access.", "Apply 5–10 cm above the intended site; snug but not painful.", "Preparation: use a clean or single-use tourniquet; apply over clothing if needed for comfort.", "Ask patient to clench and open fist several times to distend the vein.", "Safety: release immediately once blood flows or cannula is secured; never exceed two minutes.", "Do not apply over an infected area, wound, oedema, fistula or existing IV line."],
+         "Latex-free flat band (most common), Velcro strap; single-use preferred to prevent cross-infection"]
       ]
     },
     {
       title: "Dressing And Wound Care",
       body: "Instruments used during wound cleaning, dressing, minor procedures and infection prevention.",
       items: [
-        ["Dressing tray", "Holds sterile supplies for wound care.", "Arrange sterile items before exposing the wound.", "Maintain the sterile field throughout the procedure."],
-        ["Kidney dish", "Receives used swabs, small instruments or fluids.", "Keep clean and within easy reach.", "Do not mix clean and contaminated items."],
-        ["Artery forceps", "Clamps bleeding vessels or holds tissue during procedures.", "Check locking mechanism and sterility.", "Use gently to avoid unnecessary tissue trauma."],
-        ["Dissecting forceps", "Holds tissue, gauze or dressing materials.", "Choose toothed or non-toothed type based on tissue handling.", "Avoid touching sterile tips with bare hands."],
-        ["Bandage scissors", "Cuts bandages and dressings safely.", "Use blunt tip toward the patient.", "Clean after use and store safely."]
+        ["Dressing tray",
+         "Holds all sterile supplies needed for wound cleaning and dressing procedures. Assembled aseptically before the procedure begins.",
+         "Prepare using a non-touch sterile technique. Arrange the largest sterile items first, then smaller items on top in the order they will be used.",
+         "Maintain the sterile field throughout. If any item falls outside the sterile zone or is contaminated, discard and replace it immediately.",
+         ["Name the instrument: dressing tray; holds sterile supplies for wound care procedures.", "Typical contents: dressing pack, gauze, forceps, antiseptic, appropriate dressing, tape.", "Preparation: perform hand hygiene; open packs without contaminating inner contents; arrange in use order.", "Sterile field rule: never reach over it; no unsterile items enter the field; work from centre outward.", "Safety: if the sterile field is breached in any way, discard all items and restart with fresh supplies.", "OSCE tip: explain each item's purpose and demonstrate hand hygiene before touching the tray."],
+         "Stainless steel reusable tray or single-use cardboard procedure pack; sizes vary by procedure"],
+        ["Kidney dish",
+         "A bean-shaped concave receptacle used to receive soiled swabs, small instruments, fluid or waste during clinical procedures.",
+         "Use a separate clean kidney dish for sterile items and another for waste. Ensure the dish is clean before placing anything sterile in it.",
+         "Never mix clean and contaminated items in the same dish. Decontaminate stainless steel dishes according to facility protocol after use.",
+         ["Name the instrument: kidney dish; holds instruments, swabs or collects fluids during procedures.", "Identify its characteristic shape: kidney or bean-shaped with concave centre.", "Use one dish for clean items and a separate dish for contaminated waste — never mix the two.", "Preparation: ensure the dish is clean and dry before placing any sterile items in it.", "Safety: a contaminated dish must be treated as clinical waste; never reuse without decontamination.", "Decontaminate stainless steel dishes per facility policy before autoclaving for reuse."],
+         "Stainless steel reusable (250–500 mL) or disposable; various sizes"],
+        ["Artery forceps",
+         "Haemostatic clamps used to compress bleeding vessels, hold tissue or secure drains. The ratchet mechanism locks the clamp in place.",
+         "Check that the ratchet locks and releases smoothly before use. Apply with the curve facing away from underlying structures.",
+         "Use the minimum force needed to stop bleeding. Avoid crushing vessel walls unnecessarily as this damages tissue and delays healing.",
+         ["Name the instrument: artery forceps (haemostatic or mosquito forceps); clamps vessels and holds tissue.", "Identify the ratchet locking mechanism: one click closes lightly; additional clicks increase force.", "Types: straight or curved; mosquito (small vessels), Kelly or Rochester (larger vessels).", "Preparation: confirm sterility; test the ratchet opens and closes correctly before use.", "Application: place curve away from deeper structures; clamp vessel at right angles.", "Safety: apply minimum necessary force; do not leave clamped tissue unattended."],
+         "Mosquito (small vessels), standard, Kelly (large vessels); straight or curved; ratcheted handles"],
+        ["Dissecting forceps",
+         "Handle tissue, swabs, dressings or wound edges during procedures requiring precision. Available in toothed and non-toothed designs.",
+         "Select non-toothed forceps for dressing changes and toothed forceps when a secure grip on firm tissue is required.",
+         "Never touch the sterile tips with bare hands. Hold the forceps between thumb, index and middle fingers for controlled manipulation.",
+         ["Name the instrument: dissecting or tissue forceps; holds tissue, gauze or dressings.", "Identify types: toothed (traumatic, firm grip on fascia) and non-toothed or smooth (atraumatic for delicate tissue).", "Select non-toothed for wound care and dressings; toothed for suturing and tissue grasping.", "Preparation: check sterility and tip alignment; hold by the body, not the tips.", "Safety: never touch sterile tips with bare hands; avoid toothed forceps on fragile tissue.", "Correct grip: thumb and ring finger in handles; index finger on hinge for control."],
+         "Non-toothed McIndoe, toothed Adson (1 × 2 teeth); lengths 12–20 cm"],
+        ["Bandage scissors",
+         "Cut bandages, dressings and clothing safely without injuring the patient. The angled lower blade has a blunt tip designed to slide safely under bandages.",
+         "Insert the lower blade between the bandage and skin before cutting. Keep the blunt tip against the skin at all times.",
+         "Always announce cutting to the patient before each cut. Inspect blade sharpness before each procedure and store safely after use.",
+         ["Name the instrument: bandage scissors (Lister scissors); cut bandages and dressings safely.", "Identify the key feature: the blunt angled lower blade that slides safely under bandages.", "Preparation: confirm scissors are clean and sharp; carry safely with tips pointing down.", "Technique: insert lower blade between dressing and skin; cut upward away from the patient.", "Safety: blunt tip always toward patient skin; announce each cut before making it.", "Clean after use; inspect blades; never use dressing scissors for other cutting tasks."],
+         "Lister (angled lower blade), standard curved bandage scissors; stainless steel, lightweight"]
       ]
     },
     {
       title: "Midwifery And Obstetric Care",
       body: "Common instruments for antenatal assessment, labour monitoring and delivery support.",
       items: [
-        ["Fetoscope", "Listens to fetal heart sounds.", "Position correctly after palpating fetal lie.", "Count fetal heart rate for a full minute when concerned."],
-        ["Vaginal speculum", "Visualizes the cervix and vaginal walls.", "Use correct size, lubrication and privacy.", "Explain the procedure and maintain dignity."],
-        ["Cord clamp", "Clamps the umbilical cord after birth.", "Apply securely before cutting the cord.", "Check for bleeding from the cord stump."],
-        ["Delivery set", "Contains sterile instruments for conducting delivery.", "Confirm all items before second stage or procedure.", "Maintain asepsis and prepare newborn care items."],
-        ["Sponge holding forceps", "Holds swabs during cleaning or obstetric procedures.", "Confirm sterility before use.", "Use carefully to prevent tissue injury."]
+        ["Fetoscope",
+         "An acoustic device for auscultating fetal heart sounds during antenatal visits. It transmits sounds through bone conduction without requiring electricity.",
+         "Palpate fetal position using Leopold's manoeuvres to locate the fetal back before applying. Apply the fetoscope firmly over the back and count for a full minute.",
+         "Simultaneously palpate the mother's radial pulse to distinguish fetal from maternal sounds. A fetal heart rate below 110 or above 160 bpm requires immediate assessment.",
+         ["Name the instrument: Pinard fetoscope; auscultates fetal heart sounds during pregnancy.", "State normal fetal heart rate: 110–160 beats per minute.", "Preparation: perform Leopold's manoeuvres to identify fetal back before placing the fetoscope.", "Count for 60 seconds; simultaneously palpate maternal pulse to distinguish fetal from maternal sounds.", "Safety: FHR below 110 or above 160 bpm, or irregular rhythm — report immediately.", "Reassess after repositioning if sounds are unclear; try the opposite fetal side."],
+         "Pinard (trumpet-shaped metal or plastic); monaural; no battery required"],
+        ["Vaginal speculum",
+         "Visualises the vaginal walls and cervix during gynaecological examination, cervical assessment or procedures such as PAP smear.",
+         "Select the correct size, warm and lubricate the speculum. Position the patient in the lithotomy position, obtain consent and ensure privacy.",
+         "Insert at 45° downward then rotate to horizontal. Open blades slowly and never force the speculum. Explain all sensations beforehand.",
+         ["Name the instrument: vaginal speculum; visualises cervix and vaginal walls.", "Identify types: Cusco or bivalve (duckbill) for cervical access; Sims' single blade for vaginal wall examination.", "Preparation: select correct size, warm, lubricate; obtain verbal consent; position patient and ensure privacy.", "Insertion: tilt 45° downward, rotate to horizontal, open blades slowly after full insertion.", "Safety: never force; if resistance is met, reassess; do not proceed against patient discomfort.", "Document findings: cervical appearance, discharge colour and character, lesions and any bleeding."],
+         "Cusco small, medium and large; Sims' single blade; metal reusable or disposable plastic"],
+        ["Cord clamp",
+         "Applied to the umbilical cord after birth to prevent bleeding before and after cord cutting. Applied as two separate clamps prior to cutting between them.",
+         "Apply the first clamp 2–3 cm from the baby's umbilicus and the second clamp 2 cm further along. Cut between the two clamps with sterile scissors.",
+         "Confirm the clamp is locked correctly and inspect the stump in the early newborn period. Report any bleeding immediately.",
+         ["Name the instrument: cord clamp (Hollister clamp); prevents umbilical cord bleeding after delivery.", "Apply first clamp 2–3 cm from baby's abdomen; second clamp 2 cm distally.", "Confirm cord pulsation has ceased or follow early or delayed cord clamping protocol before applying.", "Preparation: sterile clamp within reach before second stage of labour begins.", "Cut cord between the two clamps using sterile scissors; inspect and document cord vessel count.", "Safety: inspect cord stump hourly in early newborn period; report any bleeding immediately."],
+         "Plastic Hollister disposable clamp; cord tie as low-resource alternative"],
+        ["Delivery set",
+         "A sterile instrument pack containing everything needed to conduct a normal vaginal delivery and provide immediate newborn care.",
+         "Check all items are present, sterile and within expiry before second stage begins. Arrange on a sterile surface within arm's reach.",
+         "Maintain strict aseptic technique throughout. Count all instruments before and after delivery.",
+         ["Name the instrument set: sterile delivery set; used for normal vaginal delivery.", "Typical contents: two cord clamps, sterile scissors, artery forceps, kidney dish, gauze, swabs, sterile gloves.", "Preparation: check all items are present, sterile and unexpired before second stage begins.", "Arrange on a sterile trolley within reach; open only when delivery is imminent.", "Safety: count instruments before and after; maintain strict aseptic technique at all times.", "OSCE tip: name each item and state its purpose when presenting the delivery set."],
+         "Pre-packaged sterile delivery kit; contents vary by facility level and national protocol"],
+        ["Sponge holding forceps",
+         "Also called ring or swab-holding forceps — holds swabs, gauze or sponges during antiseptic skin preparation and obstetric or gynaecological procedures.",
+         "Load the swab firmly in the ring so it does not slip. Dip in antiseptic solution and wring out excess before use.",
+         "Rinse the antiseptic-soaked swab in sterile water before vaginal application to prevent mucosal irritation.",
+         ["Name the instrument: sponge holding forceps (ring or swab-holding forceps); holds swabs for cleansing.", "Identify the large ring-ended tips designed to grip gauze or sponges securely.", "Used for antiseptic skin preparation before procedures: perineal or abdominal cleaning.", "Preparation: confirm sterility; grip swab firmly in the rings; soak and wring out excess antiseptic.", "Safety: rinse antiseptic-soaked swab in sterile water before vaginal application.", "Use a fresh swab for each new area; work from clean to dirty — centre outward."],
+         "Straight and curved ring forceps; large ring sponge-holding vs small ring swab; stainless steel"],
+        ["Doppler fetal monitor",
+         "An electronic device that amplifies fetal heart sounds using ultrasound, enabling earlier and clearer fetal heart rate assessment from 12 weeks gestation.",
+         "Apply ultrasound gel to the probe head. Place over the fetal abdomen and sweep slowly to locate the fetal heart sounds.",
+         "Distinguish fetal heart rate from the maternal pulse. Normal fetal heart rate is 110–160 bpm. Confirm electronically that the rate is not reflecting maternal pulse.",
+         ["Name the instrument: hand-held Doppler fetal heart rate monitor; detects fetal heartbeat using ultrasound.", "Apply ultrasound gel before placing probe; sweep slowly over lower abdomen to locate fetal sounds.", "Normal FHR: 110–160 bpm; confirm simultaneously it is not the maternal pulse.", "Earlier detection than fetoscope: audible from approximately 12 weeks gestation.", "Safety: document date, time, FHR and any noted accelerations or decelerations.", "Abnormal: FHR below 110 or above 160 bpm, absent variability or persistent decelerations — report immediately."],
+         "Hand-held pocket Doppler; CTG transducer for continuous monitoring; requires ultrasound gel"],
+        ["Episiotomy scissors",
+         "Specifically designed scissors for making a controlled perineal incision to facilitate delivery or prevent uncontrolled tearing during the second stage of labour.",
+         "Confirm medical indication before performing episiotomy. Infiltrate local anaesthetic and wait for it to take effect before making the incision.",
+         "Make a single deliberate cut at the peak of a contraction in the mediolateral direction. Repair immediately after delivery using absorbable suture.",
+         ["Name the instrument: episiotomy scissors; used for controlled perineal incision.", "State indications: inadequate perineal stretch, fetal distress, instrumental delivery.", "Preparation: obtain consent, confirm indication, infiltrate local anaesthetic and wait for effect.", "Make a single cut at peak of contraction at a 45° mediolateral angle — avoid midline when possible.", "Safety: confirm anaesthetic effect before cutting; avoid premature or unnecessary use.", "After delivery: repair episiotomy immediately with absorbable suture; document in clinical notes."],
+         "Straight or angled blade; similar to Mayo scissors; blunt rounded tips"]
       ]
     },
     {
       title: "Sterilization And Theatre",
-      body: "Equipment used to keep instruments safe, sterile and ready for procedures.",
+      body: "Equipment used to keep instruments sterile, safe and ready for surgical and clinical procedures.",
       items: [
-        ["Autoclave", "Sterilizes instruments using steam under pressure.", "Load correctly and check cycle indicators.", "Do not use wet or damaged packs as sterile."],
-        ["Sterile packs", "Keep instruments sterile until use.", "Check expiry, dryness and intact wrapping.", "Open without contaminating contents."],
-        ["Instrument tray", "Organizes instruments for procedures.", "Arrange in order of use.", "Keep sterile and count items where required."],
-        ["Suture set", "Supports wound closure or minor surgical procedures.", "Prepare sutures, needle holder, forceps and scissors.", "Use aseptic technique and dispose sharps correctly."],
-        ["Surgical scissors", "Cuts tissue, sutures or dressings depending on type.", "Use the correct scissors for the task.", "Do not use tissue scissors for rough materials."]
+        ["Autoclave",
+         "Sterilises instruments, linen and equipment using saturated steam under high pressure. Standard cycles run at 134°C for 3 minutes or 121°C for 15 minutes.",
+         "Clean all instruments thoroughly before loading. Disassemble hinged items, arrange loosely for steam penetration and include chemical indicator strips in each load.",
+         "Never open the autoclave while pressurised. Items must be completely dry after the cycle — wet packs are no longer considered sterile and must be discarded.",
+         ["Name the instrument: autoclave; sterilises instruments using pressurised saturated steam.", "State standard cycle parameters: 134°C for 3 minutes (porous load) or 121°C for 15 minutes (gravity cycle).", "Preparation: clean instruments first; disassemble hinged items; use indicator strips or tape in each load.", "Loading rule: items should not touch; wrapped instruments must allow steam penetration to all surfaces.", "Safety: do not open while pressurised; wait for the full cooling cycle before handling.", "After cycle: check indicators have changed; dry packs only are sterile — discard wet packs immediately."],
+         "Bench-top (small clinic), portable, large vertical (hospital); gravity and pre-vacuum types"],
+        ["Sterile packs",
+         "Pre-packaged sterile items sealed and sterilised by the manufacturer or CSSD for use in clinical and surgical procedures.",
+         "Before use, check the outer packaging for tears, moisture, sterility indicator change and expiry date.",
+         "Open aseptically using the peel-apart technique. Present to the sterile field by peeling back edges without contaminating the inner contents.",
+         ["Name the item: sterile pack; contains items sterilised for use in clinical procedures.", "Inspect before use: intact packaging, sterility indicator changed to correct colour, expiry date valid, no moisture.", "Opening technique: peel apart edges from the corners; never reach inside the pack.", "Present to sterile field by peeling edges down and dropping contents directly into the field.", "Safety: wet, torn, expired or previously opened packs are no longer sterile — discard and replace.", "Store in a clean dry environment; rotate stock so nearest expiry is used first."],
+         "Individual items (gloves, gauze) or full procedure packs (suture, dressing, catheter sets)"],
+        ["Instrument tray",
+         "Organises sterile instruments for a specific procedure. Covered with a sterile drape until the procedure is ready to begin.",
+         "Arrange instruments in the order of use with most frequently needed items nearest. Count all instruments before beginning and verify count at closure.",
+         "Handle the tray from the edges only after the sterile drape is applied. Never allow unsterile hands or items to reach over or into the sterile field.",
+         ["Name the instrument: instrument or Mayo tray; organises sterile instruments for a procedure.", "Arrange in use order: instruments needed first placed nearest to the operator.", "Preparation: confirm sterility of all instruments and drape tray before the procedure begins.", "Theatre rule: count instruments, swabs and needles before and after every surgical procedure.", "Safety: handle from edges only after draping; never reach across the sterile field.", "OSCE tip: demonstrate opening instruments onto tray without contaminating the sterile field."],
+         "Flat Mayo tray, ring-handled procedure tray, back table; all stainless steel"],
+        ["Suture set",
+         "A sterile instrument set for wound closure. Contains a needle holder, dissecting forceps, suture scissors, suture material and support items.",
+         "Check the suture material type, size and expiry according to wound type and anatomical location. Mount the needle in the needle holder at the junction of the middle and distal thirds.",
+         "Handle needles only with instruments at all times — never with fingers. Count all needles before and after the procedure.",
+         ["Name the set: suture set; used for wound closure with suture material and instruments.", "Contents: needle holder, toothed dissecting forceps, suture scissors, swabs, drapes, suture material.", "Preparation: confirm suture type (absorbable vs non-absorbable), size and expiry.", "Needle holder technique: mount needle at junction of middle and distal thirds; lock at first ratchet click.", "Cut suture ends 5–10 mm from the knot; excess tails increase infection risk.", "Safety: count needles before and after; dispose into sharps bin immediately after removal."],
+         "Absorbable (Vicryl, Chromic Gut) for deep tissue; non-absorbable (Nylon, Prolene) for skin closure"],
+        ["Surgical scissors",
+         "Cut tissue, sutures or other materials during surgery and wound care. Different types are selected based on the tissue and task.",
+         "Identify the correct scissors type before use. Pass scissors to the surgeon with blades closed and rings facing the receiver.",
+         "Never use tissue scissors to cut dressings or rough material — this permanently blunts the blades. Keep separate scissors designated for each task.",
+         ["Name the instrument: surgical scissors; state that different types exist for specific tasks.", "Types: Mayo scissors (heavy tissue and fascia), Metzenbaum (delicate tissue dissection), suture scissors (cut suture only).", "Preparation: check blade sharpness and alignment; confirm sterility before use.", "Hold with thumb and ring finger in rings; index finger on one shank for control.", "Theatre technique: pass with blades closed and rings facing the receiver — never blade-first.", "Safety: use each scissors only for its designated purpose; blunt tissue scissors risk tissue trauma."],
+         "Mayo (straight or curved), Metzenbaum, suture or stitch scissors, iris scissors for fine work"]
       ]
     },
     {
       title: "Patient Care Equipment",
-      body: "Bedside tools used for comfort, elimination, oxygen support and basic ward care.",
+      body: "Bedside tools used for comfort, elimination, airway, oxygen support and basic ward nursing.",
       items: [
-        ["Bedpan", "Assists bedbound patients with elimination.", "Warm, position and support patient privacy.", "Clean promptly and observe output if needed."],
-        ["Urinal", "Collects urine for male or selected immobile patients.", "Position safely and empty after use.", "Measure and document urine output when prescribed."],
-        ["Catheter", "Drains urine from the bladder.", "Use sterile technique for insertion.", "Monitor for infection and maintain a closed drainage system."],
-        ["Suction machine", "Removes secretions from airway or wound areas.", "Check pressure, tubing and container before use.", "Use correct pressure and avoid prolonged airway suction."],
-        ["Oxygen cylinder", "Stores oxygen for oxygen therapy.", "Check gauge, regulator and flow meter.", "Keep away from flames and secure cylinder upright."]
+        ["Bedpan",
+         "Assists bedbound patients with elimination when they cannot use a toilet. Available in standard and fracture designs for different patient mobility levels.",
+         "Warm the bedpan before use. Raise the head of the bed and assist the patient to lift their hips for positioning.",
+         "Remove the bedpan promptly after use. Assess and document output if required. Offer perineal care and hand hygiene.",
+         ["Name the instrument: bedpan; assists bedbound patients with elimination.", "Identify types: standard bedpan and fracture bedpan (low-profile slipper for post-hip-surgery patients).", "Preparation: warm in warm water; bring with toilet paper, call bell and privacy screen.", "Positioning: raise head of bed, assist patient to lift hips using bent knees.", "Safety: check skin under the bedpan rim for pressure injury; never leave a patient on the pan for long.", "After use: remove promptly, measure and document output if prescribed; offer hand hygiene."],
+         "Standard round-bottom, fracture or slipper bedpan (low-profile); stainless steel or disposable"],
+        ["Urinal",
+         "Collects urine for male patients or selected immobile female patients who cannot access the toilet. The male urinal is a handheld bottle; female versions are angled or wedge-shaped.",
+         "Position carefully to prevent spillage and assist the patient to hold if needed. Ensure adequate privacy.",
+         "Empty promptly after use. Measure and document urine output if on fluid balance monitoring.",
+         ["Name the instrument: urinal; collects urine from patients unable to access the toilet.", "Identify types: male bottle urinal; female slipper or wedge urinal for bed use.", "Preparation: bring clean urinal; assist patient with positioning and privacy.", "Safety: never leave a full urinal in the bed or on a surface where spillage can occur.", "Empty, rinse and dry after use; measure and document urine on fluid balance chart if required.", "Monitor urine colour, clarity and odour; report haematuria, dark urine or reduced output."],
+         "Male bottle urinal (plastic or metal), female slipper urinal; single-use disposable or reusable"],
+        ["Catheter",
+         "A flexible tube inserted into the bladder to drain urine. Used for urinary retention, accurate output monitoring or when the patient cannot void independently.",
+         "Obtain consent and confirm prescription. Prepare a sterile catheterisation pack and select the correct catheter size in French (Fr).",
+         "Use strict aseptic technique throughout. Inflate the balloon only after urine flow confirms bladder placement. Maintain a closed drainage system.",
+         ["Name the instrument: urinary catheter; drains urine from the bladder.", "Identify types: Foley indwelling (balloon-retained), straight in-out (single use), coude (angled tip for obstruction).", "Select correct size: 12–18 Fr for adults; smaller sizes for females and paediatric patients.", "Preparation: obtain consent, sterile pack, correct catheter size, sterile gloves and lubricant.", "Insertion: use strict aseptic technique; inflate balloon only after urine flow confirms bladder placement.", "Safety: maintain closed drainage system; document insertion date and time; monitor for CAUTI signs daily."],
+         "Foley 2-way, Foley 3-way (for irrigation), straight in-out catheter; sizes 8–24 Fr; latex or silicone"],
+        ["Suction machine",
+         "Removes secretions from the airway, oral cavity or wound areas using negative pressure. Essential in airway management, post-operative care and emergency response.",
+         "Check the machine before use: confirm pressure setting, verify the collection bottle is empty and check all tubing and catheter connections.",
+         "Insert the suction catheter without applying suction. Apply suction only during withdrawal using a rotating motion. Limit each pass to 10–15 seconds.",
+         ["Name the instrument: suction machine; removes secretions from airway or wound areas using negative pressure.", "State pressure settings: 80–150 mmHg adults; 60–100 mmHg children; 40–60 mmHg neonates.", "Check before use: vacuum pressure, collection bottle (empty and sealed), connecting tubing, suction catheter.", "Technique: pre-oxygenate; insert without suction applied; apply suction during withdrawal with rotation.", "Safety: limit each pass to 10–15 seconds; allow re-oxygenation between passes.", "Monitor for SpO2 drop, patient distress, haemorrhage or change in secretion character."],
+         "Portable electric, wall-mounted, foot-operated (manual); Yankauer rigid or flexible suction catheter"],
+        ["Oxygen cylinder",
+         "Stores compressed medical-grade oxygen for therapeutic administration. Used for hypoxia, respiratory distress, resuscitation and peri-operative care.",
+         "Check the cylinder gauge for adequate pressure before starting. Confirm the regulator is correctly fitted and set the flow meter to the prescribed rate in litres per minute.",
+         "Keep away from flames, oil and grease. Secure cylinders upright to prevent them falling. Never adjust the flow rate without a prescription.",
+         ["Name the instrument: medical oxygen cylinder; stores compressed oxygen for therapeutic use.", "Identify components: cylinder, valve, pressure gauge, regulator, flow meter and outlet port.", "Preparation: check gauge (above 200 PSI adequate), attach regulator, set flow rate per prescription.", "Typical flow rates: 1–4 L/min for nasal cannula; 10–15 L/min for non-rebreather mask.", "Safety: no flames, oil or smoking near the cylinder; secure upright; store away from heat.", "Monitor SpO2 during oxygen therapy; document start time, flow rate and patient response."],
+         "F cylinder (common portable), E cylinder (small portable), J cylinder (large ward); piped wall oxygen also used"],
+        ["Nasogastric tube",
+         "A flexible tube passed through the nostril into the stomach for enteral feeding, medication delivery, gastric decompression or diagnostic aspiration.",
+         "Measure from the nose to the ear to the xiphisternum to estimate insertion depth. Insert with the patient upright and ask them to swallow small sips of water as the tube passes.",
+         "Always confirm placement before any use: aspirate stomach contents and test pH (must be 5.5 or below) or confirm on chest X-ray per facility policy. Never assume correct placement.",
+         ["Name the instrument: nasogastric tube (NG tube); passes into stomach for feeding, medication or decompression.", "Measure insertion depth: nose tip to earlobe to xiphoid process gives approximate length.", "Preparation: patient sitting upright; lubricate tube; ask patient to swallow as tube advances.", "Confirmation before any use: aspirate and test pH — must be 5.5 or below for gastric placement.", "Safety: NEVER use without confirmed placement — misplaced NG tube entering the lung is life-threatening.", "Secure externally with tape; document insertion length, confirmation method, date and time."],
+         "Fine-bore 8 Fr (for enteral feeding); wide-bore 14–18 Fr (decompression and aspiration); Ryle's tube"],
+        ["Nebulizer",
+         "Converts liquid medication into a fine aerosol mist that can be inhaled deep into the airways. Used for bronchodilators, corticosteroids and mucolytics.",
+         "Measure the prescribed medication dose into the nebulizer cup and add normal saline to a total of 4–5 mL if required. Connect the mouthpiece or face mask and set the air or oxygen flow.",
+         "Treatment usually takes 10–15 minutes. Monitor the patient throughout for bronchospasm response, SpO2 and improvement in breath sounds.",
+         ["Name the instrument: nebulizer; converts liquid medication to aerosol mist for inhalation.", "Common medications nebulized: salbutamol (bronchodilator), ipratropium, budesonide, normal saline.", "Preparation: measure prescribed dose; top up to 4–5 mL with normal saline if required.", "Technique: fit mouthpiece (preferred over mask); hold upright; drive with 6–8 L/min airflow.", "Safety: monitor respiratory rate, SpO2 and breath sounds during and after treatment.", "After use: rinse cup, mouthpiece and mask with water; dry and store; replace filter per schedule."],
+         "Jet nebulizer (air or oxygen driven), ultrasonic nebulizer; face mask or mouthpiece attachment"]
+      ]
+    },
+    {
+      title: "Airway And Breathing",
+      body: "Equipment used to maintain a patent airway, support ventilation and deliver supplemental oxygen in emergency and acute care.",
+      items: [
+        ["Oropharyngeal airway",
+         "A rigid curved device placed in the mouth to hold the tongue forward and maintain a clear airway in an unconscious patient. Also called the Guedel airway.",
+         "Select the correct size by measuring from the patient's incisors to the angle of the jaw. In adults, insert with the curve upward, then rotate 180° as it passes the back of the mouth.",
+         "Only use in patients who are fully unconscious without a gag reflex. Remove immediately if the patient begins to regain consciousness or vomit.",
+         ["Name the instrument: oropharyngeal airway (OPA or Guedel airway); maintains patent airway in unconscious patients.", "Sizing: measure from corner of mouth or incisors to angle of jaw; sizes 0 (neonate) to 4 (large adult); colour-coded.", "Insertion technique (adult): curve pointing upward, insert, rotate 180° at soft palate, advance until flange rests on lips.", "Indication: unconscious patient with absent gag reflex only.", "Safety: confirmed absent gag reflex required; never use in a semi-conscious or conscious patient.", "Remove immediately if the patient gags, regains consciousness or vomits; have suction ready."],
+         "Guedel sizes 0–4 (neonatal to large adult); colour-coded by size; rigid curved plastic"],
+        ["Nasopharyngeal airway",
+         "A soft flexible tube inserted through a nostril into the nasopharynx to maintain a clear airway. Better tolerated than an OPA in semi-conscious patients.",
+         "Select the correct size by measuring from the nostril to the tragus of the ear. Lubricate well before insertion. Insert with the bevel facing the nasal septum.",
+         "Use with caution when a base-of-skull fracture is suspected. Insert the safety pin through the flange before insertion to prevent migration into the airway.",
+         ["Name the instrument: nasopharyngeal airway (NPA); maintains airway in semi-conscious or trismus patients.", "Sizing: measure from nostril to tragus of ear; sizes 6–9 mm internal diameter.", "Preparation: lubricate well with water-based lubricant; attach safety pin to flange.", "Insertion: bevel toward the nasal septum; insert perpendicular to face, then advance gently.", "Indication: preferred when OPA cannot be used — semi-conscious, jaw injury, dental trauma.", "Contraindication: suspected base-of-skull fracture; severe nasal injury; coagulopathy."],
+         "Sizes 6–9 mm internal diameter; soft PVC; often colour-coded by size"],
+        ["Bag-valve mask",
+         "A manual resuscitator that delivers positive pressure ventilation when a patient cannot breathe adequately. Commonly called the Ambu bag.",
+         "Create a proper mask seal using the EC-clamp technique with one hand. Squeeze the bag with the other hand to deliver a breath over one second.",
+         "Use high-flow oxygen (10–15 L/min) connected to the reservoir bag to achieve high-concentration oxygen delivery. Two-person technique is always preferable.",
+         ["Name the instrument: bag-valve-mask (BVM or Ambu bag); delivers positive pressure ventilation manually.", "Components: self-inflating bag, one-way valve, face mask, oxygen inlet port and reservoir bag.", "Two-person technique preferred: one maintains mask seal (EC-clamp), one squeezes the bag.", "EC-clamp grip: three fingers under mandible (E), thumb and index form a C on the mask to create seal.", "Ventilation rate: squeeze over 1 second; observe chest rise; 10–12 breaths per minute in adults.", "Safety: avoid over-ventilation and gastric inflation; use oxygen reservoir bag to maximise FiO2."],
+         "Adult, child and infant sizes; reusable silicone or single-use; disposable face masks"],
+        ["Oxygen mask",
+         "Delivers supplemental oxygen to patients who require higher concentrations than nasal prongs can provide. Three types are used depending on the required FiO2.",
+         "Select the correct mask type based on the required oxygen concentration. Fit snugly over nose and mouth and mould the metal nose clip to the patient's face.",
+         "Non-rebreather masks require adequate oxygen flow to keep the reservoir bag inflated — do not allow flow to drop below 10 L/min.",
+         ["Name the instrument: oxygen face mask; delivers supplemental oxygen at various concentrations.", "Types: simple face mask (35–55% FiO2 at 6–10 L/min), Venturi mask (precise 24–60%), non-rebreather (80–95% at 10–15 L/min).", "Preparation: confirm mask type; fit snugly; mould nose clip; connect to oxygen source.", "Venturi mask: use correct colour-coded adaptor for prescribed FiO2; adaptor states required flow rate.", "Safety: non-rebreather reservoir bag must stay inflated throughout — set minimum 10 L/min.", "Monitor SpO2, respiratory rate and patient comfort every 30–60 minutes during oxygen therapy."],
+         "Simple face mask, Venturi (colour-coded adaptors), non-rebreather (NRB) with reservoir bag"],
+        ["Nasal cannula",
+         "Delivers low-flow supplemental oxygen through two short prongs placed in the nostrils. The most comfortable and widely used oxygen delivery device for stable patients.",
+         "Insert both prongs into the nostrils with the curve pointing downward. Loop the tubing over each ear and adjust the slider under the chin.",
+         "Each litre per minute increases FiO2 by approximately 4% above room air (21%). Humidify at flow rates above 4 L/min to prevent nasal drying.",
+         ["Name the instrument: nasal cannula (nasal prongs); delivers low-flow supplemental oxygen.", "Flow rate and approximate FiO2: 1 L/min = 24%, 2 = 28%, 3 = 32%, 4 = 36%, 5 = 40%, 6 = 44%.", "Indication: stable patients needing mild supplemental oxygen who can breathe spontaneously.", "Preparation: insert prongs downward into nostrils; loop tubing behind ears; adjust chin slide.", "Safety: humidify at above 4 L/min to prevent nasal drying and discomfort; inspect nostrils daily for pressure injury.", "Limitation: effective only in nasal breathers; standard prongs maximum flow is 6 L/min."],
+         "Standard adult, paediatric and neonatal sizes; high-flow nasal cannula (HFNC) for high-dependency settings"]
       ]
     }
   ];
 
   return categoryData.map((category) => ({
     ...category,
-    items: category.items.map(([name, use, preparation, safety]) => ({
+    items: category.items.map(([name, use, preparation, safety, examPoints, types]) => ({
       name,
       slug: slugify(name),
       use,
       preparation,
       safety,
+      examPoints: examPoints || null,
+      types: types || null,
       category: category.title
     }))
   }));
@@ -7879,7 +8256,23 @@ function medicalInstrumentImageMap() {
     "urinal": ["assets/images/source-library/nursing-uganda-giving-a-urinal-1-001-4cdd0670.png", "Patient urinal care reference"],
     "catheter": ["assets/images/source-library/nursing-uganda-catheter-001-56996e14.jpg", "Urinary catheter reference"],
     "suction-machine": ["assets/images/source-library/nursing-uganda-suctioning-001-42122ec0.jpg", "Suctioning equipment and procedure reference"],
-    "oxygen-cylinder": ["assets/images/source-library/nursing-uganda-oxygen-administration-001-8b0fc992.jpg", "Oxygen administration reference"]
+    "oxygen-cylinder": ["assets/images/source-library/nursing-uganda-oxygen-administration-001-8b0fc992.jpg", "Oxygen administration reference"],
+    // Assessment additions
+    "percussion-hammer": ["assets/images/source-library/nursing-uganda-requirements-radial-pulse-001-233e723c.webp", "Neurological assessment and reflex testing"],
+    "penlight": ["assets/images/source-library/nursing-uganda-requirements-radial-pulse-001-233e723c.webp", "Clinical assessment tools reference"],
+    "peak-flow-meter": ["assets/images/source-library/nursing-uganda-oxygen-administration-001-8b0fc992.jpg", "Respiratory function assessment"],
+    // Midwifery additions
+    "doppler-fetal-monitor": ["assets/images/source-library/nursing-uganda-midwifery-1024x546-001-5661a73d.jpg", "Fetal heart monitoring in midwifery practice"],
+    "episiotomy-scissors": ["assets/images/source-library/nursing-uganda-midwifery-1024x546-001-5661a73d.jpg", "Midwifery instruments for delivery"],
+    // Patient care additions
+    "nasogastric-tube": ["assets/images/source-library/nursing-uganda-urinary-catheter-001-36b710e8.webp", "Tubular clinical device for enteral access"],
+    "nebulizer": ["assets/images/source-library/nursing-uganda-oxygen-administration-001-8b0fc992.jpg", "Respiratory medication delivery device"],
+    // Airway category
+    "oropharyngeal-airway": ["assets/images/source-library/nursing-uganda-oxygen-administration-001-8b0fc992.jpg", "Airway adjunct for unconscious patients"],
+    "nasopharyngeal-airway": ["assets/images/source-library/nursing-uganda-suctioning-001-42122ec0.jpg", "Nasopharyngeal airway device"],
+    "bag-valve-mask": ["assets/images/source-library/nursing-uganda-oxygen-administration-001-8b0fc992.jpg", "Bag-valve-mask for manual ventilation"],
+    "oxygen-mask": ["assets/images/source-library/nursing-uganda-oxygen-administration-001-8b0fc992.jpg", "Oxygen face mask for supplemental oxygen therapy"],
+    "nasal-cannula": ["assets/images/source-library/nursing-uganda-oxygen-administration-001-8b0fc992.jpg", "Nasal cannula for low-flow oxygen delivery"]
   };
 }
 
@@ -8041,19 +8434,31 @@ function renderMedicalInstruments() {
     </section>
     <section class="section soft-section">
       <div class="container content-panel instrument-guide">
-        <h2>How To Revise Instruments</h2>
+        <h2>How To Revise Instruments For OSCEs</h2>
         <div class="guide-grid">
           <div>
-            <h3>Know The Use</h3>
-            <p>Be able to explain what the instrument is used for and when it should be selected.</p>
+            <h3>1. Name It Clearly</h3>
+            <p>State the full instrument name and its category. In an OSCE, examiners expect the correct clinical term — not a description of the object.</p>
           </div>
           <div>
-            <h3>Handle Safely</h3>
-            <p>Revise cleanliness, sterility, sharps safety, patient privacy and infection prevention.</p>
+            <h3>2. State The Use</h3>
+            <p>Explain exactly what the instrument measures, delivers or assists. Include the clinical context and why it is selected over alternatives.</p>
           </div>
           <div>
-            <h3>Prepare Correctly</h3>
-            <p>Check function, gather accessories, arrange the tray and document care where required.</p>
+            <h3>3. Know Types And Sizes</h3>
+            <p>Most instruments come in multiple sizes or types. Knowing which type applies to which patient or procedure shows examiner-level depth.</p>
+          </div>
+          <div>
+            <h3>4. Prepare Before Use</h3>
+            <p>State what you check before using the instrument — sterility, calibration, size selection, patient positioning and any accessories needed.</p>
+          </div>
+          <div>
+            <h3>5. State The Safety Points</h3>
+            <p>Cover sharps safety, infection control, contraindications and the risk of the specific instrument. Every instrument has at least one patient safety point.</p>
+          </div>
+          <div>
+            <h3>6. Practise Out Loud</h3>
+            <p>Run through each instrument verbally as if presenting at a station. Timed practice with a partner or recorder catches gaps that silent reading misses.</p>
           </div>
         </div>
       </div>
@@ -8157,8 +8562,8 @@ function renderMedicalInstrumentDetail(instrument) {
               <h3>What to remember first</h3>
               <div>
                 <span><strong>Category</strong>${escapeHtml(instrument.category)}</span>
-                <span><strong>Core skill</strong>Identify, prepare, use safely</span>
-                <span><strong>Exam focus</strong>${examPoints.length} practical points</span>
+                <span><strong>${instrument.types ? "Types / Sizes" : "Core skill"}</strong>${instrument.types ? escapeHtml(instrument.types) : "Identify, prepare, use safely"}</span>
+                <span><strong>OSCE points</strong>${examPoints.length} specific exam points</span>
               </div>
             </div>
           </div>
@@ -8966,6 +9371,22 @@ function render() {
       if (currentRoute()[0] !== "careers") { setRoute("/careers"); return; }
       render();
       requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: "smooth" }));
+    });
+  });
+
+  // Employer name links — filter jobs board to that employer
+  app.querySelectorAll("[data-career-employer]").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      const employer = link.dataset.careerEmployer || "";
+      state.careerMode = "jobs";
+      state.careerSearch = employer;
+      if (currentRoute()[0] !== "careers") { setRoute("/careers"); return; }
+      render();
+      requestAnimationFrame(() => {
+        const toolbar = app.querySelector(".career-board-toolbar");
+        if (toolbar) toolbar.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
     });
   });
 
