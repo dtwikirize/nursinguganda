@@ -9008,24 +9008,24 @@ async function communityPostAnswer(questionId) {
     render();
     return;
   }
-  // Increment answer_count on the question
-  await client.from("community_questions")
-    .update({ answer_count: (state.community.selectedQuestion?.answer_count || 0) + 1, is_answered: true })
-    .eq("id", questionId);
+  // answer_count is incremented automatically by the DB trigger trg_answer_count_inc
   state.community.answerBody    = "";
   state.community.answerLoading = false;
   state.community.questionAnswers = [...state.community.questionAnswers, data];
-  if (state.community.selectedQuestion) state.community.selectedQuestion.answer_count = (state.community.selectedQuestion.answer_count || 0) + 1;
+  if (state.community.selectedQuestion) {
+    state.community.selectedQuestion.answer_count = (state.community.selectedQuestion.answer_count || 0) + 1;
+    state.community.selectedQuestion.is_answered  = true;
+  }
   showToast("Answer posted!", "success");
   render();
 }
 
-async function communityUpvote(targetType, targetId, currentUpvotes) {
+async function communityUpvote(targetType, targetId) {
   const client = sb();
   if (!client) return;
   requireLogin("community", "Sign in to upvote questions and answers.", async function() {
-    const table = targetType === "question" ? "community_questions" : "community_answers";
-    await client.from(table).update({ upvotes: (currentUpvotes || 0) + 1 }).eq("id", targetId);
+    // Uses the nu_upvote(target, tid) security-definer RPC defined in the migration
+    await client.rpc("nu_upvote", { target: targetType, tid: targetId });
     if (targetType === "question") communityLoadQuestions();
     else if (state.community.selectedQuestion) communityLoadQuestion(state.community.selectedQuestion.id);
   });
@@ -14533,7 +14533,7 @@ function render() {
   });
   app.querySelectorAll("[data-comm-upvote]").forEach(btn => {
     btn.addEventListener("click", () => {
-      communityUpvote(btn.dataset.commUpvote, btn.dataset.commUpvoteId, parseInt(btn.dataset.commUpvoteCount || "0", 10));
+      communityUpvote(btn.dataset.commUpvote, btn.dataset.commUpvoteId);
     });
   });
 
