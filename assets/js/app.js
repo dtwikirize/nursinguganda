@@ -2741,53 +2741,68 @@ function renderFooter() {
   const instrumentCount = allMedicalInstruments().length;
 
   const exploreLinks = [
-    ["/notes", "Notes", "bookOpen"],
-    ["/courses/curriculum", "Courses", "graduationCap"],
-    ["/search", "Search", "search"],
-    ["/dictionary", "Dictionary", "fileText"],
-    ["/resources/medical-instruments", "Instruments", "stethoscope"],
-    ["/resources/schools", "Schools", "school"],
-    ["/resources/past-papers", "Past Papers", "clipboardList"],
-    ["/careers", "Careers", "briefcaseMedical"]
+    ["/notes",                       "Notes",          "bookOpen"],
+    ["/courses/curriculum",          "Courses",        "graduationCap"],
+    ["/search",                      "Search",         "search"],
+    ["/dictionary",                  "Dictionary",     "fileText"],
+    ["/resources/medical-instruments","Instruments",   "stethoscope"],
+    ["/resources/schools",           "Schools",        "school"],
+    ["/resources/past-papers",       "Past Papers",    "clipboardList"],
+    ["/careers",                     "Jobs Board",     "briefcaseMedical"]
   ];
   const subjectLinks = [
-    ["anatomy|physiology", "Anatomy & Physiology", "activity"],
-    ["medical|surgical", "Medical Surgical", "stethoscope"],
-    ["midwifery|obstetric|newborn", "Midwifery", "heartPulse"],
-    ["pharmacology|drug|medicine", "Pharmacology", "pill"],
-    ["community|public health", "Community Health", "home"],
-    ["mental|psychiatric", "Mental Health", "heartPulse"]
+    ["anatomy|physiology",           "Anatomy & Physiology", "activity"],
+    ["medical|surgical",             "Medical Surgical",     "stethoscope"],
+    ["midwifery|obstetric|newborn",  "Midwifery",            "heartPulse"],
+    ["pharmacology|drug|medicine",   "Pharmacology",         "pill"],
+    ["community|public health",      "Community Health",     "home"],
+    ["mental|psychiatric",           "Mental Health",        "heartPulse"]
+  ];
+  const careerLinks = [
+    ["/careers/cv-uganda",           "Uganda Nursing CV",    "fileCv"],
+    ["/careers/cv-international",    "International CV",     "globe"],
+    ["/careers/cover-letter",        "Cover Letters",        "mail"],
+    ["/careers/interview-prep",      "Interview Prep",       "users"],
+    ["/careers/portfolio",           "Portfolio Guide",      "clipboardList"],
+    ["/careers/salary-guide",        "Salary Guide 2025",    "banknote"]
   ];
 
   return `
     <footer class="site-footer">
-      <div class="container footer-shell">
+      <div class="container">
+
         <div class="footer-top">
           <div class="footer-brand">
             <a class="footer-logo" href="/notes" aria-label="Nursing Uganda home">
               <span class="brand-mark">NU</span>
-              <div><strong>Nursing Uganda</strong><small>Revision &amp; Resources</small></div>
+              <div>
+                <strong>Nursing Uganda</strong>
+                <small>Revision &amp; Resources</small>
+              </div>
             </a>
-            <p>Structured notes, courses, dictionary and resources for Uganda nursing and midwifery students — free and offline-ready.</p>
+            <p class="footer-tagline">Structured notes, courses, dictionary and career resources for Uganda nursing and midwifery students — free and offline-ready.</p>
             <div class="footer-stats" aria-label="Quick stats">
               <span>${icon("graduationCap")}<strong>${programmeCount || 7}</strong> programmes</span>
               <span>${icon("bookOpen")}<strong>${totals.courseUnits || 95}</strong> units</span>
-              <span>${icon("fileText")}<strong>${dictionaryCount}</strong> terms</span>
-              <span>${icon("stethoscope")}<strong>${instrumentCount}</strong> instruments</span>
+              <span>${icon("fileText")}<strong>${dictionaryCount || 40}</strong> terms</span>
+              <span>${icon("stethoscope")}<strong>${instrumentCount || 110}</strong> instruments</span>
             </div>
           </div>
-          <div class="footer-cta-aside">
-            <span class="eyebrow footer-cta-eyebrow">Start Studying</span>
+          <div class="footer-cta-panel">
+            <span class="footer-cta-eyebrow">${icon("graduationCap")} Start Studying</span>
             <h3>Ready to revise?</h3>
-            <p>Jump into notes, test yourself with quizzes, or explore the full dictionary.</p>
-            <div class="footer-cta-aside-actions">
+            <p>Jump into structured notes, test yourself with quizzes, or explore the full dictionary — all free, offline-ready.</p>
+            <div class="footer-cta-actions">
               ${buttonLink("/notes", "Browse Notes", "primary", "bookOpen")}
               ${buttonLink("/resources/quizzes", "Take a Quiz", "secondary", "helpCircle")}
             </div>
           </div>
         </div>
+
+        <div class="footer-divider"></div>
+
         <div class="footer-nav">
-          <nav class="footer-nav-col" aria-label="Explore links">
+          <nav class="footer-nav-col" aria-label="Explore">
             <h4>Explore</h4>
             ${exploreLinks.map(([href, label, iconName]) => footerLink(href, label, iconName)).join("")}
           </nav>
@@ -2795,26 +2810,34 @@ function renderFooter() {
             <h4>Subjects</h4>
             ${subjectLinks.map(([seed, label, iconName]) => footerLink("/search", label, iconName, `data-search-seed="${escapeHtml(seed)}"`)).join("")}
           </nav>
+          <nav class="footer-nav-col" aria-label="Career Resources">
+            <h4>Career Resources</h4>
+            ${careerLinks.map(([href, label, iconName]) => footerLink(href, label, iconName)).join("")}
+          </nav>
           <nav class="footer-nav-col" aria-label="More">
             <h4>More</h4>
-            ${footerLink("/resources/licensing", "Licensing & CPD", "badgeCheck")}
-            ${footerLink("/resources/student-support", "Student Support", "heartPulse")}
-            ${footerLink("/progress", "My Progress", "chartLine")}
-            ${footerLink("/privacy", "Privacy Policy", "shield")}
-            ${footerLink("/disclaimer", "Disclaimer", "fileText")}
-            ${footerLink("/corrections", "Corrections", "pencil")}
+            ${footerLink("/resources/licensing",      "Licensing & CPD",   "badgeCheck")}
+            ${footerLink("/resources/student-support","Student Support",    "heartPulse")}
+            ${footerLink("/progress",                 "My Progress",       "chartLine")}
+            ${footerLink("/flashcards",               "Flashcards",        "bookOpen")}
+            ${footerLink("/privacy",                  "Privacy Policy",    "shield")}
+            ${footerLink("/corrections",              "Corrections",       "pencil")}
           </nav>
         </div>
+
         <div class="footer-bottom">
-          <span class="footer-disclaimer">${icon("badgeCheck")} Use for revision. Confirm clinical decisions with tutors and current guidance.</span>
-          <span>&copy; ${new Date().getFullYear()} Nursing Uganda. All rights reserved.</span>
-          <nav class="footer-legal-links" aria-label="Legal links">
-            <a href="/privacy">Privacy</a>
-            <a href="/terms">Terms</a>
-            <a href="/disclaimer">Disclaimer</a>
-            <button type="button" data-cookie-manage>Cookie Preferences</button>
-          </nav>
+          <span class="footer-disclaimer">${icon("badgeCheck")} Use for revision only. Confirm all clinical decisions with qualified tutors and current guidance.</span>
+          <div class="footer-bottom-right">
+            <span class="footer-copy">&copy; ${new Date().getFullYear()} Nursing Uganda. All rights reserved.</span>
+            <nav class="footer-legal-links" aria-label="Legal links">
+              <a href="/privacy">Privacy</a>
+              <a href="/terms">Terms</a>
+              <a href="/disclaimer">Disclaimer</a>
+              <button type="button" data-cookie-manage>Cookies</button>
+            </nav>
+          </div>
         </div>
+
         ${renderAdSlot("footer", "Footer advertisement")}
       </div>
     </footer>
