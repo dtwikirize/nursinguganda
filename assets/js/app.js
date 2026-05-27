@@ -7541,8 +7541,8 @@ function renderCareerResourcePage(slug) {
               <p class="crp-hero-desc">${escapeHtml(desc)}</p>
               <div class="crp-hero-pills">
                 <span>${icon("download")} ${templates.length} free templates</span>
-                <span>${icon("checkCircle")} Instant download</span>
-                <span>${icon("badgeCheck")} Print-ready checklist</span>
+                <span>${icon("fileText")} PDF &amp; DOC formats</span>
+                <span>${icon("badgeCheck")} 4 design styles</span>
               </div>
             </div>
           </div>
@@ -7551,14 +7551,18 @@ function renderCareerResourcePage(slug) {
 
       <div class="crp-body">
         <div class="container">
-          <div class="crp-section-head">
-            <h2>Choose a Template</h2>
-            <p>Each template downloads instantly as a structured checklist — paste into any word processor and customise for your application.</p>
+          <div class="crp-section-head crp-section-head--flex">
+            <div>
+              <h2>Choose a Template</h2>
+              <p>Download as a formatted PDF or editable Word document in your preferred style.</p>
+            </div>
+            ${/cv|cover.letter/i.test(title) ? `<button type="button" class="button primary crp-build-cv-btn" data-open-cv-gen>${icon("fileCv")} Build My CV</button>` : ""}
           </div>
           <div class="crp-template-grid">
             ${templates.map((t, i) => {
               const cl = RESOURCE_CHECKLISTS[t.label];
               const items = cl ? cl.items : [];
+              const safeSlug = `s-${i}-${t.label.replace(/[^a-z0-9]/gi,"").slice(0,14).toLowerCase()}`;
               return `
                 <article class="crp-card">
                   <div class="crp-card-header" style="background:${bg}">
@@ -7579,19 +7583,36 @@ function renderCareerResourcePage(slug) {
                     ` : ""}
                   </div>
                   <div class="crp-card-foot">
-                    <button type="button" class="crp-dl-btn" style="--btn-color:${color}" data-career-download="${escapeHtml(t.label)}">
-                      ${icon("download")} Download Template
-                    </button>
-                    <span class="crp-free-badge">Free</span>
+                    <div class="crp-style-row">
+                      <span class="crp-style-lbl">Style:</span>
+                      ${CV_STYLES.map(s => `<label class="crp-style-chip" title="${s.name} — ${s.desc}"><input type="radio" name="${safeSlug}" value="${s.id}"${s.id==="modern"?" checked":""}><span style="--chip-c:${s.swatch}">${s.name}</span></label>`).join("")}
+                    </div>
+                    <div class="crp-dl-row">
+                      <button type="button" class="crp-dl-btn crp-dl-btn--pdf" style="--btn-color:${color}" data-template-label="${escapeHtml(t.label)}" data-template-action="pdf">${icon("fileText")} PDF</button>
+                      <button type="button" class="crp-dl-btn crp-dl-btn--doc" style="--btn-color:${color}" data-template-label="${escapeHtml(t.label)}" data-template-action="doc">${icon("download")} DOC</button>
+                      <span class="crp-free-badge">Free</span>
+                    </div>
                   </div>
                 </article>
               `;
             }).join("")}
           </div>
 
+          ${/cv|cover.letter/i.test(title) ? `
+            <div class="crp-cv-gen-cta">
+              <div class="crp-cv-gen-cta-inner">
+                <div>
+                  <h3>Build Your Own Personalised CV</h3>
+                  <p>Enter your own name, experience and skills. Download your finished CV as PDF or Word in 4 professional design styles — free, no account needed.</p>
+                </div>
+                <button type="button" class="button primary" data-open-cv-gen>${icon("fileCv")} Open CV Generator →</button>
+              </div>
+            </div>
+          ` : ""}
+
           <div class="crp-back-row">
             ${buttonLink("/careers", "Back to Career Hub", "secondary", "arrowLeft")}
-            <p class="crp-note">Templates are guide-format checklists. Tailor each one to your specific role and facility before submitting.</p>
+            <p class="crp-note">Templates are professional-grade documents. Tailor each one to your specific role before submitting.</p>
           </div>
         </div>
       </div>
@@ -8713,6 +8734,276 @@ const RESOURCE_TEMPLATES = {
     { label: "International Destination Salary Comparison", desc: "UK, AU, Gulf, EAC comparison" }
   ]
 };
+
+// ─── CV DOCUMENT STYLES ────────────────────────────────────────────────────
+const CV_STYLES = [
+  {
+    id: "modern", name: "Modern", desc: "Clean green accent, contemporary",  swatch: "#0f7f4f",
+    css: `body{font-family:Arial,Helvetica,sans-serif;margin:0;padding:0;color:#1C1917;line-height:1.55}.cv-header{background:#0f7f4f;color:#fff;padding:36px 52px 28px}h1.cv-name{font-size:26pt;font-weight:700;margin:0 0 4px;letter-spacing:-.02em}.cv-title{font-size:12pt;opacity:.85;margin:0 0 12px}.cv-contact-bar{font-size:9pt;opacity:.8;display:flex;flex-wrap:wrap;gap:12px}.cv-body{padding:26px 52px}h2.cv-sec{font-size:9.5pt;font-weight:700;color:#0f7f4f;text-transform:uppercase;letter-spacing:.08em;border-left:4px solid #0f7f4f;padding-left:10px;margin:22px 0 8px}.cv-item{margin-bottom:14px}.cv-item-head{display:flex;justify-content:space-between;font-weight:700;font-size:10.5pt;margin-bottom:2px}.cv-item-sub{font-size:9.5pt;color:#555;margin-bottom:4px}ul{margin:4px 0;padding-left:18px}li{font-size:9.5pt;margin-bottom:3px}p{font-size:10pt;margin:0 0 8px}.skill-chips{display:flex;flex-wrap:wrap;gap:5px}.skill-chip{background:#e6f7ef;border:1px solid #b7e4cd;border-radius:3px;padding:2px 8px;font-size:9pt;color:#0f7f4f}`
+  },
+  {
+    id: "classic", name: "Classic", desc: "Timeless serif, centred header", swatch: "#1C1917",
+    css: `body{font-family:Georgia,'Times New Roman',serif;margin:0;padding:38px 56px;color:#1a1a1a;line-height:1.6}.cv-header{text-align:center;border-bottom:2px solid #1a1a1a;padding-bottom:14px;margin-bottom:18px}h1.cv-name{font-size:26pt;font-weight:700;margin:0 0 4px}.cv-title{font-size:12pt;font-style:italic;color:#444;margin:0 0 8px}.cv-contact-bar{font-size:9pt;color:#555;display:flex;justify-content:center;flex-wrap:wrap;gap:14px}h2.cv-sec{font-size:10pt;font-weight:700;text-transform:uppercase;letter-spacing:.1em;border-bottom:1.5px solid #1a1a1a;padding-bottom:3px;margin:20px 0 8px}.cv-item{margin-bottom:14px}.cv-item-head{display:flex;justify-content:space-between;font-weight:700;font-size:10.5pt;margin-bottom:2px}.cv-item-sub{font-size:9.5pt;color:#555;font-style:italic;margin-bottom:4px}ul{margin:4px 0;padding-left:20px}li{font-size:9.5pt;margin-bottom:3px}p{font-size:10pt;margin:0 0 8px}.skill-chips{display:flex;flex-wrap:wrap;gap:5px}.skill-chip{background:#f5f5f5;border:1px solid #ddd;border-radius:3px;padding:2px 8px;font-size:9pt}`
+  },
+  {
+    id: "executive", name: "Executive", desc: "Navy header, bold corporate", swatch: "#1e3a5f",
+    css: `body{font-family:Calibri,Arial,sans-serif;margin:0;padding:0;color:#1C1917;line-height:1.55}.cv-header{background:#1e3a5f;color:#fff;padding:40px 52px 28px}h1.cv-name{font-size:26pt;font-weight:700;margin:0 0 4px}.cv-title{font-size:12pt;opacity:.82;margin:0 0 12px;font-weight:300}.cv-contact-bar{font-size:9pt;opacity:.75;display:flex;flex-wrap:wrap;gap:14px}.cv-body{padding:26px 52px}h2.cv-sec{font-size:9.5pt;font-weight:700;color:#1e3a5f;text-transform:uppercase;letter-spacing:.08em;border-bottom:2px solid #1e3a5f;padding-bottom:4px;margin:22px 0 8px}.cv-item{margin-bottom:14px}.cv-item-head{display:flex;justify-content:space-between;font-weight:700;font-size:10.5pt;margin-bottom:2px}.cv-item-sub{font-size:9.5pt;color:#555;margin-bottom:4px}ul{margin:4px 0;padding-left:18px}li{font-size:9.5pt;margin-bottom:3px}p{font-size:10pt;margin:0 0 8px}.skill-chips{display:flex;flex-wrap:wrap;gap:5px}.skill-chip{background:#f0f4f8;border:1px solid #c4d3e3;border-radius:3px;padding:2px 8px;font-size:9pt;color:#1e3a5f}`
+  },
+  {
+    id: "minimalist", name: "Minimalist", desc: "Ultra-clean, spacious, understated", swatch: "#6B7280",
+    css: `body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;margin:0;padding:46px 64px;color:#222;line-height:1.65}.cv-header{margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid #e5e7eb}h1.cv-name{font-size:24pt;font-weight:300;margin:0 0 4px;letter-spacing:.02em}.cv-title{font-size:11pt;color:#666;margin:0 0 12px}.cv-contact-bar{font-size:9pt;color:#888;display:flex;flex-wrap:wrap;gap:16px}h2.cv-sec{font-size:8pt;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:#9ca3af;border-bottom:1px solid #f3f4f6;padding-bottom:6px;margin:26px 0 10px}.cv-item{margin-bottom:14px}.cv-item-head{display:flex;justify-content:space-between;font-weight:600;font-size:10.5pt;margin-bottom:2px}.cv-item-sub{font-size:9.5pt;color:#777;margin-bottom:4px}ul{margin:4px 0;padding-left:16px}li{font-size:9.5pt;margin-bottom:4px;color:#444}p{font-size:10pt;margin:0 0 8px;color:#333}.skill-chips{display:flex;flex-wrap:wrap;gap:5px}.skill-chip{background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:2px 10px;font-size:9pt;color:#6B7280}`
+  }
+];
+
+// ─── CV GENERATOR STATE ────────────────────────────────────────────────────
+const cvGen = {
+  open: false, step: 1, styleId: "modern",
+  data: {
+    name: "", jobTitle: "", email: "", phone: "", location: "", linkedin: "",
+    summary: "",
+    experience: [{ company: "", role: "", dates: "", duties: "" }],
+    education:  [{ institution: "", degree: "", year: "" }],
+    skills: "", languages: "", references: "Available upon request"
+  }
+};
+
+// ─── DOCUMENT HTML BUILDER (for CV Generator) ─────────────────────────────
+function buildCVDocHTML(data, styleId) {
+  const s = CV_STYLES.find(x => x.id === styleId) || CV_STYLES[0];
+  const esc = v => escapeHtml(String(v || ""));
+  const name     = esc(data.name)     || "[Your Full Name]";
+  const jobTitle = esc(data.jobTitle) || "[Professional Title]";
+  const phone    = esc(data.phone);
+  const email    = esc(data.email);
+  const loc      = esc(data.location);
+  const li_url   = esc(data.linkedin);
+  const summary  = esc(data.summary)  || "[Write your professional summary — 3-4 sentences on your nursing level, clinical specialty, years of experience and key strength.]";
+  const contactParts = [phone, email, loc, li_url].filter(Boolean);
+  const sep = styleId === "classic" ? " &nbsp;|&nbsp; " : " &nbsp;·&nbsp; ";
+
+  const expItems = (data.experience || []).filter(e => e.company || e.role || e.duties);
+  const expHtml = expItems.length
+    ? expItems.map(e => `<div class="cv-item"><div class="cv-item-head"><span>${esc(e.company)||"[Employer / Facility]"}</span><span>${esc(e.dates)||"[Date Range]"}</span></div><div class="cv-item-sub">${esc(e.role)||"[Job Title]"}</div>${e.duties ? `<ul>${e.duties.split("\n").filter(d=>d.trim()).map(d=>`<li>${esc(d.trim())}</li>`).join("")}</ul>` : "<p>[List key duties and achievements here]</p>"}</div>`).join("")
+    : "<p>[Add your work experience]</p>";
+
+  const eduItems = (data.education || []).filter(e => e.institution || e.degree);
+  const eduHtml = eduItems.length
+    ? eduItems.map(e => `<div class="cv-item"><div class="cv-item-head"><span>${esc(e.degree)||"[Degree / Diploma]"}</span><span>${esc(e.year)||"[Year]"}</span></div><div class="cv-item-sub">${esc(e.institution)||"[Institution]"}</div></div>`).join("")
+    : "<p>[Add your education]</p>";
+
+  const skillsHtml = data.skills
+    ? `<div class="skill-chips">${data.skills.split(/[,\n]/).filter(x=>x.trim()).map(sk=>`<span class="skill-chip">${esc(sk.trim())}</span>`).join("")}</div>`
+    : "<p>[List your clinical skills and competencies]</p>";
+
+  const langs = esc(data.languages);
+  const refs  = esc(data.references) || "Available upon request";
+  const hasBgHdr = styleId === "modern" || styleId === "executive";
+
+  const hdr = `<div class="cv-header"><h1 class="cv-name">${name}</h1><div class="cv-title">${jobTitle}</div><div class="cv-contact-bar">${contactParts.join(sep)}</div></div>`;
+  const body = `<h2 class="cv-sec">Professional Summary</h2><p>${summary}</p><h2 class="cv-sec">Work Experience</h2>${expHtml}<h2 class="cv-sec">Education</h2>${eduHtml}<h2 class="cv-sec">Clinical Skills</h2>${skillsHtml}${langs ? `<h2 class="cv-sec">Languages</h2><p>${langs}</p>` : ""}<h2 class="cv-sec">References</h2><p>${refs}</p>`;
+  const fullBody = hasBgHdr ? `${hdr}<div class="cv-body">${body}</div>` : `${hdr}${body}`;
+
+  return `<!DOCTYPE html><html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word"><head><meta charset="utf-8"><title>${name} — CV</title><style>${s.css}@page{size:A4;margin:0}@media print{*{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}body{margin:0}}</style></head><body>${fullBody}</body></html>`;
+}
+
+// ─── TEMPLATE DOCUMENT BUILDER (for card downloads) ───────────────────────
+function buildTemplateDocHTML(label, styleId) {
+  const s   = CV_STYLES.find(x => x.id === styleId) || CV_STYLES[0];
+  const cl  = RESOURCE_CHECKLISTS[label] || {};
+  const items = cl.items || [];
+  const intro = cl.intro || label;
+  const isCV     = /\bcv\b|resume/i.test(label);
+  const isLetter = /letter|application/i.test(label);
+  const isSalary = /salary|scale|premium|comparison/i.test(label);
+  const hasBgHdr = styleId === "modern" || styleId === "executive";
+
+  let mainContent = "";
+  if (isCV) {
+    mainContent = items.map(item => {
+      const ci = item.indexOf(":");
+      const head = ci > 0 ? item.substring(0, ci) : item;
+      const guide = ci > 0 ? item.substring(ci + 1).trim() : "";
+      return `<h2 class="cv-sec">${head}</h2><div class="inst">${guide || "Complete this section"}</div><p class="ph">[${(guide || head).split(" ").slice(0,10).join(" ")}…]</p>`;
+    }).join("");
+  } else if (isLetter) {
+    mainContent = `<p>[City, Date]</p><p>[Hiring Manager]<br>[Organisation / Facility]<br>[Address]</p><p>Dear Sir / Madam,</p><p><strong>Re: Application for the Post of [Job Title] — Ref: [Reference Number]</strong></p>`
+      + items.map((item, i) => {
+          const ci = item.indexOf(":"); const guide = ci > 0 ? item.substring(ci+1).trim() : item;
+          return `<div class="inst">${item}</div><p class="ph">[Paragraph ${i+1}: ${guide.split(" ").slice(0,12).join(" ")}…]</p>`;
+        }).join("")
+      + `<p>Yours faithfully,</p><p>[Your Full Name]<br>[UNMC Registration No.]<br>[Phone] &nbsp;|&nbsp; [Email]</p>`;
+  } else if (isSalary) {
+    mainContent = `<h2 class="cv-sec">${escapeHtml(intro)}</h2>`
+      + items.map(item => {
+          const d = item.indexOf("—"); const grade = d>0 ? item.substring(0,d).trim() : item; const detail = d>0 ? item.substring(d+1).trim() : "";
+          return `<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #eee;font-size:10pt"><span><strong>${escapeHtml(grade)}</strong></span><span style="color:#555">${escapeHtml(detail)}</span></div>`;
+        }).join("");
+  } else {
+    mainContent = `<h2 class="cv-sec">${escapeHtml(intro)}</h2><div class="inst">Use this checklist — tick each item as you complete or gather it.</div>`
+      + items.map(item => {
+          const ci = item.indexOf(":"); const head = ci>0 ? item.substring(0,ci) : item; const body = ci>0 ? item.substring(ci+1).trim() : "";
+          return `<div style="display:flex;gap:12px;padding:9px 0;border-bottom:1px solid #f0f0f0;align-items:flex-start"><span style="font-size:14pt;color:#ccc;line-height:1.1">☐</span><div><strong style="font-size:10pt">${escapeHtml(head)}</strong>${body ? `<br><span style="font-size:9.5pt;color:#666">${escapeHtml(body)}</span>` : ""}</div></div>`;
+        }).join("");
+  }
+
+  const titleLine = isCV || isLetter
+    ? `<h1 class="cv-name">[YOUR FULL NAME]</h1><div class="cv-title">[Professional Title]</div><div class="cv-contact-bar">[Phone] &nbsp;·&nbsp; [Email] &nbsp;·&nbsp; [Location]</div>`
+    : `<h1 class="cv-name" style="font-size:18pt">${escapeHtml(label)}</h1><div class="cv-title">Nursing Uganda — Career Resource</div>`;
+  const hdr = `<div class="cv-header">${titleLine}</div>`;
+  const fullBody = hasBgHdr ? `${hdr}<div class="cv-body">${mainContent}</div>` : `${hdr}${mainContent}`;
+
+  return `<!DOCTYPE html><html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word"><head><meta charset="utf-8"><title>${escapeHtml(label)}</title><style>${s.css}.ph{color:#aaa;font-style:italic}.inst{background:#fffbeb;border-left:3px solid #d97706;padding:5px 10px;font-size:9pt;color:#7c4d00;margin:3px 0 8px;border-radius:0 4px 4px 0}@page{size:A4;margin:0}@media print{*{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}body{margin:0}.inst{display:none}}</style></head><body>${fullBody}</body></html>`;
+}
+
+// ─── DOWNLOAD HELPERS ──────────────────────────────────────────────────────
+function _triggerDocDownload(html, filename) {
+  const blob = new Blob(["﻿", html], { type: "application/msword" });
+  const url  = URL.createObjectURL(blob);
+  const a    = Object.assign(document.createElement("a"), { href: url, download: filename });
+  document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+function _triggerPDFPrint(html) {
+  const win = window.open("", "_blank", "width=850,height=700");
+  if (!win) { alert("Allow pop-ups to generate PDF."); return; }
+  win.document.write(html); win.document.close();
+  setTimeout(() => { win.focus(); win.print(); }, 700);
+}
+function downloadCVDoc(data, styleId)            { _triggerDocDownload(buildCVDocHTML(data, styleId), `${(data.name||"my-cv").replace(/\s+/g,"-").toLowerCase()}-cv.doc`); }
+function downloadCVPDF(data, styleId)            { _triggerPDFPrint(buildCVDocHTML(data, styleId)); }
+function downloadTemplateDoc(label, styleId = "modern") { _triggerDocDownload(buildTemplateDocHTML(label, styleId), `${label.toLowerCase().replace(/[^a-z0-9]+/g,"-")}.doc`); }
+function downloadTemplatePDF(label, styleId = "modern") { _triggerPDFPrint(buildTemplateDocHTML(label, styleId)); }
+
+// ─── CV GENERATOR MODAL ────────────────────────────────────────────────────
+function cvGenRoot() { return document.getElementById("cvg-root"); }
+
+function openCVGenerator() {
+  cvGen.open = true;
+  renderCVGenIntoRoot();
+  document.body.style.overflow = "hidden";
+}
+function closeCVGenerator() {
+  cvGen.open = false;
+  const r = cvGenRoot(); if (r) r.innerHTML = "";
+  document.body.style.overflow = "";
+}
+function renderCVGenIntoRoot() {
+  const r = cvGenRoot(); if (!r) return;
+  r.innerHTML = renderCVGeneratorModal();
+  const iframe = r.querySelector(".cvg-preview-frame");
+  if (iframe) {
+    const blob = new Blob([buildCVDocHTML(cvGen.data, cvGen.styleId)], { type: "text/html" });
+    iframe.src = URL.createObjectURL(blob);
+  }
+  bindCVGenEvents(r);
+}
+function cvGenSave(r) {
+  const g = n => r.querySelector(`[name="${n}"]`)?.value || "";
+  Object.assign(cvGen.data, { name: g("name"), jobTitle: g("jobTitle"), email: g("email"), phone: g("phone"), location: g("location"), linkedin: g("linkedin"), summary: g("summary"), skills: g("skills"), languages: g("languages"), references: g("references") || "Available upon request" });
+  cvGen.data.experience = cvGen.data.experience.map((_,i) => ({ company: g(`exp-company-${i}`), role: g(`exp-role-${i}`), dates: g(`exp-dates-${i}`), duties: g(`exp-duties-${i}`) }));
+  cvGen.data.education  = cvGen.data.education.map((_,i)  => ({ degree: g(`edu-degree-${i}`), institution: g(`edu-inst-${i}`), year: g(`edu-year-${i}`) }));
+  const sr = r.querySelector("input[name='cv-style']:checked"); if (sr) cvGen.styleId = sr.value;
+}
+let _cvPreviewTimer = null;
+function updateCVPreview(r) {
+  clearTimeout(_cvPreviewTimer);
+  _cvPreviewTimer = setTimeout(() => {
+    const iframe = r.querySelector(".cvg-preview-frame"); if (!iframe) return;
+    const old = iframe.src;
+    const blob = new Blob([buildCVDocHTML(cvGen.data, cvGen.styleId)], { type: "text/html" });
+    iframe.src = URL.createObjectURL(blob);
+    if (old && old.startsWith("blob:")) URL.revokeObjectURL(old);
+  }, 350);
+}
+function bindCVGenEvents(r) {
+  r.querySelector(".cvg-close")?.addEventListener("click", closeCVGenerator);
+  r.querySelector(".cvg-overlay")?.addEventListener("click", e => { if (e.target === e.currentTarget) closeCVGenerator(); });
+  r.querySelector(".cvg-next")?.addEventListener("click", () => { cvGenSave(r); cvGen.step = Math.min(6, cvGen.step + 1); renderCVGenIntoRoot(); });
+  r.querySelector(".cvg-prev")?.addEventListener("click", () => { cvGenSave(r); cvGen.step = Math.max(1, cvGen.step - 1); renderCVGenIntoRoot(); });
+  r.querySelectorAll("input[name='cv-style']").forEach(el => el.addEventListener("change", () => { cvGen.styleId = el.value; updateCVPreview(r); }));
+  r.querySelectorAll(".cvg-form input, .cvg-form textarea").forEach(el => el.addEventListener("input", () => { cvGenSave(r); updateCVPreview(r); }));
+  r.querySelector("[data-add-exp]")?.addEventListener("click", () => { cvGenSave(r); cvGen.data.experience.push({ company:"", role:"", dates:"", duties:"" }); renderCVGenIntoRoot(); });
+  r.querySelector("[data-add-edu]")?.addEventListener("click", () => { cvGenSave(r); cvGen.data.education.push({ institution:"", degree:"", year:"" }); renderCVGenIntoRoot(); });
+  r.querySelectorAll("[data-remove-exp]").forEach(b => b.addEventListener("click", () => { cvGenSave(r); cvGen.data.experience.splice(+b.dataset.removeExp,1); renderCVGenIntoRoot(); }));
+  r.querySelectorAll("[data-remove-edu]").forEach(b => b.addEventListener("click", () => { cvGenSave(r); cvGen.data.education.splice(+b.dataset.removeEdu,1); renderCVGenIntoRoot(); }));
+  r.querySelector(".cvg-dl-pdf")?.addEventListener("click", () => { cvGenSave(r); downloadCVPDF(cvGen.data, cvGen.styleId); });
+  r.querySelector(".cvg-dl-doc")?.addEventListener("click", () => { cvGenSave(r); downloadCVDoc(cvGen.data, cvGen.styleId); });
+  const escFn = e => { if (e.key === "Escape") { closeCVGenerator(); document.removeEventListener("keydown", escFn); } };
+  document.addEventListener("keydown", escFn);
+}
+
+function renderCVGeneratorModal() {
+  const { step, styleId, data } = cvGen;
+  const STEPS = ["Style","Personal","Summary","Experience","Education","Skills"];
+  const stepsBar = STEPS.map((name,i) => {
+    const n=i+1, active=n===step, done=n<step;
+    return `<div class="cvg-step${active?" cvg-step--a":""}${done?" cvg-step--d":""}"><span class="cvg-step-dot">${done?"✓":n}</span><span class="cvg-step-lbl">${name}</span></div>`;
+  }).join("");
+
+  let formBody = "";
+  if (step === 1) {
+    formBody = `<div class="cvg-step-head"><h3>Choose a Template Style</h3><p>Pick the look for your CV — you can change it any time.</p></div>
+      <div class="cvg-style-grid">${CV_STYLES.map(s=>`<label class="cvg-style-opt${styleId===s.id?" cvg-style-opt--a":""}"><input type="radio" name="cv-style" value="${s.id}"${styleId===s.id?" checked":""}><div class="cvg-style-swatch" style="background:${s.swatch}"></div><strong>${s.name}</strong><span>${s.desc}</span></label>`).join("")}</div>`;
+  } else if (step === 2) {
+    formBody = `<div class="cvg-step-head"><h3>Personal Details</h3><p>Your contact details go at the top of the CV.</p></div>
+      <div class="cvg-grid2">
+        <div class="cvg-field"><label>Full Name</label><input type="text" name="name" value="${escapeHtml(data.name)}" placeholder="e.g. Nakato Sarah" autocomplete="name"></div>
+        <div class="cvg-field"><label>Professional Title</label><input type="text" name="jobTitle" value="${escapeHtml(data.jobTitle)}" placeholder="e.g. Registered Staff Nurse"></div>
+        <div class="cvg-field"><label>Phone</label><input type="tel" name="phone" value="${escapeHtml(data.phone)}" placeholder="+256 700 000 000"></div>
+        <div class="cvg-field"><label>Email</label><input type="email" name="email" value="${escapeHtml(data.email)}" placeholder="you@example.com"></div>
+        <div class="cvg-field"><label>Location</label><input type="text" name="location" value="${escapeHtml(data.location)}" placeholder="Kampala, Uganda"></div>
+        <div class="cvg-field"><label>LinkedIn / Website <small>(optional)</small></label><input type="text" name="linkedin" value="${escapeHtml(data.linkedin)}" placeholder="linkedin.com/in/yourname"></div>
+      </div>`;
+  } else if (step === 3) {
+    formBody = `<div class="cvg-step-head"><h3>Professional Summary</h3><p>2–4 sentences: nursing level, specialty, experience, key strength.</p></div>
+      <div class="cvg-field cvg-field--full"><label>Summary</label><textarea name="summary" rows="6" placeholder="e.g. Registered Staff Nurse with 4 years of clinical experience in medical-surgical nursing at Mulago National Referral Hospital. UNMC-registered with current BLS certification. Skilled in IV therapy, wound care and patient assessment. Seeking a senior nursing officer post with opportunity to mentor junior staff.">${escapeHtml(data.summary)}</textarea></div>`;
+  } else if (step === 4) {
+    formBody = `<div class="cvg-step-head"><h3>Work Experience</h3><p>Most recent position first. Up to 3 positions.</p></div>
+      ${data.experience.map((exp,i)=>`<div class="cvg-group"><div class="cvg-group-hd"><strong>Position ${i+1}</strong>${i>0?`<button type="button" class="cvg-remove-btn" data-remove-exp="${i}">Remove</button>`:""}</div><div class="cvg-grid2"><div class="cvg-field"><label>Employer / Facility</label><input type="text" name="exp-company-${i}" value="${escapeHtml(exp.company)}" placeholder="e.g. Mulago Hospital"></div><div class="cvg-field"><label>Your Role / Title</label><input type="text" name="exp-role-${i}" value="${escapeHtml(exp.role)}" placeholder="e.g. Staff Nurse, Ward 5B"></div><div class="cvg-field cvg-field--full"><label>Dates</label><input type="text" name="exp-dates-${i}" value="${escapeHtml(exp.dates)}" placeholder="e.g. Jan 2021 – Present"></div></div><div class="cvg-field cvg-field--full"><label>Key Duties &amp; Achievements <small>(one per line)</small></label><textarea name="exp-duties-${i}" rows="4" placeholder="Managed 20-bed medical-surgical ward&#10;Administered IV medications and monitored vital signs&#10;Supervised 2 student nurses on clinical placement">${escapeHtml(exp.duties)}</textarea></div></div>`).join("")}
+      ${data.experience.length < 3 ? `<button type="button" class="cvg-add-btn" data-add-exp>+ Add Another Position</button>` : ""}`;
+  } else if (step === 5) {
+    formBody = `<div class="cvg-step-head"><h3>Education</h3><p>Most recent qualification first.</p></div>
+      ${data.education.map((edu,i)=>`<div class="cvg-group"><div class="cvg-group-hd"><strong>Qualification ${i+1}</strong>${i>0?`<button type="button" class="cvg-remove-btn" data-remove-edu="${i}">Remove</button>`:""}</div><div class="cvg-grid3"><div class="cvg-field"><label>Degree / Diploma</label><input type="text" name="edu-degree-${i}" value="${escapeHtml(edu.degree)}" placeholder="e.g. Bachelor of Nursing Science"></div><div class="cvg-field"><label>Institution</label><input type="text" name="edu-inst-${i}" value="${escapeHtml(edu.institution)}" placeholder="e.g. Makerere University"></div><div class="cvg-field"><label>Year</label><input type="text" name="edu-year-${i}" value="${escapeHtml(edu.year)}" placeholder="2020"></div></div></div>`).join("")}
+      ${data.education.length < 3 ? `<button type="button" class="cvg-add-btn" data-add-edu>+ Add Another Qualification</button>` : ""}`;
+  } else if (step === 6) {
+    formBody = `<div class="cvg-step-head"><h3>Skills &amp; Download</h3><p>Add your skills then download your finished CV.</p></div>
+      <div class="cvg-field cvg-field--full"><label>Clinical Skills <small>(comma-separated)</small></label><textarea name="skills" rows="3" placeholder="IV cannulation, wound dressing, catheterisation, BLS, medication administration, patient assessment, blood pressure monitoring, HMIS reporting…">${escapeHtml(data.skills)}</textarea></div>
+      <div class="cvg-grid2">
+        <div class="cvg-field"><label>Languages</label><input type="text" name="languages" value="${escapeHtml(data.languages)}" placeholder="e.g. English (fluent), Luganda (native)"></div>
+        <div class="cvg-field"><label>References</label><input type="text" name="references" value="${escapeHtml(data.references)}" placeholder="Available upon request"></div>
+      </div>
+      <div class="cvg-download-box">
+        <p class="cvg-dl-title">Your CV is ready to download</p>
+        <p class="cvg-dl-sub">PDF for direct submission &bull; DOC to edit in Word or Google Docs</p>
+        <div class="cvg-dl-btns">
+          <button type="button" class="button primary cvg-dl-pdf">Download PDF</button>
+          <button type="button" class="button secondary cvg-dl-doc">Download DOC (Word)</button>
+        </div>
+      </div>`;
+  }
+
+  return `<div class="cvg-overlay" id="cvg-overlay" role="dialog" aria-modal="true" aria-label="CV Generator">
+    <div class="cvg-modal">
+      <div class="cvg-hdr">
+        <div class="cvg-hdr-left"><span class="cvg-hdr-icon">CV</span><div><h2>CV Generator</h2><p>Build your nursing CV in minutes</p></div></div>
+        <button type="button" class="cvg-close" aria-label="Close">✕</button>
+      </div>
+      <div class="cvg-steps-bar">${stepsBar}</div>
+      <div class="cvg-body">
+        <form class="cvg-form" novalidate>
+          <div class="cvg-form-inner">${formBody}</div>
+          <div class="cvg-nav">
+            ${step>1?`<button type="button" class="button secondary cvg-prev">← Back</button>`:`<span></span>`}
+            ${step<6?`<button type="button" class="button primary cvg-next">Continue →</button>`:`<span></span>`}
+          </div>
+        </form>
+        <div class="cvg-preview">
+          <div class="cvg-preview-lbl">Live Preview</div>
+          <div class="cvg-preview-wrap"><iframe class="cvg-preview-frame" title="CV Preview" sandbox="allow-same-origin"></iframe></div>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
 
 function downloadCareerChecklist(title) {
   const safeTitle = String(title || "career-checklist");
@@ -10422,8 +10713,27 @@ function render() {
     });
   });
 
+  // Legacy checklist downloads (careers main page)
   app.querySelectorAll("[data-career-download]").forEach((button) => {
     button.addEventListener("click", () => downloadCareerChecklist(button.dataset.careerDownload));
+  });
+
+  // Template card PDF/DOC downloads
+  app.querySelectorAll("[data-template-label]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const label  = btn.dataset.templateLabel;
+      const action = btn.dataset.templateAction;
+      const card   = btn.closest(".crp-card");
+      const styleInput = card?.querySelector("input[type='radio']:checked");
+      const styleId = styleInput?.value || "modern";
+      if (action === "pdf") downloadTemplatePDF(label, styleId);
+      else downloadTemplateDoc(label, styleId);
+    });
+  });
+
+  // Open CV Generator
+  app.querySelectorAll("[data-open-cv-gen]").forEach(btn => {
+    btn.addEventListener("click", () => openCVGenerator());
   });
 
   const imageReviewSearch = app.querySelector("[data-image-review-search]");
@@ -11186,6 +11496,12 @@ async function init() {
 
     setupMonetization();
     if (window.location.pathname === "/" || window.location.pathname === "") history.replaceState(null, "", "/notes");
+    // Initialise CV Generator modal container (outside #app so it survives SPA navigation)
+    if (!document.getElementById("cvg-root")) {
+      const cvgRoot = document.createElement("div");
+      cvgRoot.id = "cvg-root";
+      document.body.appendChild(cvgRoot);
+    }
     render();
     scrollPageToTop();
     setupOfflineBanner();
