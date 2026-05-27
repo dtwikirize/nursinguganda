@@ -59,7 +59,13 @@ const state = {
   loginError: "",
   loginLoading: false,
   loginEmailSent: false,
-  loginEmailAddress: ""
+  loginEmailAddress: "",
+  announcements: [],
+  adminTab: "jobs",
+  adminJobs: [],
+  adminAnnouncements: [],
+  adminJobForm: { open: false, data: {} },
+  adminAnnForm: { open: false, data: {} }
 };
 
 const app = document.querySelector("#app");
@@ -249,6 +255,165 @@ async function authForgotPassword(email) {
   if (error) return { ok: false, error: error.message };
   return { ok: true };
 }
+
+// ─── PROGRESS SYNC ────────────────────────────────────────────────────────
+let _progressSyncTimer = null;
+function scheduleProgressSync() {
+  if (!state.currentUser?.id) return;
+  clearTimeout(_progressSyncTimer);
+  _progressSyncTimer = setTimeout(pushProgressToSupabase, 1800);
+}
+async function pushProgressToSupabase() {
+  const client = sb(); if (!client || !state.currentUser?.id) return;
+  try {
+    await client.from("user_progress").upsert({
+      user_id: state.currentUser.id,
+      mastered_topics:  masteredTopics(),
+      completed_topics: completedTopics(),
+      quiz_attempts:    quizAttempts(),
+      quiz_submitted:   quizSubmitted(),
+      bookmarks:        bookmarks(),
+      saved_jobs:       state.savedCareerJobs || [],
+      flashcard_mastery: [...(getFlashcardMastery?.() || new Set())],
+      streak:           getStreak?.() || null,
+      updated_at:       new Date().toISOString()
+    }, { onConflict: "user_id" });
+  } catch (_) {}
+}
+async function loadProgressFromSupabase() {
+  const client = sb(); if (!client || !state.currentUser?.id) return;
+  try {
+    const { data } = await client.from("user_progress").select("*").eq("user_id", state.currentUser.id).maybeSingle();
+    if (!data) return;
+    const merge = (key, remote, local) => { if (remote && Object.keys(remote).length) localStorage.setItem(key, JSON.stringify({ ...local, ...remote })); };
+    merge("nursinguganda.masteredTopics",  data.mastered_topics,  masteredTopics());
+    merge("nursinguganda.completedTopics", data.completed_topics, completedTopics());
+    merge("nursinguganda.quizAttempts",    data.quiz_attempts,    quizAttempts());
+    merge("nursinguganda.quizSubmitted",   data.quiz_submitted,   quizSubmitted());
+    if (data.bookmarks?.length) {
+      const loc = bookmarks();
+      const merged = [...data.bookmarks, ...loc.filter(b => !data.bookmarks.some(r => r.key === b.key))];
+      localStorage.setItem("nursinguganda.bookmarks", JSON.stringify(merged.slice(0, 80)));
+    }
+    if (data.saved_jobs?.length) {
+      const s = new Set([...(state.savedCareerJobs || []), ...data.saved_jobs]);
+      state.savedCareerJobs = [...s];
+      localStorage.setItem("nursinguganda.savedCareerJobs", JSON.stringify(state.savedCareerJobs));
+    }
+    if (data.flashcard_mastery?.length) {
+      const m = getFlashcardMastery?.() || new Set();
+      data.flashcard_mastery.forEach(id => m.add(id));
+      localStorage.setItem("nursinguganda.flashcardMastery", JSON.stringify([...m]));
+    }
+    if (data.streak?.count) {
+      const loc = getStreak?.() || { count: 0 };
+      if (data.streak.count >= loc.count) localStorage.setItem("nursinguganda.streak", JSON.stringify(data.streak));
+    }
+  } catch (_) {}
+}
+
+// ─── ANNOUNCEMENTS ────────────────────────────────────────────────────────
+async function loadAnnouncements() {
+  const client = sb(); if (!client) return;
+  try {
+    const { data } = await client.from("announcements").select("*").eq("is_active", true).order("created_at", { ascending: false }).limit(3);
+    if (data?.length) state.announcements = data;
+  } catch (_) {}
+}
+function renderAnnouncementBanner() {
+  if (!state.announcements.length) return "";
+  const dismissed = (() => { try { return new Set(JSON.parse(localStorage.getItem("nursinguganda.dismissedAnns") || "[]")); } catch { return new Set(); } })();
+  const ann = state.announcements.find(a => !dismissed.has(a.id));
+  if (!ann) return "";
+  const palette = { info: ["#dbeafe","#1e40af","#3b82f6"], warning: ["#fef3c7","#92400e","#f59e0b"], success: ["#dcfce7","#15803d","#22c55e"] };
+  const [bg, col, acc] = palette[ann.type] || palette.info;
+  return `<div class="ann-banner" style="background:${bg};border-bottom:2px solid ${acc}" role="alert" data-ann-id="${escapeHtml(ann.id)}">
+    <div class="container ann-inner">
+      <span class="ann-msg" style="color:${col}">${escapeHtml(ann.message)}</span>
+      ${ann.link_url ? `<a href="${escapeHtml(ann.link_url)}" class="ann-link" style="color:${acc}">${escapeHtml(ann.link_text || "Learn more")}</a>` : ""}
+      <button type="button" class="ann-dismiss" data-dismiss-ann="${escapeHtml(ann.id)}" aria-label="Dismiss" style="color:${col}">✕</button>
+    </div>
+  </div>`;
+}
+
+// ─── JOBS FROM SUPABASE ───────────────────────────────────────────────────
+async function loadJobsFromSupabase() {
+  const client = sb(); if (!client) return;
+  try {
+    const { data } = await client.from("jobs").select("*").eq("is_active", true).order("is_featured", { ascending: false }).order("created_at", { ascending: false });
+    if (data?.length) {
+      // Map Supabase jobs to the app's expected shape
+      state.careerJobs = data.map(j => ({
+        id: j.id,
+        title: j.title,
+        organisation: j.organisation,
+        location: j.location || "Uganda",
+        type: j.type || "Full-time",
+        category: j.category || "Clinical",
+        description: j.description || "",
+        requirements: j.requirements || "",
+        howToApply: j.how_to_apply || "",
+        deadline: j.deadline || "",
+        salary: j.salary || "",
+        applyUrl: j.apply_url || "",
+        featured: !!j.is_featured,
+        _source: "supabase"
+      }));
+    }
+  } catch (_) {}
+}
+
+// ─── ADMIN HELPERS ────────────────────────────────────────────────────────
+function isAdmin() { return state.currentUser?.email === "twikirizederick@gmail.com"; }
+
+async function adminLoadJobs() {
+  const client = sb(); if (!client) return;
+  const { data } = await client.from("jobs").select("*").order("created_at", { ascending: false });
+  if (data) state.adminJobs = data;
+}
+async function adminLoadAnnouncements() {
+  const client = sb(); if (!client) return;
+  const { data } = await client.from("announcements").select("*").order("created_at", { ascending: false });
+  if (data) state.adminAnnouncements = data;
+}
+async function adminSaveJob(jobData, id = null) {
+  const client = sb(); if (!client) return { ok: false };
+  const payload = { title: jobData.title, organisation: jobData.organisation, location: jobData.location, type: jobData.type, category: jobData.category, description: jobData.description, requirements: jobData.requirements, how_to_apply: jobData.how_to_apply, deadline: jobData.deadline || null, salary: jobData.salary, apply_url: jobData.apply_url, is_active: true, is_featured: !!jobData.is_featured };
+  const { error } = id ? await client.from("jobs").update(payload).eq("id", id) : await client.from("jobs").insert(payload);
+  if (error) return { ok: false, error: error.message };
+  await adminLoadJobs(); await loadJobsFromSupabase();
+  return { ok: true };
+}
+async function adminToggleJob(id, isActive) {
+  const client = sb(); if (!client) return;
+  await client.from("jobs").update({ is_active: !isActive }).eq("id", id);
+  await adminLoadJobs(); await loadJobsFromSupabase(); render();
+}
+async function adminDeleteJob(id) {
+  const client = sb(); if (!client) return;
+  if (!confirm("Delete this job listing?")) return;
+  await client.from("jobs").delete().eq("id", id);
+  await adminLoadJobs(); await loadJobsFromSupabase(); render();
+}
+async function adminSaveAnn(data, id = null) {
+  const client = sb(); if (!client) return { ok: false };
+  const payload = { message: data.message, type: data.type || "info", link_text: data.link_text || null, link_url: data.link_url || null, is_active: true };
+  const { error } = id ? await client.from("announcements").update(payload).eq("id", id) : await client.from("announcements").insert(payload);
+  if (error) return { ok: false, error: error.message };
+  await adminLoadAnnouncements(); await loadAnnouncements(); return { ok: true };
+}
+async function adminToggleAnn(id, isActive) {
+  const client = sb(); if (!client) return;
+  await client.from("announcements").update({ is_active: !isActive }).eq("id", id);
+  await adminLoadAnnouncements(); await loadAnnouncements(); render();
+}
+async function adminDeleteAnn(id) {
+  const client = sb(); if (!client) return;
+  if (!confirm("Delete this announcement?")) return;
+  await client.from("announcements").delete().eq("id", id);
+  await adminLoadAnnouncements(); await loadAnnouncements(); render();
+}
+
 function renderUserAvatar(user, size) {
   const sz = size || 36;
   const c = (user && user.color) ? user.color : { bg: "#dcfce7", text: "#15803d" };
@@ -927,6 +1092,7 @@ function setTopicComplete(key, complete) {
   if (complete) completed[key] = true;
   else delete completed[key];
   localStorage.setItem("nursinguganda.completedTopics", JSON.stringify(completed));
+  scheduleProgressSync();
 }
 
 function allStudyTopics() {
@@ -982,6 +1148,7 @@ function setQuizAnswer(key, questionIndex, answerIndex) {
   if (!attempts[key]) attempts[key] = {};
   attempts[key][questionIndex] = answerIndex;
   localStorage.setItem("nursinguganda.quizAttempts", JSON.stringify(attempts));
+  scheduleProgressSync();
 }
 
 function quizSubmitted() {
@@ -1023,6 +1190,7 @@ function setBookmark(item, save) {
   const saved = bookmarks().filter((bookmark) => bookmark.key !== item.key);
   if (save) saved.unshift({ ...item, savedAt: new Date().toISOString() });
   localStorage.setItem("nursinguganda.bookmarks", JSON.stringify(saved.slice(0, 80)));
+  scheduleProgressSync();
 }
 
 function bookmarkButton(item) {
@@ -3149,6 +3317,7 @@ function layout(content) {
                         <a class="user-menu-item" href="/progress" role="menuitem" data-nav-close>${icon("chartLine")}<span>My Progress</span></a>
                         <a class="user-menu-item" href="/flashcards" role="menuitem" data-nav-close>${icon("sparkles")}<span>Flashcards</span></a>
                         <a class="user-menu-item" href="/account" role="menuitem" data-nav-close>${icon("users")}<span>Account</span></a>
+                        ${isAdmin() ? `<a class="user-menu-item user-menu-admin" href="/admin" role="menuitem" data-nav-close>${icon("tool")}<span>Admin Panel</span></a>` : ""}
                       </div>
                       <div class="user-menu-footer">
                         <button class="user-menu-item user-menu-logout" type="button" data-auth-logout>${icon("logOut")}<span>Sign Out</span></button>
@@ -3165,6 +3334,7 @@ function layout(content) {
         </div>
       </header>
       ${renderMobileDrawer(active)}
+      ${renderAnnouncementBanner()}
       <div class="page-main" id="page-main">
         ${content}
       </div>
@@ -3266,6 +3436,28 @@ function layout(content) {
       state.loginEmailSent = false;
       state.loginEmailAddress = "";
       state.loginTab = "signup";
+      render();
+    });
+  });
+
+  // Announcement banner dismiss
+  app.querySelectorAll("[data-dismiss-ann]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const annId = btn.dataset.dismissAnn;
+      try {
+        const d = new Set(JSON.parse(localStorage.getItem("nursinguganda.dismissedAnns") || "[]"));
+        d.add(annId);
+        localStorage.setItem("nursinguganda.dismissedAnns", JSON.stringify([...d]));
+      } catch (_) {}
+      const banner = btn.closest(".ann-banner");
+      if (banner) banner.remove();
+    });
+  });
+
+  // Admin panel tab switching
+  app.querySelectorAll("[data-admin-tab]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      state.adminTab = btn.dataset.adminTab;
       render();
     });
   });
@@ -3881,6 +4073,318 @@ function renderAccountPage() {
       </div>
     </div>
   `;
+}
+
+// ─── ADMIN PANEL ─────────────────────────────────────────────────────────────
+function renderAdminPage() {
+  if (!isAdmin()) {
+    return layout(`
+      <section class="section">
+        <div class="container" style="text-align:center;padding:4rem 1rem">
+          ${icon("lock")}
+          <h1 style="margin:.75rem 0 .5rem">Admin Only</h1>
+          <p style="color:#6b7280">You need admin access to view this page.</p>
+          <a class="button primary" href="/notes">Go Home</a>
+        </div>
+      </section>
+    `);
+  }
+
+  const jobs  = state.adminJobs || [];
+  const anns  = state.adminAnnouncements || [];
+  const tab   = state.adminTab || "jobs";
+  const jForm = state.adminJobForm || { open: false, data: {} };
+  const aForm = state.adminAnnForm || { open: false, data: {} };
+
+  const typeColors = { info: "#3b82f6", warning: "#f59e0b", success: "#22c55e" };
+
+  // ── Job form modal ──────────────────────────────────────────────────
+  const jobFormHtml = jForm.open ? `
+    <div class="adm-modal-overlay" id="adm-job-modal">
+      <div class="adm-modal">
+        <div class="adm-modal-hdr">
+          <h3>${jForm.data.id ? "Edit Job" : "New Job Listing"}</h3>
+          <button type="button" class="adm-modal-close" data-adm-job-form-close>${icon("x")}</button>
+        </div>
+        <form class="adm-form" id="adm-job-form" autocomplete="off">
+          <div class="adm-form-row">
+            <label>Job Title *</label>
+            <input name="title" required value="${escapeHtml(jForm.data.title || "")}" placeholder="e.g. Staff Nurse – Maternity">
+          </div>
+          <div class="adm-form-row">
+            <label>Organisation *</label>
+            <input name="organisation" required value="${escapeHtml(jForm.data.organisation || "")}" placeholder="e.g. Mulago National Referral Hospital">
+          </div>
+          <div class="adm-form-2col">
+            <div class="adm-form-row">
+              <label>Location</label>
+              <input name="location" value="${escapeHtml(jForm.data.location || "")}" placeholder="e.g. Kampala, Uganda">
+            </div>
+            <div class="adm-form-row">
+              <label>Type</label>
+              <select name="type">
+                ${["Full-time","Part-time","Contract","Volunteer","Internship"].map(t => `<option${jForm.data.type === t ? " selected" : ""}>${t}</option>`).join("")}
+              </select>
+            </div>
+          </div>
+          <div class="adm-form-2col">
+            <div class="adm-form-row">
+              <label>Category</label>
+              <select name="category">
+                ${["Clinical","Midwifery","Community","Administration","Research","Teaching","Other"].map(c => `<option${jForm.data.category === c ? " selected" : ""}>${c}</option>`).join("")}
+              </select>
+            </div>
+            <div class="adm-form-row">
+              <label>Deadline</label>
+              <input type="date" name="deadline" value="${escapeHtml(jForm.data.deadline || "")}">
+            </div>
+          </div>
+          <div class="adm-form-row">
+            <label>Salary / Compensation</label>
+            <input name="salary" value="${escapeHtml(jForm.data.salary || "")}" placeholder="e.g. UGX 1,200,000/month">
+          </div>
+          <div class="adm-form-row">
+            <label>Apply URL</label>
+            <input type="url" name="apply_url" value="${escapeHtml(jForm.data.apply_url || "")}" placeholder="https://...">
+          </div>
+          <div class="adm-form-row">
+            <label>Description</label>
+            <textarea name="description" rows="4" placeholder="Role overview, responsibilities...">${escapeHtml(jForm.data.description || "")}</textarea>
+          </div>
+          <div class="adm-form-row">
+            <label>Requirements</label>
+            <textarea name="requirements" rows="3" placeholder="Qualifications, experience...">${escapeHtml(jForm.data.requirements || "")}</textarea>
+          </div>
+          <div class="adm-form-row">
+            <label>How to Apply</label>
+            <textarea name="how_to_apply" rows="2" placeholder="Instructions for applicants...">${escapeHtml(jForm.data.how_to_apply || "")}</textarea>
+          </div>
+          <div class="adm-form-row adm-form-check">
+            <label><input type="checkbox" name="is_featured"${jForm.data.is_featured ? " checked" : ""}> Featured listing (shows at top)</label>
+          </div>
+          <div class="adm-form-actions">
+            <button type="button" class="button ghost" data-adm-job-form-close>Cancel</button>
+            <button type="submit" class="button primary" id="adm-job-save-btn">${icon("send")} ${jForm.data.id ? "Save Changes" : "Publish Job"}</button>
+          </div>
+        </form>
+      </div>
+    </div>` : "";
+
+  // ── Announcement form modal ─────────────────────────────────────────
+  const annFormHtml = aForm.open ? `
+    <div class="adm-modal-overlay" id="adm-ann-modal">
+      <div class="adm-modal adm-modal-sm">
+        <div class="adm-modal-hdr">
+          <h3>${aForm.data.id ? "Edit Announcement" : "New Announcement"}</h3>
+          <button type="button" class="adm-modal-close" data-adm-ann-form-close>${icon("x")}</button>
+        </div>
+        <form class="adm-form" id="adm-ann-form" autocomplete="off">
+          <div class="adm-form-row">
+            <label>Message *</label>
+            <textarea name="message" rows="3" required placeholder="Announcement text shown to all users...">${escapeHtml(aForm.data.message || "")}</textarea>
+          </div>
+          <div class="adm-form-row">
+            <label>Type</label>
+            <select name="type">
+              ${["info","warning","success"].map(t => `<option value="${t}"${aForm.data.type === t ? " selected" : ""}>${t.charAt(0).toUpperCase() + t.slice(1)}</option>`).join("")}
+            </select>
+          </div>
+          <div class="adm-form-2col">
+            <div class="adm-form-row">
+              <label>Link Text</label>
+              <input name="link_text" value="${escapeHtml(aForm.data.link_text || "")}" placeholder="e.g. Learn more">
+            </div>
+            <div class="adm-form-row">
+              <label>Link URL</label>
+              <input name="link_url" value="${escapeHtml(aForm.data.link_url || "")}" placeholder="https://...">
+            </div>
+          </div>
+          <div class="adm-form-actions">
+            <button type="button" class="button ghost" data-adm-ann-form-close>Cancel</button>
+            <button type="submit" class="button primary">${icon("send")} ${aForm.data.id ? "Save Changes" : "Publish"}</button>
+          </div>
+        </form>
+      </div>
+    </div>` : "";
+
+  // ── Page content ────────────────────────────────────────────────────
+  const pageContent = `
+    <section class="section">
+      <div class="container adm-container">
+        <div class="adm-header">
+          <div>
+            <h1 class="adm-title">${icon("tool")} Admin Panel</h1>
+            <p class="adm-subtitle">Manage job listings and site announcements.</p>
+          </div>
+          ${tab === "jobs"
+            ? `<button class="button primary" type="button" data-adm-job-new>${icon("sparkles")} Add Job</button>`
+            : `<button class="button primary" type="button" data-adm-ann-new>${icon("bell")} Add Announcement</button>`}
+        </div>
+
+        <div class="adm-tabs">
+          <button class="adm-tab${tab === "jobs" ? " active" : ""}" data-admin-tab="jobs">${icon("briefcaseMedical")} Jobs <span class="adm-tab-badge">${jobs.length}</span></button>
+          <button class="adm-tab${tab === "announcements" ? " active" : ""}" data-admin-tab="announcements">${icon("bell")} Announcements <span class="adm-tab-badge">${anns.length}</span></button>
+        </div>
+
+        ${tab === "jobs" ? `
+          <div class="adm-table-wrap">
+            ${jobs.length === 0 ? `<div class="adm-empty">${icon("briefcaseMedical")}<p>No jobs yet. Click <strong>Add Job</strong> to post the first listing.</p></div>` : `
+            <table class="adm-table">
+              <thead>
+                <tr>
+                  <th>Title / Organisation</th>
+                  <th>Type</th>
+                  <th>Deadline</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${jobs.map(j => `
+                  <tr class="${j.is_active ? "" : "adm-row-inactive"}">
+                    <td>
+                      <strong class="adm-job-title">${escapeHtml(j.title)}</strong>
+                      <small>${escapeHtml(j.organisation || "")}${j.location ? ` · ${escapeHtml(j.location)}` : ""}</small>
+                      ${j.is_featured ? `<span class="adm-badge adm-badge-gold">★ Featured</span>` : ""}
+                    </td>
+                    <td><span class="adm-chip">${escapeHtml(j.type || "—")}</span></td>
+                    <td>${j.deadline ? `<span class="adm-deadline">${escapeHtml(j.deadline)}</span>` : "—"}</td>
+                    <td><span class="adm-status ${j.is_active ? "adm-status-on" : "adm-status-off"}">${j.is_active ? "Active" : "Hidden"}</span></td>
+                    <td class="adm-actions">
+                      <button class="adm-btn-icon" title="Edit" data-adm-job-edit="${escapeHtml(j.id)}">${icon("pencil")}</button>
+                      <button class="adm-btn-icon" title="${j.is_active ? "Hide" : "Show"}" data-adm-job-toggle="${escapeHtml(j.id)}" data-adm-job-active="${j.is_active}">${j.is_active ? icon("eyeOff") : icon("eye")}</button>
+                      <button class="adm-btn-icon adm-btn-danger" title="Delete" data-adm-job-delete="${escapeHtml(j.id)}">${icon("x")}</button>
+                    </td>
+                  </tr>
+                `).join("")}
+              </tbody>
+            </table>`}
+          </div>
+        ` : `
+          <div class="adm-table-wrap">
+            ${anns.length === 0 ? `<div class="adm-empty">${icon("bell")}<p>No announcements yet. Click <strong>Add Announcement</strong> to post one.</p></div>` : `
+            <table class="adm-table">
+              <thead>
+                <tr>
+                  <th>Message</th>
+                  <th>Type</th>
+                  <th>Link</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${anns.map(a => `
+                  <tr class="${a.is_active ? "" : "adm-row-inactive"}">
+                    <td><p class="adm-ann-msg">${escapeHtml(a.message || "")}</p></td>
+                    <td><span class="adm-chip" style="background:${typeColors[a.type] || "#3b82f6"}22;color:${typeColors[a.type] || "#3b82f6"}">${escapeHtml(a.type || "info")}</span></td>
+                    <td>${a.link_url ? `<a href="${escapeHtml(a.link_url)}" target="_blank" rel="noopener" class="adm-link">${escapeHtml(a.link_text || "Link")}</a>` : "—"}</td>
+                    <td><span class="adm-status ${a.is_active ? "adm-status-on" : "adm-status-off"}">${a.is_active ? "Active" : "Hidden"}</span></td>
+                    <td class="adm-actions">
+                      <button class="adm-btn-icon" title="Edit" data-adm-ann-edit="${escapeHtml(a.id)}">${icon("pencil")}</button>
+                      <button class="adm-btn-icon" title="${a.is_active ? "Hide" : "Show"}" data-adm-ann-toggle="${escapeHtml(a.id)}" data-adm-ann-active="${a.is_active}">${a.is_active ? icon("eyeOff") : icon("eye")}</button>
+                      <button class="adm-btn-icon adm-btn-danger" title="Delete" data-adm-ann-delete="${escapeHtml(a.id)}">${icon("x")}</button>
+                    </td>
+                  </tr>
+                `).join("")}
+              </tbody>
+            </table>`}
+          </div>
+        `}
+      </div>
+    </section>
+    ${jobFormHtml}
+    ${annFormHtml}
+  `;
+
+  layout(pageContent);
+
+  // ── Job form wiring ─────────────────────────────────────────────────
+  app.querySelector("[data-adm-job-new]")?.addEventListener("click", () => {
+    state.adminJobForm = { open: true, data: {} };
+    render();
+  });
+  app.querySelectorAll("[data-adm-job-edit]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const job = jobs.find(j => String(j.id) === btn.dataset.admJobEdit);
+      if (job) { state.adminJobForm = { open: true, data: { ...job } }; render(); }
+    });
+  });
+  app.querySelectorAll("[data-adm-job-toggle]").forEach(btn => {
+    btn.addEventListener("click", () => adminToggleJob(btn.dataset.admJobToggle, btn.dataset.admJobActive === "true"));
+  });
+  app.querySelectorAll("[data-adm-job-delete]").forEach(btn => {
+    btn.addEventListener("click", () => adminDeleteJob(btn.dataset.admJobDelete));
+  });
+  app.querySelectorAll("[data-adm-job-form-close]").forEach(btn => {
+    btn.addEventListener("click", () => { state.adminJobForm = { open: false, data: {} }; render(); });
+  });
+  const jobForm = app.querySelector("#adm-job-form");
+  if (jobForm) {
+    jobForm.addEventListener("submit", async e => {
+      e.preventDefault();
+      const fd = new FormData(jobForm);
+      const saveBtn = jobForm.querySelector("#adm-job-save-btn");
+      if (saveBtn) saveBtn.disabled = true;
+      const data = {
+        title: fd.get("title"), organisation: fd.get("organisation"),
+        location: fd.get("location"), type: fd.get("type"),
+        category: fd.get("category"), description: fd.get("description"),
+        requirements: fd.get("requirements"), how_to_apply: fd.get("how_to_apply"),
+        deadline: fd.get("deadline"), salary: fd.get("salary"),
+        apply_url: fd.get("apply_url"), is_featured: fd.has("is_featured")
+      };
+      const res = await adminSaveJob(data, jForm.data.id || null);
+      if (res.ok) {
+        state.adminJobForm = { open: false, data: {} };
+        showToast(jForm.data.id ? "Job updated." : "Job published!", "success");
+      } else {
+        showToast(res.error || "Save failed.", "error");
+        if (saveBtn) saveBtn.disabled = false;
+      }
+      render();
+    });
+  }
+
+  // ── Announcement form wiring ─────────────────────────────────────────
+  app.querySelector("[data-adm-ann-new]")?.addEventListener("click", () => {
+    state.adminAnnForm = { open: true, data: {} };
+    render();
+  });
+  app.querySelectorAll("[data-adm-ann-edit]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const ann = anns.find(a => String(a.id) === btn.dataset.admAnnEdit);
+      if (ann) { state.adminAnnForm = { open: true, data: { ...ann } }; render(); }
+    });
+  });
+  app.querySelectorAll("[data-adm-ann-toggle]").forEach(btn => {
+    btn.addEventListener("click", () => adminToggleAnn(btn.dataset.admAnnToggle, btn.dataset.admAnnActive === "true"));
+  });
+  app.querySelectorAll("[data-adm-ann-delete]").forEach(btn => {
+    btn.addEventListener("click", () => adminDeleteAnn(btn.dataset.admAnnDelete));
+  });
+  app.querySelectorAll("[data-adm-ann-form-close]").forEach(btn => {
+    btn.addEventListener("click", () => { state.adminAnnForm = { open: false, data: {} }; render(); });
+  });
+  const annForm = app.querySelector("#adm-ann-form");
+  if (annForm) {
+    annForm.addEventListener("submit", async e => {
+      e.preventDefault();
+      const fd = new FormData(annForm);
+      const data = {
+        message: fd.get("message"), type: fd.get("type"),
+        link_text: fd.get("link_text"), link_url: fd.get("link_url")
+      };
+      const res = await adminSaveAnn(data, aForm.data.id || null);
+      if (res.ok) {
+        state.adminAnnForm = { open: false, data: {} };
+        showToast(aForm.data.id ? "Announcement updated." : "Announcement published!", "success");
+      } else {
+        showToast(res.error || "Save failed.", "error");
+      }
+      render();
+    });
+  }
 }
 
 function renderProgress() {
@@ -6948,6 +7452,7 @@ function setCareerJobSaved(id, saved) {
   else next.delete(id);
   state.savedCareerJobs = [...next];
   localStorage.setItem("nursinguganda.savedCareerJobs", JSON.stringify(state.savedCareerJobs));
+  scheduleProgressSync();
 }
 
 function dateLabel(value) {
@@ -10088,7 +10593,16 @@ function render() {
   };
   let structuredData = null;
 
-  if (parts[0] === "login") {
+  if (parts[0] === "admin") {
+    // Admin page manages its own layout() call (needs to load data first)
+    if (!isAdmin()) { setDocumentMeta("Access Denied", ""); layout(`<section class="section"><div class="container" style="text-align:center;padding:4rem 1rem">${icon("lock")}<h2 style="margin:.75rem 0">Admin access required.</h2><a class="button primary" href="/notes">Go Home</a></div></section>`); return; }
+    // Load data then render
+    Promise.all([adminLoadJobs(), adminLoadAnnouncements()]).then(() => renderAdminPage());
+    // Render immediately with whatever data is already loaded
+    renderAdminPage();
+    return;
+  }
+  else if (parts[0] === "login") {
     content = renderLoginPage();
     meta = { title: state.loginTab === "signup" ? "Create Account" : "Sign In", description: "Sign in or create a free account on Nursing Uganda to track your progress and saved notes." };
   }
@@ -10991,6 +11505,7 @@ function setTopicMastery(key) {
   if (mastered[key]) return;
   mastered[key] = new Date().toISOString();
   localStorage.setItem("nursinguganda.masteredTopics", JSON.stringify(mastered));
+  scheduleProgressSync();
 }
 
 function isTopicMastered(key) {
@@ -11585,14 +12100,25 @@ async function init() {
     if (client) {
       try {
         const { data: { session } } = await client.auth.getSession();
-        if (session?.user) state.currentUser = supabaseUserToAppUser(session.user);
+        if (session?.user) {
+          state.currentUser = supabaseUserToAppUser(session.user);
+          // Load cloud progress for returning users (non-blocking)
+          loadProgressFromSupabase().catch(() => {});
+        }
       } catch (_) {}
       client.auth.onAuthStateChange((_event, session) => {
+        const wasLoggedIn = !!state.currentUser;
         state.currentUser = session?.user ? supabaseUserToAppUser(session.user) : null;
         state.loginEmailSent = false;
+        // When user logs in, sync cloud progress down
+        if (!wasLoggedIn && state.currentUser) loadProgressFromSupabase().catch(() => {});
         render();
       });
     }
+
+    // ── Background data: announcements + jobs from Supabase ─────────────
+    loadAnnouncements().catch(() => {});
+    loadJobsFromSupabase().catch(() => {});
 
     // Initialise CV Generator modal container (outside #app so it survives SPA navigation)
     if (!document.getElementById("cvg-root")) {
