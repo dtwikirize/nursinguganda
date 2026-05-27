@@ -61,11 +61,21 @@ const state = {
   loginEmailSent: false,
   loginEmailAddress: "",
   announcements: [],
+  studyTips: [],
+  upcomingEvents: [],
+  resourceDownloads: [],
   adminTab: "jobs",
   adminJobs: [],
   adminAnnouncements: [],
+  adminUsers: [],
+  adminTips: [],
+  adminEvents: [],
+  adminResources: [],
   adminJobForm: { open: false, data: {} },
-  adminAnnForm: { open: false, data: {} }
+  adminAnnForm: { open: false, data: {} },
+  adminTipForm: { open: false, data: {} },
+  adminEventForm: { open: false, data: {} },
+  adminResourceForm: { open: false, data: {} }
 };
 
 const app = document.querySelector("#app");
@@ -336,6 +346,91 @@ function renderAnnouncementBanner() {
   </div>`;
 }
 
+// ─── STUDY TIP WIDGET ────────────────────────────────────────────────────────
+function renderStudyTipWidget() {
+  if (!state.studyTips.length) return "";
+  const dismissed = (() => { try { return new Set(JSON.parse(localStorage.getItem("nursinguganda.dismissedTips") || "[]")); } catch { return new Set(); } })();
+  const tip = state.studyTips.find(t => !dismissed.has(t.id));
+  if (!tip) return "";
+  return `
+    <section class="section compact-section">
+      <div class="container">
+        <div class="study-tip-card" data-tip-id="${escapeHtml(tip.id)}">
+          <span class="study-tip-emoji">${escapeHtml(tip.emoji || "💡")}</span>
+          <div class="study-tip-body">
+            <strong>Study Tip</strong>
+            <p>${escapeHtml(tip.message)}</p>
+          </div>
+          <button type="button" class="study-tip-dismiss" data-dismiss-tip="${escapeHtml(tip.id)}" aria-label="Dismiss tip">✕</button>
+        </div>
+      </div>
+    </section>`;
+}
+
+// ─── EVENTS STRIP ─────────────────────────────────────────────────────────────
+function evDate(d) { try { return new Date(d + "T00:00:00"); } catch { return new Date(); } }
+function renderEventsStrip() {
+  if (!state.upcomingEvents.length) return "";
+  return `
+    <section class="section compact-section events-section">
+      <div class="container">
+        <div class="section-head slim-head">
+          <div><span class="eyebrow">What's On</span><h2>Upcoming Events</h2></div>
+        </div>
+        <div class="events-grid">
+          ${state.upcomingEvents.map(ev => {
+            const d = evDate(ev.event_date);
+            const dayNum = d.getDate();
+            const monthStr = d.toLocaleDateString("en-GB", { month: "short" });
+            return `
+            <div class="event-card">
+              <div class="event-date-badge">
+                <strong>${dayNum}</strong>
+                <span>${monthStr}</span>
+              </div>
+              <div class="event-body">
+                <strong class="event-title">${escapeHtml(ev.title)}</strong>
+                ${ev.description ? `<p class="event-desc">${escapeHtml(ev.description)}</p>` : ""}
+                <div class="event-meta">
+                  ${ev.event_time ? `<span>${icon("clock")} ${escapeHtml(ev.event_time)}</span>` : ""}
+                  ${ev.location ? `<span>${icon("mapPin")} ${escapeHtml(ev.location)}</span>` : ""}
+                </div>
+              </div>
+              ${ev.link_url ? `<a class="event-link button ghost" href="${escapeHtml(ev.link_url)}" target="_blank" rel="noopener">${escapeHtml(ev.link_text || "Details")} ${icon("externalLink")}</a>` : ""}
+            </div>`;
+          }).join("")}
+        </div>
+      </div>
+    </section>`;
+}
+
+// ─── RESOURCE DOWNLOADS SECTION ───────────────────────────────────────────────
+function renderResourceDownloadsSection() {
+  if (!state.resourceDownloads.length) return "";
+  return `
+    <section class="section compact-section rds-section">
+      <div class="container">
+        <div class="section-head slim-head">
+          <div><span class="eyebrow">Downloads</span><h2>Free Study Resources</h2></div>
+        </div>
+        <div class="rds-grid">
+          ${state.resourceDownloads.map(r => `
+            <div class="rds-card">
+              <div class="rds-card-body">
+                <span class="rds-tag">${escapeHtml(r.category || "General")}</span>
+                <strong class="rds-title">${escapeHtml(r.title)}</strong>
+                ${r.description ? `<p class="rds-desc">${escapeHtml(r.description)}</p>` : ""}
+              </div>
+              ${r.file_url
+                ? `<a class="button primary rds-dl-btn" href="${escapeHtml(r.file_url)}" target="_blank" rel="noopener" download>${icon("download")} Download</a>`
+                : `<span class="rds-coming">Coming soon</span>`}
+            </div>
+          `).join("")}
+        </div>
+      </div>
+    </section>`;
+}
+
 // ─── JOBS FROM SUPABASE ───────────────────────────────────────────────────
 async function loadJobsFromSupabase() {
   const client = sb(); if (!client) return;
@@ -412,6 +507,113 @@ async function adminDeleteAnn(id) {
   if (!confirm("Delete this announcement?")) return;
   await client.from("announcements").delete().eq("id", id);
   await adminLoadAnnouncements(); await loadAnnouncements(); render();
+}
+
+// ─── STUDY TIPS ───────────────────────────────────────────────────────────────
+async function loadTipsFromSupabase() {
+  const client = sb(); if (!client) return;
+  try {
+    const { data } = await client.from("study_tips").select("*").eq("is_active", true).order("created_at", { ascending: false }).limit(5);
+    if (data?.length) state.studyTips = data;
+  } catch (_) {}
+}
+async function adminLoadTips() {
+  const client = sb(); if (!client) return;
+  const { data } = await client.from("study_tips").select("*").order("created_at", { ascending: false });
+  if (data) state.adminTips = data;
+}
+async function adminSaveTip(tipData, id = null) {
+  const client = sb(); if (!client) return { ok: false };
+  const payload = { message: tipData.message, emoji: tipData.emoji || "💡", is_active: true };
+  const { error } = id ? await client.from("study_tips").update(payload).eq("id", id) : await client.from("study_tips").insert(payload);
+  if (error) return { ok: false, error: error.message };
+  await adminLoadTips(); await loadTipsFromSupabase();
+  return { ok: true };
+}
+async function adminToggleTip(id, isActive) {
+  const client = sb(); if (!client) return;
+  await client.from("study_tips").update({ is_active: !isActive }).eq("id", id);
+  await adminLoadTips(); await loadTipsFromSupabase(); render();
+}
+async function adminDeleteTip(id) {
+  const client = sb(); if (!client) return;
+  if (!confirm("Delete this study tip?")) return;
+  await client.from("study_tips").delete().eq("id", id);
+  await adminLoadTips(); await loadTipsFromSupabase(); render();
+}
+
+// ─── EVENTS ───────────────────────────────────────────────────────────────────
+async function loadEventsFromSupabase() {
+  const client = sb(); if (!client) return;
+  try {
+    const today = new Date().toISOString().slice(0, 10);
+    const { data } = await client.from("events").select("*").eq("is_active", true).gte("event_date", today).order("event_date", { ascending: true }).limit(6);
+    if (data?.length) state.upcomingEvents = data;
+  } catch (_) {}
+}
+async function adminLoadEvents() {
+  const client = sb(); if (!client) return;
+  const { data } = await client.from("events").select("*").order("event_date", { ascending: false });
+  if (data) state.adminEvents = data;
+}
+async function adminSaveEvent(evData, id = null) {
+  const client = sb(); if (!client) return { ok: false };
+  const payload = { title: evData.title, description: evData.description || null, event_date: evData.event_date, event_time: evData.event_time || null, location: evData.location || null, link_url: evData.link_url || null, link_text: evData.link_text || null, is_active: true };
+  const { error } = id ? await client.from("events").update(payload).eq("id", id) : await client.from("events").insert(payload);
+  if (error) return { ok: false, error: error.message };
+  await adminLoadEvents(); await loadEventsFromSupabase();
+  return { ok: true };
+}
+async function adminToggleEvent(id, isActive) {
+  const client = sb(); if (!client) return;
+  await client.from("events").update({ is_active: !isActive }).eq("id", id);
+  await adminLoadEvents(); await loadEventsFromSupabase(); render();
+}
+async function adminDeleteEvent(id) {
+  const client = sb(); if (!client) return;
+  if (!confirm("Delete this event?")) return;
+  await client.from("events").delete().eq("id", id);
+  await adminLoadEvents(); await loadEventsFromSupabase(); render();
+}
+
+// ─── RESOURCE DOWNLOADS ───────────────────────────────────────────────────────
+async function loadResourceDownloadsFromSupabase() {
+  const client = sb(); if (!client) return;
+  try {
+    const { data } = await client.from("resource_downloads").select("*").eq("is_active", true).order("created_at", { ascending: false });
+    if (data?.length) state.resourceDownloads = data;
+  } catch (_) {}
+}
+async function adminLoadResources() {
+  const client = sb(); if (!client) return;
+  const { data } = await client.from("resource_downloads").select("*").order("created_at", { ascending: false });
+  if (data) state.adminResources = data;
+}
+async function adminSaveResource(resData, id = null) {
+  const client = sb(); if (!client) return { ok: false };
+  const payload = { title: resData.title, description: resData.description || null, category: resData.category || "General", file_url: resData.file_url || null, is_active: true };
+  const { error } = id ? await client.from("resource_downloads").update(payload).eq("id", id) : await client.from("resource_downloads").insert(payload);
+  if (error) return { ok: false, error: error.message };
+  await adminLoadResources(); await loadResourceDownloadsFromSupabase();
+  return { ok: true };
+}
+async function adminToggleResource(id, isActive) {
+  const client = sb(); if (!client) return;
+  await client.from("resource_downloads").update({ is_active: !isActive }).eq("id", id);
+  await adminLoadResources(); await loadResourceDownloadsFromSupabase(); render();
+}
+async function adminDeleteResource(id) {
+  const client = sb(); if (!client) return;
+  if (!confirm("Delete this download?")) return;
+  await client.from("resource_downloads").delete().eq("id", id);
+  await adminLoadResources(); await loadResourceDownloadsFromSupabase(); render();
+}
+
+// ─── USERS (admin view) ───────────────────────────────────────────────────────
+async function adminLoadUsers() {
+  const client = sb(); if (!client) return;
+  const { data } = await client.from("profiles").select("*").order("created_at", { ascending: false });
+  if (data) state.adminUsers = data;
 }
 
 function renderUserAvatar(user, size) {
@@ -3454,6 +3656,20 @@ function layout(content) {
     });
   });
 
+  // Study tip dismiss
+  app.querySelectorAll("[data-dismiss-tip]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const tipId = btn.dataset.dismissTip;
+      try {
+        const d = new Set(JSON.parse(localStorage.getItem("nursinguganda.dismissedTips") || "[]"));
+        d.add(tipId);
+        localStorage.setItem("nursinguganda.dismissedTips", JSON.stringify([...d]));
+      } catch (_) {}
+      const card = btn.closest(".study-tip-card");
+      if (card) card.closest("section")?.remove();
+    });
+  });
+
   // Admin panel tab switching
   app.querySelectorAll("[data-admin-tab]").forEach(btn => {
     btn.addEventListener("click", () => {
@@ -4207,23 +4423,155 @@ function renderAdminPage() {
       </div>
     </div>` : "";
 
+  const tips     = state.adminTips || [];
+  const events   = state.adminEvents || [];
+  const resources= state.adminResources || [];
+  const users    = state.adminUsers || [];
+  const tForm    = state.adminTipForm || { open: false, data: {} };
+  const evForm   = state.adminEventForm || { open: false, data: {} };
+  const resForm  = state.adminResourceForm || { open: false, data: {} };
+
+  // ── Tip form modal ───────────────────────────────────────────────────
+  const tipFormHtml = tForm.open ? `
+    <div class="adm-modal-overlay">
+      <div class="adm-modal adm-modal-sm">
+        <div class="adm-modal-hdr">
+          <h3>${tForm.data.id ? "Edit Tip" : "New Study Tip"}</h3>
+          <button type="button" class="adm-modal-close" data-adm-tip-form-close>${icon("x")}</button>
+        </div>
+        <form class="adm-form" id="adm-tip-form">
+          <div class="adm-form-2col">
+            <div class="adm-form-row" style="flex:0 0 70px">
+              <label>Emoji</label>
+              <input name="emoji" value="${escapeHtml(tForm.data.emoji || "💡")}" maxlength="4" style="font-size:1.4rem;text-align:center">
+            </div>
+            <div class="adm-form-row" style="flex:1">
+              <label>Message *</label>
+              <textarea name="message" rows="3" required placeholder="Short actionable tip for students...">${escapeHtml(tForm.data.message || "")}</textarea>
+            </div>
+          </div>
+          <div class="adm-form-actions">
+            <button type="button" class="button ghost" data-adm-tip-form-close>Cancel</button>
+            <button type="submit" class="button primary">${icon("send")} ${tForm.data.id ? "Save" : "Publish"}</button>
+          </div>
+        </form>
+      </div>
+    </div>` : "";
+
+  // ── Event form modal ─────────────────────────────────────────────────
+  const eventFormHtml = evForm.open ? `
+    <div class="adm-modal-overlay">
+      <div class="adm-modal">
+        <div class="adm-modal-hdr">
+          <h3>${evForm.data.id ? "Edit Event" : "New Event"}</h3>
+          <button type="button" class="adm-modal-close" data-adm-event-form-close>${icon("x")}</button>
+        </div>
+        <form class="adm-form" id="adm-event-form">
+          <div class="adm-form-row">
+            <label>Event Title *</label>
+            <input name="title" required value="${escapeHtml(evForm.data.title || "")}" placeholder="e.g. UNMC Registration Webinar">
+          </div>
+          <div class="adm-form-row">
+            <label>Description</label>
+            <textarea name="description" rows="2" placeholder="Brief overview...">${escapeHtml(evForm.data.description || "")}</textarea>
+          </div>
+          <div class="adm-form-2col">
+            <div class="adm-form-row">
+              <label>Date *</label>
+              <input type="date" name="event_date" required value="${escapeHtml(evForm.data.event_date || "")}">
+            </div>
+            <div class="adm-form-row">
+              <label>Time</label>
+              <input type="time" name="event_time" value="${escapeHtml(evForm.data.event_time || "")}">
+            </div>
+          </div>
+          <div class="adm-form-row">
+            <label>Location</label>
+            <input name="location" value="${escapeHtml(evForm.data.location || "")}" placeholder="e.g. Zoom / Mulago Hospital">
+          </div>
+          <div class="adm-form-2col">
+            <div class="adm-form-row">
+              <label>Link Text</label>
+              <input name="link_text" value="${escapeHtml(evForm.data.link_text || "")}" placeholder="Register">
+            </div>
+            <div class="adm-form-row">
+              <label>Link URL</label>
+              <input type="url" name="link_url" value="${escapeHtml(evForm.data.link_url || "")}" placeholder="https://...">
+            </div>
+          </div>
+          <div class="adm-form-actions">
+            <button type="button" class="button ghost" data-adm-event-form-close>Cancel</button>
+            <button type="submit" class="button primary">${icon("send")} ${evForm.data.id ? "Save" : "Publish"}</button>
+          </div>
+        </form>
+      </div>
+    </div>` : "";
+
+  // ── Resource download form modal ─────────────────────────────────────
+  const resFormHtml = resForm.open ? `
+    <div class="adm-modal-overlay">
+      <div class="adm-modal adm-modal-sm">
+        <div class="adm-modal-hdr">
+          <h3>${resForm.data.id ? "Edit Download" : "New Download"}</h3>
+          <button type="button" class="adm-modal-close" data-adm-res-form-close>${icon("x")}</button>
+        </div>
+        <form class="adm-form" id="adm-res-form">
+          <div class="adm-form-row">
+            <label>Title *</label>
+            <input name="title" required value="${escapeHtml(resForm.data.title || "")}" placeholder="e.g. Certificate Nursing Anatomy Notes">
+          </div>
+          <div class="adm-form-row">
+            <label>Description</label>
+            <textarea name="description" rows="2" placeholder="What's in this download?">${escapeHtml(resForm.data.description || "")}</textarea>
+          </div>
+          <div class="adm-form-2col">
+            <div class="adm-form-row">
+              <label>Category</label>
+              <select name="category">
+                ${["Study Notes","Past Papers","Checklists","Templates","Guidelines","Other"].map(c => `<option${resForm.data.category === c ? " selected" : ""}>${c}</option>`).join("")}
+              </select>
+            </div>
+            <div class="adm-form-row">
+              <label>File URL</label>
+              <input type="url" name="file_url" value="${escapeHtml(resForm.data.file_url || "")}" placeholder="https://...">
+            </div>
+          </div>
+          <div class="adm-form-actions">
+            <button type="button" class="button ghost" data-adm-res-form-close>Cancel</button>
+            <button type="submit" class="button primary">${icon("send")} ${resForm.data.id ? "Save" : "Publish"}</button>
+          </div>
+        </form>
+      </div>
+    </div>` : "";
+
   // ── Page content ────────────────────────────────────────────────────
+  const addBtnMap = {
+    jobs: `<button class="button primary" type="button" data-adm-job-new>${icon("sparkles")} Add Job</button>`,
+    announcements: `<button class="button primary" type="button" data-adm-ann-new>${icon("bell")} Add Announcement</button>`,
+    tips: `<button class="button primary" type="button" data-adm-tip-new>${icon("lightbulb")} Add Tip</button>`,
+    events: `<button class="button primary" type="button" data-adm-event-new>${icon("calendar")} Add Event</button>`,
+    resources: `<button class="button primary" type="button" data-adm-res-new>${icon("download")} Add Download</button>`,
+    users: ""
+  };
+
   const pageContent = `
     <section class="section">
       <div class="container adm-container">
         <div class="adm-header">
           <div>
             <h1 class="adm-title">${icon("tool")} Admin Panel</h1>
-            <p class="adm-subtitle">Manage job listings and site announcements.</p>
+            <p class="adm-subtitle">Manage jobs, announcements, tips, events, downloads and users.</p>
           </div>
-          ${tab === "jobs"
-            ? `<button class="button primary" type="button" data-adm-job-new>${icon("sparkles")} Add Job</button>`
-            : `<button class="button primary" type="button" data-adm-ann-new>${icon("bell")} Add Announcement</button>`}
+          ${addBtnMap[tab] || ""}
         </div>
 
         <div class="adm-tabs">
           <button class="adm-tab${tab === "jobs" ? " active" : ""}" data-admin-tab="jobs">${icon("briefcaseMedical")} Jobs <span class="adm-tab-badge">${jobs.length}</span></button>
-          <button class="adm-tab${tab === "announcements" ? " active" : ""}" data-admin-tab="announcements">${icon("bell")} Announcements <span class="adm-tab-badge">${anns.length}</span></button>
+          <button class="adm-tab${tab === "announcements" ? " active" : ""}" data-admin-tab="announcements">${icon("bell")} Banners <span class="adm-tab-badge">${anns.length}</span></button>
+          <button class="adm-tab${tab === "tips" ? " active" : ""}" data-admin-tab="tips">${icon("lightbulb")} Tips <span class="adm-tab-badge">${tips.length}</span></button>
+          <button class="adm-tab${tab === "events" ? " active" : ""}" data-admin-tab="events">${icon("calendar")} Events <span class="adm-tab-badge">${events.length}</span></button>
+          <button class="adm-tab${tab === "resources" ? " active" : ""}" data-admin-tab="resources">${icon("download")} Downloads <span class="adm-tab-badge">${resources.length}</span></button>
+          <button class="adm-tab${tab === "users" ? " active" : ""}" data-admin-tab="users">${icon("users")} Users <span class="adm-tab-badge">${users.length}</span></button>
         </div>
 
         ${tab === "jobs" ? `
@@ -4291,10 +4639,103 @@ function renderAdminPage() {
             </table>`}
           </div>
         `}
+
+        ${tab === "tips" ? `
+          <div class="adm-table-wrap">
+            ${tips.length === 0 ? `<div class="adm-empty">${icon("lightbulb")}<p>No tips yet. Click <strong>Add Tip</strong> to create one.</p></div>` : `
+            <table class="adm-table">
+              <thead><tr><th>Emoji</th><th>Message</th><th>Status</th><th>Actions</th></tr></thead>
+              <tbody>
+                ${tips.map(t => `
+                  <tr class="${t.is_active ? "" : "adm-row-inactive"}">
+                    <td style="font-size:1.5rem;text-align:center">${escapeHtml(t.emoji || "💡")}</td>
+                    <td><p class="adm-ann-msg">${escapeHtml(t.message || "")}</p></td>
+                    <td><span class="adm-status ${t.is_active ? "adm-status-on" : "adm-status-off"}">${t.is_active ? "Active" : "Hidden"}</span></td>
+                    <td class="adm-actions">
+                      <button class="adm-btn-icon" title="Edit" data-adm-tip-edit="${escapeHtml(t.id)}">${icon("pencil")}</button>
+                      <button class="adm-btn-icon" title="${t.is_active ? "Hide" : "Show"}" data-adm-tip-toggle="${escapeHtml(t.id)}" data-adm-tip-active="${t.is_active}">${t.is_active ? icon("eyeOff") : icon("eye")}</button>
+                      <button class="adm-btn-icon adm-btn-danger" title="Delete" data-adm-tip-delete="${escapeHtml(t.id)}">${icon("x")}</button>
+                    </td>
+                  </tr>
+                `).join("")}
+              </tbody>
+            </table>`}
+          </div>
+        ` : ""}
+
+        ${tab === "events" ? `
+          <div class="adm-table-wrap">
+            ${events.length === 0 ? `<div class="adm-empty">${icon("calendar")}<p>No events yet. Click <strong>Add Event</strong> to create one.</p></div>` : `
+            <table class="adm-table">
+              <thead><tr><th>Title</th><th>Date</th><th>Location</th><th>Status</th><th>Actions</th></tr></thead>
+              <tbody>
+                ${events.map(e => `
+                  <tr class="${e.is_active ? "" : "adm-row-inactive"}">
+                    <td><strong class="adm-job-title">${escapeHtml(e.title)}</strong>${e.description ? `<small>${escapeHtml(e.description.slice(0,80))}${e.description.length > 80 ? "…" : ""}</small>` : ""}</td>
+                    <td><span class="adm-deadline">${escapeHtml(e.event_date || "—")}${e.event_time ? ` ${escapeHtml(e.event_time)}` : ""}</span></td>
+                    <td>${e.location ? escapeHtml(e.location) : "—"}</td>
+                    <td><span class="adm-status ${e.is_active ? "adm-status-on" : "adm-status-off"}">${e.is_active ? "Active" : "Hidden"}</span></td>
+                    <td class="adm-actions">
+                      <button class="adm-btn-icon" title="Edit" data-adm-event-edit="${escapeHtml(e.id)}">${icon("pencil")}</button>
+                      <button class="adm-btn-icon" title="${e.is_active ? "Hide" : "Show"}" data-adm-event-toggle="${escapeHtml(e.id)}" data-adm-event-active="${e.is_active}">${e.is_active ? icon("eyeOff") : icon("eye")}</button>
+                      <button class="adm-btn-icon adm-btn-danger" title="Delete" data-adm-event-delete="${escapeHtml(e.id)}">${icon("x")}</button>
+                    </td>
+                  </tr>
+                `).join("")}
+              </tbody>
+            </table>`}
+          </div>
+        ` : ""}
+
+        ${tab === "resources" ? `
+          <div class="adm-table-wrap">
+            ${resources.length === 0 ? `<div class="adm-empty">${icon("download")}<p>No downloads yet. Click <strong>Add Download</strong> to create one.</p></div>` : `
+            <table class="adm-table">
+              <thead><tr><th>Title</th><th>Category</th><th>File URL</th><th>Status</th><th>Actions</th></tr></thead>
+              <tbody>
+                ${resources.map(r => `
+                  <tr class="${r.is_active ? "" : "adm-row-inactive"}">
+                    <td><strong class="adm-job-title">${escapeHtml(r.title)}</strong>${r.description ? `<small>${escapeHtml(r.description.slice(0,70))}${r.description.length > 70 ? "…" : ""}</small>` : ""}</td>
+                    <td><span class="adm-chip">${escapeHtml(r.category || "General")}</span></td>
+                    <td>${r.file_url ? `<a href="${escapeHtml(r.file_url)}" target="_blank" rel="noopener" class="adm-link">View file</a>` : `<span style="color:#94a3b8">Not set</span>`}</td>
+                    <td><span class="adm-status ${r.is_active ? "adm-status-on" : "adm-status-off"}">${r.is_active ? "Active" : "Hidden"}</span></td>
+                    <td class="adm-actions">
+                      <button class="adm-btn-icon" title="Edit" data-adm-res-edit="${escapeHtml(r.id)}">${icon("pencil")}</button>
+                      <button class="adm-btn-icon" title="${r.is_active ? "Hide" : "Show"}" data-adm-res-toggle="${escapeHtml(r.id)}" data-adm-res-active="${r.is_active}">${r.is_active ? icon("eyeOff") : icon("eye")}</button>
+                      <button class="adm-btn-icon adm-btn-danger" title="Delete" data-adm-res-delete="${escapeHtml(r.id)}">${icon("x")}</button>
+                    </td>
+                  </tr>
+                `).join("")}
+              </tbody>
+            </table>`}
+          </div>
+        ` : ""}
+
+        ${tab === "users" ? `
+          <div class="adm-table-wrap">
+            ${users.length === 0 ? `<div class="adm-empty">${icon("users")}<p>No registered users yet, or profiles table not set up.</p></div>` : `
+            <table class="adm-table">
+              <thead><tr><th>Name</th><th>Email</th><th>Joined</th></tr></thead>
+              <tbody>
+                ${users.map(u => `
+                  <tr>
+                    <td><div style="display:flex;align-items:center;gap:10px">${renderUserAvatar({ initials: (u.name || u.email || "?").slice(0,2).toUpperCase(), color: authAvatarColor(u.email) }, 32)}<strong>${escapeHtml(u.name || "—")}</strong></div></td>
+                    <td>${escapeHtml(u.email || "—")}</td>
+                    <td><span class="adm-deadline">${u.created_at ? new Date(u.created_at).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }) : "—"}</span></td>
+                  </tr>
+                `).join("")}
+              </tbody>
+            </table>`}
+          </div>
+        ` : ""}
+
       </div>
     </section>
     ${jobFormHtml}
     ${annFormHtml}
+    ${tipFormHtml}
+    ${eventFormHtml}
+    ${resFormHtml}
   `;
 
   layout(pageContent);
@@ -4382,6 +4823,99 @@ function renderAdminPage() {
       } else {
         showToast(res.error || "Save failed.", "error");
       }
+      render();
+    });
+  }
+
+  // ── Tip form wiring ──────────────────────────────────────────────────
+  app.querySelector("[data-adm-tip-new]")?.addEventListener("click", () => {
+    state.adminTipForm = { open: true, data: {} }; render();
+  });
+  app.querySelectorAll("[data-adm-tip-edit]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const t = tips.find(t => String(t.id) === btn.dataset.admTipEdit);
+      if (t) { state.adminTipForm = { open: true, data: { ...t } }; render(); }
+    });
+  });
+  app.querySelectorAll("[data-adm-tip-toggle]").forEach(btn => {
+    btn.addEventListener("click", () => adminToggleTip(btn.dataset.admTipToggle, btn.dataset.admTipActive === "true"));
+  });
+  app.querySelectorAll("[data-adm-tip-delete]").forEach(btn => {
+    btn.addEventListener("click", () => adminDeleteTip(btn.dataset.admTipDelete));
+  });
+  app.querySelectorAll("[data-adm-tip-form-close]").forEach(btn => {
+    btn.addEventListener("click", () => { state.adminTipForm = { open: false, data: {} }; render(); });
+  });
+  const tipForm = app.querySelector("#adm-tip-form");
+  if (tipForm) {
+    tipForm.addEventListener("submit", async e => {
+      e.preventDefault();
+      const fd = new FormData(tipForm);
+      const res = await adminSaveTip({ message: fd.get("message"), emoji: fd.get("emoji") || "💡" }, tForm.data.id || null);
+      if (res.ok) { state.adminTipForm = { open: false, data: {} }; showToast(tForm.data.id ? "Tip updated." : "Tip published!", "success"); }
+      else showToast(res.error || "Save failed.", "error");
+      render();
+    });
+  }
+
+  // ── Event form wiring ────────────────────────────────────────────────
+  app.querySelector("[data-adm-event-new]")?.addEventListener("click", () => {
+    state.adminEventForm = { open: true, data: {} }; render();
+  });
+  app.querySelectorAll("[data-adm-event-edit]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const e = events.find(e => String(e.id) === btn.dataset.admEventEdit);
+      if (e) { state.adminEventForm = { open: true, data: { ...e } }; render(); }
+    });
+  });
+  app.querySelectorAll("[data-adm-event-toggle]").forEach(btn => {
+    btn.addEventListener("click", () => adminToggleEvent(btn.dataset.admEventToggle, btn.dataset.admEventActive === "true"));
+  });
+  app.querySelectorAll("[data-adm-event-delete]").forEach(btn => {
+    btn.addEventListener("click", () => adminDeleteEvent(btn.dataset.admEventDelete));
+  });
+  app.querySelectorAll("[data-adm-event-form-close]").forEach(btn => {
+    btn.addEventListener("click", () => { state.adminEventForm = { open: false, data: {} }; render(); });
+  });
+  const evFormEl = app.querySelector("#adm-event-form");
+  if (evFormEl) {
+    evFormEl.addEventListener("submit", async e => {
+      e.preventDefault();
+      const fd = new FormData(evFormEl);
+      const res = await adminSaveEvent({ title: fd.get("title"), description: fd.get("description"), event_date: fd.get("event_date"), event_time: fd.get("event_time"), location: fd.get("location"), link_text: fd.get("link_text"), link_url: fd.get("link_url") }, evForm.data.id || null);
+      if (res.ok) { state.adminEventForm = { open: false, data: {} }; showToast(evForm.data.id ? "Event updated." : "Event published!", "success"); }
+      else showToast(res.error || "Save failed.", "error");
+      render();
+    });
+  }
+
+  // ── Resource download form wiring ────────────────────────────────────
+  app.querySelector("[data-adm-res-new]")?.addEventListener("click", () => {
+    state.adminResourceForm = { open: true, data: {} }; render();
+  });
+  app.querySelectorAll("[data-adm-res-edit]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const r = resources.find(r => String(r.id) === btn.dataset.admResEdit);
+      if (r) { state.adminResourceForm = { open: true, data: { ...r } }; render(); }
+    });
+  });
+  app.querySelectorAll("[data-adm-res-toggle]").forEach(btn => {
+    btn.addEventListener("click", () => adminToggleResource(btn.dataset.admResToggle, btn.dataset.admResActive === "true"));
+  });
+  app.querySelectorAll("[data-adm-res-delete]").forEach(btn => {
+    btn.addEventListener("click", () => adminDeleteResource(btn.dataset.admResDelete));
+  });
+  app.querySelectorAll("[data-adm-res-form-close]").forEach(btn => {
+    btn.addEventListener("click", () => { state.adminResourceForm = { open: false, data: {} }; render(); });
+  });
+  const resFormEl = app.querySelector("#adm-res-form");
+  if (resFormEl) {
+    resFormEl.addEventListener("submit", async e => {
+      e.preventDefault();
+      const fd = new FormData(resFormEl);
+      const res2 = await adminSaveResource({ title: fd.get("title"), description: fd.get("description"), category: fd.get("category"), file_url: fd.get("file_url") }, resForm.data.id || null);
+      if (res2.ok) { state.adminResourceForm = { open: false, data: {} }; showToast(resForm.data.id ? "Download updated." : "Download published!", "success"); }
+      else showToast(res2.error || "Save failed.", "error");
       render();
     });
   }
@@ -4591,6 +5125,7 @@ function renderNotes() {
         </div>
       </div>
     </section>
+    ${renderStudyTipWidget()}
     <section class="section">
       <div class="container">
         <div class="section-head slim-head">
@@ -6729,6 +7264,7 @@ function renderResources() {
       title: "Resources",
       body: "Past papers, quizzes, licensing guides, medical references, schools and student support."
     })}
+    ${renderResourceDownloadsSection()}
     <section class="section resources-section">
       <div class="container">
         <div class="resource-toolbar">
@@ -8781,6 +9317,7 @@ function renderDictionary(parts = currentRoute()) {
 function renderCareers() {
   return `
     ${renderCareerHero()}
+    ${renderEventsStrip()}
     ${renderCareerModeToggle()}
     ${state.careerMode === "hub" ? renderCareerHub() : renderJobsBoard()}
   `;
@@ -10597,7 +11134,7 @@ function render() {
     // Admin page manages its own layout() call (needs to load data first)
     if (!isAdmin()) { setDocumentMeta("Access Denied", ""); layout(`<section class="section"><div class="container" style="text-align:center;padding:4rem 1rem">${icon("lock")}<h2 style="margin:.75rem 0">Admin access required.</h2><a class="button primary" href="/notes">Go Home</a></div></section>`); return; }
     // Load data then render
-    Promise.all([adminLoadJobs(), adminLoadAnnouncements()]).then(() => renderAdminPage());
+    Promise.all([adminLoadJobs(), adminLoadAnnouncements(), adminLoadTips(), adminLoadEvents(), adminLoadResources(), adminLoadUsers()]).then(() => renderAdminPage());
     // Render immediately with whatever data is already loaded
     renderAdminPage();
     return;
@@ -12116,9 +12653,12 @@ async function init() {
       });
     }
 
-    // ── Background data: announcements + jobs from Supabase ─────────────
+    // ── Background data: announcements, jobs, tips, events, downloads ───
     loadAnnouncements().catch(() => {});
     loadJobsFromSupabase().catch(() => {});
+    loadTipsFromSupabase().catch(() => {});
+    loadEventsFromSupabase().catch(() => {});
+    loadResourceDownloadsFromSupabase().catch(() => {});
 
     // Initialise CV Generator modal container (outside #app so it survives SPA navigation)
     if (!document.getElementById("cvg-root")) {
