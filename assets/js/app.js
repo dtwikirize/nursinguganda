@@ -1305,10 +1305,51 @@ function completedTopics() {
 
 function setTopicComplete(key, complete) {
   const completed = completedTopics();
-  if (complete) completed[key] = true;
+  if (complete) { completed[key] = true; recordStudyDate(); }
   else delete completed[key];
   localStorage.setItem("nursinguganda.completedTopics", JSON.stringify(completed));
   scheduleProgressSync();
+}
+
+// ─── STUDY ACTIVITY TRACKING ──────────────────────────────────────────────
+// Records today's date whenever the student does any study activity.
+// Used by the dashboard heatmap. Keeps last 56 days.
+function recordStudyDate() {
+  const today = new Date().toISOString().slice(0, 10);
+  try {
+    const dates = new Set(JSON.parse(localStorage.getItem("nursinguganda.studyDates") || "[]"));
+    if (!dates.has(today)) {
+      dates.add(today);
+      const sorted = [...dates].sort().slice(-56);
+      localStorage.setItem("nursinguganda.studyDates", JSON.stringify(sorted));
+    }
+  } catch {}
+}
+function getStudyDates() {
+  try { return new Set(JSON.parse(localStorage.getItem("nursinguganda.studyDates") || "[]")); }
+  catch { return new Set(); }
+}
+
+// ─── QUIZ HISTORY ─────────────────────────────────────────────────────────
+// Saves a scored quiz result at submission time (while _quizCtx is fresh).
+function saveQuizResult(key) {
+  if (!_quizCtx?.questions?.length) return;
+  const attempt = quizAttempts()[key] || {};
+  const questions = _quizCtx.questions;
+  const score = questions.filter((q, i) => quizAnswerCorrect(q, attempt[i])).length;
+  const total = questions.length;
+  const pct   = total ? Math.round((score / total) * 100) : 0;
+  const grade = pct >= 80 ? "Distinction" : pct >= 60 ? "Credit" : pct >= 50 ? "Pass" : "Below Pass";
+  try {
+    const history = JSON.parse(localStorage.getItem("nursinguganda.quizHistory") || "[]");
+    const filtered = history.filter(h => h.key !== key);
+    filtered.unshift({ key, title: _quizCtx.title || "Quiz", score, total, pct, grade, date: new Date().toISOString() });
+    localStorage.setItem("nursinguganda.quizHistory", JSON.stringify(filtered.slice(0, 20)));
+  } catch {}
+}
+function getQuizHistory() {
+  try { return JSON.parse(localStorage.getItem("nursinguganda.quizHistory") || "[]"); }
+  catch { return []; }
 }
 
 function allStudyTopics() {
@@ -5261,12 +5302,87 @@ function renderContactPage() {
   `;
 }
 
+function renderActivityHeatmap() {
+  const studyDates = getStudyDates();
+  const today = new Date();
+  // Build an 8-week (56-day) grid, Sun→Sat columns
+  const days = [];
+  for (let i = 55; i >= 0; i--) {
+    const d = new Date(today);
+    d.setDate(today.getDate() - i);
+    const key = d.toISOString().slice(0, 10);
+    days.push({ key, day: d.getDay(), active: studyDates.has(key), d });
+  }
+  // Pad start so first cell lands on correct weekday column
+  const firstDay = days[0].day; // 0=Sun
+  const padBefore = firstDay;
+  const cells = [...Array(padBefore).fill(null), ...days];
+  const dayLabels = ["S","M","T","W","T","F","S"];
+
+  return `
+    <div class="dash-heatmap">
+      <div class="dash-heatmap-head">
+        <span class="mini-label">Study Activity — last 8 weeks</span>
+        <span class="dash-heatmap-legend">
+          <span class="hm-dot hm-off"></span>No study
+          <span class="hm-dot hm-on"></span>Studied
+        </span>
+      </div>
+      <div class="dash-heatmap-grid">
+        ${dayLabels.map(l => `<span class="hm-day-label">${l}</span>`).join("")}
+        ${cells.map(c => c === null
+          ? `<span class="hm-cell hm-pad"></span>`
+          : `<span class="hm-cell${c.active ? " hm-active" : ""}" title="${c.key}"></span>`
+        ).join("")}
+      </div>
+    </div>
+  `;
+}
+
+function renderQuizHistorySection(history) {
+  if (!history.length) return "";
+  const gradeColor = g => g === "Distinction" ? "#059669" : g === "Credit" ? "#2563eb" : g === "Pass" ? "#d97706" : "#dc2626";
+  const relDate = iso => {
+    const diff = Math.floor((Date.now() - new Date(iso).getTime()) / 86400000);
+    if (diff === 0) return "Today";
+    if (diff === 1) return "Yesterday";
+    if (diff < 7)  return diff + " days ago";
+    return new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short" });
+  };
+  return `
+    <div class="section-head slim-head" style="margin-top:48px">
+      <div><h2>Recent Quiz Results</h2><p>Your last ${history.length} submitted quiz${history.length !== 1 ? "zes" : ""}.</p></div>
+    </div>
+    <div class="dash-quiz-history">
+      ${history.map(r => `
+        <div class="dqh-row">
+          <div class="dqh-score-badge" style="--grade-c:${gradeColor(r.grade)}">
+            <strong>${r.pct}%</strong>
+            <span>${r.grade}</span>
+          </div>
+          <div class="dqh-info">
+            <strong>${escapeHtml(r.title)}</strong>
+            <small>${r.score}/${r.total} correct &middot; ${relDate(r.date)}</small>
+          </div>
+          <div class="dqh-bar-wrap">
+            <div class="dqh-bar"><span style="width:${r.pct}%;background:${gradeColor(r.grade)}"></span></div>
+          </div>
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
 function renderProgress() {
   const progress = overallProgress();
   const streak = updateStreak();
-  const masteredCount = Object.keys(masteredTopics()).length;
+  const masteredCount = flashcardMastery().size;
   const saved = bookmarks();
   const completed = completedTopics();
+  const last = lastStudiedTopic();
+  const history = getQuizHistory();
+  const user = state.currentUser;
+  const quizzesTaken = Object.keys(quizSubmitted()).length;
 
   const subjectBreakdown = notesSubjects().map((subject) => {
     const matches = subjectUnits(subject.pattern);
@@ -5278,42 +5394,80 @@ function renderProgress() {
     return { title: subject.title, done, total, percent: total ? Math.round((done / total) * 100) : 0 };
   });
 
+  const programmeBreakdown = (state.data?.programmes || []).map(p => {
+    const units = allUnits(p);
+    const topics = units.flatMap(u => flatTopics(u).map(t => ({ programme: p, unit: u, topic: t })));
+    const done = topics.filter(({ programme, unit, topic }) => completed[topicKey(programme, unit, topic)]).length;
+    const total = topics.length;
+    return { label: p.label || p.id, id: p.id, done, total, percent: total ? Math.round((done / total) * 100) : 0 };
+  }).filter(p => p.total > 0);
+
   const encouragement = progress.percent >= 80
     ? "Exceptional — you're in the final stretch. Push through to 100%."
     : progress.percent >= 50
       ? "More than halfway. Keep your daily habit and you'll finish strong."
       : "Great start. One lesson a day adds up fast — let your streak carry you.";
 
+  const greeting = user ? `Welcome back${user.name ? ", " + user.name.split(" ")[0] : ""}! 👋` : "My Study Dashboard";
+
   return `
-    ${hero({
-      title: "My Study Progress",
-      body: "Track your completed lessons, quiz mastery, study streak and bookmarks across all programmes.",
-      image: imageCatalog.curriculum,
-      actions: `${buttonLink("/courses/curriculum", "Continue Studying", "primary", "graduationCap")}${buttonLink("/notes", "Back to Notes", "secondary", "bookOpen")}`
-    })}
+    <div class="dash-hero">
+      <div class="container">
+        <div class="dash-hero-inner">
+          <div class="dash-hero-text">
+            <span class="mini-label">Study Dashboard</span>
+            <h1>${escapeHtml(greeting)}</h1>
+            <p>${escapeHtml(encouragement)}</p>
+          </div>
+          <div class="dash-hero-actions">
+            ${last
+              ? `<a class="button primary" href="${escapeHtml(last.href)}">${icon("arrowRight")} Continue Studying</a>`
+              : buttonLink("/courses/curriculum", "Start Studying", "primary", "graduationCap")
+            }
+            ${buttonLink("/resources/quizzes", "Take a Quiz", "secondary", "send")}
+          </div>
+        </div>
+      </div>
+    </div>
+
     <section class="section">
       <div class="container">
 
+        <!-- Stat tiles -->
         <div class="progress-stat-grid">
           <div class="progress-stat-tile">
             <div class="progress-stat-icon psi-primary">${icon("checkCircle")}</div>
-            <div><strong>${progress.done}</strong><span>Lessons Complete</span><small>of ${progress.total} mapped</small></div>
+            <div><strong>${progress.done}</strong><span>Lessons Done</span><small>of ${progress.total} total</small></div>
           </div>
           <div class="progress-stat-tile">
             <div class="progress-stat-icon psi-flame">${icon("flame")}</div>
-            <div><strong>${streak.count}</strong><span>Day Streak</span><small>${streak.count >= 7 ? "Incredible!" : streak.count >= 3 ? "Building momentum" : "Keep it going"}</small></div>
+            <div><strong>${streak.count}</strong><span>Day Streak</span><small>${streak.count >= 7 ? "On fire! 🔥" : streak.count >= 3 ? "Building momentum" : "Keep it going"}</small></div>
           </div>
           <div class="progress-stat-tile">
-            <div class="progress-stat-icon psi-trophy">${icon("trophy")}</div>
-            <div><strong>${masteredCount}</strong><span>Quizzes Mastered</span><small>Perfect scores</small></div>
+            <div class="progress-stat-icon psi-trophy">${icon("send")}</div>
+            <div><strong>${quizzesTaken}</strong><span>Quizzes Taken</span><small>${masteredCount} flashcards mastered</small></div>
           </div>
           <div class="progress-stat-tile">
             <div class="progress-stat-icon psi-bookmark">${icon("bookmark")}</div>
-            <div><strong>${saved.length}</strong><span>Saved Bookmarks</span><small>Topics &amp; lessons</small></div>
+            <div><strong>${saved.length}</strong><span>Bookmarks</span><small>Saved notes &amp; topics</small></div>
           </div>
         </div>
 
-        <div class="progress-overall-panel content-panel">
+        <!-- Continue learning -->
+        ${last ? `
+          <div class="dash-continue-card content-panel">
+            <div class="dash-continue-icon">${icon("bookOpen")}</div>
+            <div class="dash-continue-body">
+              <span class="mini-label">Continue where you left off</span>
+              <strong>${escapeHtml(last.title)}</strong>
+              <small>${escapeHtml(last.context || "")}</small>
+            </div>
+            <a class="button primary" href="${escapeHtml(last.href)}">${icon("arrowRight")} Continue</a>
+          </div>
+        ` : ""}
+
+        <!-- Overall ring -->
+        <div class="progress-overall-panel content-panel" style="margin-top:24px">
           <div class="progress-ring-wrap">
             ${renderProgressRing(progress.percent)}
             <div class="progress-ring-center">
@@ -5328,15 +5482,43 @@ function renderProgress() {
             <div class="progress-bar" style="margin-top:16px;margin-bottom:20px">
               <span style="width:${progress.percent}%"></span>
             </div>
-            ${buttonLink("/courses/curriculum", "Continue Studying", "primary", "arrowRight")}
+            ${buttonLink("/courses/curriculum", "Browse All Courses", "secondary", "graduationCap")}
           </div>
         </div>
 
-        <div class="section-head slim-head" style="margin-top:48px">
-          <div>
-            <h2>Progress by Subject</h2>
-            <p>Completed lessons across each nursing subject area.</p>
+        <!-- Activity heatmap -->
+        ${renderActivityHeatmap()}
+
+        <!-- Quiz history -->
+        ${renderQuizHistorySection(history)}
+
+        <!-- Progress by Programme -->
+        ${programmeBreakdown.length ? `
+          <div class="section-head slim-head" style="margin-top:48px">
+            <div><h2>Progress by Programme</h2><p>Lessons completed across each study programme.</p></div>
           </div>
+          <div class="progress-subject-list">
+            ${programmeBreakdown.map(p => `
+              <div class="progress-subject-row">
+                <div class="progress-subject-info">
+                  <span class="progress-subject-icon">${icon("graduationCap")}</span>
+                  <div>
+                    <strong>${escapeHtml(p.label)}</strong>
+                    <small>${p.done} of ${p.total} lessons</small>
+                  </div>
+                </div>
+                <div class="progress-subject-track">
+                  <div class="progress-bar progress-subject-bar"><span style="width:${p.percent}%"></span></div>
+                  <span class="progress-subject-pct">${p.percent}%</span>
+                </div>
+              </div>
+            `).join("")}
+          </div>
+        ` : ""}
+
+        <!-- Progress by Subject -->
+        <div class="section-head slim-head" style="margin-top:48px">
+          <div><h2>Progress by Subject</h2><p>Completed lessons across each nursing subject area.</p></div>
         </div>
         <div class="progress-subject-list">
           ${subjectBreakdown.map((sub) => `
@@ -5358,9 +5540,10 @@ function renderProgress() {
           `).join("")}
         </div>
 
+        <!-- Bookmarks -->
         ${saved.length ? `
           <div class="section-head slim-head" style="margin-top:48px">
-            <div><h2>Saved Bookmarks</h2><p>Your bookmarked topics and lessons for quick return.</p></div>
+            <div><h2>Saved Bookmarks</h2><p>Your bookmarked topics and lessons.</p></div>
             ${buttonLink("/notes", "All Notes", "secondary", "bookOpen")}
           </div>
           <div class="saved-grid">
@@ -11497,7 +11680,7 @@ function render() {
   }
   else if (parts[0] === "progress") {
     content = renderProgress();
-    meta = { title: "My Progress", description: "Track your completed lessons, quiz mastery, study streak and saved bookmarks on Nursing Uganda." };
+    meta = { title: "Study Dashboard", description: "Your personalised study dashboard — lessons done, quiz history, streak, activity heatmap and programme progress." };
   }
   else if (parts[0] === "flashcards") {
     content = renderFlashcards();
@@ -11889,6 +12072,8 @@ function render() {
           );
           if (!ok) return;
         }
+        saveQuizResult(key);    // save scored result before render clears context
+        recordStudyDate();
         submitQuiz(key);
         render();
         window.scrollTo({ top: 0, behavior: "smooth" });
