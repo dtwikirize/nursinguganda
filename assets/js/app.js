@@ -1367,6 +1367,73 @@ function submitQuiz(key) {
   localStorage.setItem("nursinguganda.quizSubmitted", JSON.stringify(s));
 }
 
+// ─── QUIZ EMAIL ───────────────────────────────────────────────────────────────
+// Cache quiz context so submit handler can build the email payload
+let _quizCtx = { title: "", subtitle: "", questions: [] };
+
+async function sendQuizResultsEmail(quizKey) {
+  const user = state.currentUser;
+  if (!user?.email) return; // Only send if logged in
+
+  const client = sb();
+  if (!client) return;
+
+  const ctx = _quizCtx;
+  const questions = ctx.questions || [];
+  if (!questions.length) return;
+
+  const attempt = quizAttempts()[quizKey] || {};
+  const score = questions.filter((q, i) => quizAnswerCorrect(q, attempt[i])).length;
+  const total = questions.length;
+  const pct   = total ? Math.round((score / total) * 100) : 0;
+  const grade = pct >= 80 ? "Distinction" : pct >= 60 ? "Credit" : pct >= 50 ? "Pass" : "Below Pass";
+
+  // Build per-question result objects
+  const questionResults = questions.map((q, i) => {
+    const ans = attempt[i];
+    const isBlank = q.type === "blank";
+    const correct = quizAnswerCorrect(q, ans);
+    const selectedLabel = ans === undefined
+      ? null
+      : isBlank ? String(ans) : (q.choices?.[Number(ans)] ?? null);
+    const correctLabel = isBlank ? String(q.answer) : String(q.answer);
+    return {
+      prompt: q.prompt || "",
+      selectedLabel,
+      correctLabel,
+      correct,
+      explanation: q.explanation || ""
+    };
+  });
+
+  try {
+    const { data: { session } } = await client.auth.getSession();
+    const token = session?.access_token || "";
+
+    await fetch(
+      `${SUPA_URL}/functions/v1/send-quiz-email`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          email: user.email,
+          name: user.name || "",
+          quizTitle: ctx.title || "Nursing Uganda Quiz",
+          score,
+          total,
+          pct,
+          grade,
+          questions: questionResults
+        })
+      }
+    );
+    // Non-blocking — don't await result, toast shown separately
+  } catch (_) {}
+}
+
 function resetQuiz(key) {
   const attempts = quizAttempts();
   delete attempts[key];
@@ -3653,6 +3720,18 @@ function layout(content) {
       } catch (_) {}
       const banner = btn.closest(".ann-banner");
       if (banner) banner.remove();
+    });
+  });
+
+  // Quiz — re-send email results button
+  app.querySelectorAll("[data-email-quiz]").forEach(btn => {
+    btn.addEventListener("click", async () => {
+      btn.disabled = true;
+      btn.textContent = "Sending…";
+      await sendQuizResultsEmail(btn.dataset.emailQuiz);
+      showToast(`Results emailed to ${state.currentUser?.email || "you"}`, "success");
+      btn.disabled = false;
+      btn.innerHTML = `${icon("mail")}<span>Sent!</span>`;
     });
   });
 
@@ -6851,6 +6930,9 @@ function renderQuizSidebar(title, questions, attempt, isSubmitted) {
 }
 
 function renderStandaloneQuizPage(title, subtitle, questions, quizKey, backHref, backLabel) {
+  // Cache context so the submit handler can build the email payload
+  _quizCtx = { title, subtitle: subtitle || "", questions: questions || [] };
+
   const attempt      = quizAttempts()[quizKey] || {};
   const isSubmitted  = !!quizSubmitted()[quizKey];
   const answeredCount = questions.filter((_, i) => attempt[i] !== undefined).length;
@@ -6888,6 +6970,7 @@ function renderStandaloneQuizPage(title, subtitle, questions, quizKey, backHref,
               <strong>${grade}</strong>
               <p>${pct >= 80 ? "Outstanding — excellent work." : pct >= 60 ? "Good understanding — keep revising." : pct >= 50 ? "Satisfactory — review explanations below." : "Keep studying — the explanations below will help."}</p>
               <button type="button" class="button secondary" data-reset-quiz="${escapeHtml(quizKey)}">${icon("rotateCcw")}<span>Retake Quiz</span></button>
+              ${state.currentUser?.email ? `<button type="button" class="button ghost quiz-email-btn" data-email-quiz="${escapeHtml(quizKey)}">${icon("mail")}<span>Email Results</span></button>` : ""}
             </div>
           </div>
         ` : ""}
@@ -11543,6 +11626,12 @@ function render() {
       submitQuiz(key);
       render();
       window.scrollTo({ top: 0, behavior: "smooth" });
+      // Send results email (non-blocking, only for logged-in users)
+      if (state.currentUser?.email) {
+        sendQuizResultsEmail(key).then(() => {
+          showToast(`Results emailed to ${state.currentUser.email}`, "success");
+        }).catch(() => {});
+      }
     });
   });
 
