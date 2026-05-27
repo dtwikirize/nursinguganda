@@ -93,6 +93,26 @@ const state = {
     calcType: "liquid",
     checklistId: "",
     valuesTab: "vitals"
+  },
+  planner: {
+    weekOffset: 0,
+    selectedDay: "",
+    addFormOpen: false,
+    addForm: { title: "", type: "revision", notes: "" }
+  },
+  bellOpen: false,
+  community: {
+    questions: [],
+    loading: false,
+    selectedQuestion: null,
+    questionAnswers: [],
+    answerLoading: false,
+    askFormOpen: false,
+    askTitle: "",
+    askBody: "",
+    answerBody: "",
+    filter: "all",
+    search: ""
   }
 };
 
@@ -3354,6 +3374,8 @@ function renderFooter() {
             ${footerLink("/resources/student-support","Student Support",    "heartPulse")}
             ${footerLink("/mock-exams",                "Mock Exams",        "clipboardList")}
             ${footerLink("/clinical-tools",           "Clinical Tools",    "stethoscope")}
+            ${footerLink("/planner",                  "Study Planner",     "calendar")}
+            ${footerLink("/community",                "Community Q&A",     "users")}
             ${footerLink("/progress",                 "My Progress",       "chartLine")}
             ${footerLink("/flashcards",               "Flashcards",        "bookOpen")}
             ${footerLink("/contact",                  "Contact Us",        "mail")}
@@ -3606,7 +3628,9 @@ function renderLoginPromptModal() {
     template:    "download",
     cv:          "fileCv",
     flashcard:   "star",
-    "mock-exam": "clipboardList"
+    "mock-exam": "clipboardList",
+    community:   "users",
+    planner:     "calendar"
   };
   const ic = featureIconMap[state.loginPrompt.feature] || "lock";
   return `
@@ -3678,6 +3702,19 @@ function layout(content) {
           </nav>
           <div class="nav-actions">
             <a class="nav-search-pill" href="/search" aria-label="Search notes">${icon("search")}<span>Search</span></a>
+            <!-- Notification bell -->
+            ${(function() {
+              const unread = getUnreadAnnouncementCount();
+              return `
+                <div class="bell-wrap${state.bellOpen ? " open" : ""}">
+                  <button type="button" class="bell-btn" data-bell-toggle aria-label="Notifications" aria-expanded="${state.bellOpen}">
+                    ${icon("bell")}
+                    ${unread > 0 ? `<span class="bell-badge">${unread > 9 ? "9+" : unread}</span>` : ""}
+                  </button>
+                  ${state.bellOpen ? renderBellDropdown() : ""}
+                </div>
+              `;
+            })()}
             ${state.currentUser
               ? `<div class="user-menu-wrap${state.userMenuOpen ? " open" : ""}">
                   <button class="user-menu-trigger" type="button" data-user-menu-toggle aria-label="Account menu" aria-expanded="${state.userMenuOpen}">
@@ -3691,9 +3728,11 @@ function layout(content) {
                         <div class="user-menu-info"><strong>${escapeHtml(state.currentUser.name)}</strong><small>${escapeHtml(state.currentUser.email)}</small></div>
                       </div>
                       <div class="user-menu-items">
-                        <a class="user-menu-item" href="/progress" role="menuitem" data-nav-close>${icon("chartLine")}<span>My Progress</span></a>
-                        <a class="user-menu-item" href="/flashcards" role="menuitem" data-nav-close>${icon("sparkles")}<span>Flashcards</span></a>
-                        <a class="user-menu-item" href="/account" role="menuitem" data-nav-close>${icon("users")}<span>Account</span></a>
+                        <a class="user-menu-item" href="/progress"    role="menuitem" data-nav-close>${icon("chartLine")}<span>My Progress</span></a>
+                        <a class="user-menu-item" href="/planner"     role="menuitem" data-nav-close>${icon("calendar")}<span>Study Planner</span></a>
+                        <a class="user-menu-item" href="/community"   role="menuitem" data-nav-close>${icon("users")}<span>Community Q&amp;A</span></a>
+                        <a class="user-menu-item" href="/flashcards"  role="menuitem" data-nav-close>${icon("sparkles")}<span>Flashcards</span></a>
+                        <a class="user-menu-item" href="/account"     role="menuitem" data-nav-close>${icon("users")}<span>Account</span></a>
                         ${isAdmin() ? `<a class="user-menu-item user-menu-admin" href="/admin" role="menuitem" data-nav-close>${icon("tool")}<span>Admin Panel</span></a>` : ""}
                       </div>
                       <div class="user-menu-footer">
@@ -3782,6 +3821,34 @@ function layout(content) {
       render();
     });
   });
+
+  // Notification settings
+  const notifCb = app.querySelector("[data-notif-enabled]");
+  if (notifCb) {
+    notifCb.addEventListener("change", async () => {
+      const ns = getNotifSettings();
+      if (notifCb.checked) {
+        // Request permission first
+        if ("Notification" in window && Notification.permission !== "granted") {
+          const perm = await Notification.requestPermission();
+          if (perm !== "granted") { notifCb.checked = false; showToast("Notification permission denied.", "error"); return; }
+        }
+        ns.reminderEnabled = true;
+      } else {
+        ns.reminderEnabled = false;
+      }
+      saveNotifSettings(ns);
+      render();
+    });
+  }
+  const notifTime = app.querySelector("[data-notif-time]");
+  if (notifTime) {
+    notifTime.addEventListener("change", () => {
+      const ns = getNotifSettings();
+      ns.reminderTime = notifTime.value;
+      saveNotifSettings(ns);
+    });
+  }
 
   // Forgot password
   app.querySelectorAll("[data-forgot-password]").forEach(btn => {
@@ -4543,11 +4610,39 @@ function renderAccountPage() {
         <h2 class="account-section-title">Quick Links</h2>
         <div class="account-links-grid">
           <a class="account-link-item" href="/progress">${icon("chartLine")}<span>My Progress</span></a>
+          <a class="account-link-item" href="/planner">${icon("calendar")}<span>Study Planner</span></a>
+          <a class="account-link-item" href="/community">${icon("users")}<span>Community Q&amp;A</span></a>
           <a class="account-link-item" href="/flashcards">${icon("sparkles")}<span>Flashcards</span></a>
           <a class="account-link-item" href="/careers">${icon("briefcaseMedical")}<span>Job Board</span></a>
           <a class="account-link-item" href="/notes">${icon("bookOpen")}<span>Study Notes</span></a>
         </div>
       </div>
+
+      ${(function() {
+        const ns = getNotifSettings();
+        const supported = typeof window !== "undefined" && "Notification" in window;
+        return `
+          <div class="account-section-card">
+            <h2 class="account-section-title">${icon("bell")} Study Reminders</h2>
+            <p class="account-section-desc">Get a browser notification when you haven't studied by your chosen time each day.</p>
+            ${!supported ? `<p class="account-notif-unsupported">Push notifications are not supported in this browser.</p>` : `
+              <div class="account-notif-row">
+                <label class="account-notif-toggle-label">
+                  <input type="checkbox" class="account-notif-cb" data-notif-enabled ${ns.reminderEnabled ? "checked" : ""}>
+                  <span>Enable daily study reminder</span>
+                </label>
+              </div>
+              ${ns.reminderEnabled ? `
+                <div class="account-notif-row">
+                  <label class="account-notif-time-label">Remind me at</label>
+                  <input type="time" class="account-notif-time" value="${ns.reminderTime || "20:00"}" data-notif-time>
+                </div>
+                <p class="account-notif-hint">You will only receive a reminder if you haven't studied that day.</p>
+              ` : ""}
+            `}
+          </div>
+        `;
+      })()}
 
       <div class="account-section-card account-section-danger">
         <h2 class="account-section-title">Account</h2>
@@ -5874,6 +5969,377 @@ function renderNormalValues() {
   `;
 }
 
+// ═══════════════════════════════════════════════════════════════════════════
+//  STUDY PLANNER RENDER
+// ═══════════════════════════════════════════════════════════════════════════
+
+function renderPlanner() {
+  const today        = new Date();
+  const weekStart    = new Date(today);
+  weekStart.setDate(today.getDate() - today.getDay() + 1 + state.planner.weekOffset * 7); // Mon
+  const days         = [];
+  const dayNames     = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+  const plannerData  = getPlannerData();
+  for (let i = 0; i < 7; i++) {
+    const d   = new Date(weekStart);
+    d.setDate(weekStart.getDate() + i);
+    const key = d.toISOString().slice(0, 10);
+    const sessions = plannerData[key] || [];
+    const isToday  = key === today.toISOString().slice(0, 10);
+    const isPast   = d < today && !isToday;
+    days.push({ key, d, sessions, isToday, isPast, label: dayNames[i] });
+  }
+  const weekLabel    = weekStart.toLocaleDateString("en-GB", { day: "numeric", month: "long" });
+  const weekEnd      = new Date(weekStart); weekEnd.setDate(weekStart.getDate() + 6);
+  const weekEndLabel = weekEnd.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+  const selectedDay  = state.planner.selectedDay || (days.find(d => d.isToday) || days[0]).key;
+
+  const typeLabels  = { revision: "📖 Revision", notes: "📝 Notes", quiz: "✅ Quiz", mock: "📋 Mock Exam", flashcards: "🃏 Flashcards", clinical: "🩺 Clinical Tools" };
+  const typeColors  = { revision: "#3b82f6", notes: "#10b981", quiz: "#f59e0b", mock: "#8b5cf6", flashcards: "#ec4899", clinical: "#0f7f4f" };
+
+  const selDay = days.find(function(d) { return d.key === selectedDay; }) || days[0];
+
+  return `
+    <section class="section">
+      <div class="container" style="max-width:900px">
+        <div class="planner-page-hero">
+          <div class="planner-hero-icon">${icon("calendar")}</div>
+          <div>
+            <h1 class="planner-hero-title">Study Planner</h1>
+            <p class="planner-hero-desc">Plan your revision week, track sessions, and stay consistent.</p>
+          </div>
+        </div>
+
+        <!-- Week navigation -->
+        <div class="planner-week-nav">
+          <button type="button" class="button secondary planner-week-btn" data-planner-week="-1">${icon("arrowLeft")} Prev</button>
+          <span class="planner-week-label">${weekLabel} — ${weekEndLabel}</span>
+          <button type="button" class="button secondary planner-week-btn" data-planner-week="1">Next ${icon("arrowRight")}</button>
+        </div>
+
+        <!-- Week grid -->
+        <div class="planner-week-grid">
+          ${days.map(function(day) {
+            const sel   = day.key === selectedDay;
+            const total = day.sessions.length;
+            const done  = day.sessions.filter(function(s) { return s.done; }).length;
+            return `
+              <button type="button" class="planner-day-cell${sel ? " selected" : ""}${day.isToday ? " today" : ""}${day.isPast ? " past" : ""}" data-planner-day="${day.key}">
+                <span class="planner-day-name">${day.label}</span>
+                <span class="planner-day-num">${day.d.getDate()}</span>
+                ${total > 0 ? `<span class="planner-day-count${done === total ? " all-done" : ""}">${done}/${total}</span>` : ""}
+                ${day.isToday ? `<span class="planner-today-dot"></span>` : ""}
+              </button>
+            `;
+          }).join("")}
+        </div>
+
+        <!-- Selected day detail -->
+        <div class="planner-day-detail">
+          <div class="planner-day-detail-head">
+            <h2 class="planner-day-detail-title">
+              ${selDay.d.toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long" })}
+              ${selDay.isToday ? `<span class="planner-today-badge">Today</span>` : ""}
+            </h2>
+            <button type="button" class="button primary planner-add-btn" data-planner-open-add>
+              ${icon("calendar")} Add Session
+            </button>
+          </div>
+
+          ${state.planner.addFormOpen ? `
+            <form class="planner-add-form" data-planner-add-form>
+              <div class="planner-form-row">
+                <div class="planner-form-group">
+                  <label class="planner-form-label">What are you studying?</label>
+                  <input type="text" class="planner-form-input" placeholder="e.g. Anatomy — Cardiovascular System"
+                    data-planner-field="title" value="${escapeHtml(state.planner.addForm.title)}" maxlength="80">
+                </div>
+                <div class="planner-form-group" style="max-width:180px">
+                  <label class="planner-form-label">Type</label>
+                  <select class="planner-form-select" data-planner-field="type">
+                    ${Object.entries(typeLabels).map(function(kv) {
+                      return `<option value="${kv[0]}"${state.planner.addForm.type === kv[0] ? " selected" : ""}>${kv[1]}</option>`;
+                    }).join("")}
+                  </select>
+                </div>
+              </div>
+              <div class="planner-form-group">
+                <label class="planner-form-label">Notes <span style="font-weight:400;color:var(--color-muted)">(optional)</span></label>
+                <input type="text" class="planner-form-input" placeholder="e.g. Focus on cardiac cycle, revise ECG basics"
+                  data-planner-field="notes" value="${escapeHtml(state.planner.addForm.notes)}" maxlength="120">
+              </div>
+              <div class="planner-form-actions">
+                <button type="submit" class="button primary">Add Session</button>
+                <button type="button" class="button secondary" data-planner-cancel-add>Cancel</button>
+              </div>
+            </form>
+          ` : ""}
+
+          ${selDay.sessions.length === 0 && !state.planner.addFormOpen ? `
+            <p class="planner-empty">No sessions planned for this day. Click "Add Session" to get started.</p>
+          ` : ""}
+
+          <div class="planner-sessions">
+            ${selDay.sessions.map(function(s) {
+              const color = typeColors[s.type] || "#6b7280";
+              return `
+                <div class="planner-session${s.done ? " done" : ""}" style="--session-color:${color}">
+                  <button type="button" class="planner-session-check" data-planner-toggle="${selDay.key}" data-planner-session-id="${s.id}" aria-label="${s.done ? "Mark incomplete" : "Mark complete"}">
+                    ${s.done ? icon("checkCircle") : icon("clock")}
+                  </button>
+                  <div class="planner-session-body">
+                    <strong>${escapeHtml(s.title || "Untitled session")}</strong>
+                    <span class="planner-session-type">${typeLabels[s.type] || s.type}</span>
+                    ${s.notes ? `<p class="planner-session-notes">${escapeHtml(s.notes)}</p>` : ""}
+                  </div>
+                  <button type="button" class="planner-session-del" data-planner-remove="${selDay.key}" data-planner-session-id="${s.id}" aria-label="Remove session">${icon("x")}</button>
+                </div>
+              `;
+            }).join("")}
+          </div>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  NOTIFICATION BELL RENDER
+// ═══════════════════════════════════════════════════════════════════════════
+
+function renderBellDropdown() {
+  const announcements = state.announcements || [];
+  const read          = getReadAnnouncements();
+  const unread        = announcements.filter(function(a) { return !read.has(a.id); }).length;
+
+  return `
+    <div class="bell-dropdown" id="bell-dropdown" role="dialog" aria-label="Notifications">
+      <div class="bell-dropdown-head">
+        <strong>Notifications</strong>
+        ${unread > 0 ? `<button type="button" class="bell-mark-all" data-bell-mark-read>Mark all read</button>` : ""}
+      </div>
+      ${announcements.length === 0 ? `
+        <p class="bell-empty">No announcements right now.</p>
+      ` : announcements.slice(0, 6).map(function(a) {
+        const isNew = !read.has(a.id);
+        return `
+          <div class="bell-item${isNew ? " bell-item-unread" : ""}">
+            ${isNew ? `<span class="bell-item-dot"></span>` : ""}
+            <div class="bell-item-content">
+              <strong>${escapeHtml(a.title || "")}</strong>
+              ${a.body ? `<p>${escapeHtml(a.body.slice(0, 90))}${a.body.length > 90 ? "…" : ""}</p>` : ""}
+              <time>${timeAgo(a.created_at)}</time>
+            </div>
+          </div>
+        `;
+      }).join("")}
+      <div class="bell-dropdown-footer">
+        <a href="/planner" class="bell-footer-link">Study Planner ${icon("arrowRight")}</a>
+        <a href="/community" class="bell-footer-link">Community ${icon("arrowRight")}</a>
+      </div>
+    </div>
+  `;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  COMMUNITY Q&A RENDER
+// ═══════════════════════════════════════════════════════════════════════════
+
+function renderCommunity() {
+  const { questions, loading, filter, search, askFormOpen } = state.community;
+
+  let filtered = questions;
+  if (filter === "unanswered") filtered = filtered.filter(function(q) { return !q.is_answered; });
+  if (filter === "answered")   filtered = filtered.filter(function(q) { return q.is_answered; });
+  if (search.trim()) {
+    const q = search.toLowerCase();
+    filtered = filtered.filter(function(qn) { return (qn.title + " " + qn.body).toLowerCase().includes(q); });
+  }
+
+  return `
+    <section class="section">
+      <div class="container" style="max-width:820px">
+        <div class="comm-page-hero">
+          <div class="comm-hero-icon">${icon("users")}</div>
+          <div>
+            <h1 class="comm-hero-title">Community Q&amp;A</h1>
+            <p class="comm-hero-desc">Ask questions, share answers, and learn together with other nursing students.</p>
+          </div>
+        </div>
+
+        <div class="comm-toolbar">
+          <div class="comm-filters">
+            <button type="button" class="comm-filter-btn${filter === "all" ? " active" : ""}" data-comm-filter="all">All</button>
+            <button type="button" class="comm-filter-btn${filter === "unanswered" ? " active" : ""}" data-comm-filter="unanswered">Unanswered</button>
+            <button type="button" class="comm-filter-btn${filter === "answered" ? " active" : ""}" data-comm-filter="answered">Answered</button>
+          </div>
+          <div class="comm-search-wrap">
+            <input type="search" class="comm-search" placeholder="Search questions…" value="${escapeHtml(search)}" data-comm-search>
+          </div>
+          <button type="button" class="button primary comm-ask-btn" data-comm-ask>
+            ${icon("pencil")} Ask a Question
+          </button>
+        </div>
+
+        ${askFormOpen ? `
+          <div class="comm-ask-form-wrap">
+            <h3 class="comm-ask-form-title">Ask a Question</h3>
+            <div class="comm-form-group">
+              <label class="comm-form-label">Question title <span class="comm-form-hint">Be specific and clear</span></label>
+              <input type="text" class="comm-form-input" maxlength="120"
+                placeholder="e.g. What is the difference between osmosis and diffusion?"
+                value="${escapeHtml(state.community.askTitle)}"
+                data-comm-field="askTitle">
+            </div>
+            <div class="comm-form-group">
+              <label class="comm-form-label">Details</label>
+              <textarea class="comm-form-textarea" rows="4" maxlength="2000"
+                placeholder="Explain what you're struggling with, what you've already tried, etc."
+                data-comm-field="askBody">${escapeHtml(state.community.askBody)}</textarea>
+            </div>
+            <div class="comm-form-actions">
+              <button type="button" class="button primary" data-comm-post-question>Post Question</button>
+              <button type="button" class="button secondary" data-comm-cancel-ask>Cancel</button>
+            </div>
+          </div>
+        ` : ""}
+
+        ${loading ? `<div class="comm-loading">${icon("clock")} Loading questions…</div>` : ""}
+
+        ${!loading && filtered.length === 0 ? `
+          <div class="comm-empty">
+            <p>${search || filter !== "all" ? "No questions match your search." : "No questions yet — be the first to ask!"}</p>
+          </div>
+        ` : ""}
+
+        <div class="comm-question-list">
+          ${filtered.map(function(q) {
+            const initials = q.user_initials || "?";
+            const color    = authAvatarColor(q.user_name || "");
+            return `
+              <a class="comm-question-card" href="/community/${q.id}">
+                <div class="comm-q-vote">
+                  <span class="comm-q-vote-count">${q.upvotes || 0}</span>
+                  <span class="comm-q-vote-label">votes</span>
+                </div>
+                <div class="comm-q-answer-count${q.is_answered ? " answered" : ""}">
+                  <span>${q.answer_count || 0}</span>
+                  <span>${q.answer_count === 1 ? "answer" : "answers"}</span>
+                </div>
+                <div class="comm-q-body">
+                  <h3 class="comm-q-title">${escapeHtml(q.title)}</h3>
+                  <p class="comm-q-excerpt">${escapeHtml((q.body || "").slice(0, 120))}${(q.body || "").length > 120 ? "…" : ""}</p>
+                  <div class="comm-q-meta">
+                    <span class="comm-q-avatar" style="background:${color.bg};color:${color.text}">${escapeHtml(initials)}</span>
+                    <span>${escapeHtml(q.user_name || "Student")}</span>
+                    <span class="comm-q-dot">·</span>
+                    <time>${timeAgo(q.created_at)}</time>
+                    ${q.is_answered ? `<span class="comm-q-answered-badge">${icon("checkCircle")} Answered</span>` : ""}
+                  </div>
+                </div>
+              </a>
+            `;
+          }).join("")}
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function renderCommunityQuestion() {
+  const q   = state.community.selectedQuestion;
+  const ans = state.community.questionAnswers;
+
+  if (!q) {
+    return `
+      <section class="section"><div class="container" style="max-width:820px;text-align:center;padding:4rem 1rem">
+        ${icon("helpCircle")}<h2 style="margin:.75rem 0">Question not found.</h2>
+        <a class="button secondary" href="/community">${icon("arrowLeft")} Back to Community</a>
+      </div></section>
+    `;
+  }
+
+  const qColor = authAvatarColor(q.user_name || "");
+
+  return `
+    <section class="section">
+      <div class="container" style="max-width:820px">
+        <a class="breadcrumb-link" href="/community">${icon("arrowLeft")} All Questions</a>
+
+        <!-- Question -->
+        <div class="comm-q-detail">
+          <div class="comm-q-detail-head">
+            <h1 class="comm-q-detail-title">${escapeHtml(q.title)}</h1>
+            <div class="comm-q-detail-meta">
+              <span class="comm-q-avatar" style="background:${qColor.bg};color:${qColor.text}">${escapeHtml(q.user_initials || "?")}</span>
+              <span>${escapeHtml(q.user_name || "Student")}</span>
+              <span class="comm-q-dot">·</span>
+              <time>${timeAgo(q.created_at)}</time>
+              <span class="comm-q-dot">·</span>
+              <span>${q.answer_count || 0} answer${q.answer_count !== 1 ? "s" : ""}</span>
+            </div>
+          </div>
+          <div class="comm-q-detail-body">${escapeHtml(q.body || "")}</div>
+          <div class="comm-q-detail-actions">
+            <button type="button" class="comm-upvote-btn" data-comm-upvote="question" data-comm-upvote-id="${q.id}" data-comm-upvote-count="${q.upvotes || 0}">
+              ${icon("heart")} ${q.upvotes || 0} votes
+            </button>
+          </div>
+        </div>
+
+        <!-- Answers -->
+        ${ans.length > 0 ? `
+          <div class="comm-answers-head">
+            <h2>${ans.length} Answer${ans.length !== 1 ? "s" : ""}</h2>
+          </div>
+          <div class="comm-answer-list">
+            ${ans.map(function(a) {
+              const aColor = authAvatarColor(a.user_name || "");
+              return `
+                <div class="comm-answer${a.is_accepted ? " comm-answer-accepted" : ""}">
+                  ${a.is_accepted ? `<div class="comm-answer-accepted-badge">${icon("checkCircle")} Accepted Answer</div>` : ""}
+                  <div class="comm-answer-body">${escapeHtml(a.body || "")}</div>
+                  <div class="comm-answer-footer">
+                    <span class="comm-q-avatar" style="background:${aColor.bg};color:${aColor.text}">${escapeHtml(a.user_initials || "?")}</span>
+                    <span>${escapeHtml(a.user_name || "Student")}</span>
+                    <span class="comm-q-dot">·</span>
+                    <time>${timeAgo(a.created_at)}</time>
+                    <button type="button" class="comm-upvote-btn" data-comm-upvote="answer" data-comm-upvote-id="${a.id}" data-comm-upvote-count="${a.upvotes || 0}">
+                      ${icon("heart")} ${a.upvotes || 0}
+                    </button>
+                  </div>
+                </div>
+              `;
+            }).join("")}
+          </div>
+        ` : `<p class="comm-no-answers">No answers yet — be the first to help!</p>`}
+
+        <!-- Post answer -->
+        <div class="comm-post-answer">
+          <h3>Your Answer</h3>
+          ${state.currentUser ? `
+            <textarea class="comm-form-textarea" rows="5" maxlength="3000"
+              placeholder="Write a clear, helpful answer…"
+              data-comm-field="answerBody"
+              ${state.community.answerLoading ? "disabled" : ""}
+            >${escapeHtml(state.community.answerBody)}</textarea>
+            <button type="button" class="button primary" data-comm-post-answer="${q.id}"
+              ${state.community.answerLoading ? "disabled" : ""}>
+              ${state.community.answerLoading ? "Posting…" : icon("send") + " Post Answer"}
+            </button>
+          ` : `
+            <div class="comm-login-prompt">
+              ${icon("lock")}
+              <p>Sign in to post an answer and help your peers.</p>
+              <a class="button primary" href="/login">${icon("users")} Sign In</a>
+            </div>
+          `}
+        </div>
+      </div>
+    </section>
+  `;
+}
+
 function renderActivityHeatmap() {
   const studyDates = getStudyDates();
   const today = new Date();
@@ -6025,7 +6491,27 @@ function renderProgress() {
           </div>
         </div>
 
-        <!-- Continue learning -->
+        <!-- Today's Plan + Continue learning -->
+        ${(function() {
+          const todayPlan = getTodayPlan();
+          const todayDone = todayPlan.filter(function(s) { return s.done; }).length;
+          return todayPlan.length > 0 ? `
+            <div class="dash-today-plan content-panel">
+              <div class="dash-today-icon">${icon("calendar")}</div>
+              <div class="dash-today-body">
+                <span class="mini-label">Today's Study Plan</span>
+                <strong>${todayDone} of ${todayPlan.length} sessions complete</strong>
+                <div class="dash-today-sessions">
+                  ${todayPlan.slice(0, 3).map(function(s) {
+                    return `<span class="dash-today-chip${s.done ? " done" : ""}">${s.done ? icon("checkCircle") : icon("clock")} ${escapeHtml(s.title || "Session")}</span>`;
+                  }).join("")}
+                  ${todayPlan.length > 3 ? `<span class="dash-today-more">+${todayPlan.length - 3} more</span>` : ""}
+                </div>
+              </div>
+              <a class="button secondary" href="/planner">${icon("calendar")} View Planner</a>
+            </div>
+          ` : "";
+        })()}
         ${last ? `
           <div class="dash-continue-card content-panel">
             <div class="dash-continue-icon">${icon("bookOpen")}</div>
@@ -8349,6 +8835,200 @@ function resetChecklist(id) {
     delete all[id];
     localStorage.setItem("nursinguganda.checklists", JSON.stringify(all));
   } catch {}
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  STUDY PLANNER HELPERS
+// ═══════════════════════════════════════════════════════════════════════════
+
+function getPlannerData() {
+  try { return JSON.parse(localStorage.getItem("nursinguganda.planner") || "{}"); }
+  catch { return {}; }
+}
+function setPlannerData(data) {
+  try { localStorage.setItem("nursinguganda.planner", JSON.stringify(data)); } catch {}
+}
+function getPlannerDay(dateStr) {
+  return getPlannerData()[dateStr] || [];
+}
+function addPlannerSession(dateStr, session) {
+  const data = getPlannerData();
+  if (!data[dateStr]) data[dateStr] = [];
+  data[dateStr].push({ id: Date.now().toString(36), done: false, ...session });
+  setPlannerData(data);
+}
+function removePlannerSession(dateStr, sessionId) {
+  const data = getPlannerData();
+  if (!data[dateStr]) return;
+  data[dateStr] = data[dateStr].filter(function(s) { return s.id !== sessionId; });
+  if (!data[dateStr].length) delete data[dateStr];
+  setPlannerData(data);
+}
+function togglePlannerSession(dateStr, sessionId) {
+  const data = getPlannerData();
+  if (!data[dateStr]) return;
+  const s = data[dateStr].find(function(s) { return s.id === sessionId; });
+  if (s) s.done = !s.done;
+  setPlannerData(data);
+}
+function getTodayPlan() {
+  return getPlannerDay(new Date().toISOString().slice(0, 10));
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  NOTIFICATION HELPERS
+// ═══════════════════════════════════════════════════════════════════════════
+
+function getReadAnnouncements() {
+  try { return new Set(JSON.parse(localStorage.getItem("nursinguganda.readAnnouncements") || "[]")); }
+  catch { return new Set(); }
+}
+function markAllAnnouncementsRead() {
+  const ids = (state.announcements || []).map(function(a) { return a.id; });
+  try {
+    const existing = getReadAnnouncements();
+    ids.forEach(function(id) { existing.add(id); });
+    localStorage.setItem("nursinguganda.readAnnouncements", JSON.stringify([...existing]));
+  } catch {}
+}
+function getUnreadAnnouncementCount() {
+  const read = getReadAnnouncements();
+  return (state.announcements || []).filter(function(a) { return !read.has(a.id); }).length;
+}
+function getNotifSettings() {
+  try { return JSON.parse(localStorage.getItem("nursinguganda.notifSettings") || "{}"); }
+  catch { return {}; }
+}
+function saveNotifSettings(settings) {
+  try { localStorage.setItem("nursinguganda.notifSettings", JSON.stringify(settings)); } catch {}
+}
+function checkStudyReminder() {
+  const settings = getNotifSettings();
+  if (!settings.reminderEnabled) return;
+  if (!("Notification" in window) || Notification.permission !== "granted") return;
+  const today = new Date().toISOString().slice(0, 10);
+  if (getStudyDates().has(today)) return; // already studied today
+  const parts = (settings.reminderTime || "20:00").split(":");
+  const rh = parseInt(parts[0], 10);
+  const rm = parseInt(parts[1] || "0", 10);
+  const now = new Date();
+  if (now.getHours() > rh || (now.getHours() === rh && now.getMinutes() >= rm)) {
+    const lastDate = localStorage.getItem("nursinguganda.lastReminderDate");
+    if (lastDate !== today) {
+      localStorage.setItem("nursinguganda.lastReminderDate", today);
+      try {
+        new Notification("Nursing Uganda — Time to Study! 📚", {
+          body: "You haven't studied today. Keep your streak going!",
+          icon: "/assets/images/pwa/icon-192x192.png",
+          tag: "nu-study-reminder"
+        });
+      } catch(e) {}
+    }
+  }
+}
+
+function timeAgo(isoDate) {
+  if (!isoDate) return "";
+  const diff = Math.floor((Date.now() - new Date(isoDate).getTime()) / 1000);
+  if (diff < 60)   return "Just now";
+  if (diff < 3600) return Math.floor(diff / 60) + "m ago";
+  if (diff < 86400) return Math.floor(diff / 3600) + "h ago";
+  const days = Math.floor(diff / 86400);
+  if (days < 30) return days + "d ago";
+  return new Date(isoDate).toLocaleDateString("en-GB", { day: "numeric", month: "short" });
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  COMMUNITY Q&A HELPERS
+// ═══════════════════════════════════════════════════════════════════════════
+
+async function communityLoadQuestions() {
+  state.community.loading = true;
+  render();
+  const client = sb();
+  if (!client) { state.community.loading = false; render(); return; }
+  const { data } = await client
+    .from("community_questions")
+    .select("*")
+    .order("created_at", { ascending: false })
+    .limit(60);
+  state.community.questions = data || [];
+  state.community.loading = false;
+  render();
+}
+
+async function communityLoadQuestion(id) {
+  const client = sb();
+  if (!client) return;
+  const [qRes, aRes] = await Promise.all([
+    client.from("community_questions").select("*").eq("id", id).single(),
+    client.from("community_answers").select("*").eq("question_id", id).order("upvotes", { ascending: false })
+  ]);
+  state.community.selectedQuestion = qRes.data || null;
+  state.community.questionAnswers  = aRes.data || [];
+  render();
+}
+
+async function communityPostQuestion() {
+  const client = sb();
+  const user   = state.currentUser;
+  if (!client || !user) return;
+  const title = state.community.askTitle.trim();
+  const body  = state.community.askBody.trim();
+  if (!title || !body) { showToast("Please enter a title and body.", "error"); return; }
+  const { data, error } = await client.from("community_questions").insert({
+    user_id: user.id, user_name: user.name, user_initials: user.initials,
+    title, body
+  }).select().single();
+  if (error) { showToast("Could not post question. Try again.", "error"); return; }
+  state.community.askFormOpen = false;
+  state.community.askTitle    = "";
+  state.community.askBody     = "";
+  showToast("Question posted!", "success");
+  setRoute("/community/" + data.id);
+  render();
+  communityLoadQuestion(data.id);
+}
+
+async function communityPostAnswer(questionId) {
+  const client = sb();
+  const user   = state.currentUser;
+  if (!client || !user) return;
+  const body = state.community.answerBody.trim();
+  if (!body) { showToast("Please write an answer.", "error"); return; }
+  state.community.answerLoading = true;
+  render();
+  const { data, error } = await client.from("community_answers").insert({
+    question_id: questionId, user_id: user.id,
+    user_name: user.name, user_initials: user.initials, body
+  }).select().single();
+  if (error) {
+    state.community.answerLoading = false;
+    showToast("Could not post answer. Try again.", "error");
+    render();
+    return;
+  }
+  // Increment answer_count on the question
+  await client.from("community_questions")
+    .update({ answer_count: (state.community.selectedQuestion?.answer_count || 0) + 1, is_answered: true })
+    .eq("id", questionId);
+  state.community.answerBody    = "";
+  state.community.answerLoading = false;
+  state.community.questionAnswers = [...state.community.questionAnswers, data];
+  if (state.community.selectedQuestion) state.community.selectedQuestion.answer_count = (state.community.selectedQuestion.answer_count || 0) + 1;
+  showToast("Answer posted!", "success");
+  render();
+}
+
+async function communityUpvote(targetType, targetId, currentUpvotes) {
+  const client = sb();
+  if (!client) return;
+  requireLogin("community", "Sign in to upvote questions and answers.", async function() {
+    const table = targetType === "question" ? "community_questions" : "community_answers";
+    await client.from(table).update({ upvotes: (currentUpvotes || 0) + 1 }).eq("id", targetId);
+    if (targetType === "question") communityLoadQuestions();
+    else if (state.community.selectedQuestion) communityLoadQuestion(state.community.selectedQuestion.id);
+  });
 }
 
 function findMockExam(id) { return MOCK_EXAMS.find(e => e.id === id) || null; }
@@ -12898,6 +13578,22 @@ function render() {
     content = renderClinicalToolsPage();
     meta = { title: "Clinical Tools", description: "Drug dose calculator, clinical procedure checklists and normal reference values for nursing and midwifery students in Uganda." };
   }
+  else if (parts[0] === "planner") {
+    content = renderPlanner();
+    meta = { title: "Study Planner", description: "Plan your nursing revision week, schedule study sessions, and track what you have done." };
+  }
+  else if (parts[0] === "community" && parts[1]) {
+    content = renderCommunityQuestion();
+    meta = { title: (state.community.selectedQuestion?.title || "Question") + " — Community", description: "Nursing student Q&A — read and contribute answers." };
+    if (!state.community.selectedQuestion || state.community.selectedQuestion.id !== parts[1]) {
+      communityLoadQuestion(parts[1]);
+    }
+  }
+  else if (parts[0] === "community") {
+    content = renderCommunity();
+    meta = { title: "Community Q&A", description: "Ask questions and share knowledge with nursing students across Uganda." };
+    if (!state.community.questions.length && !state.community.loading) communityLoadQuestions();
+  }
   else if (parts[0] === "flashcards") {
     content = renderFlashcards();
     meta = { title: "Flashcards", description: "Study key nursing and medical terms with flip-card mode. Track your mastery as you go." };
@@ -13717,6 +14413,131 @@ function render() {
       render();
     });
   });
+
+  // ── Notification bell ────────────────────────────────────────────────────
+  app.querySelector("[data-bell-toggle]")?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    state.bellOpen = !state.bellOpen;
+    if (state.bellOpen) markAllAnnouncementsRead();
+    render();
+  });
+  app.querySelector("[data-bell-mark-read]")?.addEventListener("click", () => {
+    markAllAnnouncementsRead();
+    state.bellOpen = false;
+    render();
+  });
+  // Close bell when clicking outside
+  document.addEventListener("click", function closeBell(e) {
+    if (state.bellOpen && !e.target.closest(".bell-wrap")) {
+      state.bellOpen = false;
+      render();
+    }
+  }, { once: true });
+
+  // ── Study Planner event wiring ────────────────────────────────────────────
+  app.querySelectorAll("[data-planner-week]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      state.planner.weekOffset += parseInt(btn.dataset.plannerWeek, 10);
+      render();
+    });
+  });
+  app.querySelectorAll("[data-planner-day]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      state.planner.selectedDay   = btn.dataset.plannerDay;
+      state.planner.addFormOpen   = false;
+      render();
+    });
+  });
+  app.querySelector("[data-planner-open-add]")?.addEventListener("click", () => {
+    state.planner.addFormOpen = true;
+    render();
+    app.querySelector("[data-planner-field='title']")?.focus();
+  });
+  app.querySelector("[data-planner-cancel-add]")?.addEventListener("click", () => {
+    state.planner.addFormOpen = false;
+    render();
+  });
+  app.querySelectorAll("[data-planner-field]").forEach(el => {
+    el.addEventListener("input", () => {
+      state.planner.addForm[el.dataset.plannerField] = el.value;
+    });
+    el.addEventListener("change", () => {
+      state.planner.addForm[el.dataset.plannerField] = el.value;
+    });
+  });
+  app.querySelector("[data-planner-add-form]")?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const today     = new Date();
+    const weekStart = new Date(today);
+    weekStart.setDate(today.getDate() - today.getDay() + 1 + state.planner.weekOffset * 7);
+    const selDay    = state.planner.selectedDay;
+    const title     = state.planner.addForm.title.trim();
+    if (!title) { showToast("Please enter what you are studying.", "error"); return; }
+    addPlannerSession(selDay, {
+      title, type: state.planner.addForm.type, notes: state.planner.addForm.notes.trim()
+    });
+    state.planner.addFormOpen = false;
+    state.planner.addForm     = { title: "", type: "revision", notes: "" };
+    render();
+  });
+  app.querySelectorAll("[data-planner-toggle]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      togglePlannerSession(btn.dataset.plannerToggle, btn.dataset.plannerSessionId);
+      render();
+    });
+  });
+  app.querySelectorAll("[data-planner-remove]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      removePlannerSession(btn.dataset.plannerRemove, btn.dataset.plannerSessionId);
+      render();
+    });
+  });
+
+  // ── Community Q&A event wiring ────────────────────────────────────────────
+  app.querySelectorAll("[data-comm-filter]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      state.community.filter = btn.dataset.commFilter;
+      render();
+    });
+  });
+  const commSearch = app.querySelector("[data-comm-search]");
+  if (commSearch) {
+    commSearch.addEventListener("input", () => {
+      state.community.search = commSearch.value;
+      render();
+      app.querySelector("[data-comm-search]")?.focus();
+    });
+  }
+  app.querySelector("[data-comm-ask]")?.addEventListener("click", () => {
+    requireLogin("community", "Sign in to ask questions in the Community Q&A.", () => {
+      state.community.askFormOpen = !state.community.askFormOpen;
+      render();
+    });
+  });
+  app.querySelector("[data-comm-cancel-ask]")?.addEventListener("click", () => {
+    state.community.askFormOpen = false;
+    render();
+  });
+  app.querySelectorAll("[data-comm-field]").forEach(el => {
+    el.addEventListener("input", () => {
+      state.community[el.dataset.commField] = el.value;
+    });
+  });
+  app.querySelector("[data-comm-post-question]")?.addEventListener("click", () => {
+    communityPostQuestion();
+  });
+  app.querySelectorAll("[data-comm-post-answer]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      communityPostAnswer(btn.dataset.commPostAnswer);
+    });
+  });
+  app.querySelectorAll("[data-comm-upvote]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      communityUpvote(btn.dataset.commUpvote, btn.dataset.commUpvoteId, parseInt(btn.dataset.commUpvoteCount || "0", 10));
+    });
+  });
+
+  // Add "community" to the login prompt feature icon map (dynamic; done via featureIconMap in renderLoginPromptModal)
 
   app.querySelectorAll("[data-career-drawer-close]").forEach((button) => {
     button.addEventListener("click", () => {
@@ -14577,6 +15398,9 @@ async function init() {
     // Restore in-progress mock exam (if any) and restart timer
     loadMockExamState();
     if (state.mockExam.examId && !state.mockExam.submitted) startMockExamTimer();
+
+    // Fire study reminder if conditions met
+    checkStudyReminder();
 
     render();
     scrollPageToTop();
