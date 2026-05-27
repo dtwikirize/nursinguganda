@@ -2906,9 +2906,9 @@ function megaMenuLinks(key) {
       { href: "/careers",              label: "Career Hub",              body: "Pathways, licensing, CV tools and work-abroad guides", icon: "map" },
       { href: "/careers#international", label: "International Nursing",  body: "UK, Australia, Gulf and regional mobility notes", icon: "globe" },
       { href: "/careers#licensing",    label: "Licensing Guides",        body: "UNMC, good standing and recognition checklists", icon: "badgeCheck" },
-      { href: "/careers#cv-resources", label: "Uganda Nursing CV",       body: "Hospital, NGO and government CV templates — 5 formats", icon: "fileCv" },
-      { href: "/careers#cv-resources", label: "Cover Letters",           body: "Hospital, NGO, international and internal letter templates", icon: "mail" },
-      { href: "/careers#cv-resources", label: "Interview Prep",          body: "STAR examples, panel questions and specialist interview guides", icon: "users" }
+      { href: "/careers/cv-uganda",      label: "Uganda Nursing CV",       body: "5 CV templates — hospital, NGO, new graduate and midwifery", icon: "fileCv" },
+      { href: "/careers/cover-letter",  label: "Cover Letters",           body: "5 letter templates — hospital, NGO, international and internal", icon: "mail" },
+      { href: "/careers/interview-prep",label: "Interview Prep",          body: "5 interview guides — general, ICU, international and leadership", icon: "users" }
     ];
   }
 
@@ -7464,6 +7464,118 @@ function renderLicensingGuides() {
   `;
 }
 
+function careerResourceFromSlug(slug) {
+  const map = {
+    "cv-uganda":        { title: "Uganda Nursing CV Template",        icon: "fileCv",       accent: 0, desc: "Hospital, NGO and government CV formats tailored for Uganda nursing practice." },
+    "cv-international": { title: "International Nursing CV Template", icon: "globe",        accent: 1, desc: "UK, Australia, Gulf and USA-style CVs with registration and evidence sections." },
+    "cover-letter":     { title: "Cover Letter Guide",                icon: "mail",         accent: 2, desc: "Sample nursing cover letters, phrases and structures that win interviews." },
+    "interview-prep":   { title: "Interview Preparation",            icon: "users",        accent: 3, desc: "20+ questions, STAR examples, panel prep and values-based interview guides." },
+    "portfolio":        { title: "Nursing Portfolio Guide",           icon: "clipboardList",accent: 4, desc: "What to include for registration, CPD, international and senior nursing roles." },
+    "salary-guide":     { title: "Salary Guide Uganda 2025",          icon: "banknote",     accent: 5, desc: "Salary ranges by level, speciality, sector and international destination." }
+  };
+  return map[slug] || null;
+}
+
+function careerResourceSlugOf(title) {
+  const map = {
+    "Uganda Nursing CV Template":       "cv-uganda",
+    "International Nursing CV Template":"cv-international",
+    "Cover Letter Guide":               "cover-letter",
+    "Interview Preparation":            "interview-prep",
+    "Nursing Portfolio Guide":          "portfolio",
+    "Salary Guide Uganda 2025":         "salary-guide"
+  };
+  return map[title] || null;
+}
+
+function renderCareerResourcePage(slug) {
+  const resource = careerResourceFromSlug(slug);
+  if (!resource) return renderCareers();
+  const { title, icon: iconName, accent, desc } = resource;
+  const templates = RESOURCE_TEMPLATES[title] || [];
+  const accentColors = ["#2563EB", "#0f7f4f", "#d97706", "#7C3AED", "#ec4899", "#0ea5e9"];
+  const accentBgs    = ["#eff6ff", "#e6f7ef", "#fffbeb", "#f5f0ff", "#fdf2f8", "#e0f7ff"];
+  const color = accentColors[accent];
+  const bg    = accentBgs[accent];
+
+  return `
+    <div class="crp-page">
+      <div class="container">
+        <nav class="page-breadcrumb" aria-label="Breadcrumb">
+          <a href="/careers">Careers</a><span>/</span><strong>${escapeHtml(title)}</strong>
+        </nav>
+      </div>
+
+      <div class="crp-hero" style="--crp-color:${color}">
+        <div class="container">
+          <div class="crp-hero-inner">
+            <div class="crp-hero-icon-wrap" style="background:${bg}">
+              <span style="color:${color}">${icon(iconName)}</span>
+            </div>
+            <div class="crp-hero-copy">
+              <p class="crp-eyebrow">Career Resources</p>
+              <h1>${escapeHtml(title)}</h1>
+              <p class="crp-hero-desc">${escapeHtml(desc)}</p>
+              <div class="crp-hero-pills">
+                <span>${icon("download")} ${templates.length} free templates</span>
+                <span>${icon("checkCircle")} Instant download</span>
+                <span>${icon("badgeCheck")} Print-ready checklist</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="crp-body">
+        <div class="container">
+          <div class="crp-section-head">
+            <h2>Choose a Template</h2>
+            <p>Each template downloads instantly as a structured checklist — paste into any word processor and customise for your application.</p>
+          </div>
+          <div class="crp-template-grid">
+            ${templates.map((t, i) => {
+              const cl = RESOURCE_CHECKLISTS[t.label];
+              const items = cl ? cl.items : [];
+              return `
+                <article class="crp-card">
+                  <div class="crp-card-header" style="background:${bg}">
+                    <span class="crp-card-num" style="background:${color}">0${i + 1}</span>
+                    <span class="crp-card-hicon" style="color:${color}">${icon(iconName)}</span>
+                  </div>
+                  <div class="crp-card-body">
+                    <h3>${escapeHtml(t.label)}</h3>
+                    <p class="crp-card-tagline">${escapeHtml(t.desc)}</p>
+                    ${items.length ? `
+                      <div class="crp-card-includes">
+                        <p class="crp-includes-title">${icon("listChecks")} What's included</p>
+                        <ul>
+                          ${items.slice(0, 4).map(item => `<li>${escapeHtml(item)}</li>`).join("")}
+                          ${items.length > 4 ? `<li class="crp-more">+${items.length - 4} more items…</li>` : ""}
+                        </ul>
+                      </div>
+                    ` : ""}
+                  </div>
+                  <div class="crp-card-foot">
+                    <button type="button" class="crp-dl-btn" style="--btn-color:${color}" data-career-download="${escapeHtml(t.label)}">
+                      ${icon("download")} Download Template
+                    </button>
+                    <span class="crp-free-badge">Free</span>
+                  </div>
+                </article>
+              `;
+            }).join("")}
+          </div>
+
+          <div class="crp-back-row">
+            ${buttonLink("/careers", "Back to Career Hub", "secondary", "arrowLeft")}
+            <p class="crp-note">Templates are guide-format checklists. Tailor each one to your specific role and facility before submitting.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
 function renderCareerResources() {
   const resources = [
     { title: "Uganda Nursing CV Template",      desc: "Hospital, NGO and government CV formats with clinical placement detail.", action: "Download Template", badge: "Free",        accent: 0, icon: "fileCv" },
@@ -7512,7 +7624,7 @@ function renderCareerResources() {
                   </div>
                 ` : ""}
                 <div class="crcard-footer">
-                  <button type="button" class="crcard-cta" data-career-download="${escapeHtml(title)}">${escapeHtml(action)} ${icon("arrowRight")}</button>
+                  <a class="crcard-cta" href="/careers/${careerResourceSlugOf(title) || slugify(title)}">${escapeHtml(action)} ${icon("arrowRight")}</a>
                 </div>
               </article>
             `;
@@ -9621,8 +9733,14 @@ function render() {
     meta = { title: "Quizzes", description: "Practice nursing and midwifery revision with topic-linked quick quizzes." };
   }
   else if (parts[0] === "careers") {
-    content = renderCareers();
-    meta = { title: "Careers & Jobs", description: "Nursing and midwifery jobs, career pathways, licensing guides and international opportunities for Uganda professionals." };
+    const crpResource = parts[1] ? careerResourceFromSlug(parts[1]) : null;
+    if (crpResource) {
+      content = renderCareerResourcePage(parts[1]);
+      meta = { title: `${crpResource.title} | Nursing Uganda`, description: crpResource.desc };
+    } else {
+      content = renderCareers();
+      meta = { title: "Careers & Jobs", description: "Nursing and midwifery jobs, career pathways, licensing guides and international opportunities for Uganda professionals." };
+    }
   }
   else if (parts[0] === "dictionary") {
     content = renderDictionary(parts);

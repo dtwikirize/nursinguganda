@@ -4,7 +4,7 @@
     {
       "name": "nursing-uganda",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["serve", ".", "--no-clipboard", "-l", "5500"],
+      "runtimeArgs": ["serve", ".", "--no-clipboard", "--single", "-l", "5500"],
       "port": 5500
     }
   ]
