@@ -53,11 +53,13 @@ const state = {
   flashcardIndex: 0,
   flashcardFlipped: false,
   flashcardCategory: "All",
-  currentUser: (function() { try { return JSON.parse(localStorage.getItem("nursinguganda.session") || "null"); } catch { return null; } })(),
+  currentUser: null,
   userMenuOpen: false,
   loginTab: "signin",
   loginError: "",
-  loginLoading: false
+  loginLoading: false,
+  loginEmailSent: false,
+  loginEmailAddress: ""
 };
 
 const app = document.querySelector("#app");
@@ -164,9 +166,17 @@ function generateSalt() {
   return Array.from(bytes).map(b => b.toString(16).padStart(2, "0")).join("");
 }
 
-function getStoredUsers() {
-  try { return JSON.parse(localStorage.getItem("nursinguganda.users") || "{}"); } catch { return {}; }
+// ─── SUPABASE CLIENT ──────────────────────────────────────────────────────
+const SUPA_URL = "https://gunhybscakozycmwufue.supabase.co";
+const SUPA_KEY = "sb_publishable_OVP7lpmqKmftV8mqKBxAbA_rKLWcx9Q";
+let _sbClient = null;
+function sb() {
+  if (!_sbClient && typeof window !== "undefined" && window.supabase?.createClient) {
+    _sbClient = window.supabase.createClient(SUPA_URL, SUPA_KEY);
+  }
+  return _sbClient;
 }
+
 const AUTH_COLORS = [
   { bg: "#dbeafe", text: "#1e40af" }, { bg: "#dcfce7", text: "#15803d" },
   { bg: "#fce7f3", text: "#9d174d" }, { bg: "#ede9fe", text: "#5b21b6" },
@@ -174,57 +184,70 @@ const AUTH_COLORS = [
   { bg: "#d1fae5", text: "#065f46" }, { bg: "#fef9c3", text: "#92400e" },
 ];
 function authAvatarColor(email) {
-  let h = 0;
-  const s = String(email || "a");
+  let h = 0; const s = String(email || "a");
   for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) & 0xffff;
   return AUTH_COLORS[h % AUTH_COLORS.length];
 }
+function supabaseUserToAppUser(sbUser) {
+  if (!sbUser) return null;
+  const name = sbUser.user_metadata?.name || sbUser.email.split("@")[0];
+  const initials = name.split(/\s+/).map(w => w[0] || "").join("").toUpperCase().slice(0, 2) || "?";
+  return { id: sbUser.id, name, email: sbUser.email, initials, color: authAvatarColor(sbUser.email) };
+}
 
 async function authRegister(name, email, password) {
+  const client = sb();
+  if (!client) return { ok: false, error: "Auth service unavailable — please refresh the page." };
   if (!name.trim() || !email.trim() || !password) return { ok: false, error: "All fields are required." };
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) return { ok: false, error: "Please enter a valid email address." };
   if (password.length < 6) return { ok: false, error: "Password must be at least 6 characters." };
-  const users = getStoredUsers();
-  const key = email.toLowerCase().trim();
-  if (users[key]) return { ok: false, error: "An account with this email already exists. Sign in instead." };
-  const initials = name.trim().split(/\s+/).map(w => w[0] || "").join("").toUpperCase().slice(0, 2) || "?";
-  const color = authAvatarColor(key);
-  const salt = generateSalt();
-  const hash = await sha256Hash(salt + password);        // salted SHA-256
-  users[key] = { name: name.trim(), email: key, salt, hash, initials, color };
-  localStorage.setItem("nursinguganda.users", JSON.stringify(users));
-  const user = { name: users[key].name, email: key, initials, color };
-  localStorage.setItem("nursinguganda.session", JSON.stringify(user));
-  state.currentUser = user;
+  const { data, error } = await client.auth.signUp({
+    email: email.toLowerCase().trim(), password,
+    options: { data: { name: name.trim() } }
+  });
+  if (error) return { ok: false, error: error.message };
+  if (!data.session) {
+    // Email confirmation is required — show confirmation screen
+    state.loginEmailSent = true;
+    state.loginEmailAddress = email.trim();
+    return { ok: true, emailConfirmationRequired: true };
+  }
+  state.currentUser = supabaseUserToAppUser(data.user);
   state.loginError = "";
-  return { ok: true, user };
+  return { ok: true, user: state.currentUser };
 }
 
 async function authLogin(email, password) {
+  const client = sb();
+  if (!client) return { ok: false, error: "Auth service unavailable — please refresh the page." };
   if (!email.trim() || !password) return { ok: false, error: "Please enter your email and password." };
-  const users = getStoredUsers();
-  const key = email.toLowerCase().trim();
-  if (!users[key]) return { ok: false, error: "No account found with this email. Try creating one." };
-  // Detect accounts created with the old weak hash (no salt field) and prompt re-registration
-  if (!users[key].salt) {
-    delete users[key];
-    localStorage.setItem("nursinguganda.users", JSON.stringify(users));
-    return { ok: false, error: "Your account was created with an older version. Please create a new account — your progress data is safe." };
+  const { data, error } = await client.auth.signInWithPassword({
+    email: email.toLowerCase().trim(), password
+  });
+  if (error) {
+    const msg = /invalid login credentials/i.test(error.message) ? "Incorrect email or password. Please try again." : error.message;
+    return { ok: false, error: msg };
   }
-  const attemptHash = await sha256Hash(users[key].salt + password);
-  if (users[key].hash !== attemptHash) return { ok: false, error: "Incorrect password. Please try again." };
-  const { name, initials, color } = users[key];
-  const user = { name, email: key, initials, color };
-  localStorage.setItem("nursinguganda.session", JSON.stringify(user));
-  state.currentUser = user;
+  state.currentUser = supabaseUserToAppUser(data.user);
   state.loginError = "";
-  return { ok: true, user };
+  return { ok: true, user: state.currentUser };
 }
-function authLogout() {
-  localStorage.removeItem("nursinguganda.session");
+
+async function authLogout() {
+  const client = sb();
+  if (client) await client.auth.signOut();
   state.currentUser = null;
   state.userMenuOpen = false;
   state.loginError = "";
+  state.loginEmailSent = false;
+}
+
+async function authForgotPassword(email) {
+  const client = sb();
+  if (!client) return { ok: false, error: "Auth service unavailable." };
+  if (!email.trim()) return { ok: false, error: "Enter your email address first, then click Forgot Password." };
+  const { error } = await client.auth.resetPasswordForEmail(email.trim());
+  if (error) return { ok: false, error: error.message };
+  return { ok: true };
 }
 function renderUserAvatar(user, size) {
   const sz = size || 36;
@@ -3206,8 +3229,43 @@ function layout(content) {
   }
   // Logout button(s)
   app.querySelectorAll("[data-auth-logout]").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      await authLogout();
+      render();
+    });
+  });
+
+  // Forgot password
+  app.querySelectorAll("[data-forgot-password]").forEach(btn => {
+    btn.addEventListener("click", async () => {
+      const emailInput = app.querySelector("#auth-email");
+      const email = emailInput?.value?.trim() || "";
+      const result = await authForgotPassword(email);
+      if (result.ok) {
+        state.loginError = "";
+        // Show a temporary success banner by re-rendering with a special message
+        const errEl = app.querySelector(".login-error");
+        const wrap = btn.closest(".login-form-card");
+        if (wrap) {
+          const msg = document.createElement("div");
+          msg.className = "login-success";
+          msg.innerHTML = `${icon("checkCircle")} Password reset email sent to <strong>${escapeHtml(email || "your email")}</strong>. Check your inbox.`;
+          btn.closest(".login-forgot-wrap").before(msg);
+          setTimeout(() => msg.remove(), 6000);
+        }
+      } else {
+        state.loginError = result.error;
+        render();
+      }
+    });
+  });
+
+  // Reset email-sent screen
+  app.querySelectorAll("[data-reset-email-sent]").forEach(btn => {
     btn.addEventListener("click", () => {
-      authLogout();
+      state.loginEmailSent = false;
+      state.loginEmailAddress = "";
+      state.loginTab = "signup";
       render();
     });
   });
@@ -3649,7 +3707,6 @@ function renderProgressRing(percent, size = 140) {
 /* ── Login / Account Pages ───────────────────────────────────────── */
 function renderLoginPage() {
   if (state.currentUser) {
-    // Already logged in — show a friendly welcome instead
     const u = state.currentUser;
     return `
       <div class="login-page-wrap">
@@ -3662,6 +3719,20 @@ function renderLoginPage() {
             <a class="button secondary" href="/progress">My Progress</a>
           </div>
           <button class="login-signout-link" type="button" data-auth-logout>Sign out of this account</button>
+        </div>
+      </div>
+    `;
+  }
+
+  // Email confirmation sent screen
+  if (state.loginEmailSent) {
+    return `
+      <div class="login-page-wrap">
+        <div class="login-already-in">
+          <div class="login-already-avatar" style="font-size:2.5rem">📧</div>
+          <h1>Check your email</h1>
+          <p>We sent a confirmation link to <strong>${escapeHtml(state.loginEmailAddress)}</strong>.<br>Click the link in the email to activate your account.</p>
+          <p style="color:var(--color-muted);font-size:.88rem;margin-top:8px">Didn't receive it? Check your spam folder, or <button type="button" class="login-link" data-login-tab="signup" data-reset-email-sent>try again with a different address</button>.</p>
         </div>
       </div>
     `;
@@ -3736,10 +3807,16 @@ function renderLoginPage() {
 
             <button type="submit" class="button primary login-submit">${isSignup ? `${icon("userCheck")}<span>Create Account</span>` : `${icon("logOut")}<span>Sign In</span>`}</button>
 
-            ${!isSignup ? `<div class="login-forgot-wrap"><button type="button" class="login-link" data-login-tab="signup">No account yet? Create one free</button></div>` : `<div class="login-forgot-wrap"><button type="button" class="login-link" data-login-tab="signin">Already have an account? Sign in</button></div>`}
+            <div class="login-forgot-wrap">
+              ${!isSignup
+                ? `<button type="button" class="login-link" data-forgot-password>Forgot password?</button>
+                   <span class="login-divider">·</span>
+                   <button type="button" class="login-link" data-login-tab="signup">Create a free account</button>`
+                : `<button type="button" class="login-link" data-login-tab="signin">Already have an account? Sign in</button>`}
+            </div>
           </form>
 
-          <p class="login-legal">By continuing you agree to our <a href="/privacy" class="login-legal-link">Privacy Policy</a>. Your data stays on your device — we never share it.</p>
+          <p class="login-legal">By continuing you agree to our <a href="/privacy" class="login-legal-link">Privacy Policy</a>. Your account is securely stored in the cloud — access your progress from any device.</p>
         </div>
       </div>
     </div>
@@ -10886,9 +10963,15 @@ function render() {
         return;
       }
 
+      // Email confirmation required — show the "check your email" screen
+      if (result.emailConfirmationRequired) {
+        render();
+        return;
+      }
+
       // Success — redirect to notes
       setRoute("/notes");
-      showToast(`Welcome${formType === "signup" ? "" : " back"}, ${escapeHtml(state.currentUser.name.split(" ")[0])}!`, "success");
+      showToast(`Welcome${formType === "signup" ? "" : " back"}, ${escapeHtml(state.currentUser?.name?.split(" ")[0] || "")}!`, "success");
     });
   }
 
@@ -11496,6 +11579,21 @@ async function init() {
 
     setupMonetization();
     if (window.location.pathname === "/" || window.location.pathname === "") history.replaceState(null, "", "/notes");
+
+    // ── Supabase: restore existing session ──────────────────────────────
+    const client = sb();
+    if (client) {
+      try {
+        const { data: { session } } = await client.auth.getSession();
+        if (session?.user) state.currentUser = supabaseUserToAppUser(session.user);
+      } catch (_) {}
+      client.auth.onAuthStateChange((_event, session) => {
+        state.currentUser = session?.user ? supabaseUserToAppUser(session.user) : null;
+        state.loginEmailSent = false;
+        render();
+      });
+    }
+
     // Initialise CV Generator modal container (outside #app so it survives SPA navigation)
     if (!document.getElementById("cvg-root")) {
       const cvgRoot = document.createElement("div");
