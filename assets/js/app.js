@@ -87,6 +87,12 @@ const state = {
     timeLeft: 0,
     submitted: false,
     paletteOpen: false
+  },
+  clinicalTools: {
+    tab: "calculator",
+    calcType: "liquid",
+    checklistId: "",
+    valuesTab: "vitals"
   }
 };
 
@@ -3346,7 +3352,8 @@ function renderFooter() {
             <h4>More</h4>
             ${footerLink("/resources/licensing",      "Licensing & CPD",   "badgeCheck")}
             ${footerLink("/resources/student-support","Student Support",    "heartPulse")}
-            ${footerLink("/mock-exams",               "Mock Exams",        "clipboardList")}
+            ${footerLink("/mock-exams",                "Mock Exams",        "clipboardList")}
+            ${footerLink("/clinical-tools",           "Clinical Tools",    "stethoscope")}
             ${footerLink("/progress",                 "My Progress",       "chartLine")}
             ${footerLink("/flashcards",               "Flashcards",        "bookOpen")}
             ${footerLink("/contact",                  "Contact Us",        "mail")}
@@ -5611,6 +5618,262 @@ function renderMockExamPage(examId) {
   return renderMockExamStart(examId);
 }
 
+// ═══════════════════════════════════════════════════════════════════════════
+//  CLINICAL TOOLS — RENDER FUNCTIONS
+// ═══════════════════════════════════════════════════════════════════════════
+
+function renderClinicalToolsPage() {
+  const tab = state.clinicalTools.tab;
+  const tabs = [
+    { id: "calculator", label: "Drug Calculator",       icon: "pill" },
+    { id: "checklists", label: "Clinical Checklists",   icon: "listChecks" },
+    { id: "values",     label: "Normal Values",         icon: "clipboardList" }
+  ];
+  let tabContent = "";
+  if (tab === "calculator") tabContent = renderDrugCalculator();
+  else if (tab === "checklists") tabContent = renderClinicalChecklists();
+  else tabContent = renderNormalValues();
+
+  return `
+    <section class="section">
+      <div class="container" style="max-width:900px">
+        <div class="ct-page-hero">
+          <div class="ct-page-hero-icon">${icon("stethoscope")}</div>
+          <div>
+            <h1 class="ct-page-hero-title">Clinical Tools</h1>
+            <p class="ct-page-hero-desc">Drug dose calculator, clinical procedure checklists, and quick-reference normal values — all in one place.</p>
+          </div>
+        </div>
+
+        <div class="ct-tabs" role="tablist" aria-label="Clinical tool categories">
+          ${tabs.map(t => `
+            <button
+              type="button"
+              class="ct-tab-btn${tab === t.id ? " active" : ""}"
+              role="tab"
+              aria-selected="${tab === t.id}"
+              data-ct-tab="${t.id}"
+            >
+              ${icon(t.icon)}<span>${t.label}</span>
+            </button>
+          `).join("")}
+        </div>
+
+        <div class="ct-tab-panel">
+          ${tabContent}
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function renderDrugCalculator() {
+  const type = state.clinicalTools.calcType;
+  const cfg  = CALC_CONFIGS[type];
+  const calcTypes = Object.entries(CALC_CONFIGS).map(([id, c]) => ({ id, label: c.label, icon: c.icon }));
+
+  return `
+    <div class="ct-calc-page">
+      <div class="ct-calc-type-list" role="list">
+        ${calcTypes.map(ct => `
+          <button type="button" class="ct-calc-type-btn${type === ct.id ? " active" : ""}" data-calc-type="${ct.id}">
+            <span class="ct-calc-type-icon">${icon(ct.icon)}</span>
+            <span class="ct-calc-type-label">${ct.label}</span>
+          </button>
+        `).join("")}
+      </div>
+
+      <div class="ct-calc-area">
+        <div class="ct-calc-header">
+          <h2 class="ct-calc-title">${icon(cfg.icon)} ${escapeHtml(cfg.label)}</h2>
+          <p class="ct-calc-formula">${escapeHtml(cfg.formula)}</p>
+        </div>
+
+        <form id="ct-calc-form" class="ct-calc-form" autocomplete="off" onsubmit="return false">
+          ${cfg.fields.map(f => `
+            <div class="ct-field-group">
+              <label class="ct-field-label" for="ctf-${f.id}">${escapeHtml(f.label)}</label>
+              <div class="ct-field-input-wrap">
+                <input
+                  id="ctf-${f.id}"
+                  type="number" min="0" step="any"
+                  class="ct-field-input"
+                  placeholder="${escapeHtml(f.placeholder)}"
+                  data-calc-field="${f.id}"
+                >
+                <span class="ct-field-unit">${escapeHtml(f.unit)}</span>
+              </div>
+            </div>
+          `).join("")}
+        </form>
+
+        <div id="ct-calc-result" class="ct-calc-result ct-result-empty">
+          <div class="ct-result-placeholder">Enter values above to calculate</div>
+        </div>
+
+        <button type="button" class="button secondary ct-calc-clear-btn" data-calc-clear>
+          ${icon("rotateCcw")} Clear
+        </button>
+
+        <p class="ct-calc-note">
+          ${icon("alertTriangle")} Always verify calculations with a senior nurse or pharmacist. This tool is for revision only — not for direct clinical use.
+        </p>
+      </div>
+    </div>
+  `;
+}
+
+function renderClinicalChecklists() {
+  const { checklistId } = state.clinicalTools;
+  if (checklistId) {
+    const cl = CLINICAL_CHECKLISTS.find(c => c.id === checklistId);
+    if (cl) return renderChecklistDetail(cl);
+  }
+  const categories = [...new Set(CLINICAL_CHECKLISTS.map(c => c.category))];
+  return `
+    <div class="ct-cl-hub">
+      ${categories.map(cat => {
+        const clists = CLINICAL_CHECKLISTS.filter(c => c.category === cat);
+        return `
+          <div class="ct-cl-cat-section">
+            <h3 class="ct-cl-cat-title">${escapeHtml(cat)}</h3>
+            <div class="ct-cl-grid">
+              ${clists.map(cl => {
+                const progress  = getChecklistProgress(cl.id);
+                const done      = Object.keys(progress).length;
+                const total     = cl.steps.length;
+                const pct       = total ? Math.round((done / total) * 100) : 0;
+                const complete  = done === total && total > 0;
+                return `
+                  <button type="button" class="ct-cl-card${complete ? " ct-cl-card-complete" : ""}" data-cl-open="${cl.id}">
+                    <span class="ct-cl-card-icon">${icon(cl.icon)}</span>
+                    <span class="ct-cl-card-title">${escapeHtml(cl.title)}</span>
+                    <span class="ct-cl-card-steps">${cl.steps.length} steps</span>
+                    ${done > 0 ? `
+                      <div class="ct-cl-card-bar-wrap">
+                        <div class="ct-cl-card-bar" style="width:${pct}%"></div>
+                      </div>
+                      <span class="ct-cl-card-pct">${pct}%${complete ? " ✓" : ""}</span>
+                    ` : ""}
+                  </button>
+                `;
+              }).join("")}
+            </div>
+          </div>
+        `;
+      }).join("")}
+    </div>
+  `;
+}
+
+function renderChecklistDetail(cl) {
+  const progress = getChecklistProgress(cl.id);
+  const done     = Object.keys(progress).length;
+  const total    = cl.steps.length;
+  const pct      = total ? Math.round((done / total) * 100) : 0;
+  const complete = done === total && total > 0;
+
+  return `
+    <div class="ct-cl-detail">
+      <button type="button" class="breadcrumb-link" data-cl-back>
+        ${icon("arrowLeft")} All Checklists
+      </button>
+
+      <div class="ct-cl-detail-header">
+        <span class="ct-cl-detail-icon">${icon(cl.icon)}</span>
+        <div>
+          <h2 class="ct-cl-detail-title">${escapeHtml(cl.title)}</h2>
+          <span class="ct-cl-detail-cat">${escapeHtml(cl.category)}</span>
+        </div>
+      </div>
+
+      <div class="ct-cl-progress-row">
+        <div class="ct-cl-progress-bar">
+          <div class="ct-cl-progress-fill${complete ? " complete" : ""}" style="width:${pct}%"></div>
+        </div>
+        <span class="ct-cl-progress-label">${done} / ${total} steps${complete ? " — complete!" : ""}</span>
+      </div>
+
+      <div class="ct-cl-steps">
+        ${cl.steps.map((step, i) => `
+          <label class="ct-cl-step${progress[i] ? " checked" : ""}${step.critical ? " critical" : ""}">
+            <input
+              type="checkbox"
+              class="ct-cl-step-cb"
+              ${progress[i] ? "checked" : ""}
+              data-cl-step="${cl.id}"
+              data-cl-step-index="${i}"
+            >
+            <span class="ct-cl-step-num">${i + 1}</span>
+            <span class="ct-cl-step-text">${escapeHtml(step.text)}</span>
+            ${step.critical ? `<span class="ct-cl-critical-badge">Critical</span>` : ""}
+          </label>
+        `).join("")}
+      </div>
+
+      <div class="ct-cl-detail-actions">
+        <button type="button" class="button secondary" data-cl-reset="${cl.id}">
+          ${icon("rotateCcw")} Reset Checklist
+        </button>
+        <button type="button" class="breadcrumb-link" data-cl-back>
+          ${icon("arrowLeft")} All Checklists
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+function renderNormalValues() {
+  const valuesTab = state.clinicalTools.valuesTab;
+  const tabs      = Object.entries(NORMAL_VALUES_DATA);
+  const current   = NORMAL_VALUES_DATA[valuesTab] || tabs[0][1];
+
+  return `
+    <div class="ct-nv-page">
+      <div class="ct-nv-tabs" role="tablist" aria-label="Normal value categories">
+        ${tabs.map(([id, data]) => `
+          <button
+            type="button"
+            class="ct-nv-tab${valuesTab === id ? " active" : ""}"
+            data-nv-tab="${id}"
+            role="tab"
+            aria-selected="${valuesTab === id}"
+          >
+            ${icon(data.icon)}<span>${escapeHtml(data.label)}</span>
+          </button>
+        `).join("")}
+      </div>
+
+      <div class="ct-nv-table-wrap">
+        <table class="ct-nv-table">
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th>Normal Range</th>
+              <th>Unit</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${current.items.map(item => `
+              <tr>
+                <td class="ct-nv-name">${escapeHtml(item.name)}</td>
+                <td class="ct-nv-value"><strong>${escapeHtml(item.value)}</strong></td>
+                <td class="ct-nv-unit">${escapeHtml(item.unit || "")}</td>
+                <td class="ct-nv-note">${item.note ? escapeHtml(item.note) : "<span class='ct-nv-none'>—</span>"}</td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      </div>
+
+      <p class="ct-nv-disclaimer">
+        ${icon("alertTriangle")} Reference ranges are for adult patients unless stated. Values may vary by laboratory method and local protocol. Always interpret results in clinical context.
+      </p>
+    </div>
+  `;
+}
+
 function renderActivityHeatmap() {
   const studyDates = getStudyDates();
   const today = new Date();
@@ -7658,6 +7921,435 @@ const MOCK_EXAMS = [
 ];
 
 let _mockExamTimer = null;
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  CLINICAL TOOLS DATA
+// ═══════════════════════════════════════════════════════════════════════════
+
+const CLINICAL_CHECKLISTS = [
+  {
+    id: "hand-hygiene", title: "Hand Hygiene — WHO 6-Step",
+    category: "Infection Control", icon: "heartPulse",
+    steps: [
+      { text: "Wet hands with running water; apply enough soap to cover all surfaces" },
+      { text: "Rub palms together — palm to palm", critical: true },
+      { text: "Rub right palm over left dorsum with interlaced fingers, then vice versa" },
+      { text: "Rub palm to palm with fingers interlaced" },
+      { text: "Rub back of fingers to opposing palms (fingers interlocked)" },
+      { text: "Rotational rubbing of right thumb clasped in left palm, then vice versa" },
+      { text: "Rotational rubbing of right fingertips in left palm, then vice versa" },
+      { text: "Rinse hands thoroughly under running water", critical: true },
+      { text: "Dry thoroughly with a single-use towel", critical: true },
+      { text: "Use towel to turn off faucet. Total duration: 40–60 seconds" }
+    ]
+  },
+  {
+    id: "vital-signs", title: "Vital Signs Assessment",
+    category: "Assessment", icon: "activity",
+    steps: [
+      { text: "Wash hands / apply gloves as appropriate", critical: true },
+      { text: "Explain procedure to patient and gain consent" },
+      { text: "Measure temperature (oral / axillary / tympanic)" },
+      { text: "Count radial pulse for 60 seconds — note rate, rhythm, volume", critical: true },
+      { text: "Count respirations for 60 seconds — note rate, depth, pattern", critical: true },
+      { text: "Measure blood pressure — correct cuff size, arm at heart level" },
+      { text: "Record SpO₂ with pulse oximeter" },
+      { text: "Assess pain using numeric or visual analogue scale" },
+      { text: "Record and document all findings accurately", critical: true },
+      { text: "Report any abnormal findings to senior staff immediately" }
+    ]
+  },
+  {
+    id: "bp-measurement", title: "Blood Pressure Measurement",
+    category: "Assessment", icon: "stethoscope",
+    steps: [
+      { text: "Explain procedure; have patient rest quietly for ≥ 5 minutes", critical: true },
+      { text: "Patient seated, feet flat on floor, arm supported at heart level" },
+      { text: "Select correct cuff: bladder covers ≥ 80% of arm circumference", critical: true },
+      { text: "Apply cuff 2–3 cm above antecubital fossa" },
+      { text: "Locate brachial artery; place stethoscope bell/diaphragm over it" },
+      { text: "Inflate cuff 30 mmHg above point where radial pulse disappears", critical: true },
+      { text: "Deflate slowly at ~2 mmHg/sec; note Korotkoff Phase I (systolic)" },
+      { text: "Note Korotkoff Phase V — disappearance of sound (diastolic)", critical: true },
+      { text: "Fully deflate cuff. Wait ≥ 2 min before repeating" },
+      { text: "Record: reading, arm used, position, cuff size and time" }
+    ]
+  },
+  {
+    id: "im-injection", title: "Intramuscular Injection",
+    category: "Medications", icon: "syringe",
+    steps: [
+      { text: "Check prescription — 5 Rights: patient, drug, dose, route, time", critical: true },
+      { text: "Gather: correct gauge needle (21–23G, 2.5–3.8 cm), syringe, swab, gloves" },
+      { text: "Wash hands and apply gloves" },
+      { text: "Draw up medication using aseptic technique", critical: true },
+      { text: "Select site: deltoid / vastus lateralis / ventrogluteal / dorsogluteal" },
+      { text: "Clean site with 70% alcohol swab — allow to air-dry 30 seconds" },
+      { text: "Spread or bunch skin as appropriate for the muscle selected" },
+      { text: "Insert needle at 90° in one smooth motion", critical: true },
+      { text: "Aspirate 5–10 seconds — if blood appears, withdraw and restart", critical: true },
+      { text: "Inject slowly (~10 seconds per mL)" },
+      { text: "Withdraw needle at same angle; apply light pressure — do NOT rub" },
+      { text: "Dispose of needle in sharps bin immediately — do NOT re-cap", critical: true },
+      { text: "Document administration in medication record" }
+    ]
+  },
+  {
+    id: "iv-cannulation", title: "IV Cannulation",
+    category: "IV Therapy", icon: "activity",
+    steps: [
+      { text: "Confirm prescription; explain procedure; gain informed consent", critical: true },
+      { text: "Prepare: cannula (correct gauge), tegaderm, tape, flush syringe" },
+      { text: "Select vein: antecubital, cephalic, basilic, or dorsal hand veins" },
+      { text: "Apply tourniquet 10 cm above selected site" },
+      { text: "Clean site with 2% chlorhexidine swab — allow to fully dry", critical: true },
+      { text: "Apply sterile gloves; stabilise vein with non-dominant hand" },
+      { text: "Insert cannula bevel-up at 10–30°; confirm flashback of blood", critical: true },
+      { text: "Lower angle, advance cannula off stylet, then withdraw stylet fully" },
+      { text: "Release tourniquet; apply finger pressure above cannula tip" },
+      { text: "Attach cap or extension set; flush with 5–10 mL normal saline", critical: true },
+      { text: "Secure with transparent dressing; label with date, time, gauge, initials" },
+      { text: "Document cannula insertion and site assessment in nursing notes" }
+    ]
+  },
+  {
+    id: "wound-dressing", title: "Wound Dressing (Aseptic Technique)",
+    category: "Wound Care", icon: "heartPulse",
+    steps: [
+      { text: "Review prescription; explain procedure to patient" },
+      { text: "Gather: sterile dressing pack, appropriate dressing, clean gloves, sterile gloves" },
+      { text: "Wash hands thoroughly; position patient comfortably" },
+      { text: "Open sterile pack using aseptic corners — maintain sterile field", critical: true },
+      { text: "Apply clean gloves; remove old dressing; observe and assess wound" },
+      { text: "Remove clean gloves; wash hands; apply sterile gloves", critical: true },
+      { text: "Irrigate wound with normal saline if required" },
+      { text: "Dry wound edges gently with sterile gauze" },
+      { text: "Apply appropriate dressing according to wound type" },
+      { text: "Secure dressing; label with date, time, nurse initials" },
+      { text: "Document wound assessment: size, depth, exudate, surrounding skin" }
+    ]
+  },
+  {
+    id: "urinary-catheter", title: "Female Urinary Catheterisation",
+    category: "Procedures", icon: "stethoscope",
+    steps: [
+      { text: "Confirm prescription; explain procedure; gain informed consent", critical: true },
+      { text: "Gather: catheter pack, correct size catheter (12–14 Fr), sterile water for balloon" },
+      { text: "Position: supine with knees bent, legs apart, good light source" },
+      { text: "Wash hands; apply clean gloves; open sterile pack aseptically" },
+      { text: "Pour sterile saline/water; apply sterile gloves; place sterile drape", critical: true },
+      { text: "Cleanse labia majora front to back — discard each swab after single use", critical: true },
+      { text: "Cleanse labia minora front to back; then cleanse urethral meatus" },
+      { text: "Place sterile receiver between patient's legs" },
+      { text: "Insert lubricated catheter gently until urine flows; advance 5 cm further", critical: true },
+      { text: "Inflate balloon with prescribed volume of sterile water (usually 10 mL)" },
+      { text: "Gently withdraw catheter to confirm balloon is seated at bladder neck" },
+      { text: "Connect to drainage bag; secure catheter to inner thigh; document" }
+    ]
+  },
+  {
+    id: "ngt-insertion", title: "Nasogastric Tube Insertion",
+    category: "Procedures", icon: "stethoscope",
+    steps: [
+      { text: "Confirm prescription; explain procedure; gain consent", critical: true },
+      { text: "Gather: NGT (correct size), lubricant, pH strips, tape, drainage bag" },
+      { text: "Position: high Fowler's (45–90°) unless contraindicated" },
+      { text: "Check nostrils for obstruction — select wider nostril" },
+      { text: "Measure NEX (Nose–Earlobe–Xiphoid) for insertion length; mark tube" },
+      { text: "Wash hands, apply gloves; lubricate tube tip generously" },
+      { text: "Insert gently via nostril, aiming toward ear on same side" },
+      { text: "Ask patient to swallow as tube passes pharynx; advance to marked point", critical: true },
+      { text: "STOP immediately if resistance, coughing or respiratory distress", critical: true },
+      { text: "Confirm position: aspirate content; test pH — must be ≤ 5.5", critical: true },
+      { text: "Unconscious patients: confirm by chest X-ray before any use" },
+      { text: "Secure tube to nose with tape; document position confirmation method and length" }
+    ]
+  },
+  {
+    id: "oxygen-therapy", title: "Oxygen Administration",
+    category: "Respiratory", icon: "activity",
+    steps: [
+      { text: "Confirm prescription: O₂ flow rate, target SpO₂, delivery device", critical: true },
+      { text: "Assess baseline: SpO₂, respiratory rate, colour, consciousness" },
+      { text: "Select delivery device: nasal cannula / simple mask / non-rebreathe / Venturi" },
+      { text: "Check oxygen supply — cylinder level or wall outlet working" },
+      { text: "Set prescribed flow rate on flow meter" },
+      { text: "Apply device correctly to patient; check fit and comfort" },
+      { text: "Monitor SpO₂ continuously; document baseline and ongoing response", critical: true },
+      { text: "Titrate to target SpO₂: 94–98% adults; 88–92% COPD/hypercapnic patients", critical: true },
+      { text: "Reassess every 30 minutes or as per ward protocol" },
+      { text: "Document: device used, flow rate, SpO₂, RR, time and clinical response" }
+    ]
+  },
+  {
+    id: "blood-glucose", title: "Blood Glucose Monitoring",
+    category: "Assessment", icon: "activity",
+    steps: [
+      { text: "Confirm frequency and prescription" },
+      { text: "Explain procedure to patient" },
+      { text: "Wash hands; apply clean gloves" },
+      { text: "Prepare glucometer — insert test strip; check expiry date", critical: true },
+      { text: "Warm patient's finger; clean with alcohol swab; allow to dry" },
+      { text: "Use lancet on side of fingertip — apply gentle pressure for blood drop" },
+      { text: "Apply blood to test strip — ensure adequate sample", critical: true },
+      { text: "Read and note result; note time and patient's last meal" },
+      { text: "Apply pressure to puncture site" },
+      { text: "Dispose of lancet and strip in sharps/clinical waste", critical: true },
+      { text: "Document result; report abnormal values immediately" }
+    ]
+  }
+];
+
+const NORMAL_VALUES_DATA = {
+  vitals: {
+    label: "Vital Signs",
+    icon: "heartPulse",
+    items: [
+      { name: "Blood Pressure (adult)", value: "90–120 / 60–80", unit: "mmHg", note: "Hypertension ≥ 140/90 mmHg" },
+      { name: "Heart Rate (adult)", value: "60–100", unit: "bpm", note: "Tachycardia > 100; bradycardia < 60" },
+      { name: "Respiratory Rate (adult)", value: "12–20", unit: "breaths/min", note: "Tachypnoea > 20; bradypnoea < 12" },
+      { name: "Temperature — oral", value: "36.1–37.2", unit: "°C", note: "Fever ≥ 38.0°C; hypothermia < 35°C" },
+      { name: "Temperature — axillary", value: "35.9–36.7", unit: "°C", note: "0.5°C lower than oral" },
+      { name: "SpO₂ (adult)", value: "94–100", unit: "%", note: "Below 94% requires assessment" },
+      { name: "SpO₂ (COPD / hypercapnic)", value: "88–92", unit: "%", note: "Higher SpO₂ may suppress hypoxic drive" },
+      { name: "GCS (normal adult)", value: "15", unit: "/15", note: "E4 V5 M6. Severe injury ≤ 8" }
+    ]
+  },
+  paediatric: {
+    label: "Paediatric Vitals",
+    icon: "users",
+    items: [
+      { name: "Newborn HR", value: "100–160", unit: "bpm" },
+      { name: "Infant HR (1–12 months)", value: "90–160", unit: "bpm" },
+      { name: "Toddler HR (1–3 years)", value: "80–140", unit: "bpm" },
+      { name: "School age HR (6–12 years)", value: "70–120", unit: "bpm" },
+      { name: "Newborn RR", value: "30–60", unit: "breaths/min" },
+      { name: "Infant RR (1–12 months)", value: "24–40", unit: "breaths/min" },
+      { name: "Toddler RR (1–3 years)", value: "20–30", unit: "breaths/min" },
+      { name: "School age RR (6–12 years)", value: "16–22", unit: "breaths/min" },
+      { name: "Newborn Temp", value: "36.5–37.5", unit: "°C" },
+      { name: "Newborn BP (systolic)", value: "60–90", unit: "mmHg" },
+      { name: "Child BP — estimate", value: "80 + (2 × age yrs)", unit: "mmHg systolic", note: "Rule of thumb for systolic" },
+      { name: "Paediatric SpO₂", value: "95–100", unit: "%" }
+    ]
+  },
+  haematology: {
+    label: "Haematology",
+    icon: "activity",
+    items: [
+      { name: "Haemoglobin — male", value: "13.5–17.5", unit: "g/dL", note: "Anaemia < 13 g/dL in males" },
+      { name: "Haemoglobin — female", value: "12.0–15.5", unit: "g/dL", note: "Anaemia < 12 g/dL in females" },
+      { name: "Haematocrit — male", value: "41–53", unit: "%" },
+      { name: "Haematocrit — female", value: "36–46", unit: "%" },
+      { name: "WBC (total)", value: "4.5–11.0", unit: "×10³/μL", note: "Leukocytosis > 11; leucopenia < 4.5" },
+      { name: "Neutrophils", value: "2.0–7.5", unit: "×10³/μL", note: "60–70% of WBC" },
+      { name: "Lymphocytes", value: "1.0–3.5", unit: "×10³/μL", note: "20–40% of WBC" },
+      { name: "Platelets", value: "150–400", unit: "×10³/μL", note: "Thrombocytopenia < 150; thrombocytosis > 400" },
+      { name: "MCV", value: "80–100", unit: "fL", note: "Microcytic < 80; macrocytic > 100" },
+      { name: "MCH", value: "27–33", unit: "pg" },
+      { name: "ESR (male)", value: "0–15", unit: "mm/hr" },
+      { name: "ESR (female)", value: "0–20", unit: "mm/hr" }
+    ]
+  },
+  chemistry: {
+    label: "Blood Chemistry",
+    icon: "clipboardList",
+    items: [
+      { name: "Blood Glucose — fasting", value: "3.9–5.6", unit: "mmol/L", note: "6.1–6.9 = impaired fasting glucose; ≥ 7.0 = diabetes" },
+      { name: "Blood Glucose — random", value: "3.9–7.8", unit: "mmol/L", note: "≥ 11.1 mmol/L = diagnostic of diabetes mellitus" },
+      { name: "Sodium (Na⁺)", value: "135–145", unit: "mEq/L", note: "Hyponatraemia < 135; hypernatraemia > 145" },
+      { name: "Potassium (K⁺)", value: "3.5–5.0", unit: "mEq/L", note: "Hypokalaemia < 3.5; hyperkalaemia > 5.0" },
+      { name: "Chloride (Cl⁻)", value: "95–105", unit: "mEq/L" },
+      { name: "Bicarbonate (HCO₃⁻)", value: "22–29", unit: "mEq/L" },
+      { name: "Urea (BUN)", value: "2.5–7.1", unit: "mmol/L", note: "Elevated in renal impairment and dehydration" },
+      { name: "Creatinine — male", value: "62–115", unit: "μmol/L" },
+      { name: "Creatinine — female", value: "44–97", unit: "μmol/L" },
+      { name: "Total Calcium (Ca²⁺)", value: "2.15–2.55", unit: "mmol/L", note: "Hypocalcaemia < 2.15; hypercalcaemia > 2.55" },
+      { name: "Magnesium (Mg²⁺)", value: "0.75–1.0", unit: "mmol/L" },
+      { name: "Total Protein", value: "60–80", unit: "g/L" },
+      { name: "Albumin", value: "35–50", unit: "g/L", note: "Hypoalbuminaemia < 35; indicates malnutrition/liver disease" }
+    ]
+  },
+  abg: {
+    label: "Arterial Blood Gas",
+    icon: "activity",
+    items: [
+      { name: "pH", value: "7.35–7.45", unit: "", note: "Acidosis < 7.35; alkalosis > 7.45" },
+      { name: "PaO₂", value: "80–100", unit: "mmHg", note: "Hypoxaemia < 80 mmHg on room air" },
+      { name: "PaCO₂", value: "35–45", unit: "mmHg", note: "Hypocapnia < 35; hypercapnia > 45" },
+      { name: "HCO₃⁻", value: "22–26", unit: "mEq/L" },
+      { name: "SaO₂", value: "95–100", unit: "%" },
+      { name: "Base Excess", value: "−2 to +2", unit: "mEq/L", note: "Metabolic component of acid-base status" }
+    ]
+  },
+  fluids: {
+    label: "Fluids & Urine",
+    icon: "fileText",
+    items: [
+      { name: "Urine output (adult)", value: "0.5–1.0", unit: "mL/kg/hr", note: "Oliguria < 0.5 mL/kg/hr; anuria < 100 mL/day" },
+      { name: "Urine pH", value: "4.6–8.0", unit: "" },
+      { name: "Urine specific gravity", value: "1.005–1.030", unit: "" },
+      { name: "Urine protein", value: "Negative", unit: "", note: "Proteinuria suggests renal pathology" },
+      { name: "Daily fluid requirement (adult)", value: "30–35", unit: "mL/kg/day", note: "≈ 2,000–2,500 mL/day for average adult" },
+      { name: "Normal Saline (0.9% NaCl)", value: "Na⁺ 154 / Cl⁻ 154", unit: "mEq/L", note: "Isotonic — use for hypovolaemia, hypotension" },
+      { name: "Ringer's Lactate", value: "Na 130, K 4, Ca 3, Cl 109", unit: "mEq/L", note: "Balanced isotonic — preferred perioperatively" },
+      { name: "5% Dextrose", value: "Glucose 50 g/L", unit: "", note: "Hypotonic once glucose metabolised — not for hypovolaemia" },
+      { name: "Half Normal Saline (0.45%)", value: "Na⁺ 77 / Cl⁻ 77", unit: "mEq/L", note: "Hypotonic maintenance fluid" }
+    ]
+  }
+};
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  CLINICAL TOOLS — CALC CONFIGS & HELPERS
+// ═══════════════════════════════════════════════════════════════════════════
+
+const CALC_CONFIGS = {
+  tablet: {
+    label: "Tablet / Capsule Dose",
+    icon: "pill",
+    fields: [
+      { id: "dose-ordered",   label: "Dose ordered",    placeholder: "e.g. 500", unit: "mg" },
+      { id: "dose-available", label: "Dose per tablet", placeholder: "e.g. 250", unit: "mg" }
+    ],
+    formula: "Tablets = Dose ordered ÷ Dose per tablet",
+    compute(v) {
+      const ordered   = parseFloat(v["dose-ordered"]);
+      const available = parseFloat(v["dose-available"]);
+      if (!ordered || !available || available === 0) return null;
+      return { value: +(ordered / available).toFixed(3), unit: "tablet(s)", label: "Tablets to give" };
+    }
+  },
+  liquid: {
+    label: "Liquid / Syrup Dose",
+    icon: "stethoscope",
+    fields: [
+      { id: "dose-ordered",     label: "Dose ordered",       placeholder: "e.g. 250", unit: "mg" },
+      { id: "dose-available",   label: "Drug concentration", placeholder: "e.g. 125", unit: "mg" },
+      { id: "volume-available", label: "Volume per dose",    placeholder: "e.g. 5",   unit: "mL" }
+    ],
+    formula: "Volume = (Dose ordered ÷ Drug concentration) × Volume per dose",
+    compute(v) {
+      const ordered   = parseFloat(v["dose-ordered"]);
+      const available = parseFloat(v["dose-available"]);
+      const volume    = parseFloat(v["volume-available"]);
+      if (!ordered || !available || !volume || available === 0) return null;
+      return { value: +((ordered / available) * volume).toFixed(2), unit: "mL", label: "Volume to give" };
+    }
+  },
+  drip: {
+    label: "IV Drip Rate",
+    icon: "activity",
+    fields: [
+      { id: "volume-ml",   label: "Total volume",   placeholder: "e.g. 1000", unit: "mL" },
+      { id: "time-hours",  label: "Time to infuse", placeholder: "e.g. 8",    unit: "hours" },
+      { id: "drop-factor", label: "Drop factor",    placeholder: "e.g. 20",   unit: "drops/mL" }
+    ],
+    formula: "Drops/min = (Volume × Drop factor) ÷ (Time × 60)",
+    compute(v) {
+      const vol  = parseFloat(v["volume-ml"]);
+      const time = parseFloat(v["time-hours"]);
+      const df   = parseFloat(v["drop-factor"]);
+      if (!vol || !time || !df || time === 0) return null;
+      return { value: +((vol * df) / (time * 60)).toFixed(1), unit: "drops/min", label: "Drip rate" };
+    }
+  },
+  flow: {
+    label: "IV Flow Rate (mL/hr)",
+    icon: "chartLine",
+    fields: [
+      { id: "volume-ml",  label: "Total volume",   placeholder: "e.g. 500", unit: "mL" },
+      { id: "time-hours", label: "Time to infuse", placeholder: "e.g. 4",   unit: "hours" }
+    ],
+    formula: "Flow rate (mL/hr) = Total volume ÷ Time (hours)",
+    compute(v) {
+      const vol  = parseFloat(v["volume-ml"]);
+      const time = parseFloat(v["time-hours"]);
+      if (!vol || !time || time === 0) return null;
+      return { value: +(vol / time).toFixed(1), unit: "mL/hr", label: "Flow rate" };
+    }
+  },
+  paediatric: {
+    label: "Paediatric Dose (mg/kg)",
+    icon: "users",
+    fields: [
+      { id: "weight-kg",        label: "Patient weight",     placeholder: "e.g. 15",  unit: "kg" },
+      { id: "dose-per-kg",      label: "Dose per kg",        placeholder: "e.g. 10",  unit: "mg/kg" },
+      { id: "dose-available",   label: "Drug concentration", placeholder: "e.g. 250", unit: "mg" },
+      { id: "volume-available", label: "Volume per dose",    placeholder: "e.g. 5",   unit: "mL" }
+    ],
+    formula: "Total dose = Weight × Dose/kg.  Volume = (Total dose ÷ Concentration) × Volume/dose",
+    compute(v) {
+      const weight    = parseFloat(v["weight-kg"]);
+      const dosePerKg = parseFloat(v["dose-per-kg"]);
+      if (!weight || !dosePerKg) return null;
+      const totalDose = weight * dosePerKg;
+      const available = parseFloat(v["dose-available"]);
+      const volume    = parseFloat(v["volume-available"]);
+      if (!available || !volume || available === 0) {
+        return { value: +totalDose.toFixed(2), unit: "mg", label: "Total dose" };
+      }
+      const vol = (totalDose / available) * volume;
+      return { value: +vol.toFixed(2), unit: "mL", label: "Volume to give", extra: "Total dose: " + totalDose.toFixed(1) + " mg" };
+    }
+  }
+};
+
+function computeCalcResult(type, inputs) {
+  const cfg = CALC_CONFIGS[type];
+  if (!cfg) return null;
+  return cfg.compute(inputs);
+}
+
+function updateCalcResult() {
+  const form     = document.getElementById("ct-calc-form");
+  const resultEl = document.getElementById("ct-calc-result");
+  if (!form || !resultEl) return;
+  const type = state.clinicalTools.calcType;
+  const cfg  = CALC_CONFIGS[type];
+  if (!cfg) return;
+  const inputs = {};
+  cfg.fields.forEach(function(f) {
+    const el = form.querySelector("[data-calc-field='" + f.id + "']");
+    if (el) inputs[f.id] = el.value;
+  });
+  const result = computeCalcResult(type, inputs);
+  if (result) {
+    resultEl.innerHTML =
+      "<div class='ct-result-value'>" + result.value +
+        " <span class='ct-result-unit'>" + escapeHtml(result.unit) + "</span></div>" +
+      "<div class='ct-result-label'>" + escapeHtml(result.label) + "</div>" +
+      (result.extra ? "<div class='ct-result-extra'>" + escapeHtml(result.extra) + "</div>" : "");
+    resultEl.className = "ct-calc-result ct-result-filled";
+  } else {
+    resultEl.innerHTML = "<div class='ct-result-placeholder'>Enter values above to calculate</div>";
+    resultEl.className = "ct-calc-result ct-result-empty";
+  }
+}
+
+function getChecklistProgress(id) {
+  try {
+    const all = JSON.parse(localStorage.getItem("nursinguganda.checklists") || "{}");
+    return all[id] || {};
+  } catch { return {}; }
+}
+
+function setChecklistStep(id, index, done) {
+  try {
+    const all = JSON.parse(localStorage.getItem("nursinguganda.checklists") || "{}");
+    if (!all[id]) all[id] = {};
+    if (done) all[id][index] = true;
+    else delete all[id][index];
+    localStorage.setItem("nursinguganda.checklists", JSON.stringify(all));
+  } catch {}
+}
+
+function resetChecklist(id) {
+  try {
+    const all = JSON.parse(localStorage.getItem("nursinguganda.checklists") || "{}");
+    delete all[id];
+    localStorage.setItem("nursinguganda.checklists", JSON.stringify(all));
+  } catch {}
+}
 
 function findMockExam(id) { return MOCK_EXAMS.find(e => e.id === id) || null; }
 
@@ -12202,6 +12894,10 @@ function render() {
     meta = { title: "Mock Exams", description: "Timed full-paper mock examinations that mirror BNE standard. Get instant results and full question breakdowns." };
     app.removeAttribute("data-exam-mode");
   }
+  else if (parts[0] === "clinical-tools") {
+    content = renderClinicalToolsPage();
+    meta = { title: "Clinical Tools", description: "Drug dose calculator, clinical procedure checklists and normal reference values for nursing and midwifery students in Uganda." };
+  }
   else if (parts[0] === "flashcards") {
     content = renderFlashcards();
     meta = { title: "Flashcards", description: "Study key nursing and medical terms with flip-card mode. Track your mastery as you go." };
@@ -12945,6 +13641,81 @@ function render() {
       ? `You have ${unanswered} unanswered question${unanswered !== 1 ? "s" : ""}. Unanswered questions are marked incorrect.\n\nSubmit now?`
       : "Submit the exam now?";
     if (window.confirm(msg)) submitMockExam();
+  });
+
+  // ── Clinical Tools event wiring ───────────────────────────────────────────
+  app.querySelectorAll("[data-ct-tab]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      state.clinicalTools.tab = btn.dataset.ctTab;
+      render();
+    });
+  });
+
+  app.querySelectorAll("[data-calc-type]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      state.clinicalTools.calcType = btn.dataset.calcType;
+      render();
+    });
+  });
+
+  const ctCalcForm = app.querySelector("#ct-calc-form");
+  if (ctCalcForm) ctCalcForm.addEventListener("input", () => updateCalcResult());
+
+  app.querySelector("[data-calc-clear]")?.addEventListener("click", () => {
+    const form = app.querySelector("#ct-calc-form");
+    if (form) { form.reset(); updateCalcResult(); }
+  });
+
+  app.querySelectorAll("[data-cl-open]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      state.clinicalTools.checklistId = btn.dataset.clOpen;
+      render();
+    });
+  });
+
+  app.querySelectorAll("[data-cl-back]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      state.clinicalTools.checklistId = "";
+      render();
+    });
+  });
+
+  app.querySelectorAll("[data-cl-step]").forEach(cb => {
+    cb.addEventListener("change", () => {
+      const id    = cb.dataset.clStep;
+      const index = parseInt(cb.dataset.clStepIndex, 10);
+      setChecklistStep(id, index, cb.checked);
+      // Live DOM update — avoid full re-render on every tick
+      const stepLabel = cb.closest(".ct-cl-step");
+      if (stepLabel) stepLabel.classList.toggle("checked", cb.checked);
+      const cl = CLINICAL_CHECKLISTS.find(c => c.id === id);
+      if (cl) {
+        const progress = getChecklistProgress(id);
+        const done     = Object.keys(progress).length;
+        const total    = cl.steps.length;
+        const pct      = total ? Math.round((done / total) * 100) : 0;
+        const fillEl   = app.querySelector(".ct-cl-progress-fill");
+        const lblEl    = app.querySelector(".ct-cl-progress-label");
+        if (fillEl) { fillEl.style.width = pct + "%"; fillEl.classList.toggle("complete", done === total && total > 0); }
+        if (lblEl)  { lblEl.textContent = done + " / " + total + " steps" + (done === total && total > 0 ? " — complete!" : ""); }
+      }
+    });
+  });
+
+  app.querySelectorAll("[data-cl-reset]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      if (window.confirm("Reset all steps on this checklist?")) {
+        resetChecklist(btn.dataset.clReset);
+        render();
+      }
+    });
+  });
+
+  app.querySelectorAll("[data-nv-tab]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      state.clinicalTools.valuesTab = btn.dataset.nvTab;
+      render();
+    });
   });
 
   app.querySelectorAll("[data-career-drawer-close]").forEach((button) => {
