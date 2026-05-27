@@ -238,7 +238,7 @@ const AUTH_COLORS = [
   { bg: "#dbeafe", text: "#1e40af" }, { bg: "#dcfce7", text: "#15803d" },
   { bg: "#fce7f3", text: "#9d174d" }, { bg: "#ede9fe", text: "#5b21b6" },
   { bg: "#ffedd5", text: "#c2410c" }, { bg: "#e0f2fe", text: "#0369a1" },
-  { bg: "#d1fae5", text: "#065f46" }, { bg: "#fef9c3", text: "#92400e" },
+  { bg: "#e0f7f8", text: "#007b83" }, { bg: "#fef9c3", text: "#92400e" },
 ];
 function authAvatarColor(email) {
   let h = 0; const s = String(email || "a");
@@ -4435,9 +4435,9 @@ function renderProgressRing(percent, size = 140) {
     <svg class="progress-dash-ring" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" aria-hidden="true">
       <defs>
         <linearGradient id="prog-ring-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#1a5f7a" />
-          <stop offset="50%" stop-color="#00bcd4" />
-          <stop offset="100%" stop-color="#0f7f4f" />
+          <stop offset="0%" stop-color="#007b83" />
+          <stop offset="50%" stop-color="#00B5BD" />
+          <stop offset="100%" stop-color="#29C9D0" />
         </linearGradient>
       </defs>
       <circle cx="${size / 2}" cy="${size / 2}" r="${r}" />
@@ -5995,7 +5995,7 @@ function renderPlanner() {
   const selectedDay  = state.planner.selectedDay || (days.find(d => d.isToday) || days[0]).key;
 
   const typeLabels  = { revision: "📖 Revision", notes: "📝 Notes", quiz: "✅ Quiz", mock: "📋 Mock Exam", flashcards: "🃏 Flashcards", clinical: "🩺 Clinical Tools" };
-  const typeColors  = { revision: "#3b82f6", notes: "#10b981", quiz: "#f59e0b", mock: "#8b5cf6", flashcards: "#ec4899", clinical: "#0f7f4f" };
+  const typeColors  = { revision: "#3b82f6", notes: "#10b981", quiz: "#f59e0b", mock: "#8b5cf6", flashcards: "#ec4899", clinical: "#00B5BD" };
 
   const selDay = days.find(function(d) { return d.key === selectedDay; }) || days[0];
 
@@ -8365,14 +8365,14 @@ const MOCK_EXAMS = [
     title: "Full Paper — Series A",
     desc: "80 questions across all nursing subjects. Mirrors BNE exam standard.",
     duration: 120, count: 80, icon: "clipboardList",
-    badge: "Full Paper", color: "#0f7f4f"
+    badge: "Full Paper", color: "#00B5BD"
   },
   {
     id: "full-paper-b",
     title: "Full Paper — Series B",
     desc: "A second 80-question mixed paper — different question set from Series A.",
     duration: 120, count: 80, icon: "clipboardList",
-    badge: "Full Paper", color: "#0f7f4f"
+    badge: "Full Paper", color: "#00B5BD"
   },
   {
     id: "practice-50",
@@ -10502,7 +10502,7 @@ const CAREER_PALETTE = [
   { bg: "#ede9fe", text: "#5b21b6" },  // purple
   { bg: "#ffedd5", text: "#c2410c" },  // orange
   { bg: "#e0f2fe", text: "#0369a1" },  // sky
-  { bg: "#d1fae5", text: "#065f46" },  // emerald
+  { bg: "#e0f7f8", text: "#007b83" },  // teal
 ];
 function careerPaletteFor(name) {
   let h = 0;
@@ -11035,8 +11035,8 @@ function renderCareerResourcePage(slug) {
   if (!resource) return renderCareers();
   const { title, icon: iconName, accent, desc } = resource;
   const templates = RESOURCE_TEMPLATES[title] || [];
-  const accentColors = ["#2563EB", "#0f7f4f", "#d97706", "#7C3AED", "#ec4899", "#0ea5e9"];
-  const accentBgs    = ["#eff6ff", "#e6f7ef", "#fffbeb", "#f5f0ff", "#fdf2f8", "#e0f7ff"];
+  const accentColors = ["#2563EB", "#00B5BD", "#d97706", "#7C3AED", "#ec4899", "#0ea5e9"];
+  const accentBgs    = ["#eff6ff", "#e0f7f8", "#fffbeb", "#f5f0ff", "#fdf2f8", "#e0f7ff"];
   const color = accentColors[accent];
   const bg    = accentBgs[accent];
 
@@ -12258,8 +12258,8 @@ const RESOURCE_TEMPLATES = {
 // ─── CV DOCUMENT STYLES ────────────────────────────────────────────────────
 const CV_STYLES = [
   {
-    id: "modern", name: "Modern", desc: "Clean green accent, contemporary",  swatch: "#0f7f4f",
-    css: `body{font-family:Arial,Helvetica,sans-serif;margin:0;padding:0;color:#1C1917;line-height:1.55}.cv-header{background:#0f7f4f;color:#fff;padding:36px 52px 28px}h1.cv-name{font-size:26pt;font-weight:700;margin:0 0 4px;letter-spacing:-.02em}.cv-title{font-size:12pt;opacity:.85;margin:0 0 12px}.cv-contact-bar{font-size:9pt;opacity:.8;display:flex;flex-wrap:wrap;gap:12px}.cv-body{padding:26px 52px}h2.cv-sec{font-size:9.5pt;font-weight:700;color:#0f7f4f;text-transform:uppercase;letter-spacing:.08em;border-left:4px solid #0f7f4f;padding-left:10px;margin:22px 0 8px}.cv-item{margin-bottom:14px}.cv-item-head{display:flex;justify-content:space-between;font-weight:700;font-size:10.5pt;margin-bottom:2px}.cv-item-sub{font-size:9.5pt;color:#555;margin-bottom:4px}ul{margin:4px 0;padding-left:18px}li{font-size:9.5pt;margin-bottom:3px}p{font-size:10pt;margin:0 0 8px}.skill-chips{display:flex;flex-wrap:wrap;gap:5px}.skill-chip{background:#e6f7ef;border:1px solid #b7e4cd;border-radius:3px;padding:2px 8px;font-size:9pt;color:#0f7f4f}`
+    id: "modern", name: "Modern", desc: "Clean teal accent, contemporary",  swatch: "#00B5BD",
+    css: `body{font-family:Arial,Helvetica,sans-serif;margin:0;padding:0;color:#1C1917;line-height:1.55}.cv-header{background:#00B5BD;color:#fff;padding:36px 52px 28px}h1.cv-name{font-size:26pt;font-weight:700;margin:0 0 4px;letter-spacing:-.02em}.cv-title{font-size:12pt;opacity:.85;margin:0 0 12px}.cv-contact-bar{font-size:9pt;opacity:.8;display:flex;flex-wrap:wrap;gap:12px}.cv-body{padding:26px 52px}h2.cv-sec{font-size:9.5pt;font-weight:700;color:#00B5BD;text-transform:uppercase;letter-spacing:.08em;border-left:4px solid #00B5BD;padding-left:10px;margin:22px 0 8px}.cv-item{margin-bottom:14px}.cv-item-head{display:flex;justify-content:space-between;font-weight:700;font-size:10.5pt;margin-bottom:2px}.cv-item-sub{font-size:9.5pt;color:#555;margin-bottom:4px}ul{margin:4px 0;padding-left:18px}li{font-size:9.5pt;margin-bottom:3px}p{font-size:10pt;margin:0 0 8px}.skill-chips{display:flex;flex-wrap:wrap;gap:5px}.skill-chip{background:#e0f7f8;border:1px solid #b2f0f3;border-radius:3px;padding:2px 8px;font-size:9pt;color:#007b83}`
   },
   {
     id: "classic", name: "Classic", desc: "Timeless serif, centred header", swatch: "#1C1917",
