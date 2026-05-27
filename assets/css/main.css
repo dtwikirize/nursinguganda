@@ -15885,7 +15885,7 @@ textarea:focus {
 /* ── Flashcards ───────────────────────────────────────────────────── */
 .fc-hero {
   padding: 36px 0 24px;
-  background: var(--gradient-hero);
+  background: linear-gradient(135deg, #007b83 0%, #00B5BD 55%, #29C9D0 100%);
   color: var(--color-on-brand);
 }
 
@@ -16011,7 +16011,7 @@ textarea:focus {
 .fc-progress-fill {
   height: 100%;
   border-radius: var(--radius-full);
-  background: linear-gradient(90deg, var(--color-primary), var(--color-cyan));
+  background: linear-gradient(90deg, #007b83, #00B5BD);
   transition: width 0.4s ease;
 }
 
