@@ -2875,11 +2875,13 @@ function megaMenuLinks(key) {
 
   if (key === "careers") {
     return [
-      { href: "/careers", label: "Jobs Board", body: "Search nursing roles, internships and international listings", icon: "briefcaseMedical" },
-      { href: "/careers", label: "Career Hub", body: "Pathways, licensing, CV tools and work abroad guides", icon: "map" },
-      { href: "/careers", label: "International Nursing", body: "UK, Australia, Gulf and regional mobility notes", icon: "externalLink" },
-      { href: "/careers", label: "Licensing Guides", body: "UNMC, good standing and recognition checklists", icon: "badgeCheck" },
-      { href: "/careers", label: "CV Resources", body: "Templates, cover letters, interviews and portfolios", icon: "fileText" }
+      { href: "/careers",              label: "Jobs Board",              body: "Search nursing roles, internships and international listings", icon: "briefcaseMedical" },
+      { href: "/careers",              label: "Career Hub",              body: "Pathways, licensing, CV tools and work-abroad guides", icon: "map" },
+      { href: "/careers#international", label: "International Nursing",  body: "UK, Australia, Gulf and regional mobility notes", icon: "globe" },
+      { href: "/careers#licensing",    label: "Licensing Guides",        body: "UNMC, good standing and recognition checklists", icon: "badgeCheck" },
+      { href: "/careers#cv-resources", label: "Uganda Nursing CV",       body: "Hospital, NGO and government CV templates — 5 formats", icon: "fileCv" },
+      { href: "/careers#cv-resources", label: "Cover Letters",           body: "Hospital, NGO, international and internal letter templates", icon: "mail" },
+      { href: "/careers#cv-resources", label: "Interview Prep",          body: "STAR examples, panel questions and specialist interview guides", icon: "users" }
     ];
   }
 
@@ -7437,27 +7439,57 @@ function renderLicensingGuides() {
 
 function renderCareerResources() {
   const resources = [
-    ["Uganda Nursing CV Template", "Local hospital and NGO CV structure with clinical placement detail.", "Download Template", "Free"],
-    ["International Nursing CV Template", "UK and Australia style CV with registration and evidence sections.", "Download Template", "Free"],
-    ["Cover Letter Guide", "Sample nursing cover letters and phrases that work.", "Open Guide", "Free"],
-    ["Interview Preparation", "20 common questions, STAR examples and panel preparation.", "Practice", "Free"],
-    ["Nursing Portfolio Guide", "What to include and how to present it digitally.", "Open Guide", "Coming Soon"],
-    ["Salary Guide Uganda 2025", "Salary ranges by level, speciality and sector.", "View Guide", "Free"]
+    { title: "Uganda Nursing CV Template",      desc: "Hospital, NGO and government CV formats with clinical placement detail.", action: "Download Template", badge: "Free",        accent: 0, icon: "fileCv" },
+    { title: "International Nursing CV Template", desc: "UK, Australia and Gulf-style CVs with registration and evidence sections.", action: "Download Template", badge: "Free",   accent: 1, icon: "globe" },
+    { title: "Cover Letter Guide",              desc: "Sample nursing cover letters, phrases and structures that work.",           action: "Open Guide",        badge: "Free",        accent: 2, icon: "mail" },
+    { title: "Interview Preparation",           desc: "20+ questions, STAR examples, panel prep and values-based interview tips.", action: "Practice",          badge: "Free",        accent: 3, icon: "users" },
+    { title: "Nursing Portfolio Guide",         desc: "What to include for registration, CPD, international and senior roles.",   action: "Open Guide",        badge: "Free",        accent: 4, icon: "clipboardList" },
+    { title: "Salary Guide Uganda 2025",        desc: "Salary ranges by level, speciality, sector and international destination.", action: "View Guide",        badge: "Free",        accent: 5, icon: "banknote" }
   ];
+
+  const totalTemplates = Object.values(RESOURCE_TEMPLATES).reduce((sum, arr) => sum + arr.length, 0);
+
   return `
     <section id="cv-resources" class="section career-hub-section">
       <div class="container">
-        <div class="section-head"><div><h2>Career Resources</h2><p>CV templates, interview preparation, portfolio guidance and salary planning.</p></div></div>
-        <div class="career-resource-grid">
-          ${resources.map(([title, body, action, badge], index) => `
-            <article class="career-resource-card accent-${index % 4}">
-              <span>${iconFor(title)}</span>
-              <strong>${escapeHtml(badge)}</strong>
-              <h3>${escapeHtml(title)}</h3>
-              <p>${escapeHtml(body)}</p>
-              <button type="button" data-career-download="${escapeHtml(title)}">${escapeHtml(action)} ${icon("arrowRight")}</button>
-            </article>
-          `).join("")}
+        <div class="section-head">
+          <div>
+            <h2>Career Resources</h2>
+            <p>CV templates, interview preparation, portfolio guidance and salary planning.</p>
+          </div>
+          <span class="resource-count-badge">${totalTemplates}+ Templates &amp; Guides</span>
+        </div>
+        <div class="career-resource-grid career-resource-grid--rich">
+          ${resources.map(({ title, desc, action, badge, accent, icon: iconName }) => {
+            const templates = RESOURCE_TEMPLATES[title] || [];
+            return `
+              <article class="career-resource-card career-resource-card--rich accent-${accent}">
+                <div class="crcard-header">
+                  <div class="crcard-icon">${icon(iconName)}</div>
+                  <span class="crcard-badge crcard-badge--${badge === "Free" ? "free" : "soon"}">${escapeHtml(badge)}</span>
+                </div>
+                <div class="crcard-body">
+                  <h3>${escapeHtml(title)}</h3>
+                  <p>${escapeHtml(desc)}</p>
+                </div>
+                ${templates.length ? `
+                  <div class="crcard-templates">
+                    <span class="crcard-templates-label">5 templates:</span>
+                    <div class="crcard-chips">
+                      ${templates.map(t => `
+                        <button type="button" class="crcard-chip" data-career-download="${escapeHtml(t.label)}" title="${escapeHtml(t.desc)}">
+                          ${escapeHtml(t.label)}
+                        </button>
+                      `).join("")}
+                    </div>
+                  </div>
+                ` : ""}
+                <div class="crcard-footer">
+                  <button type="button" class="crcard-cta" data-career-download="${escapeHtml(title)}">${escapeHtml(action)} ${icon("arrowRight")}</button>
+                </div>
+              </article>
+            `;
+          }).join("")}
         </div>
       </div>
     </section>
@@ -8070,7 +8102,454 @@ const RESOURCE_CHECKLISTS = {
       "ICU/Theatre speciality uplift: +20-35% above general ward rate",
       "NGO/International Agency roles: USD/competitive package — not UGX scale"
     ]
+  },
+
+  /* ── Uganda CV Sub-Templates ──────────────────────────────────── */
+  "Hospital Staff Nurse CV": {
+    intro: "Uganda Hospital Staff Nurse CV — Key Sections",
+    items: [
+      "Personal details: full name, UNMC registration number, phone, email, physical address",
+      "Professional summary: 3 lines on your current grade, ward speciality and key clinical strength",
+      "Hospital/Facility experience: list posts with dates, unit, grade and key duties per role",
+      "Key clinical procedures: list procedures you perform independently (IV, catheter, wound care, obs)",
+      "UNMC registration: licence number, current expiry date and renewal status",
+      "In-service trainings: BLS/ACLS, infection prevention, obstetric emergencies, any hospital-based",
+      "Academic qualifications: certificate/diploma/degree, institution, year, grades or GPA",
+      "Professional referees: Ward Manager/Matron + Medical Officer — name, title, facility, contact"
+    ]
+  },
+  "NGO / Non-Profit Nursing CV": {
+    intro: "NGO / Non-Profit Nursing CV — Key Sections",
+    items: [
+      "Personal statement: 4 lines on your community health values, program experience and impact",
+      "Programme experience: project name, implementing partner, role, outputs and population reached",
+      "Target populations worked with: maternal health, PLHIV, refugees, under-5 nutrition",
+      "Reporting and data tools: HMIS, DHIS2, KoboToolbox, RedCap, Excel — note proficiency level",
+      "Languages: English fluency, Luganda/local languages and any community dialects",
+      "Volunteer or community engagement activities that show field-level commitment",
+      "Membership: Uganda Nurses and Midwives Union, Uganda Nursing Association or similar",
+      "References: supervisor from last implementing partner + clinical supervisor contact"
+    ]
+  },
+  "New Graduate Nursing CV": {
+    intro: "New Graduate Nursing CV — Key Sections",
+    items: [
+      "Personal statement: 3 lines on your programme, clinical interests and career goal",
+      "Student clinical attachments: each rotation with facility, unit, duration and key tasks completed",
+      "Academic results: year-by-year performance, distinctions or merit units, cumulative average",
+      "Final-year research project or dissertation topic if completed — summarise findings",
+      "UNMC student/interim registration number or application status",
+      "Clinical skills list: top 10 practical skills acquired during student placements",
+      "Extra-curricular: leadership in student nursing association, community health outreach",
+      "Referees: academic tutor/lecturer + clinical attachment supervisor — name, institution, contact"
+    ]
+  },
+  "Midwifery Specialist CV": {
+    intro: "Midwifery Specialist CV — Key Sections",
+    items: [
+      "UNMC midwifery registration number, grade (direct midwife / nurse-midwife) and expiry",
+      "Professional summary: deliveries supervised, ANC contacts managed and EmONC training level",
+      "BEmONC / CEmONC training status, certification body and date of completion",
+      "Maternal health experience: normal deliveries, obstetric emergencies, assisted deliveries",
+      "Safe motherhood programmes: PMTCT, Kangaroo mother care, family planning, nutrition",
+      "Equipment competency: CTG, vacuum extractor, episiotomy instruments, newborn resuscitation bag",
+      "Referral competency: recognition of danger signs, pre-referral stabilisation, documentation",
+      "Leadership: acting charge midwife experience, student mentoring, case presentation to teams"
+    ]
+  },
+  "Community Health Nursing CV": {
+    intro: "Community Health Nursing CV — Key Sections",
+    items: [
+      "VHT supervision: number of Village Health Teams overseen, location and coverage area",
+      "Immunisation campaigns: vaccines deployed, cold chain management, outreach sessions run",
+      "Health education: topics delivered (FP, malaria, WASH, nutrition, TB, maternal health)",
+      "HMIS data collection: registers completed, monthly reports submitted to district health office",
+      "Disease surveillance: outbreak response involvement, contact tracing, case reporting",
+      "Community mobilisation: community meetings, leader engagement, behaviour change strategies",
+      "Partnerships: local government health office, NGOs, community development committees",
+      "Physical fitness and mobility note — community posts require movement across rural catchments"
+    ]
+  },
+
+  /* ── International CV Sub-Templates ──────────────────────────── */
+  "UK NHS Nursing CV": {
+    intro: "UK NHS Application CV (NMC Route) — Key Sections",
+    items: [
+      "NMC eligibility status: CBT passed, OSCE passed/booked, or application at assessment stage",
+      "English language: IELTS academic 7.0 (each band) or OET Grade B (each skill) — state test date",
+      "Professional summary: 4-6 lines on speciality, NMC route, values and motivation for NHS",
+      "Employment history in reverse chronological order with NHS-equivalent band duties described",
+      "Mandatory training status: manual handling, fire safety, infection control, safeguarding",
+      "NMC skills gap analysis completion date and any adaptation plan commenced",
+      "NHS values alignment: person-centred care, compassion, respect, dignity — evidence with examples",
+      "References: clinical supervisor + ward manager — state 'available on request' (UK style)"
+    ]
+  },
+  "Australia AHPRA Nursing CV": {
+    intro: "Australia AHPRA Application CV — Key Sections",
+    items: [
+      "AHPRA application status: skills assessment stage, bridging program enrolled or approved",
+      "English language: IELTS academic 7.0 (each band) or OET Grade B — include test date and scores",
+      "Professional summary: speciality, years of clinical experience, key clinical achievements",
+      "Clinical experience section with equivalent Australian context described (e.g. patient ratios)",
+      "CPD log summary: hours completed in last 3 years against 20-hour requirement",
+      "Computer skills: familiarity with EMR systems (Epic, Cerner, iMDsoft) — note proficiency level",
+      "Cultural competency: experience with diverse patient populations, Indigenous health awareness",
+      "References: two clinical referees with explicit consent for contact — include title and email"
+    ]
+  },
+  "Gulf States Nursing CV": {
+    intro: "Gulf States / Middle East Nursing CV — Key Sections",
+    items: [
+      "Dataflow professional verification: reference number, status and expected completion date",
+      "DHA (Dubai), HAAD/DOH (Abu Dhabi) or MOH (Saudi/Qatar/Oman) exam status and score",
+      "Prometric exam score if completed — include licence number or pending application number",
+      "Clinical experience: high nurse-to-patient ratio ward work, shift flexibility and night rotation",
+      "Gulf-relevant training: BLS (AHA version), IV cannulation, phlebotomy, ECG interpretation",
+      "Arabic language: state level — functional, basic phrases or none (employers prefer any effort)",
+      "Relocation readiness: confirm willingness to relocate and accommodation preference (provided/own)",
+      "References: facility Medical Director letter + Nurse Manager/Matron preferred"
+    ]
+  },
+  "USA / NCLEX Route CV": {
+    intro: "USA / NCLEX Route Nursing CV — Key Sections",
+    items: [
+      "CGFNS credential evaluation status or VisaScreen certificate number if obtained",
+      "NCLEX-RN pass date and state of initial licensure or endorsement pending status",
+      "IELTS / TOEFL scores if required by state nursing board — include test date",
+      "Employment history: describe shift hours, patient ratios, acuity level and specialty unit",
+      "Clinical certifications: ACLS, PALS, NRP, TNCC, specialty certifications held",
+      "State board application stage: applied, fingerprinted, background check or license issued",
+      "Immigration pathway: H1B visa cap-subject, EB3 immigrant petition or employer sponsorship",
+      "References: US-style — professional title, direct supervisor, phone and email"
+    ]
+  },
+  "East Africa Regional CV": {
+    intro: "East Africa Regional Nursing CV — Key Sections",
+    items: [
+      "Home nursing council registration: UNMC (Uganda), NCK (Kenya), TNMC (Tanzania) or equivalent",
+      "EAC mutual recognition status or East Africa Nursing Council equivalence enquiry reference",
+      "Cross-border work experience or student placements in the East Africa region if any",
+      "Languages: English proficiency level, Kiswahili (spoken/written), regional local languages",
+      "Regional clinical experience: malaria case management, ANC, HIV/TB integrated services",
+      "Regional professional memberships or EAC nursing forum participation",
+      "Salary expectations: state preferred currency (USD or local) and minimum acceptable range",
+      "References: from a recognised facility within the East Africa region preferred"
+    ]
+  },
+
+  /* ── Cover Letter Sub-Templates ───────────────────────────────── */
+  "Hospital Job Application Letter": {
+    intro: "Hospital Job Application Cover Letter — Structure",
+    items: [
+      "Opening: state exact post title, reference number and where you saw the advertisement",
+      "Paragraph 1: your current role, years of experience and specific clinical fit for this post",
+      "Paragraph 2: specific reason you want this facility — show you researched their services",
+      "Paragraph 3: one clinical achievement using brief STAR format (Situation, Action, Result)",
+      "Closing: state your availability date, UNMC registration status and willingness to interview",
+      "Length: one A4 page maximum — 4 paragraphs, professional font size 11 or 12",
+      "Tone: professional, warm and confident — avoid begging or overly formal language",
+      "Sign off: Full name + UNMC number + email + phone number below your signature"
+    ]
+  },
+  "NGO / INGO Application Letter": {
+    intro: "NGO / INGO Application Cover Letter — Structure",
+    items: [
+      "Opening: state the post title and how it aligns directly with your public health values",
+      "Mission alignment: show you know the organisation's mission, programmes and target population",
+      "Program impact: describe a measurable health outcome you contributed to with numbers if possible",
+      "Technical skills: mention data tools (DHIS2, KoboToolbox), reporting formats (donor, government)",
+      "Flexibility statement: willingness to work in remote, field or challenging environments",
+      "Soft skills: cultural sensitivity, teamwork, community mobilisation and adaptive communication",
+      "Closing: confirm availability, passport/travel readiness if field deployment is required",
+      "Word count: 300-400 words maximum — NGO hiring managers read dozens of letters quickly"
+    ]
+  },
+  "International Application Letter": {
+    intro: "International Nursing Application Cover Letter — Structure",
+    items: [
+      "Opening: state the destination country, post title and your current UNMC registration status",
+      "Paragraph 1: key clinical speciality strengths, years of experience and top clinical skill",
+      "Paragraph 2: English language proficiency — include IELTS/OET scores and test date",
+      "Paragraph 3: adaptability evidence, motivation for international nursing and any relevant exposure",
+      "Registration route: NMC CBT/OSCE / AHPRA bridging / NCLEX — state your current stage clearly",
+      "Closing: intended availability date, visa status and best contact method for interview",
+      "Research detail: mention one specific fact about destination healthcare system to show preparation",
+      "Avoid clichés: replace 'hardworking' and 'passionate' with one specific clinical example each"
+    ]
+  },
+  "Promotion / Internal Transfer Letter": {
+    intro: "Promotion / Internal Transfer Cover Letter — Structure",
+    items: [
+      "Opening: clearly state the post you are applying for and your current substantive post",
+      "Track record: list 3 specific achievements in your current role with measurable evidence",
+      "Leadership readiness: supervisory experience, mentoring, in-service sessions delivered",
+      "Role knowledge: show you understand the duties and responsibilities of the target post",
+      "Institutional value: 2-3 ways your internal knowledge benefits the organisation directly",
+      "First 90 days: state what you intend to deliver in the first 3 months if appointed",
+      "Tone: confident and evidence-based — not apologetic, not overselling without substance",
+      "End with a concrete request: ask for a formal interview by a specific date"
+    ]
+  },
+  "Speculative / Unsolicited Letter": {
+    intro: "Speculative / Unsolicited Application Cover Letter — Structure",
+    items: [
+      "Opening: state why you chose this specific facility — show research, not generic praise",
+      "Value proposition: describe your strongest clinical niche in 2 clear, direct sentences",
+      "Vacancy match: reference any known staffing expansion, service area or clinical need",
+      "Target post: state the exact type of post you are seeking and your available start date",
+      "Evidence: one quantified clinical achievement or patient outcome that demonstrates impact",
+      "Call to action: request a 15-minute meeting or ask to be kept on file for suitable vacancies",
+      "Include: CV and a reference list attached — do not make them ask for basic documents",
+      "Follow-up note: state you will follow up by phone or email within 10-14 working days"
+    ]
+  },
+
+  /* ── Interview Preparation Sub-Templates ─────────────────────── */
+  "General Hospital Interview": {
+    intro: "General Hospital Nursing Interview — Key Questions and Tips",
+    items: [
+      "Tell me about yourself: clinical background, current grade, ward focus and one key strength",
+      "Why this facility: mention 2 specific facts you researched about their services or values",
+      "Difficult patient scenario: use STAR format — Situation, Task, Action, Result",
+      "Multiple urgent tasks: describe ABCDE triage thinking, delegation and escalation steps",
+      "Medication error response: report immediately, SBAR to senior, incident form, patient monitoring",
+      "Infection prevention: demonstrate standard precautions, hand hygiene 5-moments, PPE protocol",
+      "Patient dignity: FREDA principles — fairness, respect, equality, dignity, autonomy",
+      "Career in 3 years: show a CPD plan, speciality interest and commitment to this organisation"
+    ]
+  },
+  "ICU / Theatre Specialist Interview": {
+    intro: "ICU / Theatre Specialist Nursing Interview — Key Questions",
+    items: [
+      "Describe your critical care experience: ventilator settings, haemodynamic lines, sedation titration",
+      "Deteriorating patient management: full ABCDE approach, early warning score, escalation call",
+      "BLS/ACLS certification: state provider, date of last recertification and any skills updates",
+      "Emergency recognition: describe a time you identified a critical deterioration before the doctor",
+      "Resuscitation team communication: role clarity, closed-loop communication, SBAR handover",
+      "Specialist equipment: arterial line care, CVP monitoring, chest drain, tracheostomy suctioning",
+      "WHO surgical safety checklist: 3 time-out phases, sign-in, sign-out, your role in each",
+      "Patient and family in ICU: explain how you communicate prognosis, update family and provide support"
+    ]
+  },
+  "International Panel Interview (UK / AU)": {
+    intro: "International Panel Interview (UK / Australia) — Key Questions",
+    items: [
+      "What do you know about NHS Constitution values / NMBA standards and how they match your practice",
+      "Safeguarding scenario: describe a concern you identified, how you escalated and documented it",
+      "Multi-cultural team: give an example of working effectively with colleagues from different cultures",
+      "Values-based question: describe a specific moment where you showed compassion under pressure",
+      "Medication safety: explain the 6 Rights and describe a time you prevented a near-miss error",
+      "Wellbeing question: describe how you maintain your resilience and emotional health at work",
+      "Clinical governance: describe an audit, complaint process or quality improvement you participated in",
+      "Questions for us: prepare at least 3 thoughtful questions about the role, team or development"
+    ]
+  },
+  "Management / Leadership Role Interview": {
+    intro: "Nursing Management / Leadership Role Interview — Key Questions",
+    items: [
+      "Leadership style: describe with a real team example and what outcome your approach achieved",
+      "Underperforming team member: describe a constructive feedback conversation and its result",
+      "Staff rostering: describe your approach to duty allocation, leave management and shift balance",
+      "Staff conflict: describe how you facilitated resolution between two team members",
+      "Quality improvement: describe a project you led or significantly contributed to with outcome",
+      "Resource management: describe experience with budget, equipment ordering or stock control",
+      "Infection prevention leadership: how you ensure your team maintains compliance standards",
+      "First 90-day KPIs: what indicators would you set for your unit immediately on appointment"
+    ]
+  },
+  "NGO / Public Health Interview": {
+    intro: "NGO / Public Health Nursing Interview — Key Questions",
+    items: [
+      "Community program experience: describe a program you delivered with population reached and outcomes",
+      "Community resistance: describe how you engaged a community that was resistant to health messages",
+      "Monitoring tools: name tools you have used (DHIS2, KoboToolbox, RedCap) and your proficiency",
+      "Program adaptation: describe a change you made to a program based on data or community feedback",
+      "Supply chain in resource-limited settings: how you managed medicine/vaccine shortages",
+      "Outbreak or emergency response: describe your role, decision-making and lessons learned",
+      "Donor reporting: formats you have used (USAID PEPFAR, Global Fund, MOH), frequency and content",
+      "Sustainability question: how would you design a program that continues after funding ends"
+    ]
+  },
+
+  /* ── Nursing Portfolio Sub-Templates ──────────────────────────── */
+  "Student Portfolio (Year 1-3)": {
+    intro: "Student Nursing Portfolio (Year 1-3) — What to Include",
+    items: [
+      "Section 1: Title page — full name, programme, student number, school and academic year",
+      "Section 2: Programme overview and personal learning objectives written for each clinical year",
+      "Section 3: Clinical placement records — facility, unit, dates, hours and supervisor signature",
+      "Section 4: Competency sign-off sheets for every practical skill completed during placements",
+      "Section 5: Reflective journal — minimum 2 Gibbs-model entries per placement rotation",
+      "Section 6: Academic certificates and progress results per year of study",
+      "Section 7: Extra activities — nursing association membership, outreach, peer-assisted learning",
+      "Section 8: Self-assessment — written strengths and development areas at end of each year"
+    ]
+  },
+  "UNMC Registration Portfolio": {
+    intro: "UNMC Registration Portfolio — Documents Required",
+    items: [
+      "Authenticated academic transcript from your nursing/midwifery training institution",
+      "Certificate of training: original certificate of nursing/midwifery (plus notarised photocopy)",
+      "Valid national ID or passport bio-data page (photocopy accepted with original for verification)",
+      "Recent passport-size photograph — professional background, current (not older than 3 months)",
+      "Proof of supervised clinical practice: hours log signed by tutor or clinical supervisor",
+      "Two passport-size photos for the UNMC registration card (as specified on current UNMC form)",
+      "Duly completed UNMC application form — use a fresh form for any corrections, no amendments",
+      "Bank payment receipt: pay into UNMC-approved bank account and attach original receipt"
+    ]
+  },
+  "International Application Portfolio": {
+    intro: "International Nursing Application Portfolio — Key Documents",
+    items: [
+      "Authenticated degree/diploma and academic transcript — notarised if destination country requires",
+      "Clinical experience certificate: detailed letter from last 3-5 years employer with dates, role, hours",
+      "Letter of Good Standing from UNMC — current (not older than 3-6 months — check destination)",
+      "English language certificate: IELTS academic or OET — verify band requirement for destination",
+      "Valid passport: must be valid at least 12-18 months beyond your intended departure date",
+      "Proof of identity: birth certificate and national ID (some routes require both)",
+      "Health clearance: medical fitness certificate if required by destination country or employer",
+      "Skills assessment reference: Dataflow, CGFNS, AHPRA or NMC reference number as applicable"
+    ]
+  },
+  "CPD & Revalidation Portfolio": {
+    intro: "CPD and Revalidation Portfolio — What to Include",
+    items: [
+      "Annual CPD activity log: date, provider, topic, learning format, hours and certificate for each entry",
+      "5 reflective accounts: 200-500 words each on how a CPD activity changed or improved your practice",
+      "Patient/carer/colleague feedback: at least one example of feedback received and your response",
+      "Good health and good character declaration — signed and dated by you annually",
+      "Practice supervisor confirmation: for NMC revalidation a confirming registrant review is required",
+      "Annual learning needs assessment: written review against current role competency requirements",
+      "Updated mandatory training: BLS, safeguarding level, infection prevention, manual handling dates",
+      "Summary of professional values discussions: notes from appraisals or clinical supervision sessions"
+    ]
+  },
+  "Senior / Leadership Portfolio": {
+    intro: "Senior / Leadership Nursing Portfolio — What to Include",
+    items: [
+      "Current evidence-based CV — comprehensive, formatted for leadership-level review",
+      "Leadership experience evidence: acting charge records, unit management, team leadership reports",
+      "Quality improvement project: full report or summary of audit, change cycle and measurable outcome",
+      "Staff mentoring log: evidence of students or junior staff supervised, methods and outcomes noted",
+      "Management training certificates: leadership modules, HR basics, health systems management",
+      "Performance appraisals: last 2-3 years from line manager — highlight commendations",
+      "Publications or presentations: conference papers, in-service training sessions, departmental journal",
+      "Leadership statement: 1-2 pages on your leadership philosophy, style and professional vision"
+    ]
+  },
+
+  /* ── Salary Guide Sub-Templates ───────────────────────────────── */
+  "Government Hospital Salary Scale": {
+    intro: "Uganda Government / Public Sector Nursing Salary Scale 2025",
+    items: [
+      "U7 — Intern / Enrolled Nurse: UGX 435,000 base + internship/government allowance",
+      "U6 — Staff Nurse / Enrolled Midwife: UGX 840,000-1,200,000 per month",
+      "U5 — Nursing Officer / Registered Nurse: UGX 1,800,000-2,500,000 per month",
+      "U4 — Senior Nursing Officer: UGX 2,800,000-3,500,000 per month",
+      "U3 — Principal Nursing Officer: UGX 4,000,000-5,500,000 per month",
+      "U2 — Senior Principal Nursing Officer: UGX 5,500,000-7,000,000 per month",
+      "U1E — Chief Nursing Officer / Director: UGX 8,000,000-12,000,000+ per month",
+      "Additional allowances: UHF, transport, housing — amounts vary by district and facility level"
+    ]
+  },
+  "Private Hospital Salary Scale": {
+    intro: "Uganda Private Hospital Nursing Salary Scale 2025",
+    items: [
+      "Certificate Nurse (private clinic): UGX 800,000-1,300,000 per month",
+      "Diploma Nurse (private hospital): UGX 1,500,000-2,500,000 per month",
+      "Degree / BNSc Nurse: UGX 2,500,000-3,800,000 per month",
+      "Senior / Charge Nurse: UGX 3,500,000-5,000,000 per month",
+      "ICU / Theatre Specialist: UGX 4,500,000-7,000,000 per month",
+      "Nurse Educator (hospital-based): UGX 3,000,000-4,500,000 per month",
+      "Night shift / weekend allowance: UGX 100,000-300,000 additional where applicable",
+      "Negotiation tip: private sector is more flexible — compare 3 facility offers before accepting"
+    ]
+  },
+  "NGO / International Agency Salary Scale": {
+    intro: "Uganda NGO / International Agency Nursing Salary Scale 2025",
+    items: [
+      "Local NGO nurse: UGX 1,200,000-2,500,000 per month (varies by program budget)",
+      "International NGO (MSF, IRC, World Vision, CARE): USD 800-2,500 per month",
+      "UN Agency (WHO, UNICEF, UNFPA): USD 1,500-5,000+ — grade P1/P2/NOA dependent",
+      "USAID / PEPFAR implementing partner: UGX 3,000,000-5,000,000 or USD equivalent",
+      "Field duty station allowance: USD 100-500 additional for remote deployment",
+      "Benefits package: health insurance, group life cover, R&R allowance for field staff",
+      "Consultancy (senior nurse): USD 80-200 per day for short-term technical assistance roles",
+      "Key note: NGO pay bands are rigid — negotiate post title and grade level, not just salary"
+    ]
+  },
+  "ICU / Theatre / Specialist Premium": {
+    intro: "ICU / Theatre and Specialist Nursing Salary Premiums 2025",
+    items: [
+      "ICU nurse premium (public sector): +15-20% above equivalent general staff nurse grade",
+      "ICU nurse premium (private facility): +30-50% above ward nurse rate at same facility",
+      "Theatre scrub nurse specialist: UGX 4,500,000-7,500,000 per month (private hospital)",
+      "Anaesthetic support nurse / CRNA-equivalent: UGX 5,000,000-8,000,000 per month",
+      "Emergency / A&E nurse: UGX 3,500,000-5,500,000 per month",
+      "On-call allowance: UGX 50,000-150,000 per call session (varies by facility policy)",
+      "ACLS/ATLS-certified uplift: negotiable, typically +UGX 200,000-500,000 per month",
+      "Career note: specialist roles have the fastest vacancy fill — certify and apply early"
+    ]
+  },
+  "International Destination Salary Comparison": {
+    intro: "International Nursing Salary Comparison — Uganda vs Destinations 2025",
+    items: [
+      "Uganda (experienced nurse): UGX 3M-5M / month = approx USD 800-1,300",
+      "Kenya (Nairobi private hospital): KES 80,000-150,000 / month = approx USD 600-1,150",
+      "Tanzania (Dar es Salaam): TZS 1.5M-3M / month = approx USD 580-1,150",
+      "UK (NHS Band 5 starting): GBP 29,970-36,483 / year = approx USD 38,000-46,000",
+      "Australia (Grade 2 RN): AUD 70,000-82,000 / year = approx USD 45,000-53,000",
+      "UAE / Dubai (DHA registered): USD 2,500-4,500 / month plus housing allowance",
+      "Saudi Arabia (MOH): USD 2,000-4,000 / month plus accommodation provided",
+      "Key reminder: recognition fees, migration costs and cost of living reduce net gain significantly"
+    ]
   }
+};
+
+const RESOURCE_TEMPLATES = {
+  "Uganda Nursing CV Template": [
+    { label: "Hospital Staff Nurse CV",      desc: "Public or private hospital ward format" },
+    { label: "NGO / Non-Profit Nursing CV",  desc: "WHO, MSF, IRC and local NGO applications" },
+    { label: "New Graduate Nursing CV",      desc: "First post after certificate or diploma" },
+    { label: "Midwifery Specialist CV",      desc: "Maternal and newborn care focus" },
+    { label: "Community Health Nursing CV",  desc: "District health and outreach posts" }
+  ],
+  "International Nursing CV Template": [
+    { label: "UK NHS Nursing CV",            desc: "NMC CBT/OSCE route, NHS values" },
+    { label: "Australia AHPRA Nursing CV",   desc: "AHPRA bridging, IELTS, CPD log" },
+    { label: "Gulf States Nursing CV",       desc: "Dataflow, DHA/MOH exams, Prometric" },
+    { label: "USA / NCLEX Route CV",         desc: "CGFNS, NCLEX-RN, state licensure" },
+    { label: "East Africa Regional CV",      desc: "EAC mutual recognition, Kiswahili" }
+  ],
+  "Cover Letter Guide": [
+    { label: "Hospital Job Application Letter",   desc: "Ward-based clinical role format" },
+    { label: "NGO / INGO Application Letter",     desc: "Mission-driven, program outcomes" },
+    { label: "International Application Letter",  desc: "Registration route, IELTS scores" },
+    { label: "Promotion / Internal Transfer Letter", desc: "Track record, leadership readiness" },
+    { label: "Speculative / Unsolicited Letter",  desc: "Cold-contact, value proposition" }
+  ],
+  "Interview Preparation": [
+    { label: "General Hospital Interview",              desc: "Values, clinical scenario, teamwork" },
+    { label: "ICU / Theatre Specialist Interview",      desc: "Critical care, equipment, ACLS" },
+    { label: "International Panel Interview (UK / AU)", desc: "NMC/AHPRA, values-based questions" },
+    { label: "Management / Leadership Role Interview",  desc: "Rostering, KPIs, conflict handling" },
+    { label: "NGO / Public Health Interview",           desc: "Programs, DHIS2, donor reporting" }
+  ],
+  "Nursing Portfolio Guide": [
+    { label: "Student Portfolio (Year 1-3)",     desc: "Placements, competencies, reflections" },
+    { label: "UNMC Registration Portfolio",      desc: "Licence documents and requirements" },
+    { label: "International Application Portfolio", desc: "Recognition docs, overseas route" },
+    { label: "CPD & Revalidation Portfolio",     desc: "Annual log, feedback, confirmation" },
+    { label: "Senior / Leadership Portfolio",    desc: "Management evidence, QI projects" }
+  ],
+  "Salary Guide Uganda 2025": [
+    { label: "Government Hospital Salary Scale",         desc: "Public sector U-scale grades" },
+    { label: "Private Hospital Salary Scale",            desc: "Market rates, negotiation tips" },
+    { label: "NGO / International Agency Salary Scale",  desc: "USD packages, UN grade bands" },
+    { label: "ICU / Theatre / Specialist Premium",       desc: "Specialist uplifts, on-call rates" },
+    { label: "International Destination Salary Comparison", desc: "UK, AU, Gulf, EAC comparison" }
+  ]
 };
 
 function downloadCareerChecklist(title) {

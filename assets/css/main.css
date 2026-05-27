@@ -9981,7 +9981,7 @@ display: flex;
   height: 34px;
 }
 
-/* Colourful resource card accent bands */
+/* Colourful resource card accent bands (legacy simple cards) */
 .career-resource-card.accent-0 > span { background: linear-gradient(135deg, #1e40af, #3b82f6); }
 .career-resource-card.accent-1 > span { background: linear-gradient(135deg, #065f46, #10b981); }
 .career-resource-card.accent-2 > span { background: linear-gradient(135deg, var(--color-amber-dark), var(--color-amber)); }
@@ -9999,6 +9999,206 @@ display: flex;
   background: var(--color-accent-light);
   font-size: 0.76rem;
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   RICH RESOURCE CARDS — redesigned cards with sub-template chips
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── Section header badge ── */
+.resource-count-badge {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  padding: 0.35rem 0.85rem;
+  background: var(--color-bg-soft);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  margin-top: 4px;
+}
+
+/* ── Rich card grid ── */
+.career-resource-grid--rich {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  align-items: start;
+}
+
+/* ── Rich card base ── */
+.career-resource-card--rich {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-left: 3px solid transparent;
+  border-radius: var(--radius-md);
+  background: var(--color-card);
+  overflow: hidden;
+  transition: box-shadow 0.18s, transform 0.18s;
+}
+.career-resource-card--rich:hover {
+  box-shadow: 0 6px 24px rgb(28 25 23 / 0.1);
+  transform: translateY(-2px);
+}
+
+/* ── Accent colours (accent-0 through accent-5) ── */
+.career-resource-card--rich.accent-0 { border-left-color: #3b82f6; }
+.career-resource-card--rich.accent-1 { border-left-color: #10b981; }
+.career-resource-card--rich.accent-2 { border-left-color: #f59e0b; }
+.career-resource-card--rich.accent-3 { border-left-color: #8b5cf6; }
+.career-resource-card--rich.accent-4 { border-left-color: #ec4899; }
+.career-resource-card--rich.accent-5 { border-left-color: #0ea5e9; }
+
+/* ── Card header strip ── */
+.crcard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px 14px;
+  border-bottom: 1px solid var(--color-border);
+}
+.crcard-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+}
+.crcard-icon .ui-icon { width: 22px; height: 22px; }
+
+.career-resource-card--rich.accent-0 .crcard-icon { background: #dbeafe; color: #1e40af; }
+.career-resource-card--rich.accent-1 .crcard-icon { background: #d1fae5; color: #065f46; }
+.career-resource-card--rich.accent-2 .crcard-icon { background: #fef9c3; color: #92400e; }
+.career-resource-card--rich.accent-3 .crcard-icon { background: #ede9fe; color: #5b21b6; }
+.career-resource-card--rich.accent-4 .crcard-icon { background: #fce7f3; color: #9d174d; }
+.career-resource-card--rich.accent-5 .crcard-icon { background: #e0f2fe; color: #0369a1; }
+
+.crcard-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+.crcard-badge--free  { background: #dcfce7; color: #15803d; }
+.crcard-badge--soon  { background: #fef9c3; color: #92400e; }
+
+/* ── Card body ── */
+.crcard-body {
+  padding: 14px 18px 12px;
+  flex: 1;
+}
+.crcard-body h3 {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0 0 6px;
+  line-height: 1.3;
+}
+.crcard-body p {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ── Sub-template chips ── */
+.crcard-templates {
+  padding: 10px 18px 12px;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.crcard-templates-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.crcard-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.crcard-chip {
+  padding: 0.28rem 0.65rem;
+  background: var(--color-bg-soft);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s, color 0.12s;
+  white-space: nowrap;
+  text-align: left;
+}
+.crcard-chip:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+}
+
+/* ── Card footer CTA ── */
+.crcard-footer {
+  padding: 12px 18px 16px;
+  border-top: 1px solid var(--color-border);
+}
+.crcard-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 0.6rem 1rem;
+  background: var(--color-text);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.15s;
+}
+.crcard-cta .ui-icon { width: 15px; height: 15px; }
+.crcard-cta:hover { background: var(--color-primary-dark); transform: translateY(-1px); }
+.crcard-cta:active { transform: translateY(0); }
+
+/* ── Responsive ── */
+@media (max-width: 860px) {
+  .career-resource-grid--rich {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+@media (max-width: 600px) {
+  .career-resource-grid--rich { grid-template-columns: 1fr; }
+  .crcard-chips { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; }
+  .crcard-chip  { flex-shrink: 0; }
+}
+
+/* ── Dark mode ── */
+[data-theme="dark"] .career-resource-card--rich { background: var(--color-card); border-color: var(--color-border); }
+[data-theme="dark"] .crcard-header { border-color: var(--color-border); }
+[data-theme="dark"] .crcard-templates { border-color: var(--color-border); }
+[data-theme="dark"] .crcard-footer { border-color: var(--color-border); }
+[data-theme="dark"] .crcard-chip { background: var(--color-bg); border-color: var(--color-border); color: var(--color-text); }
+[data-theme="dark"] .crcard-chip:hover { background: var(--color-text); border-color: var(--color-text); color: var(--color-bg); }
+[data-theme="dark"] .resource-count-badge { background: var(--color-card); border-color: var(--color-border); }
+[data-theme="dark"] .career-resource-card--rich.accent-0 .crcard-icon { background: rgba(59,130,246,0.15); color: #93c5fd; }
+[data-theme="dark"] .career-resource-card--rich.accent-1 .crcard-icon { background: rgba(16,185,129,0.15); color: #6ee7b7; }
+[data-theme="dark"] .career-resource-card--rich.accent-2 .crcard-icon { background: rgba(245,158,11,0.15); color: #fcd34d; }
+[data-theme="dark"] .career-resource-card--rich.accent-3 .crcard-icon { background: rgba(139,92,246,0.15); color: #c4b5fd; }
+[data-theme="dark"] .career-resource-card--rich.accent-4 .crcard-icon { background: rgba(236,72,153,0.15); color: #f9a8d4; }
+[data-theme="dark"] .career-resource-card--rich.accent-5 .crcard-icon { background: rgba(14,165,233,0.15); color: #7dd3fc; }
 
 /* ── Career Job Detail Modal ──────────────────────────────── */
 .career-modal-overlay {
