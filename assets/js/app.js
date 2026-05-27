@@ -140,14 +140,30 @@ const iconPaths = {
 };
 
 /* ── Auth Utilities ─────────────────────────────────────────────────── */
-function simpleHash(str) {
-  let hash = 5381;
-  for (let i = 0; i < str.length; i++) {
-    hash = ((hash << 5) + hash) + str.charCodeAt(i);
-    hash = hash & hash;
-  }
-  return (hash >>> 0).toString(36);
+
+/**
+ * SHA-256 via the browser's built-in Web Crypto API.
+ * Returns a 64-char lowercase hex string.
+ * Requires a secure context (HTTPS or localhost) — always true on nursinguganda.com.
+ */
+async function sha256Hash(str) {
+  const encoded = new TextEncoder().encode(str);
+  const buf = await crypto.subtle.digest("SHA-256", encoded);
+  return Array.from(new Uint8Array(buf))
+    .map(b => b.toString(16).padStart(2, "0"))
+    .join("");
 }
+
+/**
+ * Generate a random 16-byte hex salt (32 hex chars).
+ * Each user gets a unique salt so identical passwords produce different hashes.
+ */
+function generateSalt() {
+  const bytes = new Uint8Array(16);
+  crypto.getRandomValues(bytes);
+  return Array.from(bytes).map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
 function getStoredUsers() {
   try { return JSON.parse(localStorage.getItem("nursinguganda.users") || "{}"); } catch { return {}; }
 }
@@ -163,7 +179,8 @@ function authAvatarColor(email) {
   for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) & 0xffff;
   return AUTH_COLORS[h % AUTH_COLORS.length];
 }
-function authRegister(name, email, password) {
+
+async function authRegister(name, email, password) {
   if (!name.trim() || !email.trim() || !password) return { ok: false, error: "All fields are required." };
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) return { ok: false, error: "Please enter a valid email address." };
   if (password.length < 6) return { ok: false, error: "Password must be at least 6 characters." };
@@ -172,7 +189,9 @@ function authRegister(name, email, password) {
   if (users[key]) return { ok: false, error: "An account with this email already exists. Sign in instead." };
   const initials = name.trim().split(/\s+/).map(w => w[0] || "").join("").toUpperCase().slice(0, 2) || "?";
   const color = authAvatarColor(key);
-  users[key] = { name: name.trim(), email: key, hash: simpleHash(password), initials, color };
+  const salt = generateSalt();
+  const hash = await sha256Hash(salt + password);        // salted SHA-256
+  users[key] = { name: name.trim(), email: key, salt, hash, initials, color };
   localStorage.setItem("nursinguganda.users", JSON.stringify(users));
   const user = { name: users[key].name, email: key, initials, color };
   localStorage.setItem("nursinguganda.session", JSON.stringify(user));
@@ -180,12 +199,20 @@ function authRegister(name, email, password) {
   state.loginError = "";
   return { ok: true, user };
 }
-function authLogin(email, password) {
+
+async function authLogin(email, password) {
   if (!email.trim() || !password) return { ok: false, error: "Please enter your email and password." };
   const users = getStoredUsers();
   const key = email.toLowerCase().trim();
   if (!users[key]) return { ok: false, error: "No account found with this email. Try creating one." };
-  if (users[key].hash !== simpleHash(password)) return { ok: false, error: "Incorrect password. Please try again." };
+  // Detect accounts created with the old weak hash (no salt field) and prompt re-registration
+  if (!users[key].salt) {
+    delete users[key];
+    localStorage.setItem("nursinguganda.users", JSON.stringify(users));
+    return { ok: false, error: "Your account was created with an older version. Please create a new account — your progress data is safe." };
+  }
+  const attemptHash = await sha256Hash(users[key].salt + password);
+  if (users[key].hash !== attemptHash) return { ok: false, error: "Incorrect password. Please try again." };
   const { name, initials, color } = users[key];
   const user = { name, email: key, initials, color };
   localStorage.setItem("nursinguganda.session", JSON.stringify(user));
@@ -10375,21 +10402,29 @@ function render() {
   // ── Auth form submit ─────────────────────────────────────────────
   const authForm = app.querySelector("[data-auth-form]");
   if (authForm) {
-    authForm.addEventListener("submit", (e) => {
+    authForm.addEventListener("submit", async (e) => {
       e.preventDefault();
       const formType = authForm.dataset.authForm;
-      const emailEl = authForm.querySelector("#auth-email");
+      const emailEl    = authForm.querySelector("#auth-email");
       const passwordEl = authForm.querySelector("#auth-password");
-      const nameEl = authForm.querySelector("#auth-name");
-      const email = emailEl ? emailEl.value : "";
+      const nameEl     = authForm.querySelector("#auth-name");
+      const email    = emailEl    ? emailEl.value    : "";
       const password = passwordEl ? passwordEl.value : "";
-      const name = nameEl ? nameEl.value : "";
+      const name     = nameEl     ? nameEl.value     : "";
+
+      // Show loading state on the submit button
+      const submitBtn = authForm.querySelector(".login-submit");
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.style.opacity = "0.7"; }
 
       let result;
-      if (formType === "signup") {
-        result = authRegister(name, email, password);
-      } else {
-        result = authLogin(email, password);
+      try {
+        result = formType === "signup"
+          ? await authRegister(name, email, password)
+          : await authLogin(email, password);
+      } catch (err) {
+        result = { ok: false, error: "Something went wrong. Please try again." };
+      } finally {
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.style.opacity = ""; }
       }
 
       if (!result.ok) {
@@ -10400,7 +10435,7 @@ function render() {
         return;
       }
 
-      // Success — redirect to home
+      // Success — redirect to notes
       setRoute("/notes");
       showToast(`Welcome${formType === "signup" ? "" : " back"}, ${escapeHtml(state.currentUser.name.split(" ")[0])}!`, "success");
     });
