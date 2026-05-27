@@ -75,7 +75,8 @@ const state = {
   adminAnnForm: { open: false, data: {} },
   adminTipForm: { open: false, data: {} },
   adminEventForm: { open: false, data: {} },
-  adminResourceForm: { open: false, data: {} }
+  adminResourceForm: { open: false, data: {} },
+  contactForm: { name: "", email: "", subject: "", message: "", type: "general", loading: false, sent: false, error: "" }
 };
 
 const app = document.querySelector("#app");
@@ -3280,6 +3281,7 @@ function renderFooter() {
             ${footerLink("/resources/student-support","Student Support",    "heartPulse")}
             ${footerLink("/progress",                 "My Progress",       "chartLine")}
             ${footerLink("/flashcards",               "Flashcards",        "bookOpen")}
+            ${footerLink("/contact",                  "Contact Us",        "mail")}
             ${footerLink("/privacy",                  "Privacy Policy",    "shield")}
             ${footerLink("/corrections",              "Corrections",       "pencil")}
           </nav>
@@ -3720,6 +3722,60 @@ function layout(content) {
       } catch (_) {}
       const banner = btn.closest(".ann-banner");
       if (banner) banner.remove();
+    });
+  });
+
+  // ── Contact form ─────────────────────────────────────────────────────
+  const contactFormEl = app.querySelector("#contact-form");
+  if (contactFormEl) {
+    // Keep form fields in sync with state so they survive re-renders
+    contactFormEl.addEventListener("input", e => {
+      const t = e.target;
+      if (t.name) state.contactForm[t.name] = t.value;
+    });
+
+    contactFormEl.addEventListener("submit", async e => {
+      e.preventDefault();
+      const fd = new FormData(contactFormEl);
+      state.contactForm = {
+        ...state.contactForm,
+        name: fd.get("name") || "",
+        email: fd.get("email") || "",
+        type: fd.get("type") || "general",
+        subject: fd.get("subject") || "",
+        message: fd.get("message") || "",
+        loading: true,
+        error: ""
+      };
+      render();
+
+      try {
+        const res = await fetch(`${SUPA_URL}/functions/v1/send-contact-email`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "apikey": SUPA_KEY },
+          body: JSON.stringify({
+            name:    state.contactForm.name,
+            email:   state.contactForm.email,
+            type:    state.contactForm.type,
+            subject: state.contactForm.subject,
+            message: state.contactForm.message
+          })
+        });
+        const data = await res.json();
+        if (!res.ok || data.error) throw new Error(data.error || "Failed to send. Try again.");
+        state.contactForm = { ...state.contactForm, loading: false, sent: true, error: "" };
+      } catch (err) {
+        state.contactForm = { ...state.contactForm, loading: false, error: err.message || "Something went wrong. Please try again." };
+      }
+      render();
+    });
+  }
+
+  // Contact form "Send Another" reset
+  app.querySelectorAll("[data-contact-reset]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      state.contactForm = { name: "", email: "", subject: "", message: "", type: "general", loading: false, sent: false, error: "" };
+      render();
     });
   });
 
@@ -4998,6 +5054,142 @@ function renderAdminPage() {
       render();
     });
   }
+}
+
+// ─── CONTACT PAGE ─────────────────────────────────────────────────────────────
+function renderContactPage() {
+  const cf = state.contactForm;
+  const contactTypes = [
+    { value: "general",     label: "General Enquiry" },
+    { value: "correction",  label: "Content Correction" },
+    { value: "takedown",    label: "Takedown / Copyright" },
+    { value: "partnership", label: "Partnership / Collaboration" },
+    { value: "bug",         label: "Bug Report" }
+  ];
+
+  if (cf.sent) {
+    return `
+      ${pageHeader({ eyebrow: "Get in Touch", title: "Contact Us", body: "We'd love to hear from you." })}
+      <section class="section">
+        <div class="container">
+          <div class="contact-success-card">
+            <div class="contact-success-icon">${icon("checkCircle")}</div>
+            <h2>Message Sent!</h2>
+            <p>Thanks for reaching out. We've received your message and sent a confirmation to <strong>${escapeHtml(cf.email)}</strong>.</p>
+            <p class="contact-success-sub">We reply within 1–2 business days. While you wait:</p>
+            <div class="contact-success-actions">
+              ${buttonLink("/notes", "Browse Notes", "primary", "bookOpen")}
+              ${buttonLink("/resources/quizzes", "Take a Quiz", "secondary", "helpCircle")}
+              <button class="button ghost" type="button" data-contact-reset>${icon("mail")}<span>Send Another</span></button>
+            </div>
+          </div>
+        </div>
+      </section>`;
+  }
+
+  return `
+    ${pageHeader({
+      eyebrow: "Get in Touch",
+      title: "Contact Us",
+      body: "Questions, corrections, partnership ideas or feedback — we read every message."
+    })}
+    <section class="section">
+      <div class="container contact-layout">
+
+        <!-- Info column -->
+        <aside class="contact-info-col">
+          <div class="contact-info-card">
+            <h3>How can we help?</h3>
+            <ul class="contact-info-list">
+              <li>${icon("pencil")}<div><strong>Content Corrections</strong><span>Spotted an error in our notes? Let us know and we'll fix it.</span></div></li>
+              <li>${icon("briefcaseMedical")}<div><strong>Partnerships</strong><span>Hospitals, schools or NGOs — we'd love to collaborate.</span></div></li>
+              <li>${icon("helpCircle")}<div><strong>Student Support</strong><span>Questions about using the platform or resources.</span></div></li>
+              <li>${icon("tool")}<div><strong>Technical Issues</strong><span>Something not working? Report a bug and we'll fix it fast.</span></div></li>
+            </ul>
+            <div class="contact-direct-email">
+              ${icon("mail")}
+              <div>
+                <strong>Direct Email</strong>
+                <a href="mailto:info@nursinguganda.com">info@nursinguganda.com</a>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Form column -->
+        <div class="contact-form-col">
+          <form class="contact-form" id="contact-form" autocomplete="on" novalidate>
+            ${cf.error ? `<div class="contact-error-banner" role="alert">${icon("alertTriangle")} ${escapeHtml(cf.error)}</div>` : ""}
+
+            <div class="contact-form-row-2">
+              <div class="contact-field">
+                <label for="cf-name">Your Name *</label>
+                <input id="cf-name" name="name" type="text" required autocomplete="name"
+                  value="${escapeHtml(cf.name)}" placeholder="e.g. Sarah Namukasa">
+              </div>
+              <div class="contact-field">
+                <label for="cf-email">Email Address *</label>
+                <input id="cf-email" name="email" type="email" required autocomplete="email"
+                  value="${escapeHtml(cf.email)}" placeholder="you@example.com">
+              </div>
+            </div>
+
+            <div class="contact-field">
+              <label for="cf-type">Enquiry Type</label>
+              <select id="cf-type" name="type">
+                ${contactTypes.map(t => `<option value="${t.value}"${cf.type === t.value ? " selected" : ""}>${t.label}</option>`).join("")}
+              </select>
+            </div>
+
+            <div class="contact-field">
+              <label for="cf-subject">Subject *</label>
+              <input id="cf-subject" name="subject" type="text" required
+                value="${escapeHtml(cf.subject)}" placeholder="Brief summary of your message">
+            </div>
+
+            <div class="contact-field">
+              <label for="cf-message">Message *</label>
+              <textarea id="cf-message" name="message" required rows="6"
+                placeholder="Describe your question, correction, idea or issue in as much detail as possible…">${escapeHtml(cf.message)}</textarea>
+            </div>
+
+            <div class="contact-form-footer">
+              <p class="contact-privacy-note">${icon("lock")} Your message goes directly to <strong>info@nursinguganda.com</strong>. We reply within 1–2 business days.</p>
+              <button type="submit" class="button primary contact-submit-btn" ${cf.loading ? "disabled" : ""}>
+                ${cf.loading ? `${icon("rotateCcw")}<span>Sending…</span>` : `${icon("send")}<span>Send Message</span>`}
+              </button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FAQ strip -->
+    <section class="section compact-section contact-faq-section">
+      <div class="container">
+        <div class="section-head slim-head"><div><span class="eyebrow">Quick Answers</span><h2>Common Questions</h2></div></div>
+        <div class="contact-faq-grid">
+          <div class="contact-faq-item">
+            <strong>${icon("bookOpen")} Are the notes free?</strong>
+            <p>Yes — all notes, quizzes, the dictionary and most resources are completely free with no sign-up required.</p>
+          </div>
+          <div class="contact-faq-item">
+            <strong>${icon("pencil")} I found an error in the notes</strong>
+            <p>Use the <em>Content Correction</em> enquiry type above and describe exactly what is wrong and what the correct information should be.</p>
+          </div>
+          <div class="contact-faq-item">
+            <strong>${icon("users")} Can my school partner with you?</strong>
+            <p>Yes! We welcome partnerships with nursing schools, hospitals and professional bodies. Select <em>Partnership</em> and tell us about your organisation.</p>
+          </div>
+          <div class="contact-faq-item">
+            <strong>${icon("briefcaseMedical")} How do I post a job?</strong>
+            <p>Contact us via the form above with <em>Partnership</em> selected, or email us directly at <a href="mailto:info@nursinguganda.com">info@nursinguganda.com</a>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  `;
 }
 
 function renderProgress() {
@@ -11221,6 +11413,10 @@ function render() {
     // Render immediately with whatever data is already loaded
     renderAdminPage();
     return;
+  }
+  else if (parts[0] === "contact") {
+    content = renderContactPage();
+    meta = { title: "Contact Us", description: "Get in touch with Nursing Uganda — questions, corrections, partnerships or feedback." };
   }
   else if (parts[0] === "login") {
     content = renderLoginPage();
