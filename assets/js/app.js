@@ -77,7 +77,17 @@ const state = {
   adminEventForm: { open: false, data: {} },
   adminResourceForm: { open: false, data: {} },
   contactForm: { name: "", email: "", subject: "", message: "", type: "general", loading: false, sent: false, error: "" },
-  loginPrompt: { open: false, feature: "", message: "" }
+  loginPrompt: { open: false, feature: "", message: "" },
+  mockExam: {
+    examId: "",
+    questions: [],
+    answers: {},
+    currentQ: 0,
+    examEndTime: 0,
+    timeLeft: 0,
+    submitted: false,
+    paletteOpen: false
+  }
 };
 
 const app = document.querySelector("#app");
@@ -157,6 +167,9 @@ const iconPaths = {
   eye: `<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>`,
   eyeOff: `<path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" y1="2" x2="22" y2="22"/>`,
   userCheck: `<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/>`,
+  grid: `<rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/>`,
+  alarmClock: `<circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M5 3 2 6"/><path d="m22 6-3-3"/><path d="M6.38 18.7 4 21"/><path d="M17.64 18.67 20 21"/>`,
+  timerReset: `<path d="M10 2h4"/><path d="M12 14v-4"/><path d="M4 13a8 8 0 0 1 8-7 8 8 0 1 1-5.3 14L4 17.6"/><path d="M9 17H4v5"/>`,
 };
 
 /* ── Auth Utilities ─────────────────────────────────────────────────── */
@@ -3333,6 +3346,7 @@ function renderFooter() {
             <h4>More</h4>
             ${footerLink("/resources/licensing",      "Licensing & CPD",   "badgeCheck")}
             ${footerLink("/resources/student-support","Student Support",    "heartPulse")}
+            ${footerLink("/mock-exams",               "Mock Exams",        "clipboardList")}
             ${footerLink("/progress",                 "My Progress",       "chartLine")}
             ${footerLink("/flashcards",               "Flashcards",        "bookOpen")}
             ${footerLink("/contact",                  "Contact Us",        "mail")}
@@ -3577,14 +3591,15 @@ function renderMobileDrawer(active) {
 function renderLoginPromptModal() {
   if (!state.loginPrompt.open) return "";
   const featureIconMap = {
-    quiz:       "send",
-    bookmark:   "bookmark",
-    pdf:        "printer",
-    "job-save": "heart",
-    "job-apply":"briefcase",
-    template:   "download",
-    cv:         "fileCv",
-    flashcard:  "star"
+    quiz:        "send",
+    bookmark:    "bookmark",
+    pdf:         "printer",
+    "job-save":  "heart",
+    "job-apply": "briefcase",
+    template:    "download",
+    cv:          "fileCv",
+    flashcard:   "star",
+    "mock-exam": "clipboardList"
   };
   const ic = featureIconMap[state.loginPrompt.feature] || "lock";
   return `
@@ -5300,6 +5315,300 @@ function renderContactPage() {
       </div>
     </section>
   `;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  MOCK EXAM RENDER
+// ═══════════════════════════════════════════════════════════════════════════
+
+function renderMockExamHub() {
+  const history = getMockExamHistory();
+  const gradeColor = g => g === "Distinction" ? "#059669" : g === "Credit" ? "#2563eb" : g === "Pass" ? "#d97706" : "#dc2626";
+  return `
+    <div class="me-hub-hero">
+      <div class="container">
+        <span class="mini-label">Uganda Nursing &amp; Midwifery</span>
+        <h1>Mock Examinations</h1>
+        <p>Timed full-paper practice exams that mirror BNE exam conditions. Submit and get an instant detailed breakdown.</p>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head slim-head">
+          <div><h2>Choose Your Exam</h2><p>Select a paper to begin. Timer starts immediately.</p></div>
+        </div>
+        <div class="me-hub-grid">
+          ${MOCK_EXAMS.map(exam => {
+            const best = history.filter(h => h.examId === exam.id).sort((a,b) => b.pct - a.pct)[0];
+            return `
+              <div class="me-hub-card" style="--exam-color:${exam.color}">
+                <div class="me-hub-card-head">
+                  <div class="me-hub-icon">${icon(exam.icon)}</div>
+                  <span class="me-hub-badge">${escapeHtml(exam.badge)}</span>
+                </div>
+                <h3>${escapeHtml(exam.title)}</h3>
+                <p>${escapeHtml(exam.desc)}</p>
+                <div class="me-hub-meta">
+                  <span>${icon("clock")} ${exam.duration >= 60 ? exam.duration / 60 + " hr" + (exam.duration > 60 ? "s" : "") : exam.duration + " min"}</span>
+                  <span>${icon("clipboardList")} ${exam.count} questions</span>
+                  ${best ? `<span style="color:${gradeColor(best.grade)}">${icon("trophy")} Best: ${best.pct}% ${best.grade}</span>` : ""}
+                </div>
+                <button type="button" class="button primary me-hub-start-btn" data-start-mock="${escapeHtml(exam.id)}">
+                  ${icon("send")} Start Exam
+                </button>
+              </div>
+            `;
+          }).join("")}
+        </div>
+
+        ${history.length ? `
+          <div class="section-head slim-head" style="margin-top:56px">
+            <div><h2>Past Attempts</h2><p>Your last ${Math.min(history.length, 10)} mock exam results.</p></div>
+          </div>
+          <div class="dash-quiz-history">
+            ${history.slice(0, 10).map(r => {
+              const relDate = iso => {
+                const diff = Math.floor((Date.now() - new Date(iso)) / 86400000);
+                return diff === 0 ? "Today" : diff === 1 ? "Yesterday" : diff < 7 ? diff + "d ago" : new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short" });
+              };
+              const taken = r.timeTaken ? formatMockTime(r.timeTaken) : "";
+              return `
+                <div class="dqh-row">
+                  <div class="dqh-score-badge" style="--grade-c:${gradeColor(r.grade)}">
+                    <strong>${r.pct}%</strong><span>${r.grade}</span>
+                  </div>
+                  <div class="dqh-info">
+                    <strong>${escapeHtml(r.title)}</strong>
+                    <small>${r.score}/${r.total} &middot; ${relDate(r.date)}${taken ? " &middot; " + taken : ""}</small>
+                  </div>
+                  <div class="dqh-bar-wrap">
+                    <div class="dqh-bar"><span style="width:${r.pct}%;background:${gradeColor(r.grade)}"></span></div>
+                  </div>
+                </div>
+              `;
+            }).join("")}
+          </div>
+        ` : ""}
+
+      </div>
+    </section>
+  `;
+}
+
+function renderMockExamStart(examId) {
+  const exam = findMockExam(examId);
+  if (!exam) return `<section class="section"><div class="container"><p>Exam not found.</p></div></section>`;
+  return `
+    <section class="section">
+      <div class="container" style="max-width:640px">
+        <a class="breadcrumb-link" href="/mock-exams">${icon("arrowLeft")} All Mock Exams</a>
+        <div class="me-start-card content-panel">
+          <div class="me-start-icon" style="--exam-color:${exam.color}">${icon(exam.icon)}</div>
+          <h1 class="me-start-title">${escapeHtml(exam.title)}</h1>
+          <p class="me-start-desc">${escapeHtml(exam.desc)}</p>
+          <div class="me-start-meta-grid">
+            <div class="me-start-meta-item">
+              <span>${icon("clock")}</span>
+              <div><strong>${exam.duration >= 60 ? exam.duration / 60 + " hour" + (exam.duration > 60 ? "s" : "") : exam.duration + " minutes"}</strong><small>Time limit</small></div>
+            </div>
+            <div class="me-start-meta-item">
+              <span>${icon("clipboardList")}</span>
+              <div><strong>${exam.count} Questions</strong><small>Multiple choice</small></div>
+            </div>
+            <div class="me-start-meta-item">
+              <span>${icon("alarmClock")}</span>
+              <div><strong>Auto-submit</strong><small>When time expires</small></div>
+            </div>
+            <div class="me-start-meta-item">
+              <span>${icon("send")}</span>
+              <div><strong>Instant results</strong><small>With full breakdown</small></div>
+            </div>
+          </div>
+          <div class="me-start-rules">
+            <p class="mini-label" style="margin-bottom:8px">Exam Rules</p>
+            <ul>
+              <li>The timer starts immediately when you click <em>Start Exam</em>.</li>
+              <li>You can navigate between questions in any order.</li>
+              <li>Unanswered questions are counted as incorrect.</li>
+              <li>The exam auto-submits when time runs out.</li>
+              <li>Refresh the page to resume if interrupted — progress is saved.</li>
+            </ul>
+          </div>
+          <button type="button" class="button primary me-start-btn" data-start-mock="${escapeHtml(exam.id)}" style="--btn-color:${exam.color}">
+            ${icon("send")} Start Exam Now
+          </button>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function renderMockExamInProgress() {
+  const me = state.mockExam;
+  const exam = findMockExam(me.examId);
+  if (!exam || !me.questions.length) return "";
+  const q = me.questions[me.currentQ];
+  const answered = me.answers[me.currentQ];
+  const totalQ = me.questions.length;
+  const answeredCount = Object.keys(me.answers).length;
+  const timerPct = Math.round((me.timeLeft / (exam.duration * 60)) * 100);
+
+  return `
+    <!-- Sticky exam header -->
+    <div class="me-header" id="me-header">
+      <div class="me-header-inner">
+        <div class="me-header-title">
+          <strong>${escapeHtml(exam.title)}</strong>
+          <span>Q ${me.currentQ + 1} / ${totalQ} &nbsp;&bull;&nbsp; ${answeredCount} answered</span>
+        </div>
+        <div class="me-timer${me.timeLeft <= 300 && me.timeLeft > 0 ? " me-warning-text" : ""}" id="me-timer">${formatMockTime(me.timeLeft)}</div>
+      </div>
+      <div class="me-progress-bar"><span id="me-timer-bar" style="width:${timerPct}%"></span></div>
+    </div>
+
+    <!-- Question area -->
+    <div class="me-body">
+      <div class="me-question-area">
+        <p class="me-q-number">Question ${me.currentQ + 1} of ${totalQ}</p>
+        <h2 class="me-q-prompt">${escapeHtml(q.prompt)}</h2>
+
+        ${q.type === "blank" ? `
+          <div class="me-blank-wrap">
+            <input
+              type="text"
+              class="me-blank-input"
+              placeholder="Type your answer…"
+              value="${answered !== undefined ? escapeHtml(String(answered)) : ""}"
+              data-me-blank="${me.currentQ}"
+              autocomplete="off" autocorrect="off" spellcheck="false"
+            >
+          </div>
+        ` : `
+          <div class="me-choices">
+            ${(q.choices || []).map((choice, ci) => `
+              <label class="me-choice${answered === ci ? " selected" : ""}">
+                <input type="radio" name="me-q-${me.currentQ}" value="${ci}" ${answered === ci ? "checked" : ""} data-me-answer="${me.currentQ}" data-me-value="${ci}">
+                <span class="me-choice-letter">${String.fromCharCode(65 + ci)}</span>
+                <span class="me-choice-text">${escapeHtml(choice)}</span>
+              </label>
+            `).join("")}
+          </div>
+        `}
+      </div>
+
+      <!-- Navigation -->
+      <div class="me-nav">
+        <button type="button" class="button secondary me-nav-btn" data-me-prev ${me.currentQ === 0 ? "disabled" : ""}>${icon("arrowLeft")} Prev</button>
+        <button type="button" class="button secondary me-nav-btn" data-me-palette>${icon("grid")} Questions (${answeredCount}/${totalQ})</button>
+        <button type="button" class="button secondary me-nav-btn" data-me-next ${me.currentQ === totalQ - 1 ? "disabled" : ""}>Next ${icon("arrowRight")}</button>
+        <button type="button" class="button primary me-nav-btn me-submit-btn" data-me-submit>${icon("send")} Submit</button>
+      </div>
+    </div>
+
+    <!-- Question palette modal -->
+    ${me.paletteOpen ? `
+      <div class="me-palette-overlay" data-me-palette-close>
+        <div class="me-palette-modal">
+          <div class="me-palette-head">
+            <strong>Question Navigator</strong>
+            <button type="button" class="me-palette-close" data-me-palette-close>${icon("x")}</button>
+          </div>
+          <div class="me-palette-legend">
+            <span class="me-pal-dot me-pal-answered"></span>Answered
+            <span class="me-pal-dot me-pal-current"></span>Current
+            <span class="me-pal-dot me-pal-unanswered"></span>Unanswered
+          </div>
+          <div class="me-palette-grid">
+            ${me.questions.map((_, i) => {
+              const isCurrent = i === me.currentQ;
+              const isAns = me.answers[i] !== undefined;
+              return `<button type="button" class="me-pal-btn${isCurrent ? " current" : isAns ? " answered" : ""}" data-me-goto="${i}">${i + 1}</button>`;
+            }).join("")}
+          </div>
+          <div class="me-palette-footer">
+            <button type="button" class="button primary" data-me-palette-close>Close</button>
+          </div>
+        </div>
+      </div>
+    ` : ""}
+  `;
+}
+
+function renderMockExamResults() {
+  const me = state.mockExam;
+  const exam = findMockExam(me.examId);
+  if (!exam) return "";
+  const score = me.questions.filter((q, i) => quizAnswerCorrect(q, me.answers[i])).length;
+  const total = me.questions.length;
+  const pct = total ? Math.round((score / total) * 100) : 0;
+  const grade = pct >= 80 ? "Distinction" : pct >= 60 ? "Credit" : pct >= 50 ? "Pass" : "Below Pass";
+  const gradeColor = pct >= 80 ? "#059669" : pct >= 60 ? "#2563eb" : pct >= 50 ? "#d97706" : "#dc2626";
+  const timeTaken = exam.duration * 60 - me.timeLeft;
+  const msg = pct >= 80 ? "Outstanding! Excellent performance across all topics."
+    : pct >= 60 ? "Good work. Review the questions you missed and revise those areas."
+    : pct >= 50 ? "Satisfactory. Study the explanations carefully and try again."
+    : "Keep going. Read each explanation — you will improve with consistent practice.";
+
+  return `
+    <div class="me-results-wrap">
+      <div class="me-results-card">
+        <div class="me-results-header">
+          <a href="/mock-exams" class="me-back-link">${icon("arrowLeft")} All Mock Exams</a>
+          <h1>${escapeHtml(exam.title)}</h1>
+          <p class="me-results-subtitle">Exam Results</p>
+        </div>
+
+        <div class="me-score-block" style="--grade-c:${gradeColor}">
+          <div class="me-score-pct">${pct}%</div>
+          <div class="me-score-grade">${grade}</div>
+          <div class="me-score-detail">${score} correct out of ${total} questions</div>
+          ${timeTaken ? `<div class="me-score-time">${icon("clock")} Time taken: ${formatMockTime(timeTaken)}</div>` : ""}
+        </div>
+
+        <p class="me-results-msg">${escapeHtml(msg)}</p>
+
+        <div class="me-results-actions">
+          <button type="button" class="button primary" data-start-mock="${escapeHtml(me.examId)}">${icon("timerReset")} Retake Exam</button>
+          ${buttonLink("/mock-exams", "All Mock Exams", "secondary", "clipboardList")}
+          ${buttonLink("/progress", "My Dashboard", "secondary", "chartLine")}
+        </div>
+      </div>
+
+      <!-- Question breakdown -->
+      <div class="me-breakdown">
+        <div class="section-head slim-head" style="margin: 0 0 20px">
+          <div><h2>Question Breakdown</h2><p>Review every question with correct answers and explanations.</p></div>
+        </div>
+        <div class="me-breakdown-list">
+          ${me.questions.map((q, i) => {
+            const ans = me.answers[i];
+            const correct = quizAnswerCorrect(q, ans);
+            const selectedLabel = ans === undefined ? null : q.type === "blank" ? String(ans) : (q.choices?.[Number(ans)] ?? null);
+            const correctLabel = q.type === "blank" ? String(q.answer) : String(q.answer);
+            return `
+              <div class="me-bkd-row${correct ? " correct" : " wrong"}">
+                <div class="me-bkd-num">${correct ? icon("checkCircle") : icon("xCircle")}<span>Q${i + 1}</span></div>
+                <div class="me-bkd-body">
+                  <p class="me-bkd-prompt">${escapeHtml(q.prompt)}</p>
+                  ${!correct ? `<p class="me-bkd-your">Your answer: <em>${escapeHtml(selectedLabel ?? "Not answered")}</em></p>` : ""}
+                  <p class="me-bkd-correct">Correct: <strong>${escapeHtml(correctLabel)}</strong></p>
+                  ${q.explanation ? `<p class="me-bkd-exp">${escapeHtml(q.explanation)}</p>` : ""}
+                </div>
+              </div>
+            `;
+          }).join("")}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderMockExamPage(examId) {
+  const me = state.mockExam;
+  if (me.examId === examId && me.submitted) return renderMockExamResults();
+  if (me.examId === examId && me.questions.length && !me.submitted) return renderMockExamInProgress();
+  return renderMockExamStart(examId);
 }
 
 function renderActivityHeatmap() {
@@ -7296,6 +7605,199 @@ function buildUnitQuizQuestions(programme, unit) {
     return true;
   }).slice(0, 25);
 }
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  MOCK EXAM ENGINE
+// ═══════════════════════════════════════════════════════════════════════════
+
+const MOCK_EXAMS = [
+  {
+    id: "full-paper-a",
+    title: "Full Paper — Series A",
+    desc: "80 questions across all nursing subjects. Mirrors BNE exam standard.",
+    duration: 120, count: 80, icon: "clipboardList",
+    badge: "Full Paper", color: "#0f7f4f"
+  },
+  {
+    id: "full-paper-b",
+    title: "Full Paper — Series B",
+    desc: "A second 80-question mixed paper — different question set from Series A.",
+    duration: 120, count: 80, icon: "clipboardList",
+    badge: "Full Paper", color: "#0f7f4f"
+  },
+  {
+    id: "practice-50",
+    title: "Practice Test — 50 Questions",
+    desc: "50 mixed questions in 60 minutes. Great for a focused revision session.",
+    duration: 60, count: 50, icon: "checkCircle",
+    badge: "Practice", color: "#2563eb"
+  },
+  {
+    id: "speed-30",
+    title: "Speed Round — 30 Questions",
+    desc: "30 questions in 30 minutes. Builds speed and recall under pressure.",
+    duration: 30, count: 30, icon: "flame",
+    badge: "Speed Round", color: "#d97706"
+  },
+  {
+    id: "subject-anatomy",
+    title: "Anatomy & Physiology",
+    desc: "Focused on body systems, anatomy and physiology. 60 questions, 90 min.",
+    duration: 90, count: 60, icon: "activity",
+    badge: "Subject", color: "#7c3aed",
+    subjectPattern: "anatomy|physiology"
+  },
+  {
+    id: "subject-pharmacology",
+    title: "Pharmacology",
+    desc: "Drugs, dosages, mechanisms and nursing responsibilities. 50 questions, 75 min.",
+    duration: 75, count: 50, icon: "pill",
+    badge: "Subject", color: "#dc2626",
+    subjectPattern: "pharmacology|drug|medicine"
+  }
+];
+
+let _mockExamTimer = null;
+
+function findMockExam(id) { return MOCK_EXAMS.find(e => e.id === id) || null; }
+
+function formatMockTime(seconds) {
+  const h = Math.floor(seconds / 3600);
+  const m = Math.floor((seconds % 3600) / 60);
+  const s = seconds % 60;
+  if (h > 0) return `${h}:${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+  return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+}
+
+function getAllCurriculumQuestions() {
+  if (!state.data?.programmes) return [];
+  const all = [];
+  for (const programme of state.data.programmes) {
+    for (const unit of allUnits(programme)) {
+      for (const topic of flatTopics(unit)) {
+        const lesson = lessonForTopic(programme, unit, topic);
+        if (!lesson) continue;
+        const qs = buildLessonQuizQuestions(lesson, programme, unit, topic);
+        const subjectTag = `${programme.label || programme.id} ${unit.title || unit.id}`.toLowerCase();
+        for (const q of qs) all.push({ ...q, _subject: subjectTag });
+      }
+    }
+  }
+  return all;
+}
+
+function getMockExamQuestions(exam) {
+  let pool = getAllCurriculumQuestions();
+  if (exam.subjectPattern) {
+    const pat = new RegExp(exam.subjectPattern, "i");
+    const filtered = pool.filter(q => pat.test(q._subject));
+    if (filtered.length >= Math.ceil(exam.count * 0.4)) pool = filtered;
+  }
+  const shuffled = deterministicShuffle(pool, exam.id);
+  const seen = new Set();
+  return shuffled.filter(q => {
+    if (seen.has(q.prompt)) return false;
+    seen.add(q.prompt);
+    return true;
+  }).slice(0, exam.count);
+}
+
+function getMockExamHistory() {
+  try { return JSON.parse(localStorage.getItem("nursinguganda.mockExamHistory") || "[]"); }
+  catch { return []; }
+}
+
+function saveMockExamState() {
+  try {
+    const { examId, answers, currentQ, examEndTime } = state.mockExam;
+    if (!examId) { localStorage.removeItem("nursinguganda.mockExamInProgress"); return; }
+    localStorage.setItem("nursinguganda.mockExamInProgress", JSON.stringify({ examId, answers, currentQ, examEndTime }));
+  } catch {}
+}
+
+function loadMockExamState() {
+  try {
+    const saved = JSON.parse(localStorage.getItem("nursinguganda.mockExamInProgress") || "null");
+    if (!saved || !saved.examId || !saved.examEndTime) return;
+    if (saved.examEndTime <= Date.now()) return; // expired
+    const exam = findMockExam(saved.examId);
+    if (!exam) return;
+    const questions = getMockExamQuestions(exam);
+    const timeLeft = Math.max(0, Math.round((saved.examEndTime - Date.now()) / 1000));
+    state.mockExam = { examId: saved.examId, questions, answers: saved.answers || {}, currentQ: saved.currentQ || 0, examEndTime: saved.examEndTime, timeLeft, submitted: false, paletteOpen: false };
+  } catch {}
+}
+
+function startMockExam(examId) {
+  const exam = findMockExam(examId);
+  if (!exam) return;
+  const questions = getMockExamQuestions(exam);
+  const examEndTime = Date.now() + exam.duration * 60 * 1000;
+  state.mockExam = { examId, questions, answers: {}, currentQ: 0, examEndTime, timeLeft: exam.duration * 60, submitted: false, paletteOpen: false };
+  saveMockExamState();
+  startMockExamTimer();
+  setRoute(`/mock-exams/${examId}`);
+  render();
+}
+
+function mockExamSetAnswer(qIndex, value) {
+  state.mockExam.answers[qIndex] = value;
+  saveMockExamState();
+}
+
+function mockExamGoto(index) {
+  state.mockExam.currentQ = Math.max(0, Math.min(state.mockExam.questions.length - 1, index));
+  state.mockExam.paletteOpen = false;
+}
+
+function submitMockExam() {
+  stopMockExamTimer();
+  const me = state.mockExam;
+  const exam = findMockExam(me.examId);
+  if (!exam || me.submitted) return;
+  const score = me.questions.filter((q, i) => quizAnswerCorrect(q, me.answers[i])).length;
+  const total = me.questions.length;
+  const pct = total ? Math.round((score / total) * 100) : 0;
+  const grade = pct >= 80 ? "Distinction" : pct >= 60 ? "Credit" : pct >= 50 ? "Pass" : "Below Pass";
+  const timeTaken = exam.duration * 60 - me.timeLeft;
+  const result = { examId: me.examId, title: exam.title, score, total, pct, grade, timeTaken, date: new Date().toISOString() };
+  // Save to mock history
+  const history = getMockExamHistory();
+  history.unshift(result);
+  localStorage.setItem("nursinguganda.mockExamHistory", JSON.stringify(history.slice(0, 10)));
+  // Also push to dashboard quiz history
+  const qh = JSON.parse(localStorage.getItem("nursinguganda.quizHistory") || "[]");
+  qh.unshift({ key: `mock::${me.examId}`, title: exam.title, score, total, pct, grade, date: result.date });
+  localStorage.setItem("nursinguganda.quizHistory", JSON.stringify(qh.slice(0, 20)));
+  // Clear in-progress
+  localStorage.removeItem("nursinguganda.mockExamInProgress");
+  recordStudyDate();
+  state.mockExam.submitted = true;
+  render();
+}
+
+function startMockExamTimer() {
+  clearInterval(_mockExamTimer);
+  _mockExamTimer = setInterval(() => {
+    const me = state.mockExam;
+    if (!me.examId || me.submitted) { clearInterval(_mockExamTimer); return; }
+    me.timeLeft = Math.max(0, Math.round((me.examEndTime - Date.now()) / 1000));
+    // Update timer display directly — no full re-render
+    const timerEl = document.getElementById("me-timer");
+    if (timerEl) timerEl.textContent = formatMockTime(me.timeLeft);
+    const barEl = document.getElementById("me-timer-bar");
+    if (barEl) {
+      const exam = findMockExam(me.examId);
+      if (exam) barEl.style.width = Math.round((me.timeLeft / (exam.duration * 60)) * 100) + "%";
+    }
+    // Colour warning when < 5 min
+    const headerEl = document.getElementById("me-header");
+    if (headerEl) headerEl.classList.toggle("me-warning", me.timeLeft > 0 && me.timeLeft <= 300);
+    if (me.timeLeft === 0) { clearInterval(_mockExamTimer); submitMockExam(); }
+  }, 1000);
+}
+
+function stopMockExamTimer() { clearInterval(_mockExamTimer); _mockExamTimer = null; }
 
 /* ── Quiz sidebar (reusable — used by all standalone quiz pages) ── */
 function renderQuizSidebar(title, questions, attempt, isSubmitted) {
@@ -11649,6 +12151,10 @@ function notFound() {
 
 function render() {
   if (!state.data) return;
+  // Clear exam mode attribute unless we're on an active mock exam page
+  if (!state.mockExam.examId || state.mockExam.submitted) {
+    app.removeAttribute("data-exam-mode");
+  }
   const parts = currentRoute();
   let content = "";
   let meta = {
@@ -11681,6 +12187,20 @@ function render() {
   else if (parts[0] === "progress") {
     content = renderProgress();
     meta = { title: "Study Dashboard", description: "Your personalised study dashboard — lessons done, quiz history, streak, activity heatmap and programme progress." };
+  }
+  else if (parts[0] === "mock-exams" && parts[1]) {
+    const me = state.mockExam;
+    const isActive = me.examId === parts[1] && me.questions.length && !me.submitted;
+    content = renderMockExamPage(parts[1]);
+    const examMeta = findMockExam(parts[1]);
+    meta = { title: examMeta?.title || "Mock Exam", description: examMeta?.desc || "Timed nursing mock exam." };
+    if (isActive) app.setAttribute("data-exam-mode", "");
+    else app.removeAttribute("data-exam-mode");
+  }
+  else if (parts[0] === "mock-exams") {
+    content = renderMockExamHub();
+    meta = { title: "Mock Exams", description: "Timed full-paper mock examinations that mirror BNE standard. Get instant results and full question breakdowns." };
+    app.removeAttribute("data-exam-mode");
   }
   else if (parts[0] === "flashcards") {
     content = renderFlashcards();
@@ -12371,6 +12891,60 @@ function render() {
         render();
       }
     });
+  });
+
+  // ── Mock Exam event wiring ────────────────────────────────────────────────
+  app.querySelectorAll("[data-start-mock]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      requireLogin("mock-exam", "Sign in to take mock exams and save your results.", () => {
+        startMockExam(btn.dataset.startMock);
+      });
+    });
+  });
+
+  app.querySelector("[data-me-prev]")?.addEventListener("click", () => {
+    mockExamGoto(state.mockExam.currentQ - 1); render();
+  });
+  app.querySelector("[data-me-next]")?.addEventListener("click", () => {
+    mockExamGoto(state.mockExam.currentQ + 1); render();
+  });
+
+  app.querySelectorAll("[data-me-answer]").forEach(input => {
+    input.addEventListener("change", () => {
+      mockExamSetAnswer(parseInt(input.dataset.meAnswer, 10), parseInt(input.dataset.meValue, 10));
+      // Auto-advance to next question after a short delay
+      const next = state.mockExam.currentQ + 1;
+      if (next < state.mockExam.questions.length) {
+        setTimeout(() => { mockExamGoto(next); render(); }, 300);
+      }
+    });
+  });
+
+  app.querySelectorAll("[data-me-blank]").forEach(input => {
+    input.addEventListener("change", () => {
+      mockExamSetAnswer(parseInt(input.dataset.meBlank, 10), input.value.trim());
+    });
+  });
+
+  app.querySelector("[data-me-palette]")?.addEventListener("click", () => {
+    state.mockExam.paletteOpen = !state.mockExam.paletteOpen; render();
+  });
+  app.querySelectorAll("[data-me-palette-close]").forEach(el => {
+    el.addEventListener("click", (e) => {
+      if (e.target === el || el.tagName === "BUTTON") { state.mockExam.paletteOpen = false; render(); }
+    });
+  });
+  app.querySelectorAll("[data-me-goto]").forEach(btn => {
+    btn.addEventListener("click", () => { mockExamGoto(parseInt(btn.dataset.meGoto, 10)); render(); });
+  });
+
+  app.querySelector("[data-me-submit]")?.addEventListener("click", () => {
+    const { answers, questions } = state.mockExam;
+    const unanswered = questions.length - Object.keys(answers).length;
+    const msg = unanswered > 0
+      ? `You have ${unanswered} unanswered question${unanswered !== 1 ? "s" : ""}. Unanswered questions are marked incorrect.\n\nSubmit now?`
+      : "Submit the exam now?";
+    if (window.confirm(msg)) submitMockExam();
   });
 
   app.querySelectorAll("[data-career-drawer-close]").forEach((button) => {
@@ -13229,6 +13803,10 @@ async function init() {
       cvgRoot.id = "cvg-root";
       document.body.appendChild(cvgRoot);
     }
+    // Restore in-progress mock exam (if any) and restart timer
+    loadMockExamState();
+    if (state.mockExam.examId && !state.mockExam.submitted) startMockExamTimer();
+
     render();
     scrollPageToTop();
     setupOfflineBanner();
