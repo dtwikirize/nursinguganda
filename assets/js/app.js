@@ -196,6 +196,8 @@ const iconPaths = {
   grid: `<rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/>`,
   alarmClock: `<circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M5 3 2 6"/><path d="m22 6-3-3"/><path d="M6.38 18.7 4 21"/><path d="M17.64 18.67 20 21"/>`,
   timerReset: `<path d="M10 2h4"/><path d="M12 14v-4"/><path d="M4 13a8 8 0 0 1 8-7 8 8 0 1 1-5.3 14L4 17.6"/><path d="M9 17H4v5"/>`,
+  zap: `<path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>`,
+  gift: `<rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/>`,
 };
 
 /* ── Auth Utilities ─────────────────────────────────────────────────── */
@@ -14952,49 +14954,247 @@ function setupOfflineBanner() {
   update();
 }
 
-/* ── PWA Install Prompt ───────────────────────────────────────────── */
-let _deferredInstallPrompt = null;
+/* ── Popups ────────────────────────────────────────────────────────── */
 
-window.addEventListener("beforeinstallprompt", (e) => {
-  e.preventDefault();
-  _deferredInstallPrompt = e;
-  if (!localStorage.getItem("nursinguganda.pwaDismissed")) {
-    setTimeout(showPwaPrompt, 5000);
-  }
-});
+const STUDY_TIPS = [
+  { tip: "Use the SQ3R method: Survey, Question, Read, Recite, Review — it boosts retention by up to 60%.", tag: "Study Skills" },
+  { tip: "Review notes within 24 hours of a lecture. The Ebbinghaus curve shows you forget 70% within a day without review.", tag: "Memory" },
+  { tip: "Spaced repetition beats cramming every time. Use the Flashcards section daily for 10 minutes.", tag: "Flashcards" },
+  { tip: "When studying anatomy, draw the structure from memory before checking your notes.", tag: "Anatomy" },
+  { tip: "The ABCs of nursing assessment: Airway, Breathing, Circulation — always prioritise in that order.", tag: "Clinical" },
+  { tip: "Link pharmacology to pathophysiology. Understanding why a drug works helps you remember it far longer.", tag: "Pharmacology" },
+  { tip: "Practice SBAR communication: Situation, Background, Assessment, Recommendation for clinical handovers.", tag: "Communication" },
+  { tip: "Sleep consolidates memory. A 6–8 hour sleep the night before an exam is more valuable than an all-nighter.", tag: "Wellbeing" },
+  { tip: "Use mnemonics for lab values — e.g. ROME for acid-base: Respiratory Opposite, Metabolic Equal.", tag: "Labs" },
+  { tip: "Normal adult pulse: 60–100 bpm. Normal respirations: 12–20/min. Normal BP: 90–120/60–80 mmHg.", tag: "Vitals" },
+  { tip: "OLDCART helps you take a complete pain history: Onset, Location, Duration, Character, Aggravating, Relieving, Treatment.", tag: "Assessment" },
+  { tip: "For IV fluid calculations: Volume (mL) ÷ Time (hours) = mL/hour. Master this formula early.", tag: "Calculations" },
+  { tip: "The five rights of medication administration: Right patient, Drug, Dose, Route, Time — check every single time.", tag: "Safety" },
+  { tip: "Teach-back is the gold standard for patient education. Ask 'Can you show me how you'd do this at home?'", tag: "Education" },
+  { tip: "Read at least one nursing journal article each week. PubMed and CINAHL are great free-access resources.", tag: "Research" },
+];
 
-function showPwaPrompt() {
-  if (document.getElementById("nu-pwa-prompt")) return;
-  if (!_deferredInstallPrompt) return;
-  const el = document.createElement("div");
-  el.id = "nu-pwa-prompt";
-  el.setAttribute("role", "dialog");
-  el.setAttribute("aria-label", "Install Nursing Uganda app");
-  el.innerHTML = `
-    <span class="brand-mark" aria-hidden="true">NU</span>
-    <div class="nu-pwa-body">
-      <strong>Install Nursing Uganda</strong>
-      <p>Add to your home screen for quick offline access.</p>
-    </div>
-    <div class="nu-pwa-actions">
-      <button type="button" id="nu-pwa-install">Install</button>
-      <button type="button" id="nu-pwa-dismiss" aria-label="Dismiss install prompt">${icon("x")}</button>
-    </div>
-  `;
-  document.body.appendChild(el);
-  requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add("nu-pwa-show")));
-  el.querySelector("#nu-pwa-install").addEventListener("click", async () => {
-    if (_deferredInstallPrompt) {
-      await _deferredInstallPrompt.prompt();
-      _deferredInstallPrompt = null;
+const QUICK_QUIZZES = [
+  { q: "A normal adult respiratory rate is:", options: ["8–12/min", "12–20/min", "20–30/min", "30–40/min"], answer: 1 },
+  { q: "Which electrolyte imbalance causes 'Chvostek's sign'?", options: ["Hypokalemia", "Hypernatremia", "Hypocalcemia", "Hypomagnesemia"], answer: 2 },
+  { q: "The antidote for heparin overdose is:", options: ["Vitamin K", "Protamine sulfate", "Naloxone", "Flumazenil"], answer: 1 },
+  { q: "APGAR score is assessed at which time points after birth?", options: ["1 min only", "1 and 5 minutes", "5 and 10 minutes", "3 and 7 minutes"], answer: 1 },
+  { q: "Which fluid is isotonic and is the most common IV fluid used in Uganda?", options: ["5% Dextrose", "Normal Saline (0.9%)", "Ringer's Lactate", "0.45% Saline"], answer: 1 },
+  { q: "A patient with a SpO₂ of 88% should receive oxygen targeting:", options: ["88–90%", "94–98%", "100%", "No oxygen needed"], answer: 1 },
+  { q: "The first priority in the primary survey (ABCDE) is:", options: ["Breathing", "Circulation", "Airway", "Disability"], answer: 2 },
+  { q: "Normal fasting blood glucose range in adults is:", options: ["2–4 mmol/L", "4–7 mmol/L", "7–10 mmol/L", "10–14 mmol/L"], answer: 1 },
+  { q: "Which position is safest for an unconscious but breathing patient?", options: ["Supine", "Prone", "Recovery (lateral) position", "Trendelenburg"], answer: 2 },
+  { q: "Gentamicin is an example of which antibiotic class?", options: ["Penicillin", "Cephalosporin", "Aminoglycoside", "Macrolide"], answer: 2 },
+];
+
+function initPopups() {
+  const now = Date.now();
+
+  // ── 1. Welcome / Onboarding popup ─────────────────────────────────
+  (function welcomePopup() {
+    const KEY = "nursinguganda.welcomeSeen";
+    const INTERVAL = 30 * 24 * 60 * 60 * 1000; // 30 days
+    const last = parseInt(localStorage.getItem(KEY) || "0", 10);
+    if (now - last < INTERVAL) return;
+
+    setTimeout(() => {
+      if (document.getElementById("nu-popup-welcome")) return;
+      const el = document.createElement("div");
+      el.id = "nu-popup-welcome";
+      el.className = "nu-popup-overlay";
+      el.innerHTML = `
+        <div class="nu-popup-modal nu-popup-welcome" role="dialog" aria-modal="true" aria-labelledby="nu-welcome-title">
+          <button class="nu-popup-close" aria-label="Close">${icon("x")}</button>
+          <div class="nu-popup-welcome-icon">${icon("gift")}</div>
+          <h2 id="nu-welcome-title">Welcome to Nursing Uganda</h2>
+          <p class="nu-popup-sub">Your complete revision companion for nursing &amp; midwifery students.</p>
+          <ul class="nu-popup-feature-list">
+            <li>${icon("bookOpen")}<span><strong>Study Notes</strong> — structured notes for every unit</span></li>
+            <li>${icon("sparkles")}<strong>Flashcards</strong> — spaced-repetition revision</span></li>
+            <li>${icon("search")}<strong>Dictionary</strong> — 500+ medical terms</span></li>
+            <li>${icon("chartBar")}<strong>Progress</strong> — track your learning</span></li>
+          </ul>
+          <div class="nu-popup-actions">
+            <a class="button primary nu-popup-cta" href="/notes">Explore Study Notes</a>
+            <button class="nu-popup-dismiss" type="button">Maybe Later</button>
+          </div>
+        </div>`;
+      document.body.appendChild(el);
+      requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add("nu-popup-visible")));
+
+      function close() {
+        el.classList.remove("nu-popup-visible");
+        el.addEventListener("transitionend", () => el.remove(), { once: true });
+        localStorage.setItem(KEY, String(Date.now()));
+      }
+      el.querySelector(".nu-popup-close").addEventListener("click", close);
+      el.querySelector(".nu-popup-dismiss").addEventListener("click", close);
+      el.querySelector(".nu-popup-cta").addEventListener("click", close);
+      el.addEventListener("click", (e) => { if (e.target === el) close(); });
+    }, 8000);
+  })();
+
+  // ── 2. Sign-In CTA bar (scroll-triggered) ─────────────────────────
+  (function signInBar() {
+    if (state.user) return; // already signed in
+    const KEY = "nursinguganda.signInBarShown";
+    if (sessionStorage.getItem(KEY)) return;
+    // Count page views this session
+    const views = parseInt(sessionStorage.getItem("nursinguganda.pageViews") || "0", 10) + 1;
+    sessionStorage.setItem("nursinguganda.pageViews", String(views));
+    if (views < 2) return; // wait until 2nd page view
+
+    let triggered = false;
+    function onScroll() {
+      if (triggered) return;
+      const scrolled = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
+      if (scrolled < 0.5) return;
+      triggered = true;
+      window.removeEventListener("scroll", onScroll);
+      if (document.getElementById("nu-popup-signin")) return;
+      const el = document.createElement("div");
+      el.id = "nu-popup-signin";
+      el.className = "nu-popup-signin-bar";
+      el.innerHTML = `
+        <div class="nu-popup-signin-inner">
+          <span class="nu-popup-signin-text">${icon("sparkles")}<span>Sign up free — save progress, unlock flashcards &amp; more</span></span>
+          <div class="nu-popup-signin-actions">
+            <button class="button primary nu-popup-signin-btn" type="button" data-lp-signup>Create Free Account</button>
+            <button class="nu-popup-signin-close" type="button" aria-label="Dismiss">${icon("x")}</button>
+          </div>
+        </div>`;
+      document.body.appendChild(el);
+      requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add("nu-popup-signin-visible")));
+      sessionStorage.setItem(KEY, "1");
+
+      function close() {
+        el.classList.remove("nu-popup-signin-visible");
+        el.addEventListener("transitionend", () => el.remove(), { once: true });
+      }
+      el.querySelector(".nu-popup-signin-close").addEventListener("click", close);
+      el.querySelector(".nu-popup-signin-btn").addEventListener("click", () => {
+        close();
+        // Trigger login modal via existing mechanism
+        const btn = document.querySelector("[data-lp-signup]");
+        if (btn && btn !== el.querySelector(".nu-popup-signin-btn")) btn.click();
+        else {
+          state.loginPrompt = { open: true, tab: "signup" };
+          render();
+        }
+      });
     }
-    el.remove();
-  });
-  el.querySelector("#nu-pwa-dismiss").addEventListener("click", () => {
-    el.classList.remove("nu-pwa-show");
-    el.addEventListener("transitionend", () => el.remove(), { once: true });
-    localStorage.setItem("nursinguganda.pwaDismissed", "1");
-  });
+    window.addEventListener("scroll", onScroll, { passive: true });
+  })();
+
+  // ── 3. Study Tip of the Day ────────────────────────────────────────
+  (function studyTip() {
+    const KEY = "nursinguganda.tipDate";
+    const today = new Date().toISOString().slice(0, 10);
+    if (localStorage.getItem(KEY) === today) return;
+
+    setTimeout(() => {
+      if (document.getElementById("nu-popup-tip")) return;
+      const tip = STUDY_TIPS[Math.floor(Math.random() * STUDY_TIPS.length)];
+      const el = document.createElement("div");
+      el.id = "nu-popup-tip";
+      el.className = "nu-popup-tip";
+      el.innerHTML = `
+        <div class="nu-popup-tip-inner">
+          <span class="nu-popup-tip-badge">${icon("lightbulb")} Tip of the Day</span>
+          <p class="nu-popup-tip-text">${tip.tip}</p>
+          <div class="nu-popup-tip-foot">
+            <span class="nu-popup-tip-tag">${tip.tag}</span>
+            <button class="nu-popup-tip-close" type="button" aria-label="Dismiss">${icon("x")}</button>
+          </div>
+        </div>`;
+      document.body.appendChild(el);
+      requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add("nu-popup-tip-visible")));
+      localStorage.setItem(KEY, today);
+
+      // Auto-dismiss after 14 seconds
+      const timer = setTimeout(close, 14000);
+      function close() {
+        clearTimeout(timer);
+        el.classList.remove("nu-popup-tip-visible");
+        el.addEventListener("transitionend", () => el.remove(), { once: true });
+      }
+      el.querySelector(".nu-popup-tip-close").addEventListener("click", close);
+    }, 10000);
+  })();
+
+  // ── 4. Quiz Challenge (scroll-triggered on study pages) ───────────
+  (function quizChallenge() {
+    const path = window.location.pathname;
+    const isStudyPage = path.startsWith("/notes") || path.startsWith("/courses") || path.startsWith("/flashcards");
+    if (!isStudyPage) return;
+    const pageKey = "nursinguganda.quizShown." + path;
+    if (sessionStorage.getItem(pageKey)) return;
+
+    let triggered = false;
+    function onScroll() {
+      if (triggered) return;
+      const scrolled = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
+      if (scrolled < 0.6) return;
+      triggered = true;
+      window.removeEventListener("scroll", onScroll);
+      if (document.getElementById("nu-popup-quiz")) return;
+
+      const q = QUICK_QUIZZES[Math.floor(Math.random() * QUICK_QUIZZES.length)];
+      let answered = false;
+
+      const el = document.createElement("div");
+      el.id = "nu-popup-quiz";
+      el.className = "nu-popup-overlay";
+      el.innerHTML = `
+        <div class="nu-popup-modal nu-popup-quiz" role="dialog" aria-modal="true" aria-labelledby="nu-quiz-title">
+          <button class="nu-popup-close" aria-label="Close">${icon("x")}</button>
+          <div class="nu-popup-quiz-badge">${icon("zap")} Quick Quiz</div>
+          <h2 id="nu-quiz-title" class="nu-popup-quiz-q">${q.q}</h2>
+          <div class="nu-popup-quiz-options">
+            ${q.options.map((opt, i) => `<button class="nu-popup-quiz-opt" data-idx="${i}" type="button">${opt}</button>`).join("")}
+          </div>
+          <div class="nu-popup-quiz-feedback" aria-live="polite"></div>
+          <div class="nu-popup-quiz-actions" style="display:none">
+            <a class="button primary" href="/flashcards">Practice More ${icon("arrowRight")}</a>
+            <button class="nu-popup-dismiss" type="button">Close</button>
+          </div>
+        </div>`;
+      document.body.appendChild(el);
+      requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add("nu-popup-visible")));
+      sessionStorage.setItem(pageKey, "1");
+
+      function close() {
+        el.classList.remove("nu-popup-visible");
+        el.addEventListener("transitionend", () => el.remove(), { once: true });
+      }
+      el.querySelector(".nu-popup-close").addEventListener("click", close);
+      el.querySelector(".nu-popup-dismiss")?.addEventListener("click", close);
+      el.addEventListener("click", (e) => { if (e.target === el) close(); });
+
+      el.querySelectorAll(".nu-popup-quiz-opt").forEach((btn) => {
+        btn.addEventListener("click", function() {
+          if (answered) return;
+          answered = true;
+          const chosen = parseInt(this.dataset.idx, 10);
+          el.querySelectorAll(".nu-popup-quiz-opt").forEach((b, i) => {
+            b.disabled = true;
+            if (i === q.answer) b.classList.add("nu-quiz-correct");
+            else if (i === chosen) b.classList.add("nu-quiz-wrong");
+          });
+          const fb = el.querySelector(".nu-popup-quiz-feedback");
+          if (chosen === q.answer) {
+            fb.innerHTML = `${icon("checkCircle")}<span>Correct! Well done.</span>`;
+            fb.className = "nu-popup-quiz-feedback nu-quiz-fb-correct";
+          } else {
+            fb.innerHTML = `${icon("xCircle")}<span>Not quite — the answer is <strong>${q.options[q.answer]}</strong>.</span>`;
+            fb.className = "nu-popup-quiz-feedback nu-quiz-fb-wrong";
+          }
+          el.querySelector(".nu-popup-quiz-actions").style.display = "";
+        });
+      });
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+  })();
 }
 
 /* ── Flashcards ───────────────────────────────────────────────────── */
@@ -15497,6 +15697,7 @@ window.addEventListener("keydown", (event) => {
 });
 
 init();
+initPopups();
 
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("service-worker.js").then((reg) => {
@@ -15519,53 +15720,7 @@ if ("serviceWorker" in navigator) {
   }).catch(() => {});
 }
 
-// ── PWA install prompt ──────────────────────────────────────────────────────
-let _pwaPromptEvent = null;
-
-window.addEventListener("beforeinstallprompt", (e) => {
-  e.preventDefault();
-  _pwaPromptEvent = e;
-
-  // Don't show if user dismissed this session, or already installed
-  if (sessionStorage.getItem("nu-install-dismissed") || window.matchMedia("(display-mode: standalone)").matches) return;
-
-  // Show the banner after a short pause so it doesn't compete with initial load
-  setTimeout(() => {
-    if (!_pwaPromptEvent) return;
-    const banner = document.createElement("div");
-    banner.id = "nu-install-banner";
-    banner.setAttribute("role", "banner");
-    banner.innerHTML = `
-      <img class="nu-install-icon" src="assets/images/pwa/icon-192x192.png" alt="Nursing Uganda icon" width="48" height="48">
-      <div class="nu-install-body">
-        <strong>Add to Home Screen</strong>
-        <span>Study offline, faster load &amp; app-like experience</span>
-      </div>
-      <button class="nu-install-btn" type="button" id="nu-install-confirm">Install</button>
-      <button class="nu-install-close" type="button" id="nu-install-dismiss" aria-label="Dismiss">${icon("x")}</button>
-    `;
-    document.body.appendChild(banner);
-    requestAnimationFrame(() => requestAnimationFrame(() => banner.classList.add("nu-install-banner-show")));
-
-    document.getElementById("nu-install-confirm").addEventListener("click", async () => {
-      if (!_pwaPromptEvent) return;
-      _pwaPromptEvent.prompt();
-      const { outcome } = await _pwaPromptEvent.userChoice;
-      _pwaPromptEvent = null;
-      banner.remove();
-      if (outcome === "accepted") {
-        // Optionally show a thank-you toast
-        showToast("App installed! You can open it from your home screen.", "success");
-      }
-    });
-
-    document.getElementById("nu-install-dismiss").addEventListener("click", () => {
-      sessionStorage.setItem("nu-install-dismissed", "1");
-      banner.classList.remove("nu-install-banner-show");
-      setTimeout(() => banner.remove(), 300);
-    });
-  }, 6000);
-});
+// PWA install prompt removed
 
 window.addEventListener("appinstalled", () => {
   _pwaPromptEvent = null;

@@ -20984,3 +20984,251 @@ textarea:focus {
 [data-theme="dark"] .comm-q-detail      { background: var(--color-card); }
 [data-theme="dark"] .comm-answer        { background: var(--color-card); }
 [data-theme="dark"] .comm-answer.comm-answer-accepted { background: rgba(0,181,189,.1); }
+
+/* ════════════════════════════════════════════════════════════════════
+   POPUP SYSTEM
+   1. Overlay modal shell (Welcome + Quiz)
+   2. Sign-in CTA bottom bar
+   3. Study Tip toast (bottom-right)
+   ════════════════════════════════════════════════════════════════════ */
+
+/* ── Overlay + modal shell ────────────────────────────────────────── */
+.nu-popup-overlay {
+  position: fixed; inset: 0; z-index: 9100;
+  background: rgba(0,0,0,.45);
+  display: flex; align-items: center; justify-content: center;
+  padding: 1rem;
+  opacity: 0; pointer-events: none;
+  transition: opacity .25s ease;
+}
+.nu-popup-overlay.nu-popup-visible {
+  opacity: 1; pointer-events: auto;
+}
+.nu-popup-modal {
+  background: #fff;
+  border-radius: 18px;
+  padding: 2rem 2rem 1.5rem;
+  max-width: 460px; width: 100%;
+  position: relative;
+  box-shadow: 0 24px 64px rgba(0,0,0,.22);
+  transform: translateY(24px) scale(.97);
+  transition: transform .3s cubic-bezier(.22,1,.36,1);
+}
+.nu-popup-overlay.nu-popup-visible .nu-popup-modal {
+  transform: translateY(0) scale(1);
+}
+.nu-popup-close {
+  position: absolute; top: 1rem; right: 1rem;
+  background: var(--color-bg-secondary, #f3f4f6);
+  border: none; border-radius: 50%;
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: var(--color-muted, #6b7280);
+  transition: background .15s, color .15s;
+}
+.nu-popup-close:hover { background: #e5e7eb; color: #1f2937; }
+.nu-popup-close svg { width: 16px; height: 16px; }
+
+/* ── Welcome popup ────────────────────────────────────────────────── */
+.nu-popup-welcome-icon {
+  width: 56px; height: 56px;
+  border-radius: 16px;
+  background: var(--brand-teal-light, #e0f7f8);
+  color: var(--brand-teal, #00B5BD);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1rem;
+}
+.nu-popup-welcome-icon svg { width: 28px; height: 28px; }
+.nu-popup-welcome h2 {
+  font-size: 1.4rem; font-weight: 700;
+  color: #111827; margin: 0 0 .4rem;
+}
+.nu-popup-sub { color: #6b7280; font-size: .95rem; margin: 0 0 1.25rem; }
+.nu-popup-feature-list {
+  list-style: none; padding: 0; margin: 0 0 1.5rem;
+  display: flex; flex-direction: column; gap: .6rem;
+}
+.nu-popup-feature-list li {
+  display: flex; align-items: center; gap: .6rem;
+  font-size: .9rem; color: #374151;
+}
+.nu-popup-feature-list svg { width: 18px; height: 18px; flex-shrink: 0; color: var(--brand-teal, #00B5BD); }
+.nu-popup-actions {
+  display: flex; flex-direction: column; gap: .6rem;
+  align-items: stretch;
+}
+.nu-popup-actions .button { text-align: center; }
+.nu-popup-dismiss {
+  background: none; border: none;
+  color: #9ca3af; font-size: .85rem;
+  cursor: pointer; padding: .4rem;
+  transition: color .15s;
+}
+.nu-popup-dismiss:hover { color: #6b7280; }
+
+/* ── Sign-in CTA bar ──────────────────────────────────────────────── */
+.nu-popup-signin-bar {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  z-index: 9050;
+  background: #0d2233;
+  color: #fff;
+  transform: translateY(100%);
+  transition: transform .35s cubic-bezier(.22,1,.36,1);
+  box-shadow: 0 -4px 24px rgba(0,0,0,.3);
+}
+.nu-popup-signin-bar.nu-popup-signin-visible { transform: translateY(0); }
+.nu-popup-signin-inner {
+  max-width: 900px; margin: 0 auto;
+  padding: .9rem 1.25rem;
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 1rem;
+  flex-wrap: wrap;
+}
+.nu-popup-signin-text {
+  display: flex; align-items: center; gap: .5rem;
+  font-size: .9rem; color: rgba(255,255,255,.85);
+}
+.nu-popup-signin-text svg { width: 18px; height: 18px; color: var(--brand-teal, #00B5BD); flex-shrink: 0; }
+.nu-popup-signin-actions {
+  display: flex; align-items: center; gap: .75rem;
+}
+.nu-popup-signin-close {
+  background: none; border: none;
+  color: rgba(255,255,255,.5);
+  cursor: pointer; padding: .3rem;
+  line-height: 1; transition: color .15s;
+}
+.nu-popup-signin-close:hover { color: #fff; }
+.nu-popup-signin-close svg { width: 18px; height: 18px; display: block; }
+.nu-popup-signin-bar .button.primary {
+  background: var(--brand-mauve, #A85070);
+  border-color: var(--brand-mauve, #A85070);
+  font-size: .85rem; padding: .5rem 1.1rem;
+  white-space: nowrap;
+}
+.nu-popup-signin-bar .button.primary:hover {
+  background: var(--brand-mauve-dark, #7a3050);
+  border-color: var(--brand-mauve-dark, #7a3050);
+}
+
+/* ── Study Tip toast ──────────────────────────────────────────────── */
+.nu-popup-tip {
+  position: fixed; bottom: 1.5rem; right: 1.5rem;
+  z-index: 9060;
+  max-width: 340px; width: calc(100vw - 2rem);
+  transform: translateY(calc(100% + 2rem));
+  opacity: 0;
+  transition: transform .4s cubic-bezier(.22,1,.36,1), opacity .3s ease;
+  pointer-events: none;
+}
+.nu-popup-tip.nu-popup-tip-visible {
+  transform: translateY(0); opacity: 1; pointer-events: auto;
+}
+.nu-popup-tip-inner {
+  background: #fff;
+  border-radius: 14px;
+  padding: 1rem 1rem .85rem;
+  border-left: 4px solid var(--brand-teal, #00B5BD);
+  box-shadow: 0 8px 32px rgba(0,0,0,.15);
+}
+.nu-popup-tip-badge {
+  display: flex; align-items: center; gap: .35rem;
+  font-size: .75rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .05em;
+  color: var(--brand-teal, #00B5BD);
+  margin-bottom: .55rem;
+}
+.nu-popup-tip-badge svg { width: 14px; height: 14px; }
+.nu-popup-tip-text {
+  font-size: .9rem; color: #374151; line-height: 1.5; margin: 0 0 .65rem;
+}
+.nu-popup-tip-foot {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nu-popup-tip-tag {
+  font-size: .75rem; font-weight: 600;
+  background: var(--brand-teal-light, #e0f7f8);
+  color: var(--brand-teal-dark, #007b83);
+  border-radius: 20px; padding: .2rem .65rem;
+}
+.nu-popup-tip-close {
+  background: none; border: none;
+  color: #9ca3af; cursor: pointer; padding: .2rem;
+  line-height: 1; transition: color .15s;
+}
+.nu-popup-tip-close:hover { color: #374151; }
+.nu-popup-tip-close svg { width: 16px; height: 16px; display: block; }
+
+/* ── Quiz Challenge popup ─────────────────────────────────────────── */
+.nu-popup-quiz-badge {
+  display: inline-flex; align-items: center; gap: .35rem;
+  background: var(--brand-mauve-light, #fce8ef);
+  color: var(--brand-mauve, #A85070);
+  font-size: .78rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .06em;
+  padding: .3rem .8rem; border-radius: 20px;
+  margin-bottom: .9rem;
+}
+.nu-popup-quiz-badge svg { width: 14px; height: 14px; }
+.nu-popup-quiz-q {
+  font-size: 1.1rem; font-weight: 700;
+  color: #111827; margin: 0 0 1.1rem; line-height: 1.4;
+}
+.nu-popup-quiz-options {
+  display: flex; flex-direction: column; gap: .5rem;
+  margin-bottom: .75rem;
+}
+.nu-popup-quiz-opt {
+  background: #f9fafb; border: 1.5px solid #e5e7eb;
+  border-radius: 10px; padding: .65rem .9rem;
+  text-align: left; font-size: .9rem; color: #374151;
+  cursor: pointer; transition: background .15s, border-color .15s;
+}
+.nu-popup-quiz-opt:hover:not(:disabled) {
+  background: var(--brand-teal-light, #e0f7f8);
+  border-color: var(--brand-teal, #00B5BD);
+}
+.nu-popup-quiz-opt.nu-quiz-correct {
+  background: #f0fdf4; border-color: #22c55e; color: #166534; font-weight: 600;
+}
+.nu-popup-quiz-opt.nu-quiz-wrong {
+  background: #fff1f2; border-color: #f87171; color: #991b1b; font-weight: 600;
+}
+.nu-popup-quiz-feedback {
+  display: flex; align-items: center; gap: .5rem;
+  font-size: .88rem; font-weight: 500;
+  padding: .55rem .75rem; border-radius: 8px;
+  min-height: 2.5rem; margin-bottom: .5rem;
+}
+.nu-quiz-fb-correct { background: #f0fdf4; color: #166534; }
+.nu-quiz-fb-correct svg { color: #22c55e; width: 18px; height: 18px; flex-shrink: 0; }
+.nu-quiz-fb-wrong   { background: #fff1f2; color: #991b1b; }
+.nu-quiz-fb-wrong   svg { color: #f87171; width: 18px; height: 18px; flex-shrink: 0; }
+.nu-popup-quiz-actions {
+  display: flex; gap: .6rem; align-items: center; flex-wrap: wrap;
+  margin-top: .5rem;
+}
+.nu-popup-quiz-actions .button { font-size: .88rem; padding: .55rem 1.1rem; }
+.nu-popup-quiz-actions .button svg { width: 15px; height: 15px; }
+
+/* ── Dark-mode overrides ──────────────────────────────────────────── */
+[data-theme="dark"] .nu-popup-modal { background: #1e2a2a; color: #e5e7eb; }
+[data-theme="dark"] .nu-popup-welcome h2 { color: #f9fafb; }
+[data-theme="dark"] .nu-popup-quiz-q { color: #f9fafb; }
+[data-theme="dark"] .nu-popup-sub { color: #9ca3af; }
+[data-theme="dark"] .nu-popup-feature-list li { color: #d1d5db; }
+[data-theme="dark"] .nu-popup-close { background: rgba(255,255,255,.08); color: #9ca3af; }
+[data-theme="dark"] .nu-popup-close:hover { background: rgba(255,255,255,.14); color: #f9fafb; }
+[data-theme="dark"] .nu-popup-quiz-opt { background: #263333; border-color: #374151; color: #d1d5db; }
+[data-theme="dark"] .nu-popup-quiz-opt:hover:not(:disabled) { background: rgba(0,181,189,.12); border-color: var(--brand-teal, #00B5BD); }
+[data-theme="dark"] .nu-popup-tip-inner { background: #1e2a2a; border-left-color: var(--brand-teal, #00B5BD); }
+[data-theme="dark"] .nu-popup-tip-text { color: #d1d5db; }
+[data-theme="dark"] .nu-popup-tip-close { color: #6b7280; }
+[data-theme="dark"] .nu-popup-tip-close:hover { color: #d1d5db; }
+
+/* ── Responsive ───────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .nu-popup-modal { padding: 1.5rem 1.25rem 1.25rem; border-radius: 14px; }
+  .nu-popup-signin-inner { flex-direction: column; align-items: flex-start; gap: .75rem; }
+  .nu-popup-tip { bottom: 1rem; right: .75rem; left: .75rem; max-width: none; width: auto; }
+}
