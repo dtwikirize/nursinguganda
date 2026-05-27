@@ -52,7 +52,12 @@ const state = {
   cookiePreferencesOpen: false,
   flashcardIndex: 0,
   flashcardFlipped: false,
-  flashcardCategory: "All"
+  flashcardCategory: "All",
+  currentUser: (function() { try { return JSON.parse(localStorage.getItem("nursinguganda.session") || "null"); } catch { return null; } })(),
+  userMenuOpen: false,
+  loginTab: "signin",
+  loginError: "",
+  loginLoading: false
 };
 
 const app = document.querySelector("#app");
@@ -127,7 +132,79 @@ const iconPaths = {
   xCircle: `<circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/>`,
   alertTriangle: `<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/>`,
   send: `<path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/>`,
+  logOut: `<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>`,
+  lock: `<rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>`,
+  eye: `<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>`,
+  eyeOff: `<path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" y1="2" x2="22" y2="22"/>`,
+  userCheck: `<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/>`,
 };
+
+/* ── Auth Utilities ─────────────────────────────────────────────────── */
+function simpleHash(str) {
+  let hash = 5381;
+  for (let i = 0; i < str.length; i++) {
+    hash = ((hash << 5) + hash) + str.charCodeAt(i);
+    hash = hash & hash;
+  }
+  return (hash >>> 0).toString(36);
+}
+function getStoredUsers() {
+  try { return JSON.parse(localStorage.getItem("nursinguganda.users") || "{}"); } catch { return {}; }
+}
+const AUTH_COLORS = [
+  { bg: "#dbeafe", text: "#1e40af" }, { bg: "#dcfce7", text: "#15803d" },
+  { bg: "#fce7f3", text: "#9d174d" }, { bg: "#ede9fe", text: "#5b21b6" },
+  { bg: "#ffedd5", text: "#c2410c" }, { bg: "#e0f2fe", text: "#0369a1" },
+  { bg: "#d1fae5", text: "#065f46" }, { bg: "#fef9c3", text: "#92400e" },
+];
+function authAvatarColor(email) {
+  let h = 0;
+  const s = String(email || "a");
+  for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) & 0xffff;
+  return AUTH_COLORS[h % AUTH_COLORS.length];
+}
+function authRegister(name, email, password) {
+  if (!name.trim() || !email.trim() || !password) return { ok: false, error: "All fields are required." };
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) return { ok: false, error: "Please enter a valid email address." };
+  if (password.length < 6) return { ok: false, error: "Password must be at least 6 characters." };
+  const users = getStoredUsers();
+  const key = email.toLowerCase().trim();
+  if (users[key]) return { ok: false, error: "An account with this email already exists. Sign in instead." };
+  const initials = name.trim().split(/\s+/).map(w => w[0] || "").join("").toUpperCase().slice(0, 2) || "?";
+  const color = authAvatarColor(key);
+  users[key] = { name: name.trim(), email: key, hash: simpleHash(password), initials, color };
+  localStorage.setItem("nursinguganda.users", JSON.stringify(users));
+  const user = { name: users[key].name, email: key, initials, color };
+  localStorage.setItem("nursinguganda.session", JSON.stringify(user));
+  state.currentUser = user;
+  state.loginError = "";
+  return { ok: true, user };
+}
+function authLogin(email, password) {
+  if (!email.trim() || !password) return { ok: false, error: "Please enter your email and password." };
+  const users = getStoredUsers();
+  const key = email.toLowerCase().trim();
+  if (!users[key]) return { ok: false, error: "No account found with this email. Try creating one." };
+  if (users[key].hash !== simpleHash(password)) return { ok: false, error: "Incorrect password. Please try again." };
+  const { name, initials, color } = users[key];
+  const user = { name, email: key, initials, color };
+  localStorage.setItem("nursinguganda.session", JSON.stringify(user));
+  state.currentUser = user;
+  state.loginError = "";
+  return { ok: true, user };
+}
+function authLogout() {
+  localStorage.removeItem("nursinguganda.session");
+  state.currentUser = null;
+  state.userMenuOpen = false;
+  state.loginError = "";
+}
+function renderUserAvatar(user, size) {
+  const sz = size || 36;
+  const c = (user && user.color) ? user.color : { bg: "#dcfce7", text: "#15803d" };
+  const initials = (user && user.initials) ? user.initials : "?";
+  return `<span class="user-avatar" style="width:${sz}px;height:${sz}px;background:${c.bg};color:${c.text};font-size:${Math.round(sz * 0.38)}px">${escapeHtml(initials)}</span>`;
+}
 
 function escapeHtml(value) {
   return String(value)
@@ -2916,6 +2993,13 @@ function renderMobileDrawer(active) {
       <div class="drawer-footer">
         <a class="drawer-footer-link" href="/notes" data-nav-close>${icon("bookOpen")}<span>Notes</span></a>
         <a class="drawer-footer-link" href="/resources" data-nav-close>${icon("folderOpen")}<span>Resources</span></a>
+        ${state.currentUser
+          ? `<a class="drawer-footer-link drawer-footer-user" href="/account" data-nav-close>
+               ${renderUserAvatar(state.currentUser, 22)}
+               <span>${escapeHtml(state.currentUser.name.split(" ")[0])}</span>
+             </a>`
+          : `<a class="drawer-footer-link drawer-footer-signin" href="/login" data-nav-close>${icon("users")}<span>Sign In</span></a>`
+        }
       </div>
     </div>
     <div class="nav-overlay${state.navOpen ? " open" : ""}" data-nav-overlay></div>
@@ -2974,6 +3058,31 @@ function layout(content) {
           </nav>
           <div class="nav-actions">
             <a class="nav-search-pill" href="/search" aria-label="Search notes">${icon("search")}<span>Search</span></a>
+            ${state.currentUser
+              ? `<div class="user-menu-wrap${state.userMenuOpen ? " open" : ""}">
+                  <button class="user-menu-trigger" type="button" data-user-menu-toggle aria-label="Account menu" aria-expanded="${state.userMenuOpen}">
+                    ${renderUserAvatar(state.currentUser)}
+                    ${icon("chevronDown")}
+                  </button>
+                  ${state.userMenuOpen ? `
+                    <div class="user-menu-dropdown" role="menu">
+                      <div class="user-menu-header">
+                        ${renderUserAvatar(state.currentUser, 44)}
+                        <div class="user-menu-info"><strong>${escapeHtml(state.currentUser.name)}</strong><small>${escapeHtml(state.currentUser.email)}</small></div>
+                      </div>
+                      <div class="user-menu-items">
+                        <a class="user-menu-item" href="/progress" role="menuitem" data-nav-close>${icon("chartLine")}<span>My Progress</span></a>
+                        <a class="user-menu-item" href="/flashcards" role="menuitem" data-nav-close>${icon("sparkles")}<span>Flashcards</span></a>
+                        <a class="user-menu-item" href="/account" role="menuitem" data-nav-close>${icon("users")}<span>Account</span></a>
+                      </div>
+                      <div class="user-menu-footer">
+                        <button class="user-menu-item user-menu-logout" type="button" data-auth-logout>${icon("logOut")}<span>Sign Out</span></button>
+                      </div>
+                    </div>
+                  ` : ""}
+                </div>`
+              : `<a class="button primary nav-login-btn" href="/login">${icon("users")}<span>Sign In</span></a>`
+            }
             <button class="mobile-toggle" type="button" data-nav-toggle aria-label="${state.navOpen ? "Close menu" : "Open menu"}" aria-expanded="${state.navOpen}">
               ${state.navOpen ? icon("x") : `<span></span><span></span><span></span>`}
             </button>
@@ -3024,6 +3133,32 @@ function layout(content) {
       render();
     }
   }, { once: true });
+
+  // User menu toggle
+  const userMenuTrigger = app.querySelector("[data-user-menu-toggle]");
+  if (userMenuTrigger) {
+    userMenuTrigger.addEventListener("click", (e) => {
+      e.stopPropagation();
+      state.userMenuOpen = !state.userMenuOpen;
+      render();
+    });
+  }
+  // Close user menu on outside click
+  if (state.userMenuOpen) {
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest(".user-menu-wrap")) {
+        state.userMenuOpen = false;
+        render();
+      }
+    }, { once: true });
+  }
+  // Logout button(s)
+  app.querySelectorAll("[data-auth-logout]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      authLogout();
+      render();
+    });
+  });
 
   setupCookieConsentControls();
   setupLightboxControls();
@@ -3456,6 +3591,166 @@ function renderProgressRing(percent, size = 140) {
       <circle cx="${size / 2}" cy="${size / 2}" r="${r}" />
       <circle cx="${size / 2}" cy="${size / 2}" r="${r}" style="stroke-dasharray:${circumference.toFixed(2)};stroke-dashoffset:${dashOffset.toFixed(2)}" />
     </svg>
+  `;
+}
+
+/* ── Login / Account Pages ───────────────────────────────────────── */
+function renderLoginPage() {
+  if (state.currentUser) {
+    // Already logged in — show a friendly welcome instead
+    const u = state.currentUser;
+    return `
+      <div class="login-page-wrap">
+        <div class="login-already-in">
+          <div class="login-already-avatar">${renderUserAvatar(u, 72)}</div>
+          <h1>Welcome back, ${escapeHtml(u.name.split(" ")[0])}!</h1>
+          <p>You're signed in as <strong>${escapeHtml(u.email)}</strong></p>
+          <div class="login-already-actions">
+            <a class="button primary" href="/notes">Continue Studying</a>
+            <a class="button secondary" href="/progress">My Progress</a>
+          </div>
+          <button class="login-signout-link" type="button" data-auth-logout>Sign out of this account</button>
+        </div>
+      </div>
+    `;
+  }
+
+  const isSignup = state.loginTab === "signup";
+  const err = state.loginError;
+
+  return `
+    <div class="login-page-wrap">
+      <div class="login-brand-panel">
+        <div class="login-brand-inner">
+          <a class="login-brand-logo brand" href="/notes">
+            <span class="brand-mark">NU</span>
+            <div class="brand-text"><strong>Nursing Uganda</strong><small>Notes &amp; Resources</small></div>
+          </a>
+          <div class="login-brand-copy">
+            <h2 class="login-brand-headline">Study smarter.<br>Revise better.</h2>
+            <p class="login-brand-sub">Your complete revision companion for nursing and midwifery students in Uganda.</p>
+            <ul class="login-feature-list">
+              <li>${icon("bookOpen")}<span>Structured notes for every course unit</span></li>
+              <li>${icon("chartLine")}<span>Track your progress as you study</span></li>
+              <li>${icon("sparkles")}<span>Flashcards, quizzes and past papers</span></li>
+              <li>${icon("globe")}<span>International career &amp; licensing guides</span></li>
+            </ul>
+          </div>
+          <p class="login-brand-footer-note">Free for all Ugandan nursing students</p>
+        </div>
+      </div>
+
+      <div class="login-form-panel">
+        <div class="login-form-card">
+          <div class="login-form-header">
+            <h1>${isSignup ? "Create your account" : "Welcome back"}</h1>
+            <p>${isSignup ? "Join thousands of students revising smarter." : "Sign in to track your progress and saved notes."}</p>
+          </div>
+
+          <div class="login-tabs" role="tablist">
+            <button type="button" class="login-tab${!isSignup ? " active" : ""}" data-login-tab="signin" role="tab" aria-selected="${!isSignup}">Sign In</button>
+            <button type="button" class="login-tab${isSignup ? " active" : ""}" data-login-tab="signup" role="tab" aria-selected="${isSignup}">Create Account</button>
+          </div>
+
+          <form class="login-form" data-auth-form="${isSignup ? "signup" : "signin"}" novalidate>
+            ${isSignup ? `
+              <div class="login-field">
+                <label for="auth-name">Full Name</label>
+                <div class="login-input-wrap">
+                  <span class="login-input-icon">${icon("users")}</span>
+                  <input type="text" id="auth-name" name="name" placeholder="Your full name" autocomplete="name" required>
+                </div>
+              </div>
+            ` : ""}
+
+            <div class="login-field">
+              <label for="auth-email">Email Address</label>
+              <div class="login-input-wrap">
+                <span class="login-input-icon">${icon("mail")}</span>
+                <input type="email" id="auth-email" name="email" placeholder="you@example.com" autocomplete="email" required>
+              </div>
+            </div>
+
+            <div class="login-field">
+              <label for="auth-password">${isSignup ? "Create Password" : "Password"}</label>
+              <div class="login-input-wrap">
+                <span class="login-input-icon">${icon("lock")}</span>
+                <input type="password" id="auth-password" name="password" placeholder="${isSignup ? "At least 6 characters" : "Your password"}" autocomplete="${isSignup ? "new-password" : "current-password"}" required>
+                <button type="button" class="login-pw-toggle" data-pw-toggle aria-label="Toggle password visibility">${icon("eye")}</button>
+              </div>
+            </div>
+
+            ${err ? `<div class="login-error" role="alert">${icon("alertTriangle")}${escapeHtml(err)}</div>` : ""}
+
+            <button type="submit" class="button primary login-submit">${isSignup ? `${icon("userCheck")}<span>Create Account</span>` : `${icon("logOut")}<span>Sign In</span>`}</button>
+
+            ${!isSignup ? `<div class="login-forgot-wrap"><button type="button" class="login-link" data-login-tab="signup">No account yet? Create one free</button></div>` : `<div class="login-forgot-wrap"><button type="button" class="login-link" data-login-tab="signin">Already have an account? Sign in</button></div>`}
+          </form>
+
+          <p class="login-legal">By continuing you agree to our <a href="/privacy" class="login-legal-link">Privacy Policy</a>. Your data stays on your device — we never share it.</p>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderAccountPage() {
+  if (!state.currentUser) {
+    return `
+      <div class="login-page-wrap login-page-wrap--centered">
+        <div class="login-already-in">
+          <div class="login-already-avatar">${icon("lock")}</div>
+          <h1>Sign in to view your account</h1>
+          <p>You need to be signed in to access account settings.</p>
+          <a class="button primary" href="/login">Sign In</a>
+        </div>
+      </div>
+    `;
+  }
+  const u = state.currentUser;
+  const mastered = Object.keys(masteredTopics() || {}).length;
+  const saved = (JSON.parse(localStorage.getItem("nursinguganda.savedCareerJobs") || "[]")).length;
+  return `
+    <div class="container account-page">
+      <div class="account-page-header">
+        <div class="account-avatar-wrap">${renderUserAvatar(u, 80)}</div>
+        <div class="account-header-info">
+          <h1>${escapeHtml(u.name)}</h1>
+          <p class="account-email">${escapeHtml(u.email)}</p>
+        </div>
+      </div>
+
+      <div class="account-stats-row">
+        <div class="account-stat-card">
+          <span class="account-stat-num">${mastered}</span>
+          <span class="account-stat-label">Topics Mastered</span>
+        </div>
+        <div class="account-stat-card">
+          <span class="account-stat-num">${saved}</span>
+          <span class="account-stat-label">Saved Jobs</span>
+        </div>
+        <div class="account-stat-card">
+          <span class="account-stat-num">${updateStreak().current}</span>
+          <span class="account-stat-label">Day Streak</span>
+        </div>
+      </div>
+
+      <div class="account-section-card">
+        <h2 class="account-section-title">Quick Links</h2>
+        <div class="account-links-grid">
+          <a class="account-link-item" href="/progress">${icon("chartLine")}<span>My Progress</span></a>
+          <a class="account-link-item" href="/flashcards">${icon("sparkles")}<span>Flashcards</span></a>
+          <a class="account-link-item" href="/careers">${icon("briefcaseMedical")}<span>Job Board</span></a>
+          <a class="account-link-item" href="/notes">${icon("bookOpen")}<span>Study Notes</span></a>
+        </div>
+      </div>
+
+      <div class="account-section-card account-section-danger">
+        <h2 class="account-section-title">Account</h2>
+        <p class="account-section-desc">Signing out removes your session from this device. Your progress data stays saved locally.</p>
+        <button class="button ghost account-logout-btn" type="button" data-auth-logout>${icon("logOut")}<span>Sign Out</span></button>
+      </div>
+    </div>
   `;
 }
 
@@ -8784,7 +9079,15 @@ function render() {
   };
   let structuredData = null;
 
-  if (parts[0] === "progress") {
+  if (parts[0] === "login") {
+    content = renderLoginPage();
+    meta = { title: state.loginTab === "signup" ? "Create Account" : "Sign In", description: "Sign in or create a free account on Nursing Uganda to track your progress and saved notes." };
+  }
+  else if (parts[0] === "account") {
+    content = renderAccountPage();
+    meta = { title: "My Account", description: "View your Nursing Uganda account, progress stats and saved items." };
+  }
+  else if (parts[0] === "progress") {
     content = renderProgress();
     meta = { title: "My Progress", description: "Track your completed lessons, quiz mastery, study streak and saved bookmarks on Nursing Uganda." };
   }
@@ -9564,6 +9867,63 @@ function render() {
     imagePickerClose.addEventListener("click", () => {
       state.imagePickerKey = "";
       render();
+    });
+  }
+
+  // ── Login tab switching ──────────────────────────────────────────
+  app.querySelectorAll("[data-login-tab]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      state.loginTab = btn.dataset.loginTab || "signin";
+      state.loginError = "";
+      render();
+      const firstInput = app.querySelector(".login-form input");
+      if (firstInput) firstInput.focus();
+    });
+  });
+
+  // ── Password visibility toggle ───────────────────────────────────
+  const pwToggle = app.querySelector("[data-pw-toggle]");
+  if (pwToggle) {
+    pwToggle.addEventListener("click", () => {
+      const pwInput = app.querySelector("#auth-password");
+      if (!pwInput) return;
+      const isHidden = pwInput.type === "password";
+      pwInput.type = isHidden ? "text" : "password";
+      pwToggle.innerHTML = icon(isHidden ? "eyeOff" : "eye");
+    });
+  }
+
+  // ── Auth form submit ─────────────────────────────────────────────
+  const authForm = app.querySelector("[data-auth-form]");
+  if (authForm) {
+    authForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const formType = authForm.dataset.authForm;
+      const emailEl = authForm.querySelector("#auth-email");
+      const passwordEl = authForm.querySelector("#auth-password");
+      const nameEl = authForm.querySelector("#auth-name");
+      const email = emailEl ? emailEl.value : "";
+      const password = passwordEl ? passwordEl.value : "";
+      const name = nameEl ? nameEl.value : "";
+
+      let result;
+      if (formType === "signup") {
+        result = authRegister(name, email, password);
+      } else {
+        result = authLogin(email, password);
+      }
+
+      if (!result.ok) {
+        state.loginError = result.error;
+        render();
+        const firstInput = app.querySelector(".login-form input");
+        if (firstInput) firstInput.focus();
+        return;
+      }
+
+      // Success — redirect to home
+      setRoute("/notes");
+      showToast(`Welcome${formType === "signup" ? "" : " back"}, ${escapeHtml(state.currentUser.name.split(" ")[0])}!`, "success");
     });
   }
 
