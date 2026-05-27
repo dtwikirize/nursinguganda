@@ -19806,3 +19806,99 @@ textarea:focus {
 [data-theme="dark"] .contact-field select,
 [data-theme="dark"] .contact-field textarea { background: var(--color-bg-subtle); border-color: var(--color-border); }
 [data-theme="dark"] .contact-error-banner { background: rgba(185,28,28,.15); border-color: rgba(185,28,28,.3); color: #fca5a5; }
+
+/* ── Login-prompt gate modal ─────────────────────────────────────────────── */
+.login-prompt-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.52);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 9100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: fadeIn .18s ease;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+.login-prompt-modal {
+  background: #fff;
+  border-radius: 18px;
+  padding: 2rem 2rem 1.5rem;
+  max-width: 380px;
+  width: 100%;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 24px 64px rgba(0,0,0,.2);
+  animation: slideUp .2s ease;
+}
+.login-prompt-close-btn {
+  position: absolute;
+  top: .75rem;
+  right: .75rem;
+  background: #f3f4f6;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #6b7280;
+  transition: background .15s, color .15s;
+}
+.login-prompt-close-btn:hover { background: #e5e7eb; color: #111827; }
+.login-prompt-close-btn svg { width: 16px; height: 16px; }
+.login-prompt-icon-wrap {
+  width: 64px;
+  height: 64px;
+  background: #f0fdf4;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.1rem;
+  color: var(--color-accent, #0f7f4f);
+}
+.login-prompt-icon-wrap svg { width: 28px; height: 28px; }
+.login-prompt-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #111827;
+  margin: 0 0 .5rem;
+  line-height: 1.2;
+}
+.login-prompt-msg {
+  font-size: .9rem;
+  color: #6b7280;
+  margin: 0 0 1.5rem;
+  line-height: 1.55;
+}
+.login-prompt-actions {
+  display: flex;
+  flex-direction: column;
+  gap: .65rem;
+}
+.login-prompt-actions .button {
+  width: 100%;
+  justify-content: center;
+}
+.login-prompt-note {
+  font-size: .78rem;
+  color: #9ca3af;
+  margin: 1rem 0 0;
+}
+/* Dark mode */
+[data-theme="dark"] .login-prompt-modal {
+  background: #1e293b;
+  box-shadow: 0 24px 64px rgba(0,0,0,.45);
+}
+[data-theme="dark"] .login-prompt-close-btn { background: #334155; color: #94a3b8; }
+[data-theme="dark"] .login-prompt-close-btn:hover { background: #475569; color: #f1f5f9; }
+[data-theme="dark"] .login-prompt-icon-wrap { background: #0f2218; }
+[data-theme="dark"] .login-prompt-title { color: #f1f5f9; }
+[data-theme="dark"] .login-prompt-msg { color: #94a3b8; }
+[data-theme="dark"] .login-prompt-note { color: #64748b; }

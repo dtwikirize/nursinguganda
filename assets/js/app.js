@@ -76,7 +76,8 @@ const state = {
   adminTipForm: { open: false, data: {} },
   adminEventForm: { open: false, data: {} },
   adminResourceForm: { open: false, data: {} },
-  contactForm: { name: "", email: "", subject: "", message: "", type: "general", loading: false, sent: false, error: "" }
+  contactForm: { name: "", email: "", subject: "", message: "", type: "general", loading: false, sent: false, error: "" },
+  loginPrompt: { open: false, feature: "", message: "" }
 };
 
 const app = document.querySelector("#app");
@@ -461,6 +462,18 @@ async function loadJobsFromSupabase() {
 
 // ─── ADMIN HELPERS ────────────────────────────────────────────────────────
 function isAdmin() { return state.currentUser?.email === "twikirizederick@gmail.com"; }
+
+// ─── AUTH GATE ────────────────────────────────────────────────────────────
+// If the user is logged in, run callback immediately.
+// Otherwise open the login-prompt modal so they can sign in first.
+function requireLogin(feature, message, callback) {
+  if (state.currentUser) {
+    callback();
+  } else {
+    state.loginPrompt = { open: true, feature, message };
+    render();
+  }
+}
 
 async function adminLoadJobs() {
   const client = sb(); if (!client) return;
@@ -3520,6 +3533,36 @@ function renderMobileDrawer(active) {
   `;
 }
 
+function renderLoginPromptModal() {
+  if (!state.loginPrompt.open) return "";
+  const featureIconMap = {
+    quiz:       "send",
+    bookmark:   "bookmark",
+    pdf:        "printer",
+    "job-save": "heart",
+    "job-apply":"briefcase",
+    template:   "download",
+    cv:         "fileCv",
+    flashcard:  "star"
+  };
+  const ic = featureIconMap[state.loginPrompt.feature] || "lock";
+  return `
+    <div class="login-prompt-overlay" role="presentation" data-lp-overlay>
+      <div class="login-prompt-modal" role="dialog" aria-modal="true" aria-labelledby="lp-title">
+        <button type="button" class="login-prompt-close-btn" data-lp-close aria-label="Close">${icon("x")}</button>
+        <div class="login-prompt-icon-wrap">${icon(ic)}</div>
+        <h2 id="lp-title" class="login-prompt-title">Sign in to continue</h2>
+        <p class="login-prompt-msg">${escapeHtml(state.loginPrompt.message)}</p>
+        <div class="login-prompt-actions">
+          <a class="button primary login-prompt-btn" href="/login">${icon("user")} Sign In</a>
+          <a class="button secondary login-prompt-btn" href="/login" data-lp-signup>${icon("sparkles")} Create Free Account</a>
+        </div>
+        <p class="login-prompt-note">Free account &mdash; no credit card needed.</p>
+      </div>
+    </div>
+  `;
+}
+
 function renderImageLightbox() {
   if (!state.lightboxImage) return "";
   return `
@@ -3613,6 +3656,7 @@ function layout(content) {
       ${renderFooter()}
       ${renderCookieConsent()}
       ${renderImageLightbox()}
+      ${renderLoginPromptModal()}
     </div>
   `;
 
@@ -3842,6 +3886,31 @@ function setupLightboxControls() {
       }
     });
   });
+
+  // ── Login-prompt modal ──────────────────────────────────────────────────
+  const lpOverlay = app.querySelector("[data-lp-overlay]");
+  if (lpOverlay) {
+    lpOverlay.addEventListener("click", (e) => {
+      if (e.target === lpOverlay) { state.loginPrompt.open = false; render(); }
+    });
+  }
+  const lpClose = app.querySelector("[data-lp-close]");
+  if (lpClose) {
+    lpClose.addEventListener("click", () => { state.loginPrompt.open = false; render(); });
+  }
+  const lpSignup = app.querySelector("[data-lp-signup]");
+  if (lpSignup) {
+    lpSignup.addEventListener("click", (e) => {
+      e.preventDefault();
+      state.loginPrompt.open = false;
+      state.loginTab = "signup";
+      history.pushState(null, "", "/login");
+      state.navOpen = false;
+      state.megaOpen = "";
+      render();
+      scrollPageToTop();
+    });
+  }
 }
 
 function setupLessonTocActiveState() {
@@ -11808,46 +11877,50 @@ function render() {
 
   app.querySelectorAll("[data-submit-quiz]").forEach((button) => {
     button.addEventListener("click", () => {
-      const key      = button.dataset.submitQuiz;
-      const total    = parseInt(button.dataset.submitTotal || "0", 10);
-      const answered = parseInt(button.dataset.submitAnswered || "0", 10);
-      const missing  = total - answered;
-      if (missing > 0) {
-        const ok = window.confirm(
-          `You have ${missing} unanswered question${missing !== 1 ? "s" : ""}.\n\n` +
-          `Unanswered questions will be marked as incorrect.\n\nSubmit anyway?`
-        );
-        if (!ok) return;
-      }
-      submitQuiz(key);
-      render();
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      // Send results email (non-blocking, only for logged-in users)
-      if (state.currentUser?.email) {
+      requireLogin("quiz", "Sign in to submit your quiz and receive your results by email.", () => {
+        const key      = button.dataset.submitQuiz;
+        const total    = parseInt(button.dataset.submitTotal || "0", 10);
+        const answered = parseInt(button.dataset.submitAnswered || "0", 10);
+        const missing  = total - answered;
+        if (missing > 0) {
+          const ok = window.confirm(
+            `You have ${missing} unanswered question${missing !== 1 ? "s" : ""}.\n\n` +
+            `Unanswered questions will be marked as incorrect.\n\nSubmit anyway?`
+          );
+          if (!ok) return;
+        }
+        submitQuiz(key);
+        render();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        // Send results email (non-blocking)
         sendQuizResultsEmail(key).then(() => {
           showToast(`Results emailed to ${state.currentUser.email}`, "success");
         }).catch(() => {});
-      }
+      });
     });
   });
 
   app.querySelectorAll("[data-bookmark-key]").forEach((button) => {
     button.addEventListener("click", () => {
-      const saving = !button.classList.contains("active");
-      setBookmark({
-        key: button.dataset.bookmarkKey,
-        title: button.dataset.bookmarkTitle,
-        type: button.dataset.bookmarkType,
-        context: button.dataset.bookmarkContext,
-        href: button.dataset.bookmarkHref
-      }, saving);
-      showToast(saving ? "Saved to your bookmarks" : "Removed from bookmarks", saving ? "success" : "info");
-      render();
+      requireLogin("bookmark", "Sign in to save bookmarks and access them from any device.", () => {
+        const saving = !button.classList.contains("active");
+        setBookmark({
+          key: button.dataset.bookmarkKey,
+          title: button.dataset.bookmarkTitle,
+          type: button.dataset.bookmarkType,
+          context: button.dataset.bookmarkContext,
+          href: button.dataset.bookmarkHref
+        }, saving);
+        showToast(saving ? "Saved to your bookmarks" : "Removed from bookmarks", saving ? "success" : "info");
+        render();
+      });
     });
   });
 
   app.querySelectorAll("[data-print-topic]").forEach((button) => {
-    button.addEventListener("click", () => window.print());
+    button.addEventListener("click", () => {
+      requireLogin("pdf", "Sign in to save notes as a PDF for offline study.", () => window.print());
+    });
   });
 
   const schoolSearch = app.querySelector("[data-school-search]");
@@ -12096,8 +12169,22 @@ function render() {
     button.addEventListener("click", (event) => {
       event.preventDefault();
       event.stopPropagation();
-      setCareerJobSaved(button.dataset.careerJobSave, !button.classList.contains("active"));
-      render();
+      requireLogin("job-save", "Sign in to save jobs and review your shortlist anytime.", () => {
+        setCareerJobSaved(button.dataset.careerJobSave, !button.classList.contains("active"));
+        render();
+      });
+    });
+  });
+
+  // Gate career apply links
+  app.querySelectorAll(".career-apply").forEach((link) => {
+    link.addEventListener("click", (e) => {
+      if (!state.currentUser) {
+        e.preventDefault();
+        e.stopPropagation();
+        state.loginPrompt = { open: true, feature: "job-apply", message: "Sign in to apply for nursing and midwifery jobs." };
+        render();
+      }
     });
   });
 
@@ -12131,22 +12218,26 @@ function render() {
     button.addEventListener("click", () => downloadCareerChecklist(button.dataset.careerDownload));
   });
 
-  // Template card PDF/DOC downloads
+  // Template card PDF/DOC downloads (login required)
   app.querySelectorAll("[data-template-label]").forEach(btn => {
     btn.addEventListener("click", () => {
-      const label  = btn.dataset.templateLabel;
-      const action = btn.dataset.templateAction;
-      const card   = btn.closest(".crp-card");
-      const styleInput = card?.querySelector("input[type='radio']:checked");
-      const styleId = styleInput?.value || "modern";
-      if (action === "pdf") downloadTemplatePDF(label, styleId);
-      else downloadTemplateDoc(label, styleId);
+      requireLogin("template", "Sign in to download CV and cover letter templates.", () => {
+        const label  = btn.dataset.templateLabel;
+        const action = btn.dataset.templateAction;
+        const card   = btn.closest(".crp-card");
+        const styleInput = card?.querySelector("input[type='radio']:checked");
+        const styleId = styleInput?.value || "modern";
+        if (action === "pdf") downloadTemplatePDF(label, styleId);
+        else downloadTemplateDoc(label, styleId);
+      });
     });
   });
 
-  // Open CV Generator
+  // Open CV Generator (login required)
   app.querySelectorAll("[data-open-cv-gen]").forEach(btn => {
-    btn.addEventListener("click", () => openCVGenerator());
+    btn.addEventListener("click", () => {
+      requireLogin("cv", "Sign in to use the CV Generator and build your personalised CV.", () => openCVGenerator());
+    });
   });
 
   const imageReviewSearch = app.querySelector("[data-image-review-search]");
@@ -12674,8 +12765,10 @@ function setupFlashcards() {
 
   app.querySelector("[data-fc-master]")?.addEventListener("click", (e) => {
     const id = e.currentTarget.dataset.fcId;
-    toggleFlashcardMastery(id);
-    render();
+    requireLogin("flashcard", "Sign in to track which flashcards you have mastered.", () => {
+      toggleFlashcardMastery(id);
+      render();
+    });
   });
 
   app.querySelectorAll("[data-fc-cat]").forEach((btn) => {
@@ -13036,6 +13129,11 @@ window.addEventListener("keydown", (event) => {
   if (event.key === "Escape" && state.lightboxImage) {
     state.lightboxImage = "";
     state.lightboxAlt = "";
+    render();
+    return;
+  }
+  if (event.key === "Escape" && state.loginPrompt.open) {
+    state.loginPrompt.open = false;
     render();
   }
 });
