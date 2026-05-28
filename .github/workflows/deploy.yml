@@ -30,13 +30,18 @@ jobs:
           state-name: .ftp-deploy-sync-state.json
           # Never wipe files already on server that aren't in the repo
           dangerous-clean-slate: false
-          # Exclude source files, build tools, and git internals
+          # Exclude source files, build tools, git internals, and old static
+          # route directories (SPA + .htaccess handles these URLs now)
           exclude: |
             **/.git/**
             **/.git*
             **/node_modules/**
             **/scripts/**
             **/.claude/**
+            **/.playwright-cli/**
+            courses/**
+            research/**
+            supabase/**
             assets/css/main.css
             assets/js/app.js
             assets/images/lesson-images/**
@@ -45,4 +50,6 @@ jobs:
             assets/images/pwa/**
             package.json
             package-lock.json
+            package-lock.json
             .gitignore
+            *.md
