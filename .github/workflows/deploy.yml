@@ -17,7 +17,7 @@ jobs:
           fetch-depth: 2   # needed so FTP action can diff against previous commit
 
       - name: Deploy to Hostinger via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ftp.nursinguganda.com
           username: ${{ secrets.FTP_USERNAME }}
