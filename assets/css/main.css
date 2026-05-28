@@ -1,26 +1,28 @@
 :root {
-  /* ── Warm neutral palette (Claude.ai-inspired) ───────────────────── */
-  --color-primary: #1C1917;
-  --color-primary-dark: #0C0A09;
-  --color-primary-light: #F5F4EF;
-  --color-cyan: #A8A29E;
-  --color-cyan-dark: #78716C;
-  --color-cyan-light: #F5F4EF;
-  --color-navy: #0C0A09;
-  --color-accent: #78716C;
-  --color-accent-dark: #57534E;
-  --color-accent-light: #F5F4EF;
-  --color-bg: #FAF9F5;
-  --color-bg-soft: #F5F4EF;
-  --color-card: #FFFFFF;
-  --color-on-brand: #FFFFFF;
-  --color-border: #E7E5DE;
-  --color-text: #1C1917;
-  --color-text-muted: #78716C;
-  --color-success: #2E7D52;
-  --color-warning: #D97706;
-  --color-error: #C0392B;
-  --color-info: #78716C;
+  /* ── Teal brand palette — Nursing Uganda ─────────────────────────── */
+  --color-primary: #00B5BD;
+  --color-primary-dark: #007b83;
+  --color-primary-light: #e0f7f8;
+  --color-cyan: #00B5BD;
+  --color-cyan-dark: #007b83;
+  --color-cyan-light: #e0f7f8;
+  --color-navy: #1a2e2e;
+  --color-accent: #00B5BD;
+  --color-accent-dark: #007b83;
+  --color-accent-light: #e0f7f8;
+  --color-bg: #f0feff;
+  --color-bg-soft: #e4f9fb;
+  --color-bg-subtle: #f5fdfe;
+  --color-card: #ffffff;
+  --color-on-brand: #ffffff;
+  --color-border: #c8e8ea;
+  --color-text: #1a2e2e;
+  --color-text-muted: #4a7070;
+  --color-muted: #4a7070;
+  --color-success: #16a34a;
+  --color-warning: #d97706;
+  --color-error: #dc2626;
+  --color-info: #0ea5e9;
 
   /* ── Amber accent (achievement / streak / attention) ─────────────── */
   --color-amber:       #f59e0b;
@@ -29,63 +31,63 @@
   --color-amber-rgb:   245 158 11;
   --color-warning-rgb: 217 119 6;
 
-  /* ── Resource section accents (desaturated) ─────────────────────── */
-  --resource-library: #1C1917;
-  --resource-library-2: #57534E;
-  --resource-papers: #1C1917;
-  --resource-papers-2: #57534E;
-  --resource-quizzes: #44403C;
-  --resource-quizzes-2: #78716C;
-  --resource-licensing: #57534E;
-  --resource-licensing-2: #A8A29E;
-  --resource-instruments: #1C1917;
-  --resource-instruments-2: #57534E;
-  --resource-schools: #44403C;
-  --resource-schools-2: #78716C;
-  --resource-support: #44403C;
-  --resource-support-2: #78716C;
-  --resource-review: #57534E;
-  --resource-review-2: #A8A29E;
+  /* ── Resource section accents (vibrant, differentiated) ─────────── */
+  --resource-library:       #007b83;
+  --resource-library-2:     #00B5BD;
+  --resource-papers:        #1d4ed8;
+  --resource-papers-2:      #3b82f6;
+  --resource-quizzes:       #4f46e5;
+  --resource-quizzes-2:     #818cf8;
+  --resource-licensing:     #065f46;
+  --resource-licensing-2:   #10b981;
+  --resource-instruments:   #c2410c;
+  --resource-instruments-2: #f97316;
+  --resource-schools:       #7e22ce;
+  --resource-schools-2:     #a855f7;
+  --resource-support:       #be185d;
+  --resource-support-2:     #f472b6;
+  --resource-review:        #b45309;
+  --resource-review-2:      #f59e0b;
 
   /* ── RGB variants ────────────────────────────────────────────────── */
-  --color-primary-rgb: 28 25 23;
-  --color-primary-dark-rgb: 12 10 9;
-  --color-cyan-rgb: 168 162 158;
-  --color-navy-rgb: 12 10 9;
-  --color-accent-rgb: 120 113 108;
+  --color-primary-rgb: 0 181 189;
+  --color-primary-dark-rgb: 0 123 131;
+  --color-cyan-rgb: 0 181 189;
+  --color-navy-rgb: 26 46 46;
+  --color-accent-rgb: 0 181 189;
   --color-card-rgb: 255 255 255;
   --color-on-brand-rgb: 255 255 255;
 
   /* ── Glass effects ───────────────────────────────────────────────── */
-  --glass-bg: rgba(255, 255, 255, 0.72);
-  --glass-bg-strong: rgba(255, 255, 255, 0.88);
-  --glass-bg-cyan: rgba(245, 244, 239, 0.72);
-  --glass-bg-mauve: rgba(245, 244, 239, 0.72);
-  --glass-border: rgba(231, 229, 222, 0.9);
-  --glass-border-cyan: rgba(168, 162, 158, 0.3);
-  --glass-border-mauve: rgba(168, 162, 158, 0.3);
-  --glass-shadow: 0 8px 32px rgba(28, 25, 23, 0.08);
-  --glass-shadow-cyan: 0 4px 16px rgba(28, 25, 23, 0.06);
-  --glass-shadow-mauve: 0 4px 16px rgba(28, 25, 23, 0.06);
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-bg-strong: rgba(255, 255, 255, 0.92);
+  --glass-bg-cyan: rgba(224, 247, 248, 0.72);
+  --glass-bg-mauve: rgba(224, 247, 248, 0.72);
+  --glass-border: rgba(0, 181, 189, 0.18);
+  --glass-border-cyan: rgba(0, 181, 189, 0.28);
+  --glass-border-mauve: rgba(0, 181, 189, 0.18);
+  --glass-shadow: 0 8px 32px rgba(0, 123, 131, 0.08);
+  --glass-shadow-cyan: 0 4px 16px rgba(0, 181, 189, 0.06);
+  --glass-shadow-mauve: 0 4px 16px rgba(0, 181, 189, 0.06);
   --glass-blur: blur(14px);
-  --glass-nav-bg: rgba(250, 249, 245, 0.92);
+  --glass-nav-bg: rgba(240, 254, 255, 0.92);
 
-  /* ── Gradients (monochrome) ──────────────────────────────────────── */
-  --gradient-hero: linear-gradient(135deg, #1C1917 0%, #3C3830 50%, #5C5752 100%);
-  --gradient-hero-alt: linear-gradient(135deg, #1C1917 0%, #44403C 70%, #78716C 100%);
-  --gradient-brand: linear-gradient(135deg, #1C1917, #44403C);
-  --gradient-accent: linear-gradient(135deg, #78716C, #57534E);
-  --soft-gradient: linear-gradient(135deg, #FFFFFF 0%, #F5F4EF 52%, #E7E5DE 100%);
+  /* ── Gradients ───────────────────────────────────────────────────── */
+  --gradient-hero: linear-gradient(135deg, #005a60 0%, #007b83 50%, #00B5BD 100%);
+  --gradient-hero-alt: linear-gradient(135deg, #007b83 0%, #00B5BD 70%, #29C9D0 100%);
+  --gradient-brand: linear-gradient(135deg, #007b83, #00B5BD);
+  --gradient-accent: linear-gradient(135deg, #007b83, #00B5BD);
+  --soft-gradient: linear-gradient(135deg, #ffffff 0%, #e0f7f8 52%, #c8e8ea 100%);
 
-  --shadow: 0 4px 24px rgb(28 25 23 / 0.08);
-  --shadow-soft: 0 2px 12px rgb(28 25 23 / 0.05);
+  --shadow: 0 4px 24px rgb(0 123 131 / 0.08);
+  --shadow-soft: 0 2px 12px rgb(0 123 131 / 0.05);
   --radius-sm: 8px;
   --radius: 12px;
   --radius-md: 16px;
   --radius-lg: 20px;
   --radius-xl: 24px;
   --radius-full: 999px;
-  --radius-button: 12px;
+  --radius-button: 10px;
   --max: 1180px;
   --font-heading: "Inter", system-ui, sans-serif;
   --font-body: "Inter", system-ui, sans-serif;
@@ -95,9 +97,9 @@
   --teal: var(--color-primary);
   --teal-mid: var(--color-cyan);
   --teal-light: var(--color-primary-light);
-  --amber: #78716C;
-  --amber-light: #F5F4EF;
-  --amber-dark: #44403C;
+  --amber: #f59e0b;
+  --amber-light: #fef9e7;
+  --amber-dark: #d97706;
   --slate: var(--color-text);
   --slate-mid: var(--color-text-muted);
   --slate-light: var(--color-bg);
@@ -116,20 +118,22 @@
 }
 
 [data-theme="dark"] {
-  --color-bg: #0C0A09;
-  --color-bg-soft: #1C1917;
-  --color-card: #1C1917;
-  --color-border: #2C2A27;
-  --color-text: #E7E5DE;
-  --color-text-muted: #A8A29E;
-  --glass-bg: rgba(28, 25, 23, 0.72);
-  --glass-bg-cyan: rgba(44, 40, 36, 0.72);
-  --glass-bg-mauve: rgba(44, 40, 36, 0.72);
-  --glass-border: rgba(60, 56, 48, 0.9);
-  --glass-nav-bg: rgba(12, 10, 9, 0.92);
-  --color-card-rgb: 28 25 23;
-  --soft-gradient: linear-gradient(135deg, #1C1917 0%, #0C0A09 54%, #2C2A27 100%);
-  --shadow: 0 4px 24px rgb(0 0 0 / 0.28);
+  --color-bg: #071515;
+  --color-bg-soft: #0a1e1e;
+  --color-bg-subtle: #0d2020;
+  --color-card: #0f2424;
+  --color-border: #1c3838;
+  --color-text: #e0f7f8;
+  --color-text-muted: #6ba8a8;
+  --color-muted: #6ba8a8;
+  --glass-bg: rgba(15, 36, 36, 0.75);
+  --glass-bg-cyan: rgba(15, 36, 36, 0.72);
+  --glass-bg-mauve: rgba(15, 36, 36, 0.72);
+  --glass-border: rgba(0, 181, 189, 0.2);
+  --glass-nav-bg: rgba(7, 21, 21, 0.95);
+  --color-card-rgb: 15 36 36;
+  --soft-gradient: linear-gradient(135deg, #0f2424 0%, #071515 54%, #1c3838 100%);
+  --shadow: 0 4px 24px rgb(0 0 0 / 0.3);
 }
 
 .glass {
@@ -788,9 +792,9 @@ color: var(--color-on-brand);
 }
 
 .button.primary:hover {
-  background: #2C2927;
+  background: var(--color-primary-dark);
   transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgb(28 25 23 / 0.16);
+  box-shadow: 0 4px 14px rgb(var(--color-primary-rgb) / 0.3);
 }
 
 .button.primary:active {
@@ -14784,7 +14788,8 @@ gap: 8px;
 
 /* ── Missing variable aliases (prevent fallback errors) ─────────── */
 :root {
-  --color-bg-soft: color-mix(in srgb, var(--color-bg) 82%, var(--color-primary-light) 18%);
+  --color-bg-soft: color-mix(in srgb, var(--color-bg) 70%, var(--color-primary-light) 30%);
+  --color-bg-subtle: color-mix(in srgb, var(--color-bg) 90%, #ffffff 10%);
   --shadow-soft: 0 8px 24px rgb(var(--color-navy-rgb) / 0.06);
   --shadow-premium: 0 32px 72px rgb(var(--color-navy-rgb) / 0.18), 0 8px 20px rgb(var(--color-navy-rgb) / 0.08);
   --shadow-cyan-glow: 0 20px 48px rgb(var(--color-cyan-rgb) / 0.20), 0 4px 12px rgb(var(--color-navy-rgb) / 0.08);
