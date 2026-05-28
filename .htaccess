@@ -2,10 +2,15 @@ Options -MultiViews
 RewriteEngine On
 
 # ── SPA routing ───────────────────────────────────────────────────────────────
-# Serve existing files and directories as-is
+# Step 1: Force SPA for known app routes BEFORE directory/file checks.
+# This prevents old static sub-directories (e.g. /courses/index.html)
+# from intercepting URLs that belong to the React SPA.
+RewriteRule ^(courses|resources|careers|search|flashcards|dictionary|dashboard|settings|login|notes|progress|quiz|community|careers)(\/.*)?$ /index.html [L,QSA]
+
+# Step 2: Serve real static files and directories as-is
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-# Fallback: all unmatched paths → index.html
+# Fallback: all other unmatched paths → index.html
 RewriteRule ^ index.html [QSA,L]
 
 # ── GZIP / Deflate compression ────────────────────────────────────────────────

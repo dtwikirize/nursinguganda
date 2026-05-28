@@ -1631,8 +1631,9 @@ async function sendQuizResultsEmail(quizKey) {
   const questionResults = questions.map((q, i) => {
     const ans = attempt[i];
     const correct = quizAnswerCorrect(q, ans);
-    const selectedLabel = ans === undefined ? null : (q.choices?.[Number(ans)] ?? null);
-    const correctLabel = String(q.answer);
+    const selectedLabel = ans === undefined ? null : (q.choices?.[Number(ans)] ?? String(ans));
+    // correctLabel: resolve from choices array when choices exist (MCQ), else use raw value
+    const correctLabel = q.choices?.[q.answer] ?? String(q.answer);
     return {
       prompt: q.prompt || "",
       selectedLabel,
@@ -7385,96 +7386,68 @@ function renderCourses() {
   const last = lastStudiedTopic();
   const totalUnits = programmes.reduce((sum, p) => sum + allUnits(p).length, 0);
   const totalLessons = totals.topics || allStudyTopics().length;
+  const completed = completedTopics();
+  const streak = updateStreak();
 
-  const levelLinks = [
-    { label: "Certificate", icon: "bookOpen", desc: "Foundation nursing training", filter: "Certificate" },
-    { label: "Diploma", icon: "graduationCap", desc: "Extended clinical programmes", filter: "Diploma" },
-    { label: "Degree", icon: "star", desc: "Bachelor-level programmes", filter: "Degree" }
-  ];
+  const levels = ["All", "Certificate", "Diploma", "Degree"];
 
   return `
     <div class="courses-page">
 
       <!-- ── Hero ── -->
-      <div class="courses-hero">
+      <section class="courses-hero2">
         <div class="container">
-          <div class="courses-hero-inner">
-            <div class="courses-hero-text">
-              <span class="courses-eyebrow">${icon("graduationCap")} Nursing Uganda</span>
-              <h1>Courses &amp; Curriculum</h1>
-              <p>All nursing and midwifery programmes available for Uganda students — structured by year, semester and lesson.</p>
-              <div class="courses-hero-actions">
-                ${buttonLink("/courses/curriculum", "View Curriculum Map", "primary", "listChecks")}
-                ${buttonLink("/search", "Search Lessons", "ghost", "search")}
+          <div class="courses-hero2-inner">
+            <div class="courses-hero2-copy">
+              <span class="eyebrow courses-hero2-eyebrow">Courses &amp; Curriculum</span>
+              <h1 class="courses-hero2-title">All Nursing &amp;<br>Midwifery Programmes</h1>
+              <p class="courses-hero2-desc">Every nursing and midwifery programme for Uganda students — structured by year, semester and lesson. Pick a programme to begin.</p>
+              <div class="courses-hero2-pills">
+                <span>${icon("graduationCap")}<strong>${programmes.length}</strong> Programmes</span>
+                <span>${icon("bookOpen")}<strong>${totalUnits}</strong> Course Units</span>
+                <span>${icon("fileText")}<strong>${totalLessons.toLocaleString()}</strong> Lessons</span>
+                <span>${icon("checkCircle")}<strong>${progress.percent}%</strong> Progress</span>
               </div>
             </div>
-            <div class="courses-hero-stats">
-              <div class="courses-stat-card">
-                <strong>${programmes.length}</strong>
-                <span>Programmes</span>
-              </div>
-              <div class="courses-stat-card">
-                <strong>${totalUnits}</strong>
-                <span>Course Units</span>
-              </div>
-              <div class="courses-stat-card">
-                <strong>${totalLessons.toLocaleString()}</strong>
-                <span>Lessons</span>
-              </div>
-              <div class="courses-stat-card">
-                <strong>${progress.percent}%</strong>
-                <span>Your Progress</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ── Resume strip ── -->
-      ${last ? `
-        <div class="courses-resume-strip">
-          <div class="container">
-            <div class="courses-resume-inner">
-              <div class="courses-resume-info">
-                ${icon("bookOpen")}
-                <div>
-                  <span class="courses-resume-label">Continue where you left off</span>
-                  <strong>${escapeHtml(last.title)}</strong>
-                  <span>${escapeHtml(last.programme)} — ${escapeHtml(last.unit)}</span>
-                </div>
-              </div>
-              ${buttonLink(last.href, "Resume Lesson", "primary", "arrowRight")}
-            </div>
-          </div>
-        </div>
-      ` : ""}
-
-      <!-- ── Level filter pills ── -->
-      <div class="courses-levels-strip">
-        <div class="container">
-          <div class="courses-levels-inner">
-            <div class="courses-levels-text">
-              <h2>Browse by Level</h2>
-              <p>Choose a programme level or scroll down to explore all.</p>
-            </div>
-            <div class="courses-level-pills">
-              ${levelLinks.map((l) => `
-                <button type="button" class="courses-level-pill${state.programmeFilter === l.filter ? " active" : ""}" data-programme-level="${escapeHtml(l.filter)}">
-                  ${icon(l.icon)}
-                  <div>
-                    <strong>${escapeHtml(l.label)}</strong>
-                    <span>${escapeHtml(l.desc)}</span>
+            <div class="courses-hero2-actions">
+              ${last ? `
+                <div class="courses-resume-card">
+                  <div class="courses-resume-meta">
+                    <span class="courses-resume-chip">${icon("bookOpen")} Continue studying</span>
+                    <strong>${escapeHtml(last.title)}</strong>
+                    <span>${escapeHtml(last.programme)} &mdash; ${escapeHtml(last.unit)}</span>
                   </div>
+                  ${buttonLink(last.href, "Resume Lesson", "primary", "arrowRight")}
+                </div>
+              ` : `
+                <div class="courses-resume-card courses-resume-empty">
+                  ${icon("graduationCap")}
+                  <strong>Start your first lesson</strong>
+                  <span>Open any course below and your progress will be tracked automatically.</span>
+                </div>
+              `}
+              <div class="courses-hero2-ctas">
+                ${buttonLink("/courses/curriculum", "Curriculum Map", "ghost-white", "listChecks")}
+                ${buttonLink("/search", "Search Lessons", "ghost-white", "search")}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Level filter bar ── -->
+      <div class="courses-filter-bar">
+        <div class="container">
+          <div class="courses-filter-inner">
+            <span class="courses-filter-label">Filter by level:</span>
+            <div class="courses-filter-pills" role="group" aria-label="Filter programmes by level">
+              ${levels.map((l) => `
+                <button type="button" class="filter-pill${state.programmeFilter === l ? " active" : ""}" data-programme-level="${escapeHtml(l)}">
+                  ${escapeHtml(l)}
                 </button>
               `).join("")}
-              <button type="button" class="courses-level-pill${state.programmeFilter === "All" ? " active" : ""}" data-programme-level="All">
-                ${icon("listChecks")}
-                <div>
-                  <strong>All</strong>
-                  <span>Every programme</span>
-                </div>
-              </button>
             </div>
+            <span class="courses-filter-count">${programmes.filter(p => state.programmeFilter === "All" || programmeLevel(p) === state.programmeFilter).length} shown</span>
           </div>
         </div>
       </div>
@@ -7483,6 +7456,24 @@ function renderCourses() {
       <section class="section">
         <div class="container">
           ${programmeSections()}
+        </div>
+      </section>
+
+      <!-- ── Bottom CTA ── -->
+      <section class="section compact-section courses-bottom-cta-section">
+        <div class="container">
+          <div class="home-cta-banner">
+            <div>
+              <span class="eyebrow">Explore further</span>
+              <h2>More Study Tools</h2>
+              <p>Flashcards for active recall, quizzes to test yourself, and a full medical dictionary.</p>
+            </div>
+            <div class="home-cta-actions">
+              ${buttonLink("/flashcards", "Flashcards", "primary", "bookOpen")}
+              ${buttonLink("/resources/quizzes", "Quizzes", "secondary", "helpCircle")}
+              ${buttonLink("/dictionary", "Dictionary", "ghost", "search")}
+            </div>
+          </div>
         </div>
       </section>
 

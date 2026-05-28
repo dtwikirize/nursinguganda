@@ -18202,10 +18202,217 @@ textarea:focus {
 }
 
 /* ============================================================
-   REDESIGNED COURSES PAGE
+   REDESIGNED COURSES PAGE v2
    ============================================================ */
 
-/* ── Hero ── */
+/* ── Hero v2 (matches home-hero style) ── */
+.courses-hero2 {
+  position: relative;
+  padding: 52px 0 48px;
+  overflow: hidden;
+  background: linear-gradient(145deg, #006b72 0%, #00B5BD 55%, #29C9D0 100%);
+  color: #fff;
+}
+
+.courses-hero2::before {
+  content: "";
+  position: absolute;
+  top: -70px; right: -60px;
+  width: 480px; height: 480px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+  pointer-events: none;
+}
+
+.courses-hero2-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0,1.2fr) minmax(300px,0.8fr);
+  gap: 52px;
+  align-items: center;
+}
+
+.courses-hero2-eyebrow {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: rgba(255,255,255,0.7);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.courses-hero2-title {
+  margin: 0 0 12px;
+  color: #fff;
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1.04;
+}
+
+.courses-hero2-desc {
+  max-width: 54ch;
+  margin: 0 0 22px;
+  color: rgba(255,255,255,0.82);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.courses-hero2-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.courses-hero2-pills span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 13px;
+  border: 1px solid rgba(255,255,255,0.22);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.13);
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.courses-hero2-pills .ui-icon { width:13px; height:13px; opacity:0.8; }
+.courses-hero2-pills strong { font-weight: 900; }
+
+.courses-hero2-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Resume card inside hero */
+.courses-resume-card {
+  padding: 20px 22px;
+  border: 1px solid rgba(255,255,255,0.22);
+  border-radius: var(--radius-md);
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.courses-resume-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.courses-resume-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.73rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.72);
+  margin-bottom: 4px;
+}
+.courses-resume-chip .ui-icon { width:13px; height:13px; }
+
+.courses-resume-card strong {
+  color: #fff;
+  font-size: 0.97rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.courses-resume-card > span,
+.courses-resume-meta > span:last-child {
+  color: rgba(255,255,255,0.68);
+  font-size: 0.82rem;
+}
+
+.courses-resume-card .button {
+  align-self: flex-start;
+  margin-top: 4px;
+}
+
+.courses-resume-empty {
+  align-items: center;
+  text-align: center;
+  padding: 28px;
+  gap: 10px;
+}
+
+.courses-resume-empty .ui-icon { width:28px; height:28px; opacity:0.6; }
+.courses-resume-empty strong { color:#fff; font-size:1rem; }
+
+.courses-hero2-ctas {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* ── Level filter bar ── */
+.courses-filter-bar {
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-card);
+  padding: 14px 0;
+}
+
+.courses-filter-inner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.courses-filter-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.courses-filter-pills {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.courses-filter-count {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  font-weight: 600;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+/* ── Dark mode ── */
+[data-theme="dark"] .courses-hero2 {
+  background: linear-gradient(145deg, #004a50 0%, #006b72 55%, #00B5BD 100%);
+}
+
+/* ── Responsive ── */
+@media (max-width: 860px) {
+  .courses-hero2-inner {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .courses-hero2 { padding: 38px 0 32px; }
+}
+
+@media (max-width: 540px) {
+  .courses-hero2-title { font-size: 1.8rem; }
+  .courses-hero2-ctas { flex-direction: column; }
+  .courses-hero2-ctas .button { justify-content: center; }
+  .courses-filter-count { display: none; }
+}
+
+/* ── Legacy hero styles (kept for any remaining references) ── */
 .courses-hero {
   background: linear-gradient(135deg, #007b83 0%, #00B5BD 45%, #29C9D0 100%);
   color: #fff;
