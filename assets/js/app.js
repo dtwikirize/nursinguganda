@@ -197,6 +197,7 @@ const iconPaths = {
   alarmClock: `<circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M5 3 2 6"/><path d="m22 6-3-3"/><path d="M6.38 18.7 4 21"/><path d="M17.64 18.67 20 21"/>`,
   timerReset: `<path d="M10 2h4"/><path d="M12 14v-4"/><path d="M4 13a8 8 0 0 1 8-7 8 8 0 1 1-5.3 14L4 17.6"/><path d="M9 17H4v5"/>`,
   zap: `<path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>`,
+  whatsapp: `<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>`,
   gift: `<rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/>`,
 };
 
@@ -8023,6 +8024,7 @@ function renderLessonSidebar(programme, unit, topic, previous, next, complete, p
           data-bookmark-href="${escapeHtml(bookmark.href)}"
         >${icon("download")}<span>${active ? "Notes saved" : "Save notes"}</span></button>
         <button type="button" class="lesson-secondary-action" data-print-topic>${icon("printer")}<span>Print / Save PDF</span></button>
+        <a class="lesson-secondary-action lesson-wa-share" href="${waShare(`📚 Studying "${lmsLessonTitle(programme, unit, topic)}" on Nursing Uganda — great notes for nursing students!\n\nhttps://nursinguganda.com${topicHref(programme, unit, topic.groupIndex, topic.topicIndex)}`)}" target="_blank" rel="noopener noreferrer">${icon("whatsapp")}<span>Share on WhatsApp</span></a>
         <div class="lesson-sidebar-badges">
           <span>${lessonReadingMinutes(lessonForTopic(programme, unit, topic))} min read</span>
           <span>Beginner</span>
@@ -8044,6 +8046,10 @@ function firstTextBlock(section) {
 
 function normalizeQuizAnswer(value) {
   return String(value || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+}
+
+function waShare(text) {
+  return `https://wa.me/?text=${encodeURIComponent(text)}`;
 }
 
 function quizAnswerCorrect(question, answer) {
@@ -9259,6 +9265,7 @@ function renderStandaloneQuizPage(title, subtitle, questions, quizKey, backHref,
               <p>${pct >= 80 ? "Outstanding — excellent work." : pct >= 60 ? "Good understanding — keep revising." : pct >= 50 ? "Satisfactory — review explanations below." : "Keep studying — the explanations below will help."}</p>
               <button type="button" class="button secondary" data-reset-quiz="${escapeHtml(quizKey)}">${icon("rotateCcw")}<span>Retake Quiz</span></button>
               ${state.currentUser?.email ? `<button type="button" class="button ghost quiz-email-btn" data-email-quiz="${escapeHtml(quizKey)}">${icon("mail")}<span>Email Results</span></button>` : ""}
+              <a class="button ghost quiz-wa-share" href="${waShare(`🏆 I scored ${score}/${questions.length} (${pct}%) on "${title}" quiz on Nursing Uganda!\n\nTest yourself 👉 https://nursinguganda.com${window.location.pathname}`)}" target="_blank" rel="noopener noreferrer">${icon("whatsapp")}<span>Share on WhatsApp</span></a>
             </div>
           </div>
         ` : ""}
@@ -14898,16 +14905,63 @@ const STUDY_TIPS = [
 ];
 
 const QUICK_QUIZZES = [
+  // ── Vitals & Assessment ──────────────────────────────────────────────
   { q: "A normal adult respiratory rate is:", options: ["8–12/min", "12–20/min", "20–30/min", "30–40/min"], answer: 1 },
+  { q: "Normal fasting blood glucose range in adults is:", options: ["2–4 mmol/L", "4–7 mmol/L", "7–10 mmol/L", "10–14 mmol/L"], answer: 1 },
+  { q: "A patient with a SpO₂ of 88% should receive oxygen targeting:", options: ["88–90%", "94–98%", "100%", "No oxygen needed"], answer: 1 },
+  { q: "Normal adult heart rate range is:", options: ["40–60 bpm", "60–100 bpm", "100–120 bpm", "120–140 bpm"], answer: 1 },
+  { q: "Normal systolic blood pressure in a healthy adult is:", options: ["Less than 90 mmHg", "90–119 mmHg", "120–139 mmHg", "140 mmHg or above"], answer: 1 },
+  { q: "Normal oral temperature in an adult is approximately:", options: ["35.0 °C", "36.0–37.5 °C", "38.0–38.5 °C", "39.0 °C"], answer: 1 },
+  { q: "OLDCART is a mnemonic used to assess:", options: ["Level of consciousness", "Pain history", "Wound healing", "Respiratory status"], answer: 1 },
+  // ── Emergency & Primary Survey ───────────────────────────────────────
+  { q: "The first priority in the primary survey (ABCDE) is:", options: ["Breathing", "Circulation", "Airway", "Disability"], answer: 2 },
+  { q: "Which position is safest for an unconscious but breathing patient?", options: ["Supine", "Prone", "Recovery (lateral) position", "Trendelenburg"], answer: 2 },
+  { q: "The correct compression-to-ventilation ratio in adult CPR (1 rescuer) is:", options: ["15:2", "30:2", "5:1", "20:2"], answer: 1 },
+  { q: "First-line treatment for anaphylaxis is:", options: ["IV hydrocortisone", "IV antihistamine", "IM adrenaline (epinephrine)", "Oral prednisolone"], answer: 2 },
+  { q: "In shock, the earliest compensatory sign is:", options: ["Hypotension", "Tachycardia", "Bradycardia", "Cyanosis"], answer: 1 },
+  // ── Pharmacology ─────────────────────────────────────────────────────
   { q: "Which electrolyte imbalance causes 'Chvostek's sign'?", options: ["Hypokalemia", "Hypernatremia", "Hypocalcemia", "Hypomagnesemia"], answer: 2 },
   { q: "The antidote for heparin overdose is:", options: ["Vitamin K", "Protamine sulfate", "Naloxone", "Flumazenil"], answer: 1 },
-  { q: "APGAR score is assessed at which time points after birth?", options: ["1 min only", "1 and 5 minutes", "5 and 10 minutes", "3 and 7 minutes"], answer: 1 },
-  { q: "Which fluid is isotonic and is the most common IV fluid used in Uganda?", options: ["5% Dextrose", "Normal Saline (0.9%)", "Ringer's Lactate", "0.45% Saline"], answer: 1 },
-  { q: "A patient with a SpO₂ of 88% should receive oxygen targeting:", options: ["88–90%", "94–98%", "100%", "No oxygen needed"], answer: 1 },
-  { q: "The first priority in the primary survey (ABCDE) is:", options: ["Breathing", "Circulation", "Airway", "Disability"], answer: 2 },
-  { q: "Normal fasting blood glucose range in adults is:", options: ["2–4 mmol/L", "4–7 mmol/L", "7–10 mmol/L", "10–14 mmol/L"], answer: 1 },
-  { q: "Which position is safest for an unconscious but breathing patient?", options: ["Supine", "Prone", "Recovery (lateral) position", "Trendelenburg"], answer: 2 },
   { q: "Gentamicin is an example of which antibiotic class?", options: ["Penicillin", "Cephalosporin", "Aminoglycoside", "Macrolide"], answer: 2 },
+  { q: "The antidote for paracetamol (acetaminophen) overdose is:", options: ["Activated charcoal", "N-acetylcysteine (NAC)", "Naloxone", "Flumazenil"], answer: 1 },
+  { q: "Which drug class does Metformin belong to?", options: ["Sulphonylurea", "Insulin sensitiser (biguanide)", "DPP-4 inhibitor", "Alpha-glucosidase inhibitor"], answer: 1 },
+  { q: "Furosemide is classified as which type of diuretic?", options: ["Potassium-sparing", "Thiazide", "Loop diuretic", "Osmotic"], answer: 2 },
+  { q: "A patient on warfarin has a supratherapeutic INR. The reversal agent is:", options: ["Protamine sulfate", "Vitamin K", "Fresh frozen plasma only", "Heparin"], answer: 1 },
+  { q: "Which opioid side effect requires immediate nursing intervention?", options: ["Constipation", "Nausea", "Respiratory depression", "Dry mouth"], answer: 2 },
+  // ── Maternal & Child Health ──────────────────────────────────────────
+  { q: "APGAR score is assessed at which time points after birth?", options: ["1 min only", "1 and 5 minutes", "5 and 10 minutes", "3 and 7 minutes"], answer: 1 },
+  { q: "A partograph is used to monitor:", options: ["Fetal heart rate only", "Progress of labour", "Maternal blood pressure", "Neonatal weight"], answer: 1 },
+  { q: "The classic triad of pre-eclampsia includes hypertension, proteinuria, and:", options: ["Anaemia", "Headache", "Oedema", "Convulsions"], answer: 2 },
+  { q: "Exclusive breastfeeding is recommended for the first:", options: ["3 months", "6 months", "9 months", "12 months"], answer: 1 },
+  { q: "Kangaroo Mother Care is primarily used for:", options: ["Babies with jaundice", "Low birth weight / preterm infants", "Babies with respiratory distress", "Post-operative neonates"], answer: 1 },
+  { q: "Normal duration of the second stage of labour (primigravida) is up to:", options: ["30 minutes", "1 hour", "2 hours", "3 hours"], answer: 2 },
+  // ── Fluids, Electrolytes & IV Therapy ───────────────────────────────
+  { q: "Which fluid is isotonic and most commonly used in Uganda?", options: ["5% Dextrose", "Normal Saline (0.9%)", "Ringer's Lactate", "0.45% Saline"], answer: 1 },
+  { q: "Ringer's Lactate is classified as:", options: ["Hypertonic", "Hypotonic", "Isotonic", "Colloid"], answer: 2 },
+  { q: "A patient is to receive 1 litre of Normal Saline over 8 hours. The drip rate (20 drops/mL set) is:", options: ["21 drops/min", "42 drops/min", "14 drops/min", "28 drops/min"], answer: 1 },
+  { q: "Hyponatraemia is defined as a serum sodium below:", options: ["145 mmol/L", "135 mmol/L", "125 mmol/L", "115 mmol/L"], answer: 1 },
+  // ── Infection Prevention & Control ──────────────────────────────────
+  { q: "The single most effective infection prevention practice is:", options: ["Wearing gloves", "Hand hygiene", "Wearing a mask", "Gowning"], answer: 1 },
+  { q: "Standard precautions apply to:", options: ["Blood only", "All body fluids except sweat", "Known infectious patients only", "HIV-positive patients only"], answer: 1 },
+  { q: "The correct order for donning PPE is:", options: ["Gloves → gown → mask → goggles", "Gown → mask → goggles → gloves", "Mask → goggles → gown → gloves", "Goggles → mask → gloves → gown"], answer: 1 },
+  { q: "High-level disinfection destroys all microorganisms except:", options: ["Bacteria", "Viruses", "Fungi", "Some bacterial spores"], answer: 3 },
+  // ── Medical–Surgical Nursing ─────────────────────────────────────────
+  { q: "A stage 2 pressure ulcer involves:", options: ["Intact skin with redness", "Partial thickness skin loss", "Full thickness skin loss", "Exposed bone or tendon"], answer: 1 },
+  { q: "The most common early symptom of a myocardial infarction is:", options: ["Jaw pain", "Crushing central chest pain", "Left arm numbness only", "Shortness of breath only"], answer: 1 },
+  { q: "McBurney's point tenderness is associated with:", options: ["Peptic ulcer", "Appendicitis", "Cholecystitis", "Pancreatitis"], answer: 1 },
+  { q: "A urinary catheter size is measured in:", options: ["Millimetres", "French (Fr) gauge", "Inches", "American Wire Gauge"], answer: 1 },
+  // ── Community & Public Health ────────────────────────────────────────
+  { q: "The Uganda immunisation schedule gives BCG vaccine at:", options: ["6 weeks", "Birth", "10 weeks", "14 weeks"], answer: 1 },
+  { q: "Oral Rehydration Solution (ORS) is prepared with 1 litre of water plus:", options: ["6 tsp sugar + 1 tsp salt", "1 tsp sugar + 6 tsp salt", "8 tsp sugar + 1 tsp salt", "4 tsp sugar + 2 tsp salt"], answer: 0 },
+  { q: "Malaria is transmitted by:", options: ["Culex mosquito (male)", "Anopheles mosquito (female)", "Aedes mosquito (female)", "Any mosquito bite"], answer: 1 },
+  // ── Nutrition ────────────────────────────────────────────────────────
+  { q: "Kwashiorkor is primarily caused by deficiency of:", options: ["Total calories", "Protein", "Vitamin A", "Iron"], answer: 1 },
+  { q: "Normal adult BMI range is:", options: ["15–18.4", "18.5–24.9", "25–29.9", "30–34.9"], answer: 1 },
+  { q: "Vitamin C deficiency causes:", options: ["Rickets", "Pellagra", "Scurvy", "Beriberi"], answer: 2 },
+  { q: "The best dietary source of iron for a patient with anaemia is:", options: ["Maize porridge", "Red meat and leafy green vegetables", "Milk and dairy products", "Cassava and sweet potato"], answer: 1 },
+  // ── Mental Health ─────────────────────────────────────────────────────
+  { q: "Therapeutic communication prioritises:", options: ["Giving advice quickly", "Active listening and empathy", "Completing documentation first", "Referring immediately"], answer: 1 },
+  { q: "A patient expresses suicidal ideation. The first nursing action is:", options: ["Document and inform the next shift", "Ask directly about a plan and means", "Leave the patient to calm down", "Administer sedation"], answer: 1 },
 ];
 
 function initPopups() {
@@ -15027,7 +15081,10 @@ function initPopups() {
           <p class="nu-popup-tip-text">${tip.tip}</p>
           <div class="nu-popup-tip-foot">
             <span class="nu-popup-tip-tag">${tip.tag}</span>
-            <button class="nu-popup-tip-close" type="button" aria-label="Dismiss">${icon("x")}</button>
+            <div class="nu-popup-tip-actions">
+              <a class="nu-popup-tip-wa" href="${waShare(`💡 Nursing Tip: "${tip.tip}"\n\nMore tips at https://nursinguganda.com`)}" target="_blank" rel="noopener noreferrer">${icon("whatsapp")}</a>
+              <button class="nu-popup-tip-close" type="button" aria-label="Dismiss">${icon("x")}</button>
+            </div>
           </div>
         </div>`;
       document.body.appendChild(el);

@@ -2,6 +2,7 @@ const CACHE_VERSION = "nursing-uganda-v96";
 const APP_SHELL = [
   "./",
   "./index.html",
+  "./offline.html",
   "./manifest.webmanifest",
   "./assets/css/main.min.css?v=96",
   "./assets/js/app.min.js?v=96",
@@ -42,7 +43,11 @@ self.addEventListener("fetch", (event) => {
   if (url.origin !== self.location.origin) return;
 
   if (request.mode === "navigate") {
-    event.respondWith(fetch(request).catch(() => caches.match("./index.html")));
+    event.respondWith(
+      fetch(request).catch(() =>
+        caches.match("./index.html").then((r) => r || caches.match("./offline.html"))
+      )
+    );
     return;
   }
 

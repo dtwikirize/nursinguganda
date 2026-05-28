@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>You're Offline — Nursing Uganda</title>
+  <meta name="robots" content="noindex">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f0feff;
+      color: #1a2e2e;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.25rem;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 8px 40px rgba(0,181,189,.12);
+      border: 1.5px solid rgba(0,181,189,.18);
+    }
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 64px; height: 64px;
+      border-radius: 16px;
+      background: #00B5BD;
+      margin-bottom: 1.5rem;
+    }
+    .logo svg { width: 36px; height: 36px; }
+    h1 { font-size: 1.4rem; font-weight: 800; color: #1a2e2e; margin-bottom: .5rem; }
+    p  { font-size: .95rem; color: #4b6060; line-height: 1.6; margin-bottom: 1.5rem; }
+    .available {
+      background: #f0feff;
+      border-radius: 12px;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+    .available h2 { font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #00B5BD; margin-bottom: .6rem; }
+    .available ul { list-style: none; display: flex; flex-direction: column; gap: .45rem; }
+    .available li { font-size: .88rem; color: #1a2e2e; display: flex; align-items: center; gap: .5rem; }
+    .available li::before { content: "✓"; color: #00B5BD; font-weight: 700; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+      background: #00B5BD; color: #fff;
+      border: none; border-radius: 10px;
+      padding: .75rem 1.5rem; font-size: .95rem; font-weight: 700;
+      cursor: pointer; width: 100%;
+      text-decoration: none;
+      transition: background .15s;
+    }
+    .btn:hover { background: #007b83; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+        <path d="M32 13v38M13 32h38" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <h1>You're Offline</h1>
+    <p>No internet connection detected. You can still access everything that was cached during your last visit.</p>
+    <div class="available">
+      <h2>Available offline</h2>
+      <ul>
+        <li>Study Notes you've already viewed</li>
+        <li>Flashcards &amp; Dictionary</li>
+        <li>Quizzes you've started</li>
+        <li>Your progress &amp; bookmarks</li>
+      </ul>
+    </div>
+    <a href="/" class="btn">← Go to App</a>
+  </div>
+</body>
+</html>

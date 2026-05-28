@@ -123,6 +123,51 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       window.addEventListener("load", () => window.scrollTo(0, 0));
     </script>
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Nursing Uganda",
+      "url": "https://nursinguganda.com",
+      "logo": "https://nursinguganda.com/assets/images/nursing-uganda-favicon.svg",
+      "description": "Nursing and midwifery revision notes, courses, resources and practical study support for Uganda students.",
+      "address": { "@type": "PostalAddress", "addressCountry": "UG" },
+      "knowsAbout": ["Nursing", "Midwifery", "Medical Education", "Healthcare Training"]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Nursing Uganda",
+      "url": "https://nursinguganda.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": { "@type": "EntryPoint", "urlTemplate": "https://nursinguganda.com/search?q={search_term_string}" },
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "name": "Nursing Uganda",
+      "url": "https://nursinguganda.com",
+      "description": "Free online nursing and midwifery revision platform for students in Uganda.",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Nursing & Midwifery Courses",
+        "itemListElement": [
+          { "@type": "Course", "name": "Certificate in Comprehensive Nursing", "provider": { "@type": "Organization", "name": "Nursing Uganda" } },
+          { "@type": "Course", "name": "Diploma in Midwifery", "provider": { "@type": "Organization", "name": "Nursing Uganda" } },
+          { "@type": "Course", "name": "Bachelor of Science in Nursing", "provider": { "@type": "Organization", "name": "Nursing Uganda" } }
+        ]
+      }
+    }
+    </script>
   </head>
   <body>
     <div id="app">
