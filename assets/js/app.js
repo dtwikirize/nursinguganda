@@ -113,7 +113,8 @@ const state = {
     answerBody: "",
     filter: "all",
     search: ""
-  }
+  },
+  leaderboard: null
 };
 
 const app = document.querySelector("#app");
@@ -1392,6 +1393,145 @@ function saveQuizResult(key) {
 function getQuizHistory() {
   try { return JSON.parse(localStorage.getItem("nursinguganda.quizHistory") || "[]"); }
   catch { return []; }
+}
+
+async function pushQuizScoreToLeaderboard(key) {
+  const client = sb();
+  const user = state.currentUser;
+  if (!client || !user || !_quizCtx?.questions?.length) return;
+  const attempt = quizAttempts()[key] || {};
+  const questions = _quizCtx.questions;
+  const score = questions.filter((q, i) => quizAnswerCorrect(q, attempt[i])).length;
+  const total = questions.length;
+  const pct = total ? Math.round((score / total) * 100) : 0;
+  const grade = pct >= 80 ? "Distinction" : pct >= 60 ? "Credit" : pct >= 50 ? "Pass" : "Below Pass";
+  try {
+    await client.from("quiz_leaderboard").insert({
+      user_id: user.id,
+      user_name: user.name || user.email.split("@")[0],
+      quiz_title: _quizCtx.title || "Quiz",
+      quiz_key: key,
+      score,
+      total,
+      pct,
+      grade
+    });
+  } catch (_) {}
+}
+
+async function loadLeaderboard() {
+  const client = sb();
+  if (!client) return;
+  try {
+    const { data } = await client
+      .from("quiz_leaderboard")
+      .select("user_name, quiz_title, score, total, pct, grade, submitted_at")
+      .gte("submitted_at", new Date(Date.now() - 7 * 86400000).toISOString())
+      .order("pct", { ascending: false })
+      .order("score", { ascending: false })
+      .limit(10);
+    state.leaderboard = data || [];
+  } catch (_) {
+    state.leaderboard = [];
+  }
+  render();
+}
+
+function getMilestoneBadges() {
+  const completed = Object.keys(completedTopics()).length;
+  const streak = getStreak();
+  const best = Math.max(streak.count || 0, streak.best || 0);
+  const quizzesTaken = Object.keys(quizSubmitted()).length;
+  const mastered = flashcardMastery().size;
+  const saved = bookmarks().length;
+  return [
+    { id: "first-lesson",   emoji: "📚", label: "First Step",      desc: "Complete your first lesson",  earned: completed >= 1   },
+    { id: "ten-lessons",    emoji: "🎯", label: "On Track",         desc: "Complete 10 lessons",         earned: completed >= 10  },
+    { id: "twenty-five",    emoji: "⭐", label: "25 Down",          desc: "Complete 25 lessons",         earned: completed >= 25  },
+    { id: "fifty-lessons",  emoji: "🏅", label: "Half Century",     desc: "Complete 50 lessons",         earned: completed >= 50  },
+    { id: "hundred",        emoji: "💯", label: "Century",          desc: "Complete 100 lessons",        earned: completed >= 100 },
+    { id: "streak-3",       emoji: "🔥", label: "Warm Up",          desc: "3-day study streak",          earned: best >= 3        },
+    { id: "streak-7",       emoji: "🔥", label: "On Fire",          desc: "7-day study streak",          earned: best >= 7        },
+    { id: "streak-14",      emoji: "⚡", label: "Unstoppable",      desc: "14-day study streak",         earned: best >= 14       },
+    { id: "streak-30",      emoji: "🌟", label: "Iron Will",        desc: "30-day study streak",         earned: best >= 30       },
+    { id: "first-quiz",     emoji: "✏️", label: "Quiz Taker",      desc: "Submit your first quiz",      earned: quizzesTaken >= 1  },
+    { id: "five-quizzes",   emoji: "📝", label: "Quiz Regular",     desc: "Submit 5 quizzes",            earned: quizzesTaken >= 5  },
+    { id: "ten-quizzes",    emoji: "🎓", label: "Quiz Scholar",     desc: "Submit 10 quizzes",           earned: quizzesTaken >= 10 },
+    { id: "fc-ten",         emoji: "🧠", label: "Brain Builder",    desc: "Master 10 flashcards",        earned: mastered >= 10   },
+    { id: "fc-fifty",       emoji: "🧠", label: "Memory Pro",       desc: "Master 50 flashcards",        earned: mastered >= 50   },
+    { id: "bookmarker",     emoji: "🔖", label: "Collector",        desc: "Save 5 bookmarks",            earned: saved >= 5       },
+  ];
+}
+
+function renderMilestoneBadges() {
+  const badges = getMilestoneBadges();
+  const earned = badges.filter(b => b.earned);
+  const locked = badges.filter(b => !b.earned);
+  if (!badges.length) return "";
+  return `
+    <div class="section-head slim-head" style="margin-top:48px">
+      <div>
+        <h2>Achievement Badges</h2>
+        <p>${earned.length} of ${badges.length} earned</p>
+      </div>
+    </div>
+    <div class="milestone-badges-grid">
+      ${[...earned, ...locked].map(b => `
+        <div class="milestone-badge${b.earned ? " earned" : " locked"}" title="${escapeHtml(b.desc)}">
+          <span class="milestone-badge-emoji">${b.earned ? b.emoji : "🔒"}</span>
+          <span class="milestone-badge-label">${escapeHtml(b.label)}</span>
+          <span class="milestone-badge-desc">${escapeHtml(b.desc)}</span>
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
+function renderLeaderboard() {
+  const rows = state.leaderboard;
+  const gradeColor = g => g === "Distinction" ? "#059669" : g === "Credit" ? "#2563eb" : g === "Pass" ? "#d97706" : "#dc2626";
+  const medals = ["🥇","🥈","🥉"];
+  if (!rows) {
+    return `
+      <div class="section-head slim-head" style="margin-top:48px">
+        <div><h2>${icon("send")} Weekly Leaderboard</h2><p>Top 10 quiz scores this week.</p></div>
+      </div>
+      <div class="leaderboard-loading">Loading leaderboard…</div>
+    `;
+  }
+  if (!rows.length) {
+    return `
+      <div class="section-head slim-head" style="margin-top:48px">
+        <div><h2>${icon("send")} Weekly Leaderboard</h2><p>Top 10 quiz scores this week.</p></div>
+      </div>
+      <div class="leaderboard-empty">
+        <span>📋</span>
+        <p>No quiz submissions this week. Be the first on the board!</p>
+        ${buttonLink("/resources/quizzes", "Take a Quiz", "primary", "send")}
+      </div>
+    `;
+  }
+  return `
+    <div class="section-head slim-head" style="margin-top:48px">
+      <div><h2>${icon("send")} Weekly Leaderboard</h2><p>Top 10 quiz scores this week — resets every Monday.</p></div>
+    </div>
+    <div class="leaderboard-table">
+      ${rows.map((r, i) => `
+        <div class="lb-row${i < 3 ? " lb-top" : ""}">
+          <span class="lb-rank">${medals[i] || (i + 1)}</span>
+          <div class="lb-info">
+            <strong>${escapeHtml(r.user_name || "Anonymous")}</strong>
+            <small>${escapeHtml(r.quiz_title || "Quiz")}</small>
+          </div>
+          <div class="lb-score-wrap">
+            <div class="lb-bar-track"><span class="lb-bar-fill" style="width:${r.pct}%;background:${gradeColor(r.grade)}"></span></div>
+            <span class="lb-pct" style="color:${gradeColor(r.grade)}">${r.pct}%</span>
+            <span class="lb-grade-badge" style="background:${gradeColor(r.grade)}">${escapeHtml(r.grade)}</span>
+          </div>
+        </div>
+      `).join("")}
+    </div>
+  `;
 }
 
 function allStudyTopics() {
@@ -6330,35 +6470,75 @@ function renderCommunityQuestion() {
 function renderActivityHeatmap() {
   const studyDates = getStudyDates();
   const today = new Date();
-  // Build an 8-week (56-day) grid, Sun→Sat columns
+  const WEEKS = 10; // show 10 weeks (70 days)
+  const DAYS  = WEEKS * 7;
+
+  // Build ordered day list oldest → newest
   const days = [];
-  for (let i = 55; i >= 0; i--) {
+  for (let i = DAYS - 1; i >= 0; i--) {
     const d = new Date(today);
     d.setDate(today.getDate() - i);
     const key = d.toISOString().slice(0, 10);
-    days.push({ key, day: d.getDay(), active: studyDates.has(key), d });
+    days.push({ key, dow: d.getDay(), month: d.getMonth(), date: d.getDate(), active: studyDates.has(key) });
   }
-  // Pad start so first cell lands on correct weekday column
-  const firstDay = days[0].day; // 0=Sun
-  const padBefore = firstDay;
+  // Pad start to Sunday boundary
+  const padBefore = days[0].dow;
   const cells = [...Array(padBefore).fill(null), ...days];
-  const dayLabels = ["S","M","T","W","T","F","S"];
+
+  // Build week columns (each column = one week, 7 rows)
+  const MONTH_NAMES = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const dayLabels = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+
+  // Calculate week index for each position to place month labels
+  const totalCells = cells.length;
+  const numWeeks = Math.ceil(totalCells / 7);
+
+  // Compute month label per week column (show if month changes on that column)
+  const weekMonthLabels = [];
+  for (let w = 0; w < numWeeks; w++) {
+    const firstRealIdx = w * 7;
+    let label = "";
+    for (let r = 0; r < 7; r++) {
+      const c = cells[firstRealIdx + r];
+      if (c && c.date <= 7) { label = MONTH_NAMES[c.month]; break; }
+      if (c && r === 0) { label = ""; }
+    }
+    weekMonthLabels.push(label);
+  }
+
+  // Build grid HTML — columns are weeks, rows are days-of-week
+  const weekCols = [];
+  for (let w = 0; w < numWeeks; w++) {
+    const cellsInWeek = cells.slice(w * 7, w * 7 + 7);
+    const colCells = cellsInWeek.map((c, r) => {
+      if (!c) return `<span class="hm-cell hm-pad"></span>`;
+      const label = `${dayLabels[r]} ${c.key}${c.active ? " ✓" : ""}`;
+      return `<span class="hm-cell${c.active ? " hm-active" : ""}" title="${label}"></span>`;
+    }).join("");
+    weekCols.push(`<div class="hm-week-col">${colCells}</div>`);
+  }
 
   return `
     <div class="dash-heatmap">
       <div class="dash-heatmap-head">
-        <span class="mini-label">Study Activity — last 8 weeks</span>
+        <span class="mini-label">Study Activity — last ${WEEKS} weeks</span>
         <span class="dash-heatmap-legend">
           <span class="hm-dot hm-off"></span>No study
           <span class="hm-dot hm-on"></span>Studied
         </span>
       </div>
-      <div class="dash-heatmap-grid">
-        ${dayLabels.map(l => `<span class="hm-day-label">${l}</span>`).join("")}
-        ${cells.map(c => c === null
-          ? `<span class="hm-cell hm-pad"></span>`
-          : `<span class="hm-cell${c.active ? " hm-active" : ""}" title="${c.key}"></span>`
-        ).join("")}
+      <div class="dash-heatmap-body">
+        <div class="hm-day-labels">
+          ${["","M","","W","","F",""].map(l => `<span>${l}</span>`).join("")}
+        </div>
+        <div class="hm-weeks-wrap">
+          <div class="hm-month-row">
+            ${weekMonthLabels.map(l => `<span class="hm-month-label">${l}</span>`).join("")}
+          </div>
+          <div class="hm-weeks-grid">
+            ${weekCols.join("")}
+          </div>
+        </div>
       </div>
     </div>
   `;
@@ -6464,9 +6644,12 @@ function renderProgress() {
             <div class="progress-stat-icon psi-primary">${icon("checkCircle")}</div>
             <div><strong>${progress.done}</strong><span>Lessons Done</span><small>of ${progress.total} total</small></div>
           </div>
-          <div class="progress-stat-tile">
+          <div class="progress-stat-tile psi-streak-tile">
             <div class="progress-stat-icon psi-flame">${icon("flame")}</div>
-            <div><strong>${streak.count}</strong><span>Day Streak</span><small>${streak.count >= 7 ? "On fire! 🔥" : streak.count >= 3 ? "Building momentum" : "Keep it going"}</small></div>
+            <div>
+              <strong>${streak.count}</strong><span>Day Streak</span>
+              <small class="streak-best-hint">Best: ${streak.best || streak.count} day${(streak.best || streak.count) !== 1 ? "s" : ""} ${(streak.best || streak.count) >= 7 ? "🔥" : ""}</small>
+            </div>
           </div>
           <div class="progress-stat-tile">
             <div class="progress-stat-icon psi-trophy">${icon("send")}</div>
@@ -6601,6 +6784,9 @@ function renderProgress() {
             `).join("")}
           </div>
         ` : ""}
+
+        <!-- Achievement Badges -->
+        ${renderMilestoneBadges()}
 
       </div>
     </section>
@@ -6857,6 +7043,12 @@ function renderQuizHub() {
     .filter(({ programme, unit, topic }) => lessonForTopic(programme, unit, topic))
     .slice(0, 36);
 
+  // Trigger leaderboard load on first visit (non-blocking)
+  if (state.leaderboard === null) {
+    state.leaderboard = undefined; // mark as loading (not null = triggered)
+    loadLeaderboard();
+  }
+
   return `
     ${pageHeader({
       eyebrow: "Active Recall",
@@ -6866,6 +7058,14 @@ function renderQuizHub() {
     })}
     <section class="section">
       <div class="container">
+
+        <!-- Weekly Leaderboard -->
+        ${renderLeaderboard()}
+
+        <!-- Quiz Topic Grid -->
+        <div class="section-head slim-head" style="margin-top:48px">
+          <div><h2>${icon("helpCircle")} Quiz Topics</h2><p>Choose any topic to open its lesson quiz.</p></div>
+        </div>
         <div class="unit-grid">
           ${quizTopics.map(({ programme, unit, topic }) => `
             <a class="unit-card" href="${topicHref(programme, unit, topic.groupIndex, topic.topicIndex)}">
@@ -13966,6 +14166,8 @@ function render() {
         saveQuizResult(key);    // save scored result before render clears context
         recordStudyDate();
         submitQuiz(key);
+        pushQuizScoreToLeaderboard(key); // push to weekly leaderboard (non-blocking)
+        state.leaderboard = null; // reset so leaderboard refreshes next visit
         render();
         window.scrollTo({ top: 0, behavior: "smooth" });
         // Send results email (non-blocking)
@@ -14789,7 +14991,8 @@ function updateStreak() {
   if (streak.lastDate === today) return streak;
   const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
   const count = streak.lastDate === yesterday ? streak.count + 1 : 1;
-  const updated = { count, lastDate: today };
+  const best = Math.max(count, streak.best || 0);
+  const updated = { count, lastDate: today, best };
   localStorage.setItem("nursinguganda.streak", JSON.stringify(updated));
   return updated;
 }
