@@ -1610,16 +1610,50 @@ function submitQuiz(key) {
 // Cache quiz context so submit handler can build the email payload
 let _quizCtx = { title: "", subtitle: "", questions: [] };
 
-async function sendQuizResultsEmail(quizKey) {
-  const user = state.currentUser;
-  if (!user?.email) return; // Only send if logged in
-
-  const client = sb();
-  if (!client) return;
-
+// Build a plain-text mailto: link with the full quiz results.
+// Used as fallback when the Edge Function is unavailable, and for non-logged-in users.
+function buildQuizMailtoLink(quizKey) {
   const ctx = _quizCtx;
   const questions = ctx.questions || [];
-  if (!questions.length) return;
+  if (!questions.length) return null;
+  const attempt = quizAttempts()[quizKey] || {};
+  const score = questions.filter((q, i) => quizAnswerCorrect(q, attempt[i])).length;
+  const total = questions.length;
+  const pct = total ? Math.round((score / total) * 100) : 0;
+  const grade = pct >= 80 ? "Distinction" : pct >= 60 ? "Credit" : pct >= 50 ? "Pass" : "Below Pass";
+  const title = ctx.title || "Nursing Uganda Quiz";
+  const subject = `Quiz Results – ${title} (${pct}% · ${grade})`;
+  const qLines = questions.map((q, i) => {
+    const ans = attempt[i];
+    const correct = quizAnswerCorrect(q, ans);
+    const selected = ans === undefined ? "Not answered" : (q.choices?.[Number(ans)] ?? String(ans));
+    const correctLabel = q.choices?.[q.answer] ?? String(q.answer);
+    let line = `${i + 1}. ${q.prompt}\n   ${correct ? "✓" : "✗"} Your answer: ${selected}`;
+    if (!correct) line += `\n   ✓ Correct: ${correctLabel}`;
+    if (q.explanation) line += `\n   Note: ${q.explanation}`;
+    return line;
+  });
+  const body = [
+    `Nursing Uganda – Quiz Results`,
+    ``,
+    `Quiz: ${title}`,
+    `Score: ${score}/${total} (${pct}%) — ${grade}`,
+    ``,
+    `──────────────────────────`,
+    ...qLines,
+    `──────────────────────────`,
+    ``,
+    `Study more at https://nursinguganda.com`
+  ].join("\n");
+  return `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+// Returns { ok: true } on success, { ok: false, mailto: <link> } on failure.
+async function sendQuizResultsEmail(quizKey) {
+  const user = state.currentUser;
+  const ctx = _quizCtx;
+  const questions = ctx.questions || [];
+  if (!questions.length) return { ok: false };
 
   const attempt = quizAttempts()[quizKey] || {};
   const score = questions.filter((q, i) => quizAnswerCorrect(q, attempt[i])).length;
@@ -1627,48 +1661,41 @@ async function sendQuizResultsEmail(quizKey) {
   const pct   = total ? Math.round((score / total) * 100) : 0;
   const grade = pct >= 80 ? "Distinction" : pct >= 60 ? "Credit" : pct >= 50 ? "Pass" : "Below Pass";
 
-  // Build per-question result objects
+  // Build per-question result objects (used by the Edge Function)
   const questionResults = questions.map((q, i) => {
     const ans = attempt[i];
     const correct = quizAnswerCorrect(q, ans);
     const selectedLabel = ans === undefined ? null : (q.choices?.[Number(ans)] ?? String(ans));
-    // correctLabel: resolve from choices array when choices exist (MCQ), else use raw value
     const correctLabel = q.choices?.[q.answer] ?? String(q.answer);
-    return {
-      prompt: q.prompt || "",
-      selectedLabel,
-      correctLabel,
-      correct,
-      explanation: q.explanation || ""
-    };
+    return { prompt: q.prompt || "", selectedLabel, correctLabel, correct, explanation: q.explanation || "" };
   });
 
-  try {
-    const { data: { session } } = await client.auth.getSession();
-    const token = session?.access_token || "";
+  // Try Supabase Edge Function if user is logged in
+  if (user?.email) {
+    const client = sb();
+    if (client) {
+      try {
+        const { data: { session } } = await client.auth.getSession();
+        const token = session?.access_token || "";
+        const res = await fetch(`${SUPA_URL}/functions/v1/send-quiz-email`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
+          body: JSON.stringify({
+            email: user.email,
+            name: user.name || "",
+            quizTitle: ctx.title || "Nursing Uganda Quiz",
+            score, total, pct, grade,
+            questions: questionResults
+          })
+        });
+        if (res.ok) return { ok: true };
+      } catch (_) {}
+    }
+  }
 
-    await fetch(
-      `${SUPA_URL}/functions/v1/send-quiz-email`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          email: user.email,
-          name: user.name || "",
-          quizTitle: ctx.title || "Nursing Uganda Quiz",
-          score,
-          total,
-          pct,
-          grade,
-          questions: questionResults
-        })
-      }
-    );
-    // Non-blocking — don't await result, toast shown separately
-  } catch (_) {}
+  // Fallback: generate mailto: link so user can send from their own email client
+  const mailto = buildQuizMailtoLink(quizKey);
+  return { ok: false, mailto };
 }
 
 function resetQuiz(key) {
@@ -4097,15 +4124,25 @@ function layout(content) {
     });
   });
 
-  // Quiz — re-send email results button
+  // Quiz — email / share results button
   app.querySelectorAll("[data-email-quiz]").forEach(btn => {
     btn.addEventListener("click", async () => {
       btn.disabled = true;
-      btn.textContent = "Sending…";
-      await sendQuizResultsEmail(btn.dataset.emailQuiz);
-      showToast(`Results emailed to ${state.currentUser?.email || "you"}`, "success");
+      btn.innerHTML = `${icon("mail")}<span>Sending…</span>`;
+      const result = await sendQuizResultsEmail(btn.dataset.emailQuiz);
       btn.disabled = false;
-      btn.innerHTML = `${icon("mail")}<span>Sent!</span>`;
+      if (result?.ok) {
+        showToast(`Results emailed to ${state.currentUser?.email}`, "success");
+        btn.innerHTML = `${icon("mail")}<span>Sent ✓</span>`;
+      } else if (result?.mailto) {
+        // Edge Function not available — open the user's email client instead
+        window.location.href = result.mailto;
+        showToast("Opening your email app with results…", "info");
+        btn.innerHTML = `${icon("mail")}<span>Open Email App</span>`;
+      } else {
+        showToast("Nothing to email — complete a quiz first", "error");
+        btn.innerHTML = `${icon("mail")}<span>Email Results</span>`;
+      }
     });
   });
 
@@ -9680,7 +9717,7 @@ function renderStandaloneQuizPage(title, subtitle, questions, quizKey, backHref,
               <strong>${grade}</strong>
               <p>${pct >= 80 ? "Outstanding — excellent work." : pct >= 60 ? "Good understanding — keep revising." : pct >= 50 ? "Satisfactory — review explanations below." : "Keep studying — the explanations below will help."}</p>
               <button type="button" class="button secondary" data-reset-quiz="${escapeHtml(quizKey)}">${icon("rotateCcw")}<span>Retake Quiz</span></button>
-              ${state.currentUser?.email ? `<button type="button" class="button ghost quiz-email-btn" data-email-quiz="${escapeHtml(quizKey)}">${icon("mail")}<span>Email Results</span></button>` : ""}
+              <button type="button" class="button ghost quiz-email-btn" data-email-quiz="${escapeHtml(quizKey)}">${icon("mail")}<span>Email Results</span></button>
               <a class="button ghost quiz-wa-share" href="${waShare(`🏆 I scored ${score}/${questions.length} (${pct}%) on "${title}" quiz on Nursing Uganda!\n\nTest yourself 👉 https://nursinguganda.com${window.location.pathname}`)}" target="_blank" rel="noopener noreferrer">${icon("whatsapp")}<span>Share on WhatsApp</span></a>
             </div>
           </div>
@@ -14348,10 +14385,12 @@ function render() {
         state.leaderboard = null; // reset so leaderboard refreshes next visit
         render();
         window.scrollTo({ top: 0, behavior: "smooth" });
-        // Send results email (non-blocking)
-        sendQuizResultsEmail(key).then(() => {
-          showToast(`Results emailed to ${state.currentUser.email}`, "success");
-        }).catch(() => {});
+        // Send results email (non-blocking) — only auto-send for logged-in users
+        if (state.currentUser?.email) {
+          sendQuizResultsEmail(key).then((result) => {
+            if (result?.ok) showToast(`Results emailed to ${state.currentUser.email}`, "success");
+          }).catch(() => {});
+        }
         // Gently prompt for study reminders if not yet enabled
         const ns = getNotifSettings();
         if (!ns.reminderEnabled && "Notification" in window && Notification.permission === "default") {
