@@ -53,6 +53,7 @@ const state = {
   flashcardIndex: 0,
   flashcardFlipped: false,
   flashcardCategory: "All",
+  flashcardSRMode: false,
   currentUser: null,
   userMenuOpen: false,
   loginTab: "signin",
@@ -114,7 +115,8 @@ const state = {
     filter: "all",
     search: ""
   },
-  leaderboard: null
+  leaderboard: null,
+  settingsForm: { name: "", programme: "", year: "", goal: "3", saving: false, saved: false }
 };
 
 const app = document.querySelector("#app");
@@ -3872,6 +3874,7 @@ function layout(content) {
                         <a class="user-menu-item" href="/planner"     role="menuitem" data-nav-close>${icon("calendar")}<span>Study Planner</span></a>
                         <a class="user-menu-item" href="/community"   role="menuitem" data-nav-close>${icon("users")}<span>Community Q&amp;A</span></a>
                         <a class="user-menu-item" href="/flashcards"  role="menuitem" data-nav-close>${icon("sparkles")}<span>Flashcards</span></a>
+                        <a class="user-menu-item" href="/settings"    role="menuitem" data-nav-close>${icon("tool")}<span>Settings</span></a>
                         <a class="user-menu-item" href="/account"     role="menuitem" data-nav-close>${icon("users")}<span>Account</span></a>
                         ${isAdmin() ? `<a class="user-menu-item user-menu-admin" href="/admin" role="menuitem" data-nav-close>${icon("tool")}<span>Admin Panel</span></a>` : ""}
                       </div>
@@ -4136,6 +4139,7 @@ function layout(content) {
   setupSwipeNavigation();
   setupLessonNotes();
   setupFlashcards();
+  setupSettingsPage();
 }
 
 function setupLightboxControls() {
@@ -5813,8 +5817,8 @@ function renderMockExamResults() {
           ${me.questions.map((q, i) => {
             const ans = me.answers[i];
             const correct = quizAnswerCorrect(q, ans);
-            const selectedLabel = ans === undefined ? null : q.type === "blank" ? String(ans) : (q.choices?.[Number(ans)] ?? null);
-            const correctLabel = q.type === "blank" ? String(q.answer) : String(q.answer);
+            const selectedLabel = ans === undefined ? null : (q.choices?.[Number(ans)] ?? String(ans));
+            const correctLabel = q.choices?.[q.answer] ?? String(q.answer);
             return `
               <div class="me-bkd-row${correct ? " correct" : " wrong"}">
                 <div class="me-bkd-num">${correct ? icon("checkCircle") : icon("xCircle")}<span>Q${i + 1}</span></div>
@@ -7036,6 +7040,179 @@ function renderGlobalSearchPage() {
       </div>
     </section>
   `;
+}
+
+/* ── User Profile / Settings ─────────────────────────────────────── */
+function getUserProfile() {
+  try { return JSON.parse(localStorage.getItem("nursinguganda.userProfile") || "{}"); }
+  catch { return {}; }
+}
+function saveUserProfile(profile) {
+  try { localStorage.setItem("nursinguganda.userProfile", JSON.stringify(profile)); } catch {}
+}
+
+function renderSettingsPage() {
+  const ns = getNotifSettings();
+  const profile = getUserProfile();
+  const user = state.currentUser;
+  const programmes = state.data?.programmes || [];
+  const sf = state.settingsForm;
+  const supported = typeof window !== "undefined" && "Notification" in window;
+
+  return `
+    ${pageHeader({ eyebrow: "Account", title: "Profile & Settings", body: "Personalise your study experience, manage reminders, and review your account." })}
+    <section class="section">
+      <div class="container settings-container">
+
+        <!-- Profile Card -->
+        <div class="settings-card">
+          <h2 class="settings-card-title">${icon("user")} Study Profile</h2>
+          <p class="settings-card-desc">This helps us personalise your dashboard and track the right curriculum for you.</p>
+          <div class="settings-form" id="settings-profile-form">
+            <div class="settings-field">
+              <label for="sf-name">Display Name</label>
+              <input id="sf-name" type="text" class="settings-input" placeholder="e.g. Sarah Namukasa" value="${escapeHtml(sf.name || profile.name || user?.name || "")}" data-sf-name>
+            </div>
+            <div class="settings-field">
+              <label for="sf-programme">Programme of Study</label>
+              <select id="sf-programme" class="settings-input" data-sf-programme>
+                <option value="">— Select programme —</option>
+                ${programmes.map(p => `<option value="${escapeHtml(p.id)}"${(sf.programme || profile.programme) === p.id ? " selected" : ""}>${escapeHtml(p.label)}</option>`).join("")}
+              </select>
+            </div>
+            <div class="settings-field">
+              <label for="sf-year">Year of Study</label>
+              <select id="sf-year" class="settings-input" data-sf-year>
+                <option value="">— Select year —</option>
+                ${[1,2,3,4].map(y => `<option value="${y}"${String(sf.year || profile.year) === String(y) ? " selected" : ""}>Year ${y}</option>`).join("")}
+              </select>
+            </div>
+            <div class="settings-field">
+              <label for="sf-goal">Daily Lesson Goal</label>
+              <select id="sf-goal" class="settings-input" data-sf-goal>
+                ${[1,2,3,5,10].map(g => `<option value="${g}"${String(sf.goal || profile.goal || "3") === String(g) ? " selected" : ""}>${g} lesson${g > 1 ? "s" : ""} per day</option>`).join("")}
+              </select>
+            </div>
+            <div class="settings-actions">
+              <button type="button" class="button primary" data-save-profile>
+                ${sf.saving ? "Saving…" : sf.saved ? "✓ Saved!" : "Save Profile"}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notifications Card -->
+        <div class="settings-card">
+          <h2 class="settings-card-title">${icon("bell")} Daily Study Reminder</h2>
+          <p class="settings-card-desc">Get a browser notification if you haven't studied by your chosen time each day.</p>
+          ${!supported ? `<p class="settings-notif-unsupported">Notifications are not supported in this browser.</p>` : `
+            <div class="settings-notif-row">
+              <label class="settings-toggle-label">
+                <input type="checkbox" class="settings-notif-cb" data-notif-enabled ${ns.reminderEnabled ? "checked" : ""}>
+                <span class="settings-toggle-track"><span class="settings-toggle-thumb"></span></span>
+                <span>Enable daily reminder</span>
+              </label>
+            </div>
+            ${ns.reminderEnabled ? `
+              <div class="settings-field" style="margin-top:12px">
+                <label for="sf-notif-time">Remind me at</label>
+                <input id="sf-notif-time" type="time" class="settings-input" value="${ns.reminderTime || "20:00"}" data-notif-time style="max-width:140px">
+              </div>
+              <p class="settings-hint">Only fires if you haven't studied that day. Requires the browser to be open.</p>
+            ` : ""}
+          `}
+        </div>
+
+        <!-- Stats snapshot -->
+        <div class="settings-card settings-card-stats">
+          <h2 class="settings-card-title">${icon("chartBar")} Your Stats</h2>
+          ${(function() {
+            const progress = overallProgress();
+            const streak = getStreak();
+            const quizzesTaken = Object.keys(quizSubmitted()).length;
+            const mastered = flashcardMastery().size;
+            const due = srDueCount();
+            return `
+              <div class="settings-stats-grid">
+                <div class="settings-stat"><strong>${progress.done}</strong><span>Lessons Done</span></div>
+                <div class="settings-stat"><strong>${streak.count}</strong><span>Current Streak</span></div>
+                <div class="settings-stat"><strong>${streak.best || streak.count}</strong><span>Best Streak</span></div>
+                <div class="settings-stat"><strong>${quizzesTaken}</strong><span>Quizzes Taken</span></div>
+                <div class="settings-stat"><strong>${mastered}</strong><span>Cards Mastered</span></div>
+                <div class="settings-stat${due > 0 ? " has-due" : ""}"><strong>${due}</strong><span>Cards Due Today</span></div>
+              </div>
+            `;
+          })()}
+        </div>
+
+        <!-- Account Card -->
+        ${user ? `
+          <div class="settings-card settings-card-danger">
+            <h2 class="settings-card-title">${icon("user")} Account</h2>
+            <p class="settings-card-desc">Signed in as <strong>${escapeHtml(user.email)}</strong></p>
+            <button class="button ghost" type="button" data-auth-logout>${icon("logOut")} Sign Out</button>
+          </div>
+        ` : `
+          <div class="settings-card">
+            <h2 class="settings-card-title">${icon("user")} Account</h2>
+            <p class="settings-card-desc">Sign in to sync your progress and quiz results across devices.</p>
+            ${buttonLink("/login", "Sign In / Create Account", "primary", "user")}
+          </div>
+        `}
+
+      </div>
+    </section>
+  `;
+}
+
+function setupSettingsPage() {
+  // Save profile
+  app.querySelector("[data-save-profile]")?.addEventListener("click", () => {
+    const name = app.querySelector("[data-sf-name]")?.value?.trim() || "";
+    const programme = app.querySelector("[data-sf-programme]")?.value || "";
+    const year = app.querySelector("[data-sf-year]")?.value || "";
+    const goal = app.querySelector("[data-sf-goal]")?.value || "3";
+    state.settingsForm = { name, programme, year, goal, saving: true, saved: false };
+    const profile = { name, programme, year, goal };
+    saveUserProfile(profile);
+    // If logged in, update Supabase user name
+    const client = sb();
+    const user = state.currentUser;
+    if (client && user && name) {
+      client.from("profiles").upsert({ id: user.id, name }).then(() => {});
+      if (user) user.name = name;
+    }
+    state.settingsForm.saving = false;
+    state.settingsForm.saved = true;
+    render();
+    setTimeout(() => { state.settingsForm.saved = false; render(); }, 2500);
+  });
+
+  // Notification toggle (reuse account page handler logic)
+  const notifCb = app.querySelector(".settings-notif-cb[data-notif-enabled]");
+  if (notifCb) {
+    notifCb.addEventListener("change", async () => {
+      const ns = getNotifSettings();
+      if (notifCb.checked) {
+        if ("Notification" in window && Notification.permission !== "granted") {
+          const perm = await Notification.requestPermission();
+          if (perm !== "granted") { notifCb.checked = false; showToast("Permission denied.", "error"); return; }
+        }
+        ns.reminderEnabled = true;
+        showToast("Study reminders enabled!", "success");
+      } else {
+        ns.reminderEnabled = false;
+      }
+      saveNotifSettings(ns);
+      render();
+    });
+  }
+  const notifTime = app.querySelector("[data-notif-time]");
+  if (notifTime) {
+    notifTime.addEventListener("change", () => {
+      const ns = getNotifSettings(); ns.reminderTime = notifTime.value; saveNotifSettings(ns);
+    });
+  }
 }
 
 function renderQuizHub() {
@@ -13787,7 +13964,11 @@ function render() {
   }
   else if (parts[0] === "flashcards") {
     content = renderFlashcards();
-    meta = { title: "Flashcards", description: "Study key nursing and medical terms with flip-card mode. Track your mastery as you go." };
+    meta = { title: "Flashcards", description: "Study key nursing and medical terms with spaced repetition. Track mastery as you go." };
+  }
+  else if (parts[0] === "settings") {
+    content = renderSettingsPage();
+    meta = { title: "Profile & Settings", description: "Manage your study profile, daily reminder, and account settings on Nursing Uganda." };
   }
   else if (legalPages[parts[0]]) {
     content = renderLegalPage(parts[0]);
@@ -15472,6 +15653,53 @@ function toggleFlashcardMastery(id) {
   localStorage.setItem("nursinguganda.flashcardMastery", JSON.stringify([...m]));
 }
 
+/* ── Spaced Repetition (SM-2) ─────────────────────────────────────── */
+function getSRCards() {
+  try { return JSON.parse(localStorage.getItem("nursinguganda.srCards") || "{}"); }
+  catch { return {}; }
+}
+function saveSRCards(data) {
+  try { localStorage.setItem("nursinguganda.srCards", JSON.stringify(data)); } catch {}
+}
+// quality: 0=Again, 2=Hard, 4=Good, 5=Easy
+function updateCardSR(id, quality) {
+  const today = new Date().toISOString().slice(0, 10);
+  const data = getSRCards();
+  const card = data[id] || { ef: 2.5, interval: 1, reps: 0 };
+  let { ef, interval, reps } = card;
+  if (quality < 3) {
+    reps = 0;
+    interval = 1;
+  } else {
+    if (reps === 0) interval = 1;
+    else if (reps === 1) interval = 6;
+    else interval = Math.round(interval * ef);
+    reps++;
+  }
+  ef = Math.max(1.3, ef + 0.1 - (5 - quality) * (0.08 + (5 - quality) * 0.02));
+  const due = new Date(Date.now() + interval * 86400000).toISOString().slice(0, 10);
+  data[id] = { ef: Math.round(ef * 100) / 100, interval, reps, due, lastReview: today };
+  saveSRCards(data);
+  // Also update mastery: if reps >= 3 and ef >= 2.0, consider mastered
+  if (reps >= 3 && ef >= 2.0) {
+    const m = flashcardMastery(); m.add(id);
+    localStorage.setItem("nursinguganda.flashcardMastery", JSON.stringify([...m]));
+  }
+  return data[id];
+}
+function srDueCards(deck) {
+  const data = getSRCards();
+  const today = new Date().toISOString().slice(0, 10);
+  return deck.filter(t => {
+    const sr = data[t.id];
+    return !sr || sr.due <= today; // unseen cards are always due
+  });
+}
+function srDueCount() {
+  const terms = dictionaryTerms();
+  return srDueCards(terms).length;
+}
+
 function flashcardDeck() {
   const terms = dictionaryTerms();
   const cat = state.flashcardCategory || "All";
@@ -15479,14 +15707,22 @@ function flashcardDeck() {
 }
 
 function renderFlashcards() {
-  const deck = flashcardDeck();
+  const allDeck = flashcardDeck();
   const mastery = flashcardMastery();
+  const srMode  = state.flashcardSRMode;
+  const dueDeck = srMode ? srDueCards(allDeck) : allDeck;
+  const deck    = dueDeck.length ? dueDeck : allDeck; // fallback to full deck if nothing due
+  const dueCount = srDueCards(flashcardDeck()).length;
+
   const idx = Math.min(state.flashcardIndex || 0, Math.max(0, deck.length - 1));
   const card = deck[idx];
   const categories = ["All", ...new Set(dictionaryTerms().map((t) => t.category))];
-  const masteredCount = deck.filter((t) => mastery.has(t.id)).length;
+  const masteredCount = allDeck.filter((t) => mastery.has(t.id)).length;
   const isMastered = card && mastery.has(card.id);
-  const progress = deck.length ? Math.round((masteredCount / deck.length) * 100) : 0;
+  const progress = allDeck.length ? Math.round((masteredCount / allDeck.length) * 100) : 0;
+  const srData = getSRCards();
+  const cardSR = card ? (srData[card.id] || null) : null;
+  const allDone = srMode && dueDeck.length === 0;
 
   return `
     <section class="fc-hero">
@@ -15495,13 +15731,20 @@ function renderFlashcards() {
         <div class="fc-hero-head">
           <div>
             <h1>${icon("sparkles")} Flashcard Study</h1>
-            <p>Tap a card to flip it. Mark terms mastered as you go.</p>
+            <p>Tap a card to flip it. Rate how well you knew it for spaced repetition.</p>
           </div>
           <div class="fc-summary">
             <span>${icon("checkCircle")}<strong>${masteredCount}</strong> mastered</span>
-            <span>${icon("bookOpen")}<strong>${deck.length}</strong> in deck</span>
-            <span>${icon("chartBar")}<strong>${progress}%</strong> complete</span>
+            <span>${icon("bookOpen")}<strong>${allDeck.length}</strong> in deck</span>
+            <span class="fc-due-chip${dueCount > 0 ? " has-due" : ""}">${icon("clock")}<strong>${dueCount}</strong> due today</span>
           </div>
+        </div>
+        <!-- Mode toggle -->
+        <div class="fc-mode-rail">
+          <button type="button" class="fc-mode-btn${!srMode ? " active" : ""}" data-fc-mode="browse">Browse All</button>
+          <button type="button" class="fc-mode-btn${srMode ? " active" : ""}${dueCount > 0 ? " has-due" : ""}" data-fc-mode="sr">
+            Study Due ${dueCount > 0 ? `<span class="fc-due-badge">${dueCount}</span>` : ""}
+          </button>
         </div>
         <div class="fc-category-rail">
           ${categories.map((cat) => `<button type="button" class="fc-cat-btn${state.flashcardCategory === cat ? " active" : ""}" data-fc-cat="${escapeHtml(cat)}">${escapeHtml(cat)}</button>`).join("")}
@@ -15510,9 +15753,16 @@ function renderFlashcards() {
     </section>
     <div class="fc-arena">
       <div class="container">
-        ${card ? `
+        ${allDone ? `
+          <div class="fc-all-done">
+            <span>🎉</span>
+            <h2>All caught up!</h2>
+            <p>No cards are due for review today. Come back tomorrow or browse all cards.</p>
+            <button type="button" class="button secondary" data-fc-mode="browse">Browse All Cards</button>
+          </div>
+        ` : card ? `
           <div class="fc-progress-bar"><div class="fc-progress-fill" style="width:${progress}%"></div></div>
-          <p class="fc-counter">${idx + 1} of ${deck.length}</p>
+          <p class="fc-counter">${idx + 1} of ${deck.length}${srMode ? ` due` : ""}</p>
           <div class="fc-wrapper">
             <div class="fc-card${state.flashcardFlipped ? " flipped" : ""}${isMastered ? " mastered" : ""}" data-fc-flip role="button" tabindex="0" aria-label="Flip card">
               <div class="fc-front">
@@ -15526,14 +15776,41 @@ function renderFlashcards() {
                 <h2>${escapeHtml(card.term)}</h2>
                 <p class="fc-definition">${escapeHtml(card.simpleDefinition)}</p>
                 <p class="fc-clinical">${icon("stethoscope")} ${escapeHtml(truncateText(card.clinicalContext, 140))}</p>
+                ${cardSR ? `<p class="fc-sr-info">Next review: ${cardSR.due} &middot; Interval: ${cardSR.interval}d &middot; Ease: ${cardSR.ef}</p>` : ""}
               </div>
             </div>
           </div>
-          <div class="fc-controls">
-            <button type="button" class="fc-btn secondary" data-fc-prev ${idx === 0 ? "disabled" : ""}>${icon("arrowLeft")} Prev</button>
-            <button type="button" class="fc-btn master${isMastered ? " active" : ""}" data-fc-master data-fc-id="${escapeHtml(card.id)}">${icon(isMastered ? "checkCircle" : "star")} ${isMastered ? "Mastered" : "Mark Mastered"}</button>
-            <button type="button" class="fc-btn secondary" data-fc-next ${idx >= deck.length - 1 ? "disabled" : ""}>Next ${icon("arrowRight")}</button>
-          </div>
+
+          <!-- SR Rating buttons (show after flip) -->
+          ${state.flashcardFlipped ? `
+            <div class="fc-sr-rating" aria-label="How well did you know this?">
+              <span class="fc-sr-label">How well did you know it?</span>
+              <div class="fc-sr-btns">
+                <button type="button" class="fc-sr-btn sr-again" data-fc-rate="0" data-fc-id="${escapeHtml(card.id)}">
+                  <span>Again</span><small>Forgot</small>
+                </button>
+                <button type="button" class="fc-sr-btn sr-hard" data-fc-rate="2" data-fc-id="${escapeHtml(card.id)}">
+                  <span>Hard</span><small>Struggled</small>
+                </button>
+                <button type="button" class="fc-sr-btn sr-good" data-fc-rate="4" data-fc-id="${escapeHtml(card.id)}">
+                  <span>Good</span><small>Remembered</small>
+                </button>
+                <button type="button" class="fc-sr-btn sr-easy" data-fc-rate="5" data-fc-id="${escapeHtml(card.id)}">
+                  <span>Easy</span><small>Instant</small>
+                </button>
+              </div>
+            </div>
+          ` : ""}
+
+          <!-- Browse mode controls -->
+          ${!srMode ? `
+            <div class="fc-controls">
+              <button type="button" class="fc-btn secondary" data-fc-prev ${idx === 0 ? "disabled" : ""}>${icon("arrowLeft")} Prev</button>
+              <button type="button" class="fc-btn master${isMastered ? " active" : ""}" data-fc-master data-fc-id="${escapeHtml(card.id)}">${icon(isMastered ? "checkCircle" : "star")} ${isMastered ? "Mastered" : "Mark Mastered"}</button>
+              <button type="button" class="fc-btn secondary" data-fc-next ${idx >= deck.length - 1 ? "disabled" : ""}>Next ${icon("arrowRight")}</button>
+            </div>
+          ` : ""}
+
           ${state.flashcardFlipped && card.relatedTerms?.length ? `
             <div class="fc-related">
               <span>Related terms:</span>
@@ -15581,6 +15858,34 @@ function setupFlashcards() {
     const id = e.currentTarget.dataset.fcId;
     requireLogin("flashcard", "Sign in to track which flashcards you have mastered.", () => {
       toggleFlashcardMastery(id);
+      render();
+    });
+  });
+
+  // SR: rate button handler — advance to next due card
+  app.querySelectorAll("[data-fc-rate]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const id = btn.dataset.fcId;
+      const quality = parseInt(btn.dataset.fcRate, 10);
+      updateCardSR(id, quality);
+      // In SR mode: advance to next due card; in browse mode: just go next
+      const deck = state.flashcardSRMode
+        ? srDueCards(flashcardDeck())
+        : flashcardDeck().filter((t) => state.flashcardCategory === "All" || t.category === state.flashcardCategory);
+      const currentIdx = state.flashcardIndex || 0;
+      // Stay at same index (next card shifts into position) or clamp
+      state.flashcardIndex = Math.min(currentIdx, Math.max(0, deck.length - 2));
+      state.flashcardFlipped = false;
+      render();
+    });
+  });
+
+  // Mode toggle
+  app.querySelectorAll("[data-fc-mode]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      state.flashcardSRMode = btn.dataset.fcMode === "sr";
+      state.flashcardIndex = 0;
+      state.flashcardFlipped = false;
       render();
     });
   });
@@ -15862,8 +16167,9 @@ async function init() {
     loadMockExamState();
     if (state.mockExam.examId && !state.mockExam.submitted) startMockExamTimer();
 
-    // Fire study reminder if conditions met
+    // Fire study reminder if conditions met, then re-check every minute
     checkStudyReminder();
+    setInterval(checkStudyReminder, 60000);
 
     render();
     scrollPageToTop();
