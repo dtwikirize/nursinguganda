@@ -1487,12 +1487,9 @@ async function sendQuizResultsEmail(quizKey) {
   // Build per-question result objects
   const questionResults = questions.map((q, i) => {
     const ans = attempt[i];
-    const isBlank = q.type === "blank";
     const correct = quizAnswerCorrect(q, ans);
-    const selectedLabel = ans === undefined
-      ? null
-      : isBlank ? String(ans) : (q.choices?.[Number(ans)] ?? null);
-    const correctLabel = isBlank ? String(q.answer) : String(q.answer);
+    const selectedLabel = ans === undefined ? null : (q.choices?.[Number(ans)] ?? null);
+    const correctLabel = String(q.answer);
     return {
       prompt: q.prompt || "",
       selectedLabel,
@@ -5577,19 +5574,7 @@ function renderMockExamInProgress() {
         <p class="me-q-number">Question ${me.currentQ + 1} of ${totalQ}</p>
         <h2 class="me-q-prompt">${escapeHtml(q.prompt)}</h2>
 
-        ${q.type === "blank" ? `
-          <div class="me-blank-wrap">
-            <input
-              type="text"
-              class="me-blank-input"
-              placeholder="Type your answer…"
-              value="${answered !== undefined ? escapeHtml(String(answered)) : ""}"
-              data-me-blank="${me.currentQ}"
-              autocomplete="off" autocorrect="off" spellcheck="false"
-            >
-          </div>
-        ` : `
-          <div class="me-choices">
+        <div class="me-choices">
             ${(q.choices || []).map((choice, ci) => `
               <label class="me-choice${answered === ci ? " selected" : ""}">
                 <input type="radio" name="me-q-${me.currentQ}" value="${ci}" ${answered === ci ? "checked" : ""} data-me-answer="${me.currentQ}" data-me-value="${ci}">
@@ -5598,7 +5583,6 @@ function renderMockExamInProgress() {
               </label>
             `).join("")}
           </div>
-        `}
       </div>
 
       <!-- Navigation -->
@@ -8064,7 +8048,6 @@ function normalizeQuizAnswer(value) {
 
 function quizAnswerCorrect(question, answer) {
   if (answer === undefined) return false;
-  if (question.type === "blank") return normalizeQuizAnswer(answer) === normalizeQuizAnswer(question.answer);
   return question.choices[Number(answer)] === question.answer;
 }
 
@@ -8105,12 +8088,14 @@ function quizQuestionsFor(lesson, programme, unit, topic) {
     });
   }
 
-  if (terms.length) {
+  if (terms.length >= 2) {
+    const t = terms[0];
+    const wrong = terms.slice(1, 4).map((x) => x.term);
     questions.push({
-      type: "blank",
-      prompt: `Fill in the blank: ${terms[0].definition}`,
-      answer: terms[0].term,
-      explanation: `The term is "${terms[0].term}".`
+      prompt: `Which term matches this definition: "${truncateText(t.definition, 100)}"?`,
+      answer: t.term,
+      choices: rotateChoices([t.term, ...wrong], 0),
+      explanation: `${t.term}: ${t.definition}`
     });
   }
 
@@ -8157,30 +8142,22 @@ function renderTopicQuiz(lesson, programme, unit, topic, key) {
           const selected = attempt[questionIndex];
           const answeredQuestion = selected !== undefined;
           const correct = quizAnswerCorrect(question, selected);
-          if (question.type === "blank") {
-            return `
-              <article class="quiz-question">
-                <h4>${questionIndex + 1}. ${escapeHtml(question.prompt)}</h4>
-                <form class="fill-blank-form" data-blank-quiz-form data-quiz-key="${escapeHtml(key)}" data-quiz-question="${questionIndex}">
-                  <input type="text" value="${answeredQuestion ? escapeHtml(selected) : ""}" placeholder="Type your answer" aria-label="Fill in the blank answer">
-                  <button type="submit">${icon("checkCircle")}<span>Check</span></button>
-                </form>
-                ${answeredQuestion ? `<p class="quiz-explanation ${correct ? "correct-text" : "wrong-text"}">${correct ? "Correct." : "Not yet."} ${escapeHtml(question.explanation)}</p>` : ""}
-              </article>
-            `;
-          }
           return `
-            <article class="quiz-question">
-              <h4>${questionIndex + 1}. ${escapeHtml(question.prompt)}</h4>
+            <article class="quiz-question${answeredQuestion ? (correct ? " quiz-q-correct" : " quiz-q-wrong") : ""}">
+              <h4 class="quiz-q-prompt">${questionIndex + 1}. ${escapeHtml(question.prompt)}</h4>
               <div class="quiz-options">
                 ${question.choices.map((choice, choiceIndex) => {
                   const isSelected = Number(selected) === choiceIndex;
-                  const isCorrect = choice === question.answer;
-                  const stateClass = answeredQuestion ? (isCorrect ? " correct" : isSelected ? " wrong" : "") : "";
-                  return `<button type="button" class="quiz-option${isSelected ? " selected" : ""}${stateClass}" data-quiz-key="${escapeHtml(key)}" data-quiz-question="${questionIndex}" data-quiz-answer="${choiceIndex}">${escapeHtml(choice)}</button>`;
+                  const isCorrect = answeredQuestion && choice === question.answer;
+                  const isWrong = answeredQuestion && isSelected && !isCorrect;
+                  const stateClass = isCorrect ? " correct" : isWrong ? " wrong" : "";
+                  return `<button type="button" class="quiz-option${isSelected ? " selected" : ""}${stateClass}" data-quiz-key="${escapeHtml(key)}" data-quiz-question="${questionIndex}" data-quiz-answer="${choiceIndex}" ${answeredQuestion ? "disabled" : ""}>
+                    <span class="qo-letter">${String.fromCharCode(65 + choiceIndex)}</span>
+                    <span class="qo-text">${escapeHtml(choice)}</span>
+                  </button>`;
                 }).join("")}
               </div>
-              ${answeredQuestion ? `<p class="quiz-explanation">${escapeHtml(question.explanation)}</p>` : ""}
+              ${answeredQuestion ? `<div class="quiz-explanation${correct ? " correct-text" : " wrong-text"}">${correct ? icon("checkCircle") : icon("xCircle")}<span>${escapeHtml(question.explanation)}</span></div>` : ""}
             </article>
           `;
         }).join("")}
@@ -8276,15 +8253,6 @@ function buildLessonQuizQuestions(lesson, programme, unit, topic) {
       answer: "True",
       choices: ["True", "False"],
       explanation: `This statement is taken from the lesson notes.`
-    });
-  }
-
-  for (const { term, definition } of terms.slice(0, 3)) {
-    questions.push({
-      type: "blank",
-      prompt: `${definition} — What term is being described?`,
-      answer: term,
-      explanation: `The term is "${term}".`
     });
   }
 
@@ -9302,39 +9270,8 @@ function renderStandaloneQuizPage(title, subtitle, questions, quizKey, backHref,
               ${questions.map((question, qi) => {
                 const selected = attempt[qi];
                 const answered  = selected !== undefined;
-                // Correct/wrong revealed ONLY after submission
                 const correct   = isSubmitted ? quizAnswerCorrect(question, selected) : null;
                 const stateClass = isSubmitted && answered ? (correct ? " answered-correct" : " answered-wrong") : "";
-
-                if (question.type === "blank") {
-                  return `
-                    <article class="sq-question${stateClass}" id="sq-${qi}">
-                      <div class="sq-number">${qi + 1}</div>
-                      <div class="sq-body">
-                        <p class="sq-prompt">${escapeHtml(question.prompt)}</p>
-                        <form class="fill-blank-form" data-blank-quiz-form data-quiz-key="${escapeHtml(quizKey)}" data-quiz-question="${qi}">
-                          <input type="text" value="${answered ? escapeHtml(String(selected)) : ""}" placeholder="Type your answer" aria-label="Fill in the blank answer" ${isSubmitted ? "disabled" : ""}>
-                          ${isSubmitted ? "" : `<button type="submit">${icon("checkCircle")}<span>Save Answer</span></button>`}
-                        </form>
-                        ${isSubmitted && answered ? `
-                          <div class="sq-explanation ${correct ? "correct-text" : "wrong-text"}">
-                            ${correct ? icon("checkCircle") : icon("xCircle")}
-                            <div>
-                              <strong>${correct ? "Correct!" : `Incorrect — answer: ${escapeHtml(question.answer)}`}</strong>
-                              <p>${escapeHtml(question.explanation)}</p>
-                            </div>
-                          </div>
-                        ` : ""}
-                        ${isSubmitted && !answered ? `
-                          <div class="sq-explanation wrong-text">
-                            ${icon("alertTriangle")}
-                            <div><strong>Not answered — correct: ${escapeHtml(question.answer)}</strong><p>${escapeHtml(question.explanation)}</p></div>
-                          </div>
-                        ` : ""}
-                      </div>
-                    </article>
-                  `;
-                }
                 return `
                   <article class="sq-question${stateClass}" id="sq-${qi}">
                     <div class="sq-number">${qi + 1}</div>
@@ -9342,11 +9279,14 @@ function renderStandaloneQuizPage(title, subtitle, questions, quizKey, backHref,
                       <p class="sq-prompt">${escapeHtml(question.prompt)}</p>
                       <div class="quiz-options sq-options">
                         ${question.choices.map((choice, ci) => {
-                          const isSel  = Number(selected) === ci;
-                          const isCor  = isSubmitted && choice === question.answer;
+                          const isSel   = Number(selected) === ci;
+                          const isCor   = isSubmitted && choice === question.answer;
                           const isWrong = isSubmitted && isSel && !isCor;
-                          const cls    = isSubmitted ? (isCor ? " correct" : isWrong ? " wrong" : "") : "";
-                          return `<button type="button" class="quiz-option${isSel ? " selected" : ""}${cls}" data-quiz-key="${escapeHtml(quizKey)}" data-quiz-question="${qi}" data-quiz-answer="${ci}" ${isSubmitted ? "disabled" : ""}>${escapeHtml(choice)}</button>`;
+                          const cls     = isCor ? " correct" : isWrong ? " wrong" : "";
+                          return `<button type="button" class="quiz-option${isSel ? " selected" : ""}${cls}" data-quiz-key="${escapeHtml(quizKey)}" data-quiz-question="${qi}" data-quiz-answer="${ci}" ${isSubmitted ? "disabled" : ""}>
+                            <span class="qo-letter">${String.fromCharCode(65 + ci)}</span>
+                            <span class="qo-text">${escapeHtml(choice)}</span>
+                          </button>`;
                         }).join("")}
                       </div>
                       ${isSubmitted ? `
@@ -13949,18 +13889,6 @@ function render() {
     });
   });
 
-  app.querySelectorAll("[data-blank-quiz-form]").forEach((form) => {
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      const savedY = window.scrollY;
-      const input = form.querySelector("input");
-      setQuizAnswer(form.dataset.quizKey, form.dataset.quizQuestion, input ? input.value : "");
-      render();
-      const target = app.querySelector("#topic-quiz");
-      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
-      else window.scrollTo(0, savedY);
-    });
-  });
 
   app.querySelectorAll("[data-reset-quiz]").forEach((button) => {
     button.addEventListener("click", () => {
@@ -14314,11 +14242,6 @@ function render() {
     });
   });
 
-  app.querySelectorAll("[data-me-blank]").forEach(input => {
-    input.addEventListener("change", () => {
-      mockExamSetAnswer(parseInt(input.dataset.meBlank, 10), input.value.trim());
-    });
-  });
 
   app.querySelector("[data-me-palette]")?.addEventListener("click", () => {
     state.mockExam.paletteOpen = !state.mockExam.paletteOpen; render();
@@ -15151,7 +15074,7 @@ function initPopups() {
           <div class="nu-popup-quiz-badge">${icon("zap")} Quick Quiz</div>
           <h2 id="nu-quiz-title" class="nu-popup-quiz-q">${q.q}</h2>
           <div class="nu-popup-quiz-options">
-            ${q.options.map((opt, i) => `<button class="nu-popup-quiz-opt" data-idx="${i}" type="button">${opt}</button>`).join("")}
+            ${q.options.map((opt, i) => `<button class="nu-popup-quiz-opt" data-idx="${i}" type="button"><span class="qo-letter">${String.fromCharCode(65+i)}</span><span class="qo-text">${opt}</span></button>`).join("")}
           </div>
           <div class="nu-popup-quiz-feedback" aria-live="polite"></div>
           <div class="nu-popup-quiz-actions" style="display:none">
