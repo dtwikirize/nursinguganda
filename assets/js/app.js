@@ -4517,10 +4517,6 @@ function renderAdvancedSearchForm(extraClass = "") {
         </label>
         ${activeFilters ? `<button class="search-clear-filter" type="button" data-search-clear-filters>${icon("x")}<span>Clear filters</span></button>` : ""}
       </div>
-      <div class="search-filter-summary">
-        <span>${icon("search")} ${escapeHtml(searchOptionLabel("categories", state.globalSearchCategory))}</span>
-        <span>${escapeHtml(searchOptionLabel("types", state.globalSearchType))}</span>
-      </div>
     </form>
   `;
 }
@@ -6797,6 +6793,13 @@ function renderProgress() {
   `;
 }
 
+function homeGreeting() {
+  const h = new Date().getHours();
+  if (h < 12) return "Good morning";
+  if (h < 17) return "Good afternoon";
+  return "Good evening";
+}
+
 function pageHeader({ title, body = "", eyebrow = "", actions = "", breadcrumb = "" }) {
   return `
     <div class="page-header">
@@ -6847,23 +6850,28 @@ function renderNotes() {
   ];
 
   return `
-    ${pageHeader({
-      eyebrow: "Study Hub",
-      title: "Nursing Notes",
-      body: "Structured nursing and midwifery notes, curriculum maps and revision resources for Uganda students.",
-      actions: `${buttonLink("/courses/curriculum", "Open Courses", "primary", "graduationCap")}${buttonLink("/search", "Search", "secondary", "search")}`
-    })}
-    <div class="notes-stats-strip">
+    <section class="home-hero">
       <div class="container">
-        <span>${icon("graduationCap")}<strong>${programmeCount || 7}</strong> Programmes</span>
-        <span>${icon("bookOpen")}<strong>${totals.courseUnits || 95}</strong> Course Units</span>
-        <span>${icon("fileText")}<strong>${dictionaryCount}</strong> Terms</span>
-        <span>${icon("stethoscope")}<strong>${instrumentCount}</strong> Instruments</span>
-      </div>
-    </div>
-    <section class="section compact-section">
-      <div class="container">
-        ${renderHomeSearch()}
+        <div class="home-hero-inner">
+          <div class="home-hero-copy">
+            <span class="eyebrow home-hero-eyebrow">Nursing Uganda · Study Hub</span>
+            <h1 class="home-hero-title">${homeGreeting()}, nurse.</h1>
+            <p class="home-hero-desc">Structured nursing &amp; midwifery notes, revision tools and curriculum guides for Uganda students.</p>
+            <div class="home-hero-stats">
+              <span>${icon("graduationCap")}<strong>${programmeCount || 7}</strong> Programmes</span>
+              <span>${icon("bookOpen")}<strong>${totals.courseUnits || 95}</strong> Units</span>
+              <span>${icon("fileText")}<strong>${dictionaryCount}</strong> Terms</span>
+              <span>${icon("stethoscope")}<strong>${instrumentCount}</strong> Instruments</span>
+            </div>
+          </div>
+          <div class="home-hero-search">
+            ${renderHomeSearch()}
+            <div class="home-hero-links">
+              ${buttonLink("/courses/curriculum", "Browse Courses", "ghost-white", "graduationCap")}
+              ${buttonLink("/resources/quizzes", "Take a Quiz", "ghost-white", "helpCircle")}
+            </div>
+          </div>
+        </div>
       </div>
     </section>
     <section class="section compact-section">
@@ -6984,13 +6992,11 @@ function renderGlobalSearchPage() {
   const typeLabel = searchOptionLabel("types", state.globalSearchType);
 
   return `
-    ${pageHeader({
-      eyebrow: "Search",
-      title: "Search Notes & Courses",
-      body: "Find course units, topics and lesson text across nursing and midwifery revision."
-    })}
-    <section class="section">
+    <section class="search-page-hero-section">
       <div class="container">
+        <span class="eyebrow page-eyebrow">Search</span>
+        <h1 class="search-page-title">Find Anything</h1>
+        <p class="search-page-subtitle">Course units, topics, lesson notes, dictionary terms and instruments — all in one search.</p>
         ${renderAdvancedSearchForm("search-page-form")}
         ${query.length < 2 ? `
           <div class="search-start-panel">
@@ -7015,11 +7021,11 @@ function renderGlobalSearchPage() {
             ${results.length ? results.map((result) => `
               <a class="search-result-card" href="${result.href}">
                 <span class="search-result-icon">${icon(iconFor(result.category || result.type))}</span>
-                <span class="search-result-type">${escapeHtml(result.type)}</span>
-                <div>
+                <div class="search-result-body">
+                  <span class="search-result-type">${escapeHtml(result.type)}</span>
                   <h3>${escapeHtml(result.title)}</h3>
                   <p>${escapeHtml(result.body)}</p>
-                  <strong>${escapeHtml(result.context)}</strong>
+                  ${result.context ? `<strong class="search-result-context">${escapeHtml(result.context)}</strong>` : ""}
                 </div>
                 <span class="search-result-arrow">${icon("arrowRight")}</span>
               </a>
