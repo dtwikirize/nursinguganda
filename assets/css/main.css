@@ -21255,6 +21255,73 @@ textarea:focus {
 .nu-popup-quiz-actions .button { font-size: .88rem; padding: .55rem 1.1rem; }
 .nu-popup-quiz-actions .button svg { width: 15px; height: 15px; }
 
+/* ── Email capture (inside welcome popup) ─────────────────────────── */
+.nu-popup-email-capture {
+  background: #f0feff;
+  border-radius: 12px;
+  padding: .9rem 1rem;
+  margin-bottom: 1rem;
+  border: 1.5px solid rgba(0,181,189,.2);
+}
+.nu-popup-email-label {
+  display: flex; align-items: center; gap: .4rem;
+  font-size: .82rem; font-weight: 700;
+  color: var(--brand-teal-dark, #007b83);
+  margin-bottom: .6rem; margin-top: 0;
+}
+.nu-popup-email-label svg { width: 15px; height: 15px; }
+.nu-popup-email-form { display: flex; gap: .5rem; }
+.nu-popup-email-input {
+  flex: 1; min-width: 0;
+  height: 40px; padding: 0 .75rem;
+  border: 1.5px solid #d1d5db; border-radius: 8px;
+  font-size: .88rem; color: #111827; background: #fff;
+  transition: border-color .15s;
+}
+.nu-popup-email-input:focus { outline: none; border-color: var(--brand-teal, #00B5BD); }
+.nu-popup-email-input.nu-popup-input-error { border-color: #dc2626; }
+.nu-popup-email-btn { height: 40px; padding: 0 1rem; font-size: .85rem; white-space: nowrap; }
+.nu-popup-email-note { font-size: .74rem; color: #9ca3af; margin: .4rem 0 0; }
+.nu-popup-email-success {
+  display: flex; align-items: center; gap: .5rem;
+  font-size: .9rem; font-weight: 600; color: #166534; padding: .25rem 0;
+}
+.nu-popup-email-success svg { width: 20px; height: 20px; color: #16a34a; flex-shrink: 0; }
+
+/* ── Study reminder nudge ─────────────────────────────────────────── */
+.nu-reminder-nudge {
+  position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 9070;
+  max-width: 360px; width: calc(100vw - 2rem);
+  transform: translateY(calc(100% + 2rem)); opacity: 0;
+  transition: transform .4s cubic-bezier(.22,1,.36,1), opacity .3s ease;
+  pointer-events: none;
+}
+.nu-reminder-nudge.nu-reminder-nudge-visible { transform: translateY(0); opacity: 1; pointer-events: auto; }
+.nu-reminder-nudge-inner {
+  background: #fff; border-radius: 14px; padding: 1rem;
+  border-left: 4px solid var(--brand-teal, #00B5BD);
+  box-shadow: 0 8px 32px rgba(0,0,0,.15);
+  display: flex; align-items: flex-start; gap: .75rem;
+}
+.nu-reminder-nudge-icon {
+  flex-shrink: 0; width: 38px; height: 38px; border-radius: 50%;
+  background: var(--brand-teal-light, #e0f7f8); color: var(--brand-teal, #00B5BD);
+  display: flex; align-items: center; justify-content: center;
+}
+.nu-reminder-nudge-icon svg { width: 18px; height: 18px; }
+.nu-reminder-nudge-body { flex: 1; }
+.nu-reminder-nudge-body strong { display: block; font-size: .9rem; color: #111827; margin-bottom: .2rem; }
+.nu-reminder-nudge-body p { font-size: .82rem; color: #6b7280; margin: 0; }
+.nu-reminder-nudge-actions { display: flex; align-items: center; gap: .5rem; flex-shrink: 0; }
+.nu-reminder-nudge-actions .button { font-size: .8rem; padding: .4rem .85rem; height: auto; }
+.nu-reminder-no { background: none; border: none; color: #9ca3af; cursor: pointer; padding: .25rem; line-height: 1; transition: color .15s; }
+.nu-reminder-no:hover { color: #374151; }
+.nu-reminder-no svg { width: 16px; height: 16px; display: block; }
+[data-theme="dark"] .nu-reminder-nudge-inner { background: #1e2a2a; }
+[data-theme="dark"] .nu-reminder-nudge-body strong { color: #f9fafb; }
+[data-theme="dark"] .nu-popup-email-capture { background: rgba(0,181,189,.07); }
+[data-theme="dark"] .nu-popup-email-input { background: #263333; border-color: #374151; color: #f9fafb; }
+
 /* ── Dark-mode overrides ──────────────────────────────────────────── */
 [data-theme="dark"] .nu-popup-modal { background: #1e2a2a; color: #e5e7eb; }
 [data-theme="dark"] .nu-popup-welcome h2 { color: #f9fafb; }

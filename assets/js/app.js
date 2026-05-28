@@ -8903,6 +8903,48 @@ function checkStudyReminder() {
   }
 }
 
+function showReminderNudge() {
+  if (document.getElementById("nu-reminder-nudge")) return;
+  const el = document.createElement("div");
+  el.id = "nu-reminder-nudge";
+  el.className = "nu-reminder-nudge";
+  el.innerHTML = `
+    <div class="nu-reminder-nudge-inner">
+      <span class="nu-reminder-nudge-icon">${icon("bell")}</span>
+      <div class="nu-reminder-nudge-body">
+        <strong>Enable study reminders?</strong>
+        <p>Get a daily nudge so you never miss a study session.</p>
+      </div>
+      <div class="nu-reminder-nudge-actions">
+        <button class="button primary nu-reminder-yes" type="button">Yes please</button>
+        <button class="nu-reminder-no" type="button" aria-label="Dismiss">${icon("x")}</button>
+      </div>
+    </div>`;
+  document.body.appendChild(el);
+  requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add("nu-reminder-nudge-visible")));
+
+  function dismiss() {
+    el.classList.remove("nu-reminder-nudge-visible");
+    el.addEventListener("transitionend", () => el.remove(), { once: true });
+  }
+  el.querySelector(".nu-reminder-no").addEventListener("click", dismiss);
+  el.querySelector(".nu-reminder-yes").addEventListener("click", async () => {
+    dismiss();
+    const perm = await Notification.requestPermission();
+    if (perm === "granted") {
+      const ns = getNotifSettings();
+      ns.reminderEnabled = true;
+      ns.reminderTime = ns.reminderTime || "20:00";
+      saveNotifSettings(ns);
+      showToast("Study reminders enabled! You can change the time in your Account settings.", "success");
+    } else {
+      showToast("Permission denied. You can enable reminders in your Account settings.", "error");
+    }
+  });
+  // Auto-dismiss after 12s
+  setTimeout(dismiss, 12000);
+}
+
 function timeAgo(isoDate) {
   if (!isoDate) return "";
   const diff = Math.floor((Date.now() - new Date(isoDate).getTime()) / 1000);
@@ -13930,6 +13972,11 @@ function render() {
         sendQuizResultsEmail(key).then(() => {
           showToast(`Results emailed to ${state.currentUser.email}`, "success");
         }).catch(() => {});
+        // Gently prompt for study reminders if not yet enabled
+        const ns = getNotifSettings();
+        if (!ns.reminderEnabled && "Notification" in window && Notification.permission === "default") {
+          setTimeout(() => showReminderNudge(), 1500);
+        }
       });
     });
   });
@@ -14987,12 +15034,20 @@ function initPopups() {
           <p class="nu-popup-sub">Your complete revision companion for nursing &amp; midwifery students.</p>
           <ul class="nu-popup-feature-list">
             <li>${icon("bookOpen")}<span><strong>Study Notes</strong> — structured notes for every unit</span></li>
-            <li>${icon("sparkles")}<strong>Flashcards</strong> — spaced-repetition revision</span></li>
-            <li>${icon("search")}<strong>Dictionary</strong> — 500+ medical terms</span></li>
-            <li>${icon("chartBar")}<strong>Progress</strong> — track your learning</span></li>
+            <li>${icon("sparkles")}<span><strong>Flashcards</strong> — spaced-repetition revision</span></li>
+            <li>${icon("search")}<span><strong>Dictionary</strong> — 500+ medical terms</span></li>
+            <li>${icon("chartBar")}<span><strong>Progress</strong> — track your learning</span></li>
           </ul>
+          <div class="nu-popup-email-capture">
+            <p class="nu-popup-email-label">${icon("mail")} Get weekly revision tips — free</p>
+            <form class="nu-popup-email-form" novalidate>
+              <input type="email" class="nu-popup-email-input" placeholder="your@email.com" autocomplete="email" required>
+              <button type="submit" class="button primary nu-popup-email-btn">Subscribe</button>
+            </form>
+            <p class="nu-popup-email-note">No spam, unsubscribe any time.</p>
+          </div>
           <div class="nu-popup-actions">
-            <a class="button primary nu-popup-cta" href="/notes">Explore Study Notes</a>
+            <a class="button secondary nu-popup-cta" href="/notes">Explore Notes Instead</a>
             <button class="nu-popup-dismiss" type="button">Maybe Later</button>
           </div>
         </div>`;
@@ -15008,6 +15063,31 @@ function initPopups() {
       el.querySelector(".nu-popup-dismiss").addEventListener("click", close);
       el.querySelector(".nu-popup-cta").addEventListener("click", close);
       el.addEventListener("click", (e) => { if (e.target === el) close(); });
+
+      // Email capture submit
+      el.querySelector(".nu-popup-email-form").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const input = el.querySelector(".nu-popup-email-input");
+        const email = input.value.trim().toLowerCase();
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          input.classList.add("nu-popup-input-error");
+          return;
+        }
+        input.classList.remove("nu-popup-input-error");
+        const btn = el.querySelector(".nu-popup-email-btn");
+        btn.textContent = "Saving…";
+        btn.disabled = true;
+        try {
+          const client = sb();
+          if (client) await client.from("newsletter_subscribers").upsert({ email, source: "welcome_popup" }, { onConflict: "email" });
+        } catch (_) {}
+        // Show confirmation
+        el.querySelector(".nu-popup-email-capture").innerHTML = `
+          <div class="nu-popup-email-success">
+            ${icon("checkCircle")}<span>You're subscribed! 🎉 Weekly tips coming your way.</span>
+          </div>`;
+        setTimeout(close, 2500);
+      });
     }, 8000);
   })();
 
