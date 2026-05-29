@@ -8539,7 +8539,7 @@ display: flex;
 
 /* ── FOOTER ───────────────────────────────────────────── */
 .site-footer {
-  background: #1E293B;
+  background: #1a0d15;
   color: rgba(255,255,255,.78);
   padding: 60px 0 0;
   margin-top: 64px;
@@ -8589,20 +8589,20 @@ display: flex;
   align-items: center;
   gap: 6px;
   padding: .38rem .72rem;
-  background: rgba(255,255,255,.10);
-  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(166,68,104,.15);
+  border: 1px solid rgba(166,68,104,.30);
   border-radius: 999px;
   font-size: .82rem;
   font-weight: 700;
-  color: rgba(255,255,255,.75);
+  color: rgba(255,255,255,.80);
 }
 .footer-stats strong { color: #fff; margin: 0 1px; }
-.footer-stats .ui-icon { width: 13px; height: 13px; color: rgba(255,255,255,.52); }
+.footer-stats .ui-icon { width: 13px; height: 13px; color: rgba(166,68,104,.75); }
 
-/* CTA panel — green-tinted card */
+/* CTA panel */
 .footer-cta-panel {
-  background: linear-gradient(135deg, rgba(166,68,104,.22) 0%, rgba(166,68,104,.08) 100%);
-  border: 1px solid rgba(166,68,104,.35);
+  background: linear-gradient(135deg, rgba(166,68,104,.25) 0%, rgba(166,68,104,.10) 100%);
+  border: 1px solid rgba(166,68,104,.40);
   border-radius: 16px;
   padding: 28px 26px;
 }
@@ -8639,16 +8639,16 @@ display: flex;
 }
 .footer-cta-actions .button { font-size: .88rem; }
 .site-footer .button.secondary {
-  background: rgba(255,255,255,.1);
-  border-color: rgba(255,255,255,.18);
+  background: rgba(166,68,104,.18);
+  border-color: rgba(166,68,104,.40);
   color: #fff;
 }
-.site-footer .button.secondary:hover { background: rgba(255,255,255,.16); }
+.site-footer .button.secondary:hover { background: rgba(166,68,104,.28); }
 
 /* Divider */
 .footer-divider {
   height: 1px;
-  background: rgba(255,255,255,.15);
+  background: rgba(166,68,104,.25);
   margin-bottom: 40px;
 }
 
@@ -8681,13 +8681,13 @@ display: flex;
   transition: color .15s, transform .15s;
 }
 .footer-nav-col a:hover {
-  color: #fff;
+  color: #fce8f0;
   transform: translateX(3px);
 }
 .footer-nav-col .ui-icon {
   width: 13px;
   height: 13px;
-  color: rgba(255,255,255,.48);
+  color: rgba(166,68,104,.65);
   flex-shrink: 0;
 }
 
@@ -8735,7 +8735,7 @@ display: flex;
   justify-content: space-between;
   gap: 16px;
   padding: 20px 0 28px;
-  border-top: 1px solid rgba(255,255,255,.16);
+  border-top: 1px solid rgba(166,68,104,.25);
   color: rgba(255,255,255,.55);
   font-size: .8rem;
   flex-wrap: wrap;
