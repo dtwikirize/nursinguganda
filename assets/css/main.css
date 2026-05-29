@@ -549,13 +549,17 @@ font-size: 1.35rem;
   display: flex;
   flex-direction: column;
   transform: translateX(100%);
-  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0s 0.28s;
   overflow-y: auto;
   overscroll-behavior: contain;
-  box-shadow: -8px 0 40px rgb(0 0 0 / 0.15);
+  box-shadow: none;
 }
 
-.mobile-drawer.open { transform: translateX(0); }
+.mobile-drawer.open {
+  transform: translateX(0);
+  box-shadow: -8px 0 40px rgb(0 0 0 / 0.15);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
 
 [data-theme="dark"] .mobile-drawer { background: #111418; }
 
@@ -15168,6 +15172,156 @@ gap: 8px;
 /* ── Programme / Course Card ─────────────────────────────────────── */
 .programme-card {
   transition: var(--transition-card);
+}
+
+/* Programme level badge (overlaid on art image) */
+.prog-level-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgb(255 255 255 / 0.25);
+}
+.prog-level-cert {
+  background: rgb(5 150 105 / 0.82);
+  color: #fff;
+}
+.prog-level-dip {
+  background: rgb(0 181 189 / 0.88);
+  color: #fff;
+}
+.prog-level-deg {
+  background: rgb(37 99 235 / 0.82);
+  color: #fff;
+}
+
+/* Programme progress bar inside card */
+.prog-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.prog-progress-bar {
+  flex: 1;
+  height: 6px;
+  border-radius: 4px;
+  background: rgb(var(--color-navy-rgb) / 0.1);
+  overflow: hidden;
+}
+.prog-progress-bar span {
+  display: block;
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--color-primary-dark), var(--color-primary));
+  transition: width 0.6s ease;
+}
+.prog-progress-pct {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  white-space: nowrap;
+  min-width: 48px;
+  text-align: right;
+}
+
+/* ── Dashboard above-the-fold 2-col layout ───────────────────────── */
+.dash-above-fold {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 24px;
+  align-items: start;
+}
+.dash-atf-left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.dash-atf-right {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Weekly Activity Chart ───────────────────────────────────────── */
+.dash-weekly-chart {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: 20px 20px 16px;
+}
+.dash-weekly-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.dash-weekly-stat {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  background: rgb(var(--color-primary-rgb) / 0.1);
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+.dash-weekly-bars {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  align-items: end;
+}
+.dash-weekly-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.dash-weekly-bar-wrap {
+  width: 100%;
+  height: 56px;
+  display: flex;
+  align-items: flex-end;
+}
+.dash-weekly-bar {
+  width: 100%;
+  height: 12px;
+  border-radius: 4px 4px 2px 2px;
+  background: rgb(var(--color-navy-rgb) / 0.08);
+  transition: height 0.35s ease, background 0.25s ease;
+}
+.dash-weekly-bar.active {
+  height: 100%;
+  background: linear-gradient(180deg, var(--color-primary), var(--color-primary-dark));
+}
+.dash-weekly-bar.is-today:not(.active) {
+  background: rgb(var(--color-primary-rgb) / 0.22);
+  height: 18px;
+}
+.dash-weekly-day {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--color-muted);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.dash-weekly-day.is-today {
+  color: var(--color-primary-dark);
+  font-weight: 800;
+}
+
+/* Responsive — collapse to single col below 900px */
+@media (max-width: 900px) {
+  .dash-above-fold {
+    grid-template-columns: 1fr;
+  }
+  .dash-atf-right {
+    flex-direction: column;
+  }
 }
 
 /* ── Saved Card ──────────────────────────────────────────────────── */
