@@ -6505,6 +6505,39 @@ function renderCommunityQuestion() {
   `;
 }
 
+function renderWeeklyChart() {
+  const studyDates = getStudyDates();
+  const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const days = [];
+  for (let i = 6; i >= 0; i--) {
+    const d = new Date();
+    d.setDate(d.getDate() - i);
+    const key = d.toISOString().slice(0, 10);
+    const studied = studyDates.has(key);
+    const label = i === 0 ? "Today" : i === 1 ? "Yest" : dayNames[d.getDay()];
+    days.push({ key, studied, label, isToday: i === 0 });
+  }
+  const studiedCount = days.filter(d => d.studied).length;
+  return `
+    <div class="dash-weekly-chart">
+      <div class="dash-weekly-head">
+        <span class="mini-label">This Week</span>
+        <span class="dash-weekly-stat">${studiedCount}/7 days studied</span>
+      </div>
+      <div class="dash-weekly-bars">
+        ${days.map(d => `
+          <div class="dash-weekly-col">
+            <div class="dash-weekly-bar-wrap">
+              <div class="dash-weekly-bar${d.studied ? " active" : ""}${d.isToday ? " is-today" : ""}"></div>
+            </div>
+            <span class="dash-weekly-day${d.isToday ? " is-today" : ""}">${d.label}</span>
+          </div>
+        `).join("")}
+      </div>
+    </div>
+  `;
+}
+
 function renderActivityHeatmap() {
   const studyDates = getStudyDates();
   const today = new Date();
@@ -6676,35 +6709,76 @@ function renderProgress() {
     <section class="section">
       <div class="container">
 
-        <!-- Stat tiles -->
-        <div class="progress-stat-grid">
-          <div class="progress-stat-tile">
-            <div class="progress-stat-icon psi-primary">${icon("checkCircle")}</div>
-            <div><strong>${progress.done}</strong><span>Lessons Done</span><small>of ${progress.total} total</small></div>
-          </div>
-          <div class="progress-stat-tile psi-streak-tile">
-            <div class="progress-stat-icon psi-flame">${icon("flame")}</div>
-            <div>
-              <strong>${streak.count}</strong><span>Day Streak</span>
-              <small class="streak-best-hint">Best: ${streak.best || streak.count} day${(streak.best || streak.count) !== 1 ? "s" : ""} ${(streak.best || streak.count) >= 7 ? "🔥" : ""}</small>
+        <!-- Above-the-fold: 2-column grid (left: stats + weekly chart | right: ring + continue) -->
+        <div class="dash-above-fold">
+
+          <!-- LEFT: stat tiles + weekly chart -->
+          <div class="dash-atf-left">
+            <div class="progress-stat-grid">
+              <div class="progress-stat-tile">
+                <div class="progress-stat-icon psi-primary">${icon("checkCircle")}</div>
+                <div><strong>${progress.done}</strong><span>Lessons Done</span><small>of ${progress.total} total</small></div>
+              </div>
+              <div class="progress-stat-tile psi-streak-tile">
+                <div class="progress-stat-icon psi-flame">${icon("flame")}</div>
+                <div>
+                  <strong>${streak.count}</strong><span>Day Streak</span>
+                  <small class="streak-best-hint">Best: ${streak.best || streak.count} day${(streak.best || streak.count) !== 1 ? "s" : ""} ${(streak.best || streak.count) >= 7 ? "🔥" : ""}</small>
+                </div>
+              </div>
+              <div class="progress-stat-tile">
+                <div class="progress-stat-icon psi-trophy">${icon("send")}</div>
+                <div><strong>${quizzesTaken}</strong><span>Quizzes Taken</span><small>${masteredCount} flashcards mastered</small></div>
+              </div>
+              <div class="progress-stat-tile">
+                <div class="progress-stat-icon psi-bookmark">${icon("bookmark")}</div>
+                <div><strong>${saved.length}</strong><span>Bookmarks</span><small>Saved notes &amp; topics</small></div>
+              </div>
             </div>
+            ${renderWeeklyChart()}
           </div>
-          <div class="progress-stat-tile">
-            <div class="progress-stat-icon psi-trophy">${icon("send")}</div>
-            <div><strong>${quizzesTaken}</strong><span>Quizzes Taken</span><small>${masteredCount} flashcards mastered</small></div>
+
+          <!-- RIGHT: overall ring + continue card -->
+          <div class="dash-atf-right">
+            <div class="progress-overall-panel content-panel">
+              <div class="progress-ring-wrap">
+                ${renderProgressRing(progress.percent)}
+                <div class="progress-ring-center">
+                  <strong>${progress.percent}%</strong>
+                  <span>Complete</span>
+                </div>
+              </div>
+              <div class="progress-overall-body">
+                <span class="mini-label">Overall Progress</span>
+                <h2>${progress.done} of ${progress.total} lessons</h2>
+                <p>${escapeHtml(encouragement)}</p>
+                <div class="progress-bar" style="margin-top:14px;margin-bottom:18px">
+                  <span style="width:${progress.percent}%"></span>
+                </div>
+                ${buttonLink("/courses/curriculum", "Browse All Courses", "secondary", "graduationCap")}
+              </div>
+            </div>
+            ${last ? `
+              <div class="dash-continue-card content-panel">
+                <div class="dash-continue-icon">${icon("bookOpen")}</div>
+                <div class="dash-continue-body">
+                  <span class="mini-label">Continue where you left off</span>
+                  <strong>${escapeHtml(last.title)}</strong>
+                  <small>${escapeHtml(last.context || "")}</small>
+                </div>
+                <a class="button primary" href="${escapeHtml(last.href)}">${icon("arrowRight")} Continue</a>
+              </div>
+            ` : ""}
           </div>
-          <div class="progress-stat-tile">
-            <div class="progress-stat-icon psi-bookmark">${icon("bookmark")}</div>
-            <div><strong>${saved.length}</strong><span>Bookmarks</span><small>Saved notes &amp; topics</small></div>
-          </div>
+
         </div>
 
-        <!-- Today's Plan + Continue learning -->
+        <!-- Today's Plan -->
         ${(function() {
           const todayPlan = getTodayPlan();
           const todayDone = todayPlan.filter(function(s) { return s.done; }).length;
           return todayPlan.length > 0 ? `
-            <div class="dash-today-plan content-panel">
+            <div class="dash-today-plan content-panel" style="margin-top:24px">
               <div class="dash-today-icon">${icon("calendar")}</div>
               <div class="dash-today-body">
                 <span class="mini-label">Today's Study Plan</span>
@@ -6720,37 +6794,6 @@ function renderProgress() {
             </div>
           ` : "";
         })()}
-        ${last ? `
-          <div class="dash-continue-card content-panel">
-            <div class="dash-continue-icon">${icon("bookOpen")}</div>
-            <div class="dash-continue-body">
-              <span class="mini-label">Continue where you left off</span>
-              <strong>${escapeHtml(last.title)}</strong>
-              <small>${escapeHtml(last.context || "")}</small>
-            </div>
-            <a class="button primary" href="${escapeHtml(last.href)}">${icon("arrowRight")} Continue</a>
-          </div>
-        ` : ""}
-
-        <!-- Overall ring -->
-        <div class="progress-overall-panel content-panel" style="margin-top:24px">
-          <div class="progress-ring-wrap">
-            ${renderProgressRing(progress.percent)}
-            <div class="progress-ring-center">
-              <strong>${progress.percent}%</strong>
-              <span>Complete</span>
-            </div>
-          </div>
-          <div class="progress-overall-body">
-            <span class="mini-label">Overall Progress</span>
-            <h2>${progress.done} of ${progress.total} lessons completed</h2>
-            <p>${escapeHtml(encouragement)}</p>
-            <div class="progress-bar" style="margin-top:16px;margin-bottom:20px">
-              <span style="width:${progress.percent}%"></span>
-            </div>
-            ${buttonLink("/courses/curriculum", "Browse All Courses", "secondary", "graduationCap")}
-          </div>
-        </div>
 
         <!-- Activity heatmap -->
         ${renderActivityHeatmap()}
@@ -7357,23 +7400,42 @@ function programmeFilterButtons() {
 
 function programmeCard(programme) {
   const visual = programmeVisual(programme);
+  const level = programmeLevel(programme);
   const stats = [
     ["Years", programme.stats.yearCount],
     ["Semesters", programme.stats.semesterCount],
     ["Units", programme.stats.unitCount],
     ["Topics", programme.stats.topicCount || 0]
   ];
+
+  // Compute per-programme completion
+  const completed = completedTopics();
+  const pUnits = allUnits(programme);
+  const pTopics = pUnits.flatMap(u => flatTopics(u).map(t => ({ unit: u, topic: t })));
+  const pDone = pTopics.filter(({ unit, topic }) => completed[topicKey(programme, unit, topic)]).length;
+  const pTotal = pTopics.length;
+  const pPct = pTotal ? Math.round((pDone / pTotal) * 100) : 0;
+
+  const levelClass = level === "Degree" ? "prog-level-deg" : level === "Diploma" ? "prog-level-dip" : "prog-level-cert";
+
   return `
     <a class="card programme-card" href="/courses/${programme.id}">
       <span class="programme-art">
         <img src="${escapeHtml(displayImageSrc(visual.src))}" alt="${escapeHtml(visual.alt || programme.label)}" loading="lazy">
         <span class="programme-art-badge" aria-hidden="true">${iconFor(programme.label)}</span>
+        <span class="prog-level-badge ${levelClass}">${escapeHtml(level)}</span>
       </span>
       <div class="programme-card-body">
         <h3>${escapeHtml(programme.label)}</h3>
         <div class="programme-meta">
           ${stats.map(([label, value]) => `<span><strong>${value}</strong> ${escapeHtml(label)}</span>`).join("")}
         </div>
+        ${pTotal > 0 ? `
+          <div class="prog-progress-row">
+            <div class="prog-progress-bar"><span style="width:${pPct}%"></span></div>
+            <span class="prog-progress-pct">${pPct}% done</span>
+          </div>
+        ` : ""}
         <span class="programme-link">${icon("arrowRight")}<span>Open curriculum</span></span>
       </div>
     </a>
