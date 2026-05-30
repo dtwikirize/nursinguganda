@@ -3737,7 +3737,7 @@ function renderMobileDrawer(active) {
     <div class="mobile-drawer${state.navOpen ? " open" : ""}" id="mobile-drawer" role="dialog" aria-modal="true" aria-label="Navigation menu">
       <div class="drawer-header">
         <a class="brand drawer-brand" href="/notes" data-nav-close>
-          <img src="assets/images/nursing-uganda-icon.png" class="brand-mark" alt="" aria-hidden="true" width="40" height="40">
+          <img src="assets/images/nursing-uganda-icon-light-transparent.png" class="brand-mark" alt="" aria-hidden="true" width="40" height="40">
           <div class="brand-text"><strong>Nursing Uganda</strong><small>Notes &amp; Resources</small></div>
         </a>
         <button class="drawer-close-btn" type="button" data-nav-toggle aria-label="Close menu">${icon("x")}</button>
@@ -3852,12 +3852,12 @@ function layout(content) {
   const parts = currentRoute();
   const active = routeKey(parts);
   app.innerHTML = `
-    <div class="app-shell">
+    <div class="app-shell${parts[0] === "login" ? " app-shell--auth" : ""}">
       <header class="site-header">
         <div id="reading-progress-bar" role="progressbar" aria-hidden="true"></div>
         <div class="container nav-shell">
           <a class="brand" href="/notes" aria-label="Nursing Uganda notes home">
-            <img src="assets/images/nursing-uganda-icon.png" class="brand-mark" alt="" aria-hidden="true" width="40" height="40">
+            <img src="assets/images/nursing-uganda-icon-light-transparent.png" class="brand-mark" alt="" aria-hidden="true" width="40" height="40">
             <div class="brand-text">
               <strong>Nursing Uganda</strong>
               <small>Notes &amp; Resources</small>
@@ -4660,26 +4660,27 @@ function renderLoginPage() {
   return `
     <div class="login-page-wrap">
       <div class="login-brand-panel">
-        <div class="login-brand-inner">
-          <a class="login-brand-logo" href="/notes" aria-label="Nursing Uganda home">
-            <img src="assets/images/nursing-uganda-icon.png" class="login-brand-icon" alt="Nursing Uganda" width="64" height="64">
-          </a>
-          <div class="login-brand-copy">
-            <h2 class="login-brand-headline">Study smarter.<br>Revise better.</h2>
-            <p class="login-brand-sub">Your complete revision companion for nursing and midwifery students in Uganda.</p>
-            <ul class="login-feature-list">
-              <li>${icon("bookOpen")}<span>Structured notes for every course unit</span></li>
-              <li>${icon("chartLine")}<span>Track your progress as you study</span></li>
-              <li>${icon("sparkles")}<span>Flashcards, quizzes and past papers</span></li>
-              <li>${icon("globe")}<span>International career &amp; licensing guides</span></li>
-            </ul>
-          </div>
-          <p class="login-brand-footer-note">Free for all Ugandan nursing students</p>
+        <div class="login-slide-bg" aria-hidden="true">
+          <img src="assets/images/nursing-uganda-login-panel-1.png" class="login-slide login-slide-1" alt="" loading="eager">
+          <img src="assets/images/nursing-uganda-login-panel-2.png" class="login-slide login-slide-2" alt="" loading="lazy">
+          <div class="login-slide-overlay"></div>
+        </div>
+        <a class="login-brand-logo" href="/notes" aria-label="Nursing Uganda home">
+          <img src="assets/images/nursing-uganda-icon-light-transparent.png" class="login-brand-icon-mark" alt="" aria-hidden="true" width="34" height="34" loading="eager">
+          <span class="login-brand-wordmark-text">Nursing Uganda</span>
+        </a>
+        <div class="login-brand-tagline">
+          <h2>Study smarter.<br>Revise better.</h2>
+          <p>Your complete revision companion for nursing &amp; midwifery students in Uganda.</p>
         </div>
       </div>
 
       <div class="login-form-panel">
         <div class="login-form-card">
+          <a class="login-back-link" href="/notes">${icon("arrowLeft")}<span>Back to Nursing Uganda</span></a>
+          <div class="login-form-brand">
+            <img src="assets/images/nursing-uganda-icon-light-transparent.png" class="login-form-icon" alt="" aria-hidden="true" width="48" height="48">
+          </div>
           <div class="login-form-header">
             <h1>${isSignup ? "Create your account" : "Welcome back"}</h1>
             <p>${isSignup ? "Join thousands of students revising smarter." : "Sign in to track your progress and saved notes."}</p>
@@ -6927,6 +6928,17 @@ function renderNotes() {
 
   return `
     <section class="home-hero">
+      <div class="hero-slide-bg" aria-hidden="true">
+        <img src="assets/images/nursing-uganda-home-hero-1.png" class="hero-slide hero-slide-1" alt="" loading="eager">
+        <img src="assets/images/nursing-uganda-home-hero-2.png" class="hero-slide hero-slide-2" alt="" loading="lazy">
+        <img src="assets/images/nursing-uganda-home-hero-3.png" class="hero-slide hero-slide-3" alt="" loading="lazy">
+        <div class="hero-slide-overlay"></div>
+        <div class="hero-slide-indicators" aria-hidden="true">
+          <span class="hero-slide-indicator"></span>
+          <span class="hero-slide-indicator"></span>
+          <span class="hero-slide-indicator"></span>
+        </div>
+      </div>
       <div class="container">
         <div class="home-hero-inner">
           <div class="home-hero-copy">
