@@ -3498,11 +3498,7 @@ function renderFooter() {
         <div class="footer-top">
           <div class="footer-brand">
             <a class="footer-logo" href="/notes" aria-label="Nursing Uganda home">
-              <span class="brand-mark">NU</span>
-              <div>
-                <strong>Nursing Uganda</strong>
-                <small>Revision &amp; Resources</small>
-              </div>
+              <img src="assets/images/nursing-uganda-logo.png" class="footer-logo-img" alt="Nursing Uganda — Notes &amp; Resources" width="220" height="auto" loading="lazy">
             </a>
             <p class="footer-tagline">Structured notes, courses, dictionary and career resources for Uganda nursing and midwifery students — free and offline-ready.</p>
             <div class="footer-stats" aria-label="Quick stats">
@@ -3741,7 +3737,7 @@ function renderMobileDrawer(active) {
     <div class="mobile-drawer${state.navOpen ? " open" : ""}" id="mobile-drawer" role="dialog" aria-modal="true" aria-label="Navigation menu">
       <div class="drawer-header">
         <a class="brand drawer-brand" href="/notes" data-nav-close>
-          <span class="brand-mark">NU</span>
+          <img src="assets/images/nursing-uganda-icon.png" class="brand-mark" alt="" aria-hidden="true" width="40" height="40">
           <div class="brand-text"><strong>Nursing Uganda</strong><small>Notes &amp; Resources</small></div>
         </a>
         <button class="drawer-close-btn" type="button" data-nav-toggle aria-label="Close menu">${icon("x")}</button>
@@ -3861,7 +3857,7 @@ function layout(content) {
         <div id="reading-progress-bar" role="progressbar" aria-hidden="true"></div>
         <div class="container nav-shell">
           <a class="brand" href="/notes" aria-label="Nursing Uganda notes home">
-            <span class="brand-mark">NU</span>
+            <img src="assets/images/nursing-uganda-icon.png" class="brand-mark" alt="" aria-hidden="true" width="40" height="40">
             <div class="brand-text">
               <strong>Nursing Uganda</strong>
               <small>Notes &amp; Resources</small>
@@ -4665,9 +4661,8 @@ function renderLoginPage() {
     <div class="login-page-wrap">
       <div class="login-brand-panel">
         <div class="login-brand-inner">
-          <a class="login-brand-logo brand" href="/notes">
-            <span class="brand-mark">NU</span>
-            <div class="brand-text"><strong>Nursing Uganda</strong><small>Notes &amp; Resources</small></div>
+          <a class="login-brand-logo" href="/notes" aria-label="Nursing Uganda home">
+            <img src="assets/images/nursing-uganda-icon.png" class="login-brand-icon" alt="Nursing Uganda" width="64" height="64">
           </a>
           <div class="login-brand-copy">
             <h2 class="login-brand-headline">Study smarter.<br>Revise better.</h2>

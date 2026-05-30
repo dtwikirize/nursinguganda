@@ -1,5 +1,47 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#00B5BD"/>
-  <path d="M32 13v38M13 32h38" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
-  <path d="M44 18c-9 0-14 5-14 14 8 0 14-5 14-14Z" fill="#29C9D0"/>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4a1a2e"/>
+      <stop offset="100%" stop-color="#6b2442"/>
+    </linearGradient>
+    <linearGradient id="bookL" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#A64468"/>
+      <stop offset="100%" stop-color="#c8688e"/>
+    </linearGradient>
+    <linearGradient id="bookR" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#d4849e"/>
+      <stop offset="100%" stop-color="#e8a8bc"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background rounded square -->
+  <rect width="64" height="64" rx="13" fill="url(#bg)"/>
+
+  <!-- Arch outline (upside-down U) -->
+  <path d="M13,44 L13,27 A19,19 0 0,1 51,27 L51,44"
+        fill="none" stroke="rgba(255,255,255,0.80)" stroke-width="2.2"
+        stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Cross at arch crown -->
+  <line x1="32" y1="5"  x2="32" y2="13" stroke="#e8a8bc" stroke-width="2.2" stroke-linecap="round"/>
+  <line x1="28" y1="9"  x2="36" y2="9"  stroke="#e8a8bc" stroke-width="2.2" stroke-linecap="round"/>
+
+  <!-- NU serif text -->
+  <text x="32" y="40"
+        text-anchor="middle"
+        font-family="Georgia,'Times New Roman',serif"
+        font-size="21" font-weight="bold"
+        fill="white" letter-spacing="-0.5">NU</text>
+
+  <!-- Open book — left page -->
+  <path d="M7,52 Q28,48 32,49 L32,58 Q14,57 7,61 Z" fill="url(#bookL)" opacity="0.92"/>
+  <!-- Open book — right page -->
+  <path d="M57,52 Q36,48 32,49 L32,58 Q50,57 57,61 Z" fill="url(#bookR)" opacity="0.85"/>
+  <!-- Bottom arc of book -->
+  <path d="M7,61 Q32,64 57,61" fill="none" stroke="#A64468" stroke-width="1.8" stroke-linecap="round"/>
+  <!-- Spine -->
+  <line x1="32" y1="49" x2="32" y2="59" stroke="rgba(30,8,18,0.7)" stroke-width="1.6"/>
+  <!-- Page depth lines -->
+  <path d="M9,55 Q27,52 31,53"  fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="0.8" stroke-linecap="round"/>
+  <path d="M55,55 Q37,52 33,53" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="0.8" stroke-linecap="round"/>
 </svg>
