@@ -3498,7 +3498,7 @@ function renderFooter() {
         <div class="footer-top">
           <div class="footer-brand">
             <a class="footer-logo" href="/notes" aria-label="Nursing Uganda home">
-              <img src="assets/images/nursing-uganda-logo.png" class="footer-logo-img" alt="Nursing Uganda — Notes &amp; Resources" width="220" height="auto" loading="lazy">
+              <img src="assets/images/nursing-uganda-logo-transparent.png" class="footer-logo-img" alt="Nursing Uganda — Notes &amp; Resources" width="220" height="auto" loading="lazy">
             </a>
             <p class="footer-tagline">Structured notes, courses, dictionary and career resources for Uganda nursing and midwifery students — free and offline-ready.</p>
             <div class="footer-stats" aria-label="Quick stats">
