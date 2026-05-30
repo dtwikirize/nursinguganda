@@ -16394,7 +16394,7 @@ async function init() {
 
     // Curriculum is the minimum needed to render — load it first and paint immediately
     // Use root-relative path so it always resolves correctly regardless of current URL
-    const response = await fetch("/assets/data/curriculum.json");
+    const response = await fetch("/assets/data/curriculum.json?v=104");
     if (!response.ok) throw new Error(`Could not load course content (${response.status}). Please refresh.`);
     state.data = await response.json();
     state.imageMatches = { matches: {} };
