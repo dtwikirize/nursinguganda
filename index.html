@@ -31,9 +31,10 @@
     <link rel="canonical" href="https://nursinguganda.com/">
 
     <!-- Favicon & icons -->
-    <link rel="icon" href="assets/images/nursing-uganda-favicon-mark.png" type="image/png">
-    <link rel="icon" href="assets/images/pwa/icon-192x192.png" type="image/png" sizes="192x192">
     <link rel="icon" href="assets/images/pwa/icon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="assets/images/pwa/icon-48x48.png" type="image/png" sizes="48x48">
+    <link rel="icon" href="assets/images/pwa/icon-192x192.png" type="image/png" sizes="192x192">
+    <link rel="shortcut icon" href="assets/images/nursing-uganda-favicon-mark.png" type="image/png">
 
     <!-- Apple PWA -->
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -73,37 +74,81 @@
       html,body{margin:0;padding:0;background:#f8fbfc}
       body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#374151}
       #app{min-height:100vh}
+
+      /* ── Premium loading screen ─────────────────────────────────────── */
       .loading-screen{
-        display:flex;flex-direction:column;align-items:center;justify-content:center;
-        min-height:100vh;background:#f8fbfc;color:#374151;
-        gap:1.25rem;padding:2rem;text-align:center
+        position:fixed;inset:0;display:flex;flex-direction:column;
+        align-items:center;justify-content:center;
+        background:#f8fbfc;z-index:9999;gap:0
       }
-      .loading-wordmark{
-        display:block;font-size:1.75rem;font-weight:800;
-        color:#A64468;letter-spacing:-0.03em;margin:0;line-height:1.1
+
+      /* Top progress bar */
+      .loading-bar{
+        position:fixed;top:0;left:0;right:0;height:3px;
+        background:linear-gradient(90deg,transparent 0%,#A64468 30%,#d472a0 60%,transparent 100%);
+        background-size:200% 100%;
+        animation:nu-bar 1.6s ease-in-out infinite
       }
-      .loading-screen p{margin:0;color:#6b7280;font-size:0.9rem}
-      .loading-screen .load-error-msg{color:#b91c1c;font-size:0.875rem;max-width:340px}
-      /* Pulsing dots animation */
-      .loading-screen p::after{
-        content:'';animation:nu-dots 1.4s steps(4,end) infinite
+      @keyframes nu-bar{
+        0%{background-position:200% 0}
+        100%{background-position:-200% 0}
       }
-      @keyframes nu-dots{
-        0%{content:''}25%{content:'.'}50%{content:'..'}75%,100%{content:'...'}
+
+      /* Centre mark + spinning ring */
+      .loading-mark-wrap{
+        position:relative;width:96px;height:96px;
+        display:flex;align-items:center;justify-content:center
       }
-      /* Loading logo */
-      .loading-logo{
-        width:72px;height:72px;object-fit:contain;
-        animation:nu-pulse 2.2s ease-in-out infinite
+      .loading-mark{
+        width:64px;height:64px;object-fit:contain;position:relative;z-index:2;
+        animation:nu-breathe 2.8s ease-in-out infinite
       }
-      @keyframes nu-pulse{
-        0%,100%{transform:scale(1)}
-        50%{transform:scale(1.06)}
+      @keyframes nu-breathe{
+        0%,100%{transform:scale(1);opacity:1}
+        50%{transform:scale(1.07);opacity:.9}
       }
-      /* Dark mode respect even before theme JS runs */
+      /* Spinning halo ring */
+      .loading-ring{
+        position:absolute;inset:0;border-radius:50%;
+        border:2.5px solid transparent;
+        border-top-color:#A64468;border-right-color:#d4729f;
+        animation:nu-spin 1s cubic-bezier(.55,.15,.45,.85) infinite
+      }
+      /* Outer glow ring */
+      .loading-ring::after{
+        content:'';position:absolute;inset:-6px;border-radius:50%;
+        border:1px solid rgba(166,68,104,.18);
+        animation:nu-spin-rev 2.4s linear infinite
+      }
+      @keyframes nu-spin{to{transform:rotate(360deg)}}
+      @keyframes nu-spin-rev{to{transform:rotate(-360deg)}}
+
+      /* Three staggered dots below */
+      .loading-dots{
+        display:flex;gap:7px;margin-top:28px;align-items:center
+      }
+      .loading-dots span{
+        width:7px;height:7px;border-radius:50%;background:#A64468;
+        animation:nu-dot-pop 1.2s ease-in-out infinite;opacity:.25
+      }
+      .loading-dots span:nth-child(1){animation-delay:0s}
+      .loading-dots span:nth-child(2){animation-delay:.2s}
+      .loading-dots span:nth-child(3){animation-delay:.4s}
+      @keyframes nu-dot-pop{
+        0%,80%,100%{transform:scale(.7);opacity:.25}
+        40%{transform:scale(1.15);opacity:1}
+      }
+
+      /* Error state */
+      .loading-screen.loading-error{position:static;min-height:100vh;gap:1.25rem;padding:2rem;text-align:center}
+      .loading-wordmark{display:block;font-size:1.75rem;font-weight:800;color:#A64468;letter-spacing:-0.03em;margin:0;line-height:1.1}
+      .loading-screen .load-error-msg{margin:0;color:#b91c1c;font-size:0.875rem;max-width:340px}
+
+      /* Dark mode */
       @media(prefers-color-scheme:dark){
         html,body,.loading-screen{background:#0d1117}
-        .loading-screen p{color:#9ca3af}
+        .loading-dots span{background:#d472a0}
+        .loading-ring{border-top-color:#d472a0;border-right-color:#A64468}
       }
     </style>
 
@@ -118,11 +163,11 @@
     <noscript><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""></noscript>
 
     <!-- App CSS — preload hint speeds up discovery -->
-    <link rel="preload" href="assets/css/main.min.css?v=104" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="assets/css/main.min.css?v=104"></noscript>
+    <link rel="preload" href="assets/css/main.min.css?v=105" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="assets/css/main.min.css?v=105"></noscript>
 
     <!-- App JS — preload so browser starts downloading in parallel with CSS -->
-    <link rel="preload" href="assets/js/app.min.js?v=104" as="script">
+    <link rel="preload" href="assets/js/app.min.js?v=105" as="script">
 
     <!-- Curriculum data — prefetch so it's ready when JS runs -->
     <link rel="prefetch" href="assets/data/curriculum.json" as="fetch" crossorigin="anonymous">
@@ -181,9 +226,12 @@
   <body>
     <div id="app">
       <div class="loading-screen">
-        <img src="assets/images/nursing-uganda-icon-light-transparent.png" class="loading-logo" alt="Nursing Uganda" width="72" height="72">
-        <strong class="loading-wordmark">Nursing Uganda</strong>
-        <p>Loading</p>
+        <div class="loading-bar"></div>
+        <div class="loading-mark-wrap">
+          <div class="loading-ring"></div>
+          <img src="assets/images/nursing-uganda-icon-light-transparent.png" class="loading-mark" alt="" width="64" height="64">
+        </div>
+        <div class="loading-dots"><span></span><span></span><span></span></div>
       </div>
     </div>
 
@@ -194,6 +242,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" defer></script>
 
     <!-- App (minified; rebuild with: npm run build) -->
-    <script src="assets/js/app.min.js?v=104" defer></script>
+    <script src="assets/js/app.min.js?v=105" defer></script>
   </body>
 </html>

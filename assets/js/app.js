@@ -16394,7 +16394,7 @@ async function init() {
 
     // Curriculum is the minimum needed to render — load it first and paint immediately
     // Use root-relative path so it always resolves correctly regardless of current URL
-    const response = await fetch("/assets/data/curriculum.json?v=104");
+    const response = await fetch("/assets/data/curriculum.json?v=105");
     if (!response.ok) throw new Error(`Could not load course content (${response.status}). Please refresh.`);
     state.data = await response.json();
     state.imageMatches = { matches: {} };
@@ -16472,6 +16472,7 @@ async function init() {
   } catch (error) {
     app.innerHTML = `
       <div class="loading-screen loading-error">
+        <img src="assets/images/nursing-uganda-icon-light-transparent.png" style="width:56px;height:56px;object-fit:contain;opacity:.5" alt="" width="56" height="56">
         <strong class="loading-wordmark">Nursing Uganda</strong>
         <p class="load-error-msg">${escapeHtml(error.message)}</p>
         <button class="button primary" onclick="window.location.reload()">Try Again</button>
