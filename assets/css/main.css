@@ -363,6 +363,296 @@ font-size: 1.35rem;
 }
 
 /* ============================================================
+   MAINTENANCE MODE — full-screen page (non-admin users)
+   ============================================================ */
+
+.maintenance-screen {
+  position: fixed; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(145deg, #fdf2f7 0%, #f8fbfc 60%, #fce7f3 100%);
+  z-index: 9999;
+}
+
+.maintenance-top-bar {
+  position: fixed; top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, #7a3050 0%, #A64468 35%, #d472a0 65%, #f5b8d4 100%);
+}
+
+.maintenance-body {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; padding: 2rem; max-width: 520px;
+  animation: maint-fade-up .6s ease both;
+}
+@keyframes maint-fade-up {
+  from { opacity: 0; transform: translateY(20px) }
+  to   { opacity: 1; transform: translateY(0) }
+}
+
+/* Mark + concentric rings */
+.maintenance-mark-wrap {
+  position: relative; width: 120px; height: 120px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.75rem;
+}
+.maintenance-mark {
+  position: relative; z-index: 3;
+  animation: nu-breathe 3s ease-in-out infinite;
+}
+.maintenance-ring {
+  position: absolute; border-radius: 50%;
+  border: 2px solid transparent;
+}
+.maintenance-ring-inner {
+  inset: 8px;
+  border-top-color: #A64468; border-right-color: #d4729f;
+  animation: nu-spin 1.4s cubic-bezier(.55,.15,.45,.85) infinite;
+}
+.maintenance-ring-outer {
+  inset: -4px;
+  border-top-color: rgba(166,68,104,.3);
+  border-left-color: rgba(166,68,104,.15);
+  animation: nu-spin-rev 3s linear infinite;
+}
+
+/* Badge */
+.maintenance-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(166,68,104,.1); color: #A64468;
+  border: 1px solid rgba(166,68,104,.25);
+  font-size: .75rem; font-weight: 700; letter-spacing: .06em;
+  text-transform: uppercase; padding: 5px 14px; border-radius: 999px;
+  margin-bottom: 1rem;
+}
+
+.maintenance-heading {
+  font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800;
+  color: #1f2937; letter-spacing: -.03em; line-height: 1.15;
+  margin: 0 0 .75rem;
+}
+
+.maintenance-msg {
+  font-size: .95rem; color: #6b7280; line-height: 1.7;
+  max-width: 420px; margin: 0 0 1.5rem;
+}
+
+/* ETA card */
+.maintenance-eta-card {
+  display: flex; align-items: center; gap: 12px;
+  background: #fff; border: 1.5px solid rgba(166,68,104,.2);
+  border-radius: 12px; padding: 14px 20px;
+  margin-bottom: 1.75rem; box-shadow: 0 2px 12px rgba(166,68,104,.08);
+}
+.maintenance-eta-card svg { color: #A64468; flex-shrink: 0; }
+.maintenance-eta-text { display: flex; flex-direction: column; text-align: left; }
+.maintenance-eta-text strong { font-size: .8rem; color: #374151; font-weight: 700; }
+.maintenance-eta-text span   { font-size: .9rem; color: #A64468; font-weight: 600; margin-top: 2px; }
+
+/* Animated progress strip */
+.maintenance-progress {
+  width: 180px; height: 3px; background: rgba(166,68,104,.12);
+  border-radius: 999px; overflow: hidden; margin-bottom: 2rem;
+}
+.maintenance-progress-fill {
+  height: 100%; width: 60%;
+  background: linear-gradient(90deg, #A64468, #d472a0);
+  border-radius: 999px;
+  animation: maint-sweep 2s ease-in-out infinite alternate;
+}
+@keyframes maint-sweep {
+  from { transform: translateX(-100%) }
+  to   { transform: translateX(200%) }
+}
+
+.maintenance-contact {
+  font-size: .8rem; color: #9ca3af; margin: 0;
+}
+.maintenance-contact a { color: #A64468; text-decoration: none; }
+.maintenance-contact a:hover { text-decoration: underline; }
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .maintenance-screen { background: linear-gradient(145deg, #1a0d14 0%, #0d1117 60%, #18091a 100%); }
+  .maintenance-heading { color: #f3f4f6; }
+  .maintenance-msg { color: #9ca3af; }
+  .maintenance-eta-card { background: #1e1b2e; border-color: rgba(212,114,160,.25); }
+  .maintenance-badge { background: rgba(212,114,160,.12); border-color: rgba(212,114,160,.3); color: #d472a0; }
+}
+
+/* ============================================================
+   MAINTENANCE — admin sticky banner
+   ============================================================ */
+.maint-admin-banner {
+  position: sticky; top: 0; z-index: 500;
+  display: flex; align-items: center; gap: 10px;
+  background: linear-gradient(90deg, #7c2d12, #b91c1c);
+  color: #fff; padding: 10px 20px; font-size: .84rem;
+}
+.maint-banner-icon { flex-shrink: 0; opacity: .85; }
+.maint-banner-icon svg { display: block; }
+.maint-banner-text { flex: 1; line-height: 1.4; }
+.maint-banner-text strong { font-weight: 700; }
+.maint-banner-off {
+  flex-shrink: 0;
+  background: rgba(255,255,255,.18); color: #fff;
+  border: 1.5px solid rgba(255,255,255,.4);
+  border-radius: 6px; padding: 5px 14px; font-size: .8rem;
+  font-weight: 700; cursor: pointer; white-space: nowrap;
+  transition: background .15s;
+}
+.maint-banner-off:hover { background: rgba(255,255,255,.3); }
+
+/* ============================================================
+   MAINTENANCE — admin tab UI
+   ============================================================ */
+.adm-tab--danger { color: #b91c1c !important; }
+.adm-tab-badge--danger {
+  background: #fef2f2 !important; color: #b91c1c !important;
+  border: 1px solid #fecaca;
+}
+
+.adm-maint-wrap {
+  padding: 1.5rem 0;
+  display: flex; flex-direction: column; gap: 1.25rem;
+}
+
+/* Status hero card */
+.adm-maint-status {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; padding: 1.5rem 1.75rem;
+  border-radius: 14px; border: 2px solid;
+}
+.adm-maint-status--off {
+  background: #f0fdf4; border-color: #bbf7d0; color: #14532d;
+}
+.adm-maint-status--on {
+  background: #fef2f2; border-color: #fecaca; color: #7f1d1d;
+}
+.adm-maint-status-left {
+  display: flex; align-items: center; gap: 14px;
+}
+.adm-maint-dot-wrap {
+  width: 14px; height: 14px; display: flex; align-items: center; justify-content: center;
+}
+.adm-maint-dot {
+  width: 12px; height: 12px; border-radius: 50%;
+}
+.adm-maint-status--off .adm-maint-dot { background: #22c55e; box-shadow: 0 0 0 3px rgba(34,197,94,.2); }
+.adm-maint-status--on  .adm-maint-dot {
+  background: #ef4444; box-shadow: 0 0 0 3px rgba(239,68,68,.2);
+  animation: maint-dot-pulse 1.4s ease-in-out infinite;
+}
+@keyframes maint-dot-pulse {
+  0%,100% { box-shadow: 0 0 0 3px rgba(239,68,68,.2) }
+  50%      { box-shadow: 0 0 0 7px rgba(239,68,68,.05) }
+}
+.adm-maint-status-text strong { display: block; font-size: .95rem; font-weight: 700; }
+.adm-maint-status-text span   { font-size: .82rem; opacity: .7; margin-top: 2px; display: block; }
+
+/* Toggle switch */
+.adm-maint-toggle {
+  display: flex; align-items: center; gap: 10px; cursor: pointer;
+}
+.adm-maint-toggle input { position: absolute; opacity: 0; width: 0; height: 0; }
+.adm-maint-toggle-track {
+  position: relative; width: 52px; height: 28px;
+  background: #d1d5db; border-radius: 999px;
+  transition: background .25s;
+  flex-shrink: 0;
+}
+.adm-maint-toggle input:checked ~ .adm-maint-toggle-track { background: #ef4444; }
+.adm-maint-toggle-thumb {
+  position: absolute; top: 3px; left: 3px;
+  width: 22px; height: 22px; border-radius: 50%;
+  background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,.25);
+  transition: transform .25s cubic-bezier(.34,1.56,.64,1);
+}
+.adm-maint-toggle input:checked ~ .adm-maint-toggle-track .adm-maint-toggle-thumb {
+  transform: translateX(24px);
+}
+.adm-maint-toggle-label {
+  font-size: .82rem; font-weight: 700; min-width: 24px;
+}
+
+/* Config card */
+.adm-maint-config {
+  background: #fff; border: 1px solid #e5e7eb;
+  border-radius: 14px; padding: 1.5rem 1.75rem;
+  display: flex; flex-direction: column; gap: 0;
+}
+.adm-maint-config-row { margin-bottom: 1.25rem; }
+.adm-maint-label {
+  display: flex; align-items: center; gap: 6px;
+  font-size: .875rem; font-weight: 700; color: #1f2937; margin-bottom: .25rem;
+}
+.adm-maint-hint { font-size: .8rem; color: #9ca3af; margin: 0 0 .6rem; }
+.adm-maint-textarea {
+  width: 100%; padding: 10px 12px; border: 1.5px solid #e5e7eb;
+  border-radius: 8px; font-size: .875rem; line-height: 1.6;
+  resize: vertical; font-family: inherit; color: #1f2937;
+  transition: border-color .15s;
+}
+.adm-maint-textarea:focus { outline: none; border-color: #A64468; }
+.adm-maint-input {
+  width: 100%; padding: 9px 12px; border: 1.5px solid #e5e7eb;
+  border-radius: 8px; font-size: .875rem; color: #1f2937;
+  font-family: inherit; transition: border-color .15s;
+}
+.adm-maint-input:focus { outline: none; border-color: #A64468; }
+.adm-maint-save-row {
+  display: flex; align-items: center; gap: 1rem; margin-top: .5rem;
+}
+.adm-maint-save-note { font-size: .78rem; color: #9ca3af; }
+
+/* Warning card (when active) */
+.adm-maint-warn {
+  display: flex; gap: 14px; align-items: flex-start;
+  background: #fef2f2; border: 1.5px solid #fca5a5;
+  border-radius: 12px; padding: 1.25rem 1.5rem; color: #7f1d1d;
+}
+.adm-maint-warn-icon svg { color: #dc2626; flex-shrink: 0; }
+.adm-maint-warn strong { font-weight: 700; font-size: .9rem; display: block; margin-bottom: .3rem; }
+.adm-maint-warn p { font-size: .84rem; margin: 0; line-height: 1.5; }
+
+/* Preview hint + mini preview */
+.adm-maint-preview-hint {
+  display: flex; align-items: center; gap: 8px;
+  font-size: .84rem; color: #6b7280; padding: .25rem 0;
+}
+.adm-maint-preview {
+  background: linear-gradient(135deg, #fdf2f7, #f8fbfc);
+  border: 1.5px dashed rgba(166,68,104,.3);
+  border-radius: 14px; padding: 2rem;
+  text-align: center; display: flex; flex-direction: column; align-items: center; gap: .6rem;
+}
+.adm-maint-preview-mark { opacity: .7; }
+.adm-maint-preview-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: rgba(166,68,104,.1); color: #A64468;
+  font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
+  padding: 4px 12px; border-radius: 999px;
+}
+.adm-maint-preview-heading {
+  font-size: 1.1rem; font-weight: 800; color: #1f2937; margin: 0;
+}
+.adm-maint-preview-msg {
+  font-size: .8rem; color: #6b7280; max-width: 340px; margin: 0; line-height: 1.5;
+}
+.adm-maint-preview-eta {
+  display: flex; align-items: center; gap: 5px;
+  font-size: .8rem; color: #A64468; font-weight: 600; margin: 0;
+}
+
+[data-theme="dark"] .adm-maint-config {
+  background: #1e1b2e; border-color: #2d2a3e;
+}
+[data-theme="dark"] .adm-maint-textarea,
+[data-theme="dark"] .adm-maint-input {
+  background: #0d1117; border-color: #2d2a3e; color: #f3f4f6;
+}
+[data-theme="dark"] .adm-maint-status--off { background: #052e16; border-color: #166534; color: #bbf7d0; }
+[data-theme="dark"] .adm-maint-status--on  { background: #450a0a; border-color: #991b1b; color: #fecaca; }
+
+/* ============================================================
    SITE HEADER & NAV SHELL
    ============================================================ */
 .site-header {

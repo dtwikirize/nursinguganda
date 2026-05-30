@@ -65,6 +65,7 @@ const state = {
   studyTips: [],
   upcomingEvents: [],
   resourceDownloads: [],
+  maintenance: { mode: false, message: "", eta: "" },
   adminTab: "jobs",
   adminJobs: [],
   adminAnnouncements: [],
@@ -672,6 +673,77 @@ async function loadJobsFromSupabase() {
 
 // ─── ADMIN HELPERS ────────────────────────────────────────────────────────
 function isAdmin() { return state.currentUser?.email === "twikirizederick@gmail.com"; }
+
+// ─── MAINTENANCE MODE ─────────────────────────────────────────────────────────
+async function loadSiteSettings() {
+  try {
+    const client = sb(); if (!client) return;
+    const { data } = await client.from("site_settings").select("key,value");
+    if (!data) return;
+    const map = Object.fromEntries(data.map(r => [r.key, r.value]));
+    state.maintenance = {
+      mode:    map.maintenance_mode === "true",
+      message: map.maintenance_message || "",
+      eta:     map.maintenance_eta    || "",
+    };
+  } catch (_) {}
+}
+
+async function adminSaveMaintenance(enabled, message, eta) {
+  const client = sb(); if (!client) return { ok: false, error: "No connection" };
+  try {
+    const { error } = await client.rpc("nu_set_maintenance", {
+      p_enabled: enabled,
+      p_message: message || "",
+      p_eta:     eta     || "",
+    });
+    if (error) throw error;
+    state.maintenance = { mode: enabled, message: message || "", eta: eta || "" };
+    showToast(enabled ? "⚠️ Maintenance mode ON — users are now blocked" : "✅ Site is live again — maintenance mode OFF", enabled ? "warning" : "success");
+    render();
+    return { ok: true };
+  } catch (err) {
+    console.error("[admin] saveMaintenance:", err.message);
+    showToast("Save failed: " + err.message, "error");
+    return { ok: false, error: err.message };
+  }
+}
+
+function renderMaintenancePage() {
+  const m = state.maintenance || {};
+  document.title = "Nursing Uganda — Scheduled Maintenance";
+  const msg = m.message || "We're performing scheduled maintenance to improve your experience. We apologise for any inconvenience.";
+  app.innerHTML = `
+    <div class="maintenance-screen">
+      <div class="maintenance-top-bar"></div>
+      <div class="maintenance-body">
+        <div class="maintenance-mark-wrap">
+          <div class="maintenance-ring maintenance-ring-outer"></div>
+          <div class="maintenance-ring maintenance-ring-inner"></div>
+          <img src="assets/images/nursing-uganda-icon-light-transparent.png"
+               class="maintenance-mark" alt="Nursing Uganda" width="80" height="80">
+        </div>
+        <div class="maintenance-badge">${icon("wrench")}<span>Scheduled Maintenance</span></div>
+        <h1 class="maintenance-heading">We'll be back soon</h1>
+        <p class="maintenance-msg">${escapeHtml(msg)}</p>
+        ${m.eta ? `
+          <div class="maintenance-eta-card">
+            ${icon("clock")}
+            <div class="maintenance-eta-text">
+              <strong>Estimated return</strong>
+              <span>${escapeHtml(m.eta)}</span>
+            </div>
+          </div>` : ""}
+        <div class="maintenance-progress">
+          <div class="maintenance-progress-fill"></div>
+        </div>
+        <p class="maintenance-contact">Questions? Contact us at
+          <a href="mailto:admin@nursinguganda.com">admin@nursinguganda.com</a>
+        </p>
+      </div>
+    </div>
+  `;
+}
 
 // ─── AUTH GATE ────────────────────────────────────────────────────────────
 // If the user is logged in, run callback immediately.
@@ -4012,6 +4084,12 @@ function layout(content) {
   const active = routeKey(parts);
   app.innerHTML = `
     <div class="app-shell${parts[0] === "login" ? " app-shell--auth" : ""}">
+      ${isAdmin() && state.maintenance?.mode ? `
+        <div class="maint-admin-banner" id="maint-admin-banner">
+          <span class="maint-banner-icon">${icon("alertTriangle")}</span>
+          <span class="maint-banner-text"><strong>Maintenance mode is ACTIVE</strong> — regular users cannot access the site</span>
+          <button class="maint-banner-off" data-maint-off>Turn Off Now</button>
+        </div>` : ""}
       <header class="site-header">
         <div id="reading-progress-bar" role="progressbar" aria-hidden="true"></div>
         <div class="container nav-shell">
@@ -4987,6 +5065,75 @@ function renderAccountPage() {
 }
 
 // ─── ADMIN PANEL ─────────────────────────────────────────────────────────────
+function renderAdminMaintenanceTab() {
+  const m = state.maintenance || { mode: false, message: "", eta: "" };
+  return `
+    <div class="adm-maint-wrap">
+
+      <!-- Status hero card -->
+      <div class="adm-maint-status ${m.mode ? "adm-maint-status--on" : "adm-maint-status--off"}">
+        <div class="adm-maint-status-left">
+          <div class="adm-maint-dot-wrap"><div class="adm-maint-dot"></div></div>
+          <div class="adm-maint-status-text">
+            <strong>${m.mode ? "Maintenance is ACTIVE" : "Site is Live"}</strong>
+            <span>${m.mode ? "Regular users are seeing the maintenance page" : "All users can access the site normally"}</span>
+          </div>
+        </div>
+        <label class="adm-maint-toggle" title="Toggle maintenance mode">
+          <input type="checkbox" id="maint-toggle" ${m.mode ? "checked" : ""}>
+          <span class="adm-maint-toggle-track"><span class="adm-maint-toggle-thumb"></span></span>
+          <span class="adm-maint-toggle-label">${m.mode ? "ON" : "OFF"}</span>
+        </label>
+      </div>
+
+      <!-- Config card -->
+      <div class="adm-maint-config">
+        <div class="adm-maint-config-row">
+          <label class="adm-maint-label">${icon("messageSquare")} Message shown to users</label>
+          <p class="adm-maint-hint">Leave blank to use the default message.</p>
+          <textarea id="maint-message" class="adm-maint-textarea" rows="3"
+            placeholder="e.g. We're upgrading our servers for a faster experience. Thank you for your patience.">${escapeHtml(m.message)}</textarea>
+        </div>
+        <div class="adm-maint-config-row">
+          <label class="adm-maint-label">${icon("clock")} Estimated return time</label>
+          <p class="adm-maint-hint">Optional — shown as a hint to users on the maintenance page.</p>
+          <input id="maint-eta" type="text" class="adm-maint-input"
+            value="${escapeHtml(m.eta)}"
+            placeholder="e.g. Today at 6:00 PM EAT, or In about 30 minutes">
+        </div>
+        <div class="adm-maint-save-row">
+          <button class="button primary" id="maint-save-btn">${icon("save")} Save Settings</button>
+          <span class="adm-maint-save-note">Saving also applies the current toggle state.</span>
+        </div>
+      </div>
+
+      ${m.mode ? `
+      <!-- Active warning -->
+      <div class="adm-maint-warn">
+        <span class="adm-maint-warn-icon">${icon("alertTriangle")}</span>
+        <div>
+          <strong>The site is currently in maintenance mode</strong>
+          <p>All non-admin visitors are seeing the maintenance page. Toggle it OFF or press "Save Settings" with the toggle disabled to restore access.</p>
+        </div>
+      </div>` : `
+      <!-- Preview hint -->
+      <div class="adm-maint-preview-hint">
+        <span>${icon("eye")}</span>
+        <p>When you turn maintenance mode ON, this is what regular users will see:</p>
+      </div>
+      <div class="adm-maint-preview">
+        <div class="adm-maint-preview-mark">
+          <img src="assets/images/nursing-uganda-icon-light-transparent.png" width="48" height="48" alt="">
+        </div>
+        <div class="adm-maint-preview-badge">${icon("wrench")} Scheduled Maintenance</div>
+        <p class="adm-maint-preview-heading">We'll be back soon</p>
+        <p class="adm-maint-preview-msg">${escapeHtml(m.message || "We're performing scheduled maintenance to improve your experience.")}</p>
+        ${m.eta ? `<p class="adm-maint-preview-eta">${icon("clock")} ${escapeHtml(m.eta)}</p>` : ""}
+      </div>`}
+    </div>
+  `;
+}
+
 function renderAdminPage() {
   if (!isAdmin()) {
     return layout(`
@@ -5267,6 +5414,7 @@ function renderAdminPage() {
           <button class="adm-tab${tab === "events" ? " active" : ""}" data-admin-tab="events">${icon("calendar")} Events <span class="adm-tab-badge">${events.length}</span></button>
           <button class="adm-tab${tab === "resources" ? " active" : ""}" data-admin-tab="resources">${icon("download")} Downloads <span class="adm-tab-badge">${resources.length}</span></button>
           <button class="adm-tab${tab === "users" ? " active" : ""}" data-admin-tab="users">${icon("users")} Users <span class="adm-tab-badge">${users.length}</span></button>
+          <button class="adm-tab${tab === "maintenance" ? " active" : ""}${state.maintenance?.mode ? " adm-tab--danger" : ""}" data-admin-tab="maintenance">${icon("wrench")} Maintenance${state.maintenance?.mode ? ` <span class="adm-tab-badge adm-tab-badge--danger">ON</span>` : ""}</button>
         </div>
 
         ${tab === "jobs" ? `
@@ -5423,6 +5571,8 @@ function renderAdminPage() {
             </table>`}
           </div>
         ` : ""}
+
+        ${tab === "maintenance" ? renderAdminMaintenanceTab() : ""}
 
       </div>
     </section>
@@ -5612,6 +5762,29 @@ function renderAdminPage() {
       if (res2.ok) { state.adminResourceForm = { open: false, data: {} }; showToast(resForm.data.id ? "Download updated." : "Download published!", "success"); }
       else showToast(res2.error || "Save failed.", "error");
       render();
+    });
+  }
+
+  // ── Maintenance tab wiring ─────────────────────────────────────────────
+  const maintToggle = app.querySelector("#maint-toggle");
+  if (maintToggle) {
+    maintToggle.addEventListener("change", async () => {
+      const enabled = maintToggle.checked;
+      const message = app.querySelector("#maint-message")?.value || "";
+      const eta     = app.querySelector("#maint-eta")?.value     || "";
+      await adminSaveMaintenance(enabled, message, eta);
+    });
+  }
+  const maintSaveBtn = app.querySelector("#maint-save-btn");
+  if (maintSaveBtn) {
+    maintSaveBtn.addEventListener("click", async () => {
+      const enabled = app.querySelector("#maint-toggle")?.checked ?? state.maintenance?.mode;
+      const message = app.querySelector("#maint-message")?.value || "";
+      const eta     = app.querySelector("#maint-eta")?.value     || "";
+      maintSaveBtn.disabled = true;
+      maintSaveBtn.innerHTML = icon("loader") + " Saving…";
+      await adminSaveMaintenance(enabled, message, eta);
+      // re-render restores button
     });
   }
 }
@@ -14153,6 +14326,16 @@ function notFound() {
 
 function render() {
   if (!state.data) return;
+
+  // ── Maintenance mode gate ────────────────────────────────────────────────
+  // Admins always pass through; /login is also allowed so admin can sign in.
+  if (state.maintenance?.mode && !isAdmin()) {
+    if (window.location.pathname !== "/login") {
+      renderMaintenancePage();
+      return;
+    }
+  }
+
   // Clear exam mode attribute unless we're on an active mock exam page
   if (!state.mockExam.examId || state.mockExam.submitted) {
     app.removeAttribute("data-exam-mode");
@@ -16394,7 +16577,7 @@ async function init() {
 
     // Curriculum is the minimum needed to render — load it first and paint immediately
     // Use root-relative path so it always resolves correctly regardless of current URL
-    const response = await fetch("/assets/data/curriculum.json?v=105");
+    const response = await fetch("/assets/data/curriculum.json?v=106");
     if (!response.ok) throw new Error(`Could not load course content (${response.status}). Please refresh.`);
     state.data = await response.json();
     state.imageMatches = { matches: {} };
@@ -16422,6 +16605,9 @@ async function init() {
         render();
       });
     }
+
+    // ── Site settings (maintenance mode, etc.) ───────────────────────────
+    await loadSiteSettings();
 
     // ── Background data: announcements, jobs, tips, events, downloads ───
     loadAnnouncements().catch(() => {});
@@ -16487,6 +16673,13 @@ window.addEventListener("popstate", () => {
   state.megaOpen = "";
   render();
   scrollPageToTop();
+});
+
+// Global: "Turn Off Now" button in admin maintenance banner
+document.addEventListener("click", (e) => {
+  if (e.target.closest("[data-maint-off]")) {
+    adminSaveMaintenance(false, state.maintenance?.message || "", state.maintenance?.eta || "");
+  }
 });
 
 // Intercept all internal link clicks — no full page reloads
