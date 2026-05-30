@@ -269,13 +269,18 @@ async function authRegister(name, email, password) {
   });
   if (error) return { ok: false, error: error.message };
   if (!data.session) {
-    // Email confirmation is required — show confirmation screen
+    // Email confirmation is required — Supabase sends the confirmation email.
     state.loginEmailSent = true;
     state.loginEmailAddress = email.trim();
     return { ok: true, emailConfirmationRequired: true };
   }
   state.currentUser = supabaseUserToAppUser(data.user);
   state.loginError = "";
+  // Fire-and-forget welcome email — non-blocking
+  callEdgeFunction("send-welcome-email", {
+    email: data.user.email,
+    name:  (data.user.user_metadata?.name || "").split(/\s+/)[0] || "Student",
+  }).catch(() => {});
   return { ok: true, user: state.currentUser };
 }
 
@@ -283,15 +288,54 @@ async function authLogin(email, password) {
   const client = sb();
   if (!client) return { ok: false, error: "Auth service unavailable — please refresh the page." };
   if (!email.trim() || !password) return { ok: false, error: "Please enter your email and password." };
+
+  // ── Lockout guard ──────────────────────────────────────────────────────────
+  const lockStatus = await checkLoginLockout(email);
+  if (lockStatus.locked) {
+    const unlockAt = lockStatus.locked_until
+      ? new Date(lockStatus.locked_until).toLocaleTimeString("en-UG", { hour: "2-digit", minute: "2-digit", timeZone: "Africa/Kampala" })
+      : "in about 1 hour";
+    return { ok: false, error: `Account locked after too many failed attempts. Try again at ${unlockAt}.`, locked: true };
+  }
+
   const { data, error } = await client.auth.signInWithPassword({
     email: email.toLowerCase().trim(), password
   });
+
   if (error) {
-    const msg = /invalid login credentials/i.test(error.message) ? "Incorrect email or password. Please try again." : error.message;
-    return { ok: false, error: msg };
+    const msg = /invalid login credentials/i.test(error.message)
+      ? "Incorrect email or password. Please try again."
+      : error.message;
+
+    // Record failure — locks after 5 consecutive wrong attempts
+    const attemptResult = await recordFailedLoginAttempt(email);
+    if (attemptResult.now_locked) {
+      // Non-blocking lockout notification email
+      callEdgeFunction("send-lockout-email", {
+        email:        email.trim(),
+        locked_until: attemptResult.locked_until,
+      }).catch(() => {});
+      const unlockAt = attemptResult.locked_until
+        ? new Date(attemptResult.locked_until).toLocaleTimeString("en-UG", { hour: "2-digit", minute: "2-digit", timeZone: "Africa/Kampala" })
+        : "in about 1 hour";
+      return { ok: false, error: `Too many failed attempts. Account locked until ${unlockAt}. Check your email for unlock instructions.`, locked: true };
+    }
+
+    const remaining = Math.max(0, 5 - (attemptResult.attempts || 0));
+    const suffix = remaining > 0 ? ` (${remaining} attempt${remaining !== 1 ? "s" : ""} remaining before lockout)` : "";
+    return { ok: false, error: msg + suffix };
   }
+
+  // ── Successful login ───────────────────────────────────────────────────────
   state.currentUser = supabaseUserToAppUser(data.user);
   state.loginError = "";
+
+  // Reset failed-attempt counter (non-blocking)
+  clearLoginAttempts(email).catch(() => {});
+
+  // Device fingerprint check — alert on new device (non-blocking)
+  checkAndAlertNewDevice(data.user, email).catch(() => {});
+
   return { ok: true, user: state.currentUser };
 }
 
@@ -308,9 +352,130 @@ async function authForgotPassword(email) {
   const client = sb();
   if (!client) return { ok: false, error: "Auth service unavailable." };
   if (!email.trim()) return { ok: false, error: "Enter your email address first, then click Forgot Password." };
-  const { error } = await client.auth.resetPasswordForEmail(email.trim());
+  // Supabase handles the reset email (time-limited secure link) natively.
+  const { error } = await client.auth.resetPasswordForEmail(email.trim(), {
+    redirectTo: `${window.location.origin}/login?reset=1`
+  });
   if (error) return { ok: false, error: error.message };
   return { ok: true };
+}
+
+// ─── EMAIL SYSTEM HELPERS ─────────────────────────────────────────────────────
+
+/**
+ * Non-blocking helper to call a Supabase Edge Function.
+ * Returns true on HTTP 2xx, false on any error (never throws).
+ */
+async function callEdgeFunction(name, payload) {
+  try {
+    const client = sb();
+    let token = "";
+    if (client) {
+      const { data } = await client.auth.getSession();
+      token = data?.session?.access_token || "";
+    }
+    const res = await fetch(`${SUPA_URL}/functions/v1/${name}`, {
+      method: "POST",
+      headers: {
+        "Content-Type":  "application/json",
+        "Authorization": `Bearer ${token}`,
+      },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) {
+      const text = await res.text().catch(() => "");
+      console.warn(`[email] ${name} failed (${res.status}):`, text.slice(0, 200));
+    }
+    return res.ok;
+  } catch (err) {
+    console.warn(`[email] ${name} error:`, err instanceof Error ? err.message : String(err));
+    return false;
+  }
+}
+
+/** Call a Supabase RPC (database function) — returns the result data or null. */
+async function callRpc(fnName, params) {
+  try {
+    const client = sb();
+    if (!client) return null;
+    const { data, error } = await client.rpc(fnName, params);
+    if (error) { console.warn(`[rpc] ${fnName} error:`, error.message); return null; }
+    return data;
+  } catch (err) {
+    console.warn(`[rpc] ${fnName} threw:`, err instanceof Error ? err.message : String(err));
+    return null;
+  }
+}
+
+/** Check if an email address is currently locked out. */
+async function checkLoginLockout(email) {
+  const result = await callRpc("nu_check_lockout", { p_email: email.trim() });
+  return result ?? { locked: false, attempts: 0, locked_until: null };
+}
+
+/** Record one failed login attempt. Returns { now_locked, attempts, locked_until }. */
+async function recordFailedLoginAttempt(email) {
+  const result = await callRpc("nu_record_failed_attempt", { p_email: email.trim() });
+  return result ?? { now_locked: false, attempts: 0, locked_until: null };
+}
+
+/** Reset the failed-attempt counter after a successful login. */
+async function clearLoginAttempts(email) {
+  await callRpc("nu_record_success", { p_email: email.trim() });
+}
+
+/** Build a stable device fingerprint from browser signals. */
+function buildDeviceFingerprint() {
+  try {
+    const nav = navigator;
+    const raw = [
+      nav.userAgent,
+      nav.language,
+      Intl.DateTimeFormat().resolvedOptions().timeZone,
+      `${screen.width}x${screen.height}`,
+      screen.colorDepth,
+    ].join("|");
+    // btoa may fail on non-Latin chars in user-agent on some Android browsers
+    const fp = btoa(unescape(encodeURIComponent(raw))).slice(0, 64);
+    return {
+      fingerprint: fp,
+      userAgent:   nav.userAgent.slice(0, 200),
+      timezone:    Intl.DateTimeFormat().resolvedOptions().timeZone,
+      language:    nav.language,
+    };
+  } catch {
+    return { fingerprint: "unknown", userAgent: "", timezone: "", language: "" };
+  }
+}
+
+/** Register device fingerprint; if new, fire a suspicious-login alert email. */
+async function checkAndAlertNewDevice(sbUser, email) {
+  try {
+    const client = sb();
+    if (!client || !sbUser?.id) return;
+    const fp = buildDeviceFingerprint();
+    const result = await callRpc("nu_check_device", {
+      p_user_id:    sbUser.id,
+      p_fingerprint: fp.fingerprint,
+      p_user_agent:  fp.userAgent,
+      p_timezone:    fp.timezone,
+      p_language:    fp.language,
+    });
+    if (!result?.is_new) return;
+    // New device — send non-blocking security alert
+    await callEdgeFunction("send-suspicious-login", {
+      email,
+      name:   sbUser.user_metadata?.name || "",
+      device: {
+        ...fp,
+        date: new Date().toLocaleString("en-UG", {
+          timeZone: fp.timezone || "Africa/Kampala",
+          dateStyle: "medium",
+          timeStyle: "short",
+        }),
+      },
+    });
+  } catch {} // never block login on alert failure
 }
 
 // ─── PROGRESS SYNC ────────────────────────────────────────────────────────
@@ -1672,24 +1837,18 @@ async function sendQuizResultsEmail(quizKey) {
 
   // Try Supabase Edge Function if user is logged in
   if (user?.email) {
-    const client = sb();
-    if (client) {
-      try {
-        const { data: { session } } = await client.auth.getSession();
-        const token = session?.access_token || "";
-        const res = await fetch(`${SUPA_URL}/functions/v1/send-quiz-email`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
-          body: JSON.stringify({
-            email: user.email,
-            name: user.name || "",
-            quizTitle: ctx.title || "Nursing Uganda Quiz",
-            score, total, pct, grade,
-            questions: questionResults
-          })
-        });
-        if (res.ok) return { ok: true };
-      } catch (_) {}
+    try {
+      const ok = await callEdgeFunction("send-quiz-email", {
+        email:     user.email,
+        name:      user.name || "",
+        quizTitle: ctx.title || "Nursing Uganda Quiz",
+        score, total, pct, grade,
+        questions: questionResults,
+      });
+      if (ok) return { ok: true };
+      console.warn("[quiz] Edge function send-quiz-email returned non-2xx; falling back to mailto.");
+    } catch (err) {
+      console.error("[quiz] send-quiz-email dispatch error:", err instanceof Error ? err.message : String(err));
     }
   }
 
@@ -14457,8 +14616,17 @@ function render() {
         // Send results email (non-blocking) — only auto-send for logged-in users
         if (state.currentUser?.email) {
           sendQuizResultsEmail(key).then((result) => {
-            if (result?.ok) showToast(`Results emailed to ${state.currentUser.email}`, "success");
-          }).catch(() => {});
+            if (result?.ok) {
+              showToast(`Results emailed to ${state.currentUser.email}`, "success");
+            } else if (result?.mailto) {
+              // Edge function unavailable — nudge user to the manual button
+              setTimeout(() => showToast("Auto-email unavailable. Use the 'Email Results' button to send results.", "info"), 1000);
+            } else {
+              console.info("[quiz] Email auto-send skipped (no quiz context or not logged in).");
+            }
+          }).catch((err) => {
+            console.error("[quiz] sendQuizResultsEmail threw:", err instanceof Error ? err.message : String(err));
+          });
         }
         // Gently prompt for study reminders if not yet enabled
         const ns = getNotifSettings();

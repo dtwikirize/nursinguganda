@@ -146,6 +146,36 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
+// ── Daily cron: inactivity win-back check ─────────────────────────────────────
+// Calls check-inactivity edge function every day at 08:00 UTC.
+// Requires SUPABASE_SERVICE_ROLE_KEY env var.
+try {
+  const cron = require("node-cron");
+  const SUPA_PROJECT_URL = "https://gunhybscakozycmwufue.supabase.co";
+
+  cron.schedule("0 8 * * *", async () => {
+    console.log("[cron] Daily inactivity check starting…");
+    try {
+      const res = await fetch(`${SUPA_PROJECT_URL}/functions/v1/check-inactivity`, {
+        method: "POST",
+        headers: {
+          "Content-Type":  "application/json",
+          "Authorization": `Bearer ${process.env.SUPABASE_SERVICE_ROLE_KEY || ""}`,
+        },
+        body: JSON.stringify({ source: "server-cron", timestamp: new Date().toISOString() }),
+      });
+      const data = await res.json().catch(() => ({}));
+      console.log("[cron] Inactivity check result:", data);
+    } catch (err) {
+      console.error("[cron] Inactivity check failed:", err.message);
+    }
+  }, { timezone: "UTC" });
+
+  console.log("[cron] Daily inactivity check scheduled (08:00 UTC).");
+} catch (err) {
+  console.warn("[cron] node-cron not available — inactivity check disabled:", err.message);
+}
+
 app.listen(PORT, () => {
   console.log(`Nursing Uganda running on port ${PORT}${PROD ? " [production]" : ""}`);
 });

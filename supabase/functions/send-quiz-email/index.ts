@@ -1,10 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { sendEmail, emailWrapper, BRAND_COLOR, SITE_URL } from "../_shared/mailer.ts";
-
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
-};
+import { sendAndLog, corsHeaders, BRAND_COLOR, SITE_URL } from "../_shared/mailer.ts";
 
 interface QuestionResult {
   prompt: string;
@@ -111,13 +106,13 @@ serve(async (req) => {
       });
     }
 
-    await sendEmail({
-      to: p.email,
-      subject: `Your Quiz Results – ${p.quizTitle} (${p.pct}% · ${p.grade})`,
-      html: buildHtml(p),
-    });
+    const subject = `Your Quiz Results – ${p.quizTitle} (${p.pct}% · ${p.grade})`;
+    const ok = await sendAndLog(
+      { to: p.email, subject, html: buildHtml(p) },
+      "quiz-results",
+    );
 
-    return new Response(JSON.stringify({ ok: true }), {
+    return new Response(JSON.stringify({ ok }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   } catch (err) {
