@@ -4525,152 +4525,286 @@ function setupLessonRevealAnimations() {
   elements.forEach((element) => observer.observe(element));
 }
 
+// ── Legal page metadata (icon, accent, summary bullets, full sections) ────────
+const LEGAL_META = {
+  privacy:          { icon: "lock",          accent: "#A64468", accentLight: "#fce7f3" },
+  cookies:          { icon: "badgeCheck",    accent: "#7a3050", accentLight: "#fdf2f7" },
+  "privacy-choices":{ icon: "settings",      accent: "#9e3a5c", accentLight: "#fce7f3" },
+  disclaimer:       { icon: "alertTriangle", accent: "#b45309", accentLight: "#fef3c7" },
+  terms:            { icon: "fileText",      accent: "#1e3a5f", accentLight: "#eff6ff" },
+  corrections:      { icon: "edit",          accent: "#065f46", accentLight: "#ecfdf5" },
+};
+
 const legalPages = {
   privacy: {
     title: "Privacy Policy",
     eyebrow: "Privacy",
-    intro: "This policy explains how Nursing Uganda handles personal data, site preferences, analytics, advertising tools, affiliate links and external links.",
+    updated: "June 1, 2026",
+    intro: "This policy explains how Nursing Uganda collects, uses and protects personal data, and how advertising, analytics and affiliate tools are handled.",
+    summary: ["We collect only minimal technical data", "Analytics and advertising require your consent", "We use Google AdSense and Amazon Affiliates", "You can withdraw consent at any time"],
     sections: [
-      ["Who We Are", "Nursing Uganda is an educational revision website for nursing and midwifery learners. For website privacy purposes, Nursing Uganda acts as the data controller for information collected through this site. Contact us at info@nursinguganda.com for privacy questions, corrections or content concerns."],
-      ["What We Collect", "We may collect basic technical information such as browser type, pages viewed, device details, approximate location, cookie choices and messages you send to us. If Google Analytics, Google AdSense or affiliate tools are enabled, those partners may process data according to your consent choices."],
-      ["How We Use Data", "We use data to keep the website running, remember preferences, improve study resources, measure useful pages, prevent abuse, respond to messages and prepare the site for advertising or affiliate-supported income."],
-      ["Learning Content", "Our content is gathered and rewritten from a series of books, libraries, open educational sources, local PDFs, class materials and peer-to-peer revision inputs. It is for revision and study support only, not a replacement for formal student notes, tutor instruction, official curriculum, clinical supervision or current professional guidelines."],
-      ["Your Data Rights", "You may request access, correction, deletion or restriction of personal data you have provided to us, and you may withdraw optional consent for analytics, advertising or affiliate tracking. Email info@nursinguganda.com and describe the request clearly so we can review it."],
-      ["Retention And Security", "We keep contact messages and preference records only for as long as reasonably needed for support, compliance, improvement and abuse prevention. If we learn of a material data incident affecting users, we will review the issue and take reasonable steps to notify affected users or relevant authorities where required."],
-      ["External Links", "The website may link to third-party resources, libraries, videos, job platforms, school pages, regulators and partner websites. We do not control their privacy practices, cookies or content."],
-      ["Your Choices", "You can accept, reject or manage optional analytics, advertising and affiliate tracking from the cookie banner or the Cookie Preferences link in the footer. Necessary storage remains active so the website can remember core preferences."]
+      ["Who We Are", "Nursing Uganda is an educational revision website for nursing and midwifery learners in Uganda and East Africa. For privacy purposes, Nursing Uganda acts as the data controller for information collected through this site. Contact us at info@nursinguganda.com for privacy questions, data requests or content concerns."],
+      ["What We Collect", "We may collect basic technical information — browser type, pages viewed, device details, approximate location, cookie choices and messages you send us. Google Analytics (when consented) collects aggregated usage data. Google AdSense and Amazon Associates may process additional signals to serve and measure advertisements and affiliate conversions."],
+      ["How We Use Data", "We use data to keep the website running, remember your preferences, improve study resources, measure which pages and tools are most useful, prevent abuse, respond to messages and generate revenue through advertising and affiliate commissions that fund free content."],
+      ["Advertising — Google AdSense", "Nursing Uganda uses or intends to use Google AdSense to display advertisements. Google and its partners may use cookies and device identifiers to serve personalised ads based on your interests and prior visits. You can opt out of personalised advertising at g.co/adsettings. AdSense loads only after advertising consent has been collected where required."],
+      ["Affiliate Links — Amazon & Partners", "Nursing Uganda participates in or will participate in the Amazon Associates programme and similar affiliate schemes. When you click a disclosed affiliate link and make a qualifying purchase, we may earn a small commission at no extra cost to you. Affiliate status does not influence clinical content or editorial decisions. All affiliate links are labelled."],
+      ["Learning Content", "Our content is gathered and rewritten from books, libraries, open educational sources, local PDFs, class materials and peer-to-peer revision inputs. It is for revision and study support only, not a replacement for formal student notes, official curriculum, clinical supervision or current professional guidelines."],
+      ["Your Data Rights", "You may request access, correction, deletion or restriction of personal data you have provided to us, and may withdraw optional consent for analytics, advertising or affiliate tracking at any time via the Cookie Preferences link in the footer."],
+      ["Retention And Security", "We retain contact messages and preference records only as long as reasonably needed for support, compliance and abuse prevention. We take appropriate technical precautions but cannot guarantee absolute security of data transmitted over the internet."],
+      ["External Links", "The website may link to third-party resources, YouTube, job platforms, school pages, regulators and partner websites. We do not control their privacy practices, cookies or content."]
     ]
   },
   cookies: {
     title: "Cookie Policy",
     eyebrow: "Cookies",
-    intro: "This page explains the cookies and similar storage Nursing Uganda may use as the site becomes ready for Google Analytics, Google AdSense and affiliate monetization.",
+    updated: "June 1, 2026",
+    intro: "This page explains every type of cookie and storage Nursing Uganda uses, including those needed for Google AdSense and Amazon affiliate tracking.",
+    summary: ["Necessary cookies always active", "Analytics & ad cookies need consent", "Amazon affiliate uses referral cookies", "Manage preferences in the footer"],
     sections: [
-      ["Necessary Cookies", "Necessary storage supports basic navigation, theme preferences, saved school view, saved jobs, bookmarks and your consent choice. These are required for the website to work properly."],
-      ["Analytics Cookies", "Analytics cookies may be used only when you consent. They help us understand which lessons, resources and instruments students use most so we can improve the revision experience."],
-      ["Advertising Cookies", "Google AdSense or similar advertising tools may use cookies and device signals to deliver, limit and measure ads once publisher settings are configured. These tools load only after advertising consent."],
-      ["Google CMP Readiness", "If Nursing Uganda serves personalized ads to users in the EEA, the United Kingdom or Switzerland, the site should use a Google-certified consent management platform integrated with the IAB Transparency and Consent Framework before those ads are enabled for that traffic."],
-      ["Affiliate Tracking", "Some external resource links may become affiliate links. If a user follows a disclosed affiliate link, a partner may use cookies or referral codes to attribute a commission. Affiliate income does not influence the educational warning that learners must confirm material with formal sources."],
-      ["Managing Preferences", "Use the Cookie Preferences link in the footer to change optional choices. You can also delete cookies from your browser settings at any time."]
+      ["Necessary Cookies", "Necessary storage supports basic navigation, theme preference, saved school view, saved jobs, bookmarks, service-worker offline caching and your consent record. These cannot be disabled as they are required for the website to function."],
+      ["Analytics Cookies — Google Analytics", "When you consent to analytics, Google Analytics (GA4) places cookies (_ga, _gid and related) to count page views, session duration and popular content. Data is aggregated and anonymised. These cookies expire after 13 months. You can opt out at tools.google.com/dlpage/gaoptout."],
+      ["Advertising Cookies — Google AdSense", "Google AdSense uses cookies and similar technologies (IDE, DSID, NID) to deliver, limit frequency and measure advertisements. When enabled, ads may be personalised based on your browsing history across Google partner sites. Advertising consent must be collected before these cookies activate for users in applicable regions."],
+      ["Affiliate Tracking — Amazon Associates", "Nursing Uganda participates or will participate in the Amazon Associates programme. When you click an affiliate link, Amazon may set a cookie (session-id, ubid-acbus) to attribute your purchase to our referral. These cookies typically last 24 hours for the session attribution. We earn a commission if a qualifying purchase is completed."],
+      ["Other Affiliate Partners", "Future affiliate schemes (e.g. medical book publishers, course platforms) may place referral cookies. All affiliate links are disclosed with an (Affiliate) or similar label, and any associated cookies are listed here when introduced."],
+      ["Google CMP And TCF", "When serving personalised ads to users in the EEA, UK or Switzerland, Nursing Uganda will use a Google-certified Consent Management Platform (CMP) integrated with the IAB Transparency and Consent Framework v2.2. This ensures advertising partners receive a valid consent signal before processing personal data for ad targeting."],
+      ["Managing Your Preferences", "Use the Cookie Preferences link in the footer to accept, reject or update optional cookie categories at any time. You can also clear cookies directly in your browser settings. Removing necessary cookies may affect site functionality."]
     ]
   },
   "privacy-choices": {
     title: "Privacy Choices",
     eyebrow: "Consent Centre",
-    intro: "Review and change optional tracking choices for analytics, advertising, affiliate measurement and similar partner tools.",
+    updated: "June 1, 2026",
+    intro: "Review and change your optional tracking choices for analytics, advertising, Amazon affiliate measurement and similar partner tools.",
+    summary: ["Analytics is optional", "Ad personalisation is optional", "Amazon affiliate tracking is optional", "Your choices are saved in your browser"],
     sections: [
-      ["What You Can Control", "You can accept or reject optional analytics, advertising and affiliate tracking. Necessary storage remains active because it keeps the website functional and remembers your choices."],
-      ["Analytics", "Analytics helps Nursing Uganda understand which notes, resources and instrument pages are useful. It should not be used to replace personal academic support or identify individual student performance."],
-      ["Advertising And AdSense", "Advertising tools stay dormant until publisher IDs and ad slots are configured. When enabled, they should load only after the relevant advertising consent has been saved."],
-      ["Affiliate Links", "Affiliate or partner links should be labelled near the link. Where a commission may be earned, the disclosure should be clear before you open the external page."],
-      ["Do Not Sell Or Share Style Requests", "Nursing Uganda does not currently sell personal information. If future advertising or partner systems create regional opt-out obligations, this page is the place where those choices will be surfaced."]
-    ]
-  },
-  corrections: {
-    title: "Corrections And Takedown",
-    eyebrow: "Content Review",
-    intro: "Report incorrect clinical information, outdated revision notes, copyright concerns, image issues or source problems.",
-    sections: [
-      ["What To Report", "Send corrections for inaccurate definitions, unsafe clinical wording, outdated guidance, missing source context, broken external links, image concerns, copyright requests or content that appears too close to another publisher."],
-      ["What To Include", "Please include the page URL, lesson title, the sentence or image concerned, the corrected wording or source, and whether the issue is urgent for patient safety or examination accuracy."],
-      ["Review Process", "We will review reports, compare with formal references where possible, edit or remove material when appropriate, and keep the content positioned as revision support rather than official guidance."],
-      ["Rights Holder Requests", "If you own rights in a text, PDF, image or other material and want it removed or credited differently, email info@nursinguganda.com with enough detail to identify the material and your relationship to it."],
-      ["Clinical Safety", "For urgent clinical decisions, do not rely on the website. Consult a tutor, supervisor, facility protocol, approved textbook or current official guideline."]
+      ["What You Always Control", "You can accept or reject optional analytics, advertising and affiliate tracking. Necessary storage remains active because it keeps the site working and remembers your consent choice. Your preferences are saved locally and apply on every visit."],
+      ["Analytics Tracking", "Enabling analytics helps Nursing Uganda understand which notes, instruments, quizzes and resources students find most useful, so we can improve the content. Data is aggregated — we cannot identify you personally from analytics reports."],
+      ["Google AdSense — Personalised Ads", "When you accept advertising consent, Google AdSense may serve personalised advertisements based on your interests and browsing history. If you reject this category, ads (if shown) will be non-personalised and based only on page context. You can also manage ad personalisation globally at g.co/adsettings."],
+      ["Amazon Affiliate Measurement", "When you click an Amazon link and consent to affiliate tracking, Amazon Associates may use referral cookies to credit a purchase to Nursing Uganda. Rejecting this category means the affiliate attribution cookie is not set, but the link still works — you simply won't be attributed to our referral."],
+      ["Other Partner Tracking", "As Nursing Uganda grows, other affiliate or sponsor tracking tools may be added. Each category will be listed here with its purpose and opt-out mechanism before it is enabled."],
+      ["Do Not Sell Or Share", "Nursing Uganda does not sell personal information. If future advertising or partner systems create regional opt-out obligations under applicable privacy laws, this page is where those choices will be surfaced."],
+      ["Withdrawing Consent", "You can withdraw consent at any time by opening Cookie Preferences from the footer. Withdrawal applies going forward and does not affect processing that occurred while consent was valid."]
     ]
   },
   disclaimer: {
     title: "Disclaimer",
     eyebrow: "Study Disclaimer",
-    intro: "Nursing Uganda supports revision, peer-to-peer learning and quick topic review. It is not a substitute for formal nursing or midwifery education.",
+    updated: "June 1, 2026",
+    intro: "Nursing Uganda is a free revision and peer-learning resource for nursing and midwifery students. It is not a substitute for formal education, professional advice or clinical protocols.",
+    summary: ["Not a replacement for formal notes", "Not professional or medical advice", "Content may contain errors", "Affiliate links may earn commission"],
     sections: [
-      ["No Replacement For Formal Notes", "The notes, instruments, videos, images, summaries and related lessons do not replace school notes, lecturer handouts, approved textbooks, clinical manuals, professional standards or the official curriculum used by your institution."],
-      ["Not Professional Advice", "The website does not provide medical, nursing, midwifery, legal, licensing or employment advice. Clinical decisions must be confirmed with tutors, supervisors, facility protocols, current guidelines and qualified professionals."],
-      ["Sources And Accuracy", "Information is gathered from many books, libraries, PDFs, open sources, references and student revision inputs, then rewritten for originality and clarity. We try to keep it useful, but mistakes, outdated details or missing context may occur."],
-      ["Licensing And Regulators", "Nursing Uganda is not a licensing body and does not issue professional licences, school recognition, examination approval or registration status. Always verify official matters with the relevant regulator or institution."],
-      ["External And Affiliate Links", "External links are provided for convenience and further study. Some may be affiliate links in future, and Nursing Uganda may earn a commission when users buy or register through disclosed partner links."]
+      ["Educational Purpose Only", "Nursing Uganda exists to support revision, self-study and peer-to-peer learning. The notes, instruments, quizzes, flashcards, mock exams and summaries are designed to complement — not replace — school notes, lecturer handouts, approved textbooks, clinical manuals and the official curriculum used by your institution."],
+      ["Not Professional Or Medical Advice", "Nothing on this website constitutes medical, nursing, midwifery, legal, licensing or employment advice. Clinical decisions must always be confirmed with tutors, supervisors, facility protocols, current national guidelines and qualified professionals before any patient care action is taken."],
+      ["Sources And Accuracy", "Content is gathered from books, libraries, PDFs, open educational sources and student revision inputs, then rewritten for clarity and originality. We strive for accuracy but mistakes, outdated details, missing context or transcription errors may occur. Report concerns via the Corrections page."],
+      ["Licensing And Regulatory Bodies", "Nursing Uganda is not affiliated with, endorsed by, or acting on behalf of the Uganda Nurses and Midwives Council, Ministry of Health, academic institutions or any regulatory body. We do not issue professional licences, school recognition, examination approval or registration status."],
+      ["Advertising Disclaimer", "Advertisements displayed on this website are served by Google AdSense or similar networks. Advertising content is selected by the ad platform and does not represent an endorsement by Nursing Uganda. We are not responsible for the content, claims or accuracy of advertisements."],
+      ["Affiliate Disclaimer", "Nursing Uganda participates in affiliate programmes including Amazon Associates. Pages or articles may contain affiliate links marked with (Affiliate) or a similar disclosure. When you purchase through these links, we may earn a commission at no additional cost to you. Affiliate relationships do not influence clinical or editorial content."],
+      ["Availability", "The website may be temporarily unavailable due to maintenance, updates or technical issues. We do not guarantee uninterrupted access and are not liable for any loss arising from downtime."]
     ]
   },
   terms: {
     title: "Terms Of Use",
     eyebrow: "Terms",
-    intro: "By using Nursing Uganda, you agree to use the website responsibly as a revision and peer-learning resource.",
+    updated: "June 1, 2026",
+    intro: "By accessing or using Nursing Uganda, you agree to use the website responsibly as a free revision and peer-learning resource.",
+    summary: ["For personal revision only", "Not for clinical or professional use", "Affiliate & ad income funds content", "Email us for partnerships"],
     sections: [
-      ["Educational Use", "You may use Nursing Uganda for personal study, revision, topic discovery and peer-to-peer learning. Do not present the website as official school material, a clinical protocol or a replacement for assessed coursework."],
-      ["Responsible Study", "You agree to cross-check important information with your formal notes, approved books, tutors, clinical supervisors, facility policies and current national or institutional guidance."],
-      ["Content Ownership And Sources", "Nursing Uganda compiles, rewrites and organizes learning material from multiple public, educational and local reference sources. Some images, PDFs, videos or links may come from third-party sources and remain subject to their own rights and terms."],
-      ["External Links And Jobs", "We may link to schools, regulators, YouTube videos, job boards, book libraries and other external websites. Always verify applications, payments, deadlines and personal data requests directly with the official source."],
-      ["Monetization", "The website may use Google Analytics, Google AdSense, sponsored placements or affiliate links. Sponsored or affiliate features must not be treated as clinical endorsement, and affiliate disclosures should appear close to relevant links."],
-      ["Contact", "For questions, corrections, takedown requests or partnership matters, email info@nursinguganda.com."]
+      ["Acceptance Of Terms", "By using Nursing Uganda, you confirm that you have read, understood and agree to these Terms of Use along with our Privacy Policy, Cookie Policy and Disclaimer. If you do not agree, please do not use the website."],
+      ["Permitted Educational Use", "You may use Nursing Uganda for personal study, revision, topic discovery and peer-to-peer learning. You may not reproduce, distribute, sell or publish substantial portions of the content without written permission. Brief quotations for study notes or academic discussion are permitted with attribution."],
+      ["Responsible Study", "You agree to cross-check important clinical information with your formal notes, approved textbooks, tutors, clinical supervisors, facility policies and current national or institutional guidance before applying it in any professional or clinical context."],
+      ["Content Ownership And Sources", "Nursing Uganda compiles, rewrites and organises learning material from public, educational and local reference sources. Rewritten content and original design belong to Nursing Uganda. Third-party materials (images, PDFs, videos, external links) remain subject to their respective owners' rights and licences."],
+      ["Advertising Policy", "The website displays advertisements served by Google AdSense and potentially other networks. By using the site, you acknowledge that advertisements may appear alongside educational content. Ad revenue funds the free revision resources available to students. We do not endorse advertised products or services."],
+      ["Affiliate Programme", "Nursing Uganda participates in affiliate programmes including the Amazon Associates Programme. Links marked (Affiliate) may earn Nursing Uganda a commission when you purchase through them. This income supports ongoing free content. Affiliate relationships do not influence editorial decisions or clinical recommendations."],
+      ["External Links And Jobs", "Links to schools, regulators, YouTube, job boards, book libraries and other external websites are provided for convenience. Always verify applications, payments, deadlines and personal data requests directly with the official source. We are not responsible for external site content."],
+      ["Partnerships And Sponsorship", "Businesses, publishers, medical suppliers or organisations interested in sponsoring content, listing a job, advertising a course or placing a banner can contact us at info@nursinguganda.com. Sponsored content will always be clearly labelled."],
+      ["Governing Law", "These terms are governed by and construed in accordance with the laws of Uganda. Any dispute arising from use of the website is subject to the jurisdiction of the courts of Uganda unless otherwise agreed in writing."],
+      ["Contact", "For questions, corrections, takedown requests, partnership enquiries or licensing matters, email info@nursinguganda.com. We aim to respond within 5 working days."]
+    ]
+  },
+  corrections: {
+    title: "Corrections & Takedown",
+    eyebrow: "Content Review",
+    updated: "June 1, 2026",
+    intro: "Help us maintain accurate, safe and respectful revision content by reporting errors, outdated information, copyright concerns or clinical safety issues.",
+    summary: ["Report clinical errors promptly", "Include page URL and exact text", "Rights holders can request removal", "We review all reports"],
+    sections: [
+      ["What To Report", "Send corrections for inaccurate definitions, unsafe clinical wording, outdated guidance, missing source context, broken links, image concerns, copyright requests or content that appears too close to another publisher's material."],
+      ["What To Include", "Please include the page URL, the lesson or instrument title, the exact sentence or image concerned, the suggested correction or source, and whether the issue is urgent for patient safety or examination accuracy. Clear, specific reports are processed faster."],
+      ["Clinical Safety Priority", "Reports involving clinical safety — incorrect drug doses, wrong procedures, dangerous advice — are treated as high priority. We will review and act as quickly as possible. For immediate patient safety concerns, consult a qualified professional rather than waiting for our response."],
+      ["Review Process", "We will compare the reported content with formal references where possible, edit or remove material when appropriate, and reposition all content as revision support rather than definitive clinical guidance. We do not always publish correction notes but will act on valid reports."],
+      ["Advertising And Affiliate Corrections", "If you believe an advertisement or affiliate link displayed on the site is misleading, harmful or inappropriate, please report it with the page URL and a screenshot. For Google AdSense ads, you can also report them directly via the AdChoices icon on the ad."],
+      ["Rights Holder Takedown Requests", "If you own rights in a text, PDF, image or other material and want it removed or credited differently, email info@nursinguganda.com with the page URL, a description of the material and your relationship to it. We will review within 10 working days."],
+      ["Response Time", "We aim to acknowledge all reports within 3 working days and complete action within 10 working days for routine corrections. Urgent clinical safety reports are prioritised above other work."]
     ]
   }
 };
 
 function renderLegalPage(key) {
   const page = legalPages[key] || legalPages.privacy;
+  const meta = LEGAL_META[key] || LEGAL_META.privacy;
   const legalNav = [
-    ["/privacy", "Privacy"],
-    ["/privacy-choices", "Privacy Choices"],
-    ["/cookies", "Cookies"],
-    ["/disclaimer", "Disclaimer"],
-    ["/terms", "Terms"],
-    ["/corrections", "Corrections"]
+    ["/privacy",         "Privacy",         "lock"],
+    ["/privacy-choices", "Privacy Choices",  "settings"],
+    ["/cookies",         "Cookies",          "badgeCheck"],
+    ["/disclaimer",      "Disclaimer",       "alertTriangle"],
+    ["/terms",           "Terms Of Use",     "fileText"],
+    ["/corrections",     "Corrections",      "edit"],
   ];
 
+  // Split sections for mid-ad placement (after section 3)
+  const splitAt  = Math.min(3, page.sections.length);
+  const firstHalf  = page.sections.slice(0, splitAt);
+  const secondHalf = page.sections.slice(splitAt);
+
+  function sectionCard([title, body], idx) {
+    return `
+      <article class="lp-card">
+        <div class="lp-card-num" style="background:${meta.accentLight};color:${meta.accent}">${String(idx + 1).padStart(2, "0")}</div>
+        <div class="lp-card-body">
+          <h3>${escapeHtml(title)}</h3>
+          <p>${escapeHtml(body)}</p>
+        </div>
+      </article>`;
+  }
+
   return `
-    <section class="legal-hero">
-      <div class="container legal-hero-grid">
-        <div>
-          <span class="mini-label">${escapeHtml(page.eyebrow)}</span>
+  <div class="legal-page-wrap">
+
+    <!-- ── HERO ─────────────────────────────────────────────────────── -->
+    <div class="lp-hero" style="--lp-accent:${meta.accent};--lp-accent-light:${meta.accentLight}">
+      <div class="lp-hero-bg-icon" aria-hidden="true">${icon(meta.icon)}</div>
+      <div class="container lp-hero-inner">
+        <div class="lp-hero-content">
+          <span class="lp-eyebrow">${icon(meta.icon)} ${escapeHtml(page.eyebrow)}</span>
           <h1>${escapeHtml(page.title)}</h1>
           <p>${escapeHtml(page.intro)}</p>
-          <div class="legal-contact-card">
-            ${icon("mail")}
-            <span>Contact: <a href="mailto:info@nursinguganda.com">info@nursinguganda.com</a></span>
+          <div class="lp-hero-chips">
+            <span class="lp-chip">${icon("calendar")} Updated ${escapeHtml(page.updated)}</span>
+            <a class="lp-chip lp-chip-link" href="mailto:info@nursinguganda.com">${icon("mail")} info@nursinguganda.com</a>
           </div>
         </div>
-        <nav class="legal-nav-card" aria-label="Legal pages">
-          <strong>Legal Pages</strong>
-          ${legalNav.map(([href, label]) => `<a class="${href === `/${key}` ? "active" : ""}" href="${href}">${escapeHtml(label)}${icon("arrowRight")}</a>`).join("")}
-        </nav>
       </div>
-    </section>
-    <section class="section legal-section">
-      <div class="container legal-content">
-        <div class="legal-update">Last updated: May 9, 2026</div>
-        ${page.sections.map(([title, body], idx) => `
-          <article class="legal-card">
-            <span class="legal-card-num">${String(idx + 1).padStart(2, "0")}</span>
-            <div class="legal-card-body">
-              <h2>${escapeHtml(title)}</h2>
-              <p>${escapeHtml(body)}</p>
-            </div>
-          </article>
-        `).join("")}
+    </div>
+
+    <!-- ── BODY ──────────────────────────────────────────────────────── -->
+    <div class="container lp-body">
+
+      <!-- SIDEBAR -->
+      <aside class="lp-sidebar">
+
+        <!-- Legal nav -->
+        <nav class="lp-nav" aria-label="Legal pages">
+          <p class="lp-nav-title">${icon("fileText")} Legal Pages</p>
+          ${legalNav.map(([href, label, ico]) => `
+            <a class="lp-nav-link${href === `/${key}` ? " active" : ""}" href="${href}" data-nav>
+              <span class="lp-nav-icon">${icon(ico)}</span>
+              <span>${escapeHtml(label)}</span>
+              ${icon("arrowRight")}
+            </a>`).join("")}
+        </nav>
+
+        <!-- Sidebar ad slot (300×250 rectangle) -->
+        <div class="lp-ad-slot lp-ad-sidebar" id="lp-ad-sidebar-${escapeHtml(key)}">
+          <span class="lp-ad-label">Advertisement</span>
+          <!-- Google AdSense: insert ins.adsbygoogle here -->
+          <div class="lp-ad-placeholder" style="width:280px;height:250px">
+            <span>Ad</span>
+          </div>
+        </div>
+
+        <!-- Quick summary -->
+        ${page.summary ? `
+        <div class="lp-summary-card">
+          <p class="lp-summary-title">${icon("sparkles")} Key Points</p>
+          <ul class="lp-summary-list">
+            ${page.summary.map(s => `<li>${escapeHtml(s)}</li>`).join("")}
+          </ul>
+        </div>` : ""}
+
+      </aside>
+
+      <!-- MAIN -->
+      <main class="lp-main">
+
+        <!-- Top leaderboard ad slot (728×90) -->
+        <div class="lp-ad-slot lp-ad-leaderboard" id="lp-ad-top-${escapeHtml(key)}">
+          <span class="lp-ad-label">Advertisement</span>
+          <!-- Google AdSense leaderboard: insert ins.adsbygoogle here -->
+          <div class="lp-ad-placeholder" style="height:90px"><span>Ad</span></div>
+        </div>
+
+        <!-- Update badge -->
+        <div class="lp-update-bar">
+          <span>${icon("calendar")} Last updated: ${escapeHtml(page.updated)}</span>
+          <span>${icon("fileText")} ${page.sections.length} sections</span>
+        </div>
+
+        <!-- First half of sections -->
+        ${firstHalf.map(sectionCard).join("")}
+
+        <!-- Mid-content inline ad -->
+        ${secondHalf.length ? `
+        <div class="lp-ad-slot lp-ad-inline" id="lp-ad-mid-${escapeHtml(key)}">
+          <span class="lp-ad-label">Advertisement</span>
+          <!-- Google AdSense in-article: insert ins.adsbygoogle here -->
+          <div class="lp-ad-placeholder" style="height:90px"><span>Ad</span></div>
+        </div>` : ""}
+
+        <!-- Second half of sections -->
+        ${secondHalf.map((s, i) => sectionCard(s, splitAt + i)).join("")}
+
+        <!-- Action cards -->
         ${key === "privacy-choices" ? `
-          <article class="legal-action-card">
+          <div class="lp-action-card" style="--lp-accent:${meta.accent}">
+            <div class="lp-action-icon">${icon("settings")}</div>
             <div>
-              <h2>Manage Optional Tracking</h2>
-              <p>Open the consent centre to accept, reject or update analytics, advertising and affiliate-link measurement choices.</p>
+              <h3>Manage Your Tracking Choices</h3>
+              <p>Open the consent centre to accept, reject or update analytics, advertising and affiliate measurement at any time.</p>
             </div>
             <button class="button primary" type="button" data-cookie-manage>${buttonLabel("Open Cookie Preferences", "badgeCheck")}</button>
-          </article>
-        ` : ""}
+          </div>` : ""}
+
         ${key === "corrections" ? `
-          <article class="legal-action-card">
+          <div class="lp-action-card" style="--lp-accent:${meta.accent}">
+            <div class="lp-action-icon">${icon("edit")}</div>
             <div>
-              <h2>Send A Correction</h2>
-              <p>Use email for now so you can include screenshots, page URLs and source details. This keeps the review trail clear until a backend form is added.</p>
+              <h3>Submit A Correction</h3>
+              <p>Include the page URL, the specific sentence or image, the suggested correction and any source reference. We review all reports.</p>
             </div>
-            <a class="button primary" href="mailto:info@nursinguganda.com?subject=Nursing%20Uganda%20content%20correction">${buttonLabel("Email Correction", "mail")}</a>
-          </article>
-        ` : ""}
-        <aside class="legal-note">
-          <strong>Important study reminder</strong>
-          <p>Nursing Uganda is for revision support and peer learning. Always confirm care, exams, licensing and professional decisions using formal notes, approved references and official sources.</p>
-        </aside>
-      </div>
-    </section>
-  `;
+            <a class="button primary" href="mailto:info@nursinguganda.com?subject=Nursing%20Uganda%20Content%20Correction">${buttonLabel("Email Correction", "mail")}</a>
+          </div>` : ""}
+
+        ${key === "terms" ? `
+          <div class="lp-action-card lp-partner-card" style="--lp-accent:${meta.accent}">
+            <div class="lp-action-icon">${icon("briefcaseMedical")}</div>
+            <div>
+              <h3>Partner, Sponsor or Advertise</h3>
+              <p>Businesses, publishers, medical suppliers and course providers can reach thousands of nursing students. Get in touch to discuss sponsored content, job listings, banner advertising or affiliate partnerships.</p>
+            </div>
+            <a class="button primary" href="mailto:info@nursinguganda.com?subject=Partnership%20Enquiry">${buttonLabel("Get In Touch", "mail")}</a>
+          </div>` : ""}
+
+        <!-- Affiliate disclosure box -->
+        <div class="lp-affiliate-box">
+          <div class="lp-affiliate-icon">${icon("externalLink")}</div>
+          <div>
+            <strong>Affiliate Disclosure</strong>
+            <p>Nursing Uganda is a participant in the Amazon Associates Programme and similar affiliate schemes. Pages may contain links marked <strong>(Affiliate)</strong> — if you purchase through these links, we may earn a small commission at no extra cost to you. Affiliate income helps fund free revision content for nursing and midwifery students.</p>
+          </div>
+        </div>
+
+        <!-- Study reminder -->
+        <div class="lp-study-note">
+          <div class="lp-study-note-icon">${icon("alertTriangle")}</div>
+          <div>
+            <strong>Important Study Reminder</strong>
+            <p>Nursing Uganda is for revision support and peer learning only. Always confirm clinical care, examination requirements, licensing and professional decisions using your formal school notes, approved textbooks and official regulatory sources.</p>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>`;
 }
 
 function hero({ title, body, actions = "", image = imageCatalog.anatomy, breadcrumb = "", stats = [], cues = [] }) {
