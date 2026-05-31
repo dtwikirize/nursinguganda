@@ -6,18 +6,19 @@ on:
       - main
 
 # ── Prevent parallel deployments ──────────────────────────────────────────────
-# If a new push arrives while a deploy is running, cancel the old run and
-# start fresh with the latest code. Also prevents schedule-triggered commits
-# (refresh-jobs, update-jobs) from racing with push-triggered deploys.
+# cancel-in-progress: false → queues the next run instead of cancelling the
+# current one. Cancelling mid-upload leaves the FTP state file in a corrupted
+# state, causing the next run to re-upload hundreds of files and time out.
+# Queuing means: current deploy finishes cleanly, then the next commit deploys.
 concurrency:
   group: deploy-production
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   deploy:
     name: Upload changed files via FTPS
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 45
 
     steps:
       - name: Checkout repository
