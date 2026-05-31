@@ -15395,11 +15395,11 @@ function render() {
     });
   });
 
-  // Job open → navigate to the detail page
+  // Job open → navigate to detail page (saved-panel buttons)
   app.querySelectorAll("[data-career-job-open]").forEach((button) => {
     button.addEventListener("click", () => {
       const id = button.dataset.careerJobOpen || "";
-      if (id) navigate("/careers/" + id);
+      if (id) setRoute("/careers/" + id);
     });
   });
 
@@ -15414,13 +15414,16 @@ function render() {
     });
   });
 
-  // Gate career apply links
+  // Apply links — external jobs open directly; only gate internal submissions
   app.querySelectorAll(".career-apply").forEach((link) => {
     link.addEventListener("click", (e) => {
+      const href = link.getAttribute("href") || "";
+      const isExternal = href.startsWith("http") || href.startsWith("mailto:");
+      if (isExternal) return; // let the browser handle external/mailto links normally
+      // Internal application — require login
       if (!state.currentUser) {
         e.preventDefault();
-        e.stopPropagation();
-        state.loginPrompt = { open: true, feature: "job-apply", message: "Sign in to apply for nursing and midwifery jobs." };
+        state.loginPrompt = { open: true, feature: "job-apply", message: "Sign in to submit your application." };
         render();
       }
     });
