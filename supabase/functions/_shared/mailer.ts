@@ -178,32 +178,46 @@ export const corsHeaders = {
 //    • All images have alt text + explicit width/height
 
 export function buildEmail(p: EmailParams): string {
+  const F = `font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif`;
+  const SERIF = `font-family:Georgia,'Times New Roman',Times,serif`;
+
   const preheader = p.preheaderText
-    ? `<div style="display:none;max-height:0;overflow:hidden;mso-hide:all;font-size:1px;color:#ffffff;line-height:1px">${p.preheaderText}&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;</div>`
+    ? `<div style="display:none;max-height:0;overflow:hidden;mso-hide:all;font-size:1px;color:#f8fbfc;line-height:1px;white-space:nowrap">${p.preheaderText}&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;</div>`
     : "";
 
-  const cta = p.ctaLabel && p.ctaUrl
-    ? `<table cellpadding="0" cellspacing="0" style="margin:24px auto 0">
-         <tr>
-           <td style="background-color:${BRAND_COLOR};border-radius:8px;text-align:center;padding:0">
-             <a href="${p.ctaUrl}" target="_blank"
-                style="display:inline-block;padding:14px 32px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:15px;font-weight:700;color:#ffffff;text-decoration:none;letter-spacing:-0.01em;mso-padding-alt:14px 32px">
-               ${p.ctaLabel}
-             </a>
-           </td>
-         </tr>
-       </table>`
-    : "";
+  // ── CTA button (gradient via VML for Outlook, CSS gradient elsewhere) ────────
+  const cta = p.ctaLabel && p.ctaUrl ? `
+    <table cellpadding="0" cellspacing="0" style="margin:0 auto">
+      <tr>
+        <td align="center" style="border-radius:10px;mso-padding-alt:0">
+          <!--[if mso]>
+          <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word"
+            href="${p.ctaUrl}" style="height:50px;v-text-anchor:middle;width:220px" arcsize="20%"
+            fillcolor="${BRAND_COLOR}" strokecolor="${BRAND_DARK}">
+            <w:anchorlock/>
+            <center style="${F};font-size:15px;font-weight:700;color:#ffffff;letter-spacing:-0.01em">${p.ctaLabel}</center>
+          </v:roundrect>
+          <![endif]-->
+          <!--[if !mso]><!-->
+          <a href="${p.ctaUrl}" target="_blank"
+             style="display:inline-block;background:linear-gradient(135deg,${BRAND_COLOR} 0%,${BRAND_DARK} 100%);color:#ffffff;text-decoration:none;padding:14px 36px;border-radius:10px;font-size:15px;font-weight:700;letter-spacing:-0.01em;${F};mso-hide:all;border:0;line-height:1.4">
+            ${p.ctaLabel}
+          </a>
+          <!--<![endif]-->
+        </td>
+      </tr>
+    </table>` : "";
 
   const secondaryCta = p.secondaryCtaLabel && p.secondaryCtaUrl
-    ? `<p style="margin:16px 0 0;text-align:center;font-size:13px;color:#6b7280;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif">
-         or <a href="${p.secondaryCtaUrl}" style="color:${BRAND_COLOR};text-decoration:none;font-weight:600">${p.secondaryCtaLabel}</a>
-       </p>`
-    : "";
+    ? `<p style="margin:14px 0 0;text-align:center;font-size:13px;color:#9ca3af;${F}">
+         or &nbsp;<a href="${p.secondaryCtaUrl}" style="color:${BRAND_COLOR};text-decoration:none;font-weight:600">${p.secondaryCtaLabel}</a>
+       </p>` : "";
 
   const footerNote = p.footerNote
-    ? `<p style="margin:16px 0 0;padding:12px 0 0;border-top:1px solid #f1f5f9;font-size:12px;color:#9ca3af;line-height:1.6;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif">${p.footerNote}</p>`
-    : "";
+    ? `<tr><td style="padding:0 32px 14px;${F}">
+         <p style="margin:0;font-size:11.5px;color:#9ca3af;line-height:1.7;text-align:center">${p.footerNote}</p>
+       </td></tr>
+       <tr><td style="padding:0 32px 14px"><table width="100%" cellpadding="0" cellspacing="0"><tr><td style="border-top:1px solid #e5e7eb;font-size:0;line-height:0">&nbsp;</td></tr></table></td></tr>` : "";
 
   return `<!DOCTYPE html>
 <html lang="en" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
@@ -212,89 +226,133 @@ export function buildEmail(p: EmailParams): string {
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="x-apple-disable-message-reformatting">
+  <title>${p.subject || "Nursing Uganda"}</title>
   <!--[if mso]>
   <xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml>
+  <noscript><xml><o:OfficeDocumentSettings><o:AllowPNG/></o:OfficeDocumentSettings></xml></noscript>
   <![endif]-->
 </head>
-<body style="margin:0;padding:0;background-color:#f3f4f6;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%">
+<body style="margin:0;padding:0;background-color:#f0f2f5;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;word-break:break-word">
 ${preheader}
 
-<!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="width:600px"><tr><td><![endif]-->
-<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%"
-  style="max-width:600px;margin:0 auto;padding:32px 16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif">
-
-  <!-- ─── Header ─────────────────────────────────────────────────────────── -->
+<!-- ══ Outer wrapper ══════════════════════════════════════════════════════ -->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#f0f2f5;min-width:320px">
   <tr>
-    <td style="background-color:${BRAND_COLOR};border-radius:12px 12px 0 0;padding:0">
-      <table width="100%" cellpadding="0" cellspacing="0">
+    <td align="center" style="padding:32px 16px 40px">
+      <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="width:600px"><tr><td><![endif]-->
+      <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:600px;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.09)">
+
+        <!-- ── Accent top stripe ──────────────────────────────────────── -->
         <tr>
-          <td style="padding:24px 32px">
-            <!-- Logo row -->
-            <table cellpadding="0" cellspacing="0">
+          <td height="5" style="background:linear-gradient(90deg,#7a3050 0%,${BRAND_COLOR} 45%,#d472a0 100%);font-size:0;line-height:0">&#8203;</td>
+        </tr>
+
+        <!-- ── Brand header ───────────────────────────────────────────── -->
+        <tr>
+          <td style="background-color:${BRAND_COLOR};padding:22px 32px 20px">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%">
               <tr>
-                <td style="background-color:rgba(255,255,255,0.15);border-radius:10px;padding:8px 14px;vertical-align:middle">
-                  <!--[if mso]><table cellpadding="0" cellspacing="0"><tr><td style="width:28px;height:28px;background:#fff;border-radius:6px;text-align:center;vertical-align:middle"><![endif]-->
-                  <img src="${SITE_URL}/assets/images/pwa/icon-192x192.png"
-                       alt="NU" width="28" height="28"
-                       style="display:inline-block;vertical-align:middle;border-radius:6px;border:0;line-height:28px;font-size:12px;font-weight:800;color:#fff;background:#A64468">
-                  <!--[if mso]></td><td style="padding-left:10px"><![endif]-->
-                  <span style="display:inline-block;vertical-align:middle;padding-left:10px;font-size:16px;font-weight:800;color:#ffffff;letter-spacing:-0.02em;font-family:Georgia,'Times New Roman',serif">Nursing Uganda</span>
-                  <!--[if mso]></td></tr></table><![endif]-->
+                <!-- Logo mark + wordmark -->
+                <td style="vertical-align:middle">
+                  <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td style="vertical-align:middle;padding-right:0">
+                        <!--[if mso]><table cellpadding="0" cellspacing="0"><tr><td style="width:44px;height:44px"><![endif]-->
+                        <img src="${SITE_URL}/assets/images/nursing-uganda-icon-light-transparent.png"
+                             alt="NU" width="44" height="44"
+                             style="display:block;border-radius:10px;border:2px solid rgba(255,255,255,0.28);background:rgba(255,255,255,0.1)">
+                        <!--[if mso]></td><td style="padding-left:12px;vertical-align:middle"><![endif]-->
+                      </td>
+                      <td style="padding-left:12px;vertical-align:middle">
+                        <span style="display:block;font-size:19px;font-weight:800;color:#ffffff;letter-spacing:-0.025em;${SERIF};line-height:1.1">Nursing Uganda</span>
+                        <span style="display:block;font-size:10px;color:rgba(255,255,255,0.65);letter-spacing:0.1em;text-transform:uppercase;margin-top:3px;${F}">Notes &amp; Resources</span>
+                      </td>
+                      <!--[if mso]></tr></table><![endif]-->
+                    </tr>
+                  </table>
+                </td>
+                <!-- Site link -->
+                <td align="right" style="vertical-align:middle">
+                  <a href="${SITE_URL}" style="font-size:11px;color:rgba(255,255,255,0.55);text-decoration:none;${F};letter-spacing:0.03em">nursinguganda.com</a>
                 </td>
               </tr>
             </table>
           </td>
-          <td align="right" style="padding:24px 32px 24px 0;vertical-align:middle">
-            <a href="${SITE_URL}" style="font-size:11px;color:rgba(255,255,255,0.65);text-decoration:none">nursinguganda.com</a>
+        </tr>
+
+        <!-- ── Headline card ──────────────────────────────────────────── -->
+        ${p.headline ? `<tr>
+          <td style="background-color:#ffffff;padding:28px 32px 20px;border-left:4px solid ${BRAND_COLOR}">
+            <h1 style="margin:0 0 ${p.subheadline ? "8px" : "0"};font-size:26px;font-weight:800;color:#111827;letter-spacing:-0.03em;line-height:1.2;${F}">${p.headline}</h1>
+            ${p.subheadline ? `<p style="margin:0;font-size:14px;color:#6b7280;line-height:1.55;${F}">${p.subheadline}</p>` : ""}
+          </td>
+        </tr>` : ""}
+
+        <!-- ── Divider ────────────────────────────────────────────────── -->
+        ${p.headline ? `<tr><td style="background-color:#ffffff;padding:0 32px"><table width="100%" cellpadding="0" cellspacing="0"><tr><td height="1" style="background-color:#f3f4f6;font-size:0;line-height:0">&#8203;</td></tr></table></td></tr>` : ""}
+
+        <!-- ── Body ──────────────────────────────────────────────────── -->
+        <tr>
+          <td style="background-color:#ffffff;padding:24px 32px 8px">
+            <div style="font-size:14px;color:#374151;line-height:1.75;${F}">
+              ${p.bodyHtml}
+            </div>
           </td>
         </tr>
+
+        <!-- ── CTA ───────────────────────────────────────────────────── -->
+        ${cta || secondaryCta ? `
+        <tr>
+          <td style="background-color:#ffffff;padding:20px 32px 32px;text-align:center">
+            ${cta}
+            ${secondaryCta}
+          </td>
+        </tr>` : ""}
+
+        <!-- ── Footer ────────────────────────────────────────────────── -->
+        <tr>
+          <td style="background-color:#f9fafb;border-top:1px solid #e5e7eb;border-radius:0 0 16px 16px;padding:0">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+              ${footerNote}
+              <!-- Brand mark row -->
+              <tr>
+                <td align="center" style="padding:20px 32px 6px">
+                  <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td style="vertical-align:middle;padding-right:8px">
+                        <img src="${SITE_URL}/assets/images/nursing-uganda-icon-light-transparent.png"
+                             alt="" width="22" height="22"
+                             style="display:block;opacity:0.35;border-radius:4px">
+                      </td>
+                      <td style="vertical-align:middle">
+                        <span style="font-size:13px;font-weight:700;color:#9ca3af;letter-spacing:-0.01em;${F}">Nursing Uganda</span>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <!-- Links row -->
+              <tr>
+                <td align="center" style="padding:4px 32px 20px">
+                  <p style="margin:0;font-size:11px;color:#b0b7c3;line-height:1.8;${F}">
+                    Nursing &amp; Midwifery Revision for Uganda Students<br>
+                    <a href="mailto:${ADMIN_EMAIL}" style="color:#b0b7c3;text-decoration:none">${ADMIN_EMAIL}</a>
+                    &nbsp;&#8231;&nbsp;
+                    <a href="${SITE_URL}" style="color:#b0b7c3;text-decoration:none">nursinguganda.com</a>
+                    &nbsp;&#8231;&nbsp;
+                    <a href="${SITE_URL}/unsubscribe" style="color:${BRAND_COLOR};text-decoration:none;font-weight:600">Unsubscribe</a>
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
       </table>
+      <!--[if mso | IE]></td></tr></table><![endif]-->
     </td>
   </tr>
-
-  <!-- ─── Headline band ──────────────────────────────────────────────────── -->
-  <tr>
-    <td style="background-color:${BRAND_DARK};padding:20px 32px 22px">
-      <h1 style="margin:0 0 ${p.subheadline ? "6px" : "0"};font-size:22px;font-weight:800;color:#ffffff;letter-spacing:-0.03em;line-height:1.2;font-family:Georgia,'Times New Roman',serif">${p.headline}</h1>
-      ${p.subheadline ? `<p style="margin:0;font-size:14px;color:rgba(255,255,255,0.75);line-height:1.5">${p.subheadline}</p>` : ""}
-    </td>
-  </tr>
-
-  <!-- ─── Body ────────────────────────────────────────────────────────────── -->
-  <tr>
-    <td style="background-color:#ffffff;border-left:1px solid #e5e7eb;border-right:1px solid #e5e7eb;padding:28px 32px 8px">
-      <div style="font-size:14px;color:#374151;line-height:1.7">
-        ${p.bodyHtml}
-      </div>
-    </td>
-  </tr>
-
-  <!-- ─── CTA ─────────────────────────────────────────────────────────────── -->
-  ${cta || secondaryCta ? `
-  <tr>
-    <td style="background-color:#ffffff;border-left:1px solid #e5e7eb;border-right:1px solid #e5e7eb;padding:8px 32px 28px;text-align:center">
-      ${cta}
-      ${secondaryCta}
-    </td>
-  </tr>` : ""}
-
-  <!-- ─── Footer ──────────────────────────────────────────────────────────── -->
-  <tr>
-    <td style="background-color:#f9fafb;border:1px solid #e5e7eb;border-top:none;border-radius:0 0 12px 12px;padding:18px 32px;text-align:center">
-      ${footerNote}
-      <p style="margin:${p.footerNote ? "12px" : "0"} 0 0;font-size:11px;color:#9ca3af;line-height:1.7;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif">
-        Nursing Uganda &mdash; Nursing &amp; Midwifery Revision for Uganda Students<br>
-        <a href="mailto:${ADMIN_EMAIL}" style="color:#9ca3af;text-decoration:none">${ADMIN_EMAIL}</a>
-        &nbsp;&bull;&nbsp;
-        <a href="${SITE_URL}" style="color:#9ca3af;text-decoration:none">nursinguganda.com</a>
-        &nbsp;&bull;&nbsp;
-        <a href="${SITE_URL}/unsubscribe?email={{email}}" style="color:#9ca3af;text-decoration:none">Unsubscribe</a>
-      </p>
-    </td>
-  </tr>
-
 </table>
-<!--[if mso | IE]></td></tr></table><![endif]-->
 </body>
 </html>`;
 }

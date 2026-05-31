@@ -727,8 +727,7 @@ font-size: 1.35rem;
 [data-theme="dark"] .mega-nav-icon .ui-icon { color: rgba(255,255,255,0.55); }
 [data-theme="dark"] .mega-trigger:hover .mega-nav-icon .ui-icon,
 [data-theme="dark"] .mega-trigger.active .mega-nav-icon .ui-icon { color: #ffffff; }
-[data-theme="dark"] .mobile-toggle { border-color: rgba(255,255,255,0.18); background: rgba(255,255,255,0.07); color: #ffffff; }
-[data-theme="dark"] .mobile-toggle:hover { background: rgba(255,255,255,0.14); }
+/* mobile-toggle dark mode: see .mobile-toggle section below */
 [data-theme="dark"] .nav-search-pill { border-color: rgba(255,255,255,0.18); background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.82); }
 [data-theme="dark"] .nav-search-pill:hover { border-color: rgba(166,68,104,0.55); color: #A64468; background: rgba(166,68,104,0.1); }
 
@@ -1086,6 +1085,94 @@ font-size: 1.35rem;
 .drawer-view-all:hover { text-decoration: underline; }
 .drawer-view-all .ui-icon { width: 13px; height: 13px; }
 
+/* ── Drawer auth section ───────────────────────────────────── */
+.drawer-auth-section {
+  padding: 1rem 1.25rem 0.75rem;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* Sign In button */
+.drawer-signin-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 20px;
+  background: linear-gradient(135deg, #A64468 0%, #7a3050 100%);
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: opacity 0.15s, transform 0.15s;
+  box-shadow: 0 3px 14px rgba(166,68,104,0.35);
+}
+.drawer-signin-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+.drawer-signin-btn:active { transform: scale(0.98); }
+.drawer-signin-btn .ui-icon { width: 18px; height: 18px; }
+
+/* Create account link */
+.drawer-signup-link {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  text-decoration: none;
+  padding: 2px 0;
+  transition: color 0.15s;
+}
+.drawer-signup-link:hover { color: #A64468; }
+.drawer-signup-link strong { color: #A64468; font-weight: 600; }
+
+/* Logged-in user card */
+.drawer-user-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--color-text);
+  transition: background 0.15s, border-color 0.15s;
+}
+.drawer-user-card:hover {
+  background: rgba(166,68,104,0.06);
+  border-color: rgba(166,68,104,0.25);
+}
+.drawer-user-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+.drawer-user-info strong {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.drawer-user-info small {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.drawer-user-card > .ui-icon { width: 16px; height: 16px; color: var(--color-muted); flex-shrink: 0; }
+
+[data-theme="dark"] .drawer-signin-btn {
+  box-shadow: 0 3px 14px rgba(166,68,104,0.25);
+}
+
 .drawer-footer {
   display: flex;
   align-items: center;
@@ -1128,26 +1215,100 @@ font-size: 1.35rem;
 .nav-overlay.open { opacity: 1; pointer-events: auto; }
 
 /* ============================================================
-   MOBILE TOGGLE (hamburger — only shown on mobile)
+   MOBILE TOGGLE — animated brand bar trigger
    ============================================================ */
 .mobile-toggle {
   display: none;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
-  border: 1px solid rgba(0,0,0,0.13);
-  background: rgba(0,0,0,0.04);
-  color: #0f172a;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1.5px solid rgba(166,68,104,0.22);
+  background: rgba(166,68,104,0.06);
   cursor: pointer;
-  transition: background 0.15s;
   flex-shrink: 0;
+  padding: 0;
+  transition: background 0.2s, border-color 0.2s, transform 0.15s;
+  position: relative;
+  overflow: hidden;
 }
-.mobile-toggle:hover { background: rgba(0,0,0,0.08); }
-.mobile-toggle .ui-icon { width: 18px; height: 18px; }
-/* Old span-based bars — hidden when icon is used */
-.mobile-toggle span { display: none; }
+.mobile-toggle::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: rgba(166,68,104,0.0);
+  transition: background 0.2s;
+  border-radius: inherit;
+}
+.mobile-toggle:hover {
+  background: rgba(166,68,104,0.12);
+  border-color: rgba(166,68,104,0.4);
+  transform: scale(1.04);
+}
+.mobile-toggle:active { transform: scale(0.96); }
+
+/* Bar container */
+.toggle-bars {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 5px;
+  width: 22px;
+  height: 22px;
+}
+
+/* Individual bars */
+.toggle-bars .bar {
+  display: block;
+  height: 2px;
+  border-radius: 2px;
+  background: #A64468;
+  transform-origin: center center;
+  transition:
+    transform 0.3s cubic-bezier(0.34, 1.2, 0.64, 1),
+    opacity   0.2s ease,
+    width     0.3s cubic-bezier(0.34, 1.2, 0.64, 1);
+}
+.toggle-bars .bar:nth-child(1) { width: 22px; }
+.toggle-bars .bar:nth-child(2) { width: 15px; }  /* asymmetric — unique touch */
+.toggle-bars .bar:nth-child(3) { width: 22px; }
+
+/* Open state → X morph via aria-expanded */
+.mobile-toggle[aria-expanded="true"] .toggle-bars .bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+  width: 22px;
+}
+.mobile-toggle[aria-expanded="true"] .toggle-bars .bar:nth-child(2) {
+  opacity: 0;
+  width: 0;
+  transform: scaleX(0);
+}
+.mobile-toggle[aria-expanded="true"] .toggle-bars .bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+  width: 22px;
+}
+
+/* Active / open: fill with brand color */
+.mobile-toggle[aria-expanded="true"] {
+  background: rgba(166,68,104,0.12);
+  border-color: rgba(166,68,104,0.45);
+}
+.mobile-toggle[aria-expanded="true"] .bar { background: #A64468; }
+
+/* Dark mode */
+[data-theme="dark"] .mobile-toggle {
+  border-color: rgba(212,114,160,0.28);
+  background: rgba(212,114,160,0.07);
+}
+[data-theme="dark"] .mobile-toggle:hover {
+  background: rgba(212,114,160,0.15);
+  border-color: rgba(212,114,160,0.5);
+}
+[data-theme="dark"] .toggle-bars .bar { background: #d472a0; }
+
+/* Legacy Lucide icon fallback — hidden */
+.mobile-toggle .ui-icon { display: none !important; }
 
 /* ── Responsive breakpoint: show drawer, hide desktop nav ── */
 @media (max-width: 860px) {

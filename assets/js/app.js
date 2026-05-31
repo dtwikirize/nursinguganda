@@ -3998,6 +3998,28 @@ function renderMobileDrawer(active) {
           `;
         }).join("")}
       </nav>
+      <!-- Auth section — sign in CTA or logged-in user card -->
+      <div class="drawer-auth-section">
+        ${state.currentUser ? `
+          <a class="drawer-user-card" href="/account" data-nav-close>
+            ${renderUserAvatar(state.currentUser, 38)}
+            <div class="drawer-user-info">
+              <strong>${escapeHtml(state.currentUser.name.split(" ")[0])}</strong>
+              <small>${escapeHtml(state.currentUser.email)}</small>
+            </div>
+            ${icon("chevronRight")}
+          </a>
+        ` : `
+          <a class="drawer-signin-btn" href="/login" data-nav-close>
+            ${icon("users")}<span>Sign In</span>
+          </a>
+          <a class="drawer-signup-link" href="/login" data-nav-close
+             onclick="event.preventDefault();history.pushState(null,'','/login');dispatchEvent(new PopStateEvent('popstate'));">
+            New here? <strong>Create a free account →</strong>
+          </a>
+        `}
+      </div>
+
       <div class="drawer-footer">
         <a class="drawer-footer-link" href="/notes" data-nav-close>${icon("bookOpen")}<span>Notes</span></a>
         <a class="drawer-footer-link" href="/resources" data-nav-close>${icon("folderOpen")}<span>Resources</span></a>
@@ -4147,8 +4169,14 @@ function layout(content) {
                 </div>`
               : `<a class="button primary nav-login-btn" href="/login">${icon("users")}<span>Sign In</span></a>`
             }
-            <button class="mobile-toggle" type="button" data-nav-toggle aria-label="${state.navOpen ? "Close menu" : "Open menu"}" aria-expanded="${state.navOpen}">
-              ${state.navOpen ? icon("x") : `<span></span><span></span><span></span>`}
+            <button class="mobile-toggle" type="button" data-nav-toggle
+              aria-label="${state.navOpen ? "Close menu" : "Open menu"}"
+              aria-expanded="${state.navOpen}">
+              <span class="toggle-bars">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+              </span>
             </button>
           </div>
         </div>
@@ -16577,7 +16605,7 @@ async function init() {
 
     // Curriculum is the minimum needed to render — load it first and paint immediately
     // Use root-relative path so it always resolves correctly regardless of current URL
-    const response = await fetch("/assets/data/curriculum.json?v=106");
+    const response = await fetch("/assets/data/curriculum.json?v=108");
     if (!response.ok) throw new Error(`Could not load course content (${response.status}). Please refresh.`);
     state.data = await response.json();
     state.imageMatches = { matches: {} };
