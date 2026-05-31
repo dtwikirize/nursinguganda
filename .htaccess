@@ -1,17 +1,35 @@
 Options -MultiViews
 RewriteEngine On
 
+# ── Custom error pages ────────────────────────────────────────────────────────
+# _offline.html is excluded from FTP deploys — always present on the server.
+ErrorDocument 404 /_offline.html
+ErrorDocument 503 /_offline.html
+
 # ── SPA routing ───────────────────────────────────────────────────────────────
+# Guard: if index.html is temporarily missing (mid-deploy), serve the offline
+# page immediately instead of letting Hostinger show its generic 404.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{DOCUMENT_ROOT}/index.html !-f
+RewriteRule ^ /_offline.html [L]
+
 # Step 1: Force SPA for known app routes BEFORE directory/file checks.
 # This prevents old static sub-directories (e.g. /courses/index.html)
 # from intercepting URLs that belong to the React SPA.
+RewriteCond %{DOCUMENT_ROOT}/index.html -f
 RewriteRule ^(courses|resources|careers|search|flashcards|dictionary|dashboard|settings|login|notes|progress|quiz|community|careers)(\/.*)?$ /index.html [L,QSA]
 
-# Step 2: Serve real static files and directories as-is
+# Step 2: Serve real static files and directories as-is.
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{DOCUMENT_ROOT}/index.html -f
 # Fallback: all other unmatched paths → index.html
 RewriteRule ^ index.html [QSA,L]
+
+# Final guard: static file not found + index.html missing → offline page
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{DOCUMENT_ROOT}/index.html !-f
+RewriteRule ^ /_offline.html [L]
 
 # ── GZIP / Deflate compression ────────────────────────────────────────────────
 <IfModule mod_deflate.c>

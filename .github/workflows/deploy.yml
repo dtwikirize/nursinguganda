@@ -60,6 +60,7 @@ jobs:
             package-lock.json
             .gitignore
             *.md
+            _offline.html
 
       # ── Attempt 2 (only if attempt 1 failed) ─────────────────────────────────
       - name: Wait before retry
@@ -103,6 +104,7 @@ jobs:
             package-lock.json
             .gitignore
             *.md
+            _offline.html
 
       # ── Attempt 3 (only if attempt 2 also failed) ────────────────────────────
       - name: Wait before final retry
@@ -145,3 +147,4 @@ jobs:
             package-lock.json
             .gitignore
             *.md
+            _offline.html
