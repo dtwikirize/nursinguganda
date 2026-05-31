@@ -11455,48 +11455,61 @@ function renderCareerFilterGroup(label, key, options, active) {
 }
 
 function renderCareerJobCard(job) {
-  const saved = savedCareerJobs().has(job.id);
+  const saved  = savedCareerJobs().has(job.id);
   const status = deadlineClass(job);
-  const ep = careerPaletteFor(job.employer);
+  const ep     = careerPaletteFor(job.employer);
+  const deadlineText = status === "urgent" ? `⚠ Closes ${dateLabel(job.deadline)}`
+                     : status === "warn"   ? `${icon("clock")} ${dateLabel(job.deadline)}`
+                     :                       `${icon("clock")} ${dateLabel(job.deadline)}`;
   return `
-    <article class="career-job-row ${job.isFeatured ? "featured" : ""}"
+    <article class="career-job-row${job.isFeatured ? " featured" : ""}${status === "urgent" ? " urgent" : ""}"
       data-career-card="${escapeHtml(job.id)}"
       style="--card-accent:${ep.text};--card-accent-bg:${ep.bg};">
 
-      <!-- Avatar -->
+      <!-- Employer avatar -->
       <div class="cjr-avatar">
-        ${careerAvatar(job.employer)}
+        ${careerAvatar(job.employer, "md")}
       </div>
 
-      <!-- Main info -->
-      <div class="cjr-main">
-        <div class="cjr-title-row">
-          <a class="cjr-title" href="/careers/${escapeHtml(job.id)}" data-nav>${escapeHtml(job.title)}</a>
-          <div class="cjr-flags">
-            ${job.isFeatured ? `<span class="featured-flag">${icon("sparkles")} Featured</span>` : ""}
-            ${job.isExternal ? `<span class="external-flag">${icon("externalLink")} External</span>` : ""}
+      <!-- Core information -->
+      <div class="cjr-body">
+        <div class="cjr-header">
+          <div class="cjr-title-block">
+            <a class="cjr-title" href="/careers/${escapeHtml(job.id)}" data-nav>${escapeHtml(job.title)}</a>
+            <span class="cjr-org">${escapeHtml(job.employer)}</span>
+          </div>
+          <div class="cjr-chips">
+            ${job.isFeatured ? `<span class="cjr-chip chip-featured">${icon("sparkles")} Featured</span>` : ""}
+            ${job.isExternal ? `<span class="cjr-chip chip-external">${icon("externalLink")} External</span>` : ""}
           </div>
         </div>
-        <p class="cjr-employer">${escapeHtml(job.employer)}</p>
+
         <div class="cjr-meta">
-          <span>${icon("mapPin")}${escapeHtml(job.location)}</span>
-          <span>${icon("calendar")}Posted ${dateLabel(job.posted)}</span>
-          <span class="${status}">${icon("clock")}Deadline: ${dateLabel(job.deadline)}${status === "urgent" ? " — Closing soon" : ""}</span>
+          <span class="cjr-meta-item">${icon("mapPin")} ${escapeHtml(job.location)}</span>
+          <span class="cjr-meta-item">${icon("fileText")} ${escapeHtml(job.type)}</span>
+          <span class="cjr-meta-item">${icon("users")} ${escapeHtml(job.level)}</span>
+          <span class="cjr-meta-item cjr-deadline ${status}">${deadlineText}</span>
         </div>
-        <div class="career-badge-row cjr-badges">
-          ${careerBadge(job.type, `type-${slugify(job.type)}`)}
-          ${careerBadge(job.level, "level")}
+
+        <div class="cjr-tags">
           ${careerBadge(regionLabel(job.region), "region")}
           ${careerBadge(job.speciality, "speciality")}
         </div>
       </div>
 
-      <!-- Right: salary + actions -->
-      <div class="cjr-right">
-        <p class="cjr-salary">${icon("banknote")} ${escapeHtml(job.salary)}</p>
-        <div class="cjr-actions">
-          <button type="button" class="career-save ${saved ? "active" : ""}" data-career-job-save="${escapeHtml(job.id)}">${icon("heart")}</button>
-          <a class="cjr-view-btn" href="/careers/${escapeHtml(job.id)}" data-nav>View Job ${icon("arrowRight")}</a>
+      <!-- Salary + CTA -->
+      <div class="cjr-aside">
+        <div class="cjr-salary">
+          <span class="cjr-salary-label">Salary</span>
+          <strong>${escapeHtml(job.salary)}</strong>
+        </div>
+        <div class="cjr-ctas">
+          <button type="button" title="${saved ? "Remove saved" : "Save job"}"
+            class="cjr-save-btn${saved ? " saved" : ""}"
+            data-career-job-save="${escapeHtml(job.id)}">${icon("heart")}</button>
+          <a class="cjr-view-btn" href="/careers/${escapeHtml(job.id)}" data-nav>
+            View Job ${icon("arrowRight")}
+          </a>
         </div>
       </div>
 
