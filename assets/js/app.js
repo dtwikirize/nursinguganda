@@ -28,6 +28,7 @@ const state = {
   resourceSearch: "",
   resourceFilter: "All",
   careerMode: "jobs",
+  careerHeroSlide: 0,
   careerSearch: "",
   careerType: "All",
   careerLevel: "All",
@@ -11358,15 +11359,34 @@ function careerAvatar(name, size = "") {
   return `<span class="career-avatar ${size}" aria-hidden="true" style="--av-bg:${p.bg};--av-color:${p.text};">${escapeHtml(letter)}</span>`;
 }
 
+// Hero slideshow images — save your 3 career images to these paths
+const CAREER_HERO_SLIDES = [
+  { src: "assets/images/nursing-uganda-home-hero-1.png", pos: "center 20%" },
+  { src: "assets/images/nursing-uganda-home-hero-2.png", pos: "center 25%" },
+  { src: "assets/images/nursing-uganda-home-hero-3.png", pos: "center 20%" },
+];
+
 function renderCareerHero() {
   const jobs = careerJobs();
   const jobCount = jobs.length;
   const countriesCount = new Set(jobs.map(j => j.region)).size;
-  const levelsCount   = new Set(jobs.map(j => j.level)).size;
+  const levelsCount    = new Set(jobs.map(j => j.level)).size;
   const specialitiesCount = new Set(jobs.map(j => j.speciality)).size;
+  const activeSlide = state.careerHeroSlide || 0;
+
   return `
-    <section class="careers-hero">
-      <div class="careers-hero-overlay" aria-hidden="true"></div>
+    <section class="careers-hero" id="careers-hero-section">
+
+      <!-- Slideshow background -->
+      <div class="careers-hero-slides" aria-hidden="true">
+        ${CAREER_HERO_SLIDES.map((slide, i) => `
+          <div class="careers-hero-slide${i === activeSlide ? " active" : ""}"
+               style="background-image:url('${escapeHtml(slide.src)}');background-position:${slide.pos}">
+          </div>`).join("")}
+        <div class="careers-hero-overlay"></div>
+      </div>
+
+      <!-- Content -->
       <div class="container careers-hero-inner">
 
         <div class="careers-hero-content">
@@ -11375,7 +11395,8 @@ function renderCareerHero() {
           </nav>
           <p class="careers-hero-eyebrow">${icon("briefcaseMedical")} Uganda Nursing &amp; Midwifery Jobs</p>
           <h1>Find Your<br><span>Nursing Career</span></h1>
-          <p class="careers-hero-body">Internships, graduate positions, senior roles and international opportunities — curated for Uganda nursing and midwifery professionals.</p>
+          <p class="careers-hero-body">Internships, graduate positions, senior roles and international
+            opportunities — curated for Uganda nursing and midwifery professionals.</p>
           <div class="careers-hero-actions">
             <button type="button" class="careers-cta-primary" data-career-mode="jobs">
               ${icon("briefcaseMedical")} Browse Jobs
@@ -11388,27 +11409,23 @@ function renderCareerHero() {
 
         <div class="careers-hero-aside">
           <div class="careers-stat-grid">
-            <div class="careers-stat-card">
-              <strong>${jobCount}</strong>
-              <span>Active Listings</span>
-            </div>
-            <div class="careers-stat-card">
-              <strong>${countriesCount}</strong>
-              <span>Countries</span>
-            </div>
-            <div class="careers-stat-card">
-              <strong>${levelsCount}</strong>
-              <span>Career Levels</span>
-            </div>
-            <div class="careers-stat-card">
-              <strong>${specialitiesCount}</strong>
-              <span>Specialities</span>
-            </div>
+            <div class="careers-stat-card"><strong>${jobCount}</strong><span>Active Listings</span></div>
+            <div class="careers-stat-card"><strong>${countriesCount}</strong><span>Countries</span></div>
+            <div class="careers-stat-card"><strong>${levelsCount}</strong><span>Career Levels</span></div>
+            <div class="careers-stat-card"><strong>${specialitiesCount}</strong><span>Specialities</span></div>
           </div>
-          ${renderAdSlot("resourcesInline", "Resource hub advertisement")}
         </div>
 
       </div>
+
+      <!-- Dot indicators -->
+      <div class="careers-hero-dots">
+        ${CAREER_HERO_SLIDES.map((_, i) => `
+          <button class="careers-hero-dot${i === activeSlide ? " active" : ""}"
+                  type="button" data-career-slide="${i}"
+                  aria-label="Slide ${i + 1}"></button>`).join("")}
+      </div>
+
     </section>
   `;
 }
@@ -11438,37 +11455,47 @@ function renderCareerJobCard(job) {
   const status = deadlineClass(job);
   const ep = careerPaletteFor(job.employer);
   return `
-    <article class="career-job-card ${job.isFeatured ? "featured" : ""}"
+    <article class="career-job-row ${job.isFeatured ? "featured" : ""}"
       data-career-card="${escapeHtml(job.id)}"
       style="--card-accent:${ep.text};--card-accent-bg:${ep.bg};">
-      <div class="career-job-flags">
-        ${job.isFeatured ? `<span class="featured-flag">${icon("sparkles")} Featured</span>` : ""}
-        ${job.isExternal ? `<span class="external-flag">${icon("externalLink")} External</span>` : ""}
-      </div>
-      <header class="career-job-head">
+
+      <!-- Avatar -->
+      <div class="cjr-avatar">
         ${careerAvatar(job.employer)}
-        <div>
-          <button type="button" data-career-job-open="${escapeHtml(job.id)}">${escapeHtml(job.title)}</button>
-          <a href="/careers" data-career-employer="${escapeHtml(job.employer)}">${escapeHtml(job.employer)}</a>
+      </div>
+
+      <!-- Main info -->
+      <div class="cjr-main">
+        <div class="cjr-title-row">
+          <a class="cjr-title" href="/careers/${escapeHtml(job.id)}" data-nav>${escapeHtml(job.title)}</a>
+          <div class="cjr-flags">
+            ${job.isFeatured ? `<span class="featured-flag">${icon("sparkles")} Featured</span>` : ""}
+            ${job.isExternal ? `<span class="external-flag">${icon("externalLink")} External</span>` : ""}
+          </div>
         </div>
-      </header>
-      <div class="career-job-meta">
-        <span>${icon("mapPin")}${escapeHtml(job.location)}</span>
-        <span>${icon("calendar")}Posted ${dateLabel(job.posted)}</span>
+        <p class="cjr-employer">${escapeHtml(job.employer)}</p>
+        <div class="cjr-meta">
+          <span>${icon("mapPin")}${escapeHtml(job.location)}</span>
+          <span>${icon("calendar")}Posted ${dateLabel(job.posted)}</span>
+          <span class="${status}">${icon("clock")}Deadline: ${dateLabel(job.deadline)}${status === "urgent" ? " — Closing soon" : ""}</span>
+        </div>
+        <div class="career-badge-row cjr-badges">
+          ${careerBadge(job.type, `type-${slugify(job.type)}`)}
+          ${careerBadge(job.level, "level")}
+          ${careerBadge(regionLabel(job.region), "region")}
+          ${careerBadge(job.speciality, "speciality")}
+        </div>
       </div>
-      <p class="career-deadline ${status}">${icon("clock")}<span>Deadline: ${dateLabel(job.deadline)}${status === "urgent" ? " — Closing soon" : ""}</span></p>
-      <p class="career-job-desc">${escapeHtml(job.description)}</p>
-      <div class="career-badge-row">
-        ${careerBadge(job.type, `type-${slugify(job.type)}`)}
-        ${careerBadge(job.level, "level")}
-        ${careerBadge(regionLabel(job.region), "region")}
-        ${careerBadge(job.speciality, "speciality")}
+
+      <!-- Right: salary + actions -->
+      <div class="cjr-right">
+        <p class="cjr-salary">${icon("banknote")} ${escapeHtml(job.salary)}</p>
+        <div class="cjr-actions">
+          <button type="button" class="career-save ${saved ? "active" : ""}" data-career-job-save="${escapeHtml(job.id)}">${icon("heart")}</button>
+          <a class="cjr-view-btn" href="/careers/${escapeHtml(job.id)}" data-nav>View Job ${icon("arrowRight")}</a>
+        </div>
       </div>
-      <p class="career-salary">${icon("banknote")} ${escapeHtml(job.salary)}</p>
-      <footer class="career-job-actions">
-        <button type="button" class="career-save ${saved ? "active" : ""}" data-career-job-save="${escapeHtml(job.id)}">${icon("heart")}<span>${saved ? "Saved" : "Save"}</span></button>
-        <button type="button" class="career-apply-btn" data-career-job-open="${escapeHtml(job.id)}">View & Apply ${icon("arrowRight")}</button>
-      </footer>
+
     </article>
   `;
 }
@@ -11500,7 +11527,7 @@ function renderJobsBoard() {
               ${active ? `<button type="button" class="career-results-clear" data-career-clear>${icon("x")} Clear filters</button>` : ""}
             </div>
             ${jobs.length
-              ? `<div class="career-job-grid">${jobs.map(renderCareerJobCard).join("")}</div>`
+              ? `<div class="career-job-list">${jobs.map(renderCareerJobCard).join("")}</div>`
               : `<div class="career-empty-state">
                   <span class="career-empty-icon">${icon("briefcaseMedical")}</span>
                   <h2>No jobs match your filters</h2>
@@ -11518,7 +11545,6 @@ function renderJobsBoard() {
     ${renderExternalJobSources()}
     ${renderEmployerSpotlight()}
     ${renderJobAlerts()}
-    ${renderCareerDrawer()}
   `;
 }
 
@@ -11724,6 +11750,130 @@ function renderCareerDrawer() {
       </div>
     </div>
   `;
+}
+
+// ── Job Detail Page ───────────────────────────────────────────────────────────
+function renderCareerJobDetailPage(job) {
+  if (!job) {
+    return layout(`
+      <section class="section"><div class="container" style="text-align:center;padding:4rem 1rem">
+        ${icon("briefcaseMedical")}
+        <h2 style="margin:.75rem 0">Job not found</h2>
+        <p style="color:var(--color-text-muted);margin-bottom:1.5rem">This listing may have been removed or the link is incorrect.</p>
+        <a class="button primary" href="/careers" data-nav>Browse All Jobs</a>
+      </div></section>`);
+  }
+  const saved  = savedCareerJobs().has(job.id);
+  const status = deadlineClass(job);
+  const ep     = careerPaletteFor(job.employer);
+  return layout(`
+    <div class="job-detail-page">
+
+      <!-- Back -->
+      <div class="job-detail-back">
+        <div class="container">
+          <a href="/careers" data-nav class="job-back-link">${icon("arrowLeft")} Back to Jobs</a>
+        </div>
+      </div>
+
+      <!-- Hero band -->
+      <div class="job-detail-hero" style="--card-accent:${ep.text};--card-accent-bg:${ep.bg};">
+        <div class="container job-detail-hero-inner">
+          <div class="job-detail-hero-left">
+            ${careerAvatar(job.employer, "xl")}
+            <div class="job-detail-hero-text">
+              ${(job.isFeatured || job.isExternal) ? `
+                <div class="career-job-flags" style="position:static;margin-bottom:8px">
+                  ${job.isFeatured ? `<span class="featured-flag">${icon("sparkles")} Featured</span>` : ""}
+                  ${job.isExternal ? `<span class="external-flag">${icon("externalLink")} External listing</span>` : ""}
+                </div>` : ""}
+              <h1>${escapeHtml(job.title)}</h1>
+              <p class="job-detail-employer">${escapeHtml(job.employer)}</p>
+              <div class="job-detail-meta">
+                <span>${icon("mapPin")} ${escapeHtml(job.location)}</span>
+                <span class="${status}">${icon("clock")} Deadline: ${dateLabel(job.deadline)}${status === "urgent" ? " — Closing soon" : ""}</span>
+                <span>${icon("fileText")} ${escapeHtml(job.type)} · ${escapeHtml(job.duration)}</span>
+              </div>
+              <div class="career-badge-row">
+                ${careerBadge(job.type, `type-${slugify(job.type)}`)}
+                ${careerBadge(job.level, "level")}
+                ${careerBadge(regionLabel(job.region), "region")}
+                ${careerBadge(job.speciality, "speciality")}
+              </div>
+            </div>
+          </div>
+          <div class="job-detail-hero-actions">
+            <button type="button" class="career-save career-save-lg ${saved ? "active" : ""}"
+              data-career-job-save="${escapeHtml(job.id)}">${icon("heart")} ${saved ? "Saved" : "Save Job"}</button>
+            <a class="career-apply job-detail-apply"
+              href="${escapeHtml(job.applyUrl)}"
+              ${job.isExternal ? `target="_blank" rel="noopener noreferrer"` : ""}>
+              ${job.isExternal ? `${icon("externalLink")} Apply on External Site` : `Apply Now ${icon("arrowRight")}`}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Body -->
+      <div class="container job-detail-body">
+
+        <!-- Main content -->
+        <div class="job-detail-main">
+          <section class="job-detail-section">
+            <h2>Overview</h2>
+            <p>${escapeHtml(job.description)}</p>
+          </section>
+          <section class="job-detail-section">
+            <h3>Key Responsibilities</h3>
+            <ul>${job.responsibilities.map(r => `<li>${escapeHtml(r)}</li>`).join("")}</ul>
+          </section>
+          <section class="job-detail-section">
+            <h3>Requirements</h3>
+            <ul class="check-list">${job.requirements.map(r => `<li>${escapeHtml(r)}</li>`).join("")}</ul>
+          </section>
+          <section class="job-detail-section">
+            <h2>How to Apply</h2>
+            <p>Prepare the documents below and apply through the listed employer channel.
+               For external listings, confirm the vacancy on the source website before
+               submitting personal documents.</p>
+            <div class="career-doc-list">
+              ${job.documents.map(d => `<label><input type="checkbox"> <span>${escapeHtml(d)}</span></label>`).join("")}
+            </div>
+            <div class="job-detail-apply-wrap">
+              <a class="career-apply job-detail-apply"
+                href="${escapeHtml(job.applyUrl)}"
+                ${job.isExternal ? `target="_blank" rel="noopener noreferrer"` : ""}>
+                ${job.isExternal ? `${icon("externalLink")} Apply on External Site` : `Apply Now ${icon("arrowRight")}`}
+              </a>
+            </div>
+          </section>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="job-detail-sidebar">
+          <div class="career-modal-detail-card">
+            <h4>Job Details</h4>
+            <dl class="career-detail-list">
+              <div><dt>${icon("mapPin")} Location</dt><dd>${escapeHtml(job.location)}</dd></div>
+              <div><dt>💰 Salary</dt><dd>${escapeHtml(job.salary)}</dd></div>
+              <div><dt>${icon("calendar")} Posted</dt><dd>${dateLabel(job.posted)}</dd></div>
+              <div class="${status}"><dt>${icon("clock")} Deadline</dt><dd>${dateLabel(job.deadline)}</dd></div>
+              <div><dt>${icon("clipboardList")} Positions</dt><dd>${job.positions}</dd></div>
+              <div><dt>${icon("fileText")} Contract</dt><dd>${escapeHtml(job.type)} · ${escapeHtml(job.duration)}</dd></div>
+            </dl>
+          </div>
+          <div class="career-modal-employer-card">
+            <div class="career-modal-emp-head">
+              ${careerAvatar(job.employer, "small")}
+              <div><h4>${escapeHtml(job.employer)}</h4><p>${escapeHtml(job.employerType)}</p></div>
+            </div>
+            <p class="career-modal-emp-desc">${escapeHtml(job.employerDescription)}</p>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  `);
 }
 
 function careerPathwayData() {
@@ -13807,53 +13957,160 @@ function findMedicalInstrument(slug) {
 }
 
 function medicalInstrumentImageMap() {
+  // All mapped to actual photos in assets/images/medical-instruments/ (always deployed)
+  const MI = "assets/images/medical-instruments/";
   return {
-    "stethoscope": ["assets/images/source-library/nursing-uganda-auscultation-using-a-stethoscope-001-0bc2e155.jpg", "Stethoscope used during auscultation"],
-    "blood-pressure-machine": ["assets/images/source-library/nursing-uganda-proper-measurement-of-blood-pressure-1-001-b6736952.png", "Blood pressure measurement in clinical practice"],
-    "thermometer": ["assets/images/source-library/nursing-uganda-clinical-thermometer-diagram-001-9a9cfdc2.webp", "Clinical thermometer diagram"],
-    "pulse-oximeter": ["assets/images/source-library/nursing-uganda-pulse-taking-001-8df08029.jpg", "Pulse assessment in patient care"],
-    "glucometer": ["assets/images/source-library/nursing-uganda-proper-measurement-of-blood-pressure-1-001-b6736952.png", "Bedside assessment equipment reference"],
-    "syringes": ["assets/images/source-library/nursing-uganda-injectable-contraceptives-sayana-001-ee428388.jpg", "Injection equipment used for medication administration"],
-    "needles": ["assets/images/source-library/nursing-uganda-suture-needles-001-1eeb36ee.jpg", "Clinical needles reference"],
-    "iv-cannula": ["assets/images/source-library/nursing-uganda-urinary-catheter-001-36b710e8.webp", "Tubular clinical device reference"],
-    "giving-set": ["assets/images/source-library/nursing-uganda-oxygen-administration-001-8b0fc992.jpg", "Clinical tubing and bedside care reference"],
-    "tourniquet": ["assets/images/source-library/nursing-uganda-requirements-radial-pulse-001-233e723c.webp", "Assessment requirements used during bedside care"],
-    "dressing-tray": ["assets/images/source-library/nursing-uganda-medical-instruments-for-nursing-uganda-001-d983f851.jpg", "Medical instruments arranged for clinical use"],
-    "kidney-dish": ["assets/images/source-library/nursing-uganda-medical-instruments-for-nursing-uganda-001-d983f851.jpg", "Instrument tray and kidney dish reference"],
-    "artery-forceps": ["assets/images/source-library/nursing-uganda-polypectomy-forceps-or-ring-forceps-001-27ed4325.jpg", "Forceps used in clinical procedures"],
-    "dissecting-forceps": ["assets/images/source-library/nursing-uganda-polypectomy-forceps-or-ring-forceps-001-27ed4325.jpg", "Forceps used in clinical procedures"],
-    "bandage-scissors": ["assets/images/source-library/nursing-uganda-medical-instruments-for-nursing-uganda-001-d983f851.jpg", "Instrument set including cutting tools"],
-    "fetoscope": ["assets/images/source-library/nursing-uganda-midwifery-1024x546-001-5661a73d.jpg", "Midwifery skills practice"],
-    "vaginal-speculum": ["assets/images/source-library/nursing-uganda-bimanual-pelvic-examination-and-speculum-vaginal-examination-001-d127121e.jpg", "Speculum and pelvic examination reference"],
-    "cord-clamp": ["assets/images/source-library/nursing-uganda-cleaning-of-the-baby-cord-checklist-nursing-uganda-001-39d0ef7e.jpg", "Umbilical cord care reference"],
-    "delivery-set": ["assets/images/source-library/nursing-uganda-midwifery-1024x546-001-5661a73d.jpg", "Midwifery delivery skills practice"],
-    "sponge-holding-forceps": ["assets/images/source-library/nursing-uganda-polypectomy-forceps-or-ring-forceps-001-27ed4325.jpg", "Forceps used in clinical procedures"],
-    "autoclave": ["assets/images/source-library/nursing-uganda-autoclave-or-different-types-of-disinfectants-001-0c018319.webp", "Autoclave and disinfection reference"],
-    "sterile-packs": ["assets/images/source-library/nursing-uganda-personal-protective-equipment-ppe-001-738ef2a0.jpg", "Sterile protective equipment reference"],
-    "instrument-tray": ["assets/images/source-library/nursing-uganda-medical-instruments-for-nursing-uganda-001-d983f851.jpg", "Medical instruments arranged on a tray"],
-    "suture-set": ["assets/images/source-library/nursing-uganda-suture-materials-1-1024x640-001-ae40a6a1.jpg", "Suture materials and wound closure reference"],
-    "surgical-scissors": ["assets/images/source-library/nursing-uganda-medical-instruments-for-nursing-uganda-001-d983f851.jpg", "Clinical instrument set"],
-    "bedpan": ["assets/images/source-library/nursing-uganda-nurse-giving-a-bed-bath-001-338d6734.jpg", "Bedside patient care reference"],
-    "urinal": ["assets/images/source-library/nursing-uganda-giving-a-urinal-1-001-4cdd0670.png", "Patient urinal care reference"],
-    "catheter": ["assets/images/source-library/nursing-uganda-catheter-001-56996e14.jpg", "Urinary catheter reference"],
-    "suction-machine": ["assets/images/source-library/nursing-uganda-suctioning-001-42122ec0.jpg", "Suctioning equipment and procedure reference"],
-    "oxygen-cylinder": ["assets/images/source-library/nursing-uganda-oxygen-administration-001-8b0fc992.jpg", "Oxygen administration reference"],
-    // Assessment additions
-    "percussion-hammer": ["assets/images/source-library/nursing-uganda-requirements-radial-pulse-001-233e723c.webp", "Neurological assessment and reflex testing"],
-    "penlight": ["assets/images/source-library/nursing-uganda-requirements-radial-pulse-001-233e723c.webp", "Clinical assessment tools reference"],
-    "peak-flow-meter": ["assets/images/source-library/nursing-uganda-oxygen-administration-001-8b0fc992.jpg", "Respiratory function assessment"],
-    // Midwifery additions
-    "doppler-fetal-monitor": ["assets/images/source-library/nursing-uganda-midwifery-1024x546-001-5661a73d.jpg", "Fetal heart monitoring in midwifery practice"],
-    "episiotomy-scissors": ["assets/images/source-library/nursing-uganda-midwifery-1024x546-001-5661a73d.jpg", "Midwifery instruments for delivery"],
-    // Patient care additions
-    "nasogastric-tube": ["assets/images/source-library/nursing-uganda-urinary-catheter-001-36b710e8.webp", "Tubular clinical device for enteral access"],
-    "nebulizer": ["assets/images/source-library/nursing-uganda-oxygen-administration-001-8b0fc992.jpg", "Respiratory medication delivery device"],
-    // Airway category
-    "oropharyngeal-airway": ["assets/images/source-library/nursing-uganda-oxygen-administration-001-8b0fc992.jpg", "Airway adjunct for unconscious patients"],
-    "nasopharyngeal-airway": ["assets/images/source-library/nursing-uganda-suctioning-001-42122ec0.jpg", "Nasopharyngeal airway device"],
-    "bag-valve-mask": ["assets/images/source-library/nursing-uganda-oxygen-administration-001-8b0fc992.jpg", "Bag-valve-mask for manual ventilation"],
-    "oxygen-mask": ["assets/images/source-library/nursing-uganda-oxygen-administration-001-8b0fc992.jpg", "Oxygen face mask for supplemental oxygen therapy"],
-    "nasal-cannula": ["assets/images/source-library/nursing-uganda-oxygen-administration-001-8b0fc992.jpg", "Nasal cannula for low-flow oxygen delivery"]
+    // ── Airway / Breathing ─────────────────────────────────────────────
+    "air-ring":                          [MI+"air-ring.jpg",                         "Air ring airway adjunct"],
+    "oropharyngeal-airway":              [MI+"Air-way-piece.jpg",                    "Oropharyngeal airway"],
+    "air-way-piece":                     [MI+"Air-way-piece.jpg",                    "Airway piece"],
+    "ett":                               [MI+"ETT.jpg",                              "Endotracheal tube"],
+    "tracheostomy-tube":                 [MI+"Tracheostomy tube.jpg",                "Tracheostomy tube"],
+    "tracheal-dilator":                  [MI+"Tracheal dilator.jpg",                 "Tracheal dilator"],
+    "nasopharyngeal-airway":             [MI+"Air-way-piece.jpg",                    "Nasopharyngeal airway"],
+    "bag-valve-mask":                    [MI+"Air-way-piece.jpg",                    "Bag-valve-mask"],
+    "laryngoscope":                      [MI+"Laryngoscope.jpg",                     "Laryngoscope"],
+    "oxygen-mask":                       [MI+"Inhaler.jpg",                          "Oxygen mask"],
+    "nasal-cannula":                     [MI+"Nasogastric tube.jpg",                 "Nasal cannula"],
+    "oxygen-cylinder":                   [MI+"Inhaler.jpg",                          "Oxygen cylinder"],
+    "suction-machine":                   [MI+"Manual suction machine.jpg",           "Suction machine"],
+    "manual-suction-machine":            [MI+"Manual suction machine.jpg",           "Manual suction machine"],
+    "mucus-extractor":                   [MI+"Mucus extractor.jpg",                  "Mucus extractor"],
+    "nebulizer":                         [MI+"Nebulizer.jpg",                        "Nebulizer"],
+    "peak-flow-meter":                   [MI+"Inhaler.jpg",                          "Peak flow meter"],
+    "inhaler":                           [MI+"Inhaler.jpg",                          "Inhaler"],
+    // ── Assessment ────────────────────────────────────────────────────
+    "stethoscope":                       [MI+"stethoscope.jpg",                      "Stethoscope"],
+    "blood-pressure-machine":            [MI+"stethoscope.jpg",                      "Blood pressure equipment"],
+    "thermometer":                       [MI+"Probe.jpg",                            "Thermometer probe"],
+    "pulse-oximeter":                    [MI+"Pulse oximeter.jpg",                   "Pulse oximeter"],
+    "glucometer":                        [MI+"Glucometer.jpg",                       "Glucometer"],
+    "percussion-hammer":                 [MI+"Patella-hammer.jpg",                   "Percussion hammer"],
+    "patella-hammer":                    [MI+"Patella-hammer.jpg",                   "Patella hammer"],
+    "penlight":                          [MI+"Penlight.jpg",                         "Penlight"],
+    "auriscope":                         [MI+"Auriscope.jpg",                        "Auriscope"],
+    "ophthalmoscope":                    [MI+"Ophthalmoscope.jpg",                   "Ophthalmoscope"],
+    "tuning-fork":                       [MI+"Tuning-fork.jpg",                      "Tuning fork"],
+    "snellen":                           [MI+"snellen.jpg",                          "Snellen chart"],
+    "snellen-chart":                     [MI+"snellen.jpg",                          "Snellen chart"],
+    "probe":                             [MI+"Probe.jpg",                            "Probe"],
+    "urinometer":                        [MI+"Urinometer.jpg",                       "Urinometer"],
+    "height-board":                      [MI+"Height board.jpg",                     "Height board"],
+    "protoscope":                        [MI+"Protoscope.jpg",                       "Protoscope"],
+    "endoscope":                         [MI+"Endoscope.jpg",                        "Endoscope"],
+    // ── Injection / IV ────────────────────────────────────────────────
+    "syringes":                          [MI+"vial.jpg",                             "Syringe and vial"],
+    "needles":                           [MI+"vial.jpg",                             "Needles and vial"],
+    "iv-cannula":                        [MI+"giving set.jpg",                       "IV cannula"],
+    "giving-set":                        [MI+"giving set.jpg",                       "Giving set"],
+    "tourniquet":                        [MI+"Cord-clamp.jpg",                       "Tourniquet"],
+    "ampoule":                           [MI+"Ampoule.jpg",                          "Ampoule"],
+    "vial":                              [MI+"vial.jpg",                             "Vial"],
+    "nasogastric-tube":                  [MI+"Nasogastric tube.jpg",                 "Nasogastric tube"],
+    // ── Wound / Sterile ────────────────────────────────────────────────
+    "dressing-tray":                     [MI+"Trays.jpg",                            "Dressing tray"],
+    "instrument-tray":                   [MI+"Trays.jpg",                            "Instrument tray"],
+    "kidney-dish":                       [MI+"kidney-dish.jpg",                      "Kidney dish"],
+    "drape":                             [MI+"Drape.jpg",                            "Surgical drape"],
+    "sterile-packs":                     [MI+"Drape.jpg",                            "Sterile packs"],
+    "specimen-bottles":                  [MI+"Specimen-bottles.jpg",                 "Specimen bottles"],
+    "drums":                             [MI+"drums.jpg",                            "Sterilization drums"],
+    "autoclave":                         [MI+"drums.jpg",                            "Autoclave / drums"],
+    "blade-holder":                      [MI+"Blade holder.jpg",                     "Blade holder"],
+    "suture-set":                        [MI+"Needle holder forceps.jpg",            "Suture set"],
+    "aneurysm-needle":                   [MI+"Aneurysm needle.jpg",                  "Aneurysm needle"],
+    // ── Forceps ────────────────────────────────────────────────────────
+    "artery-forceps":                    [MI+"Curved-artery-forceps.jpg",            "Artery forceps"],
+    "curved-artery-forceps":             [MI+"Curved-artery-forceps.jpg",            "Curved artery forceps"],
+    "straight-artery-forceps":           [MI+"Straight-artery-forceps.jpg",          "Straight artery forceps"],
+    "long-artery-forceps":               [MI+"Long-artery-forceps.jpg",              "Long artery forceps"],
+    "mosquito-artery-forceps":           [MI+"Mosquito-artery-forceps.jpg",          "Mosquito forceps"],
+    "dissecting-forceps":                [MI+"Dissecting forceps.jpg",               "Dissecting forceps"],
+    "dressing-forceps":                  [MI+"Dressing forceps.jpg",                 "Dressing forceps"],
+    "cheatle-forceps":                   [MI+"Cheatle-forceps.jpg",                  "Cheatle forceps"],
+    "babcock-forceps":                   [MI+"Babcock forceps.jpg",                  "Babcock forceps"],
+    "allis-tissue-forceps":              [MI+"Allis tissue forceps.jpg",             "Allis tissue forceps"],
+    "kocher-forceps":                    [MI+"Kocher forceps.jpg",                   "Kocher forceps"],
+    "crocodile-forceps":                 [MI+"Crocodile forceps.jpg",                "Crocodile forceps"],
+    "right-angle-forceps":               [MI+"Right angle forceps.jpg",              "Right angle forceps"],
+    "sinus-forceps":                     [MI+"Sinus forceps.jpg",                    "Sinus forceps"],
+    "nasal-dressing-forceps":            [MI+"Nasal dressing forceps.jpg",           "Nasal dressing forceps"],
+    "ovum-forceps":                      [MI+"Ovum-forceps.jpg",                     "Ovum forceps"],
+    "sponge-holding-forceps":            [MI+"Sponge holding forceps.jpg",           "Sponge holding forceps"],
+    "sterilization-forceps":             [MI+"Sterilization forceps.jpg",            "Sterilization forceps"],
+    "tenaculum-forceps":                 [MI+"Tenaculum forceps.jpg",                "Tenaculum forceps"],
+    "needle-holder-forceps":             [MI+"Needle holder forceps.jpg",            "Needle holder forceps"],
+    "tonsil-holding-forceps":            [MI+"Tonsil holding forceps.jpg",           "Tonsil holding forceps"],
+    "duval-intestinal-grasping-forceps": [MI+"Duval intestinal grasping forceps.jpg","Duval forceps"],
+    "four-prong-retractor":              [MI+"Four prong retractor.jpg",             "Four prong retractor"],
+    // ── Scissors ────────────────────────────────────────────────────────
+    "bandage-scissors":                  [MI+"Cord scissor.jpg",                     "Scissors"],
+    "cord-scissor":                      [MI+"Cord scissor.jpg",                     "Cord scissors"],
+    "cord-scissors":                     [MI+"Cord scissor.jpg",                     "Cord scissors"],
+    "episiotomy-scissors":               [MI+"Episiotomy-scissors.jpg",              "Episiotomy scissors"],
+    "surgical-scissors":                 [MI+"Tonsil scissors.jpg",                  "Surgical scissors"],
+    "tonsil-scissors":                   [MI+"Tonsil scissors.jpg",                  "Tonsil scissors"],
+    "towel-clip":                        [MI+"Towel-clip.jpg",                       "Towel clip"],
+    // ── Catheter / Urinary ────────────────────────────────────────────
+    "catheter":                          [MI+"Foley catheter.jpg",                   "Foley catheter"],
+    "foley-catheter":                    [MI+"Foley catheter.jpg",                   "Foley catheter"],
+    "three-way-foley-catheter":          [MI+"Three way foley catheter.jpg",         "Three-way Foley catheter"],
+    "metallic-catheter":                 [MI+"Metallic catheter.jpg",                "Metallic catheter"],
+    "bladder-sound":                     [MI+"Bladder sound.jpg",                    "Bladder sound"],
+    "colostomy-bag":                     [MI+"Colostomy bag.jpg",                    "Colostomy bag"],
+    "penile-sheath":                     [MI+"Penile sheath.jpg",                    "Penile sheath"],
+    // ── Patient Care ─────────────────────────────────────────────────
+    "bedpan":                            [MI+"bed-pan.jpg",                          "Bedpan"],
+    "bed-pan":                           [MI+"bed-pan.jpg",                          "Bedpan"],
+    "urinal":                            [MI+"male-urinal.jpg",                      "Urinal"],
+    "male-urinal":                       [MI+"male-urinal.jpg",                      "Male urinal"],
+    "vomit-bowl":                        [MI+"Vomit bowl.jpg",                       "Vomit bowl"],
+    "sputum-mug":                        [MI+"Sputum mug.jpg",                       "Sputum mug"],
+    "hot-water-bottle":                  [MI+"Hot water bottle.jpg",                 "Hot water bottle"],
+    "bulb-syringe":                      [MI+"Bulb syringe.jpg",                     "Bulb syringe"],
+    "ear-syringe":                       [MI+"Ear-syringe.jpg",                      "Ear syringe"],
+    "enema-can":                         [MI+"Enema can.jpg",                        "Enema can"],
+    "calibrated-cup":                    [MI+"Calibrated-cup.jpg",                   "Calibrated cup"],
+    "backrest":                          [MI+"Backrest.jpg",                         "Backrest"],
+    "bed-cradle":                        [MI+"Bed-cradle.jpg",                       "Bed cradle"],
+    "bed-block":                         [MI+"bed-block.jpg",                        "Bed block"],
+    "trolley":                           [MI+"Trolley.jpg",                          "Trolley"],
+    "trays":                             [MI+"Trays.jpg",                            "Trays"],
+    "screens":                           [MI+"Screens.jpg",                          "Screens"],
+    "bin":                               [MI+"bin.jpg",                              "Clinical bin"],
+    "sandbag":                           [MI+"sandbag.jpg",                          "Sandbag"],
+    "trapeze":                           [MI+"trapeze.jpg",                          "Trapeze bar"],
+    "cardiac-table":                     [MI+"cardiac-table.jpg",                    "Cardiac table"],
+    "medical-goggles":                   [MI+"Medical goggles.jpg",                  "Medical goggles"],
+    "motor-and-pestle":                  [MI+"Motor and pestle.jpg",                 "Mortar and pestle"],
+    "mouth-gag":                         [MI+"mouth-gag.jpg",                        "Mouth gag"],
+    // ── Midwifery ────────────────────────────────────────────────────
+    "fetoscope":                         [MI+"Fetal scope.jpg",                      "Fetoscope"],
+    "fetal-scope":                       [MI+"Fetal scope.jpg",                      "Fetal scope"],
+    "doppler-fetal-monitor":             [MI+"Fetal scope.jpg",                      "Doppler fetal monitor"],
+    "amnihook":                          [MI+"Amnihook.jpg",                         "Amnihook"],
+    "auvard-vaginal-spectrum":           [MI+"Auvard vaginal spectrum.jpg",          "Auvard vaginal spectrum"],
+    "cusco-vaginal-spectrum":            [MI+"Cusco-vaginal-spectrum.jpg",           "Cusco vaginal speculum"],
+    "vaginal-speculum":                  [MI+"Cusco-vaginal-spectrum.jpg",           "Vaginal speculum"],
+    "sims":                              [MI+"sims.jpg",                             "Sim's speculum"],
+    "sims-speculum":                     [MI+"sims.jpg",                             "Sim's speculum"],
+    "cord-clamp":                        [MI+"Cord-clamp.jpg",                       "Cord clamp"],
+    "delivery-set":                      [MI+"Wrigley forceps.jpg",                  "Delivery set"],
+    "wrigley-forceps":                   [MI+"Wrigley forceps.jpg",                  "Wrigley forceps"],
+    "cervical-dilator":                  [MI+"Cervical dilator.jpg",                 "Cervical dilator"],
+    "uterine-sound":                     [MI+"Uterine sound.jpg",                    "Uterine sound"],
+    "uterine-curette":                   [MI+"Uterine-curette.jpg",                  "Uterine curette"],
+    "uterine-packing-forceps":           [MI+"Uterine packing forceps.jpg",          "Uterine packing forceps"],
+    "vulsellum":                         [MI+"Vulsellum.jpg",                        "Vulsellum"],
+    "mva":                               [MI+"MVA.jpg",                              "Manual vacuum aspirator"],
+    // ── Dental ────────────────────────────────────────────────────────
+    "dental-spatula":                    [MI+"Dental-spatula.jpg",                   "Dental spatula"],
+    "dental-probe":                      [MI+"dental-probe.jpg",                     "Dental probe"],
+    "tongue-depressor":                  [MI+"Tongue depressor.jpg",                 "Tongue depressor"],
+    "teeth-extractor":                   [MI+"Teeth extractor.jpg",                  "Teeth extractor"],
+    "root-elevator":                     [MI+"Root elevator.jpg",                    "Root elevator"],
+    "cusco-s-vaginal-spectrum":          [MI+"Cusco-vaginal-spectrum.jpg",           "Cusco's vaginal speculum"],
+    "lane-s-tissue-holding-forceps":     [MI+"Lane's tissue holding forceps.jpg",    "Lane's tissue holding forceps"],
   };
 }
 
@@ -14466,10 +14723,19 @@ function render() {
     meta = { title: "Quizzes", description: "Practice nursing and midwifery revision with topic-linked quick quizzes." };
   }
   else if (parts[0] === "careers") {
-    const crpResource = parts[1] ? careerResourceFromSlug(parts[1]) : null;
-    if (crpResource) {
-      content = renderCareerResourcePage(parts[1]);
-      meta = { title: `${crpResource.title} | Nursing Uganda`, description: crpResource.desc };
+    if (parts[1]) {
+      const crpResource = careerResourceFromSlug(parts[1]);
+      if (crpResource) {
+        content = renderCareerResourcePage(parts[1]);
+        meta = { title: `${crpResource.title} | Nursing Uganda`, description: crpResource.desc };
+      } else {
+        // Job detail page — look up by ID
+        const detailJob = careerJobs().find(j => j.id === parts[1]);
+        content = renderCareerJobDetailPage(detailJob);
+        meta = detailJob
+          ? { title: `${detailJob.title} – ${detailJob.employer} | Careers`, description: detailJob.description }
+          : { title: "Job Not Found", description: "" };
+      }
     } else {
       content = renderCareers();
       meta = { title: "Careers & Jobs", description: "Nursing and midwifery jobs, career pathways, licensing guides and international opportunities for Uganda professionals." };
@@ -15052,6 +15318,22 @@ function render() {
     });
   });
 
+  // ── Hero slideshow ──────────────────────────────────────────────────────────
+  app.querySelectorAll("[data-career-slide]").forEach((dot) => {
+    dot.addEventListener("click", () => {
+      state.careerHeroSlide = parseInt(dot.dataset.careerSlide, 10);
+      render();
+    });
+  });
+  // Auto-advance — only start if the section exists (i.e. we're on /careers)
+  if (app.querySelector("#careers-hero-section")) {
+    clearTimeout(window._careerSlideTimer);
+    window._careerSlideTimer = setTimeout(function advSlide() {
+      state.careerHeroSlide = ((state.careerHeroSlide || 0) + 1) % CAREER_HERO_SLIDES.length;
+      render();
+    }, 5000);
+  }
+
   // Employer name links — filter jobs board to that employer
   app.querySelectorAll("[data-career-employer]").forEach((link) => {
     link.addEventListener("click", (event) => {
@@ -15109,10 +15391,11 @@ function render() {
     });
   });
 
+  // Job open → navigate to the detail page
   app.querySelectorAll("[data-career-job-open]").forEach((button) => {
     button.addEventListener("click", () => {
-      state.selectedCareerJob = button.dataset.careerJobOpen || "";
-      render();
+      const id = button.dataset.careerJobOpen || "";
+      if (id) navigate("/careers/" + id);
     });
   });
 
