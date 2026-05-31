@@ -11360,10 +11360,14 @@ function careerAvatar(name, size = "") {
 }
 
 // Hero slideshow images — save your 3 career images to these paths
+// ── Save your 3 career banner images to these exact paths then push ──────────
+// Image 1: nurse right-side, pink wave right  → assets/images/careers-hero-1.jpg
+// Image 2: nurse right-side, pink wave left   → assets/images/careers-hero-2.jpg
+// Image 3: nurse center, pink wave left        → assets/images/careers-hero-3.jpg
 const CAREER_HERO_SLIDES = [
-  { src: "/assets/images/nursing-uganda-home-hero-1.png", pos: "center 20%" },
-  { src: "/assets/images/nursing-uganda-home-hero-2.png", pos: "center 25%" },
-  { src: "/assets/images/nursing-uganda-home-hero-3.png", pos: "center 20%" },
+  { src: "/assets/images/careers-hero-1.jpg", pos: "center center" },
+  { src: "/assets/images/careers-hero-2.jpg", pos: "center center" },
+  { src: "/assets/images/careers-hero-3.jpg", pos: "center center" },
 ];
 
 function renderCareerHero() {

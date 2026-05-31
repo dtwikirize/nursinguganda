@@ -9503,10 +9503,11 @@ display: flex;
 .careers-hero {
   position: relative;
   overflow: hidden;
-  min-height: 460px;
-  padding: 52px 0 64px;
+  min-height: 480px;
+  padding: 56px 0 72px;
   color: var(--color-on-brand);
-  background: #0d0a14; /* fallback while images load */
+  /* Brand-rose gradient shown while images load */
+  background: linear-gradient(135deg, #2d0a1a 0%, #5c1a30 40%, #7a3050 70%, #A64468 100%);
 }
 
 /* Slide stack */
@@ -9525,21 +9526,18 @@ display: flex;
 }
 .careers-hero-slide.active { opacity: 1; }
 
-/* Gradient overlay — dark left for text readability, brand-tinted right */
+/* Gradient overlay — dark brand-rose left for text, lightening right */
 .careers-hero-overlay {
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(105deg,
-      rgba(10, 4, 20, 0.88) 0%,
-      rgba(30, 8, 40, 0.72) 45%,
-      rgba(166, 68, 104, 0.28) 80%,
-      rgba(80, 10, 40, 0.18) 100%);
-  /* dot-grid texture */
   background-image:
-    linear-gradient(105deg, rgba(10,4,20,.88) 0%, rgba(30,8,40,.72) 45%, rgba(166,68,104,.28) 80%, rgba(80,10,40,.18) 100%),
-    radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
-  background-size: auto, 24px 24px;
+    linear-gradient(105deg,
+      rgba(20, 4, 12, 0.90) 0%,
+      rgba(60, 10, 30, 0.78) 40%,
+      rgba(120, 20, 55, 0.45) 70%,
+      rgba(166, 68, 104, 0.15) 100%),
+    radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: auto, 22px 22px;
   pointer-events: none;
 }
 
@@ -9613,10 +9611,10 @@ display: flex;
   margin: 0 0 10px;
   padding: 0.36rem 0.8rem;
   width: fit-content;
-  color: var(--color-amber);
-  border: 1px solid rgba(245, 158, 11, 0.32);
+  color: #f9d0e2;
+  border: 1px solid rgba(249, 208, 226, 0.35);
   border-radius: var(--radius-full);
-  background: rgba(245, 158, 11, 0.12);
+  background: rgba(166, 68, 104, 0.25);
   font-size: 0.82rem;
   font-weight: 900;
   letter-spacing: 0.01em;
@@ -9638,7 +9636,7 @@ display: flex;
 
 .careers-hero h1 span {
   display: inline;
-  color: var(--color-amber);
+  color: #f9aecf; /* brand rose-pink — stands out on dark overlay */
 }
 
 .careers-hero-body {
@@ -9738,8 +9736,8 @@ display: flex;
 }
 
 .careers-stat-card:hover {
-  background: rgba(255,255,255,0.18);
-  border-top-color: var(--color-amber);
+  background: rgba(166,68,104,0.25);
+  border-top-color: #f9aecf;
 }
 
 .careers-stat-card strong {
