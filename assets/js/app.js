@@ -738,8 +738,11 @@ function renderMaintenancePage() {
           <div class="maintenance-progress-fill"></div>
         </div>
         <p class="maintenance-contact">Questions? Contact us at
-          <a href="mailto:admin@nursinguganda.com">admin@nursinguganda.com</a>
+          <a href="mailto:info@nursinguganda.com">info@nursinguganda.com</a>
         </p>
+        <a href="/login" class="maintenance-admin-link" data-nav>
+          ${icon("lock")}<span>Administrator sign in</span>
+        </a>
       </div>
     </div>
   `;

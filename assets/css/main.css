@@ -469,6 +469,22 @@ font-size: 1.35rem;
 .maintenance-contact a { color: #A64468; text-decoration: none; }
 .maintenance-contact a:hover { text-decoration: underline; }
 
+/* Admin sign-in escape hatch — visible on maintenance page */
+.maintenance-admin-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 1.5rem;
+  font-size: .75rem; color: #c4b5c0; text-decoration: none;
+  padding: 7px 14px; border-radius: 999px;
+  border: 1px solid rgba(166,68,104,.2);
+  background: rgba(166,68,104,.05);
+  transition: background .18s, color .18s, border-color .18s;
+}
+.maintenance-admin-link svg { width: 13px; height: 13px; opacity: .6; }
+.maintenance-admin-link:hover {
+  background: rgba(166,68,104,.12); color: #A64468; border-color: rgba(166,68,104,.4);
+}
+.maintenance-admin-link:hover svg { opacity: 1; }
+
 /* Dark mode */
 @media (prefers-color-scheme: dark) {
   .maintenance-screen { background: linear-gradient(145deg, #1a0d14 0%, #0d1117 60%, #18091a 100%); }
