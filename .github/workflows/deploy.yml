@@ -5,33 +5,42 @@ on:
     branches:
       - main
 
+# ── Prevent parallel deployments ──────────────────────────────────────────────
+# If a new push arrives while a deploy is running, cancel the old run and
+# start fresh with the latest code. Also prevents schedule-triggered commits
+# (refresh-jobs, update-jobs) from racing with push-triggered deploys.
+concurrency:
+  group: deploy-production
+  cancel-in-progress: true
+
 jobs:
   deploy:
-    name: Upload changed files via FTP
+    name: Upload changed files via FTPS
     runs-on: ubuntu-latest
+    timeout-minutes: 20
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 2   # needed so FTP action can diff against previous commit
+          fetch-depth: 1
 
-      - name: Deploy to Hostinger via FTP
+      # ── Attempt 1 ────────────────────────────────────────────────────────────
+      - name: Deploy (attempt 1 of 3)
+        id: deploy_1
+        continue-on-error: true
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ftp.nursinguganda.com
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           port: 21
-          protocol: ftp
+          protocol: ftps
           local-dir: ./
           server-dir: /
-          # Only send files that changed in this push
           state-name: .ftp-deploy-sync-state.json
-          # Never wipe files already on server that aren't in the repo
           dangerous-clean-slate: false
-          # Exclude source files, build tools, git internals, and old static
-          # route directories (SPA + .htaccess handles these URLs now)
+          log-level: standard
           exclude: |
             **/.git/**
             **/.git*
@@ -47,9 +56,92 @@ jobs:
             assets/images/lesson-images/**
             assets/images/optimized/**
             assets/images/programmes/**
-            assets/images/pwa/**
             package.json
             package-lock.json
+            .gitignore
+            *.md
+
+      # ── Attempt 2 (only if attempt 1 failed) ─────────────────────────────────
+      - name: Wait before retry
+        if: steps.deploy_1.outcome == 'failure'
+        run: |
+          echo "Attempt 1 failed — waiting 25s before retry..."
+          sleep 25
+
+      - name: Deploy (attempt 2 of 3)
+        id: deploy_2
+        if: steps.deploy_1.outcome == 'failure'
+        continue-on-error: true
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ftp.nursinguganda.com
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: 21
+          protocol: ftps
+          local-dir: ./
+          server-dir: /
+          state-name: .ftp-deploy-sync-state.json
+          dangerous-clean-slate: false
+          log-level: standard
+          exclude: |
+            **/.git/**
+            **/.git*
+            **/node_modules/**
+            **/scripts/**
+            **/.claude/**
+            **/.playwright-cli/**
+            courses/**
+            research/**
+            supabase/**
+            assets/css/main.css
+            assets/js/app.js
+            assets/images/lesson-images/**
+            assets/images/optimized/**
+            assets/images/programmes/**
+            package.json
+            package-lock.json
+            .gitignore
+            *.md
+
+      # ── Attempt 3 (only if attempt 2 also failed) ────────────────────────────
+      - name: Wait before final retry
+        if: steps.deploy_1.outcome == 'failure' && steps.deploy_2.outcome == 'failure'
+        run: |
+          echo "Attempt 2 failed — waiting 40s before final retry..."
+          sleep 40
+
+      - name: Deploy (attempt 3 of 3)
+        id: deploy_3
+        if: steps.deploy_1.outcome == 'failure' && steps.deploy_2.outcome == 'failure'
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ftp.nursinguganda.com
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: 21
+          protocol: ftps
+          local-dir: ./
+          server-dir: /
+          state-name: .ftp-deploy-sync-state.json
+          dangerous-clean-slate: false
+          log-level: verbose
+          exclude: |
+            **/.git/**
+            **/.git*
+            **/node_modules/**
+            **/scripts/**
+            **/.claude/**
+            **/.playwright-cli/**
+            courses/**
+            research/**
+            supabase/**
+            assets/css/main.css
+            assets/js/app.js
+            assets/images/lesson-images/**
+            assets/images/optimized/**
+            assets/images/programmes/**
+            package.json
             package-lock.json
             .gitignore
             *.md
