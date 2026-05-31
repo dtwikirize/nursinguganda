@@ -2,6 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <!-- base href MUST be first — fixes relative image/asset paths on deep SPA routes
+         e.g. /careers/job-id resolving assets/images/... from root not from /careers/ -->
+    <base href="/">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>Nursing Uganda</title>
     <meta name="description" content="Nursing and midwifery revision for Uganda students, with notes, courses, resources and practical study support.">
@@ -229,7 +232,7 @@
         <div class="loading-bar"></div>
         <div class="loading-mark-wrap">
           <div class="loading-ring"></div>
-          <img src="assets/images/nursing-uganda-icon-light-transparent.png" class="loading-mark" alt="" width="64" height="64">
+          <img src="/assets/images/nursing-uganda-icon-light-transparent.png" class="loading-mark" alt="" width="64" height="64">
         </div>
         <div class="loading-dots"><span></span><span></span><span></span></div>
       </div>

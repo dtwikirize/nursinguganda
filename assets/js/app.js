@@ -3733,7 +3733,7 @@ function renderFooter() {
         <div class="footer-top">
           <div class="footer-brand">
             <a class="footer-logo" href="/notes" aria-label="Nursing Uganda home">
-              <img src="assets/images/nursing-uganda-logo-transparent.png" class="footer-logo-img" alt="Nursing Uganda — Notes &amp; Resources" width="220" height="auto" loading="lazy">
+              <img src="/assets/images/nursing-uganda-logo-transparent.png" class="footer-logo-img" alt="Nursing Uganda — Notes &amp; Resources" width="220" height="auto" loading="lazy">
             </a>
             <p class="footer-tagline">Structured notes, courses, dictionary and career resources for Uganda nursing and midwifery students — free and offline-ready.</p>
             <div class="footer-stats" aria-label="Quick stats">
@@ -4120,7 +4120,7 @@ function layout(content) {
         <div id="reading-progress-bar" role="progressbar" aria-hidden="true"></div>
         <div class="container nav-shell">
           <a class="brand" href="/notes" aria-label="Nursing Uganda notes home">
-            <img src="assets/images/nursing-uganda-icon-light-transparent.png" class="brand-mark" alt="" aria-hidden="true" width="40" height="40">
+            <img src="/assets/images/nursing-uganda-icon-light-transparent.png" class="brand-mark" alt="" aria-hidden="true" width="40" height="40">
             <div class="brand-text">
               <strong>Nursing Uganda</strong>
               <small>Notes &amp; Resources</small>
@@ -11361,9 +11361,9 @@ function careerAvatar(name, size = "") {
 
 // Hero slideshow images — save your 3 career images to these paths
 const CAREER_HERO_SLIDES = [
-  { src: "assets/images/nursing-uganda-home-hero-1.png", pos: "center 20%" },
-  { src: "assets/images/nursing-uganda-home-hero-2.png", pos: "center 25%" },
-  { src: "assets/images/nursing-uganda-home-hero-3.png", pos: "center 20%" },
+  { src: "/assets/images/nursing-uganda-home-hero-1.png", pos: "center 20%" },
+  { src: "/assets/images/nursing-uganda-home-hero-2.png", pos: "center 25%" },
+  { src: "/assets/images/nursing-uganda-home-hero-3.png", pos: "center 20%" },
 ];
 
 function renderCareerHero() {
@@ -13958,7 +13958,7 @@ function findMedicalInstrument(slug) {
 
 function medicalInstrumentImageMap() {
   // All mapped to actual photos in assets/images/medical-instruments/ (always deployed)
-  const MI = "assets/images/medical-instruments/";
+  const MI = "/assets/images/medical-instruments/";
   return {
     // ── Airway / Breathing ─────────────────────────────────────────────
     "air-ring":                          [MI+"air-ring.jpg",                         "Air ring airway adjunct"],
