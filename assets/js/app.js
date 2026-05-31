@@ -5023,6 +5023,54 @@ function renderProgressRing(percent, size = 140) {
   `;
 }
 
+// ── 404 Not Found ────────────────────────────────────────────────────────────
+function render404Page() {
+  const badPath = window.location.pathname;
+  const quickLinks = [
+    ["/notes",                        "Study Notes",       "bookOpen"],
+    ["/courses/curriculum",           "Courses",           "graduationCap"],
+    ["/resources/medical-instruments","Instruments",       "stethoscope"],
+    ["/dictionary",                   "Dictionary",        "fileText"],
+    ["/careers",                      "Jobs Board",        "briefcaseMedical"],
+    ["/search",                       "Search",            "search"],
+  ];
+
+  return layout(`
+    <div class="page-404">
+
+      <!-- Animated mark -->
+      <div class="page-404-mark" aria-hidden="true">
+        <div class="page-404-ring page-404-ring--outer"></div>
+        <div class="page-404-ring page-404-ring--inner"></div>
+        <div class="page-404-num">404</div>
+      </div>
+
+      <!-- Copy -->
+      <div class="page-404-body">
+        <span class="page-404-eyebrow">${icon("alertTriangle")} Page Not Found</span>
+        <h1>We couldn't find that page</h1>
+        <p>The address <code class="page-404-path">${escapeHtml(badPath)}</code> doesn't exist
+           on Nursing Uganda — it may have moved, been renamed, or the link may be mistyped.</p>
+
+        <!-- Quick links -->
+        <div class="page-404-links">
+          ${quickLinks.map(([href, label, ico]) => `
+            <a class="page-404-link" href="${href}" data-nav>
+              ${icon(ico)}<span>${escapeHtml(label)}</span>
+            </a>`).join("")}
+        </div>
+
+        <!-- Go home CTA -->
+        <div class="page-404-ctas">
+          <a class="button primary" href="/notes" data-nav>${icon("home")} Back to Home</a>
+          <a class="button secondary" href="/search" data-nav>${icon("search")} Search Notes</a>
+        </div>
+      </div>
+
+    </div>
+  `);
+}
+
 /* ── Login / Account Pages ───────────────────────────────────────── */
 function renderLoginPage() {
   if (state.currentUser) {
@@ -15013,7 +15061,12 @@ function render() {
         meta = { title: lmsCourseTitle(programme, unit), description: `${lmsCourseTitle(programme, unit)} modules, lessons and progress for ${programme.label}.` };
       }
     }
-  } else content = renderNotes();
+  } else {
+    // Unknown route — show branded 404 instead of silently rendering /notes
+    setDocumentMeta("404 – Page Not Found", "The page you requested does not exist on Nursing Uganda.");
+    render404Page();
+    return;
+  }
 
   setDocumentMeta(meta.title, meta.description);
   setStructuredData("nursing-uganda-defined-term", structuredData);

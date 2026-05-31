@@ -366,6 +366,157 @@ font-size: 1.35rem;
    MAINTENANCE MODE — full-screen page (non-admin users)
    ============================================================ */
 
+/* ═══════════════════════════════════════════════════════════════════
+   404 Not Found Page
+   ═══════════════════════════════════════════════════════════════════ */
+.page-404 {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  padding: 60px 20px;
+  text-align: center;
+  background: radial-gradient(ellipse at 50% 0%, rgba(166,68,104,.06) 0%, transparent 65%), var(--color-bg);
+}
+
+/* Animated ring mark */
+.page-404-mark {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.page-404-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2.5px solid transparent;
+}
+.page-404-ring--inner {
+  border-top-color: #A64468;
+  border-right-color: rgba(166,68,104,.35);
+  animation: spin404 1.3s cubic-bezier(.55,.15,.45,.85) infinite;
+}
+.page-404-ring--outer {
+  inset: -10px;
+  border-bottom-color: rgba(166,68,104,.18);
+  border-left-color: rgba(166,68,104,.1);
+  animation: spin404 2.6s linear infinite reverse;
+}
+@keyframes spin404 { to { transform: rotate(360deg); } }
+
+.page-404-num {
+  font-size: 2.6rem;
+  font-weight: 900;
+  color: var(--color-primary);
+  letter-spacing: -0.05em;
+  line-height: 1;
+  z-index: 1;
+}
+
+/* Text block */
+.page-404-body {
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.page-404-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: rgba(166,68,104,.08);
+  border: 1px solid rgba(166,68,104,.2);
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--color-primary);
+}
+.page-404-eyebrow .ui-icon { width: 13px; height: 13px; }
+
+.page-404 h1 {
+  margin: 0;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 900;
+  color: var(--color-navy);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.page-404 p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  line-height: 1.65;
+  max-width: 480px;
+}
+
+.page-404-path {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 5px;
+  background: var(--color-bg-soft);
+  border: 1px solid var(--color-border);
+  font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  font-size: 0.82em;
+  color: var(--color-primary);
+  word-break: break-all;
+}
+
+/* Quick link chips */
+.page-404-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.page-404-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: 1.5px solid var(--color-border);
+  background: var(--color-card);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--color-navy);
+  text-decoration: none;
+  transition: border-color 0.16s, background 0.16s, transform 0.16s, color 0.16s;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.04);
+}
+.page-404-link:hover {
+  border-color: var(--color-primary);
+  background: rgba(166,68,104,.05);
+  color: var(--color-primary);
+  transform: translateY(-1px);
+}
+.page-404-link .ui-icon { width: 15px; height: 15px; }
+
+/* CTA row */
+.page-404-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+.page-404-ctas .ui-icon { width: 16px; height: 16px; }
+
+/* ── Maintenance screen ─────────────────────────────────────────── */
 .maintenance-screen {
   position: fixed; inset: 0;
   display: flex; align-items: center; justify-content: center;
