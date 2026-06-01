@@ -27,6 +27,7 @@ const state = {
   librarySubject: "all",
   resourceSearch: "",
   resourceFilter: "All",
+  loginIntended: "",   // URL to return to after successful sign-in
   careerMode: "jobs",
   careerHeroSlide: 0,
   careerSearch: "",
@@ -4064,8 +4065,7 @@ function renderMobileDrawer(active) {
           <a class="drawer-signin-btn" href="/login" data-nav-close>
             ${icon("users")}<span>Sign In</span>
           </a>
-          <a class="drawer-signup-link" href="/login" data-nav-close
-             onclick="event.preventDefault();history.pushState(null,'','/login');dispatchEvent(new PopStateEvent('popstate'));">
+          <a class="drawer-signup-link" href="/login" data-nav-close>
             New here? <strong>Create a free account →</strong>
           </a>
         `}
@@ -4245,6 +4245,14 @@ function layout(content) {
     </div>
   `;
 
+  // Desktop "Sign In" button — save intended destination before redirecting
+  app.querySelectorAll(".nav-login-btn").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const here = window.location.pathname;
+      if (here !== "/login") { e.preventDefault(); state.loginIntended = here; setRoute("/login"); }
+    });
+  });
+
   app.querySelectorAll("[data-nav-toggle]").forEach((toggle) => {
     toggle.addEventListener("click", () => {
       state.navOpen = !state.navOpen;
@@ -4259,8 +4267,27 @@ function layout(content) {
   if (overlay) {
     overlay.addEventListener("click", () => { state.navOpen = false; state.megaOpen = ""; render(); });
   }
+  // data-nav-close: close drawer AND navigate if the element is an <a href="...">
+  // We handle navigation explicitly so it works reliably on all mobile browsers —
+  // never rely solely on the document-level click delegation for drawer links.
   app.querySelectorAll("[data-nav-close]").forEach((el) => {
-    el.addEventListener("click", () => { state.navOpen = false; state.megaOpen = ""; });
+    el.addEventListener("click", (e) => {
+      state.navOpen  = false;
+      state.megaOpen = "";
+      const a    = el.tagName === "A" ? el : el.closest("a[href]");
+      const href = a ? a.getAttribute("href") : null;
+      if (href && href.startsWith("/")) {
+        e.preventDefault();
+        e.stopImmediatePropagation(); // stop document global handler double-firing
+        if (href !== window.location.pathname) {
+          history.pushState(null, "", href);
+        }
+        render();
+        scrollPageToTop();
+      } else {
+        render(); // just close drawer
+      }
+    });
   });
 
   app.querySelectorAll("[data-mega-toggle]").forEach((trigger) => {
@@ -4301,7 +4328,9 @@ function layout(content) {
   app.querySelectorAll("[data-auth-logout]").forEach((btn) => {
     btn.addEventListener("click", async () => {
       await authLogout();
-      render();
+      // Always redirect to home after logout — avoids user staying on
+      // a protected page (/account, /progress, etc.) that would show an error
+      setRoute("/notes");
     });
   });
 
@@ -4528,11 +4557,20 @@ function setupLightboxControls() {
       e.preventDefault();
       state.loginPrompt.open = false;
       state.loginTab = "signup";
-      history.pushState(null, "", "/login");
-      state.navOpen = false;
-      state.megaOpen = "";
-      render();
-      scrollPageToTop();
+      state.loginIntended = window.location.pathname !== "/login" ? window.location.pathname : "/notes";
+      setRoute("/login");
+    });
+  }
+
+  // The primary "Sign In" button in the login prompt modal
+  const lpSignin = app.querySelector(".login-prompt-btn:not([data-lp-signup])");
+  if (lpSignin) {
+    lpSignin.addEventListener("click", (e) => {
+      e.preventDefault();
+      state.loginPrompt.open = false;
+      state.loginTab = "login";
+      state.loginIntended = window.location.pathname !== "/login" ? window.location.pathname : "/notes";
+      setRoute("/login");
     });
   }
 }
@@ -16150,8 +16188,10 @@ function render() {
         return;
       }
 
-      // Success — redirect to notes
-      setRoute("/notes");
+      // Success — redirect to intended page or /notes
+      const intended = state.loginIntended && state.loginIntended !== "/login" ? state.loginIntended : "/notes";
+      state.loginIntended = "";
+      setRoute(intended);
       showToast(`Welcome${formType === "signup" ? "" : " back"}, ${escapeHtml(state.currentUser?.name?.split(" ")[0] || "")}!`, "success");
     });
   }
