@@ -3641,32 +3641,31 @@ function renderCookieConsent() {
 
   return `
     <div class="cookie-consent-layer" aria-live="polite">
+
       ${showBanner ? `
         <section class="cookie-consent-banner" aria-label="Privacy and cookie choices">
-          <div class="cookie-consent-copy">
-            <div>
-              <span class="mini-label">Privacy Choices</span>
-              <h2>We Care About Your Privacy</h2>
-              <p>Nursing Uganda stores only necessary site preferences by default. With your permission we may use analytics, advertising cookies and affiliate tracking to improve the website, measure useful content and support free peer-to-peer revision resources.</p>
-              <p class="cookie-small">You can change your choices later from Cookie Preferences in the footer. See our <a href="/privacy">Privacy Policy</a> and <a href="/cookies">Cookie Policy</a>.</p>
-            </div>
-            <div>
-              <span class="mini-label">Partners And External Services</span>
-              <h3>We and selected partners process data to provide:</h3>
-              <ul>
-                <li>Anonymous or aggregated site usage measurement.</li>
-                <li>Advertising and AdSense-supported placements when enabled.</li>
-                <li>Affiliate-link tracking on partner resources where disclosed.</li>
-              </ul>
-            </div>
+          <!-- Brand header -->
+          <div class="cookie-brand-bar">
+            <img src="/assets/images/nursing-uganda-icon-light-transparent.png" width="28" height="28" alt="" aria-hidden="true">
+            <strong>Nursing Uganda</strong>
+            <span class="cookie-brand-sep">·</span>
+            <span>Privacy &amp; Consent</span>
           </div>
-          <div class="cookie-consent-actions">
-            <button class="cookie-button primary" type="button" data-cookie-accept>I Accept</button>
-            <button class="cookie-button secondary" type="button" data-cookie-reject>Reject All</button>
-            <button class="cookie-button ghost" type="button" data-cookie-manage>Manage Preferences</button>
+          <div class="cookie-consent-body">
+            <div class="cookie-consent-text">
+              <h2>We respect your privacy</h2>
+              <p>Nursing Uganda stores only necessary site data by default. With your consent we may enable <strong>Google Analytics</strong>, <strong>Google AdSense</strong> and <strong>Amazon Associates</strong> affiliate tracking — all of which fund the free revision content available to nursing students.</p>
+              <p class="cookie-small">You can change preferences any time via Cookie Preferences in the footer. Read our <a href="/privacy">Privacy Policy</a>, <a href="/cookies">Cookie Policy</a> and <a href="/disclaimer">Affiliate Disclaimer</a>.</p>
+            </div>
+            <div class="cookie-consent-actions">
+              <button class="cookie-button primary" type="button" data-cookie-accept>${icon("badgeCheck")} Accept All</button>
+              <button class="cookie-button ghost" type="button" data-cookie-manage>${icon("settings")} Manage</button>
+              <button class="cookie-button text" type="button" data-cookie-reject>Reject</button>
+            </div>
           </div>
         </section>
       ` : ""}
+
       ${showPreferences ? `
         <section class="cookie-preferences-panel" role="dialog" aria-modal="false" aria-label="Cookie preferences">
           <div class="cookie-preferences-head">
@@ -3674,21 +3673,48 @@ function renderCookieConsent() {
               <span class="mini-label">Consent Centre</span>
               <h2>Cookie Preferences</h2>
             </div>
-            <button type="button" class="cookie-close" data-cookie-close aria-label="Close cookie preferences">${icon("x")}</button>
+            <button type="button" class="cookie-close" data-cookie-close aria-label="Close">${icon("x")}</button>
           </div>
-          <p>Choose how Nursing Uganda may use optional tools. Necessary storage keeps preferences, theme and basic site functions working.</p>
+          <p>Choose which optional tools Nursing Uganda may load. Necessary storage always stays active — it keeps the site working and remembers your choices.</p>
           <div class="cookie-toggle-list">
-            <label><input type="checkbox" checked disabled><span><strong>Necessary</strong><small>Required for navigation, saved choices and core site security.</small></span></label>
-            <label><input type="checkbox" data-cookie-pref="analytics"${checked("analytics")}><span><strong>Analytics</strong><small>Helps us understand which revision pages and resources are useful.</small></span></label>
-            <label><input type="checkbox" data-cookie-pref="ads"${checked("ads")}><span><strong>Google AdSense</strong><small>Allows ad scripts to load once publisher IDs are configured.</small></span></label>
-            <label><input type="checkbox" data-cookie-pref="affiliates"${checked("affiliates")}><span><strong>Affiliate Links</strong><small>Allows partner-link measurement when you open disclosed external resources.</small></span></label>
+            <label class="cookie-toggle-row necessary">
+              <input type="checkbox" checked disabled>
+              <span class="cookie-toggle-info">
+                <strong>${icon("lock")} Necessary</strong>
+                <small>Navigation, theme, saved jobs, bookmarks and consent record. Always active.</small>
+              </span>
+              <span class="cookie-toggle-badge always-on">Always on</span>
+            </label>
+            <label class="cookie-toggle-row">
+              <input type="checkbox" data-cookie-pref="analytics"${checked("analytics")}>
+              <span class="cookie-toggle-info">
+                <strong>${icon("activity")} Google Analytics</strong>
+                <small>Counts page views and usage patterns so we can improve revision content. Data is aggregated.</small>
+              </span>
+            </label>
+            <label class="cookie-toggle-row">
+              <input type="checkbox" data-cookie-pref="ads"${checked("ads")}>
+              <span class="cookie-toggle-info">
+                <strong>${icon("badgeCheck")} Google AdSense</strong>
+                <small>Allows Google to serve and measure advertisements. Ad revenue funds free student resources.</small>
+              </span>
+            </label>
+            <label class="cookie-toggle-row">
+              <input type="checkbox" data-cookie-pref="affiliates"${checked("affiliates")}>
+              <span class="cookie-toggle-info">
+                <strong>${icon("externalLink")} Amazon Associates &amp; Affiliates</strong>
+                <small>Allows referral cookies when you click disclosed affiliate links (books, courses, equipment).</small>
+              </span>
+            </label>
           </div>
           <div class="cookie-preferences-actions">
             <button class="cookie-button ghost" type="button" data-cookie-reject>Reject All</button>
-            <button class="cookie-button primary" type="button" data-cookie-save>Save Preferences</button>
+            <button class="cookie-button primary" type="button" data-cookie-save>${icon("badgeCheck")} Save Preferences</button>
           </div>
+          <p class="cookie-small" style="margin-top:10px">See <a href="/cookies">Cookie Policy</a> for full details on each tool, expiry and opt-out options.</p>
         </section>
       ` : ""}
+
     </div>
   `;
 }
@@ -3785,17 +3811,38 @@ function renderFooter() {
           </nav>
         </div>
 
-        <div class="footer-bottom">
-          <span class="footer-disclaimer">${icon("badgeCheck")} Use for revision only. Confirm all clinical decisions with qualified tutors and current guidance.</span>
-          <div class="footer-bottom-right">
-            <span class="footer-copy">&copy; ${new Date().getFullYear()} Nursing Uganda. All rights reserved.</span>
-            <nav class="footer-legal-links" aria-label="Legal links">
-              <a href="/privacy">Privacy</a>
-              <a href="/terms">Terms</a>
-              <a href="/disclaimer">Disclaimer</a>
-              <button type="button" data-cookie-manage>Cookies</button>
-            </nav>
+        <!-- Affiliate & AdSense disclosure band -->
+        <div class="footer-disclosure">
+          <span class="footer-disclosure-item">
+            ${icon("externalLink")}
+            <span><strong>Affiliate links:</strong> Some resource and book links are Amazon Associates affiliate links. We may earn a commission at no extra cost to you.</span>
+          </span>
+          <span class="footer-disclosure-item">
+            ${icon("badgeCheck")}
+            <span><strong>Advertising:</strong> Ads are served by Google AdSense. Advertising does not influence clinical or editorial content.</span>
+          </span>
+          <span class="footer-disclosure-item">
+            ${icon("shield")}
+            <span><strong>Study reminder:</strong> Confirm clinical decisions with tutors, approved textbooks and current facility guidance.</span>
+          </span>
+        </div>
+
+        <!-- Dark bottom bar -->
+        <div class="footer-dark-bottom">
+          <div class="footer-dark-left">
+            <span>&copy; ${new Date().getFullYear()} Nursing Uganda. All rights reserved.</span>
+            <span class="footer-dark-sep">·</span>
+            <span>Built for Uganda nursing &amp; midwifery students</span>
           </div>
+          <nav class="footer-dark-legal" aria-label="Legal pages">
+            <a href="/privacy">Privacy</a>
+            <a href="/cookies">Cookies</a>
+            <a href="/privacy-choices">Consent</a>
+            <a href="/terms">Terms</a>
+            <a href="/disclaimer">Disclaimer</a>
+            <a href="/corrections">Corrections</a>
+            <button type="button" data-cookie-manage>Cookie Preferences</button>
+          </nav>
         </div>
 
         ${renderAdSlot("footer", "Footer advertisement")}
@@ -7228,14 +7275,31 @@ function renderProgress() {
 
   const greeting = user ? `Welcome back${user.name ? ", " + user.name.split(" ")[0] : ""}! 👋` : "My Study Dashboard";
 
+  // Build stat chips for dash hero
+  const heroChips = [
+    { icon: "flame",       value: streak.count,    label: "day streak" },
+    { icon: "checkCircle", value: progress.done,   label: "lessons done" },
+    { icon: "star",        value: masteredCount,   label: "mastered" },
+    { icon: "helpCircle",  value: quizzesTaken,    label: "quizzes" },
+  ];
+
   return `
     <div class="dash-hero">
+      <div class="dash-hero-bg" aria-hidden="true"></div>
       <div class="container">
         <div class="dash-hero-inner">
           <div class="dash-hero-text">
-            <span class="mini-label">Study Dashboard</span>
+            <span class="dash-eyebrow">${icon("chartLine")} Study Dashboard</span>
             <h1>${escapeHtml(greeting)}</h1>
             <p>${escapeHtml(encouragement)}</p>
+            <div class="dash-hero-chips">
+              ${heroChips.map(c => `
+                <div class="dash-hero-chip">
+                  ${icon(c.icon)}
+                  <strong>${c.value}</strong>
+                  <span>${escapeHtml(c.label)}</span>
+                </div>`).join("")}
+            </div>
           </div>
           <div class="dash-hero-actions">
             ${last
@@ -16746,7 +16810,8 @@ function renderFlashcards() {
                 <span class="fc-category-tag">${escapeHtml(card.category)}</span>
                 <h2>${escapeHtml(card.term)}</h2>
                 ${card.pronunciation ? `<p class="fc-pronunciation">${escapeHtml(card.pronunciation)}</p>` : ""}
-                <p class="fc-hint">${icon("rotateCcw")} Tap to reveal definition</p>
+                <p class="fc-hint">${icon("rotateCcw")} Tap or press <kbd>Space</kbd> to reveal</p>
+                <p class="fc-keyboard-hint">${icon("arrowLeft")} <kbd>←</kbd> prev &nbsp; <kbd>→</kbd> next &nbsp; <kbd>M</kbd> master</p>
               </div>
               <div class="fc-back">
                 <span class="fc-category-tag">${escapeHtml(card.category)}</span>
@@ -16875,6 +16940,30 @@ function setupFlashcards() {
       render();
     });
   });
+
+  // ── Global keyboard shortcuts (only when flashcard page is active) ──────────
+  function fcKeyHandler(e) {
+    // Skip if user is typing in an input/textarea
+    if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA" || e.target.isContentEditable) return;
+    const deck = flashcardDeck();
+    const idx  = state.flashcardIndex || 0;
+    if (e.key === " " || e.key === "Enter") {
+      e.preventDefault();
+      state.flashcardFlipped = !state.flashcardFlipped;
+      render();
+    } else if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") {
+      if (idx > 0) { state.flashcardIndex = idx - 1; state.flashcardFlipped = false; render(); }
+    } else if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") {
+      if (idx < deck.length - 1) { state.flashcardIndex = idx + 1; state.flashcardFlipped = false; render(); }
+    } else if (e.key === "m" || e.key === "M") {
+      const card = deck[idx];
+      if (card) { requireLogin("flashcard", "Sign in to track mastered cards.", () => { toggleFlashcardMastery(card.id); render(); }); }
+    }
+  }
+  // Remove any previous listener, then add fresh one
+  document.removeEventListener("keydown", window._fcKeyHandler);
+  window._fcKeyHandler = fcKeyHandler;
+  document.addEventListener("keydown", fcKeyHandler);
 }
 
 /* ── Lesson Notes ─────────────────────────────────────────────────── */
