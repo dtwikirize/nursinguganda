@@ -1398,14 +1398,7 @@ font-size: 1.35rem;
   padding: 0;
   transition: background 0.2s, border-color 0.2s, transform 0.15s;
   position: relative;
-  overflow: hidden;
-}
-.mobile-toggle::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: rgba(166,68,104,0.0);
-  transition: background 0.2s;
-  border-radius: inherit;
+  /* NO overflow:hidden — bars extend slightly past boundary during X animation */
 }
 .mobile-toggle:hover {
   background: rgba(166,68,104,0.12);
@@ -1422,7 +1415,7 @@ font-size: 1.35rem;
   justify-content: center;
   gap: 5px;
   width: 22px;
-  height: 22px;
+  height: 16px; /* tight container so translateY stays within 44px button */
 }
 
 /* Individual bars */
@@ -1431,19 +1424,19 @@ font-size: 1.35rem;
   height: 2px;
   border-radius: 2px;
   background: #A64468;
-  transform-origin: center center;
+  transform-origin: center;
   transition:
-    transform 0.3s cubic-bezier(0.34, 1.2, 0.64, 1),
+    transform 0.32s cubic-bezier(0.34, 1.2, 0.64, 1),
     opacity   0.2s ease,
-    width     0.3s cubic-bezier(0.34, 1.2, 0.64, 1);
+    width     0.28s cubic-bezier(0.34, 1.2, 0.64, 1);
 }
 .toggle-bars .bar:nth-child(1) { width: 22px; }
-.toggle-bars .bar:nth-child(2) { width: 15px; }  /* asymmetric — unique touch */
+.toggle-bars .bar:nth-child(2) { width: 14px; } /* asymmetric accent */
 .toggle-bars .bar:nth-child(3) { width: 22px; }
 
-/* Open state → X morph via aria-expanded */
+/* Open → X morph. translateY(6px) keeps bars inside 44px button */
 .mobile-toggle[aria-expanded="true"] .toggle-bars .bar:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
+  transform: translateY(6px) rotate(45deg);
   width: 22px;
 }
 .mobile-toggle[aria-expanded="true"] .toggle-bars .bar:nth-child(2) {
@@ -1452,14 +1445,13 @@ font-size: 1.35rem;
   transform: scaleX(0);
 }
 .mobile-toggle[aria-expanded="true"] .toggle-bars .bar:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
+  transform: translateY(-6px) rotate(-45deg);
   width: 22px;
 }
 
-/* Active / open: fill with brand color */
 .mobile-toggle[aria-expanded="true"] {
   background: rgba(166,68,104,0.12);
-  border-color: rgba(166,68,104,0.45);
+  border-color: rgba(166,68,104,0.5);
 }
 .mobile-toggle[aria-expanded="true"] .bar { background: #A64468; }
 
@@ -1473,15 +1465,26 @@ font-size: 1.35rem;
   border-color: rgba(212,114,160,0.5);
 }
 [data-theme="dark"] .toggle-bars .bar { background: #d472a0; }
+[data-theme="dark"] .mobile-toggle[aria-expanded="true"] .bar { background: #d472a0; }
 
-/* Legacy Lucide icon fallback — hidden */
+/* Legacy icon fallback — hidden */
 .mobile-toggle .ui-icon { display: none !important; }
 
 /* ── Responsive breakpoint: show drawer, hide desktop nav ── */
 @media (max-width: 860px) {
-  .main-nav { display: none; }
+  .main-nav    { display: none; }
   .mobile-toggle { display: flex; }
   .nav-actions .button { display: none; }
+}
+
+/* ── Compact nav on small phones (≤ 420px) ─────────────────────────────── */
+@media (max-width: 420px) {
+  .nav-shell { gap: 6px; min-height: 58px; }
+  .brand-mark { width: 38px; height: 38px; }
+  .brand-text strong { font-size: 0.95rem; }
+  .nav-search-pill { display: none; }   /* hidden — use search page instead */
+  .bell-btn { width: 36px; height: 36px; }
+  .mobile-toggle { width: 40px; height: 40px; border-radius: 10px; }
 }
 
 .nav-actions {
@@ -24257,4 +24260,192 @@ textarea:focus {
 @media (max-width: 600px) {
   .settings-card { padding: 1.25rem; }
   .settings-stats-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+
+/* ════════════════════════════════════════════════════════════════════
+   GLOBAL MOBILE & ALL-DEVICE OPTIMISATION
+   Applied last so these rules override component-level defaults
+   ════════════════════════════════════════════════════════════════════ */
+
+/* ── Base: prevent horizontal scroll on any screen ─────────────── */
+html, body { overflow-x: hidden; }
+
+/* ── Container: tighter side padding on phones ─────────────────── */
+@media (max-width: 480px) {
+  .container { padding-inline: 14px; }
+}
+
+/* ── Typography scale on small screens ─────────────────────────── */
+@media (max-width: 480px) {
+  h1 { font-size: clamp(1.6rem, 7vw, 2.2rem) !important; }
+  h2 { font-size: clamp(1.2rem, 5vw, 1.6rem); }
+  h3 { font-size: clamp(1rem, 4.5vw, 1.3rem); }
+}
+
+/* ── Buttons: full-width on very small screens ─────────────────── */
+@media (max-width: 380px) {
+  .button { min-height: 46px; font-size: 0.88rem; padding: 0.7rem 1rem; }
+}
+
+/* ── Section padding ────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .section  { padding: 32px 0; }
+  .hero     { padding: 40px 0; }
+}
+
+/* ── Header: keep nav-actions compact on mid-range phones ──────── */
+@media (max-width: 600px) {
+  .nav-search-pill span { display: none; }  /* icon only */
+  .nav-search-pill { padding: 0.38rem 0.55rem; min-width: 36px; }
+}
+
+/* ── Home hero ──────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .home-hero-inner { flex-direction: column; gap: 20px; }
+  .home-hero-copy  { text-align: center; }
+  .home-hero-stats { justify-content: center; }
+  .home-hero-links { flex-wrap: wrap; justify-content: center; }
+}
+
+/* ── Careers hero ───────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .careers-hero        { min-height: 340px; padding: 40px 0 56px; }
+  .careers-hero-inner  { grid-template-columns: 1fr; }
+  .careers-hero-aside  { display: none; }
+  .careers-hero-dots   { bottom: 14px; }
+}
+
+/* ── Job rows ───────────────────────────────────────────────────── */
+@media (max-width: 560px) {
+  .career-job-row   { grid-template-columns: 44px 1fr; padding: 14px; gap: 12px; }
+  .cjr-aside        {
+    grid-column: 1 / -1;
+    flex-direction: row; align-items: center;
+    justify-content: space-between;
+    border-left: none; border-top: 1px solid var(--color-border);
+    padding: 10px 0 0; margin-top: 4px; background: transparent;
+  }
+  .cjr-salary .cjr-salary-label { display: none; }
+  .cjr-view-btn { padding: 7px 14px; font-size: 0.75rem; }
+}
+
+/* ── Job detail page ────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .job-detail-hero-inner { flex-direction: column; gap: 16px; }
+  .job-detail-hero-actions { flex-direction: row; }
+  .job-detail-body  { grid-template-columns: 1fr; padding-top: 20px; }
+  .job-detail-apply { width: 100%; justify-content: center; }
+}
+
+/* ── Career mode bar ────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .career-mode-shell { gap: 6px; }
+  .career-mode-shell button { font-size: 0.82rem; padding: 0.5rem 0.9rem; }
+}
+
+/* ── Jobs board layout: full width filter on mobile ────────────── */
+@media (max-width: 768px) {
+  .career-board-layout { grid-template-columns: 1fr; }
+  .career-filter-sidebar {
+    position: static; max-height: none;
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 0; overflow: visible;
+  }
+  .filter-sidebar-head { grid-column: 1 / -1; }
+}
+@media (max-width: 480px) {
+  .career-filter-sidebar { grid-template-columns: 1fr; }
+}
+
+/* ── Legal pages ────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .lp-hero          { padding: 36px 0 30px; }
+  .lp-hero h1       { font-size: clamp(1.6rem, 7vw, 2rem); }
+  .lp-hero-chips    { flex-direction: column; gap: 6px; }
+  .lp-chip          { font-size: 0.75rem; }
+  .lp-card          { flex-direction: column; gap: 10px; }
+  .lp-action-card   { flex-wrap: wrap; gap: 12px; }
+  .lp-action-card .button { width: 100%; justify-content: center; }
+}
+
+/* ── Flashcards ─────────────────────────────────────────────────── */
+@media (max-width: 560px) {
+  .fc-card   { min-height: 240px; }
+  .fc-front, .fc-back { padding: 24px 18px; }
+  .fc-front h2, .fc-back h2 { font-size: 1.2rem; }
+  .fc-sr-btns { grid-template-columns: repeat(2, 1fr); }
+  .fc-keyboard-hint { display: none; } /* keyboard nav hidden on mobile */
+}
+
+/* ── Dashboard ──────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .dash-hero-chips  { gap: 6px; }
+  .dash-hero-chip   { padding: 5px 10px; }
+  .dash-hero-chip strong { font-size: 0.95rem; }
+  .progress-stat-grid { grid-template-columns: repeat(2, 1fr); }
+  .dash-above-fold  { grid-template-columns: 1fr; }
+}
+
+/* ── Medical instruments ────────────────────────────────────────── */
+@media (max-width: 560px) {
+  .instrument-atlas-card { padding: 12px; }
+  .instrument-atlas-card img { height: 80px; }
+}
+
+/* ── Notes subject rows ─────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .subject-row      { padding: 12px 14px; gap: 10px; }
+  .subject-row-body strong { font-size: 0.9rem; }
+}
+
+/* ── Cookie consent ─────────────────────────────────────────────── */
+@media (max-width: 560px) {
+  .cookie-consent-body { grid-template-columns: 1fr; gap: 14px; }
+  .cookie-consent-actions { flex-direction: row; flex-wrap: wrap; }
+  .cookie-button { flex: 1; min-width: 120px; font-size: 0.82rem; min-height: 42px; }
+}
+
+/* ── Footer ─────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .footer-top       { grid-template-columns: 1fr; }
+  .footer-nav       { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .footer-disclosure{ flex-direction: column; gap: 10px; }
+  .footer-dark-bottom { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .footer-dark-legal  { gap: 6px 12px; }
+}
+@media (max-width: 400px) {
+  .footer-nav { grid-template-columns: 1fr; }
+  .footer-logo-img { width: 160px; }
+}
+
+/* ── 404 page ───────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .page-404         { padding: 40px 14px; gap: 28px; }
+  .page-404-links   { gap: 6px; }
+  .page-404-link    { padding: 7px 12px; font-size: 0.78rem; }
+  .page-404-ctas    { flex-direction: column; width: 100%; }
+  .page-404-ctas .button { width: 100%; justify-content: center; }
+}
+
+/* ── Drawer / mobile nav ────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .nav-drawer { max-width: 100vw; }
+}
+
+/* ── Touch targets: ensure 44×44 minimum ───────────────────────── */
+@media (max-width: 860px) {
+  .fc-btn, .career-save, .cjr-save-btn,
+  .bell-btn, .cookie-close,
+  [data-cookie-accept], [data-cookie-reject],
+  [data-cookie-manage] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* ── Safe-area inset (iPhone notch / Dynamic Island) ────────────── */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .site-footer { padding-bottom: max(24px, env(safe-area-inset-bottom)); }
+  .nav-drawer  { padding-bottom: max(16px, env(safe-area-inset-bottom)); }
 }
