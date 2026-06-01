@@ -4613,11 +4613,11 @@ function setupLessonRevealAnimations() {
 // ── Legal page metadata (icon, accent, summary bullets, full sections) ────────
 const LEGAL_META = {
   privacy:          { icon: "lock",          accent: "#A64468", accentLight: "#fce7f3" },
-  cookies:          { icon: "badgeCheck",    accent: "#7a3050", accentLight: "#fdf2f7" },
-  "privacy-choices":{ icon: "settings",      accent: "#9e3a5c", accentLight: "#fce7f3" },
-  disclaimer:       { icon: "alertTriangle", accent: "#b45309", accentLight: "#fef3c7" },
-  terms:            { icon: "fileText",      accent: "#1e3a5f", accentLight: "#eff6ff" },
-  corrections:      { icon: "edit",          accent: "#065f46", accentLight: "#ecfdf5" },
+  cookies:          { icon: "badgeCheck",    accent: "#A64468", accentLight: "#fce7f3" },
+  "privacy-choices":{ icon: "settings",      accent: "#A64468", accentLight: "#fce7f3" },
+  disclaimer:       { icon: "alertTriangle", accent: "#A64468", accentLight: "#fce7f3" },
+  terms:            { icon: "fileText",      accent: "#A64468", accentLight: "#fce7f3" },
+  corrections:      { icon: "edit",          accent: "#A64468", accentLight: "#fce7f3" },
 };
 
 const legalPages = {
@@ -4729,7 +4729,6 @@ function renderLegalPage(key) {
   const meta = LEGAL_META[key] || LEGAL_META.privacy;
   const legalNav = [
     ["/privacy",         "Privacy",         "lock"],
-    ["/privacy-choices", "Privacy Choices",  "settings"],
     ["/cookies",         "Cookies",          "badgeCheck"],
     ["/disclaimer",      "Disclaimer",       "alertTriangle"],
     ["/terms",           "Terms Of Use",     "fileText"],
@@ -4765,7 +4764,6 @@ function renderLegalPage(key) {
           <p>${escapeHtml(page.intro)}</p>
           <div class="lp-hero-chips">
             <span class="lp-chip">${icon("calendar")} Updated ${escapeHtml(page.updated)}</span>
-            <a class="lp-chip lp-chip-link" href="mailto:info@nursinguganda.com">${icon("mail")} info@nursinguganda.com</a>
           </div>
         </div>
       </div>
@@ -11739,64 +11737,46 @@ function renderCareerFilterGroup(label, key, options, active) {
 }
 
 function renderCareerJobCard(job) {
-  const saved  = savedCareerJobs().has(job.id);
-  const status = deadlineClass(job);
-  const ep     = careerPaletteFor(job.employer);
-  const deadlineText = status === "urgent" ? `⚠ Closes ${dateLabel(job.deadline)}`
-                     : status === "warn"   ? `${icon("clock")} ${dateLabel(job.deadline)}`
-                     :                       `${icon("clock")} ${dateLabel(job.deadline)}`;
+  const saved   = savedCareerJobs().has(job.id);
+  const status  = deadlineClass(job);
+  const isNew   = daysUntil(job.posted) > -14;
+  const salaryIsConfidential = ["Not disclosed","Confidential","Consultancy rate"].includes(job.salary);
+  const excerpt = job.description.length > 160 ? job.description.slice(0, 160) + "…" : job.description;
   return `
-    <article class="career-job-row${job.isFeatured ? " featured" : ""}${status === "urgent" ? " urgent" : ""}"
-      data-career-card="${escapeHtml(job.id)}"
-      style="--card-accent:${ep.text};--card-accent-bg:${ep.bg};">
-
-      <!-- Employer avatar -->
-      <div class="cjr-avatar">
-        ${careerAvatar(job.employer, "md")}
-      </div>
-
-      <!-- Core information -->
-      <div class="cjr-body">
-        <div class="cjr-header">
-          <div class="cjr-title-block">
-            <a class="cjr-title" href="/careers/${escapeHtml(job.id)}" data-nav>${escapeHtml(job.title)}</a>
-            <span class="cjr-org">${escapeHtml(job.employer)}</span>
+    <article class="bm-job-card${job.isFeatured ? " bm-featured" : ""}" data-career-card="${escapeHtml(job.id)}">
+      ${job.isFeatured ? `<div class="bm-featured-banner"><span>FEATURED</span></div>` : ""}
+      <div class="bm-card-body">
+        <div class="bm-card-top">
+          <a class="bm-job-title" href="/careers/${escapeHtml(job.id)}" data-nav>${escapeHtml(job.title)}</a>
+          <p class="bm-job-employer">${escapeHtml(job.employer)}</p>
+          <div class="bm-job-pills">
+            <span class="bm-pill">${escapeHtml(job.location)}</span>
+            <span class="bm-pill">${escapeHtml(job.type)}</span>
+            <span class="bm-pill">${salaryIsConfidential ? "Confidential" : escapeHtml(job.salary)}</span>
           </div>
-          <div class="cjr-chips">
-            ${job.isFeatured ? `<span class="cjr-chip chip-featured">${icon("sparkles")} Featured</span>` : ""}
-            ${job.isExternal ? `<span class="cjr-chip chip-external">${icon("externalLink")} External</span>` : ""}
+          <p class="bm-job-category">${escapeHtml(job.speciality)}</p>
+        </div>
+        <hr class="bm-card-sep">
+        <div class="bm-card-bottom">
+          <div class="bm-card-meta-row">
+            ${isNew ? `<span class="bm-new-badge">${icon("sparkles")} New</span>` : ""}
+            <span class="bm-posted-date">${dateLabel(job.posted)}</span>
+          </div>
+          <div class="bm-card-preview">
+            ${careerAvatar(job.employer, "sm")}
+            <p class="bm-card-desc">${escapeHtml(excerpt)}</p>
+          </div>
+          <div class="bm-card-actions">
+            <button type="button" class="bm-save-btn${saved ? " saved" : ""}"
+              title="${saved ? "Remove saved" : "Save job"}"
+              data-career-job-save="${escapeHtml(job.id)}">${icon("heart")}</button>
+            <a class="bm-easy-apply" href="${escapeHtml(job.applyUrl)}"
+              ${job.isExternal ? `target="_blank" rel="noopener noreferrer"` : ""} data-nav>
+              ${icon("send")} Easy apply
+            </a>
           </div>
         </div>
-
-        <div class="cjr-meta">
-          <span class="cjr-meta-item">${icon("mapPin")} ${escapeHtml(job.location)}</span>
-          <span class="cjr-meta-item">${icon("fileText")} ${escapeHtml(job.type)}</span>
-          <span class="cjr-meta-item">${icon("users")} ${escapeHtml(job.level)}</span>
-          <span class="cjr-meta-item cjr-deadline ${status}">${deadlineText}</span>
-        </div>
-
-        <div class="cjr-tags">
-          ${careerBadge(regionLabel(job.region), "region")}
-          ${careerBadge(job.speciality, "speciality")}
-        </div>
       </div>
-
-      <!-- Salary + CTA -->
-      <div class="cjr-aside">
-        <div class="cjr-salary">
-          <span class="cjr-salary-label">Salary</span>
-          <strong>${escapeHtml(job.salary)}</strong>
-        </div>
-        <div class="cjr-ctas">
-          <button type="button" title="${saved ? "Remove saved" : "Save job"}"
-            class="cjr-save-btn${saved ? " saved" : ""}"
-            data-career-job-save="${escapeHtml(job.id)}">${icon("heart")}</button>
-          <a class="cjr-view-btn" href="/careers/${escapeHtml(job.id)}" data-nav>
-            View Job ${icon("arrowRight")}
-          </a>
-        </div>
-      </div>
-
     </article>
   `;
 }
@@ -12056,125 +12036,212 @@ function renderCareerDrawer() {
 // ── Job Detail Page ───────────────────────────────────────────────────────────
 function renderCareerJobDetailPage(job) {
   if (!job) {
-    return layout(`
+    return `
       <section class="section"><div class="container" style="text-align:center;padding:4rem 1rem">
         ${icon("briefcaseMedical")}
         <h2 style="margin:.75rem 0">Job not found</h2>
         <p style="color:var(--color-text-muted);margin-bottom:1.5rem">This listing may have been removed or the link is incorrect.</p>
         <a class="button primary" href="/careers" data-nav>Browse All Jobs</a>
-      </div></section>`);
+      </div></section>`;
   }
   const saved  = savedCareerJobs().has(job.id);
   const status = deadlineClass(job);
-  const ep     = careerPaletteFor(job.employer);
-  return layout(`
-    <div class="job-detail-page">
+  const isNew  = daysUntil(job.posted) > -14;
+  const salaryIsConfidential = ["Not disclosed","Confidential","Consultancy rate"].includes(job.salary);
+  const shareUrl   = encodeURIComponent(`https://nursinguganda.com/careers/${job.id}`);
+  const shareText  = encodeURIComponent(job.title + " – Nursing Uganda");
+  const similar    = careerJobs().filter(j => j.id !== job.id && j.speciality === job.speciality).slice(0, 3);
+
+  return `
+    <div class="bm-detail-page">
 
       <!-- Back -->
-      <div class="job-detail-back">
+      <div class="bm-detail-back">
         <div class="container">
-          <a href="/careers" data-nav class="job-back-link">${icon("arrowLeft")} Back to Jobs</a>
+          <a href="/careers" data-nav class="bm-back-link">${icon("arrowLeft")} Back to Jobs</a>
         </div>
       </div>
 
-      <!-- Hero band -->
-      <div class="job-detail-hero" style="--card-accent:${ep.text};--card-accent-bg:${ep.bg};">
-        <div class="container job-detail-hero-inner">
-          <div class="job-detail-hero-left">
-            ${careerAvatar(job.employer, "xl")}
-            <div class="job-detail-hero-text">
-              ${(job.isFeatured || job.isExternal) ? `
-                <div class="career-job-flags" style="position:static;margin-bottom:8px">
-                  ${job.isFeatured ? `<span class="featured-flag">${icon("sparkles")} Featured</span>` : ""}
-                  ${job.isExternal ? `<span class="external-flag">${icon("externalLink")} External listing</span>` : ""}
-                </div>` : ""}
-              <h1>${escapeHtml(job.title)}</h1>
-              <p class="job-detail-employer">${escapeHtml(job.employer)}</p>
-              <div class="job-detail-meta">
-                <span>${icon("mapPin")} ${escapeHtml(job.location)}</span>
-                <span class="${status}">${icon("clock")} Deadline: ${dateLabel(job.deadline)}${status === "urgent" ? " — Closing soon" : ""}</span>
-                <span>${icon("fileText")} ${escapeHtml(job.type)} · ${escapeHtml(job.duration)}</span>
-              </div>
-              <div class="career-badge-row">
-                ${careerBadge(job.type, `type-${slugify(job.type)}`)}
-                ${careerBadge(job.level, "level")}
-                ${careerBadge(regionLabel(job.region), "region")}
-                ${careerBadge(job.speciality, "speciality")}
+      <div class="container bm-detail-wrap">
+
+        <!-- ── MAIN ───────────────────────────────────── -->
+        <div class="bm-detail-main">
+
+          <!-- Header -->
+          <div class="bm-detail-header">
+            ${careerAvatar(job.employer, "lg")}
+            <div class="bm-detail-header-text">
+              <h1 class="bm-detail-title">${escapeHtml(job.title)}</h1>
+              <p class="bm-detail-company">
+                <span class="bm-company-name">${escapeHtml(job.employer)}</span>
+                <span class="bm-hsep">·</span>
+                <span>${escapeHtml(job.speciality)}</span>
+                <span class="bm-hsep">·</span>
+                <span class="bm-header-date">${dateLabel(job.posted)}</span>
+              </p>
+              <div class="bm-detail-actions">
+                <a class="bm-easy-apply" href="${escapeHtml(job.applyUrl)}"
+                  ${job.isExternal ? `target="_blank" rel="noopener noreferrer"` : ""}>
+                  ${icon("send")} ${job.isExternal ? "Easy apply" : "Apply Now"}
+                </a>
+                ${isNew ? `<span class="bm-chip bm-chip-new">${icon("sparkles")} New</span>` : ""}
+                ${job.isFeatured ? `<span class="bm-chip bm-chip-feat">${icon("sparkles")} Featured</span>` : ""}
+                <button type="button" class="bm-chip bm-chip-save${saved ? " active" : ""}"
+                  data-career-job-save="${escapeHtml(job.id)}">
+                  ${icon("heart")} ${saved ? "Saved" : "Save"}
+                </button>
               </div>
             </div>
           </div>
-          <div class="job-detail-hero-actions">
-            <button type="button" class="career-save career-save-lg ${saved ? "active" : ""}"
-              data-career-job-save="${escapeHtml(job.id)}">${icon("heart")} ${saved ? "Saved" : "Save Job"}</button>
-            <a class="career-apply job-detail-apply"
-              href="${escapeHtml(job.applyUrl)}"
-              ${job.isExternal ? `target="_blank" rel="noopener noreferrer"` : ""}>
-              ${job.isExternal ? `${icon("externalLink")} Apply on External Site` : `Apply Now ${icon("arrowRight")}`}
-            </a>
+
+          <!-- Detail chips -->
+          <div class="bm-detail-chips">
+            <span class="bm-detail-chip">${icon("mapPin")} ${escapeHtml(job.location)}</span>
+            <span class="bm-detail-chip">${icon("fileText")} ${escapeHtml(job.type)}</span>
+            <span class="bm-detail-chip">${icon("tag")} ${escapeHtml(job.speciality)}</span>
+            <span class="bm-detail-chip">${icon("banknote")} ${salaryIsConfidential ? "Confidential" : escapeHtml(job.salary)}</span>
           </div>
-        </div>
-      </div>
 
-      <!-- Body -->
-      <div class="container job-detail-body">
+          <!-- Job Summary -->
+          <div class="bm-section">
+            <h2 class="bm-section-h">Job summary</h2>
+            <p class="bm-summary-text">${escapeHtml(job.description)}</p>
+          </div>
 
-        <!-- Main content -->
-        <div class="job-detail-main">
-          <section class="job-detail-section">
-            <h2>Overview</h2>
-            <p>${escapeHtml(job.description)}</p>
-          </section>
-          <section class="job-detail-section">
-            <h3>Key Responsibilities</h3>
-            <ul>${job.responsibilities.map(r => `<li>${escapeHtml(r)}</li>`).join("")}</ul>
-          </section>
-          <section class="job-detail-section">
-            <h3>Requirements</h3>
-            <ul class="check-list">${job.requirements.map(r => `<li>${escapeHtml(r)}</li>`).join("")}</ul>
-          </section>
-          <section class="job-detail-section">
-            <h2>How to Apply</h2>
-            <p>Prepare the documents below and apply through the listed employer channel.
-               For external listings, confirm the vacancy on the source website before
-               submitting personal documents.</p>
-            <div class="career-doc-list">
+          <!-- Info grid -->
+          <div class="bm-info-grid">
+            <div class="bm-info-cell">
+              ${icon("graduationCap")}
+              <span><span class="bm-info-label">Experience Level:</span> <strong>${escapeHtml(job.level)}</strong></span>
+            </div>
+            <div class="bm-info-cell">
+              ${icon("briefcaseMedical")}
+              <span><span class="bm-info-label">Contract:</span> <strong>${escapeHtml(job.type)} · ${escapeHtml(job.duration)}</strong></span>
+            </div>
+            <div class="bm-info-cell">
+              ${icon("mapPin")}
+              <span><span class="bm-info-label">Region:</span> <strong>${escapeHtml(regionLabel(job.region))}</strong></span>
+            </div>
+            <div class="bm-info-cell ${status}">
+              ${icon("clock")}
+              <span><span class="bm-info-label">Deadline:</span> <strong>${dateLabel(job.deadline)}${status === "urgent" ? " ⚠" : ""}</strong></span>
+            </div>
+          </div>
+
+          <!-- Descriptions & Requirements -->
+          <div class="bm-section">
+            <h2 class="bm-section-h">Job descriptions &amp; requirements</h2>
+            <h3 class="bm-sub-h">Key Responsibilities</h3>
+            <ul class="bm-list">
+              ${job.responsibilities.map(r => `<li>${escapeHtml(r)}</li>`).join("")}
+            </ul>
+            <h3 class="bm-sub-h">Requirements</h3>
+            <ul class="bm-list bm-checklist">
+              ${job.requirements.map(r => `<li>${escapeHtml(r)}</li>`).join("")}
+            </ul>
+          </div>
+
+          <!-- How to Apply -->
+          <div class="bm-section">
+            <h2 class="bm-section-h">How to Apply</h2>
+            <p style="color:var(--color-text-muted);font-size:.9rem;margin-bottom:14px">
+              Prepare the documents below and apply through the listed channel.
+              For external listings, verify the vacancy directly with the employer.
+            </p>
+            <div class="career-doc-list" style="margin-bottom:20px">
               ${job.documents.map(d => `<label><input type="checkbox"> <span>${escapeHtml(d)}</span></label>`).join("")}
             </div>
-            <div class="job-detail-apply-wrap">
-              <a class="career-apply job-detail-apply"
-                href="${escapeHtml(job.applyUrl)}"
-                ${job.isExternal ? `target="_blank" rel="noopener noreferrer"` : ""}>
-                ${job.isExternal ? `${icon("externalLink")} Apply on External Site` : `Apply Now ${icon("arrowRight")}`}
-              </a>
+            <a class="bm-easy-apply bm-apply-lg" href="${escapeHtml(job.applyUrl)}"
+              ${job.isExternal ? `target="_blank" rel="noopener noreferrer"` : ""}>
+              ${icon("send")} ${job.isExternal ? "Apply on External Site" : "Apply Now"}
+            </a>
+          </div>
+
+          <!-- Safety tips -->
+          <div class="bm-safety-box">
+            <div class="bm-safety-icon">${icon("alertTriangle")}</div>
+            <div>
+              <h4 class="bm-safety-title">Important safety tips</h4>
+              <ul class="bm-safety-list">
+                <li>Do not make any payment to secure this or any employment.</li>
+                <li>Verify all job listings directly with the employer before applying.</li>
+                <li>Nursing Uganda does not charge fees for job applications.</li>
+              </ul>
             </div>
-          </section>
+          </div>
+
+          <!-- Share -->
+          <div class="bm-share-row">
+            <span class="bm-share-label">Share link</span>
+            <a class="bm-share-btn bm-sh-wa" href="https://wa.me/?text=${shareText}%20${shareUrl}" target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp">WA</a>
+            <a class="bm-share-btn bm-sh-li" href="https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">in</a>
+            <a class="bm-share-btn bm-sh-fb" href="https://www.facebook.com/sharer/sharer.php?u=${shareUrl}" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">f</a>
+            <a class="bm-share-btn bm-sh-x" href="https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}" target="_blank" rel="noopener noreferrer" aria-label="Share on X">X</a>
+          </div>
+
         </div>
 
-        <!-- Sidebar -->
-        <aside class="job-detail-sidebar">
-          <div class="career-modal-detail-card">
-            <h4>Job Details</h4>
-            <dl class="career-detail-list">
+        <!-- ── SIDEBAR ─────────────────────────────────── -->
+        <aside class="bm-detail-sidebar">
+
+          <div class="bm-sidebar-card">
+            <h4 class="bm-sidebar-h">Job Details</h4>
+            <dl class="bm-detail-dl">
               <div><dt>${icon("mapPin")} Location</dt><dd>${escapeHtml(job.location)}</dd></div>
-              <div><dt>💰 Salary</dt><dd>${escapeHtml(job.salary)}</dd></div>
+              <div><dt>${icon("banknote")} Salary</dt><dd>${salaryIsConfidential ? "Confidential" : escapeHtml(job.salary)}</dd></div>
               <div><dt>${icon("calendar")} Posted</dt><dd>${dateLabel(job.posted)}</dd></div>
               <div class="${status}"><dt>${icon("clock")} Deadline</dt><dd>${dateLabel(job.deadline)}</dd></div>
-              <div><dt>${icon("clipboardList")} Positions</dt><dd>${job.positions}</dd></div>
-              <div><dt>${icon("fileText")} Contract</dt><dd>${escapeHtml(job.type)} · ${escapeHtml(job.duration)}</dd></div>
+              <div><dt>${icon("fileText")} Contract</dt><dd>${escapeHtml(job.type)}</dd></div>
+              <div><dt>${icon("users")} Level</dt><dd>${escapeHtml(job.level)}</dd></div>
             </dl>
+            <a class="bm-easy-apply" style="display:flex;margin-top:16px" href="${escapeHtml(job.applyUrl)}"
+              ${job.isExternal ? `target="_blank" rel="noopener noreferrer"` : ""}>
+              ${icon("send")} ${job.isExternal ? "Easy apply" : "Apply Now"}
+            </a>
           </div>
-          <div class="career-modal-employer-card">
-            <div class="career-modal-emp-head">
-              ${careerAvatar(job.employer, "small")}
-              <div><h4>${escapeHtml(job.employer)}</h4><p>${escapeHtml(job.employerType)}</p></div>
-            </div>
-            <p class="career-modal-emp-desc">${escapeHtml(job.employerDescription)}</p>
-          </div>
-        </aside>
 
+          <div class="bm-sidebar-card bm-employer-card">
+            <div class="bm-employer-head">
+              ${careerAvatar(job.employer, "md")}
+              <div>
+                <h4 style="margin:0;font-size:.9rem">${escapeHtml(job.employer)}</h4>
+                <p style="margin:0;font-size:.78rem;color:var(--color-text-muted)">${escapeHtml(job.employerType)}</p>
+              </div>
+            </div>
+            <p class="bm-employer-desc">${escapeHtml(job.employerDescription)}</p>
+          </div>
+
+        </aside>
       </div>
+
+      <!-- Similar jobs -->
+      ${similar.length ? `
+      <div class="bm-similar-wrap">
+        <div class="container">
+          <h2 class="bm-similar-h">Similar jobs</h2>
+          <div class="bm-similar-grid">
+            ${similar.map(j => {
+              const sp = careerPaletteFor(j.employer);
+              return `
+              <a class="bm-similar-card" href="/careers/${escapeHtml(j.id)}" data-nav>
+                ${careerAvatar(j.employer, "sm")}
+                <div class="bm-similar-body">
+                  <p class="bm-similar-title">${escapeHtml(j.title)}</p>
+                  <p class="bm-similar-org">${escapeHtml(j.employer)}</p>
+                  <div class="bm-similar-tags">
+                    <span>${escapeHtml(j.location)}</span>
+                    <span>${escapeHtml(j.type)}</span>
+                  </div>
+                  <p class="bm-similar-date">${dateLabel(j.posted)}</p>
+                </div>
+              </a>`;
+            }).join("")}
+          </div>
+        </div>
+      </div>` : ""}
+
     </div>
-  `);
+  `;
 }
 
 function careerPathwayData() {

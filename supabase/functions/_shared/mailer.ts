@@ -258,9 +258,9 @@ ${preheader}
                     <tr>
                       <td style="vertical-align:middle;padding-right:0">
                         <!--[if mso]><table cellpadding="0" cellspacing="0"><tr><td style="width:44px;height:44px"><![endif]-->
-                        <img src="${SITE_URL}/assets/images/nursing-uganda-icon-light-transparent.png"
-                             alt="NU" width="44" height="44"
-                             style="display:block;border-radius:10px;border:2px solid rgba(255,255,255,0.28);background:rgba(255,255,255,0.1)">
+                        <img src="${SITE_URL}/assets/images/nursing-uganda-icon-light.png"
+                             alt="NU" width="56" height="56"
+                             style="display:block;border-radius:8px">
                         <!--[if mso]></td><td style="padding-left:12px;vertical-align:middle"><![endif]-->
                       </td>
                       <td style="padding-left:12px;vertical-align:middle">
@@ -321,8 +321,8 @@ ${preheader}
                     <tr>
                       <td style="vertical-align:middle;padding-right:8px">
                         <img src="${SITE_URL}/assets/images/nursing-uganda-icon-light-transparent.png"
-                             alt="" width="22" height="22"
-                             style="display:block;opacity:0.35;border-radius:4px">
+                             alt="" width="28" height="28"
+                             style="display:block;opacity:0.60;border-radius:5px">
                       </td>
                       <td style="vertical-align:middle">
                         <span style="font-size:13px;font-weight:700;color:#9ca3af;letter-spacing:-0.01em;${F}">Nursing Uganda</span>

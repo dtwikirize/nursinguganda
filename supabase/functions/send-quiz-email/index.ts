@@ -21,7 +21,7 @@ interface Payload {
 }
 
 function gradeColor(grade: string) {
-  return grade === "Distinction" ? "#059669"
+  return grade === "Distinction" ? BRAND_COLOR
        : grade === "Credit"      ? "#2563eb"
        : grade === "Pass"        ? "#d97706"
        : "#dc2626";
@@ -38,7 +38,7 @@ function questionRows(qs: QuestionResult[]) {
   const F = `font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif`;
   return qs.map((q, i) => {
     const ok = q.correct;
-    const ansCol = ok ? "#059669" : "#dc2626";
+    const ansCol = ok ? BRAND_COLOR : "#dc2626";
     return `
     <tr>
       <td style="padding:14px 16px;border-bottom:1px solid #f3f4f6;vertical-align:top">
@@ -46,7 +46,7 @@ function questionRows(qs: QuestionResult[]) {
         <p style="margin:0 0 3px;font-size:12px;color:${ansCol};${F}">
           ${ok ? "✅" : "❌"}&nbsp;<strong>Your answer:</strong>&nbsp;${q.selectedLabel ?? "<em style='color:#9ca3af'>Not answered</em>"}
         </p>
-        ${!ok ? `<p style="margin:0 0 3px;font-size:12px;color:#059669;${F}">✓&nbsp;<strong>Correct answer:</strong>&nbsp;${q.correctLabel}</p>` : ""}
+        ${!ok ? `<p style="margin:0 0 3px;font-size:12px;color:${BRAND_COLOR};${F}">✓&nbsp;<strong>Correct answer:</strong>&nbsp;${q.correctLabel}</p>` : ""}
         ${q.explanation ? `<p style="margin:6px 0 0;font-size:11.5px;color:#6b7280;font-style:italic;line-height:1.5;padding:6px 10px;border-left:3px solid rgba(166,68,104,0.3);background:#fdf2f7;${F}">${q.explanation}</p>` : ""}
       </td>
     </tr>`;

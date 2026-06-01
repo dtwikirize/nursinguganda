@@ -4,7 +4,9 @@
     {
       "name": "nursing-uganda",
       "runtimeExecutable": "node",
-      "runtimeArgs": ["server.js"],
+      "runtimeArgs": [
+        "server.js"
+      ],
       "port": 3000
     }
   ]
