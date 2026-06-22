@@ -29,7 +29,7 @@ function normalizeFile(relativePath) {
   const original = html;
   const title = (html.match(/<h1>([\s\S]*?)<\/h1>/) || [null, "This topic"])[1].replace(/<[^>]+>/g, "").trim();
 
-  html = html.replace(/main\.min\.css\?v=(?:11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|82|114|115|116)/g, "main.min.css?v=117");
+  html = html.replace(/main\.min\.css\?v=(?:11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|82|114|115|116|117)/g, "main.min.css?v=118");
   html = html.replace(/\s*<details class="seo-lesson-section" open>\s*<summary>\d+\s+Learning\s+(?:Objectives|Outcomes)[\s\S]*?<\/details>\s*/i, "\n");
 
   const pictureMatch = html.match(/\s*<section class="seo-panel">\s*<h2>Pictures For This Lesson<\/h2>[\s\S]*?<\/section>\s*/);

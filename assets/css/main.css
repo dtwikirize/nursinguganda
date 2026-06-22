@@ -1572,8 +1572,10 @@ color: var(--color-on-brand);
 
 .hero {
 padding: 64px 0 48px;
-  background: transparent;
-  color: var(--color-text);
+  background:
+    linear-gradient(105deg, rgba(7, 30, 43, 0.92) 0%, rgba(17, 76, 92, 0.74) 58%, rgba(255,255,255,0.08) 100%),
+    var(--hero-image, url("../images/nursing-uganda-hero-nursing-student-skills-lab-01.png")) center / cover no-repeat;
+  color: #fff;
 }
 
 .hero-grid {
@@ -1640,7 +1642,7 @@ margin: 0;
 .hero h1,
 .hero h2,
 .hero h3 {
-color: var(--color-navy);
+color: #fff;
 }
 
 h1 {
@@ -2543,9 +2545,27 @@ color: var(--color-primary);
 
 /* ── Page Header ───────────────────────────────────────────── */
 .page-header {
+  position: relative;
+  overflow: hidden;
   padding: 36px 0 32px;
-  background: var(--color-bg);
+  background:
+    linear-gradient(105deg, rgba(12, 31, 45, 0.90) 0%, rgba(20, 70, 86, 0.74) 52%, rgba(166, 68, 104, 0.42) 100%),
+    url("../images/nursing-uganda-hero-nursing-student-skills-lab-01.png") center / cover no-repeat;
   border-bottom: 1px solid var(--color-border);
+  color: #fff;
+}
+
+.page-header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(0,0,0,0.08));
+  pointer-events: none;
+}
+
+.page-header .container {
+  position: relative;
+  z-index: 1;
 }
 
 .page-eyebrow {
@@ -2564,6 +2584,7 @@ color: var(--color-primary);
 
 .page-header-title {
   margin: 0 0 6px;
+  color: #fff;
   font-size: clamp(1.8rem, 3.8vw, 2.5rem);
   letter-spacing: -0.03em;
   line-height: 1.05;
@@ -2571,7 +2592,7 @@ color: var(--color-primary);
 
 .page-header-body {
   margin: 0;
-  color: var(--color-text-muted);
+  color: rgba(255,255,255,0.84);
   font-size: 1rem;
   line-height: 1.5;
   max-width: 60ch;
@@ -8846,10 +8867,12 @@ display: flex;
   position: relative;
   overflow: hidden;
   padding: 56px 0 48px;
-  background: linear-gradient(135deg,
-    color-mix(in srgb, var(--lp-accent) 90%, #000) 0%,
-    color-mix(in srgb, var(--lp-accent) 60%, #1a1a2e) 50%,
-    color-mix(in srgb, var(--lp-accent) 40%, #0d0d1a) 100%);
+  background:
+    linear-gradient(105deg,
+      color-mix(in srgb, var(--lp-accent) 80%, #061820) 0%,
+      rgba(10, 39, 54, 0.82) 52%,
+      rgba(10, 39, 54, 0.44) 100%),
+    url("../images/resources/resources-hero-premium.jpg") center / cover no-repeat;
   color: #fff;
 }
 
@@ -10062,8 +10085,9 @@ display: flex;
   min-height: 480px;
   padding: 56px 0 72px;
   color: var(--color-on-brand);
-  /* Brand-rose gradient shown while images load */
-  background: linear-gradient(135deg, #2d0a1a 0%, #5c1a30 40%, #7a3050 70%, #A64468 100%);
+  background:
+    linear-gradient(105deg, rgba(11, 32, 44, 0.92) 0%, rgba(16, 69, 82, 0.74) 54%, rgba(166, 68, 104, 0.24) 100%),
+    url("../images/careers/nursing-uganda-careers-hero-premium-01.webp") center / cover no-repeat;
 }
 
 /* Slide stack */
@@ -10088,12 +10112,10 @@ display: flex;
   inset: 0;
   background-image:
     linear-gradient(105deg,
-      rgba(20, 4, 12, 0.90) 0%,
-      rgba(60, 10, 30, 0.78) 40%,
-      rgba(120, 20, 55, 0.45) 70%,
-      rgba(166, 68, 104, 0.15) 100%),
-    radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
-  background-size: auto, 22px 22px;
+      rgba(4, 25, 37, 0.92) 0%,
+      rgba(10, 58, 68, 0.70) 42%,
+      rgba(18, 95, 111, 0.30) 68%,
+      rgba(255, 255, 255, 0.04) 100%);
   pointer-events: none;
 }
 
@@ -10281,10 +10303,10 @@ display: flex;
   justify-content: center;
   gap: 4px;
   padding: 20px 12px;
-  border: 1px solid rgba(255,255,255,0.18);
-  border-top: 2px solid rgba(255,255,255,0.38);
+  border: 1px solid rgba(255,255,255,0.28);
+  border-top: 2px solid rgba(255,255,255,0.48);
   border-radius: var(--radius);
-  background: rgba(255,255,255,0.1);
+  background: rgba(4, 32, 43, 0.42);
   text-align: center;
   -webkit-backdrop-filter: blur(18px) saturate(160%);
   backdrop-filter: blur(18px) saturate(160%);
@@ -10292,8 +10314,8 @@ display: flex;
 }
 
 .careers-stat-card:hover {
-  background: rgba(166,68,104,0.25);
-  border-top-color: #f9aecf;
+  background: rgba(8, 78, 92, 0.54);
+  border-top-color: #b9f4fb;
 }
 
 .careers-stat-card strong {
@@ -12896,12 +12918,14 @@ display: flex;
 
 .hero .hero-copy p {
   margin-top: 0;
-  color: var(--color-text-muted);
+  color: rgba(255,255,255,0.84);
   font-size: clamp(1rem, 1.4vw, 1.18rem);
 }
 
 .hero .hero-cues span {
-  color: var(--color-text-muted);
+  color: rgba(255,255,255,0.82);
+  border-color: rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.10);
 }
 
 .resources-hero .hero-cues span {
@@ -14364,7 +14388,9 @@ position: relative;
   overflow: hidden;
   padding: 32px 36px 28px;
   color: var(--white);
-  background: var(--gradient-brand);
+  background:
+    linear-gradient(105deg, rgba(7, 30, 43, 0.92) 0%, rgba(17, 76, 92, 0.76) 58%, rgba(166, 68, 104, 0.34) 100%),
+    var(--lesson-hero-image, url("../images/nursing-uganda-hero-nursing-student-skills-lab-01.png")) center / cover no-repeat;
   animation: lessonHeroIn 0.4s ease both;
 }
 
@@ -15943,7 +15969,9 @@ width: 100%;
 
 /* Legacy Dictionary */
 .dictionary-hero {
-  background: var(--gradient-brand);
+  background:
+    linear-gradient(105deg, rgba(7, 30, 43, 0.92) 0%, rgba(17, 76, 92, 0.78) 58%, rgba(166, 68, 104, 0.34) 100%),
+    url("../images/nursing-uganda-disease-assessment-learning-01.png") center / cover no-repeat;
   color: var(--white);
   overflow: visible;
   position: relative;
@@ -16634,7 +16662,9 @@ gap: 8px;
 }
 
 .dictionary-term-hero {
-  background: var(--gradient-brand);
+  background:
+    linear-gradient(105deg, rgba(7, 30, 43, 0.92) 0%, rgba(17, 76, 92, 0.76) 58%, rgba(166, 68, 104, 0.34) 100%),
+    url("../images/nursing-uganda-disease-assessment-learning-01.png") center / cover no-repeat;
   color: var(--white);
   overflow: hidden;
   padding: 32px 36px 30px;
@@ -18388,7 +18418,9 @@ textarea:focus {
 /* ── Flashcards ───────────────────────────────────────────────────── */
 .fc-hero {
   padding: 36px 0 24px;
-  background: linear-gradient(135deg, #7a3050 0%, #A64468 55%, #c96898 100%);
+  background:
+    linear-gradient(105deg, rgba(30, 41, 59, 0.90) 0%, rgba(122, 48, 80, 0.78) 58%, rgba(166, 68, 104, 0.40) 100%),
+    url("../images/resources/resource-quizzes-hero.jpg") center / cover no-repeat;
   color: var(--color-on-brand);
 }
 
@@ -20456,7 +20488,9 @@ textarea:focus {
   position: relative;
   padding: 52px 0 48px;
   overflow: hidden;
-  background: linear-gradient(145deg, #7a3050 0%, #A64468 55%, #c96898 100%);
+  background:
+    linear-gradient(105deg, rgba(8, 31, 43, 0.92) 0%, rgba(26, 85, 101, 0.76) 58%, rgba(166, 68, 104, 0.34) 100%),
+    url("../images/programmes/nursing-uganda-programme-diploma-nursing-premium-w900.jpg") center / cover no-repeat;
   color: #fff;
 }
 
@@ -20639,7 +20673,9 @@ textarea:focus {
 
 /* ── Dark mode ── */
 [data-theme="dark"] .courses-hero2 {
-  background: linear-gradient(145deg, #4a1228 0%, #7a3050 55%, #A64468 100%);
+  background:
+    linear-gradient(105deg, rgba(4, 18, 28, 0.94) 0%, rgba(42, 69, 82, 0.82) 58%, rgba(122, 48, 80, 0.42) 100%),
+    url("../images/programmes/nursing-uganda-programme-diploma-nursing-premium-w900.jpg") center / cover no-repeat;
 }
 
 /* ── Responsive ── */
@@ -20660,7 +20696,9 @@ textarea:focus {
 
 /* ── Legacy hero styles (kept for any remaining references) ── */
 .courses-hero {
-  background: linear-gradient(135deg, #7a3050 0%, #A64468 45%, #c96898 100%);
+  background:
+    linear-gradient(105deg, rgba(8, 31, 43, 0.92) 0%, rgba(26, 85, 101, 0.76) 58%, rgba(166, 68, 104, 0.34) 100%),
+    url("../images/programmes/nursing-uganda-programme-certificate-nursing-premium-w900.jpg") center / cover no-repeat;
   color: #fff;
   padding: 4rem 0 3.5rem;
   position: relative;
@@ -20907,7 +20945,9 @@ textarea:focus {
 
 /* ── Dark mode ── */
 [data-theme="dark"] .courses-hero {
-  background: linear-gradient(135deg, #5c1d35 0%, #7a3050 45%, #A64468 100%);
+  background:
+    linear-gradient(105deg, rgba(4, 18, 28, 0.94) 0%, rgba(42, 69, 82, 0.82) 58%, rgba(122, 48, 80, 0.42) 100%),
+    url("../images/programmes/nursing-uganda-programme-certificate-nursing-premium-w900.jpg") center / cover no-repeat;
 }
 
 [data-theme="dark"] .courses-resume-strip {
@@ -21582,7 +21622,9 @@ textarea:focus {
 
 /* Hero */
 .crp-hero {
-  background: linear-gradient(135deg, #1C1917 0%, var(--crp-color, #A64468) 100%);
+  background:
+    linear-gradient(105deg, rgba(12, 20, 26, 0.92) 0%, rgba(40, 70, 80, 0.76) 58%, rgba(166, 68, 104, 0.38) 100%),
+    url("../images/resources/resource-student-support-hero.webp") center / cover no-repeat;
   padding: 48px 0 56px;
   color: #fff;
   margin-bottom: 48px;
@@ -23199,7 +23241,9 @@ textarea:focus {
 
 /* Dashboard hero banner */
 .dash-hero {
-  background: linear-gradient(135deg, #A64468 0%, #7a3050 100%);
+  background:
+    linear-gradient(105deg, rgba(5, 29, 43, 0.92) 0%, rgba(24, 83, 98, 0.76) 58%, rgba(166, 68, 104, 0.36) 100%),
+    url("../images/nursing-uganda-curriculum-study-group-01.png") center / cover no-repeat;
   color: #fff;
   padding: 3rem 0 2.5rem;
 }
@@ -23604,7 +23648,9 @@ textarea:focus {
 
 /* Hub hero */
 .me-hub-hero {
-  background: linear-gradient(135deg, #7a3050 0%, #A64468 100%);
+  background:
+    linear-gradient(105deg, rgba(5, 29, 43, 0.92) 0%, rgba(47, 75, 93, 0.78) 58%, rgba(166, 68, 104, 0.36) 100%),
+    url("../images/resources/resource-past-papers-hero.png") center / cover no-repeat;
   color: #fff;
   padding: 3rem 0 2.5rem;
 }
