@@ -68,7 +68,9 @@ const state = {
   upcomingEvents: [],
   resourceDownloads: [],
   maintenance: { mode: false, message: "", eta: "" },
-  adminTab: "jobs",
+  adminTab: "analytics",
+  adminAnalytics: { events: [], loading: false, loaded: false, error: "" },
+  analyticsRange: "7d",
   adminJobs: [],
   adminAnnouncements: [],
   adminUsers: [],
@@ -196,6 +198,7 @@ const iconPaths = {
   send: `<path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/>`,
   logOut: `<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>`,
   lock: `<rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>`,
+  mousePointer: `<path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3Z"/><path d="m13 13 6 6"/>`,
   eye: `<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>`,
   eyeOff: `<path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" y1="2" x2="22" y2="22"/>`,
   userCheck: `<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/>`,
@@ -917,6 +920,223 @@ async function adminLoadUsers() {
   if (data) state.adminUsers = data;
 }
 
+// --- ANALYTICS ---------------------------------------------------------------
+const ANALYTICS_EVENTS_KEY = "nursinguganda.analyticsEvents";
+const ANALYTICS_VISITOR_KEY = "nursinguganda.visitorId";
+const ANALYTICS_SESSION_KEY = "nursinguganda.analyticsSession";
+const ANALYTICS_MAX_LOCAL_EVENTS = 900;
+
+function analyticsId(prefix) {
+  const bytes = new Uint8Array(8);
+  if (crypto?.getRandomValues) crypto.getRandomValues(bytes);
+  else for (let i = 0; i < bytes.length; i += 1) bytes[i] = Math.floor(Math.random() * 256);
+  return `${prefix}_${Array.from(bytes).map((b) => b.toString(16).padStart(2, "0")).join("")}`;
+}
+
+function analyticsVisitorId() {
+  try {
+    let id = localStorage.getItem(ANALYTICS_VISITOR_KEY);
+    if (!id) {
+      id = analyticsId("v");
+      localStorage.setItem(ANALYTICS_VISITOR_KEY, id);
+    }
+    return id;
+  } catch (_) {
+    return "v_private";
+  }
+}
+
+function analyticsSessionId() {
+  try {
+    const now = Date.now();
+    const saved = JSON.parse(localStorage.getItem(ANALYTICS_SESSION_KEY) || "null");
+    if (saved?.id && saved?.expires > now) {
+      saved.expires = now + 30 * 60 * 1000;
+      localStorage.setItem(ANALYTICS_SESSION_KEY, JSON.stringify(saved));
+      return saved.id;
+    }
+    const next = { id: analyticsId("s"), expires: now + 30 * 60 * 1000 };
+    localStorage.setItem(ANALYTICS_SESSION_KEY, JSON.stringify(next));
+    return next.id;
+  } catch (_) {
+    return "s_private";
+  }
+}
+
+function analyticsReadLocal() {
+  try {
+    return JSON.parse(localStorage.getItem(ANALYTICS_EVENTS_KEY) || "[]").filter(Boolean);
+  } catch (_) {
+    return [];
+  }
+}
+
+function analyticsWriteLocal(events) {
+  try {
+    localStorage.setItem(ANALYTICS_EVENTS_KEY, JSON.stringify(events.slice(-ANALYTICS_MAX_LOCAL_EVENTS)));
+  } catch (_) {}
+}
+
+function analyticsRangeStart(range = state.analyticsRange) {
+  const days = range === "24h" ? 1 : range === "30d" ? 30 : 7;
+  return Date.now() - days * 24 * 60 * 60 * 1000;
+}
+
+function analyticsFriendlyPath(path) {
+  const clean = String(path || "/").split("?")[0].replace(/\/$/, "") || "/";
+  if (clean === "/") return "/notes";
+  return clean;
+}
+
+function analyticsTrack(type, details = {}) {
+  if (!type) return;
+  const now = new Date();
+  const target = details.target || "";
+  const event = {
+    id: analyticsId("e"),
+    type,
+    path: analyticsFriendlyPath(details.path || window.location.pathname),
+    title: details.title || document.title || "",
+    target: String(target).replace(/\s+/g, " ").trim().slice(0, 120),
+    href: details.href || "",
+    visitorId: analyticsVisitorId(),
+    sessionId: analyticsSessionId(),
+    userId: state.currentUser?.id || "",
+    userEmail: state.currentUser?.email || "",
+    registered: !!state.currentUser,
+    ts: now.toISOString(),
+    userAgent: navigator.userAgent || ""
+  };
+
+  const localEvents = analyticsReadLocal();
+  localEvents.push(event);
+  analyticsWriteLocal(localEvents);
+
+  const client = sb();
+  if (client) {
+    client.from("analytics_events").insert({
+      event_type: event.type,
+      path: event.path,
+      page_title: event.title,
+      target_text: event.target,
+      target_href: event.href,
+      visitor_id: event.visitorId,
+      session_id: event.sessionId,
+      user_id: event.userId || null,
+      user_email: event.userEmail || null,
+      is_registered: event.registered,
+      user_agent: event.userAgent
+    }).then(({ error }) => {
+      if (error && !state.adminAnalytics.error) {
+        state.adminAnalytics.error = "Analytics is using local data until the Supabase analytics migration is applied.";
+      }
+    }).catch(() => {});
+  }
+}
+
+function analyticsTrackPageView() {
+  const path = analyticsFriendlyPath(window.location.pathname);
+  if (state.lastTrackedPage === path) return;
+  state.lastTrackedPage = path;
+  analyticsTrack("pageview", { path, title: document.title || "Nursing Uganda" });
+}
+
+function analyticsTrackClickFromEvent(event) {
+  const target = event.target.closest("a[href], button, [role='button']");
+  if (!target || target.closest(".adm-shell")) return;
+  const text = target.getAttribute("aria-label") || target.textContent || target.title || target.tagName;
+  analyticsTrack("click", {
+    path: window.location.pathname,
+    target: text,
+    href: target.getAttribute("href") || target.dataset.nav || ""
+  });
+}
+
+async function adminLoadAnalytics() {
+  state.adminAnalytics.loading = true;
+  const start = new Date(analyticsRangeStart()).toISOString();
+  let events = analyticsReadLocal().filter((event) => Date.parse(event.ts) >= Date.parse(start));
+  const client = sb();
+
+  if (client) {
+    try {
+      const { data, error } = await client
+        .from("analytics_events")
+        .select("*")
+        .gte("created_at", start)
+        .order("created_at", { ascending: false })
+        .limit(1200);
+      if (error) throw error;
+      if (data) {
+        events = data.map((row) => ({
+          id: row.id,
+          type: row.event_type,
+          path: row.path,
+          title: row.page_title || "",
+          target: row.target_text || "",
+          href: row.target_href || "",
+          visitorId: row.visitor_id,
+          sessionId: row.session_id,
+          userId: row.user_id || "",
+          userEmail: row.user_email || "",
+          registered: !!row.is_registered,
+          ts: row.created_at
+        }));
+        state.adminAnalytics.error = "";
+      }
+    } catch (error) {
+      state.adminAnalytics.error = "Showing local analytics only. Apply the Supabase analytics migration for site-wide reporting.";
+    }
+  }
+
+  state.adminAnalytics = { ...state.adminAnalytics, events, loading: false, loaded: true };
+}
+
+function analyticsSummary(events = state.adminAnalytics.events || []) {
+  const startMs = analyticsRangeStart();
+  const scoped = events.filter((event) => Date.parse(event.ts) >= startMs);
+  const pageviews = scoped.filter((event) => event.type === "pageview");
+  const clicks = scoped.filter((event) => event.type === "click");
+  const visitors = new Set(scoped.map((event) => event.visitorId).filter(Boolean));
+  const sessions = new Set(scoped.map((event) => event.sessionId).filter(Boolean));
+  const registeredVisitors = new Set(scoped.filter((event) => event.registered || event.userId).map((event) => event.userId || event.userEmail || event.visitorId));
+  const topPages = analyticsTopList(pageviews, "path", 7);
+  const topClicks = analyticsTopList(clicks, "target", 7);
+  return { scoped, pageviews, clicks, visitors, sessions, registeredVisitors, topPages, topClicks };
+}
+
+function analyticsTopList(events, field, limit = 6) {
+  const counts = new Map();
+  events.forEach((event) => {
+    const key = event[field] || (field === "target" ? "Unnamed click" : "/notes");
+    counts.set(key, (counts.get(key) || 0) + 1);
+  });
+  return [...counts.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, limit)
+    .map(([label, count]) => ({ label, count }));
+}
+
+function analyticsDailySeries(events) {
+  const days = state.analyticsRange === "30d" ? 30 : state.analyticsRange === "24h" ? 1 : 7;
+  const today = new Date();
+  const buckets = [];
+  for (let i = days - 1; i >= 0; i -= 1) {
+    const day = new Date(today);
+    day.setDate(today.getDate() - i);
+    const key = day.toISOString().slice(0, 10);
+    buckets.push({ key, label: day.toLocaleDateString("en-GB", { day: "numeric", month: "short" }), views: 0, clicks: 0 });
+  }
+  const byKey = new Map(buckets.map((bucket) => [bucket.key, bucket]));
+  events.forEach((event) => {
+    const bucket = byKey.get(String(event.ts || "").slice(0, 10));
+    if (!bucket) return;
+    if (event.type === "pageview") bucket.views += 1;
+    if (event.type === "click") bucket.clicks += 1;
+  });
+  return buckets;
+}
+
 function renderUserAvatar(user, size) {
   const sz = size || 36;
   const c = (user && user.color) ? user.color : { bg: "#dcfce7", text: "#15803d" };
@@ -958,6 +1178,7 @@ function setRoute(path) {
   state.navOpen = false;
   state.megaOpen = "";
   render();
+  analyticsTrackPageView();
   scrollPageToTop();
 }
 
@@ -4254,7 +4475,8 @@ function layout(content) {
   });
 
   app.querySelectorAll("[data-nav-toggle]").forEach((toggle) => {
-    toggle.addEventListener("click", () => {
+    toggle.addEventListener("click", (event) => {
+      event.stopPropagation();
       state.navOpen = !state.navOpen;
       if (!state.navOpen) state.megaOpen = "";
       render();
@@ -4265,7 +4487,7 @@ function layout(content) {
   // Close mobile drawer when clicking overlay or a nav-close link
   const overlay = app.querySelector("[data-nav-overlay]");
   if (overlay) {
-    overlay.addEventListener("click", () => { state.navOpen = false; state.megaOpen = ""; render(); });
+    overlay.addEventListener("click", (event) => { event.stopPropagation(); state.navOpen = false; state.megaOpen = ""; render(); });
   }
   // data-nav-close: close drawer AND navigate if the element is an <a href="...">
   // We handle navigation explicitly so it works reliably on all mobile browsers —
@@ -4294,6 +4516,7 @@ function layout(content) {
     trigger.addEventListener("click", (event) => {
       const key = trigger.dataset.megaToggle || "";
       event.preventDefault();
+      event.stopPropagation();
       state.megaOpen = state.megaOpen === key ? "" : key;
       render();
     });
@@ -4507,6 +4730,17 @@ function layout(content) {
       state.adminTab = btn.dataset.adminTab;
       render();
     });
+  });
+  app.querySelectorAll("[data-analytics-range]").forEach(btn => {
+    btn.addEventListener("click", async () => {
+      state.analyticsRange = btn.dataset.analyticsRange || "7d";
+      await adminLoadAnalytics();
+      render();
+    });
+  });
+  app.querySelector("[data-analytics-refresh]")?.addEventListener("click", async () => {
+    await adminLoadAnalytics();
+    render();
   });
 
   setupCookieConsentControls();
@@ -5362,6 +5596,132 @@ function renderAccountPage() {
 }
 
 // ─── ADMIN PANEL ─────────────────────────────────────────────────────────────
+function renderAdminAnalyticsTab() {
+  const summary = analyticsSummary();
+  const series = analyticsDailySeries(summary.scoped);
+  const maxBar = Math.max(1, ...series.map((day) => day.views + day.clicks));
+  const rangeLabel = state.analyticsRange === "24h" ? "Last 24 hours" : state.analyticsRange === "30d" ? "Last 30 days" : "Last 7 days";
+  const activeUsers = new Set(
+    summary.scoped
+      .filter((event) => Date.now() - Date.parse(event.ts) < 15 * 60 * 1000)
+      .map((event) => event.sessionId)
+      .filter(Boolean)
+  ).size;
+
+  const statCards = [
+    { label: "Visitors", value: summary.visitors.size, iconName: "users", hint: "Anonymous unique devices" },
+    { label: "Unique Sessions", value: summary.sessions.size, iconName: "activity", hint: "30-minute visit windows" },
+    { label: "Page Views", value: summary.pageviews.length, iconName: "eye", hint: "Lessons and pages opened" },
+    { label: "Clicks", value: summary.clicks.length, iconName: "mousePointer", hint: "Buttons and links tapped" },
+    { label: "Registered", value: summary.registeredVisitors.size || (state.adminUsers || []).length, iconName: "userCheck", hint: "Signed-in visitors / users" },
+    { label: "Live Now", value: activeUsers, iconName: "zap", hint: "Active in last 15 minutes" }
+  ];
+
+  const renderTopList = (items, emptyLabel) => items.length ? items.map((item, index) => {
+    const pct = Math.max(8, Math.round((item.count / Math.max(1, items[0].count)) * 100));
+    return `
+      <div class="adm-analytics-rank-row">
+        <span class="adm-analytics-rank-index">${index + 1}</span>
+        <div class="adm-analytics-rank-body">
+          <strong>${escapeHtml(item.label)}</strong>
+          <div class="adm-analytics-rank-bar"><span style="width:${pct}%"></span></div>
+        </div>
+        <b>${item.count}</b>
+      </div>
+    `;
+  }).join("") : `<div class="adm-analytics-empty">${escapeHtml(emptyLabel)}</div>`;
+
+  const recentEvents = summary.scoped
+    .slice()
+    .sort((a, b) => Date.parse(b.ts) - Date.parse(a.ts))
+    .slice(0, 12);
+
+  return `
+    <div class="adm-analytics">
+      <div class="adm-analytics-hero">
+        <div>
+          <span class="adm-analytics-kicker">${icon("chartLine")} Site intelligence</span>
+          <h2>Analytics Overview</h2>
+          <p>Track visitors, clicks, page views, registered activity and the pages students use most.</p>
+        </div>
+        <div class="adm-analytics-range" role="group" aria-label="Analytics date range">
+          ${[
+            ["24h", "24h"],
+            ["7d", "7 days"],
+            ["30d", "30 days"]
+          ].map(([value, label]) => `<button type="button" class="${state.analyticsRange === value ? "active" : ""}" data-analytics-range="${value}">${label}</button>`).join("")}
+        </div>
+      </div>
+
+      ${state.adminAnalytics.error ? `<div class="adm-analytics-notice">${icon("alertTriangle")}<span>${escapeHtml(state.adminAnalytics.error)}</span></div>` : ""}
+
+      <div class="adm-analytics-stat-grid">
+        ${statCards.map((card) => `
+          <div class="adm-analytics-stat">
+            <span>${icon(card.iconName)}</span>
+            <strong>${card.value.toLocaleString("en-UG")}</strong>
+            <small>${escapeHtml(card.label)}</small>
+            <em>${escapeHtml(card.hint)}</em>
+          </div>
+        `).join("")}
+      </div>
+
+      <div class="adm-analytics-main-grid">
+        <section class="adm-analytics-panel adm-analytics-panel-wide">
+          <div class="adm-analytics-panel-head">
+            <div><h3>Traffic Rhythm</h3><p>${rangeLabel}: views and clicks by day.</p></div>
+            <button type="button" class="adm-mini-action" data-analytics-refresh>${icon("rotateCcw")} Refresh</button>
+          </div>
+          <div class="adm-analytics-bars">
+            ${series.map((day) => {
+              const viewsPct = Math.max(3, Math.round((day.views / maxBar) * 100));
+              const clicksPct = Math.max(day.clicks ? 3 : 0, Math.round((day.clicks / maxBar) * 100));
+              return `
+                <div class="adm-analytics-bar-day" title="${escapeHtml(day.label)}: ${day.views} views, ${day.clicks} clicks">
+                  <div class="adm-analytics-bar-stack">
+                    <span class="views" style="height:${viewsPct}%"></span>
+                    <span class="clicks" style="height:${clicksPct}%"></span>
+                  </div>
+                  <small>${escapeHtml(day.label)}</small>
+                </div>
+              `;
+            }).join("")}
+          </div>
+          <div class="adm-analytics-legend"><span class="views"></span> Page views <span class="clicks"></span> Clicks</div>
+        </section>
+
+        <section class="adm-analytics-panel">
+          <div class="adm-analytics-panel-head"><div><h3>Top Pages</h3><p>Most opened lessons and sections.</p></div></div>
+          ${renderTopList(summary.topPages, "No page views tracked yet.")}
+        </section>
+
+        <section class="adm-analytics-panel">
+          <div class="adm-analytics-panel-head"><div><h3>Top Clicks</h3><p>Buttons and links getting attention.</p></div></div>
+          ${renderTopList(summary.topClicks, "No clicks tracked yet.")}
+        </section>
+      </div>
+
+      <section class="adm-analytics-panel">
+        <div class="adm-analytics-panel-head">
+          <div><h3>Recent Activity</h3><p>Latest ${Math.min(recentEvents.length, 12)} events across the site.</p></div>
+        </div>
+        <div class="adm-analytics-events">
+          ${recentEvents.length ? recentEvents.map((event) => `
+            <div class="adm-analytics-event">
+              <span class="adm-event-type ${event.type === "click" ? "click" : "view"}">${event.type === "click" ? icon("mousePointer") : icon("eye")}</span>
+              <div>
+                <strong>${event.type === "click" ? escapeHtml(event.target || "Click") : escapeHtml(event.path || "/notes")}</strong>
+                <small>${escapeHtml(event.type === "click" ? event.path || "/notes" : event.title || "Page view")} &middot; ${new Date(event.ts).toLocaleString("en-UG", { dateStyle: "medium", timeStyle: "short" })}</small>
+              </div>
+              ${event.registered ? `<b class="adm-analytics-user">Registered</b>` : `<b class="adm-analytics-user muted">Visitor</b>`}
+            </div>
+          `).join("") : `<div class="adm-analytics-empty">Analytics will appear here after visitors open pages or click links.</div>`}
+        </div>
+      </section>
+    </div>
+  `;
+}
+
 function renderAdminMaintenanceTab() {
   const m = state.maintenance || { mode: false, message: "", eta: "" };
   return `
@@ -5685,6 +6045,7 @@ function renderAdminPage() {
 
   // ── Page content ────────────────────────────────────────────────────
   const addBtnMap = {
+    analytics: "",
     jobs: `<button class="button primary" type="button" data-adm-job-new>${icon("sparkles")} Add Job</button>`,
     announcements: `<button class="button primary" type="button" data-adm-ann-new>${icon("bell")} Add Announcement</button>`,
     tips: `<button class="button primary" type="button" data-adm-tip-new>${icon("lightbulb")} Add Tip</button>`,
@@ -5692,27 +6053,47 @@ function renderAdminPage() {
     resources: `<button class="button primary" type="button" data-adm-res-new>${icon("download")} Add Download</button>`,
     users: ""
   };
+  const adminNavItems = [
+    { key: "analytics", label: "Analytics", iconName: "chartLine", badge: (state.adminAnalytics.events || []).length },
+    { key: "jobs", label: "Jobs", iconName: "briefcaseMedical", badge: jobs.length },
+    { key: "announcements", label: "Banners", iconName: "bell", badge: anns.length },
+    { key: "tips", label: "Tips", iconName: "lightbulb", badge: tips.length },
+    { key: "events", label: "Events", iconName: "calendar", badge: events.length },
+    { key: "resources", label: "Downloads", iconName: "download", badge: resources.length },
+    { key: "users", label: "Users", iconName: "users", badge: users.length },
+    { key: "maintenance", label: "Maintenance", iconName: "wrench", badge: state.maintenance?.mode ? "ON" : "", danger: !!state.maintenance?.mode }
+  ];
 
   const pageContent = `
-    <section class="section">
+    <section class="section adm-section">
       <div class="container adm-container">
         <div class="adm-header">
           <div>
             <h1 class="adm-title">${icon("tool")} Admin Panel</h1>
-            <p class="adm-subtitle">Manage jobs, announcements, tips, events, downloads and users.</p>
+            <p class="adm-subtitle">Monitor analytics and manage content, users, resources and site controls.</p>
           </div>
           ${addBtnMap[tab] || ""}
         </div>
 
-        <div class="adm-tabs">
-          <button class="adm-tab${tab === "jobs" ? " active" : ""}" data-admin-tab="jobs">${icon("briefcaseMedical")} Jobs <span class="adm-tab-badge">${jobs.length}</span></button>
-          <button class="adm-tab${tab === "announcements" ? " active" : ""}" data-admin-tab="announcements">${icon("bell")} Banners <span class="adm-tab-badge">${anns.length}</span></button>
-          <button class="adm-tab${tab === "tips" ? " active" : ""}" data-admin-tab="tips">${icon("lightbulb")} Tips <span class="adm-tab-badge">${tips.length}</span></button>
-          <button class="adm-tab${tab === "events" ? " active" : ""}" data-admin-tab="events">${icon("calendar")} Events <span class="adm-tab-badge">${events.length}</span></button>
-          <button class="adm-tab${tab === "resources" ? " active" : ""}" data-admin-tab="resources">${icon("download")} Downloads <span class="adm-tab-badge">${resources.length}</span></button>
-          <button class="adm-tab${tab === "users" ? " active" : ""}" data-admin-tab="users">${icon("users")} Users <span class="adm-tab-badge">${users.length}</span></button>
-          <button class="adm-tab${tab === "maintenance" ? " active" : ""}${state.maintenance?.mode ? " adm-tab--danger" : ""}" data-admin-tab="maintenance">${icon("wrench")} Maintenance${state.maintenance?.mode ? ` <span class="adm-tab-badge adm-tab-badge--danger">ON</span>` : ""}</button>
-        </div>
+        <div class="adm-shell">
+          <aside class="adm-sidebar" aria-label="Admin navigation">
+            <div class="adm-sidebar-card">
+              <span class="adm-sidebar-label">Workspace</span>
+              <strong>Nursing Uganda</strong>
+              <small>${state.currentUser?.email ? escapeHtml(state.currentUser.email) : "Administrator"}</small>
+            </div>
+            <nav class="adm-sidebar-nav">
+              ${adminNavItems.map((item) => `
+                <button type="button" class="adm-side-link${tab === item.key ? " active" : ""}${item.danger ? " danger" : ""}" data-admin-tab="${item.key}">
+                  <span>${icon(item.iconName)} ${escapeHtml(item.label)}</span>
+                  ${item.badge !== "" ? `<b>${escapeHtml(item.badge)}</b>` : ""}
+                </button>
+              `).join("")}
+            </nav>
+          </aside>
+          <div class="adm-content">
+
+        ${tab === "analytics" ? renderAdminAnalyticsTab() : ""}
 
         ${tab === "jobs" ? `
           <div class="adm-table-wrap">
@@ -5748,7 +6129,9 @@ function renderAdminPage() {
               </tbody>
             </table>`}
           </div>
-        ` : `
+        ` : ""}
+
+        ${tab === "announcements" ? `
           <div class="adm-table-wrap">
             ${anns.length === 0 ? `<div class="adm-empty">${icon("bell")}<p>No announcements yet. Click <strong>Add Announcement</strong> to post one.</p></div>` : `
             <table class="adm-table">
@@ -5778,7 +6161,7 @@ function renderAdminPage() {
               </tbody>
             </table>`}
           </div>
-        `}
+        ` : ""}
 
         ${tab === "tips" ? `
           <div class="adm-table-wrap">
@@ -5871,6 +6254,8 @@ function renderAdminPage() {
 
         ${tab === "maintenance" ? renderAdminMaintenanceTab() : ""}
 
+          </div>
+        </div>
       </div>
     </section>
     ${jobFormHtml}
@@ -15008,7 +15393,7 @@ function render() {
     // Admin page manages its own layout() call (needs to load data first)
     if (!isAdmin()) { setDocumentMeta("Access Denied", ""); layout(`<section class="section"><div class="container" style="text-align:center;padding:4rem 1rem">${icon("lock")}<h2 style="margin:.75rem 0">Admin access required.</h2><a class="button primary" href="/notes">Go Home</a></div></section>`); return; }
     // Load data then render
-    Promise.all([adminLoadJobs(), adminLoadAnnouncements(), adminLoadTips(), adminLoadEvents(), adminLoadResources(), adminLoadUsers()]).then(() => renderAdminPage());
+    Promise.all([adminLoadJobs(), adminLoadAnnouncements(), adminLoadTips(), adminLoadEvents(), adminLoadResources(), adminLoadUsers(), adminLoadAnalytics()]).then(() => renderAdminPage());
     // Render immediately with whatever data is already loaded
     renderAdminPage();
     return;
@@ -17348,6 +17733,7 @@ async function init() {
     setInterval(checkStudyReminder, 60000);
 
     render();
+    analyticsTrackPageView();
     scrollPageToTop();
     setupOfflineBanner();
     setupStudyNotifications();
@@ -17389,6 +17775,7 @@ window.addEventListener("popstate", () => {
   state.navOpen = false;
   state.megaOpen = "";
   render();
+  analyticsTrackPageView();
   scrollPageToTop();
 });
 
@@ -17398,6 +17785,8 @@ document.addEventListener("click", (e) => {
     adminSaveMaintenance(false, state.maintenance?.message || "", state.maintenance?.eta || "");
   }
 });
+
+document.addEventListener("click", analyticsTrackClickFromEvent, { capture: true });
 
 // Intercept all internal link clicks — no full page reloads
 document.addEventListener("click", (event) => {
@@ -17412,6 +17801,7 @@ document.addEventListener("click", (event) => {
     state.navOpen = false;
     state.megaOpen = "";
     render();
+    analyticsTrackPageView();
     scrollPageToTop();
   }
 });
