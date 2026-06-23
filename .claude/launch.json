@@ -1,0 +1,23 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "nursing-uganda",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "5500", "--directory", "D:/Projects/Nursing Uganda/Nursing-ug Web_app"],
+      "port": 5500
+    },
+    {
+      "name": "nurses-site",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "5501", "--directory", "D:/Projects/Nursing Uganda/Nurses revision/Nurses_Revision_Full"],
+      "port": 5501
+    },
+    {
+      "name": "palette-preview",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "5502", "--directory", "C:/Users/USER/AppData/Roaming/Claude/local-agent-mode-sessions/skills-plugin/01c87651-bbad-484b-be3c-6411a255d914/fda38b28-d7f6-446e-98b9-ce6893c2ed7e/skills/web-artifacts-builder/nursing-palette-preview"],
+      "port": 5502
+    }
+  ]
+}

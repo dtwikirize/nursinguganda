@@ -1,0 +1,527 @@
+/*
+Theme Name: Astra Child
+Theme URI: https://wpastra.com/
+Template: astra
+Author: Brainstorm Force
+Author URI: https://wpastra.com/about/?utm_source=theme_preview&utm_medium=author_link&utm_campaign=astra_theme
+Description: The Astra WordPress theme is lightning-fast and highly customizable. It has over 1 million downloads and the only theme in the world with 5,700+ five-star reviews! It's ideal for professional web designers, solopreneurs, small businesses, eCommerce, membership sites and any type of website. It offers special features and templates so it works perfectly with all page builders like Spectra, Elementor, Beaver Builder, etc. Fast performance, clean code, mobile-first design and schema markup are all built-in, making the theme exceptionally SEO-friendly. It's fully compatible with WooCommerce, SureCart and other eCommerce plugins and comes with lots of store-friendly features and templates. Astra also provides expert support for free users. A dedicated team of fully trained WordPress experts are on hand to help with every aspect of the theme. Try the live demo of Astra: https://zipwp.org/themes/astra/
+Tags: custom-menu,custom-logo,entertainment,one-column,two-columns,left-sidebar,e-commerce,right-sidebar,custom-colors,editor-style,featured-images,full-width-template,microformats,post-formats,rtl-language-support,theme-options,threaded-comments,translation-ready,blog
+Version: 4.11.3.1750400254
+Updated: 2025-06-20 06:17:34
+
+*/
+
+/* =====================================================
+   NURSES REVISION — CLEAN MINIMAL THEME OVERRIDE
+   Palette inspired by the clean, airy dot-grid look
+   ===================================================== */
+
+:root {
+    --nr-bg:           #f9f9f9;
+    --nr-dot-color:    rgba(0, 0, 0, 0.07);
+    --nr-dot-size:     20px;
+    --nr-card-bg:      #ffffff;
+    --nr-text:         #111827;
+    --nr-text-muted:   #6b7280;
+    --nr-border:       #e5e7eb;
+    --nr-accent:       #2563eb;
+    --nr-accent-hover: #1d4ed8;
+    --nr-green:        #16a34a;
+    --nr-shadow-sm:    0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+    --nr-shadow-md:    0 4px 12px rgba(0,0,0,0.08);
+    --nr-radius:       10px;
+    --nr-font:         "Inter", "Poppins", system-ui, -apple-system, sans-serif;
+}
+
+/* ── Body & Page Background ── */
+html,
+body {
+    background-color: var(--nr-bg) !important;
+    background-image:
+        radial-gradient(circle, var(--nr-dot-color) 1.2px, transparent 1.2px) !important;
+    background-size: var(--nr-dot-size) var(--nr-dot-size) !important;
+    color: var(--nr-text) !important;
+    font-family: var(--nr-font) !important;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ── Typography ── */
+body,
+p,
+li,
+td,
+th,
+.elementor-widget-text-editor,
+.elementor-text-editor {
+    color: var(--nr-text) !important;
+    font-family: var(--nr-font) !important;
+    letter-spacing: -0.01em;
+}
+
+h1, h2, h3, h4, h5, h6,
+.elementor-heading-title {
+    color: var(--nr-text) !important;
+    font-family: var(--nr-font) !important;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+}
+
+a {
+    color: var(--nr-accent) !important;
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+a:hover {
+    color: var(--nr-accent-hover) !important;
+    text-decoration: underline;
+}
+
+/* ── Header / Navigation ── */
+#masthead,
+.site-header,
+.ast-primary-header-bar,
+.main-header-bar,
+.hfe-header,
+.elementor-location-header {
+    background: rgba(255, 255, 255, 0.92) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-bottom: 1px solid var(--nr-border) !important;
+    box-shadow: 0 1px 0 var(--nr-border) !important;
+}
+
+.ast-primary-header-bar .main-header-bar-navigation .menu-item a,
+.main-navigation .menu-item a,
+.ast-header-custom-item a,
+header nav a {
+    color: var(--nr-text) !important;
+    font-family: var(--nr-font) !important;
+    font-weight: 500;
+}
+
+.main-navigation .current-menu-item > a,
+.main-navigation .menu-item a:hover {
+    color: var(--nr-accent) !important;
+}
+
+/* ── Elementor Sections & Containers ── */
+.elementor-section,
+.elementor-container,
+.e-con,
+.e-con-inner {
+    background-color: transparent !important;
+}
+
+/* ── Cards, Boxes & Panels ── */
+.elementor-widget-wrap,
+.ast-container,
+.site-content,
+.content-area {
+    background: transparent !important;
+}
+
+.elementor-widget-image-box .elementor-image-box-wrapper,
+.ha-card-widget-wrapper,
+.eael-card-slider-item,
+.elementor-post__card,
+.elementor-posts-container .elementor-post,
+.wp-block-post,
+.wc-block-product-template,
+.product,
+article.post,
+article.page,
+.entry,
+.post-thumbnail {
+    background: var(--nr-card-bg) !important;
+    border: 1px solid var(--nr-border) !important;
+    border-radius: var(--nr-radius) !important;
+    box-shadow: var(--nr-shadow-sm) !important;
+    transition: box-shadow 0.2s ease, transform 0.2s ease !important;
+}
+
+.elementor-widget-image-box .elementor-image-box-wrapper:hover,
+.ha-card-widget-wrapper:hover,
+.elementor-post__card:hover,
+article.post:hover {
+    box-shadow: var(--nr-shadow-md) !important;
+    transform: translateY(-1px) !important;
+}
+
+/* ── Buttons ── */
+.elementor-button,
+.wp-block-button__link,
+button:not(.menu-toggle):not(.search-submit),
+input[type="submit"],
+.btn,
+.ast-button,
+.woocommerce-button,
+.wc-block-components-button {
+    background-color: var(--nr-accent) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-family: var(--nr-font) !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    padding: 10px 20px !important;
+    cursor: pointer;
+    transition: background-color 0.15s ease, transform 0.1s ease !important;
+    box-shadow: none !important;
+}
+
+.elementor-button:hover,
+.wp-block-button__link:hover,
+button:not(.menu-toggle):not(.search-submit):hover,
+input[type="submit"]:hover {
+    background-color: var(--nr-accent-hover) !important;
+    transform: translateY(-1px) !important;
+}
+
+/* ── Inputs & Forms ── */
+input[type="text"],
+input[type="email"],
+input[type="search"],
+input[type="password"],
+textarea,
+select {
+    background: var(--nr-card-bg) !important;
+    border: 1px solid var(--nr-border) !important;
+    border-radius: 8px !important;
+    color: var(--nr-text) !important;
+    font-family: var(--nr-font) !important;
+    padding: 10px 14px !important;
+    outline: none !important;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="search"]:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--nr-accent) !important;
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.1) !important;
+}
+
+/* ── Footer ── */
+#colophon,
+.site-footer,
+.elementor-location-footer {
+    background-color: #111827 !important;
+    color: #d1d5db !important;
+    border-top: 1px solid #1f2937 !important;
+}
+
+.site-footer a,
+.elementor-location-footer a {
+    color: #9ca3af !important;
+}
+
+.site-footer a:hover,
+.elementor-location-footer a:hover {
+    color: #f3f4f6 !important;
+    text-decoration: underline;
+}
+
+/* ── Sidebar Widgets ── */
+.widget,
+.elementor-widget-sidebar .widget {
+    background: var(--nr-card-bg) !important;
+    border: 1px solid var(--nr-border) !important;
+    border-radius: var(--nr-radius) !important;
+    padding: 20px !important;
+    margin-bottom: 20px !important;
+    box-shadow: var(--nr-shadow-sm) !important;
+}
+
+.widget-title,
+.widgettitle {
+    font-family: var(--nr-font) !important;
+    font-weight: 700 !important;
+    color: var(--nr-text) !important;
+    font-size: 14px !important;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 12px !important;
+    padding-bottom: 10px !important;
+    border-bottom: 1px solid var(--nr-border) !important;
+}
+
+/* ── Blog / Posts List ── */
+.ast-article-post,
+.ast-post-thumb,
+.ast-article-single {
+    background: var(--nr-card-bg) !important;
+    border: 1px solid var(--nr-border) !important;
+    border-radius: var(--nr-radius) !important;
+    box-shadow: var(--nr-shadow-sm) !important;
+    overflow: hidden;
+}
+
+.entry-title a {
+    color: var(--nr-text) !important;
+    font-weight: 700;
+}
+
+.entry-title a:hover {
+    color: var(--nr-accent) !important;
+    text-decoration: none !important;
+}
+
+/* ── Breadcrumbs ── */
+.ast-breadcrumbs-wrapper,
+.breadcrumbs {
+    background: transparent !important;
+    color: var(--nr-text-muted) !important;
+    font-size: 13px;
+}
+
+.ast-breadcrumbs-wrapper a {
+    color: var(--nr-accent) !important;
+}
+
+/* ── Page/Content Background ── */
+.ast-separate-container .ast-article-post,
+.single .content-area,
+.page .content-area,
+#primary,
+#main,
+.hentry {
+    background: var(--nr-card-bg) !important;
+    border: 1px solid var(--nr-border) !important;
+    border-radius: var(--nr-radius) !important;
+    box-shadow: var(--nr-shadow-sm) !important;
+}
+
+/* ── WooCommerce ── */
+.woocommerce-products-header,
+.woocommerce-result-count,
+.woocommerce-ordering {
+    color: var(--nr-text-muted) !important;
+    font-family: var(--nr-font) !important;
+}
+
+.woocommerce ul.products li.product a img {
+    border-radius: 8px 8px 0 0 !important;
+}
+
+.price,
+.woocommerce-Price-amount {
+    color: var(--nr-accent) !important;
+    font-weight: 700 !important;
+}
+
+/* ── Dividers & Separators ── */
+hr,
+.elementor-divider-separator {
+    border-color: var(--nr-border) !important;
+}
+
+/* ── Tags & Badges ── */
+.post-tag,
+.tag-cloud-link,
+.elementor-tag,
+.ast-tags-single-post a {
+    background: #f3f4f6 !important;
+    color: var(--nr-text-muted) !important;
+    border: 1px solid var(--nr-border) !important;
+    border-radius: 6px !important;
+    padding: 3px 10px !important;
+    font-size: 12px !important;
+    font-weight: 500;
+}
+
+.post-tag:hover,
+.tag-cloud-link:hover,
+.ast-tags-single-post a:hover {
+    background: #e5e7eb !important;
+    color: var(--nr-text) !important;
+}
+
+/* ── Comments ── */
+.comment-body,
+#respond {
+    background: var(--nr-card-bg) !important;
+    border: 1px solid var(--nr-border) !important;
+    border-radius: var(--nr-radius) !important;
+    padding: 20px !important;
+}
+
+/* ── Pagination ── */
+.page-numbers,
+.nav-links a {
+    background: var(--nr-card-bg) !important;
+    border: 1px solid var(--nr-border) !important;
+    color: var(--nr-text) !important;
+    border-radius: 6px !important;
+    padding: 6px 12px !important;
+    font-family: var(--nr-font) !important;
+    font-weight: 500;
+    text-decoration: none !important;
+}
+
+.page-numbers.current,
+.page-numbers:hover,
+.nav-links a:hover {
+    background: var(--nr-accent) !important;
+    color: #fff !important;
+    border-color: var(--nr-accent) !important;
+}
+
+/* ── Tables ── */
+table {
+    background: var(--nr-card-bg) !important;
+    border-collapse: collapse;
+    border-radius: var(--nr-radius);
+    overflow: hidden;
+    border: 1px solid var(--nr-border) !important;
+}
+
+th {
+    background: #f3f4f6 !important;
+    color: var(--nr-text) !important;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 12px 16px !important;
+    border-bottom: 1px solid var(--nr-border) !important;
+}
+
+td {
+    padding: 10px 16px !important;
+    border-bottom: 1px solid var(--nr-border) !important;
+    color: var(--nr-text) !important;
+    vertical-align: top;
+}
+
+tr:last-child td {
+    border-bottom: none !important;
+}
+
+tr:hover td {
+    background: #f9fafb !important;
+}
+
+/* ── Code blocks ── */
+code, pre {
+    background: #f3f4f6 !important;
+    border: 1px solid var(--nr-border) !important;
+    border-radius: 6px !important;
+    color: #1f2937 !important;
+    font-size: 13px;
+}
+
+/* ── Scrollbar (Webkit) ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+
+/* ── Elementor Color Variable Overrides ── */
+.elementor-kit-442 {
+    --e-global-color-primary:   #2563eb !important;
+    --e-global-color-secondary: #374151 !important;
+    --e-global-color-text:      #6b7280 !important;
+    --e-global-color-accent:    #16a34a !important;
+}
+
+/* ── Strip Elementor Inline Background Colors (override inline styles) ── */
+.elementor-section,
+.elementor-top-section,
+.elementor-inner-section,
+.e-con,
+.e-con-inner,
+.elementor-column,
+.elementor-column-wrap,
+.elementor-widget-wrap {
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+/* Re-apply body dot pattern via a pseudo or just let it show through */
+.elementor-section:first-of-type,
+.elementor-section.elementor-section-full_width:first-child {
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+/* Hero text: force dark readable colors */
+.elementor-heading-title,
+.elementor-widget-heading .elementor-heading-title {
+    color: var(--nr-text) !important;
+}
+
+/* Override any white text set for dark backgrounds */
+.elementor-widget-text-editor *,
+.elementor-widget-heading *,
+.elementor-widget-text-editor p,
+.elementor-heading-title {
+    color: var(--nr-text) !important;
+}
+
+/* Buttons inside Elementor */
+.elementor-button-wrapper .elementor-button {
+    background: var(--nr-accent) !important;
+    color: #fff !important;
+    border-radius: 8px !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.elementor-button-wrapper .elementor-button:hover {
+    background: var(--nr-accent-hover) !important;
+}
+
+/* Icon boxes */
+.elementor-icon-box-wrapper {
+    background: var(--nr-card-bg) !important;
+    border: 1px solid var(--nr-border) !important;
+    border-radius: var(--nr-radius) !important;
+    padding: 20px !important;
+    box-shadow: var(--nr-shadow-sm) !important;
+}
+
+/* Tabs */
+.elementor-tab-title {
+    color: var(--nr-text-muted) !important;
+    border-color: var(--nr-border) !important;
+}
+
+.elementor-tab-title.elementor-active {
+    color: var(--nr-accent) !important;
+    border-color: var(--nr-accent) !important;
+}
+
+/* Accordions */
+.elementor-accordion-title {
+    color: var(--nr-text) !important;
+    background: var(--nr-card-bg) !important;
+    border: 1px solid var(--nr-border) !important;
+}
+
+.elementor-accordion-content {
+    background: #f9fafb !important;
+    border: 1px solid var(--nr-border) !important;
+    border-top: none !important;
+    color: var(--nr-text-muted) !important;
+}
+
+/* Sticky/fixed header stays clean */
+.ast-header-sticked #masthead,
+.ast-sticky-active #masthead {
+    background: rgba(255,255,255,0.97) !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
+}
+
+/* Remove any dark overlay divs Elementor uses */
+.elementor-background-overlay {
+    display: none !important;
+}
+
+/* Remove gradient backgrounds from images */
+.elementor-widget-image img {
+    border-radius: var(--nr-radius) !important;
+}
