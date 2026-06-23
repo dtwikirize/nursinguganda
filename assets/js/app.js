@@ -4375,7 +4375,7 @@ function renderPreFooterBand() {
   `;
 }
 
-function layout(content) {
+function layout(content, opts = {}) {
   const parts = currentRoute();
   const active = routeKey(parts);
   app.innerHTML = `
@@ -4460,8 +4460,8 @@ function layout(content) {
       <div class="page-main" id="page-main">
         ${content}
       </div>
-      ${renderPreFooterBand()}
-      ${renderFooter()}
+      ${opts.noFooter ? "" : renderPreFooterBand()}
+      ${opts.noFooter ? "" : renderFooter()}
       ${renderCookieConsent()}
       ${renderImageLightbox()}
       ${renderLoginPromptModal()}
@@ -6101,8 +6101,8 @@ function renderAdminPage() {
   ];
 
   const pageContent = `
-    <section class="section adm-section">
-      <div class="container adm-container">
+    <section class="section adm-section adm-light" id="adm-page">
+      <div class="adm-container">
         <div class="adm-header">
           <div>
             <h1 class="adm-title">${icon("tool")} Admin Panel</h1>
@@ -6301,7 +6301,7 @@ function renderAdminPage() {
     ${resFormHtml}
   `;
 
-  layout(pageContent);
+  layout(pageContent, { noFooter: true });
 
   // ── Job form wiring ─────────────────────────────────────────────────
   app.querySelector("[data-adm-job-new]")?.addEventListener("click", () => {
