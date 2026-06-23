@@ -1,0 +1,30 @@
+{
+  "name": "nursinguganda",
+  "version": "1.0.0",
+  "description": "Nursing and midwifery revision for Uganda students",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "node scripts/build.js",
+    "build:js": "node scripts/build.js --js-only",
+    "build:css": "node scripts/build.js --css-only",
+    "build:pages": "node scripts/generate_seo_pages.js",
+    "build:images:manifest": "node scripts/inject_lesson_images_from_nurses_revision.js --manifest-only && node scripts/inject_lesson_images_from_nurseslabs.js --manifest-only",
+    "build:images:inject": "node scripts/inject_lesson_images_from_nurses_revision.js && node scripts/inject_lesson_images_from_nurseslabs.js && node scripts/inject_lesson_images_relaxed.js",
+    "build:images:optimize": "node scripts/optimize_lesson_images.js",
+    "build:all": "node scripts/inject_lesson_images_from_nurses_revision.js --manifest-only && node scripts/inject_lesson_images_from_nurseslabs.js --manifest-only && node scripts/inject_lesson_images_relaxed.js --manifest-only && node scripts/optimize_lesson_images.js && node scripts/generate_seo_pages.js"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "compression": "^1.8.1",
+    "express": "^4.19.2",
+    "express-rate-limit": "^8.5.2",
+    "node-cron": "^4.5.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.1",
+    "sharp": "^0.34.5"
+  }
+}

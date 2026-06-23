@@ -1,0 +1,100 @@
+Options -MultiViews
+RewriteEngine On
+
+# ── Custom error pages ────────────────────────────────────────────────────────
+# _offline.html is excluded from FTP deploys — always present on the server.
+ErrorDocument 404 /_offline.html
+ErrorDocument 503 /_offline.html
+
+# ── SPA routing ───────────────────────────────────────────────────────────────
+# Guard: if index.html is temporarily missing (mid-deploy), serve the offline
+# page immediately instead of letting Hostinger show its generic 404.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{DOCUMENT_ROOT}/index.html !-f
+RewriteRule ^ /_offline.html [L]
+
+# Step 1: Force SPA for known app routes BEFORE directory/file checks.
+# This prevents old static sub-directories (e.g. /courses/index.html)
+# from intercepting URLs that belong to the React SPA.
+RewriteCond %{DOCUMENT_ROOT}/index.html -f
+RewriteRule ^(courses|resources|careers|search|flashcards|dictionary|dashboard|settings|login|notes|progress|quiz|community|careers)(\/.*)?$ /index.html [L,QSA]
+
+# Step 2: Serve real static files and directories as-is.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{DOCUMENT_ROOT}/index.html -f
+# Fallback: all other unmatched paths → index.html
+RewriteRule ^ index.html [QSA,L]
+
+# Final guard: static file not found + index.html missing → offline page
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{DOCUMENT_ROOT}/index.html !-f
+RewriteRule ^ /_offline.html [L]
+
+# ── GZIP / Deflate compression ────────────────────────────────────────────────
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+  AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+  AddOutputFilterByType DEFLATE application/json application/manifest+json
+  AddOutputFilterByType DEFLATE image/svg+xml font/woff font/woff2
+  AddOutputFilterByType DEFLATE application/font-woff application/font-woff2
+</IfModule>
+
+# ── Browser caching ───────────────────────────────────────────────────────────
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # Versioned assets (CSS/JS with ?v=XX) — cache 1 year, bust via query string
+  ExpiresByType text/css                    "access plus 1 year"
+  ExpiresByType application/javascript      "access plus 1 year"
+
+  # Images — 6 months
+  ExpiresByType image/jpeg                  "access plus 6 months"
+  ExpiresByType image/png                   "access plus 6 months"
+  ExpiresByType image/webp                  "access plus 6 months"
+  ExpiresByType image/svg+xml               "access plus 6 months"
+  ExpiresByType image/x-icon               "access plus 1 year"
+
+  # Fonts — 1 year
+  ExpiresByType font/woff                   "access plus 1 year"
+  ExpiresByType font/woff2                  "access plus 1 year"
+
+  # JSON data files — 1 hour (curriculum can change)
+  ExpiresByType application/json            "access plus 1 hour"
+
+  # HTML + manifest — always revalidate
+  ExpiresByType text/html                   "access plus 0 seconds"
+  ExpiresByType application/manifest+json   "access plus 0 seconds"
+</IfModule>
+
+# ── Cache-Control headers ─────────────────────────────────────────────────────
+<IfModule mod_headers.c>
+  # Versioned static assets: cache aggressively
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(jpg|jpeg|png|webp|svg|ico|woff|woff2)$">
+    Header set Cache-Control "public, max-age=15552000"
+  </FilesMatch>
+  # HTML and manifest: no-cache so updates are instant
+  <FilesMatch "\.(html|webmanifest)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+  # Security headers
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(self)"
+</IfModule>
+
+# ── Serve pre-compressed files if available ───────────────────────────────────
+<IfModule mod_headers.c>
+  <FilesMatch "\.js\.gz$">
+    Header set Content-Encoding gzip
+    Header set Content-Type application/javascript
+  </FilesMatch>
+  <FilesMatch "\.css\.gz$">
+    Header set Content-Encoding gzip
+    Header set Content-Type text/css
+  </FilesMatch>
+</IfModule>

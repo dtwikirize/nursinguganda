@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Nursing Uganda — Updating</title>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif}
+    body{
+      display:flex;align-items:center;justify-content:center;min-height:100vh;
+      background:linear-gradient(160deg,#fdf2f7 0%,#f8f0f4 40%,#fce7f3 100%);
+      padding:1.5rem;
+    }
+
+    /* ── Card ─────────────────────────────────────────────────── */
+    .card{
+      width:100%;max-width:440px;
+      background:#fff;border-radius:22px;
+      box-shadow:0 4px 6px -1px rgba(166,68,104,.07),0 20px 50px -12px rgba(166,68,104,.18);
+      overflow:hidden;text-align:center;
+    }
+
+    /* ── Top accent bar ───────────────────────────────────────── */
+    .accent-bar{
+      height:4px;
+      background:linear-gradient(90deg,#A64468 0%,#d472a0 50%,#A64468 100%);
+      background-size:200% 100%;
+      animation:shimmer 2s linear infinite;
+    }
+    @keyframes shimmer{to{background-position:-200% 0}}
+
+    /* ── Body ─────────────────────────────────────────────────── */
+    .body{padding:2.75rem 2rem 2.25rem}
+
+    /* ── Mark / monogram ──────────────────────────────────────── */
+    .mark-wrap{
+      position:relative;width:88px;height:88px;margin:0 auto 1.5rem;
+    }
+    .mark-ring{
+      position:absolute;inset:0;border-radius:50%;
+      border:2.5px solid transparent;
+      border-top-color:#A64468;border-right-color:rgba(166,68,104,.4);
+      animation:spin 1.1s cubic-bezier(.55,.15,.45,.85) infinite;
+    }
+    .mark-ring-outer{
+      position:absolute;inset:-6px;border-radius:50%;
+      border:1.5px solid transparent;
+      border-bottom-color:rgba(166,68,104,.25);border-left-color:rgba(166,68,104,.15);
+      animation:spin 2.2s linear infinite reverse;
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .mark-inner{
+      position:absolute;inset:8px;border-radius:50%;
+      background:linear-gradient(135deg,#A64468 0%,#7a3050 100%);
+      display:flex;align-items:center;justify-content:center;
+    }
+    .mark-letters{
+      font-size:1.35rem;font-weight:800;color:#fff;letter-spacing:-.03em;
+      line-height:1;user-select:none;
+    }
+
+    /* ── Badge ────────────────────────────────────────────────── */
+    .badge{
+      display:inline-flex;align-items:center;gap:6px;
+      background:rgba(166,68,104,.08);border:1px solid rgba(166,68,104,.2);
+      border-radius:999px;padding:5px 14px;margin-bottom:1.1rem;
+      font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#A64468;
+    }
+    .badge-dot{
+      width:6px;height:6px;border-radius:50%;background:#A64468;
+      animation:pulse-dot 1.4s ease-in-out infinite;
+    }
+    @keyframes pulse-dot{
+      0%,100%{opacity:1;transform:scale(1)}
+      50%{opacity:.4;transform:scale(.7)}
+    }
+
+    /* ── Text ─────────────────────────────────────────────────── */
+    h1{font-size:1.45rem;font-weight:800;color:#1f2937;letter-spacing:-.02em;margin-bottom:.6rem}
+    p{font-size:.9rem;color:#6b7280;line-height:1.65;max-width:300px;margin:0 auto}
+
+    /* ── Progress bar ─────────────────────────────────────────── */
+    .progress-wrap{
+      margin:1.75rem auto 0;max-width:280px;
+      background:rgba(166,68,104,.1);border-radius:999px;height:5px;overflow:hidden;
+    }
+    .progress-fill{
+      height:100%;border-radius:999px;
+      background:linear-gradient(90deg,#A64468,#d472a0);
+      animation:progress-drain 10s linear forwards;
+    }
+    @keyframes progress-drain{from{width:100%}to{width:0%}}
+
+    /* ── Countdown ────────────────────────────────────────────── */
+    .countdown{
+      margin-top:1rem;font-size:.78rem;color:#9ca3af;
+    }
+    .countdown span{color:#A64468;font-weight:700}
+
+    /* ── Footer links ─────────────────────────────────────────── */
+    .footer{
+      padding:.9rem 2rem 1.5rem;
+      border-top:1px solid #f3f4f6;
+      font-size:.75rem;color:#9ca3af;
+    }
+    .footer a{color:#A64468;text-decoration:none;font-weight:600}
+    .footer a:hover{text-decoration:underline}
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <div class="accent-bar"></div>
+
+  <div class="body">
+    <!-- Spinning mark -->
+    <div class="mark-wrap">
+      <div class="mark-ring-outer"></div>
+      <div class="mark-ring"></div>
+      <div class="mark-inner">
+        <span class="mark-letters">NU</span>
+      </div>
+    </div>
+
+    <!-- Status badge -->
+    <div class="badge">
+      <span class="badge-dot"></span>
+      Updating now
+    </div>
+
+    <!-- Heading + message -->
+    <h1>We'll be right back</h1>
+    <p>
+      Nursing Uganda is being updated with new content and improvements.
+      This takes only a moment — the page will reload automatically.
+    </p>
+
+    <!-- Progress bar draining to zero = 10s refresh -->
+    <div class="progress-wrap">
+      <div class="progress-fill" id="pf"></div>
+    </div>
+    <p class="countdown">Refreshing in <span id="cd">10</span>s</p>
+  </div>
+
+  <div class="footer">
+    <a href="/">Go to homepage</a>
+    &nbsp;&middot;&nbsp;
+    <a href="mailto:info@nursinguganda.com">Contact support</a>
+  </div>
+</div>
+
+<script>
+  // Countdown + auto-refresh
+  var s = 10;
+  var el = document.getElementById("cd");
+  var t = setInterval(function(){
+    s--;
+    if(el) el.textContent = s;
+    if(s <= 0){ clearInterval(t); location.reload(true); }
+  }, 1000);
+</script>
+</body>
+</html>

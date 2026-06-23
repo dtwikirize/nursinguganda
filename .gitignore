@@ -1,10 +1,38 @@
+# Dependencies and build caches
+node_modules/
+dist/
+build/
+.cache/
+.parcel-cache/
+.vite/
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+.playwright-cli/
+
+# Local environment and temporary files
+.env
+.env.*
+*.log
+tmp/
+temp/
+
 # Claude Code local settings
 .claude/settings.local.json
 .agents/
 
-# OS
-.DS_Store
-Thumbs.db
+# Internal planning notes, not part of the public web app
+PROJECT_STUDY.md
 
-# Node
-node_modules/
+# Keep large source/reference clones out if they are ever copied here by mistake
+Nurses revision/
+Midwives Revision/
+NursesLabs Clone/
+*.pdf
+
+# Internal enrichment research: keep raw or extracted third-party text local only
+research/enrichment/
