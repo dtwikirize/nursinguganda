@@ -40,11 +40,11 @@ app.use((req, res, next) => {
 // ── Security headers ──────────────────────────────────────────────────────────
 const CSP = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline'",          // unsafe-inline needed for inline scripts in SEO pages
-  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+  "script-src 'self' 'unsafe-inline' https://unpkg.com https://cdn.jsdelivr.net", // unsafe-inline needed for inline scripts in SEO pages
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com",
   "font-src 'self' https://fonts.gstatic.com",
   "img-src 'self' data: https:",                 // https: allows lesson images & map tiles
-  "connect-src 'self'",
+  "connect-src 'self' https://*.supabase.co wss://*.supabase.co",
   "frame-src https://www.youtube.com",           // kept for any future embeds
   "object-src 'none'",                           // no Flash / plugins
   "base-uri 'self'",                             // prevent base-tag injection
