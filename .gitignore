@@ -21,6 +21,10 @@ desktop.ini
 tmp/
 temp/
 
+# Claude Code local settings
+.claude/settings.local.json
+.agents/
+
 # Internal planning notes, not part of the public web app
 PROJECT_STUDY.md
 
