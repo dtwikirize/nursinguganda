@@ -3873,10 +3873,6 @@ function renderCookieConsent() {
 }
 
 function renderFooter() {
-  const totals = state.data?.totals || {};
-  const programmeCount = state.data?.programmes?.length || 0;
-  const dictionaryCount = dictionaryTerms().length;
-  const instrumentCount = allMedicalInstruments().length;
 
   const exploreLinks = [
     ["/notes",                       "Notes",          "bookOpen"],
@@ -3915,16 +3911,9 @@ function renderFooter() {
               <img src="/assets/images/nursing-uganda-logo-wordmark.webp" class="footer-logo-img" alt="Nursing Uganda: Notes &amp; Resources" width="220" height="87" loading="lazy" decoding="async">
             </a>
             <p class="footer-tagline">Structured notes, courses, dictionary and career resources for Uganda nursing and midwifery students, free and offline-ready.</p>
-            <div class="footer-stats" aria-label="Quick stats">
-              <span>${icon("graduationCap")}<strong>${programmeCount || 7}</strong> programmes</span>
-              <span>${icon("bookOpen")}<strong>${totals.courseUnits || 95}</strong> units</span>
-              <span>${icon("fileText")}<strong>${dictionaryCount || 40}</strong> terms</span>
-              <span>${icon("stethoscope")}<strong>${instrumentCount || 110}</strong> instruments</span>
-            </div>
           </div>
           <div class="footer-cta-panel">
-            <span class="footer-cta-eyebrow">${icon("graduationCap")} Start Studying</span>
-            <h3>Ready to revise?</h3>
+            <h3>Start studying</h3>
             <p>Jump into structured notes, test yourself with quizzes, or explore the full dictionary, all free, offline-ready.</p>
             <div class="footer-cta-actions">
               ${buttonLink("/notes", "Browse Notes", "primary", "bookOpen")}
@@ -7660,13 +7649,6 @@ function renderProgress() {
   `;
 }
 
-function homeGreeting() {
-  const h = new Date().getHours();
-  if (h < 12) return "Good morning";
-  if (h < 17) return "Good afternoon";
-  return "Good evening";
-}
-
 function pageHeader({ title, body = "", eyebrow = "", actions = "", breadcrumb = "" }) {
   return `
     <div class="page-header">
@@ -7690,10 +7672,6 @@ function renderNotes() {
   const progress = overallProgress();
   const last = lastStudiedTopic();
   const saved = bookmarks().slice(0, 3);
-  const totals = state.data?.totals || {};
-  const programmeCount = state.data?.programmes?.length || 0;
-  const dictionaryCount = dictionaryTerms().length;
-  const instrumentCount = allMedicalInstruments().length;
   const streak = updateStreak();
   const masteryCount = flashcardMastery().size;
   const completed = completedTopics();
@@ -7732,15 +7710,8 @@ function renderNotes() {
       <div class="container">
         <div class="home-hero-inner">
           <div class="home-hero-copy">
-            <span class="eyebrow home-hero-eyebrow">Nursing Uganda · Study Hub</span>
-            <h1 class="home-hero-title">${homeGreeting()}, nurse.</h1>
-            <p class="home-hero-desc">Structured nursing &amp; midwifery notes, revision tools and curriculum guides for Uganda students.</p>
-            <div class="home-hero-stats">
-              <span>${icon("graduationCap")}<strong>${programmeCount || 7}</strong> Programmes</span>
-              <span>${icon("bookOpen")}<strong>${totals.courseUnits || 95}</strong> Units</span>
-              <span>${icon("fileText")}<strong>${dictionaryCount}</strong> Terms</span>
-              <span>${icon("stethoscope")}<strong>${instrumentCount}</strong> Instruments</span>
-            </div>
+            <h1 class="home-hero-title">Nursing &amp; midwifery notes for Uganda students</h1>
+            <p class="home-hero-desc">Every course unit for certificate, diploma and degree programmes, with a medical dictionary, past papers, quizzes and an instrument atlas.</p>
           </div>
           <div class="home-hero-search">
             ${renderHomeSearch()}
@@ -7760,11 +7731,11 @@ function renderNotes() {
             <h3>${last ? escapeHtml(last.title) : "Start Your First Lesson"}</h3>
             <p>${last ? `${escapeHtml(last.programme)}, ${escapeHtml(last.unit)}` : "Open any course lesson and Nursing Uganda will track where you stopped."}</p>
           </div>
-          <div class="continue-strip-stats">
+          ${last ? `<div class="continue-strip-stats">
             <div><strong>${progress.percent}%</strong><span>complete</span></div>
-            <div><strong>${streak.count || 0}</strong><span>day streak</span></div>
+            ${streak.count > 1 ? `<div><strong>${streak.count}</strong><span>day streak</span></div>` : ""}
             ${masteryCount > 0 ? `<div><strong>${masteryCount}</strong><span>mastered</span></div>` : ""}
-          </div>
+          </div>` : ""}
           ${buttonLink(last ? last.href : "/courses/curriculum", last ? "Resume" : "Start Learning", "primary", last ? "bookOpen" : "graduationCap")}
         </div>
       </div>
@@ -7774,8 +7745,7 @@ function renderNotes() {
       <div class="container">
         <div class="section-head slim-head">
           <div>
-            <span class="eyebrow">Browse by Subject</span>
-            <h2>Choose a Subject</h2>
+            <h2>Browse by subject</h2>
           </div>
           <a class="section-head-link" href="/search">${icon("search")}<span>Search all notes</span></a>
         </div>
@@ -7846,9 +7816,8 @@ function renderNotes() {
       <div class="container">
         <div class="home-cta-banner">
           <div>
-            <span class="eyebrow">Ready to go deeper?</span>
-            <h2>Level Up Your Revision</h2>
-            <p>Use flashcards for active recall, test yourself with quizzes, or explore the full medical dictionary.</p>
+            <h2>Flashcards, quizzes and the dictionary</h2>
+            <p>Use flashcards for active recall, test yourself with quizzes, or look up any term in the medical dictionary.</p>
           </div>
           <div class="home-cta-actions">
             ${buttonLink("/flashcards", "Open Flashcards", "primary", "bookOpen")}
@@ -11481,11 +11450,7 @@ const CAREER_HERO_SLIDES = [
 ];
 
 function renderCareerHero() {
-  const pathwayStages   = Object.values(careerPathwayData()).reduce((n, a) => n + a.length, 0);
-  const countriesCount  = countryGuides().length;
-  const licensingCount  = licensingGuides().length;
-  const templatesCount  = careerResourceCount();
-  const activeSlide     = state.careerHeroSlide || 0;
+  const activeSlide = state.careerHeroSlide || 0;
 
   return `
     <section class="careers-hero" id="careers-hero-section">
@@ -11517,15 +11482,6 @@ function renderCareerHero() {
             <a class="careers-cta-ghost" href="/careers#cv-resources" data-nav>
               ${icon("fileCv")} CV &amp; Letter Templates
             </a>
-          </div>
-        </div>
-
-        <div class="careers-hero-aside">
-          <div class="careers-stat-grid">
-            <div class="careers-stat-card"><strong>${pathwayStages}</strong><span>Career Stages</span></div>
-            <div class="careers-stat-card"><strong>${countriesCount}</strong><span>Countries</span></div>
-            <div class="careers-stat-card"><strong>${licensingCount}</strong><span>Licensing Guides</span></div>
-            <div class="careers-stat-card"><strong>${templatesCount}</strong><span>Templates</span></div>
           </div>
         </div>
 
@@ -15502,8 +15458,8 @@ function updateStreak() {
 
 function streakChip() {
   const streak = updateStreak();
-  if (streak.count < 1) return "";
-  const label = streak.count === 1 ? "Day 1 streak, keep going!" : `${streak.count} day streak`;
+  if (streak.count < 2) return "";
+  const label = `${streak.count} day streak`;
   return `<div class="streak-chip">${icon("flame")}<span>${escapeHtml(label)}</span></div>`;
 }
 
