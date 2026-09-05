@@ -2906,7 +2906,8 @@ color: var(--color-primary);
   min-width: 180px;
 }
 
-.continue-strip-info h3 {
+.continue-strip-info h3,
+.continue-strip-info .continue-strip-title {
   margin: 6px 0 4px;
   font-size: 1.12rem;
 }

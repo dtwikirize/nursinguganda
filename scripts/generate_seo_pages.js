@@ -19,7 +19,7 @@ const LESSON_IMAGES_MANIFEST = (() => {
   }
 })();
 const SITE_URL = "https://nursinguganda.com";
-const CSS_VERSION = "122";
+const CSS_VERSION = "125";
 const NON_LESSON_TOPIC_RE = /^(terms|privacy policy|disclaimer|about(?: us)?|click here\b.*|want notes in pdf\??.*|home|blog|contact|whatsapp|support|login|register|share|comments?|(?:nurses|midwives)\s+revision|index)$/i;
 
 function escapeHtml(value) {
@@ -279,7 +279,7 @@ function pageShell({ file, title, seoTitle, description, canonical, appHash, bre
     : "";
 
   return `<!doctype html>
-<html lang="en">
+<html lang="en-UG">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">

@@ -3400,7 +3400,9 @@ function displayImageSrc(src) {
 }
 
 function setDocumentMeta(title, description) {
-  const cleanTitle = title === "Nursing Uganda" ? title : `${title} | Nursing Uganda`;
+  const cleanTitle = title === "Nursing Uganda"
+    ? "Nursing & Midwifery Notes for Uganda Students | Nursing Uganda"
+    : `${title} | Nursing Uganda`;
   document.title = cleanTitle;
   const meta = document.querySelector('meta[name="description"]');
   if (meta) meta.setAttribute("content", description);
@@ -7728,7 +7730,7 @@ function renderNotes() {
         <div class="continue-strip content-panel">
           <div class="continue-strip-info">
             ${streakChip()}
-            <h3>${last ? escapeHtml(last.title) : "Start Your First Lesson"}</h3>
+            <p class="continue-strip-title">${last ? escapeHtml(last.title) : "Start Your First Lesson"}</p>
             <p>${last ? `${escapeHtml(last.programme)}, ${escapeHtml(last.unit)}` : "Open any course lesson and Nursing Uganda will track where you stopped."}</p>
           </div>
           ${last ? `<div class="continue-strip-stats">
