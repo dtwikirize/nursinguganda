@@ -3879,11 +3879,12 @@ function renderFooter() {
   const exploreLinks = [
     ["/notes",                       "Notes",          "bookOpen"],
     ["/courses/curriculum",          "Courses",        "graduationCap"],
+    ["/resources/quizzes",           "Quizzes",        "helpCircle"],
+    ["/resources",                   "Resources",      "folderOpen"],
     ["/search",                      "Search",         "search"],
     ["/dictionary",                  "Dictionary",     "fileText"],
     ["/resources/medical-instruments","Instruments",   "stethoscope"],
     ["/resources/schools",           "Schools",        "school"],
-    ["/resources/past-papers",       "Past Papers",    "clipboardList"],
     ["/careers",                     "Careers",        "briefcaseMedical"]
   ];
   const subjectLinks = [
@@ -3941,16 +3942,16 @@ function renderFooter() {
           </nav>
           <nav class="footer-nav-col" aria-label="More">
             <h4>More</h4>
+            ${footerLink("/about",                   "About",            "bookOpen")}
+            ${footerLink("/blog",                    "Blog & Articles",  "fileText")}
+            ${footerLink("/contact",                 "Contact",          "mail")}
+            ${footerLink("/privacy",                 "Privacy Policy",   "shield")}
+            ${footerLink("/terms",                   "Terms",            "fileText")}
+            ${footerLink("/cookies",                 "Cookies",          "badgeCheck")}
             ${footerLink("/resources/licensing",      "Licensing & CPD",   "badgeCheck")}
             ${footerLink("/resources/student-support","Student Support",    "heartPulse")}
             ${footerLink("/mock-exams",                "Mock Exams",        "clipboardList")}
             ${footerLink("/clinical-tools",           "Clinical Tools",    "stethoscope")}
-            ${footerLink("/planner",                  "Study Planner",     "calendar")}
-            ${footerLink("/community",                "Community Q&A",     "users")}
-            ${footerLink("/progress",                 "My Progress",       "chartLine")}
-            ${footerLink("/flashcards",               "Flashcards",        "bookOpen")}
-            ${footerLink("/contact",                  "Contact Us",        "mail")}
-            ${footerLink("/privacy",                  "Privacy Policy",    "shield")}
             ${footerLink("/corrections",              "Corrections",       "pencil")}
           </nav>
         </div>
@@ -3979,6 +3980,7 @@ function renderFooter() {
             <span>Built for Uganda nursing &amp; midwifery students</span>
           </div>
           <nav class="footer-dark-legal" aria-label="Legal pages">
+            <a href="/about">About</a>
             <a href="/privacy">Privacy</a>
             <a href="/cookies">Cookies</a>
             <a href="/privacy-choices">Consent</a>
@@ -4292,7 +4294,7 @@ function renderPreFooterBand() {
   `;
 }
 
-function layout(content) {
+function layout(content, opts = {}) {
   const parts = currentRoute();
   const active = routeKey(parts);
   app.innerHTML = `
@@ -4377,8 +4379,8 @@ function layout(content) {
       <div class="page-main" id="page-main">
         ${content}
       </div>
-      ${renderPreFooterBand()}
-      ${renderFooter()}
+      ${opts.noFooter ? "" : renderPreFooterBand()}
+      ${opts.noFooter ? "" : renderFooter()}
       ${renderCookieConsent()}
       ${renderImageLightbox()}
       ${renderLoginPromptModal()}
@@ -4765,6 +4767,8 @@ function setupLessonRevealAnimations() {
 
 // ── Legal page metadata (icon, accent, summary bullets, full sections) ────────
 const LEGAL_META = {
+  about:            { icon: "bookOpen",      accent: "#2a7f96", accentLight: "#e7f6f8" },
+  blog:             { icon: "fileText",      accent: "#8f385b", accentLight: "#f8edf2" },
   privacy:          { icon: "lock",          accent: "#A64468", accentLight: "#fce7f3" },
   cookies:          { icon: "badgeCheck",    accent: "#A64468", accentLight: "#fce7f3" },
   "privacy-choices":{ icon: "settings",      accent: "#A64468", accentLight: "#fce7f3" },
@@ -4774,6 +4778,36 @@ const LEGAL_META = {
 };
 
 const legalPages = {
+  about: {
+    title: "About Nursing Uganda",
+    eyebrow: "About",
+    updated: "June 23, 2026",
+    intro: "Nursing Uganda is a focused study platform built for nursing and midwifery learners who need clear notes, course structure, practice tools and practical career support in one place.",
+    summary: ["Uganda-focused nursing revision", "Structured courses and notes", "Dictionary, instruments and quizzes", "Built for careful self-study"],
+    sections: [
+      ["Purpose", "Nursing Uganda helps students revise faster by organising course units, lessons, definitions, instruments, quizzes, schools and career resources into a single study space. The platform is designed for daily revision, topic discovery and exam preparation."],
+      ["What We Provide", "The site brings together structured notes, course trees, lesson summaries, medical instruments, dictionary terms, quizzes, flashcards, mock exams, school information and career guides. Each section is arranged so a student can move from overview to deeper study without losing context."],
+      ["Editorial Approach", "Our notes are rewritten, expanded and reorganised for clarity. We aim for original explanations, stronger section flow, practical nursing emphasis and better consistency across repeated topics. Content is reviewed as a study aid, not copied as a plain import from another site."],
+      ["Who It Helps", "The platform is most useful for certificate, diploma and degree nursing or midwifery learners, tutors preparing quick references, and graduates revising common clinical topics before interviews, placements or professional assessments."],
+      ["How To Use It Safely", "Treat Nursing Uganda as a revision companion. Always confirm clinical procedures, medicine details, examination requirements and professional decisions with your school notes, approved textbooks, facility protocols and current national guidance."],
+      ["Feedback And Corrections", "Students and tutors can report unclear wording, missing topics, broken links, image issues or safety concerns through the Contact and Corrections pages. Specific reports help us improve the resource more quickly."]
+    ]
+  },
+  blog: {
+    title: "Blog & Articles",
+    eyebrow: "Articles",
+    updated: "June 23, 2026",
+    intro: "Read practical study guidance, platform updates and nursing education notes written to support revision, clinical learning and student career planning.",
+    summary: ["Study strategy", "Clinical learning support", "Career preparation", "Platform updates"],
+    sections: [
+      ["Study Guides", "Articles will focus on how to revise large nursing topics, prepare for practical assessments, organise notes, practise recall and use the course tree without feeling overwhelmed by scattered material."],
+      ["Clinical Learning", "Clinical articles explain how to connect classroom knowledge with ward routines, documentation, infection prevention, patient dignity, communication and safe preparation before procedures."],
+      ["Exam Preparation", "Exam-focused pieces cover how to approach structured questions, short notes, essay answers, practical stations and topic-by-topic revision plans using the notes, dictionary, quizzes and mock exams."],
+      ["Career Support", "Career articles support CV writing, cover letters, interview preparation, portfolio building, licensing awareness and international application readiness for nursing and midwifery graduates."],
+      ["Resource Updates", "We use this space to explain major content updates, new course units, refreshed lesson formats, improved instrument pages, school-directory changes and new study tools added to the site."],
+      ["Contribute Ideas", "If there is a topic, guide or student problem that needs a clear article, send it through Contact. Strong suggestions help us prioritise the content students actually need."]
+    ]
+  },
   privacy: {
     title: "Privacy Policy",
     eyebrow: "Privacy",
@@ -4881,6 +4915,8 @@ function renderLegalPage(key) {
   const page = legalPages[key] || legalPages.privacy;
   const meta = LEGAL_META[key] || LEGAL_META.privacy;
   const legalNav = [
+    ["/about",           "About",           "bookOpen"],
+    ["/blog",            "Blog & Articles", "fileText"],
     ["/privacy",         "Privacy",         "lock"],
     ["/cookies",         "Cookies",          "badgeCheck"],
     ["/disclaimer",      "Disclaimer",       "alertTriangle"],
@@ -4930,7 +4966,7 @@ function renderLegalPage(key) {
 
         <!-- Legal nav -->
         <nav class="lp-nav" aria-label="Legal pages">
-          <p class="lp-nav-title">${icon("fileText")} Legal Pages</p>
+          <p class="lp-nav-title">${icon("fileText")} Site Pages</p>
           ${legalNav.map(([href, label, ico]) => `
             <a class="lp-nav-link${href === `/${key}` ? " active" : ""}" href="${href}" data-nav>
               <span class="lp-nav-icon">${icon(ico)}</span>
@@ -5903,8 +5939,8 @@ function renderAdminPage() {
   ];
 
   const pageContent = `
-    <section class="section adm-section">
-      <div class="container adm-container">
+    <section class="section adm-section adm-light" id="adm-page">
+      <div class="adm-container">
         <div class="adm-header">
           <div>
             <h1 class="adm-title">${icon("tool")} Admin Panel</h1>
@@ -6066,7 +6102,7 @@ function renderAdminPage() {
     ${resFormHtml}
   `;
 
-  layout(pageContent);
+  layout(pageContent, { noFooter: true });
 
   // ── Announcement form wiring ─────────────────────────────────────────
   app.querySelector("[data-adm-ann-new]")?.addEventListener("click", () => {
