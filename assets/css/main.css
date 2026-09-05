@@ -25791,3 +25791,29 @@ h1, h2, h3, h4,
     grid-template-columns: 1fr;
   }
 }
+
+/* ── Cookie consent: stacked banner + layered above promo popups ───
+   The brand-bar header was added after the original two-column banner
+   layout, leaving `.cookie-consent-banner` as a
+   `grid-template-columns: minmax(0, 1fr) 210px` grid. That placed the
+   brand bar in column 1 and the entire consent body in the 210px
+   column, squeezing `.cookie-consent-text` to ~81px wide and stretching
+   the banner to ~1065px tall (past the viewport). The banner is a
+   vertical stack; the two columns belong to `.cookie-consent-body`,
+   which still defines them. Padding stays 0 so the gradient brand bar
+   runs edge to edge — brand bar and body carry their own padding. */
+.cookie-consent-layer {
+  /* Above the promo popups (welcome 9100, tip 9060) so the consent
+     choice can never be buried behind them. */
+  z-index: 9200;
+}
+
+.cookie-consent-banner {
+  display: block;
+  grid-template-columns: none;
+  gap: 0;
+  padding: 0;
+  max-height: calc(100vh - 36px);
+  max-height: calc(100dvh - 36px); /* dvh excludes mobile browser chrome */
+  overflow: hidden auto;
+}

@@ -1,4 +1,4 @@
-const CACHE_VERSION = "nursing-uganda-v126";
+const CACHE_VERSION = "nursing-uganda-v127";
 const APP_SHELL = [
   "./",
   "./index.html",

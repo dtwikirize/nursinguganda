@@ -1173,6 +1173,7 @@ function saveCookieConsent(consent) {
   localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify(next));
   state.cookiePreferencesOpen = false;
   setupMonetization();
+  startPopupsWhenAllowed();
 }
 
 function consentAllows(type) {
@@ -15711,6 +15712,17 @@ const QUICK_QUIZZES = [
   { q: "A patient expresses suicidal ideation. The first nursing action is:", options: ["Document and inform the next shift", "Ask directly about a plan and means", "Leave the patient to calm down", "Administer sedation"], answer: 1 },
 ];
 
+// The consent banner is a gate: nothing promotional may cover it, and no
+// email capture may run before the visitor has made a cookie choice. Popups
+// start only once a decision exists, and saveCookieConsent() calls back here.
+let popupsStarted = false;
+function startPopupsWhenAllowed() {
+  if (popupsStarted) return;
+  if (!hasCookieDecision()) return;
+  popupsStarted = true;
+  initPopups();
+}
+
 function initPopups() {
   const now = Date.now();
 
@@ -15849,37 +15861,42 @@ function initPopups() {
     const today = new Date().toISOString().slice(0, 10);
     if (localStorage.getItem(KEY) === today) return;
 
-    setTimeout(() => {
-      if (document.getElementById("nu-popup-tip")) return;
-      const tip = STUDY_TIPS[Math.floor(Math.random() * STUDY_TIPS.length)];
-      const el = document.createElement("div");
-      el.id = "nu-popup-tip";
-      el.className = "nu-popup-tip";
-      el.innerHTML = `
-        <div class="nu-popup-tip-inner">
-          <span class="nu-popup-tip-badge">${icon("lightbulb")} Tip of the Day</span>
-          <p class="nu-popup-tip-text">${tip.tip}</p>
-          <div class="nu-popup-tip-foot">
-            <span class="nu-popup-tip-tag">${tip.tag}</span>
-            <div class="nu-popup-tip-actions">
-              <a class="nu-popup-tip-wa" href="${waShare(`💡 Nursing Tip: "${tip.tip}"\n\nMore tips at https://nursinguganda.com`)}" target="_blank" rel="noopener noreferrer">${icon("whatsapp")}</a>
-              <button class="nu-popup-tip-close" type="button" aria-label="Dismiss">${icon("x")}</button>
+    scheduleTip(10000);
+    function scheduleTip(delay) {
+      setTimeout(() => {
+        if (document.getElementById("nu-popup-tip")) return;
+        // Don't stack this toast on top of an open modal — wait for it to close.
+        if (document.querySelector(".nu-popup-overlay")) { scheduleTip(1500); return; }
+        const tip = STUDY_TIPS[Math.floor(Math.random() * STUDY_TIPS.length)];
+        const el = document.createElement("div");
+        el.id = "nu-popup-tip";
+        el.className = "nu-popup-tip";
+        el.innerHTML = `
+          <div class="nu-popup-tip-inner">
+            <span class="nu-popup-tip-badge">${icon("lightbulb")} Tip of the Day</span>
+            <p class="nu-popup-tip-text">${tip.tip}</p>
+            <div class="nu-popup-tip-foot">
+              <span class="nu-popup-tip-tag">${tip.tag}</span>
+              <div class="nu-popup-tip-actions">
+                <a class="nu-popup-tip-wa" href="${waShare(`💡 Nursing Tip: "${tip.tip}"\n\nMore tips at https://nursinguganda.com`)}" target="_blank" rel="noopener noreferrer">${icon("whatsapp")}</a>
+                <button class="nu-popup-tip-close" type="button" aria-label="Dismiss">${icon("x")}</button>
+              </div>
             </div>
-          </div>
-        </div>`;
-      document.body.appendChild(el);
-      requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add("nu-popup-tip-visible")));
-      localStorage.setItem(KEY, today);
+          </div>`;
+        document.body.appendChild(el);
+        requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add("nu-popup-tip-visible")));
+        localStorage.setItem(KEY, today);
 
-      // Auto-dismiss after 14 seconds
-      const timer = setTimeout(close, 14000);
-      function close() {
-        clearTimeout(timer);
-        el.classList.remove("nu-popup-tip-visible");
-        el.addEventListener("transitionend", () => el.remove(), { once: true });
-      }
-      el.querySelector(".nu-popup-tip-close").addEventListener("click", close);
-    }, 10000);
+        // Auto-dismiss after 14 seconds
+        const timer = setTimeout(close, 14000);
+        function close() {
+          clearTimeout(timer);
+          el.classList.remove("nu-popup-tip-visible");
+          el.addEventListener("transitionend", () => el.remove(), { once: true });
+        }
+        el.querySelector(".nu-popup-tip-close").addEventListener("click", close);
+      }, delay);
+    }
   })();
 
   // ── 4. Quiz Challenge (scroll-triggered on study pages) ───────────
@@ -16613,7 +16630,7 @@ window.addEventListener("keydown", (event) => {
 });
 
 init();
-initPopups();
+startPopupsWhenAllowed();
 
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("service-worker.js").then((reg) => {
