@@ -28,17 +28,7 @@ const state = {
   resourceSearch: "",
   resourceFilter: "All",
   loginIntended: "",   // URL to return to after successful sign-in
-  careerMode: "jobs",
   careerHeroSlide: 0,
-  careerSearch: "",
-  careerType: "All",
-  careerLevel: "All",
-  careerRegion: "All",
-  careerSpeciality: "All",
-  careerDeadline: "All",
-  careerSort: "Newest",
-  selectedCareerJob: "",
-  savedCareerJobs: JSON.parse(localStorage.getItem("nursinguganda.savedCareerJobs") || "[]"),
   instrumentSearch: "",
   instrumentCategory: "all",
   dictionarySearch: "",
@@ -71,13 +61,11 @@ const state = {
   adminTab: "analytics",
   adminAnalytics: { events: [], loading: false, loaded: false, error: "" },
   analyticsRange: "7d",
-  adminJobs: [],
   adminAnnouncements: [],
   adminUsers: [],
   adminTips: [],
   adminEvents: [],
   adminResources: [],
-  adminJobForm: { open: false, data: {} },
   adminAnnForm: { open: false, data: {} },
   adminTipForm: { open: false, data: {} },
   adminEventForm: { open: false, data: {} },
@@ -501,7 +489,6 @@ async function pushProgressToSupabase() {
       quiz_attempts:    quizAttempts(),
       quiz_submitted:   quizSubmitted(),
       bookmarks:        bookmarks(),
-      saved_jobs:       state.savedCareerJobs || [],
       flashcard_mastery: [...(getFlashcardMastery?.() || new Set())],
       streak:           getStreak?.() || null,
       updated_at:       new Date().toISOString()
@@ -522,11 +509,6 @@ async function loadProgressFromSupabase() {
       const loc = bookmarks();
       const merged = [...data.bookmarks, ...loc.filter(b => !data.bookmarks.some(r => r.key === b.key))];
       localStorage.setItem("nursinguganda.bookmarks", JSON.stringify(merged.slice(0, 80)));
-    }
-    if (data.saved_jobs?.length) {
-      const s = new Set([...(state.savedCareerJobs || []), ...data.saved_jobs]);
-      state.savedCareerJobs = [...s];
-      localStorage.setItem("nursinguganda.savedCareerJobs", JSON.stringify(state.savedCareerJobs));
     }
     if (data.flashcard_mastery?.length) {
       const m = getFlashcardMastery?.() || new Set();
@@ -649,33 +631,6 @@ function renderResourceDownloadsSection() {
     </section>`;
 }
 
-// ─── JOBS FROM SUPABASE ───────────────────────────────────────────────────
-async function loadJobsFromSupabase() {
-  const client = sb(); if (!client) return;
-  try {
-    const { data } = await client.from("jobs").select("*").eq("is_active", true).order("is_featured", { ascending: false }).order("created_at", { ascending: false });
-    if (data?.length) {
-      // Map Supabase jobs to the app's expected shape
-      state.careerJobs = data.map(j => ({
-        id: j.id,
-        title: j.title,
-        organisation: j.organisation,
-        location: j.location || "Uganda",
-        type: j.type || "Full-time",
-        category: j.category || "Clinical",
-        description: j.description || "",
-        requirements: j.requirements || "",
-        howToApply: j.how_to_apply || "",
-        deadline: j.deadline || "",
-        salary: j.salary || "",
-        applyUrl: j.apply_url || "",
-        featured: !!j.is_featured,
-        _source: "supabase"
-      }));
-    }
-  } catch (_) {}
-}
-
 // ─── ADMIN HELPERS ────────────────────────────────────────────────────────
 function isAdmin() { return state.currentUser?.email === "twikirizederick@gmail.com"; }
 
@@ -765,34 +720,10 @@ function requireLogin(feature, message, callback) {
   }
 }
 
-async function adminLoadJobs() {
-  const client = sb(); if (!client) return;
-  const { data } = await client.from("jobs").select("*").order("created_at", { ascending: false });
-  if (data) state.adminJobs = data;
-}
 async function adminLoadAnnouncements() {
   const client = sb(); if (!client) return;
   const { data } = await client.from("announcements").select("*").order("created_at", { ascending: false });
   if (data) state.adminAnnouncements = data;
-}
-async function adminSaveJob(jobData, id = null) {
-  const client = sb(); if (!client) return { ok: false };
-  const payload = { title: jobData.title, organisation: jobData.organisation, location: jobData.location, type: jobData.type, category: jobData.category, description: jobData.description, requirements: jobData.requirements, how_to_apply: jobData.how_to_apply, deadline: jobData.deadline || null, salary: jobData.salary, apply_url: jobData.apply_url, is_active: true, is_featured: !!jobData.is_featured };
-  const { error } = id ? await client.from("jobs").update(payload).eq("id", id) : await client.from("jobs").insert(payload);
-  if (error) return { ok: false, error: error.message };
-  await adminLoadJobs(); await loadJobsFromSupabase();
-  return { ok: true };
-}
-async function adminToggleJob(id, isActive) {
-  const client = sb(); if (!client) return;
-  await client.from("jobs").update({ is_active: !isActive }).eq("id", id);
-  await adminLoadJobs(); await loadJobsFromSupabase(); render();
-}
-async function adminDeleteJob(id) {
-  const client = sb(); if (!client) return;
-  if (!confirm("Delete this job listing?")) return;
-  await client.from("jobs").delete().eq("id", id);
-  await adminLoadJobs(); await loadJobsFromSupabase(); render();
 }
 async function adminSaveAnn(data, id = null) {
   const client = sb(); if (!client) return { ok: false };
@@ -3903,7 +3834,7 @@ function renderCookieConsent() {
               <input type="checkbox" checked disabled>
               <span class="cookie-toggle-info">
                 <strong>${icon("lock")} Necessary</strong>
-                <small>Navigation, theme, saved jobs, bookmarks and consent record. Always active.</small>
+                <small>Navigation, theme, bookmarks and consent record. Always active.</small>
               </span>
               <span class="cookie-toggle-badge always-on">Always on</span>
             </label>
@@ -3955,7 +3886,7 @@ function renderFooter() {
     ["/resources/medical-instruments","Instruments",   "stethoscope"],
     ["/resources/schools",           "Schools",        "school"],
     ["/resources/past-papers",       "Past Papers",    "clipboardList"],
-    ["/careers",                     "Jobs Board",     "briefcaseMedical"]
+    ["/careers",                     "Careers",        "briefcaseMedical"]
   ];
   const subjectLinks = [
     ["anatomy|physiology",           "Anatomy & Physiology", "activity"],
@@ -4154,7 +4085,6 @@ function megaMenuLinks(key) {
 
   if (key === "careers") {
     return [
-      { href: "/careers",              label: "Jobs Board",              body: "Search nursing roles, internships and international listings", icon: "briefcaseMedical" },
       { href: "/careers",              label: "Career Hub",              body: "Pathways, licensing, CV tools and work-abroad guides", icon: "map" },
       { href: "/careers#international", label: "International Nursing",  body: "UK, Australia, Gulf and regional mobility notes", icon: "globe" },
       { href: "/careers#licensing",    label: "Licensing Guides",        body: "UNMC, good standing and recognition checklists", icon: "badgeCheck" },
@@ -4314,8 +4244,6 @@ function renderLoginPromptModal() {
     quiz:        "send",
     bookmark:    "bookmark",
     pdf:         "printer",
-    "job-save":  "heart",
-    "job-apply": "briefcase",
     template:    "download",
     cv:          "fileCv",
     flashcard:   "star",
@@ -4880,7 +4808,7 @@ const legalPages = {
     intro: "This page explains every type of cookie and storage Nursing Uganda uses, including those needed for Google AdSense and Amazon affiliate tracking.",
     summary: ["Necessary cookies always active", "Analytics & ad cookies need consent", "Amazon affiliate uses referral cookies", "Manage preferences in the footer"],
     sections: [
-      ["Necessary Cookies", "Necessary storage supports basic navigation, theme preference, saved school view, saved jobs, bookmarks, service-worker offline caching and your consent record. These cannot be disabled as they are required for the website to function."],
+      ["Necessary Cookies", "Necessary storage supports basic navigation, theme preference, saved school view, bookmarks, service-worker offline caching and your consent record. These cannot be disabled as they are required for the website to function."],
       ["Analytics Cookies — Google Analytics", "When you consent to analytics, Google Analytics (GA4) places cookies (_ga, _gid and related) to count page views, session duration and popular content. Data is aggregated and anonymised. These cookies expire after 13 months. You can opt out at tools.google.com/dlpage/gaoptout."],
       ["Advertising Cookies — Google AdSense", "Google AdSense uses cookies and similar technologies (IDE, DSID, NID) to deliver, limit frequency and measure advertisements. When enabled, ads may be personalised based on your browsing history across Google partner sites. Advertising consent must be collected before these cookies activate for users in applicable regions."],
       ["Affiliate Tracking — Amazon Associates", "Nursing Uganda participates or will participate in the Amazon Associates programme. When you click an affiliate link, Amazon may set a cookie (session-id, ubid-acbus) to attribute your purchase to our referral. These cookies typically last 24 hours for the session attribution. We earn a commission if a qualifying purchase is completed."],
@@ -4935,7 +4863,7 @@ const legalPages = {
       ["Advertising Policy", "The website displays advertisements served by Google AdSense and potentially other networks. By using the site, you acknowledge that advertisements may appear alongside educational content. Ad revenue funds the free revision resources available to students. We do not endorse advertised products or services."],
       ["Affiliate Programme", "Nursing Uganda participates in affiliate programmes including the Amazon Associates Programme. Links marked (Affiliate) may earn Nursing Uganda a commission when you purchase through them. This income supports ongoing free content. Affiliate relationships do not influence editorial decisions or clinical recommendations."],
       ["External Links And Jobs", "Links to schools, regulators, YouTube, job boards, book libraries and other external websites are provided for convenience. Always verify applications, payments, deadlines and personal data requests directly with the official source. We are not responsible for external site content."],
-      ["Partnerships And Sponsorship", "Businesses, publishers, medical suppliers or organisations interested in sponsoring content, listing a job, advertising a course or placing a banner can contact us at info@nursinguganda.com. Sponsored content will always be clearly labelled."],
+      ["Partnerships And Sponsorship", "Businesses, publishers, medical suppliers or organisations interested in sponsoring content, advertising a course or placing a banner can contact us at info@nursinguganda.com. Sponsored content will always be clearly labelled."],
       ["Governing Law", "These terms are governed by and construed in accordance with the laws of Uganda. Any dispute arising from use of the website is subject to the jurisdiction of the courts of Uganda unless otherwise agreed in writing."],
       ["Contact", "For questions, corrections, takedown requests, partnership enquiries or licensing matters, email info@nursinguganda.com. We aim to respond within 5 working days."]
     ]
@@ -5096,7 +5024,7 @@ function renderLegalPage(key) {
             <div class="lp-action-icon">${icon("briefcaseMedical")}</div>
             <div>
               <h3>Partner, Sponsor or Advertise</h3>
-              <p>Businesses, publishers, medical suppliers and course providers can reach thousands of nursing students. Get in touch to discuss sponsored content, job listings, banner advertising or affiliate partnerships.</p>
+              <p>Businesses, publishers, medical suppliers and course providers can reach thousands of nursing students. Get in touch to discuss sponsored content, banner advertising or affiliate partnerships.</p>
             </div>
             <a class="button primary" href="mailto:info@nursinguganda.com?subject=Partnership%20Enquiry">${buttonLabel("Get In Touch", "mail")}</a>
           </div>` : ""}
@@ -5348,7 +5276,7 @@ function render404Page() {
     ["/courses/curriculum",           "Courses",           "graduationCap"],
     ["/resources/medical-instruments","Instruments",       "stethoscope"],
     ["/dictionary",                   "Dictionary",        "fileText"],
-    ["/careers",                      "Jobs Board",        "briefcaseMedical"],
+    ["/careers",                      "Careers",           "briefcaseMedical"],
     ["/search",                       "Search",            "search"],
   ];
 
@@ -5522,7 +5450,6 @@ function renderAccountPage() {
   }
   const u = state.currentUser;
   const mastered = Object.keys(masteredTopics() || {}).length;
-  const saved = (JSON.parse(localStorage.getItem("nursinguganda.savedCareerJobs") || "[]")).length;
   return `
     <div class="container account-page">
       <div class="account-page-header">
@@ -5539,10 +5466,6 @@ function renderAccountPage() {
           <span class="account-stat-label">Topics Mastered</span>
         </div>
         <div class="account-stat-card">
-          <span class="account-stat-num">${saved}</span>
-          <span class="account-stat-label">Saved Jobs</span>
-        </div>
-        <div class="account-stat-card">
           <span class="account-stat-num">${updateStreak().current}</span>
           <span class="account-stat-label">Day Streak</span>
         </div>
@@ -5555,7 +5478,7 @@ function renderAccountPage() {
           <a class="account-link-item" href="/planner">${icon("calendar")}<span>Study Planner</span></a>
           <a class="account-link-item" href="/community">${icon("users")}<span>Community Q&amp;A</span></a>
           <a class="account-link-item" href="/flashcards">${icon("sparkles")}<span>Flashcards</span></a>
-          <a class="account-link-item" href="/careers">${icon("briefcaseMedical")}<span>Job Board</span></a>
+          <a class="account-link-item" href="/careers">${icon("briefcaseMedical")}<span>Careers</span></a>
           <a class="account-link-item" href="/notes">${icon("bookOpen")}<span>Study Notes</span></a>
         </div>
       </div>
@@ -5805,85 +5728,11 @@ function renderAdminPage() {
     `);
   }
 
-  const jobs  = state.adminJobs || [];
   const anns  = state.adminAnnouncements || [];
-  const tab   = state.adminTab || "jobs";
-  const jForm = state.adminJobForm || { open: false, data: {} };
+  const tab   = state.adminTab || "analytics";
   const aForm = state.adminAnnForm || { open: false, data: {} };
 
   const typeColors = { info: "#3b82f6", warning: "#f59e0b", success: "#22c55e" };
-
-  // ── Job form modal ──────────────────────────────────────────────────
-  const jobFormHtml = jForm.open ? `
-    <div class="adm-modal-overlay" id="adm-job-modal">
-      <div class="adm-modal">
-        <div class="adm-modal-hdr">
-          <h3>${jForm.data.id ? "Edit Job" : "New Job Listing"}</h3>
-          <button type="button" class="adm-modal-close" data-adm-job-form-close>${icon("x")}</button>
-        </div>
-        <form class="adm-form" id="adm-job-form" autocomplete="off">
-          <div class="adm-form-row">
-            <label>Job Title *</label>
-            <input name="title" required value="${escapeHtml(jForm.data.title || "")}" placeholder="e.g. Staff Nurse – Maternity">
-          </div>
-          <div class="adm-form-row">
-            <label>Organisation *</label>
-            <input name="organisation" required value="${escapeHtml(jForm.data.organisation || "")}" placeholder="e.g. Mulago National Referral Hospital">
-          </div>
-          <div class="adm-form-2col">
-            <div class="adm-form-row">
-              <label>Location</label>
-              <input name="location" value="${escapeHtml(jForm.data.location || "")}" placeholder="e.g. Kampala, Uganda">
-            </div>
-            <div class="adm-form-row">
-              <label>Type</label>
-              <select name="type">
-                ${["Full-time","Part-time","Contract","Volunteer","Internship"].map(t => `<option${jForm.data.type === t ? " selected" : ""}>${t}</option>`).join("")}
-              </select>
-            </div>
-          </div>
-          <div class="adm-form-2col">
-            <div class="adm-form-row">
-              <label>Category</label>
-              <select name="category">
-                ${["Clinical","Midwifery","Community","Administration","Research","Teaching","Other"].map(c => `<option${jForm.data.category === c ? " selected" : ""}>${c}</option>`).join("")}
-              </select>
-            </div>
-            <div class="adm-form-row">
-              <label>Deadline</label>
-              <input type="date" name="deadline" value="${escapeHtml(jForm.data.deadline || "")}">
-            </div>
-          </div>
-          <div class="adm-form-row">
-            <label>Salary / Compensation</label>
-            <input name="salary" value="${escapeHtml(jForm.data.salary || "")}" placeholder="e.g. UGX 1,200,000/month">
-          </div>
-          <div class="adm-form-row">
-            <label>Apply URL</label>
-            <input type="url" name="apply_url" value="${escapeHtml(jForm.data.apply_url || "")}" placeholder="https://...">
-          </div>
-          <div class="adm-form-row">
-            <label>Description</label>
-            <textarea name="description" rows="4" placeholder="Role overview, responsibilities...">${escapeHtml(jForm.data.description || "")}</textarea>
-          </div>
-          <div class="adm-form-row">
-            <label>Requirements</label>
-            <textarea name="requirements" rows="3" placeholder="Qualifications, experience...">${escapeHtml(jForm.data.requirements || "")}</textarea>
-          </div>
-          <div class="adm-form-row">
-            <label>How to Apply</label>
-            <textarea name="how_to_apply" rows="2" placeholder="Instructions for applicants...">${escapeHtml(jForm.data.how_to_apply || "")}</textarea>
-          </div>
-          <div class="adm-form-row adm-form-check">
-            <label><input type="checkbox" name="is_featured"${jForm.data.is_featured ? " checked" : ""}> Featured listing (shows at top)</label>
-          </div>
-          <div class="adm-form-actions">
-            <button type="button" class="button ghost" data-adm-job-form-close>Cancel</button>
-            <button type="submit" class="button primary" id="adm-job-save-btn">${icon("send")} ${jForm.data.id ? "Save Changes" : "Publish Job"}</button>
-          </div>
-        </form>
-      </div>
-    </div>` : "";
 
   // ── Announcement form modal ─────────────────────────────────────────
   const annFormHtml = aForm.open ? `
@@ -6046,7 +5895,6 @@ function renderAdminPage() {
   // ── Page content ────────────────────────────────────────────────────
   const addBtnMap = {
     analytics: "",
-    jobs: `<button class="button primary" type="button" data-adm-job-new>${icon("sparkles")} Add Job</button>`,
     announcements: `<button class="button primary" type="button" data-adm-ann-new>${icon("bell")} Add Announcement</button>`,
     tips: `<button class="button primary" type="button" data-adm-tip-new>${icon("lightbulb")} Add Tip</button>`,
     events: `<button class="button primary" type="button" data-adm-event-new>${icon("calendar")} Add Event</button>`,
@@ -6055,7 +5903,6 @@ function renderAdminPage() {
   };
   const adminNavItems = [
     { key: "analytics", label: "Analytics", iconName: "chartLine", badge: (state.adminAnalytics.events || []).length },
-    { key: "jobs", label: "Jobs", iconName: "briefcaseMedical", badge: jobs.length },
     { key: "announcements", label: "Banners", iconName: "bell", badge: anns.length },
     { key: "tips", label: "Tips", iconName: "lightbulb", badge: tips.length },
     { key: "events", label: "Events", iconName: "calendar", badge: events.length },
@@ -6094,42 +5941,6 @@ function renderAdminPage() {
           <div class="adm-content">
 
         ${tab === "analytics" ? renderAdminAnalyticsTab() : ""}
-
-        ${tab === "jobs" ? `
-          <div class="adm-table-wrap">
-            ${jobs.length === 0 ? `<div class="adm-empty">${icon("briefcaseMedical")}<p>No jobs yet. Click <strong>Add Job</strong> to post the first listing.</p></div>` : `
-            <table class="adm-table">
-              <thead>
-                <tr>
-                  <th>Title / Organisation</th>
-                  <th>Type</th>
-                  <th>Deadline</th>
-                  <th>Status</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                ${jobs.map(j => `
-                  <tr class="${j.is_active ? "" : "adm-row-inactive"}">
-                    <td>
-                      <strong class="adm-job-title">${escapeHtml(j.title)}</strong>
-                      <small>${escapeHtml(j.organisation || "")}${j.location ? ` · ${escapeHtml(j.location)}` : ""}</small>
-                      ${j.is_featured ? `<span class="adm-badge adm-badge-gold">★ Featured</span>` : ""}
-                    </td>
-                    <td><span class="adm-chip">${escapeHtml(j.type || "—")}</span></td>
-                    <td>${j.deadline ? `<span class="adm-deadline">${escapeHtml(j.deadline)}</span>` : "—"}</td>
-                    <td><span class="adm-status ${j.is_active ? "adm-status-on" : "adm-status-off"}">${j.is_active ? "Active" : "Hidden"}</span></td>
-                    <td class="adm-actions">
-                      <button class="adm-btn-icon" title="Edit" data-adm-job-edit="${escapeHtml(j.id)}">${icon("pencil")}</button>
-                      <button class="adm-btn-icon" title="${j.is_active ? "Hide" : "Show"}" data-adm-job-toggle="${escapeHtml(j.id)}" data-adm-job-active="${j.is_active}">${j.is_active ? icon("eyeOff") : icon("eye")}</button>
-                      <button class="adm-btn-icon adm-btn-danger" title="Delete" data-adm-job-delete="${escapeHtml(j.id)}">${icon("x")}</button>
-                    </td>
-                  </tr>
-                `).join("")}
-              </tbody>
-            </table>`}
-          </div>
-        ` : ""}
 
         ${tab === "announcements" ? `
           <div class="adm-table-wrap">
@@ -6258,7 +6069,6 @@ function renderAdminPage() {
         </div>
       </div>
     </section>
-    ${jobFormHtml}
     ${annFormHtml}
     ${tipFormHtml}
     ${eventFormHtml}
@@ -6266,53 +6076,6 @@ function renderAdminPage() {
   `;
 
   layout(pageContent);
-
-  // ── Job form wiring ─────────────────────────────────────────────────
-  app.querySelector("[data-adm-job-new]")?.addEventListener("click", () => {
-    state.adminJobForm = { open: true, data: {} };
-    render();
-  });
-  app.querySelectorAll("[data-adm-job-edit]").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const job = jobs.find(j => String(j.id) === btn.dataset.admJobEdit);
-      if (job) { state.adminJobForm = { open: true, data: { ...job } }; render(); }
-    });
-  });
-  app.querySelectorAll("[data-adm-job-toggle]").forEach(btn => {
-    btn.addEventListener("click", () => adminToggleJob(btn.dataset.admJobToggle, btn.dataset.admJobActive === "true"));
-  });
-  app.querySelectorAll("[data-adm-job-delete]").forEach(btn => {
-    btn.addEventListener("click", () => adminDeleteJob(btn.dataset.admJobDelete));
-  });
-  app.querySelectorAll("[data-adm-job-form-close]").forEach(btn => {
-    btn.addEventListener("click", () => { state.adminJobForm = { open: false, data: {} }; render(); });
-  });
-  const jobForm = app.querySelector("#adm-job-form");
-  if (jobForm) {
-    jobForm.addEventListener("submit", async e => {
-      e.preventDefault();
-      const fd = new FormData(jobForm);
-      const saveBtn = jobForm.querySelector("#adm-job-save-btn");
-      if (saveBtn) saveBtn.disabled = true;
-      const data = {
-        title: fd.get("title"), organisation: fd.get("organisation"),
-        location: fd.get("location"), type: fd.get("type"),
-        category: fd.get("category"), description: fd.get("description"),
-        requirements: fd.get("requirements"), how_to_apply: fd.get("how_to_apply"),
-        deadline: fd.get("deadline"), salary: fd.get("salary"),
-        apply_url: fd.get("apply_url"), is_featured: fd.has("is_featured")
-      };
-      const res = await adminSaveJob(data, jForm.data.id || null);
-      if (res.ok) {
-        state.adminJobForm = { open: false, data: {} };
-        showToast(jForm.data.id ? "Job updated." : "Job published!", "success");
-      } else {
-        showToast(res.error || "Save failed.", "error");
-        if (saveBtn) saveBtn.disabled = false;
-      }
-      render();
-    });
-  }
 
   // ── Announcement form wiring ─────────────────────────────────────────
   app.querySelector("[data-adm-ann-new]")?.addEventListener("click", () => {
@@ -6596,10 +6359,6 @@ function renderContactPage() {
           <div class="contact-faq-item">
             <strong>${icon("users")} Can my school partner with you?</strong>
             <p>Yes! We welcome partnerships with nursing schools, hospitals and professional bodies. Select <em>Partnership</em> and tell us about your organisation.</p>
-          </div>
-          <div class="contact-faq-item">
-            <strong>${icon("briefcaseMedical")} How do I post a job?</strong>
-            <p>Contact us via the form above with <em>Partnership</em> selected, or email us directly at <a href="mailto:info@nursinguganda.com">info@nursinguganda.com</a>.</p>
           </div>
         </div>
       </div>
@@ -11717,326 +11476,16 @@ function renderResourceDetail(page) {
   `;
 }
 
-const careerFilterGroups = {
-  type: ["All", "Internship", "Full Time", "Part Time", "Contract", "Volunteer"],
-  level: ["All", "Student", "Graduate", "Experienced", "Senior"],
-  region: ["All", "Uganda", "East Africa", "UK", "Australia", "Middle East", "Other"],
-  speciality: ["All", "General", "ICU", "Theatre", "Paediatrics", "Midwifery", "Community", "Mental Health"],
-  deadline: ["All", "This week", "This month"]
-};
-
-// ── Per-employer real application URLs ───────────────────────
-const EMPLOYER_APPLY_URLS = {
-  "Mulago National Referral Hospital":  "https://www.health.go.ug/",
-  "Aga Khan Hospital Uganda":           "https://www.akhealthuganda.org/",
-  "UNHCR Uganda":                       "https://www.unhcr.org/careers",
-  "MSF Uganda":                         "https://www.msf.org/careers",
-  "WHO Uganda":                         "https://careers.who.int/",
-  "WHO Vacancies":                      "https://careers.who.int/",
-  "Uganda Red Cross":                   "https://www.redcrossuganda.org/",
-  "MOH Uganda":                         "https://www.health.go.ug/",
-  "Nakasero Hospital":                  "https://www.nakaseronhospital.com/",
-  "International Hospital Kampala":     "https://www.ihk.co.ug/",
-  "Nile Community Clinic":              "mailto:info@nursinguganda.com",
-  "Kisumu County Hospital":             "https://www.health.go.ke/",
-  "Nairobi Maternal Centre":            "https://www.linkedin.com/jobs/search/?keywords=midwife+kenya",
-  "NHS Trust":                          "https://www.jobs.nhs.uk/",
-  "NHS Jobs":                           "https://www.jobs.nhs.uk/",
-  "SEEK Australia":                     "https://www.seek.com.au/nursing-jobs",
-  "Queensland Health":                  "https://smartjobs.qld.gov.au/",
-  "Dubai Health Recruiters":            "https://www.dha.gov.ae/en/Pages/JobOpportunities.aspx",
-  "Abu Dhabi Medical City":             "https://www.seha.ae/careers",
-  "Saudi Healthcare Group":             "https://www.moh.gov.sa/en/About/Careers/",
-  "Qatar Medical Centre":               "https://www.hamad.qa/EN/careers/",
-  "ReliefWeb Partner":                  "https://reliefweb.int/jobs",
-  "Kampala Family Clinic":              "mailto:info@nursinguganda.com",
-  "StrongMinds Uganda":                 "https://strongminds.org/work-with-us/",
-};
-
-// ── Clearbit logo domains for known organisations ─────────────
-// Logo is fetched live; careerAvatar() falls back to coloured initial on error
-const ORG_DOMAINS = {
-  "UNHCR Uganda":                   "unhcr.org",
-  "MSF Uganda":                     "msf.org",
-  "WHO Uganda":                     "who.int",
-  "WHO Vacancies":                  "who.int",
-  "Uganda Red Cross":               "redcrossuganda.org",
-  "Aga Khan Hospital Uganda":       "akdn.org",
-  "NHS Trust":                      "jobs.nhs.uk",
-  "NHS Jobs":                       "jobs.nhs.uk",
-  "SEEK Australia":                 "seek.com.au",
-  "Queensland Health":              "health.qld.gov.au",
-  "Abu Dhabi Medical City":         "seha.ae",
-  "ReliefWeb Partner":              "reliefweb.int",
-  "StrongMinds Uganda":             "strongminds.org",
-  "Qatar Medical Centre":           "hamad.qa",
-};
-
-function careerJobApplyUrl(employer, title, isExternal) {
-  if (EMPLOYER_APPLY_URLS[employer]) return EMPLOYER_APPLY_URLS[employer];
-  return isExternal
-    ? `https://reliefweb.int/jobs?search=${encodeURIComponent(title)}`
-    : `mailto:info@nursinguganda.com?subject=${encodeURIComponent(title)}`;
-}
-
-// Per-job descriptions — more meaningful than a generic template
-const JOB_DESCRIPTIONS = {
-  "mulago-graduate-nurse":  "Uganda's largest public hospital offers a structured graduate rotation across medical, surgical, paediatric and emergency wards, helping new nurses build clinical confidence and UNMC portfolio hours.",
-  "aga-khan-theatre-nurse": "Aga Khan Hospital Uganda operates a busy surgical unit and seeks a trained scrub or scout nurse to manage sterile fields, instrument counts and perioperative patient safety across elective and emergency theatre lists.",
-  "unhcr-community-health": "UNHCR's public health unit in Arua requires a nurse to deliver primary care, vaccination outreach, mental health first aid and nutrition support to displaced populations across the West Nile region.",
-  "msf-icu-nurse":          "MSF Uganda operates a high-acuity ICU and seeks an experienced critical care nurse capable of managing ventilated patients, arterial lines and fluid resuscitation under humanitarian field protocols.",
-  "who-surveillance-nurse": "WHO Uganda's disease surveillance programme requires a senior nurse officer to coordinate outbreak alerts, investigate cases, train district teams and maintain IDSR data quality across health facilities.",
-  "red-cross-volunteer":    "Uganda Red Cross volunteers in Gulu support emergency health response, first aid training and community disaster preparedness — ideal for student nurses seeking humanitarian exposure with a travel allowance.",
-  "moh-midwife":            "The Ministry of Health is recruiting skilled midwives for Mbarara district health facilities to conduct deliveries, provide antenatal and postnatal care, and contribute to maternal mortality reduction targets.",
-  "nakasero-paediatric":    "Nakasero Hospital's paediatric unit seeks a dedicated nurse for inpatient child care, neonatal monitoring, immunisation support and family-centred care across a busy private paediatric ward.",
-  "ihk-mental-health":      "International Hospital Kampala requires a part-time mental health nurse to assess psychiatric inpatients, administer medication, support counselling sessions and coordinate discharge planning within a multidisciplinary team.",
-  "nile-internship":        "Nile Community Clinic in Jinja offers 8–12 week supervised internships for student nurses and midwives needing clinical placement hours in outpatient, maternal and community health settings.",
-  "kisumu-nurse":           "Kisumu County Hospital in western Kenya recruits experienced staff nurses for general ward rotations, offering a competitive local government salary and structured professional development pathways.",
-  "nairobi-midwife":        "A Nairobi private maternal centre seeks a registered midwife with active normal delivery skills, antenatal care experience and the ability to support high-risk pregnancy management.",
-  "nhs-band5":              "NHS Manchester Trust offers Tier 2 visa sponsorship for Uganda-registered nurses with NMC eligibility, to work in general medical or surgical wards on permanent Band 5 contracts with full relocation support.",
-  "nhs-theatre":            "Birmingham NHS Trust requires an experienced scrub nurse or ODP for a busy surgical suite covering orthopaedic, general and vascular lists, with strong Band 6 development and leadership prospects.",
-  "aged-care-australia":    "Melbourne aged care provider seeks a compassionate RN for residential aged care, including medication management, care planning, family communication and AHPRA regulatory compliance.",
-  "icu-australia":          "Queensland Health ICU contract for a senior critical care nurse with ventilator, arterial line and haemodynamic monitoring experience at a major Brisbane tertiary referral hospital.",
-  "dubai-dha":              "Dubai-based recruiter sourcing DHA-licensed nurses for general medical wards across public and private hospitals, with competitive AED salary, employer visa processing and housing allowance.",
-  "abu-dhabi-paeds":        "SEHA Abu Dhabi Medical City requires a skilled paediatric nurse for inpatient child care, NICU support and family education, with DOH licence assistance provided for eligible candidates.",
-  "saudi-midwife":          "A Riyadh Saudi Ministry of Health affiliate seeks a qualified midwife for a labour ward contract covering normal deliveries, CTG interpretation and postnatal mother-baby care.",
-  "qatar-theatre":          "Hamad Medical Corporation-affiliated theatre unit in Doha requires a senior scrub nurse across general, orthopaedic and urology surgical lists, with QCHP registration support and a tax-free salary.",
-  "reliefweb-field-nurse":  "NGO humanitarian field nurse for displaced populations in South Sudan, delivering primary care, emergency triage, antenatal services and health promotion in low-resource camp and field settings.",
-  "who-consultant":         "WHO Africa Region nursing consultancy for a senior professional with public health expertise to support health systems strengthening, policy review and clinical guideline development across multiple countries.",
-  "clinic-parttime":        "Kampala Family Clinic offers flexible part-time nursing shifts covering outpatient consultations, injections, wound care and minor procedures — a good option for experienced nurses seeking work-life balance.",
-  "mental-health-ngo":      "StrongMinds Uganda delivers group therapy for depression in Mbale and seeks a nurse with mental health experience to facilitate sessions, train community health workers and monitor patient outcomes."
-};
-
-function careerJobs() {
-  // Prefer live JSON loaded at startup (state.careerJobs), else fall back to seed
-  if (state.careerJobs && state.careerJobs.length) return state.careerJobs;
-  return [
-    ["mulago-graduate-nurse",   "Graduate Nurse Program",              "Mulago National Referral Hospital", "Kampala, Uganda",        "Full Time",  "Graduate",    "Uganda",       "General",      "UGX 1.2M-1.8M",      "2026-05-02", "2026-08-31", true,  false],
-    ["aga-khan-theatre-nurse",  "Theatre Nurse",                       "Aga Khan Hospital Uganda",          "Kampala, Uganda",        "Full Time",  "Experienced", "Uganda",       "Theatre",      "UGX 2.4M-3.4M",      "2026-05-06", "2026-08-22", true,  false],
-    ["unhcr-community-health",  "Community Health Nurse",              "UNHCR Uganda",                      "Arua, Uganda",           "Contract",   "Experienced", "Uganda",       "Community",    "Not disclosed",       "2026-05-04", "2026-07-17", false, true],
-    ["msf-icu-nurse",           "ICU Nurse",                           "MSF Uganda",                        "Kampala, Uganda",        "Contract",   "Experienced", "Uganda",       "ICU",          "Not disclosed",       "2026-05-01", "2026-07-12", true,  true],
-    ["who-surveillance-nurse",  "Nursing Surveillance Officer",        "WHO Uganda",                        "Kampala, Uganda",        "Contract",   "Senior",      "Uganda",       "Community",    "Not disclosed",       "2026-04-30", "2026-07-27", false, true],
-    ["red-cross-volunteer",     "Volunteer Nurse – Emergency Response","Uganda Red Cross",                  "Gulu, Uganda",           "Volunteer",  "Student",     "Uganda",       "General",      "Volunteer allowance", "2026-05-07", "2026-07-15", false, false],
-    ["moh-midwife",             "Midwife – District Health Facility",  "MOH Uganda",                        "Mbarara, Uganda",        "Full Time",  "Graduate",    "Uganda",       "Midwifery",    "Government scale",    "2026-05-03", "2026-08-07", false, false],
-    ["nakasero-paediatric",     "Paediatric Nurse",                    "Nakasero Hospital",                 "Kampala, Uganda",        "Full Time",  "Experienced", "Uganda",       "Paediatrics",  "UGX 2.0M-2.8M",      "2026-05-05", "2026-08-02", false, false],
-    ["ihk-mental-health",       "Mental Health Nurse",                 "International Hospital Kampala",    "Kampala, Uganda",        "Part Time",  "Experienced", "Uganda",       "Mental Health","UGX 1.8M-2.6M",      "2026-04-28", "2026-07-24", false, false],
-    ["nile-internship",         "Student Nursing Internship",          "Nile Community Clinic",             "Jinja, Uganda",          "Internship", "Student",     "Uganda",       "General",      "Transport allowance", "2026-05-08", "2026-07-19", false, false],
-    ["kisumu-nurse",            "Staff Nurse",                         "Kisumu County Hospital",            "Kisumu, Kenya",          "Full Time",  "Experienced", "East Africa",  "General",      "KES 65K-95K",         "2026-05-01", "2026-08-10", false, true],
-    ["nairobi-midwife",         "Registered Midwife",                  "Nairobi Maternal Centre",           "Nairobi, Kenya",         "Contract",   "Experienced", "East Africa",  "Midwifery",    "KES 80K-120K",        "2026-05-06", "2026-07-28", false, true],
-    ["nhs-band5",               "Band 5 Staff Nurse",                  "NHS Trust",                         "Manchester, UK",         "Full Time",  "Graduate",    "UK",           "General",      "GBP 28K-34K",         "2026-05-03", "2026-09-14", true,  true],
-    ["nhs-theatre",             "Operating Theatre Practitioner",      "NHS Jobs",                          "Birmingham, UK",         "Full Time",  "Experienced", "UK",           "Theatre",      "GBP 35K-42K",         "2026-05-02", "2026-08-30", false, true],
-    ["aged-care-australia",     "Registered Nurse – Aged Care",        "SEEK Australia",                    "Melbourne, Australia",   "Full Time",  "Experienced", "Australia",    "General",      "AUD 75K-95K",         "2026-04-29", "2026-09-21", false, true],
-    ["icu-australia",           "Critical Care Registered Nurse",      "Queensland Health",                 "Brisbane, Australia",    "Contract",   "Senior",      "Australia",    "ICU",          "AUD 90K-115K",        "2026-05-05", "2026-08-04", true,  true],
-    ["dubai-dha",               "DHA Registered Nurse",                "Dubai Health Recruiters",           "Dubai, UAE",             "Contract",   "Experienced", "Middle East",  "General",      "AED 6K-9K",           "2026-05-01", "2026-07-25", false, true],
-    ["abu-dhabi-paeds",         "Paediatric Nurse",                    "Abu Dhabi Medical City",            "Abu Dhabi, UAE",         "Full Time",  "Experienced", "Middle East",  "Paediatrics",  "AED 7K-10K",          "2026-05-04", "2026-08-12", false, true],
-    ["saudi-midwife",           "Staff Midwife",                       "Saudi Healthcare Group",            "Riyadh, Saudi Arabia",   "Contract",   "Experienced", "Middle East",  "Midwifery",    "SAR 5K-8K",           "2026-04-26", "2026-07-14", true,  true],
-    ["qatar-theatre",           "Theatre Scrub Nurse",                 "Qatar Medical Centre",              "Doha, Qatar",            "Full Time",  "Senior",      "Middle East",  "Theatre",      "QAR 8K-12K",          "2026-05-06", "2026-08-01", false, true],
-    ["reliefweb-field-nurse",   "Field Nurse – Humanitarian Response", "ReliefWeb Partner",                 "South Sudan",            "Contract",   "Experienced", "Other",        "Community",    "USD package",         "2026-04-27", "2026-07-20", false, true],
-    ["who-consultant",          "Nursing Consultant",                  "WHO Vacancies",                     "Remote / Africa Region", "Contract",   "Senior",      "Other",        "General",      "Consultancy rate",    "2026-05-08", "2026-08-18", false, true],
-    ["clinic-parttime",         "Part-time Clinic Nurse",              "Kampala Family Clinic",             "Kampala, Uganda",        "Part Time",  "Graduate",    "Uganda",       "General",      "UGX 900K-1.4M",       "2026-05-07", "2026-07-10", false, false],
-    ["mental-health-ngo",       "Mental Health Outreach Nurse",        "StrongMinds Uganda",                "Mbale, Uganda",          "Contract",   "Graduate",    "Uganda",       "Mental Health","Not disclosed",       "2026-05-02", "2026-07-23", false, true]
-  ].map(([id, title, employer, location, type, level, region, speciality, salary, posted, deadline, isFeatured, isExternal]) => ({
-    id, title, employer, location, type, level, region, speciality, salary, posted, deadline, isFeatured, isExternal,
-    positions: isFeatured ? 3 : 1,
-    duration: type === "Contract" ? "6-24 months" : type === "Internship" ? "8-12 weeks" : "Permanent",
-    applyUrl: careerJobApplyUrl(employer, title, isExternal),
-    source: "seed",
-    description: JOB_DESCRIPTIONS[id] || `${title} opportunity for Uganda nursing and midwifery professionals seeking structured growth, safe practice and patient-centred care.`,
-    responsibilities: [
-      "Deliver safe nursing care and accurate documentation.",
-      "Collaborate with multidisciplinary teams and follow facility protocols.",
-      "Support patient education, handover and quality improvement."
-    ],
-    requirements: [
-      `${level} nursing or midwifery experience`,
-      `${speciality} interest or relevant placement exposure`,
-      "Active registration or eligibility for registration where required"
-    ],
-    documents: ["Updated CV", "Academic transcripts", "Professional registration certificate", "National ID or passport", "Two professional referees"],
-    employerType: /WHO|UNHCR|MSF|Relief|Red Cross|StrongMinds/.test(employer) ? "International Agency / NGO" : /MOH|Mulago|County/.test(employer) ? "Government Hospital" : "Private Facility",
-    employerDescription: `${employer} recruits nurses and midwives for clinical service delivery, community health, training support and programme implementation.`
-  }));
-}
-
-function careerExternalSources() {
-  return [
-    ["NHS Jobs", "UK public health service roles and sponsorship pathways.", "https://www.jobs.nhs.uk/"],
-    ["SEEK Australia", "Hospital, aged care and regional Australian nursing roles.", "https://www.seek.com.au/"],
-    ["LinkedIn", "Employer-posted jobs and recruiter networking.", "https://www.linkedin.com/jobs/"],
-    ["WHO Vacancies", "Global health officer, consultant and field positions.", "https://careers.who.int/"],
-    ["MSF Jobs", "Humanitarian nursing, theatre, midwifery and field work.", "https://www.msf.org/careers"],
-    ["UNHCR Uganda", "Protection, public health and refugee-response openings.", "https://www.unhcr.org/careers.html"],
-    ["ReliefWeb", "NGO and humanitarian jobs across East Africa.", "https://reliefweb.int/jobs"],
-    ["MOH Uganda", "Government notices, health worker recruitment and updates.", "https://www.health.go.ug/"]
-  ];
-}
-
-function careerEmployers() {
-  return ["Mulago National Referral Hospital", "Aga Khan Hospital Uganda", "UNHCR Uganda", "MSF Uganda", "WHO Uganda", "Uganda Red Cross", "MOH Uganda", "Nakasero Hospital", "International Hospital Kampala"].map((name, index) => ({
-    name,
-    location: index < 7 ? "Uganda" : "Kampala",
-    type: /UNHCR|MSF|WHO|Red Cross/.test(name) ? "International Agency" : /MOH|Mulago/.test(name) ? "Government Hospital" : "Private",
-    roles: /MSF|WHO|UNHCR/.test(name) ? ["Community", "Field", "Senior"] : /Aga|Nakasero|International/.test(name) ? ["Theatre", "ICU", "General"] : ["Graduate", "Midwifery", "General"],
-    hiring: index !== 8
-  }));
-}
-
-function savedCareerJobs() {
-  return new Set(state.savedCareerJobs || []);
-}
-
-function setCareerJobSaved(id, saved) {
-  const next = savedCareerJobs();
-  if (saved) next.add(id);
-  else next.delete(id);
-  state.savedCareerJobs = [...next];
-  localStorage.setItem("nursinguganda.savedCareerJobs", JSON.stringify(state.savedCareerJobs));
-  scheduleProgressSync();
-}
-
-function dateLabel(value) {
-  return new Intl.DateTimeFormat("en-GB", { day: "2-digit", month: "short", year: "numeric" }).format(new Date(`${value}T00:00:00`));
-}
-
-function daysUntil(value) {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  return Math.ceil((new Date(`${value}T00:00:00`) - today) / 86400000);
-}
-
-function deadlineClass(job) {
-  const days = daysUntil(job.deadline);
-  if (days < 0) return "expired";
-  if (days < 7) return "urgent";
-  if (days <= 14) return "warning";
-  return "normal";
-}
-
-function regionLabel(region) {
-  const flags = { Uganda: "🇺🇬", "East Africa": "🌍", UK: "🇬🇧", Australia: "🇦🇺", "Middle East": "🇦🇪", Other: "🌐" };
-  return `${flags[region] || "🌐"} ${region}`;
-}
-
-function careerBadge(label, type = "") {
-  return `<span class="career-badge ${escapeHtml(type || slugify(label))}">${escapeHtml(label)}</span>`;
-}
-
-function careerJobMatches(job) {
-  const query = state.careerSearch.trim().toLowerCase();
-  const haystack = `${job.title} ${job.employer} ${job.location} ${job.type} ${job.level} ${job.region} ${job.speciality} ${job.description}`.toLowerCase();
-  const deadlineDays = daysUntil(job.deadline);
-  return (!query || haystack.includes(query))
-    && (state.careerType === "All" || job.type === state.careerType)
-    && (state.careerLevel === "All" || job.level === state.careerLevel)
-    && (state.careerRegion === "All" || job.region === state.careerRegion)
-    && (state.careerSpeciality === "All" || job.speciality === state.careerSpeciality)
-    && (state.careerDeadline === "All" || (state.careerDeadline === "This week" && deadlineDays >= 0 && deadlineDays <= 7) || (state.careerDeadline === "This month" && deadlineDays >= 0 && deadlineDays <= 31));
-}
-
-function filteredCareerJobs() {
-  const jobs = careerJobs().filter(careerJobMatches);
-  return jobs.sort((a, b) => {
-    if (state.careerSort === "Deadline Soonest") return new Date(a.deadline) - new Date(b.deadline);
-    if (state.careerSort === "Most Relevant") return Number(b.isFeatured) - Number(a.isFeatured) || daysUntil(a.deadline) - daysUntil(b.deadline);
-    return new Date(b.posted) - new Date(a.posted);
-  });
-}
-
-function hasActiveCareerFilters() {
-  return Boolean(state.careerSearch || state.careerType !== "All" || state.careerLevel !== "All" || state.careerRegion !== "All" || state.careerSpeciality !== "All" || state.careerDeadline !== "All");
-}
-
-function getActiveFilterCount() {
-  return [state.careerType, state.careerLevel, state.careerRegion, state.careerSpeciality, state.careerDeadline]
-    .filter((v) => v && v !== "All").length;
-}
-
-function renderCareerFilterSidebar() {
-  const groups = [
-    { label: "Job Type",   key: "type",       options: careerFilterGroups.type,       active: state.careerType },
-    { label: "Level",      key: "level",      options: careerFilterGroups.level,      active: state.careerLevel },
-    { label: "Region",     key: "region",     options: careerFilterGroups.region,     active: state.careerRegion },
-    { label: "Speciality", key: "speciality", options: careerFilterGroups.speciality, active: state.careerSpeciality },
-    { label: "Deadline",   key: "deadline",   options: careerFilterGroups.deadline,   active: state.careerDeadline },
-  ];
-  const count = getActiveFilterCount();
-  return `
-    <aside class="career-filter-sidebar">
-      <div class="filter-sidebar-head">
-        <span class="filter-sidebar-title">
-          ${icon("filter")} Filters
-          ${count > 0 ? `<span class="filter-active-count">${count}</span>` : ""}
-        </span>
-        ${count > 0 ? `<button class="filter-sidebar-clear" type="button" data-career-clear>Clear all</button>` : ""}
-      </div>
-      ${groups.map(({ label, key, options, active }) => `
-        <div class="filter-sidebar-group">
-          <h4 class="filter-sidebar-label">${escapeHtml(label)}</h4>
-          <div class="filter-sidebar-options">
-            ${options.map((opt) => `
-              <button type="button"
-                class="filter-sidebar-option${active === opt ? " active" : ""}"
-                data-career-filter="${escapeHtml(key)}"
-                data-career-filter-value="${escapeHtml(opt)}"
-              >${escapeHtml(opt)}</button>
-            `).join("")}
-          </div>
-        </div>
-      `).join("")}
-    </aside>
-  `;
-}
-
-function clearCareerFilters() {
-  state.careerSearch = "";
-  state.careerType = "All";
-  state.careerLevel = "All";
-  state.careerRegion = "All";
-  state.careerSpeciality = "All";
-  state.careerDeadline = "All";
-}
-
-const CAREER_PALETTE = [
-  { bg: "#dbeafe", text: "#1e40af" },  // blue
-  { bg: "#dcfce7", text: "#15803d" },  // green
-  { bg: "#fef9c3", text: "#92400e" },  // amber
-  { bg: "#fce7f3", text: "#9d174d" },  // pink
-  { bg: "#ede9fe", text: "#5b21b6" },  // purple
-  { bg: "#ffedd5", text: "#c2410c" },  // orange
-  { bg: "#e0f2fe", text: "#0369a1" },  // sky
-  { bg: "#e0f7f8", text: "#007b83" },  // teal
-];
-function careerPaletteFor(name) {
-  let h = 0;
-  const s = String(name || "?");
-  for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) & 0xffff;
-  return CAREER_PALETTE[h % CAREER_PALETTE.length];
-}
-function careerAvatar(name, size = "") {
-  const p = careerPaletteFor(String(name || "N"));
-  const letter = String(name || "N").trim().slice(0, 1).toUpperCase();
-  const domain = ORG_DOMAINS[name];
-  if (domain) {
-    // Try Clearbit high-res logo; on failure remove has-logo and show initial
-    return `<span class="career-avatar has-logo ${size}" aria-hidden="true" style="--av-bg:${p.bg};--av-color:${p.text};">` +
-      `<img src="https://logo.clearbit.com/${domain}" alt="" loading="lazy" class="career-logo-img" ` +
-        `onerror="var a=this.closest('.career-avatar');a.classList.remove('has-logo');this.remove();a.textContent='${escapeHtml(letter)}'">` +
-      `</span>`;
-  }
-  return `<span class="career-avatar ${size}" aria-hidden="true" style="--av-bg:${p.bg};--av-color:${p.text};">${escapeHtml(letter)}</span>`;
-}
-
 const CAREER_HERO_SLIDES = [
   { src: "/assets/images/careers/nursing-uganda-careers-hero-premium-01.webp", pos: "center center" },
 ];
 
 function renderCareerHero() {
-  const jobs = careerJobs();
-  const jobCount = jobs.length;
-  const countriesCount = new Set(jobs.map(j => j.region)).size;
-  const levelsCount    = new Set(jobs.map(j => j.level)).size;
-  const specialitiesCount = new Set(jobs.map(j => j.speciality)).size;
-  const activeSlide = state.careerHeroSlide || 0;
+  const pathwayStages   = Object.values(careerPathwayData()).reduce((n, a) => n + a.length, 0);
+  const countriesCount  = countryGuides().length;
+  const licensingCount  = licensingGuides().length;
+  const templatesCount  = careerResourceCount();
+  const activeSlide     = state.careerHeroSlide || 0;
 
   return `
     <section class="careers-hero" id="careers-hero-section">
@@ -12055,28 +11504,28 @@ function renderCareerHero() {
 
         <div class="careers-hero-content">
           <nav class="careers-breadcrumb" aria-label="Breadcrumb">
-            <a href="/notes">Home</a><span>${icon("arrowRight")}</span><strong>Careers &amp; Jobs</strong>
+            <a href="/notes">Home</a><span>${icon("arrowRight")}</span><strong>Careers</strong>
           </nav>
-          <p class="careers-hero-eyebrow">${icon("briefcaseMedical")} Uganda Nursing &amp; Midwifery Jobs</p>
-          <h1>Find Your<br><span>Nursing Career</span></h1>
-          <p class="careers-hero-body">Internships, graduate positions, senior roles and international
-            opportunities — curated for Uganda nursing and midwifery professionals.</p>
+          <p class="careers-hero-eyebrow">${icon("graduationCap")} Uganda Nursing &amp; Midwifery Careers</p>
+          <h1>Plan Your<br><span>Nursing Career</span></h1>
+          <p class="careers-hero-body">Career pathways, UNMC licensing, work-abroad requirements and
+            ready-to-use CV, cover letter and interview templates — for Uganda nursing and midwifery professionals.</p>
           <div class="careers-hero-actions">
-            <button type="button" class="careers-cta-primary" data-career-mode="jobs">
-              ${icon("briefcaseMedical")} Browse Jobs
-            </button>
-            <button type="button" class="careers-cta-ghost" data-career-mode="hub">
-              ${icon("graduationCap")} Career Guidance
-            </button>
+            <a class="careers-cta-primary" href="/careers#career-pathways" data-nav>
+              ${icon("map")} Explore Pathways
+            </a>
+            <a class="careers-cta-ghost" href="/careers#cv-resources" data-nav>
+              ${icon("fileCv")} CV &amp; Letter Templates
+            </a>
           </div>
         </div>
 
         <div class="careers-hero-aside">
           <div class="careers-stat-grid">
-            <div class="careers-stat-card"><strong>${jobCount}</strong><span>Active Listings</span></div>
+            <div class="careers-stat-card"><strong>${pathwayStages}</strong><span>Career Stages</span></div>
             <div class="careers-stat-card"><strong>${countriesCount}</strong><span>Countries</span></div>
-            <div class="careers-stat-card"><strong>${levelsCount}</strong><span>Career Levels</span></div>
-            <div class="careers-stat-card"><strong>${specialitiesCount}</strong><span>Specialities</span></div>
+            <div class="careers-stat-card"><strong>${licensingCount}</strong><span>Licensing Guides</span></div>
+            <div class="careers-stat-card"><strong>${templatesCount}</strong><span>Templates</span></div>
           </div>
         </div>
 
@@ -12091,534 +11540,6 @@ function renderCareerHero() {
       </div>
 
     </section>
-  `;
-}
-
-function renderCareerModeToggle() {
-  return `
-    <section class="career-mode-bar">
-      <div class="container career-mode-shell">
-        <button type="button" class="${state.careerMode === "jobs" ? "active" : ""}" data-career-mode="jobs">${icon("briefcaseMedical")}Jobs Board</button>
-        <button type="button" class="${state.careerMode === "hub" ? "active" : ""}" data-career-mode="hub">${icon("graduationCap")}Career Hub</button>
-      </div>
-    </section>
-  `;
-}
-
-function renderCareerFilterGroup(label, key, options, active) {
-  return `
-    <div class="career-filter-group" aria-label="${escapeHtml(label)} filter">
-      <span>${escapeHtml(label)}</span>
-      ${options.map((option) => `<button type="button" class="${active === option ? "active" : ""}" data-career-filter="${escapeHtml(key)}" data-career-filter-value="${escapeHtml(option)}">${escapeHtml(option)}</button>`).join("")}
-    </div>
-  `;
-}
-
-function renderCareerJobCard(job) {
-  const saved   = savedCareerJobs().has(job.id);
-  const status  = deadlineClass(job);
-  const isNew   = daysUntil(job.posted) > -14;
-  const salaryIsConfidential = ["Not disclosed","Confidential","Consultancy rate"].includes(job.salary);
-  const excerpt = job.description.length > 160 ? job.description.slice(0, 160) + "…" : job.description;
-  return `
-    <article class="bm-job-card${job.isFeatured ? " bm-featured" : ""}" data-career-card="${escapeHtml(job.id)}">
-      ${job.isFeatured ? `<div class="bm-featured-banner"><span>FEATURED</span></div>` : ""}
-      <div class="bm-card-body">
-        <div class="bm-card-top">
-          <a class="bm-job-title" href="/careers/${escapeHtml(job.id)}" data-nav>${escapeHtml(job.title)}</a>
-          <p class="bm-job-employer">${escapeHtml(job.employer)}</p>
-          <div class="bm-job-pills">
-            <span class="bm-pill">${escapeHtml(job.location)}</span>
-            <span class="bm-pill">${escapeHtml(job.type)}</span>
-            <span class="bm-pill">${salaryIsConfidential ? "Confidential" : escapeHtml(job.salary)}</span>
-          </div>
-          <p class="bm-job-category">${escapeHtml(job.speciality)}</p>
-        </div>
-        <hr class="bm-card-sep">
-        <div class="bm-card-bottom">
-          <div class="bm-card-meta-row">
-            ${isNew ? `<span class="bm-new-badge">${icon("sparkles")} New</span>` : ""}
-            <span class="bm-posted-date">${dateLabel(job.posted)}</span>
-          </div>
-          <div class="bm-card-preview">
-            ${careerAvatar(job.employer, "sm")}
-            <p class="bm-card-desc">${escapeHtml(excerpt)}</p>
-          </div>
-          <div class="bm-card-actions">
-            <button type="button" class="bm-save-btn${saved ? " saved" : ""}"
-              title="${saved ? "Remove saved" : "Save job"}"
-              data-career-job-save="${escapeHtml(job.id)}">${icon("heart")}</button>
-            <a class="bm-easy-apply" href="${escapeHtml(job.applyUrl)}"
-              ${job.isExternal ? `target="_blank" rel="noopener noreferrer"` : ""} data-nav>
-              ${icon("send")} Easy apply
-            </a>
-          </div>
-        </div>
-      </div>
-    </article>
-  `;
-}
-
-function renderJobsBoard() {
-  const jobs = filteredCareerJobs();
-  const active = hasActiveCareerFilters();
-  return `
-    <section class="section career-mode-panel">
-      <div class="container">
-
-        <div class="career-board-toolbar">
-          <label class="career-search">
-            ${icon("search")}
-            <input data-career-search type="search" value="${escapeHtml(state.careerSearch)}" placeholder="Search jobs, employers, locations, specialities..." aria-label="Search careers and jobs">
-          </label>
-          <label class="career-sort">
-            <span>Sort</span>
-            <select data-career-sort aria-label="Sort jobs">
-              ${["Newest", "Deadline Soonest", "Most Relevant"].map((sort) => `<option value="${escapeHtml(sort)}"${state.careerSort === sort ? " selected" : ""}>${escapeHtml(sort)}</option>`).join("")}
-            </select>
-          </label>
-        </div>
-
-        <div class="career-board-layout">
-          <div class="career-board-main">
-            <div class="career-results-head">
-              <h2>${jobs.length} <span>jobs found</span></h2>
-              ${active ? `<button type="button" class="career-results-clear" data-career-clear>${icon("x")} Clear filters</button>` : ""}
-            </div>
-            ${jobs.length
-              ? `<div class="career-job-list">${jobs.map(renderCareerJobCard).join("")}</div>`
-              : `<div class="career-empty-state">
-                  <span class="career-empty-icon">${icon("briefcaseMedical")}</span>
-                  <h2>No jobs match your filters</h2>
-                  <p>Try adjusting your search or clearing filters.</p>
-                  <button type="button" data-career-clear>Clear filters</button>
-                </div>`
-            }
-            ${renderSavedCareerJobsPanel()}
-          </div>
-          ${renderCareerFilterSidebar()}
-        </div>
-
-      </div>
-    </section>
-    ${renderExternalJobSources()}
-    ${renderEmployerSpotlight()}
-    ${renderJobAlerts()}
-  `;
-}
-
-function renderSavedCareerJobsPanel() {
-  const saved = careerJobs().filter((job) => savedCareerJobs().has(job.id));
-  if (!saved.length) {
-    return `
-      <aside class="career-saved-panel empty">
-        <span class="career-saved-icon">${icon("heart")}</span>
-        <div>
-          <h3>No saved jobs yet</h3>
-          <p>Click the heart on any job to save it for later.</p>
-        </div>
-      </aside>
-    `;
-  }
-  return `
-    <aside class="career-saved-panel">
-      <div>
-        <h3>${saved.length} Saved ${saved.length === 1 ? "Job" : "Jobs"}</h3>
-        <p>Return to these opportunities before their deadlines.</p>
-      </div>
-      <div class="career-saved-list">
-        ${saved.slice(0, 4).map((job) => `<button type="button" data-career-job-open="${escapeHtml(job.id)}">${escapeHtml(job.title)}<span>${escapeHtml(job.employer)}</span></button>`).join("")}
-      </div>
-    </aside>
-  `;
-}
-
-function renderExternalJobSources() {
-  return `
-    <section class="section career-external-section">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <h2>Browse More on External Platforms</h2>
-            <p>Use these trusted sources for additional Uganda, regional and international nursing opportunities.</p>
-          </div>
-        </div>
-        <div class="career-source-row">
-          ${careerExternalSources().map(([name, body, url]) => `
-            <a class="career-source-card" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">
-              <span>${careerAvatar(name, "small")}</span>
-              <strong>${escapeHtml(name)}</strong>
-              <p>${escapeHtml(body)}</p>
-              ${renderExternalLinkDisclosure("External job platform")}
-              <em>Browse Jobs ↗</em>
-            </a>
-          `).join("")}
-        </div>
-      </div>
-    </section>
-  `;
-}
-
-function renderEmployerSpotlight() {
-  return `
-    <section class="section career-employer-section">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <h2>Featured Employers</h2>
-            <p>Hospitals, agencies and organisations that commonly recruit nurses and midwives.</p>
-          </div>
-        </div>
-        <div class="career-employer-row">
-          ${careerEmployers().map((employer) => {
-            const ep = careerPaletteFor(employer.name);
-            return `
-            <article class="career-employer-card" style="--card-accent:${ep.text};--card-accent-bg:${ep.bg};">
-              ${careerAvatar(employer.name)}
-              <h3>${escapeHtml(employer.name)}</h3>
-              <p>${escapeHtml(employer.location)} · ${escapeHtml(employer.type)}</p>
-              <div class="career-badge-row">${employer.roles.map((role) => careerBadge(role, "speciality")).join("")}</div>
-              ${employer.hiring ? `<span class="hiring-badge">${icon("badgeCheck")} Currently Hiring</span>` : ""}
-              <a href="/careers" data-career-mode="jobs" data-career-employer="${escapeHtml(employer.name)}">${employer.hiring ? "View Jobs" : "See Profile"} ${icon("arrowRight")}</a>
-            </article>
-          `;}).join("")}
-        </div>
-        ${renderStudyDisclaimer("resource")}
-      </div>
-    </section>
-  `;
-}
-
-function renderJobAlerts() {
-  return `
-    <section class="section career-alert-section">
-      <div class="container career-alert-banner">
-        <div>
-          <h2>Never Miss a Nursing Job</h2>
-          <p>Get new jobs matching your preferences delivered to your inbox</p>
-          <small>No spam. Unsubscribe anytime. <em>Email alerts are in beta — we'll confirm your spot when activated.</em></small>
-        </div>
-        <form class="career-alert-form" data-career-alert-form>
-          <input type="email" placeholder="Email address" aria-label="Email address" required>
-          <select aria-label="Preferred speciality">
-            ${careerFilterGroups.speciality.map((speciality) => `<option>${escapeHtml(speciality)}</option>`).join("")}
-          </select>
-          <select aria-label="Alert frequency"><option>Weekly</option><option>Daily</option></select>
-          <button type="submit">Subscribe ${icon("arrowRight")}</button>
-        </form>
-      </div>
-    </section>
-  `;
-}
-
-function selectedCareerJob() {
-  return careerJobs().find((job) => job.id === state.selectedCareerJob);
-}
-
-function renderCareerDrawer() {
-  const job = selectedCareerJob();
-  if (!job) return "";
-  const saved = savedCareerJobs().has(job.id);
-  const status = deadlineClass(job);
-  const ep = careerPaletteFor(job.employer);
-  return `
-    <div class="career-modal-overlay" data-career-drawer-overlay>
-      <div class="career-modal" role="dialog" aria-modal="true" aria-labelledby="career-modal-title">
-
-        <button class="career-modal-close" type="button" data-career-drawer-close aria-label="Close job details">${icon("x")}</button>
-
-        <header class="career-modal-header" style="--card-accent:${ep.text};--card-accent-bg:${ep.bg};">
-          <div class="career-modal-header-inner">
-            ${careerAvatar(job.employer, "xl")}
-            <div class="career-modal-title-block">
-              ${(job.isFeatured || job.isExternal) ? `
-                <div class="career-modal-flags">
-                  ${job.isFeatured ? `<span class="featured-flag">${icon("sparkles")} Featured</span>` : ""}
-                  ${job.isExternal ? `<span class="external-flag">${icon("externalLink")} External</span>` : ""}
-                </div>` : ""}
-              <h2 id="career-modal-title">${escapeHtml(job.title)}</h2>
-              <p class="career-modal-employer">${escapeHtml(job.employer)}</p>
-              <div class="career-modal-meta">
-                <span>${icon("mapPin")} ${escapeHtml(job.location)}</span>
-                <span class="${status}">${icon("clock")} Deadline: ${dateLabel(job.deadline)}</span>
-                <span>${icon("fileText")} ${escapeHtml(job.type)} · ${escapeHtml(job.duration)}</span>
-              </div>
-              <div class="career-badge-row">
-                ${careerBadge(job.type, `type-${slugify(job.type)}`)}
-                ${careerBadge(job.level, "level")}
-                ${careerBadge(regionLabel(job.region), "region")}
-                ${careerBadge(job.speciality, "speciality")}
-              </div>
-            </div>
-          </div>
-        </header>
-
-        <div class="career-modal-body">
-          <div class="career-modal-main">
-            <section>
-              <h3>Overview</h3>
-              <p>${escapeHtml(job.description)}</p>
-            </section>
-            <section>
-              <h4>Key responsibilities</h4>
-              <ul>${job.responsibilities.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
-            </section>
-            <section>
-              <h4>Requirements</h4>
-              <ul class="check-list">${job.requirements.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
-            </section>
-            <section>
-              <h3>How to Apply</h3>
-              <p>Prepare the documents below and apply through the listed employer channel. For external listings, confirm the vacancy on the source website before submitting personal documents.</p>
-              <div class="career-doc-list">
-                ${job.documents.map((doc) => `<label><input type="checkbox"> <span>${escapeHtml(doc)}</span></label>`).join("")}
-              </div>
-            </section>
-          </div>
-          <aside class="career-modal-sidebar">
-            <div class="career-modal-detail-card">
-              <h4>Job Details</h4>
-              <dl class="career-detail-list">
-                <div><dt>${icon("mapPin")} Location</dt><dd>${escapeHtml(job.location)}</dd></div>
-                <div><dt>💰 Salary</dt><dd>${escapeHtml(job.salary)}</dd></div>
-                <div><dt>${icon("calendar")} Posted</dt><dd>${dateLabel(job.posted)}</dd></div>
-                <div class="${status}"><dt>${icon("clock")} Deadline</dt><dd>${dateLabel(job.deadline)}</dd></div>
-                <div><dt>${icon("clipboardList")} Positions</dt><dd>${job.positions}</dd></div>
-                <div><dt>${icon("fileText")} Contract</dt><dd>${escapeHtml(job.type)} · ${escapeHtml(job.duration)}</dd></div>
-              </dl>
-            </div>
-            <div class="career-modal-employer-card">
-              <div class="career-modal-emp-head">
-                ${careerAvatar(job.employer, "small")}
-                <div>
-                  <h4>${escapeHtml(job.employer)}</h4>
-                  <p>${escapeHtml(job.employerType)}</p>
-                </div>
-              </div>
-              <p class="career-modal-emp-desc">${escapeHtml(job.employerDescription)}</p>
-              <div class="career-badge-row">${careerBadge(job.speciality, "speciality")}</div>
-            </div>
-          </aside>
-        </div>
-
-        <footer class="career-modal-footer">
-          <button type="button" class="career-save career-save-lg ${saved ? "active" : ""}" data-career-job-save="${escapeHtml(job.id)}">${icon("heart")} ${saved ? "Saved" : "Save Job"}</button>
-          <a class="career-apply" href="${escapeHtml(job.applyUrl)}" ${job.isExternal ? `target="_blank" rel="noopener noreferrer"` : ""}>${job.isExternal ? `${icon("externalLink")} Apply on External Site` : `Apply Now ${icon("arrowRight")}`}</a>
-        </footer>
-
-      </div>
-    </div>
-  `;
-}
-
-// ── Job Detail Page ───────────────────────────────────────────────────────────
-function renderCareerJobDetailPage(job) {
-  if (!job) {
-    return `
-      <section class="section"><div class="container" style="text-align:center;padding:4rem 1rem">
-        ${icon("briefcaseMedical")}
-        <h2 style="margin:.75rem 0">Job not found</h2>
-        <p style="color:var(--color-text-muted);margin-bottom:1.5rem">This listing may have been removed or the link is incorrect.</p>
-        <a class="button primary" href="/careers" data-nav>Browse All Jobs</a>
-      </div></section>`;
-  }
-  const saved  = savedCareerJobs().has(job.id);
-  const status = deadlineClass(job);
-  const isNew  = daysUntil(job.posted) > -14;
-  const salaryIsConfidential = ["Not disclosed","Confidential","Consultancy rate"].includes(job.salary);
-  const shareUrl   = encodeURIComponent(`https://nursinguganda.com/careers/${job.id}`);
-  const shareText  = encodeURIComponent(job.title + " – Nursing Uganda");
-  const similar    = careerJobs().filter(j => j.id !== job.id && j.speciality === job.speciality).slice(0, 3);
-
-  return `
-    <div class="bm-detail-page">
-
-      <!-- Back -->
-      <div class="bm-detail-back">
-        <div class="container">
-          <a href="/careers" data-nav class="bm-back-link">${icon("arrowLeft")} Back to Jobs</a>
-        </div>
-      </div>
-
-      <div class="container bm-detail-wrap">
-
-        <!-- ── MAIN ───────────────────────────────────── -->
-        <div class="bm-detail-main">
-
-          <!-- Header -->
-          <div class="bm-detail-header">
-            ${careerAvatar(job.employer, "lg")}
-            <div class="bm-detail-header-text">
-              <h1 class="bm-detail-title">${escapeHtml(job.title)}</h1>
-              <p class="bm-detail-company">
-                <span class="bm-company-name">${escapeHtml(job.employer)}</span>
-                <span class="bm-hsep">·</span>
-                <span>${escapeHtml(job.speciality)}</span>
-                <span class="bm-hsep">·</span>
-                <span class="bm-header-date">${dateLabel(job.posted)}</span>
-              </p>
-              <div class="bm-detail-actions">
-                <a class="bm-easy-apply" href="${escapeHtml(job.applyUrl)}"
-                  ${job.isExternal ? `target="_blank" rel="noopener noreferrer"` : ""}>
-                  ${icon("send")} ${job.isExternal ? "Easy apply" : "Apply Now"}
-                </a>
-                ${isNew ? `<span class="bm-chip bm-chip-new">${icon("sparkles")} New</span>` : ""}
-                ${job.isFeatured ? `<span class="bm-chip bm-chip-feat">${icon("sparkles")} Featured</span>` : ""}
-                <button type="button" class="bm-chip bm-chip-save${saved ? " active" : ""}"
-                  data-career-job-save="${escapeHtml(job.id)}">
-                  ${icon("heart")} ${saved ? "Saved" : "Save"}
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Detail chips -->
-          <div class="bm-detail-chips">
-            <span class="bm-detail-chip">${icon("mapPin")} ${escapeHtml(job.location)}</span>
-            <span class="bm-detail-chip">${icon("fileText")} ${escapeHtml(job.type)}</span>
-            <span class="bm-detail-chip">${icon("tag")} ${escapeHtml(job.speciality)}</span>
-            <span class="bm-detail-chip">${icon("banknote")} ${salaryIsConfidential ? "Confidential" : escapeHtml(job.salary)}</span>
-          </div>
-
-          <!-- Job Summary -->
-          <div class="bm-section">
-            <h2 class="bm-section-h">Job summary</h2>
-            <p class="bm-summary-text">${escapeHtml(job.description)}</p>
-          </div>
-
-          <!-- Info grid -->
-          <div class="bm-info-grid">
-            <div class="bm-info-cell">
-              ${icon("graduationCap")}
-              <span><span class="bm-info-label">Experience Level:</span> <strong>${escapeHtml(job.level)}</strong></span>
-            </div>
-            <div class="bm-info-cell">
-              ${icon("briefcaseMedical")}
-              <span><span class="bm-info-label">Contract:</span> <strong>${escapeHtml(job.type)} · ${escapeHtml(job.duration)}</strong></span>
-            </div>
-            <div class="bm-info-cell">
-              ${icon("mapPin")}
-              <span><span class="bm-info-label">Region:</span> <strong>${escapeHtml(regionLabel(job.region))}</strong></span>
-            </div>
-            <div class="bm-info-cell ${status}">
-              ${icon("clock")}
-              <span><span class="bm-info-label">Deadline:</span> <strong>${dateLabel(job.deadline)}${status === "urgent" ? " ⚠" : ""}</strong></span>
-            </div>
-          </div>
-
-          <!-- Descriptions & Requirements -->
-          <div class="bm-section">
-            <h2 class="bm-section-h">Job descriptions &amp; requirements</h2>
-            <h3 class="bm-sub-h">Key Responsibilities</h3>
-            <ul class="bm-list">
-              ${job.responsibilities.map(r => `<li>${escapeHtml(r)}</li>`).join("")}
-            </ul>
-            <h3 class="bm-sub-h">Requirements</h3>
-            <ul class="bm-list bm-checklist">
-              ${job.requirements.map(r => `<li>${escapeHtml(r)}</li>`).join("")}
-            </ul>
-          </div>
-
-          <!-- How to Apply -->
-          <div class="bm-section">
-            <h2 class="bm-section-h">How to Apply</h2>
-            <p style="color:var(--color-text-muted);font-size:.9rem;margin-bottom:14px">
-              Prepare the documents below and apply through the listed channel.
-              For external listings, verify the vacancy directly with the employer.
-            </p>
-            <div class="career-doc-list" style="margin-bottom:20px">
-              ${job.documents.map(d => `<label><input type="checkbox"> <span>${escapeHtml(d)}</span></label>`).join("")}
-            </div>
-            <a class="bm-easy-apply bm-apply-lg" href="${escapeHtml(job.applyUrl)}"
-              ${job.isExternal ? `target="_blank" rel="noopener noreferrer"` : ""}>
-              ${icon("send")} ${job.isExternal ? "Apply on External Site" : "Apply Now"}
-            </a>
-          </div>
-
-          <!-- Safety tips -->
-          <div class="bm-safety-box">
-            <div class="bm-safety-icon">${icon("alertTriangle")}</div>
-            <div>
-              <h4 class="bm-safety-title">Important safety tips</h4>
-              <ul class="bm-safety-list">
-                <li>Do not make any payment to secure this or any employment.</li>
-                <li>Verify all job listings directly with the employer before applying.</li>
-                <li>Nursing Uganda does not charge fees for job applications.</li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Share -->
-          <div class="bm-share-row">
-            <span class="bm-share-label">Share link</span>
-            <a class="bm-share-btn bm-sh-wa" href="https://wa.me/?text=${shareText}%20${shareUrl}" target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp">WA</a>
-            <a class="bm-share-btn bm-sh-li" href="https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">in</a>
-            <a class="bm-share-btn bm-sh-fb" href="https://www.facebook.com/sharer/sharer.php?u=${shareUrl}" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">f</a>
-            <a class="bm-share-btn bm-sh-x" href="https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}" target="_blank" rel="noopener noreferrer" aria-label="Share on X">X</a>
-          </div>
-
-        </div>
-
-        <!-- ── SIDEBAR ─────────────────────────────────── -->
-        <aside class="bm-detail-sidebar">
-
-          <div class="bm-sidebar-card">
-            <h4 class="bm-sidebar-h">Job Details</h4>
-            <dl class="bm-detail-dl">
-              <div><dt>${icon("mapPin")} Location</dt><dd>${escapeHtml(job.location)}</dd></div>
-              <div><dt>${icon("banknote")} Salary</dt><dd>${salaryIsConfidential ? "Confidential" : escapeHtml(job.salary)}</dd></div>
-              <div><dt>${icon("calendar")} Posted</dt><dd>${dateLabel(job.posted)}</dd></div>
-              <div class="${status}"><dt>${icon("clock")} Deadline</dt><dd>${dateLabel(job.deadline)}</dd></div>
-              <div><dt>${icon("fileText")} Contract</dt><dd>${escapeHtml(job.type)}</dd></div>
-              <div><dt>${icon("users")} Level</dt><dd>${escapeHtml(job.level)}</dd></div>
-            </dl>
-            <a class="bm-easy-apply" style="display:flex;margin-top:16px" href="${escapeHtml(job.applyUrl)}"
-              ${job.isExternal ? `target="_blank" rel="noopener noreferrer"` : ""}>
-              ${icon("send")} ${job.isExternal ? "Easy apply" : "Apply Now"}
-            </a>
-          </div>
-
-          <div class="bm-sidebar-card bm-employer-card">
-            <div class="bm-employer-head">
-              ${careerAvatar(job.employer, "md")}
-              <div>
-                <h4 style="margin:0;font-size:.9rem">${escapeHtml(job.employer)}</h4>
-                <p style="margin:0;font-size:.78rem;color:var(--color-text-muted)">${escapeHtml(job.employerType)}</p>
-              </div>
-            </div>
-            <p class="bm-employer-desc">${escapeHtml(job.employerDescription)}</p>
-          </div>
-
-        </aside>
-      </div>
-
-      <!-- Similar jobs -->
-      ${similar.length ? `
-      <div class="bm-similar-wrap">
-        <div class="container">
-          <h2 class="bm-similar-h">Similar jobs</h2>
-          <div class="bm-similar-grid">
-            ${similar.map(j => {
-              const sp = careerPaletteFor(j.employer);
-              return `
-              <a class="bm-similar-card" href="/careers/${escapeHtml(j.id)}" data-nav>
-                ${careerAvatar(j.employer, "sm")}
-                <div class="bm-similar-body">
-                  <p class="bm-similar-title">${escapeHtml(j.title)}</p>
-                  <p class="bm-similar-org">${escapeHtml(j.employer)}</p>
-                  <div class="bm-similar-tags">
-                    <span>${escapeHtml(j.location)}</span>
-                    <span>${escapeHtml(j.type)}</span>
-                  </div>
-                  <p class="bm-similar-date">${dateLabel(j.posted)}</p>
-                </div>
-              </a>`;
-            }).join("")}
-          </div>
-        </div>
-      </div>` : ""}
-
-    </div>
   `;
 }
 
@@ -12736,16 +11657,21 @@ function renderLicensingGuides() {
   `;
 }
 
-function careerResourceFromSlug(slug) {
-  const map = {
+const CAREER_RESOURCE_MAP = {
     "cv-uganda":        { title: "Uganda Nursing CV Template",        icon: "fileCv",       accent: 0, desc: "Hospital, NGO and government CV formats tailored for Uganda nursing practice." },
     "cv-international": { title: "International Nursing CV Template", icon: "globe",        accent: 1, desc: "UK, Australia, Gulf and USA-style CVs with registration and evidence sections." },
     "cover-letter":     { title: "Cover Letter Guide",                icon: "mail",         accent: 2, desc: "Sample nursing cover letters, phrases and structures that win interviews." },
     "interview-prep":   { title: "Interview Preparation",            icon: "users",        accent: 3, desc: "20+ questions, STAR examples, panel prep and values-based interview guides." },
     "portfolio":        { title: "Nursing Portfolio Guide",           icon: "clipboardList",accent: 4, desc: "What to include for registration, CPD, international and senior nursing roles." },
-    "salary-guide":     { title: "Salary Guide Uganda 2025",          icon: "banknote",     accent: 5, desc: "Salary ranges by level, speciality, sector and international destination." }
-  };
-  return map[slug] || null;
+  "salary-guide":     { title: "Salary Guide Uganda 2025",          icon: "banknote",     accent: 5, desc: "Salary ranges by level, speciality, sector and international destination." }
+};
+
+function careerResourceFromSlug(slug) {
+  return CAREER_RESOURCE_MAP[slug] || null;
+}
+
+function careerResourceCount() {
+  return Object.keys(CAREER_RESOURCE_MAP).length;
 }
 
 function careerResourceSlugOf(title) {
@@ -13449,8 +12375,7 @@ function renderCareers() {
   return `
     ${renderCareerHero()}
     ${renderEventsStrip()}
-    ${renderCareerModeToggle()}
-    ${state.careerMode === "hub" ? renderCareerHub() : renderJobsBoard()}
+    ${renderCareerHub()}
   `;
 }
 
@@ -15386,7 +14311,7 @@ function render() {
     // Admin page manages its own layout() call (needs to load data first)
     if (!isAdmin()) { setDocumentMeta("Access Denied", ""); layout(`<section class="section"><div class="container" style="text-align:center;padding:4rem 1rem">${icon("lock")}<h2 style="margin:.75rem 0">Admin access required.</h2><a class="button primary" href="/notes">Go Home</a></div></section>`); return; }
     // Load data then render
-    Promise.all([adminLoadJobs(), adminLoadAnnouncements(), adminLoadTips(), adminLoadEvents(), adminLoadResources(), adminLoadUsers(), adminLoadAnalytics()]).then(() => renderAdminPage());
+    Promise.all([adminLoadAnnouncements(), adminLoadTips(), adminLoadEvents(), adminLoadResources(), adminLoadUsers(), adminLoadAnalytics()]).then(() => renderAdminPage());
     // Render immediately with whatever data is already loaded
     renderAdminPage();
     return;
@@ -15475,16 +14400,12 @@ function render() {
         content = renderCareerResourcePage(parts[1]);
         meta = { title: `${crpResource.title} | Nursing Uganda`, description: crpResource.desc };
       } else {
-        // Job detail page — look up by ID
-        const detailJob = careerJobs().find(j => j.id === parts[1]);
-        content = renderCareerJobDetailPage(detailJob);
-        meta = detailJob
-          ? { title: `${detailJob.title} – ${detailJob.employer} | Careers`, description: detailJob.description }
-          : { title: "Job Not Found", description: "" };
+        content = notFound();
+        meta = { title: "Page Not Found", description: "" };
       }
     } else {
       content = renderCareers();
-      meta = { title: "Careers & Jobs", description: "Nursing and midwifery jobs, career pathways, licensing guides and international opportunities for Uganda professionals." };
+      meta = { title: "Careers", description: "Nursing and midwifery career pathways, UNMC licensing guides, CV templates and international opportunities for Uganda professionals." };
     }
   }
   else if (parts[0] === "dictionary") {
@@ -16060,15 +14981,6 @@ function render() {
     });
   });
 
-  app.querySelectorAll("[data-career-mode]").forEach((button) => {
-    button.addEventListener("click", () => {
-      state.careerMode = button.dataset.careerMode === "hub" ? "hub" : "jobs";
-      if (currentRoute()[0] !== "careers") { setRoute("/careers"); return; }
-      render();
-      requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: "smooth" }));
-    });
-  });
-
   // ── Hero slideshow ──────────────────────────────────────────────────────────
   app.querySelectorAll("[data-career-slide]").forEach((dot) => {
     dot.addEventListener("click", () => {
@@ -16084,97 +14996,6 @@ function render() {
       render();
     }, 5000);
   }
-
-  // Employer name links — filter jobs board to that employer
-  app.querySelectorAll("[data-career-employer]").forEach((link) => {
-    link.addEventListener("click", (event) => {
-      event.preventDefault();
-      const employer = link.dataset.careerEmployer || "";
-      state.careerMode = "jobs";
-      state.careerSearch = employer;
-      if (currentRoute()[0] !== "careers") { setRoute("/careers"); return; }
-      render();
-      requestAnimationFrame(() => {
-        const toolbar = app.querySelector(".career-board-toolbar");
-        if (toolbar) toolbar.scrollIntoView({ behavior: "smooth", block: "start" });
-      });
-    });
-  });
-
-  const careerSearch = app.querySelector("[data-career-search]");
-  if (careerSearch) {
-    careerSearch.addEventListener("input", (event) => {
-      state.careerSearch = event.target.value;
-      render();
-      const nextSearch = app.querySelector("[data-career-search]");
-      if (nextSearch) {
-        nextSearch.focus();
-        nextSearch.setSelectionRange(nextSearch.value.length, nextSearch.value.length);
-      }
-    });
-  }
-
-  const careerSort = app.querySelector("[data-career-sort]");
-  if (careerSort) {
-    careerSort.addEventListener("change", (event) => {
-      state.careerSort = event.target.value;
-      render();
-    });
-  }
-
-  app.querySelectorAll("[data-career-filter]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const key = button.dataset.careerFilter;
-      const value = button.dataset.careerFilterValue || "All";
-      if (key === "type") state.careerType = value;
-      if (key === "level") state.careerLevel = value;
-      if (key === "region") state.careerRegion = value;
-      if (key === "speciality") state.careerSpeciality = value;
-      if (key === "deadline") state.careerDeadline = value;
-      render();
-    });
-  });
-
-  app.querySelectorAll("[data-career-clear]").forEach((button) => {
-    button.addEventListener("click", () => {
-      clearCareerFilters();
-      render();
-    });
-  });
-
-  // Job open → navigate to detail page (saved-panel buttons)
-  app.querySelectorAll("[data-career-job-open]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const id = button.dataset.careerJobOpen || "";
-      if (id) setRoute("/careers/" + id);
-    });
-  });
-
-  app.querySelectorAll("[data-career-job-save]").forEach((button) => {
-    button.addEventListener("click", (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      requireLogin("job-save", "Sign in to save jobs and review your shortlist anytime.", () => {
-        setCareerJobSaved(button.dataset.careerJobSave, !button.classList.contains("active"));
-        render();
-      });
-    });
-  });
-
-  // Apply links — external jobs open directly; only gate internal submissions
-  app.querySelectorAll(".career-apply").forEach((link) => {
-    link.addEventListener("click", (e) => {
-      const href = link.getAttribute("href") || "";
-      const isExternal = href.startsWith("http") || href.startsWith("mailto:");
-      if (isExternal) return; // let the browser handle external/mailto links normally
-      // Internal application — require login
-      if (!state.currentUser) {
-        e.preventDefault();
-        state.loginPrompt = { open: true, feature: "job-apply", message: "Sign in to submit your application." };
-        render();
-      }
-    });
-  });
 
   // ── Mock Exam event wiring ────────────────────────────────────────────────
   app.querySelectorAll("[data-start-mock]").forEach(btn => {
@@ -16424,31 +15245,6 @@ function render() {
   });
 
   // Add "community" to the login prompt feature icon map (dynamic; done via featureIconMap in renderLoginPromptModal)
-
-  app.querySelectorAll("[data-career-drawer-close]").forEach((button) => {
-    button.addEventListener("click", () => {
-      state.selectedCareerJob = "";
-      render();
-    });
-  });
-
-  app.querySelectorAll("[data-career-drawer-overlay]").forEach((overlay) => {
-    overlay.addEventListener("click", (event) => {
-      if (event.target === overlay) {
-        state.selectedCareerJob = "";
-        render();
-      }
-    });
-  });
-
-  app.querySelectorAll("[data-career-alert-form]").forEach((form) => {
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      form.classList.add("subscribed");
-      const button = form.querySelector("button");
-      if (button) button.innerHTML = `${icon("checkCircle")}<span>Subscribed</span>`;
-    });
-  });
 
   // Legacy checklist downloads (careers main page)
   app.querySelectorAll("[data-career-download]").forEach((button) => {
@@ -17704,9 +16500,8 @@ async function init() {
     // ── Site settings (maintenance mode, etc.) ───────────────────────────
     await loadSiteSettings();
 
-    // ── Background data: announcements, jobs, tips, events, downloads ───
+    // ── Background data: announcements, tips, events, downloads ───
     loadAnnouncements().catch(() => {});
-    loadJobsFromSupabase().catch(() => {});
     loadTipsFromSupabase().catch(() => {});
     loadEventsFromSupabase().catch(() => {});
     loadResourceDownloadsFromSupabase().catch(() => {});
@@ -17745,11 +16540,7 @@ async function init() {
         .then((d) => { if (d) state.bookLibrary = d; }),
       fetch("/assets/data/medical-instruments.json?v=2")
         .then((r) => r.ok ? r.json() : null)
-        .then((d) => { if (d) state.medicalInstrumentLibrary = d; }),
-      fetch("/assets/data/career-jobs.json")
-        .catch(() => null)
-        .then((r) => r && r.ok ? r.json() : null)
-        .then((d) => { if (d) { try { state.careerJobs = d.jobs || d || []; } catch (_) {} } })
+        .then((d) => { if (d) state.medicalInstrumentLibrary = d; })
     ]);
   } catch (error) {
     app.innerHTML = `
@@ -17807,11 +16598,6 @@ window.addEventListener("keydown", (event) => {
   }
   if (event.key === "Escape" && state.selectedSchool) {
     state.selectedSchool = "";
-    render();
-    return;
-  }
-  if (event.key === "Escape" && state.selectedCareerJob) {
-    state.selectedCareerJob = "";
     render();
     return;
   }

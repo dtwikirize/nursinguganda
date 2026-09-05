@@ -25,6 +25,9 @@
   },
   "devDependencies": {
     "esbuild": "^0.28.1",
-    "sharp": "^0.34.5"
+    "sharp": "^0.35.0"
+  },
+  "overrides": {
+    "qs": "^6.16.0"
   }
 }
