@@ -3316,11 +3316,11 @@ function buttonLink(href, label, variant = "primary", iconName = "", extra = "")
 
 const imageCatalog = {
   heroNurse: {
-    src: "assets/images/nursing-uganda-hero-nursing-student-skills-lab-01.png",
+    src: "assets/images/nursing-uganda-hero-nursing-student-skills-lab-01.webp",
     alt: "Nursing Uganda student studying in a clinical skills lab"
   },
   curriculum: {
-    src: "assets/images/nursing-uganda-curriculum-study-group-01.png",
+    src: "assets/images/nursing-uganda-curriculum-study-group-01.webp",
     alt: "Nursing and midwifery students studying a curriculum together"
   },
   anatomy: {
@@ -3340,19 +3340,19 @@ const imageCatalog = {
     alt: "Mental health nursing reference image"
   },
   nursing: {
-    src: "assets/images/nursing-uganda-hero-nursing-student-skills-lab-01.png",
+    src: "assets/images/nursing-uganda-hero-nursing-student-skills-lab-01.webp",
     alt: "Nursing Uganda student studying in a clinical skills lab"
   },
   midwifery: {
-    src: "assets/images/nursing-uganda-midwifery-newborn-care-training-01.png",
+    src: "assets/images/nursing-uganda-midwifery-newborn-care-training-01.webp",
     alt: "Midwifery students practising newborn care in a skills lab"
   },
   instruments: {
-    src: "assets/images/nursing-uganda-medical-instruments-clinical-tray-01.png",
+    src: "assets/images/nursing-uganda-medical-instruments-clinical-tray-01.webp",
     alt: "Nursing medical instruments arranged on a clean clinical tray"
   },
   disease: {
-    src: "assets/images/nursing-uganda-disease-assessment-learning-01.png",
+    src: "assets/images/nursing-uganda-disease-assessment-learning-01.webp",
     alt: "Nursing students learning disease assessment with anatomy references"
   },
   schools: {
@@ -3360,7 +3360,7 @@ const imageCatalog = {
     alt: "Nursing skills laboratory for student training"
   },
   resourcesHero: {
-    src: "assets/images/nursing-uganda-hero-nursing-student-skills-lab-01.png",
+    src: "assets/images/nursing-uganda-hero-nursing-student-skills-lab-01.webp",
     alt: "Nursing students collaborating around learning resources"
   },
   exams: {
@@ -5346,8 +5346,8 @@ function renderLoginPage() {
     <div class="login-page-wrap">
       <div class="login-brand-panel">
         <div class="login-slide-bg" aria-hidden="true">
-          <img src="assets/images/nursing-uganda-login-panel-1.png" class="login-slide login-slide-1" alt="" loading="eager">
-          <img src="assets/images/nursing-uganda-login-panel-2.png" class="login-slide login-slide-2" alt="" loading="lazy">
+          <img src="assets/images/nursing-uganda-login-panel-1.webp" class="login-slide login-slide-1" alt="" loading="eager">
+          <img src="assets/images/nursing-uganda-login-panel-2.webp" class="login-slide login-slide-2" alt="" loading="lazy">
           <div class="login-slide-overlay"></div>
         </div>
         <a class="login-brand-logo" href="/notes" aria-label="Nursing Uganda home">
@@ -7697,9 +7697,9 @@ function renderNotes() {
   return `
     <section class="home-hero">
       <div class="hero-slide-bg" aria-hidden="true">
-        <img src="assets/images/nursing-uganda-home-hero-1.png" class="hero-slide hero-slide-1" alt="" loading="eager">
-        <img src="assets/images/nursing-uganda-home-hero-2.png" class="hero-slide hero-slide-2" alt="" loading="lazy">
-        <img src="assets/images/nursing-uganda-home-hero-3.png" class="hero-slide hero-slide-3" alt="" loading="lazy">
+        <img src="assets/images/nursing-uganda-home-hero-1.webp" class="hero-slide hero-slide-1" alt="" width="1600" height="900" loading="eager" fetchpriority="high" decoding="async">
+        <img src="assets/images/nursing-uganda-home-hero-2.webp" class="hero-slide hero-slide-2" alt="" width="1600" height="900" loading="lazy" decoding="async">
+        <img src="assets/images/nursing-uganda-home-hero-3.webp" class="hero-slide hero-slide-3" alt="" width="1600" height="900" loading="lazy" decoding="async">
         <div class="hero-slide-overlay"></div>
         <div class="hero-slide-indicators" aria-hidden="true">
           <span class="hero-slide-indicator"></span>

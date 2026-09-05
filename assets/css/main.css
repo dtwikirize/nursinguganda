@@ -1574,7 +1574,7 @@ color: var(--color-on-brand);
 padding: 64px 0 48px;
   background:
     linear-gradient(105deg, rgba(7, 30, 43, 0.92) 0%, rgba(17, 76, 92, 0.74) 58%, rgba(255,255,255,0.08) 100%),
-    var(--hero-image, url("../images/nursing-uganda-hero-nursing-student-skills-lab-01.png")) center / cover no-repeat;
+    var(--hero-image, url("../images/nursing-uganda-hero-nursing-student-skills-lab-01.webp")) center / cover no-repeat;
   color: #fff;
 }
 
@@ -2550,7 +2550,7 @@ color: var(--color-primary);
   padding: 36px 0 32px;
   background:
     linear-gradient(105deg, rgba(12, 31, 45, 0.90) 0%, rgba(20, 70, 86, 0.74) 52%, rgba(166, 68, 104, 0.42) 100%),
-    url("../images/nursing-uganda-hero-nursing-student-skills-lab-01.png") center / cover no-repeat;
+    url("../images/nursing-uganda-hero-nursing-student-skills-lab-01.webp") center / cover no-repeat;
   border-bottom: 1px solid var(--color-border);
   color: #fff;
 }
@@ -14390,7 +14390,7 @@ position: relative;
   color: var(--white);
   background:
     linear-gradient(105deg, rgba(7, 30, 43, 0.92) 0%, rgba(17, 76, 92, 0.76) 58%, rgba(166, 68, 104, 0.34) 100%),
-    var(--lesson-hero-image, url("../images/nursing-uganda-hero-nursing-student-skills-lab-01.png")) center / cover no-repeat;
+    var(--lesson-hero-image, url("../images/nursing-uganda-hero-nursing-student-skills-lab-01.webp")) center / cover no-repeat;
   animation: lessonHeroIn 0.4s ease both;
 }
 
@@ -15971,7 +15971,7 @@ width: 100%;
 .dictionary-hero {
   background:
     linear-gradient(105deg, rgba(7, 30, 43, 0.92) 0%, rgba(17, 76, 92, 0.78) 58%, rgba(166, 68, 104, 0.34) 100%),
-    url("../images/nursing-uganda-disease-assessment-learning-01.png") center / cover no-repeat;
+    url("../images/nursing-uganda-disease-assessment-learning-01.webp") center / cover no-repeat;
   color: var(--white);
   overflow: visible;
   position: relative;
@@ -16664,7 +16664,7 @@ gap: 8px;
 .dictionary-term-hero {
   background:
     linear-gradient(105deg, rgba(7, 30, 43, 0.92) 0%, rgba(17, 76, 92, 0.76) 58%, rgba(166, 68, 104, 0.34) 100%),
-    url("../images/nursing-uganda-disease-assessment-learning-01.png") center / cover no-repeat;
+    url("../images/nursing-uganda-disease-assessment-learning-01.webp") center / cover no-repeat;
   color: var(--white);
   overflow: hidden;
   padding: 32px 36px 30px;
@@ -23243,7 +23243,7 @@ textarea:focus {
 .dash-hero {
   background:
     linear-gradient(105deg, rgba(5, 29, 43, 0.92) 0%, rgba(24, 83, 98, 0.76) 58%, rgba(166, 68, 104, 0.36) 100%),
-    url("../images/nursing-uganda-curriculum-study-group-01.png") center / cover no-repeat;
+    url("../images/nursing-uganda-curriculum-study-group-01.webp") center / cover no-repeat;
   color: #fff;
   padding: 3rem 0 2.5rem;
 }
