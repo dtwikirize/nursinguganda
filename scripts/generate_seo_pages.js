@@ -19,7 +19,7 @@ const LESSON_IMAGES_MANIFEST = (() => {
   }
 })();
 const SITE_URL = "https://nursinguganda.com";
-const CSS_VERSION = "118";
+const CSS_VERSION = "122";
 const NON_LESSON_TOPIC_RE = /^(terms|privacy policy|disclaimer|about(?: us)?|click here\b.*|want notes in pdf\??.*|home|blog|contact|whatsapp|support|login|register|share|comments?|(?:nurses|midwives)\s+revision|index)$/i;
 
 function escapeHtml(value) {
@@ -54,9 +54,18 @@ function relToRoot(fromDir) {
   return rel ? `${rel}/` : "./";
 }
 
+// Source notes are full of em dashes. Replace them on the way out so every
+// generated page is consistent with the rest of the site.
+function stripEmDashes(text) {
+  return String(text)
+    .replace(/([A-Za-z0-9)"'%\]])[ ]*—[ ]*(?=[a-z0-9])/g, "$1, ")
+    .replace(/([A-Za-z0-9)"'%\]])[ ]*—[ ]*(?=[A-Z])/g, "$1: ")
+    .replace(/[ ]*—[ ]*/g, ", ");
+}
+
 function writeFile(file, html) {
   fs.mkdirSync(path.dirname(file), { recursive: true });
-  fs.writeFileSync(file, html);
+  fs.writeFileSync(file, stripEmDashes(html));
 }
 
 function cleanCoursesRoot() {
@@ -186,7 +195,7 @@ function isImportedAdminBlockText(value) {
   const text = String(value || "").trim();
   if (!text) return false;
   const plainText = text.replace(/\*\*/g, "").trim();
-  return /^(?:\*\*)?(contact\s+hours|credit\s+units|module\s+unit\s+description|module\s+unit)\b/i.test(text)
+  return /^(?:\*\*)?(contact\s+hours|credit\s+units|module\s+unit\s+description|module\s+unit|main\s+questions?\s+to\s+answer|learning\s+outcomes?|objectives?|definition\s+of\s+terms?)\b/i.test(text)
     || /^(?:\*\*)?(revision\s+questions?|review\s+questions?|multiple\s+choice\s+questions?|fill-?in\s+questions?|quiz|questions?)\b/i.test(text)
     || /^question\s*\d+\s*[:.)-]/i.test(text)
     || /^(?:\d+|[a-z])\.\s+(?:(?:briefly|shortly|clearly)\s+)?(?:what|where|which|why|how|describe|list|name|define|explain|differentiate|identify|state|mention|discuss|compare|examine|outline|give|write)\b/i.test(plainText)
@@ -198,13 +207,24 @@ function isImportedAdminBlockText(value) {
     || /learning[-\s]*working\s+assignments|practical\s+exercises|underpinning\s+knowledge/i.test(text);
 }
 
+// Notes are full of "Term: explanation" lines. Bolding the term makes the page
+// scannable and gives the key phrase semantic weight for search.
+function emphasiseLeadTerm(html) {
+  if (/^<strong/.test(html)) return html;
+  const match = html.match(/^([^:<>]{2,48}):\s+(?=\S)/);
+  if (!match) return html;
+  const term = match[1];
+  if (/[.!?]/.test(term)) return html;
+  return `<strong class="seo-term">${term}:</strong> ${html.slice(match[0].length)}`;
+}
+
 function renderBlocks(blocks = []) {
   const html = [];
   let bullets = [];
 
   function flushBullets() {
     if (!bullets.length) return;
-    html.push(`<ul>${bullets.map((item) => `<li>${renderInlineText(item)}</li>`).join("")}</ul>`);
+    html.push(`<ul>${bullets.map((item) => `<li>${emphasiseLeadTerm(renderInlineText(item))}</li>`).join("")}</ul>`);
     bullets = [];
   }
 
@@ -218,7 +238,7 @@ function renderBlocks(blocks = []) {
       html.push(`<div class="seo-note-table-wrap"><table class="seo-note-table">${headers.length ? `<thead><tr>${headers.map((item) => `<th>${renderInlineText(item)}</th>`).join("")}</tr></thead>` : ""}<tbody>${rows.map((row) => `<tr>${row.map((item) => `<td>${renderInlineText(item)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`);
     } else {
       flushBullets();
-      html.push(`<p>${renderInlineText(block.text || "")}</p>`);
+      html.push(`<p>${emphasiseLeadTerm(renderInlineText(block.text || ""))}</p>`);
     }
   }
 
@@ -236,21 +256,27 @@ function breadcrumbs(items) {
 
 function nav(rootRel, appHref) {
   return `<header class="seo-header">
-    <a class="brand" href="${rootRel}" aria-label="Nursing Uganda home"><span class="brand-mark">NU</span><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
+    <a class="brand" href="/" aria-label="Nursing Uganda home"><img src="${rootRel}assets/images/nursing-uganda-icon-mark.webp" alt="" aria-hidden="true" width="34" height="34" decoding="async"><span>Nursing Uganda<small>nursinguganda.com</small></span></a>
     <nav aria-label="Main navigation">
-      <a href="${rootRel}courses/">Courses</a>
-      <a href="${rootRel}#/resources">Resources</a>
-      <a href="${rootRel}#/careers">Careers</a>
+      <a href="/courses/">Courses</a>
+      <a href="/notes">Notes</a>
+      <a href="/dictionary">Dictionary</a>
+      <a href="/resources">Resources</a>
+      <a href="/careers">Careers</a>
       <a class="seo-app-link" href="${escapeHtml(appHref)}">Open Learning Platform</a>
     </nav>
   </header>`;
 }
 
-function pageShell({ file, title, description, canonical, appHash, breadcrumbsHtml, main, schema }) {
+function pageShell({ file, title, seoTitle, description, canonical, appHash, breadcrumbsHtml, breadcrumbTrail, main, schema }) {
   const rootRel = relToRoot(path.dirname(file));
-  const appHref = `${rootRel}${appHash || "#/courses"}`;
-  const cleanTitle = title.endsWith("Nursing Uganda") ? title : `${title} | Nursing Uganda`;
+  const appHref = "/notes";
+  const baseTitle = seoTitle || title;
+  const cleanTitle = baseTitle.endsWith("Nursing Uganda") ? baseTitle : `${baseTitle} | Nursing Uganda`;
   const schemaJson = schema ? `<script type="application/ld+json">${JSON.stringify(schema)}</script>` : "";
+  const breadcrumbSchemaJson = breadcrumbTrail && breadcrumbTrail.length
+    ? `<script type="application/ld+json">${JSON.stringify(breadcrumbSchema(breadcrumbTrail))}</script>`
+    : "";
 
   return `<!doctype html>
 <html lang="en">
@@ -264,8 +290,15 @@ function pageShell({ file, title, description, canonical, appHash, breadcrumbsHt
     <meta property="og:description" content="${escapeHtml(description)}">
     <meta property="og:url" content="${escapeHtml(canonical)}">
     <meta property="og:type" content="article">
-    <meta name="twitter:card" content="summary">
-    ${schemaJson}
+    <meta property="og:site_name" content="Nursing Uganda">
+    <meta property="og:locale" content="en_UG">
+    <meta property="og:image" content="${SITE_URL}/assets/images/nursing-uganda-logo-wordmark.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="${escapeHtml(cleanTitle)}">
+    <meta name="twitter:description" content="${escapeHtml(description)}">
+    <meta name="twitter:image" content="${SITE_URL}/assets/images/nursing-uganda-logo-wordmark.png">
+    <meta name="theme-color" content="#A64468">
+    ${schemaJson}${breadcrumbSchemaJson}
     <link rel="icon" href="${rootRel}assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -275,24 +308,24 @@ function pageShell({ file, title, description, canonical, appHash, breadcrumbsHt
     <noscript><link rel="stylesheet" href="${rootRel}assets/css/main.min.css?v=${CSS_VERSION}"></noscript>
     <style>
       html{scroll-behavior:smooth}
-      :root{--seo-primary:#0f7f4f;--seo-navy:#1C1917;--seo-bg:#FAF9F5;--seo-card:#FFFFFF;--seo-border:#E7E5DE;--seo-text:#1C1917;--seo-muted:#78716C;--seo-heading:"Inter",system-ui,sans-serif;--seo-body:"Inter",system-ui,sans-serif}
+      :root{--seo-primary:#A64468;--seo-primary-dark:#7a3050;--seo-primary-light:#fce8f0;--seo-navy:#2b1520;--seo-bg:#FDF7F9;--seo-card:#FFFFFF;--seo-border:#EFE1E7;--seo-text:#2b1520;--seo-muted:#7c6470;--seo-heading:"Inter",system-ui,sans-serif;--seo-body:"Inter",system-ui,sans-serif}
       .seo-page{background:var(--seo-bg);color:var(--seo-text);font-family:var(--seo-body)}
       .seo-header{align-items:center;background:var(--seo-card);border-bottom:1px solid var(--seo-border);display:flex;gap:24px;justify-content:space-between;padding:16px clamp(16px,4vw,56px);position:sticky;top:0;z-index:10}
-      .seo-header nav{align-items:center;display:flex;flex-wrap:wrap;gap:8px 16px}.seo-header a{text-decoration:none}.seo-app-link{background:var(--seo-primary);border-radius:10px;color:#fff!important;padding:10px 14px}
-      .seo-main{max-width:1120px;margin:0 auto;padding:32px clamp(16px,4vw,40px) 64px}.seo-hero{background:linear-gradient(135deg,#1C1917 0%,#0f7f4f 55%,#2d9e6b 100%);border-radius:18px;color:#fff;margin-bottom:24px;padding:32px}
+      .seo-header nav{align-items:center;display:flex;flex-wrap:wrap;gap:8px 16px}.seo-header a{text-decoration:none}.seo-header .brand{align-items:center;color:inherit;display:flex;gap:10px;font-weight:800}.seo-header .brand small{color:var(--seo-muted);display:block;font-weight:500}.seo-app-link{background:var(--seo-primary);border-radius:10px;color:#fff!important;padding:10px 14px}
+      .seo-main{max-width:1120px;margin:0 auto;padding:32px clamp(16px,4vw,40px) 64px}.seo-hero{background:linear-gradient(135deg,#2b1520 0%,#7a3050 45%,#A64468 100%);border-radius:18px;color:#fff;margin-bottom:24px;padding:32px}
       .seo-hero h1{color:#fff;font-family:var(--seo-heading);font-size:clamp(2rem,5vw,3.4rem);line-height:1.04;margin:14px 0}.seo-hero p{color:rgba(255,255,255,.84);font-size:1.05rem;max-width:780px}
       .seo-breadcrumbs{align-items:center;display:flex;flex-wrap:wrap;gap:8px;font-size:.92rem}.seo-breadcrumbs a,.seo-breadcrumbs strong{color:inherit}
       .seo-grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}.seo-card,.seo-panel,.seo-lesson-section{background:var(--seo-card);border:1px solid var(--seo-border);border-radius:14px;box-shadow:0 16px 38px rgba(28,25,23,.06);padding:20px}
       .seo-card{display:block;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease}.seo-card:hover{box-shadow:0 20px 44px rgba(28,25,23,.10);transform:translateY(-2px)}
-      .seo-card h2,.seo-card h3,.seo-panel h2,.seo-lesson-section h2{color:var(--seo-navy);font-family:var(--seo-heading);margin-top:0}.seo-card p,.seo-panel p,.seo-lesson-section p,.seo-lesson-section li{font-size:1.08rem;line-height:1.82}.seo-lesson-section strong{background:#e6f7ef;border-radius:6px;color:#1C1917;padding:0 .22em}
-      .seo-note-table-wrap{border:1px solid var(--seo-border);border-radius:12px;margin:16px 0;overflow:auto}.seo-note-table{border-collapse:collapse;min-width:720px;width:100%}.seo-note-table th{background:#1C1917;color:#fff;text-align:left}.seo-note-table th,.seo-note-table td{border-bottom:1px solid var(--seo-border);font-size:1rem;line-height:1.55;padding:12px}.seo-note-table tr:last-child td{border-bottom:0}
+      .seo-card h2,.seo-card h3,.seo-panel h2,.seo-lesson-section h2{color:var(--seo-navy);font-family:var(--seo-heading);margin-top:0}.seo-card p,.seo-panel p,.seo-lesson-section p,.seo-lesson-section li{font-size:1.08rem;line-height:1.82}.seo-lesson-section strong{background:#fce8f0;border-radius:6px;color:#2b1520;padding:0 .22em}.seo-lesson-section strong.seo-term{background:none;color:var(--seo-primary-dark);font-weight:800;padding:0}
+      .seo-note-table-wrap{border:1px solid var(--seo-border);border-radius:12px;margin:16px 0;overflow:auto}.seo-note-table{border-collapse:collapse;min-width:720px;width:100%}.seo-note-table th{background:#7a3050;color:#fff;text-align:left}.seo-note-table th,.seo-note-table td{border-bottom:1px solid var(--seo-border);font-size:1rem;line-height:1.55;padding:12px}.seo-note-table tr:last-child td{border-bottom:0}
       .seo-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.seo-meta span{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.26);border-radius:999px;color:#fff;padding:8px 12px}
       .seo-content{display:grid;gap:18px}.seo-topic-list{display:grid;gap:12px}.seo-topic-link{align-items:flex-start;border:1px solid var(--seo-border);border-radius:12px;display:flex;gap:12px;padding:14px;text-decoration:none}
-      .seo-topic-link span{background:#e6f7ef;border-radius:999px;color:var(--seo-primary);flex:0 0 auto;font-weight:800;padding:4px 9px}.seo-topic-link strong{color:var(--seo-navy);display:block}.seo-topic-link small{color:var(--seo-muted)}
+      .seo-topic-link span{background:#fce8f0;border-radius:999px;color:var(--seo-primary);flex:0 0 auto;font-weight:800;padding:4px 9px}.seo-topic-link strong{color:var(--seo-navy);display:block}.seo-topic-link small{color:var(--seo-muted)}
       .seo-lesson-section{border-left:5px solid var(--seo-primary);margin-bottom:16px}.seo-lesson-section summary{cursor:pointer;font-size:1.38rem;font-weight:900;color:var(--seo-navy);line-height:1.22}.seo-lesson-section ul{display:grid;gap:9px;padding-left:24px}.seo-actions{display:flex;flex-wrap:wrap;gap:12px;margin:24px 0}
-      .seo-lesson-section.signature-section{--sig:#0f7f4f;--sig-bg:#e6f7ef;border-color:color-mix(in srgb,var(--sig) 34%,var(--seo-border) 66%);border-left-color:var(--sig);background:linear-gradient(90deg,var(--sig-bg),#fff 42%)}
+      .seo-lesson-section.signature-section{--sig:#A64468;--sig-bg:#fce8f0;border-color:color-mix(in srgb,var(--sig) 34%,var(--seo-border) 66%);border-left-color:var(--sig);background:linear-gradient(90deg,var(--sig-bg),#fff 42%)}
       .seo-lesson-section.signature-section summary{align-items:center;display:flex;gap:10px}.seo-lesson-section.signature-section summary:before{background:var(--sig);border-radius:999px;content:"";display:inline-block;flex:0 0 auto;height:12px;width:12px}
-      .seo-lesson-section.snapshot-section{--sig:#1C1917;--sig-bg:#f5f3ef}.seo-lesson-section.build-section{--sig:#7C3AED;--sig-bg:#f5f0ff}.seo-lesson-section.ward-section{--sig:#0F766E;--sig-bg:#edfdfa}.seo-lesson-section.assessment-section{--sig:#2563EB;--sig-bg:#eff6ff}.seo-lesson-section.red-flags-section{--sig:#B42318;--sig-bg:#fff1ef}.seo-lesson-section.care-plan-section{--sig:#9B4F72;--sig-bg:#fff0f6}.seo-lesson-section.teaching-section{--sig:#0f7f4f;--sig-bg:#e6f7ef}.seo-lesson-section.exam-map-section{--sig:#8A5A00;--sig-bg:#fff7df}.seo-lesson-section.clinical-lens-section{--sig:#0f7f4f;--sig-bg:#e6f7ef}
+      .seo-lesson-section.snapshot-section{--sig:#1C1917;--sig-bg:#f5f3ef}.seo-lesson-section.build-section{--sig:#7C3AED;--sig-bg:#f5f0ff}.seo-lesson-section.ward-section{--sig:#0F766E;--sig-bg:#edfdfa}.seo-lesson-section.assessment-section{--sig:#2563EB;--sig-bg:#eff6ff}.seo-lesson-section.red-flags-section{--sig:#B42318;--sig-bg:#fff1ef}.seo-lesson-section.care-plan-section{--sig:#9B4F72;--sig-bg:#fff0f6}.seo-lesson-section.teaching-section{--sig:#A64468;--sig-bg:#fce8f0}.seo-lesson-section.exam-map-section{--sig:#8A5A00;--sig-bg:#fff7df}.seo-lesson-section.clinical-lens-section{--sig:#A64468;--sig-bg:#fce8f0}
       .seo-button{align-items:center;background:var(--seo-primary);border-radius:10px;color:#fff;display:inline-flex;font-weight:800;padding:12px 16px;text-decoration:none}.seo-button.secondary{background:var(--seo-navy)}
       .seo-disclaimer,.seo-affiliate{border:1px solid var(--seo-border);border-radius:12px;background:#f5f3ef;color:var(--seo-muted);margin:14px 0;padding:12px}.seo-disclaimer strong{color:var(--seo-navy);display:block;margin-bottom:4px}.seo-affiliate{font-size:.86rem}
       .seo-reference-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.seo-reference-grid article{border:1px solid var(--seo-border);border-radius:12px;padding:14px}.seo-reference-grid strong{color:var(--seo-navy);display:block}.seo-reference-grid span,.seo-reference-grid small{color:var(--seo-muted);display:block;margin:4px 0 8px}.seo-reference-grid a{color:var(--seo-primary);font-weight:800}.seo-video{align-items:start;display:grid;gap:10px}
@@ -322,11 +355,24 @@ function pageShell({ file, title, description, canonical, appHash, breadcrumbsHt
       ${main}
       <footer class="seo-footer">
         Nursing Uganda is a peer revision resource and does not replace formal student notes or clinical guidance.
-        <div><a href="${rootRel}#/privacy">Privacy</a><a href="${rootRel}#/privacy-choices">Privacy Choices</a><a href="${rootRel}#/cookies">Cookies</a><a href="${rootRel}#/disclaimer">Disclaimer</a><a href="${rootRel}#/terms">Terms</a><a href="${rootRel}#/corrections">Corrections</a></div>
+        <div><a href="/privacy">Privacy</a><a href="/privacy-choices">Privacy Choices</a><a href="/cookies">Cookies</a><a href="/disclaimer">Disclaimer</a><a href="/terms">Terms</a><a href="/corrections">Corrections</a></div>
       </footer>
     </main>
   </body>
 </html>`;
+}
+
+function breadcrumbSchema(trail) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: trail.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: item.url
+    }))
+  };
 }
 
 function schemaCourse(name, description, canonical) {
@@ -491,13 +537,24 @@ function isLearningOutcomeText(value) {
     || /by\s+the\s+end\s+of\s+this\s+(unit|lesson|course|topic)/i.test(text)
     || /^(at\s+the\s+end\s+of|upon\s+completion|after\s+this\s+(unit|lesson))/i.test(text)
     || /student\s+shall\s+be\s+able\s+to/i.test(text)
-    || /^(define|describe|explain|list|state|identify|discuss|outline|differentiate)\b/i.test(text);
+    || /^(define|describe|explain|list|state|identify|discuss|outline|differentiate)\b/i.test(text)
+    // Section headings that leaked into excerpts and became meta descriptions.
+    || /^(main\s+questions?\s+to\s+answer|questions?\s+to\s+answer|introduction|overview|definition\s+of\s+terms?|terminolog(y|ies)|key\s+terms?|content|contents)\b/i.test(text);
 }
 
 function lessonExcerptFor(programme, unit, topic, lesson, max) {
-  const fallback = `${topic.title} nursing study notes for ${programme.label} in ${unit.code ? `${unit.code}: ` : ""}${unit.title}.`;
-  const text = lesson && lesson.excerpt && !isLearningOutcomeText(lesson.excerpt) ? lesson.excerpt : fallback;
-  return max ? truncateText(text, max) : text;
+  const unitLabel = `${unit.code ? `${unit.code}: ` : ""}${unit.title}`;
+  const fallback = `${topic.title} study notes for ${programme.label} students in Uganda, covering ${unitLabel} with revision points, clinical application and exam-focused summaries.`;
+  const raw = lesson && lesson.excerpt && !isLearningOutcomeText(lesson.excerpt) ? String(lesson.excerpt).trim() : "";
+  // Very short excerpts produce weak, duplicate-looking snippets, so top them up with context.
+  if (!raw) return max ? truncateText(fallback, max) : fallback;
+  // The same excerpt is reused by topics that appear in several programmes, so
+  // the programme and unit have to be appended or the snippets read as duplicates.
+  const context = `${programme.label}, ${unitLabel}.`;
+  const room = max ? Math.max(40, max - context.length - 2) : 400;
+  const lead = truncateText(raw.replace(/[.\s]+$/, ""), room);
+  const text = `${lead}. ${context}`;
+  return text;
 }
 
 function referencesForTopic(programme, unit, topic) {
@@ -550,7 +607,7 @@ function renderLessonPage(data, programme, unit, topic, previous, next) {
       </div>
     </section>
     <div class="seo-actions">
-      <a class="seo-button" href="${rootRel}${escapeHtml(appHash)}">Open Lesson</a>
+      <a class="seo-button" href="/notes">Open in Study Hub</a>
       <a class="seo-button secondary" href="../">Back to Unit</a>
     </div>
     <article class="seo-content">
@@ -596,6 +653,9 @@ function renderLessonPage(data, programme, unit, topic, previous, next) {
   writeFile(file, pageShell({
     file,
     title,
+    // The same topic (e.g. Tuberculosis) appears in many programmes, so the
+    // programme has to be in the title or Google treats them as duplicates.
+    seoTitle: `${title} | ${unit.title} | ${programme.label}`,
     description,
     canonical,
     appHash,
@@ -605,6 +665,12 @@ function renderLessonPage(data, programme, unit, topic, previous, next) {
       { label: unit.title, href: "../" },
       { label: title, current: true }
     ]),
+    breadcrumbTrail: [
+      { name: "Courses", url: `${SITE_URL}/courses/` },
+      { name: programme.label, url: canonicalFor("courses", programme.id) },
+      { name: unit.title, url: canonicalFor("courses", programme.id, unit.id) },
+      { name: title, url: canonical }
+    ],
     main,
     schema: {
       "@context": "https://schema.org",
@@ -626,6 +692,7 @@ function renderUnitPage(data, programme, unit) {
   const topics = publishableTopics(data, unit);
   const title = `${unit.code ? `${unit.code}: ` : ""}${unit.title}`;
   const description = truncateText(`${unit.title} topics, notes and separate lesson pages for ${programme.label} students and nursing professionals in Uganda.`);
+  const seoTitle = `${unit.title} | ${programme.label}`;
   const rootRel = relToRoot(path.dirname(file));
   const appHash = appHashFor(programme.id, unit.id);
 
@@ -651,6 +718,7 @@ function renderUnitPage(data, programme, unit) {
   writeFile(file, pageShell({
     file,
     title,
+    seoTitle,
     description,
     canonical,
     appHash,
@@ -659,13 +727,18 @@ function renderUnitPage(data, programme, unit) {
       { label: programme.label, href: "../" },
       { label: unit.title, current: true }
     ]),
+    breadcrumbTrail: [
+      { name: "Courses", url: `${SITE_URL}/courses/` },
+      { name: programme.label, url: canonicalFor("courses", programme.id) },
+      { name: unit.title, url: canonical }
+    ],
     main: `
       <section class="seo-hero">
         <h1>${escapeHtml(title)}</h1>
         <p>${escapeHtml(description)}</p>
         <div class="seo-meta"><span>${topics.length} lesson pages</span><span>Year ${unit.year}</span><span>Semester ${unit.semester}</span></div>
       </section>
-      <div class="seo-actions"><a class="seo-button" href="${rootRel}${escapeHtml(appHash)}">Open Interactive Unit</a><a class="seo-button secondary" href="../">Back to Programme</a></div>
+      <div class="seo-actions"><a class="seo-button" href="/notes">Open in Study Hub</a><a class="seo-button secondary" href="../">Back to Programme</a></div>
       <div class="seo-content">${groups}</div>
     `,
     schema: schemaCourse(title, description, canonical)
@@ -697,13 +770,17 @@ function renderProgrammePage(data, programme) {
       { label: "Courses", href: "../" },
       { label: programme.label, current: true }
     ]),
+    breadcrumbTrail: [
+      { name: "Courses", url: `${SITE_URL}/courses/` },
+      { name: programme.label, url: canonical }
+    ],
     main: `
       <section class="seo-hero">
         <h1>${escapeHtml(programme.label)}</h1>
         <p>${escapeHtml(description)}</p>
         <div class="seo-meta"><span>${units.length} course units</span><span>${programme.stats?.topicCount || 0} topics</span><span>${programme.stats?.semesterCount || 0} semesters</span></div>
       </section>
-      <div class="seo-actions"><a class="seo-button" href="${rootRel}${escapeHtml(appHash)}">Open Interactive Programme</a><a class="seo-button secondary" href="../">All Courses</a></div>
+      <div class="seo-actions"><a class="seo-button" href="/courses/curriculum">Open Curriculum Map</a><a class="seo-button secondary" href="../">All Courses</a></div>
       <div class="seo-grid">${unitCards}</div>
     `,
     schema: schemaCourse(programme.label, description, canonical)
@@ -753,12 +830,47 @@ function renderCoursesIndex(data) {
   return canonical;
 }
 
+// Hub routes are rendered by the SPA, so no static HTML links to them. Without
+// these entries Google has no crawl path to them at all.
+const STATIC_ROUTES = [
+  ["/notes", "weekly", "0.95"],
+  ["/courses/curriculum", "weekly", "0.9"],
+  ["/dictionary", "weekly", "0.85"],
+  ["/dictionary/abbreviations", "monthly", "0.7"],
+  ["/dictionary/category/anatomy", "monthly", "0.7"],
+  ["/dictionary/category/clinical-skills", "monthly", "0.7"],
+  ["/dictionary/category/pharmacology", "monthly", "0.7"],
+  ["/resources", "weekly", "0.85"],
+  ["/resources/books", "monthly", "0.75"],
+  ["/resources/past-papers", "weekly", "0.85"],
+  ["/resources/quizzes", "weekly", "0.85"],
+  ["/resources/medical-instruments", "monthly", "0.8"],
+  ["/resources/schools", "monthly", "0.8"],
+  ["/resources/licensing", "monthly", "0.75"],
+  ["/resources/student-support", "monthly", "0.7"],
+  ["/careers", "weekly", "0.8"],
+  ["/careers/cv-uganda", "monthly", "0.75"],
+  ["/careers/cv-international", "monthly", "0.7"],
+  ["/careers/cover-letter", "monthly", "0.7"],
+  ["/careers/interview-prep", "monthly", "0.7"],
+  ["/careers/portfolio", "monthly", "0.65"],
+  ["/careers/salary-guide", "monthly", "0.7"],
+  ["/flashcards", "monthly", "0.7"],
+  ["/contact", "yearly", "0.4"],
+  ["/privacy", "yearly", "0.3"],
+  ["/cookies", "yearly", "0.3"],
+  ["/disclaimer", "yearly", "0.3"],
+  ["/terms", "yearly", "0.3"]
+];
+
 function sitemapXml(urls) {
   const unique = [...new Map(urls.map((item) => [item.loc, item])).values()];
+  const lastmod = new Date().toISOString().slice(0, 10);
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${unique.map((item) => `  <url>
     <loc>${escapeHtml(item.loc)}</loc>
+    <lastmod>${lastmod}</lastmod>
     <changefreq>${item.changefreq}</changefreq>
     <priority>${item.priority}</priority>
   </url>`).join("\n")}
@@ -771,7 +883,8 @@ function main() {
   cleanCoursesRoot();
   const urls = [
     { loc: `${SITE_URL}/`, changefreq: "weekly", priority: "1.0" },
-    { loc: renderCoursesIndex(data), changefreq: "weekly", priority: "0.9" }
+    { loc: renderCoursesIndex(data), changefreq: "weekly", priority: "0.9" },
+    ...STATIC_ROUTES.map(([route, changefreq, priority]) => ({ loc: `${SITE_URL}${route}`, changefreq, priority }))
   ];
 
   let programmeCount = 0;
