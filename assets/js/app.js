@@ -16474,12 +16474,28 @@ function setupStudyTimer() {
   });
 }
 
+// One dropped or aborted request must not blank the whole app, so a network
+// failure gets a second attempt before the error screen. A real HTTP error
+// (404/500) is not retried — that is handled by the caller.
+async function fetchCurriculum() {
+  const url = "/assets/data/curriculum.json?v=108";
+  let networkError;
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    try {
+      return await fetch(url);
+    } catch (error) {
+      networkError = error;
+    }
+  }
+  throw networkError;
+}
+
 async function init() {
   try {
 
     // Curriculum is the minimum needed to render: load it first and paint immediately
     // Use root-relative path so it always resolves correctly regardless of current URL
-    const response = await fetch("/assets/data/curriculum.json?v=108");
+    const response = await fetchCurriculum();
     if (!response.ok) throw new Error(`Could not load course content (${response.status}). Please refresh.`);
     state.data = await response.json();
     state.imageMatches = { matches: {} };
