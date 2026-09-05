@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <!-- base href MUST be first — fixes relative image/asset paths on deep SPA routes
+    <!-- base href MUST be first: fixes relative image/asset paths on deep SPA routes
          e.g. /careers/job-id resolving assets/images/... from root not from /careers/ -->
     <base href="/">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -69,7 +69,7 @@
     <link rel="manifest" href="manifest.webmanifest">
 
     <!-- ═══════════════════════════════════════════════════════
-         CRITICAL INLINE CSS — loading screen always renders
+         CRITICAL INLINE CSS: loading screen always renders
          correctly even before main.min.css finishes loading
          ═══════════════════════════════════════════════════════ -->
     <style>
@@ -155,7 +155,7 @@
       }
     </style>
 
-    <!-- Fonts — deferred so they don't block the loading screen -->
+    <!-- Fonts: deferred so they don't block the loading screen -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Cinzel:wght@600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -165,14 +165,14 @@
     <link rel="preload" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""></noscript>
 
-    <!-- App CSS — preload hint speeds up discovery -->
-    <link rel="preload" href="assets/css/main.min.css?v=119" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="assets/css/main.min.css?v=119"></noscript>
+    <!-- App CSS: preload hint speeds up discovery -->
+    <link rel="preload" href="assets/css/main.min.css?v=121" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="assets/css/main.min.css?v=121"></noscript>
 
-    <!-- App JS — preload so browser starts downloading in parallel with CSS -->
-    <link rel="preload" href="assets/js/app.min.js?v=119" as="script">
+    <!-- App JS: preload so browser starts downloading in parallel with CSS -->
+    <link rel="preload" href="assets/js/app.min.js?v=121" as="script">
 
-    <!-- Curriculum data — prefetch so it's ready when JS runs -->
+    <!-- Curriculum data: prefetch so it's ready when JS runs -->
     <link rel="prefetch" href="assets/data/curriculum.json" as="fetch" crossorigin="anonymous">
 
     <!-- Scroll restoration -->
@@ -232,7 +232,7 @@
         <div class="loading-bar"></div>
         <div class="loading-mark-wrap">
           <div class="loading-ring"></div>
-          <img src="/assets/images/nursing-uganda-icon-light-transparent.png" class="loading-mark" alt="" width="64" height="64">
+          <img src="/assets/images/nursing-uganda-icon-mark.webp" class="loading-mark" alt="" width="64" height="64">
         </div>
         <div class="loading-dots"><span></span><span></span><span></span></div>
       </div>
@@ -241,10 +241,10 @@
     <!-- Leaflet -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
 
-    <!-- Supabase JS (auth + cloud sync) — must load before app.min.js -->
+    <!-- Supabase JS (auth + cloud sync): must load before app.min.js -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" defer></script>
 
     <!-- App (minified; rebuild with: npm run build) -->
-  <script src="assets/js/app.min.js?v=119" defer></script>
+  <script src="assets/js/app.min.js?v=121" defer></script>
   </body>
 </html>

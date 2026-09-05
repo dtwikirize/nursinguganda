@@ -203,7 +203,7 @@ const iconPaths = {
 /**
  * SHA-256 via the browser's built-in Web Crypto API.
  * Returns a 64-char lowercase hex string.
- * Requires a secure context (HTTPS or localhost) — always true on nursinguganda.com.
+ * Requires a secure context (HTTPS or localhost), always true on nursinguganda.com.
  */
 async function sha256Hash(str) {
   const encoded = new TextEncoder().encode(str);
@@ -254,7 +254,7 @@ function supabaseUserToAppUser(sbUser) {
 
 async function authRegister(name, email, password) {
   const client = sb();
-  if (!client) return { ok: false, error: "Auth service unavailable — please refresh the page." };
+  if (!client) return { ok: false, error: "Auth service unavailable. Please refresh the page." };
   if (!name.trim() || !email.trim() || !password) return { ok: false, error: "All fields are required." };
   if (password.length < 6) return { ok: false, error: "Password must be at least 6 characters." };
   const { data, error } = await client.auth.signUp({
@@ -263,14 +263,14 @@ async function authRegister(name, email, password) {
   });
   if (error) return { ok: false, error: error.message };
   if (!data.session) {
-    // Email confirmation is required — Supabase sends the confirmation email.
+    // Email confirmation is required: Supabase sends the confirmation email.
     state.loginEmailSent = true;
     state.loginEmailAddress = email.trim();
     return { ok: true, emailConfirmationRequired: true };
   }
   state.currentUser = supabaseUserToAppUser(data.user);
   state.loginError = "";
-  // Fire-and-forget welcome email — non-blocking
+  // Fire-and-forget welcome email, non-blocking
   callEdgeFunction("send-welcome-email", {
     email: data.user.email,
     name:  (data.user.user_metadata?.name || "").split(/\s+/)[0] || "Student",
@@ -280,7 +280,7 @@ async function authRegister(name, email, password) {
 
 async function authLogin(email, password) {
   const client = sb();
-  if (!client) return { ok: false, error: "Auth service unavailable — please refresh the page." };
+  if (!client) return { ok: false, error: "Auth service unavailable. Please refresh the page." };
   if (!email.trim() || !password) return { ok: false, error: "Please enter your email and password." };
 
   // ── Lockout guard ──────────────────────────────────────────────────────────
@@ -301,7 +301,7 @@ async function authLogin(email, password) {
       ? "Incorrect email or password. Please try again."
       : error.message;
 
-    // Record failure — locks after 5 consecutive wrong attempts
+    // Record failure. Locks after 5 consecutive wrong attempts
     const attemptResult = await recordFailedLoginAttempt(email);
     if (attemptResult.now_locked) {
       // Non-blocking lockout notification email
@@ -327,7 +327,7 @@ async function authLogin(email, password) {
   // Reset failed-attempt counter (non-blocking)
   clearLoginAttempts(email).catch(() => {});
 
-  // Device fingerprint check — alert on new device (non-blocking)
+  // Device fingerprint check: alert on new device (non-blocking)
   checkAndAlertNewDevice(data.user, email).catch(() => {});
 
   return { ok: true, user: state.currentUser };
@@ -387,7 +387,7 @@ async function callEdgeFunction(name, payload) {
   }
 }
 
-/** Call a Supabase RPC (database function) — returns the result data or null. */
+/** Call a Supabase RPC (database function). Returns the result data or null. */
 async function callRpc(fnName, params) {
   try {
     const client = sb();
@@ -456,7 +456,7 @@ async function checkAndAlertNewDevice(sbUser, email) {
       p_language:    fp.language,
     });
     if (!result?.is_new) return;
-    // New device — send non-blocking security alert
+    // New device: send non-blocking security alert
     await callEdgeFunction("send-suspicious-login", {
       email,
       name:   sbUser.user_metadata?.name || "",
@@ -659,7 +659,7 @@ async function adminSaveMaintenance(enabled, message, eta) {
     });
     if (error) throw error;
     state.maintenance = { mode: enabled, message: message || "", eta: eta || "" };
-    showToast(enabled ? "⚠️ Maintenance mode ON — users are now blocked" : "✅ Site is live again — maintenance mode OFF", enabled ? "warning" : "success");
+    showToast(enabled ? "⚠️ Maintenance mode ON, users are now blocked" : "✅ Site is live again, maintenance mode OFF", enabled ? "warning" : "success");
     render();
     return { ok: true };
   } catch (err) {
@@ -671,7 +671,7 @@ async function adminSaveMaintenance(enabled, message, eta) {
 
 function renderMaintenancePage() {
   const m = state.maintenance || {};
-  document.title = "Nursing Uganda — Scheduled Maintenance";
+  document.title = "Nursing Uganda: Scheduled Maintenance";
   const msg = m.message || "We're performing scheduled maintenance to improve your experience. We apologise for any inconvenience.";
   app.innerHTML = `
     <div class="maintenance-screen">
@@ -680,7 +680,7 @@ function renderMaintenancePage() {
         <div class="maintenance-mark-wrap">
           <div class="maintenance-ring maintenance-ring-outer"></div>
           <div class="maintenance-ring maintenance-ring-inner"></div>
-          <img src="assets/images/nursing-uganda-icon-light-transparent.png"
+          <img src="assets/images/nursing-uganda-icon-mark.webp"
                class="maintenance-mark" alt="Nursing Uganda" width="80" height="80">
         </div>
         <div class="maintenance-badge">${icon("wrench")}<span>Scheduled Maintenance</span></div>
@@ -1909,7 +1909,7 @@ function renderLeaderboard() {
   }
   return `
     <div class="section-head slim-head" style="margin-top:48px">
-      <div><h2>${icon("send")} Weekly Leaderboard</h2><p>Top 10 quiz scores this week — resets every Monday.</p></div>
+      <div><h2>${icon("send")} Weekly Leaderboard</h2><p>Top 10 quiz scores this week. Resets every Monday.</p></div>
     </div>
     <div class="leaderboard-table">
       ${rows.map((r, i) => `
@@ -2031,7 +2031,7 @@ function buildQuizMailtoLink(quizKey) {
     `Nursing Uganda – Quiz Results`,
     ``,
     `Quiz: ${title}`,
-    `Score: ${score}/${total} (${pct}%) — ${grade}`,
+    `Score: ${score}/${total} (${pct}%): ${grade}`,
     ``,
     `──────────────────────────`,
     ...qLines,
@@ -3799,7 +3799,7 @@ function renderCookieConsent() {
         <section class="cookie-consent-banner" aria-label="Privacy and cookie choices">
           <!-- Brand header -->
           <div class="cookie-brand-bar">
-            <img src="/assets/images/nursing-uganda-icon-light-transparent.png" width="28" height="28" alt="" aria-hidden="true">
+            <img src="/assets/images/nursing-uganda-icon-mark.webp" width="28" height="28" alt="" aria-hidden="true">
             <strong>Nursing Uganda</strong>
             <span class="cookie-brand-sep">·</span>
             <span>Privacy &amp; Consent</span>
@@ -3807,7 +3807,7 @@ function renderCookieConsent() {
           <div class="cookie-consent-body">
             <div class="cookie-consent-text">
               <h2>We respect your privacy</h2>
-              <p>Nursing Uganda stores only necessary site data by default. With your consent we may enable <strong>Google Analytics</strong>, <strong>Google AdSense</strong> and <strong>Amazon Associates</strong> affiliate tracking — all of which fund the free revision content available to nursing students.</p>
+              <p>Nursing Uganda stores only necessary site data by default. With your consent we may enable <strong>Google Analytics</strong>, <strong>Google AdSense</strong> and <strong>Amazon Associates</strong> affiliate tracking, all of which fund the free revision content available to nursing students.</p>
               <p class="cookie-small">You can change preferences any time via Cookie Preferences in the footer. Read our <a href="/privacy">Privacy Policy</a>, <a href="/cookies">Cookie Policy</a> and <a href="/disclaimer">Affiliate Disclaimer</a>.</p>
             </div>
             <div class="cookie-consent-actions">
@@ -3828,7 +3828,7 @@ function renderCookieConsent() {
             </div>
             <button type="button" class="cookie-close" data-cookie-close aria-label="Close">${icon("x")}</button>
           </div>
-          <p>Choose which optional tools Nursing Uganda may load. Necessary storage always stays active — it keeps the site working and remembers your choices.</p>
+          <p>Choose which optional tools Nursing Uganda may load. Necessary storage always stays active. It keeps the site working and remembers your choices.</p>
           <div class="cookie-toggle-list">
             <label class="cookie-toggle-row necessary">
               <input type="checkbox" checked disabled>
@@ -3912,9 +3912,9 @@ function renderFooter() {
         <div class="footer-top">
           <div class="footer-brand">
             <a class="footer-logo" href="/notes" aria-label="Nursing Uganda home">
-              <img src="/assets/images/nursing-uganda-logo-transparent.png" class="footer-logo-img" alt="Nursing Uganda — Notes &amp; Resources" width="220" height="auto" loading="lazy">
+              <img src="/assets/images/nursing-uganda-logo-wordmark.webp" class="footer-logo-img" alt="Nursing Uganda: Notes &amp; Resources" width="220" height="87" loading="lazy" decoding="async">
             </a>
-            <p class="footer-tagline">Structured notes, courses, dictionary and career resources for Uganda nursing and midwifery students — free and offline-ready.</p>
+            <p class="footer-tagline">Structured notes, courses, dictionary and career resources for Uganda nursing and midwifery students, free and offline-ready.</p>
             <div class="footer-stats" aria-label="Quick stats">
               <span>${icon("graduationCap")}<strong>${programmeCount || 7}</strong> programmes</span>
               <span>${icon("bookOpen")}<strong>${totals.courseUnits || 95}</strong> units</span>
@@ -3925,7 +3925,7 @@ function renderFooter() {
           <div class="footer-cta-panel">
             <span class="footer-cta-eyebrow">${icon("graduationCap")} Start Studying</span>
             <h3>Ready to revise?</h3>
-            <p>Jump into structured notes, test yourself with quizzes, or explore the full dictionary — all free, offline-ready.</p>
+            <p>Jump into structured notes, test yourself with quizzes, or explore the full dictionary, all free, offline-ready.</p>
             <div class="footer-cta-actions">
               ${buttonLink("/notes", "Browse Notes", "primary", "bookOpen")}
               ${buttonLink("/resources/quizzes", "Take a Quiz", "secondary", "helpCircle")}
@@ -4088,9 +4088,9 @@ function megaMenuLinks(key) {
       { href: "/careers",              label: "Career Hub",              body: "Pathways, licensing, CV tools and work-abroad guides", icon: "map" },
       { href: "/careers#international", label: "International Nursing",  body: "UK, Australia, Gulf and regional mobility notes", icon: "globe" },
       { href: "/careers#licensing",    label: "Licensing Guides",        body: "UNMC, good standing and recognition checklists", icon: "badgeCheck" },
-      { href: "/careers/cv-uganda",      label: "Uganda Nursing CV",       body: "5 CV templates — hospital, NGO, new graduate and midwifery", icon: "fileCv" },
-      { href: "/careers/cover-letter",  label: "Cover Letters",           body: "5 letter templates — hospital, NGO, international and internal", icon: "mail" },
-      { href: "/careers/interview-prep",label: "Interview Prep",          body: "5 interview guides — general, ICU, international and leadership", icon: "users" }
+      { href: "/careers/cv-uganda",      label: "Uganda Nursing CV",       body: "5 CV templates, hospital, NGO, new graduate and midwifery", icon: "fileCv" },
+      { href: "/careers/cover-letter",  label: "Cover Letters",           body: "5 letter templates, hospital, NGO, international and internal", icon: "mail" },
+      { href: "/careers/interview-prep",label: "Interview Prep",          body: "5 interview guides, general, ICU, international and leadership", icon: "users" }
     ];
   }
 
@@ -4171,7 +4171,7 @@ function renderMobileDrawer(active) {
     <div class="mobile-drawer${state.navOpen ? " open" : ""}" id="mobile-drawer" role="dialog" aria-modal="true" aria-label="Navigation menu">
       <div class="drawer-header">
         <a class="brand drawer-brand" href="/notes" data-nav-close>
-          <img src="assets/images/nursing-uganda-icon-light-transparent.png" class="brand-mark" alt="" aria-hidden="true" width="40" height="40">
+          <img src="assets/images/nursing-uganda-icon-mark.webp" class="brand-mark" alt="" aria-hidden="true" width="40" height="40">
           <div class="brand-text"><strong>Nursing Uganda</strong><small>Notes &amp; Resources</small></div>
         </a>
         <button class="drawer-close-btn" type="button" data-nav-toggle aria-label="Close menu">${icon("x")}</button>
@@ -4201,7 +4201,7 @@ function renderMobileDrawer(active) {
           `;
         }).join("")}
       </nav>
-      <!-- Auth section — sign in CTA or logged-in user card -->
+      <!-- Auth section. Sign in CTA or logged-in user card -->
       <div class="drawer-auth-section">
         ${state.currentUser ? `
           <a class="drawer-user-card" href="/account" data-nav-close>
@@ -4289,7 +4289,7 @@ function renderPreFooterBand() {
         <div class="pre-footer-text">
           <span class="eyebrow pre-footer-eyebrow">Your Toolkit</span>
           <h3>Everything you need to revise, in one place</h3>
-          <p>Search notes, open courses, or look up any term in the dictionary — all free and offline-ready.</p>
+          <p>Search notes, open courses, or look up any term in the dictionary, all free and offline-ready.</p>
         </div>
         <div class="pre-footer-actions">
           ${buttonLink("/search", "Search Everything", "primary", "search")}
@@ -4309,14 +4309,14 @@ function layout(content) {
       ${isAdmin() && state.maintenance?.mode ? `
         <div class="maint-admin-banner" id="maint-admin-banner">
           <span class="maint-banner-icon">${icon("alertTriangle")}</span>
-          <span class="maint-banner-text"><strong>Maintenance mode is ACTIVE</strong> — regular users cannot access the site</span>
+          <span class="maint-banner-text"><strong>Maintenance mode is ACTIVE</strong>: regular users cannot access the site</span>
           <button class="maint-banner-off" data-maint-off>Turn Off Now</button>
         </div>` : ""}
       <header class="site-header">
         <div id="reading-progress-bar" role="progressbar" aria-hidden="true"></div>
         <div class="container nav-shell">
           <a class="brand" href="/notes" aria-label="Nursing Uganda notes home">
-            <img src="/assets/images/nursing-uganda-icon-light-transparent.png" class="brand-mark" alt="" aria-hidden="true" width="40" height="40">
+            <img src="/assets/images/nursing-uganda-icon-mark.webp" class="brand-mark" alt="" aria-hidden="true" width="40" height="40">
             <div class="brand-text">
               <strong>Nursing Uganda</strong>
               <small>Notes &amp; Resources</small>
@@ -4394,7 +4394,7 @@ function layout(content) {
     </div>
   `;
 
-  // Desktop "Sign In" button — save intended destination before redirecting
+  // Desktop "Sign In" button: save intended destination before redirecting
   app.querySelectorAll(".nav-login-btn").forEach((btn) => {
     btn.addEventListener("click", (e) => {
       const here = window.location.pathname;
@@ -4418,7 +4418,7 @@ function layout(content) {
     overlay.addEventListener("click", (event) => { event.stopPropagation(); state.navOpen = false; state.megaOpen = ""; render(); });
   }
   // data-nav-close: close drawer AND navigate if the element is an <a href="...">
-  // We handle navigation explicitly so it works reliably on all mobile browsers —
+  // We handle navigation explicitly so it works reliably on all mobile browsers, 
   // never rely solely on the document-level click delegation for drawer links.
   app.querySelectorAll("[data-nav-close]").forEach((el) => {
     el.addEventListener("click", (e) => {
@@ -4479,7 +4479,7 @@ function layout(content) {
   app.querySelectorAll("[data-auth-logout]").forEach((btn) => {
     btn.addEventListener("click", async () => {
       await authLogout();
-      // Always redirect to home after logout — avoids user staying on
+      // Always redirect to home after logout: avoids user staying on
       // a protected page (/account, /progress, etc.) that would show an error
       setRoute("/notes");
     });
@@ -4616,7 +4616,7 @@ function layout(content) {
     });
   });
 
-  // Quiz — email / share results button
+  // Quiz: email / share results button
   app.querySelectorAll("[data-email-quiz]").forEach(btn => {
     btn.addEventListener("click", async () => {
       btn.disabled = true;
@@ -4627,12 +4627,12 @@ function layout(content) {
         showToast(`Results emailed to ${state.currentUser?.email}`, "success");
         btn.innerHTML = `${icon("mail")}<span>Sent ✓</span>`;
       } else if (result?.mailto) {
-        // Edge Function not available — open the user's email client instead
+        // Edge Function not available. Open the user's email client instead
         window.location.href = result.mailto;
         showToast("Opening your email app with results…", "info");
         btn.innerHTML = `${icon("mail")}<span>Open Email App</span>`;
       } else {
-        showToast("Nothing to email — complete a quiz first", "error");
+        showToast("Nothing to email. Complete a quiz first", "error");
         btn.innerHTML = `${icon("mail")}<span>Email Results</span>`;
       }
     });
@@ -4791,10 +4791,10 @@ const legalPages = {
     summary: ["We collect only minimal technical data", "Analytics and advertising require your consent", "We use Google AdSense and Amazon Affiliates", "You can withdraw consent at any time"],
     sections: [
       ["Who We Are", "Nursing Uganda is an educational revision website for nursing and midwifery learners in Uganda and East Africa. For privacy purposes, Nursing Uganda acts as the data controller for information collected through this site. Contact us at info@nursinguganda.com for privacy questions, data requests or content concerns."],
-      ["What We Collect", "We may collect basic technical information — browser type, pages viewed, device details, approximate location, cookie choices and messages you send us. Google Analytics (when consented) collects aggregated usage data. Google AdSense and Amazon Associates may process additional signals to serve and measure advertisements and affiliate conversions."],
+      ["What We Collect", "We may collect basic technical information: browser type, pages viewed, device details, approximate location, cookie choices and messages you send us. Google Analytics (when consented) collects aggregated usage data. Google AdSense and Amazon Associates may process additional signals to serve and measure advertisements and affiliate conversions."],
       ["How We Use Data", "We use data to keep the website running, remember your preferences, improve study resources, measure which pages and tools are most useful, prevent abuse, respond to messages and generate revenue through advertising and affiliate commissions that fund free content."],
-      ["Advertising — Google AdSense", "Nursing Uganda uses or intends to use Google AdSense to display advertisements. Google and its partners may use cookies and device identifiers to serve personalised ads based on your interests and prior visits. You can opt out of personalised advertising at g.co/adsettings. AdSense loads only after advertising consent has been collected where required."],
-      ["Affiliate Links — Amazon & Partners", "Nursing Uganda participates in or will participate in the Amazon Associates programme and similar affiliate schemes. When you click a disclosed affiliate link and make a qualifying purchase, we may earn a small commission at no extra cost to you. Affiliate status does not influence clinical content or editorial decisions. All affiliate links are labelled."],
+      ["Advertising: Google AdSense", "Nursing Uganda uses or intends to use Google AdSense to display advertisements. Google and its partners may use cookies and device identifiers to serve personalised ads based on your interests and prior visits. You can opt out of personalised advertising at g.co/adsettings. AdSense loads only after advertising consent has been collected where required."],
+      ["Affiliate Links: Amazon & Partners", "Nursing Uganda participates in or will participate in the Amazon Associates programme and similar affiliate schemes. When you click a disclosed affiliate link and make a qualifying purchase, we may earn a small commission at no extra cost to you. Affiliate status does not influence clinical content or editorial decisions. All affiliate links are labelled."],
       ["Learning Content", "Our content is gathered and rewritten from books, libraries, open educational sources, local PDFs, class materials and peer-to-peer revision inputs. It is for revision and study support only, not a replacement for formal student notes, official curriculum, clinical supervision or current professional guidelines."],
       ["Your Data Rights", "You may request access, correction, deletion or restriction of personal data you have provided to us, and may withdraw optional consent for analytics, advertising or affiliate tracking at any time via the Cookie Preferences link in the footer."],
       ["Retention And Security", "We retain contact messages and preference records only as long as reasonably needed for support, compliance and abuse prevention. We take appropriate technical precautions but cannot guarantee absolute security of data transmitted over the internet."],
@@ -4809,9 +4809,9 @@ const legalPages = {
     summary: ["Necessary cookies always active", "Analytics & ad cookies need consent", "Amazon affiliate uses referral cookies", "Manage preferences in the footer"],
     sections: [
       ["Necessary Cookies", "Necessary storage supports basic navigation, theme preference, saved school view, bookmarks, service-worker offline caching and your consent record. These cannot be disabled as they are required for the website to function."],
-      ["Analytics Cookies — Google Analytics", "When you consent to analytics, Google Analytics (GA4) places cookies (_ga, _gid and related) to count page views, session duration and popular content. Data is aggregated and anonymised. These cookies expire after 13 months. You can opt out at tools.google.com/dlpage/gaoptout."],
-      ["Advertising Cookies — Google AdSense", "Google AdSense uses cookies and similar technologies (IDE, DSID, NID) to deliver, limit frequency and measure advertisements. When enabled, ads may be personalised based on your browsing history across Google partner sites. Advertising consent must be collected before these cookies activate for users in applicable regions."],
-      ["Affiliate Tracking — Amazon Associates", "Nursing Uganda participates or will participate in the Amazon Associates programme. When you click an affiliate link, Amazon may set a cookie (session-id, ubid-acbus) to attribute your purchase to our referral. These cookies typically last 24 hours for the session attribution. We earn a commission if a qualifying purchase is completed."],
+      ["Analytics Cookies: Google Analytics", "When you consent to analytics, Google Analytics (GA4) places cookies (_ga, _gid and related) to count page views, session duration and popular content. Data is aggregated and anonymised. These cookies expire after 13 months. You can opt out at tools.google.com/dlpage/gaoptout."],
+      ["Advertising Cookies: Google AdSense", "Google AdSense uses cookies and similar technologies (IDE, DSID, NID) to deliver, limit frequency and measure advertisements. When enabled, ads may be personalised based on your browsing history across Google partner sites. Advertising consent must be collected before these cookies activate for users in applicable regions."],
+      ["Affiliate Tracking: Amazon Associates", "Nursing Uganda participates or will participate in the Amazon Associates programme. When you click an affiliate link, Amazon may set a cookie (session-id, ubid-acbus) to attribute your purchase to our referral. These cookies typically last 24 hours for the session attribution. We earn a commission if a qualifying purchase is completed."],
       ["Other Affiliate Partners", "Future affiliate schemes (e.g. medical book publishers, course platforms) may place referral cookies. All affiliate links are disclosed with an (Affiliate) or similar label, and any associated cookies are listed here when introduced."],
       ["Google CMP And TCF", "When serving personalised ads to users in the EEA, UK or Switzerland, Nursing Uganda will use a Google-certified Consent Management Platform (CMP) integrated with the IAB Transparency and Consent Framework v2.2. This ensures advertising partners receive a valid consent signal before processing personal data for ad targeting."],
       ["Managing Your Preferences", "Use the Cookie Preferences link in the footer to accept, reject or update optional cookie categories at any time. You can also clear cookies directly in your browser settings. Removing necessary cookies may affect site functionality."]
@@ -4825,9 +4825,9 @@ const legalPages = {
     summary: ["Analytics is optional", "Ad personalisation is optional", "Amazon affiliate tracking is optional", "Your choices are saved in your browser"],
     sections: [
       ["What You Always Control", "You can accept or reject optional analytics, advertising and affiliate tracking. Necessary storage remains active because it keeps the site working and remembers your consent choice. Your preferences are saved locally and apply on every visit."],
-      ["Analytics Tracking", "Enabling analytics helps Nursing Uganda understand which notes, instruments, quizzes and resources students find most useful, so we can improve the content. Data is aggregated — we cannot identify you personally from analytics reports."],
-      ["Google AdSense — Personalised Ads", "When you accept advertising consent, Google AdSense may serve personalised advertisements based on your interests and browsing history. If you reject this category, ads (if shown) will be non-personalised and based only on page context. You can also manage ad personalisation globally at g.co/adsettings."],
-      ["Amazon Affiliate Measurement", "When you click an Amazon link and consent to affiliate tracking, Amazon Associates may use referral cookies to credit a purchase to Nursing Uganda. Rejecting this category means the affiliate attribution cookie is not set, but the link still works — you simply won't be attributed to our referral."],
+      ["Analytics Tracking", "Enabling analytics helps Nursing Uganda understand which notes, instruments, quizzes and resources students find most useful, so we can improve the content. Data is aggregated. We cannot identify you personally from analytics reports."],
+      ["Google AdSense: Personalised Ads", "When you accept advertising consent, Google AdSense may serve personalised advertisements based on your interests and browsing history. If you reject this category, ads (if shown) will be non-personalised and based only on page context. You can also manage ad personalisation globally at g.co/adsettings."],
+      ["Amazon Affiliate Measurement", "When you click an Amazon link and consent to affiliate tracking, Amazon Associates may use referral cookies to credit a purchase to Nursing Uganda. Rejecting this category means the affiliate attribution cookie is not set, but the link still works. You simply won't be attributed to our referral."],
       ["Other Partner Tracking", "As Nursing Uganda grows, other affiliate or sponsor tracking tools may be added. Each category will be listed here with its purpose and opt-out mechanism before it is enabled."],
       ["Do Not Sell Or Share", "Nursing Uganda does not sell personal information. If future advertising or partner systems create regional opt-out obligations under applicable privacy laws, this page is where those choices will be surfaced."],
       ["Withdrawing Consent", "You can withdraw consent at any time by opening Cookie Preferences from the footer. Withdrawal applies going forward and does not affect processing that occurred while consent was valid."]
@@ -4840,7 +4840,7 @@ const legalPages = {
     intro: "Nursing Uganda is a free revision and peer-learning resource for nursing and midwifery students. It is not a substitute for formal education, professional advice or clinical protocols.",
     summary: ["Not a replacement for formal notes", "Not professional or medical advice", "Content may contain errors", "Affiliate links may earn commission"],
     sections: [
-      ["Educational Purpose Only", "Nursing Uganda exists to support revision, self-study and peer-to-peer learning. The notes, instruments, quizzes, flashcards, mock exams and summaries are designed to complement — not replace — school notes, lecturer handouts, approved textbooks, clinical manuals and the official curriculum used by your institution."],
+      ["Educational Purpose Only", "Nursing Uganda exists to support revision, self-study and peer-to-peer learning. The notes, instruments, quizzes, flashcards, mock exams and summaries are designed to complement, not replace, school notes, lecturer handouts, approved textbooks, clinical manuals and the official curriculum used by your institution."],
       ["Not Professional Or Medical Advice", "Nothing on this website constitutes medical, nursing, midwifery, legal, licensing or employment advice. Clinical decisions must always be confirmed with tutors, supervisors, facility protocols, current national guidelines and qualified professionals before any patient care action is taken."],
       ["Sources And Accuracy", "Content is gathered from books, libraries, PDFs, open educational sources and student revision inputs, then rewritten for clarity and originality. We strive for accuracy but mistakes, outdated details, missing context or transcription errors may occur. Report concerns via the Corrections page."],
       ["Licensing And Regulatory Bodies", "Nursing Uganda is not affiliated with, endorsed by, or acting on behalf of the Uganda Nurses and Midwives Council, Ministry of Health, academic institutions or any regulatory body. We do not issue professional licences, school recognition, examination approval or registration status."],
@@ -4877,7 +4877,7 @@ const legalPages = {
     sections: [
       ["What To Report", "Send corrections for inaccurate definitions, unsafe clinical wording, outdated guidance, missing source context, broken links, image concerns, copyright requests or content that appears too close to another publisher's material."],
       ["What To Include", "Please include the page URL, the lesson or instrument title, the exact sentence or image concerned, the suggested correction or source, and whether the issue is urgent for patient safety or examination accuracy. Clear, specific reports are processed faster."],
-      ["Clinical Safety Priority", "Reports involving clinical safety — incorrect drug doses, wrong procedures, dangerous advice — are treated as high priority. We will review and act as quickly as possible. For immediate patient safety concerns, consult a qualified professional rather than waiting for our response."],
+      ["Clinical Safety Priority", "Reports involving clinical safety: incorrect drug doses, wrong procedures, dangerous advice, are treated as high priority. We will review and act as quickly as possible. For immediate patient safety concerns, consult a qualified professional rather than waiting for our response."],
       ["Review Process", "We will compare the reported content with formal references where possible, edit or remove material when appropriate, and reposition all content as revision support rather than definitive clinical guidance. We do not always publish correction notes but will act on valid reports."],
       ["Advertising And Affiliate Corrections", "If you believe an advertisement or affiliate link displayed on the site is misleading, harmful or inappropriate, please report it with the page URL and a screenshot. For Google AdSense ads, you can also report them directly via the AdChoices icon on the ad."],
       ["Rights Holder Takedown Requests", "If you own rights in a text, PDF, image or other material and want it removed or credited differently, email info@nursinguganda.com with the page URL, a description of the material and your relationship to it. We will review within 10 working days."],
@@ -5034,7 +5034,7 @@ function renderLegalPage(key) {
           <div class="lp-affiliate-icon">${icon("externalLink")}</div>
           <div>
             <strong>Affiliate Disclosure</strong>
-            <p>Nursing Uganda is a participant in the Amazon Associates Programme and similar affiliate schemes. Pages may contain links marked <strong>(Affiliate)</strong> — if you purchase through these links, we may earn a small commission at no extra cost to you. Affiliate income helps fund free revision content for nursing and midwifery students.</p>
+            <p>Nursing Uganda is a participant in the Amazon Associates Programme and similar affiliate schemes. Pages may contain links marked <strong>(Affiliate)</strong>, if you purchase through these links, we may earn a small commission at no extra cost to you. Affiliate income helps fund free revision content for nursing and midwifery students.</p>
           </div>
         </div>
 
@@ -5295,7 +5295,7 @@ function render404Page() {
         <span class="page-404-eyebrow">${icon("alertTriangle")} Page Not Found</span>
         <h1>We couldn't find that page</h1>
         <p>The address <code class="page-404-path">${escapeHtml(badPath)}</code> doesn't exist
-           on Nursing Uganda — it may have moved, been renamed, or the link may be mistyped.</p>
+           on Nursing Uganda. It may have moved, been renamed, or the link may be mistyped.</p>
 
         <!-- Quick links -->
         <div class="page-404-links">
@@ -5362,7 +5362,7 @@ function renderLoginPage() {
           <div class="login-slide-overlay"></div>
         </div>
         <a class="login-brand-logo" href="/notes" aria-label="Nursing Uganda home">
-          <img src="assets/images/nursing-uganda-icon-light-transparent.png" class="login-brand-icon-mark" alt="" aria-hidden="true" width="34" height="34" loading="eager">
+          <img src="assets/images/nursing-uganda-icon-mark.webp" class="login-brand-icon-mark" alt="" aria-hidden="true" width="34" height="34" loading="eager">
           <span class="login-brand-wordmark-text">Nursing Uganda</span>
         </a>
         <div class="login-brand-tagline">
@@ -5375,7 +5375,7 @@ function renderLoginPage() {
         <div class="login-form-card">
           <a class="login-back-link" href="/notes">${icon("arrowLeft")}<span>Back to Nursing Uganda</span></a>
           <div class="login-form-brand">
-            <img src="assets/images/nursing-uganda-icon-light-transparent.png" class="login-form-icon" alt="" aria-hidden="true" width="48" height="48">
+            <img src="assets/images/nursing-uganda-icon-mark.webp" class="login-form-icon" alt="" aria-hidden="true" width="48" height="48">
           </div>
           <div class="login-form-header">
             <h1>${isSignup ? "Create your account" : "Welcome back"}</h1>
@@ -5428,7 +5428,7 @@ function renderLoginPage() {
             </div>
           </form>
 
-          <p class="login-legal">By continuing you agree to our <a href="/privacy" class="login-legal-link">Privacy Policy</a>. Your account is securely stored in the cloud — access your progress from any device.</p>
+          <p class="login-legal">By continuing you agree to our <a href="/privacy" class="login-legal-link">Privacy Policy</a>. Your account is securely stored in the cloud, access your progress from any device.</p>
         </div>
       </div>
     </div>
@@ -5676,7 +5676,7 @@ function renderAdminMaintenanceTab() {
         </div>
         <div class="adm-maint-config-row">
           <label class="adm-maint-label">${icon("clock")} Estimated return time</label>
-          <p class="adm-maint-hint">Optional — shown as a hint to users on the maintenance page.</p>
+          <p class="adm-maint-hint">Optional: shown as a hint to users on the maintenance page.</p>
           <input id="maint-eta" type="text" class="adm-maint-input"
             value="${escapeHtml(m.eta)}"
             placeholder="e.g. Today at 6:00 PM EAT, or In about 30 minutes">
@@ -5703,7 +5703,7 @@ function renderAdminMaintenanceTab() {
       </div>
       <div class="adm-maint-preview">
         <div class="adm-maint-preview-mark">
-          <img src="assets/images/nursing-uganda-icon-light-transparent.png" width="48" height="48" alt="">
+          <img src="assets/images/nursing-uganda-icon-mark.webp" width="48" height="48" alt="">
         </div>
         <div class="adm-maint-preview-badge">${icon("wrench")} Scheduled Maintenance</div>
         <p class="adm-maint-preview-heading">We'll be back soon</p>
@@ -5960,7 +5960,7 @@ function renderAdminPage() {
                   <tr class="${a.is_active ? "" : "adm-row-inactive"}">
                     <td><p class="adm-ann-msg">${escapeHtml(a.message || "")}</p></td>
                     <td><span class="adm-chip" style="background:${typeColors[a.type] || "#3b82f6"}22;color:${typeColors[a.type] || "#3b82f6"}">${escapeHtml(a.type || "info")}</span></td>
-                    <td>${a.link_url ? `<a href="${escapeHtml(a.link_url)}" target="_blank" rel="noopener" class="adm-link">${escapeHtml(a.link_text || "Link")}</a>` : "—"}</td>
+                    <td>${a.link_url ? `<a href="${escapeHtml(a.link_url)}" target="_blank" rel="noopener" class="adm-link">${escapeHtml(a.link_text || "Link")}</a>` : ", "}</td>
                     <td><span class="adm-status ${a.is_active ? "adm-status-on" : "adm-status-off"}">${a.is_active ? "Active" : "Hidden"}</span></td>
                     <td class="adm-actions">
                       <button class="adm-btn-icon" title="Edit" data-adm-ann-edit="${escapeHtml(a.id)}">${icon("pencil")}</button>
@@ -6006,8 +6006,8 @@ function renderAdminPage() {
                 ${events.map(e => `
                   <tr class="${e.is_active ? "" : "adm-row-inactive"}">
                     <td><strong class="adm-job-title">${escapeHtml(e.title)}</strong>${e.description ? `<small>${escapeHtml(e.description.slice(0,80))}${e.description.length > 80 ? "…" : ""}</small>` : ""}</td>
-                    <td><span class="adm-deadline">${escapeHtml(e.event_date || "—")}${e.event_time ? ` ${escapeHtml(e.event_time)}` : ""}</span></td>
-                    <td>${e.location ? escapeHtml(e.location) : "—"}</td>
+                    <td><span class="adm-deadline">${escapeHtml(e.event_date || ", ")}${e.event_time ? ` ${escapeHtml(e.event_time)}` : ""}</span></td>
+                    <td>${e.location ? escapeHtml(e.location) : ", "}</td>
                     <td><span class="adm-status ${e.is_active ? "adm-status-on" : "adm-status-off"}">${e.is_active ? "Active" : "Hidden"}</span></td>
                     <td class="adm-actions">
                       <button class="adm-btn-icon" title="Edit" data-adm-event-edit="${escapeHtml(e.id)}">${icon("pencil")}</button>
@@ -6053,9 +6053,9 @@ function renderAdminPage() {
               <tbody>
                 ${users.map(u => `
                   <tr>
-                    <td><div style="display:flex;align-items:center;gap:10px">${renderUserAvatar({ initials: (u.name || u.email || "?").slice(0,2).toUpperCase(), color: authAvatarColor(u.email) }, 32)}<strong>${escapeHtml(u.name || "—")}</strong></div></td>
-                    <td>${escapeHtml(u.email || "—")}</td>
-                    <td><span class="adm-deadline">${u.created_at ? new Date(u.created_at).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }) : "—"}</span></td>
+                    <td><div style="display:flex;align-items:center;gap:10px">${renderUserAvatar({ initials: (u.name || u.email || "?").slice(0,2).toUpperCase(), color: authAvatarColor(u.email) }, 32)}<strong>${escapeHtml(u.name || ", ")}</strong></div></td>
+                    <td>${escapeHtml(u.email || ", ")}</td>
+                    <td><span class="adm-deadline">${u.created_at ? new Date(u.created_at).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }) : ", "}</span></td>
                   </tr>
                 `).join("")}
               </tbody>
@@ -6269,7 +6269,7 @@ function renderContactPage() {
     ${pageHeader({
       eyebrow: "Get in Touch",
       title: "Contact Us",
-      body: "Questions, corrections, partnership ideas or feedback — we read every message."
+      body: "Questions, corrections, partnership ideas or feedback. We read every message."
     })}
     <section class="section">
       <div class="container contact-layout">
@@ -6280,7 +6280,7 @@ function renderContactPage() {
             <h3>How can we help?</h3>
             <ul class="contact-info-list">
               <li>${icon("pencil")}<div><strong>Content Corrections</strong><span>Spotted an error in our notes? Let us know and we'll fix it.</span></div></li>
-              <li>${icon("briefcaseMedical")}<div><strong>Partnerships</strong><span>Hospitals, schools or NGOs — we'd love to collaborate.</span></div></li>
+              <li>${icon("briefcaseMedical")}<div><strong>Partnerships</strong><span>Hospitals, schools or NGOs: we'd love to collaborate.</span></div></li>
               <li>${icon("helpCircle")}<div><strong>Student Support</strong><span>Questions about using the platform or resources.</span></div></li>
               <li>${icon("tool")}<div><strong>Technical Issues</strong><span>Something not working? Report a bug and we'll fix it fast.</span></div></li>
             </ul>
@@ -6350,7 +6350,7 @@ function renderContactPage() {
         <div class="contact-faq-grid">
           <div class="contact-faq-item">
             <strong>${icon("bookOpen")} Are the notes free?</strong>
-            <p>Yes — all notes, quizzes, the dictionary and most resources are completely free with no sign-up required.</p>
+            <p>Yes: all notes, quizzes, the dictionary and most resources are completely free with no sign-up required.</p>
           </div>
           <div class="contact-faq-item">
             <strong>${icon("pencil")} I found an error in the notes</strong>
@@ -6481,7 +6481,7 @@ function renderMockExamStart(examId) {
               <li>You can navigate between questions in any order.</li>
               <li>Unanswered questions are counted as incorrect.</li>
               <li>The exam auto-submits when time runs out.</li>
-              <li>Refresh the page to resume if interrupted — progress is saved.</li>
+              <li>Refresh the page to resume if interrupted: progress is saved.</li>
             </ul>
           </div>
           <button type="button" class="button primary me-start-btn" data-start-mock="${escapeHtml(exam.id)}" style="--btn-color:${exam.color}">
@@ -6584,7 +6584,7 @@ function renderMockExamResults() {
   const msg = pct >= 80 ? "Outstanding! Excellent performance across all topics."
     : pct >= 60 ? "Good work. Review the questions you missed and revise those areas."
     : pct >= 50 ? "Satisfactory. Study the explanations carefully and try again."
-    : "Keep going. Read each explanation — you will improve with consistent practice.";
+    : "Keep going. Read each explanation. You will improve with consistent practice.";
 
   return `
     <div class="me-results-wrap">
@@ -6648,7 +6648,7 @@ function renderMockExamPage(examId) {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-//  CLINICAL TOOLS — RENDER FUNCTIONS
+//  CLINICAL TOOLS: RENDER FUNCTIONS
 // ═══════════════════════════════════════════════════════════════════════════
 
 function renderClinicalToolsPage() {
@@ -6670,7 +6670,7 @@ function renderClinicalToolsPage() {
           <div class="ct-page-hero-icon">${icon("stethoscope")}</div>
           <div>
             <h1 class="ct-page-hero-title">Clinical Tools</h1>
-            <p class="ct-page-hero-desc">Drug dose calculator, clinical procedure checklists, and quick-reference normal values — all in one place.</p>
+            <p class="ct-page-hero-desc">Drug dose calculator, clinical procedure checklists, and quick-reference normal values, all in one place.</p>
           </div>
         </div>
 
@@ -6745,7 +6745,7 @@ function renderDrugCalculator() {
         </button>
 
         <p class="ct-calc-note">
-          ${icon("alertTriangle")} Always verify calculations with a senior nurse or pharmacist. This tool is for revision only — not for direct clinical use.
+          ${icon("alertTriangle")} Always verify calculations with a senior nurse or pharmacist. This tool is for revision only, not for direct clinical use.
         </p>
       </div>
     </div>
@@ -6820,7 +6820,7 @@ function renderChecklistDetail(cl) {
         <div class="ct-cl-progress-bar">
           <div class="ct-cl-progress-fill${complete ? " complete" : ""}" style="width:${pct}%"></div>
         </div>
-        <span class="ct-cl-progress-label">${done} / ${total} steps${complete ? " — complete!" : ""}</span>
+        <span class="ct-cl-progress-label">${done} / ${total} steps${complete ? ". Complete!" : ""}</span>
       </div>
 
       <div class="ct-cl-steps">
@@ -6889,7 +6889,7 @@ function renderNormalValues() {
                 <td class="ct-nv-name">${escapeHtml(item.name)}</td>
                 <td class="ct-nv-value"><strong>${escapeHtml(item.value)}</strong></td>
                 <td class="ct-nv-unit">${escapeHtml(item.unit || "")}</td>
-                <td class="ct-nv-note">${item.note ? escapeHtml(item.note) : "<span class='ct-nv-none'>—</span>"}</td>
+                <td class="ct-nv-note">${item.note ? escapeHtml(item.note) : "<span class='ct-nv-none'>: </span>"}</td>
               </tr>
             `).join("")}
           </tbody>
@@ -6947,7 +6947,7 @@ function renderPlanner() {
         <!-- Week navigation -->
         <div class="planner-week-nav">
           <button type="button" class="button secondary planner-week-btn" data-planner-week="-1">${icon("arrowLeft")} Prev</button>
-          <span class="planner-week-label">${weekLabel} — ${weekEndLabel}</span>
+          <span class="planner-week-label">${weekLabel}: ${weekEndLabel}</span>
           <button type="button" class="button secondary planner-week-btn" data-planner-week="1">Next ${icon("arrowRight")}</button>
         </div>
 
@@ -6985,7 +6985,7 @@ function renderPlanner() {
               <div class="planner-form-row">
                 <div class="planner-form-group">
                   <label class="planner-form-label">What are you studying?</label>
-                  <input type="text" class="planner-form-input" placeholder="e.g. Anatomy — Cardiovascular System"
+                  <input type="text" class="planner-form-input" placeholder="e.g. Anatomy: Cardiovascular System"
                     data-planner-field="title" value="${escapeHtml(state.planner.addForm.title)}" maxlength="80">
                 </div>
                 <div class="planner-form-group" style="max-width:180px">
@@ -7142,7 +7142,7 @@ function renderCommunity() {
 
         ${!loading && filtered.length === 0 ? `
           <div class="comm-empty">
-            <p>${search || filter !== "all" ? "No questions match your search." : "No questions yet — be the first to ask!"}</p>
+            <p>${search || filter !== "all" ? "No questions match your search." : "No questions yet, be the first to ask!"}</p>
           </div>
         ` : ""}
 
@@ -7246,7 +7246,7 @@ function renderCommunityQuestion() {
               `;
             }).join("")}
           </div>
-        ` : `<p class="comm-no-answers">No answers yet — be the first to help!</p>`}
+        ` : `<p class="comm-no-answers">No answers yet: be the first to help!</p>`}
 
         <!-- Post answer -->
         <div class="comm-post-answer">
@@ -7346,7 +7346,7 @@ function renderActivityHeatmap() {
     weekMonthLabels.push(label);
   }
 
-  // Build grid HTML — columns are weeks, rows are days-of-week
+  // Build grid HTML: columns are weeks, rows are days-of-week
   const weekCols = [];
   for (let w = 0; w < numWeeks; w++) {
     const cellsInWeek = cells.slice(w * 7, w * 7 + 7);
@@ -7361,7 +7361,7 @@ function renderActivityHeatmap() {
   return `
     <div class="dash-heatmap">
       <div class="dash-heatmap-head">
-        <span class="mini-label">Study Activity — last ${WEEKS} weeks</span>
+        <span class="mini-label">Study Activity: last ${WEEKS} weeks</span>
         <span class="dash-heatmap-legend">
           <span class="hm-dot hm-off"></span>No study
           <span class="hm-dot hm-on"></span>Studied
@@ -7448,10 +7448,10 @@ function renderProgress() {
   }).filter(p => p.total > 0);
 
   const encouragement = progress.percent >= 80
-    ? "Exceptional — you're in the final stretch. Push through to 100%."
+    ? "Exceptional, you're in the final stretch. Push through to 100%."
     : progress.percent >= 50
       ? "More than halfway. Keep your daily habit and you'll finish strong."
-      : "Great start. One lesson a day adds up fast — let your streak carry you.";
+      : "Great start. One lesson a day adds up fast: let your streak carry you.";
 
   const greeting = user ? `Welcome back${user.name ? ", " + user.name.split(" ")[0] : ""}! 👋` : "My Study Dashboard";
 
@@ -7758,7 +7758,7 @@ function renderNotes() {
           <div class="continue-strip-info">
             ${streakChip()}
             <h3>${last ? escapeHtml(last.title) : "Start Your First Lesson"}</h3>
-            <p>${last ? `${escapeHtml(last.programme)} — ${escapeHtml(last.unit)}` : "Open any course lesson and Nursing Uganda will track where you stopped."}</p>
+            <p>${last ? `${escapeHtml(last.programme)}, ${escapeHtml(last.unit)}` : "Open any course lesson and Nursing Uganda will track where you stopped."}</p>
           </div>
           <div class="continue-strip-stats">
             <div><strong>${progress.percent}%</strong><span>complete</span></div>
@@ -7874,7 +7874,7 @@ function renderGlobalSearchPage() {
       <div class="container">
         <span class="eyebrow page-eyebrow">Search</span>
         <h1 class="search-page-title">Find Anything</h1>
-        <p class="search-page-subtitle">Course units, topics, lesson notes, dictionary terms and instruments — all in one search.</p>
+        <p class="search-page-subtitle">Course units, topics, lesson notes, dictionary terms and instruments, all in one search.</p>
         ${renderAdvancedSearchForm("search-page-form")}
         ${query.length < 2 ? `
           <div class="search-start-panel">
@@ -7960,14 +7960,14 @@ function renderSettingsPage() {
             <div class="settings-field">
               <label for="sf-programme">Programme of Study</label>
               <select id="sf-programme" class="settings-input" data-sf-programme>
-                <option value="">— Select programme —</option>
+                <option value="">: Select programme: </option>
                 ${programmes.map(p => `<option value="${escapeHtml(p.id)}"${(sf.programme || profile.programme) === p.id ? " selected" : ""}>${escapeHtml(p.label)}</option>`).join("")}
               </select>
             </div>
             <div class="settings-field">
               <label for="sf-year">Year of Study</label>
               <select id="sf-year" class="settings-input" data-sf-year>
-                <option value="">— Select year —</option>
+                <option value="">: Select year: </option>
                 ${[1,2,3,4].map(y => `<option value="${y}"${String(sf.year || profile.year) === String(y) ? " selected" : ""}>Year ${y}</option>`).join("")}
               </select>
             </div>
@@ -8297,7 +8297,7 @@ function renderCourses() {
             <div class="courses-hero2-copy">
               <span class="eyebrow courses-hero2-eyebrow">Courses &amp; Curriculum</span>
               <h1 class="courses-hero2-title">All Nursing &amp;<br>Midwifery Programmes</h1>
-              <p class="courses-hero2-desc">Every nursing and midwifery programme for Uganda students — structured by year, semester and lesson. Pick a programme to begin.</p>
+              <p class="courses-hero2-desc">Every nursing and midwifery programme for Uganda students, structured by year, semester and lesson. Pick a programme to begin.</p>
               <div class="courses-hero2-pills">
                 <span>${icon("graduationCap")}<strong>${programmes.length}</strong> Programmes</span>
                 <span>${icon("bookOpen")}<strong>${totalUnits}</strong> Course Units</span>
@@ -8383,7 +8383,7 @@ function renderCurriculumHub() {
     ${pageHeader({
       eyebrow: "Curriculum",
       title: "Curriculum Maps",
-      body: `All ${programmeCount} nursing and midwifery programmes — drill into semesters, course units and topic lists.`,
+      body: `All ${programmeCount} nursing and midwifery programmes, drill into semesters, course units and topic lists.`,
       actions: buttonLink("/courses/curriculum", "All Courses", "secondary", "graduationCap")
     })}
     <section class="section">
@@ -9240,7 +9240,7 @@ function renderLessonHeader(programme, unit, topic, lesson, complete) {
       <span class="lesson-hero-circle two" aria-hidden="true"></span>
       <div class="lesson-header-copy">
         <p class="lesson-kicker">Lesson ${topic.flatIndex + 1} - ${escapeHtml(moduleTitle)}</p>
-        ${lesson && lesson.generated ? `<div class="draft-lesson-badge">${icon("pencil")}<span>Draft study notes — full lesson content coming soon</span></div>` : ""}
+        ${lesson && lesson.generated ? `<div class="draft-lesson-badge">${icon("pencil")}<span>Draft study notes, full lesson content coming soon</span></div>` : ""}
         <h1>${escapeHtml(title)}</h1>
         <p>${escapeHtml(lessonExcerptFor(programme, unit, topic, lesson, 180))}</p>
         <div class="lesson-header-meta">
@@ -9294,7 +9294,7 @@ function renderLessonSidebar(programme, unit, topic, previous, next, complete, p
           data-bookmark-href="${escapeHtml(bookmark.href)}"
         >${icon("download")}<span>${active ? "Notes saved" : "Save notes"}</span></button>
         <button type="button" class="lesson-secondary-action" data-print-topic>${icon("printer")}<span>Print / Save PDF</span></button>
-        <a class="lesson-secondary-action lesson-wa-share" href="${waShare(`📚 Studying "${lmsLessonTitle(programme, unit, topic)}" on Nursing Uganda — great notes for nursing students!\n\nhttps://nursinguganda.com${topicHref(programme, unit, topic.groupIndex, topic.topicIndex)}`)}" target="_blank" rel="noopener noreferrer">${icon("whatsapp")}<span>Share on WhatsApp</span></a>
+        <a class="lesson-secondary-action lesson-wa-share" href="${waShare(`📚 Studying "${lmsLessonTitle(programme, unit, topic)}" on Nursing Uganda, great notes for nursing students!\n\nhttps://nursinguganda.com${topicHref(programme, unit, topic.groupIndex, topic.topicIndex)}`)}" target="_blank" rel="noopener noreferrer">${icon("whatsapp")}<span>Share on WhatsApp</span></a>
         <div class="lesson-sidebar-badges">
           <span>${lessonReadingMinutes(lessonForTopic(programme, unit, topic))} min read</span>
           <span>Beginner</span>
@@ -9406,7 +9406,7 @@ function renderTopicQuiz(lesson, programme, unit, topic, key) {
         <div>
           <span class="mini-label">Quick Quiz</span>
           <h3>Test Yourself${mastered ? `<span class="mastery-badge">${icon("trophy")} Mastered</span>` : ""}</h3>
-          <p>${allAnswered && score === questions.length ? "Perfect score — this topic is mastered!" : answered.length ? `${score} of ${answered.length} answered correctly.` : "Answer these quick checks after reading the topic."}</p>
+          <p>${allAnswered && score === questions.length ? "Perfect score. This topic is mastered!" : answered.length ? `${score} of ${answered.length} answered correctly.` : "Answer these quick checks after reading the topic."}</p>
         </div>
         <div class="quiz-score-box">
           <strong>${score}/${questions.length}</strong>
@@ -9608,28 +9608,28 @@ function buildUnitQuizQuestions(programme, unit) {
 const MOCK_EXAMS = [
   {
     id: "full-paper-a",
-    title: "Full Paper — Series A",
+    title: "Full Paper, Series A",
     desc: "80 questions across all nursing subjects. Mirrors BNE exam standard.",
     duration: 120, count: 80, icon: "clipboardList",
     badge: "Full Paper", color: "#00B5BD"
   },
   {
     id: "full-paper-b",
-    title: "Full Paper — Series B",
-    desc: "A second 80-question mixed paper — different question set from Series A.",
+    title: "Full Paper, Series B",
+    desc: "A second 80-question mixed paper, different question set from Series A.",
     duration: 120, count: 80, icon: "clipboardList",
     badge: "Full Paper", color: "#00B5BD"
   },
   {
     id: "practice-50",
-    title: "Practice Test — 50 Questions",
+    title: "Practice Test, 50 Questions",
     desc: "50 mixed questions in 60 minutes. Great for a focused revision session.",
     duration: 60, count: 50, icon: "checkCircle",
     badge: "Practice", color: "#2563eb"
   },
   {
     id: "speed-30",
-    title: "Speed Round — 30 Questions",
+    title: "Speed Round, 30 Questions",
     desc: "30 questions in 30 minutes. Builds speed and recall under pressure.",
     duration: 30, count: 30, icon: "flame",
     badge: "Speed Round", color: "#d97706"
@@ -9660,11 +9660,11 @@ let _mockExamTimer = null;
 
 const CLINICAL_CHECKLISTS = [
   {
-    id: "hand-hygiene", title: "Hand Hygiene — WHO 6-Step",
+    id: "hand-hygiene", title: "Hand Hygiene, WHO 6-Step",
     category: "Infection Control", icon: "heartPulse",
     steps: [
       { text: "Wet hands with running water; apply enough soap to cover all surfaces" },
-      { text: "Rub palms together — palm to palm", critical: true },
+      { text: "Rub palms together, palm to palm", critical: true },
       { text: "Rub right palm over left dorsum with interlaced fingers, then vice versa" },
       { text: "Rub palm to palm with fingers interlaced" },
       { text: "Rub back of fingers to opposing palms (fingers interlocked)" },
@@ -9682,9 +9682,9 @@ const CLINICAL_CHECKLISTS = [
       { text: "Wash hands / apply gloves as appropriate", critical: true },
       { text: "Explain procedure to patient and gain consent" },
       { text: "Measure temperature (oral / axillary / tympanic)" },
-      { text: "Count radial pulse for 60 seconds — note rate, rhythm, volume", critical: true },
-      { text: "Count respirations for 60 seconds — note rate, depth, pattern", critical: true },
-      { text: "Measure blood pressure — correct cuff size, arm at heart level" },
+      { text: "Count radial pulse for 60 seconds, note rate, rhythm, volume", critical: true },
+      { text: "Count respirations for 60 seconds, note rate, depth, pattern", critical: true },
+      { text: "Measure blood pressure, correct cuff size, arm at heart level" },
       { text: "Record SpO₂ with pulse oximeter" },
       { text: "Assess pain using numeric or visual analogue scale" },
       { text: "Record and document all findings accurately", critical: true },
@@ -9702,7 +9702,7 @@ const CLINICAL_CHECKLISTS = [
       { text: "Locate brachial artery; place stethoscope bell/diaphragm over it" },
       { text: "Inflate cuff 30 mmHg above point where radial pulse disappears", critical: true },
       { text: "Deflate slowly at ~2 mmHg/sec; note Korotkoff Phase I (systolic)" },
-      { text: "Note Korotkoff Phase V — disappearance of sound (diastolic)", critical: true },
+      { text: "Note Korotkoff Phase V, disappearance of sound (diastolic)", critical: true },
       { text: "Fully deflate cuff. Wait ≥ 2 min before repeating" },
       { text: "Record: reading, arm used, position, cuff size and time" }
     ]
@@ -9711,18 +9711,18 @@ const CLINICAL_CHECKLISTS = [
     id: "im-injection", title: "Intramuscular Injection",
     category: "Medications", icon: "syringe",
     steps: [
-      { text: "Check prescription — 5 Rights: patient, drug, dose, route, time", critical: true },
+      { text: "Check prescription, 5 Rights: patient, drug, dose, route, time", critical: true },
       { text: "Gather: correct gauge needle (21–23G, 2.5–3.8 cm), syringe, swab, gloves" },
       { text: "Wash hands and apply gloves" },
       { text: "Draw up medication using aseptic technique", critical: true },
       { text: "Select site: deltoid / vastus lateralis / ventrogluteal / dorsogluteal" },
-      { text: "Clean site with 70% alcohol swab — allow to air-dry 30 seconds" },
+      { text: "Clean site with 70% alcohol swab, allow to air-dry 30 seconds" },
       { text: "Spread or bunch skin as appropriate for the muscle selected" },
       { text: "Insert needle at 90° in one smooth motion", critical: true },
-      { text: "Aspirate 5–10 seconds — if blood appears, withdraw and restart", critical: true },
+      { text: "Aspirate 5–10 seconds, if blood appears, withdraw and restart", critical: true },
       { text: "Inject slowly (~10 seconds per mL)" },
-      { text: "Withdraw needle at same angle; apply light pressure — do NOT rub" },
-      { text: "Dispose of needle in sharps bin immediately — do NOT re-cap", critical: true },
+      { text: "Withdraw needle at same angle; apply light pressure, do NOT rub" },
+      { text: "Dispose of needle in sharps bin immediately, do NOT re-cap", critical: true },
       { text: "Document administration in medication record" }
     ]
   },
@@ -9734,7 +9734,7 @@ const CLINICAL_CHECKLISTS = [
       { text: "Prepare: cannula (correct gauge), tegaderm, tape, flush syringe" },
       { text: "Select vein: antecubital, cephalic, basilic, or dorsal hand veins" },
       { text: "Apply tourniquet 10 cm above selected site" },
-      { text: "Clean site with 2% chlorhexidine swab — allow to fully dry", critical: true },
+      { text: "Clean site with 2% chlorhexidine swab, allow to fully dry", critical: true },
       { text: "Apply sterile gloves; stabilise vein with non-dominant hand" },
       { text: "Insert cannula bevel-up at 10–30°; confirm flashback of blood", critical: true },
       { text: "Lower angle, advance cannula off stylet, then withdraw stylet fully" },
@@ -9751,7 +9751,7 @@ const CLINICAL_CHECKLISTS = [
       { text: "Review prescription; explain procedure to patient" },
       { text: "Gather: sterile dressing pack, appropriate dressing, clean gloves, sterile gloves" },
       { text: "Wash hands thoroughly; position patient comfortably" },
-      { text: "Open sterile pack using aseptic corners — maintain sterile field", critical: true },
+      { text: "Open sterile pack using aseptic corners, maintain sterile field", critical: true },
       { text: "Apply clean gloves; remove old dressing; observe and assess wound" },
       { text: "Remove clean gloves; wash hands; apply sterile gloves", critical: true },
       { text: "Irrigate wound with normal saline if required" },
@@ -9770,7 +9770,7 @@ const CLINICAL_CHECKLISTS = [
       { text: "Position: supine with knees bent, legs apart, good light source" },
       { text: "Wash hands; apply clean gloves; open sterile pack aseptically" },
       { text: "Pour sterile saline/water; apply sterile gloves; place sterile drape", critical: true },
-      { text: "Cleanse labia majora front to back — discard each swab after single use", critical: true },
+      { text: "Cleanse labia majora front to back, discard each swab after single use", critical: true },
       { text: "Cleanse labia minora front to back; then cleanse urethral meatus" },
       { text: "Place sterile receiver between patient's legs" },
       { text: "Insert lubricated catheter gently until urine flows; advance 5 cm further", critical: true },
@@ -9786,13 +9786,13 @@ const CLINICAL_CHECKLISTS = [
       { text: "Confirm prescription; explain procedure; gain consent", critical: true },
       { text: "Gather: NGT (correct size), lubricant, pH strips, tape, drainage bag" },
       { text: "Position: high Fowler's (45–90°) unless contraindicated" },
-      { text: "Check nostrils for obstruction — select wider nostril" },
+      { text: "Check nostrils for obstruction, select wider nostril" },
       { text: "Measure NEX (Nose–Earlobe–Xiphoid) for insertion length; mark tube" },
       { text: "Wash hands, apply gloves; lubricate tube tip generously" },
       { text: "Insert gently via nostril, aiming toward ear on same side" },
       { text: "Ask patient to swallow as tube passes pharynx; advance to marked point", critical: true },
       { text: "STOP immediately if resistance, coughing or respiratory distress", critical: true },
-      { text: "Confirm position: aspirate content; test pH — must be ≤ 5.5", critical: true },
+      { text: "Confirm position: aspirate content; test pH, must be ≤ 5.5", critical: true },
       { text: "Unconscious patients: confirm by chest X-ray before any use" },
       { text: "Secure tube to nose with tape; document position confirmation method and length" }
     ]
@@ -9804,7 +9804,7 @@ const CLINICAL_CHECKLISTS = [
       { text: "Confirm prescription: O₂ flow rate, target SpO₂, delivery device", critical: true },
       { text: "Assess baseline: SpO₂, respiratory rate, colour, consciousness" },
       { text: "Select delivery device: nasal cannula / simple mask / non-rebreathe / Venturi" },
-      { text: "Check oxygen supply — cylinder level or wall outlet working" },
+      { text: "Check oxygen supply, cylinder level or wall outlet working" },
       { text: "Set prescribed flow rate on flow meter" },
       { text: "Apply device correctly to patient; check fit and comfort" },
       { text: "Monitor SpO₂ continuously; document baseline and ongoing response", critical: true },
@@ -9820,10 +9820,10 @@ const CLINICAL_CHECKLISTS = [
       { text: "Confirm frequency and prescription" },
       { text: "Explain procedure to patient" },
       { text: "Wash hands; apply clean gloves" },
-      { text: "Prepare glucometer — insert test strip; check expiry date", critical: true },
+      { text: "Prepare glucometer, insert test strip; check expiry date", critical: true },
       { text: "Warm patient's finger; clean with alcohol swab; allow to dry" },
-      { text: "Use lancet on side of fingertip — apply gentle pressure for blood drop" },
-      { text: "Apply blood to test strip — ensure adequate sample", critical: true },
+      { text: "Use lancet on side of fingertip, apply gentle pressure for blood drop" },
+      { text: "Apply blood to test strip, ensure adequate sample", critical: true },
       { text: "Read and note result; note time and patient's last meal" },
       { text: "Apply pressure to puncture site" },
       { text: "Dispose of lancet and strip in sharps/clinical waste", critical: true },
@@ -9840,8 +9840,8 @@ const NORMAL_VALUES_DATA = {
       { name: "Blood Pressure (adult)", value: "90–120 / 60–80", unit: "mmHg", note: "Hypertension ≥ 140/90 mmHg" },
       { name: "Heart Rate (adult)", value: "60–100", unit: "bpm", note: "Tachycardia > 100; bradycardia < 60" },
       { name: "Respiratory Rate (adult)", value: "12–20", unit: "breaths/min", note: "Tachypnoea > 20; bradypnoea < 12" },
-      { name: "Temperature — oral", value: "36.1–37.2", unit: "°C", note: "Fever ≥ 38.0°C; hypothermia < 35°C" },
-      { name: "Temperature — axillary", value: "35.9–36.7", unit: "°C", note: "0.5°C lower than oral" },
+      { name: "Temperature, oral", value: "36.1–37.2", unit: "°C", note: "Fever ≥ 38.0°C; hypothermia < 35°C" },
+      { name: "Temperature, axillary", value: "35.9–36.7", unit: "°C", note: "0.5°C lower than oral" },
       { name: "SpO₂ (adult)", value: "94–100", unit: "%", note: "Below 94% requires assessment" },
       { name: "SpO₂ (COPD / hypercapnic)", value: "88–92", unit: "%", note: "Higher SpO₂ may suppress hypoxic drive" },
       { name: "GCS (normal adult)", value: "15", unit: "/15", note: "E4 V5 M6. Severe injury ≤ 8" }
@@ -9861,7 +9861,7 @@ const NORMAL_VALUES_DATA = {
       { name: "School age RR (6–12 years)", value: "16–22", unit: "breaths/min" },
       { name: "Newborn Temp", value: "36.5–37.5", unit: "°C" },
       { name: "Newborn BP (systolic)", value: "60–90", unit: "mmHg" },
-      { name: "Child BP — estimate", value: "80 + (2 × age yrs)", unit: "mmHg systolic", note: "Rule of thumb for systolic" },
+      { name: "Child BP, estimate", value: "80 + (2 × age yrs)", unit: "mmHg systolic", note: "Rule of thumb for systolic" },
       { name: "Paediatric SpO₂", value: "95–100", unit: "%" }
     ]
   },
@@ -9869,10 +9869,10 @@ const NORMAL_VALUES_DATA = {
     label: "Haematology",
     icon: "activity",
     items: [
-      { name: "Haemoglobin — male", value: "13.5–17.5", unit: "g/dL", note: "Anaemia < 13 g/dL in males" },
-      { name: "Haemoglobin — female", value: "12.0–15.5", unit: "g/dL", note: "Anaemia < 12 g/dL in females" },
-      { name: "Haematocrit — male", value: "41–53", unit: "%" },
-      { name: "Haematocrit — female", value: "36–46", unit: "%" },
+      { name: "Haemoglobin, male", value: "13.5–17.5", unit: "g/dL", note: "Anaemia < 13 g/dL in males" },
+      { name: "Haemoglobin, female", value: "12.0–15.5", unit: "g/dL", note: "Anaemia < 12 g/dL in females" },
+      { name: "Haematocrit, male", value: "41–53", unit: "%" },
+      { name: "Haematocrit, female", value: "36–46", unit: "%" },
       { name: "WBC (total)", value: "4.5–11.0", unit: "×10³/μL", note: "Leukocytosis > 11; leucopenia < 4.5" },
       { name: "Neutrophils", value: "2.0–7.5", unit: "×10³/μL", note: "60–70% of WBC" },
       { name: "Lymphocytes", value: "1.0–3.5", unit: "×10³/μL", note: "20–40% of WBC" },
@@ -9887,15 +9887,15 @@ const NORMAL_VALUES_DATA = {
     label: "Blood Chemistry",
     icon: "clipboardList",
     items: [
-      { name: "Blood Glucose — fasting", value: "3.9–5.6", unit: "mmol/L", note: "6.1–6.9 = impaired fasting glucose; ≥ 7.0 = diabetes" },
-      { name: "Blood Glucose — random", value: "3.9–7.8", unit: "mmol/L", note: "≥ 11.1 mmol/L = diagnostic of diabetes mellitus" },
+      { name: "Blood Glucose, fasting", value: "3.9–5.6", unit: "mmol/L", note: "6.1–6.9 = impaired fasting glucose; ≥ 7.0 = diabetes" },
+      { name: "Blood Glucose, random", value: "3.9–7.8", unit: "mmol/L", note: "≥ 11.1 mmol/L = diagnostic of diabetes mellitus" },
       { name: "Sodium (Na⁺)", value: "135–145", unit: "mEq/L", note: "Hyponatraemia < 135; hypernatraemia > 145" },
       { name: "Potassium (K⁺)", value: "3.5–5.0", unit: "mEq/L", note: "Hypokalaemia < 3.5; hyperkalaemia > 5.0" },
       { name: "Chloride (Cl⁻)", value: "95–105", unit: "mEq/L" },
       { name: "Bicarbonate (HCO₃⁻)", value: "22–29", unit: "mEq/L" },
       { name: "Urea (BUN)", value: "2.5–7.1", unit: "mmol/L", note: "Elevated in renal impairment and dehydration" },
-      { name: "Creatinine — male", value: "62–115", unit: "μmol/L" },
-      { name: "Creatinine — female", value: "44–97", unit: "μmol/L" },
+      { name: "Creatinine, male", value: "62–115", unit: "μmol/L" },
+      { name: "Creatinine, female", value: "44–97", unit: "μmol/L" },
       { name: "Total Calcium (Ca²⁺)", value: "2.15–2.55", unit: "mmol/L", note: "Hypocalcaemia < 2.15; hypercalcaemia > 2.55" },
       { name: "Magnesium (Mg²⁺)", value: "0.75–1.0", unit: "mmol/L" },
       { name: "Total Protein", value: "60–80", unit: "g/L" },
@@ -9923,16 +9923,16 @@ const NORMAL_VALUES_DATA = {
       { name: "Urine specific gravity", value: "1.005–1.030", unit: "" },
       { name: "Urine protein", value: "Negative", unit: "", note: "Proteinuria suggests renal pathology" },
       { name: "Daily fluid requirement (adult)", value: "30–35", unit: "mL/kg/day", note: "≈ 2,000–2,500 mL/day for average adult" },
-      { name: "Normal Saline (0.9% NaCl)", value: "Na⁺ 154 / Cl⁻ 154", unit: "mEq/L", note: "Isotonic — use for hypovolaemia, hypotension" },
-      { name: "Ringer's Lactate", value: "Na 130, K 4, Ca 3, Cl 109", unit: "mEq/L", note: "Balanced isotonic — preferred perioperatively" },
-      { name: "5% Dextrose", value: "Glucose 50 g/L", unit: "", note: "Hypotonic once glucose metabolised — not for hypovolaemia" },
+      { name: "Normal Saline (0.9% NaCl)", value: "Na⁺ 154 / Cl⁻ 154", unit: "mEq/L", note: "Isotonic. Use for hypovolaemia, hypotension" },
+      { name: "Ringer's Lactate", value: "Na 130, K 4, Ca 3, Cl 109", unit: "mEq/L", note: "Balanced isotonic, preferred perioperatively" },
+      { name: "5% Dextrose", value: "Glucose 50 g/L", unit: "", note: "Hypotonic once glucose metabolised, not for hypovolaemia" },
       { name: "Half Normal Saline (0.45%)", value: "Na⁺ 77 / Cl⁻ 77", unit: "mEq/L", note: "Hypotonic maintenance fluid" }
     ]
   }
 };
 
 // ═══════════════════════════════════════════════════════════════════════════
-//  CLINICAL TOOLS — CALC CONFIGS & HELPERS
+//  CLINICAL TOOLS: CALC CONFIGS & HELPERS
 // ═══════════════════════════════════════════════════════════════════════════
 
 const CALC_CONFIGS = {
@@ -10163,7 +10163,7 @@ function checkStudyReminder() {
     if (lastDate !== today) {
       localStorage.setItem("nursinguganda.lastReminderDate", today);
       try {
-        new Notification("Nursing Uganda — Time to Study! 📚", {
+        new Notification("Nursing Uganda, Time to Study! 📚", {
           body: "You haven't studied today. Keep your streak going!",
           icon: "/assets/images/pwa/icon-192x192.png",
           tag: "nu-study-reminder"
@@ -10442,7 +10442,7 @@ function startMockExamTimer() {
     const me = state.mockExam;
     if (!me.examId || me.submitted) { clearInterval(_mockExamTimer); return; }
     me.timeLeft = Math.max(0, Math.round((me.examEndTime - Date.now()) / 1000));
-    // Update timer display directly — no full re-render
+    // Update timer display directly: no full re-render
     const timerEl = document.getElementById("me-timer");
     if (timerEl) timerEl.textContent = formatMockTime(me.timeLeft);
     const barEl = document.getElementById("me-timer-bar");
@@ -10459,7 +10459,7 @@ function startMockExamTimer() {
 
 function stopMockExamTimer() { clearInterval(_mockExamTimer); _mockExamTimer = null; }
 
-/* ── Quiz sidebar (reusable — used by all standalone quiz pages) ── */
+/* ── Quiz sidebar (reusable: used by all standalone quiz pages) ── */
 function renderQuizSidebar(title, questions, attempt, isSubmitted) {
   const total = questions.length;
   const attempted = questions.filter((_, i) => attempt[i] !== undefined).length;
@@ -10529,7 +10529,7 @@ function renderQuizSidebar(title, questions, attempt, isSubmitted) {
           </div>
         </div>
       ` : `
-        <p class="qsp-hint">${attempted > 0 ? "Keep going — submit when ready." : "Select your answers, then click Submit."}</p>
+        <p class="qsp-hint">${attempted > 0 ? "Keep going. Submit when ready." : "Select your answers, then click Submit."}</p>
       `}
     </div>
   `;
@@ -10574,7 +10574,7 @@ function renderStandaloneQuizPage(title, subtitle, questions, quizKey, backHref,
             <div class="quiz-result-score">${icon("trophy")}<strong>${score}/${questions.length}</strong><span>${pct}%</span></div>
             <div class="quiz-result-detail">
               <strong>${grade}</strong>
-              <p>${pct >= 80 ? "Outstanding — excellent work." : pct >= 60 ? "Good understanding — keep revising." : pct >= 50 ? "Satisfactory — review explanations below." : "Keep studying — the explanations below will help."}</p>
+              <p>${pct >= 80 ? "Outstanding, excellent work." : pct >= 60 ? "Good understanding, keep revising." : pct >= 50 ? "Satisfactory, review explanations below." : "Keep studying: the explanations below will help."}</p>
               <button type="button" class="button secondary" data-reset-quiz="${escapeHtml(quizKey)}">${icon("rotateCcw")}<span>Retake Quiz</span></button>
               <button type="button" class="button ghost quiz-email-btn" data-email-quiz="${escapeHtml(quizKey)}">${icon("mail")}<span>Email Results</span></button>
               <a class="button ghost quiz-wa-share" href="${waShare(`🏆 I scored ${score}/${questions.length} (${pct}%) on "${title}" quiz on Nursing Uganda!\n\nTest yourself 👉 https://nursinguganda.com${window.location.pathname}`)}" target="_blank" rel="noopener noreferrer">${icon("whatsapp")}<span>Share on WhatsApp</span></a>
@@ -10612,7 +10612,7 @@ function renderStandaloneQuizPage(title, subtitle, questions, quizKey, backHref,
                         <div class="sq-explanation ${answered && correct ? "correct-text" : "wrong-text"}">
                           ${answered && correct ? icon("checkCircle") : answered ? icon("xCircle") : icon("alertTriangle")}
                           <div>
-                            <strong>${answered && correct ? "Correct!" : `${answered ? "Incorrect" : "Not answered"} — correct answer: ${escapeHtml(question.answer)}`}</strong>
+                            <strong>${answered && correct ? "Correct!" : `${answered ? "Incorrect" : "Not answered"}, correct answer: ${escapeHtml(question.answer)}`}</strong>
                             <p>${escapeHtml(question.explanation)}</p>
                           </div>
                         </div>
@@ -10632,7 +10632,7 @@ function renderStandaloneQuizPage(title, subtitle, questions, quizKey, backHref,
                   </p>
                 ` : `
                   <p class="quiz-ready-note">
-                    ${icon("checkCircle")}<span>All questions answered — ready to submit!</span>
+                    ${icon("checkCircle")}<span>All questions answered: ready to submit!</span>
                   </p>
                 `}
                 <button type="button" class="button primary quiz-submit-btn"
@@ -10678,7 +10678,7 @@ function renderLessonQuizPage(programme, unit, topic) {
   }
   return renderStandaloneQuizPage(
     title,
-    `Test your knowledge — ${questions.length} questions`,
+    `Test your knowledge: ${questions.length} questions`,
     questions,
     quizKey,
     backHref,
@@ -10702,8 +10702,8 @@ function renderUnitQuizPage(programme, unit) {
     `;
   }
   return renderStandaloneQuizPage(
-    `${courseTitle} — Unit Review Quiz`,
-    `Covers all lessons in this course unit — ${questions.length} questions`,
+    `${courseTitle}: Unit Review Quiz`,
+    `Covers all lessons in this course unit: ${questions.length} questions`,
     questions,
     quizKey,
     backHref,
@@ -11509,7 +11509,7 @@ function renderCareerHero() {
           <p class="careers-hero-eyebrow">${icon("graduationCap")} Uganda Nursing &amp; Midwifery Careers</p>
           <h1>Plan Your<br><span>Nursing Career</span></h1>
           <p class="careers-hero-body">Career pathways, UNMC licensing, work-abroad requirements and
-            ready-to-use CV, cover letter and interview templates — for Uganda nursing and midwifery professionals.</p>
+            ready-to-use CV, cover letter and interview templates, for Uganda nursing and midwifery professionals.</p>
           <div class="careers-hero-actions">
             <a class="careers-cta-primary" href="/careers#career-pathways" data-nav>
               ${icon("map")} Explore Pathways
@@ -11760,7 +11760,7 @@ function renderCareerResourcePage(slug) {
                   <div class="crp-card-foot">
                     <div class="crp-style-row">
                       <span class="crp-style-lbl">Style:</span>
-                      ${CV_STYLES.map(s => `<label class="crp-style-chip" title="${s.name} — ${s.desc}"><input type="radio" name="${safeSlug}" value="${s.id}"${s.id==="modern"?" checked":""}><span style="--chip-c:${s.swatch}">${s.name}</span></label>`).join("")}
+                      ${CV_STYLES.map(s => `<label class="crp-style-chip" title="${s.name}: ${s.desc}"><input type="radio" name="${safeSlug}" value="${s.id}"${s.id==="modern"?" checked":""}><span style="--chip-c:${s.swatch}">${s.name}</span></label>`).join("")}
                     </div>
                     <div class="crp-dl-row">
                       <button type="button" class="crp-dl-btn crp-dl-btn--pdf" style="--btn-color:${color}" data-template-label="${escapeHtml(t.label)}" data-template-action="pdf">${icon("fileText")} PDF</button>
@@ -11778,7 +11778,7 @@ function renderCareerResourcePage(slug) {
               <div class="crp-cv-gen-cta-inner">
                 <div>
                   <h3>Build Your Own Personalised CV</h3>
-                  <p>Enter your own name, experience and skills. Download your finished CV as PDF or Word in 4 professional design styles — free, no account needed.</p>
+                  <p>Enter your own name, experience and skills. Download your finished CV as PDF or Word in 4 professional design styles, free, no account needed.</p>
                 </div>
                 <button type="button" class="button primary" data-open-cv-gen>${icon("fileCv")} Open CV Generator →</button>
               </div>
@@ -12169,7 +12169,7 @@ function renderDictionaryListing(parts = currentRoute()) {
     ${pageHeader({
       eyebrow: "Reference",
       title: routeFilter ? escapeHtml(pageTitle) : "Nursing Dictionary",
-      body: routeFilter ? `Showing ${terms.length} terms in this category.` : `${allTerms.length} clear definitions for nursing and medical terms — from anatomy to pharmacology.`,
+      body: routeFilter ? `Showing ${terms.length} terms in this category.` : `${allTerms.length} clear definitions for nursing and medical terms, from anatomy to pharmacology.`,
       actions: `${buttonLink("/dictionary/abbreviations", "Abbreviations", "secondary", "fileText")}`
     })}
     <section class="section compact-section dict-search-section">
@@ -12382,7 +12382,7 @@ function renderCareers() {
 // Resource-specific checklist content for career resource downloads
 const RESOURCE_CHECKLISTS = {
   "Uganda Nursing CV Template": {
-    intro: "Uganda Nursing CV — Key Sections to Include",
+    intro: "Uganda Nursing CV, Key Sections to Include",
     items: [
       "Personal details: full name, UNMC registration number, phone, email",
       "Professional summary: 2-3 sentences on your level, speciality and key strength",
@@ -12396,7 +12396,7 @@ const RESOURCE_CHECKLISTS = {
     ]
   },
   "International Nursing CV Template": {
-    intro: "International Nursing CV (UK/Australia Style) — Key Sections",
+    intro: "International Nursing CV (UK/Australia Style), Key Sections",
     items: [
       "Professional registration: NMC/AHPRA number or eligibility status",
       "Personal statement: 4-6 lines covering speciality, values and career aim",
@@ -12409,7 +12409,7 @@ const RESOURCE_CHECKLISTS = {
     ]
   },
   "Cover Letter Guide": {
-    intro: "Nursing Cover Letter — Structure Checklist",
+    intro: "Nursing Cover Letter, Structure Checklist",
     items: [
       "Opening paragraph: state the post and where you saw it",
       "Why this employer: show you know the facility or organisation",
@@ -12434,7 +12434,7 @@ const RESOURCE_CHECKLISTS = {
     ]
   },
   "Nursing Portfolio Guide": {
-    intro: "Nursing Portfolio — What to Include",
+    intro: "Nursing Portfolio, What to Include",
     items: [
       "Registration and licence documentation",
       "Academic certificates and transcripts",
@@ -12458,13 +12458,13 @@ const RESOURCE_CHECKLISTS = {
       "Principal Nursing Officer: UGX 5.5M-7.0M per month",
       "Chief Nursing Officer: UGX 7.0M+ per month",
       "ICU/Theatre speciality uplift: +20-35% above general ward rate",
-      "NGO/International Agency roles: USD/competitive package — not UGX scale"
+      "NGO/International Agency roles: USD/competitive package, not UGX scale"
     ]
   },
 
   /* ── Uganda CV Sub-Templates ──────────────────────────────────── */
   "Hospital Staff Nurse CV": {
-    intro: "Uganda Hospital Staff Nurse CV — Key Sections",
+    intro: "Uganda Hospital Staff Nurse CV, Key Sections",
     items: [
       "Personal details: full name, UNMC registration number, phone, email, physical address",
       "Professional summary: 3 lines on your current grade, ward speciality and key clinical strength",
@@ -12473,16 +12473,16 @@ const RESOURCE_CHECKLISTS = {
       "UNMC registration: licence number, current expiry date and renewal status",
       "In-service trainings: BLS/ACLS, infection prevention, obstetric emergencies, any hospital-based",
       "Academic qualifications: certificate/diploma/degree, institution, year, grades or GPA",
-      "Professional referees: Ward Manager/Matron + Medical Officer — name, title, facility, contact"
+      "Professional referees: Ward Manager/Matron + Medical Officer, name, title, facility, contact"
     ]
   },
   "NGO / Non-Profit Nursing CV": {
-    intro: "NGO / Non-Profit Nursing CV — Key Sections",
+    intro: "NGO / Non-Profit Nursing CV, Key Sections",
     items: [
       "Personal statement: 4 lines on your community health values, program experience and impact",
       "Programme experience: project name, implementing partner, role, outputs and population reached",
       "Target populations worked with: maternal health, PLHIV, refugees, under-5 nutrition",
-      "Reporting and data tools: HMIS, DHIS2, KoboToolbox, RedCap, Excel — note proficiency level",
+      "Reporting and data tools: HMIS, DHIS2, KoboToolbox, RedCap, Excel, note proficiency level",
       "Languages: English fluency, Luganda/local languages and any community dialects",
       "Volunteer or community engagement activities that show field-level commitment",
       "Membership: Uganda Nurses and Midwives Union, Uganda Nursing Association or similar",
@@ -12490,20 +12490,20 @@ const RESOURCE_CHECKLISTS = {
     ]
   },
   "New Graduate Nursing CV": {
-    intro: "New Graduate Nursing CV — Key Sections",
+    intro: "New Graduate Nursing CV, Key Sections",
     items: [
       "Personal statement: 3 lines on your programme, clinical interests and career goal",
       "Student clinical attachments: each rotation with facility, unit, duration and key tasks completed",
       "Academic results: year-by-year performance, distinctions or merit units, cumulative average",
-      "Final-year research project or dissertation topic if completed — summarise findings",
+      "Final-year research project or dissertation topic if completed, summarise findings",
       "UNMC student/interim registration number or application status",
       "Clinical skills list: top 10 practical skills acquired during student placements",
       "Extra-curricular: leadership in student nursing association, community health outreach",
-      "Referees: academic tutor/lecturer + clinical attachment supervisor — name, institution, contact"
+      "Referees: academic tutor/lecturer + clinical attachment supervisor, name, institution, contact"
     ]
   },
   "Midwifery Specialist CV": {
-    intro: "Midwifery Specialist CV — Key Sections",
+    intro: "Midwifery Specialist CV, Key Sections",
     items: [
       "UNMC midwifery registration number, grade (direct midwife / nurse-midwife) and expiry",
       "Professional summary: deliveries supervised, ANC contacts managed and EmONC training level",
@@ -12516,7 +12516,7 @@ const RESOURCE_CHECKLISTS = {
     ]
   },
   "Community Health Nursing CV": {
-    intro: "Community Health Nursing CV — Key Sections",
+    intro: "Community Health Nursing CV, Key Sections",
     items: [
       "VHT supervision: number of Village Health Teams overseen, location and coverage area",
       "Immunisation campaigns: vaccines deployed, cold chain management, outreach sessions run",
@@ -12525,65 +12525,65 @@ const RESOURCE_CHECKLISTS = {
       "Disease surveillance: outbreak response involvement, contact tracing, case reporting",
       "Community mobilisation: community meetings, leader engagement, behaviour change strategies",
       "Partnerships: local government health office, NGOs, community development committees",
-      "Physical fitness and mobility note — community posts require movement across rural catchments"
+      "Physical fitness and mobility note: community posts require movement across rural catchments"
     ]
   },
 
   /* ── International CV Sub-Templates ──────────────────────────── */
   "UK NHS Nursing CV": {
-    intro: "UK NHS Application CV (NMC Route) — Key Sections",
+    intro: "UK NHS Application CV (NMC Route), Key Sections",
     items: [
       "NMC eligibility status: CBT passed, OSCE passed/booked, or application at assessment stage",
-      "English language: IELTS academic 7.0 (each band) or OET Grade B (each skill) — state test date",
+      "English language: IELTS academic 7.0 (each band) or OET Grade B (each skill), state test date",
       "Professional summary: 4-6 lines on speciality, NMC route, values and motivation for NHS",
       "Employment history in reverse chronological order with NHS-equivalent band duties described",
       "Mandatory training status: manual handling, fire safety, infection control, safeguarding",
       "NMC skills gap analysis completion date and any adaptation plan commenced",
-      "NHS values alignment: person-centred care, compassion, respect, dignity — evidence with examples",
-      "References: clinical supervisor + ward manager — state 'available on request' (UK style)"
+      "NHS values alignment: person-centred care, compassion, respect, dignity, evidence with examples",
+      "References: clinical supervisor + ward manager: state 'available on request' (UK style)"
     ]
   },
   "Australia AHPRA Nursing CV": {
-    intro: "Australia AHPRA Application CV — Key Sections",
+    intro: "Australia AHPRA Application CV, Key Sections",
     items: [
       "AHPRA application status: skills assessment stage, bridging program enrolled or approved",
-      "English language: IELTS academic 7.0 (each band) or OET Grade B — include test date and scores",
+      "English language: IELTS academic 7.0 (each band) or OET Grade B, include test date and scores",
       "Professional summary: speciality, years of clinical experience, key clinical achievements",
       "Clinical experience section with equivalent Australian context described (e.g. patient ratios)",
       "CPD log summary: hours completed in last 3 years against 20-hour requirement",
-      "Computer skills: familiarity with EMR systems (Epic, Cerner, iMDsoft) — note proficiency level",
+      "Computer skills: familiarity with EMR systems (Epic, Cerner, iMDsoft), note proficiency level",
       "Cultural competency: experience with diverse patient populations, Indigenous health awareness",
-      "References: two clinical referees with explicit consent for contact — include title and email"
+      "References: two clinical referees with explicit consent for contact, include title and email"
     ]
   },
   "Gulf States Nursing CV": {
-    intro: "Gulf States / Middle East Nursing CV — Key Sections",
+    intro: "Gulf States / Middle East Nursing CV, Key Sections",
     items: [
       "Dataflow professional verification: reference number, status and expected completion date",
       "DHA (Dubai), HAAD/DOH (Abu Dhabi) or MOH (Saudi/Qatar/Oman) exam status and score",
-      "Prometric exam score if completed — include licence number or pending application number",
+      "Prometric exam score if completed: include licence number or pending application number",
       "Clinical experience: high nurse-to-patient ratio ward work, shift flexibility and night rotation",
       "Gulf-relevant training: BLS (AHA version), IV cannulation, phlebotomy, ECG interpretation",
-      "Arabic language: state level — functional, basic phrases or none (employers prefer any effort)",
+      "Arabic language: state level: functional, basic phrases or none (employers prefer any effort)",
       "Relocation readiness: confirm willingness to relocate and accommodation preference (provided/own)",
       "References: facility Medical Director letter + Nurse Manager/Matron preferred"
     ]
   },
   "USA / NCLEX Route CV": {
-    intro: "USA / NCLEX Route Nursing CV — Key Sections",
+    intro: "USA / NCLEX Route Nursing CV, Key Sections",
     items: [
       "CGFNS credential evaluation status or VisaScreen certificate number if obtained",
       "NCLEX-RN pass date and state of initial licensure or endorsement pending status",
-      "IELTS / TOEFL scores if required by state nursing board — include test date",
+      "IELTS / TOEFL scores if required by state nursing board, include test date",
       "Employment history: describe shift hours, patient ratios, acuity level and specialty unit",
       "Clinical certifications: ACLS, PALS, NRP, TNCC, specialty certifications held",
       "State board application stage: applied, fingerprinted, background check or license issued",
       "Immigration pathway: H1B visa cap-subject, EB3 immigrant petition or employer sponsorship",
-      "References: US-style — professional title, direct supervisor, phone and email"
+      "References: US-style: professional title, direct supervisor, phone and email"
     ]
   },
   "East Africa Regional CV": {
-    intro: "East Africa Regional Nursing CV — Key Sections",
+    intro: "East Africa Regional Nursing CV, Key Sections",
     items: [
       "Home nursing council registration: UNMC (Uganda), NCK (Kenya), TNMC (Tanzania) or equivalent",
       "EAC mutual recognition status or East Africa Nursing Council equivalence enquiry reference",
@@ -12598,20 +12598,20 @@ const RESOURCE_CHECKLISTS = {
 
   /* ── Cover Letter Sub-Templates ───────────────────────────────── */
   "Hospital Job Application Letter": {
-    intro: "Hospital Job Application Cover Letter — Structure",
+    intro: "Hospital Job Application Cover Letter, Structure",
     items: [
       "Opening: state exact post title, reference number and where you saw the advertisement",
       "Paragraph 1: your current role, years of experience and specific clinical fit for this post",
-      "Paragraph 2: specific reason you want this facility — show you researched their services",
+      "Paragraph 2: specific reason you want this facility, show you researched their services",
       "Paragraph 3: one clinical achievement using brief STAR format (Situation, Action, Result)",
       "Closing: state your availability date, UNMC registration status and willingness to interview",
-      "Length: one A4 page maximum — 4 paragraphs, professional font size 11 or 12",
-      "Tone: professional, warm and confident — avoid begging or overly formal language",
+      "Length: one A4 page maximum, 4 paragraphs, professional font size 11 or 12",
+      "Tone: professional, warm and confident, avoid begging or overly formal language",
       "Sign off: Full name + UNMC number + email + phone number below your signature"
     ]
   },
   "NGO / INGO Application Letter": {
-    intro: "NGO / INGO Application Cover Letter — Structure",
+    intro: "NGO / INGO Application Cover Letter, Structure",
     items: [
       "Opening: state the post title and how it aligns directly with your public health values",
       "Mission alignment: show you know the organisation's mission, programmes and target population",
@@ -12620,24 +12620,24 @@ const RESOURCE_CHECKLISTS = {
       "Flexibility statement: willingness to work in remote, field or challenging environments",
       "Soft skills: cultural sensitivity, teamwork, community mobilisation and adaptive communication",
       "Closing: confirm availability, passport/travel readiness if field deployment is required",
-      "Word count: 300-400 words maximum — NGO hiring managers read dozens of letters quickly"
+      "Word count: 300-400 words maximum: NGO hiring managers read dozens of letters quickly"
     ]
   },
   "International Application Letter": {
-    intro: "International Nursing Application Cover Letter — Structure",
+    intro: "International Nursing Application Cover Letter, Structure",
     items: [
       "Opening: state the destination country, post title and your current UNMC registration status",
       "Paragraph 1: key clinical speciality strengths, years of experience and top clinical skill",
-      "Paragraph 2: English language proficiency — include IELTS/OET scores and test date",
+      "Paragraph 2: English language proficiency, include IELTS/OET scores and test date",
       "Paragraph 3: adaptability evidence, motivation for international nursing and any relevant exposure",
-      "Registration route: NMC CBT/OSCE / AHPRA bridging / NCLEX — state your current stage clearly",
+      "Registration route: NMC CBT/OSCE / AHPRA bridging / NCLEX, state your current stage clearly",
       "Closing: intended availability date, visa status and best contact method for interview",
       "Research detail: mention one specific fact about destination healthcare system to show preparation",
       "Avoid clichés: replace 'hardworking' and 'passionate' with one specific clinical example each"
     ]
   },
   "Promotion / Internal Transfer Letter": {
-    intro: "Promotion / Internal Transfer Cover Letter — Structure",
+    intro: "Promotion / Internal Transfer Cover Letter, Structure",
     items: [
       "Opening: clearly state the post you are applying for and your current substantive post",
       "Track record: list 3 specific achievements in your current role with measurable evidence",
@@ -12645,40 +12645,40 @@ const RESOURCE_CHECKLISTS = {
       "Role knowledge: show you understand the duties and responsibilities of the target post",
       "Institutional value: 2-3 ways your internal knowledge benefits the organisation directly",
       "First 90 days: state what you intend to deliver in the first 3 months if appointed",
-      "Tone: confident and evidence-based — not apologetic, not overselling without substance",
+      "Tone: confident and evidence-based: not apologetic, not overselling without substance",
       "End with a concrete request: ask for a formal interview by a specific date"
     ]
   },
   "Speculative / Unsolicited Letter": {
-    intro: "Speculative / Unsolicited Application Cover Letter — Structure",
+    intro: "Speculative / Unsolicited Application Cover Letter, Structure",
     items: [
-      "Opening: state why you chose this specific facility — show research, not generic praise",
+      "Opening: state why you chose this specific facility, show research, not generic praise",
       "Value proposition: describe your strongest clinical niche in 2 clear, direct sentences",
       "Vacancy match: reference any known staffing expansion, service area or clinical need",
       "Target post: state the exact type of post you are seeking and your available start date",
       "Evidence: one quantified clinical achievement or patient outcome that demonstrates impact",
       "Call to action: request a 15-minute meeting or ask to be kept on file for suitable vacancies",
-      "Include: CV and a reference list attached — do not make them ask for basic documents",
+      "Include: CV and a reference list attached, do not make them ask for basic documents",
       "Follow-up note: state you will follow up by phone or email within 10-14 working days"
     ]
   },
 
   /* ── Interview Preparation Sub-Templates ─────────────────────── */
   "General Hospital Interview": {
-    intro: "General Hospital Nursing Interview — Key Questions and Tips",
+    intro: "General Hospital Nursing Interview, Key Questions and Tips",
     items: [
       "Tell me about yourself: clinical background, current grade, ward focus and one key strength",
       "Why this facility: mention 2 specific facts you researched about their services or values",
-      "Difficult patient scenario: use STAR format — Situation, Task, Action, Result",
+      "Difficult patient scenario: use STAR format, Situation, Task, Action, Result",
       "Multiple urgent tasks: describe ABCDE triage thinking, delegation and escalation steps",
       "Medication error response: report immediately, SBAR to senior, incident form, patient monitoring",
       "Infection prevention: demonstrate standard precautions, hand hygiene 5-moments, PPE protocol",
-      "Patient dignity: FREDA principles — fairness, respect, equality, dignity, autonomy",
+      "Patient dignity: FREDA principles: fairness, respect, equality, dignity, autonomy",
       "Career in 3 years: show a CPD plan, speciality interest and commitment to this organisation"
     ]
   },
   "ICU / Theatre Specialist Interview": {
-    intro: "ICU / Theatre Specialist Nursing Interview — Key Questions",
+    intro: "ICU / Theatre Specialist Nursing Interview, Key Questions",
     items: [
       "Describe your critical care experience: ventilator settings, haemodynamic lines, sedation titration",
       "Deteriorating patient management: full ABCDE approach, early warning score, escalation call",
@@ -12691,7 +12691,7 @@ const RESOURCE_CHECKLISTS = {
     ]
   },
   "International Panel Interview (UK / AU)": {
-    intro: "International Panel Interview (UK / Australia) — Key Questions",
+    intro: "International Panel Interview (UK / Australia), Key Questions",
     items: [
       "What do you know about NHS Constitution values / NMBA standards and how they match your practice",
       "Safeguarding scenario: describe a concern you identified, how you escalated and documented it",
@@ -12704,7 +12704,7 @@ const RESOURCE_CHECKLISTS = {
     ]
   },
   "Management / Leadership Role Interview": {
-    intro: "Nursing Management / Leadership Role Interview — Key Questions",
+    intro: "Nursing Management / Leadership Role Interview, Key Questions",
     items: [
       "Leadership style: describe with a real team example and what outcome your approach achieved",
       "Underperforming team member: describe a constructive feedback conversation and its result",
@@ -12717,7 +12717,7 @@ const RESOURCE_CHECKLISTS = {
     ]
   },
   "NGO / Public Health Interview": {
-    intro: "NGO / Public Health Nursing Interview — Key Questions",
+    intro: "NGO / Public Health Nursing Interview, Key Questions",
     items: [
       "Community program experience: describe a program you delivered with population reached and outcomes",
       "Community resistance: describe how you engaged a community that was resistant to health messages",
@@ -12732,38 +12732,38 @@ const RESOURCE_CHECKLISTS = {
 
   /* ── Nursing Portfolio Sub-Templates ──────────────────────────── */
   "Student Portfolio (Year 1-3)": {
-    intro: "Student Nursing Portfolio (Year 1-3) — What to Include",
+    intro: "Student Nursing Portfolio (Year 1-3), What to Include",
     items: [
-      "Section 1: Title page — full name, programme, student number, school and academic year",
+      "Section 1: Title page: full name, programme, student number, school and academic year",
       "Section 2: Programme overview and personal learning objectives written for each clinical year",
-      "Section 3: Clinical placement records — facility, unit, dates, hours and supervisor signature",
+      "Section 3: Clinical placement records: facility, unit, dates, hours and supervisor signature",
       "Section 4: Competency sign-off sheets for every practical skill completed during placements",
-      "Section 5: Reflective journal — minimum 2 Gibbs-model entries per placement rotation",
+      "Section 5: Reflective journal: minimum 2 Gibbs-model entries per placement rotation",
       "Section 6: Academic certificates and progress results per year of study",
-      "Section 7: Extra activities — nursing association membership, outreach, peer-assisted learning",
-      "Section 8: Self-assessment — written strengths and development areas at end of each year"
+      "Section 7: Extra activities: nursing association membership, outreach, peer-assisted learning",
+      "Section 8: Self-assessment: written strengths and development areas at end of each year"
     ]
   },
   "UNMC Registration Portfolio": {
-    intro: "UNMC Registration Portfolio — Documents Required",
+    intro: "UNMC Registration Portfolio, Documents Required",
     items: [
       "Authenticated academic transcript from your nursing/midwifery training institution",
       "Certificate of training: original certificate of nursing/midwifery (plus notarised photocopy)",
       "Valid national ID or passport bio-data page (photocopy accepted with original for verification)",
-      "Recent passport-size photograph — professional background, current (not older than 3 months)",
+      "Recent passport-size photograph: professional background, current (not older than 3 months)",
       "Proof of supervised clinical practice: hours log signed by tutor or clinical supervisor",
       "Two passport-size photos for the UNMC registration card (as specified on current UNMC form)",
-      "Duly completed UNMC application form — use a fresh form for any corrections, no amendments",
+      "Duly completed UNMC application form. Use a fresh form for any corrections, no amendments",
       "Bank payment receipt: pay into UNMC-approved bank account and attach original receipt"
     ]
   },
   "International Application Portfolio": {
-    intro: "International Nursing Application Portfolio — Key Documents",
+    intro: "International Nursing Application Portfolio, Key Documents",
     items: [
-      "Authenticated degree/diploma and academic transcript — notarised if destination country requires",
+      "Authenticated degree/diploma and academic transcript, notarised if destination country requires",
       "Clinical experience certificate: detailed letter from last 3-5 years employer with dates, role, hours",
-      "Letter of Good Standing from UNMC — current (not older than 3-6 months — check destination)",
-      "English language certificate: IELTS academic or OET — verify band requirement for destination",
+      "Letter of Good Standing from UNMC: current (not older than 3-6 months. Check destination)",
+      "English language certificate: IELTS academic or OET, verify band requirement for destination",
       "Valid passport: must be valid at least 12-18 months beyond your intended departure date",
       "Proof of identity: birth certificate and national ID (some routes require both)",
       "Health clearance: medical fitness certificate if required by destination country or employer",
@@ -12771,12 +12771,12 @@ const RESOURCE_CHECKLISTS = {
     ]
   },
   "CPD & Revalidation Portfolio": {
-    intro: "CPD and Revalidation Portfolio — What to Include",
+    intro: "CPD and Revalidation Portfolio, What to Include",
     items: [
       "Annual CPD activity log: date, provider, topic, learning format, hours and certificate for each entry",
       "5 reflective accounts: 200-500 words each on how a CPD activity changed or improved your practice",
       "Patient/carer/colleague feedback: at least one example of feedback received and your response",
-      "Good health and good character declaration — signed and dated by you annually",
+      "Good health and good character declaration: signed and dated by you annually",
       "Practice supervisor confirmation: for NMC revalidation a confirming registrant review is required",
       "Annual learning needs assessment: written review against current role competency requirements",
       "Updated mandatory training: BLS, safeguarding level, infection prevention, manual handling dates",
@@ -12784,14 +12784,14 @@ const RESOURCE_CHECKLISTS = {
     ]
   },
   "Senior / Leadership Portfolio": {
-    intro: "Senior / Leadership Nursing Portfolio — What to Include",
+    intro: "Senior / Leadership Nursing Portfolio, What to Include",
     items: [
-      "Current evidence-based CV — comprehensive, formatted for leadership-level review",
+      "Current evidence-based CV: comprehensive, formatted for leadership-level review",
       "Leadership experience evidence: acting charge records, unit management, team leadership reports",
       "Quality improvement project: full report or summary of audit, change cycle and measurable outcome",
       "Staff mentoring log: evidence of students or junior staff supervised, methods and outcomes noted",
       "Management training certificates: leadership modules, HR basics, health systems management",
-      "Performance appraisals: last 2-3 years from line manager — highlight commendations",
+      "Performance appraisals: last 2-3 years from line manager, highlight commendations",
       "Publications or presentations: conference papers, in-service training sessions, departmental journal",
       "Leadership statement: 1-2 pages on your leadership philosophy, style and professional vision"
     ]
@@ -12801,14 +12801,14 @@ const RESOURCE_CHECKLISTS = {
   "Government Hospital Salary Scale": {
     intro: "Uganda Government / Public Sector Nursing Salary Scale 2025",
     items: [
-      "U7 — Intern / Enrolled Nurse: UGX 435,000 base + internship/government allowance",
-      "U6 — Staff Nurse / Enrolled Midwife: UGX 840,000-1,200,000 per month",
-      "U5 — Nursing Officer / Registered Nurse: UGX 1,800,000-2,500,000 per month",
-      "U4 — Senior Nursing Officer: UGX 2,800,000-3,500,000 per month",
-      "U3 — Principal Nursing Officer: UGX 4,000,000-5,500,000 per month",
-      "U2 — Senior Principal Nursing Officer: UGX 5,500,000-7,000,000 per month",
-      "U1E — Chief Nursing Officer / Director: UGX 8,000,000-12,000,000+ per month",
-      "Additional allowances: UHF, transport, housing — amounts vary by district and facility level"
+      "U7, Intern / Enrolled Nurse: UGX 435,000 base + internship/government allowance",
+      "U6, Staff Nurse / Enrolled Midwife: UGX 840,000-1,200,000 per month",
+      "U5, Nursing Officer / Registered Nurse: UGX 1,800,000-2,500,000 per month",
+      "U4, Senior Nursing Officer: UGX 2,800,000-3,500,000 per month",
+      "U3, Principal Nursing Officer: UGX 4,000,000-5,500,000 per month",
+      "U2, Senior Principal Nursing Officer: UGX 5,500,000-7,000,000 per month",
+      "U1E, Chief Nursing Officer / Director: UGX 8,000,000-12,000,000+ per month",
+      "Additional allowances: UHF, transport, housing: amounts vary by district and facility level"
     ]
   },
   "Private Hospital Salary Scale": {
@@ -12821,7 +12821,7 @@ const RESOURCE_CHECKLISTS = {
       "ICU / Theatre Specialist: UGX 4,500,000-7,000,000 per month",
       "Nurse Educator (hospital-based): UGX 3,000,000-4,500,000 per month",
       "Night shift / weekend allowance: UGX 100,000-300,000 additional where applicable",
-      "Negotiation tip: private sector is more flexible — compare 3 facility offers before accepting"
+      "Negotiation tip: private sector is more flexible: compare 3 facility offers before accepting"
     ]
   },
   "NGO / International Agency Salary Scale": {
@@ -12829,12 +12829,12 @@ const RESOURCE_CHECKLISTS = {
     items: [
       "Local NGO nurse: UGX 1,200,000-2,500,000 per month (varies by program budget)",
       "International NGO (MSF, IRC, World Vision, CARE): USD 800-2,500 per month",
-      "UN Agency (WHO, UNICEF, UNFPA): USD 1,500-5,000+ — grade P1/P2/NOA dependent",
+      "UN Agency (WHO, UNICEF, UNFPA): USD 1,500-5,000+: grade P1/P2/NOA dependent",
       "USAID / PEPFAR implementing partner: UGX 3,000,000-5,000,000 or USD equivalent",
       "Field duty station allowance: USD 100-500 additional for remote deployment",
       "Benefits package: health insurance, group life cover, R&R allowance for field staff",
       "Consultancy (senior nurse): USD 80-200 per day for short-term technical assistance roles",
-      "Key note: NGO pay bands are rigid — negotiate post title and grade level, not just salary"
+      "Key note: NGO pay bands are rigid: negotiate post title and grade level, not just salary"
     ]
   },
   "ICU / Theatre / Specialist Premium": {
@@ -12847,11 +12847,11 @@ const RESOURCE_CHECKLISTS = {
       "Emergency / A&E nurse: UGX 3,500,000-5,500,000 per month",
       "On-call allowance: UGX 50,000-150,000 per call session (varies by facility policy)",
       "ACLS/ATLS-certified uplift: negotiable, typically +UGX 200,000-500,000 per month",
-      "Career note: specialist roles have the fastest vacancy fill — certify and apply early"
+      "Career note: specialist roles have the fastest vacancy fill, certify and apply early"
     ]
   },
   "International Destination Salary Comparison": {
-    intro: "International Nursing Salary Comparison — Uganda vs Destinations 2025",
+    intro: "International Nursing Salary Comparison, Uganda vs Destinations 2025",
     items: [
       "Uganda (experienced nurse): UGX 3M-5M / month = approx USD 800-1,300",
       "Kenya (Nairobi private hospital): KES 80,000-150,000 / month = approx USD 600-1,150",
@@ -12952,7 +12952,7 @@ function buildCVDocHTML(data, styleId) {
   const email    = esc(data.email);
   const loc      = esc(data.location);
   const li_url   = esc(data.linkedin);
-  const summary  = esc(data.summary)  || "[Write your professional summary — 3-4 sentences on your nursing level, clinical specialty, years of experience and key strength.]";
+  const summary  = esc(data.summary)  || "[Write your professional summary: 3-4 sentences on your nursing level, clinical specialty, years of experience and key strength.]";
   const contactParts = [phone, email, loc, li_url].filter(Boolean);
   const sep = styleId === "classic" ? " &nbsp;|&nbsp; " : " &nbsp;·&nbsp; ";
 
@@ -12978,7 +12978,7 @@ function buildCVDocHTML(data, styleId) {
   const body = `<h2 class="cv-sec">Professional Summary</h2><p>${summary}</p><h2 class="cv-sec">Work Experience</h2>${expHtml}<h2 class="cv-sec">Education</h2>${eduHtml}<h2 class="cv-sec">Clinical Skills</h2>${skillsHtml}${langs ? `<h2 class="cv-sec">Languages</h2><p>${langs}</p>` : ""}<h2 class="cv-sec">References</h2><p>${refs}</p>`;
   const fullBody = hasBgHdr ? `${hdr}<div class="cv-body">${body}</div>` : `${hdr}${body}`;
 
-  return `<!DOCTYPE html><html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word"><head><meta charset="utf-8"><title>${name} — CV</title><style>${s.css}@page{size:A4;margin:0}@media print{*{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}body{margin:0}}</style></head><body>${fullBody}</body></html>`;
+  return `<!DOCTYPE html><html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word"><head><meta charset="utf-8"><title>${name}, CV</title><style>${s.css}@page{size:A4;margin:0}@media print{*{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}body{margin:0}}</style></head><body>${fullBody}</body></html>`;
 }
 
 // ─── TEMPLATE DOCUMENT BUILDER (for card downloads) ───────────────────────
@@ -13001,7 +13001,7 @@ function buildTemplateDocHTML(label, styleId) {
       return `<h2 class="cv-sec">${head}</h2><div class="inst">${guide || "Complete this section"}</div><p class="ph">[${(guide || head).split(" ").slice(0,10).join(" ")}…]</p>`;
     }).join("");
   } else if (isLetter) {
-    mainContent = `<p>[City, Date]</p><p>[Hiring Manager]<br>[Organisation / Facility]<br>[Address]</p><p>Dear Sir / Madam,</p><p><strong>Re: Application for the Post of [Job Title] — Ref: [Reference Number]</strong></p>`
+    mainContent = `<p>[City, Date]</p><p>[Hiring Manager]<br>[Organisation / Facility]<br>[Address]</p><p>Dear Sir / Madam,</p><p><strong>Re: Application for the Post of [Job Title], Ref: [Reference Number]</strong></p>`
       + items.map((item, i) => {
           const ci = item.indexOf(":"); const guide = ci > 0 ? item.substring(ci+1).trim() : item;
           return `<div class="inst">${item}</div><p class="ph">[Paragraph ${i+1}: ${guide.split(" ").slice(0,12).join(" ")}…]</p>`;
@@ -13010,11 +13010,11 @@ function buildTemplateDocHTML(label, styleId) {
   } else if (isSalary) {
     mainContent = `<h2 class="cv-sec">${escapeHtml(intro)}</h2>`
       + items.map(item => {
-          const d = item.indexOf("—"); const grade = d>0 ? item.substring(0,d).trim() : item; const detail = d>0 ? item.substring(d+1).trim() : "";
+          const d = item.indexOf(", "); const grade = d>0 ? item.substring(0,d).trim() : item; const detail = d>0 ? item.substring(d+1).trim() : "";
           return `<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #eee;font-size:10pt"><span><strong>${escapeHtml(grade)}</strong></span><span style="color:#555">${escapeHtml(detail)}</span></div>`;
         }).join("");
   } else {
-    mainContent = `<h2 class="cv-sec">${escapeHtml(intro)}</h2><div class="inst">Use this checklist — tick each item as you complete or gather it.</div>`
+    mainContent = `<h2 class="cv-sec">${escapeHtml(intro)}</h2><div class="inst">Use this checklist: tick each item as you complete or gather it.</div>`
       + items.map(item => {
           const ci = item.indexOf(":"); const head = ci>0 ? item.substring(0,ci) : item; const body = ci>0 ? item.substring(ci+1).trim() : "";
           return `<div style="display:flex;gap:12px;padding:9px 0;border-bottom:1px solid #f0f0f0;align-items:flex-start"><span style="font-size:14pt;color:#ccc;line-height:1.1">☐</span><div><strong style="font-size:10pt">${escapeHtml(head)}</strong>${body ? `<br><span style="font-size:9.5pt;color:#666">${escapeHtml(body)}</span>` : ""}</div></div>`;
@@ -13023,7 +13023,7 @@ function buildTemplateDocHTML(label, styleId) {
 
   const titleLine = isCV || isLetter
     ? `<h1 class="cv-name">[YOUR FULL NAME]</h1><div class="cv-title">[Professional Title]</div><div class="cv-contact-bar">[Phone] &nbsp;·&nbsp; [Email] &nbsp;·&nbsp; [Location]</div>`
-    : `<h1 class="cv-name" style="font-size:18pt">${escapeHtml(label)}</h1><div class="cv-title">Nursing Uganda — Career Resource</div>`;
+    : `<h1 class="cv-name" style="font-size:18pt">${escapeHtml(label)}</h1><div class="cv-title">Nursing Uganda: Career Resource</div>`;
   const hdr = `<div class="cv-header">${titleLine}</div>`;
   const fullBody = hasBgHdr ? `${hdr}<div class="cv-body">${mainContent}</div>` : `${hdr}${mainContent}`;
 
@@ -13116,7 +13116,7 @@ function renderCVGeneratorModal() {
 
   let formBody = "";
   if (step === 1) {
-    formBody = `<div class="cvg-step-head"><h3>Choose a Template Style</h3><p>Pick the look for your CV — you can change it any time.</p></div>
+    formBody = `<div class="cvg-step-head"><h3>Choose a Template Style</h3><p>Pick the look for your CV. You can change it any time.</p></div>
       <div class="cvg-style-grid">${CV_STYLES.map(s=>`<label class="cvg-style-opt${styleId===s.id?" cvg-style-opt--a":""}"><input type="radio" name="cv-style" value="${s.id}"${styleId===s.id?" checked":""}><div class="cvg-style-swatch" style="background:${s.swatch}"></div><strong>${s.name}</strong><span>${s.desc}</span></label>`).join("")}</div>`;
   } else if (step === 2) {
     formBody = `<div class="cvg-step-head"><h3>Personal Details</h3><p>Your contact details go at the top of the CV.</p></div>
@@ -13188,7 +13188,7 @@ function downloadCareerChecklist(title) {
     const [, , steps, docs] = guide;
     const stepList = (steps || "").split("|").filter(Boolean);
     const content = [
-      `${safeTitle} — Nursing Uganda Checklist`,
+      `${safeTitle}: Nursing Uganda Checklist`,
       "─".repeat(50),
       "",
       "STEPS",
@@ -13320,7 +13320,7 @@ function medicalInstrumentCategories() {
          "Diaphragm side (high-pitched sounds) and bell side (low-pitched); adult and paediatric models"],
         ["Blood pressure machine",
          "Measures systolic and diastolic blood pressure. Normal adult reading is below 120/80 mmHg.",
-         "Select the correct cuff size — the bladder should encircle at least 80% of the upper arm. Position the arm at heart level with the palm facing up.",
+         "Select the correct cuff size: the bladder should encircle at least 80% of the upper arm. Position the arm at heart level with the palm facing up.",
          "Never measure on an injured, cannulated or fistula arm. Avoid measuring immediately after exertion, pain or anxiety.",
          ["Name the instrument; state it measures blood pressure in mmHg.", "State normal adult range: systolic below 120 mmHg, diastolic below 80 mmHg.", "State correct cuff selection: bladder should cover 80% of upper arm circumference.", "Position: patient seated, arm supported at heart level, palm facing up.", "Preparation: confirm manometer reads zero, check tubing for cracks and cuff inflation.", "Safety: never use on a fistula arm, arm with IV access or post-mastectomy side."],
          "Aneroid (manual), digital automatic; cuff sizes: infant, child, standard adult, large adult"],
@@ -13346,13 +13346,13 @@ function medicalInstrumentCategories() {
          "Elicits deep tendon reflexes during neurological assessment. Used on the patellar, Achilles, biceps and brachioradialis tendons.",
          "Hold the handle at the end and use a swift wrist flick to strike the tendon directly. Ensure the patient's limb is relaxed and correctly positioned.",
          "Do not strike with excessive force. Compare both sides and grade reflexes consistently from 0 (absent) to 4+ (very brisk with clonus).",
-         ["Name the instrument: tendon or percussion hammer; used for deep tendon reflex testing.", "State reflex sites and spinal levels: patellar L3–L4, Achilles S1–S2, biceps C5–C6.", "Technique: hold handle at the end; use a quick wrist-flick motion; strike tendon directly.", "Normal response: brisk reflex; abnormal findings — absent suggests lower motor neurone lesion, exaggerated suggests upper motor neurone lesion.", "If reflexes absent: reinforce using Jendrassik manoeuvre (patient interlocks and pulls fingers).", "Grade and compare bilaterally; document symmetry and grade in patient notes."],
+         ["Name the instrument: tendon or percussion hammer; used for deep tendon reflex testing.", "State reflex sites and spinal levels: patellar L3–L4, Achilles S1–S2, biceps C5–C6.", "Technique: hold handle at the end; use a quick wrist-flick motion; strike tendon directly.", "Normal response: brisk reflex; abnormal findings: absent suggests lower motor neurone lesion, exaggerated suggests upper motor neurone lesion.", "If reflexes absent: reinforce using Jendrassik manoeuvre (patient interlocks and pulls fingers).", "Grade and compare bilaterally; document symmetry and grade in patient notes."],
          "Taylor (tomahawk) style, Queen Square style; adult and paediatric sizes"],
         ["Penlight",
          "A handheld torch used to assess pupil reaction and inspect the oral cavity, throat, ears and wound areas.",
          "Test pupils in a dimly lit room for accurate assessment. Move the light from the side rather than directly in front of the face.",
          "Do not shine directly into the eye for a prolonged period. Document pupil size in millimetres, shape, and both direct and consensual reactions separately.",
-         ["Name the instrument: penlight or diagnostic torch; used for pupil assessment and cavity inspection.", "State normal pupil size: 2–5 mm; equal bilaterally; round shape; brisk reaction to light.", "Test direct response (ipsilateral pupil constricts) and consensual response (contralateral constricts).", "Abnormal findings to report: unequal pupils, absent reaction, dilated fixed pupils — neurological emergency.", "Preparation: test in reduced lighting; approach from the side; move light briskly.", "Document each eye separately: size in mm, equality, shape and reaction speed (brisk, sluggish, absent)."],
+         ["Name the instrument: penlight or diagnostic torch; used for pupil assessment and cavity inspection.", "State normal pupil size: 2–5 mm; equal bilaterally; round shape; brisk reaction to light.", "Test direct response (ipsilateral pupil constricts) and consensual response (contralateral constricts).", "Abnormal findings to report: unequal pupils, absent reaction, dilated fixed pupils, neurological emergency.", "Preparation: test in reduced lighting; approach from the side; move light briskly.", "Document each eye separately: size in mm, equality, shape and reaction speed (brisk, sluggish, absent)."],
          "Penlight with clip, diagnostic handle; pupil gauge scale often printed on casing"],
         ["Peak flow meter",
          "Measures peak expiratory flow rate (PEFR) in litres per minute to assess airway obstruction in asthma and COPD management.",
@@ -13412,7 +13412,7 @@ function medicalInstrumentCategories() {
          "A bean-shaped concave receptacle used to receive soiled swabs, small instruments, fluid or waste during clinical procedures.",
          "Use a separate clean kidney dish for sterile items and another for waste. Ensure the dish is clean before placing anything sterile in it.",
          "Never mix clean and contaminated items in the same dish. Decontaminate stainless steel dishes according to facility protocol after use.",
-         ["Name the instrument: kidney dish; holds instruments, swabs or collects fluids during procedures.", "Identify its characteristic shape: kidney or bean-shaped with concave centre.", "Use one dish for clean items and a separate dish for contaminated waste — never mix the two.", "Preparation: ensure the dish is clean and dry before placing any sterile items in it.", "Safety: a contaminated dish must be treated as clinical waste; never reuse without decontamination.", "Decontaminate stainless steel dishes per facility policy before autoclaving for reuse."],
+         ["Name the instrument: kidney dish; holds instruments, swabs or collects fluids during procedures.", "Identify its characteristic shape: kidney or bean-shaped with concave centre.", "Use one dish for clean items and a separate dish for contaminated waste, never mix the two.", "Preparation: ensure the dish is clean and dry before placing any sterile items in it.", "Safety: a contaminated dish must be treated as clinical waste; never reuse without decontamination.", "Decontaminate stainless steel dishes per facility policy before autoclaving for reuse."],
          "Stainless steel reusable (250–500 mL) or disposable; various sizes"],
         ["Artery forceps",
          "Haemostatic clamps used to compress bleeding vessels, hold tissue or secure drains. The ratchet mechanism locks the clamp in place.",
@@ -13442,7 +13442,7 @@ function medicalInstrumentCategories() {
          "An acoustic device for auscultating fetal heart sounds during antenatal visits. It transmits sounds through bone conduction without requiring electricity.",
          "Palpate fetal position using Leopold's manoeuvres to locate the fetal back before applying. Apply the fetoscope firmly over the back and count for a full minute.",
          "Simultaneously palpate the mother's radial pulse to distinguish fetal from maternal sounds. A fetal heart rate below 110 or above 160 bpm requires immediate assessment.",
-         ["Name the instrument: Pinard fetoscope; auscultates fetal heart sounds during pregnancy.", "State normal fetal heart rate: 110–160 beats per minute.", "Preparation: perform Leopold's manoeuvres to identify fetal back before placing the fetoscope.", "Count for 60 seconds; simultaneously palpate maternal pulse to distinguish fetal from maternal sounds.", "Safety: FHR below 110 or above 160 bpm, or irregular rhythm — report immediately.", "Reassess after repositioning if sounds are unclear; try the opposite fetal side."],
+         ["Name the instrument: Pinard fetoscope; auscultates fetal heart sounds during pregnancy.", "State normal fetal heart rate: 110–160 beats per minute.", "Preparation: perform Leopold's manoeuvres to identify fetal back before placing the fetoscope.", "Count for 60 seconds; simultaneously palpate maternal pulse to distinguish fetal from maternal sounds.", "Safety: FHR below 110 or above 160 bpm, or irregular rhythm, report immediately.", "Reassess after repositioning if sounds are unclear; try the opposite fetal side."],
          "Pinard (trumpet-shaped metal or plastic); monaural; no battery required"],
         ["Vaginal speculum",
          "Visualises the vaginal walls and cervix during gynaecological examination, cervical assessment or procedures such as PAP smear.",
@@ -13463,22 +13463,22 @@ function medicalInstrumentCategories() {
          ["Name the instrument set: sterile delivery set; used for normal vaginal delivery.", "Typical contents: two cord clamps, sterile scissors, artery forceps, kidney dish, gauze, swabs, sterile gloves.", "Preparation: check all items are present, sterile and unexpired before second stage begins.", "Arrange on a sterile trolley within reach; open only when delivery is imminent.", "Safety: count instruments before and after; maintain strict aseptic technique at all times.", "OSCE tip: name each item and state its purpose when presenting the delivery set."],
          "Pre-packaged sterile delivery kit; contents vary by facility level and national protocol"],
         ["Sponge holding forceps",
-         "Also called ring or swab-holding forceps — holds swabs, gauze or sponges during antiseptic skin preparation and obstetric or gynaecological procedures.",
+         "Also called ring or swab-holding forceps: holds swabs, gauze or sponges during antiseptic skin preparation and obstetric or gynaecological procedures.",
          "Load the swab firmly in the ring so it does not slip. Dip in antiseptic solution and wring out excess before use.",
          "Rinse the antiseptic-soaked swab in sterile water before vaginal application to prevent mucosal irritation.",
-         ["Name the instrument: sponge holding forceps (ring or swab-holding forceps); holds swabs for cleansing.", "Identify the large ring-ended tips designed to grip gauze or sponges securely.", "Used for antiseptic skin preparation before procedures: perineal or abdominal cleaning.", "Preparation: confirm sterility; grip swab firmly in the rings; soak and wring out excess antiseptic.", "Safety: rinse antiseptic-soaked swab in sterile water before vaginal application.", "Use a fresh swab for each new area; work from clean to dirty — centre outward."],
+         ["Name the instrument: sponge holding forceps (ring or swab-holding forceps); holds swabs for cleansing.", "Identify the large ring-ended tips designed to grip gauze or sponges securely.", "Used for antiseptic skin preparation before procedures: perineal or abdominal cleaning.", "Preparation: confirm sterility; grip swab firmly in the rings; soak and wring out excess antiseptic.", "Safety: rinse antiseptic-soaked swab in sterile water before vaginal application.", "Use a fresh swab for each new area; work from clean to dirty, centre outward."],
          "Straight and curved ring forceps; large ring sponge-holding vs small ring swab; stainless steel"],
         ["Doppler fetal monitor",
          "An electronic device that amplifies fetal heart sounds using ultrasound, enabling earlier and clearer fetal heart rate assessment from 12 weeks gestation.",
          "Apply ultrasound gel to the probe head. Place over the fetal abdomen and sweep slowly to locate the fetal heart sounds.",
          "Distinguish fetal heart rate from the maternal pulse. Normal fetal heart rate is 110–160 bpm. Confirm electronically that the rate is not reflecting maternal pulse.",
-         ["Name the instrument: hand-held Doppler fetal heart rate monitor; detects fetal heartbeat using ultrasound.", "Apply ultrasound gel before placing probe; sweep slowly over lower abdomen to locate fetal sounds.", "Normal FHR: 110–160 bpm; confirm simultaneously it is not the maternal pulse.", "Earlier detection than fetoscope: audible from approximately 12 weeks gestation.", "Safety: document date, time, FHR and any noted accelerations or decelerations.", "Abnormal: FHR below 110 or above 160 bpm, absent variability or persistent decelerations — report immediately."],
+         ["Name the instrument: hand-held Doppler fetal heart rate monitor; detects fetal heartbeat using ultrasound.", "Apply ultrasound gel before placing probe; sweep slowly over lower abdomen to locate fetal sounds.", "Normal FHR: 110–160 bpm; confirm simultaneously it is not the maternal pulse.", "Earlier detection than fetoscope: audible from approximately 12 weeks gestation.", "Safety: document date, time, FHR and any noted accelerations or decelerations.", "Abnormal: FHR below 110 or above 160 bpm, absent variability or persistent decelerations, report immediately."],
          "Hand-held pocket Doppler; CTG transducer for continuous monitoring; requires ultrasound gel"],
         ["Episiotomy scissors",
          "Specifically designed scissors for making a controlled perineal incision to facilitate delivery or prevent uncontrolled tearing during the second stage of labour.",
          "Confirm medical indication before performing episiotomy. Infiltrate local anaesthetic and wait for it to take effect before making the incision.",
          "Make a single deliberate cut at the peak of a contraction in the mediolateral direction. Repair immediately after delivery using absorbable suture.",
-         ["Name the instrument: episiotomy scissors; used for controlled perineal incision.", "State indications: inadequate perineal stretch, fetal distress, instrumental delivery.", "Preparation: obtain consent, confirm indication, infiltrate local anaesthetic and wait for effect.", "Make a single cut at peak of contraction at a 45° mediolateral angle — avoid midline when possible.", "Safety: confirm anaesthetic effect before cutting; avoid premature or unnecessary use.", "After delivery: repair episiotomy immediately with absorbable suture; document in clinical notes."],
+         ["Name the instrument: episiotomy scissors; used for controlled perineal incision.", "State indications: inadequate perineal stretch, fetal distress, instrumental delivery.", "Preparation: obtain consent, confirm indication, infiltrate local anaesthetic and wait for effect.", "Make a single cut at peak of contraction at a 45° mediolateral angle, avoid midline when possible.", "Safety: confirm anaesthetic effect before cutting; avoid premature or unnecessary use.", "After delivery: repair episiotomy immediately with absorbable suture; document in clinical notes."],
          "Straight or angled blade; similar to Mayo scissors; blunt rounded tips"]
       ]
     },
@@ -13489,14 +13489,14 @@ function medicalInstrumentCategories() {
         ["Autoclave",
          "Sterilises instruments, linen and equipment using saturated steam under high pressure. Standard cycles run at 134°C for 3 minutes or 121°C for 15 minutes.",
          "Clean all instruments thoroughly before loading. Disassemble hinged items, arrange loosely for steam penetration and include chemical indicator strips in each load.",
-         "Never open the autoclave while pressurised. Items must be completely dry after the cycle — wet packs are no longer considered sterile and must be discarded.",
-         ["Name the instrument: autoclave; sterilises instruments using pressurised saturated steam.", "State standard cycle parameters: 134°C for 3 minutes (porous load) or 121°C for 15 minutes (gravity cycle).", "Preparation: clean instruments first; disassemble hinged items; use indicator strips or tape in each load.", "Loading rule: items should not touch; wrapped instruments must allow steam penetration to all surfaces.", "Safety: do not open while pressurised; wait for the full cooling cycle before handling.", "After cycle: check indicators have changed; dry packs only are sterile — discard wet packs immediately."],
+         "Never open the autoclave while pressurised. Items must be completely dry after the cycle, wet packs are no longer considered sterile and must be discarded.",
+         ["Name the instrument: autoclave; sterilises instruments using pressurised saturated steam.", "State standard cycle parameters: 134°C for 3 minutes (porous load) or 121°C for 15 minutes (gravity cycle).", "Preparation: clean instruments first; disassemble hinged items; use indicator strips or tape in each load.", "Loading rule: items should not touch; wrapped instruments must allow steam penetration to all surfaces.", "Safety: do not open while pressurised; wait for the full cooling cycle before handling.", "After cycle: check indicators have changed; dry packs only are sterile, discard wet packs immediately."],
          "Bench-top (small clinic), portable, large vertical (hospital); gravity and pre-vacuum types"],
         ["Sterile packs",
          "Pre-packaged sterile items sealed and sterilised by the manufacturer or CSSD for use in clinical and surgical procedures.",
          "Before use, check the outer packaging for tears, moisture, sterility indicator change and expiry date.",
          "Open aseptically using the peel-apart technique. Present to the sterile field by peeling back edges without contaminating the inner contents.",
-         ["Name the item: sterile pack; contains items sterilised for use in clinical procedures.", "Inspect before use: intact packaging, sterility indicator changed to correct colour, expiry date valid, no moisture.", "Opening technique: peel apart edges from the corners; never reach inside the pack.", "Present to sterile field by peeling edges down and dropping contents directly into the field.", "Safety: wet, torn, expired or previously opened packs are no longer sterile — discard and replace.", "Store in a clean dry environment; rotate stock so nearest expiry is used first."],
+         ["Name the item: sterile pack; contains items sterilised for use in clinical procedures.", "Inspect before use: intact packaging, sterility indicator changed to correct colour, expiry date valid, no moisture.", "Opening technique: peel apart edges from the corners; never reach inside the pack.", "Present to sterile field by peeling edges down and dropping contents directly into the field.", "Safety: wet, torn, expired or previously opened packs are no longer sterile, discard and replace.", "Store in a clean dry environment; rotate stock so nearest expiry is used first."],
          "Individual items (gloves, gauze) or full procedure packs (suture, dressing, catheter sets)"],
         ["Instrument tray",
          "Organises sterile instruments for a specific procedure. Covered with a sterile drape until the procedure is ready to begin.",
@@ -13507,14 +13507,14 @@ function medicalInstrumentCategories() {
         ["Suture set",
          "A sterile instrument set for wound closure. Contains a needle holder, dissecting forceps, suture scissors, suture material and support items.",
          "Check the suture material type, size and expiry according to wound type and anatomical location. Mount the needle in the needle holder at the junction of the middle and distal thirds.",
-         "Handle needles only with instruments at all times — never with fingers. Count all needles before and after the procedure.",
+         "Handle needles only with instruments at all times, never with fingers. Count all needles before and after the procedure.",
          ["Name the set: suture set; used for wound closure with suture material and instruments.", "Contents: needle holder, toothed dissecting forceps, suture scissors, swabs, drapes, suture material.", "Preparation: confirm suture type (absorbable vs non-absorbable), size and expiry.", "Needle holder technique: mount needle at junction of middle and distal thirds; lock at first ratchet click.", "Cut suture ends 5–10 mm from the knot; excess tails increase infection risk.", "Safety: count needles before and after; dispose into sharps bin immediately after removal."],
          "Absorbable (Vicryl, Chromic Gut) for deep tissue; non-absorbable (Nylon, Prolene) for skin closure"],
         ["Surgical scissors",
          "Cut tissue, sutures or other materials during surgery and wound care. Different types are selected based on the tissue and task.",
          "Identify the correct scissors type before use. Pass scissors to the surgeon with blades closed and rings facing the receiver.",
-         "Never use tissue scissors to cut dressings or rough material — this permanently blunts the blades. Keep separate scissors designated for each task.",
-         ["Name the instrument: surgical scissors; state that different types exist for specific tasks.", "Types: Mayo scissors (heavy tissue and fascia), Metzenbaum (delicate tissue dissection), suture scissors (cut suture only).", "Preparation: check blade sharpness and alignment; confirm sterility before use.", "Hold with thumb and ring finger in rings; index finger on one shank for control.", "Theatre technique: pass with blades closed and rings facing the receiver — never blade-first.", "Safety: use each scissors only for its designated purpose; blunt tissue scissors risk tissue trauma."],
+         "Never use tissue scissors to cut dressings or rough material. This permanently blunts the blades. Keep separate scissors designated for each task.",
+         ["Name the instrument: surgical scissors; state that different types exist for specific tasks.", "Types: Mayo scissors (heavy tissue and fascia), Metzenbaum (delicate tissue dissection), suture scissors (cut suture only).", "Preparation: check blade sharpness and alignment; confirm sterility before use.", "Hold with thumb and ring finger in rings; index finger on one shank for control.", "Theatre technique: pass with blades closed and rings facing the receiver, never blade-first.", "Safety: use each scissors only for its designated purpose; blunt tissue scissors risk tissue trauma."],
          "Mayo (straight or curved), Metzenbaum, suture or stitch scissors, iris scissors for fine work"]
       ]
     },
@@ -13556,7 +13556,7 @@ function medicalInstrumentCategories() {
          "A flexible tube passed through the nostril into the stomach for enteral feeding, medication delivery, gastric decompression or diagnostic aspiration.",
          "Measure from the nose to the ear to the xiphisternum to estimate insertion depth. Insert with the patient upright and ask them to swallow small sips of water as the tube passes.",
          "Always confirm placement before any use: aspirate stomach contents and test pH (must be 5.5 or below) or confirm on chest X-ray per facility policy. Never assume correct placement.",
-         ["Name the instrument: nasogastric tube (NG tube); passes into stomach for feeding, medication or decompression.", "Measure insertion depth: nose tip to earlobe to xiphoid process gives approximate length.", "Preparation: patient sitting upright; lubricate tube; ask patient to swallow as tube advances.", "Confirmation before any use: aspirate and test pH — must be 5.5 or below for gastric placement.", "Safety: NEVER use without confirmed placement — misplaced NG tube entering the lung is life-threatening.", "Secure externally with tape; document insertion length, confirmation method, date and time."],
+         ["Name the instrument: nasogastric tube (NG tube); passes into stomach for feeding, medication or decompression.", "Measure insertion depth: nose tip to earlobe to xiphoid process gives approximate length.", "Preparation: patient sitting upright; lubricate tube; ask patient to swallow as tube advances.", "Confirmation before any use: aspirate and test pH, must be 5.5 or below for gastric placement.", "Safety: NEVER use without confirmed placement: misplaced NG tube entering the lung is life-threatening.", "Secure externally with tape; document insertion length, confirmation method, date and time."],
          "Fine-bore 8 Fr (for enteral feeding); wide-bore 14–18 Fr (decompression and aspiration); Ryle's tube"],
         ["Nebulizer",
          "Converts liquid medication into a fine aerosol mist that can be inhaled deep into the airways. Used for bronchodilators, corticosteroids and mucolytics.",
@@ -13580,7 +13580,7 @@ function medicalInstrumentCategories() {
          "A soft flexible tube inserted through a nostril into the nasopharynx to maintain a clear airway. Better tolerated than an OPA in semi-conscious patients.",
          "Select the correct size by measuring from the nostril to the tragus of the ear. Lubricate well before insertion. Insert with the bevel facing the nasal septum.",
          "Use with caution when a base-of-skull fracture is suspected. Insert the safety pin through the flange before insertion to prevent migration into the airway.",
-         ["Name the instrument: nasopharyngeal airway (NPA); maintains airway in semi-conscious or trismus patients.", "Sizing: measure from nostril to tragus of ear; sizes 6–9 mm internal diameter.", "Preparation: lubricate well with water-based lubricant; attach safety pin to flange.", "Insertion: bevel toward the nasal septum; insert perpendicular to face, then advance gently.", "Indication: preferred when OPA cannot be used — semi-conscious, jaw injury, dental trauma.", "Contraindication: suspected base-of-skull fracture; severe nasal injury; coagulopathy."],
+         ["Name the instrument: nasopharyngeal airway (NPA); maintains airway in semi-conscious or trismus patients.", "Sizing: measure from nostril to tragus of ear; sizes 6–9 mm internal diameter.", "Preparation: lubricate well with water-based lubricant; attach safety pin to flange.", "Insertion: bevel toward the nasal septum; insert perpendicular to face, then advance gently.", "Indication: preferred when OPA cannot be used, semi-conscious, jaw injury, dental trauma.", "Contraindication: suspected base-of-skull fracture; severe nasal injury; coagulopathy."],
          "Sizes 6–9 mm internal diameter; soft PVC; often colour-coded by size"],
         ["Bag-valve mask",
          "A manual resuscitator that delivers positive pressure ventilation when a patient cannot breathe adequately. Commonly called the Ambu bag.",
@@ -13591,8 +13591,8 @@ function medicalInstrumentCategories() {
         ["Oxygen mask",
          "Delivers supplemental oxygen to patients who require higher concentrations than nasal prongs can provide. Three types are used depending on the required FiO2.",
          "Select the correct mask type based on the required oxygen concentration. Fit snugly over nose and mouth and mould the metal nose clip to the patient's face.",
-         "Non-rebreather masks require adequate oxygen flow to keep the reservoir bag inflated — do not allow flow to drop below 10 L/min.",
-         ["Name the instrument: oxygen face mask; delivers supplemental oxygen at various concentrations.", "Types: simple face mask (35–55% FiO2 at 6–10 L/min), Venturi mask (precise 24–60%), non-rebreather (80–95% at 10–15 L/min).", "Preparation: confirm mask type; fit snugly; mould nose clip; connect to oxygen source.", "Venturi mask: use correct colour-coded adaptor for prescribed FiO2; adaptor states required flow rate.", "Safety: non-rebreather reservoir bag must stay inflated throughout — set minimum 10 L/min.", "Monitor SpO2, respiratory rate and patient comfort every 30–60 minutes during oxygen therapy."],
+         "Non-rebreather masks require adequate oxygen flow to keep the reservoir bag inflated, do not allow flow to drop below 10 L/min.",
+         ["Name the instrument: oxygen face mask; delivers supplemental oxygen at various concentrations.", "Types: simple face mask (35–55% FiO2 at 6–10 L/min), Venturi mask (precise 24–60%), non-rebreather (80–95% at 10–15 L/min).", "Preparation: confirm mask type; fit snugly; mould nose clip; connect to oxygen source.", "Venturi mask: use correct colour-coded adaptor for prescribed FiO2; adaptor states required flow rate.", "Safety: non-rebreather reservoir bag must stay inflated throughout, set minimum 10 L/min.", "Monitor SpO2, respiratory rate and patient comfort every 30–60 minutes during oxygen therapy."],
          "Simple face mask, Venturi (colour-coded adaptors), non-rebreather (NRB) with reservoir bag"],
         ["Nasal cannula",
          "Delivers low-flow supplemental oxygen through two short prongs placed in the nostrils. The most comfortable and widely used oxygen delivery device for stable patients.",
@@ -13852,7 +13852,7 @@ function renderMedicalInstruments() {
     ${pageHeader({
       eyebrow: "Clinical Skills Atlas",
       title: "Medical Instruments",
-      body: `A practical guide to ${instruments.length} nursing and midwifery instruments — uses, images and safe handling points.`,
+      body: `A practical guide to ${instruments.length} nursing and midwifery instruments, uses, images and safe handling points.`,
       actions: buttonLink("/resources", "Back to Resources", "secondary", "arrowLeft")
     })}
     <section class="instrument-atlas-section">
@@ -13947,7 +13947,7 @@ function renderMedicalInstruments() {
         <div class="guide-grid">
           <div>
             <h3>1. Name It Clearly</h3>
-            <p>State the full instrument name and its category. In an OSCE, examiners expect the correct clinical term — not a description of the object.</p>
+            <p>State the full instrument name and its category. In an OSCE, examiners expect the correct clinical term, not a description of the object.</p>
           </div>
           <div>
             <h3>2. State The Use</h3>
@@ -13959,7 +13959,7 @@ function renderMedicalInstruments() {
           </div>
           <div>
             <h3>4. Prepare Before Use</h3>
-            <p>State what you check before using the instrument — sterility, calibration, size selection, patient positioning and any accessories needed.</p>
+            <p>State what you check before using the instrument: sterility, calibration, size selection, patient positioning and any accessories needed.</p>
           </div>
           <div>
             <h3>5. State The Safety Points</h3>
@@ -14270,7 +14270,7 @@ function notFound() {
       <div class="container">
         <div class="not-found-panel">
           <div class="not-found-icon">${icon("alertCircle")}</div>
-          <span class="eyebrow">404 — Not Found</span>
+          <span class="eyebrow">404: Not Found</span>
           <h1>This page doesn't exist yet</h1>
           <p>The link may be incorrect, or this content is still being built. Head back to study notes or search for what you need.</p>
           <div class="not-found-actions">
@@ -14318,7 +14318,7 @@ function render() {
   }
   else if (parts[0] === "contact") {
     content = renderContactPage();
-    meta = { title: "Contact Us", description: "Get in touch with Nursing Uganda — questions, corrections, partnerships or feedback." };
+    meta = { title: "Contact Us", description: "Get in touch with Nursing Uganda: questions, corrections, partnerships or feedback." };
   }
   else if (parts[0] === "login") {
     content = renderLoginPage();
@@ -14330,7 +14330,7 @@ function render() {
   }
   else if (parts[0] === "progress") {
     content = renderProgress();
-    meta = { title: "Study Dashboard", description: "Your personalised study dashboard — lessons done, quiz history, streak, activity heatmap and programme progress." };
+    meta = { title: "Study Dashboard", description: "Your personalised study dashboard: lessons done, quiz history, streak, activity heatmap and programme progress." };
   }
   else if (parts[0] === "mock-exams" && parts[1]) {
     const me = state.mockExam;
@@ -14356,7 +14356,7 @@ function render() {
   }
   else if (parts[0] === "community" && parts[1]) {
     content = renderCommunityQuestion();
-    meta = { title: (state.community.selectedQuestion?.title || "Question") + " — Community", description: "Nursing student Q&A — read and contribute answers." };
+    meta = { title: (state.community.selectedQuestion?.title || "Question") + ", Community", description: "Nursing student Q&A. Read and contribute answers." };
     if (!state.community.selectedQuestion || state.community.selectedQuestion.id !== parts[1]) {
       communityLoadQuestion(parts[1]);
     }
@@ -14489,7 +14489,7 @@ function render() {
       if (!unit) content = notFound();
       else if (parts[3] === "quiz") {
         content = renderUnitQuizPage(programme, unit);
-        meta = { title: `${lmsCourseTitle(programme, unit)} — Unit Quiz`, description: `Test your knowledge of ${lmsCourseTitle(programme, unit)} with a review quiz covering all lessons.` };
+        meta = { title: `${lmsCourseTitle(programme, unit)}, Unit Quiz`, description: `Test your knowledge of ${lmsCourseTitle(programme, unit)} with a review quiz covering all lessons.` };
       } else if (parts[3] === "topic") {
         const topic = findTopic(unit, parts[4], parts[5]);
         if (parts[6] === "quiz") {
@@ -14530,7 +14530,7 @@ function render() {
       }
     }
   } else {
-    // Unknown route — show branded 404 instead of silently rendering /notes
+    // Unknown route: show branded 404 instead of silently rendering /notes
     setDocumentMeta("404 – Page Not Found", "The page you requested does not exist on Nursing Uganda.");
     render404Page();
     return;
@@ -14765,13 +14765,13 @@ function render() {
         state.leaderboard = null; // reset so leaderboard refreshes next visit
         render();
         window.scrollTo({ top: 0, behavior: "smooth" });
-        // Send results email (non-blocking) — only auto-send for logged-in users
+        // Send results email (non-blocking): only auto-send for logged-in users
         if (state.currentUser?.email) {
           sendQuizResultsEmail(key).then((result) => {
             if (result?.ok) {
               showToast(`Results emailed to ${state.currentUser.email}`, "success");
             } else if (result?.mailto) {
-              // Edge function unavailable — nudge user to the manual button
+              // Edge function unavailable: nudge user to the manual button
               setTimeout(() => showToast("Auto-email unavailable. Use the 'Email Results' button to send results.", "info"), 1000);
             } else {
               console.info("[quiz] Email auto-send skipped (no quiz context or not logged in).");
@@ -14988,7 +14988,7 @@ function render() {
       render();
     });
   });
-  // Auto-advance — only start if the section exists (i.e. we're on /careers)
+  // Auto-advance: only start if the section exists (i.e. we're on /careers)
   if (app.querySelector("#careers-hero-section")) {
     clearTimeout(window._careerSlideTimer);
     window._careerSlideTimer = setTimeout(function advSlide() {
@@ -15088,7 +15088,7 @@ function render() {
       const id    = cb.dataset.clStep;
       const index = parseInt(cb.dataset.clStepIndex, 10);
       setChecklistStep(id, index, cb.checked);
-      // Live DOM update — avoid full re-render on every tick
+      // Live DOM update: avoid full re-render on every tick
       const stepLabel = cb.closest(".ct-cl-step");
       if (stepLabel) stepLabel.classList.toggle("checked", cb.checked);
       const cl = CLINICAL_CHECKLISTS.find(c => c.id === id);
@@ -15100,7 +15100,7 @@ function render() {
         const fillEl   = app.querySelector(".ct-cl-progress-fill");
         const lblEl    = app.querySelector(".ct-cl-progress-label");
         if (fillEl) { fillEl.style.width = pct + "%"; fillEl.classList.toggle("complete", done === total && total > 0); }
-        if (lblEl)  { lblEl.textContent = done + " / " + total + " steps" + (done === total && total > 0 ? " — complete!" : ""); }
+        if (lblEl)  { lblEl.textContent = done + " / " + total + " steps" + (done === total && total > 0 ? ". Complete!" : ""); }
       }
     });
   });
@@ -15423,13 +15423,13 @@ function render() {
         return;
       }
 
-      // Email confirmation required — show the "check your email" screen
+      // Email confirmation required: show the "check your email" screen
       if (result.emailConfirmationRequired) {
         render();
         return;
       }
 
-      // Success — redirect to intended page or /notes
+      // Success: redirect to intended page or /notes
       const intended = state.loginIntended && state.loginIntended !== "/login" ? state.loginIntended : "/notes";
       state.loginIntended = "";
       setRoute(intended);
@@ -15503,7 +15503,7 @@ function updateStreak() {
 function streakChip() {
   const streak = updateStreak();
   if (streak.count < 1) return "";
-  const label = streak.count === 1 ? "Day 1 streak — keep going!" : `${streak.count} day streak`;
+  const label = streak.count === 1 ? "Day 1 streak, keep going!" : `${streak.count} day streak`;
   return `<div class="streak-chip">${icon("flame")}<span>${escapeHtml(label)}</span></div>`;
 }
 
@@ -15602,7 +15602,7 @@ function showNotifPrompt() {
       const permission = await Notification.requestPermission();
       if (permission === "granted") {
         new Notification("Nursing Uganda", {
-          body: `Reminders on! You're on a ${getStreak().count}-day streak — keep it going!`,
+          body: `Reminders on! You're on a ${getStreak().count}-day streak, keep it going!`,
           icon: "/assets/images/nursing-uganda-favicon.svg"
         });
       }
@@ -15623,7 +15623,7 @@ function setupOfflineBanner() {
       if (!banner) {
         banner = document.createElement("div");
         banner.id = "nu-offline-banner";
-        banner.innerHTML = `${icon("wifi")}<span>You\'re offline — showing cached content</span>`;
+        banner.innerHTML = `${icon("wifi")}<span>You\'re offline: showing cached content</span>`;
         document.body.appendChild(banner);
         requestAnimationFrame(() => requestAnimationFrame(() => banner.classList.add("nu-offline-show")));
       }
@@ -15640,19 +15640,19 @@ function setupOfflineBanner() {
 /* ── Popups ────────────────────────────────────────────────────────── */
 
 const STUDY_TIPS = [
-  { tip: "Use the SQ3R method: Survey, Question, Read, Recite, Review — it boosts retention by up to 60%.", tag: "Study Skills" },
+  { tip: "Use the SQ3R method: Survey, Question, Read, Recite, Review. It boosts retention by up to 60%.", tag: "Study Skills" },
   { tip: "Review notes within 24 hours of a lecture. The Ebbinghaus curve shows you forget 70% within a day without review.", tag: "Memory" },
   { tip: "Spaced repetition beats cramming every time. Use the Flashcards section daily for 10 minutes.", tag: "Flashcards" },
   { tip: "When studying anatomy, draw the structure from memory before checking your notes.", tag: "Anatomy" },
-  { tip: "The ABCs of nursing assessment: Airway, Breathing, Circulation — always prioritise in that order.", tag: "Clinical" },
+  { tip: "The ABCs of nursing assessment: Airway, Breathing, Circulation, always prioritise in that order.", tag: "Clinical" },
   { tip: "Link pharmacology to pathophysiology. Understanding why a drug works helps you remember it far longer.", tag: "Pharmacology" },
   { tip: "Practice SBAR communication: Situation, Background, Assessment, Recommendation for clinical handovers.", tag: "Communication" },
   { tip: "Sleep consolidates memory. A 6–8 hour sleep the night before an exam is more valuable than an all-nighter.", tag: "Wellbeing" },
-  { tip: "Use mnemonics for lab values — e.g. ROME for acid-base: Respiratory Opposite, Metabolic Equal.", tag: "Labs" },
+  { tip: "Use mnemonics for lab values, e.g. ROME for acid-base: Respiratory Opposite, Metabolic Equal.", tag: "Labs" },
   { tip: "Normal adult pulse: 60–100 bpm. Normal respirations: 12–20/min. Normal BP: 90–120/60–80 mmHg.", tag: "Vitals" },
   { tip: "OLDCART helps you take a complete pain history: Onset, Location, Duration, Character, Aggravating, Relieving, Treatment.", tag: "Assessment" },
   { tip: "For IV fluid calculations: Volume (mL) ÷ Time (hours) = mL/hour. Master this formula early.", tag: "Calculations" },
-  { tip: "The five rights of medication administration: Right patient, Drug, Dose, Route, Time — check every single time.", tag: "Safety" },
+  { tip: "The five rights of medication administration: Right patient, Drug, Dose, Route, Time. Check every single time.", tag: "Safety" },
   { tip: "Teach-back is the gold standard for patient education. Ask 'Can you show me how you'd do this at home?'", tag: "Education" },
   { tip: "Read at least one nursing journal article each week. PubMed and CINAHL are great free-access resources.", tag: "Research" },
 ];
@@ -15739,13 +15739,13 @@ function initPopups() {
           <h2 id="nu-welcome-title">Welcome to Nursing Uganda</h2>
           <p class="nu-popup-sub">Your complete revision companion for nursing &amp; midwifery students.</p>
           <ul class="nu-popup-feature-list">
-            <li>${icon("bookOpen")}<span><strong>Study Notes</strong> — structured notes for every unit</span></li>
-            <li>${icon("sparkles")}<span><strong>Flashcards</strong> — spaced-repetition revision</span></li>
-            <li>${icon("search")}<span><strong>Dictionary</strong> — 500+ medical terms</span></li>
-            <li>${icon("chartBar")}<span><strong>Progress</strong> — track your learning</span></li>
+            <li>${icon("bookOpen")}<span><strong>Study Notes</strong>: structured notes for every unit</span></li>
+            <li>${icon("sparkles")}<span><strong>Flashcards</strong>: spaced-repetition revision</span></li>
+            <li>${icon("search")}<span><strong>Dictionary</strong>: 500+ medical terms</span></li>
+            <li>${icon("chartBar")}<span><strong>Progress</strong>: track your learning</span></li>
           </ul>
           <div class="nu-popup-email-capture">
-            <p class="nu-popup-email-label">${icon("mail")} Get weekly revision tips — free</p>
+            <p class="nu-popup-email-label">${icon("mail")} Get weekly revision tips: free</p>
             <form class="nu-popup-email-form" novalidate>
               <input type="email" class="nu-popup-email-input" placeholder="your@email.com" autocomplete="email" required>
               <button type="submit" class="button primary nu-popup-email-btn">Subscribe</button>
@@ -15820,7 +15820,7 @@ function initPopups() {
       el.className = "nu-popup-signin-bar";
       el.innerHTML = `
         <div class="nu-popup-signin-inner">
-          <span class="nu-popup-signin-text">${icon("sparkles")}<span>Sign up free — save progress, unlock flashcards &amp; more</span></span>
+          <span class="nu-popup-signin-text">${icon("sparkles")}<span>Sign up free: save progress, unlock flashcards &amp; more</span></span>
           <div class="nu-popup-signin-actions">
             <button class="button primary nu-popup-signin-btn" type="button" data-lp-signup>Create Free Account</button>
             <button class="nu-popup-signin-close" type="button" aria-label="Dismiss">${icon("x")}</button>
@@ -15952,7 +15952,7 @@ function initPopups() {
             fb.innerHTML = `${icon("checkCircle")}<span>Correct! Well done.</span>`;
             fb.className = "nu-popup-quiz-feedback nu-quiz-fb-correct";
           } else {
-            fb.innerHTML = `${icon("xCircle")}<span>Not quite — the answer is <strong>${q.options[q.answer]}</strong>.</span>`;
+            fb.innerHTML = `${icon("xCircle")}<span>Not quite: the answer is <strong>${q.options[q.answer]}</strong>.</span>`;
             fb.className = "nu-popup-quiz-feedback nu-quiz-fb-wrong";
           }
           el.querySelector(".nu-popup-quiz-actions").style.display = "";
@@ -16185,7 +16185,7 @@ function setupFlashcards() {
     });
   });
 
-  // SR: rate button handler — advance to next due card
+  // SR: rate button handler: advance to next due card
   app.querySelectorAll("[data-fc-rate]").forEach((btn) => {
     btn.addEventListener("click", () => {
       const id = btn.dataset.fcId;
@@ -16369,7 +16369,7 @@ function timerAdvancePhase() {
     showToast(`Focus session done! Time for a ${TIMER_PHASES[_timer.phaseIndex].label}.`, "success");
   } else {
     _timer.phaseIndex = 0;
-    showToast("Break over — back to focus!", "info");
+    showToast("Break over: back to focus!", "info");
   }
   const phase = TIMER_PHASES[_timer.phaseIndex];
   _timer.secondsLeft = phase.minutes * 60;
@@ -16466,7 +16466,7 @@ function setupStudyTimer() {
 async function init() {
   try {
 
-    // Curriculum is the minimum needed to render — load it first and paint immediately
+    // Curriculum is the minimum needed to render: load it first and paint immediately
     // Use root-relative path so it always resolves correctly regardless of current URL
     const response = await fetch("/assets/data/curriculum.json?v=108");
     if (!response.ok) throw new Error(`Could not load course content (${response.status}). Please refresh.`);
@@ -16527,7 +16527,7 @@ async function init() {
     setupStudyNotifications();
     setupStudyTimer();
 
-    // Remaining resources load in the background — re-render when images land
+    // Remaining resources load in the background: re-render when images land
     Promise.allSettled([
       fetch("/assets/data/topic-image-matches.json")
         .then((r) => r.ok ? r.json() : null)
@@ -16545,7 +16545,7 @@ async function init() {
   } catch (error) {
     app.innerHTML = `
       <div class="loading-screen loading-error">
-        <img src="assets/images/nursing-uganda-icon-light-transparent.png" style="width:56px;height:56px;object-fit:contain;opacity:.5" alt="" width="56" height="56">
+        <img src="assets/images/nursing-uganda-icon-mark.webp" style="width:56px;height:56px;object-fit:contain;opacity:.5" alt="" width="56" height="56">
         <strong class="loading-wordmark">Nursing Uganda</strong>
         <p class="load-error-msg">${escapeHtml(error.message)}</p>
         <button class="button primary" onclick="window.location.reload()">Try Again</button>
@@ -16554,7 +16554,7 @@ async function init() {
   }
 }
 
-// History API navigation — back/forward buttons
+// History API navigation: back/forward buttons
 window.addEventListener("popstate", () => {
   state.navOpen = false;
   state.megaOpen = "";
@@ -16572,7 +16572,7 @@ document.addEventListener("click", (e) => {
 
 document.addEventListener("click", analyticsTrackClickFromEvent, { capture: true });
 
-// Intercept all internal link clicks — no full page reloads
+// Intercept all internal link clicks: no full page reloads
 document.addEventListener("click", (event) => {
   const anchor = event.target.closest("a[href]");
   if (!anchor) return;
