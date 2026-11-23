@@ -1517,6 +1517,138 @@ img {
   }
 }
 
+/* ── Slide-Over Mobile Navigation Drawer ─────────────────── */
+.nu-mobile-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(28, 29, 31, 0.56);
+  backdrop-filter: blur(2px);
+  z-index: 200;
+  display: flex;
+  justify-content: flex-start;
+  animation: nuMobileFade 0.16s ease-out;
+}
+@keyframes nuMobileFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.nu-mobile-drawer {
+  width: min(340px, 86vw);
+  height: 100%;
+  background: #ffffff;
+  box-shadow: 8px 0 32px rgba(0, 0, 0, 0.22);
+  display: flex;
+  flex-direction: column;
+  animation: nuMobileSlide 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes nuMobileSlide {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+.nu-mobile-drawer-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--nu-border-light);
+}
+.nu-mobile-close-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  border: 1px solid var(--nu-border-light);
+  background: var(--nu-bg-subtle);
+  color: var(--nu-ink);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.nu-mobile-account-box {
+  padding: 14px 16px;
+  background: var(--nu-bg-subtle);
+  border-bottom: 1px solid var(--nu-border-light);
+}
+.nu-mobile-user-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.nu-mobile-auth-cta {
+  display: flex;
+  gap: 8px;
+}
+.nu-mobile-drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 12px 24px;
+}
+.nu-mobile-sec-title {
+  padding: 6px 8px 4px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--nu-ink-muted);
+}
+.nu-mobile-link {
+  width: 100%;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: var(--nu-radius-xs);
+  border: 0;
+  background: transparent;
+  color: var(--nu-ink);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+}
+.nu-mobile-link:hover,
+.nu-mobile-prog-btn.open {
+  background: var(--nu-purple-soft);
+  color: var(--nu-purple);
+  font-weight: 600;
+}
+.nu-mobile-link-left {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.nu-mobile-link-left span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.nu-mobile-sublist {
+  margin: 2px 0 8px 18px;
+  padding-left: 12px;
+  border-left: 2px solid var(--nu-purple-border);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.nu-mobile-sublink {
+  display: block;
+  padding: 8px 6px;
+  font-size: 0.83rem;
+  color: var(--nu-ink);
+  line-height: 1.35;
+}
+.nu-mobile-sublink:hover {
+  color: var(--nu-purple);
+}
+.nu-mobile-drawer-foot {
+  padding: 12px 16px;
+  border-top: 1px solid var(--nu-border-light);
+  background: #ffffff;
+}
+
 /* ── Clean PDF Print Mode for Free eBooks ─────────────────── */
 @media print {
   .nu-header,

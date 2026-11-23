@@ -30,6 +30,7 @@ export default function Navbar() {
   const [megaOpen, setMegaOpen] = useState(false);
   const [activeProgId, setActiveProgId] = useState("certificate-in-nursing");
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileProgExpanded, setMobileProgExpanded] = useState("");
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [searchFocused, setSearchFocused] = useState(false);
@@ -46,13 +47,22 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    if (!megaOpen) return undefined;
+    if (!megaOpen && !mobileOpen) return undefined;
     const onKey = (e) => {
-      if (e.key === "Escape") setMegaOpen(false);
+      if (e.key === "Escape") {
+        setMegaOpen(false);
+        setMobileOpen(false);
+      }
     };
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [megaOpen]);
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    }
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [megaOpen, mobileOpen]);
 
   const programmes = catalog?.programmes || [];
   const courses = catalog?.courses || [];
@@ -494,27 +504,219 @@ export default function Navbar() {
         </div>
 
         {mobileOpen && (
-          <div
-            style={{
-              background: "#fff",
-              borderTop: "1px solid var(--nu-border-light)",
-              padding: "12px 24px 18px",
-              display: "grid",
-              gap: 10
-            }}
-          >
-            <Link to="/courses" onClick={() => setMobileOpen(false)}>All Courses (95 Units)</Link>
-            <Link to="/ebooks" onClick={() => setMobileOpen(false)}>Free Referenced eBooks</Link>
-            <Link to="/mock-exams" onClick={() => setMobileOpen(false)}>UNMEB Mock Exams</Link>
-            <Link to="/dictionary" onClick={() => setMobileOpen(false)}>Medical Dictionary</Link>
-            <Link to="/clinical-tools" onClick={() => setMobileOpen(false)}>Clinical Tools &amp; Calculators</Link>
-            <Link to="/instruments" onClick={() => setMobileOpen(false)}>Instrument Atlas</Link>
-            <Link to="/my-learning" onClick={() => setMobileOpen(false)}>My Learning</Link>
-            {!user && (
-              <Link to="/login" onClick={() => setMobileOpen(false)} style={{ color: "var(--nu-purple)", fontWeight: 700 }}>
-                Log in / Create Free Account
-              </Link>
-            )}
+          <div className="nu-mobile-overlay" onClick={() => setMobileOpen(false)}>
+            <nav
+              className="nu-mobile-drawer"
+              aria-label="Mobile navigation"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Drawer Header */}
+              <div className="nu-mobile-drawer-head">
+                <Link to="/" onClick={() => setMobileOpen(false)} style={{ display: "inline-flex", alignItems: "center" }}>
+                  <img src={logoSrc} alt="Nursing Uganda" style={{ height: 34, width: "auto", display: "block" }} />
+                </Link>
+                <button
+                  type="button"
+                  className="nu-mobile-close-btn"
+                  aria-label="Close navigation menu"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  <X size={20} />
+                </button>
+              </div>
+
+              {/* Account Banner */}
+              <div className="nu-mobile-account-box">
+                {user ? (
+                  <div className="nu-mobile-user-row">
+                    <div className="nu-dash-avatar">{user.initials}</div>
+                    <div style={{ minWidth: 0, flex: 1 }}>
+                      <strong style={{ display: "block", fontSize: "0.92rem", color: "var(--nu-ink)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                        {user.name}
+                      </strong>
+                      <small style={{ display: "block", fontSize: "0.78rem", color: "var(--nu-ink-muted)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                        {user.email}
+                      </small>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="nu-mobile-auth-cta">
+                    <Link
+                      to="/login"
+                      className="nu-btn nu-btn-primary"
+                      style={{ flex: 1, fontSize: "0.86rem", padding: "9px 12px" }}
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      Log in / Google
+                    </Link>
+                    <Link
+                      to="/login?mode=signup"
+                      className="nu-btn nu-btn-outline"
+                      style={{ flex: 1, fontSize: "0.86rem", padding: "9px 12px" }}
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      Sign up
+                    </Link>
+                  </div>
+                )}
+              </div>
+
+              <div className="nu-mobile-drawer-body">
+                {/* Primary Study Navigation */}
+                <div className="nu-mobile-sec-title">Learn &amp; Dashboard</div>
+                <Link to="/my-learning" className="nu-mobile-link" onClick={() => setMobileOpen(false)}>
+                  <span className="nu-mobile-link-left">
+                    <BookOpen size={17} color="#A137F2" />
+                    <span>My Learning Dashboard</span>
+                  </span>
+                  {enrollments.length > 0 && <span className="nu-mega-count">{enrollments.length}</span>}
+                </Link>
+                {user?.isAdmin && (
+                  <Link to="/admin" className="nu-mobile-link" style={{ color: "var(--nu-purple)", fontWeight: 700 }} onClick={() => setMobileOpen(false)}>
+                    <span className="nu-mobile-link-left">
+                      <Award size={17} color="#A137F2" />
+                      <span>Owner Admin Panel</span>
+                    </span>
+                    <ChevronRight size={16} />
+                  </Link>
+                )}
+                <Link to="/courses" className="nu-mobile-link" onClick={() => setMobileOpen(false)}>
+                  <span className="nu-mobile-link-left">
+                    <GraduationCap size={17} />
+                    <span>All Course Units</span>
+                  </span>
+                  <span className="nu-mega-count">{courses.length || 95}</span>
+                </Link>
+                <Link to="/ebooks" className="nu-mobile-link" onClick={() => setMobileOpen(false)}>
+                  <span className="nu-mobile-link-left">
+                    <BookOpen size={17} color="#065F46" />
+                    <span>Free Referenced eBooks</span>
+                  </span>
+                  <span className="nu-mega-count">8</span>
+                </Link>
+                <Link to="/mock-exams" className="nu-mobile-link" onClick={() => setMobileOpen(false)}>
+                  <span className="nu-mobile-link-left">
+                    <Award size={17} />
+                    <span>UNMEB Mock Exams</span>
+                  </span>
+                  <ChevronRight size={16} />
+                </Link>
+                <Link to="/cart" className="nu-mobile-link" onClick={() => setMobileOpen(false)}>
+                  <span className="nu-mobile-link-left">
+                    <ShoppingCart size={17} />
+                    <span>Shopping Cart</span>
+                  </span>
+                  {cart.length > 0 && <span className="nu-mega-count">{cart.length}</span>}
+                </Link>
+
+                {/* Expandable Programmes */}
+                <div className="nu-mobile-sec-title" style={{ marginTop: 14 }}>
+                  Academic Programmes ({programmes.length})
+                </div>
+                {programmes.map((p) => {
+                  const isExp = mobileProgExpanded === p.id;
+                  const isMidwifery = p.id.includes("midwifery");
+                  const progCourses = courses.filter((c) => c.programmeId === p.id).slice(0, 5);
+                  return (
+                    <div key={p.id} className="nu-mobile-prog-group">
+                      <button
+                        type="button"
+                        className={`nu-mobile-link nu-mobile-prog-btn ${isExp ? "open" : ""}`}
+                        onClick={() => setMobileProgExpanded(isExp ? "" : p.id)}
+                        aria-expanded={isExp}
+                      >
+                        <span className="nu-mobile-link-left">
+                          {isMidwifery ? <HeartPulse size={17} color="#A137F2" /> : <GraduationCap size={17} />}
+                          <span>{p.label}</span>
+                        </span>
+                        <span className="nu-mega-item-right">
+                          <span className="nu-mega-count">{p.courseCount}</span>
+                          <ChevronDown size={15} style={{ transform: isExp ? "rotate(180deg)" : "none", transition: "transform 0.15s" }} />
+                        </span>
+                      </button>
+
+                      {isExp && (
+                        <div className="nu-mobile-sublist">
+                          {progCourses.map((c) => (
+                            <Link
+                              key={c.slug}
+                              to={`/course/${c.slug}`}
+                              className="nu-mobile-sublink"
+                              onClick={() => setMobileOpen(false)}
+                            >
+                              {c.code ? <strong>{c.code} · </strong> : null}
+                              {c.title}
+                            </Link>
+                          ))}
+                          <Link
+                            to={`/courses?programme=${encodeURIComponent(p.id)}`}
+                            className="nu-mobile-sublink"
+                            style={{ color: "var(--nu-purple)", fontWeight: 700 }}
+                            onClick={() => setMobileOpen(false)}
+                          >
+                            View all {p.courseCount} units →
+                          </Link>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+
+                {/* Clinical Tools & References */}
+                <div className="nu-mobile-sec-title" style={{ marginTop: 14 }}>
+                  Clinical Tools &amp; References
+                </div>
+                <Link to="/dictionary" className="nu-mobile-link" onClick={() => setMobileOpen(false)}>
+                  <span className="nu-mobile-link-left">
+                    <FileText size={17} />
+                    <span>Medical Dictionary</span>
+                  </span>
+                  <ChevronRight size={16} />
+                </Link>
+                <Link to="/instruments" className="nu-mobile-link" onClick={() => setMobileOpen(false)}>
+                  <span className="nu-mobile-link-left">
+                    <Stethoscope size={17} />
+                    <span>Medical Instrument Atlas</span>
+                  </span>
+                  <ChevronRight size={16} />
+                </Link>
+                <Link to="/clinical-tools" className="nu-mobile-link" onClick={() => setMobileOpen(false)}>
+                  <span className="nu-mobile-link-left">
+                    <Wrench size={17} />
+                    <span>Dosage &amp; Clinical Tools</span>
+                  </span>
+                  <ChevronRight size={16} />
+                </Link>
+                <Link to="/brand-kit" className="nu-mobile-link" onClick={() => setMobileOpen(false)}>
+                  <span className="nu-mobile-link-left">
+                    <Sparkles size={17} />
+                    <span>NU BrandKit</span>
+                  </span>
+                  <ChevronRight size={16} />
+                </Link>
+              </div>
+
+              {/* Drawer Footer */}
+              <div className="nu-mobile-drawer-foot">
+                {user ? (
+                  <button
+                    type="button"
+                    className="nu-btn nu-btn-outline"
+                    style={{ width: "100%", color: "var(--nu-danger)", borderColor: "#fecaca" }}
+                    onClick={() => {
+                      setMobileOpen(false);
+                      logout();
+                    }}
+                  >
+                    <LogOut size={16} /> Log out
+                  </button>
+                ) : (
+                  <small style={{ color: "var(--nu-ink-muted)", display: "block", textAlign: "center" }}>
+                    UNMEB &amp; UNMC Aligned · Nursing Uganda
+                  </small>
+                )}
+              </div>
+            </nav>
           </div>
         )}
       </header>
