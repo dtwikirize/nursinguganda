@@ -1,5 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Check, Sparkles } from "lucide-react";
+import v1Svg from "../../assets/images/brand/nu-variant-1.svg";
+import v1Png32 from "../../assets/images/brand/nu-variant-1-32.png";
+import v1Png192 from "../../assets/images/brand/nu-variant-1-192.png";
+import v2Svg from "../../assets/images/brand/nu-variant-2.svg";
+import v2Png32 from "../../assets/images/brand/nu-variant-2-32.png";
+import v2Png192 from "../../assets/images/brand/nu-variant-2-192.png";
+import v3Svg from "../../assets/images/brand/nu-variant-3.svg";
+import v3Png32 from "../../assets/images/brand/nu-variant-3-32.png";
+import v3Png192 from "../../assets/images/brand/nu-variant-3-192.png";
+import v4Svg from "../../assets/images/brand/nu-variant-4.svg";
+import v4Png32 from "../../assets/images/brand/nu-variant-4-32.png";
+import v4Png192 from "../../assets/images/brand/nu-variant-4-192.png";
 
 const VARIANTS = [
   {
@@ -7,36 +19,36 @@ const VARIANTS = [
     name: "Variant 1 — Shared-Stem Ligature",
     tagline: "Continuous sculpted NU ribbon sharing one central spine across the Charcoal & Purple split.",
     bestFor: "Primary App Icon, Favicon & Header Mark",
-    svg: "/assets/images/brand/nu-variant-1.svg",
-    png32: "/assets/images/brand/nu-variant-1-32.png",
-    png192: "/assets/images/brand/nu-variant-1-192.png"
+    svg: v1Svg,
+    png32: v1Png32,
+    png192: v1Png192
   },
   {
     id: 2,
     name: "Variant 2 — Diagonal Slash Split",
     tagline: "Dynamic 18° architectural angle separating Charcoal and Royal Purple right between N and U.",
     bestFor: "Modern SaaS Header, Hero & Certificates",
-    svg: "/assets/images/brand/nu-variant-2.svg",
-    png32: "/assets/images/brand/nu-variant-2-32.png",
-    png192: "/assets/images/brand/nu-variant-2-192.png"
+    svg: v2Svg,
+    png32: v2Png32,
+    png192: v2Png192
   },
   {
     id: 3,
     name: "Variant 3 — Interlocked Minimalist NU",
     tagline: "Deep charcoal squircle with white N interlocking cleanly behind a glowing purple U.",
     bestFor: "Dark Player Bar, Mobile App & Browser Favicon",
-    svg: "/assets/images/brand/nu-variant-3.svg",
-    png32: "/assets/images/brand/nu-variant-3-32.png",
-    png192: "/assets/images/brand/nu-variant-3-192.png"
+    svg: v3Svg,
+    png32: v3Png32,
+    png192: v3Png192
   },
   {
     id: 4,
     name: "Variant 4 — Precision Split-Cut",
-    tagline: "Refined Charcoal/Purple split badge with razor-sharp negative-space seam separating N and U.",
+    tagline: "Refined Charcoal/Purple split badge with razor-sharp center spacing separating N and U.",
     bestFor: "Ultra-crisp 16px Tab Favicon & Compact Badges",
-    svg: "/assets/images/brand/nu-variant-4.svg",
-    png32: "/assets/images/brand/nu-variant-4-32.png",
-    png192: "/assets/images/brand/nu-variant-4-192.png"
+    svg: v4Svg,
+    png32: v4Png32,
+    png192: v4Png192
   }
 ];
 
@@ -52,14 +64,10 @@ const PALETTE = [
 ];
 
 export default function BrandKitPage() {
-  const [activeId, setActiveId] = useState(() => {
-    const saved = localStorage.getItem("nu.brandVariant");
-    return saved ? Number(saved) : 3;
-  });
+  const [activeId, setActiveId] = useState(3);
 
   const applyVariant = (v) => {
     setActiveId(v.id);
-    localStorage.setItem("nu.brandVariant", String(v.id));
     // Live-swap favicons and navbar logo in DOM
     document.querySelectorAll('link[rel="icon"]').forEach((el) => {
       el.setAttribute("href", v.png32);
@@ -134,10 +142,14 @@ export default function BrandKitPage() {
                       <span>Nursing Uganda</span>
                     </div>
 
-                    <div style={{ display: "inline-flex", alignItems: "center", gap: 8, fontWeight: 800, fontSize: "0.95rem" }}>
-                      <img src={v.svg} alt="" style={{ width: 28, height: 28 }} />
-                      <span>
-                        Nursing<em style={{ fontStyle: "normal", color: "var(--nu-purple)" }}>Uganda</em>
+                    <div style={{ display: "inline-flex", alignItems: "center", gap: 9 }}>
+                      <img src={v.svg} alt="" style={{ width: 32, height: 32 }} />
+                      <span className="nu-wordmark-stack">
+                        <span className="nu-wordmark-top" style={{ fontSize: "0.98rem" }}>Nursing</span>
+                        <span className="nu-wordmark-sub">
+                          <span className="nu-wordmark-rule" />
+                          <span className="nu-wordmark-ug">UG</span>
+                        </span>
                       </span>
                     </div>
                   </div>

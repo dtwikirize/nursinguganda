@@ -8,13 +8,19 @@ export default function Footer() {
       <div className="nu-container">
         <div className="nu-footer-grid">
           <div>
-            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
               <img
                 src={nuLogo}
-                alt="Nursing Uganda NU"
-                style={{ width: 34, height: 34, objectFit: "contain" }}
+                alt="NU"
+                style={{ width: 38, height: 38, objectFit: "contain" }}
               />
-              <strong style={{ fontSize: "1.1rem" }}>Nursing Uganda</strong>
+              <span className="nu-wordmark-stack nu-wordmark-stack--dark">
+                <span className="nu-wordmark-top">Nursing</span>
+                <span className="nu-wordmark-sub">
+                  <span className="nu-wordmark-rule" />
+                  <span className="nu-wordmark-ug">UG</span>
+                </span>
+              </span>
             </div>
             <p style={{ color: "#cbd5e1", fontSize: "0.875rem", margin: 0, maxWidth: 320 }}>
               Authoritative nursing and midwifery courses, referenced free study eBooks, and UNMEB exam prep tailored for Ugandan and East African learners.

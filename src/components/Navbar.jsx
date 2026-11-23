@@ -77,13 +77,14 @@ export default function Navbar() {
 
       <header className="nu-header">
         <div className="nu-nav-inner">
-          <Link to="/" className="nu-logo">
-            <img
-              src={nuLogo}
-              alt="Nursing Uganda NU"
-            />
-            <span>
-              Nursing<em>Uganda</em>
+          <Link to="/" className="nu-logo" aria-label="Nursing Uganda Home">
+            <img src={nuLogo} alt="NU" />
+            <span className="nu-wordmark-stack">
+              <span className="nu-wordmark-top">Nursing</span>
+              <span className="nu-wordmark-sub">
+                <span className="nu-wordmark-rule" />
+                <span className="nu-wordmark-ug">UG</span>
+              </span>
             </span>
           </Link>
 
