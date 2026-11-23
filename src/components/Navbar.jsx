@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   BookOpen,
@@ -11,7 +11,8 @@ import {
   X
 } from "lucide-react";
 import { useApp } from "../context/AppContext";
-import nuLogo from "../../assets/images/brand/nu-variant-3.svg";
+import nuLogoUganda from "../../assets/images/brand/nursing-uganda-logo-light.svg";
+import nuLogoUg from "../../assets/images/brand/nursing-ug-logo-light.svg";
 
 export default function Navbar() {
   const { catalog, user, cart, enrollments, logout } = useApp();
@@ -24,6 +25,17 @@ export default function Navbar() {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [searchFocused, setSearchFocused] = useState(false);
+  const [logoSrc, setLogoSrc] = useState(nuLogoUganda);
+
+  useEffect(() => {
+    const handler = (e) => {
+      if (e.detail?.logoLightSvg) {
+        setLogoSrc(e.detail.logoLightSvg);
+      }
+    };
+    window.addEventListener("nu-brand-change", handler);
+    return () => window.removeEventListener("nu-brand-change", handler);
+  }, []);
 
   const programmes = catalog?.programmes || [];
   const courses = catalog?.courses || [];
@@ -78,14 +90,7 @@ export default function Navbar() {
       <header className="nu-header">
         <div className="nu-nav-inner">
           <Link to="/" className="nu-logo" aria-label="Nursing Uganda Home">
-            <img src={nuLogo} alt="NU" />
-            <span className="nu-wordmark-stack">
-              <span className="nu-wordmark-top">Nursing</span>
-              <span className="nu-wordmark-sub">
-                <span className="nu-wordmark-rule" />
-                <span className="nu-wordmark-ug">UG</span>
-              </span>
-            </span>
+            <img src={logoSrc} alt="Nursing Uganda" className="nu-logo-img" />
           </Link>
 
           {/* Explore Mega Menu */}

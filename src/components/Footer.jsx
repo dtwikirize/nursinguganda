@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import nuLogo from "../../assets/images/brand/nu-variant-3.svg";
+import nuLogoDark from "../../assets/images/brand/nursing-uganda-logo-dark.svg";
 
 export default function Footer() {
   return (
@@ -8,20 +8,13 @@ export default function Footer() {
       <div className="nu-container">
         <div className="nu-footer-grid">
           <div>
-            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
+            <Link to="/" style={{ display: "inline-block", textDecoration: "none", marginBottom: 14 }} aria-label="Nursing Uganda Home">
               <img
-                src={nuLogo}
-                alt="NU"
-                style={{ width: 38, height: 38, objectFit: "contain" }}
+                src={nuLogoDark}
+                alt="Nursing Uganda"
+                style={{ height: 42, width: "auto", display: "block" }}
               />
-              <span className="nu-wordmark-stack nu-wordmark-stack--dark">
-                <span className="nu-wordmark-top">Nursing</span>
-                <span className="nu-wordmark-sub">
-                  <span className="nu-wordmark-rule" />
-                  <span className="nu-wordmark-ug">UG</span>
-                </span>
-              </span>
-            </div>
+            </Link>
             <p style={{ color: "#cbd5e1", fontSize: "0.875rem", margin: 0, maxWidth: 320 }}>
               Authoritative nursing and midwifery courses, referenced free study eBooks, and UNMEB exam prep tailored for Ugandan and East African learners.
             </p>

@@ -94,50 +94,70 @@ img {
   white-space: nowrap;
   text-decoration: none;
 }
-.nu-logo img {
-  width: 38px;
-  height: 38px;
+.nu-logo-img {
+  height: 44px;
+  width: auto;
+  max-width: 190px;
   object-fit: contain;
+  display: block;
+}
+@media (max-width: 860px) {
+  .nu-logo-img {
+    height: 36px;
+    max-width: 155px;
+  }
+}
+@media (max-width: 480px) {
+  .nu-logo-img {
+    height: 32px;
+    max-width: 140px;
+  }
+}
+
+/* ── Stacked Logo (BrandKit Specification) ── */
+.nug-logo {
+  --nug-ink: #1C1D1F;
+  --nug-accent: #A137F2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.325em;
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-size: 32px;
+  line-height: 1;
+  text-decoration: none;
+}
+.nug-logo--dark {
+  --nug-ink: #FFFFFF;
+  --nug-accent: #B36AFA;
+}
+.nug-logo__icon {
+  width: 1.425em;
+  height: 1.425em;
+  display: block;
   flex-shrink: 0;
 }
-.nu-wordmark-stack {
-  display: inline-flex;
-  flex-direction: column;
-  line-height: 1;
-}
-.nu-wordmark-top {
-  font-size: 1.12rem;
-  font-weight: 800;
-  letter-spacing: -0.035em;
-  color: var(--nu-ink);
-}
-.nu-wordmark-sub {
+.nug-logo__text {
   display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 3px;
+  flex-direction: column;
+  gap: 0.175em;
 }
-.nu-wordmark-rule {
-  flex: 1;
-  height: 2.5px;
-  border-radius: 99px;
-  background: linear-gradient(90deg, var(--nu-ink) 0%, var(--nu-purple) 100%);
+.nug-logo__name {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--nug-ink);
 }
-.nu-wordmark-ug {
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-  color: #ffffff;
-  background: var(--nu-purple);
-  padding: 2px 6px 2px 7px;
-  border-radius: 3px;
-  line-height: 1.1;
+.nug-logo__country {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0.05em;
+  font-weight: 600;
+  font-size: 0.3em;
+  color: var(--nug-accent);
 }
-.nu-wordmark-stack--dark .nu-wordmark-top {
-  color: #ffffff;
-}
-.nu-wordmark-stack--dark .nu-wordmark-rule {
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.35) 0%, #c084fc 100%);
+@media (max-width: 600px) {
+  .nug-logo {
+    font-size: 26px;
+  }
 }
 
 .nu-explore-wrap {

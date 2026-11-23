@@ -1,8 +1,15 @@
 :root {
+  /* BrandKit Official System — Nursing Uganda */
+  --nug-ink: #1c1d1f;
+  --nug-accent: #a137f2;
+  --nug-lavender: #b36afa;
+  --nug-cream: #eceb98;
+  --nu-font-brand: "Poppins", system-ui, sans-serif;
+
   /* Udemy-Inspired Visual System — Nursing Uganda */
-  --nu-purple: #a435f0;
+  --nu-purple: #a137f2;
   --nu-purple-hover: #8710d8;
-  --nu-purple-soft: #f5ecfe;
+  --nu-purple-soft: #f7edff;
   --nu-purple-border: #d8b4fe;
 
   --nu-ink: #1c1d1f;

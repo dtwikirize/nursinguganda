@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nursing Uganda — header logo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  /* Stacked Uganda logo. Change .nug-logo font-size to resize everything:
+     40px = desktop header (as designed), 30px works well on mobile. */
+  .nug-logo {
+    --nug-ink: #1C1D1F;
+    --nug-accent: #A137F2;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.325em;
+    font-family: 'Poppins', system-ui, sans-serif;
+    font-size: 40px;
+    line-height: 1;
+    text-decoration: none;
+  }
+  .nug-logo--dark { --nug-ink: #FFFFFF; --nug-accent: #B36AFA; }
+  .nug-logo__icon { width: 1.425em; height: 1.425em; display: block; }
+  .nug-logo__text { display: flex; flex-direction: column; gap: 0.175em; }
+  .nug-logo__name { font-weight: 700; letter-spacing: -0.02em; color: var(--nug-ink); }
+  .nug-logo__country {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0.05em;
+    font-weight: 600;
+    font-size: 0.3em;
+    color: var(--nug-accent);
+  }
+  @media (max-width: 600px) { .nug-logo { font-size: 30px; } }
+</style>
+</head>
+<body style="margin: 0; padding: 32px; font-family: system-ui, sans-serif">
+
+  <!-- Copy from here ... -->
+  <a class="nug-logo" href="/" aria-label="Nursing Uganda, home">
+    <img class="nug-logo__icon" src="nursing-ug-icon.png" alt="">
+    <span class="nug-logo__text" aria-hidden="true">
+      <span class="nug-logo__name">Nursing</span>
+      <span class="nug-logo__country"><span>U</span><span>G</span><span>A</span><span>N</span><span>D</span><span>A</span></span>
+    </span>
+  </a>
+  <!-- ... to here. Replace nursing-ug-icon.png with your original icon file. -->
+
+  <div style="margin-top: 32px; padding: 32px; background: #111214; border-radius: 12px">
+    <a class="nug-logo nug-logo--dark" href="/" aria-label="Nursing Uganda, home">
+      <img class="nug-logo__icon" src="nursing-ug-icon.png" alt="">
+      <span class="nug-logo__text" aria-hidden="true">
+        <span class="nug-logo__name">Nursing</span>
+        <span class="nug-logo__country"><span>U</span><span>G</span><span>A</span><span>N</span><span>D</span><span>A</span></span>
+      </span>
+    </a>
+  </div>
+
+</body>
+</html>
