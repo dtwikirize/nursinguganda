@@ -1,4 +1,5 @@
 const crypto = require("node:crypto");
+const fs = require("node:fs");
 const express = require("express");
 
 let mysql = null;
@@ -87,7 +88,7 @@ async function getPool() {
   if (!cfg.database || !cfg.user) return null;
 
   if (!_pool) {
-    _pool = mysql.createPool({
+    const poolOpts = {
       host: cfg.host,
       port: cfg.port,
       user: cfg.user,
@@ -95,7 +96,21 @@ async function getPool() {
       database: cfg.database,
       waitForConnections: true,
       connectionLimit: 10
-    });
+    };
+    if (cfg.host === "localhost") {
+      const sock = [
+        process.env.DB_SOCKET,
+        "/var/lib/mysql/mysql.sock",
+        "/run/mysqld/mysqld.sock",
+        "/tmp/mysql.sock"
+      ].find((p) => p && fs.existsSync(p));
+      if (sock) {
+        poolOpts.socketPath = sock;
+        delete poolOpts.host;
+        delete poolOpts.port;
+      }
+    }
+    _pool = mysql.createPool(poolOpts);
   }
 
   if (!_schemaReady) {
