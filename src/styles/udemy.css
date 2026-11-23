@@ -1382,6 +1382,141 @@ img {
   }
 }
 
+/* ── Learner Dashboard & Admin Sidebar Layout ──────────────── */
+.nu-dash-layout {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 24px;
+  padding-top: 28px;
+  padding-bottom: 48px;
+  align-items: start;
+}
+.nu-dash-sidebar {
+  background: #ffffff;
+  border: 1px solid var(--nu-border);
+  border-radius: var(--nu-radius-sm);
+  padding: 16px;
+  position: sticky;
+  top: 90px;
+}
+.nu-dash-sidebar-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 14px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--nu-border-light);
+}
+.nu-dash-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: var(--nu-ink);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.nu-dash-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.nu-dash-nav-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: var(--nu-radius-xs);
+  background: transparent;
+  color: var(--nu-ink);
+  font-size: 0.88rem;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+}
+.nu-dash-nav-btn:hover {
+  background: var(--nu-bg-subtle);
+  color: var(--nu-purple);
+}
+.nu-dash-nav-btn.active {
+  background: var(--nu-purple-soft);
+  color: var(--nu-purple);
+  font-weight: 700;
+}
+.nu-dash-main {
+  min-width: 0;
+}
+.nu-admin-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 16px;
+}
+.nu-admin-kpi {
+  background: #ffffff;
+  border: 1px solid var(--nu-border);
+  border-radius: var(--nu-radius-sm);
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.nu-admin-kpi small {
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--nu-ink-muted);
+}
+.nu-admin-kpi strong {
+  font-size: 1.65rem;
+  color: var(--nu-ink);
+  line-height: 1.2;
+}
+.nu-admin-kpi span {
+  font-size: 0.78rem;
+  color: var(--nu-ink-muted);
+}
+.nu-admin-card {
+  background: #ffffff;
+  border: 1px solid var(--nu-border);
+  border-radius: var(--nu-radius-sm);
+  padding: 20px;
+}
+.nu-admin-table-wrap {
+  overflow-x: auto;
+}
+.nu-admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.84rem;
+}
+.nu-admin-table th,
+.nu-admin-table td {
+  text-align: left;
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--nu-border-light);
+  white-space: nowrap;
+}
+.nu-admin-table th {
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  color: var(--nu-ink-muted);
+  background: var(--nu-bg-subtle);
+}
+@media (max-width: 900px) {
+  .nu-dash-layout {
+    grid-template-columns: 1fr;
+  }
+  .nu-dash-sidebar {
+    position: static;
+  }
+}
+
 /* ── Clean PDF Print Mode for Free eBooks ─────────────────── */
 @media print {
   .nu-header,

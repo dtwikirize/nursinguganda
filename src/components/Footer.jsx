@@ -1,8 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import nuLogoDark from "../../assets/images/brand/nursing-uganda-logo-dark.svg";
 
 export default function Footer() {
+  const [subEmail, setSubEmail] = useState("");
+  const [subMsg, setSubMsg] = useState("");
+  const [subLoading, setSubLoading] = useState(false);
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    if (!subEmail.trim()) return;
+    setSubLoading(true);
+    setSubMsg("");
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: subEmail.trim(), source: "footer" })
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setSubMsg(data.error || "Enter a valid email.");
+      } else {
+        setSubMsg("Subscribed! Check your inbox for confirmation.");
+        setSubEmail("");
+      }
+    } catch {
+      setSubMsg("Could not subscribe right now.");
+    }
+    setSubLoading(false);
+  };
+
   return (
     <footer className="nu-footer nu-no-print">
       <div className="nu-container">
@@ -15,9 +43,29 @@ export default function Footer() {
                 style={{ height: 42, width: "auto", display: "block" }}
               />
             </Link>
-            <p style={{ color: "#cbd5e1", fontSize: "0.875rem", margin: 0, maxWidth: 320 }}>
+            <p style={{ color: "#cbd5e1", fontSize: "0.875rem", margin: "0 0 14px", maxWidth: 320 }}>
               Authoritative nursing and midwifery courses, referenced free study eBooks, and UNMEB exam prep tailored for Ugandan and East African learners.
             </p>
+            <form onSubmit={handleSubscribe} style={{ display: "flex", gap: 6, maxWidth: 320 }}>
+              <input
+                type="email"
+                required
+                value={subEmail}
+                onChange={(e) => setSubEmail(e.target.value)}
+                placeholder="Weekly UNMEB digest email..."
+                aria-label="Weekly UNMEB digest email"
+                style={{ flex: 1, height: 36, padding: "0 10px", borderRadius: 4, border: "1px solid #475569", background: "#2D2F31", color: "#fff", fontSize: "0.82rem" }}
+              />
+              <button
+                type="submit"
+                disabled={subLoading}
+                className="nu-btn nu-btn-primary"
+                style={{ height: 36, padding: "0 12px", fontSize: "0.8rem" }}
+              >
+                {subLoading ? "..." : "Join"}
+              </button>
+            </form>
+            {subMsg && <small style={{ display: "block", marginTop: 6, color: "#B36AFA" }}>{subMsg}</small>}
           </div>
 
           <div>

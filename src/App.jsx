@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+import AdminPage from "./pages/AdminPage";
 import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import ClinicalToolsPage from "./pages/ClinicalToolsPage";
@@ -22,6 +23,18 @@ import TrustPage from "./pages/TrustPage";
 export default function App() {
   const location = useLocation();
   const isPlayer = location.pathname.startsWith("/learn/");
+
+  useEffect(() => {
+    if (location.pathname.startsWith("/admin")) return;
+    fetch("/api/track", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        path: location.pathname,
+        referrer: document.referrer || ""
+      })
+    }).catch(() => {});
+  }, [location.pathname]);
 
   return (
     <>
@@ -45,6 +58,7 @@ export default function App() {
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/my-learning" element={<MyLearningPage />} />
+        <Route path="/admin" element={<AdminPage />} />
 
         <Route path="/about" element={<TrustPage pageKey="about" />} />
         <Route path="/brand-kit" element={<BrandKitPage />} />

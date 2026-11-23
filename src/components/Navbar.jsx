@@ -439,6 +439,17 @@ export default function Navbar() {
                       <BookOpen size={14} style={{ display: "inline", marginRight: 6 }} />
                       My Learning
                     </Link>
+                    {user.isAdmin && (
+                      <Link
+                        to="/admin"
+                        className="nu-mega-sublink"
+                        style={{ color: "var(--nu-purple)", fontWeight: 700 }}
+                        onClick={() => setUserMenuOpen(false)}
+                      >
+                        <Award size={14} style={{ display: "inline", marginRight: 6 }} />
+                        Owner Admin Panel
+                      </Link>
+                    )}
                     <button
                       type="button"
                       onClick={() => {

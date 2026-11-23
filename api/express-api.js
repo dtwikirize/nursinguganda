@@ -3,6 +3,26 @@ const fs = require("node:fs");
 const path = require("node:path");
 const express = require("express");
 const rateLimit = require("express-rate-limit");
+const {
+  buildWelcomeVerificationEmail,
+  buildSecurityAlertEmail,
+  buildPaymentReceiptEmail,
+  buildWeeklyDigestEmail
+} = require("./email-templates");
+
+let cron = null;
+try {
+  cron = require("node-cron");
+} catch {
+  cron = null;
+}
+
+const DAILY_TOTAL_EMAIL_LIMIT = 90;  // Safe ceiling under Hostinger 100/day limit (10-email buffer for OTP/security)
+const DAILY_DIGEST_LIMIT = 50;       // Max 50 digest emails per day
+
+function getAdminEmail() {
+  return String(process.env.ADMIN_EMAIL || "twikirizederick@gmail.com").trim().toLowerCase();
+}
 
 let mysql = null;
 try {
@@ -126,6 +146,48 @@ const SCHEMA_SQL = [
     ebook_slug VARCHAR(160) NOT NULL,
     email VARCHAR(190) DEFAULT 'guest',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4`,
+  `CREATE TABLE IF NOT EXISTS email_subscribers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(190) NOT NULL UNIQUE,
+    name VARCHAR(120) DEFAULT '',
+    source VARCHAR(64) DEFAULT 'signup',
+    topic_preference VARCHAR(120) DEFAULT 'all',
+    subscribed TINYINT(1) NOT NULL DEFAULT 1,
+    last_digest_sent_at DATETIME NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    INDEX idx_sub_active (subscribed, last_digest_sent_at)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4`,
+  `CREATE TABLE IF NOT EXISTS email_send_log (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    sent_date DATE NOT NULL,
+    category VARCHAR(32) NOT NULL,
+    recipient VARCHAR(190) NOT NULL,
+    subject VARCHAR(255) NOT NULL,
+    status VARCHAR(24) NOT NULL DEFAULT 'sent',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    INDEX idx_esl_date_cat (sent_date, category)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4`,
+  `CREATE TABLE IF NOT EXISTS digest_campaigns (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    subject VARCHAR(255) NOT NULL,
+    topic_title VARCHAR(255) NOT NULL,
+    summary TEXT NOT NULL,
+    highlights_json TEXT NOT NULL,
+    cta_url VARCHAR(255) NOT NULL,
+    active TINYINT(1) NOT NULL DEFAULT 1,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4`,
+  `CREATE TABLE IF NOT EXISTS page_visits (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    path VARCHAR(255) NOT NULL,
+    referrer VARCHAR(255) DEFAULT '',
+    visitor_hash VARCHAR(64) NOT NULL,
+    device_type VARCHAR(24) DEFAULT 'desktop',
+    visit_date DATE NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    INDEX idx_pv_date (visit_date),
+    INDEX idx_pv_path (path)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4`
 ];
 
@@ -406,39 +468,176 @@ async function sendSecurityEmail({ to, subject, html, text }) {
   }
 }
 
+async function getTodayEmailCounts(pool) {
+  if (!pool) return { totalToday: 0, digestToday: 0 };
+  const [rows] = await pool.query(
+    "SELECT category, COUNT(*) AS cnt FROM email_send_log WHERE sent_date = CURDATE() AND status = 'sent' GROUP BY category"
+  );
+  let totalToday = 0;
+  let digestToday = 0;
+  for (const r of rows) {
+    const cnt = Number(r.cnt || 0);
+    totalToday += cnt;
+    if (r.category === "digest") digestToday += cnt;
+  }
+  return { totalToday, digestToday };
+}
+
+async function sendBrandedEmail(pool, { to, subject, html, text, category = "transactional" }) {
+  if (!to) return false;
+  if (pool) {
+    const { totalToday, digestToday } = await getTodayEmailCounts(pool);
+    if (totalToday >= DAILY_TOTAL_EMAIL_LIMIT) {
+      console.warn(`[Mail Quota] Daily total cap (${DAILY_TOTAL_EMAIL_LIMIT}) reached; skipping ${category} to ${to}`);
+      return false;
+    }
+    if (category === "digest" && digestToday >= DAILY_DIGEST_LIMIT) {
+      console.warn(`[Mail Quota] Daily digest cap (${DAILY_DIGEST_LIMIT}) reached.`);
+      return false;
+    }
+  }
+
+  const sent = await sendSecurityEmail({ to, subject, html, text });
+  if (pool) {
+    try {
+      await pool.query(
+        "INSERT INTO email_send_log (sent_date, category, recipient, subject, status) VALUES (CURDATE(), ?, ?, ?, ?)",
+        [category, sanitizeText(to, 190), sanitizeText(subject, 250), sent ? "sent" : "skipped"]
+      );
+    } catch {
+      // non-fatal
+    }
+  }
+  return sent;
+}
+
+async function upsertSubscriber(pool, { email, name = "", source = "signup", topicPreference = "all" }) {
+  const cleanEmail = normalizeEmail(email);
+  if (!pool || !cleanEmail) return;
+  try {
+    await pool.query(
+      `INSERT INTO email_subscribers (email, name, source, topic_preference, subscribed)
+       VALUES (?, ?, ?, ?, 1)
+       ON DUPLICATE KEY UPDATE name = IF(VALUES(name) != '', VALUES(name), name)`,
+      [cleanEmail, sanitizeText(name, 120), sanitizeText(source, 64), sanitizeText(topicPreference, 120)]
+    );
+  } catch {
+    // non-fatal
+  }
+}
+
+async function runDailyDigestBatch(pool, campaignOverride = null) {
+  if (!pool) return { sent: 0, skipped: 0, reason: "no_db" };
+  const { totalToday, digestToday } = await getTodayEmailCounts(pool);
+  const remaining = Math.max(0, Math.min(DAILY_DIGEST_LIMIT - digestToday, DAILY_TOTAL_EMAIL_LIMIT - totalToday));
+  if (remaining <= 0) {
+    return { sent: 0, skipped: 0, remainingDigestQuota: 0, reason: "daily_limit_reached" };
+  }
+
+  let campaign = campaignOverride;
+  if (!campaign) {
+    const [cRows] = await pool.query("SELECT * FROM digest_campaigns WHERE active = 1 ORDER BY id DESC LIMIT 1");
+    campaign = cRows[0];
+  }
+  if (!campaign) {
+    // Seed default weekly UNMEB Nursing & Midwifery Agenda
+    const defaultHighlights = [
+      "Anatomy & Physiology High-Yield Revision Notes (UNMEB Paper I)",
+      "Uganda MoH Clinical Guidelines 2023 — Essential Drug Dosages",
+      "Free Referenced Study eBooks — Download Offline PDFs"
+    ];
+    const [ins] = await pool.query(
+      "INSERT INTO digest_campaigns (subject, topic_title, summary, highlights_json, cta_url, active) VALUES (?, ?, ?, ?, ?, 1)",
+      [
+        "Nursing Uganda Weekly Digest: UNMEB High-Yield Clinical Agenda",
+        "This Week's Nursing & Midwifery Study Agenda",
+        "Stay exam-ready with our curated weekly clinical topic, Uganda MoH guideline updates, and free referenced study eBooks.",
+        JSON.stringify(defaultHighlights),
+        "https://nursinguganda.com/courses"
+      ]
+    );
+    campaign = {
+      id: ins.insertId,
+      subject: "Nursing Uganda Weekly Digest: UNMEB High-Yield Clinical Agenda",
+      topic_title: "This Week's Nursing & Midwifery Study Agenda",
+      summary: "Stay exam-ready with our curated weekly clinical topic, Uganda MoH guideline updates, and free referenced study eBooks.",
+      highlights_json: JSON.stringify(defaultHighlights),
+      cta_url: "https://nursinguganda.com/courses"
+    };
+  }
+
+  let highlights = [];
+  try {
+    highlights = JSON.parse(campaign.highlights_json || "[]");
+  } catch {
+    highlights = [];
+  }
+
+  const [subs] = await pool.query(
+    `SELECT id, email, name FROM email_subscribers
+     WHERE subscribed = 1
+       AND (last_digest_sent_at IS NULL OR last_digest_sent_at < DATE_SUB(NOW(), INTERVAL 6 DAY))
+     ORDER BY last_digest_sent_at ASC
+     LIMIT ?`,
+    [remaining]
+  );
+
+  let sent = 0;
+  let skipped = 0;
+  for (const sub of subs) {
+    const mail = buildWeeklyDigestEmail({
+      name: sub.name,
+      email: sub.email,
+      subject: campaign.subject,
+      topicTitle: campaign.topic_title,
+      summary: campaign.summary,
+      highlights,
+      ctaUrl: campaign.cta_url
+    });
+    const ok = await sendBrandedEmail(pool, {
+      to: sub.email,
+      subject: mail.subject,
+      html: mail.html,
+      text: mail.text,
+      category: "digest"
+    });
+    if (ok) {
+      sent += 1;
+      await pool.query("UPDATE email_subscribers SET last_digest_sent_at = NOW() WHERE id = ?", [sub.id]);
+    } else {
+      skipped += 1;
+    }
+  }
+
+  const after = await getTodayEmailCounts(pool);
+  return {
+    sent,
+    skipped,
+    remainingDigestQuota: Math.max(0, DAILY_DIGEST_LIMIT - after.digestToday),
+    digestToday: after.digestToday,
+    totalToday: after.totalToday
+  };
+}
+
 async function recordSecurityEvent(pool, req, { userId = null, email = "", eventType, severity = "info", details = "", notifyUser = false, notifyAdmin = false }) {
   const ip = getClientIp(req);
   const ua = sanitizeText(req.headers["user-agent"] || "", 240);
   let alertSent = 0;
 
   if (notifyUser && email) {
-    const sent = await sendSecurityEmail({
-      to: email,
-      subject: `[Nursing Uganda Security Alert] ${eventType.replace(/_/g, " ")}`,
-      text: `Hello,\n\nA security event was detected on your Nursing Uganda account:\n\nEvent: ${eventType}\nDetails: ${details}\nIP Address: ${ip}\nTime: ${new Date().toISOString()}\n\nIf this wasn't you, please change your password immediately.\n\nNursing Uganda Security Team`,
-      html: `<div style="font-family:Arial,sans-serif;max-width:520px;margin:auto;border:1px solid #e2e8f0;padding:24px;border-radius:8px;">
-        <h2 style="color:#1C1D1F;margin-top:0;">Nursing Uganda Security Alert</h2>
-        <p style="color:#334155;">A security event was recorded on your account:</p>
-        <ul style="background:#f8fafc;padding:14px 20px;border-radius:6px;color:#1e293b;list-style:none;">
-          <li><strong>Event:</strong> ${eventType}</li>
-          <li><strong>Details:</strong> ${details}</li>
-          <li><strong>IP Address:</strong> ${ip}</li>
-          <li><strong>Time (UTC):</strong> ${new Date().toUTCString()}</li>
-        </ul>
-        <p style="color:#64748b;font-size:13px;">If you did not perform this action, please reset your password immediately or contact support@nursinguganda.com.</p>
-      </div>`
-    });
+    const mail = buildSecurityAlertEmail({ eventType, details, ipAddress: ip });
+    const sent = await sendBrandedEmail(pool, { to: email, ...mail, category: "security" });
     if (sent) alertSent = 1;
   }
 
-  const adminEmail = process.env.SECURITY_ALERT_EMAIL || process.env.SMTP_USER || "";
+  const adminEmail = process.env.SECURITY_ALERT_EMAIL || getAdminEmail() || process.env.SMTP_USER || "";
   if (notifyAdmin && adminEmail) {
-    const sent = await sendSecurityEmail({
-      to: adminEmail,
-      subject: `[CRITICAL ADMIN ALERT] ${eventType} (${ip})`,
-      text: `Event: ${eventType}\nSeverity: ${severity}\nEmail: ${email}\nIP: ${ip}\nUA: ${ua}\nDetails: ${details}`,
-      html: `<p><strong>Critical Security Event:</strong> ${eventType}</p><p><strong>User:</strong> ${email || "N/A"}</p><p><strong>IP:</strong> ${ip}</p><p><strong>Details:</strong> ${details}</p>`
+    const mail = buildSecurityAlertEmail({
+      eventType: `ADMIN_${eventType}`,
+      details: `User: ${email || "N/A"} — ${details}`,
+      ipAddress: ip
     });
+    const sent = await sendBrandedEmail(pool, { to: adminEmail, ...mail, category: "security" });
     if (sent) alertSent = 1;
   }
 
@@ -465,26 +664,15 @@ async function issueEmailVerification(pool, req, user) {
     [user.id, user.email, codeHash, expiresAt]
   );
 
-  const sent = await sendSecurityEmail({
-    to: user.email,
-    subject: `Your Nursing Uganda verification code: ${code}`,
-    text: `Hello ${user.name},\n\nYour Nursing Uganda email verification code is: ${code}\n\nThis code expires in 15 minutes. Never share this code with anyone.\n\nNursing Uganda`,
-    html: `<div style="font-family:Arial,sans-serif;max-width:480px;margin:auto;border:1px solid #e2e8f0;padding:24px;border-radius:8px;">
-      <h2 style="color:#1C1D1F;margin-top:0;">Verify Your Email</h2>
-      <p style="color:#334155;">Hello ${sanitizeText(user.name, 80)}, enter this 6-digit code to verify your Nursing Uganda student account:</p>
-      <div style="font-size:32px;font-weight:800;letter-spacing:6px;color:#A137F2;background:#f7edff;padding:16px;text-align:center;border-radius:6px;margin:18px 0;">
-        ${code}
-      </div>
-      <p style="color:#64748b;font-size:13px;">This code expires in 15 minutes. If you didn't request this, you can safely ignore this email.</p>
-    </div>`
-  });
+  const mail = buildWelcomeVerificationEmail({ name: user.name, code, authProvider: "password" });
+  const sent = await sendBrandedEmail(pool, { to: user.email, ...mail, category: "transactional" });
 
   await recordSecurityEvent(pool, req, {
     userId: user.id,
     email: user.email,
     eventType: "VERIFICATION_SENT",
     severity: "info",
-    details: sent ? "Verification code emailed via SMTP" : "Verification code generated (SMTP not configured)"
+    details: sent ? "Branded verification email sent via SMTP" : "Verification code generated (SMTP not configured)"
   });
 
   return sent;
@@ -493,6 +681,7 @@ async function issueEmailVerification(pool, req, user) {
 async function fetchUserSessionState(pool, user) {
   const [enRows] = await pool.query("SELECT course_slug FROM enrollments WHERE user_id = ?", [user.id]);
   const [prRows] = await pool.query("SELECT course_slug, lesson_slug FROM course_progress WHERE user_id = ? AND completed = 1", [user.id]);
+  const [subRows] = await pool.query("SELECT subscribed, topic_preference FROM email_subscribers WHERE email = ? LIMIT 1", [user.email]);
   const progress = {};
   for (const r of prRows) {
     progress[r.course_slug] = progress[r.course_slug] || [];
@@ -506,6 +695,9 @@ async function fetchUserSessionState(pool, user) {
       programme: user.programme,
       emailVerified: Boolean(user.email_verified),
       authProvider: user.auth_provider || "password",
+      isAdmin: String(user.email || "").toLowerCase() === getAdminEmail(),
+      digestSubscribed: subRows[0] ? Boolean(subRows[0].subscribed) : true,
+      topicPreference: subRows[0]?.topic_preference || "all",
       initials: initialsOf(user.name)
     },
     enrollments: enRows.map((r) => r.course_slug),
@@ -679,6 +871,7 @@ function createApiRouter() {
       };
 
       const emailSent = await issueEmailVerification(pool, req, newUser);
+      await upsertSubscriber(pool, { email: cleanEmail, name: cleanName, source: "signup", topicPreference: cleanProgramme });
       await recordSecurityEvent(pool, req, {
         userId: uid,
         email: cleanEmail,
@@ -840,6 +1033,9 @@ function createApiRouter() {
           email_verified: 1,
           auth_provider: "google"
         };
+        await upsertSubscriber(pool, { email: user.email, name: user.name, source: "google" });
+        const welcomeMail = buildWelcomeVerificationEmail({ name: user.name, authProvider: "google" });
+        await sendBrandedEmail(pool, { to: user.email, ...welcomeMail, category: "transactional" });
         await recordSecurityEvent(pool, req, {
           userId: user.id,
           email: user.email,
@@ -930,6 +1126,25 @@ function createApiRouter() {
 
       const sent = await issueEmailVerification(pool, req, user);
       return res.json({ ok: true, verificationEmailSent: sent });
+    }
+
+    if (action === "preferences") {
+      if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed." });
+      const uid = getSessionUserId(req);
+      if (!uid) return res.status(401).json({ error: "Please sign in first." });
+      const [uRows] = await pool.query("SELECT id, name, email, programme, email_verified, auth_provider FROM users WHERE id = ?", [uid]);
+      const user = uRows[0];
+      if (!user) return res.status(404).json({ error: "User not found." });
+
+      const subscribed = req.body?.digestSubscribed !== false ? 1 : 0;
+      const topicPreference = sanitizeText(req.body?.topicPreference || "all", 120) || "all";
+      await pool.query(
+        `INSERT INTO email_subscribers (email, name, source, topic_preference, subscribed)
+         VALUES (?, ?, 'dashboard', ?, ?)
+         ON DUPLICATE KEY UPDATE topic_preference = VALUES(topic_preference), subscribed = VALUES(subscribed)`,
+        [user.email, user.name, topicPreference, subscribed]
+      );
+      return res.json(await fetchUserSessionState(pool, user));
     }
 
     if (action === "logout") {
@@ -1069,6 +1284,17 @@ function createApiRouter() {
       conn.release();
     }
 
+    const [uRows] = await pool.query("SELECT name, email FROM users WHERE id = ?", [uid]);
+    if (uRows[0]?.email) {
+      const receipt = buildPaymentReceiptEmail({
+        name: uRows[0].name,
+        orderId: cleanOrderId,
+        amountUsd: paidAmount,
+        items
+      });
+      await sendBrandedEmail(pool, { to: uRows[0].email, ...receipt, category: "transactional" });
+    }
+
     const [enRows] = await pool.query("SELECT course_slug FROM enrollments WHERE user_id = ?", [uid]);
     return res.json({ orderId: cleanOrderId, enrollments: enRows.map((r) => r.course_slug) });
   });
@@ -1141,8 +1367,274 @@ function createApiRouter() {
     if (!isValidSlug(ebookSlug)) return res.status(400).json({ error: "Invalid ebookSlug." });
     const cleanEmail = email === "guest" ? "guest" : normalizeEmail(email) || "guest";
     await pool.query("INSERT INTO ebook_downloads (ebook_slug, email) VALUES (?, ?)", [ebookSlug, cleanEmail]);
+    if (cleanEmail !== "guest") {
+      await upsertSubscriber(pool, { email: cleanEmail, source: "ebook", topicPreference: ebookSlug });
+    }
     return res.json({ ok: true });
   });
+
+  // Public Email Collector (Footer / Study Digest Opt-In)
+  router.post("/subscribe", writeRateLimiter, async (req, res) => {
+    const pool = await requireDb(res);
+    if (!pool) return;
+    const cleanEmail = normalizeEmail(req.body?.email || "");
+    const cleanName = sanitizeText(req.body?.name || "", 120);
+    const source = sanitizeText(req.body?.source || "footer", 64);
+    const topicPreference = sanitizeText(req.body?.topicPreference || "all", 120);
+    if (!cleanEmail) return res.status(400).json({ error: "Enter a valid email address." });
+
+    await upsertSubscriber(pool, { email: cleanEmail, name: cleanName, source, topicPreference });
+    const mail = buildWeeklyDigestEmail({
+      name: cleanName || "Nursing Colleague",
+      email: cleanEmail,
+      subject: "Subscribed: Nursing Uganda Weekly Study Digest",
+      topicTitle: "You're subscribed to Nursing Uganda Weekly Updates",
+      summary: "Every week you'll receive high-yield UNMEB revision agendas, new referenced study eBooks, and clinical guideline updates.",
+      highlights: [
+        "50 students/day staggered delivery for reliable inbox arrival",
+        "Zero spam — strictly Nursing & Midwifery academic updates",
+        "Unsubscribe anytime with 1 click"
+      ],
+      ctaUrl: "https://nursinguganda.com/ebooks"
+    });
+    await sendBrandedEmail(pool, { to: cleanEmail, ...mail, category: "transactional" });
+    return res.json({ ok: true, email: cleanEmail });
+  });
+
+  // 1-Click Unsubscribe Link
+  router.get("/unsubscribe", async (req, res) => {
+    const pool = await requireDb(res);
+    if (!pool) return;
+    const cleanEmail = normalizeEmail(req.query.email || "");
+    if (cleanEmail) {
+      await pool.query("UPDATE email_subscribers SET subscribed = 0 WHERE email = ?", [cleanEmail]);
+    }
+    res.setHeader("Content-Type", "text/html; charset=utf-8");
+    return res.send(`<!doctype html><html><body style="font-family:Poppins,sans-serif;background:#F7F9FA;padding:48px 16px;text-align:center;">
+      <div style="max-width:460px;margin:auto;background:#fff;padding:32px;border-radius:8px;border:1px solid #d1d7dc;">
+        <h2 style="color:#1C1D1F;margin-top:0;">Unsubscribed</h2>
+        <p style="color:#6A6F73;">${cleanEmail ? `${cleanEmail} has been unsubscribed from Nursing Uganda weekly study digests.` : "Your preference has been updated."}</p>
+        <a href="https://nursinguganda.com/" style="display:inline-block;margin-top:12px;padding:10px 20px;background:#A137F2;color:#fff;text-decoration:none;border-radius:4px;font-weight:700;">Return to Nursing Uganda</a>
+      </div>
+    </body></html>`);
+  });
+
+  // Privacy-Preserving First-Party Page Visit Analytics
+  const trackLimiter = rateLimit({ windowMs: 60 * 1000, max: 120, standardHeaders: true, legacyHeaders: false });
+  router.post("/track", trackLimiter, async (req, res) => {
+    const pool = await getPool().catch(() => null);
+    if (!pool) return res.json({ ok: false });
+
+    const rawPath = sanitizeText(req.body?.path || "/", 255);
+    if (rawPath.startsWith("/admin")) return res.json({ ok: true });
+    const cleanPath = rawPath.split("?")[0] || "/";
+    const referrer = sanitizeText(req.body?.referrer || "", 240);
+    const ua = String(req.headers["user-agent"] || "");
+    const deviceType = /mobile|android|iphone|ipad/i.test(ua) ? "mobile" : "desktop";
+    const dayKey = new Date().toISOString().slice(0, 10);
+    const visitorHash = crypto
+      .createHmac("sha256", sessionSecret())
+      .update(`${getClientIp(req)}|${ua}|${dayKey}`)
+      .digest("hex")
+      .slice(0, 32);
+
+    try {
+      await pool.query(
+        "INSERT INTO page_visits (path, referrer, visitor_hash, device_type, visit_date) VALUES (?, ?, ?, ?, CURDATE())",
+        [cleanPath, referrer, visitorHash, deviceType]
+      );
+    } catch {
+      // non-fatal
+    }
+    return res.json({ ok: true });
+  });
+
+  // Strict Owner-Only Admin Panel API
+  const adminLimiter = rateLimit({ windowMs: 60 * 1000, max: 60, standardHeaders: true, legacyHeaders: false });
+  router.all("/admin", adminLimiter, async (req, res) => {
+    const pool = await requireDb(res);
+    if (!pool) return;
+
+    const uid = getSessionUserId(req);
+    if (!uid) {
+      return res.status(401).json({ error: "Sign in required." });
+    }
+    const [uRows] = await pool.query(
+      "SELECT id, name, email, email_verified FROM users WHERE id = ?",
+      [uid]
+    );
+    const adminUser = uRows[0];
+    const expectedAdmin = getAdminEmail();
+
+    if (!adminUser || String(adminUser.email || "").toLowerCase() !== expectedAdmin || !adminUser.email_verified) {
+      await recordSecurityEvent(pool, req, {
+        userId: uid,
+        email: adminUser?.email || "",
+        eventType: "ADMIN_ACCESS_DENIED",
+        severity: "critical",
+        details: `Unauthorized /api/admin access attempt by ${adminUser?.email || uid}`,
+        notifyAdmin: true
+      });
+      return res.status(403).json({ error: "Access denied. Admin privileges are strictly restricted to the site owner." });
+    }
+
+    const section = String(req.query.section || "overview");
+
+    if (section === "overview") {
+      const [[userStats]] = await pool.query(
+        "SELECT COUNT(*) AS totalUsers, SUM(email_verified) AS verifiedUsers, SUM(auth_provider = 'google') AS googleUsers FROM users"
+      );
+      const [[subStats]] = await pool.query(
+        "SELECT COUNT(*) AS totalSubscribers, SUM(subscribed) AS activeSubscribers FROM email_subscribers"
+      );
+      const [[visitStats]] = await pool.query(
+        `SELECT
+          COUNT(*) AS totalVisits,
+          COUNT(DISTINCT visitor_hash) AS uniqueVisitors,
+          SUM(visit_date = CURDATE()) AS visitsToday,
+          COUNT(DISTINCT IF(visit_date = CURDATE(), visitor_hash, NULL)) AS uniqueToday
+         FROM page_visits`
+      );
+      const [[payStats]] = await pool.query(
+        "SELECT COUNT(*) AS totalOrders, COALESCE(SUM(amount_usd), 0) AS totalRevenueUsd FROM orders WHERE status = 'COMPLETED'"
+      );
+      const [dailyTrend] = await pool.query(
+        `SELECT DATE_FORMAT(visit_date, '%Y-%m-%d') AS day, COUNT(*) AS visits, COUNT(DISTINCT visitor_hash) AS visitors
+         FROM page_visits
+         WHERE visit_date >= DATE_SUB(CURDATE(), INTERVAL 6 DAY)
+         GROUP BY visit_date
+         ORDER BY visit_date ASC`
+      );
+      const [topPages] = await pool.query(
+        `SELECT path, COUNT(*) AS visits, COUNT(DISTINCT visitor_hash) AS uniqueVisitors
+         FROM page_visits
+         WHERE visit_date >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)
+         GROUP BY path
+         ORDER BY visits DESC
+         LIMIT 12`
+      );
+      const emailCounts = await getTodayEmailCounts(pool);
+
+      return res.json({
+        adminEmail: adminUser.email,
+        userStats,
+        subStats,
+        visitStats,
+        payStats,
+        dailyTrend,
+        topPages,
+        emailQuota: {
+          digestToday: emailCounts.digestToday,
+          digestLimit: DAILY_DIGEST_LIMIT,
+          totalToday: emailCounts.totalToday,
+          totalLimit: DAILY_TOTAL_EMAIL_LIMIT,
+          hostingerMax: 100
+        }
+      });
+    }
+
+    if (section === "users") {
+      const [users] = await pool.query(
+        `SELECT u.id, u.name, u.email, u.programme, u.email_verified AS emailVerified, u.auth_provider AS authProvider,
+                u.last_login_at AS lastLoginAt, u.last_login_ip AS lastLoginIp, u.created_at AS createdAt,
+                COUNT(e.id) AS enrollmentCount
+         FROM users u
+         LEFT JOIN enrollments e ON e.user_id = u.id
+         GROUP BY u.id
+         ORDER BY u.created_at DESC
+         LIMIT 200`
+      );
+      return res.json({ users });
+    }
+
+    if (section === "payments") {
+      const [orders] = await pool.query(
+        `SELECT o.id, o.paypal_order_id AS paypalOrderId, o.payer_email AS payerEmail, o.amount_usd AS amountUsd,
+                o.currency, o.status, o.items_json AS itemsJson, o.created_at AS createdAt, u.email AS userEmail, u.name AS userName
+         FROM orders o
+         LEFT JOIN users u ON u.id = o.user_id
+         ORDER BY o.created_at DESC
+         LIMIT 200`
+      );
+      return res.json({ orders });
+    }
+
+    if (section === "emails") {
+      const [subscribers] = await pool.query(
+        "SELECT id, email, name, source, topic_preference AS topicPreference, subscribed, last_digest_sent_at AS lastDigestSentAt, created_at AS createdAt FROM email_subscribers ORDER BY created_at DESC LIMIT 300"
+      );
+      const [campaigns] = await pool.query(
+        "SELECT id, subject, topic_title AS topicTitle, summary, highlights_json AS highlightsJson, cta_url AS ctaUrl, active, created_at AS createdAt FROM digest_campaigns ORDER BY id DESC LIMIT 20"
+      );
+      const emailCounts = await getTodayEmailCounts(pool);
+      return res.json({
+        subscribers,
+        campaigns,
+        emailQuota: {
+          digestToday: emailCounts.digestToday,
+          digestLimit: DAILY_DIGEST_LIMIT,
+          totalToday: emailCounts.totalToday,
+          totalLimit: DAILY_TOTAL_EMAIL_LIMIT
+        }
+      });
+    }
+
+    if (section === "campaign" && req.method === "POST") {
+      const subject = sanitizeText(req.body?.subject || "", 200);
+      const topicTitle = sanitizeText(req.body?.topicTitle || "", 200);
+      const summary = sanitizeText(req.body?.summary || "", 1000);
+      const ctaUrl = sanitizeText(req.body?.ctaUrl || "https://nursinguganda.com/courses", 255);
+      const highlights = Array.isArray(req.body?.highlights)
+        ? req.body.highlights.map((h) => sanitizeText(h, 200)).filter(Boolean).slice(0, 6)
+        : [];
+      if (!subject || !topicTitle || !summary) {
+        return res.status(400).json({ error: "Subject, topic title, and summary are required." });
+      }
+      await pool.query("UPDATE digest_campaigns SET active = 0");
+      const [ins] = await pool.query(
+        "INSERT INTO digest_campaigns (subject, topic_title, summary, highlights_json, cta_url, active) VALUES (?, ?, ?, ?, ?, 1)",
+        [subject, topicTitle, summary, JSON.stringify(highlights), ctaUrl]
+      );
+      return res.json({ ok: true, id: ins.insertId });
+    }
+
+    if (section === "send-digest" && req.method === "POST") {
+      const result = await runDailyDigestBatch(pool);
+      await recordSecurityEvent(pool, req, {
+        userId: adminUser.id,
+        email: adminUser.email,
+        eventType: "ADMIN_DIGEST_BATCH",
+        severity: "info",
+        details: `Manual digest batch run: sent=${result.sent}, skipped=${result.skipped}, remaining=${result.remainingDigestQuota}`
+      });
+      return res.json(result);
+    }
+
+    if (section === "security") {
+      const [events] = await pool.query(
+        "SELECT id, user_id AS userId, email, event_type AS eventType, severity, ip_address AS ipAddress, details, alert_sent AS alertSent, created_at AS createdAt FROM security_events ORDER BY created_at DESC LIMIT 150"
+      );
+      return res.json({ events });
+    }
+
+    return res.status(400).json({ error: "Unknown admin section." });
+  });
+
+  // Daily Automated Weekly-Digest Batch Scheduler (50/day safe under Hostinger 100/day cap)
+  if (cron && !global.__nuDigestCronStarted) {
+    global.__nuDigestCronStarted = true;
+    cron.schedule("0 5 * * *", async () => {
+      try {
+        const pool = await getPool();
+        if (pool) {
+          const res = await runDailyDigestBatch(pool);
+          console.info("[Digest Cron]", res);
+        }
+      } catch (err) {
+        console.error("[Digest Cron Error]", err?.message || err);
+      }
+    });
+  }
 
   return router;
 }
