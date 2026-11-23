@@ -7,6 +7,8 @@ import {
   logoutUser,
   registerUser,
   resendVerificationCode,
+  submitCourseEvaluation,
+  submitQuizAttempt,
   toggleLessonProgress,
   verifyEmailCode,
   verifyPayPalOrder
@@ -35,6 +37,8 @@ export function AppProvider({ children }) {
   const [user, setUser] = useState(null);
   const [enrollments, setEnrollments] = useState([]);
   const [progress, setProgress] = useState({});
+  const [quizAttempts, setQuizAttempts] = useState([]);
+  const [certificates, setCertificates] = useState([]);
   const [cart, setCart] = useState(() => {
     try {
       const saved = localStorage.getItem(CART_KEY);
@@ -65,6 +69,8 @@ export function AppProvider({ children }) {
           setUser(session.user || null);
           setEnrollments(session.enrollments || []);
           setProgress(session.progress || {});
+          setQuizAttempts(session.quizAttempts || []);
+          setCertificates(session.certificates || []);
         }
       })
       .catch(() => {})
@@ -127,6 +133,8 @@ export function AppProvider({ children }) {
       setUser(res.user);
       if (res.enrollments) setEnrollments(res.enrollments);
       if (res.progress) setProgress(res.progress);
+      if (res.quizAttempts) setQuizAttempts(res.quizAttempts);
+      if (res.certificates) setCertificates(res.certificates);
     }
     return res;
   };
@@ -137,6 +145,8 @@ export function AppProvider({ children }) {
       setUser(res.user);
       setEnrollments(res.enrollments || []);
       setProgress(res.progress || {});
+      setQuizAttempts(res.quizAttempts || []);
+      setCertificates(res.certificates || []);
     }
     return res;
   };
@@ -147,6 +157,8 @@ export function AppProvider({ children }) {
       setUser(res.user);
       if (res.enrollments) setEnrollments(res.enrollments);
       if (res.progress) setProgress(res.progress);
+      if (res.quizAttempts) setQuizAttempts(res.quizAttempts);
+      if (res.certificates) setCertificates(res.certificates);
     }
     return res;
   };
@@ -168,6 +180,8 @@ export function AppProvider({ children }) {
     setUser(null);
     setEnrollments([]);
     setProgress({});
+    setQuizAttempts([]);
+    setCertificates([]);
   };
 
   const handleFreeEnroll = async (courseSlug) => {
@@ -198,6 +212,23 @@ export function AppProvider({ children }) {
     setLessonNotes((prev) => ({ ...prev, [key]: text }));
   };
 
+  const handleSubmitQuiz = async (payload) => {
+    const res = await submitQuizAttempt(payload);
+    if (res?.ok && res.quizAttempts) {
+      setQuizAttempts(res.quizAttempts);
+    }
+    return res;
+  };
+
+  const handleSubmitFinalEvaluation = async (payload) => {
+    const res = await submitCourseEvaluation(payload);
+    if (res?.ok) {
+      if (res.quizAttempts) setQuizAttempts(res.quizAttempts);
+      if (res.certificates) setCertificates(res.certificates);
+    }
+    return res;
+  };
+
   const cartTotalUsd = useMemo(
     () => Number(cart.reduce((sum, item) => sum + Number(item.priceUsd || 0), 0).toFixed(2)),
     [cart]
@@ -209,6 +240,8 @@ export function AppProvider({ children }) {
     user,
     enrollments,
     progress,
+    quizAttempts,
+    certificates,
     cart,
     cartTotalUsd,
     lessonNotes,
@@ -225,7 +258,9 @@ export function AppProvider({ children }) {
     enrollFree: handleFreeEnroll,
     completePayPalPurchase: handleCompletePayPal,
     toggleLessonComplete: handleToggleLesson,
-    saveLessonNote
+    saveLessonNote,
+    submitQuizResult: handleSubmitQuiz,
+    submitFinalEvaluation: handleSubmitFinalEvaluation
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

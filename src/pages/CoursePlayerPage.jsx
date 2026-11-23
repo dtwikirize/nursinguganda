@@ -2,19 +2,23 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   ArrowLeft,
+  Award,
   CheckCircle2,
   Circle,
   Lock,
   MessageSquare,
   PanelRightClose,
   PanelRightOpen,
+  RotateCcw,
   ShoppingCart
 } from "lucide-react";
 import AdSlot from "../components/AdSlot";
+import CertificateCard from "../components/CertificateCard";
 import ReferencesBox from "../components/ReferencesBox";
-import RichText from "../components/RichText";
+import TopicVisuals, { LessonSections } from "../components/TopicVisuals";
 import { fetchCourseQA, postCourseQuestion } from "../lib/api";
 import { formatUsd, useApp } from "../context/AppContext";
+import { buildFinalEvaluation, buildSessionQuiz, gradeQuizResponses } from "../utils/quizGenerator";
 
 export default function CoursePlayerPage() {
   const { courseSlug, lessonSlug } = useParams();
@@ -23,13 +27,18 @@ export default function CoursePlayerPage() {
     user,
     progress,
     lessonNotes,
+    quizAttempts,
+    certificates,
     isEnrolled,
     toggleLessonComplete,
     saveLessonNote,
-    addToCart
+    addToCart,
+    submitQuizResult,
+    submitFinalEvaluation
   } = useApp();
 
   const [course, setCourse] = useState(null);
+  const [topicQuizzes, setTopicQuizzes] = useState(null);
   const [loading, setLoading] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [bottomTab, setBottomTab] = useState("overview");
@@ -37,14 +46,30 @@ export default function CoursePlayerPage() {
   const [qTitle, setQTitle] = useState("");
   const [qBody, setQBody] = useState("");
   const [quizAnswers, setQuizAnswers] = useState({});
+  const [sessionResult, setSessionResult] = useState(null);
+  const [sessionSubmitting, setSessionSubmitting] = useState(false);
+  const [evalAnswers, setEvalAnswers] = useState({});
+  const [evalResult, setEvalResult] = useState(null);
+  const [evalError, setEvalError] = useState("");
+  const [evalSubmitting, setEvalSubmitting] = useState(false);
 
   useEffect(() => {
     let active = true;
     setLoading(true);
-    fetch(`/assets/data/courses/${courseSlug}.json`)
-      .then((r) => (r.ok ? r.json() : null))
-      .then((d) => {
-        if (active) setCourse(d);
+    setQuizAnswers({});
+    setSessionResult(null);
+    setEvalAnswers({});
+    setEvalResult(null);
+    setEvalError("");
+    Promise.all([
+      fetch(`/assets/data/courses/${courseSlug}.json`).then((r) => (r.ok ? r.json() : null)),
+      fetch("/assets/data/topic-quizzes.json").then((r) => (r.ok ? r.json() : null)).catch(() => null)
+    ])
+      .then(([d, tq]) => {
+        if (active) {
+          setCourse(d);
+          setTopicQuizzes(tq);
+        }
       })
       .finally(() => {
         if (active) setLoading(false);
@@ -56,6 +81,11 @@ export default function CoursePlayerPage() {
       active = false;
     };
   }, [courseSlug]);
+
+  useEffect(() => {
+    setQuizAnswers({});
+    setSessionResult(null);
+  }, [lessonSlug]);
 
   const flatTopics = useMemo(
     () => (course?.topicGroups || []).flatMap((g) => g.topics || []),
@@ -78,25 +108,28 @@ export default function CoursePlayerPage() {
   const noteKey = `${courseSlug}::${activeTopic?.slug || ""}`;
   const currentNote = lessonNotes[noteKey] || "";
 
-  // Build deterministic self-check quiz from lesson sections
-  const lessonQuiz = useMemo(() => {
-    if (!activeLesson?.sections) return [];
-    const headings = activeLesson.sections
-      .map((s) => s.title)
-      .filter((t) => t && !/reference|overview/i.test(t));
-    if (headings.length < 2) return [];
-    return headings.slice(0, 3).map((h, i) => {
-      const distractors = headings.filter((x) => x !== h).slice(0, 3);
-      while (distractors.length < 3) distractors.push(`Unrelated clinical unit ${distractors.length + 1}`);
-      const options = [h, ...distractors].sort();
-      return {
-        id: i,
-        prompt: `Which clinical section is covered in "${activeLesson.title}"?`,
-        options,
-        correct: h
-      };
-    });
-  }, [activeLesson]);
+  // Build 5-Question Session Quiz (Single, Multi-Choice & True/False) + 30-Question Final Evaluation
+  const lessonQuiz = useMemo(
+    () => (activeLesson && course ? buildSessionQuiz(activeLesson, course, topicQuizzes) : []),
+    [activeLesson, course, topicQuizzes]
+  );
+
+  const finalEvalQuestions = useMemo(
+    () => (course ? buildFinalEvaluation(course, topicQuizzes) : []),
+    [course, topicQuizzes]
+  );
+
+  const existingCertificate = useMemo(
+    () => certificates.find((c) => c.courseSlug === courseSlug) || null,
+    [certificates, courseSlug]
+  );
+
+  const finalEvalAttempts = useMemo(
+    () => quizAttempts.filter((a) => a.quizType === "course_final" && a.quizSlug === courseSlug),
+    [quizAttempts, courseSlug]
+  );
+  const attemptsUsed = finalEvalAttempts.length;
+  const attemptsRemaining = Math.max(0, 4 - attemptsUsed);
 
   if (loading) {
     return <div style={{ padding: 40 }}>Loading course player...</div>;
@@ -208,40 +241,11 @@ export default function CoursePlayerPage() {
                 </p>
               )}
 
-              {/* Lesson Images */}
-              {activeLesson.images && activeLesson.images.length > 0 && (
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 14, margin: "18px 0 24px" }}>
-                  {activeLesson.images.slice(0, 3).map((src, i) => (
-                    <figure key={i} style={{ margin: 0, border: "1px solid var(--nu-border-light)", background: "#fff", padding: 8 }}>
-                      <img src={src} alt={`${activeTopic.title} diagram ${i + 1}`} style={{ width: "100%", height: 210, objectFit: "contain" }} loading="lazy" />
-                    </figure>
-                  ))}
-                </div>
-              )}
+              {/* Medical Illustrations, Napkin Study Flowchart & Clinical Reference Table */}
+              <TopicVisuals lesson={activeLesson} topicTitle={activeTopic.title} />
 
-              {/* Structured Sections */}
-              {(activeLesson.sections || []).map((sec, sIdx) => (
-                <section key={sIdx} className="nu-lesson-section">
-                  <h2>{sec.title}</h2>
-                  {(sec.blocks || []).map((b, bIdx) => {
-                    if (b.type === "bullet") {
-                      return (
-                        <ul key={bIdx}>
-                          <li><RichText text={b.text} /></li>
-                        </ul>
-                      );
-                    }
-                    if (Array.isArray(b.items)) {
-                      return (
-                        <ul key={bIdx}>
-                          {b.items.map((it, ii) => <li key={ii}><RichText text={it} /></li>)}
-                        </ul>
-                      );
-                    }
-                    return <p key={bIdx}><RichText text={b.text} /></p>;
-                  })}
-                </section>
-              ))}
+              {/* Page-by-Page Color-Organized Notes */}
+              <LessonSections sections={activeLesson.sections || []} headingTag="h2" />
 
               {/* AdSense only on Free Preview / Free Courses — NEVER on Paid Player */}
               {(!course.isFree && activeTopic.isFreePreview && !enrolled) || course.isFree ? (
@@ -282,10 +286,10 @@ export default function CoursePlayerPage() {
             </article>
           )}
 
-          {/* Udemy Bottom Tabs: Overview | Q&A | Personal Notes | Quiz */}
-          <div style={{ marginTop: 40 }}>
+          {/* Udemy Bottom Tabs: Overview | Q&A | Personal Notes | Session Quiz (5 Qs) | Final Evaluation (30 Qs) */}
+          <div style={{ marginTop: 40 }} id="nu-player-assessments">
             <div className="nu-tabs">
-              {["overview", "qa", "notes", "quiz"].map((tabKey) => (
+              {["overview", "qa", "notes", "quiz", "final-exam"].map((tabKey) => (
                 <button
                   key={tabKey}
                   type="button"
@@ -295,7 +299,8 @@ export default function CoursePlayerPage() {
                   {tabKey === "overview" && "Overview"}
                   {tabKey === "qa" && `Q&A (${qaList.length})`}
                   {tabKey === "notes" && "Personal Notes"}
-                  {tabKey === "quiz" && "Topic Quiz"}
+                  {tabKey === "quiz" && `Session Quiz (${lessonQuiz.length} Qs)`}
+                  {tabKey === "final-exam" && "Final Evaluation (30 Qs · Certificate)"}
                 </button>
               ))}
             </div>
@@ -366,43 +371,383 @@ export default function CoursePlayerPage() {
 
             {bottomTab === "quiz" && (
               <div>
-                {lessonQuiz.length === 0 ? (
-                  <p style={{ color: "var(--nu-ink-muted)" }}>
-                    Try our <Link to="/mock-exams" style={{ color: "var(--nu-purple)", fontWeight: 700 }}>UNMEB Timed Mock Exams</Link> for full clinical MCQs on this programme.
-                  </p>
-                ) : (
-                  <div style={{ display: "grid", gap: 16 }}>
-                    {lessonQuiz.map((q) => {
-                      const picked = quizAnswers[q.id];
-                      return (
-                        <div key={q.id} style={{ border: "1px solid var(--nu-border)", padding: 16 }}>
-                          <strong style={{ display: "block", marginBottom: 10 }}>{q.id + 1}. {q.prompt}</strong>
-                          <div style={{ display: "grid", gap: 8 }}>
-                            {q.options.map((opt) => {
-                              const isSelected = picked === opt;
-                              const isCorrect = picked && opt === q.correct;
-                              const isWrong = isSelected && opt !== q.correct;
-                              return (
-                                <button
-                                  key={opt}
-                                  type="button"
-                                  disabled={!!picked}
-                                  onClick={() => setQuizAnswers((p) => ({ ...p, [q.id]: opt }))}
-                                  style={{
-                                    textAlign: "left",
-                                    padding: "10px 12px",
-                                    border: "1px solid var(--nu-border)",
-                                    background: isCorrect ? "#dcfce7" : isWrong ? "#fee2e2" : "#fff"
-                                  }}
-                                >
-                                  {opt}
-                                </button>
-                              );
-                            })}
-                          </div>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 10, marginBottom: 14 }}>
+                  <div>
+                    <h3 style={{ margin: 0 }}>Session Checkpoint Quiz ({lessonQuiz.length} Questions)</h3>
+                    <small style={{ color: "var(--nu-ink-muted)" }}>
+                      Includes Single-Choice, Multi-Choice (Select ALL), and True/False checks for <strong>{activeTopic.title}</strong>.
+                    </small>
+                  </div>
+                  {sessionResult && (
+                    <button
+                      type="button"
+                      className="nu-btn nu-btn-secondary"
+                      style={{ height: 34, padding: "0 12px", fontSize: "0.82rem" }}
+                      onClick={() => {
+                        setQuizAnswers({});
+                        setSessionResult(null);
+                      }}
+                    >
+                      <RotateCcw size={14} /> Retake Session Quiz
+                    </button>
+                  )}
+                </div>
+
+                {sessionResult && (
+                  <div
+                    style={{
+                      padding: 16,
+                      marginBottom: 18,
+                      borderRadius: 6,
+                      border: sessionResult.passed ? "1px solid #86efac" : "1px solid #fde047",
+                      background: sessionResult.passed ? "#f0fdf4" : "#fefce8"
+                    }}
+                  >
+                    <strong>
+                      Session Score: {sessionResult.score} / {sessionResult.totalQuestions} ({sessionResult.percent}%) —{" "}
+                      {sessionResult.passed ? "Checkpoint Passed" : "Review Notes & Retry"}
+                    </strong>
+                    {sessionResult.emailSent && (
+                      <div style={{ fontSize: "0.82rem", color: "#15803d", marginTop: 4 }}>
+                        Results emailed automatically to {user?.email}.
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                <div style={{ display: "grid", gap: 16 }}>
+                  {lessonQuiz.map((q) => {
+                    const userVal = quizAnswers[q.id];
+                    const isMulti = q.type === "multi";
+                    return (
+                      <div key={q.id} style={{ border: "1px solid var(--nu-border)", borderRadius: 6, padding: 16, background: "#fff" }}>
+                        <div style={{ display: "flex", justifyContent: "space-between", gap: 8, marginBottom: 8 }}>
+                          <span className="nu-badge nu-badge-free" style={{ fontSize: "0.7rem" }}>
+                            {isMulti ? "Multi-Choice (Select All)" : q.type === "boolean" ? "True / False" : "Single Choice"}
+                          </span>
                         </div>
-                      );
-                    })}
+                        <strong style={{ display: "block", marginBottom: 10 }}>
+                          {q.qNum}. {q.prompt}
+                        </strong>
+                        <div style={{ display: "grid", gap: 8 }}>
+                          {(q.options || []).map((opt, oi) => {
+                            const selected = isMulti
+                              ? Array.isArray(userVal) && userVal.includes(oi)
+                              : userVal === oi;
+                            const isRightOpt = sessionResult
+                              ? isMulti
+                                ? (q.answerIndices || []).includes(oi)
+                                : Number(q.answerIndex) === oi
+                              : false;
+                            const isWrongSelected = sessionResult && selected && !isRightOpt;
+                            return (
+                              <label
+                                key={oi}
+                                style={{
+                                  display: "flex",
+                                  alignItems: "center",
+                                  gap: 10,
+                                  padding: "10px 12px",
+                                  border: isRightOpt
+                                    ? "1.5px solid #16a34a"
+                                    : isWrongSelected
+                                      ? "1.5px solid #dc2626"
+                                      : "1px solid var(--nu-border)",
+                                  borderRadius: 4,
+                                  background: isRightOpt
+                                    ? "#dcfce7"
+                                    : isWrongSelected
+                                      ? "#fee2e2"
+                                      : selected
+                                        ? "#faf5ff"
+                                        : "#fff",
+                                  cursor: sessionResult ? "default" : "pointer"
+                                }}
+                              >
+                                <input
+                                  type={isMulti ? "checkbox" : "radio"}
+                                  name={`sess-${q.id}`}
+                                  disabled={!!sessionResult}
+                                  checked={selected}
+                                  onChange={() => {
+                                    if (isMulti) {
+                                      setQuizAnswers((prev) => {
+                                        const cur = new Set(Array.isArray(prev[q.id]) ? prev[q.id] : []);
+                                        if (cur.has(oi)) cur.delete(oi);
+                                        else cur.add(oi);
+                                        return { ...prev, [q.id]: [...cur] };
+                                      });
+                                    } else {
+                                      setQuizAnswers((prev) => ({ ...prev, [q.id]: oi }));
+                                    }
+                                  }}
+                                />
+                                <span>{opt}</span>
+                              </label>
+                            );
+                          })}
+                        </div>
+                        {sessionResult && q.rationale && (
+                          <div style={{ marginTop: 10, fontSize: "0.84rem", color: "#4b5563", background: "#f8fafc", padding: "8px 10px", borderRadius: 4 }}>
+                            <strong>Rationale:</strong> {q.rationale}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {!sessionResult && lessonQuiz.length > 0 && (
+                  <div style={{ marginTop: 18, display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
+                    <button
+                      type="button"
+                      disabled={sessionSubmitting}
+                      className="nu-btn nu-btn-primary"
+                      onClick={async () => {
+                        const graded = gradeQuizResponses(lessonQuiz, quizAnswers);
+                        if (!user) {
+                          setSessionResult({ ...graded, emailSent: false });
+                          return;
+                        }
+                        setSessionSubmitting(true);
+                        const res = await submitQuizResult({
+                          quizType: "course_session",
+                          quizSlug: `${courseSlug}::${activeTopic.slug}`,
+                          quizTitle: `${course.title} — ${activeTopic.title} (Session Quiz)`,
+                          score: graded.score,
+                          totalQuestions: graded.totalQuestions,
+                          breakdown: graded.breakdown,
+                          reviewItems: graded.reviewItems,
+                          sendEmail: true
+                        });
+                        setSessionSubmitting(false);
+                        setSessionResult({ ...graded, emailSent: Boolean(res?.emailSent) });
+                      }}
+                    >
+                      {sessionSubmitting ? "Grading..." : "Submit Session Quiz (5 Qs)"}
+                    </button>
+                    {!user && (
+                      <small style={{ color: "var(--nu-ink-muted)" }}>
+                        <Link to="/login" style={{ color: "var(--nu-purple)", fontWeight: 700 }}>Sign in</Link> to save session scores and receive email reports.
+                      </small>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {bottomTab === "final-exam" && (
+              <div>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: 12, marginBottom: 18 }}>
+                  <div>
+                    <h3 style={{ margin: "0 0 4px", display: "flex", alignItems: "center", gap: 8 }}>
+                      <Award size={20} color="#A137F2" /> Final Course Evaluation (30 Questions)
+                    </h3>
+                    <p style={{ margin: 0, fontSize: "0.9rem", color: "var(--nu-ink-muted)" }}>
+                      Passmark: <strong>60%</strong> ({Math.ceil(30 * 0.6)}/30) &middot; Maximum <strong>4 attempts</strong> allowed &middot; Unlocks printable <strong>Certificate of Study Completion</strong>.
+                    </p>
+                  </div>
+                  <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                    <span className="nu-badge nu-badge-highyield">Attempts Used: {attemptsUsed} / 4</span>
+                    {existingCertificate && <span className="nu-badge nu-badge-free">Certified ({existingCertificate.percent}%)</span>}
+                  </div>
+                </div>
+
+                {existingCertificate && (
+                  <div style={{ marginBottom: 24 }}>
+                    <CertificateCard certificate={existingCertificate} learnerName={user?.name} />
+                  </div>
+                )}
+
+                {!user ? (
+                  <div style={{ border: "1px solid var(--nu-border)", padding: 24, borderRadius: 6, background: "#faf5ff", textAlign: "center" }}>
+                    <h4 style={{ margin: "0 0 8px" }}>Sign In Required for Final Evaluation &amp; Certificate</h4>
+                    <p style={{ margin: "0 0 16px", color: "var(--nu-ink-muted)" }}>
+                      Create a free learner account or sign in so Nursing Uganda can issue your named Certificate of Completion, track your 4 attempts, and email your verified result.
+                    </p>
+                    <Link to={`/login?next=${encodeURIComponent(`/learn/${course.slug}/${activeTopic.slug}`)}`} className="nu-btn nu-btn-primary">
+                      Sign In to Take Final Evaluation
+                    </Link>
+                  </div>
+                ) : !enrolled ? (
+                  <div style={{ border: "1px solid var(--nu-border)", padding: 24, borderRadius: 6, background: "#fff" }}>
+                    <h4 style={{ margin: "0 0 8px" }}>Enroll to Unlock the 30-Question Final Evaluation</h4>
+                    <p style={{ margin: "0 0 14px", color: "var(--nu-ink-muted)" }}>
+                      Full unit enrollment unlocks all course lessons plus the 30-question Final Evaluation &amp; Certificate of Completion.
+                    </p>
+                    <button
+                      type="button"
+                      className="nu-btn nu-btn-primary"
+                      onClick={() => {
+                        addToCart(course);
+                        navigate("/cart");
+                      }}
+                    >
+                      Enroll in {course.title} ({formatUsd(course.priceUsd)})
+                    </button>
+                  </div>
+                ) : attemptsRemaining === 0 && !existingCertificate ? (
+                  <div style={{ border: "1px solid #fca5a5", background: "#fef2f2", padding: 20, borderRadius: 6 }}>
+                    <h4 style={{ margin: "0 0 6px", color: "#991b1b" }}>Maximum 4 Attempts Used</h4>
+                    <p style={{ margin: 0, fontSize: "0.9rem", color: "#7f1d1d" }}>
+                      You have completed all 4 permitted Final Evaluation attempts for this course without reaching the 60% passmark. Review the unit notes and Free Topic Quizzes, or contact <strong>support@nursinguganda.com</strong> for tutor evaluation reset.
+                    </p>
+                  </div>
+                ) : (
+                  <div>
+                    {evalError && (
+                      <div style={{ padding: 12, marginBottom: 14, background: "#fef2f2", border: "1px solid #fecaca", color: "#991b1b", borderRadius: 6 }}>
+                        {evalError}
+                      </div>
+                    )}
+
+                    {evalResult && (
+                      <div
+                        style={{
+                          padding: 16,
+                          marginBottom: 18,
+                          borderRadius: 6,
+                          border: evalResult.passed ? "1px solid #86efac" : "1px solid #fde047",
+                          background: evalResult.passed ? "#f0fdf4" : "#fefce8"
+                        }}
+                      >
+                        <strong>
+                          Final Evaluation Result (Attempt #{evalResult.attemptNumber} of 4): {evalResult.score} / {evalResult.totalQuestions} ({evalResult.percent}%) —{" "}
+                          {evalResult.passed ? "PASSED! Certificate Unlocked." : `Below 60% passmark. ${evalResult.attemptsRemaining} attempt(s) remaining.`}
+                        </strong>
+                        {evalResult.emailSent && (
+                          <div style={{ fontSize: "0.84rem", color: "#15803d", marginTop: 4 }}>
+                            Certificate notification emailed to {user.email}.
+                          </div>
+                        )}
+                        {!evalResult.passed && evalResult.attemptsRemaining > 0 && (
+                          <div style={{ marginTop: 10 }}>
+                            <button
+                              type="button"
+                              className="nu-btn nu-btn-secondary"
+                              style={{ height: 34, fontSize: "0.82rem" }}
+                              onClick={() => {
+                                setEvalAnswers({});
+                                setEvalResult(null);
+                              }}
+                            >
+                              <RotateCcw size={14} /> Try Next Attempt ({evalResult.attemptsRemaining} left)
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    )}
+
+                    <div style={{ display: "grid", gap: 14 }}>
+                      {finalEvalQuestions.map((q) => {
+                        const userVal = evalAnswers[q.id];
+                        const isMulti = q.type === "multi";
+                        return (
+                          <div key={q.id} style={{ border: "1px solid var(--nu-border)", borderRadius: 6, padding: 16, background: "#fff" }}>
+                            <div style={{ marginBottom: 6 }}>
+                              <span className="nu-badge nu-badge-free" style={{ fontSize: "0.7rem" }}>
+                                Q{q.qNum} &middot; {isMulti ? "Multi-Choice (Select All)" : q.type === "boolean" ? "True / False" : "Single Choice"}
+                              </span>
+                            </div>
+                            <strong style={{ display: "block", marginBottom: 10 }}>{q.prompt}</strong>
+                            <div style={{ display: "grid", gap: 8 }}>
+                              {(q.options || []).map((opt, oi) => {
+                                const selected = isMulti
+                                  ? Array.isArray(userVal) && userVal.includes(oi)
+                                  : userVal === oi;
+                                const isRightOpt = evalResult
+                                  ? isMulti
+                                    ? (q.answerIndices || []).includes(oi)
+                                    : Number(q.answerIndex) === oi
+                                  : false;
+                                const isWrongSelected = evalResult && selected && !isRightOpt;
+                                return (
+                                  <label
+                                    key={oi}
+                                    style={{
+                                      display: "flex",
+                                      alignItems: "center",
+                                      gap: 10,
+                                      padding: "9px 12px",
+                                      border: isRightOpt
+                                        ? "1.5px solid #16a34a"
+                                        : isWrongSelected
+                                          ? "1.5px solid #dc2626"
+                                          : "1px solid var(--nu-border)",
+                                      borderRadius: 4,
+                                      background: isRightOpt
+                                        ? "#dcfce7"
+                                        : isWrongSelected
+                                          ? "#fee2e2"
+                                          : selected
+                                            ? "#faf5ff"
+                                            : "#fff",
+                                      cursor: evalResult ? "default" : "pointer"
+                                    }}
+                                  >
+                                    <input
+                                      type={isMulti ? "checkbox" : "radio"}
+                                      name={`eval-${q.id}`}
+                                      disabled={!!evalResult}
+                                      checked={selected}
+                                      onChange={() => {
+                                        if (isMulti) {
+                                          setEvalAnswers((prev) => {
+                                            const cur = new Set(Array.isArray(prev[q.id]) ? prev[q.id] : []);
+                                            if (cur.has(oi)) cur.delete(oi);
+                                            else cur.add(oi);
+                                            return { ...prev, [q.id]: [...cur] };
+                                          });
+                                        } else {
+                                          setEvalAnswers((prev) => ({ ...prev, [q.id]: oi }));
+                                        }
+                                      }}
+                                    />
+                                    <span>{opt}</span>
+                                  </label>
+                                );
+                              })}
+                            </div>
+                            {evalResult && q.rationale && (
+                              <div style={{ marginTop: 8, fontSize: "0.82rem", color: "#4b5563", background: "#f8fafc", padding: "8px 10px", borderRadius: 4 }}>
+                                <strong>Rationale:</strong> {q.rationale}
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+
+                    {!evalResult && (
+                      <div style={{ marginTop: 20 }}>
+                        <button
+                          type="button"
+                          disabled={evalSubmitting}
+                          className="nu-btn nu-btn-primary"
+                          onClick={async () => {
+                            setEvalError("");
+                            setEvalSubmitting(true);
+                            const graded = gradeQuizResponses(finalEvalQuestions, evalAnswers);
+                            const res = await submitFinalEvaluation({
+                              courseSlug: course.slug,
+                              courseTitle: course.title,
+                              programmeLabel: course.programmeLabel || "",
+                              score: graded.score,
+                              totalQuestions: graded.totalQuestions,
+                              breakdown: graded.breakdown
+                            });
+                            setEvalSubmitting(false);
+                            if (!res?.ok) {
+                              setEvalError(res?.error || "Could not submit final evaluation.");
+                            } else {
+                              setEvalResult(res);
+                            }
+                          }}
+                        >
+                          {evalSubmitting ? "Submitting Final Evaluation..." : `Submit Final Evaluation (${finalEvalQuestions.length} Qs)`}
+                        </button>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
@@ -451,6 +796,22 @@ export default function CoursePlayerPage() {
                 })}
               </div>
             ))}
+            <div style={{ padding: 16, borderTop: "2px solid var(--nu-border)", background: "#FAF5FF" }}>
+              <button
+                type="button"
+                className="nu-btn nu-btn-primary"
+                style={{ width: "100%", justifyContent: "center", fontSize: "0.84rem" }}
+                onClick={() => {
+                  setBottomTab("final-exam");
+                  document.getElementById("nu-player-assessments")?.scrollIntoView({ behavior: "smooth" });
+                }}
+              >
+                <Award size={16} /> Final Evaluation (30 Qs · Certificate)
+              </button>
+              <small style={{ display: "block", marginTop: 6, color: "var(--nu-ink-muted)", textAlign: "center" }}>
+                60% passmark &middot; {attemptsUsed}/4 attempts used
+              </small>
+            </div>
           </aside>
         )}
       </div>

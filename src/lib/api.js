@@ -11,7 +11,9 @@ const LS_KEYS = {
   progress: "nu.progress",
   notes: "nu.notes",
   qa: "nu.qa",
-  ebookLeads: "nu.ebookLeads"
+  ebookLeads: "nu.ebookLeads",
+  quizAttempts: "nu.quizAttempts",
+  certificates: "nu.certificates"
 };
 
 function readLS(key, fallback) {
@@ -65,7 +67,9 @@ export async function fetchSession() {
     ok: true,
     user: readLS(LS_KEYS.user, null),
     enrollments: readLS(LS_KEYS.enrollments, []),
-    progress: readLS(LS_KEYS.progress, {})
+    progress: readLS(LS_KEYS.progress, {}),
+    quizAttempts: readLS(LS_KEYS.quizAttempts, []),
+    certificates: readLS(LS_KEYS.certificates, [])
   };
 }
 
@@ -246,6 +250,105 @@ export async function recordEbookDownload({ ebookSlug, email }) {
   leads.push({ ebookSlug, email: email || "guest", createdAt: new Date().toISOString() });
   writeLS(LS_KEYS.ebookLeads, leads);
   return { ok: true };
+}
+
+export async function submitQuizAttempt(payload) {
+  const res = await apiFetch("/api/quiz-submit", {
+    method: "POST",
+    body: JSON.stringify(payload)
+  });
+  if (!res.__noPhp) return res;
+
+  const user = readLS(LS_KEYS.user, null);
+  if (!user) return { ok: false, error: "Please sign in before submitting quizzes." };
+  const attempts = readLS(LS_KEYS.quizAttempts, []);
+  const prior = attempts.filter((a) => a.quizType === (payload.quizType || "topic_free") && a.quizSlug === payload.quizSlug);
+  const total = Math.max(1, Number(payload.totalQuestions || 1));
+  const score = Math.max(0, Math.min(total, Number(payload.score || 0)));
+  const percent = Math.round((score / total) * 100);
+  const attempt = {
+    id: `qa-${Date.now()}`,
+    quizType: payload.quizType || "topic_free",
+    quizSlug: payload.quizSlug,
+    quizTitle: payload.quizTitle,
+    score,
+    totalQuestions: total,
+    percent,
+    passed: percent >= 60,
+    attemptNumber: prior.length + 1,
+    breakdownJson: JSON.stringify(payload.breakdown || {}),
+    createdAt: new Date().toISOString()
+  };
+  attempts.unshift(attempt);
+  writeLS(LS_KEYS.quizAttempts, attempts);
+  return { ok: true, attempt, emailSent: false, quizAttempts: attempts };
+}
+
+export async function submitCourseEvaluation(payload) {
+  const res = await apiFetch("/api/course-eval", {
+    method: "POST",
+    body: JSON.stringify(payload)
+  });
+  if (!res.__noPhp) return res;
+
+  const user = readLS(LS_KEYS.user, null);
+  if (!user) return { ok: false, error: "Please sign in to submit Final Evaluation." };
+  const attempts = readLS(LS_KEYS.quizAttempts, []);
+  const certs = readLS(LS_KEYS.certificates, []);
+  const prior = attempts.filter((a) => a.quizType === "course_final" && a.quizSlug === payload.courseSlug);
+  const existingCert = certs.find((c) => c.courseSlug === payload.courseSlug) || null;
+  if (prior.length >= 4 && !existingCert) {
+    return { ok: false, error: "Maximum 4 evaluation attempts reached for this unit." };
+  }
+  const total = Math.max(10, Number(payload.totalQuestions || 30));
+  const score = Math.max(0, Math.min(total, Number(payload.score || 0)));
+  const percent = Math.round((score / total) * 100);
+  const passed = percent >= 60;
+  const attemptNumber = prior.length + 1;
+  attempts.unshift({
+    id: `ev-${Date.now()}`,
+    quizType: "course_final",
+    quizSlug: payload.courseSlug,
+    quizTitle: `${payload.courseTitle} (Final Evaluation)`,
+    score,
+    totalQuestions: total,
+    percent,
+    passed,
+    attemptNumber,
+    createdAt: new Date().toISOString()
+  });
+  writeLS(LS_KEYS.quizAttempts, attempts);
+
+  let cert = existingCert;
+  if (passed && !existingCert) {
+    cert = {
+      id: `cert-${Date.now()}`,
+      courseSlug: payload.courseSlug,
+      courseTitle: payload.courseTitle,
+      programmeLabel: payload.programmeLabel || "",
+      score,
+      totalQuestions: total,
+      percent,
+      attemptNumber,
+      certificateCode: `NU-${new Date().getFullYear()}-${Math.random().toString(36).slice(2, 10).toUpperCase()}`,
+      issuedAt: new Date().toISOString()
+    };
+    certs.unshift(cert);
+    writeLS(LS_KEYS.certificates, certs);
+  }
+  return {
+    ok: true,
+    passed,
+    score,
+    totalQuestions: total,
+    percent,
+    attemptNumber,
+    attemptsRemaining: Math.max(0, 4 - attemptNumber),
+    certificate: cert,
+    certificates: certs,
+    quizAttempts: attempts,
+    emailSent: false
+  };
 }
 
 export async function fetchRuntimeConfig() {

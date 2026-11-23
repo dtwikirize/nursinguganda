@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { ArrowLeft, BookOpen, Download, Printer, ShieldCheck } from "lucide-react";
 import AdSlot from "../components/AdSlot";
 import ReferencesBox from "../components/ReferencesBox";
-import RichText from "../components/RichText";
+import TopicVisuals, { LessonSections } from "../components/TopicVisuals";
 import { recordEbookDownload } from "../lib/api";
 
 export default function EbookReaderPage() {
@@ -149,20 +149,8 @@ export default function EbookReaderPage() {
                 <p style={{ fontSize: "1rem", color: "var(--nu-ink-muted)", fontStyle: "italic" }}>{ch.excerpt}</p>
               )}
 
-              {(ch.sections || []).map((sec, si) => (
-                <div key={si} className="nu-lesson-section">
-                  <h3>{sec.title}</h3>
-                  {(sec.blocks || []).map((b, bi) =>
-                    b.type === "bullet" ? (
-                      <ul key={bi}><li><RichText text={b.text} /></li></ul>
-                    ) : Array.isArray(b.items) ? (
-                      <ul key={bi}>{b.items.map((it, ii) => <li key={ii}><RichText text={it} /></li>)}</ul>
-                    ) : (
-                      <p key={bi}><RichText text={b.text} /></p>
-                    )
-                  )}
-                </div>
-              ))}
+              <TopicVisuals lesson={ch} topicTitle={ch.title} />
+              <LessonSections sections={ch.sections || []} headingTag="h3" />
 
               <ReferencesBox
                 references={ch.chapterReferences}

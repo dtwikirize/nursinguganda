@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { ShieldCheck, MailCheck } from "lucide-react";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { ArrowLeft, ShieldCheck, MailCheck } from "lucide-react";
 import { useApp } from "../context/AppContext";
+import nuLogo from "../../assets/images/brand/nursing-uganda-logo-light.svg";
 
 export default function LoginPage() {
   const { catalog, user, login, register, googleLogin, verifyEmail, resendVerification } = useApp();
@@ -156,9 +157,17 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="nu-section">
-      <div className="nu-container" style={{ maxWidth: 440 }}>
-        <div style={{ border: "1px solid var(--nu-border)", padding: 28, background: "#fff", borderRadius: 4 }}>
+    <main style={{ minHeight: "100vh", background: "var(--nu-bg-subtle)", display: "flex", flexDirection: "column", justifyContent: "center", padding: "32px 16px" }}>
+      <div className="nu-container" style={{ maxWidth: 440, width: "100%" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 18 }}>
+          <Link to="/" aria-label="Nursing Uganda Home" style={{ display: "inline-block" }}>
+            <img src={nuLogo} alt="Nursing Uganda" style={{ height: 40, width: "auto", display: "block" }} />
+          </Link>
+          <Link to="/" style={{ display: "inline-flex", alignItems: "center", gap: 5, fontSize: "0.85rem", fontWeight: 600, color: "var(--nu-ink-muted)" }}>
+            <ArrowLeft size={15} /> Back to home
+          </Link>
+        </div>
+        <div style={{ border: "1px solid var(--nu-border)", padding: 28, background: "#fff", borderRadius: 6, boxShadow: "var(--nu-shadow-sm)" }}>
           <h1 style={{ fontFamily: "var(--nu-font-serif)", fontSize: "1.55rem", margin: "0 0 6px" }}>
             {mode === "verify"
               ? "Verify your email address"

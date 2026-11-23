@@ -7,7 +7,9 @@ const {
   buildWelcomeVerificationEmail,
   buildSecurityAlertEmail,
   buildPaymentReceiptEmail,
-  buildWeeklyDigestEmail
+  buildWeeklyDigestEmail,
+  buildQuizResultEmail,
+  buildCertificateEmail
 } = require("./email-templates");
 
 let cron = null;
@@ -188,6 +190,35 @@ const SCHEMA_SQL = [
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     INDEX idx_pv_date (visit_date),
     INDEX idx_pv_path (path)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4`,
+  `CREATE TABLE IF NOT EXISTS quiz_attempts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    quiz_type VARCHAR(32) NOT NULL DEFAULT 'topic_free',
+    quiz_slug VARCHAR(140) NOT NULL,
+    quiz_title VARCHAR(255) NOT NULL,
+    score INT NOT NULL DEFAULT 0,
+    total_questions INT NOT NULL DEFAULT 0,
+    percent INT NOT NULL DEFAULT 0,
+    passed TINYINT(1) NOT NULL DEFAULT 0,
+    attempt_number INT NOT NULL DEFAULT 1,
+    breakdown_json TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    INDEX idx_qa_user_slug (user_id, quiz_type, quiz_slug)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4`,
+  `CREATE TABLE IF NOT EXISTS course_certificates (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    course_slug VARCHAR(120) NOT NULL,
+    course_title VARCHAR(255) NOT NULL,
+    programme_label VARCHAR(120) DEFAULT '',
+    score INT NOT NULL DEFAULT 0,
+    total_questions INT NOT NULL DEFAULT 30,
+    percent INT NOT NULL DEFAULT 0,
+    attempt_number INT NOT NULL DEFAULT 1,
+    certificate_code VARCHAR(40) NOT NULL UNIQUE,
+    issued_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY uq_user_course_cert (user_id, course_slug)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4`
 ];
 
@@ -682,6 +713,20 @@ async function fetchUserSessionState(pool, user) {
   const [enRows] = await pool.query("SELECT course_slug FROM enrollments WHERE user_id = ?", [user.id]);
   const [prRows] = await pool.query("SELECT course_slug, lesson_slug FROM course_progress WHERE user_id = ? AND completed = 1", [user.id]);
   const [subRows] = await pool.query("SELECT subscribed, topic_preference FROM email_subscribers WHERE email = ? LIMIT 1", [user.email]);
+  const [qaAttemptRows] = await pool.query(
+    `SELECT id, quiz_type AS quizType, quiz_slug AS quizSlug, quiz_title AS quizTitle, score,
+            total_questions AS totalQuestions, percent, passed, attempt_number AS attemptNumber,
+            breakdown_json AS breakdownJson, created_at AS createdAt
+     FROM quiz_attempts WHERE user_id = ? ORDER BY created_at DESC LIMIT 120`,
+    [user.id]
+  );
+  const [certRows] = await pool.query(
+    `SELECT id, course_slug AS courseSlug, course_title AS courseTitle, programme_label AS programmeLabel,
+            score, total_questions AS totalQuestions, percent, attempt_number AS attemptNumber,
+            certificate_code AS certificateCode, issued_at AS issuedAt
+     FROM course_certificates WHERE user_id = ? ORDER BY issued_at DESC`,
+    [user.id]
+  );
   const progress = {};
   for (const r of prRows) {
     progress[r.course_slug] = progress[r.course_slug] || [];
@@ -701,7 +746,9 @@ async function fetchUserSessionState(pool, user) {
       initials: initialsOf(user.name)
     },
     enrollments: enRows.map((r) => r.course_slug),
-    progress
+    progress,
+    quizAttempts: qaAttemptRows.map((r) => ({ ...r, passed: Boolean(r.passed) })),
+    certificates: certRows
   };
 }
 
@@ -1321,6 +1368,247 @@ function createApiRouter() {
       progress[r.course_slug].push(r.lesson_slug);
     }
     return res.json({ progress });
+  });
+
+  // Free Major Topic & Session Quiz Submission (Sign-in mandatory; automatically emails results)
+  router.post("/quiz-submit", writeRateLimiter, async (req, res) => {
+    const pool = await requireDb(res);
+    if (!pool) return;
+    const uid = getSessionUserId(req);
+    if (!uid) return res.status(401).json({ error: "Please sign in before taking and submitting quizzes." });
+
+    const [uRows] = await pool.query("SELECT id, name, email FROM users WHERE id = ? LIMIT 1", [uid]);
+    const user = uRows[0];
+    if (!user) return res.status(401).json({ error: "Account not found. Please sign in again." });
+
+    const {
+      quizType = "topic_free",
+      quizSlug = "",
+      quizTitle = "",
+      score = 0,
+      totalQuestions = 0,
+      breakdown = {},
+      reviewItems = [],
+      sendEmail = true
+    } = req.body || {};
+
+    const cleanSlug = sanitizeText(quizSlug, 140);
+    const cleanTitle = sanitizeText(quizTitle, 255);
+    const allowedType = ["topic_free", "course_session"].includes(quizType) ? quizType : "topic_free";
+    const total = Math.max(1, Math.min(100, Number(totalQuestions) || 0));
+    const safeScore = Math.max(0, Math.min(total, Number(score) || 0));
+    if (!cleanSlug || !cleanTitle) {
+      return res.status(400).json({ error: "Valid quiz identifier and title are required." });
+    }
+
+    const percent = Math.round((safeScore / total) * 100);
+    const passed = percent >= 60 ? 1 : 0;
+
+    const [[cntRow]] = await pool.query(
+      "SELECT COUNT(*) AS cnt FROM quiz_attempts WHERE user_id = ? AND quiz_type = ? AND quiz_slug = ?",
+      [uid, allowedType, cleanSlug]
+    );
+    const attemptNumber = Number(cntRow?.cnt || 0) + 1;
+
+    await pool.query(
+      `INSERT INTO quiz_attempts (user_id, quiz_type, quiz_slug, quiz_title, score, total_questions, percent, passed, attempt_number, breakdown_json)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [uid, allowedType, cleanSlug, cleanTitle, safeScore, total, percent, passed, attemptNumber, JSON.stringify(breakdown || {})]
+    );
+
+    let emailSent = false;
+    if (sendEmail && user.email) {
+      try {
+        const mail = buildQuizResultEmail({
+          name: user.name,
+          topicTitle: cleanTitle,
+          score: safeScore,
+          totalQuestions: total,
+          passed: Boolean(passed),
+          breakdown,
+          reviewItems: Array.isArray(reviewItems) ? reviewItems : []
+        });
+        const emailRes = await sendBrandedEmail(pool, {
+          to: user.email,
+          ...mail,
+          category: "quiz_result"
+        });
+        emailSent = Boolean(emailRes?.sent);
+      } catch (err) {
+        console.warn("[Quiz Email Warning]", err?.message || err);
+      }
+    }
+
+    const [qaAttemptRows] = await pool.query(
+      `SELECT id, quiz_type AS quizType, quiz_slug AS quizSlug, quiz_title AS quizTitle, score,
+              total_questions AS totalQuestions, percent, passed, attempt_number AS attemptNumber,
+              breakdown_json AS breakdownJson, created_at AS createdAt
+       FROM quiz_attempts WHERE user_id = ? ORDER BY created_at DESC LIMIT 120`,
+      [uid]
+    );
+
+    return res.json({
+      ok: true,
+      attempt: {
+        quizType: allowedType,
+        quizSlug: cleanSlug,
+        quizTitle: cleanTitle,
+        score: safeScore,
+        totalQuestions: total,
+        percent,
+        passed: Boolean(passed),
+        attemptNumber
+      },
+      emailSent,
+      quizAttempts: qaAttemptRows.map((r) => ({ ...r, passed: Boolean(r.passed) }))
+    });
+  });
+
+  // Final Course Evaluation (30 Questions, 60% Passmark, Max 4 Attempts -> Certificate of Completion)
+  router.post("/course-eval", writeRateLimiter, async (req, res) => {
+    const pool = await requireDb(res);
+    if (!pool) return;
+    const uid = getSessionUserId(req);
+    if (!uid) return res.status(401).json({ error: "Please sign in to submit the Final Course Evaluation." });
+
+    const [uRows] = await pool.query("SELECT id, name, email FROM users WHERE id = ? LIMIT 1", [uid]);
+    const user = uRows[0];
+    if (!user) return res.status(401).json({ error: "Account not found. Please sign in again." });
+
+    const {
+      courseSlug = "",
+      courseTitle = "",
+      programmeLabel = "",
+      score = 0,
+      totalQuestions = 30,
+      breakdown = {}
+    } = req.body || {};
+
+    if (!isValidSlug(courseSlug)) {
+      return res.status(400).json({ error: "Invalid course slug." });
+    }
+    const cleanTitle = sanitizeText(courseTitle || courseSlug, 255);
+    const cleanProgramme = sanitizeText(programmeLabel || "", 120);
+    const total = Math.max(10, Math.min(60, Number(totalQuestions) || 30));
+    const safeScore = Math.max(0, Math.min(total, Number(score) || 0));
+    const percent = Math.round((safeScore / total) * 100);
+    const passed = percent >= 60;
+
+    const [existingCertRows] = await pool.query(
+      `SELECT id, course_slug AS courseSlug, course_title AS courseTitle, programme_label AS programmeLabel,
+              score, total_questions AS totalQuestions, percent, attempt_number AS attemptNumber,
+              certificate_code AS certificateCode, issued_at AS issuedAt
+       FROM course_certificates WHERE user_id = ? AND course_slug = ? LIMIT 1`,
+      [uid, courseSlug]
+    );
+
+    const [[cntRow]] = await pool.query(
+      "SELECT COUNT(*) AS cnt FROM quiz_attempts WHERE user_id = ? AND quiz_type = 'course_final' AND quiz_slug = ?",
+      [uid, courseSlug]
+    );
+    const attemptsUsed = Number(cntRow?.cnt || 0);
+    const MAX_ATTEMPTS = 4;
+
+    if (attemptsUsed >= MAX_ATTEMPTS && !existingCertRows[0]) {
+      return res.status(400).json({
+        error: "You have used all 4 allowed evaluation attempts for this course. Please review the study units or contact support@nursinguganda.com for tutor reset assistance.",
+        attemptsUsed,
+        maxAttempts: MAX_ATTEMPTS
+      });
+    }
+
+    const attemptNumber = attemptsUsed + 1;
+    await pool.query(
+      `INSERT INTO quiz_attempts (user_id, quiz_type, quiz_slug, quiz_title, score, total_questions, percent, passed, attempt_number, breakdown_json)
+       VALUES (?, 'course_final', ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [uid, courseSlug, `${cleanTitle} (Final Evaluation)`, safeScore, total, percent, passed ? 1 : 0, attemptNumber, JSON.stringify(breakdown || {})]
+    );
+
+    let certificate = existingCertRows[0] || null;
+    let emailSent = false;
+
+    if (passed) {
+      const yr = new Date().getFullYear();
+      const certHash = crypto
+        .createHash("sha256")
+        .update(`${uid}:${courseSlug}:nu-cert-salt`)
+        .digest("hex")
+        .slice(0, 8)
+        .toUpperCase();
+      const certCode = existingCertRows[0]?.certificateCode || `NU-${yr}-${certHash}`;
+
+      if (!existingCertRows[0]) {
+        await pool.query(
+          `INSERT INTO course_certificates (user_id, course_slug, course_title, programme_label, score, total_questions, percent, attempt_number, certificate_code)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+          [uid, courseSlug, cleanTitle, cleanProgramme, safeScore, total, percent, attemptNumber, certCode]
+        );
+      } else if (percent > Number(existingCertRows[0].percent || 0)) {
+        await pool.query(
+          `UPDATE course_certificates SET score = ?, percent = ?, attempt_number = ? WHERE user_id = ? AND course_slug = ?`,
+          [safeScore, percent, attemptNumber, uid, courseSlug]
+        );
+      }
+
+      const [updatedCertRows] = await pool.query(
+        `SELECT id, course_slug AS courseSlug, course_title AS courseTitle, programme_label AS programmeLabel,
+                score, total_questions AS totalQuestions, percent, attempt_number AS attemptNumber,
+                certificate_code AS certificateCode, issued_at AS issuedAt
+         FROM course_certificates WHERE user_id = ? AND course_slug = ? LIMIT 1`,
+        [uid, courseSlug]
+      );
+      certificate = updatedCertRows[0] || null;
+
+      if (user.email && certificate && !existingCertRows[0]) {
+        try {
+          const mail = buildCertificateEmail({
+            name: user.name,
+            courseTitle: cleanTitle,
+            score: safeScore,
+            totalQuestions: total,
+            certificateCode: certificate.certificateCode,
+            attemptNumber
+          });
+          const emailRes = await sendBrandedEmail(pool, {
+            to: user.email,
+            ...mail,
+            category: "certificate"
+          });
+          emailSent = Boolean(emailRes?.sent);
+        } catch (err) {
+          console.warn("[Certificate Email Warning]", err?.message || err);
+        }
+      }
+    }
+
+    const [qaAttemptRows] = await pool.query(
+      `SELECT id, quiz_type AS quizType, quiz_slug AS quizSlug, quiz_title AS quizTitle, score,
+              total_questions AS totalQuestions, percent, passed, attempt_number AS attemptNumber,
+              breakdown_json AS breakdownJson, created_at AS createdAt
+       FROM quiz_attempts WHERE user_id = ? ORDER BY created_at DESC LIMIT 120`,
+      [uid]
+    );
+    const [allCerts] = await pool.query(
+      `SELECT id, course_slug AS courseSlug, course_title AS courseTitle, programme_label AS programmeLabel,
+              score, total_questions AS totalQuestions, percent, attempt_number AS attemptNumber,
+              certificate_code AS certificateCode, issued_at AS issuedAt
+       FROM course_certificates WHERE user_id = ? ORDER BY issued_at DESC`,
+      [uid]
+    );
+
+    return res.json({
+      ok: true,
+      passed,
+      score: safeScore,
+      totalQuestions: total,
+      percent,
+      attemptNumber,
+      attemptsRemaining: Math.max(0, MAX_ATTEMPTS - attemptNumber),
+      certificate,
+      certificates: allCerts,
+      quizAttempts: qaAttemptRows.map((r) => ({ ...r, passed: Boolean(r.passed) })),
+      emailSent
+    });
   });
 
   // Course Q&A

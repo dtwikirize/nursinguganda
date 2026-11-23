@@ -47,15 +47,18 @@ const dataFiles = [
   "ebooks.json",
   "medical-instruments.json",
   "mock-exams.json",
-  "references.json"
+  "references.json",
+  "topic-visuals-manifest.json",
+  "topic-quizzes.json"
 ];
 for (const f of dataFiles) {
   copyFileSafe(path.join("assets", "data", f));
 }
 copyDirSafe(path.join("assets", "data", "courses"));
 
-// 2. Core brand & Udemy imagery (keep 286 MB lesson-images separate or already on Hostinger)
+// 2. Core brand, medical illustrations & Udemy imagery (keep 286 MB lesson-images separate or already on Hostinger)
 copyDirSafe(path.join("assets", "images", "brand"));
+copyDirSafe(path.join("assets", "images", "medical-illustrations"));
 copyDirSafe(path.join("assets", "images", "udemy"));
 copyDirSafe(path.join("assets", "images", "pwa"));
 copyDirSafe(path.join("assets", "images", "medical-instruments"));

@@ -12,6 +12,7 @@ import CoursesCatalogPage from "./pages/CoursesCatalogPage";
 import DictionaryPage from "./pages/DictionaryPage";
 import EbookReaderPage from "./pages/EbookReaderPage";
 import EbooksPage from "./pages/EbooksPage";
+import FreeQuizzesPage from "./pages/FreeQuizzesPage";
 import HomePage from "./pages/HomePage";
 import BrandKitPage from "./pages/BrandKitPage";
 import InstrumentsPage from "./pages/InstrumentsPage";
@@ -23,6 +24,8 @@ import TrustPage from "./pages/TrustPage";
 export default function App() {
   const location = useLocation();
   const isPlayer = location.pathname.startsWith("/learn/");
+  const isAuthPage = location.pathname === "/login";
+  const hideChrome = isPlayer || isAuthPage;
 
   useEffect(() => {
     if (location.pathname.startsWith("/admin")) return;
@@ -38,7 +41,7 @@ export default function App() {
 
   return (
     <>
-      {!isPlayer && <Navbar />}
+      {!hideChrome && <Navbar />}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/courses" element={<CoursesCatalogPage />} />
@@ -50,6 +53,7 @@ export default function App() {
         <Route path="/ebooks/:slug" element={<EbookReaderPage />} />
 
         <Route path="/mock-exams" element={<MockExamsPage />} />
+        <Route path="/quizzes" element={<FreeQuizzesPage />} />
         <Route path="/dictionary" element={<DictionaryPage />} />
         <Route path="/instruments" element={<InstrumentsPage />} />
         <Route path="/clinical-tools" element={<ClinicalToolsPage />} />
@@ -69,7 +73,7 @@ export default function App() {
 
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-      {!isPlayer && <Footer />}
+      {!hideChrome && <Footer />}
     </>
   );
 }

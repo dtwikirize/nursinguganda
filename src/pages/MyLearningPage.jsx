@@ -5,19 +5,24 @@ import {
   BarChart2,
   BookOpen,
   CheckCircle2,
+  ClipboardCheck,
   FileText,
   Lock,
   LogOut,
   Mail,
   MailWarning,
   PlayCircle,
-  ShieldCheck
+  ShieldCheck,
+  Sparkles,
+  Trophy
 } from "lucide-react";
+import CertificateCard from "../components/CertificateCard";
 import { useApp } from "../context/AppContext";
 import { fetchSecurityEvents } from "../lib/api";
 
 const SIDEBAR_ITEMS = [
   { id: "courses", label: "My Courses", icon: BookOpen },
+  { id: "badges", label: "Badges & Certificates", icon: Award },
   { id: "progress", label: "Study Progress", icon: BarChart2 },
   { id: "notes", label: "eBooks & Saved Notes", icon: FileText },
   { id: "preferences", label: "Email & Digest", icon: Mail },
@@ -25,7 +30,7 @@ const SIDEBAR_ITEMS = [
 ];
 
 export default function MyLearningPage() {
-  const { catalog, user, enrollments, progress, lessonNotes, logout } = useApp();
+  const { catalog, user, enrollments, progress, quizAttempts, certificates, lessonNotes, logout } = useApp();
   const [searchParams] = useSearchParams();
   const [section, setSection] = useState("courses");
   const [tab, setTab] = useState("all");
@@ -299,6 +304,168 @@ export default function MyLearningPage() {
                 </div>
               )}
             </>
+          )}
+
+          {section === "badges" && (
+            <div style={{ display: "grid", gap: 22 }}>
+              <div className="nu-admin-card">
+                <h3 style={{ margin: "0 0 6px", display: "flex", alignItems: "center", gap: 8 }}>
+                  <Trophy size={20} color="#A137F2" /> Earned Study &amp; Completion Badges
+                </h3>
+                <p style={{ margin: "0 0 16px", fontSize: "0.88rem", color: "var(--nu-ink-muted)" }}>
+                  Unlock milestone badges automatically as you complete course readings, pass 25+ question topic quizzes, and earn unit Certificates of Completion.
+                </p>
+                {(() => {
+                  const completedCoursesCount = categorized.filter((c) => c.pct >= 100).length;
+                  const passedTopicQuizzes = quizAttempts.filter((a) => a.quizType === "topic_free" && a.passed).length;
+                  const totalQuizAttempts = quizAttempts.length;
+                  const badges = [
+                    {
+                      id: "starter",
+                      title: "Registered Scholar",
+                      desc: "Joined Nursing Uganda & synced study profile",
+                      earned: Boolean(user),
+                      color: "#7c3aed"
+                    },
+                    {
+                      id: "lessons-5",
+                      title: "Clinical Reader (5+ Lessons)",
+                      desc: `Completed ${totalLessonsDone} study sessions`,
+                      earned: totalLessonsDone >= 5,
+                      color: "#0284c7"
+                    },
+                    {
+                      id: "quiz-1",
+                      title: "Quiz Challenger",
+                      desc: `Submitted ${totalQuizAttempts} topic/session quiz attempts`,
+                      earned: totalQuizAttempts >= 1,
+                      color: "#0d9488"
+                    },
+                    {
+                      id: "quiz-pass",
+                      title: "Clinical Quiz Passer (>=60%)",
+                      desc: `Passed ${passedTopicQuizzes} Free Topic Quizzes`,
+                      earned: passedTopicQuizzes >= 1,
+                      color: "#15803d"
+                    },
+                    {
+                      id: "course-done",
+                      title: "Unit Syllabus Finisher",
+                      desc: `Finished 100% lessons in ${completedCoursesCount} unit(s)`,
+                      earned: completedCoursesCount >= 1,
+                      color: "#d97706"
+                    },
+                    {
+                      id: "certified",
+                      title: "Certified Course Completer",
+                      desc: `Earned ${certificates.length} Final Evaluation Certificate(s)`,
+                      earned: certificates.length >= 1,
+                      color: "#A137F2"
+                    }
+                  ];
+                  return (
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(215px, 1fr))", gap: 14 }}>
+                      {badges.map((b) => (
+                        <div
+                          key={b.id}
+                          style={{
+                            border: b.earned ? `2px solid ${b.color}` : "1px dashed #cbd5e1",
+                            background: b.earned ? "#fff" : "#f8fafc",
+                            opacity: b.earned ? 1 : 0.65,
+                            borderRadius: 8,
+                            padding: 14,
+                            display: "grid",
+                            gap: 6
+                          }}
+                        >
+                          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                            <Sparkles size={18} color={b.earned ? b.color : "#94a3b8"} />
+                            <span
+                              style={{
+                                fontSize: "0.7rem",
+                                fontWeight: 800,
+                                textTransform: "uppercase",
+                                padding: "2px 7px",
+                                borderRadius: 4,
+                                background: b.earned ? "#dcfce7" : "#e2e8f0",
+                                color: b.earned ? "#166534" : "#475569"
+                              }}
+                            >
+                              {b.earned ? "Earned" : "Locked"}
+                            </span>
+                          </div>
+                          <strong style={{ fontSize: "0.94rem" }}>{b.title}</strong>
+                          <small style={{ color: "var(--nu-ink-muted)", fontSize: "0.8rem" }}>{b.desc}</small>
+                        </div>
+                      ))}
+                    </div>
+                  );
+                })()}
+              </div>
+
+              <div className="nu-admin-card">
+                <h3 style={{ margin: "0 0 8px", display: "flex", alignItems: "center", gap: 8 }}>
+                  <Award size={20} color="#A137F2" /> Earned Certificates of Completion ({certificates.length})
+                </h3>
+                <p style={{ margin: "0 0 16px", fontSize: "0.86rem", color: "var(--nu-ink-muted)" }}>
+                  Certificates are unlocked upon scoring &ge; 60% on any course&apos;s 30-question Final Evaluation (up to 4 attempts). Note: Certificates certify supplementary study completion only and do not constitute clinical licensure.
+                </p>
+                {certificates.length === 0 ? (
+                  <div style={{ padding: 20, background: "#faf5ff", border: "1px solid #e9d5ff", borderRadius: 6 }}>
+                    <strong>No certificates earned yet.</strong>
+                    <p style={{ margin: "6px 0 12px", fontSize: "0.88rem", color: "var(--nu-ink-muted)" }}>
+                      Open any enrolled course player and click &ldquo;Final Evaluation (30 Qs · Certificate)&rdquo; to earn your first Certificate of Study Completion.
+                    </p>
+                    <Link to="/courses" className="nu-btn nu-btn-primary">Browse Courses</Link>
+                  </div>
+                ) : (
+                  <div style={{ display: "grid", gap: 20 }}>
+                    {certificates.map((cert) => (
+                      <CertificateCard key={cert.certificateCode} certificate={cert} learnerName={user?.name} />
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <div className="nu-admin-card">
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 10, marginBottom: 12 }}>
+                  <h3 style={{ margin: 0, display: "flex", alignItems: "center", gap: 8 }}>
+                    <ClipboardCheck size={19} color="#A137F2" /> Quiz &amp; Final Evaluation History ({quizAttempts.length})
+                  </h3>
+                  <Link to="/quizzes" className="nu-btn nu-btn-secondary" style={{ height: 34, fontSize: "0.82rem" }}>
+                    Take Free Topic Quizzes
+                  </Link>
+                </div>
+                {quizAttempts.length === 0 ? (
+                  <p style={{ color: "var(--nu-ink-muted)", margin: 0 }}>
+                    No quiz attempts recorded yet. Try our Free Major Topic Quizzes to receive automatic score reports by email.
+                  </p>
+                ) : (
+                  <div className="nu-admin-table-wrap">
+                    <table className="nu-admin-table">
+                      <thead>
+                        <tr><th>Assessment</th><th>Type</th><th>Score</th><th>Status</th><th>Attempt</th></tr>
+                      </thead>
+                      <tbody>
+                        {quizAttempts.slice(0, 20).map((qa) => (
+                          <tr key={qa.id}>
+                            <td><strong>{qa.quizTitle}</strong></td>
+                            <td><code>{qa.quizType}</code></td>
+                            <td>{qa.score}/{qa.totalQuestions} ({qa.percent}%)</td>
+                            <td>
+                              <span className={`nu-badge ${qa.passed ? "nu-badge-free" : "nu-badge-highyield"}`}>
+                                {qa.passed ? "Passed" : "Review"}
+                              </span>
+                            </td>
+                            <td>#{qa.attemptNumber}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+              </div>
+            </div>
           )}
 
           {section === "progress" && (

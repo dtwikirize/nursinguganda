@@ -222,9 +222,89 @@ function buildWeeklyDigestEmail({ name, subject, topicTitle, summary, highlights
   return { subject: subject || `Nursing Uganda Weekly Digest: ${topicTitle}`, html, text };
 }
 
+function buildQuizResultEmail({ name, topicTitle, score, totalQuestions, passed, breakdown = {}, reviewItems = [] }) {
+  const safeName = escapeHtml(name || "Nursing Student");
+  const safeTopic = escapeHtml(topicTitle || "Major Nursing Topic Quiz");
+  const pct = totalQuestions > 0 ? Math.round((Number(score) / Number(totalQuestions)) * 100) : 0;
+  const passBadgeBg = passed ? "#dcfce7" : "#fef3c7";
+  const passBadgeColor = passed ? "#166534" : "#92400e";
+  const statusLabel = passed ? "PASS (>= 60% Benchmark Met)" : "NEEDS REVIEW (< 60% Benchmark)";
+
+  const singleLine = breakdown.single ? `${breakdown.single.correct}/${breakdown.single.total} Single-Choice` : "";
+  const multiLine = breakdown.multi ? `${breakdown.multi.correct}/${breakdown.multi.total} Multi-Choice` : "";
+  const tfLine = breakdown.tf ? `${breakdown.tf.correct}/${breakdown.tf.total} True/False` : "";
+  const breakdownStr = [singleLine, multiLine, tfLine].filter(Boolean).join(" &middot; ");
+
+  const reviewHtml = (reviewItems || [])
+    .slice(0, 6)
+    .map(
+      (item) =>
+        `<li style="margin-bottom:8px;"><strong>${escapeHtml(item.prompt)}</strong><br/><span style="color:#166534;">Correct: ${escapeHtml(item.correctLabel)}</span>${item.rationale ? `<br/><span style="color:#6A6F73;font-size:12px;">${escapeHtml(item.rationale)}</span>` : ""}</li>`
+    )
+    .join("");
+
+  const html = wrapBrandedLayout({
+    preheader: `${topicTitle}: You scored ${score}/${totalQuestions} (${pct}%).`,
+    badge: "QUIZ RESULT REPORT",
+    title: `${safeTopic} — Quiz Results`,
+    bodyHtml: `
+      <p style="margin:0 0 12px;">Hello ${safeName},</p>
+      <p style="margin:0 0 16px;">Your Nursing Uganda free topic quiz attempt has been graded and saved to your learner dashboard.</p>
+      <div style="background:#F7F9FA;border:1px solid #D1D7DC;border-left:5px solid #A137F2;border-radius:6px;padding:16px 18px;margin-bottom:18px;">
+        <div style="font-size:28px;font-weight:800;color:#1C1D1F;line-height:1.1;">${pct}% <span style="font-size:15px;font-weight:600;color:#6A6F73;">(${Number(score)} / ${Number(totalQuestions)} correct)</span></div>
+        <div style="margin-top:8px;">
+          <span style="display:inline-block;background:${passBadgeBg};color:${passBadgeColor};font-size:12px;font-weight:700;padding:4px 10px;border-radius:4px;">${statusLabel}</span>
+        </div>
+        ${breakdownStr ? `<div style="margin-top:10px;font-size:13px;color:#2D2F31;"><strong>Type Breakdown:</strong> ${breakdownStr}</div>` : ""}
+      </div>
+      ${
+        reviewHtml
+          ? `<div style="margin:14px 0;"><div style="font-size:13px;font-weight:700;color:#1C1D1F;margin-bottom:8px;">High-Yield Revision Highlights:</div><ol style="margin:0;padding-left:20px;font-size:13px;">${reviewHtml}</ol></div>`
+          : ""
+      }
+      <p style="margin:14px 0 0;font-size:12px;color:#6A6F73;"><em>Study Disclaimer:</em> Nursing Uganda assessments support UNMEB and clinical revision only and do not constitute institutional grading or licensure.</p>
+    `,
+    ctaLabel: "View Dashboard & Retake Quiz",
+    ctaUrl: `${SITE_URL}/quizzes`
+  });
+
+  const text = `Hello ${name || "Student"},\n\nQuiz Result: ${topicTitle}\nScore: ${score}/${totalQuestions} (${pct}%) — ${statusLabel}\n\nContinue revising at ${SITE_URL}/quizzes`;
+  return { subject: `[Quiz Result: ${pct}%] ${topicTitle} — Nursing Uganda`, html, text };
+}
+
+function buildCertificateEmail({ name, courseTitle, score, totalQuestions, certificateCode, attemptNumber }) {
+  const safeName = escapeHtml(name || "Nursing Student");
+  const safeCourse = escapeHtml(courseTitle || "Nursing & Midwifery Course");
+  const safeCode = escapeHtml(certificateCode || "NU-CERT");
+  const pct = totalQuestions > 0 ? Math.round((Number(score) / Number(totalQuestions)) * 100) : 0;
+
+  const html = wrapBrandedLayout({
+    preheader: `Congratulations! Certificate ${certificateCode} issued for ${courseTitle} (${pct}%).`,
+    badge: "CERTIFICATE EARNED",
+    title: `Congratulations, ${safeName}!`,
+    bodyHtml: `
+      <p style="margin:0 0 12px;">You have successfully passed the 30-question Final Course Evaluation for <strong>${safeCourse}</strong> and unlocked your <strong>Certificate of Study Completion</strong> and Completion Badge.</p>
+      <div style="background:#FAF5FF;border:2px solid #A137F2;border-radius:8px;padding:18px;margin:16px 0;">
+        <div style="font-size:11px;font-weight:700;color:#A137F2;letter-spacing:0.08em;text-transform:uppercase;">Verification Summary</div>
+        <div style="font-size:16px;font-weight:700;color:#1C1D1F;margin:6px 0;">${safeCourse}</div>
+        <div style="font-size:13px;color:#2D2F31;">Final Evaluation Score: <strong>${Number(score)} / ${Number(totalQuestions)} (${pct}%)</strong> (Attempt #${Number(attemptNumber || 1)})</div>
+        <div style="font-size:13px;color:#2D2F31;margin-top:4px;">Certificate ID: <code>${safeCode}</code></div>
+      </div>
+      <p style="margin:12px 0 0;font-size:12px;color:#6A6F73;"><strong>Regulatory Disclaimer:</strong> This Certificate of Completion recognizes independent supplementary study on Nursing Uganda only. It is NOT an accredited academic transcript, statutory clinical license, or official qualification from UNMEB, UNMC, or the Ministry of Health Uganda.</p>
+    `,
+    ctaLabel: "Print Certificate & View Badges",
+    ctaUrl: `${SITE_URL}/my-learning`
+  });
+
+  const text = `Congratulations ${name}!\n\nYou passed ${courseTitle} Final Evaluation (${score}/${totalQuestions} = ${pct}%).\nCertificate ID: ${certificateCode}\n\nNote: This supplementary study completion certificate is not a clinical practicing license.\nView & print at ${SITE_URL}/my-learning`;
+  return { subject: `Certificate of Completion Earned: ${courseTitle} (${safeCode})`, html, text };
+}
+
 module.exports = {
   buildWelcomeVerificationEmail,
   buildSecurityAlertEmail,
   buildPaymentReceiptEmail,
-  buildWeeklyDigestEmail
+  buildWeeklyDigestEmail,
+  buildQuizResultEmail,
+  buildCertificateEmail
 };

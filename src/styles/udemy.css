@@ -281,6 +281,36 @@ img {
   grid-template-columns: 330px minmax(0, 1fr) 295px;
   min-height: 430px;
 }
+.nu-mega-grid--simple {
+  grid-template-columns: 330px minmax(0, 1fr);
+  min-height: 410px;
+}
+.nu-mega-links-cols {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px 18px;
+  align-content: start;
+}
+.nu-mega-clean-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: var(--nu-radius-xs);
+  font-size: 0.86rem;
+  color: var(--nu-ink);
+  transition: background 0.12s, color 0.12s;
+}
+.nu-mega-clean-link span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.nu-mega-clean-link:hover {
+  background: var(--nu-purple-soft);
+  color: var(--nu-purple);
+}
 @media (max-width: 1120px) {
   .nu-mega-grid {
     grid-template-columns: 260px minmax(0, 1fr);
@@ -1649,23 +1679,272 @@ img {
   background: #ffffff;
 }
 
+/* ── Medical Illustrations, Napkin Flowcharts & Page-by-Page Notes ── */
+.nu-visual-suite {
+  display: grid;
+  gap: 18px;
+  margin: 18px 0 26px;
+}
+.nu-visual-plate-box,
+.nu-napkin-card,
+.nu-clinical-table-card {
+  background: #ffffff;
+  border: 1px solid var(--nu-border);
+  border-radius: var(--nu-radius-md);
+  padding: 18px 20px;
+  box-shadow: var(--nu-shadow-sm);
+}
+.nu-visual-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.nu-visual-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--nu-purple);
+}
+.nu-visual-domain-pill {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--nu-ink);
+  color: #ffffff;
+}
+.nu-visual-plate-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px;
+}
+.nu-visual-figure {
+  margin: 0;
+  border: 1px solid var(--nu-border-light);
+  border-radius: var(--nu-radius-sm);
+  background: #ffffff;
+  overflow: hidden;
+}
+.nu-visual-figure img {
+  width: 100%;
+  max-height: 360px;
+  object-fit: contain;
+  display: block;
+  background: #ffffff;
+  padding: 8px;
+}
+.nu-visual-figure figcaption {
+  padding: 8px 12px;
+  background: var(--nu-bg-subtle);
+  border-top: 1px solid var(--nu-border-light);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--nu-ink-muted);
+}
+
+/* Napkin-Style Connected Study Flow */
+.nu-napkin-flow {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.nu-napkin-node {
+  flex: 1 1 155px;
+  min-width: 140px;
+  border: 1.5px solid;
+  border-radius: 10px;
+  padding: 12px 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.nu-napkin-step-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 22px;
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+.nu-napkin-node-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+.nu-napkin-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 640px) {
+  .nu-napkin-arrow {
+    display: none;
+  }
+}
+
+/* Clinical Reference Table */
+.nu-clinical-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+}
+.nu-clinical-table th {
+  text-align: left;
+  padding: 10px 12px;
+  background: var(--nu-ink);
+  color: #ffffff;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.nu-clinical-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--nu-border-light);
+  color: var(--nu-ink);
+  vertical-align: top;
+  line-height: 1.45;
+}
+.nu-clinical-table tr:nth-child(even) td {
+  background: var(--nu-bg-subtle);
+}
+.nu-table-lead {
+  font-weight: 700;
+  color: #6B21A8 !important;
+}
+.nu-clinical-callout-strip {
+  margin-top: 12px;
+  padding: 10px 12px;
+  background: var(--nu-bg-warm);
+  border: 1px solid #FDE68A;
+  border-radius: var(--nu-radius-xs);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  font-size: 0.8rem;
+  color: var(--nu-ink);
+}
+.nu-clinical-callout-strip span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Page-by-Page Color-Organized Notes */
+.nu-notes-pages {
+  display: grid;
+  gap: 18px;
+}
+.nu-note-page-card {
+  background: #ffffff;
+  border: 1px solid var(--nu-border-light);
+  border-top-width: 4px;
+  border-radius: var(--nu-radius-md);
+  padding: 20px 22px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+.nu-note-page-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--nu-border-light);
+}
+.nu-note-page-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1.5px solid;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.nu-note-page-body p {
+  margin: 0 0 10px;
+  line-height: 1.72;
+}
+.nu-note-styled-list {
+  margin: 4px 0 8px;
+  padding-left: 0;
+  list-style: none;
+}
+.nu-note-styled-list li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 7px;
+  line-height: 1.62;
+}
+.nu-note-styled-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 3px;
+  background: var(--nu-purple);
+  transform: rotate(45deg);
+}
+.nu-note-callout {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: var(--nu-radius-sm);
+  margin: 10px 0;
+  font-size: 0.94rem;
+  line-height: 1.6;
+}
+.nu-note-callout--pearl {
+  background: #F7EDFF;
+  border-left: 4px solid #A137F2;
+  color: #3B0764;
+}
+.nu-note-callout--alert {
+  background: #FEF2F2;
+  border-left: 4px solid #DC2626;
+  color: #7F1D1D;
+}
+.nu-note-callout-icon {
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
 /* ── Clean PDF Print Mode for Free eBooks ─────────────────── */
 @media print {
   .nu-header,
   .nu-promo-bar,
   .nu-footer,
   .nu-no-print,
-  .nu-ad-slot {
+  .nu-ad-slot,
+  .nu-dash-sidebar,
+  .nu-player-bar,
+  .nu-player-sidebar {
     display: none !important;
   }
   body {
     background: #ffffff;
     color: #000000;
   }
-  .nu-ebook-print-sheet {
+  .nu-ebook-print-sheet,
+  .nu-certificate-sheet {
     max-width: 100% !important;
-    padding: 0 !important;
     margin: 0 !important;
+    break-inside: avoid;
   }
   .nu-lesson-section {
     break-inside: avoid;

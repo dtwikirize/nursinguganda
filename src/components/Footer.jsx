@@ -83,6 +83,7 @@ export default function Footer() {
             <h4>Free Resources</h4>
             <ul>
               <li><Link to="/ebooks">Free Referenced eBooks</Link></li>
+              <li><Link to="/quizzes">Free Major Topic Quizzes</Link></li>
               <li><Link to="/dictionary">Medical Dictionary</Link></li>
               <li><Link to="/instruments">Medical Instrument Atlas</Link></li>
               <li><Link to="/clinical-tools">Drug Dosage &amp; Checklists</Link></li>
@@ -103,7 +104,7 @@ export default function Footer() {
         </div>
 
         <div className="nu-footer-bottom">
-          <span>© {new Date().getFullYear()} Nursing Uganda (nursinguganda.com). Educational content reviewed against WHO &amp; Uganda MoH guidelines.</span>
+          <span>© {new Date().getFullYear()} Nursing Uganda (nursinguganda.com). Independent study platform only — NOT an official UNMEB/UNMC/MoH credential or clinical license. <Link to="/terms" style={{ color: "#e2e8f0", textDecoration: "underline" }}>Read Medical &amp; Certificate Disclaimers</Link>.</span>
           <span>Payments secured by PayPal · Kampala, Uganda</span>
         </div>
       </div>

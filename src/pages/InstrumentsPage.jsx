@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Search } from "lucide-react";
 import AdSlot from "../components/AdSlot";
 import ReferencesBox from "../components/ReferencesBox";
@@ -19,6 +20,8 @@ const INSTRUMENT_REFS = [
 ];
 
 export default function InstrumentsPage() {
+  const [searchParams] = useSearchParams();
+  const initialCatParam = searchParams.get("cat") || "";
   const [data, setData] = useState(null);
   const [q, setQ] = useState("");
   const [cat, setCat] = useState("All");
@@ -27,8 +30,14 @@ export default function InstrumentsPage() {
   useEffect(() => {
     fetch("/assets/data/medical-instruments.json")
       .then((r) => r.json())
-      .then(setData);
-  }, []);
+      .then((d) => {
+        setData(d);
+        if (initialCatParam && d?.categories) {
+          const match = d.categories.find((c) => c.title.toLowerCase().includes(initialCatParam.toLowerCase()));
+          if (match) setCat(match.title);
+        }
+      });
+  }, [initialCatParam]);
 
   const allItems = useMemo(() => {
     if (!data?.categories) return [];
@@ -111,7 +120,10 @@ export default function InstrumentsPage() {
                 />
                 <div style={{ display: "grid", gap: 10, fontSize: "0.94rem" }}>
                   <p style={{ margin: 0 }}><strong>Clinical Use:</strong> {selected.use}</p>
-                  <p style={{ margin: 0 }}><strong>Preparation &amp; Sterility:</strong> {selected.preparation}</p>
+                  <p style={{ margin: 0 }}><strong>Preparation Before Use:</strong> {selected.preparation}</p>
+                  {selected.sterilization && (
+                    <p style={{ margin: 0 }}><strong>Sterilization &amp; Reprocessing:</strong> {selected.sterilization}</p>
+                  )}
                   <p style={{ margin: 0 }}><strong>Safety Point:</strong> {selected.safety}</p>
                   {selected.examPoints && (
                     <div>
