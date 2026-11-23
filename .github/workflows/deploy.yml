@@ -1,9 +1,7 @@
-name: Deploy to Hostinger
+name: Deploy to Hostinger (Manual FTPS Backup)
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 concurrency:
   group: deploy-production
