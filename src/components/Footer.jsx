@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import nuLogo from "../../assets/images/brand/nu-variant-3.svg";
 
 export default function Footer() {
   return (
@@ -9,7 +10,7 @@ export default function Footer() {
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
               <img
-                src="/assets/images/brand/nu-variant-3.svg"
+                src={nuLogo}
                 alt="Nursing Uganda NU"
                 style={{ width: 34, height: 34, objectFit: "contain" }}
               />

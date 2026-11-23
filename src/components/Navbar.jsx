@@ -11,6 +11,7 @@ import {
   X
 } from "lucide-react";
 import { useApp } from "../context/AppContext";
+import nuLogo from "../../assets/images/brand/nu-variant-3.svg";
 
 export default function Navbar() {
   const { catalog, user, cart, enrollments, logout } = useApp();
@@ -78,7 +79,7 @@ export default function Navbar() {
         <div className="nu-nav-inner">
           <Link to="/" className="nu-logo">
             <img
-              src="/assets/images/brand/nu-variant-3.svg"
+              src={nuLogo}
               alt="Nursing Uganda NU"
             />
             <span>
