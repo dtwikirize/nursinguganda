@@ -25817,3 +25817,41 @@ h1, h2, h3, h4,
   max-height: calc(100dvh - 36px); /* dvh excludes mobile browser chrome */
   overflow: hidden auto;
 }
+
+/* ── Footer: lighter tone, tighter rhythm ─────────────────────────
+   Was #101827 (near-black) and 1098px tall — a slab that outweighed the
+   page. Lifted to a slate navy and the vertical spacing pulled in. Only
+   spacing and colour are set here; grid-template-columns is left alone so
+   the responsive collapse to fewer columns still applies. */
+.site-footer {
+  background: #27354d;
+  padding-top: 40px;
+  margin-top: 48px;
+}
+
+.footer-top {
+  gap: 28px;
+  padding-bottom: 32px;
+}
+
+.footer-divider {
+  margin-bottom: 24px;
+}
+
+.footer-nav {
+  gap: 22px 26px;
+  padding-bottom: 28px;
+}
+
+.footer-nav-col h4 {
+  margin-bottom: 10px;
+}
+
+.footer-nav-col a {
+  min-height: 28px;
+  margin-bottom: 4px;
+}
+
+.footer-disclosure {
+  padding: 14px 0;
+}
