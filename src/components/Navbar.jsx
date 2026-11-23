@@ -78,7 +78,7 @@ export default function Navbar() {
         <div className="nu-nav-inner">
           <Link to="/" className="nu-logo">
             <img
-              src={`/assets/images/brand/nu-variant-${localStorage.getItem("nu.brandVariant") || "3"}.svg`}
+              src="/assets/images/brand/nu-variant-3.svg"
               alt="Nursing Uganda NU"
             />
             <span>
