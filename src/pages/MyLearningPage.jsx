@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import { Award, BookOpen, CheckCircle2, PlayCircle } from "lucide-react";
+import { Award, BookOpen, CheckCircle2, MailWarning, PlayCircle } from "lucide-react";
 import { useApp } from "../context/AppContext";
 
 export default function MyLearningPage() {
@@ -73,6 +73,32 @@ export default function MyLearningPage() {
 
       <section className="nu-section">
         <div className="nu-container">
+          {user && user.emailVerified === false && (
+            <div
+              style={{
+                padding: 14,
+                background: "#fffbeb",
+                border: "1px solid #fcd34d",
+                color: "#92400e",
+                marginBottom: 20,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: 12,
+                flexWrap: "wrap",
+                borderRadius: 4
+              }}
+            >
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: "0.9rem" }}>
+                <MailWarning size={18} />
+                <strong>Verify your email ({user.email})</strong> to enable full security alerts and account recovery.
+              </span>
+              <Link to="/login?verify=1" className="nu-btn nu-btn-primary" style={{ padding: "6px 14px", fontSize: "0.85rem" }}>
+                Verify Email
+              </Link>
+            </div>
+          )}
+
           {purchased && (
             <div
               style={{

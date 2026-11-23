@@ -3,9 +3,12 @@ import {
   enrollFreeCourse,
   fetchSession,
   loginUser,
+  loginWithGoogle,
   logoutUser,
   registerUser,
+  resendVerificationCode,
   toggleLessonProgress,
+  verifyEmailCode,
   verifyPayPalOrder
 } from "../lib/api";
 
@@ -138,6 +141,28 @@ export function AppProvider({ children }) {
     return res;
   };
 
+  const handleGoogleLogin = async (credential) => {
+    const res = await loginWithGoogle(credential);
+    if (res.ok) {
+      setUser(res.user);
+      if (res.enrollments) setEnrollments(res.enrollments);
+      if (res.progress) setProgress(res.progress);
+    }
+    return res;
+  };
+
+  const handleVerifyEmail = async (code) => {
+    const res = await verifyEmailCode(code);
+    if (res.ok && res.user) {
+      setUser(res.user);
+    }
+    return res;
+  };
+
+  const handleResendVerification = async () => {
+    return resendVerificationCode();
+  };
+
   const handleLogout = async () => {
     await logoutUser();
     setUser(null);
@@ -193,6 +218,9 @@ export function AppProvider({ children }) {
     clearCart,
     login: handleLogin,
     register: handleRegister,
+    googleLogin: handleGoogleLogin,
+    verifyEmail: handleVerifyEmail,
+    resendVerification: handleResendVerification,
     logout: handleLogout,
     enrollFree: handleFreeEnroll,
     completePayPalPurchase: handleCompletePayPal,

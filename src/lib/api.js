@@ -43,18 +43,18 @@ async function apiFetch(endpoint, options = {}) {
     });
     const contentType = res.headers.get("content-type") || "";
     if (!contentType.includes("application/json")) {
-      return { __noPhp: true };
+      return import.meta.env.DEV ? { __noPhp: true } : { ok: false, error: `Unexpected server response (${res.status}).` };
     }
     const data = await res.json();
     if (data?.__noDb) {
-      return { __noPhp: true };
+      return import.meta.env.DEV ? { __noPhp: true } : { ok: false, error: data.error || "Database service unavailable." };
     }
     if (!res.ok) {
-      return { ok: false, error: data.error || `Request failed (${res.status})` };
+      return { ok: false, error: data.error || `Request failed (${res.status})`, status: res.status };
     }
     return { ok: true, ...data };
   } catch {
-    return { __noPhp: true };
+    return import.meta.env.DEV ? { __noPhp: true } : { ok: false, error: "Network error. Please try again." };
   }
 }
 
@@ -83,6 +83,7 @@ export async function loginUser({ email, password }) {
     id: `local-${cleanEmail}`,
     email: cleanEmail,
     name,
+    emailVerified: true,
     initials: name.slice(0, 2).toUpperCase(),
     programme: "Diploma in Nursing (Direct)"
   };
@@ -102,8 +103,8 @@ export async function registerUser({ name, email, password, programme }) {
   });
   if (!res.__noPhp) return res;
 
-  if (!name?.trim() || !email?.trim() || (password || "").length < 6) {
-    return { ok: false, error: "Please enter name, valid email, and a password of 6+ characters." };
+  if (!name?.trim() || !email?.trim() || (password || "").length < 8) {
+    return { ok: false, error: "Please enter name, valid email, and a strong password (8+ characters with a number/symbol)." };
   }
   const cleanEmail = email.trim().toLowerCase();
   const cleanName = name.trim();
@@ -111,11 +112,36 @@ export async function registerUser({ name, email, password, programme }) {
     id: `local-${cleanEmail}`,
     email: cleanEmail,
     name: cleanName,
+    emailVerified: false,
     initials: cleanName.split(/\s+/).map((w) => w[0]).join("").slice(0, 2).toUpperCase(),
     programme: programme || "Certificate in Nursing"
   };
   writeLS(LS_KEYS.user, user);
   return { ok: true, user, enrollments: [], progress: {} };
+}
+
+export async function loginWithGoogle(credential) {
+  return apiFetch("/api/auth?action=google", {
+    method: "POST",
+    body: JSON.stringify({ credential })
+  });
+}
+
+export async function verifyEmailCode(code) {
+  return apiFetch("/api/auth?action=verify-email", {
+    method: "POST",
+    body: JSON.stringify({ code })
+  });
+}
+
+export async function resendVerificationCode() {
+  return apiFetch("/api/auth?action=resend-verification", {
+    method: "POST"
+  });
+}
+
+export async function fetchSecurityEvents() {
+  return apiFetch("/api/auth?action=security-events");
 }
 
 export async function logoutUser() {

@@ -10,12 +10,57 @@ const PORT = process.env.PORT || 3000;
 const DIST_DIR = path.join(__dirname, "dist");
 const ROOT_ASSETS_DIR = path.join(__dirname, "assets");
 
+// Trust Hostinger reverse proxy so req.ip, req.secure, and rate limiters use real client IP
+app.set("trust proxy", 1);
 app.disable("x-powered-by");
 app.use(compression());
+
+// Security Headers
+app.use((req, res, next) => {
+  res.setHeader("X-Content-Type-Options", "nosniff");
+  res.setHeader("X-Frame-Options", "DENY");
+  res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
+  res.setHeader("Permissions-Policy", "camera=(), microphone=(), geolocation=(self)");
+  // Required for Google Identity Services & PayPal popup communication
+  res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
+
+  const isHttps = req.secure || req.headers["x-forwarded-proto"] === "https";
+  if (isHttps) {
+    res.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+  }
+
+  res.setHeader(
+    "Content-Security-Policy",
+    [
+      "default-src 'self'",
+      "script-src 'self' 'unsafe-inline' https://accounts.google.com https://apis.google.com https://www.paypal.com https://www.sandbox.paypal.com https://pagead2.googlesyndication.com",
+      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://accounts.google.com",
+      "font-src 'self' data: https://fonts.gstatic.com",
+      "img-src 'self' data: blob: https://*.googleusercontent.com https://www.paypalobjects.com https://*.paypal.com https://pagead2.googlesyndication.com",
+      "connect-src 'self' https://accounts.google.com https://oauth2.googleapis.com https://www.paypal.com https://www.sandbox.paypal.com https://api-m.paypal.com https://api-m.sandbox.paypal.com",
+      "frame-src 'self' https://accounts.google.com https://www.paypal.com https://www.sandbox.paypal.com https://googleads.g.doubleclick.net",
+      "object-src 'none'",
+      "base-uri 'self'",
+      "form-action 'self' https://accounts.google.com https://www.paypal.com https://www.sandbox.paypal.com"
+    ].join("; ")
+  );
+  next();
+});
+
+// Block direct access to sensitive config, source, or legacy PHP/SQL files
+const BLOCKED_PATH_RE = /(\/\.(env|git|htaccess)|\/(package(-lock)?\.json|server\.js|vite\.config\.\w+)$|\/(scripts|src)\/|\.(php|sql|bak|log)$)/i;
+app.use((req, res, next) => {
+  if (BLOCKED_PATH_RE.test(req.path)) {
+    return res.status(404).type("text/plain").send("Not found");
+  }
+  next();
+});
+
+// Global baseline rate limiter
 app.use(
   rateLimit({
     windowMs: 60 * 1000,
-    max: 300,
+    max: 240,
     standardHeaders: true,
     legacyHeaders: false
   })
@@ -23,7 +68,7 @@ app.use(
 
 express.static.mime.define({ "application/manifest+json": ["webmanifest"] });
 
-// Native Hostinger Node.js + MySQL + PayPal API routes
+// Native Hostinger Node.js + MySQL + PayPal + Google Auth API routes
 app.use("/api", createApiRouter());
 
 const BOT_UA_RE = /(googlebot|adsbot-google|mediapartners-google|bingbot|slurp|duckduckbot|facebookexternalhit|twitterbot|whatsapp)/i;
@@ -55,6 +100,12 @@ app.get("*", (_req, res) => {
   } else {
     res.sendFile(path.join(__dirname, "index.html"));
   }
+});
+
+// Global error handler — never leak stack traces or internal DB details
+app.use((err, _req, res, _next) => {
+  console.error("[Server Error]", err?.message || err);
+  res.status(500).json({ error: "An internal server error occurred." });
 });
 
 app.listen(PORT, () => {
