@@ -1,0 +1,1091 @@
+@import "./tokens.css";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--nu-bg);
+  color: var(--nu-ink);
+  font-family: var(--nu-font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.nu-container {
+  width: 100%;
+  max-width: var(--nu-max);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ── Promo Strip ──────────────────────────────────────────── */
+.nu-promo-bar {
+  background: var(--nu-ink);
+  color: #ffffff;
+  font-size: 0.875rem;
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  position: relative;
+}
+.nu-promo-bar strong {
+  color: var(--nu-bestseller-bg);
+}
+.nu-promo-close {
+  position: absolute;
+  right: 16px;
+  background: transparent;
+  border: 0;
+  color: #cbd5e1;
+  padding: 4px;
+  display: inline-flex;
+}
+.nu-promo-close:hover {
+  color: #ffffff;
+}
+
+/* ── Udemy Navbar ─────────────────────────────────────────── */
+.nu-header {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background: #ffffff;
+  border-bottom: 1px solid var(--nu-border-light);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+.nu-nav-inner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 72px;
+  padding: 0 24px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+.nu-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
+  color: var(--nu-ink);
+  white-space: nowrap;
+}
+.nu-logo img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+}
+.nu-logo span em {
+  font-style: normal;
+  color: var(--nu-purple);
+}
+
+.nu-explore-wrap {
+  position: relative;
+}
+.nu-nav-link-btn {
+  background: transparent;
+  border: 0;
+  padding: 8px 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--nu-ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  border-radius: var(--nu-radius-xs);
+}
+.nu-nav-link-btn:hover,
+.nu-nav-link:hover {
+  color: var(--nu-purple);
+}
+.nu-nav-link {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--nu-ink);
+  padding: 8px 8px;
+  white-space: nowrap;
+}
+
+.nu-search-form {
+  flex: 1;
+  max-width: 520px;
+  position: relative;
+}
+.nu-search-box {
+  display: flex;
+  align-items: center;
+  background: var(--nu-bg-subtle);
+  border: 1px solid var(--nu-ink);
+  border-radius: 999px;
+  height: 46px;
+  padding: 0 16px;
+  gap: 10px;
+  transition: border-color 0.15s, background 0.15s;
+}
+.nu-search-box:focus-within {
+  background: #ffffff;
+  border-color: var(--nu-purple);
+  box-shadow: 0 0 0 2px rgba(164, 53, 240, 0.15);
+}
+.nu-search-box input {
+  border: 0;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  font-size: 0.9rem;
+  color: var(--nu-ink);
+}
+.nu-search-dropdown {
+  position: absolute;
+  top: 52px;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid var(--nu-border);
+  border-radius: var(--nu-radius-md);
+  box-shadow: var(--nu-shadow-lg);
+  overflow: hidden;
+  z-index: 80;
+}
+.nu-search-hit {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--nu-border-light);
+  font-size: 0.875rem;
+}
+.nu-search-hit:hover {
+  background: var(--nu-bg-subtle);
+}
+.nu-search-hit small {
+  color: var(--nu-ink-muted);
+  display: block;
+}
+
+/* Mega Menu */
+.nu-megamenu {
+  position: absolute;
+  top: 56px;
+  left: 0;
+  width: 660px;
+  background: #ffffff;
+  border: 1px solid var(--nu-border);
+  box-shadow: var(--nu-shadow-lg);
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  z-index: 90;
+  border-radius: var(--nu-radius-xs);
+  overflow: hidden;
+}
+.nu-mega-col {
+  padding: 12px 0;
+  border-right: 1px solid var(--nu-border-light);
+}
+.nu-mega-item {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  color: var(--nu-ink);
+}
+.nu-mega-item:hover,
+.nu-mega-item.active {
+  background: var(--nu-purple-soft);
+  color: var(--nu-purple);
+  font-weight: 600;
+}
+.nu-mega-right {
+  padding: 16px 20px;
+}
+.nu-mega-right h4 {
+  margin: 0 0 10px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--nu-ink-muted);
+}
+.nu-mega-sublink {
+  display: block;
+  padding: 7px 0;
+  font-size: 0.875rem;
+  color: var(--nu-ink);
+}
+.nu-mega-sublink:hover {
+  color: var(--nu-purple);
+}
+
+.nu-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+.nu-icon-btn {
+  position: relative;
+  background: transparent;
+  border: 0;
+  padding: 8px;
+  color: var(--nu-ink);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--nu-radius-xs);
+}
+.nu-icon-btn:hover {
+  color: var(--nu-purple);
+  background: var(--nu-bg-subtle);
+}
+.nu-mobile-toggle {
+  display: none;
+}
+.nu-cart-badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: var(--nu-purple);
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Buttons ──────────────────────────────────────────────── */
+.nu-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 16px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  border-radius: var(--nu-radius-xs);
+  border: 1px solid transparent;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+.nu-btn-lg {
+  height: 48px;
+  padding: 0 22px;
+  font-size: 0.95rem;
+}
+.nu-btn-primary {
+  background: var(--nu-purple);
+  color: #ffffff;
+}
+.nu-btn-primary:hover {
+  background: var(--nu-purple-hover);
+}
+.nu-btn-dark {
+  background: var(--nu-ink);
+  color: #ffffff;
+}
+.nu-btn-dark:hover {
+  background: var(--nu-ink-elevated);
+}
+.nu-btn-outline {
+  background: #ffffff;
+  color: var(--nu-ink);
+  border-color: var(--nu-ink);
+}
+.nu-btn-outline:hover {
+  background: var(--nu-bg-subtle);
+}
+.nu-btn-purple-outline {
+  background: #ffffff;
+  color: var(--nu-purple);
+  border-color: var(--nu-purple);
+}
+.nu-btn-purple-outline:hover {
+  background: var(--nu-purple-soft);
+}
+
+/* ── Hero Section (Udemy Overlapping Card) ────────────────── */
+.nu-hero {
+  position: relative;
+  max-width: var(--nu-max);
+  margin: 0 auto 32px;
+  min-height: 400px;
+  background: #f5f3f7;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.nu-hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+}
+.nu-hero-card {
+  position: relative;
+  z-index: 2;
+  margin: 32px 48px;
+  max-width: 460px;
+  background: #ffffff;
+  padding: 28px 32px;
+  box-shadow: var(--nu-shadow-md);
+  border: 1px solid var(--nu-border-light);
+}
+.nu-hero-card h1 {
+  font-family: var(--nu-font-serif);
+  font-size: 2rem;
+  line-height: 1.2;
+  margin: 0 0 12px;
+  color: var(--nu-ink);
+}
+.nu-hero-card p {
+  margin: 0 0 20px;
+  color: var(--nu-ink-muted);
+  font-size: 0.975rem;
+}
+.nu-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* ── Trust Logos / Programme Strip ────────────────────────── */
+.nu-trust-strip {
+  background: var(--nu-bg-subtle);
+  padding: 28px 0;
+  border-top: 1px solid var(--nu-border-light);
+  border-bottom: 1px solid var(--nu-border-light);
+  margin-bottom: 40px;
+}
+.nu-trust-title {
+  text-align: center;
+  color: var(--nu-ink-muted);
+  font-size: 0.95rem;
+  margin: 0 0 18px;
+  font-weight: 500;
+}
+.nu-trust-pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 24px;
+}
+.nu-trust-pill {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--nu-ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ── Sections & Tabbed Carousel ───────────────────────────── */
+.nu-section {
+  padding: 28px 0 44px;
+}
+.nu-section-head {
+  margin-bottom: 20px;
+}
+.nu-section-head h2 {
+  font-family: var(--nu-font-serif);
+  font-size: 1.75rem;
+  margin: 0 0 6px;
+  color: var(--nu-ink);
+}
+.nu-section-head p {
+  margin: 0;
+  color: var(--nu-ink-muted);
+  font-size: 1rem;
+}
+
+.nu-tabs {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 20px;
+  border-bottom: 1px solid var(--nu-border);
+  margin-bottom: 24px;
+  scrollbar-width: none;
+}
+.nu-tabs::-webkit-scrollbar {
+  display: none;
+}
+.nu-tab {
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  padding: 10px 2px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--nu-ink-muted);
+  white-space: nowrap;
+}
+.nu-tab:hover {
+  color: var(--nu-ink);
+}
+.nu-tab.active {
+  color: var(--nu-ink);
+  border-bottom-color: var(--nu-ink);
+}
+
+.nu-tab-box {
+  border: 1px solid var(--nu-border);
+  padding: 28px;
+  background: #ffffff;
+}
+.nu-tab-intro {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.nu-tab-intro h3 {
+  font-size: 1.35rem;
+  margin: 0 0 6px;
+}
+.nu-tab-intro p {
+  margin: 0;
+  color: var(--nu-ink-muted);
+  max-width: 720px;
+}
+
+/* ── Course Grid & Udemy Course Card ──────────────────────── */
+.nu-course-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+.nu-course-card {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  transition: transform 0.15s;
+}
+.nu-course-card:hover .nu-card-thumb img {
+  filter: brightness(0.92);
+}
+.nu-card-thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: 1px solid var(--nu-border);
+  background: var(--nu-bg-subtle);
+  margin-bottom: 8px;
+}
+.nu-card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: filter 0.15s;
+}
+.nu-card-code {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: rgba(28, 29, 31, 0.86);
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 3px;
+}
+.nu-card-title {
+  font-size: 0.975rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--nu-ink);
+  margin: 0 0 4px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.nu-card-meta {
+  font-size: 0.78rem;
+  color: var(--nu-ink-muted);
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.nu-rating-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.82rem;
+  margin-bottom: 4px;
+}
+.nu-rating-num {
+  font-weight: 700;
+  color: var(--nu-star);
+}
+.nu-stars {
+  color: var(--nu-star-fill);
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+}
+.nu-rating-count {
+  color: var(--nu-ink-muted);
+  font-size: 0.78rem;
+}
+.nu-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.nu-price-now {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--nu-ink);
+}
+.nu-price-was {
+  font-size: 0.82rem;
+  color: var(--nu-ink-muted);
+  text-decoration: line-through;
+}
+.nu-ugx-hint {
+  font-size: 0.75rem;
+  color: var(--nu-ink-muted);
+}
+.nu-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 2px;
+  width: fit-content;
+}
+.nu-badge-bestseller {
+  background: var(--nu-bestseller-bg);
+  color: var(--nu-bestseller-ink);
+}
+.nu-badge-free {
+  background: var(--nu-teal-bg);
+  color: var(--nu-teal-ink);
+}
+.nu-badge-highyield {
+  background: var(--nu-purple-soft);
+  color: var(--nu-purple-hover);
+}
+
+/* ── Course Landing Page (Dark Udemy Hero + Sticky Sidebar) ─ */
+.nu-cl-hero {
+  background: var(--nu-ink);
+  color: #ffffff;
+  padding: 32px 0 40px;
+}
+.nu-cl-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 40px;
+  align-items: start;
+}
+.nu-breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: #c0c4fc;
+  margin-bottom: 14px;
+}
+.nu-breadcrumbs a:hover {
+  text-decoration: underline;
+}
+.nu-cl-hero h1 {
+  font-size: 2rem;
+  line-height: 1.2;
+  margin: 0 0 10px;
+}
+.nu-cl-subtitle {
+  font-size: 1.05rem;
+  color: #e2e8f0;
+  margin: 0 0 16px;
+}
+.nu-cl-stats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 18px;
+  font-size: 0.875rem;
+  margin-bottom: 12px;
+}
+.nu-cl-meta-line {
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.nu-cl-body-wrap {
+  padding: 32px 0 60px;
+}
+.nu-cl-main {
+  min-width: 0;
+}
+.nu-learn-box {
+  border: 1px solid var(--nu-border);
+  padding: 24px;
+  margin-bottom: 28px;
+  background: #ffffff;
+}
+.nu-learn-box h2 {
+  font-size: 1.35rem;
+  margin: 0 0 16px;
+}
+.nu-learn-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nu-learn-grid li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.9rem;
+}
+
+/* Curriculum Accordion */
+.nu-accordion {
+  border: 1px solid var(--nu-border);
+  margin-bottom: 28px;
+}
+.nu-acc-group + .nu-acc-group {
+  border-top: 1px solid var(--nu-border);
+}
+.nu-acc-head {
+  width: 100%;
+  background: var(--nu-bg-subtle);
+  border: 0;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  text-align: left;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--nu-ink);
+}
+.nu-acc-list {
+  list-style: none;
+  margin: 0;
+  padding: 8px 20px 14px;
+  background: #ffffff;
+}
+.nu-acc-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 0;
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--nu-border-light);
+}
+.nu-acc-item:last-child {
+  border-bottom: 0;
+}
+.nu-acc-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.nu-preview-tag {
+  color: var(--nu-purple);
+  font-weight: 700;
+  font-size: 0.82rem;
+  text-decoration: underline;
+}
+
+/* Sticky Purchase Sidebar */
+.nu-purchase-card {
+  position: sticky;
+  top: 90px;
+  background: #ffffff;
+  color: var(--nu-ink);
+  border: 1px solid var(--nu-border);
+  box-shadow: var(--nu-shadow-lg);
+  overflow: hidden;
+  z-index: 10;
+}
+.nu-purchase-thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-bottom: 1px solid var(--nu-border-light);
+}
+.nu-purchase-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.nu-purchase-body {
+  padding: 22px;
+}
+.nu-purchase-price {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+.nu-purchase-price strong {
+  font-size: 1.9rem;
+  font-weight: 800;
+}
+.nu-purchase-includes {
+  list-style: none;
+  margin: 18px 0 0;
+  padding: 16px 0 0;
+  border-top: 1px solid var(--nu-border-light);
+  font-size: 0.85rem;
+  display: grid;
+  gap: 8px;
+}
+.nu-purchase-includes li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--nu-ink);
+}
+
+/* ── Course Player (Udemy Distraction-Free Split) ─────────── */
+.nu-player-bar {
+  background: var(--nu-ink);
+  color: #ffffff;
+  height: 58px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid #3e4143;
+}
+.nu-player-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  min-height: calc(100vh - 58px);
+}
+.nu-player-layout.sidebar-hidden {
+  grid-template-columns: minmax(0, 1fr);
+}
+.nu-player-main {
+  padding: 28px 40px 64px;
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto;
+}
+.nu-player-sidebar {
+  border-left: 1px solid var(--nu-border);
+  background: #ffffff;
+  max-height: calc(100vh - 58px);
+  position: sticky;
+  top: 58px;
+  overflow-y: auto;
+}
+.nu-player-lesson-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 11px 16px;
+  font-size: 0.86rem;
+  border-bottom: 1px solid var(--nu-border-light);
+}
+.nu-player-lesson-row:hover {
+  background: var(--nu-bg-subtle);
+}
+.nu-player-lesson-row.active {
+  background: var(--nu-purple-soft);
+  font-weight: 700;
+}
+
+/* Editorial Lesson Content */
+.nu-lesson-article h1 {
+  font-family: var(--nu-font-serif);
+  font-size: 1.85rem;
+  line-height: 1.25;
+  margin: 0 0 12px;
+}
+.nu-lesson-section {
+  margin-top: 26px;
+  padding-top: 20px;
+  border-top: 1px solid var(--nu-border-light);
+}
+.nu-lesson-section h2 {
+  font-size: 1.25rem;
+  margin: 0 0 10px;
+  color: var(--nu-ink);
+}
+.nu-lesson-section p {
+  margin: 0 0 12px;
+  color: #2d2f31;
+  line-height: 1.7;
+}
+.nu-lesson-section ul {
+  margin: 0 0 14px;
+  padding-left: 22px;
+}
+.nu-lesson-section li {
+  margin-bottom: 6px;
+  line-height: 1.65;
+}
+
+/* Authoritative References Box */
+.nu-refs-box {
+  background: var(--nu-bg-subtle);
+  border: 1px solid var(--nu-border);
+  border-left: 4px solid var(--nu-purple);
+  padding: 20px 22px;
+  margin-top: 32px;
+  border-radius: var(--nu-radius-xs);
+}
+.nu-refs-box h3 {
+  margin: 0 0 12px;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.nu-refs-list {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 8px;
+  font-size: 0.88rem;
+}
+.nu-refs-list a {
+  color: var(--nu-purple);
+  text-decoration: underline;
+}
+
+/* ── eBooks Grid & Reader ─────────────────────────────────── */
+.nu-ebook-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+.nu-ebook-card {
+  border: 1px solid var(--nu-border);
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: box-shadow 0.15s;
+}
+.nu-ebook-card:hover {
+  box-shadow: var(--nu-shadow-md);
+}
+.nu-ebook-cover {
+  aspect-ratio: 3 / 4;
+  background: var(--nu-ink);
+  overflow: hidden;
+}
+.nu-ebook-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.nu-ebook-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+/* ── AdSense-Safe Content Slot ────────────────────────────── */
+.nu-ad-slot {
+  margin: 28px 0;
+  padding: 14px 16px;
+  border: 1px dashed var(--nu-border);
+  background: var(--nu-bg-subtle);
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--nu-ink-muted);
+}
+
+/* ── Footer (Udemy Dark Charcoal) ─────────────────────────── */
+.nu-footer {
+  background: var(--nu-ink);
+  color: #ffffff;
+  padding: 44px 0 28px;
+  margin-top: 60px;
+}
+.nu-footer-grid {
+  display: grid;
+  grid-template-columns: 1.3fr repeat(3, 1fr);
+  gap: 32px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid #3e4143;
+}
+.nu-footer h4 {
+  font-size: 0.9rem;
+  margin: 0 0 12px;
+  color: #ffffff;
+}
+.nu-footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: #d1d5db;
+}
+.nu-footer a:hover {
+  text-decoration: underline;
+  color: #ffffff;
+}
+.nu-footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 22px;
+  font-size: 0.82rem;
+  color: #9ca3af;
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 1080px) {
+  .nu-course-grid,
+  .nu-ebook-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .nu-cl-grid,
+  .nu-player-layout {
+    grid-template-columns: 1fr;
+  }
+  .nu-purchase-card {
+    position: static;
+    margin-top: 0 !important;
+  }
+  .nu-player-sidebar {
+    position: static;
+    max-height: none;
+    border-left: 0;
+    border-top: 1px solid var(--nu-border);
+  }
+}
+
+@media (max-width: 768px) {
+  .nu-nav-desktop-only {
+    display: none !important;
+  }
+  .nu-mobile-toggle {
+    display: inline-flex;
+  }
+  .nu-promo-bar {
+    padding: 8px 38px 8px 14px;
+    font-size: 0.78rem;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+  .nu-nav-inner {
+    height: auto;
+    padding: 10px 16px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .nu-logo {
+    font-size: 1rem;
+  }
+  .nu-search-form {
+    order: 3;
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .nu-search-box {
+    height: 40px;
+  }
+  .nu-hero-card {
+    margin: 16px;
+    padding: 20px;
+  }
+  .nu-hero-card h1 {
+    font-size: 1.5rem;
+  }
+  .nu-learn-grid,
+  .nu-footer-grid {
+    grid-template-columns: 1fr;
+  }
+  .nu-player-main {
+    padding: 20px 16px 48px;
+  }
+}
+
+@media (max-width: 540px) {
+  .nu-course-grid,
+  .nu-ebook-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Clean PDF Print Mode for Free eBooks ─────────────────── */
+@media print {
+  .nu-header,
+  .nu-promo-bar,
+  .nu-footer,
+  .nu-no-print,
+  .nu-ad-slot {
+    display: none !important;
+  }
+  body {
+    background: #ffffff;
+    color: #000000;
+  }
+  .nu-ebook-print-sheet {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .nu-lesson-section {
+    break-inside: avoid;
+  }
+}

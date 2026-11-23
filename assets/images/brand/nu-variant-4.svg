@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <linearGradient id="v4Purple" x1="256" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#B048F7"/>
+      <stop offset="100%" stop-color="#7E1CD4"/>
+    </linearGradient>
+  </defs>
+  <!-- Split Charcoal + Purple Rounded Badge -->
+  <path d="M116 0H256V512H116C51.935 512 0 460.065 0 396V116C0 51.935 51.935 0 116 0Z" fill="#1C1D1F"/>
+  <path d="M256 0H396C460.065 0 512 51.935 512 116V396C512 460.065 460.065 512 396 512H256V0Z" fill="url(#v4Purple)"/>
+
+  <!-- Clean Architectural Split N (Left, flush right edge along center) -->
+  <path d="M84 366V146H132L206 276V146H246V366H200L128 238V366H84Z" fill="#FFFFFF"/>
+  <!-- Clean Architectural Split U (Right, mirroring the exact 20px center gap) -->
+  <path d="M266 146H308V276C308 308 326 326 354 326C382 326 400 308 400 276V146H442V278C442 336 406 372 354 372C302 372 266 336 266 278V146Z" fill="#FFFFFF"/>
+</svg>

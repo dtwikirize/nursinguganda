@@ -1,0 +1,42 @@
+:root {
+  /* Udemy-Inspired Visual System — Nursing Uganda */
+  --nu-purple: #a435f0;
+  --nu-purple-hover: #8710d8;
+  --nu-purple-soft: #f5ecfe;
+  --nu-purple-border: #d8b4fe;
+
+  --nu-ink: #1c1d1f;
+  --nu-ink-elevated: #2d2f31;
+  --nu-ink-muted: #6a6f73;
+  --nu-ink-light: #a1a7b3;
+
+  --nu-bg: #ffffff;
+  --nu-bg-subtle: #f7f9fa;
+  --nu-bg-warm: #fefcf7;
+  --nu-border: #d1d7dc;
+  --nu-border-light: #e8ecef;
+
+  --nu-star: #b4690e;
+  --nu-star-fill: #e59819;
+  --nu-bestseller-bg: #eceb98;
+  --nu-bestseller-ink: #3d3c0a;
+  --nu-teal-bg: #d1fae5;
+  --nu-teal-ink: #065f46;
+  --nu-danger: #b91c1c;
+  --nu-danger-bg: #fef2f2;
+  --nu-success: #15803d;
+  --nu-success-bg: #f0fdf4;
+
+  --nu-font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --nu-font-serif: "Merriweather", Georgia, "Times New Roman", serif;
+
+  --nu-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04);
+  --nu-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+  --nu-shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.16);
+
+  --nu-radius-xs: 4px;
+  --nu-radius-sm: 6px;
+  --nu-radius-md: 8px;
+  --nu-radius-lg: 12px;
+  --nu-max: 1340px;
+}

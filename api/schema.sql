@@ -1,0 +1,65 @@
+-- Hostinger MySQL Schema for Nursing Uganda
+-- Import this file once inside Hostinger hPanel -> phpMyAdmin.
+
+CREATE TABLE IF NOT EXISTS users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(120) NOT NULL,
+  email VARCHAR(190) NOT NULL UNIQUE,
+  password_hash VARCHAR(255) NOT NULL,
+  programme VARCHAR(120) DEFAULT 'certificate-in-nursing',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS orders (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  paypal_order_id VARCHAR(120) NOT NULL UNIQUE,
+  payer_email VARCHAR(190) DEFAULT '',
+  amount_usd DECIMAL(10,2) NOT NULL,
+  currency VARCHAR(10) DEFAULT 'USD',
+  status VARCHAR(32) NOT NULL DEFAULT 'COMPLETED',
+  items_json TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS enrollments (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  course_slug VARCHAR(160) NOT NULL,
+  order_id INT NULL,
+  access_type VARCHAR(32) NOT NULL DEFAULT 'free',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE KEY uq_user_course (user_id, course_slug),
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS course_progress (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  course_slug VARCHAR(160) NOT NULL,
+  lesson_slug VARCHAR(180) NOT NULL,
+  completed TINYINT(1) NOT NULL DEFAULT 1,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  UNIQUE KEY uq_user_lesson (user_id, course_slug, lesson_slug),
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS course_qa (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  course_slug VARCHAR(160) NOT NULL,
+  user_id INT NOT NULL,
+  user_name VARCHAR(120) NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  body TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  INDEX idx_qa_course (course_slug, created_at),
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS ebook_downloads (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  ebook_slug VARCHAR(160) NOT NULL,
+  email VARCHAR(190) DEFAULT 'guest',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

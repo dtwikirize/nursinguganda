@@ -1,0 +1,743 @@
+{
+  "generatedAtUtc": "2026-11-22T22:53:17.502Z",
+  "references": [
+    {
+      "id": "ug-ucg-2023",
+      "title": "Uganda Clinical Guidelines 2023: National Guidelines for Management of Common Conditions",
+      "authors": "Ministry of Health, Republic of Uganda",
+      "year": 2023,
+      "publisher": "Ministry of Health Uganda (Kampala)",
+      "type": "National Clinical Guideline",
+      "url": "https://www.health.go.ug/",
+      "subjects": [
+        "general",
+        "medical",
+        "surgical",
+        "pharmacology",
+        "paediatric",
+        "maternal",
+        "infection",
+        "malaria",
+        "hiv",
+        "tb",
+        "emergency",
+        "community",
+        "primary"
+      ],
+      "citation": "Ministry of Health Uganda. Uganda Clinical Guidelines 2023: National Guidelines for Management of Common Conditions. Kampala: MoH Uganda; 2023."
+    },
+    {
+      "id": "unmeb-curriculum-ug",
+      "title": "Nursing & Midwifery Training Curricula and Assessment Guidelines (Certificate, Diploma & Top-Up)",
+      "authors": "Uganda Nurses and Midwives Examinations Board (UNMEB) & Ministry of Education and Sports",
+      "year": 2022,
+      "publisher": "UNMEB / MoES Uganda",
+      "type": "National Curriculum Standard",
+      "url": "https://unmeb.go.ug/",
+      "subjects": [
+        "general",
+        "foundations",
+        "ethics",
+        "regulation",
+        "education",
+        "management",
+        "research",
+        "clinical"
+      ],
+      "citation": "Uganda Nurses and Midwives Examinations Board (UNMEB). National Nursing and Midwifery Training Curricula & Examination Syllabi. Kampala: MoES; 2022."
+    },
+    {
+      "id": "openrn-pharmacology-2e",
+      "title": "Nursing Pharmacology, 2nd Edition",
+      "authors": "Ernstmeyer K, Christman E (Eds.), Open Resources for Nursing (Open RN)",
+      "year": 2023,
+      "publisher": "Chippewa Valley Technical College / NCBI Bookshelf (CC BY 4.0)",
+      "type": "Peer-Reviewed Pharmacology Textbook",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK595000/",
+      "subjects": [
+        "pharmacology",
+        "drug",
+        "medication",
+        "antibiotic",
+        "analgesic",
+        "dose",
+        "antihypertensive",
+        "insulin",
+        "diuretic",
+        "antiretroviral",
+        "antimalarial",
+        "pharmacokinetics",
+        "pharmacodynamics"
+      ],
+      "citation": "Ernstmeyer K, Christman E, editors. Nursing Pharmacology. 2nd ed. Eau Claire (WI): Chippewa Valley Technical College / Open RN; 2023."
+    },
+    {
+      "id": "who-maternal-2025",
+      "title": "WHO Recommendations on Maternal Health, 2nd Edition",
+      "authors": "World Health Organization",
+      "year": 2025,
+      "publisher": "World Health Organization / NCBI Bookshelf",
+      "type": "International Clinical Guideline",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK615644/",
+      "subjects": [
+        "midwifery",
+        "maternal",
+        "pregnancy",
+        "antenatal",
+        "labour",
+        "labor",
+        "partograph",
+        "postnatal",
+        "pph",
+        "haemorrhage",
+        "eclampsia",
+        "pre-eclampsia",
+        "obstetric",
+        "caesarean"
+      ],
+      "citation": "World Health Organization. WHO Recommendations on Maternal Health: Guidelines Approved by the WHO Guidelines Review Committee. 2nd ed. Geneva: WHO; 2025."
+    }
+  ],
+  "exams": [
+    {
+      "id": "full-paper-a",
+      "title": "Full Paper, Series A",
+      "desc": "80 questions across all nursing subjects. Mirrors BNE exam standard.",
+      "duration": 120,
+      "count": 80,
+      "icon": "clipboardList",
+      "badge": "Full Paper",
+      "color": "#00B5BD",
+      "isFreeSample": false,
+      "priceUsd": 4.99
+    },
+    {
+      "id": "full-paper-b",
+      "title": "Full Paper, Series B",
+      "desc": "A second 80-question mixed paper, different question set from Series A.",
+      "duration": 120,
+      "count": 80,
+      "icon": "clipboardList",
+      "badge": "Full Paper",
+      "color": "#00B5BD",
+      "isFreeSample": false,
+      "priceUsd": 4.99
+    },
+    {
+      "id": "practice-50",
+      "title": "Practice Test, 50 Questions",
+      "desc": "50 mixed questions in 60 minutes. Great for a focused revision session.",
+      "duration": 60,
+      "count": 50,
+      "icon": "checkCircle",
+      "badge": "Practice",
+      "color": "#2563eb",
+      "isFreeSample": false,
+      "priceUsd": 4.99
+    },
+    {
+      "id": "speed-30",
+      "title": "Speed Round, 30 Questions",
+      "desc": "30 questions in 30 minutes. Builds speed and recall under pressure.",
+      "duration": 30,
+      "count": 30,
+      "icon": "flame",
+      "badge": "Speed Round",
+      "color": "#d97706",
+      "isFreeSample": true,
+      "priceUsd": 0
+    },
+    {
+      "id": "subject-anatomy",
+      "title": "Anatomy & Physiology",
+      "desc": "Focused on body systems, anatomy and physiology. 60 questions, 90 min.",
+      "duration": 90,
+      "count": 60,
+      "icon": "activity",
+      "badge": "Subject",
+      "color": "#7c3aed",
+      "subjectPattern": "anatomy|physiology",
+      "isFreeSample": false,
+      "priceUsd": 4.99
+    },
+    {
+      "id": "subject-pharmacology",
+      "title": "Pharmacology",
+      "desc": "Drugs, dosages, mechanisms and nursing responsibilities. 50 questions, 75 min.",
+      "duration": 75,
+      "count": 50,
+      "icon": "pill",
+      "badge": "Subject",
+      "color": "#dc2626",
+      "subjectPattern": "pharmacology|drug|medicine",
+      "isFreeSample": false,
+      "priceUsd": 4.99
+    }
+  ],
+  "questions": [
+    {
+      "id": "qq-1",
+      "prompt": "A normal adult respiratory rate is:",
+      "options": [
+        "8–12/min",
+        "12–20/min",
+        "20–30/min",
+        "30–40/min"
+      ],
+      "answerIndex": 1,
+      "explanation": "Verified clinical rationale: \"12–20/min\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-2",
+      "prompt": "Normal fasting blood glucose range in adults is:",
+      "options": [
+        "2–4 mmol/L",
+        "4–7 mmol/L",
+        "7–10 mmol/L",
+        "10–14 mmol/L"
+      ],
+      "answerIndex": 1,
+      "explanation": "Verified clinical rationale: \"4–7 mmol/L\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-3",
+      "prompt": "A patient with a SpO₂ of 88% should receive oxygen targeting:",
+      "options": [
+        "88–90%",
+        "94–98%",
+        "100%",
+        "No oxygen needed"
+      ],
+      "answerIndex": 1,
+      "explanation": "Verified clinical rationale: \"94–98%\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-4",
+      "prompt": "Normal adult heart rate range is:",
+      "options": [
+        "40–60 bpm",
+        "60–100 bpm",
+        "100–120 bpm",
+        "120–140 bpm"
+      ],
+      "answerIndex": 1,
+      "explanation": "Verified clinical rationale: \"60–100 bpm\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-5",
+      "prompt": "Normal systolic blood pressure in a healthy adult is:",
+      "options": [
+        "Less than 90 mmHg",
+        "90–119 mmHg",
+        "120–139 mmHg",
+        "140 mmHg or above"
+      ],
+      "answerIndex": 1,
+      "explanation": "Verified clinical rationale: \"90–119 mmHg\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-6",
+      "prompt": "Normal oral temperature in an adult is approximately:",
+      "options": [
+        "35.0 °C",
+        "36.0–37.5 °C",
+        "38.0–38.5 °C",
+        "39.0 °C"
+      ],
+      "answerIndex": 1,
+      "explanation": "Verified clinical rationale: \"36.0–37.5 °C\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-7",
+      "prompt": "OLDCART is a mnemonic used to assess:",
+      "options": [
+        "Level of consciousness",
+        "Pain history",
+        "Wound healing",
+        "Respiratory status"
+      ],
+      "answerIndex": 1,
+      "explanation": "Verified clinical rationale: \"Pain history\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-8",
+      "prompt": "The first priority in the primary survey (ABCDE) is:",
+      "options": [
+        "Breathing",
+        "Circulation",
+        "Airway",
+        "Disability"
+      ],
+      "answerIndex": 2,
+      "explanation": "Verified clinical rationale: \"Airway\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-9",
+      "prompt": "Which position is safest for an unconscious but breathing patient?",
+      "options": [
+        "Supine",
+        "Prone",
+        "Recovery (lateral) position",
+        "Trendelenburg"
+      ],
+      "answerIndex": 2,
+      "explanation": "Verified clinical rationale: \"Recovery (lateral) position\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-10",
+      "prompt": "The correct compression-to-ventilation ratio in adult CPR (1 rescuer) is:",
+      "options": [
+        "15:2",
+        "30:2",
+        "5:1",
+        "20:2"
+      ],
+      "answerIndex": 1,
+      "explanation": "Verified clinical rationale: \"30:2\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-11",
+      "prompt": "First-line treatment for anaphylaxis is:",
+      "options": [
+        "IV hydrocortisone",
+        "IV antihistamine",
+        "IM adrenaline (epinephrine)",
+        "Oral prednisolone"
+      ],
+      "answerIndex": 2,
+      "explanation": "Verified clinical rationale: \"IM adrenaline (epinephrine)\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-12",
+      "prompt": "In shock, the earliest compensatory sign is:",
+      "options": [
+        "Hypotension",
+        "Tachycardia",
+        "Bradycardia",
+        "Cyanosis"
+      ],
+      "answerIndex": 1,
+      "explanation": "Verified clinical rationale: \"Tachycardia\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-13",
+      "prompt": "Which electrolyte imbalance causes 'Chvostek's sign'?",
+      "options": [
+        "Hypokalemia",
+        "Hypernatremia",
+        "Hypocalcemia",
+        "Hypomagnesemia"
+      ],
+      "answerIndex": 2,
+      "explanation": "Verified clinical rationale: \"Hypocalcemia\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-14",
+      "prompt": "The antidote for heparin overdose is:",
+      "options": [
+        "Vitamin K",
+        "Protamine sulfate",
+        "Naloxone",
+        "Flumazenil"
+      ],
+      "answerIndex": 1,
+      "explanation": "Verified clinical rationale: \"Protamine sulfate\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-15",
+      "prompt": "Gentamicin is an example of which antibiotic class?",
+      "options": [
+        "Penicillin",
+        "Cephalosporin",
+        "Aminoglycoside",
+        "Macrolide"
+      ],
+      "answerIndex": 2,
+      "explanation": "Verified clinical rationale: \"Aminoglycoside\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-16",
+      "prompt": "The antidote for paracetamol (acetaminophen) overdose is:",
+      "options": [
+        "Activated charcoal",
+        "N-acetylcysteine (NAC)",
+        "Naloxone",
+        "Flumazenil"
+      ],
+      "answerIndex": 1,
+      "explanation": "Verified clinical rationale: \"N-acetylcysteine (NAC)\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-17",
+      "prompt": "Which drug class does Metformin belong to?",
+      "options": [
+        "Sulphonylurea",
+        "Insulin sensitiser (biguanide)",
+        "DPP-4 inhibitor",
+        "Alpha-glucosidase inhibitor"
+      ],
+      "answerIndex": 1,
+      "explanation": "Verified clinical rationale: \"Insulin sensitiser (biguanide)\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-18",
+      "prompt": "Furosemide is classified as which type of diuretic?",
+      "options": [
+        "Potassium-sparing",
+        "Thiazide",
+        "Loop diuretic",
+        "Osmotic"
+      ],
+      "answerIndex": 2,
+      "explanation": "Verified clinical rationale: \"Loop diuretic\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-19",
+      "prompt": "A patient on warfarin has a supratherapeutic INR. The reversal agent is:",
+      "options": [
+        "Protamine sulfate",
+        "Vitamin K",
+        "Fresh frozen plasma only",
+        "Heparin"
+      ],
+      "answerIndex": 1,
+      "explanation": "Verified clinical rationale: \"Vitamin K\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-20",
+      "prompt": "Which opioid side effect requires immediate nursing intervention?",
+      "options": [
+        "Constipation",
+        "Nausea",
+        "Respiratory depression",
+        "Dry mouth"
+      ],
+      "answerIndex": 2,
+      "explanation": "Verified clinical rationale: \"Respiratory depression\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-21",
+      "prompt": "APGAR score is assessed at which time points after birth?",
+      "options": [
+        "1 min only",
+        "1 and 5 minutes",
+        "5 and 10 minutes",
+        "3 and 7 minutes"
+      ],
+      "answerIndex": 1,
+      "explanation": "Verified clinical rationale: \"1 and 5 minutes\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-22",
+      "prompt": "A partograph is used to monitor:",
+      "options": [
+        "Fetal heart rate only",
+        "Progress of labour",
+        "Maternal blood pressure",
+        "Neonatal weight"
+      ],
+      "answerIndex": 1,
+      "explanation": "Verified clinical rationale: \"Progress of labour\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-23",
+      "prompt": "The classic triad of pre-eclampsia includes hypertension, proteinuria, and:",
+      "options": [
+        "Anaemia",
+        "Headache",
+        "Oedema",
+        "Convulsions"
+      ],
+      "answerIndex": 2,
+      "explanation": "Verified clinical rationale: \"Oedema\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-24",
+      "prompt": "Exclusive breastfeeding is recommended for the first:",
+      "options": [
+        "3 months",
+        "6 months",
+        "9 months",
+        "12 months"
+      ],
+      "answerIndex": 1,
+      "explanation": "Verified clinical rationale: \"6 months\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-25",
+      "prompt": "Kangaroo Mother Care is primarily used for:",
+      "options": [
+        "Babies with jaundice",
+        "Low birth weight / preterm infants",
+        "Babies with respiratory distress",
+        "Post-operative neonates"
+      ],
+      "answerIndex": 1,
+      "explanation": "Verified clinical rationale: \"Low birth weight / preterm infants\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-26",
+      "prompt": "Normal duration of the second stage of labour (primigravida) is up to:",
+      "options": [
+        "30 minutes",
+        "1 hour",
+        "2 hours",
+        "3 hours"
+      ],
+      "answerIndex": 2,
+      "explanation": "Verified clinical rationale: \"2 hours\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-27",
+      "prompt": "Which fluid is isotonic and most commonly used in Uganda?",
+      "options": [
+        "5% Dextrose",
+        "Normal Saline (0.9%)",
+        "Ringer's Lactate",
+        "0.45% Saline"
+      ],
+      "answerIndex": 1,
+      "explanation": "Verified clinical rationale: \"Normal Saline (0.9%)\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-28",
+      "prompt": "Ringer's Lactate is classified as:",
+      "options": [
+        "Hypertonic",
+        "Hypotonic",
+        "Isotonic",
+        "Colloid"
+      ],
+      "answerIndex": 2,
+      "explanation": "Verified clinical rationale: \"Isotonic\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-29",
+      "prompt": "A patient is to receive 1 litre of Normal Saline over 8 hours. The drip rate (20 drops/mL set) is:",
+      "options": [
+        "21 drops/min",
+        "42 drops/min",
+        "14 drops/min",
+        "28 drops/min"
+      ],
+      "answerIndex": 1,
+      "explanation": "Verified clinical rationale: \"42 drops/min\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-30",
+      "prompt": "Hyponatraemia is defined as a serum sodium below:",
+      "options": [
+        "145 mmol/L",
+        "135 mmol/L",
+        "125 mmol/L",
+        "115 mmol/L"
+      ],
+      "answerIndex": 1,
+      "explanation": "Verified clinical rationale: \"135 mmol/L\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-31",
+      "prompt": "The single most effective infection prevention practice is:",
+      "options": [
+        "Wearing gloves",
+        "Hand hygiene",
+        "Wearing a mask",
+        "Gowning"
+      ],
+      "answerIndex": 1,
+      "explanation": "Verified clinical rationale: \"Hand hygiene\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-32",
+      "prompt": "Standard precautions apply to:",
+      "options": [
+        "Blood only",
+        "All body fluids except sweat",
+        "Known infectious patients only",
+        "HIV-positive patients only"
+      ],
+      "answerIndex": 1,
+      "explanation": "Verified clinical rationale: \"All body fluids except sweat\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-33",
+      "prompt": "The correct order for donning PPE is:",
+      "options": [
+        "Gloves → gown → mask → goggles",
+        "Gown → mask → goggles → gloves",
+        "Mask → goggles → gown → gloves",
+        "Goggles → mask → gloves → gown"
+      ],
+      "answerIndex": 1,
+      "explanation": "Verified clinical rationale: \"Gown → mask → goggles → gloves\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-34",
+      "prompt": "High-level disinfection destroys all microorganisms except:",
+      "options": [
+        "Bacteria",
+        "Viruses",
+        "Fungi",
+        "Some bacterial spores"
+      ],
+      "answerIndex": 3,
+      "explanation": "Verified clinical rationale: \"Some bacterial spores\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-35",
+      "prompt": "A stage 2 pressure ulcer involves:",
+      "options": [
+        "Intact skin with redness",
+        "Partial thickness skin loss",
+        "Full thickness skin loss",
+        "Exposed bone or tendon"
+      ],
+      "answerIndex": 1,
+      "explanation": "Verified clinical rationale: \"Partial thickness skin loss\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-36",
+      "prompt": "The most common early symptom of a myocardial infarction is:",
+      "options": [
+        "Jaw pain",
+        "Crushing central chest pain",
+        "Left arm numbness only",
+        "Shortness of breath only"
+      ],
+      "answerIndex": 1,
+      "explanation": "Verified clinical rationale: \"Crushing central chest pain\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-37",
+      "prompt": "McBurney's point tenderness is associated with:",
+      "options": [
+        "Peptic ulcer",
+        "Appendicitis",
+        "Cholecystitis",
+        "Pancreatitis"
+      ],
+      "answerIndex": 1,
+      "explanation": "Verified clinical rationale: \"Appendicitis\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-38",
+      "prompt": "A urinary catheter size is measured in:",
+      "options": [
+        "Millimetres",
+        "French (Fr) gauge",
+        "Inches",
+        "American Wire Gauge"
+      ],
+      "answerIndex": 1,
+      "explanation": "Verified clinical rationale: \"French (Fr) gauge\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-39",
+      "prompt": "The Uganda immunisation schedule gives BCG vaccine at:",
+      "options": [
+        "6 weeks",
+        "Birth",
+        "10 weeks",
+        "14 weeks"
+      ],
+      "answerIndex": 1,
+      "explanation": "Verified clinical rationale: \"Birth\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-40",
+      "prompt": "Oral Rehydration Solution (ORS) is prepared with 1 litre of water plus:",
+      "options": [
+        "6 tsp sugar + 1 tsp salt",
+        "1 tsp sugar + 6 tsp salt",
+        "8 tsp sugar + 1 tsp salt",
+        "4 tsp sugar + 2 tsp salt"
+      ],
+      "answerIndex": 0,
+      "explanation": "Verified clinical rationale: \"6 tsp sugar + 1 tsp salt\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-41",
+      "prompt": "Malaria is transmitted by:",
+      "options": [
+        "Culex mosquito (male)",
+        "Anopheles mosquito (female)",
+        "Aedes mosquito (female)",
+        "Any mosquito bite"
+      ],
+      "answerIndex": 1,
+      "explanation": "Verified clinical rationale: \"Anopheles mosquito (female)\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-42",
+      "prompt": "Kwashiorkor is primarily caused by deficiency of:",
+      "options": [
+        "Total calories",
+        "Protein",
+        "Vitamin A",
+        "Iron"
+      ],
+      "answerIndex": 1,
+      "explanation": "Verified clinical rationale: \"Protein\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-43",
+      "prompt": "Normal adult BMI range is:",
+      "options": [
+        "15–18.4",
+        "18.5–24.9",
+        "25–29.9",
+        "30–34.9"
+      ],
+      "answerIndex": 1,
+      "explanation": "Verified clinical rationale: \"18.5–24.9\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-44",
+      "prompt": "Vitamin C deficiency causes:",
+      "options": [
+        "Rickets",
+        "Pellagra",
+        "Scurvy",
+        "Beriberi"
+      ],
+      "answerIndex": 2,
+      "explanation": "Verified clinical rationale: \"Scurvy\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-45",
+      "prompt": "The best dietary source of iron for a patient with anaemia is:",
+      "options": [
+        "Maize porridge",
+        "Red meat and leafy green vegetables",
+        "Milk and dairy products",
+        "Cassava and sweet potato"
+      ],
+      "answerIndex": 1,
+      "explanation": "Verified clinical rationale: \"Red meat and leafy green vegetables\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-46",
+      "prompt": "Therapeutic communication prioritises:",
+      "options": [
+        "Giving advice quickly",
+        "Active listening and empathy",
+        "Completing documentation first",
+        "Referring immediately"
+      ],
+      "answerIndex": 1,
+      "explanation": "Verified clinical rationale: \"Active listening and empathy\" is the standard nursing/midwifery guideline answer."
+    },
+    {
+      "id": "qq-47",
+      "prompt": "A patient expresses suicidal ideation. The first nursing action is:",
+      "options": [
+        "Document and inform the next shift",
+        "Ask directly about a plan and means",
+        "Leave the patient to calm down",
+        "Administer sedation"
+      ],
+      "answerIndex": 1,
+      "explanation": "Verified clinical rationale: \"Ask directly about a plan and means\" is the standard nursing/midwifery guideline answer."
+    }
+  ]
+}

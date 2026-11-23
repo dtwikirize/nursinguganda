@@ -1,0 +1,1397 @@
+{
+  "generatedAtUtc": "2026-11-22T22:53:17.497Z",
+  "references": [
+    {
+      "id": "ug-ucg-2023",
+      "title": "Uganda Clinical Guidelines 2023: National Guidelines for Management of Common Conditions",
+      "authors": "Ministry of Health, Republic of Uganda",
+      "year": 2023,
+      "publisher": "Ministry of Health Uganda (Kampala)",
+      "type": "National Clinical Guideline",
+      "url": "https://www.health.go.ug/",
+      "subjects": [
+        "general",
+        "medical",
+        "surgical",
+        "pharmacology",
+        "paediatric",
+        "maternal",
+        "infection",
+        "malaria",
+        "hiv",
+        "tb",
+        "emergency",
+        "community",
+        "primary"
+      ],
+      "citation": "Ministry of Health Uganda. Uganda Clinical Guidelines 2023: National Guidelines for Management of Common Conditions. Kampala: MoH Uganda; 2023."
+    },
+    {
+      "id": "openstax-ap-2e",
+      "title": "Anatomy and Physiology, 2nd Edition",
+      "authors": "Betts JG, Young KA, Wise JA, Johnson E, Poe B, Kruse DH, et al.",
+      "year": 2022,
+      "publisher": "OpenStax, Rice University (CC BY 4.0)",
+      "type": "Peer-Reviewed Textbook",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "subjects": [
+        "anatomy",
+        "physiology",
+        "cell",
+        "tissue",
+        "skeletal",
+        "muscular",
+        "nervous",
+        "cardiovascular",
+        "respiratory",
+        "digestive",
+        "renal",
+        "urinary",
+        "endocrine",
+        "reproductive",
+        "blood",
+        "lymphatic",
+        "homeostasis"
+      ],
+      "citation": "Betts JG, Young KA, Wise JA, et al. Anatomy and Physiology. 2nd ed. Houston: OpenStax, Rice University; 2022."
+    },
+    {
+      "id": "openrn-fundamentals",
+      "title": "Nursing Fundamentals, 2nd Edition",
+      "authors": "Ernstmeyer K, Christman E (Eds.), Open Resources for Nursing (Open RN)",
+      "year": 2023,
+      "publisher": "Chippewa Valley Technical College / NCBI Bookshelf (CC BY 4.0)",
+      "type": "Peer-Reviewed Nursing Textbook",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK591807/",
+      "subjects": [
+        "foundations",
+        "nursing",
+        "assessment",
+        "vitals",
+        "hygiene",
+        "asepsis",
+        "documentation",
+        "communication",
+        "mobility",
+        "oxygen",
+        "fluid",
+        "pain",
+        "safety"
+      ],
+      "citation": "Ernstmeyer K, Christman E, editors. Nursing Fundamentals. 2nd ed. Eau Claire (WI): Chippewa Valley Technical College / Open RN; 2023."
+    },
+    {
+      "id": "openrn-pharmacology-2e",
+      "title": "Nursing Pharmacology, 2nd Edition",
+      "authors": "Ernstmeyer K, Christman E (Eds.), Open Resources for Nursing (Open RN)",
+      "year": 2023,
+      "publisher": "Chippewa Valley Technical College / NCBI Bookshelf (CC BY 4.0)",
+      "type": "Peer-Reviewed Pharmacology Textbook",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK595000/",
+      "subjects": [
+        "pharmacology",
+        "drug",
+        "medication",
+        "antibiotic",
+        "analgesic",
+        "dose",
+        "antihypertensive",
+        "insulin",
+        "diuretic",
+        "antiretroviral",
+        "antimalarial",
+        "pharmacokinetics",
+        "pharmacodynamics"
+      ],
+      "citation": "Ernstmeyer K, Christman E, editors. Nursing Pharmacology. 2nd ed. Eau Claire (WI): Chippewa Valley Technical College / Open RN; 2023."
+    }
+  ],
+  "terms": [
+    {
+      "id": "epithelial-tissue",
+      "term": "Epithelial Tissue",
+      "slug": "epithelial-tissue",
+      "pronunciation": "ep-ih-THEE-lee-ul",
+      "partOfSpeech": "noun",
+      "category": "Anatomy",
+      "bodySystem": "Integumentary",
+      "difficulty": "Beginner",
+      "simpleDefinition": "Tissue that covers and protects surfaces inside and outside the body.",
+      "definition": "A type of tissue that covers body surfaces, lines internal cavities and forms glands. It acts as a protective barrier against infection, injury and fluid loss.",
+      "clinicalContext": "Damaged epithelial tissue increases infection risk. Nurses assess skin integrity, wound edges and mucous membranes during routine care.",
+      "example": "The lining of the mouth, the skin surface and the inner wall of the stomach are examples of epithelial tissue.",
+      "relatedTerms": [
+        "connective-tissue",
+        "tissue",
+        "integumentary-system",
+        "mucous-membrane"
+      ],
+      "relatedLessons": [
+        "lesson-2"
+      ],
+      "tags": [
+        "tissue",
+        "anatomy",
+        "cells",
+        "skin",
+        "barrier"
+      ],
+      "mnemonics": "Epithelial tissue covers, lines and forms glands.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "connective-tissue",
+      "term": "Connective Tissue",
+      "slug": "connective-tissue",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Anatomy",
+      "bodySystem": "Musculoskeletal",
+      "difficulty": "Beginner",
+      "simpleDefinition": "Tissue that supports, binds, protects and connects body parts.",
+      "definition": "Connective tissue includes bone, cartilage, blood, adipose tissue and loose support tissue. It gives structure and support to organs and body systems.",
+      "clinicalContext": "Nurses meet connective tissue concepts in wound healing, fractures, pressure injury prevention, blood disorders and mobility care.",
+      "example": "In practice, nurses use the term connective tissue when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "epithelial-tissue",
+        "tissue",
+        "cartilage",
+        "blood"
+      ],
+      "relatedLessons": [
+        "lesson-2"
+      ],
+      "tags": [
+        "connective-tissue",
+        "anatomy",
+        "musculoskeletal"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "muscle-tissue",
+      "term": "Muscle Tissue",
+      "slug": "muscle-tissue",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Anatomy",
+      "bodySystem": "Musculoskeletal",
+      "difficulty": "Beginner",
+      "simpleDefinition": "Tissue that contracts to produce movement.",
+      "definition": "Muscle tissue is specialized for contraction. Skeletal muscle moves the body, cardiac muscle pumps blood and smooth muscle moves substances through organs.",
+      "clinicalContext": "Weakness, cramps, paralysis and reduced mobility can reflect muscle or nerve problems that require careful nursing assessment.",
+      "example": "In practice, nurses use the term muscle tissue when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "nervous-tissue",
+        "tissue",
+        "musculoskeletal-system"
+      ],
+      "relatedLessons": [
+        "lesson-2"
+      ],
+      "tags": [
+        "muscle-tissue",
+        "anatomy",
+        "musculoskeletal"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "nervous-tissue",
+      "term": "Nervous Tissue",
+      "slug": "nervous-tissue",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Anatomy",
+      "bodySystem": "Nervous",
+      "difficulty": "Beginner",
+      "simpleDefinition": "Tissue that receives and sends messages in the body.",
+      "definition": "Nervous tissue is made of neurons and support cells. It detects change, carries impulses and coordinates body responses.",
+      "clinicalContext": "Nurses assess consciousness, orientation, pain response, pupil reaction and limb movement to monitor nervous system function.",
+      "example": "In practice, nurses use the term nervous tissue when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "muscle-tissue",
+        "neuron",
+        "nervous-system"
+      ],
+      "relatedLessons": [
+        "lesson-2"
+      ],
+      "tags": [
+        "nervous-tissue",
+        "anatomy",
+        "nervous"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "tissue",
+      "term": "Tissue",
+      "slug": "tissue",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Anatomy",
+      "bodySystem": "All Systems",
+      "difficulty": "Beginner",
+      "simpleDefinition": "A group of similar cells working together for one function.",
+      "definition": "A tissue is a level of body organization between cells and organs. The four major tissue groups are epithelial, connective, muscle and nervous tissue.",
+      "clinicalContext": "Understanding tissue helps nurses connect wounds, inflammation, oxygen supply and healing to the patient's overall condition.",
+      "example": "In practice, nurses use the term tissue when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "cell",
+        "organ",
+        "epithelial-tissue"
+      ],
+      "relatedLessons": [
+        "lesson-2"
+      ],
+      "tags": [
+        "tissue",
+        "anatomy",
+        "all-systems"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "cell",
+      "term": "Cell",
+      "slug": "cell",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Anatomy",
+      "bodySystem": "All Systems",
+      "difficulty": "Beginner",
+      "simpleDefinition": "The smallest living unit of the body.",
+      "definition": "A cell is the basic structural and functional unit of life. Cells use oxygen and nutrients, remove waste, respond to signals and reproduce when needed.",
+      "clinicalContext": "Poor oxygen, glucose or fluid balance affects cell function first, then tissues, organs and the whole patient.",
+      "example": "In practice, nurses use the term cell when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "tissue",
+        "metabolism",
+        "homeostasis"
+      ],
+      "relatedLessons": [
+        "lesson-2"
+      ],
+      "tags": [
+        "cell",
+        "anatomy",
+        "all-systems"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "organ",
+      "term": "Organ",
+      "slug": "organ",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Anatomy",
+      "bodySystem": "All Systems",
+      "difficulty": "Beginner",
+      "simpleDefinition": "A body structure made from two or more tissues with a specific job.",
+      "definition": "An organ is formed when tissues work together for a specific function. Examples include the heart, lungs, kidneys, skin, stomach and brain.",
+      "clinicalContext": "Nurses assess organ function by observing breathing, pulse, urine output, skin condition, consciousness and other clinical signs.",
+      "example": "In practice, nurses use the term organ when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "tissue",
+        "organ-system",
+        "homeostasis"
+      ],
+      "relatedLessons": [
+        "lesson-2"
+      ],
+      "tags": [
+        "organ",
+        "anatomy",
+        "all-systems"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "organ-system",
+      "term": "Organ System",
+      "slug": "organ-system",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Anatomy",
+      "bodySystem": "All Systems",
+      "difficulty": "Beginner",
+      "simpleDefinition": "A group of organs working together for a major body function.",
+      "definition": "An organ system is a set of organs that cooperate to maintain life, such as the respiratory, cardiovascular, digestive and urinary systems.",
+      "clinicalContext": "System thinking helps nurses prioritize airway, breathing, circulation, elimination, nutrition and neurological status.",
+      "example": "In practice, nurses use the term organ system when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "organ",
+        "homeostasis"
+      ],
+      "relatedLessons": [
+        "lesson-2"
+      ],
+      "tags": [
+        "organ-system",
+        "anatomy",
+        "all-systems"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "homeostasis",
+      "term": "Homeostasis",
+      "slug": "homeostasis",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Physiology",
+      "bodySystem": "All Systems",
+      "difficulty": "Beginner",
+      "simpleDefinition": "The body's ability to keep internal conditions stable.",
+      "definition": "Homeostasis is the maintenance of a stable internal environment despite changes inside or outside the body.",
+      "clinicalContext": "Nurses support homeostasis through monitoring vital signs, fluids, glucose, temperature, oxygenation and elimination.",
+      "example": "In practice, nurses use the term homeostasis when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "metabolism",
+        "electrolyte",
+        "body-fluids"
+      ],
+      "relatedLessons": [
+        "lesson-3"
+      ],
+      "tags": [
+        "homeostasis",
+        "physiology",
+        "all-systems"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "metabolism",
+      "term": "Metabolism",
+      "slug": "metabolism",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Physiology",
+      "bodySystem": "Endocrine",
+      "difficulty": "Beginner",
+      "simpleDefinition": "All the chemical reactions that keep the body alive.",
+      "definition": "Metabolism includes reactions that build body materials and reactions that break down nutrients to release energy.",
+      "clinicalContext": "Changes in metabolism may appear as altered temperature, weight change, fatigue, glucose imbalance or poor wound healing.",
+      "example": "In practice, nurses use the term metabolism when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "cell",
+        "glucose",
+        "homeostasis"
+      ],
+      "relatedLessons": [
+        "lesson-2"
+      ],
+      "tags": [
+        "metabolism",
+        "physiology",
+        "endocrine"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "electrolyte",
+      "term": "Electrolyte",
+      "slug": "electrolyte",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Physiology",
+      "bodySystem": "All Systems",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "A charged mineral in body fluids that supports nerves, muscles and fluid balance.",
+      "definition": "Electrolytes such as sodium, potassium, calcium and chloride help regulate fluid movement, muscle contraction, heart rhythm and nerve function.",
+      "clinicalContext": "Abnormal electrolytes can cause weakness, confusion, seizures or dangerous heart rhythms, so nurses monitor results and report changes.",
+      "example": "In practice, nurses use the term electrolyte when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "dehydration",
+        "homeostasis",
+        "body-fluids"
+      ],
+      "relatedLessons": [
+        "lesson-3"
+      ],
+      "tags": [
+        "electrolyte",
+        "physiology",
+        "all-systems"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "dehydration",
+      "term": "Dehydration",
+      "slug": "dehydration",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Pathology",
+      "bodySystem": "All Systems",
+      "difficulty": "Beginner",
+      "simpleDefinition": "Too little water in the body.",
+      "definition": "Dehydration occurs when fluid loss is greater than fluid intake. It may follow vomiting, diarrhoea, fever, bleeding, poor intake or excessive sweating.",
+      "clinicalContext": "Nurses assess thirst, dry mucous membranes, reduced urine, low blood pressure, fast pulse, poor skin turgor and altered consciousness.",
+      "example": "In practice, nurses use the term dehydration when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "electrolyte",
+        "shock",
+        "blood-pressure"
+      ],
+      "relatedLessons": [
+        "lesson-3"
+      ],
+      "tags": [
+        "dehydration",
+        "pathology",
+        "all-systems"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "edema",
+      "term": "Edema",
+      "slug": "edema",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Pathology",
+      "bodySystem": "Cardiovascular",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "Swelling caused by excess fluid in body tissues.",
+      "definition": "Edema is the accumulation of fluid in the interstitial spaces. It may occur in the legs, hands, face, abdomen or lungs.",
+      "clinicalContext": "Nurses observe swelling, skin tightness, weight gain, shortness of breath and response to positioning or prescribed medicines.",
+      "example": "In practice, nurses use the term edema when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "fluid-balance",
+        "heart-failure",
+        "homeostasis"
+      ],
+      "relatedLessons": [
+        "lesson-3"
+      ],
+      "tags": [
+        "edema",
+        "pathology",
+        "cardiovascular"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "hypoxia",
+      "term": "Hypoxia",
+      "slug": "hypoxia",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Pathology",
+      "bodySystem": "Respiratory",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "Not enough oxygen reaching body tissues.",
+      "definition": "Hypoxia occurs when tissues receive insufficient oxygen for normal function. It may result from airway obstruction, lung disease, poor circulation or anaemia.",
+      "clinicalContext": "Nurses monitor respiratory rate, oxygen saturation, mental status, cyanosis and work of breathing, then escalate quickly when oxygenation is unsafe.",
+      "example": "In practice, nurses use the term hypoxia when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "oxygen-saturation",
+        "cyanosis",
+        "airway"
+      ],
+      "relatedLessons": [
+        "lesson-3"
+      ],
+      "tags": [
+        "hypoxia",
+        "pathology",
+        "respiratory"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "cyanosis",
+      "term": "Cyanosis",
+      "slug": "cyanosis",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Pathology",
+      "bodySystem": "Respiratory",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "Bluish discoloration of skin or mucous membranes from low oxygen.",
+      "definition": "Cyanosis is a clinical sign where the skin, lips or nail beds appear blue or dusky because blood oxygen is low.",
+      "clinicalContext": "Nurses treat cyanosis as an urgent warning sign and assess airway, breathing, circulation and oxygen saturation.",
+      "example": "In practice, nurses use the term cyanosis when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "hypoxia",
+        "oxygen-saturation",
+        "airway"
+      ],
+      "relatedLessons": [
+        "lesson-3"
+      ],
+      "tags": [
+        "cyanosis",
+        "pathology",
+        "respiratory"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "blood-pressure",
+      "term": "Blood Pressure",
+      "slug": "blood-pressure",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Clinical Skills",
+      "bodySystem": "Cardiovascular",
+      "difficulty": "Beginner",
+      "simpleDefinition": "The force of blood pushing against artery walls.",
+      "definition": "Blood pressure is recorded as systolic pressure over diastolic pressure. It reflects circulation, vascular resistance and heart pumping action.",
+      "clinicalContext": "Nurses measure blood pressure accurately, compare it with baseline and report very high, very low or rapidly changing readings.",
+      "example": "In practice, nurses use the term blood pressure when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "pulse",
+        "hypertension",
+        "shock"
+      ],
+      "relatedLessons": [
+        "lesson-8"
+      ],
+      "tags": [
+        "blood-pressure",
+        "clinical-skills",
+        "cardiovascular"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "pulse",
+      "term": "Pulse",
+      "slug": "pulse",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Clinical Skills",
+      "bodySystem": "Cardiovascular",
+      "difficulty": "Beginner",
+      "simpleDefinition": "The beat felt as blood is pumped through arteries.",
+      "definition": "Pulse is the rhythmic expansion of an artery caused by heart contraction. It is assessed by rate, rhythm, strength and equality.",
+      "clinicalContext": "Pulse assessment helps nurses identify pain, fever, dehydration, shock, arrhythmia and response to treatment.",
+      "example": "In practice, nurses use the term pulse when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "blood-pressure",
+        "shock",
+        "cardiovascular-system"
+      ],
+      "relatedLessons": [
+        "lesson-8"
+      ],
+      "tags": [
+        "pulse",
+        "clinical-skills",
+        "cardiovascular"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "respiration",
+      "term": "Respiration",
+      "slug": "respiration",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Clinical Skills",
+      "bodySystem": "Respiratory",
+      "difficulty": "Beginner",
+      "simpleDefinition": "The act of breathing in oxygen and breathing out carbon dioxide.",
+      "definition": "Respiration includes ventilation and gas exchange. Nurses assess rate, depth, rhythm, effort and breath sounds.",
+      "clinicalContext": "Abnormal respiration may indicate pain, anxiety, infection, asthma, hypoxia, shock or neurological changes.",
+      "example": "In practice, nurses use the term respiration when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "oxygen-saturation",
+        "hypoxia",
+        "airway"
+      ],
+      "relatedLessons": [
+        "lesson-3"
+      ],
+      "tags": [
+        "respiration",
+        "clinical-skills",
+        "respiratory"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "temperature",
+      "term": "Temperature",
+      "slug": "temperature",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Clinical Skills",
+      "bodySystem": "All Systems",
+      "difficulty": "Beginner",
+      "simpleDefinition": "A measurement of body heat.",
+      "definition": "Body temperature shows the balance between heat production and heat loss. Fever or low temperature can signal illness or environmental stress.",
+      "clinicalContext": "Nurses record temperature, compare trends and link findings to infection, dehydration, exposure or medication effects.",
+      "example": "In practice, nurses use the term temperature when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "fever",
+        "infection",
+        "homeostasis"
+      ],
+      "relatedLessons": [
+        "lesson-3"
+      ],
+      "tags": [
+        "temperature",
+        "clinical-skills",
+        "all-systems"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "oxygen-saturation",
+      "term": "Oxygen Saturation",
+      "slug": "oxygen-saturation",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Clinical Skills",
+      "bodySystem": "Respiratory",
+      "difficulty": "Beginner",
+      "simpleDefinition": "The percentage of haemoglobin carrying oxygen in the blood.",
+      "definition": "Oxygen saturation is commonly measured with a pulse oximeter and helps estimate how well oxygen is being carried.",
+      "clinicalContext": "A falling saturation can be an early danger sign. Nurses confirm probe placement, assess the patient and escalate according to protocol.",
+      "example": "In practice, nurses use the term oxygen saturation when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "hypoxia",
+        "cyanosis",
+        "respiration"
+      ],
+      "relatedLessons": [
+        "lesson-3"
+      ],
+      "tags": [
+        "oxygen-saturation",
+        "clinical-skills",
+        "respiratory"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "capillary-refill",
+      "term": "Capillary Refill",
+      "slug": "capillary-refill",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Clinical Skills",
+      "bodySystem": "Cardiovascular",
+      "difficulty": "Beginner",
+      "simpleDefinition": "A quick test of blood flow to small vessels.",
+      "definition": "Capillary refill is checked by pressing a nail bed or skin area and observing how quickly normal colour returns.",
+      "clinicalContext": "Slow refill may suggest poor perfusion, cold exposure, dehydration or shock, and should be interpreted with other observations.",
+      "example": "In practice, nurses use the term capillary refill when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "pulse",
+        "shock",
+        "blood-pressure"
+      ],
+      "relatedLessons": [
+        "lesson-8"
+      ],
+      "tags": [
+        "capillary-refill",
+        "clinical-skills",
+        "cardiovascular"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "asepsis",
+      "term": "Asepsis",
+      "slug": "asepsis",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Clinical Skills",
+      "bodySystem": "Immune",
+      "difficulty": "Beginner",
+      "simpleDefinition": "Practices that prevent contamination by harmful microorganisms.",
+      "definition": "Asepsis means reducing or preventing the introduction of infection-causing organisms during care.",
+      "clinicalContext": "Hand hygiene, clean technique, sterile technique and safe handling of equipment protect patients from healthcare-associated infection.",
+      "example": "In practice, nurses use the term asepsis when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "infection",
+        "wound",
+        "sterile-technique"
+      ],
+      "relatedLessons": [
+        "lesson-1"
+      ],
+      "tags": [
+        "asepsis",
+        "clinical-skills",
+        "immune"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "infection",
+      "term": "Infection",
+      "slug": "infection",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Pathology",
+      "bodySystem": "Immune",
+      "difficulty": "Beginner",
+      "simpleDefinition": "Invasion and multiplication of harmful microorganisms in the body.",
+      "definition": "Infection occurs when bacteria, viruses, fungi or parasites enter and multiply, causing local or systemic effects.",
+      "clinicalContext": "Nurses monitor temperature, pain, swelling, wound discharge, respiratory symptoms and sepsis warning signs.",
+      "example": "In practice, nurses use the term infection when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "asepsis",
+        "inflammation",
+        "sepsis"
+      ],
+      "relatedLessons": [
+        "lesson-1"
+      ],
+      "tags": [
+        "infection",
+        "pathology",
+        "immune"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "inflammation",
+      "term": "Inflammation",
+      "slug": "inflammation",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Pathology",
+      "bodySystem": "Immune",
+      "difficulty": "Beginner",
+      "simpleDefinition": "The body's protective response to injury or infection.",
+      "definition": "Inflammation is a response involving redness, heat, swelling, pain and sometimes loss of function.",
+      "clinicalContext": "Nurses observe inflammatory signs around wounds, cannula sites, joints and mucous membranes, then document and report concerns.",
+      "example": "In practice, nurses use the term inflammation when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "infection",
+        "wound",
+        "edema"
+      ],
+      "relatedLessons": [
+        "lesson-1"
+      ],
+      "tags": [
+        "inflammation",
+        "pathology",
+        "immune"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "wound",
+      "term": "Wound",
+      "slug": "wound",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Clinical Skills",
+      "bodySystem": "Integumentary",
+      "difficulty": "Beginner",
+      "simpleDefinition": "A break or injury in body tissue.",
+      "definition": "A wound may involve skin, mucous membrane or deeper tissue. It can result from surgery, trauma, pressure, burns or disease.",
+      "clinicalContext": "Nurses assess wound size, depth, edges, exudate, odour, pain, surrounding skin and signs of infection.",
+      "example": "In practice, nurses use the term wound when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "epithelial-tissue",
+        "infection",
+        "inflammation"
+      ],
+      "relatedLessons": [
+        "lesson-2"
+      ],
+      "tags": [
+        "wound",
+        "clinical-skills",
+        "integumentary"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "hemorrhage",
+      "term": "Hemorrhage",
+      "slug": "hemorrhage",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Pathology",
+      "bodySystem": "Cardiovascular",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "Bleeding from a damaged blood vessel.",
+      "definition": "Hemorrhage may be external or internal and can lead to shock if blood loss is significant.",
+      "clinicalContext": "Nurses monitor bleeding, pulse, blood pressure, skin condition, consciousness and urine output while escalating urgently.",
+      "example": "In practice, nurses use the term hemorrhage when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "shock",
+        "pulse",
+        "blood-pressure"
+      ],
+      "relatedLessons": [
+        "lesson-7"
+      ],
+      "tags": [
+        "hemorrhage",
+        "pathology",
+        "cardiovascular"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "shock",
+      "term": "Shock",
+      "slug": "shock",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Medical Conditions",
+      "bodySystem": "Cardiovascular",
+      "difficulty": "Advanced",
+      "simpleDefinition": "A life-threatening state where tissues do not receive enough blood flow and oxygen.",
+      "definition": "Shock occurs when circulation cannot meet tissue needs. Causes include blood loss, severe infection, heart problems and allergic reactions.",
+      "clinicalContext": "Nursing priorities include rapid recognition, airway and breathing support, circulation monitoring, fluid preparation and urgent escalation.",
+      "example": "In practice, nurses use the term shock when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "hypoxia",
+        "hemorrhage",
+        "sepsis"
+      ],
+      "relatedLessons": [
+        "lesson-8"
+      ],
+      "tags": [
+        "shock",
+        "medical-conditions",
+        "cardiovascular"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "analgesic",
+      "term": "Analgesic",
+      "slug": "analgesic",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Pharmacology",
+      "bodySystem": "Nervous",
+      "difficulty": "Beginner",
+      "simpleDefinition": "A medicine used to relieve pain.",
+      "definition": "Analgesics reduce pain through different mechanisms. Examples include paracetamol, non-steroidal anti-inflammatory medicines and opioids.",
+      "clinicalContext": "Nurses assess pain before and after administration, check allergies, watch adverse effects and document response.",
+      "example": "In practice, nurses use the term analgesic when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "pain",
+        "opioid",
+        "medication"
+      ],
+      "relatedLessons": [
+        "lesson-1"
+      ],
+      "tags": [
+        "analgesic",
+        "pharmacology",
+        "nervous"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "antibiotic",
+      "term": "Antibiotic",
+      "slug": "antibiotic",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Pharmacology",
+      "bodySystem": "Immune",
+      "difficulty": "Beginner",
+      "simpleDefinition": "A medicine used to treat bacterial infection.",
+      "definition": "Antibiotics kill bacteria or stop their growth. They do not treat viral infections unless bacterial infection is also present.",
+      "clinicalContext": "Nurses check prescriptions, allergies, timing, route, cultures where ordered and patient response to treatment.",
+      "example": "In practice, nurses use the term antibiotic when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "infection",
+        "sepsis",
+        "asepsis"
+      ],
+      "relatedLessons": [
+        "lesson-1"
+      ],
+      "tags": [
+        "antibiotic",
+        "pharmacology",
+        "immune"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "intravenous",
+      "term": "Intravenous",
+      "slug": "intravenous",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Procedures",
+      "bodySystem": "Cardiovascular",
+      "difficulty": "Beginner",
+      "simpleDefinition": "Given into a vein.",
+      "definition": "Intravenous, often shortened to IV, means a medicine or fluid is delivered directly into the venous circulation.",
+      "clinicalContext": "Nurses monitor cannula site, fluid rate, compatibility, infiltration, phlebitis and patient response.",
+      "example": "In practice, nurses use the term intravenous when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "electrolyte",
+        "dehydration",
+        "medication"
+      ],
+      "relatedLessons": [
+        "lesson-3"
+      ],
+      "tags": [
+        "intravenous",
+        "procedures",
+        "cardiovascular"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "intramuscular-injection",
+      "term": "Intramuscular Injection",
+      "slug": "intramuscular-injection",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Procedures",
+      "bodySystem": "Musculoskeletal",
+      "difficulty": "Beginner",
+      "simpleDefinition": "An injection given into muscle.",
+      "definition": "An intramuscular injection places medicine into muscle tissue for absorption into the bloodstream.",
+      "clinicalContext": "Nurses select the correct site, needle size, angle and infection prevention steps while observing for pain or reaction.",
+      "example": "In practice, nurses use the term intramuscular injection when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "subcutaneous-injection",
+        "asepsis",
+        "medication"
+      ],
+      "relatedLessons": [
+        "lesson-1"
+      ],
+      "tags": [
+        "intramuscular-injection",
+        "procedures",
+        "musculoskeletal"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "subcutaneous-injection",
+      "term": "Subcutaneous Injection",
+      "slug": "subcutaneous-injection",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Procedures",
+      "bodySystem": "Integumentary",
+      "difficulty": "Beginner",
+      "simpleDefinition": "An injection given into the fatty layer under the skin.",
+      "definition": "A subcutaneous injection places medicine into tissue below the skin and above the muscle.",
+      "clinicalContext": "Common examples include insulin and some anticoagulants. Nurses rotate sites and assess for bruising or irritation.",
+      "example": "In practice, nurses use the term subcutaneous injection when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "intramuscular-injection",
+        "blood-glucose",
+        "asepsis"
+      ],
+      "relatedLessons": [
+        "lesson-1"
+      ],
+      "tags": [
+        "subcutaneous-injection",
+        "procedures",
+        "integumentary"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "blood-glucose",
+      "term": "Blood Glucose",
+      "slug": "blood-glucose",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Clinical Skills",
+      "bodySystem": "Endocrine",
+      "difficulty": "Beginner",
+      "simpleDefinition": "The amount of sugar in the blood.",
+      "definition": "Blood glucose is a key energy measurement. It can become too high or too low in diabetes, illness, fasting or medication effects.",
+      "clinicalContext": "Nurses monitor glucose, recognize hypoglycaemia or hyperglycaemia signs and follow facility protocols.",
+      "example": "In practice, nurses use the term blood glucose when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "metabolism",
+        "homeostasis",
+        "subcutaneous-injection"
+      ],
+      "relatedLessons": [
+        "lesson-3"
+      ],
+      "tags": [
+        "blood-glucose",
+        "clinical-skills",
+        "endocrine"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "fever",
+      "term": "Fever",
+      "slug": "fever",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Medical Conditions",
+      "bodySystem": "Immune",
+      "difficulty": "Beginner",
+      "simpleDefinition": "A body temperature higher than normal.",
+      "definition": "Fever is often a response to infection, inflammation or other illness. It reflects changes in temperature regulation.",
+      "clinicalContext": "Nurses monitor temperature trends, hydration, comfort, prescribed medicines and danger signs such as confusion or stiff neck.",
+      "example": "In practice, nurses use the term fever when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "temperature",
+        "infection",
+        "dehydration"
+      ],
+      "relatedLessons": [
+        "lesson-3"
+      ],
+      "tags": [
+        "fever",
+        "medical-conditions",
+        "immune"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "airway",
+      "term": "Airway",
+      "slug": "airway",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Clinical Skills",
+      "bodySystem": "Respiratory",
+      "difficulty": "Beginner",
+      "simpleDefinition": "The passage that allows air to move into and out of the lungs.",
+      "definition": "The airway includes the nose, mouth, throat, larynx, trachea and bronchi. A clear airway is essential for breathing.",
+      "clinicalContext": "Airway assessment is a first nursing priority. Obstruction, secretions, vomiting or reduced consciousness can quickly become life-threatening.",
+      "example": "In practice, nurses use the term airway when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "respiration",
+        "hypoxia",
+        "aspiration"
+      ],
+      "relatedLessons": [
+        "lesson-3"
+      ],
+      "tags": [
+        "airway",
+        "clinical-skills",
+        "respiratory"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "aspiration",
+      "term": "Aspiration",
+      "slug": "aspiration",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Pathology",
+      "bodySystem": "Respiratory",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "Entry of food, fluid, saliva or vomit into the airway.",
+      "definition": "Aspiration can irritate the lungs, block breathing or cause aspiration pneumonia.",
+      "clinicalContext": "Nurses reduce risk by positioning patients safely, checking swallowing ability and monitoring coughing, choking or breathing changes.",
+      "example": "In practice, nurses use the term aspiration when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "airway",
+        "hypoxia",
+        "pneumonia"
+      ],
+      "relatedLessons": [
+        "lesson-3"
+      ],
+      "tags": [
+        "aspiration",
+        "pathology",
+        "respiratory"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "hypertension",
+      "term": "Hypertension",
+      "slug": "hypertension",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Medical Conditions",
+      "bodySystem": "Cardiovascular",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "Blood pressure that remains higher than normal.",
+      "definition": "Hypertension increases strain on the heart and blood vessels and raises the risk of stroke, heart disease and kidney disease.",
+      "clinicalContext": "Nurses measure accurately, support lifestyle education, monitor medicine adherence and report very high readings or symptoms.",
+      "example": "In practice, nurses use the term hypertension when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "blood-pressure",
+        "stroke",
+        "myocardial-infarction"
+      ],
+      "relatedLessons": [
+        "lesson-8"
+      ],
+      "tags": [
+        "hypertension",
+        "medical-conditions",
+        "cardiovascular"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "myocardial-infarction",
+      "term": "Myocardial Infarction",
+      "slug": "myocardial-infarction",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Medical Conditions",
+      "bodySystem": "Cardiovascular",
+      "difficulty": "Advanced",
+      "simpleDefinition": "A heart attack caused by blocked blood supply to heart muscle.",
+      "definition": "Myocardial infarction occurs when part of the heart muscle is injured because oxygen-rich blood cannot reach it.",
+      "clinicalContext": "Nurses treat chest pain, breathlessness, sweating, nausea or collapse as urgent, monitor vital signs and support emergency care.",
+      "example": "In practice, nurses use the term myocardial infarction when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "blood-pressure",
+        "pulse",
+        "shock"
+      ],
+      "relatedLessons": [
+        "lesson-8"
+      ],
+      "tags": [
+        "heart attack",
+        "mi",
+        "cardiac",
+        "chest pain"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "stroke",
+      "term": "Stroke",
+      "slug": "stroke",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Medical Conditions",
+      "bodySystem": "Nervous",
+      "difficulty": "Advanced",
+      "simpleDefinition": "Sudden brain injury caused by blocked or bleeding blood vessels.",
+      "definition": "Stroke occurs when blood supply to part of the brain is interrupted or bleeding occurs in the brain.",
+      "clinicalContext": "Nurses watch for facial droop, arm weakness, speech difficulty, altered consciousness and urgent onset time documentation.",
+      "example": "In practice, nurses use the term stroke when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "blood-pressure",
+        "nervous-tissue",
+        "hypertension"
+      ],
+      "relatedLessons": [
+        "lesson-8"
+      ],
+      "tags": [
+        "stroke",
+        "medical-conditions",
+        "nervous"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "sepsis",
+      "term": "Sepsis",
+      "slug": "sepsis",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Medical Conditions",
+      "bodySystem": "Immune",
+      "difficulty": "Advanced",
+      "simpleDefinition": "A life-threatening body response to infection.",
+      "definition": "Sepsis is severe organ-threatening illness caused by a dysregulated response to infection.",
+      "clinicalContext": "Nurses monitor temperature, pulse, respiration, blood pressure, mental status and urine output, then escalate immediately when sepsis is suspected.",
+      "example": "In practice, nurses use the term sepsis when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "infection",
+        "shock",
+        "antibiotic"
+      ],
+      "relatedLessons": [
+        "lesson-1"
+      ],
+      "tags": [
+        "sepsis",
+        "medical-conditions",
+        "immune"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    }
+  ],
+  "abbreviations": [
+    {
+      "abbr": "ABG",
+      "full": "Arterial Blood Gas"
+    },
+    {
+      "abbr": "AIDS",
+      "full": "Acquired Immunodeficiency Syndrome"
+    },
+    {
+      "abbr": "BP",
+      "full": "Blood Pressure"
+    },
+    {
+      "abbr": "BPM",
+      "full": "Beats Per Minute"
+    },
+    {
+      "abbr": "CBC",
+      "full": "Complete Blood Count"
+    },
+    {
+      "abbr": "CPR",
+      "full": "Cardiopulmonary Resuscitation"
+    },
+    {
+      "abbr": "CVA",
+      "full": "Cerebrovascular Accident"
+    },
+    {
+      "abbr": "DVT",
+      "full": "Deep Vein Thrombosis"
+    },
+    {
+      "abbr": "ECG",
+      "full": "Electrocardiogram"
+    },
+    {
+      "abbr": "ENT",
+      "full": "Ear, Nose and Throat"
+    },
+    {
+      "abbr": "GCS",
+      "full": "Glasgow Coma Scale"
+    },
+    {
+      "abbr": "Hb",
+      "full": "Haemoglobin"
+    },
+    {
+      "abbr": "HIV",
+      "full": "Human Immunodeficiency Virus"
+    },
+    {
+      "abbr": "IM",
+      "full": "Intramuscular"
+    },
+    {
+      "abbr": "IV",
+      "full": "Intravenous"
+    },
+    {
+      "abbr": "NBM",
+      "full": "Nil By Mouth"
+    },
+    {
+      "abbr": "NGT",
+      "full": "Nasogastric Tube"
+    },
+    {
+      "abbr": "NPO",
+      "full": "Nothing By Mouth"
+    },
+    {
+      "abbr": "OBS",
+      "full": "Observations"
+    },
+    {
+      "abbr": "OD",
+      "full": "Once Daily"
+    },
+    {
+      "abbr": "PRN",
+      "full": "As Needed"
+    },
+    {
+      "abbr": "QID",
+      "full": "Four Times Daily"
+    },
+    {
+      "abbr": "ROM",
+      "full": "Range of Motion"
+    },
+    {
+      "abbr": "SOB",
+      "full": "Shortness of Breath"
+    },
+    {
+      "abbr": "SpO2",
+      "full": "Peripheral Oxygen Saturation"
+    },
+    {
+      "abbr": "STAT",
+      "full": "Immediately"
+    },
+    {
+      "abbr": "TDS",
+      "full": "Three Times Daily"
+    },
+    {
+      "abbr": "TPR",
+      "full": "Temperature, Pulse, Respiration"
+    },
+    {
+      "abbr": "UTI",
+      "full": "Urinary Tract Infection"
+    },
+    {
+      "abbr": "WBC",
+      "full": "White Blood Cell"
+    }
+  ]
+}
