@@ -3,6 +3,7 @@ const path = require("path");
 const fs = require("fs");
 const compression = require("compression");
 const rateLimit = require("express-rate-limit");
+const { createApiRouter } = require("./api/express-api");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -21,6 +22,9 @@ app.use(
 );
 
 express.static.mime.define({ "application/manifest+json": ["webmanifest"] });
+
+// Native Hostinger Node.js + MySQL + PayPal API routes
+app.use("/api", createApiRouter());
 
 const BOT_UA_RE = /(googlebot|adsbot-google|mediapartners-google|bingbot|slurp|duckduckbot|facebookexternalhit|twitterbot|whatsapp)/i;
 const SPA_ROUTE_RE = /^\/(courses|course|learn|ebooks|mock-exams|dictionary|instruments|clinical-tools|cart|checkout|login|my-learning|about|brand-kit|editorial-policy|privacy-policy|terms|contact)(\/|$)/i;

@@ -1,12 +1,23 @@
 import React, { useEffect, useRef, useState } from "react";
-import { getPayPalConfig } from "../lib/api";
+import { fetchRuntimeConfig, getPayPalConfig } from "../lib/api";
 
 export default function PayPalCheckoutButton({ totalUsd, items, onSuccess, onError }) {
   const containerRef = useRef(null);
   const [sdkReady, setSdkReady] = useState(false);
   const [sdkFailed, setSdkFailed] = useState(false);
-  const { clientId, currency } = getPayPalConfig();
+  const initialCfg = getPayPalConfig();
+  const [clientId, setClientId] = useState(initialCfg.clientId);
+  const currency = initialCfg.currency;
   const isSandboxPlaceholder = !clientId || clientId === "sb";
+
+  useEffect(() => {
+    fetchRuntimeConfig().then((cfg) => {
+      if (cfg?.paypalClientId && cfg.paypalClientId !== "sb") {
+        setClientId(cfg.paypalClientId);
+        setSdkFailed(false);
+      }
+    });
+  }, []);
 
   useEffect(() => {
     if (isSandboxPlaceholder) {

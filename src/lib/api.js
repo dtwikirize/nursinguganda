@@ -46,6 +46,9 @@ async function apiFetch(endpoint, options = {}) {
       return { __noPhp: true };
     }
     const data = await res.json();
+    if (data?.__noDb) {
+      return { __noPhp: true };
+    }
     if (!res.ok) {
       return { ok: false, error: data.error || `Request failed (${res.status})` };
     }
@@ -56,7 +59,7 @@ async function apiFetch(endpoint, options = {}) {
 }
 
 export async function fetchSession() {
-  const res = await apiFetch("/api/auth.php?action=me");
+  const res = await apiFetch("/api/auth?action=me");
   if (!res.__noPhp) return res;
   return {
     ok: true,
@@ -67,7 +70,7 @@ export async function fetchSession() {
 }
 
 export async function loginUser({ email, password }) {
-  const res = await apiFetch("/api/auth.php?action=login", {
+  const res = await apiFetch("/api/auth?action=login", {
     method: "POST",
     body: JSON.stringify({ email, password })
   });
@@ -93,7 +96,7 @@ export async function loginUser({ email, password }) {
 }
 
 export async function registerUser({ name, email, password, programme }) {
-  const res = await apiFetch("/api/auth.php?action=register", {
+  const res = await apiFetch("/api/auth?action=register", {
     method: "POST",
     body: JSON.stringify({ name, email, password, programme })
   });
@@ -116,14 +119,14 @@ export async function registerUser({ name, email, password, programme }) {
 }
 
 export async function logoutUser() {
-  const res = await apiFetch("/api/auth.php?action=logout", { method: "POST" });
+  const res = await apiFetch("/api/auth?action=logout", { method: "POST" });
   if (!res.__noPhp) return res;
   localStorage.removeItem(LS_KEYS.user);
   return { ok: true };
 }
 
 export async function enrollFreeCourse(courseSlug) {
-  const res = await apiFetch("/api/enrollments.php", {
+  const res = await apiFetch("/api/enrollments", {
     method: "POST",
     body: JSON.stringify({ action: "enroll_free", courseSlug })
   });
@@ -138,7 +141,7 @@ export async function enrollFreeCourse(courseSlug) {
 }
 
 export async function verifyPayPalOrder({ orderId, items, totalUsd, payerEmail }) {
-  const res = await apiFetch("/api/paypal-capture.php", {
+  const res = await apiFetch("/api/paypal-capture", {
     method: "POST",
     body: JSON.stringify({ orderId, items, totalUsd, payerEmail })
   });
@@ -158,7 +161,7 @@ export async function verifyPayPalOrder({ orderId, items, totalUsd, payerEmail }
 }
 
 export async function toggleLessonProgress(courseSlug, lessonSlug, completed) {
-  const res = await apiFetch("/api/progress.php", {
+  const res = await apiFetch("/api/progress", {
     method: "POST",
     body: JSON.stringify({ courseSlug, lessonSlug, completed })
   });
@@ -174,7 +177,7 @@ export async function toggleLessonProgress(courseSlug, lessonSlug, completed) {
 }
 
 export async function fetchCourseQA(courseSlug) {
-  const res = await apiFetch(`/api/qa.php?course=${encodeURIComponent(courseSlug)}`);
+  const res = await apiFetch(`/api/qa?course=${encodeURIComponent(courseSlug)}`);
   if (!res.__noPhp) return res;
 
   const all = readLS(LS_KEYS.qa, {});
@@ -182,7 +185,7 @@ export async function fetchCourseQA(courseSlug) {
 }
 
 export async function postCourseQuestion({ courseSlug, title, body, user }) {
-  const res = await apiFetch("/api/qa.php", {
+  const res = await apiFetch("/api/qa", {
     method: "POST",
     body: JSON.stringify({ action: "ask", courseSlug, title, body })
   });
@@ -207,7 +210,7 @@ export async function postCourseQuestion({ courseSlug, title, body, user }) {
 }
 
 export async function recordEbookDownload({ ebookSlug, email }) {
-  const res = await apiFetch("/api/ebooks.php", {
+  const res = await apiFetch("/api/ebooks", {
     method: "POST",
     body: JSON.stringify({ ebookSlug, email })
   });
@@ -217,6 +220,14 @@ export async function recordEbookDownload({ ebookSlug, email }) {
   leads.push({ ebookSlug, email: email || "guest", createdAt: new Date().toISOString() });
   writeLS(LS_KEYS.ebookLeads, leads);
   return { ok: true };
+}
+
+export async function fetchRuntimeConfig() {
+  try {
+    const res = await fetch("/api/config");
+    if (res.ok) return await res.json();
+  } catch {}
+  return null;
 }
 
 export function getPayPalConfig() {
