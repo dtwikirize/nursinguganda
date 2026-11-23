@@ -193,6 +193,10 @@ function initialsOf(name) {
 
 function createApiRouter() {
   const router = express.Router();
+  router.use((_req, res, next) => {
+    res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, private");
+    next();
+  });
   router.use(express.json({ limit: "1mb" }));
 
   router.get("/config", async (_req, res) => {
