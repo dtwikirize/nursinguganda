@@ -1,13 +1,21 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
+  Award,
   BookOpen,
   ChevronDown,
   ChevronRight,
+  FileText,
+  GraduationCap,
+  HeartPulse,
   LogOut,
   Menu,
   Search,
   ShoppingCart,
+  Sparkles,
+  Star,
+  Stethoscope,
+  Wrench,
   X
 } from "lucide-react";
 import { useApp } from "../context/AppContext";
@@ -37,13 +45,40 @@ export default function Navbar() {
     return () => window.removeEventListener("nu-brand-change", handler);
   }, []);
 
+  useEffect(() => {
+    if (!megaOpen) return undefined;
+    const onKey = (e) => {
+      if (e.key === "Escape") setMegaOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [megaOpen]);
+
   const programmes = catalog?.programmes || [];
   const courses = catalog?.courses || [];
 
-  const activeProgCourses = useMemo(
-    () => courses.filter((c) => c.programmeId === activeProgId).slice(0, 7),
+  const activeProg = useMemo(
+    () => programmes.find((p) => p.id === activeProgId) || programmes[0],
+    [programmes, activeProgId]
+  );
+
+  const activeProgAllCourses = useMemo(
+    () => courses.filter((c) => c.programmeId === activeProgId),
     [courses, activeProgId]
   );
+
+  const activeProgCourses = useMemo(
+    () => activeProgAllCourses.slice(0, 10),
+    [activeProgAllCourses]
+  );
+
+  const featuredCourse = useMemo(() => {
+    if (!activeProgAllCourses.length) return null;
+    return (
+      activeProgAllCourses.find((c) => c.badge === "Bestseller") ||
+      activeProgAllCourses[0]
+    );
+  }, [activeProgAllCourses]);
 
   const searchHits = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -109,71 +144,196 @@ export default function Navbar() {
             </button>
 
             {megaOpen && (
-              <div className="nu-megamenu" role="menu">
-                <div className="nu-mega-col">
-                  {programmes.map((p) => (
-                    <button
-                      key={p.id}
-                      type="button"
-                      className={`nu-mega-item ${activeProgId === p.id ? "active" : ""}`}
-                      onMouseEnter={() => setActiveProgId(p.id)}
-                      onClick={() => {
-                        setMegaOpen(false);
-                        navigate(`/courses?programme=${encodeURIComponent(p.id)}`);
-                      }}
-                    >
-                      <span>{p.label}</span>
-                      <ChevronRight size={15} />
-                    </button>
-                  ))}
-                  <div style={{ borderTop: "1px solid var(--nu-border-light)", marginTop: 8, paddingTop: 8 }}>
-                    <Link
-                      to="/ebooks"
-                      className="nu-mega-item"
-                      onClick={() => setMegaOpen(false)}
-                    >
-                      <span>Free Referenced eBooks</span>
-                      <ChevronRight size={15} />
+              <div className="nu-megamenu" role="menu" aria-label="Explore Nursing Uganda Curriculum">
+                <div className="nu-mega-grid">
+                  {/* Column 1: Programmes & Free Hubs */}
+                  <div className="nu-mega-col">
+                    <div className="nu-mega-kicker">Academic Programmes ({programmes.length})</div>
+                    {programmes.map((p) => {
+                      const isMidwifery = p.id.includes("midwifery");
+                      return (
+                        <button
+                          key={p.id}
+                          type="button"
+                          className={`nu-mega-item ${activeProgId === p.id ? "active" : ""}`}
+                          onMouseEnter={() => setActiveProgId(p.id)}
+                          onFocus={() => setActiveProgId(p.id)}
+                          onClick={() => {
+                            setMegaOpen(false);
+                            navigate(`/courses?programme=${encodeURIComponent(p.id)}`);
+                          }}
+                        >
+                          <span className="nu-mega-item-left">
+                            {isMidwifery ? <HeartPulse size={15} /> : <GraduationCap size={15} />}
+                            <span>{p.label}</span>
+                          </span>
+                          <span className="nu-mega-item-right">
+                            <span className="nu-mega-count">{p.courseCount}</span>
+                            <ChevronRight size={14} />
+                          </span>
+                        </button>
+                      );
+                    })}
+
+                    <div className="nu-mega-divider" />
+                    <div className="nu-mega-kicker">Free Study &amp; Clinical Hubs</div>
+
+                    <Link to="/ebooks" className="nu-mega-item" onClick={() => setMegaOpen(false)}>
+                      <span className="nu-mega-item-left">
+                        <BookOpen size={15} />
+                        <span>Free Referenced eBooks</span>
+                      </span>
+                      <ChevronRight size={14} />
                     </Link>
-                    <Link
-                      to="/dictionary"
-                      className="nu-mega-item"
-                      onClick={() => setMegaOpen(false)}
-                    >
-                      <span>Medical Dictionary</span>
-                      <ChevronRight size={15} />
+                    <Link to="/mock-exams" className="nu-mega-item" onClick={() => setMegaOpen(false)}>
+                      <span className="nu-mega-item-left">
+                        <Award size={15} />
+                        <span>UNMEB Mock Exams</span>
+                      </span>
+                      <ChevronRight size={14} />
                     </Link>
-                    <Link
-                      to="/clinical-tools"
-                      className="nu-mega-item"
-                      onClick={() => setMegaOpen(false)}
-                    >
-                      <span>Clinical Tools &amp; Calculators</span>
-                      <ChevronRight size={15} />
+                    <Link to="/dictionary" className="nu-mega-item" onClick={() => setMegaOpen(false)}>
+                      <span className="nu-mega-item-left">
+                        <FileText size={15} />
+                        <span>Medical Dictionary</span>
+                      </span>
+                      <ChevronRight size={14} />
                     </Link>
+                    <Link to="/instruments" className="nu-mega-item" onClick={() => setMegaOpen(false)}>
+                      <span className="nu-mega-item-left">
+                        <Stethoscope size={15} />
+                        <span>Instrument Atlas</span>
+                      </span>
+                      <ChevronRight size={14} />
+                    </Link>
+                    <Link to="/clinical-tools" className="nu-mega-item" onClick={() => setMegaOpen(false)}>
+                      <span className="nu-mega-item-left">
+                        <Wrench size={15} />
+                        <span>Clinical Tools &amp; Dosages</span>
+                      </span>
+                      <ChevronRight size={14} />
+                    </Link>
+                  </div>
+
+                  {/* Column 2: Stretched 2-Column Course Units Grid */}
+                  <div className="nu-mega-middle">
+                    <div className="nu-mega-middle-head">
+                      <div>
+                        <div className="nu-mega-kicker" style={{ padding: 0, marginBottom: 2 }}>
+                          Programme Syllabus
+                        </div>
+                        <h4 className="nu-mega-prog-title">
+                          {activeProg?.label || "Nursing Programme"}
+                        </h4>
+                      </div>
+                      <Link
+                        to={`/courses?programme=${encodeURIComponent(activeProgId)}`}
+                        className="nu-mega-view-all"
+                        onClick={() => setMegaOpen(false)}
+                      >
+                        View all {activeProgAllCourses.length} units →
+                      </Link>
+                    </div>
+
+                    <div className="nu-mega-units-grid">
+                      {activeProgCourses.map((c) => (
+                        <Link
+                          key={c.slug}
+                          to={`/course/${c.slug}`}
+                          className="nu-mega-unit-card"
+                          onClick={() => setMegaOpen(false)}
+                        >
+                          <div className="nu-mega-unit-top">
+                            {c.code && <span className="nu-mega-code">{c.code}</span>}
+                            {c.isFree ? (
+                              <span className="nu-mega-pill nu-mega-pill--free">Free</span>
+                            ) : c.badge === "Bestseller" ? (
+                              <span className="nu-mega-pill nu-mega-pill--best">Bestseller</span>
+                            ) : null}
+                          </div>
+                          <div className="nu-mega-unit-title">{c.title}</div>
+                          <div className="nu-mega-unit-meta">
+                            <span>{c.lessonCount} lessons</span>
+                            <span>·</span>
+                            <span style={{ display: "inline-flex", alignItems: "center", gap: 3, color: "var(--nu-star)" }}>
+                              <Star size={11} fill="currentColor" /> {c.rating?.toFixed(1) || "4.8"}
+                            </span>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Column 3: Spotlight & High-Yield Prep */}
+                  <div className="nu-mega-spotlight">
+                    <div className="nu-mega-kicker" style={{ padding: 0, marginBottom: 10 }}>
+                      Featured Unit &amp; Prep
+                    </div>
+
+                    {featuredCourse && (
+                      <Link
+                        to={`/course/${featuredCourse.slug}`}
+                        className="nu-mega-feature-card"
+                        onClick={() => setMegaOpen(false)}
+                      >
+                        {featuredCourse.thumbnail && (
+                          <img
+                            src={featuredCourse.thumbnail}
+                            alt={featuredCourse.title}
+                            className="nu-mega-feature-thumb"
+                          />
+                        )}
+                        <div className="nu-mega-feature-body">
+                          <span className="nu-mega-feature-badge">
+                            <Sparkles size={11} /> {featuredCourse.badge || "Top Unit"}
+                          </span>
+                          <strong>{featuredCourse.title}</strong>
+                          <small>
+                            {featuredCourse.lessonCount} lessons · ★ {featuredCourse.rating?.toFixed(1) || "4.8"} (
+                            {featuredCourse.reviewCount || 120})
+                          </small>
+                        </div>
+                      </Link>
+                    )}
+
+                    <div className="nu-mega-quick-cards">
+                      <Link
+                        to="/mock-exams"
+                        className="nu-mega-quick-card"
+                        onClick={() => setMegaOpen(false)}
+                      >
+                        <Award size={18} color="#A137F2" />
+                        <div>
+                          <strong>UNMEB Mock Exam Simulator</strong>
+                          <small>Timed MCQs with clinical rationales</small>
+                        </div>
+                      </Link>
+                      <Link
+                        to="/ebooks"
+                        className="nu-mega-quick-card"
+                        onClick={() => setMegaOpen(false)}
+                      >
+                        <BookOpen size={18} color="#065F46" />
+                        <div>
+                          <strong>8 Free Referenced eBooks</strong>
+                          <small>WHO &amp; Uganda MoH 2023 cited PDFs</small>
+                        </div>
+                      </Link>
+                    </div>
                   </div>
                 </div>
 
-                <div className="nu-mega-right">
-                  <h4>Featured Course Units</h4>
-                  {activeProgCourses.map((c) => (
-                    <Link
-                      key={c.slug}
-                      to={`/course/${c.slug}`}
-                      className="nu-mega-sublink"
-                      onClick={() => setMegaOpen(false)}
-                    >
-                      {c.code ? `${c.code} · ` : ""}
-                      {c.title}
-                    </Link>
-                  ))}
+                {/* Bottom Full-Width Strip */}
+                <div className="nu-mega-footer">
+                  <span>
+                    <strong>Nursing Uganda Curriculum</strong> — 95 Course Units · 819 Structured Lessons · UNMEB &amp; UNMC Aligned
+                  </span>
                   <Link
-                    to={`/courses?programme=${encodeURIComponent(activeProgId)}`}
-                    className="nu-mega-sublink"
-                    style={{ color: "var(--nu-purple)", fontWeight: 700, marginTop: 8 }}
+                    to="/courses"
+                    className="nu-mega-footer-cta"
                     onClick={() => setMegaOpen(false)}
                   >
-                    View all units in this programme →
+                    Explore Complete Catalog →
                   </Link>
                 </div>
               </div>
