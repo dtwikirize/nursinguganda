@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import { ArrowLeft, Eye, EyeOff, Lock, MailCheck, ShieldCheck } from "lucide-react";
+import { ArrowLeft, Eye, EyeOff, Lock, MailCheck } from "lucide-react";
 import { useApp } from "../context/AppContext";
 import nuLogo from "../../assets/images/brand/nursing-uganda-logo-light.svg";
+import loginPhoto from "../../assets/images/nursing-uganda-hero-nursing-student-skills-lab-01.webp";
 
 export default function LoginPage() {
   const { catalog, user, login, register, googleLogin, verifyEmail, resendVerification } = useApp();
@@ -55,7 +56,7 @@ export default function LoginPage() {
     const renderResponsiveGoogleButton = () => {
       if (!window.google?.accounts?.id || !googleBtnRef.current) return;
       const containerW = googleWrapRef.current?.clientWidth || 340;
-      const btnWidth = Math.min(372, Math.max(220, containerW));
+      const btnWidth = Math.min(342, Math.max(220, containerW));
 
       window.google.accounts.id.initialize({
         client_id: googleClientId,
@@ -79,7 +80,7 @@ export default function LoginPage() {
         size: "large",
         width: btnWidth,
         text: mode === "signup" ? "signup_with" : "continue_with",
-        shape: "pill",
+        shape: "rectangular",
         logo_alignment: "center"
       });
       setGoogleReady(true);
@@ -102,7 +103,7 @@ export default function LoginPage() {
       existingScript.addEventListener("load", renderResponsiveGoogleButton);
       window.addEventListener("resize", handleResize);
       return () => {
-        existingScript.removeEventListener("load", renderResponsiveGoogleButton);
+        existingScript.removeEventListener("load", handleResize);
         window.removeEventListener("resize", handleResize);
       };
     }
@@ -122,40 +123,44 @@ export default function LoginPage() {
     setError("");
     setNotice("");
     setLoading(true);
-
-    if (mode === "verify") {
-      const res = await verifyEmail(otpCode);
-      setLoading(false);
-      if (!res.ok) {
-        setError(res.error || "Invalid verification code.");
+    try {
+      if (mode === "verify") {
+        const res = await verifyEmail({ code: otpCode.trim() });
+        setLoading(false);
+        if (!res.ok) {
+          setError(res.error || "Invalid verification code.");
+          return;
+        }
+        navigate(redirectTo);
         return;
       }
+
+      const res =
+        mode === "signup"
+          ? await register({ name, email, password, programme })
+          : await login({ email, password });
+
+      setLoading(false);
+      if (!res.ok) {
+        setError(res.error || "Authentication failed.");
+        return;
+      }
+
+      if (res.verificationRequired) {
+        setMode("verify");
+        setNotice(
+          res.verificationEmailSent
+            ? "Account created! We sent a 6-digit verification code to your email address."
+            : "Account created! Enter your 6-digit verification code below or check your email."
+        );
+        return;
+      }
+
       navigate(redirectTo);
-      return;
+    } catch {
+      setLoading(false);
+      setError("Network error while signing in.");
     }
-
-    const res =
-      mode === "signup"
-        ? await register({ name, email, password, programme })
-        : await login({ email, password });
-
-    setLoading(false);
-    if (!res.ok) {
-      setError(res.error || "Authentication failed.");
-      return;
-    }
-
-    if (mode === "signup" && res.user && !res.user.emailVerified) {
-      setMode("verify");
-      setNotice(
-        res.verificationEmailSent
-          ? `We sent a 6-digit verification code to ${res.user.email}.`
-          : `Account created for ${res.user.email}. Enter your 6-digit verification code or continue to your dashboard.`
-      );
-      return;
-    }
-
-    navigate(redirectTo);
   };
 
   const handleResend = async () => {
@@ -177,136 +182,134 @@ export default function LoginPage() {
 
   return (
     <main className="nu-auth-page">
-      <div className="nu-auth-shell">
-        <div className="nu-auth-topbar">
-          <Link to="/" aria-label="Nursing Uganda Home" style={{ display: "inline-flex", alignItems: "center" }}>
-            <img src={nuLogo} alt="Nursing Uganda" className="nu-auth-logo" />
-          </Link>
-          <Link to="/" className="nu-auth-back-link">
-            <ArrowLeft size={15} /> Back to Home
-          </Link>
-        </div>
+      <header className="nu-auth-header">
+        <Link to="/" aria-label="Nursing Uganda Home" className="nu-auth-brand-link">
+          <img src={nuLogo} alt="Nursing Uganda" className="nu-auth-logo" />
+        </Link>
+        <Link to="/" className="nu-auth-back-link">
+          <ArrowLeft size={14} /> Back to Home
+        </Link>
+      </header>
 
-        <div className="nu-auth-card">
-          {mode !== "verify" && (
-            <div className="nu-auth-mode-tabs" role="tablist" aria-label="Authentication mode">
-              <button
-                type="button"
-                role="tab"
-                aria-selected={mode === "signin"}
-                className={`nu-auth-mode-tab ${mode === "signin" ? "active" : ""}`}
-                onClick={() => { setMode("signin"); setError(""); setNotice(""); }}
-              >
-                Log In
-              </button>
-              <button
-                type="button"
-                role="tab"
-                aria-selected={mode === "signup"}
-                className={`nu-auth-mode-tab ${mode === "signup" ? "active" : ""}`}
-                onClick={() => { setMode("signup"); setError(""); setNotice(""); }}
-              >
-                Create Free Account
-              </button>
-            </div>
-          )}
-
-          <div className="nu-auth-head">
-            <span className="nu-auth-pill">
-              Nursing Uganda Student Portal
-            </span>
+      <div className="nu-auth-split">
+        {/* Left Column: Editorial Headline + Minimal Auth Box */}
+        <section className="nu-auth-form-col">
+          <div className="nu-auth-editorial-head">
             <h1>
               {mode === "verify"
-                ? "Verify your email address"
+                ? "Verify your email"
                 : mode === "signup"
-                  ? "Start your UNMEB revision journey"
-                  : "Welcome back"}
+                  ? "Start revising smarter"
+                  : "Master what\u2019s next"}
             </h1>
             <p>
               {mode === "verify"
                 ? "Enter the 6-digit code sent to your inbox to confirm your student account."
-                : "Track completed topics, download study eBooks & certificates, and sync across devices."}
+                : "Your clinical nursing & midwifery study partner"}
             </p>
           </div>
 
-          {error && <div className="nu-auth-alert nu-auth-alert--err">{error}</div>}
-          {notice && <div className="nu-auth-alert nu-auth-alert--ok">{notice}</div>}
-
-          {mode !== "verify" && (
-            <>
-              <div ref={googleWrapRef} className="nu-auth-google-wrap">
-                {googleClientId ? (
-                  <div ref={googleBtnRef} className="nu-auth-google-slot" />
-                ) : (
-                  <button
-                    type="button"
-                    className="nu-auth-google-btn"
-                    onClick={() =>
-                      setNotice("Sign in or register directly with your student email address below.")
-                    }
-                  >
-                    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
-                      <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17Z" />
-                      <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.11-6.72-4.96H1.29v3.14C3.26 21.3 7.31 24 12 24Z" />
-                      <path fill="#FBBC05" d="M5.28 14.24c-.24-.72-.38-1.49-.38-2.24s.14-1.52.38-2.24V6.62H1.29C.47 8.24 0 10.06 0 12s.47 3.76 1.29 5.38l3.99-3.14Z" />
-                      <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.26 2.7 1.29 6.62l3.99 3.14c.95-2.85 3.6-4.96 6.72-4.96Z" />
-                    </svg>
-                    <span>{mode === "signup" ? "Sign up with Google" : "Continue with Google"}</span>
-                  </button>
-                )}
-              </div>
-
-              {googleClientId && !googleReady && (
-                <div className="nu-auth-google-loading">Preparing Google Sign-In...</div>
-              )}
-
-              <div className="nu-auth-divider">
-                <span />
-                <small>or continue with email</small>
-                <span />
-              </div>
-            </>
-          )}
-
-          <form onSubmit={handleSubmit} className="nu-auth-form">
-            {mode === "verify" ? (
-              <>
-                <div className="nu-auth-verify-account">
-                  <MailCheck size={17} color="#A137F2" />
-                  <span>Account: <strong>{user?.email || email}</strong></span>
-                </div>
-                <input
-                  type="text"
-                  inputMode="numeric"
-                  pattern="\d{6}"
-                  maxLength={6}
-                  placeholder="Enter 6-digit code"
-                  value={otpCode}
-                  onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
-                  required
-                  className="nu-auth-input nu-auth-otp-input"
-                />
-                <button type="submit" disabled={loading || otpCode.length !== 6} className="nu-btn nu-btn-primary nu-auth-submit">
-                  {loading ? "Verifying..." : "Verify Email & Continue"}
+          <div className="nu-auth-card">
+            {mode !== "verify" && (
+              <div className="nu-auth-mode-tabs" role="tablist" aria-label="Authentication mode">
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected={mode === "signin"}
+                  className={`nu-auth-mode-tab ${mode === "signin" ? "active" : ""}`}
+                  onClick={() => { setMode("signin"); setError(""); setNotice(""); }}
+                >
+                  Log in
                 </button>
-                <div className="nu-auth-verify-links">
-                  <button type="button" onClick={handleResend} disabled={loading} className="nu-auth-link-btn">
-                    Resend verification code
-                  </button>
-                  <button type="button" onClick={() => navigate(redirectTo)} className="nu-auth-muted-btn">
-                    Go to Dashboard →
-                  </button>
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected={mode === "signup"}
+                  className={`nu-auth-mode-tab ${mode === "signup" ? "active" : ""}`}
+                  onClick={() => { setMode("signup"); setError(""); setNotice(""); }}
+                >
+                  Create account
+                </button>
+              </div>
+            )}
+
+            {error && <div className="nu-auth-alert nu-auth-alert--err">{error}</div>}
+            {notice && <div className="nu-auth-alert nu-auth-alert--ok">{notice}</div>}
+
+            {mode !== "verify" && (
+              <>
+                <div ref={googleWrapRef} className="nu-auth-google-wrap">
+                  {googleClientId ? (
+                    <div ref={googleBtnRef} className="nu-auth-google-slot" />
+                  ) : (
+                    <button
+                      type="button"
+                      className="nu-auth-google-btn"
+                      onClick={() =>
+                        setNotice("Sign in or register directly with your student email address below.")
+                      }
+                    >
+                      <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17Z" />
+                        <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.11-6.72-4.96H1.29v3.14C3.26 21.3 7.31 24 12 24Z" />
+                        <path fill="#FBBC05" d="M5.28 14.24c-.24-.72-.38-1.49-.38-2.24s.14-1.52.38-2.24V6.62H1.29C.47 8.24 0 10.06 0 12s.47 3.76 1.29 5.38l3.99-3.14Z" />
+                        <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.26 2.7 1.29 6.62l3.99 3.14c.95-2.85 3.6-4.96 6.72-4.96Z" />
+                      </svg>
+                      <span>{mode === "signup" ? "Sign up with Google" : "Continue with Google"}</span>
+                    </button>
+                  )}
+                </div>
+
+                {googleClientId && !googleReady && (
+                  <div className="nu-auth-google-loading">Preparing Google Sign-In...</div>
+                )}
+
+                <div className="nu-auth-divider">
+                  <span />
+                  <small>OR</small>
+                  <span />
                 </div>
               </>
-            ) : (
-              <>
-                {mode === "signup" && (
-                  <>
-                    <label className="nu-auth-field">
-                      <span>Full Name</span>
+            )}
+
+            <form onSubmit={handleSubmit} className="nu-auth-form">
+              {mode === "verify" ? (
+                <>
+                  <div className="nu-auth-verify-account">
+                    <MailCheck size={17} color="#141413" />
+                    <span>Account: <strong>{user?.email || email}</strong></span>
+                  </div>
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    pattern="\d{6}"
+                    maxLength={6}
+                    placeholder="Enter 6-digit code"
+                    value={otpCode}
+                    onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
+                    required
+                    className="nu-auth-input nu-auth-otp-input"
+                  />
+                  <button type="submit" disabled={loading || otpCode.length !== 6} className="nu-auth-submit">
+                    {loading ? "Verifying..." : "Verify email & continue"}
+                  </button>
+                  <div className="nu-auth-verify-links">
+                    <button type="button" onClick={handleResend} disabled={loading} className="nu-auth-link-btn">
+                      Resend verification code
+                    </button>
+                    <button type="button" onClick={() => navigate(redirectTo)} className="nu-auth-muted-btn">
+                      Go to Dashboard →
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  {mode === "signup" && (
+                    <>
                       <input
                         type="text"
-                        placeholder="e.g. Sarah Nakato"
+                        placeholder="Full name (e.g. Sarah Nakato)"
+                        aria-label="Full name"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         required
@@ -315,42 +318,36 @@ export default function LoginPage() {
                         autoComplete="name"
                         className="nu-auth-input"
                       />
-                    </label>
-                    <label className="nu-auth-field">
-                      <span>Study Track / Programme</span>
                       <select
                         value={programme}
                         onChange={(e) => setProgramme(e.target.value)}
+                        aria-label="Study track or programme"
                         className="nu-auth-input"
                       >
                         {(catalog?.programmes || []).map((p) => (
                           <option key={p.id} value={p.id}>{p.label}</option>
                         ))}
                       </select>
-                    </label>
-                  </>
-                )}
+                    </>
+                  )}
 
-                <label className="nu-auth-field">
-                  <span>Email Address</span>
                   <input
                     type="email"
-                    placeholder="you@example.com"
+                    placeholder="Enter your email"
+                    aria-label="Email address"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
                     autoComplete="email"
                     className="nu-auth-input"
                   />
-                </label>
 
-                <label className="nu-auth-field">
-                  <span>Password</span>
                   <div className="nu-auth-pw-wrap">
                     <Lock size={15} className="nu-auth-pw-icon" />
                     <input
                       type={showPassword ? "text" : "password"}
-                      placeholder={mode === "signup" ? "8+ chars with letters & numbers" : "Enter your password"}
+                      placeholder={mode === "signup" ? "Password (8+ letters & numbers)" : "Enter your password"}
+                      aria-label="Password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required
@@ -368,20 +365,38 @@ export default function LoginPage() {
                       {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                     </button>
                   </div>
-                </label>
 
-                <button type="submit" disabled={loading} className="nu-btn nu-btn-primary nu-auth-submit">
-                  {loading ? "Signing in..." : mode === "signup" ? "Create Free Account" : "Log in to Account"}
-                </button>
-              </>
-            )}
-          </form>
+                  <button type="submit" disabled={loading} className="nu-auth-submit">
+                    {loading
+                      ? "Please wait..."
+                      : mode === "signup"
+                        ? "Create free account"
+                        : "Continue with email"}
+                  </button>
+                </>
+              )}
+            </form>
 
-          <div className="nu-auth-trust-note">
-            <ShieldCheck size={14} color="#065F46" />
-            <span>Private, encrypted student progress &amp; certificate vault</span>
+            <p className="nu-auth-legal">
+              By continuing, you acknowledge Nursing Uganda&apos;s{" "}
+              <Link to="/terms">Terms</Link> &amp; <Link to="/privacy-policy">Privacy Policy</Link>.
+            </p>
           </div>
-        </div>
+
+          <Link to="/courses" className="nu-auth-bottom-pill">
+            Browse 83 Nursing Courses
+          </Link>
+        </section>
+
+        {/* Right Column: Clean Editorial Nursing Study Photo */}
+        <aside className="nu-auth-visual-col" aria-hidden="true">
+          <div className="nu-auth-photo-frame">
+            <img
+              src={loginPhoto}
+              alt="Ugandan nursing student revising with textbooks and stethoscope"
+            />
+          </div>
+        </aside>
       </div>
     </main>
   );

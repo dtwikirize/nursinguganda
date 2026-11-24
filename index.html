@@ -156,6 +156,13 @@
   </head>
   <body>
     <div id="root">
+      <div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:#faf9f6;font-family:system-ui,-apple-system,sans-serif;color:#0F2942">
+        <div style="width:44px;height:44px;border-radius:50%;border:3px solid #e2e8f0;border-top-color:#A137F2;animation:nuBootSpin .8s linear infinite"></div>
+        <span style="font-size:14px;font-weight:600;letter-spacing:0.01em">Nursing Uganda</span>
+      </div>
+      <style>@keyframes nuBootSpin{to{transform:rotate(360deg)}}</style>
+    </div>
+    <noscript>
       <main style="font-family:system-ui,-apple-system,sans-serif;max-width:960px;margin:0 auto;padding:32px 20px;color:#1c1d1f">
         <h1>Clinical mastery that gets you UNMEB-ready</h1>
         <p>
@@ -180,7 +187,7 @@
           <a href="mailto:support@nursinguganda.com">support@nursinguganda.com</a>
         </footer>
       </main>
-    </div>
+    </noscript>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

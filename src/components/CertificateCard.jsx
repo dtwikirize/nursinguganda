@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Award, CheckCircle2, Download, ShieldAlert, ShieldCheck } from "lucide-react";
+import { Award, CheckCircle2, Download, ShieldAlert } from "lucide-react";
 import QRCode from "qrcode";
 import { downloadCertificatePdf } from "../utils/pdfExport";
 import nuLogoLight from "../../assets/images/brand/nursing-uganda-logo-light.svg";
@@ -76,24 +76,7 @@ export default function CertificateCard({ certificate, learnerName, previewMode 
       >
         <img src={nuLogoLight} alt="Nursing Uganda" style={{ height: 28, width: "auto", display: "block" }} />
 
-        {previewMode ? (
-          <span
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 6,
-              background: "#ECFDF5",
-              color: "#065F46",
-              border: "1px solid #A7F3D0",
-              padding: "5px 12px",
-              borderRadius: 999,
-              fontSize: "0.75rem",
-              fontWeight: 700
-            }}
-          >
-            <ShieldCheck size={14} /> Included Upon Completion (60%+ Passmark)
-          </span>
-        ) : (
+        {!previewMode && (
           <button
             type="button"
             className="nu-btn nu-btn-primary"

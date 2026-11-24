@@ -3153,27 +3153,28 @@ img {
   }
 }
 
-/* ── Student Portal / Auth Page (Mobile-First Polish) ─────── */
+/* ── Student Portal / Minimal Two-Column Editorial Login ──── */
 .nu-auth-page {
   min-height: 100vh;
-  background: radial-gradient(circle at top right, #f3e8ff 0%, #f8fafc 48%, #eff6ff 100%);
-  padding: 24px 16px 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.nu-auth-shell {
-  width: 100%;
-  max-width: 440px;
+  background: #faf9f6;
+  color: #141413;
   display: flex;
   flex-direction: column;
-  gap: 16px;
 }
-.nu-auth-topbar {
+.nu-auth-header {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 20px 28px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+  box-sizing: border-box;
+}
+.nu-auth-brand-link {
+  display: inline-flex;
+  align-items: center;
 }
 .nu-auth-logo {
   height: 30px;
@@ -3183,83 +3184,95 @@ img {
 .nu-auth-back-link {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   font-size: 0.84rem;
   font-weight: 600;
-  color: #334155;
+  color: #5c5b57;
   text-decoration: none;
 }
 .nu-auth-back-link:hover {
-  color: #0f172a;
+  color: #141413;
 }
-.nu-auth-card {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 16px;
-  padding: 26px 24px 22px;
-  box-shadow: 0 16px 40px rgba(15, 41, 66, 0.08);
+.nu-auth-split {
+  flex: 1;
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 12px 28px 48px;
+  display: grid;
+  grid-template-columns: minmax(0, 420px) minmax(0, 490px);
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+  box-sizing: border-box;
+}
+.nu-auth-form-col {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  align-items: center;
+  gap: 20px;
+}
+.nu-auth-editorial-head {
+  text-align: center;
+  max-width: 390px;
+}
+.nu-auth-editorial-head h1 {
+  margin: 0 0 8px;
+  font-family: Georgia, Cambria, "Times New Roman", serif;
+  font-size: 2.35rem;
+  font-weight: 500;
+  color: #141413;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+}
+.nu-auth-editorial-head p {
+  margin: 0;
+  font-size: 0.98rem;
+  color: #5c5b57;
+  line-height: 1.45;
+}
+.nu-auth-card {
+  width: 100%;
+  max-width: 390px;
+  background: #ffffff;
+  border: 1px solid #eae8e1;
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 14px 36px rgba(20, 20, 19, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  box-sizing: border-box;
 }
 .nu-auth-mode-tabs {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4px;
-  background: #f1f5f9;
-  padding: 4px;
+  background: #f4f3ee;
+  padding: 3px;
   border-radius: 10px;
 }
 .nu-auth-mode-tab {
   border: 0;
   background: transparent;
-  padding: 10px 8px;
+  padding: 8px;
   border-radius: 8px;
-  font-size: 0.86rem;
+  font-size: 0.83rem;
   font-weight: 700;
-  color: #475569;
+  color: #6b6a66;
   cursor: pointer;
   transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
 }
 .nu-auth-mode-tab.active {
   background: #ffffff;
-  color: #0f172a;
-  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.08);
-}
-.nu-auth-head {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.nu-auth-pill {
-  align-self: flex-start;
-  display: inline-flex;
-  align-items: center;
-  font-size: 0.74rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #475569;
-  background: transparent;
-  padding: 0;
-}
-.nu-auth-head h1 {
-  margin: 4px 0 0;
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: #0f172a;
-  line-height: 1.25;
-}
-.nu-auth-head p {
-  margin: 0;
-  font-size: 0.86rem;
-  color: #475569;
-  line-height: 1.5;
+  color: #141413;
+  box-shadow: 0 1px 4px rgba(20, 20, 19, 0.08);
 }
 .nu-auth-alert {
   padding: 10px 12px;
-  border-radius: 8px;
-  font-size: 0.84rem;
+  border-radius: 10px;
+  font-size: 0.82rem;
   line-height: 1.4;
 }
 .nu-auth-alert--err {
@@ -3282,74 +3295,70 @@ img {
   display: flex;
   justify-content: center;
   overflow: hidden;
+  border-radius: 10px;
 }
 .nu-auth-google-btn {
   width: 100%;
-  min-height: 46px;
+  height: 44px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background: #ffffff;
-  color: #1f2937;
-  border: 1px solid #cbd5e1;
-  border-radius: 999px;
-  font-size: 0.92rem;
-  font-weight: 700;
+  background: #f5f4f0;
+  color: #141413;
+  border: 1px solid #e6e4dd;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);
-  transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  transition: background 0.15s ease, border-color 0.15s ease;
 }
 .nu-auth-google-btn:hover {
-  background: #f8fafc;
-  border-color: #94a3b8;
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+  background: #edece6;
+  border-color: #d6d3cb;
 }
 .nu-auth-google-loading {
   text-align: center;
   font-size: 0.78rem;
-  color: #64748b;
+  color: #787772;
 }
 .nu-auth-divider {
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #64748b;
-  font-size: 0.78rem;
+  color: #787772;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
 }
 .nu-auth-divider span {
   flex: 1;
   height: 1px;
-  background: #e2e8f0;
+  background: #eae8e1;
 }
 .nu-auth-form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-}
-.nu-auth-field {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  font-size: 0.83rem;
-  font-weight: 600;
-  color: #1e293b;
+  gap: 10px;
 }
 .nu-auth-input {
   width: 100%;
   height: 44px;
-  padding: 0 12px;
-  border-radius: 8px;
-  border: 1px solid #cbd5e1;
+  padding: 0 13px;
+  border-radius: 10px;
+  border: 1px solid #d8d5ce;
   background: #ffffff;
-  color: #0f172a;
-  font-size: 0.94rem;
+  color: #141413;
+  font-size: 0.92rem;
   box-sizing: border-box;
+}
+.nu-auth-input::placeholder {
+  color: #8c8b85;
 }
 .nu-auth-input:focus {
   outline: none;
-  border-color: #a137f2;
-  box-shadow: 0 0 0 3px rgba(161, 55, 242, 0.14);
+  border-color: #141413;
+  box-shadow: 0 0 0 2px rgba(20, 20, 19, 0.12);
 }
 .nu-auth-pw-wrap {
   position: relative;
@@ -3359,12 +3368,12 @@ img {
 .nu-auth-pw-icon {
   position: absolute;
   left: 12px;
-  color: #64748b;
+  color: #787772;
   pointer-events: none;
 }
 .nu-auth-pw-input {
   padding-left: 36px;
-  padding-right: 44px;
+  padding-right: 42px;
 }
 .nu-auth-pw-toggle {
   position: absolute;
@@ -3373,7 +3382,7 @@ img {
   height: 36px;
   border: 0;
   background: transparent;
-  color: #475569;
+  color: #5c5b57;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -3387,20 +3396,78 @@ img {
 }
 .nu-auth-submit {
   width: 100%;
-  min-height: 46px;
-  font-size: 0.96rem;
-  font-weight: 700;
+  height: 44px;
+  border: 0;
   border-radius: 10px;
-  margin-top: 4px;
+  background: #141413;
+  color: #ffffff;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.nu-auth-submit:hover:not(:disabled) {
+  background: #2b2a28;
+}
+.nu-auth-submit:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.nu-auth-legal {
+  margin: 2px 0 0;
+  text-align: center;
+  font-size: 0.73rem;
+  line-height: 1.45;
+  color: #6f6e69;
+}
+.nu-auth-legal a {
+  color: #141413;
+  text-decoration: underline;
+}
+.nu-auth-bottom-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 18px;
+  border-radius: 10px;
+  background: #f1f0ea;
+  border: 1px solid #e4e2db;
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: #141413;
+  text-decoration: none;
+}
+.nu-auth-bottom-pill:hover {
+  background: #e8e6df;
+}
+.nu-auth-visual-col {
+  display: flex;
+  justify-content: flex-end;
+}
+.nu-auth-photo-frame {
+  width: 100%;
+  max-width: 480px;
+  aspect-ratio: 4 / 4.45;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 20px 48px rgba(20, 20, 19, 0.11);
+  background: #eae8e1;
+}
+.nu-auth-photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 62% center;
+  display: block;
 }
 .nu-auth-verify-account {
   display: flex;
   align-items: center;
   gap: 8px;
-  background: #faf5ff;
-  border: 1px solid #e9d5ff;
+  background: #f5f4f0;
+  border: 1px solid #e6e4dd;
   padding: 10px 12px;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 0.84rem;
 }
 .nu-auth-verify-links {
@@ -3419,32 +3486,33 @@ img {
   padding: 4px 0;
 }
 .nu-auth-link-btn {
-  color: #7e22ce;
+  color: #141413;
+  text-decoration: underline;
 }
 .nu-auth-muted-btn {
-  color: #475569;
+  color: #5c5b57;
 }
-.nu-auth-trust-note {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  padding-top: 8px;
-  border-top: 1px solid #f1f5f9;
-  font-size: 0.78rem;
-  color: #475569;
+@media (max-width: 900px) {
+  .nu-auth-split {
+    grid-template-columns: 1fr;
+    justify-content: center;
+    padding: 8px 16px 40px;
+    gap: 28px;
+  }
+  .nu-auth-visual-col {
+    display: none;
+  }
 }
 @media (max-width: 480px) {
-  .nu-auth-page {
-    padding: 14px 12px 36px;
-    align-items: flex-start;
+  .nu-auth-header {
+    padding: 14px 16px;
+  }
+  .nu-auth-editorial-head h1 {
+    font-size: 1.9rem;
   }
   .nu-auth-card {
-    padding: 20px 16px 18px;
-    border-radius: 14px;
-  }
-  .nu-auth-head h1 {
-    font-size: 1.25rem;
+    padding: 18px 16px;
+    border-radius: 16px;
   }
 }
 
