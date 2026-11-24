@@ -30,7 +30,10 @@ function readJsonSafe(filePath, fallback = null) {
 const catalogData = readJsonSafe(path.join(DATA_DIR, "catalog.json"), { courses: [] });
 const ebooksData = readJsonSafe(path.join(DATA_DIR, "ebooks.json"), { ebooks: [] });
 const globalNursingData = readJsonSafe(path.join(DATA_DIR, "global-nursing.json"), { countries: [] });
-const validCourseSlugs = new Set((catalogData?.courses || []).map((c) => String(c.slug || "").toLowerCase()).filter(Boolean));
+const validCourseSlugs = new Set([
+  ...(catalogData?.courses || []).map((c) => String(c.slug || "").toLowerCase()),
+  ...(catalogData?.fullCourses || []).map((c) => String(c.slug || "").toLowerCase())
+].filter(Boolean));
 const validEbookSlugs = new Set((ebooksData?.ebooks || []).map((b) => String(b.slug || "").toLowerCase()).filter(Boolean));
 const validCountrySlugs = new Set((globalNursingData?.countries || []).map((c) => String(c.slug || "").toLowerCase()).filter(Boolean));
 

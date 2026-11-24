@@ -300,17 +300,30 @@ function getCatalogPrices() {
     }
 
     const bundleMap = new Map();
+    const allFullSlugs = [];
     for (const prog of raw.programmes || []) {
       const progId = String(prog.id || "").trim();
       if (!progId) continue;
       const slug = `bundle-${progId}`;
+      const fullSlug = `full-${progId}`;
+      const unitSlugs = progCourses.get(progId) || [];
+      const unlocked = Array.from(new Set([slug, fullSlug, "unmeb-mock-pass", ...unitSlugs]));
+      const priceUsd = Number(prog.bundlePriceUsd || 24.99);
       bundleMap.set(slug, {
         slug,
-        title: `${prog.label || progId} Bundle`,
-        priceUsd: Number(prog.bundlePriceUsd || 24.99),
+        title: `${prog.label || progId} Full Programme Bundle`,
+        priceUsd,
         isFree: false,
-        courseSlugs: progCourses.get(progId) || []
+        courseSlugs: unlocked
       });
+      bundleMap.set(fullSlug, {
+        slug: fullSlug,
+        title: `${prog.label || progId} — Complete Full Curriculum`,
+        priceUsd,
+        isFree: false,
+        courseSlugs: unlocked
+      });
+      allFullSlugs.push(slug, fullSlug);
     }
 
     // Standard platform exam pass item (50% cut) + Full Platform All-Access Pass
@@ -327,7 +340,7 @@ function getCatalogPrices() {
       title: "Full Platform All-Access Pass (All 83 Courses + 109 UNMEB Papers)",
       priceUsd: 34.99,
       isFree: false,
-      courseSlugs: ["all-access-pass", "unmeb-mock-pass", ...Array.from(courseMap.keys())]
+      courseSlugs: ["all-access-pass", "unmeb-mock-pass", ...allFullSlugs, ...Array.from(courseMap.keys())]
     });
 
     _catalogCache = { courseMap, bundleMap };

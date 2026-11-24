@@ -55,7 +55,7 @@ export function getProgrammeBundleItem(programme, courses = []) {
     compareAtUsd: Number(Math.max(Number(programme.bundlePriceUsd || 19.99) * 2, totalCompare).toFixed(2)),
     lessonCount: progCourses.reduce((sum, c) => sum + Number(c.lessonCount || 0), 0),
     type: "bundle",
-    courseSlugs: ["unmeb-mock-pass", ...progCourses.map((c) => c.slug)]
+    courseSlugs: [`bundle-${programme.id}`, `full-${programme.id}`, "unmeb-mock-pass", ...progCourses.map((c) => c.slug)]
   };
 }
 

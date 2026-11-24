@@ -94,10 +94,14 @@ export function AppProvider({ children }) {
     } catch {}
   }, [lessonNotes]);
 
-  const isEnrolled = (courseSlug, isFree = false) => {
+  const isEnrolled = (courseSlug, isFree = false, programmeId = "") => {
     if (user?.isAdmin) return true;
     if (isFree) return true;
-    return enrollments.includes("all-access-pass") || enrollments.includes(courseSlug);
+    if (enrollments.includes("all-access-pass") || enrollments.includes(courseSlug)) return true;
+    if (programmeId && (enrollments.includes(`bundle-${programmeId}`) || enrollments.includes(`full-${programmeId}`))) {
+      return true;
+    }
+    return false;
   };
 
   const addToCart = (course) => {

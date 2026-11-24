@@ -777,8 +777,8 @@ function hashVariant(str, mod) {
   return mod > 0 ? h % mod : 0;
 }
 
-const TABLE_THEMES = ["minimal", "neutral", "minimal", "navy", "neutral", "purple"]; // Mostly clean neutral/minimal, occasionally accented!
-const HEAD_THEMES = ["navy", "slate", "light", "purple-accent"];
+const TABLE_THEMES = ["minimal", "minimal", "neutral", "minimal", "neutral", "navy", "minimal", "purple"]; // Calm monochrome/neutral by default; color accents sparingly
+const HEAD_THEMES = ["light", "light", "slate-light", "light", "navy", "slate"]; // Calm paper headers by default, occasional dark anchor headers
 
 export function LessonSections({ sections = [], lesson = null, topicTitle = "", headingTag = "h2" }) {
   const Heading = headingTag;

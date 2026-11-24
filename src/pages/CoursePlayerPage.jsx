@@ -41,6 +41,8 @@ export default function CoursePlayerPage() {
   } = useApp();
 
   const [course, setCourse] = useState(null);
+  const [unitCache, setUnitCache] = useState({});
+  const [unitLoading, setUnitLoading] = useState(false);
   const [topicQuizzes, setTopicQuizzes] = useState(null);
   const [loading, setLoading] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -100,26 +102,68 @@ export default function CoursePlayerPage() {
     return flatTopics.find((t) => t.slug === lessonSlug) || flatTopics[0];
   }, [flatTopics, lessonSlug]);
 
-  const activeLesson = activeTopic ? course?.lessons?.[activeTopic.slug] : null;
-  const enrolled = course ? isEnrolled(course.slug, course.isFree) : false;
+  useEffect(() => {
+    const srcSlug = course?.isFullProgramme ? activeTopic?.sourceCourseSlug : null;
+    if (!srcSlug || unitCache[srcSlug] || course?.lessons?.[activeTopic?.slug]) return;
+    let active = true;
+    setUnitLoading(true);
+    fetch(`/assets/data/courses/${srcSlug}.json`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((unitData) => {
+        if (active && unitData?.lessons) {
+          setUnitCache((prev) => ({ ...prev, [srcSlug]: unitData.lessons }));
+        }
+      })
+      .catch(() => {})
+      .finally(() => {
+        if (active) setUnitLoading(false);
+      });
+    return () => {
+      active = false;
+    };
+  }, [course, activeTopic, unitCache]);
+
+  const activeLesson = activeTopic
+    ? course?.lessons?.[activeTopic.slug] ||
+      (activeTopic.sourceCourseSlug ? unitCache[activeTopic.sourceCourseSlug]?.[activeTopic.slug] : null)
+    : null;
+  const enrolled = course ? isEnrolled(course.slug, course.isFree, course.programmeId) : false;
   const canViewLesson = enrolled || !!activeTopic?.isFreePreview;
 
-  const completedSet = new Set(progress[courseSlug] || []);
+  const completedSet = useMemo(() => {
+    const set = new Set(progress[courseSlug] || []);
+    for (const t of flatTopics) {
+      if (t.sourceCourseSlug && Array.isArray(progress[t.sourceCourseSlug]) && progress[t.sourceCourseSlug].includes(t.slug)) {
+        set.add(t.slug);
+      }
+    }
+    return set;
+  }, [progress, courseSlug, flatTopics]);
   const completedCount = flatTopics.filter((t) => completedSet.has(t.slug)).length;
   const pct = flatTopics.length ? Math.round((completedCount / flatTopics.length) * 100) : 0;
 
   const noteKey = `${courseSlug}::${activeTopic?.slug || ""}`;
   const currentNote = lessonNotes[noteKey] || "";
 
+  const examCourseObj = useMemo(() => {
+    if (!course) return null;
+    if (!course.isFullProgramme) return course;
+    const mergedLessons = { ...(course.lessons || {}) };
+    for (const lessonsMap of Object.values(unitCache)) {
+      Object.assign(mergedLessons, lessonsMap);
+    }
+    return { ...course, lessons: mergedLessons };
+  }, [course, unitCache]);
+
   // Build 5-Question Session Quiz (Single, Multi-Choice & True/False) + 30-Question Final Evaluation
   const lessonQuiz = useMemo(
-    () => (activeLesson && course ? buildSessionQuiz(activeLesson, course, topicQuizzes) : []),
-    [activeLesson, course, topicQuizzes]
+    () => (activeLesson && examCourseObj ? buildSessionQuiz(activeLesson, examCourseObj, topicQuizzes) : []),
+    [activeLesson, examCourseObj, topicQuizzes]
   );
 
   const finalEvalQuestions = useMemo(
-    () => (course ? buildFinalEvaluation(course, topicQuizzes) : []),
-    [course, topicQuizzes]
+    () => (examCourseObj ? buildFinalEvaluation(examCourseObj, topicQuizzes) : []),
+    [examCourseObj, topicQuizzes]
   );
 
   const existingCertificate = useMemo(
@@ -134,7 +178,7 @@ export default function CoursePlayerPage() {
   const attemptsUsed = finalEvalAttempts.length;
   const attemptsRemaining = Math.max(0, 4 - attemptsUsed);
 
-  if (loading) {
+  if (loading || (course?.isFullProgramme && unitLoading && !activeLesson)) {
     return (
       <main className="nu-section">
         <div className="nu-container">
@@ -144,12 +188,22 @@ export default function CoursePlayerPage() {
     );
   }
 
-  if (!course || !activeLesson) {
+  if (!course || (!activeLesson && !course.isFullProgramme)) {
     return (
       <div style={{ padding: 40 }}>
         <h2>Lesson not found</h2>
         <Link to="/courses" className="nu-btn nu-btn-primary">Back to Courses</Link>
       </div>
+    );
+  }
+
+  if (!activeLesson && course.isFullProgramme) {
+    return (
+      <main className="nu-section">
+        <div className="nu-container">
+          <NursingLoader label="Preparing unit study notes from full curriculum..." />
+        </div>
+      </main>
     );
   }
 

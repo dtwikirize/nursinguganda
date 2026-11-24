@@ -20,7 +20,7 @@ import CertificateCard from "../components/CertificateCard";
 import NursingLoader from "../components/NursingLoader";
 import { setPageSeo } from "../components/RouteSeo";
 import { formatUgxApprox, formatUsd, useApp } from "../context/AppContext";
-import { getAllAccessCartItem, getDiscountPercent } from "../utils/offers";
+import { getAllAccessCartItem, getDiscountPercent, getProgrammeBundleItem } from "../utils/offers";
 
 export default function CourseDetailPage() {
   const { slug } = useParams();
@@ -92,10 +92,12 @@ export default function CourseDetailPage() {
     );
   }
 
-  const enrolled = isEnrolled(course.slug, course.isFree);
+  const enrolled = isEnrolled(course.slug, course.isFree, course.programmeId);
   const explicitlyEnrolled = enrollments.includes(course.slug);
   const inCart = cart.some((x) => x.slug === course.slug);
   const firstLessonSlug = course.topicGroups?.[0]?.topics?.[0]?.slug || "";
+  const progObj = (catalog?.programmes || []).find((p) => p.id === course.programmeId);
+  const progBundleItem = !course.isFullProgramme && progObj ? getProgrammeBundleItem(progObj, catalog?.courses || []) : null;
 
   const handleEnrollOrBuy = async () => {
     if (course.isFree) {
@@ -327,6 +329,41 @@ export default function CourseDetailPage() {
                     </Link>
                   )}
                 </div>
+
+                {progBundleItem && !enrolled && !enrollments.includes("all-access-pass") && (
+                  <div style={{ marginTop: 14, padding: 14, borderRadius: 8, background: "#FAF5FF", border: "1px solid #E9D5FF" }}>
+                    <div style={{ fontSize: "0.7rem", fontWeight: 800, color: "#6D28D9", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 4 }}>
+                      Full Programme Bundle &middot; Best For {course.programmeLabel}
+                    </div>
+                    <strong style={{ display: "block", fontSize: "0.9rem", color: "#0f172a", marginBottom: 4 }}>
+                      {progBundleItem.title}
+                    </strong>
+                    <p style={{ margin: "0 0 10px", fontSize: "0.8rem", color: "#475569" }}>
+                      Unlock every semester unit in {course.programmeLabel} + 109 UNMEB Papers for{" "}
+                      <strong>{formatUsd(progBundleItem.priceUsd)}</strong>{" "}
+                      <s style={{ color: "#64748b" }}>${progBundleItem.compareAtUsd.toFixed(2)}</s>
+                    </p>
+                    <div style={{ display: "grid", gap: 6 }}>
+                      <button
+                        type="button"
+                        className="nu-btn nu-btn-primary"
+                        style={{ width: "100%", height: 38, fontSize: "0.82rem" }}
+                        onClick={() => {
+                          addToCart(progBundleItem);
+                          navigate("/checkout");
+                        }}
+                      >
+                        Unlock Full Programme ({formatUsd(progBundleItem.priceUsd)})
+                      </button>
+                      <Link
+                        to={`/course/full-${course.programmeId}`}
+                        style={{ fontSize: "0.78rem", fontWeight: 700, color: "#6D28D9", textAlign: "center" }}
+                      >
+                        View Full {course.programmeLabel} Curriculum &rarr;
+                      </Link>
+                    </div>
+                  </div>
+                )}
 
                 {!enrollments.includes("all-access-pass") && (
                   <div className="nu-detail-allaccess-box">
