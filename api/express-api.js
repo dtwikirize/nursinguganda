@@ -1217,6 +1217,30 @@ function createApiRouter() {
     return res.json({ enrollments: enRows.map((r) => r.course_slug) });
   });
 
+  async function fetchPayPalAccessToken() {
+    const clientId = process.env.PAYPAL_CLIENT_ID || "";
+    const secret = process.env.PAYPAL_SECRET || "";
+    const isLive = (process.env.PAYPAL_MODE || "sandbox") === "live";
+    const baseUrl = isLive ? "https://api-m.paypal.com" : "https://api-m.sandbox.paypal.com";
+    if (!clientId || !secret) {
+      return { error: "PayPal API credentials are not set in Hostinger Environment Variables.", status: 500 };
+    }
+    const authHeader = Buffer.from(`${clientId}:${secret}`).toString("base64");
+    const tokenRes = await fetch(`${baseUrl}/v1/oauth2/token`, {
+      method: "POST",
+      headers: {
+        Authorization: `Basic ${authHeader}`,
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      body: "grant_type=client_credentials"
+    });
+    const tokenData = await tokenRes.json();
+    if (!tokenData?.access_token) {
+      return { error: "Could not authenticate with PayPal API.", status: 502 };
+    }
+    return { accessToken: tokenData.access_token, baseUrl };
+  }
+
   // PayPal Server-Side Verification & Capture (with Replay & Amount Tamper Protection)
   router.post("/paypal-capture", writeRateLimiter, async (req, res) => {
     const pool = await requireDb(res);
@@ -1247,32 +1271,16 @@ function createApiRouter() {
       return res.json({ orderId: cleanOrderId, enrollments: enRows.map((r) => r.course_slug) });
     }
 
-    const clientId = process.env.PAYPAL_CLIENT_ID || "";
-    const secret = process.env.PAYPAL_SECRET || "";
     const isLive = (process.env.PAYPAL_MODE || "sandbox") === "live";
     const baseUrl = isLive ? "https://api-m.paypal.com" : "https://api-m.sandbox.paypal.com";
-
-    if (!clientId || !secret) {
-      return res.status(500).json({ error: "PayPal API credentials are not set in Hostinger Environment Variables." });
-    }
-
-    const authHeader = Buffer.from(`${clientId}:${secret}`).toString("base64");
-    const tokenRes = await fetch(`${baseUrl}/v1/oauth2/token`, {
-      method: "POST",
-      headers: {
-        Authorization: `Basic ${authHeader}`,
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      body: "grant_type=client_credentials"
-    });
-    const tokenData = await tokenRes.json();
-    if (!tokenData?.access_token) {
-      return res.status(502).json({ error: "Could not authenticate with PayPal API." });
+    const tokenRes = await fetchPayPalAccessToken();
+    if (tokenRes.error) {
+      return res.status(tokenRes.status || 502).json({ error: tokenRes.error });
     }
 
     const orderRes = await fetch(`${baseUrl}/v2/checkout/orders/${encodeURIComponent(cleanOrderId)}`, {
       headers: {
-        Authorization: `Bearer ${tokenData.access_token}`,
+        Authorization: `Bearer ${tokenRes.accessToken}`,
         "Content-Type": "application/json"
       }
     });
@@ -1344,6 +1352,91 @@ function createApiRouter() {
 
     const [enRows] = await pool.query("SELECT course_slug FROM enrollments WHERE user_id = ?", [uid]);
     return res.json({ orderId: cleanOrderId, enrollments: enRows.map((r) => r.course_slug) });
+  });
+
+  // Cryptographically Verified PayPal Webhook Receiver (Refund Revocation & Capture Reconciliation)
+  router.post("/paypal-webhook", async (req, res) => {
+    const pool = await requireDb(res);
+    if (!pool) return;
+
+    const webhookId = String(process.env.PAYPAL_WEBHOOK_ID || "").trim();
+    if (!webhookId) {
+      return res.status(503).json({ error: "PAYPAL_WEBHOOK_ID is not configured in environment variables." });
+    }
+
+    const transmissionId = String(req.headers["paypal-transmission-id"] || "");
+    const transmissionTime = String(req.headers["paypal-transmission-time"] || "");
+    const certUrl = String(req.headers["paypal-cert-url"] || "");
+    const authAlgo = String(req.headers["paypal-auth-algo"] || "");
+    const transmissionSig = String(req.headers["paypal-transmission-sig"] || "");
+    const webhookEvent = req.body;
+
+    if (!transmissionId || !transmissionTime || !certUrl || !authAlgo || !transmissionSig || !webhookEvent?.event_type) {
+      return res.status(400).json({ error: "Missing PayPal webhook signature headers or event body." });
+    }
+
+    const tokenRes = await fetchPayPalAccessToken();
+    if (tokenRes.error) {
+      return res.status(tokenRes.status || 502).json({ error: tokenRes.error });
+    }
+
+    const verifyRes = await fetch(`${tokenRes.baseUrl}/v1/notifications/verify-webhook-signature`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${tokenRes.accessToken}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        transmission_id: transmissionId,
+        transmission_time: transmissionTime,
+        cert_url: certUrl,
+        auth_algo: authAlgo,
+        transmission_sig: transmissionSig,
+        webhook_id: webhookId,
+        webhook_event: webhookEvent
+      })
+    });
+    const verifyJson = await verifyRes.json();
+    if (verifyJson?.verification_status !== "SUCCESS") {
+      await recordSecurityEvent(pool, req, {
+        eventType: "PAYPAL_WEBHOOK_INVALID",
+        severity: "critical",
+        details: `Invalid PayPal webhook signature for event ${sanitizeText(webhookEvent.id, 64)} (${sanitizeText(webhookEvent.event_type, 64)})`,
+        notifyAdmin: true
+      });
+      return res.status(401).json({ error: "Webhook signature verification failed." });
+    }
+
+    const eventType = String(webhookEvent.event_type || "");
+    const resource = webhookEvent.resource || {};
+    const relatedOrderId = String(
+      resource?.supplementary_data?.related_ids?.order_id ||
+      (eventType.startsWith("CHECKOUT.ORDER") ? resource?.id : "") ||
+      ""
+    ).trim();
+
+    if (eventType === "PAYMENT.CAPTURE.COMPLETED" && relatedOrderId) {
+      await pool.query("UPDATE orders SET status = 'COMPLETED' WHERE paypal_order_id = ? AND status != 'REFUNDED'", [relatedOrderId]);
+      return res.json({ ok: true, handled: eventType, orderId: relatedOrderId });
+    }
+
+    if ((eventType === "PAYMENT.CAPTURE.REFUNDED" || eventType === "PAYMENT.CAPTURE.REVERSED") && relatedOrderId) {
+      const [ordRows] = await pool.query("SELECT id, user_id FROM orders WHERE paypal_order_id = ?", [relatedOrderId]);
+      if (ordRows[0]) {
+        await pool.query("UPDATE orders SET status = 'REFUNDED' WHERE id = ?", [ordRows[0].id]);
+        await pool.query("DELETE FROM enrollments WHERE order_id = ? AND access_type = 'purchased'", [ordRows[0].id]);
+        await recordSecurityEvent(pool, req, {
+          userId: ordRows[0].user_id,
+          eventType: "PAYPAL_REFUND_REVOKED",
+          severity: "warn",
+          details: `PayPal ${eventType} revoked purchased enrollments for order ${relatedOrderId}`,
+          notifyAdmin: true
+        });
+      }
+      return res.json({ ok: true, handled: eventType, orderId: relatedOrderId });
+    }
+
+    return res.json({ ok: true, ignored: eventType });
   });
 
   // Course Progress

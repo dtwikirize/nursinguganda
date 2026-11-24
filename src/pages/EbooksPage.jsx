@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { BookMarked, BookOpen, Download, Search } from "lucide-react";
 import AdSlot from "../components/AdSlot";
+import EbookCover from "../components/EbookCover";
 
 export default function EbooksPage() {
   const [ebooks, setEbooks] = useState([]);
@@ -77,8 +78,8 @@ export default function EbooksPage() {
             <div className="nu-ebook-grid">
               {filtered.map((eb) => (
                 <article key={eb.slug} className="nu-ebook-card">
-                  <Link to={`/ebooks/${eb.slug}`} className="nu-ebook-cover">
-                    <img src={eb.coverImage} alt={eb.title} loading="lazy" />
+                  <Link to={`/ebooks/${eb.slug}`} className="nu-ebook-cover-link">
+                    <EbookCover ebook={eb} />
                   </Link>
                   <div className="nu-ebook-body">
                     <span className="nu-badge nu-badge-free">{eb.category}</span>

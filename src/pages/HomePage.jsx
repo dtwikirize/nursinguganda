@@ -11,6 +11,7 @@ import {
   Stethoscope
 } from "lucide-react";
 import CourseCard from "../components/CourseCard";
+import EbookCover from "../components/EbookCover";
 import { useApp } from "../context/AppContext";
 
 const CATEGORY_CARDS = [
@@ -176,9 +177,7 @@ export default function HomePage() {
             <div className="nu-ebook-grid">
               {ebooks.map((eb) => (
                 <Link key={eb.slug} to={`/ebooks/${eb.slug}`} className="nu-ebook-card">
-                  <div className="nu-ebook-cover">
-                    <img src={eb.coverImage} alt={eb.title} width="480" height="270" loading="lazy" decoding="async" />
-                  </div>
+                  <EbookCover ebook={eb} compact />
                   <div className="nu-ebook-body">
                     <span className="nu-badge nu-badge-free">Free eBook · {eb.chapters.length} Chapters</span>
                     <h3 className="nu-card-title">{eb.title}</h3>

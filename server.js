@@ -290,6 +290,94 @@ app.get(["/index.md", "/courses.md", "/about.md", "/contact.md", "/terms.md", "/
   return res.type("text/markdown; charset=utf-8").send(md);
 });
 
+const SEO_ROUTE_META = {
+  "/courses": {
+    title: "All 95 Nursing & Midwifery Courses (Certificate, Diploma & BScN) | Nursing Uganda",
+    description: "Browse 95 structured Ugandan nursing and midwifery course units covering Anatomy, Pharmacology, Medical-Surgical Nursing, Midwifery, Paediatrics, and Community Health.",
+    h1: "All 95 Nursing & Midwifery Courses"
+  },
+  "/mock-exams": {
+    title: "109 UNMEB & UHPAB Past Papers Archive (Dark Navy Answers & Free PDF) | Nursing Uganda",
+    description: "Practice 109 UHPAB and UNMEB past papers (2019–2025) featuring Section A MCQs, Section B Short Essays, and Section C Scenarios with Dark Navy answers and direct PDF downloads.",
+    h1: "UNMEB & UHPAB Past Papers Archive (109 Papers)"
+  },
+  "/ebooks": {
+    title: "Free Referenced Nursing & Midwifery Study eBooks (Direct PDF) | Nursing Uganda",
+    description: "Download 8 peer-reviewed nursing and midwifery PDF eBooks citing Uganda Clinical Guidelines 2023, WHO protocols, OpenStax, and Open RN textbooks.",
+    h1: "Free Referenced Study eBooks"
+  },
+  "/quizzes": {
+    title: "Free Nursing & Midwifery Topic Quizzes (270 Mixed Qs) | Nursing Uganda",
+    description: "Practice 10 randomized mixed-format UNMEB revision quizzes across Anatomy, Pharmacology, Midwifery, Med-Surg, Paediatrics, and Emergency Care.",
+    h1: "Free Major Topic Quizzes (270 Questions)"
+  },
+  "/dictionary": {
+    title: "1,079+ A–Z Nursing & Medical Dictionary + 183 Ward Abbreviations | Nursing Uganda",
+    description: "Search 1,079 clinical definitions, pronunciations, nursing priorities, exam mnemonics, and 183 hospital ward abbreviations tailored for Ugandan and global nurses.",
+    h1: "Nursing & Medical Dictionary (1,079 Terms · 183 Abbreviations)"
+  },
+  "/instruments": {
+    title: "146-Item Medical & Surgical Instrument Atlas (OSCE Guide & IPC) | Nursing Uganda",
+    description: "Visual clinical guide to 146 medical, surgical, obstetric, and diagnostic instruments with indications, steam autoclaving standards, and UNMEB OSCE inspection points.",
+    h1: "Medical Instrument Atlas (146 Instruments)"
+  },
+  "/clinical-tools": {
+    title: "Nursing IV Drip Rate Calculator, Paediatric Dosages & Normal Lab Ranges | Nursing Uganda",
+    description: "Ward-ready clinical nursing calculators for IV drops/min, weight-based paediatric doses, APGAR & GCS scores, plus adult and paediatric normal lab values.",
+    h1: "Clinical Calculators & Normal Lab Ranges"
+  },
+  "/about": {
+    title: "About Nursing Uganda & Institutional Non-Affiliation | Nursing Uganda",
+    description: "Learn about Nursing Uganda's independent clinical revision mission for Ugandan and international nursing and midwifery students.",
+    h1: "About Nursing Uganda & Non-Affiliation"
+  },
+  "/editorial-policy": {
+    title: "Editorial & Clinical Review Policy (UCG 2023 & WHO Aligned) | Nursing Uganda",
+    description: "How Nursing Uganda tutors align revision notes, dosages, and mock papers with Uganda Clinical Guidelines 2023, WHO, OpenStax, and Open RN.",
+    h1: "Editorial & Clinical Review Policy"
+  },
+  "/contact": {
+    title: "Contact Student Billing, Clinical Editorial & Legal Desk | Nursing Uganda",
+    description: "Contact Nursing Uganda support@nursinguganda.com or editorial@nursinguganda.com for PayPal receipts, curriculum review, and data rights.",
+    h1: "Contact, Support & Legal Compliance Desk"
+  },
+  "/privacy-policy": {
+    title: "Privacy & Cookies Policy | Nursing Uganda",
+    description: "How Nursing Uganda safeguards learner profiles, progress records, and payment verification under Uganda Data Protection & Privacy Act 2019.",
+    h1: "Privacy & Cookies Policy"
+  },
+  "/terms": {
+    title: "Terms of Service & Medical Disclaimer | Nursing Uganda",
+    description: "Educational terms, certificate scope notice, and clinical disclaimers for Nursing Uganda.",
+    h1: "Terms of Service & Medical Disclaimer"
+  }
+};
+
+function escAttr(s = "") {
+  return String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+function sendRouteSpaHtml(res, filePath, reqPath) {
+  const clean = reqPath === "/" ? "/" : reqPath.replace(/\/+$/, "");
+  let html = fs.readFileSync(filePath, "utf8");
+  const meta = SEO_ROUTE_META[clean];
+  if (meta) {
+    const url = `https://nursinguganda.com${clean}`;
+    html = html
+      .replace(/<title>[\s\S]*?<\/title>/i, `<title>${escAttr(meta.title)}</title>`)
+      .replace(/<meta\s+name="description"[\s\S]*?\/>/i, `<meta name="description" content="${escAttr(meta.description)}" />`)
+      .replace(/<link\s+rel="canonical"\s+href="[^"]*"\s*\/>/i, `<link rel="canonical" href="${url}" />`)
+      .replace(/<meta\s+property="og:title"\s+content="[^"]*"\s*\/>/i, `<meta property="og:title" content="${escAttr(meta.title)}" />`)
+      .replace(/<meta\s+property="og:description"\s+content="[^"]*"\s*\/>/i, `<meta property="og:description" content="${escAttr(meta.description)}" />`)
+      .replace(/<meta\s+property="og:url"\s+content="[^"]*"\s*\/>/i, `<meta property="og:url" content="${url}" />`)
+      .replace(/<meta\s+name="twitter:title"\s+content="[^"]*"\s*\/>/i, `<meta name="twitter:title" content="${escAttr(meta.title)}" />`)
+      .replace(/<meta\s+name="twitter:description"\s+content="[^"]*"\s*\/>/i, `<meta name="twitter:description" content="${escAttr(meta.description)}" />`)
+      .replace(/<h1>[\s\S]*?<\/h1>/i, `<h1>${escAttr(meta.h1)}</h1>`);
+  }
+  res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
+  return res.type("text/html; charset=utf-8").send(html);
+}
+
 // Match Hostinger .htaccess behavior: human browsers get React SPA index.html on valid app routes;
 // AI agents asking for Accept: text/markdown get concise Markdown; bots get static HTML when present.
 app.use((req, res, next) => {
@@ -311,8 +399,15 @@ app.use((req, res, next) => {
     const rootIndex = path.join(__dirname, "index.html");
     const targetIndex = fs.existsSync(distIndex) ? distIndex : rootIndex;
     setAgentDiscoveryHeaders(res, { includeHeroPreload: req.path === "/" });
-    res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
-    return res.sendFile(targetIndex);
+    return sendRouteSpaHtml(res, targetIndex, req.path);
+  }
+  // If search bot visits hub route without static pre-rendered subfolder, serve route-injected SPA HTML instead of generic root tags
+  if (SEO_ROUTE_META[req.path.replace(/\/+$/, "") || "/"]) {
+    const distIndex = path.join(DIST_DIR, "index.html");
+    const rootIndex = path.join(__dirname, "index.html");
+    const targetIndex = fs.existsSync(distIndex) ? distIndex : rootIndex;
+    setAgentDiscoveryHeaders(res, { includeHeroPreload: req.path === "/" });
+    return sendRouteSpaHtml(res, targetIndex, req.path);
   }
   setAgentDiscoveryHeaders(res, { includeHeroPreload: req.path === "/" });
   next();

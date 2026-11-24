@@ -2,6 +2,7 @@ import React, { Suspense, lazy, useEffect } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+import RouteSeo from "./components/RouteSeo";
 import HomePage from "./pages/HomePage";
 
 // Code-split secondary routes to minimize unused JS on initial landing load
@@ -57,6 +58,7 @@ export default function App() {
 
   return (
     <>
+      <RouteSeo />
       {!hideChrome && <Navbar />}
       <Suspense fallback={<PageLoader />}>
         <Routes>

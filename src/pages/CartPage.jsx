@@ -1,89 +1,326 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ShoppingBag, Trash2 } from "lucide-react";
+import {
+  ArrowRight,
+  Award,
+  CheckCircle2,
+  FileText,
+  ShieldCheck,
+  ShoppingBag,
+  Sparkles,
+  Trash2
+} from "lucide-react";
 import { formatUgxApprox, formatUsd, useApp } from "../context/AppContext";
 
+const UNMEB_PASS_ITEM = {
+  slug: "unmeb-mock-pass",
+  title: "UNMEB / UHPAB Full Past Papers & Mock Exam Pass (109+ Papers)",
+  code: "UNMEB-PASS",
+  programmeLabel: "All Nursing & Midwifery Programmes",
+  thumbnail: "/assets/images/udemy/cat-research.webp",
+  priceUsd: 6.99,
+  compareAtUsd: 14.99,
+  lessonCount: 109,
+  type: "bundle",
+  courseSlugs: ["unmeb-mock-pass"]
+};
+
 export default function CartPage() {
-  const { cart, cartTotalUsd, removeFromCart } = useApp();
+  const { cart, cartTotalUsd, removeFromCart, clearCart, addToCart, enrollments } = useApp();
   const navigate = useNavigate();
 
+  const originalTotalUsd = cart.reduce(
+    (sum, item) => sum + Number(item.compareAtUsd && item.compareAtUsd > item.priceUsd ? item.compareAtUsd : item.priceUsd || 0),
+    0
+  );
+  const savingsUsd = Math.max(0, Number((originalTotalUsd - cartTotalUsd).toFixed(2)));
+  const hasPass =
+    cart.some((i) => i.slug === "unmeb-mock-pass") ||
+    enrollments.includes("unmeb-mock-pass") ||
+    enrollments.length >= 1;
+
   return (
-    <main className="nu-section">
+    <main className="nu-section" style={{ background: "#f8fafc", minHeight: "65vh" }}>
       <div className="nu-container">
-        <h1 style={{ fontFamily: "var(--nu-font-serif)", marginBottom: 8 }}>Shopping Cart</h1>
-        <p style={{ color: "var(--nu-ink-muted)", marginBottom: 28 }}>
-          {cart.length} {cart.length === 1 ? "item" : "items"} in Cart
-        </p>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "space-between",
+            alignItems: "flex-end",
+            gap: 12,
+            marginBottom: 24
+          }}
+        >
+          <div>
+            <span className="nu-badge nu-badge-free" style={{ marginBottom: 8 }}>
+              Instant PayPal Access &middot; Lifetime Revision
+            </span>
+            <h1 style={{ fontFamily: "var(--nu-font-serif)", margin: "0 0 6px" }}>Shopping Cart</h1>
+            <p style={{ color: "var(--nu-ink-muted)", margin: 0 }}>
+              {cart.length} {cart.length === 1 ? "study unit" : "study units"} in your cart
+            </p>
+          </div>
+
+          {cart.length > 0 && (
+            <button
+              type="button"
+              className="nu-btn nu-btn-outline"
+              style={{ height: 36, fontSize: "0.82rem" }}
+              onClick={clearCart}
+            >
+              <Trash2 size={14} /> Clear Cart
+            </button>
+          )}
+        </div>
 
         {cart.length === 0 ? (
-          <div style={{ border: "1px solid var(--nu-border)", padding: 48, textAlign: "center" }}>
-            <ShoppingBag size={40} color="#6a6f73" style={{ margin: "0 auto 12px" }} />
-            <h3>Your cart is empty</h3>
-            <p style={{ color: "var(--nu-ink-muted)", marginBottom: 20 }}>
-              Explore nursing courses or UNMEB mock exam packs to get started.
+          <div
+            style={{
+              border: "1px solid var(--nu-border)",
+              borderRadius: 12,
+              background: "#ffffff",
+              padding: "48px 24px",
+              textAlign: "center",
+              maxWidth: 720,
+              margin: "0 auto"
+            }}
+          >
+            <ShoppingBag size={42} color="#a137f2" style={{ margin: "0 auto 12px" }} />
+            <h2 style={{ margin: "0 0 8px" }}>Your study cart is empty</h2>
+            <p style={{ color: "var(--nu-ink-muted)", maxWidth: 480, margin: "0 auto 22px" }}>
+              Browse 95 Certificate, Diploma &amp; BScN nursing units or unlock all 109 UHPAB / UNMEB past papers with Dark Navy PDF solutions.
             </p>
-            <Link to="/courses" className="nu-btn nu-btn-primary nu-btn-lg">
-              Keep shopping
-            </Link>
+            <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
+              <Link to="/courses" className="nu-btn nu-btn-primary nu-btn-lg">
+                Browse 95 Courses
+              </Link>
+              <Link to="/mock-exams" className="nu-btn nu-btn-outline nu-btn-lg">
+                <FileText size={16} /> 109 UNMEB Past Papers
+              </Link>
+              <Link to="/ebooks" className="nu-btn nu-btn-outline nu-btn-lg">
+                Free Study eBooks
+              </Link>
+            </div>
           </div>
         ) : (
-          <div className="nu-cl-grid">
+          <div className="nu-cl-grid" style={{ alignItems: "start" }}>
             <div style={{ display: "grid", gap: 14 }}>
-              {cart.map((item) => (
+              {cart.map((item) => {
+                const detailHref = item.type === "bundle" ? "/mock-exams" : `/course/${item.slug}`;
+                const hasDiscount = Number(item.compareAtUsd || 0) > Number(item.priceUsd || 0);
+                const pctOff = hasDiscount
+                  ? Math.round(((item.compareAtUsd - item.priceUsd) / item.compareAtUsd) * 100)
+                  : 0;
+                const thumbSrc = item.thumbnail
+                  ? item.thumbnail.startsWith("/")
+                    ? item.thumbnail
+                    : `/${item.thumbnail}`
+                  : "/assets/images/udemy/cat-research.webp";
+
+                return (
+                  <article
+                    key={item.slug}
+                    style={{
+                      display: "flex",
+                      flexWrap: "wrap",
+                      gap: 16,
+                      padding: 18,
+                      border: "1px solid var(--nu-border)",
+                      borderRadius: 10,
+                      background: "#ffffff",
+                      alignItems: "center",
+                      boxShadow: "0 1px 4px rgba(15, 23, 42, 0.04)"
+                    }}
+                  >
+                    <Link to={detailHref} style={{ flexShrink: 0 }}>
+                      <img
+                        src={thumbSrc}
+                        alt={item.title}
+                        width="132"
+                        height="76"
+                        style={{
+                          width: 132,
+                          height: 76,
+                          objectFit: "cover",
+                          borderRadius: 6,
+                          border: "1px solid var(--nu-border-light)",
+                          display: "block"
+                        }}
+                      />
+                    </Link>
+
+                    <div style={{ flex: "1 1 240px", minWidth: 0 }}>
+                      <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 4 }}>
+                        {item.code && (
+                          <span className="nu-badge nu-badge-free" style={{ fontSize: "0.7rem" }}>
+                            {item.code}
+                          </span>
+                        )}
+                        {pctOff > 0 && (
+                          <span className="nu-badge nu-badge-bestseller" style={{ fontSize: "0.7rem" }}>
+                            Save {pctOff}%
+                          </span>
+                        )}
+                      </div>
+                      <Link to={detailHref} style={{ fontWeight: 700, fontSize: "1.02rem", color: "var(--nu-ink)", display: "block" }}>
+                        {item.title}
+                      </Link>
+                      <small style={{ color: "var(--nu-ink-muted)", display: "block", marginTop: 3 }}>
+                        {item.programmeLabel} · {item.lessonCount} {item.type === "bundle" ? "papers" : "lessons"} · Quiz &amp; Certificate Track
+                      </small>
+                    </div>
+
+                    <div style={{ textAlign: "right", minWidth: 112 }}>
+                      <strong style={{ display: "block", fontSize: "1.14rem", color: "var(--nu-purple)" }}>
+                        {formatUsd(item.priceUsd)}
+                      </strong>
+                      {hasDiscount && (
+                        <small style={{ display: "block", textDecoration: "line-through", color: "#94a3b8" }}>
+                          {formatUsd(item.compareAtUsd)}
+                        </small>
+                      )}
+                      <small style={{ display: "block", fontSize: "0.74rem", color: "var(--nu-ink-muted)" }}>
+                        {formatUgxApprox(item.priceUsd)}
+                      </small>
+                      <button
+                        type="button"
+                        onClick={() => removeFromCart(item.slug)}
+                        style={{
+                          background: "transparent",
+                          border: 0,
+                          color: "var(--nu-danger)",
+                          fontSize: "0.82rem",
+                          fontWeight: 600,
+                          marginTop: 6,
+                          padding: 0,
+                          display: "inline-flex",
+                          alignItems: "center",
+                          gap: 4
+                        }}
+                      >
+                        <Trash2 size={14} /> Remove
+                      </button>
+                    </div>
+                  </article>
+                );
+              })}
+
+              {/* Smart Past Papers Bundle Upsell (when not in cart/enrolled yet) */}
+              {!hasPass && (
                 <div
-                  key={item.slug}
                   style={{
+                    border: "1.5px dashed #a137f2",
+                    borderRadius: 10,
+                    padding: 18,
+                    background: "linear-gradient(135deg, #faf5ff 0%, #ffffff 100%)",
                     display: "flex",
-                    gap: 16,
-                    padding: 16,
-                    border: "1px solid var(--nu-border)",
-                    background: "#fff",
-                    alignItems: "center"
+                    flexWrap: "wrap",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    gap: 14
                   }}
                 >
-                  <img
-                    src={item.thumbnail}
-                    alt={item.title}
-                    style={{ width: 120, height: 68, objectFit: "cover", border: "1px solid var(--nu-border-light)" }}
-                  />
-                  <div style={{ flex: 1 }}>
-                    <strong style={{ display: "block" }}>{item.title}</strong>
+                  <div style={{ flex: "1 1 280px" }}>
+                    <div style={{ fontSize: "0.75rem", fontWeight: 800, color: "#6d28d9", textTransform: "uppercase", marginBottom: 4 }}>
+                      <Sparkles size={13} style={{ display: "inline", marginRight: 4 }} /> Recommended Exam Add-On
+                    </div>
+                    <strong style={{ display: "block", fontSize: "0.98rem" }}>
+                      {UNMEB_PASS_ITEM.title}
+                    </strong>
                     <small style={{ color: "var(--nu-ink-muted)" }}>
-                      {item.programmeLabel} · {item.lessonCount} lessons
+                      Note: Enrolling in any single full course automatically unlocks the Mock Exam archive too! Or add the standalone Past Paper Pass for {formatUsd(UNMEB_PASS_ITEM.priceUsd)}.
                     </small>
                   </div>
-                  <div style={{ textAlign: "right" }}>
-                    <strong style={{ display: "block", color: "var(--nu-purple)" }}>
-                      {formatUsd(item.priceUsd)}
-                    </strong>
-                    <button
-                      type="button"
-                      onClick={() => removeFromCart(item.slug)}
-                      style={{ background: "transparent", border: 0, color: "var(--nu-danger)", fontSize: "0.82rem", marginTop: 4, display: "inline-flex", alignItems: "center", gap: 4 }}
-                    >
-                      <Trash2 size={14} /> Remove
-                    </button>
-                  </div>
+                  <button
+                    type="button"
+                    className="nu-btn nu-btn-outline"
+                    style={{ borderColor: "#a137f2", color: "#6d28d9", fontWeight: 700 }}
+                    onClick={() => addToCart(UNMEB_PASS_ITEM)}
+                  >
+                    + Add Pass ({formatUsd(UNMEB_PASS_ITEM.priceUsd)})
+                  </button>
                 </div>
-              ))}
+              )}
             </div>
 
-            <aside style={{ border: "1px solid var(--nu-border)", padding: 24, background: "#fff" }}>
-              <div style={{ color: "var(--nu-ink-muted)", fontWeight: 700, fontSize: "0.9rem" }}>Total:</div>
-              <div style={{ fontSize: "2rem", fontWeight: 800, margin: "4px 0" }}>
+            <aside
+              style={{
+                border: "1px solid var(--nu-border)",
+                borderRadius: 12,
+                padding: 24,
+                background: "#ffffff",
+                position: "sticky",
+                top: 88,
+                boxShadow: "0 4px 16px rgba(15, 23, 42, 0.05)"
+              }}
+            >
+              <div style={{ color: "var(--nu-ink-muted)", fontWeight: 700, fontSize: "0.88rem", textTransform: "uppercase", letterSpacing: "0.04em" }}>
+                Order Summary
+              </div>
+              <div style={{ fontSize: "2.1rem", fontWeight: 800, margin: "6px 0 2px", color: "var(--nu-ink)" }}>
                 {formatUsd(cartTotalUsd)}
               </div>
-              <div style={{ fontSize: "0.84rem", color: "var(--nu-ink-muted)", marginBottom: 18 }}>
-                {formatUgxApprox(cartTotalUsd)} · Instant unlock via PayPal
+              <div style={{ fontSize: "0.86rem", color: "var(--nu-ink-muted)", marginBottom: 14 }}>
+                {formatUgxApprox(cartTotalUsd)} &middot; One-time payment
               </div>
+
+              {savingsUsd > 0 && (
+                <div
+                  style={{
+                    padding: "8px 12px",
+                    borderRadius: 6,
+                    background: "#ecfdf5",
+                    color: "#065f46",
+                    fontSize: "0.84rem",
+                    fontWeight: 700,
+                    marginBottom: 16
+                  }}
+                >
+                  You save {formatUsd(savingsUsd)} off standard course prices!
+                </div>
+              )}
+
               <button
                 type="button"
                 className="nu-btn nu-btn-primary nu-btn-lg"
-                style={{ width: "100%" }}
+                style={{ width: "100%", marginBottom: 10 }}
                 onClick={() => navigate("/checkout")}
               >
-                Proceed to PayPal Checkout
+                Proceed to PayPal Checkout <ArrowRight size={17} />
               </button>
+
+              <Link
+                to="/courses"
+                className="nu-btn nu-btn-outline"
+                style={{ width: "100%", marginBottom: 18, fontSize: "0.86rem" }}
+              >
+                Keep Shopping Courses
+              </Link>
+
+              <ul
+                style={{
+                  listStyle: "none",
+                  padding: 0,
+                  margin: 0,
+                  paddingTop: 14,
+                  borderTop: "1px solid var(--nu-border-light)",
+                  display: "grid",
+                  gap: 8,
+                  fontSize: "0.82rem",
+                  color: "#475569"
+                }}
+              >
+                <li style={{ display: "flex", gap: 8, alignItems: "center" }}>
+                  <CheckCircle2 size={15} color="#15803d" /> Instant course &amp; PDF access upon checkout
+                </li>
+                <li style={{ display: "flex", gap: 8, alignItems: "center" }}>
+                  <Award size={15} color="#a137f2" /> Includes 30-Q final evaluation &amp; PDF certificate
+                </li>
+                <li style={{ display: "flex", gap: 8, alignItems: "center" }}>
+                  <ShieldCheck size={15} color="#0f2942" /> Server-verified PayPal &amp; webhook protection
+                </li>
+              </ul>
             </aside>
           </div>
         )}

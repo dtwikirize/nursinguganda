@@ -1,4 +1,5 @@
 import { jsPDF } from "jspdf";
+import { getEbookTheme } from "./ebookThemes";
 
 function cleanPdfText(raw = "") {
   return String(raw || "")
@@ -192,26 +193,115 @@ export function downloadPastPaperPdf(paper, { includeAnswers = true } = {}) {
 }
 
 /**
- * Generates and directly triggers binary download of a complete Nursing Uganda eBook `.pdf`
- * (including Table of Contents, Chapters, Section paragraphs/bullets, and Master Bibliography).
+ * Generates and directly triggers binary download of a premium full-color medical textbook `.pdf`
+ * modeled after OpenStax / Elsevier clinical handbooks:
+ *  - Page 1: Full-bleed specialty colored textbook cover page with spine stripe & edition badge
+ *  - Page 2: Editorial Governance & Styled Table of Contents
+ *  - Interior: Chapter divider banners, running headers, edge thumb tabs, clinical callout cards,
+ *    bold lead-in terms, and shaded Master Bibliography.
  */
-export function downloadEbookPdf(ebook) {
+export function downloadEbookPdf(ebook, themeOverrideId = "") {
   if (!ebook) return;
+  const theme = getEbookTheme(ebook, themeOverrideId);
+  const P = theme.primaryRgb;
+  const A = theme.accentRgb;
+  const T = theme.tintRgb;
+  const S = theme.softRgb;
+
   const doc = new jsPDF({ unit: "mm", format: "a4", orientation: "portrait" });
   const pageWidth = doc.internal.pageSize.getWidth();
   const pageHeight = doc.internal.pageSize.getHeight();
-  const marginX = 16;
+  const marginX = 18;
   const maxWidth = pageWidth - marginX * 2;
-  let y = 18;
+  let y = 26;
+
+  // ── PAGE 1: FULL-BLEED COLORED TEXTBOOK COVER PAGE ──
+  doc.setFillColor(P[0], P[1], P[2]);
+  doc.rect(0, 0, pageWidth, pageHeight, "F");
+
+  // Left vertical accent spine stripe
+  doc.setFillColor(A[0], A[1], A[2]);
+  doc.rect(0, 0, 12, pageHeight, "F");
+  doc.setFillColor(255, 255, 255);
+  doc.rect(12, 0, 0.8, pageHeight, "F");
+
+  // Top publisher ribbon
+  doc.setFillColor(A[0], A[1], A[2]);
+  doc.rect(24, 24, pageWidth - 40, 11, "F");
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(9.5);
+  doc.setTextColor(255, 255, 255);
+  doc.text(cleanPdfText(`NURSING UGANDA CLINICAL PRESS   |   ${theme.vol}   |   OPEN ACCESS HANDBOOK`), 28, 31);
+
+  // Decorative subtle geometry blocks (clean medical editorial grid look)
+  doc.setFillColor(S[0], S[1], S[2]);
+  doc.rect(24, 152, pageWidth - 40, 82, "F");
+  doc.setFillColor(A[0], A[1], A[2]);
+  doc.rect(24, 152, 4, 82, "F");
+
+  // Cover Series & Title
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(11);
+  doc.setTextColor(226, 232, 240);
+  doc.text(cleanPdfText(`${theme.series}   •   ${(ebook.category || "CLINICAL NURSING").toUpperCase()}`), 24, 52);
+
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(26);
+  doc.setTextColor(255, 255, 255);
+  const coverTitleLines = doc.splitTextToSize(cleanPdfText(ebook.title || "Nursing Uganda Clinical eBook"), pageWidth - 44);
+  doc.text(coverTitleLines, 24, 70);
+
+  const subStartY = 70 + coverTitleLines.length * 10.5 + 4;
+  if (ebook.subtitle) {
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(12.5);
+    doc.setTextColor(226, 232, 240);
+    doc.text(doc.splitTextToSize(cleanPdfText(ebook.subtitle), pageWidth - 44), 24, subStartY);
+  }
+
+  // Edition Pill Box on lower light panel
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(11);
+  doc.setTextColor(P[0], P[1], P[2]);
+  doc.text("CURRICULUM ALIGNMENT & EDITORIAL CREDENTIALS", 34, 165);
+
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(10);
+  doc.setTextColor(30, 41, 59);
+  const coverMetaLines = [
+    `Clinical Reviewer: ${ebook.clinicalReviewer || "Nursing Uganda Clinical Review Desk"}`,
+    `Standards: Uganda Clinical Guidelines (UCG 2023), UNMEB / UHPAB Syllabi, WHO, Open RN & OpenStax`,
+    `Contents: ${(ebook.chapters || []).length} Structured Chapters   |   ${(ebook.references || []).length} Master References   |   Theme: ${theme.label}`,
+    `Updated Edition: ${ebook.updatedAt || "2026"}   |   Published by nursinguganda.com`
+  ];
+  coverMetaLines.forEach((line, idx) => {
+    doc.text(cleanPdfText(`• ${line}`), 34, 177 + idx * 10.5);
+  });
+
+  // Cover bottom strip
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(9.5);
+  doc.setTextColor(255, 255, 255);
+  doc.text("nursinguganda.com   |   Free Peer-Reviewed Nursing & Midwifery Revision Series", 24, pageHeight - 16);
+
+  // Track active chapter name per page for running headers & thumb tabs
+  const pageChapters = {};
+  let currentRunningSection = "Table of Contents";
+
+  const addInteriorPage = (chapterTag = currentRunningSection) => {
+    doc.addPage();
+    const pgNo = doc.getNumberOfPages();
+    pageChapters[pgNo] = chapterTag;
+    y = 24;
+  };
 
   const ensureSpace = (neededMm = 14) => {
-    if (y + neededMm > pageHeight - 18) {
-      doc.addPage();
-      y = 18;
+    if (y + neededMm > pageHeight - 20) {
+      addInteriorPage(currentRunningSection);
     }
   };
 
-  const writeWrapped = (text, { fontSize = 10, bold = false, italic = false, color = [17, 24, 39], indent = 0, lineH = 4.9 } = {}) => {
+  const writeWrapped = (text, { fontSize = 10, bold = false, italic = false, color = [30, 41, 59], indent = 0, lineH = 4.9 } = {}) => {
     const style = bold && italic ? "bolditalic" : bold ? "bold" : italic ? "italic" : "normal";
     doc.setFont("helvetica", style);
     doc.setFontSize(fontSize);
@@ -233,77 +323,182 @@ export function downloadEbookPdf(ebook) {
     }
   };
 
-  // Top Header Banner (Dark Navy #0F2942)
-  doc.setFillColor(15, 41, 66);
-  doc.rect(0, 0, pageWidth, 26, "F");
+  const drawCalloutBox = (label, bodyText) => {
+    const cleanBody = cleanPdfText(bodyText);
+    const wrapped = doc.splitTextToSize(cleanBody, maxWidth - 12);
+    const boxHeight = Math.max(15, wrapped.length * 4.5 + 11);
+    ensureSpace(boxHeight + 4);
+
+    doc.setFillColor(T[0], T[1], T[2]);
+    doc.setDrawColor(A[0], A[1], A[2]);
+    doc.setLineWidth(0.35);
+    doc.roundedRect(marginX, y, maxWidth, boxHeight, 2, 2, "FD");
+    doc.setFillColor(A[0], A[1], A[2]);
+    doc.rect(marginX, y, 2.2, boxHeight, "F");
+
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(9.2);
+    doc.setTextColor(A[0], A[1], A[2]);
+    doc.text(cleanPdfText(label.toUpperCase()), marginX + 6, y + 6);
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(9.4);
+    doc.setTextColor(P[0], P[1], P[2]);
+    doc.text(wrapped, marginX + 6, y + 11.5);
+    y += boxHeight + 4;
+  };
+
+  // ── PAGE 2: TABLE OF CONTENTS & EDITORIAL OVERVIEW ──
+  addInteriorPage("Table of Contents");
+  doc.setFillColor(S[0], S[1], S[2]);
+  doc.roundedRect(marginX, y, maxWidth, 16, 2, 2, "F");
+  doc.setFillColor(P[0], P[1], P[2]);
+  doc.rect(marginX, y, 3, 16, "F");
   doc.setFont("helvetica", "bold");
   doc.setFontSize(13);
-  doc.setTextColor(255, 255, 255);
-  doc.text("NURSING UGANDA  |  FREE REFERENCED STUDY eBOOK", marginX, 11);
-  doc.setFont("helvetica", "normal");
-  doc.setFontSize(9);
-  doc.setTextColor(219, 234, 254);
-  doc.text(cleanPdfText(`${ebook.category || "Clinical Guide"}  |  ${ebook.clinicalReviewer || "Nursing Uganda Board"}`), marginX, 19);
+  doc.setTextColor(P[0], P[1], P[2]);
+  doc.text("TABLE OF CONTENTS & CHAPTER ROADMAP", marginX + 7, y + 10);
+  y += 22;
 
-  y = 35;
-  writeWrapped(ebook.title || "Nursing Uganda Study Guide", { fontSize: 16, bold: true, color: [15, 41, 66], lineH: 6.5 });
-  if (ebook.subtitle) {
-    writeWrapped(ebook.subtitle, { fontSize: 10.5, italic: true, color: [71, 85, 105], lineH: 5 });
-  }
-  doc.setDrawColor(203, 213, 225);
-  doc.line(marginX, y, pageWidth - marginX, y);
+  (ebook.chapters || []).forEach((ch, idx) => {
+    ensureSpace(12);
+    doc.setFillColor(idx % 2 === 0 ? 248 : 255, idx % 2 === 0 ? 250 : 255, idx % 2 === 0 ? 252 : 255);
+    doc.rect(marginX, y - 4, maxWidth, 8.5, "F");
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(9.8);
+    doc.setTextColor(A[0], A[1], A[2]);
+    doc.text(`CH ${String(ch.chapterNumber).padStart(2, "0")}`, marginX + 3, y + 1.2);
+    doc.setTextColor(P[0], P[1], P[2]);
+    doc.text(cleanPdfText(ch.title), marginX + 20, y + 1.2);
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(8.8);
+    doc.setTextColor(100, 116, 139);
+    doc.text(`${ch.wordCount || ""} words`, pageWidth - marginX - 2, y + 1.2, { align: "right" });
+    y += 9.5;
+  });
+
   y += 6;
+  drawCalloutBox(
+    "HOW TO USE THIS TEXTBOOK FOR EXAMS",
+    "Read bold definitions first, master highlighted Nursing Priority & Safety pearls for clinical scenarios, and verify every protocol against the cited Uganda Clinical Guidelines 2023 and WHO references at the end of each volume."
+  );
 
-  // Table of Contents
-  writeWrapped("TABLE OF CONTENTS", { fontSize: 11, bold: true, color: [15, 41, 66], lineH: 5.5 });
+  // ── CHAPTER PAGES ──
   for (const ch of ebook.chapters || []) {
-    writeWrapped(`${ch.chapterNumber}. ${ch.title} (${ch.wordCount || ""} words)`, { fontSize: 9.5, color: [31, 41, 55], indent: 4, lineH: 4.5 });
-  }
-  y += 4;
+    currentRunningSection = `Chapter ${ch.chapterNumber}: ${ch.title}`;
+    addInteriorPage(currentRunningSection);
 
-  // Chapters
-  for (const ch of ebook.chapters || []) {
-    ensureSpace(22);
-    writeWrapped(`CHAPTER ${ch.chapterNumber}: ${ch.title}`, { fontSize: 12.5, bold: true, color: [15, 41, 66], lineH: 5.8 });
+    // Chapter Opener Colored Header Card (OpenStax / Elsevier Style)
+    const chTitleLines = doc.splitTextToSize(cleanPdfText(ch.title), maxWidth - 16);
+    const headerH = 20 + chTitleLines.length * 6.5;
+    doc.setFillColor(P[0], P[1], P[2]);
+    doc.roundedRect(marginX, y, maxWidth, headerH, 2.5, 2.5, "F");
+    doc.setFillColor(A[0], A[1], A[2]);
+    doc.rect(marginX, y, 4.5, headerH, "F");
+
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(9.5);
+    doc.setTextColor(219, 234, 254);
+    doc.text(`CHAPTER ${String(ch.chapterNumber).padStart(2, "0")}   |   ${cleanPdfText(theme.series)}`, marginX + 9, y + 8);
+
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(15.5);
+    doc.setTextColor(255, 255, 255);
+    doc.text(chTitleLines, marginX + 9, y + 17);
+    y += headerH + 6;
+
     if (ch.excerpt) {
-      writeWrapped(ch.excerpt, { fontSize: 9.5, italic: true, color: [71, 85, 105], lineH: 4.6 });
+      drawCalloutBox("CHAPTER CLINICAL SUMMARY", ch.excerpt);
     }
+
     for (const sec of ch.sections || []) {
       if (!sec.title || /^references?$/i.test(sec.title.trim())) continue;
-      ensureSpace(14);
-      writeWrapped(sec.title, { fontSize: 10.8, bold: true, color: [15, 41, 66], lineH: 5.2 });
+      ensureSpace(16);
+
+      // Section Heading with subtle Accent Rule
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(11.5);
+      doc.setTextColor(P[0], P[1], P[2]);
+      doc.text(cleanPdfText(sec.title), marginX, y);
+      y += 2;
+      doc.setDrawColor(A[0], A[1], A[2]);
+      doc.setLineWidth(0.5);
+      doc.line(marginX, y, marginX + 38, y);
+      y += 5;
+
+      const isPrioritySec = /nursing priority|safety|alert|teaching|uganda|mnemonic|warning/i.test(sec.title);
+      if (isPrioritySec && (sec.blocks || []).length > 0 && (sec.blocks || []).length <= 4) {
+        const joined = sec.blocks.map((b) => (b.text || "").replace(/\*\*/g, "").replace(/==/g, "")).filter(Boolean).join("\n");
+        if (joined.length < 750) {
+          drawCalloutBox(sec.title, joined);
+          continue;
+        }
+      }
+
       for (const blk of sec.blocks || []) {
         const txt = (blk.text || "").replace(/\*\*/g, "").replace(/==/g, "");
         if (!txt.trim()) continue;
-        if (blk.type === "bullet") {
-          writeWrapped(`* ${txt}`, { fontSize: 9.6, color: [31, 41, 55], indent: 4, lineH: 4.6 });
+        if (/^(Clinical Pearl|Nursing Priority|Key Warning|Mnemonic|Note):/i.test(txt.trim())) {
+          const idx = txt.indexOf(":");
+          drawCalloutBox(txt.slice(0, idx), txt.slice(idx + 1).trim());
+        } else if (blk.type === "bullet") {
+          writeWrapped(`• ${txt}`, { fontSize: 9.7, color: [31, 41, 55], indent: 4, lineH: 4.7 });
         } else {
-          writeWrapped(txt, { fontSize: 9.8, color: [17, 24, 39], indent: 0, lineH: 4.8 });
+          writeWrapped(txt, { fontSize: 9.9, color: [17, 24, 39], indent: 0, lineH: 4.9 });
         }
       }
-      y += 1.5;
+      y += 2;
     }
-    y += 3;
   }
 
-  // Master Bibliography
+  // ── MASTER BIBLIOGRAPHY PAGE ──
   if (Array.isArray(ebook.references) && ebook.references.length > 0) {
-    ensureSpace(20);
-    writeWrapped("MASTER BIBLIOGRAPHY & CLINICAL REFERENCES", { fontSize: 11.5, bold: true, color: [15, 41, 66], lineH: 5.5 });
+    currentRunningSection = "Master Clinical Bibliography";
+    addInteriorPage(currentRunningSection);
+    doc.setFillColor(P[0], P[1], P[2]);
+    doc.roundedRect(marginX, y, maxWidth, 14, 2, 2, "F");
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(12);
+    doc.setTextColor(255, 255, 255);
+    doc.text("MASTER CLINICAL & TEXTBOOK BIBLIOGRAPHY", marginX + 6, y + 9.5);
+    y += 20;
+
     ebook.references.forEach((ref, i) => {
       const cit = typeof ref === "string" ? ref : `${ref.citation || ""}${ref.url ? ` (${ref.url})` : ""}`;
-      writeWrapped(`${i + 1}. ${cit}`, { fontSize: 9, color: [15, 41, 66], indent: 3, lineH: 4.4 });
+      writeWrapped(`${i + 1}. ${cit}`, { fontSize: 9.2, color: P, indent: 2, lineH: 4.5 });
     });
   }
 
+  // Apply Running Header, Outer Thumb Index Tab, and Folio Footer on pages 2..N
   const totalPages = doc.getNumberOfPages();
-  for (let p = 1; p <= totalPages; p++) {
+  for (let p = 2; p <= totalPages; p++) {
     doc.setPage(p);
+    // Edge Thumb Tab along right margin
+    doc.setFillColor(A[0], A[1], A[2]);
+    doc.rect(pageWidth - 4, 32, 4, 24, "F");
+
+    // Running Header
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(7.8);
+    doc.setTextColor(P[0], P[1], P[2]);
+    doc.text(cleanPdfText(ebook.title || "Nursing Uganda Study eBook").slice(0, 48), marginX, 11);
+
     doc.setFont("helvetica", "normal");
+    doc.setTextColor(A[0], A[1], A[2]);
+    doc.text(cleanPdfText(pageChapters[p] || "").slice(0, 42), pageWidth - marginX, 11, { align: "right" });
+
+    doc.setDrawColor(203, 213, 225);
+    doc.setLineWidth(0.25);
+    doc.line(marginX, 13.5, pageWidth - marginX, 13.5);
+
+    // Folio Footer
+    doc.line(marginX, pageHeight - 13, pageWidth - marginX, pageHeight - 13);
     doc.setFontSize(8);
     doc.setTextColor(100, 116, 139);
-    doc.text("Nursing Uganda (nursinguganda.com) - Referenced Study eBook", marginX, pageHeight - 9);
-    doc.text(`Page ${p} of ${totalPages}`, pageWidth - marginX - 18, pageHeight - 9);
+    doc.text("Nursing Uganda (nursinguganda.com)  •  Free Open-Access Study Textbook", marginX, pageHeight - 8);
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(P[0], P[1], P[2]);
+    doc.text(`Page ${p} of ${totalPages}`, pageWidth - marginX, pageHeight - 8, { align: "right" });
   }
 
   const safeSlug = String(ebook.slug || "study-ebook").replace(/[^a-z0-9-_]/gi, "-").toLowerCase();

@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ArrowLeft, BookOpen, Download, ShieldCheck } from "lucide-react";
 import AdSlot from "../components/AdSlot";
+import EbookCover from "../components/EbookCover";
 import ReferencesBox from "../components/ReferencesBox";
+import { setPageSeo } from "../components/RouteSeo";
 import TopicVisuals, { LessonSections } from "../components/TopicVisuals";
 import { recordEbookDownload } from "../lib/api";
+import { EBOOK_PRESET_PALETTES } from "../utils/ebookThemes";
 import { downloadEbookPdf } from "../utils/pdfExport";
 
 export default function EbookReaderPage() {
@@ -12,6 +15,7 @@ export default function EbookReaderPage() {
   const [ebook, setEbook] = useState(null);
   const [loading, setLoading] = useState(true);
   const [email, setEmail] = useState("");
+  const [themePreset, setThemePreset] = useState("");
   const [downloadedMsg, setDownloadedMsg] = useState("");
 
   useEffect(() => {
@@ -21,6 +25,22 @@ export default function EbookReaderPage() {
       .then((d) => {
         const found = (d.ebooks || []).find((e) => e.slug === slug);
         setEbook(found || null);
+        if (found?.title) {
+          setPageSeo({
+            title: `${found.title} (Free PDF Study eBook) | Nursing Uganda`,
+            description: found.subtitle || `Free printable PDF study guide on ${found.title} citing MoH Uganda and WHO references.`,
+            canonicalPath: `/ebooks/${found.slug}`,
+            type: "book",
+            schema: {
+              "@type": "Book",
+              name: found.title,
+              description: found.subtitle,
+              bookFormat: "https://schema.org/EBook",
+              inLanguage: "en-UG",
+              publisher: { "@type": "Organization", name: "Nursing Uganda" }
+            }
+          });
+        }
       })
       .finally(() => setLoading(false));
   }, [slug]);
@@ -28,8 +48,8 @@ export default function EbookReaderPage() {
   const handleDownloadPdf = async (e) => {
     if (e) e.preventDefault();
     if (!ebook) return;
-    setDownloadedMsg("Generating and downloading your eBook .pdf...");
-    downloadEbookPdf(ebook);
+    setDownloadedMsg("Generating your designed full-color textbook .pdf...");
+    downloadEbookPdf(ebook, themePreset);
     await recordEbookDownload({ ebookSlug: slug, email: email.trim() }).catch(() => {});
     setDownloadedMsg(`Downloaded ${ebook.title} (.pdf)`);
   };
@@ -72,21 +92,32 @@ export default function EbookReaderPage() {
               </div>
             </div>
 
-            <div style={{ background: "#fff", color: "var(--nu-ink)", padding: 20, borderRadius: 4 }}>
-              <strong style={{ display: "block", marginBottom: 6 }}>Download Full eBook (.pdf)</strong>
-              <p style={{ fontSize: "0.82rem", color: "var(--nu-ink-muted)", margin: "0 0 12px" }}>
-                Includes all {ebook.chapters.length} chapters + complete bibliography.
-              </p>
+            <div style={{ background: "#fff", color: "var(--nu-ink)", padding: 18, borderRadius: 8, display: "grid", gap: 10 }}>
+              <EbookCover ebook={ebook} presetId={themePreset} compact />
+              <strong style={{ display: "block", fontSize: "0.96rem" }}>Download Designed eBook (.pdf)</strong>
               <form onSubmit={handleDownloadPdf} style={{ display: "grid", gap: 8 }}>
+                <label style={{ fontSize: "0.75rem", fontWeight: 700, color: "var(--nu-ink-muted)" }}>
+                  Choose PDF Color Theme
+                  <select
+                    value={themePreset}
+                    onChange={(e) => setThemePreset(e.target.value)}
+                    style={{ display: "block", width: "100%", height: 36, marginTop: 4, padding: "0 8px", border: "1px solid var(--nu-border)", borderRadius: 4, fontSize: "0.82rem", background: "#fff" }}
+                  >
+                    <option value="">Default Volume Signature Theme</option>
+                    {Object.values(EBOOK_PRESET_PALETTES).map((p) => (
+                      <option key={p.id} value={p.id}>{p.label}</option>
+                    ))}
+                  </select>
+                </label>
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Optional: your email for exam updates"
-                  style={{ height: 38, padding: "0 10px", border: "1px solid var(--nu-border)", fontSize: "0.85rem" }}
+                  style={{ height: 36, padding: "0 10px", border: "1px solid var(--nu-border)", borderRadius: 4, fontSize: "0.84rem" }}
                 />
                 <button type="submit" className="nu-btn nu-btn-primary" style={{ width: "100%" }}>
-                  <Download size={16} /> Download Full eBook (.pdf)
+                  <Download size={16} /> Download Full Textbook (.pdf)
                 </button>
               </form>
               {downloadedMsg && (

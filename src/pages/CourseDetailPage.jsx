@@ -16,6 +16,7 @@ import {
   Users
 } from "lucide-react";
 import ReferencesBox from "../components/ReferencesBox";
+import { setPageSeo } from "../components/RouteSeo";
 import { formatUgxApprox, formatUsd, useApp } from "../context/AppContext";
 
 export default function CourseDetailPage() {
@@ -33,7 +34,28 @@ export default function CourseDetailPage() {
     fetch(`/assets/data/courses/${slug}.json`)
       .then((r) => (r.ok ? r.json() : null))
       .then((data) => {
-        if (active) setCourse(data);
+        if (active) {
+          setCourse(data);
+          if (data?.title) {
+            setPageSeo({
+              title: `${data.title} | ${data.programmeLabel || "Nursing"} | Nursing Uganda`,
+              description: data.subtitle || `${data.title} curriculum unit with ${data.lessonCount || ""} referenced nursing study lessons for Uganda UNMEB preparation.`,
+              canonicalPath: `/course/${data.slug || slug}`,
+              type: "article",
+              schema: {
+                "@type": "Course",
+                name: data.title,
+                description: data.subtitle,
+                provider: {
+                  "@type": "EducationalOrganization",
+                  name: "Nursing Uganda",
+                  sameAs: "https://nursinguganda.com"
+                },
+                educationalLevel: data.programmeLabel
+              }
+            });
+          }
+        }
       })
       .catch(() => {
         if (active) setCourse(null);

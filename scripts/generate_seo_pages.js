@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 /**
  * Generates clean, AdSense-safe canonical static SEO pages and sitemap.xml:
- *  - 95 Course Landing pages (/course/<slug>/index.html) with syllabus & authoritative references
- *  - 8 Free Referenced eBook pages (/ebooks/<slug>/index.html) with full chapter previews & bibliography
- *  - Clean sitemap.xml (no duplicate topic URLs, no thin/junk pages, no checkout/login routes)
+ *  - 95 Course Landing pages (/course/<slug>/index.html) with Course + Breadcrumb Schema
+ *  - 8 Free Referenced eBook pages (/ebooks/<slug>/index.html) with Book + Breadcrumb Schema
+ *  - Clean sitemap.xml (includes /quizzes, 116 canonical URLs, no thin/checkout/login pages)
  */
 const fs = require("node:fs");
 const path = require("node:path");
@@ -11,6 +11,7 @@ const path = require("node:path");
 const ROOT = process.cwd();
 const DATA_DIR = path.join(ROOT, "assets", "data");
 const SITE_URL = "https://nursinguganda.com";
+const DEFAULT_IMG = `${SITE_URL}/assets/images/udemy/hero-banner.webp`;
 
 function esc(val) {
   return String(val ?? "")
@@ -21,7 +22,10 @@ function esc(val) {
     .replace(/'/g, "&#39;");
 }
 
-function buildHtml({ title, description, canonicalUrl, bodyHtml }) {
+function buildHtml({ title, description, canonicalUrl, imageUrl = DEFAULT_IMG, ogType = "article", jsonLd = null, bodyHtml }) {
+  const schemaScript = jsonLd
+    ? `\n  <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`
+    : "";
   return `<!doctype html>
 <html lang="en-UG">
 <head>
@@ -29,17 +33,29 @@ function buildHtml({ title, description, canonicalUrl, bodyHtml }) {
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>${esc(title)}</title>
   <meta name="description" content="${esc(description)}" />
+  <meta name="keywords" content="nursing courses Uganda, UNMEB past papers, UHPAB revision Uganda, midwifery courses Uganda, Uganda Clinical Guidelines 2023" />
+  <meta name="geo.region" content="UG" />
+  <meta name="geo.placename" content="Kampala, Uganda" />
   <link rel="canonical" href="${esc(canonicalUrl)}" />
+  <meta property="og:site_name" content="Nursing Uganda" />
+  <meta property="og:locale" content="en_UG" />
   <meta property="og:title" content="${esc(title)}" />
   <meta property="og:description" content="${esc(description)}" />
-  <meta property="og:type" content="article" />
+  <meta property="og:type" content="${esc(ogType)}" />
   <meta property="og:url" content="${esc(canonicalUrl)}" />
+  <meta property="og:image" content="${esc(imageUrl)}" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="${esc(title)}" />
+  <meta name="twitter:description" content="${esc(description)}" />
+  <meta name="twitter:image" content="${esc(imageUrl)}" />${schemaScript}
   <style>
     body{font-family:Inter,system-ui,sans-serif;margin:0;color:#1c1d1f;background:#fff;line-height:1.6}
     .wrap{max-width:920px;margin:0 auto;padding:32px 20px}
     .hero{background:#1c1d1f;color:#fff;padding:36px 20px}
-    .btn{display:inline-block;background:#a435f0;color:#fff;padding:12px 20px;font-weight:700;text-decoration:none;border-radius:4px;margin-top:12px}
-    .refs{background:#f7f9fa;border-left:4px solid #a435f0;padding:16px 20px;margin-top:28px}
+    .btn{display:inline-block;background:#a137f2;color:#fff;padding:12px 20px;font-weight:700;text-decoration:none;border-radius:6px;margin-top:12px}
+    .refs{background:#f7f9fa;border-left:4px solid #a137f2;padding:16px 20px;margin-top:28px}
+    .nav{display:flex;flex-wrap:wrap;gap:14px;padding:16px 0;border-top:1px solid #d1d7dc;margin-top:32px;font-size:0.9rem}
+    .nav a{color:#4c1d95;text-decoration:none;font-weight:600}
     h1{margin:0 0 10px;font-size:1.9rem} h2{margin-top:28px}
   </style>
 </head>
@@ -48,6 +64,21 @@ function buildHtml({ title, description, canonicalUrl, bodyHtml }) {
 </body>
 </html>`;
 }
+
+const HUB_FOOTER_LINKS = `
+  <nav class="nav" aria-label="Nursing Uganda Hubs">
+    <a href="/">Home</a>
+    <a href="/courses">95 Nursing Courses</a>
+    <a href="/mock-exams">109 UHPAB/UNMEB Past Papers (.pdf)</a>
+    <a href="/quizzes">Free Mixed Topic Quizzes</a>
+    <a href="/ebooks">Free eBooks (.pdf)</a>
+    <a href="/dictionary">A–Z Medical Dictionary</a>
+    <a href="/instruments">Instrument Atlas</a>
+    <a href="/clinical-tools">Dosage Calculator</a>
+    <a href="/about">About</a>
+    <a href="/contact">Contact</a>
+    <a href="/terms">Terms</a>
+  </nav>`;
 
 function main() {
   const catalog = JSON.parse(fs.readFileSync(path.join(DATA_DIR, "catalog.json"), "utf8"));
@@ -62,10 +93,11 @@ function main() {
     { loc: `${SITE_URL}/`, priority: "1.0" },
     { loc: `${SITE_URL}/courses`, priority: "0.9" },
     { loc: `${SITE_URL}/ebooks`, priority: "0.9" },
-    { loc: `${SITE_URL}/mock-exams`, priority: "0.9" },
-    { loc: `${SITE_URL}/dictionary`, priority: "0.8" },
-    { loc: `${SITE_URL}/instruments`, priority: "0.8" },
-    { loc: `${SITE_URL}/clinical-tools`, priority: "0.8" },
+    { loc: `${SITE_URL}/mock-exams`, priority: "0.95" },
+    { loc: `${SITE_URL}/quizzes`, priority: "0.85" },
+    { loc: `${SITE_URL}/dictionary`, priority: "0.85" },
+    { loc: `${SITE_URL}/instruments`, priority: "0.85" },
+    { loc: `${SITE_URL}/clinical-tools`, priority: "0.85" },
     { loc: `${SITE_URL}/about`, priority: "0.5" },
     { loc: `${SITE_URL}/editorial-policy`, priority: "0.5" },
     { loc: `${SITE_URL}/privacy-policy`, priority: "0.4" },
@@ -94,10 +126,41 @@ function main() {
       .map((r) => `<li>${esc(r.citation)}</li>`)
       .join("");
 
+    const courseImage = c.thumbnail ? (c.thumbnail.startsWith("http") ? c.thumbnail : `${SITE_URL}${c.thumbnail.startsWith("/") ? "" : "/"}${c.thumbnail}`) : DEFAULT_IMG;
+
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
+            { "@type": "ListItem", position: 2, name: "Courses", item: `${SITE_URL}/courses` },
+            { "@type": "ListItem", position: 3, name: c.title, item: canonical }
+          ]
+        },
+        {
+          "@type": "Course",
+          name: c.title,
+          description: c.subtitle,
+          provider: {
+            "@type": "EducationalOrganization",
+            name: "Nursing Uganda",
+            sameAs: SITE_URL
+          },
+          educationalLevel: c.programmeLabel,
+          inLanguage: "en-UG",
+          url: canonical
+        }
+      ]
+    };
+
     const html = buildHtml({
       title: `${c.title} | ${c.programmeLabel} | Nursing Uganda`,
       description: c.subtitle,
       canonicalUrl: canonical,
+      imageUrl: courseImage,
+      jsonLd,
       bodyHtml: `
         <header class="hero">
           <div class="wrap" style="padding:0">
@@ -117,6 +180,7 @@ function main() {
             <h3>Authoritative Medical References</h3>
             <ol>${refsHtml}</ol>
           </section>
+          ${HUB_FOOTER_LINKS}
         </main>`
     });
 
@@ -138,17 +202,44 @@ function main() {
       .map((r) => `<li>${esc(r.citation)}</li>`)
       .join("");
 
+    const ebImg = eb.coverImage ? `${SITE_URL}${eb.coverImage.startsWith("/") ? "" : "/"}${eb.coverImage}` : DEFAULT_IMG;
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
+            { "@type": "ListItem", position: 2, name: "Free Study eBooks", item: `${SITE_URL}/ebooks` },
+            { "@type": "ListItem", position: 3, name: eb.title, item: canonical }
+          ]
+        },
+        {
+          "@type": "Book",
+          name: eb.title,
+          description: eb.subtitle,
+          bookFormat: "https://schema.org/EBook",
+          inLanguage: "en-UG",
+          publisher: { "@type": "Organization", name: "Nursing Uganda", sameAs: SITE_URL },
+          url: canonical
+        }
+      ]
+    };
+
     const html = buildHtml({
       title: `${eb.title} (Free PDF & Study Guide) | Nursing Uganda`,
       description: eb.subtitle,
       canonicalUrl: canonical,
+      imageUrl: ebImg,
+      ogType: "book",
+      jsonLd,
       bodyHtml: `
         <header class="hero">
           <div class="wrap" style="padding:0">
             <div>Free Referenced Study eBook · ${esc(eb.category)}</div>
             <h1>${esc(eb.title)}</h1>
             <p>${esc(eb.subtitle)}</p>
-            <a class="btn" href="/ebooks/${esc(eb.slug)}">Read &amp; Print Free eBook</a>
+            <a class="btn" href="/ebooks/${esc(eb.slug)}">Read &amp; Download Free eBook (.pdf)</a>
           </div>
         </header>
         <main class="wrap">
@@ -157,6 +248,7 @@ function main() {
             <h3>Master Clinical &amp; Textbook References</h3>
             <ol>${refsHtml}</ol>
           </section>
+          ${HUB_FOOTER_LINKS}
         </main>`
     });
 
