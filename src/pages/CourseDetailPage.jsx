@@ -248,7 +248,6 @@ export default function CourseDetailPage() {
                 </div>
                 <CertificateCard
                   previewMode
-                  learnerName={user?.name}
                   certificate={{
                     courseTitle: course.title,
                     programmeLabel: course.programmeLabel,

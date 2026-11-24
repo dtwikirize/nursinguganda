@@ -225,10 +225,9 @@ function buildRouteMarkdown(reqPath) {
       "- [About Nursing Uganda](https://nursinguganda.com/about)",
       "- [Editorial & Clinical Review Policy](https://nursinguganda.com/editorial-policy)",
       "- [Contact Desk](https://nursinguganda.com/contact)",
-      "- [Terms & Medical Disclaimer](https://nursinguganda.com/terms)",
-      "- [Privacy Policy](https://nursinguganda.com/privacy-policy)",
-      "- Support Email: mailto:support@nursinguganda.com",
-      "- Helpline: tel:+256700000000"
+      "- Terms & Medical Disclaimer: https://nursinguganda.com/terms",
+      "- Privacy Policy: https://nursinguganda.com/privacy-policy",
+      "- Support Email: mailto:support@nursinguganda.com"
     ].join("\n");
   }
   if (clean === "/courses") {
@@ -287,7 +286,7 @@ function isValidDynamicRoute(reqPath) {
 }
 
 const BOT_UA_RE = /(googlebot|adsbot-google|mediapartners-google|bingbot|slurp|duckduckbot|facebookexternalhit|twitterbot|whatsapp)/i;
-const SPA_ROUTE_RE = /^\/($|courses|course|learn|topics|ebooks|quizzes|mock-exams|dictionary|instruments|clinical-tools|templates|global-nursing|cart|checkout|login|my-learning|nodadmin|about|brand-kit|editorial-policy|privacy-policy|terms|contact)(\/|$)/i;
+const SPA_ROUTE_RE = /^\/($|courses|course|learn|topics|ebooks|quizzes|mock-exams|dictionary|instruments|clinical-tools|templates|global-nursing|cart|checkout|login|my-learning|nodadmin|about|editorial-policy|privacy-policy|terms|contact)(\/|$)/i;
 
 // Markdown negotiation & `.md` routes
 app.get(["/index.md", "/courses.md", "/about.md", "/contact.md", "/terms.md", "/privacy-policy.md", "/editorial-policy.md"], (req, res) => {

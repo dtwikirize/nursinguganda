@@ -1,4 +1,5 @@
 import { jsPDF } from "jspdf";
+import QRCode from "qrcode";
 import { getEbookTheme } from "./ebookThemes";
 
 function cleanPdfText(raw = "") {
@@ -509,7 +510,7 @@ export function downloadEbookPdf(ebook, themeOverrideId = "") {
  * Generates and directly triggers binary `.pdf` download of a Learner Completion Certificate
  * (Landscape A4 framed certificate with full UNMEB/UNMC non-regulatory disclaimer).
  */
-export function downloadCertificatePdf(certificate, learnerName) {
+export async function downloadCertificatePdf(certificate, learnerName) {
   if (!certificate) return;
   const doc = new jsPDF({ unit: "mm", format: "a4", orientation: "landscape" });
   const w = doc.internal.pageSize.getWidth();
@@ -539,7 +540,13 @@ export function downloadCertificatePdf(certificate, learnerName) {
   doc.setFont("helvetica", "bold");
   doc.setFontSize(26);
   doc.setTextColor(161, 55, 242);
-  doc.text(cleanPdfText(learnerName || "Nursing Uganda Learner"), w / 2, 69, { align: "center" });
+  const cleanRecipient = cleanPdfText(learnerName || "").trim();
+  if (cleanRecipient) {
+    doc.text(cleanRecipient, w / 2, 68, { align: "center" });
+  }
+  doc.setDrawColor(197, 155, 39);
+  doc.setLineWidth(0.7);
+  doc.line(w / 2 - 58, 71, w / 2 + 58, 71);
 
   doc.setFont("helvetica", "normal");
   doc.setFontSize(12);
@@ -569,9 +576,9 @@ export function downloadCertificatePdf(certificate, learnerName) {
     ? new Date(certificate.issuedAt).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })
     : new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
 
-  const boxW = 74;
+  const boxW = 62;
   const boxH = 22;
-  const startX = (w - boxW * 3 - 20) / 2;
+  const startX = 20;
   const boxY = 124;
   const cards = [
     { label: "FINAL SCORE", val: `${certificate.score} / ${certificate.totalQuestions} (${certificate.percent}%)` },
@@ -580,19 +587,40 @@ export function downloadCertificatePdf(certificate, learnerName) {
   ];
 
   cards.forEach((c, idx) => {
-    const bx = startX + idx * (boxW + 10);
+    const bx = startX + idx * (boxW + 7);
     doc.setFillColor(240, 245, 250);
     doc.setDrawColor(148, 179, 209);
     doc.setLineWidth(0.4);
     doc.roundedRect(bx, boxY, boxW, boxH, 2, 2, "FD");
     doc.setFont("helvetica", "bold");
-    doc.setFontSize(8.5);
+    doc.setFontSize(8);
     doc.setTextColor(100, 116, 139);
     doc.text(c.label, bx + boxW / 2, boxY + 7, { align: "center" });
-    doc.setFontSize(11);
+    doc.setFontSize(10.5);
     doc.setTextColor(15, 41, 66);
     doc.text(cleanPdfText(c.val), bx + boxW / 2, boxY + 16, { align: "center" });
   });
+
+  // Scannable Verification QR Code (No Signatories)
+  try {
+    const verifyCode = String(certificate.certificateCode || "NU-VERIFY");
+    const verifyUrl = `https://nursinguganda.com/my-learning?verify=${encodeURIComponent(verifyCode)}`;
+    const qrDataUrl = await QRCode.toDataURL(verifyUrl, {
+      width: 180,
+      margin: 1,
+      color: { dark: "#0F2942", light: "#FFFFFF" }
+    });
+    const qrSize = 26;
+    const qrX = w - 20 - qrSize;
+    const qrY = 120;
+    doc.addImage(qrDataUrl, "PNG", qrX, qrY, qrSize, qrSize);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(7);
+    doc.setTextColor(100, 116, 139);
+    doc.text("SCAN TO VERIFY", qrX + qrSize / 2, qrY + qrSize + 4, { align: "center" });
+  } catch {
+    // Graceful skip if canvas QR unavailable
+  }
 
   // Regulatory Scope Notice Footer
   doc.setFillColor(254, 252, 232);

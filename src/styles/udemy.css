@@ -913,20 +913,15 @@ img {
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(15, 41, 66, 0.12) 0%,
-    rgba(15, 41, 66, 0.25) 48%,
-    rgba(15, 41, 66, 0.84) 100%
+    rgba(15, 41, 66, 0) 40%,
+    rgba(15, 41, 66, 0.58) 100%
   );
-  transition: opacity 0.25s ease, background 0.25s ease;
+  opacity: 0;
+  transition: opacity 0.25s ease;
   pointer-events: none;
 }
 .nu-course-card:hover .nu-card-overlay {
-  background: linear-gradient(
-    180deg,
-    rgba(15, 41, 66, 0.2) 0%,
-    rgba(161, 55, 242, 0.24) 45%,
-    rgba(15, 41, 66, 0.9) 100%
-  );
+  opacity: 1;
 }
 .nu-card-code {
   position: absolute;
@@ -941,21 +936,6 @@ img {
   border-radius: 4px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   z-index: 2;
-}
-.nu-card-cat-overlay {
-  position: absolute;
-  left: 9px;
-  bottom: 8px;
-  font-size: 0.68rem;
-  font-weight: 700;
-  color: #f8fafc;
-  letter-spacing: 0.02em;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-  z-index: 2;
-  max-width: calc(100% - 108px);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 .nu-card-hover-pill {
   position: absolute;
@@ -2910,5 +2890,559 @@ img {
   .nu-loader-icon-core,
   .nu-loader-ecg-wave {
     animation: none;
+  }
+}
+
+/* ── Mega Footer (5-Column Sitewide Navigation) ───────────── */
+.nu-footer-mega {
+  grid-template-columns: 1.35fr repeat(4, minmax(0, 1fr));
+  gap: 28px;
+}
+.nu-footer-brand {
+  min-width: 0;
+}
+@media (max-width: 1080px) {
+  .nu-footer-mega {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+  .nu-footer-brand {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 640px) {
+  .nu-footer-mega {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+}
+
+/* ── Unified Sitewide Plate Background & Portrait Split ────── */
+.nu-visual-figure {
+  background: #f8fafc !important;
+}
+.nu-visual-figure--split {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.15fr);
+  gap: 18px;
+  align-items: center;
+  padding: 16px;
+}
+.nu-visual-split-media img {
+  max-height: 390px;
+  width: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+  background: #f8fafc;
+}
+.nu-visual-split-info {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.nu-visual-split-tag {
+  align-self: flex-start;
+  background: #7c3aed;
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+.nu-visual-split-info h4 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+.nu-visual-split-info ul {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 6px;
+  font-size: 0.87rem;
+  line-height: 1.48;
+  color: #334155;
+}
+.nu-visual-split-info figcaption {
+  margin: 4px 0 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  text-align: left;
+  font-size: 0.78rem;
+  color: #64748b;
+}
+@media (max-width: 768px) {
+  .nu-visual-figure--split {
+    grid-template-columns: 1fr;
+    padding: 12px;
+  }
+}
+
+/* ── Course Player Header & Bottom Navigation Polish ───────── */
+.nu-player-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+.nu-player-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.88rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.nu-player-sep {
+  color: #64748b;
+}
+.nu-player-bar-title {
+  font-size: 0.92rem;
+  color: #f8fafc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.nu-player-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.nu-player-progress-pill {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  white-space: nowrap;
+  margin-right: 4px;
+}
+.nu-player-top-nav-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.nu-player-bar-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  height: 36px;
+  padding: 0 11px;
+  border-radius: 6px;
+  border: 1px solid #475569;
+  background: #2d2f31;
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.nu-player-bar-btn:disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+}
+.nu-player-bottom-nav {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--nu-border);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.nu-player-nav-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+}
+.nu-player-nav-prev,
+.nu-player-nav-next,
+.nu-player-nav-complete,
+.nu-player-nav-unlock {
+  min-height: 44px;
+}
+.nu-player-nav-prev:disabled,
+.nu-player-nav-next:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.nu-player-nav-unlock {
+  align-self: flex-end;
+}
+
+@media (max-width: 768px) {
+  .nu-player-bar {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+  .nu-player-bar-left {
+    width: 100%;
+  }
+  .nu-player-bar-title {
+    font-size: 0.86rem;
+  }
+  .nu-player-bar-right {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 6px;
+    align-items: center;
+  }
+  .nu-player-progress-pill {
+    font-size: 0.76rem;
+    margin-right: 0;
+  }
+  .nu-player-top-nav-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+  .nu-player-bar-btn {
+    height: 40px;
+    padding: 0 10px;
+    font-size: 0.8rem;
+  }
+  .nu-player-main {
+    padding: 14px 12px 44px !important;
+  }
+  .nu-note-page-card,
+  .nu-visual-suite,
+  .nu-visual-plate-box {
+    border-radius: 10px;
+  }
+  .nu-visual-plate-grid,
+  .nu-visual-inline-wrap {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .nu-note-body table,
+  .nu-visual-table-wrap {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .nu-player-nav-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .nu-player-nav-complete {
+    grid-column: 1 / -1;
+    order: -1;
+    width: 100%;
+    min-height: 46px;
+    font-size: 0.94rem;
+  }
+  .nu-player-nav-prev,
+  .nu-player-nav-next {
+    width: 100%;
+    min-height: 44px;
+    font-size: 0.86rem;
+    padding: 0 10px;
+  }
+  .nu-player-nav-unlock {
+    width: 100%;
+  }
+}
+
+/* ── Student Portal / Auth Page (Mobile-First Polish) ─────── */
+.nu-auth-page {
+  min-height: 100vh;
+  background: radial-gradient(circle at top right, #f3e8ff 0%, #f8fafc 48%, #eff6ff 100%);
+  padding: 24px 16px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nu-auth-shell {
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.nu-auth-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.nu-auth-logo {
+  height: 30px;
+  width: auto;
+  display: block;
+}
+.nu-auth-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #334155;
+  text-decoration: none;
+}
+.nu-auth-back-link:hover {
+  color: #0f172a;
+}
+.nu-auth-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 26px 24px 22px;
+  box-shadow: 0 16px 40px rgba(15, 41, 66, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.nu-auth-mode-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  background: #f1f5f9;
+  padding: 4px;
+  border-radius: 10px;
+}
+.nu-auth-mode-tab {
+  border: 0;
+  background: transparent;
+  padding: 10px 8px;
+  border-radius: 8px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #475569;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+.nu-auth-mode-tab.active {
+  background: #ffffff;
+  color: #0f172a;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.08);
+}
+.nu-auth-head {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.nu-auth-pill {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #7e22ce;
+  background: #f3e8ff;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+.nu-auth-head h1 {
+  margin: 4px 0 0;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.25;
+}
+.nu-auth-head p {
+  margin: 0;
+  font-size: 0.86rem;
+  color: #475569;
+  line-height: 1.5;
+}
+.nu-auth-alert {
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 0.84rem;
+  line-height: 1.4;
+}
+.nu-auth-alert--err {
+  background: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+.nu-auth-alert--ok {
+  background: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+.nu-auth-google-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.nu-auth-google-slot {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+.nu-auth-google-btn {
+  width: 100%;
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #ffffff;
+  color: #1f2937;
+  border: 1px solid #cbd5e1;
+  border-radius: 999px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);
+  transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.nu-auth-google-btn:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+}
+.nu-auth-google-loading {
+  text-align: center;
+  font-size: 0.78rem;
+  color: #64748b;
+}
+.nu-auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #64748b;
+  font-size: 0.78rem;
+}
+.nu-auth-divider span {
+  flex: 1;
+  height: 1px;
+  background: #e2e8f0;
+}
+.nu-auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.nu-auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+.nu-auth-input {
+  width: 100%;
+  height: 44px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #0f172a;
+  font-size: 0.94rem;
+  box-sizing: border-box;
+}
+.nu-auth-input:focus {
+  outline: none;
+  border-color: #a137f2;
+  box-shadow: 0 0 0 3px rgba(161, 55, 242, 0.14);
+}
+.nu-auth-pw-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.nu-auth-pw-icon {
+  position: absolute;
+  left: 12px;
+  color: #64748b;
+  pointer-events: none;
+}
+.nu-auth-pw-input {
+  padding-left: 36px;
+  padding-right: 44px;
+}
+.nu-auth-pw-toggle {
+  position: absolute;
+  right: 4px;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  background: transparent;
+  color: #475569;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.nu-auth-otp-input {
+  text-align: center;
+  letter-spacing: 0.35em;
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+.nu-auth-submit {
+  width: 100%;
+  min-height: 46px;
+  font-size: 0.96rem;
+  font-weight: 700;
+  border-radius: 10px;
+  margin-top: 4px;
+}
+.nu-auth-verify-account {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #faf5ff;
+  border: 1px solid #e9d5ff;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 0.84rem;
+}
+.nu-auth-verify-links {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.nu-auth-link-btn,
+.nu-auth-muted-btn {
+  border: 0;
+  background: transparent;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 0;
+}
+.nu-auth-link-btn {
+  color: #7e22ce;
+}
+.nu-auth-muted-btn {
+  color: #475569;
+}
+.nu-auth-trust-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding-top: 8px;
+  border-top: 1px solid #f1f5f9;
+  font-size: 0.78rem;
+  color: #475569;
+}
+@media (max-width: 480px) {
+  .nu-auth-page {
+    padding: 14px 12px 36px;
+    align-items: flex-start;
+  }
+  .nu-auth-card {
+    padding: 20px 16px 18px;
+    border-radius: 14px;
+  }
+  .nu-auth-head h1 {
+    font-size: 1.25rem;
   }
 }

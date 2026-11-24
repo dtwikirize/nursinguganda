@@ -303,7 +303,7 @@ export default function Navbar() {
       {promoVisible && (
         <div className="nu-promo-bar">
           <span>
-            <strong>UNMEB Exam Season Ready</strong> — Free Referenced eBooks + Full Course Bundles with instant PayPal access.
+            <strong>UNMEB Exam Season Ready</strong> — Free Referenced eBooks &amp; Full Course Study Bundles.
           </span>
           <Link to="/ebooks" style={{ textDecoration: "underline", fontWeight: 700, color: "#fff" }}>
             Browse Free eBooks
@@ -842,13 +842,6 @@ export default function Navbar() {
                   <span className="nu-mobile-link-left">
                     <Wrench size={17} />
                     <span>Dosage &amp; Clinical Tools</span>
-                  </span>
-                  <ChevronRight size={16} />
-                </Link>
-                <Link to="/brand-kit" className="nu-mobile-link" onClick={() => setMobileOpen(false)}>
-                  <span className="nu-mobile-link-left">
-                    <Sparkles size={17} />
-                    <span>NU BrandKit</span>
                   </span>
                   <ChevronRight size={16} />
                 </Link>

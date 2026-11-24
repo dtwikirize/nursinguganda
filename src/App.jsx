@@ -8,7 +8,6 @@ import HomePage from "./pages/HomePage";
 
 // Code-split secondary routes to minimize unused JS on initial landing load
 const AdminPage = lazy(() => import("./pages/AdminPage"));
-const BrandKitPage = lazy(() => import("./pages/BrandKitPage"));
 const CartPage = lazy(() => import("./pages/CartPage"));
 const CheckoutPage = lazy(() => import("./pages/CheckoutPage"));
 const ClinicalToolsPage = lazy(() => import("./pages/ClinicalToolsPage"));
@@ -31,7 +30,7 @@ function PageLoader() {
   return (
     <main className="nu-section">
       <div className="nu-container">
-        <NursingLoader label="Loading Nursing Uganda study module..." />
+        <NursingLoader label="Preparing your clinical study notes..." />
       </div>
     </main>
   );
@@ -117,7 +116,6 @@ export default function App() {
           <Route path="/nodadmin" element={<AdminPage />} />
 
           <Route path="/about" element={<TrustPage pageKey="about" />} />
-          <Route path="/brand-kit" element={<BrandKitPage />} />
           <Route path="/editorial-policy" element={<TrustPage pageKey="editorial-policy" />} />
           <Route path="/privacy-policy" element={<TrustPage pageKey="privacy-policy" />} />
           <Route path="/terms" element={<TrustPage pageKey="terms" />} />

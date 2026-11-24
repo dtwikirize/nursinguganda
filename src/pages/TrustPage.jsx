@@ -74,7 +74,7 @@ const PAGES = {
       },
       {
         heading: "5. Third-Party Service Providers & Data Transfers",
-        body: "To run reliable infrastructure, data is processed strictly through trusted service providers: Hostinger (application & MySQL database hosting and transactional SMTP delivery), PayPal (payment authorization and capture verification), Google Identity Services (optional single sign-on), Umami Analytics (privacy-preserving aggregate site traffic insights), and Google AdSense (ad delivery on free resource hubs only). We never sell, rent, or trade student email lists to data brokers or marketers."
+        body: "To run reliable learning services, data is processed strictly through trusted service providers: encrypted cloud hosting & transactional email delivery, PayPal (payment authorization and capture verification), Google Identity Services (optional single sign-on), privacy-preserving aggregate analytics, and Google AdSense (ad delivery on free resource hubs only). We never sell, rent, or trade student email lists to data brokers or marketers."
       },
       {
         heading: "6. Data Retention & Your Statutory Rights",

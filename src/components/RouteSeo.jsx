@@ -84,10 +84,6 @@ const ROUTE_META = {
     title: "Terms of Service & Medical Disclaimer | Nursing Uganda",
     description: "Educational terms, certificate scope notice, and medical study disclaimers for Nursing Uganda."
   },
-  "/brand-kit": {
-    title: "Nursing Uganda Official Logo & Brand Kit | Nursing Uganda",
-    description: "Download official Nursing Uganda brand logos, color palette tokens, and clinical typography guidelines."
-  },
   "/login": { title: "Sign In or Create Student Account | Nursing Uganda", noindex: true },
   "/cart": { title: "Study Cart | Nursing Uganda", noindex: true },
   "/checkout": { title: "Secure Checkout | Nursing Uganda", noindex: true },

@@ -26,7 +26,6 @@ export default function CourseCard({ course }) {
         />
         <div className="nu-card-overlay" aria-hidden="true" />
         {course.code && <span className="nu-card-code">{course.code}</span>}
-        {course.category && <span className="nu-card-cat-overlay">{course.category}</span>}
         <span className="nu-card-hover-pill" aria-hidden="true">
           Preview Unit <ArrowRight size={12} />
         </span>

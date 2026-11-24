@@ -2,7 +2,7 @@ import React from "react";
 import { AlertTriangle, CheckCircle2, Layers, Sparkles, Table2 } from "lucide-react";
 import RichText from "./RichText";
 
-const IMAGE_VERSION = "20261124c";
+const IMAGE_VERSION = "20261124f";
 
 function withImgVersion(src) {
   const s = String(src || "");
@@ -298,6 +298,90 @@ function stripTrailingColon(str) {
 function getInlineSectionRules() {
   return [
     {
+      match: /\b(human\s+body\s+organization|structural\s+organization|levels?\s+of\s+organization)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/anatomy-terms-01-structural-organization.webp",
+      caption: "Figure: Levels of Structural Organization (Atom to Human Organism)"
+    },
+    {
+      match: /\b(anatomical\s+position|relative\s+directional\s+terms|directional\s+terminology)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/anatomy-terms-02-directional-terms.webp",
+      caption: "Figure: Standard Anatomical Position & Directional Terms (Anterior & Lateral Views)"
+    },
+    {
+      match: /\b(body\s+parts?\s+regions|abdominal\s+quadrants)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/anatomy-terms-03-abdominal-quadrants.webp",
+      caption: "Figure: Four Abdominopelvic Quadrants vs Nine Anatomical Regions"
+    },
+    {
+      match: /\b(body\s+planes\s+and\s+sections|sagittal\s+plane|coronal\s+plane|transverse\s+plane)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/anatomy-terms-04-body-planes.webp",
+      caption: "Figure: Sagittal, Coronal (Frontal), Transverse & Oblique Anatomical Planes"
+    },
+    {
+      match: /\b(body\s+cavities|protective\s+spaces\s+for\s+vital\s+organs|dorsal\s+body\s+cavity)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/anatomy-terms-05-body-cavities.webp",
+      caption: "Figure: Major Dorsal (Cranial & Vertebral) and Ventral (Thoracic & Abdominopelvic) Cavities"
+    },
+    {
+      match: /\b(9\s+abdominopelvic\s+regions|nine\s+abdominopelvic\s+regions)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/anatomy-terms-06-abdominopelvic-regions.webp",
+      caption: "Figure: The 9 Abdominopelvic Regions & Key Underlying Viscera"
+    },
+    {
+      match: /\b(essential\s+body\s+systems|11\s+body\s+systems)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/anatomy-terms-07-body-systems.webp",
+      caption: "Figure: Overview of the 11 Integrated Human Body Systems"
+    },
+    {
+      match: /\bcardiovascular\s+system\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/heart-cardiovascular.webp",
+      caption: "Cardiovascular System — Heart, Pulmonary & Systemic Circulation"
+    },
+    {
+      match: /\bnervous\s+system\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/brain-nervous-system.webp",
+      caption: "Nervous System — Central & Peripheral Control Pathways"
+    },
+    {
+      match: /\bendocrine\s+system\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/endocrine-glands.webp",
+      caption: "Endocrine System — Major Hormone-Secreting Glands"
+    },
+    {
+      match: /\brespiratory\s+system\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/lungs-respiratory.webp",
+      caption: "Respiratory System — Airways, Lungs & Gas Exchange"
+    },
+    {
+      match: /\bdigestive\s+system\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/digestive-gi-tract.webp",
+      caption: "Digestive System — Gastrointestinal Tract & Accessory Organs"
+    },
+    {
+      match: /\burinary\s+system\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/kidney-renal-nephron.webp",
+      caption: "Urinary System — Renal Filtration & Fluid Homeostasis"
+    },
+    {
+      match: /\breproductive\s+system\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/obstetric-fetus-pelvis.webp",
+      caption: "Reproductive & Pelvic Anatomy"
+    },
+    {
       match: /\b(type[s]?\s+of\s+bone|classification\s+of\s+bone|long\s+bone|short\s+bone|flat\s+bone|irregular\s+bone|sesamoid)\b/i,
       src: "/assets/images/medical-illustrations/inline-types-of-bones.webp",
       caption: "Types of Bones — Long, Short, Flat, Irregular & Sesamoid Classification"
@@ -366,13 +450,79 @@ function pickInlineSectionVisual(secTitle, secBodyText, topicTitle, usedSrcs) {
       return r;
     }
   }
-  // Then check section body + topic title
+  // Then check section body + topic title (skip rules marked titleOnly)
   for (const r of rules) {
-    if (r.match.test(combined) && !usedSrcs.has(r.src)) {
+    if (!r.titleOnly && r.match.test(combined) && !usedSrcs.has(r.src)) {
       return r;
     }
   }
   return null;
+}
+
+function VisualPlateFigure({ src, index, topicTitle, isSingle, lesson, badge }) {
+  const [portraitSplit, setPortraitSplit] = React.useState(false);
+
+  const handleLoad = (e) => {
+    if (!isSingle) return;
+    const { naturalWidth, naturalHeight } = e.currentTarget || {};
+    if (naturalWidth && naturalHeight && naturalWidth / naturalHeight < 1.25) {
+      setPortraitSplit(true);
+    }
+  };
+
+  const takeaways = React.useMemo(() => {
+    const items = [];
+    if (lesson?.excerpt) {
+      items.push(String(lesson.excerpt).trim());
+    }
+    for (const sec of lesson?.sections || []) {
+      const title = stripTrailingColon(sec?.title);
+      if (!title || /^reference/i.test(title) || items.length >= 4) continue;
+      items.push(title);
+    }
+    return items.slice(0, 4);
+  }, [lesson]);
+
+  if (portraitSplit && takeaways.length > 0) {
+    return (
+      <figure className="nu-visual-figure nu-visual-figure--split">
+        <div className="nu-visual-split-media">
+          <img
+            src={withImgVersion(src)}
+            alt={`${topicTitle} — medical reference diagram ${index + 1}`}
+            loading="lazy"
+            onLoad={handleLoad}
+          />
+        </div>
+        <div className="nu-visual-split-info">
+          <span className="nu-visual-split-tag">{badge || "Clinical Visual Guide"}</span>
+          <h4>{topicTitle} — Key Study Context</h4>
+          <ul>
+            {takeaways.map((point, idx) => (
+              <li key={idx}>{point}</li>
+            ))}
+          </ul>
+          <figcaption>
+            Figure {index + 1}: {topicTitle} — Visual Clinical Guide
+          </figcaption>
+        </div>
+      </figure>
+    );
+  }
+
+  return (
+    <figure className="nu-visual-figure">
+      <img
+        src={withImgVersion(src)}
+        alt={`${topicTitle} — medical reference diagram ${index + 1}`}
+        loading="lazy"
+        onLoad={handleLoad}
+      />
+      <figcaption>
+        Figure {index + 1}: {topicTitle} — Visual Clinical Guide
+      </figcaption>
+    </figure>
+  );
 }
 
 export default function TopicVisuals({ lesson, topicTitle }) {
@@ -406,16 +556,15 @@ export default function TopicVisuals({ lesson, topicTitle }) {
           </div>
           <div className="nu-visual-plate-grid">
             {images.slice(0, 2).map((src, i) => (
-              <figure key={i} className="nu-visual-figure">
-                <img
-                  src={withImgVersion(src)}
-                  alt={`${topicTitle} — medical reference diagram ${i + 1}`}
-                  loading="lazy"
-                />
-                <figcaption>
-                  Figure {i + 1}: {topicTitle} — Visual Clinical Guide
-                </figcaption>
-              </figure>
+              <VisualPlateFigure
+                key={i}
+                src={src}
+                index={i}
+                topicTitle={topicTitle}
+                isSingle={images.length === 1}
+                lesson={lesson}
+                badge={tableData.badge}
+              />
             ))}
           </div>
         </div>
@@ -529,6 +678,7 @@ export function LessonSections({ sections = [], lesson = null, topicTitle = "", 
     (lesson?.images || []).map((img) => String(img || "").split("?")[0]).filter(Boolean)
   );
   let inlineImagesAdded = 0;
+  const maxInlineImages = sections.length >= 16 ? 12 : 4;
 
   return (
     <div className="nu-notes-pages">
@@ -541,7 +691,7 @@ export function LessonSections({ sections = [], lesson = null, topicTitle = "", 
           .join(" ");
 
         let inlineFig = null;
-        if (inlineImagesAdded < 2 && !/^reference|learning outcome/i.test(cleanHeading)) {
+        if (inlineImagesAdded < maxInlineImages && !/^reference|learning outcome/i.test(cleanHeading)) {
           const picked = pickInlineSectionVisual(cleanHeading, bodySample, topicTitle, usedSrcs);
           if (picked) {
             usedSrcs.add(picked.src);

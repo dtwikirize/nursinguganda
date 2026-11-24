@@ -183,43 +183,32 @@ export default function CoursePlayerPage() {
 
   return (
     <div>
-      {/* Dark Udemy Player Top Bar */}
+      {/* Responsive Top Player Bar */}
       <div className="nu-player-bar">
-        <div style={{ display: "flex", alignItems: "center", gap: 14, minWidth: 0 }}>
-          <Link to={`/course/${course.slug}`} style={{ color: "#e2e8f0", display: "inline-flex", alignItems: "center", gap: 6, fontSize: "0.85rem" }}>
-            <ArrowLeft size={16} /> Back to Course
+        <div className="nu-player-bar-left">
+          <Link to={`/course/${course.slug}`} className="nu-player-back-link">
+            <ArrowLeft size={16} /> <span>Course</span>
           </Link>
-          <span style={{ color: "#4b5563" }}>|</span>
-          <strong style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", fontSize: "0.92rem" }}>
+          <span className="nu-player-sep">|</span>
+          <strong className="nu-player-bar-title">
             {course.title}
           </strong>
         </div>
 
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <span style={{ fontSize: "0.82rem", color: "#cbd5e1" }}>
-            {completedCount} of {flatTopics.length} completed ({pct}%)
+        <div className="nu-player-bar-right">
+          <span className="nu-player-progress-pill">
+            {completedCount}/{flatTopics.length} ({pct}%)
           </span>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+          <div className="nu-player-top-nav-group">
             <button
               type="button"
               disabled={!prevTopic}
               onClick={() => goToTopic(prevTopic)}
               title={prevTopic ? `Previous: ${prevTopic.title}` : "First topic"}
               aria-label={prevTopic ? `Previous lesson: ${prevTopic.title}` : "No previous lesson"}
-              style={{
-                background: "transparent",
-                border: "1px solid #4b5563",
-                color: prevTopic ? "#fff" : "#64748b",
-                padding: "6px 10px",
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 4,
-                fontSize: "0.82rem",
-                cursor: prevTopic ? "pointer" : "not-allowed",
-                opacity: prevTopic ? 1 : 0.6
-              }}
+              className="nu-player-bar-btn"
             >
-              <ChevronLeft size={15} /> Previous
+              <ChevronLeft size={15} /> <span>Prev</span>
             </button>
             <button
               type="button"
@@ -227,29 +216,18 @@ export default function CoursePlayerPage() {
               onClick={() => goToTopic(nextTopic)}
               title={nextTopic ? `Next: ${nextTopic.title}` : "Last topic"}
               aria-label={nextTopic ? `Next lesson: ${nextTopic.title}` : "No next lesson"}
-              style={{
-                background: "transparent",
-                border: "1px solid #4b5563",
-                color: nextTopic ? "#fff" : "#64748b",
-                padding: "6px 10px",
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 4,
-                fontSize: "0.82rem",
-                cursor: nextTopic ? "pointer" : "not-allowed",
-                opacity: nextTopic ? 1 : 0.6
-              }}
+              className="nu-player-bar-btn"
             >
-              Next <ChevronRight size={15} />
+              <span>Next</span> <ChevronRight size={15} />
             </button>
           </div>
           <button
             type="button"
             onClick={() => setSidebarOpen((v) => !v)}
-            style={{ background: "transparent", border: "1px solid #4b5563", color: "#fff", padding: "6px 10px", display: "inline-flex", alignItems: "center", gap: 6, fontSize: "0.82rem" }}
+            className="nu-player-bar-btn nu-player-bar-btn--curriculum"
           >
             {sidebarOpen ? <PanelRightClose size={15} /> : <PanelRightOpen size={15} />}
-            Curriculum
+            <span>Curriculum</span>
           </button>
         </div>
       </div>
@@ -319,21 +297,20 @@ export default function CoursePlayerPage() {
               />
 
               {/* Complete & Course Navigation Bar */}
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 12, justifyContent: "space-between", alignItems: "center", marginTop: 28, paddingTop: 20, borderTop: "1px solid var(--nu-border)" }}>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center" }}>
+              <div className="nu-player-bottom-nav">
+                <div className="nu-player-nav-row">
                   <button
                     type="button"
                     disabled={!prevTopic}
-                    className="nu-btn nu-btn-outline"
+                    className="nu-btn nu-btn-outline nu-player-nav-prev"
                     onClick={() => goToTopic(prevTopic)}
                     title={prevTopic ? prevTopic.title : "Start of course"}
-                    style={{ opacity: prevTopic ? 1 : 0.5, cursor: prevTopic ? "pointer" : "not-allowed" }}
                   >
                     <ChevronLeft size={16} /> Previous Lesson
                   </button>
                   <button
                     type="button"
-                    className={`nu-btn ${completedSet.has(activeTopic.slug) ? "nu-btn-outline" : "nu-btn-primary"}`}
+                    className={`nu-btn nu-player-nav-complete ${completedSet.has(activeTopic.slug) ? "nu-btn-outline" : "nu-btn-primary"}`}
                     onClick={handleMarkAndNext}
                   >
                     <CheckCircle2 size={16} />
@@ -344,10 +321,9 @@ export default function CoursePlayerPage() {
                   <button
                     type="button"
                     disabled={!nextTopic}
-                    className="nu-btn nu-btn-outline"
+                    className="nu-btn nu-btn-outline nu-player-nav-next"
                     onClick={() => goToTopic(nextTopic)}
                     title={nextTopic ? nextTopic.title : "End of course"}
-                    style={{ opacity: nextTopic ? 1 : 0.5, cursor: nextTopic ? "pointer" : "not-allowed" }}
                   >
                     Next Lesson <ChevronRight size={16} />
                   </button>
@@ -355,7 +331,7 @@ export default function CoursePlayerPage() {
                 {!enrolled && !course.isFree && (
                   <button
                     type="button"
-                    className="nu-btn nu-btn-dark"
+                    className="nu-btn nu-btn-dark nu-player-nav-unlock"
                     onClick={() => {
                       addToCart(course);
                       navigate("/checkout");

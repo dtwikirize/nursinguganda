@@ -68,7 +68,7 @@ export default function CheckoutPage() {
                 )}
 
                 {processing ? (
-                  <p>Verifying payment with Hostinger server...</p>
+                  <p>Verifying payment and unlocking your study units...</p>
                 ) : (
                   <PayPalCheckoutButton
                     totalUsd={cartTotalUsd}
