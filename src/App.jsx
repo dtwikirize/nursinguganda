@@ -65,6 +65,7 @@ const CartPage = lazyWithRetry(() => import("./pages/CartPage"));
 const CheckoutPage = lazyWithRetry(() => import("./pages/CheckoutPage"));
 const ClinicalToolsPage = lazyWithRetry(() => import("./pages/ClinicalToolsPage"));
 const CountryStudyHubPage = lazyWithRetry(() => import("./pages/CountryStudyHubPage"));
+const CountryTopicPage = lazyWithRetry(() => import("./pages/CountryTopicPage"));
 const CourseDetailPage = lazyWithRetry(() => import("./pages/CourseDetailPage"));
 const CoursePlayerPage = lazyWithRetry(() => import("./pages/CoursePlayerPage"));
 const CoursesCatalogPage = lazyWithRetry(() => import("./pages/CoursesCatalogPage"));
@@ -165,9 +166,13 @@ export default function App() {
           <Route path="/global-nursing" element={<GlobalNursingPage />} />
           <Route path="/global-nursing/:countrySlug" element={<CountryStudyHubPage />} />
           <Route path="/nursing-uk" element={<CountryStudyHubPage forcedSlug="united-kingdom-nmc" />} />
+          <Route path="/nursing-uk/topics/:topicSlug" element={<CountryTopicPage countryKey="uk" />} />
           <Route path="/nursing-usa" element={<CountryStudyHubPage forcedSlug="united-states-nclex" />} />
+          <Route path="/nursing-usa/topics/:topicSlug" element={<CountryTopicPage countryKey="usa" />} />
           <Route path="/nursing-canada" element={<CountryStudyHubPage forcedSlug="canada-nnas-nclex" />} />
+          <Route path="/nursing-canada/topics/:topicSlug" element={<CountryTopicPage countryKey="canada" />} />
           <Route path="/nursing-australia" element={<CountryStudyHubPage forcedSlug="australia-ahpra-nmba" />} />
+          <Route path="/nursing-australia/topics/:topicSlug" element={<CountryTopicPage countryKey="australia" />} />
 
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />

@@ -110,6 +110,30 @@ for (const rootFile of [".htaccess", "manifest.webmanifest", "robots.txt", "llms
 }
 copyDirSafe(".well-known");
 
+// 4b. Generate sitemap-countries.xml (780+ URLs per country: UK, USA, Canada, Australia)
+try {
+  const lessonsPath = path.join(ROOT, "assets", "data", "canonical-lessons-index.json");
+  if (fs.existsSync(lessonsPath)) {
+    const lessons = JSON.parse(fs.readFileSync(lessonsPath, "utf8")) || [];
+    const today = new Date().toISOString().slice(0, 10);
+    const hubs = ["/nursing-uk", "/nursing-usa", "/nursing-canada", "/nursing-australia"];
+    const urls = [];
+    for (const h of hubs) {
+      urls.push(`  <url>\n    <loc>https://nursinguganda.com${h}</loc>\n    <lastmod>${today}</lastmod>\n    <priority>0.95</priority>\n  </url>`);
+      for (const t of lessons) {
+        if (t?.slug) {
+          urls.push(`  <url>\n    <loc>https://nursinguganda.com${h}/topics/${t.slug}</loc>\n    <lastmod>${today}</lastmod>\n    <priority>0.75</priority>\n  </url>`);
+        }
+      }
+    }
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join("\n")}\n</urlset>\n`;
+    fs.writeFileSync(path.join(DIST, "sitemap-countries.xml"), xml, "utf8");
+    console.log(`Generated dist/sitemap-countries.xml with ${urls.length} URLs.`);
+  }
+} catch (err) {
+  console.warn("Could not generate sitemap-countries.xml:", err.message);
+}
+
 // 5. Static SEO landing folders for crawlers
 copyDirSafe("course");
 copyDirSafe("ebooks");

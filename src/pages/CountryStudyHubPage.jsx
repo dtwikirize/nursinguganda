@@ -1,21 +1,36 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import {
   ArrowLeft,
   ArrowRight,
+  Award,
   BookOpen,
   CheckCircle2,
+  ChevronDown,
+  ChevronUp,
   ClipboardCheck,
+  Clock,
   ExternalLink,
   FileCheck2,
+  Layers,
   MapPin,
-  ShieldCheck
+  Search,
+  ShieldCheck,
+  Sparkles,
+  Star
 } from "lucide-react";
 import AdSlot from "../components/AdSlot";
 import CountryFlag from "../components/CountryFlag";
 import NursingLoader from "../components/NursingLoader";
 import { setPageSeo } from "../components/RouteSeo";
 import { LessonSections } from "../components/TopicVisuals";
+import {
+  COUNTRY_CURRICULA,
+  COUNTRY_META,
+  DRUG_NAME_EQUIVALENTS,
+  LAB_CONVERSIONS,
+  SLUG_TO_COUNTRY_KEY
+} from "../data/countryCurricula";
 
 const THEME_CONFIG = {
   "coursera-black": {
@@ -73,21 +88,50 @@ function resolveThemeKey(slug) {
 
 export default function CountryStudyHubPage({ forcedSlug = "" }) {
   const { countrySlug: paramSlug } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const targetSlug = forcedSlug || paramSlug || "united-kingdom-nmc";
+  const countryKey = SLUG_TO_COUNTRY_KEY[targetSlug] || null;
+  const countryMeta = countryKey ? COUNTRY_META[countryKey] : null;
+  const curriculum = COUNTRY_CURRICULA[targetSlug] || null;
 
   const [globalData, setGlobalData] = useState(null);
   const [hubsData, setHubsData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [tab, setTab] = useState("notes");
+  const initialTab = searchParams.get("tab") || "notes";
+  const [tab, setTab] = useState(initialTab);
   const [answers, setAnswers] = useState({});
   const [submittedQuiz, setSubmittedQuiz] = useState(false);
+  const [openModule, setOpenModule] = useState(1);
+
+  // Topics directory state (779 localized pages per country)
+  const [allTopics, setAllTopics] = useState([]);
+  const [topicsLoading, setTopicsLoading] = useState(false);
+  const [topicQuery, setTopicQuery] = useState("");
+  const [topicCat, setTopicCat] = useState("all");
+  const [topicPage, setTopicPage] = useState(1);
+
+  // Interactive Lab & Drug converter state
+  const [glucoseVal, setGlucoseVal] = useState("5.4");
+  const [glucoseDir, setGlucoseDir] = useState("si-to-us");
+  const [drugSearch, setDrugSearch] = useState("");
+
+  useEffect(() => {
+    const qTab = searchParams.get("tab");
+    if (qTab && qTab !== tab) setTab(qTab);
+  }, [searchParams]);
+
+  const switchTab = (nextTab) => {
+    setTab(nextTab);
+    setSearchParams(nextTab === "notes" ? {} : { tab: nextTab }, { replace: true });
+  };
 
   useEffect(() => {
     let active = true;
     setLoading(true);
     setAnswers({});
     setSubmittedQuiz(false);
-    setTab("notes");
+    setTopicPage(1);
+    if (!searchParams.get("tab")) setTab("notes");
     Promise.all([
       fetch("/assets/data/global-nursing.json").then((r) => (r.ok ? r.json() : { countries: [] })).catch(() => ({ countries: [] })),
       fetch("/assets/data/country-study-hubs.json").then((r) => (r.ok ? r.json() : { hubs: {} })).catch(() => ({ hubs: {} }))
@@ -104,6 +148,41 @@ export default function CountryStudyHubPage({ forcedSlug = "" }) {
       active = false;
     };
   }, [targetSlug]);
+
+  useEffect(() => {
+    if (tab !== "topics" || allTopics.length > 0 || topicsLoading) return;
+    setTopicsLoading(true);
+    fetch("/assets/data/canonical-lessons-index.json")
+      .then((r) => (r.ok ? r.json() : []))
+      .then((arr) => setAllTopics(Array.isArray(arr) ? arr : []))
+      .catch(() => {})
+      .finally(() => setTopicsLoading(false));
+  }, [tab, allTopics.length, topicsLoading]);
+
+  const topicCategories = useMemo(() => {
+    const counts = new Map();
+    for (const t of allTopics) {
+      const cat = t.category || "General Nursing";
+      counts.set(cat, (counts.get(cat) || 0) + 1);
+    }
+    return Array.from(counts.entries()).map(([name, count]) => ({ name, count }));
+  }, [allTopics]);
+
+  const filteredTopics = useMemo(() => {
+    const q = topicQuery.trim().toLowerCase();
+    return allTopics.filter((t) => {
+      if (topicCat !== "all" && t.category !== topicCat) return false;
+      if (q) {
+        const hay = `${t.title} ${t.excerpt || ""} ${t.category || ""} ${t.courseTitle || ""}`.toLowerCase();
+        if (!hay.includes(q)) return false;
+      }
+      return true;
+    });
+  }, [allTopics, topicCat, topicQuery]);
+
+  const TOPIC_PAGE_SIZE = 24;
+  const totalTopicPages = Math.max(1, Math.ceil(filteredTopics.length / TOPIC_PAGE_SIZE));
+  const pagedTopics = filteredTopics.slice((topicPage - 1) * TOPIC_PAGE_SIZE, topicPage * TOPIC_PAGE_SIZE);
 
   const countries = globalData?.countries || [];
   const country = useMemo(
@@ -276,70 +355,133 @@ export default function CountryStudyHubPage({ forcedSlug = "" }) {
             </div>
           )}
 
-          {/* Hub Navigation Tabs */}
-          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: 12, marginBottom: 22 }}>
+          {/* Coursera-style Hub Navigation Tabs */}
+          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: 12, marginBottom: 22, paddingBottom: 14, borderBottom: "1px solid #e2e8f0" }}>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
               {hub?.sections?.length > 0 && (
                 <button
                   type="button"
-                  onClick={() => setTab("notes")}
+                  onClick={() => switchTab("notes")}
                   style={{
-                    padding: "9px 16px",
+                    padding: "9px 15px",
                     borderRadius: 8,
                     border: `1.5px solid ${tab === "notes" ? theme.accent : "#cbd5e1"}`,
                     background: tab === "notes" ? theme.accent : "#ffffff",
                     color: tab === "notes" ? "#ffffff" : "#0f172a",
                     fontWeight: 700,
-                    fontSize: "0.86rem",
+                    fontSize: "0.84rem",
                     cursor: "pointer",
                     display: "inline-flex",
                     alignItems: "center",
                     gap: 6
                   }}
                 >
-                  <BookOpen size={15} /> Study Notes &amp; Tables
+                  <BookOpen size={15} /> About &amp; Blueprint
                 </button>
               )}
-              {quizItems.length > 0 && (
+              {curriculum && (
                 <button
                   type="button"
-                  onClick={() => setTab("quiz")}
+                  onClick={() => switchTab("curriculum")}
                   style={{
-                    padding: "9px 16px",
+                    padding: "9px 15px",
                     borderRadius: 8,
-                    border: `1.5px solid ${tab === "quiz" ? theme.accent : "#cbd5e1"}`,
-                    background: tab === "quiz" ? theme.accent : "#ffffff",
-                    color: tab === "quiz" ? "#ffffff" : "#0f172a",
+                    border: `1.5px solid ${tab === "curriculum" ? theme.accent : "#cbd5e1"}`,
+                    background: tab === "curriculum" ? theme.accent : "#ffffff",
+                    color: tab === "curriculum" ? "#ffffff" : "#0f172a",
                     fontWeight: 700,
-                    fontSize: "0.86rem",
+                    fontSize: "0.84rem",
                     cursor: "pointer",
                     display: "inline-flex",
                     alignItems: "center",
                     gap: 6
                   }}
                 >
-                  <ClipboardCheck size={15} /> Practice Check ({quizItems.length} Qs)
+                  <Layers size={15} /> Courses &amp; Curriculum ({curriculum.modules.length})
+                </button>
+              )}
+              {countryMeta && (
+                <button
+                  type="button"
+                  onClick={() => switchTab("topics")}
+                  style={{
+                    padding: "9px 15px",
+                    borderRadius: 8,
+                    border: `1.5px solid ${tab === "topics" ? theme.accent : "#cbd5e1"}`,
+                    background: tab === "topics" ? theme.accent : "#ffffff",
+                    color: tab === "topics" ? "#ffffff" : "#0f172a",
+                    fontWeight: 700,
+                    fontSize: "0.84rem",
+                    cursor: "pointer",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 6
+                  }}
+                >
+                  <BookOpen size={15} /> 779 Study Topics
+                </button>
+              )}
+              {(quizItems.length > 0 || curriculum) && (
+                <button
+                  type="button"
+                  onClick={() => switchTab("practice")}
+                  style={{
+                    padding: "9px 15px",
+                    borderRadius: 8,
+                    border: `1.5px solid ${tab === "practice" || tab === "quiz" ? theme.accent : "#cbd5e1"}`,
+                    background: tab === "practice" || tab === "quiz" ? theme.accent : "#ffffff",
+                    color: tab === "practice" || tab === "quiz" ? "#ffffff" : "#0f172a",
+                    fontWeight: 700,
+                    fontSize: "0.84rem",
+                    cursor: "pointer",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 6
+                  }}
+                >
+                  <ClipboardCheck size={15} /> Practice &amp; Unit Tools
                 </button>
               )}
               <button
                 type="button"
-                onClick={() => setTab("roadmap")}
+                onClick={() => switchTab("roadmap")}
                 style={{
-                  padding: "9px 16px",
+                  padding: "9px 15px",
                   borderRadius: 8,
                   border: `1.5px solid ${tab === "roadmap" || !hub ? theme.accent : "#cbd5e1"}`,
                   background: tab === "roadmap" || !hub ? theme.accent : "#ffffff",
                   color: tab === "roadmap" || !hub ? "#ffffff" : "#0f172a",
                   fontWeight: 700,
-                  fontSize: "0.86rem",
+                  fontSize: "0.84rem",
                   cursor: "pointer",
                   display: "inline-flex",
                   alignItems: "center",
                   gap: 6
                 }}
               >
-                <MapPin size={15} /> Licensure Roadmap &amp; Docs
+                <MapPin size={15} /> Official Roadmap
               </button>
+              {curriculum?.premiumOffer && (
+                <button
+                  type="button"
+                  onClick={() => switchTab("offers")}
+                  style={{
+                    padding: "9px 15px",
+                    borderRadius: 8,
+                    border: `1.5px solid ${tab === "offers" ? theme.accent : "#cbd5e1"}`,
+                    background: tab === "offers" ? theme.accent : "#ffffff",
+                    color: tab === "offers" ? "#ffffff" : "#0f172a",
+                    fontWeight: 700,
+                    fontSize: "0.84rem",
+                    cursor: "pointer",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 6
+                  }}
+                >
+                  <Award size={15} /> Prep Bundle
+                </button>
+              )}
             </div>
 
             <a
@@ -363,16 +505,295 @@ export default function CountryStudyHubPage({ forcedSlug = "" }) {
             </a>
           </div>
 
-          {/* Tab 1: Structured Study Notes (NotebookLM-Ready) */}
+          {/* Tab 1: About & Blueprint */}
           {tab === "notes" && hub?.sections?.length > 0 && (
             <div style={{ marginBottom: 28 }}>
               <LessonSections sections={hub.sections} topicTitle={country.country} headingTag="h2" />
             </div>
           )}
 
-          {/* Tab 2: Interactive Exam Practice Quiz */}
-          {tab === "quiz" && quizItems.length > 0 && (
-            <div style={{ background: "#ffffff", border: "1px solid #cbd5e1", borderRadius: 12, padding: 24, marginBottom: 28 }}>
+          {/* Tab 2: Coursera-style Courses & Expandable Multi-Module Curriculum */}
+          {tab === "curriculum" && curriculum && (
+            <div style={{ marginBottom: 32 }}>
+              <div style={{ marginBottom: 22 }}>
+                <div style={{ fontSize: "0.78rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "#475569", marginBottom: 4 }}>
+                  {curriculum.partnerLine}
+                </div>
+                <h2 style={{ margin: "0 0 6px", fontSize: "1.45rem", color: "#0f172a" }}>
+                  {countryMeta?.shortName} Specialization Courses ({curriculum.courses.length} Courses · {curriculum.totalHours})
+                </h2>
+                <p style={{ margin: 0, color: "#475569", fontSize: "0.92rem" }}>
+                  Structured like a Coursera Professional Certificate: step through each course module and open localized clinical study notes.
+                </p>
+              </div>
+
+              {/* Coursera Specialization Course Cards */}
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(270px, 1fr))", gap: 16, marginBottom: 28 }}>
+                {curriculum.courses.map((course) => (
+                  <div
+                    key={course.id}
+                    style={{
+                      background: "#ffffff",
+                      border: "1px solid #e2e8f0",
+                      borderTop: `4px solid ${theme.heroBg}`,
+                      borderRadius: 10,
+                      padding: 18,
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
+                      gap: 12
+                    }}
+                  >
+                    <div>
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 8, marginBottom: 8 }}>
+                        <span style={{ fontSize: "0.74rem", fontWeight: 700, color: "#475569" }}>{course.provider}</span>
+                        <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: "0.76rem", fontWeight: 700, color: "#0f172a" }}>
+                          <Star size={13} fill="#0f172a" /> {course.rating}
+                        </span>
+                      </div>
+                      <h3 style={{ margin: "0 0 8px", fontSize: "1.02rem", color: "#0f172a", lineHeight: 1.35 }}>
+                        {course.title}
+                      </h3>
+                      <p style={{ margin: 0, fontSize: "0.85rem", color: "#475569", lineHeight: 1.55 }}>
+                        {course.summary}
+                      </p>
+                    </div>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 10, borderTop: "1px solid #f1f5f9", fontSize: "0.78rem", color: "#334155" }}>
+                      <span>{course.level} · {course.topicsCount} topics</span>
+                      <Link
+                        to={`${countryMeta.topicsBase}/${course.sampleTopicSlug}`}
+                        style={{ color: theme.heroBg === "#0A0D14" ? "#0f172a" : theme.heroBg, fontWeight: 700, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 4 }}
+                      >
+                        Start <ArrowRight size={13} />
+                      </Link>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Coursera-style Expandable Syllabus Modules */}
+              <h3 style={{ margin: "0 0 12px", fontSize: "1.18rem", color: "#0f172a" }}>
+                Full {countryMeta?.shortName} Syllabus — {curriculum.modules.length} Modules
+              </h3>
+              <div style={{ display: "grid", gap: 10 }}>
+                {curriculum.modules.map((mod) => {
+                  const isOpen = openModule === mod.number;
+                  return (
+                    <div key={mod.number} style={{ background: "#ffffff", border: "1px solid #cbd5e1", borderRadius: 10, overflow: "hidden" }}>
+                      <button
+                        type="button"
+                        onClick={() => setOpenModule(isOpen ? 0 : mod.number)}
+                        style={{
+                          width: "100%",
+                          padding: "16px 18px",
+                          background: isOpen ? "#f8fafc" : "#ffffff",
+                          border: 0,
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "center",
+                          gap: 12,
+                          textAlign: "left",
+                          cursor: "pointer"
+                        }}
+                      >
+                        <div>
+                          <div style={{ fontSize: "0.72rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "#64748b" }}>
+                            Module {mod.number} · {mod.duration}
+                          </div>
+                          <div style={{ fontSize: "1rem", fontWeight: 700, color: "#0f172a", marginTop: 2 }}>
+                            {mod.title}
+                          </div>
+                        </div>
+                        {isOpen ? <ChevronUp size={18} color="#334155" /> : <ChevronDown size={18} color="#334155" />}
+                      </button>
+                      {isOpen && (
+                        <div style={{ padding: "0 18px 18px", borderTop: "1px solid #e2e8f0" }}>
+                          <ul style={{ margin: "14px 0", paddingLeft: 18, color: "#334155", fontSize: "0.88rem", lineHeight: 1.65 }}>
+                            {mod.outcomes.map((o, idx) => (
+                              <li key={idx}>{o}</li>
+                            ))}
+                          </ul>
+                          <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                            {mod.topicSlugs.map((slug) => (
+                              <Link
+                                key={slug}
+                                to={`${countryMeta.topicsBase}/${slug}`}
+                                style={{
+                                  display: "inline-flex",
+                                  alignItems: "center",
+                                  gap: 6,
+                                  padding: "7px 12px",
+                                  borderRadius: 6,
+                                  background: "#f1f5f9",
+                                  border: "1px solid #cbd5e1",
+                                  color: "#0f172a",
+                                  fontSize: "0.8rem",
+                                  fontWeight: 600,
+                                  textDecoration: "none"
+                                }}
+                              >
+                                <BookOpen size={13} />
+                                {slug.replace(/-/g, " ").replace(/\b\w/g, (m) => m.toUpperCase())}
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* Tab 3: 779 Localized Country Study Topics (NursingNotes Directory) */}
+          {tab === "topics" && countryMeta && (
+            <div style={{ marginBottom: 32 }}>
+              <div style={{ background: "#ffffff", border: "1px solid #cbd5e1", borderRadius: 12, padding: 20, marginBottom: 18 }}>
+                <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: 12, marginBottom: 14 }}>
+                  <div>
+                    <h2 style={{ margin: "0 0 4px", fontSize: "1.3rem", color: "#0f172a" }}>
+                      {countryMeta.shortName} Nursing Study Notes Library ({filteredTopics.length} Topics)
+                    </h2>
+                    <p style={{ margin: 0, fontSize: "0.86rem", color: "#475569" }}>
+                      Every topic opens in a NursingNotes-style 2-column study layout localized for <strong>{countryMeta.examBadge}</strong> ({countryMeta.unitLabel}).
+                    </p>
+                  </div>
+                  <div style={{ position: "relative", minWidth: 260, flex: "1 1 280px", maxWidth: 360 }}>
+                    <Search size={15} color="#64748b" style={{ position: "absolute", left: 11, top: "50%", transform: "translateY(-50%)" }} />
+                    <input
+                      type="search"
+                      value={topicQuery}
+                      onChange={(e) => {
+                        setTopicQuery(e.target.value);
+                        setTopicPage(1);
+                      }}
+                      placeholder={`Search ${countryMeta.shortName} nursing topics...`}
+                      style={{ width: "100%", padding: "9px 12px 9px 34px", borderRadius: 8, border: "1px solid #cbd5e1", fontSize: "0.86rem" }}
+                    />
+                  </div>
+                </div>
+
+                {/* Category Filter Chips */}
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setTopicCat("all");
+                      setTopicPage(1);
+                    }}
+                    style={{
+                      padding: "5px 11px",
+                      borderRadius: 999,
+                      border: `1px solid ${topicCat === "all" ? theme.accent : "#cbd5e1"}`,
+                      background: topicCat === "all" ? theme.accent : "#f8fafc",
+                      color: topicCat === "all" ? "#ffffff" : "#0f172a",
+                      fontSize: "0.78rem",
+                      fontWeight: 600,
+                      cursor: "pointer"
+                    }}
+                  >
+                    All ({allTopics.length})
+                  </button>
+                  {topicCategories.map((c) => (
+                    <button
+                      key={c.name}
+                      type="button"
+                      onClick={() => {
+                        setTopicCat(c.name);
+                        setTopicPage(1);
+                      }}
+                      style={{
+                        padding: "5px 11px",
+                        borderRadius: 999,
+                        border: `1px solid ${topicCat === c.name ? theme.accent : "#cbd5e1"}`,
+                        background: topicCat === c.name ? theme.accent : "#f8fafc",
+                        color: topicCat === c.name ? "#ffffff" : "#0f172a",
+                        fontSize: "0.78rem",
+                        fontWeight: 600,
+                        cursor: "pointer"
+                      }}
+                    >
+                      {c.name} ({c.count})
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {topicsLoading ? (
+                <NursingLoader label={`Loading ${countryMeta.shortName} study topics...`} />
+              ) : (
+                <>
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(290px, 1fr))", gap: 14 }}>
+                    {pagedTopics.map((t) => (
+                      <Link
+                        key={t.slug}
+                        to={`${countryMeta.topicsBase}/${t.slug}`}
+                        style={{
+                          background: "#ffffff",
+                          border: "1px solid #e2e8f0",
+                          borderRadius: 10,
+                          padding: 16,
+                          textDecoration: "none",
+                          display: "flex",
+                          flexDirection: "column",
+                          justifyContent: "space-between",
+                          gap: 8
+                        }}
+                      >
+                        <div>
+                          <div style={{ fontSize: "0.72rem", fontWeight: 700, color: "#64748b", marginBottom: 4 }}>
+                            {t.category} · {t.readMinutes || 12} min read
+                          </div>
+                          <h3 style={{ margin: "0 0 6px", fontSize: "0.96rem", color: "#0f172a", lineHeight: 1.35 }}>
+                            {t.title}
+                          </h3>
+                          <p style={{ margin: 0, fontSize: "0.81rem", color: "#475569", lineHeight: 1.45, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
+                            {t.excerpt}
+                          </p>
+                        </div>
+                        <div style={{ fontSize: "0.78rem", fontWeight: 700, color: theme.heroBg === "#0A0D14" ? "#0f172a" : theme.heroBg, display: "inline-flex", alignItems: "center", gap: 4 }}>
+                          Open {countryMeta.shortName} Notes <ArrowRight size={13} />
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+
+                  {totalTopicPages > 1 && (
+                    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 10, marginTop: 22 }}>
+                      <button
+                        type="button"
+                        disabled={topicPage <= 1}
+                        onClick={() => setTopicPage((p) => Math.max(1, p - 1))}
+                        className="nu-btn nu-btn-outline"
+                        style={{ padding: "7px 14px", fontSize: "0.82rem" }}
+                      >
+                        Previous
+                      </button>
+                      <span style={{ fontSize: "0.84rem", fontWeight: 600, color: "#334155" }}>
+                        Page {topicPage} of {totalTopicPages}
+                      </span>
+                      <button
+                        type="button"
+                        disabled={topicPage >= totalTopicPages}
+                        onClick={() => setTopicPage((p) => Math.min(totalTopicPages, p + 1))}
+                        className="nu-btn nu-btn-outline"
+                        style={{ padding: "7px 14px", fontSize: "0.82rem" }}
+                      >
+                        Next
+                      </button>
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
+          )}
+
+          {/* Tab 4: Interactive Practice Check + Live Unit & Drug Converter */}
+          {(tab === "practice" || tab === "quiz") && (
+            <div style={{ display: "grid", gap: 22, marginBottom: 28 }}>
+              {quizItems.length > 0 && (
+                <div style={{ background: "#ffffff", border: "1px solid #cbd5e1", borderRadius: 12, padding: 24 }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 10, marginBottom: 18 }}>
                 <div>
                   <h2 style={{ margin: 0, fontSize: "1.15rem", color: "#0f172a" }}>{country.country} Exam Practice Check</h2>
@@ -457,11 +878,146 @@ export default function CountryStudyHubPage({ forcedSlug = "" }) {
                   </button>
                 )}
               </div>
+                </div>
+              )}
+
+              {/* Live SI <-> US Lab & Drug Name Converter (Stay-on-Site Tool) */}
+              <div style={{ background: "#ffffff", border: "1px solid #cbd5e1", borderRadius: 12, padding: 24 }}>
+                <h2 style={{ margin: "0 0 6px", fontSize: "1.15rem", color: "#0f172a" }}>
+                  Interactive Blood Glucose &amp; International Drug Name Converter
+                </h2>
+                <p style={{ margin: "0 0 16px", fontSize: "0.86rem", color: "#475569" }}>
+                  Switch seamlessly between UK/Canada/Australia <strong>SI Units (mmol/L)</strong> and USA <strong>Conventional Units (mg/dL)</strong>, plus BNF vs USAN generic names.
+                </p>
+
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 14, marginBottom: 20, padding: 16, borderRadius: 10, background: "#f8fafc", border: "1px solid #e2e8f0" }}>
+                  <div>
+                    <label style={{ display: "block", fontSize: "0.78rem", fontWeight: 700, color: "#334155", marginBottom: 6 }}>
+                      Conversion Direction
+                    </label>
+                    <select
+                      value={glucoseDir}
+                      onChange={(e) => setGlucoseDir(e.target.value)}
+                      style={{ width: "100%", padding: "9px 10px", borderRadius: 8, border: "1px solid #cbd5e1", background: "#ffffff", fontSize: "0.86rem" }}
+                    >
+                      <option value="si-to-us">SI (mmol/L) → US (mg/dL)</option>
+                      <option value="us-to-si">US (mg/dL) → SI (mmol/L)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label style={{ display: "block", fontSize: "0.78rem", fontWeight: 700, color: "#334155", marginBottom: 6 }}>
+                      Enter Glucose ({glucoseDir === "si-to-us" ? "mmol/L" : "mg/dL"})
+                    </label>
+                    <input
+                      type="number"
+                      step="0.1"
+                      value={glucoseVal}
+                      onChange={(e) => setGlucoseVal(e.target.value)}
+                      style={{ width: "100%", padding: "9px 10px", borderRadius: 8, border: "1px solid #cbd5e1", fontSize: "0.88rem" }}
+                    />
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                    <span style={{ fontSize: "0.75rem", fontWeight: 700, color: "#64748b", textTransform: "uppercase" }}>
+                      Converted Result
+                    </span>
+                    <strong style={{ fontSize: "1.25rem", color: "#0f172a" }}>
+                      {(() => {
+                        const n = Number(glucoseVal);
+                        if (!Number.isFinite(n) || n < 0) return "—";
+                        return glucoseDir === "si-to-us"
+                          ? `${(n * 18.016).toFixed(0)} mg/dL`
+                          : `${(n / 18.016).toFixed(1)} mmol/L`;
+                      })()}
+                    </strong>
+                  </div>
+                </div>
+
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 10, marginBottom: 10 }}>
+                  <h3 style={{ margin: 0, fontSize: "1rem", color: "#0f172a" }}>High-Yield Drug Name Equivalents (UK/AU vs USA/CA)</h3>
+                  <input
+                    type="search"
+                    value={drugSearch}
+                    onChange={(e) => setDrugSearch(e.target.value)}
+                    placeholder="Filter drugs (e.g. adrenaline, paracetamol)..."
+                    style={{ padding: "7px 11px", borderRadius: 8, border: "1px solid #cbd5e1", fontSize: "0.82rem", minWidth: 230 }}
+                  />
+                </div>
+                <div style={{ overflowX: "auto" }}>
+                  <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.84rem" }}>
+                    <thead>
+                      <tr style={{ background: "#f1f5f9", textAlign: "left" }}>
+                        <th style={{ padding: "9px 10px", borderBottom: "1px solid #cbd5e1" }}>UK / Australia / Uganda</th>
+                        <th style={{ padding: "9px 10px", borderBottom: "1px solid #cbd5e1" }}>USA / Canada</th>
+                        <th style={{ padding: "9px 10px", borderBottom: "1px solid #cbd5e1" }}>Class &amp; Watchpoint</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {DRUG_NAME_EQUIVALENTS.filter((d) => {
+                        const q = drugSearch.trim().toLowerCase();
+                        return !q || `${d.genericUgUkAu} ${d.usCaName} ${d.className}`.toLowerCase().includes(q);
+                      }).map((d) => (
+                        <tr key={d.genericUgUkAu}>
+                          <td style={{ padding: "9px 10px", borderBottom: "1px solid #e2e8f0", fontWeight: 700 }}>{d.genericUgUkAu}</td>
+                          <td style={{ padding: "9px 10px", borderBottom: "1px solid #e2e8f0", fontWeight: 700 }}>{d.usCaName}</td>
+                          <td style={{ padding: "9px 10px", borderBottom: "1px solid #e2e8f0", color: "#475569" }}>
+                            <strong>{d.className}:</strong> {d.note}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
           )}
 
-          {/* Tab 3 (or Default if no custom study notes yet): Registration Roadmap & Docs */}
-          {(tab === "roadmap" || !hub?.sections?.length) && (
+          {/* Tab 5: Coursera-style Premium Exam Prep Offer */}
+          {tab === "offers" && curriculum?.premiumOffer && (
+            <div style={{ background: "#ffffff", border: "1px solid #cbd5e1", borderTop: `4px solid ${theme.heroBg}`, borderRadius: 12, padding: 28, marginBottom: 28 }}>
+              <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-start", gap: 20 }}>
+                <div style={{ flex: "1 1 360px" }}>
+                  <span style={{ display: "inline-block", padding: "4px 10px", borderRadius: 999, background: theme.heroBg, color: "#ffffff", fontSize: "0.74rem", fontWeight: 800, marginBottom: 10 }}>
+                    {curriculum.premiumOffer.badge}
+                  </span>
+                  <h2 style={{ margin: "0 0 10px", fontSize: "1.45rem", color: "#0f172a" }}>
+                    {curriculum.premiumOffer.title}
+                  </h2>
+                  <p style={{ margin: "0 0 16px", color: "#475569", fontSize: "0.92rem", lineHeight: 1.6 }}>
+                    Designed for internationally educated nurses preparing for {country.examRequired}. Includes full curriculum modules, localized unit/drug guides, and mock exam practice.
+                  </p>
+                  <ul style={{ margin: 0, paddingLeft: 18, display: "grid", gap: 8, color: "#0f172a", fontSize: "0.9rem" }}>
+                    {curriculum.premiumOffer.features.map((f) => (
+                      <li key={f}>{f}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div style={{ flex: "0 1 280px", background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 10, padding: 20 }}>
+                  <div style={{ fontSize: "0.78rem", color: "#64748b", fontWeight: 700 }}>Full Prep Access</div>
+                  <div style={{ display: "flex", alignItems: "baseline", gap: 10, margin: "6px 0 14px" }}>
+                    <strong style={{ fontSize: "2rem", color: "#0f172a" }}>{curriculum.premiumOffer.price}</strong>
+                    <span style={{ textDecoration: "line-through", color: "#94a3b8", fontSize: "0.95rem" }}>{curriculum.premiumOffer.compareAt}</span>
+                  </div>
+                  <Link
+                    to={curriculum.premiumOffer.ctaTo}
+                    className="nu-btn nu-btn-primary"
+                    style={{ width: "100%", justifyContent: "center", background: theme.heroBg, borderColor: theme.heroBg, marginBottom: 10 }}
+                  >
+                    {curriculum.premiumOffer.ctaLabel} <ArrowRight size={15} />
+                  </Link>
+                  <Link
+                    to={`${countryMeta.route}?tab=topics`}
+                    className="nu-btn nu-btn-outline"
+                    style={{ width: "100%", justifyContent: "center" }}
+                  >
+                    Try 779 Free Topics First
+                  </Link>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Tab 6: Registration Roadmap & Docs */}
+          {tab === "roadmap" && (
             <div>
               <div style={{ background: "#ffffff", border: "1px solid #cbd5e1", borderTop: `4px solid ${theme.accent}`, borderRadius: 12, padding: 24, marginBottom: 20 }}>
                 <h2 style={{ marginTop: 0, color: "#0f172a", display: "flex", alignItems: "center", gap: 8 }}>

@@ -1,9 +1,13 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useMemo, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Mail } from "lucide-react";
 import nuLogoDark from "../../assets/images/brand/nursing-uganda-logo-dark.svg";
+import { getActiveCountryContext } from "../utils/countryTheme";
+import CountryFlag from "./CountryFlag";
 
 export default function Footer() {
+  const location = useLocation();
+  const countryCtx = useMemo(() => getActiveCountryContext(location.pathname), [location.pathname]);
   const [subEmail, setSubEmail] = useState("");
   const [subMsg, setSubMsg] = useState("");
   const [subLoading, setSubLoading] = useState(false);
@@ -33,12 +37,22 @@ export default function Footer() {
   };
 
   return (
-    <footer className="nu-footer nu-no-print">
+    <footer
+      className="nu-footer nu-no-print"
+      style={
+        countryCtx
+          ? {
+              background: countryCtx.palette.footerBg,
+              borderTop: `3px solid ${countryCtx.palette.footerBorder}`
+            }
+          : undefined
+      }
+    >
       <div className="nu-container">
         <div className="nu-footer-grid nu-footer-mega">
           {/* Brand Column + Study Digest */}
           <div className="nu-footer-brand">
-            <Link to="/" style={{ display: "inline-block", textDecoration: "none", marginBottom: 14 }} aria-label="Nursing Uganda Home">
+            <Link to={countryCtx ? countryCtx.meta.route : "/"} style={{ display: "inline-flex", alignItems: "center", gap: 10, textDecoration: "none", marginBottom: 14 }} aria-label="Nursing Uganda Home">
               <img
                 src={nuLogoDark}
                 alt="Nursing Uganda"
@@ -46,12 +60,32 @@ export default function Footer() {
                 height="32"
                 style={{ height: 32, width: "auto", display: "block" }}
               />
+              {countryCtx && (
+                <span
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 6,
+                    padding: "3px 9px",
+                    borderRadius: 999,
+                    background: "rgba(255,255,255,0.12)",
+                    color: "#ffffff",
+                    fontSize: "0.74rem",
+                    fontWeight: 700
+                  }}
+                >
+                  <CountryFlag code={countryCtx.meta.flag} width={15} />
+                  {countryCtx.meta.shortName}
+                </span>
+              )}
             </Link>
             <p style={{ color: "#cbd5e1", fontSize: "0.86rem", lineHeight: 1.55, margin: "0 0 14px", maxWidth: 320 }}>
-              Independent nursing and midwifery study platform aligned with Uganda Clinical Guidelines 2023, WHO protocols, UNMEB, and international licensure pathways.
+              {countryCtx
+                ? `${countryCtx.meta.academy} — ${countryCtx.meta.examBadge}. Localized clinical study notes, ${countryCtx.meta.unitLabel}, and full curriculum prep.`
+                : "Independent nursing and midwifery study platform aligned with Uganda Clinical Guidelines 2023, WHO protocols, UNMEB, and international licensure pathways."}
             </p>
             <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "#e2e8f0", marginBottom: 6 }}>
-              Weekly UNMEB &amp; Clinical Revision Digest
+              {countryCtx ? `Weekly ${countryCtx.meta.shortName} Exam & Clinical Digest` : "Weekly UNMEB & Clinical Revision Digest"}
             </div>
             <form onSubmit={handleSubscribe} style={{ display: "flex", gap: 6, maxWidth: 320 }}>
               <input
@@ -60,48 +94,87 @@ export default function Footer() {
                 value={subEmail}
                 onChange={(e) => setSubEmail(e.target.value)}
                 placeholder="Enter student email..."
-                aria-label="Weekly UNMEB digest email"
-                style={{ flex: 1, minWidth: 0, height: 38, padding: "0 10px", borderRadius: 6, border: "1px solid #475569", background: "#2D2F31", color: "#fff", fontSize: "0.83rem" }}
+                aria-label="Weekly study digest email"
+                style={{ flex: 1, minWidth: 0, height: 38, padding: "0 10px", borderRadius: 6, border: "1px solid rgba(255,255,255,0.25)", background: "rgba(0,0,0,0.35)", color: "#fff", fontSize: "0.83rem" }}
               />
               <button
                 type="submit"
                 disabled={subLoading}
                 className="nu-btn nu-btn-primary"
-                style={{ height: 38, padding: "0 14px", fontSize: "0.82rem", borderRadius: 6, flexShrink: 0 }}
+                style={{
+                  height: 38,
+                  padding: "0 14px",
+                  fontSize: "0.82rem",
+                  borderRadius: 6,
+                  flexShrink: 0,
+                  background: countryCtx ? countryCtx.palette.btnBg : undefined,
+                  borderColor: countryCtx ? "rgba(255,255,255,0.28)" : undefined
+                }}
               >
                 {subLoading ? "..." : "Subscribe"}
               </button>
             </form>
-            {subMsg && <small style={{ display: "block", marginTop: 6, color: "#C084FC" }}>{subMsg}</small>}
+            {subMsg && <small style={{ display: "block", marginTop: 6, color: countryCtx ? countryCtx.palette.footerAccent : "#C084FC" }}>{subMsg}</small>}
           </div>
 
-          {/* Column 1: Programmes & Units */}
-          <div>
-            <h4>Programmes &amp; Units</h4>
-            <ul>
-              <li><Link to="/courses">All 83 Study Courses</Link></li>
-              <li><Link to="/topics">779 Nurse Study Topics</Link></li>
-              <li><Link to="/courses?programme=certificate-in-nursing">Certificate in Nursing</Link></li>
-              <li><Link to="/courses?programme=diploma-nursing-direct">Diploma in Nursing (Direct)</Link></li>
-              <li><Link to="/courses?programme=diploma-nursing-extension">Diploma in Nursing (Extension)</Link></li>
-              <li><Link to="/courses?programme=certificate-in-midwifery">Certificate in Midwifery</Link></li>
-              <li><Link to="/courses?programme=diploma-in-midwifery-extension">Diploma in Midwifery (Extension)</Link></li>
-              <li><Link to="/courses?programme=bachelor-of-nursing-science-top-up">BScN Top-Up Units</Link></li>
-            </ul>
-          </div>
+          {/* Column 1: Programmes & Units (Country-aware) */}
+          {countryCtx ? (
+            <div>
+              <h4>{countryCtx.meta.shortName} Curriculum &amp; Courses</h4>
+              <ul>
+                <li><Link to={countryCtx.meta.route}>{countryCtx.meta.academy} Overview</Link></li>
+                <li><Link to={`${countryCtx.meta.route}?tab=curriculum`}>Full {countryCtx.meta.shortName} Syllabus</Link></li>
+                <li><Link to={`${countryCtx.meta.route}?tab=topics`}>779 {countryCtx.meta.shortName} Study Topics</Link></li>
+                {(countryCtx.curriculum?.courses || []).map((c) => (
+                  <li key={c.id}>
+                    <Link to={`${countryCtx.meta.topicsBase}/${c.sampleTopicSlug}`}>{c.title}</Link>
+                  </li>
+                ))}
+                <li><Link to={`${countryCtx.meta.route}?tab=offers`}>Premium {countryCtx.meta.shortName} Prep Pack</Link></li>
+              </ul>
+            </div>
+          ) : (
+            <div>
+              <h4>Programmes &amp; Units</h4>
+              <ul>
+                <li><Link to="/courses">All 83 Study Courses</Link></li>
+                <li><Link to="/topics">779 Nurse Study Topics</Link></li>
+                <li><Link to="/courses?programme=certificate-in-nursing">Certificate in Nursing</Link></li>
+                <li><Link to="/courses?programme=diploma-nursing-direct">Diploma in Nursing (Direct)</Link></li>
+                <li><Link to="/courses?programme=diploma-nursing-extension">Diploma in Nursing (Extension)</Link></li>
+                <li><Link to="/courses?programme=certificate-in-midwifery">Certificate in Midwifery</Link></li>
+                <li><Link to="/courses?programme=diploma-in-midwifery-extension">Diploma in Midwifery (Extension)</Link></li>
+                <li><Link to="/courses?programme=bachelor-of-nursing-science-top-up">BScN Top-Up Units</Link></li>
+              </ul>
+            </div>
+          )}
 
-          {/* Column 2: Exams & Reference */}
-          <div>
-            <h4>Exams &amp; Reference</h4>
-            <ul>
-              <li><Link to="/mock-exams">109 UNMEB &amp; UHPAB Papers</Link></li>
-              <li><Link to="/quizzes">Free Mixed Topic Quizzes (270 Qs)</Link></li>
-              <li><Link to="/ebooks">8 Free Referenced eBooks (.pdf)</Link></li>
-              <li><Link to="/dictionary">A–Z Medical Dictionary (1,079)</Link></li>
-              <li><Link to="/dictionary?tab=abbreviations">183 Ward Abbreviations</Link></li>
-              <li><Link to="/instruments">Medical Instrument Atlas (146)</Link></li>
-            </ul>
-          </div>
+          {/* Column 2: Exams & Reference (Country-aware) */}
+          {countryCtx ? (
+            <div>
+              <h4>{countryCtx.meta.shortName} Topics &amp; Tools</h4>
+              <ul>
+                <li><Link to={`${countryCtx.meta.route}?tab=practice`}>{countryCtx.meta.shortName} Interactive Quiz &amp; Lab Converter</Link></li>
+                <li><Link to={`${countryCtx.meta.topicsBase}/dosage-calculations-and-iv-infusion-rates`}>Dosage &amp; IV Calculations</Link></li>
+                <li><Link to={`${countryCtx.meta.topicsBase}/fluid-and-electrolyte-balance`}>Fluids &amp; Electrolytes</Link></li>
+                <li><Link to={`${countryCtx.meta.topicsBase}/diabetes-mellitus-and-ketoacidosis`}>Diabetes &amp; DKA Management</Link></li>
+                <li><Link to={`${countryCtx.meta.topicsBase}/hypertension-and-cardiovascular-care`}>Cardiovascular &amp; Hypertension</Link></li>
+                <li><Link to="/clinical-tools?tab=values">SI ↔ US Lab Reference</Link></li>
+              </ul>
+            </div>
+          ) : (
+            <div>
+              <h4>Exams &amp; Reference</h4>
+              <ul>
+                <li><Link to="/mock-exams">109 UNMEB &amp; UHPAB Papers</Link></li>
+                <li><Link to="/quizzes">Free Mixed Topic Quizzes (270 Qs)</Link></li>
+                <li><Link to="/ebooks">8 Free Referenced eBooks (.pdf)</Link></li>
+                <li><Link to="/dictionary">A–Z Medical Dictionary (1,079)</Link></li>
+                <li><Link to="/dictionary?tab=abbreviations">183 Ward Abbreviations</Link></li>
+                <li><Link to="/instruments">Medical Instrument Atlas (146)</Link></li>
+              </ul>
+            </div>
+          )}
 
           {/* Column 3: Clinical Tools & Global */}
           <div>

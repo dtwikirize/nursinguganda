@@ -19,6 +19,7 @@ import {
   X
 } from "lucide-react";
 import { useApp } from "../context/AppContext";
+import { getActiveCountryContext } from "../utils/countryTheme";
 import CountryFlag from "./CountryFlag";
 import nuLogoUganda from "../../assets/images/brand/nursing-uganda-logo-light.svg";
 import nuLogoUg from "../../assets/images/brand/nursing-ug-logo-light.svg";
@@ -121,6 +122,8 @@ export default function Navbar() {
   const [dictTerms, setDictTerms] = useState([]);
   const [instrumentList, setInstrumentList] = useState([]);
   const [logoSrc, setLogoSrc] = useState(nuLogoUganda);
+
+  const countryCtx = useMemo(() => getActiveCountryContext(location.pathname), [location.pathname]);
 
   useEffect(() => {
     if (!megaOpen || hubEbooks.length > 0) return;
@@ -348,11 +351,38 @@ export default function Navbar() {
         </div>
       )}
 
-      <header className="nu-header">
+      <header
+        className="nu-header"
+        style={countryCtx ? { borderBottom: `3px solid ${countryCtx.palette.headerBorder}` } : undefined}
+      >
         <div className="nu-nav-inner">
-          <Link to="/" className="nu-logo" aria-label="Nursing Uganda Home">
-            <img src={logoSrc} alt="Nursing Uganda" width="154" height="34" className="nu-logo-img" />
-          </Link>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
+            <Link to={countryCtx ? countryCtx.meta.route : "/"} className="nu-logo" aria-label={countryCtx ? `${countryCtx.meta.academy} Home` : "Nursing Uganda Home"}>
+              <img src={logoSrc} alt="Nursing Uganda" width="154" height="34" className="nu-logo-img" />
+            </Link>
+            {countryCtx && (
+              <Link
+                to={countryCtx.meta.route}
+                className="nu-nav-desktop-only"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 6,
+                  padding: "4px 10px",
+                  borderRadius: 999,
+                  background: countryCtx.palette.badgeBg,
+                  color: countryCtx.palette.badgeText,
+                  fontSize: "0.74rem",
+                  fontWeight: 700,
+                  textDecoration: "none",
+                  whiteSpace: "nowrap"
+                }}
+              >
+                <CountryFlag code={countryCtx.meta.flag} width={15} />
+                <span>{countryCtx.meta.shortName}</span>
+              </Link>
+            )}
+          </div>
 
           {/* Explore Mega Menu */}
           <div
@@ -370,7 +400,49 @@ export default function Navbar() {
             </button>
 
             {megaOpen && (
-              <div className="nu-megamenu" role="menu" aria-label="Explore Nursing Uganda Curriculum">
+              <div className="nu-megamenu" role="menu" aria-label="Explore Nursing Curriculum">
+                {countryCtx && (
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      gap: 12,
+                      padding: "10px 18px",
+                      background: countryCtx.meta.heroBg,
+                      color: "#ffffff",
+                      borderBottom: "1px solid rgba(255,255,255,0.14)"
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: "0.84rem", fontWeight: 700 }}>
+                      <CountryFlag code={countryCtx.meta.flag} width={18} />
+                      <span>{countryCtx.meta.academy} — {countryCtx.meta.examBadge}</span>
+                    </div>
+                    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                      <Link
+                        to={`${countryCtx.meta.route}?tab=curriculum`}
+                        onClick={() => setMegaOpen(false)}
+                        style={{ color: "#ffffff", fontSize: "0.78rem", fontWeight: 600, textDecoration: "underline" }}
+                      >
+                        Full Curriculum
+                      </Link>
+                      <Link
+                        to={`${countryCtx.meta.route}?tab=topics`}
+                        onClick={() => setMegaOpen(false)}
+                        style={{ color: "#ffffff", fontSize: "0.78rem", fontWeight: 600, textDecoration: "underline" }}
+                      >
+                        779 Topics
+                      </Link>
+                      <Link
+                        to={`${countryCtx.meta.route}?tab=offers`}
+                        onClick={() => setMegaOpen(false)}
+                        style={{ color: "#ffffff", fontSize: "0.78rem", fontWeight: 600, textDecoration: "underline" }}
+                      >
+                        Prep Bundle
+                      </Link>
+                    </div>
+                  </div>
+                )}
                 <div className="nu-mega-grid nu-mega-grid--simple">
                   {/* Column 1: Programmes & Free Hubs */}
                   <div className="nu-mega-col">

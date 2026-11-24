@@ -1503,6 +1503,12 @@ img {
     padding: 7px 38px 7px 12px;
     justify-content: flex-start;
   }
+  .nu-notes-two-col {
+    grid-template-columns: 1fr !important;
+  }
+  .nu-notes-two-col aside {
+    position: static !important;
+  }
   .nu-nav-inner {
     height: auto;
     padding: 10px 16px;
