@@ -10,8 +10,15 @@ const {
   buildPaymentReceiptEmail,
   buildWeeklyDigestEmail,
   buildQuizResultEmail,
-  buildCertificateEmail
+  buildCertificateEmail,
+  buildCourseStallEmail,
+  buildSiteInactivityEmail,
+  buildMonthlyNewsletterEmail
 } = require("./email-templates");
+const {
+  getMonthlyNewsletterForDate,
+  getTwelveMonthSchedule
+} = require("./monthly-newsletters");
 
 let cron = null;
 try {
@@ -22,6 +29,8 @@ try {
 
 const DAILY_TOTAL_EMAIL_LIMIT = 90;  // Safe ceiling under Hostinger 100/day limit (10-email buffer for OTP/security)
 const DAILY_DIGEST_LIMIT = 50;       // Max 50 digest emails per day
+const DAILY_RETENTION_LIMIT = 15;    // Max 15 automated 10/20/30-day lifecycle nudges per day
+const DAILY_MONTHLY_LIMIT = 25;      // Max 25 monthly newsletters per day (spread safely under Hostinger cap)
 
 function getAdminEmail() {
   return String(process.env.ADMIN_EMAIL || "twikirizederick@gmail.com").trim().toLowerCase();
@@ -220,6 +229,19 @@ const SCHEMA_SQL = [
     certificate_code VARCHAR(40) NOT NULL UNIQUE,
     issued_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     UNIQUE KEY uq_user_course_cert (user_id, course_slug)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4`,
+  `CREATE TABLE IF NOT EXISTS user_lifecycle_nudges (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    nudge_kind VARCHAR(24) NOT NULL,
+    milestone_days INT NOT NULL,
+    target_key VARCHAR(160) NOT NULL,
+    recipient VARCHAR(190) NOT NULL,
+    subject VARCHAR(255) NOT NULL,
+    activity_anchor DATETIME NULL,
+    sent_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    INDEX idx_uln_user (user_id, nudge_kind, milestone_days, sent_at),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4`
 ];
 
@@ -230,7 +252,12 @@ const USER_MIGRATION_COLUMNS = [
   ["failed_login_attempts", "INT NOT NULL DEFAULT 0"],
   ["locked_until", "DATETIME NULL"],
   ["last_login_at", "DATETIME NULL"],
-  ["last_login_ip", "VARCHAR(64) NULL"]
+  ["last_login_ip", "VARCHAR(64) NULL"],
+  ["last_active_at", "DATETIME NULL"]
+];
+
+const SUBSCRIBER_MIGRATION_COLUMNS = [
+  ["last_monthly_sent_ym", "VARCHAR(16) NULL"]
 ];
 
 let _pool = null;
@@ -259,6 +286,8 @@ function getCatalogPrices() {
       courseMap.set(slug, {
         slug,
         title: String(c.title || slug),
+        thumbnail: String(c.thumbnail || ""),
+        lessonCount: Number(c.lessonCount || 10),
         priceUsd: isFree ? 0 : priceUsd,
         isFree,
         courseSlugs: [slug]
@@ -361,6 +390,16 @@ async function getPool() {
     for (const [colName, colDef] of USER_MIGRATION_COLUMNS) {
       if (!existingCols.has(colName)) {
         await _pool.query(`ALTER TABLE users ADD COLUMN ${colName} ${colDef}`);
+      }
+    }
+    const [subCols] = await _pool.query(
+      "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = ? AND TABLE_NAME = 'email_subscribers'",
+      [cfg.database]
+    );
+    const existingSubCols = new Set(subCols.map((c) => c.COLUMN_NAME));
+    for (const [colName, colDef] of SUBSCRIBER_MIGRATION_COLUMNS) {
+      if (!existingSubCols.has(colName)) {
+        await _pool.query(`ALTER TABLE email_subscribers ADD COLUMN ${colName} ${colDef}`);
       }
     }
     _schemaReady = true;
@@ -571,30 +610,42 @@ async function sendSecurityEmail({ to, subject, html, text }) {
 }
 
 async function getTodayEmailCounts(pool) {
-  if (!pool) return { totalToday: 0, digestToday: 0 };
+  if (!pool) return { totalToday: 0, digestToday: 0, retentionToday: 0, monthlyToday: 0 };
   const [rows] = await pool.query(
     "SELECT category, COUNT(*) AS cnt FROM email_send_log WHERE sent_date = CURDATE() AND status = 'sent' GROUP BY category"
   );
   let totalToday = 0;
   let digestToday = 0;
+  let retentionToday = 0;
+  let monthlyToday = 0;
   for (const r of rows) {
     const cnt = Number(r.cnt || 0);
     totalToday += cnt;
     if (r.category === "digest") digestToday += cnt;
+    if (r.category === "retention") retentionToday += cnt;
+    if (r.category === "monthly") monthlyToday += cnt;
   }
-  return { totalToday, digestToday };
+  return { totalToday, digestToday, retentionToday, monthlyToday };
 }
 
 async function sendBrandedEmail(pool, { to, subject, html, text, category = "transactional" }) {
   if (!to) return false;
   if (pool) {
-    const { totalToday, digestToday } = await getTodayEmailCounts(pool);
+    const { totalToday, digestToday, retentionToday, monthlyToday } = await getTodayEmailCounts(pool);
     if (totalToday >= DAILY_TOTAL_EMAIL_LIMIT) {
       console.warn(`[Mail Quota] Daily total cap (${DAILY_TOTAL_EMAIL_LIMIT}) reached; skipping ${category} to ${to}`);
       return false;
     }
     if (category === "digest" && digestToday >= DAILY_DIGEST_LIMIT) {
       console.warn(`[Mail Quota] Daily digest cap (${DAILY_DIGEST_LIMIT}) reached.`);
+      return false;
+    }
+    if (category === "retention" && retentionToday >= DAILY_RETENTION_LIMIT) {
+      console.warn(`[Mail Quota] Daily retention cap (${DAILY_RETENTION_LIMIT}) reached.`);
+      return false;
+    }
+    if (category === "monthly" && monthlyToday >= DAILY_MONTHLY_LIMIT) {
+      console.warn(`[Mail Quota] Daily monthly newsletter cap (${DAILY_MONTHLY_LIMIT}) reached.`);
       return false;
     }
   }
@@ -718,6 +769,252 @@ async function runDailyDigestBatch(pool, campaignOverride = null) {
     skipped,
     remainingDigestQuota: Math.max(0, DAILY_DIGEST_LIMIT - after.digestToday),
     digestToday: after.digestToday,
+    totalToday: after.totalToday
+  };
+}
+
+async function touchUserActivity(pool, userId) {
+  if (!pool || !userId) return;
+  try {
+    await pool.query(
+      "UPDATE users SET last_active_at = NOW() WHERE id = ? AND (last_active_at IS NULL OR last_active_at < DATE_SUB(NOW(), INTERVAL 15 MINUTE))",
+      [userId]
+    );
+  } catch {
+    // non-fatal
+  }
+}
+
+function resolveRetentionMilestone(daysIdle) {
+  const d = Number(daysIdle || 0);
+  if (d >= 30) return 30;
+  if (d >= 20) return 20;
+  if (d >= 10) return 10;
+  return 0;
+}
+
+async function runDailyRetentionBatch(pool) {
+  if (!pool) return { sent: 0, courseStallSent: 0, siteInactiveSent: 0, skipped: 0, reason: "no_db" };
+  const { totalToday, retentionToday } = await getTodayEmailCounts(pool);
+  const remaining = Math.max(0, Math.min(DAILY_RETENTION_LIMIT - retentionToday, DAILY_TOTAL_EMAIL_LIMIT - totalToday));
+  if (remaining <= 0) {
+    return { sent: 0, courseStallSent: 0, siteInactiveSent: 0, skipped: 0, remainingRetentionQuota: 0, reason: "daily_limit_reached" };
+  }
+
+  const catalog = getCatalogPrices();
+  const emailedUsers = new Set();
+  let sent = 0;
+  let courseStallSent = 0;
+  let siteInactiveSent = 0;
+  let skipped = 0;
+
+  // 1) Enrolled learners who have NOT completed a course after 10 / 20 / 30+ days
+  const [stalledCourses] = await pool.query(
+    `SELECT e.user_id, e.course_slug, e.created_at AS enrolled_at,
+            u.name, u.email,
+            MAX(cp.updated_at) AS last_lesson_at,
+            SUM(CASE WHEN cp.completed = 1 THEN 1 ELSE 0 END) AS completed_count
+     FROM enrollments e
+     INNER JOIN users u ON u.id = e.user_id
+     LEFT JOIN email_subscribers es ON es.email = u.email
+     LEFT JOIN course_progress cp ON cp.user_id = e.user_id AND cp.course_slug = e.course_slug
+     LEFT JOIN course_certificates cc ON cc.user_id = e.user_id AND cc.course_slug = e.course_slug
+     WHERE u.email_verified = 1
+       AND COALESCE(es.subscribed, 1) = 1
+       AND cc.id IS NULL
+       AND e.course_slug NOT IN ('unmeb-mock-pass', 'all-access-pass')
+       AND e.course_slug NOT LIKE 'bundle-%'
+     GROUP BY e.user_id, e.course_slug, e.created_at, u.name, u.email
+     HAVING COALESCE(MAX(cp.updated_at), e.created_at) <= DATE_SUB(NOW(), INTERVAL 10 DAY)
+     ORDER BY COALESCE(MAX(cp.updated_at), e.created_at) ASC
+     LIMIT 120`
+  );
+
+  for (const row of stalledCourses) {
+    if (sent >= remaining) break;
+    if (emailedUsers.has(row.user_id)) continue;
+
+    const course = catalog?.courseMap?.get(row.course_slug);
+    if (!course) continue;
+    const totalLessons = Math.max(1, Number(course.lessonCount || 10));
+    const completedCount = Number(row.completed_count || 0);
+    if (completedCount >= totalLessons) continue;
+
+    const anchorDate = new Date(row.last_lesson_at || row.enrolled_at || Date.now());
+    const daysIdle = Math.max(10, Math.floor((Date.now() - anchorDate.getTime()) / 86400000));
+    const milestoneDays = resolveRetentionMilestone(daysIdle);
+    if (!milestoneDays) continue;
+
+    const [already] = await pool.query(
+      `SELECT id FROM user_lifecycle_nudges
+       WHERE user_id = ? AND nudge_kind = 'course_stall' AND milestone_days = ? AND target_key = ? AND sent_at >= ?
+       LIMIT 1`,
+      [row.user_id, milestoneDays, row.course_slug, anchorDate]
+    );
+    if (already.length > 0) continue;
+
+    const pct = Math.min(99, Math.round((completedCount / totalLessons) * 100));
+    const mail = buildCourseStallEmail({
+      name: row.name,
+      email: row.email,
+      courseTitle: course.title,
+      courseSlug: row.course_slug,
+      courseThumb: course.thumbnail || "",
+      pct,
+      completedCount,
+      totalLessons,
+      daysIdle,
+      milestoneDays,
+      unsubscribeUrl: buildSignedUnsubscribeUrl(row.email)
+    });
+
+    const ok = await sendBrandedEmail(pool, {
+      to: row.email,
+      subject: mail.subject,
+      html: mail.html,
+      text: mail.text,
+      category: "retention"
+    });
+    if (ok) {
+      sent += 1;
+      courseStallSent += 1;
+      emailedUsers.add(row.user_id);
+      await pool.query(
+        "INSERT INTO user_lifecycle_nudges (user_id, nudge_kind, milestone_days, target_key, recipient, subject, activity_anchor) VALUES (?, 'course_stall', ?, ?, ?, ?, ?)",
+        [row.user_id, milestoneDays, row.course_slug, row.email, sanitizeText(mail.subject, 250), anchorDate]
+      );
+    } else {
+      skipped += 1;
+    }
+  }
+
+  // 2) Registered learners inactive from the site for 10 / 20 / 30+ days
+  if (sent < remaining) {
+    const [idleUsers] = await pool.query(
+      `SELECT u.id, u.name, u.email, COALESCE(u.last_active_at, u.last_login_at, u.created_at) AS last_seen
+       FROM users u
+       LEFT JOIN email_subscribers es ON es.email = u.email
+       WHERE u.email_verified = 1
+         AND COALESCE(es.subscribed, 1) = 1
+         AND COALESCE(u.last_active_at, u.last_login_at, u.created_at) <= DATE_SUB(NOW(), INTERVAL 10 DAY)
+       ORDER BY COALESCE(u.last_active_at, u.last_login_at, u.created_at) ASC
+       LIMIT 120`
+    );
+
+    for (const u of idleUsers) {
+      if (sent >= remaining) break;
+      if (emailedUsers.has(u.id)) continue;
+
+      const anchorDate = new Date(u.last_seen || Date.now());
+      const daysIdle = Math.max(10, Math.floor((Date.now() - anchorDate.getTime()) / 86400000));
+      const milestoneDays = resolveRetentionMilestone(daysIdle);
+      if (!milestoneDays) continue;
+
+      const [already] = await pool.query(
+        `SELECT id FROM user_lifecycle_nudges
+         WHERE user_id = ? AND nudge_kind = 'site_inactive' AND milestone_days = ? AND sent_at >= ?
+         LIMIT 1`,
+        [u.id, milestoneDays, anchorDate]
+      );
+      if (already.length > 0) continue;
+
+      const mail = buildSiteInactivityEmail({
+        name: u.name,
+        email: u.email,
+        daysIdle,
+        milestoneDays,
+        unsubscribeUrl: buildSignedUnsubscribeUrl(u.email)
+      });
+
+      const ok = await sendBrandedEmail(pool, {
+        to: u.email,
+        subject: mail.subject,
+        html: mail.html,
+        text: mail.text,
+        category: "retention"
+      });
+      if (ok) {
+        sent += 1;
+        siteInactiveSent += 1;
+        emailedUsers.add(u.id);
+        await pool.query(
+          "INSERT INTO user_lifecycle_nudges (user_id, nudge_kind, milestone_days, target_key, recipient, subject, activity_anchor) VALUES (?, 'site_inactive', ?, 'site', ?, ?, ?)",
+          [u.id, milestoneDays, u.email, sanitizeText(mail.subject, 250), anchorDate]
+        );
+      } else {
+        skipped += 1;
+      }
+    }
+  }
+
+  const after = await getTodayEmailCounts(pool);
+  return {
+    sent,
+    courseStallSent,
+    siteInactiveSent,
+    skipped,
+    remainingRetentionQuota: Math.max(0, DAILY_RETENTION_LIMIT - after.retentionToday),
+    retentionToday: after.retentionToday,
+    totalToday: after.totalToday
+  };
+}
+
+async function runMonthlyNewsletterBatch(pool, customMonth = null) {
+  if (!pool) return { sent: 0, skipped: 0, reason: "no_db" };
+  const nl = getMonthlyNewsletterForDate(new Date(), customMonth);
+  const { totalToday, monthlyToday } = await getTodayEmailCounts(pool);
+  const remaining = Math.max(0, Math.min(DAILY_MONTHLY_LIMIT - monthlyToday, DAILY_TOTAL_EMAIL_LIMIT - totalToday));
+  if (remaining <= 0) {
+    return {
+      sent: 0,
+      skipped: 0,
+      yearMonth: nl.yearMonth,
+      seasonLabel: nl.seasonLabel,
+      remainingMonthlyQuota: 0,
+      reason: "daily_limit_reached"
+    };
+  }
+
+  const [subs] = await pool.query(
+    `SELECT id, email, name FROM email_subscribers
+     WHERE subscribed = 1
+       AND (last_monthly_sent_ym IS NULL OR last_monthly_sent_ym != ?)
+     ORDER BY COALESCE(last_monthly_sent_ym, '0000-00') ASC, id ASC
+     LIMIT ?`,
+    [nl.yearMonth, remaining]
+  );
+
+  let sent = 0;
+  let skipped = 0;
+  for (const sub of subs) {
+    const mail = buildMonthlyNewsletterEmail({
+      name: sub.name || "Colleague",
+      newsletter: nl,
+      unsubscribeUrl: buildSignedUnsubscribeUrl(sub.email)
+    });
+    const ok = await sendBrandedEmail(pool, {
+      to: sub.email,
+      subject: mail.subject,
+      html: mail.html,
+      text: mail.text,
+      category: "monthly"
+    });
+    if (ok) {
+      sent += 1;
+      await pool.query("UPDATE email_subscribers SET last_monthly_sent_ym = ? WHERE id = ?", [nl.yearMonth, sub.id]);
+    } else {
+      skipped += 1;
+    }
+  }
+
+  const after = await getTodayEmailCounts(pool);
+  return {
+    sent,
+    skipped,
+    yearMonth: nl.yearMonth,
+    seasonLabel: nl.seasonLabel,
+    remainingMonthlyQuota: Math.max(0, DAILY_MONTHLY_LIMIT - after.monthlyToday),
+    monthlyToday: after.monthlyToday,
     totalToday: after.totalToday
   };
 }
@@ -940,6 +1237,7 @@ function createApiRouter() {
         clearSessionCookie(req, res);
         return res.json({ user: null, enrollments: [], progress: {} });
       }
+      await touchUserActivity(pool, user.id);
       return res.json(await fetchUserSessionState(pool, user));
     }
 
@@ -976,7 +1274,7 @@ function createApiRouter() {
       const hash = hashPassword(String(password));
       const ip = getClientIp(req);
       const [result] = await pool.query(
-        "INSERT INTO users (name, email, password_hash, programme, email_verified, auth_provider, last_login_at, last_login_ip) VALUES (?, ?, ?, ?, 0, 'password', NOW(), ?)",
+        "INSERT INTO users (name, email, password_hash, programme, email_verified, auth_provider, last_login_at, last_active_at, last_login_ip) VALUES (?, ?, ?, ?, 0, 'password', NOW(), NOW(), ?)",
         [cleanName, cleanEmail, hash, cleanProgramme, ip]
       );
       const uid = result.insertId;
@@ -1071,7 +1369,7 @@ function createApiRouter() {
       const ip = getClientIp(req);
       const isNewIp = Boolean(user.last_login_ip && user.last_login_ip !== ip);
       await pool.query(
-        "UPDATE users SET failed_login_attempts = 0, locked_until = NULL, last_login_at = NOW(), last_login_ip = ? WHERE id = ?",
+        "UPDATE users SET failed_login_attempts = 0, locked_until = NULL, last_login_at = NOW(), last_active_at = NOW(), last_login_ip = ? WHERE id = ?",
         [ip, user.id]
       );
 
@@ -1141,7 +1439,7 @@ function createApiRouter() {
       if (!user) {
         const randomHash = hashPassword(crypto.randomBytes(32).toString("hex"));
         const [result] = await pool.query(
-          "INSERT INTO users (name, email, password_hash, programme, email_verified, auth_provider, google_sub, last_login_at, last_login_ip) VALUES (?, ?, ?, 'certificate-in-nursing', 1, 'google', ?, NOW(), ?)",
+          "INSERT INTO users (name, email, password_hash, programme, email_verified, auth_provider, google_sub, last_login_at, last_active_at, last_login_ip) VALUES (?, ?, ?, 'certificate-in-nursing', 1, 'google', ?, NOW(), NOW(), ?)",
           [googleName, cleanEmail, randomHash, googleSub, ip]
         );
         user = {
@@ -1165,7 +1463,7 @@ function createApiRouter() {
       } else {
         const isNewIp = Boolean(user.last_login_ip && user.last_login_ip !== ip);
         await pool.query(
-          "UPDATE users SET email_verified = 1, google_sub = COALESCE(google_sub, ?), failed_login_attempts = 0, locked_until = NULL, last_login_at = NOW(), last_login_ip = ? WHERE id = ?",
+          "UPDATE users SET email_verified = 1, google_sub = COALESCE(google_sub, ?), failed_login_attempts = 0, locked_until = NULL, last_login_at = NOW(), last_active_at = NOW(), last_login_ip = ? WHERE id = ?",
           [googleSub, ip, user.id]
         );
         user.email_verified = 1;
@@ -1576,6 +1874,7 @@ function createApiRouter() {
       "INSERT INTO course_progress (user_id, course_slug, lesson_slug, completed) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE completed = VALUES(completed)",
       [uid, courseSlug, lessonSlug, completed ? 1 : 0]
     );
+    await touchUserActivity(pool, uid);
     const [prRows] = await pool.query("SELECT course_slug, lesson_slug FROM course_progress WHERE user_id = ? AND completed = 1", [uid]);
     const progress = {};
     for (const r of prRows) {
@@ -1630,6 +1929,7 @@ function createApiRouter() {
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [uid, allowedType, cleanSlug, cleanTitle, safeScore, total, percent, passed, attemptNumber, JSON.stringify(breakdown || {})]
     );
+    await touchUserActivity(pool, uid);
 
     let emailSent = false;
     if (sendEmail && user.email) {
@@ -2093,22 +2393,103 @@ function createApiRouter() {
 
     if (section === "emails") {
       const [subscribers] = await pool.query(
-        "SELECT id, email, name, source, topic_preference AS topicPreference, subscribed, last_digest_sent_at AS lastDigestSentAt, created_at AS createdAt FROM email_subscribers ORDER BY created_at DESC LIMIT 300"
+        "SELECT id, email, name, source, topic_preference AS topicPreference, subscribed, last_digest_sent_at AS lastDigestSentAt, last_monthly_sent_ym AS lastMonthlySentYm, created_at AS createdAt FROM email_subscribers ORDER BY created_at DESC LIMIT 300"
       );
       const [campaigns] = await pool.query(
         "SELECT id, subject, topic_title AS topicTitle, summary, highlights_json AS highlightsJson, cta_url AS ctaUrl, active, created_at AS createdAt FROM digest_campaigns ORDER BY id DESC LIMIT 20"
       );
+      const [retentionNudges] = await pool.query(
+        "SELECT id, user_id AS userId, nudge_kind AS nudgeKind, milestone_days AS milestoneDays, target_key AS targetKey, recipient, subject, sent_at AS sentAt FROM user_lifecycle_nudges ORDER BY sent_at DESC LIMIT 50"
+      );
       const emailCounts = await getTodayEmailCounts(pool);
+      const currentMonth = getMonthlyNewsletterForDate(new Date());
       return res.json({
         subscribers,
         campaigns,
+        retentionNudges,
+        monthlySchedule: getTwelveMonthSchedule(new Date()),
+        currentMonthYm: currentMonth.yearMonth,
         emailQuota: {
           digestToday: emailCounts.digestToday,
           digestLimit: DAILY_DIGEST_LIMIT,
+          retentionToday: emailCounts.retentionToday,
+          retentionLimit: DAILY_RETENTION_LIMIT,
+          monthlyToday: emailCounts.monthlyToday,
+          monthlyLimit: DAILY_MONTHLY_LIMIT,
           totalToday: emailCounts.totalToday,
           totalLimit: DAILY_TOTAL_EMAIL_LIMIT
         }
       });
+    }
+
+    if (section === "preview-email") {
+      const tpl = String(req.query.template || "monthly").trim();
+      const monthParam = Number(req.query.month || 0) || null;
+      let preview = null;
+      if (tpl === "monthly") {
+        preview = buildMonthlyNewsletterEmail({ name: "Grace Namukasa", customMonth: monthParam });
+      } else if (tpl.startsWith("course-stall-")) {
+        const milestone = Number(tpl.split("-").pop()) || 10;
+        preview = buildCourseStallEmail({
+          name: "Grace Namukasa",
+          email: "grace@nursinguganda.com",
+          courseTitle: "Anatomy & Physiology l and First Aid",
+          courseSlug: "certificate-in-nursing-anatomy-and-physiology-l-and-first-aid",
+          courseThumb: "/assets/images/udemy/cover-anatomy-cardio.webp",
+          pct: 46,
+          completedCount: 6,
+          totalLessons: 13,
+          daysIdle: milestone,
+          milestoneDays: milestone
+        });
+      } else if (tpl.startsWith("site-inactive-")) {
+        const milestone = Number(tpl.split("-").pop()) || 10;
+        preview = buildSiteInactivityEmail({
+          name: "Grace Namukasa",
+          email: "grace@nursinguganda.com",
+          daysIdle: milestone,
+          milestoneDays: milestone
+        });
+      } else if (tpl === "welcome") {
+        preview = buildWelcomeVerificationEmail({ name: "Grace Namukasa", code: "482910", authProvider: "google" });
+      } else if (tpl === "certificate") {
+        preview = buildCertificateEmail({
+          name: "Grace Namukasa",
+          courseTitle: "Pharmacology I & Drug Administration",
+          programmeLabel: "Certificate in Nursing",
+          score: 26,
+          totalQuestions: 30,
+          pct: 87,
+          certificateCode: "NU-2026-84192"
+        });
+      } else if (tpl === "quiz") {
+        preview = buildQuizResultEmail({
+          name: "Grace Namukasa",
+          quizTitle: "Maternal & Newborn Care UNMEB Drill",
+          score: 17,
+          totalQuestions: 20,
+          pct: 85,
+          passed: true,
+          attemptNumber: 1,
+          reviewItems: [
+            { question: "Primary drug for eclampsia seizure prophylaxis?", userAnswer: "Magnesium sulphate", correctAnswer: "Magnesium sulphate", isCorrect: true },
+            { question: "First-line oxytocic dose in AMTSL?", userAnswer: "Oxytocin 10 IU IM", correctAnswer: "Oxytocin 10 IU IM", isCorrect: true }
+          ]
+        });
+      } else {
+        preview = buildWeeklyDigestEmail({
+          name: "Grace Namukasa",
+          email: "grace@nursinguganda.com",
+          topicTitle: "This Week's Nursing & Midwifery Study Agenda",
+          summary: "Stay exam-ready with our curated weekly clinical topic, Uganda MoH guideline updates, and free referenced study eBooks.",
+          highlights: [
+            "Anatomy & Physiology High-Yield Revision Notes (UNMEB Paper I)",
+            "Uganda MoH Clinical Guidelines 2023 — Essential Drug Dosages",
+            "Free Referenced Study eBooks — Download Offline PDFs"
+          ]
+        });
+      }
+      return res.json({ subject: preview.subject, html: preview.html });
     }
 
     if (section === "campaign" && req.method === "POST") {
@@ -2142,6 +2523,31 @@ function createApiRouter() {
       return res.json(result);
     }
 
+    if (section === "send-retention" && req.method === "POST") {
+      const result = await runDailyRetentionBatch(pool);
+      await recordSecurityEvent(pool, req, {
+        userId: adminUser.id,
+        email: adminUser.email,
+        eventType: "ADMIN_RETENTION_BATCH",
+        severity: "info",
+        details: `Retention batch: sent=${result.sent} (course=${result.courseStallSent}, site=${result.siteInactiveSent}), skipped=${result.skipped}`
+      });
+      return res.json(result);
+    }
+
+    if (section === "send-monthly" && req.method === "POST") {
+      const customMonth = Number(req.body?.monthNumber || 0) || null;
+      const result = await runMonthlyNewsletterBatch(pool, customMonth);
+      await recordSecurityEvent(pool, req, {
+        userId: adminUser.id,
+        email: adminUser.email,
+        eventType: "ADMIN_MONTHLY_NEWSLETTER",
+        severity: "info",
+        details: `Monthly dispatch (${result.yearMonth}): sent=${result.sent}, skipped=${result.skipped}`
+      });
+      return res.json(result);
+    }
+
     if (section === "security") {
       const [events] = await pool.query(
         "SELECT id, user_id AS userId, email, event_type AS eventType, severity, ip_address AS ipAddress, details, alert_sent AS alertSent, created_at AS createdAt FROM security_events ORDER BY created_at DESC LIMIT 150"
@@ -2152,18 +2558,20 @@ function createApiRouter() {
     return res.status(400).json({ error: "Unknown admin section." });
   });
 
-  // Daily Automated Weekly-Digest Batch Scheduler (50/day safe under Hostinger 100/day cap)
+  // Daily Automated Lifecycle + Monthly Newsletter + Weekly Digest Scheduler (05:00 UTC daily under Hostinger 100/day cap)
   if (cron && !global.__nuDigestCronStarted) {
     global.__nuDigestCronStarted = true;
     cron.schedule("0 5 * * *", async () => {
       try {
         const pool = await getPool();
         if (pool) {
-          const res = await runDailyDigestBatch(pool);
-          console.info("[Digest Cron]", res);
+          const retRes = await runDailyRetentionBatch(pool);
+          const monRes = await runMonthlyNewsletterBatch(pool);
+          const digRes = await runDailyDigestBatch(pool);
+          console.info("[Daily Email Cron]", { retRes, monRes, digRes });
         }
       } catch (err) {
-        console.error("[Digest Cron Error]", err?.message || err);
+        console.error("[Daily Email Cron Error]", err?.message || err);
       }
     });
   }

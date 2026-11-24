@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 import {
   Activity,
   BarChart3,
+  Calendar,
+  Clock,
   CreditCard,
+  Eye,
   Lock,
   Mail,
   RefreshCw,
@@ -48,6 +51,25 @@ export default function AdminPage() {
     "Anatomy & Physiology High-Yield Review\nEmergency Obstetric & Neonatal Care Checklists\nFree Referenced Study eBooks (Offline PDF)"
   );
   const [ctaUrl, setCtaUrl] = useState("https://nursinguganda.com/courses");
+  const [previewTpl, setPreviewTpl] = useState("monthly");
+  const [previewMonth, setPreviewMonth] = useState(() => new Date().getUTCMonth() + 1);
+  const [previewData, setPreviewData] = useState({ subject: "", html: "" });
+  const [previewLoading, setPreviewLoading] = useState(false);
+
+  const loadEmailPreview = async (tpl = previewTpl, month = previewMonth) => {
+    setPreviewLoading(true);
+    try {
+      const qs = new URLSearchParams({ section: "preview-email", template: tpl, month: String(month) });
+      const res = await fetch(`/api/admin?${qs.toString()}`, { credentials: "include" });
+      if (res.ok) {
+        const data = await res.json();
+        setPreviewData({ subject: data.subject || "", html: data.html || "" });
+      }
+    } catch {
+      // non-fatal
+    }
+    setPreviewLoading(false);
+  };
 
   const loadSection = async (sec) => {
     setLoading(true);
@@ -61,7 +83,10 @@ export default function AdminPage() {
         return;
       }
       if (sec === "overview") setOverview(data);
-      if (sec === "emails") setEmailsData(data);
+      if (sec === "emails") {
+        setEmailsData(data);
+        loadEmailPreview(previewTpl, previewMonth);
+      }
       if (sec === "payments") setPaymentsData(data);
       if (sec === "users") setUsersData(data);
       if (sec === "security") setSecurityData(data);
@@ -122,6 +147,52 @@ export default function AdminPage() {
       if (!res.ok) throw new Error(data.error || "Batch send failed.");
       setNotice(
         `Digest batch finished: ${data.sent} sent, ${data.skipped} skipped. Remaining digest quota today: ${data.remainingDigestQuota}/50.`
+      );
+      await loadSection("emails");
+    } catch (err) {
+      setError(err.message);
+    }
+    setLoading(false);
+  };
+
+  const handleSendRetention = async () => {
+    setNotice("");
+    setError("");
+    setLoading(true);
+    try {
+      const res = await fetch("/api/admin?section=send-retention", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: "{}"
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Retention check failed.");
+      setNotice(
+        `10/20/30+ Day Lifecycle Check finished: ${data.sent} sent (${data.courseStallSent || 0} course stalls, ${data.siteInactiveSent || 0} inactive visits), ${data.skipped} skipped.`
+      );
+      await loadSection("emails");
+    } catch (err) {
+      setError(err.message);
+    }
+    setLoading(false);
+  };
+
+  const handleSendMonthly = async () => {
+    setNotice("");
+    setError("");
+    setLoading(true);
+    try {
+      const res = await fetch("/api/admin?section=send-monthly", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: "{}"
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Monthly newsletter batch failed.");
+      setNotice(
+        `Monthly Dispatch (${data.yearMonth}): ${data.sent} sent, ${data.skipped} skipped. Remaining today: ${data.remainingMonthlyQuota}/25.`
       );
       await loadSection("emails");
     } catch (err) {
@@ -317,96 +388,232 @@ export default function AdminPage() {
         )}
 
         {tab === "emails" && (
-          <div className="nu-admin-split-grid">
-            <div className="nu-admin-card">
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 10, marginBottom: 12 }}>
+          <div style={{ display: "grid", gap: 18 }}>
+            <div className="nu-admin-card" style={{ borderLeft: "4px solid #7C3AED" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
                 <div>
-                  <h3 style={{ margin: 0, fontSize: "1rem" }}>Weekly Digest Scheduler (50/Day Cap)</h3>
+                  <h3 style={{ margin: 0, fontSize: "1.02rem" }}>Automated Email Engine (Hostinger 100/Day Safe Cap: 90/Day)</h3>
                   <small style={{ color: "var(--nu-ink-muted)" }}>
-                    Today: {emailsData?.emailQuota?.digestToday || 0}/50 digest &middot; {emailsData?.emailQuota?.totalToday || 0}/100 total
+                    Today: {emailsData?.emailQuota?.totalToday || 0}/{emailsData?.emailQuota?.totalLimit || 90} total &middot; Digest{" "}
+                    {emailsData?.emailQuota?.digestToday || 0}/{emailsData?.emailQuota?.digestLimit || 50} &middot; 10/20/30d Retention{" "}
+                    {emailsData?.emailQuota?.retentionToday || 0}/{emailsData?.emailQuota?.retentionLimit || 15} &middot; Monthly{" "}
+                    {emailsData?.emailQuota?.monthlyToday || 0}/{emailsData?.emailQuota?.monthlyLimit || 25}
                   </small>
                 </div>
-                <button type="button" onClick={handleSendBatch} disabled={loading} className="nu-btn nu-btn-primary" style={{ height: 34, fontSize: "0.82rem", padding: "0 12px" }}>
-                  <Send size={14} /> Send Batch (50)
-                </button>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                  <button type="button" onClick={handleSendRetention} disabled={loading} className="nu-btn nu-btn-dark" style={{ height: 34, fontSize: "0.8rem", padding: "0 12px" }}>
+                    <Clock size={14} /> Run 10/20/30d Nudges
+                  </button>
+                  <button type="button" onClick={handleSendMonthly} disabled={loading} className="nu-btn nu-btn-secondary" style={{ height: 34, fontSize: "0.8rem", padding: "0 12px" }}>
+                    <Calendar size={14} /> Send Monthly Dispatch
+                  </button>
+                  <button type="button" onClick={handleSendBatch} disabled={loading} className="nu-btn nu-btn-primary" style={{ height: 34, fontSize: "0.8rem", padding: "0 12px" }}>
+                    <Send size={14} /> Send Weekly Digest
+                  </button>
+                </div>
               </div>
-
-              <form onSubmit={handleSaveCampaign} style={{ display: "grid", gap: 8 }}>
-                <input
-                  type="text"
-                  value={subject}
-                  onChange={(e) => setSubject(e.target.value)}
-                  placeholder="Email subject"
-                  required
-                  style={{ height: 36, padding: "0 10px", border: "1px solid var(--nu-border)", borderRadius: 4, fontSize: "0.86rem" }}
-                />
-                <input
-                  type="text"
-                  value={topicTitle}
-                  onChange={(e) => setTopicTitle(e.target.value)}
-                  placeholder="Topic heading"
-                  required
-                  style={{ height: 36, padding: "0 10px", border: "1px solid var(--nu-border)", borderRadius: 4, fontSize: "0.86rem" }}
-                />
-                <textarea
-                  rows={2}
-                  value={summary}
-                  onChange={(e) => setSummary(e.target.value)}
-                  placeholder="Weekly topic summary"
-                  required
-                  style={{ padding: 8, border: "1px solid var(--nu-border)", borderRadius: 4, fontSize: "0.85rem", fontFamily: "inherit" }}
-                />
-                <textarea
-                  rows={2}
-                  value={highlightsText}
-                  onChange={(e) => setHighlightsText(e.target.value)}
-                  placeholder="One agenda highlight per line"
-                  style={{ padding: 8, border: "1px solid var(--nu-border)", borderRadius: 4, fontSize: "0.85rem", fontFamily: "inherit" }}
-                />
-                <input
-                  type="url"
-                  value={ctaUrl}
-                  onChange={(e) => setCtaUrl(e.target.value)}
-                  placeholder="CTA URL"
-                  required
-                  style={{ height: 36, padding: "0 10px", border: "1px solid var(--nu-border)", borderRadius: 4, fontSize: "0.86rem" }}
-                />
-                <button type="submit" disabled={loading} className="nu-btn nu-btn-dark" style={{ width: "fit-content", height: 36, fontSize: "0.84rem" }}>
-                  Save Active Weekly Topic
-                </button>
-              </form>
             </div>
 
-            <div className="nu-admin-card">
-              <AdminTableHeader
-                title={`Subscribers (${filteredSubs.length})`}
-                filter={tableFilter}
-                onFilter={setTableFilter}
-                total={filteredSubs.length}
-                showAll={showAllRows}
-                onToggleShowAll={() => setShowAllRows((v) => !v)}
-              />
-              <div className="nu-admin-table-wrap">
-                <table className="nu-admin-table">
-                  <thead>
-                    <tr><th>Email</th><th>Name</th><th>Source</th><th>Status</th><th>Last</th></tr>
-                  </thead>
-                  <tbody>
-                    {sliceRows(filteredSubs).map((s) => (
-                      <tr key={s.id}>
-                        <td>{s.email}</td>
-                        <td>{s.name || "—"}</td>
-                        <td><code>{s.source}</code></td>
-                        <td>
-                          <span className={`nu-badge ${s.subscribed ? "nu-badge-free" : "nu-badge-highyield"}`}>
-                            {s.subscribed ? "Active" : "Unsub"}
-                          </span>
-                        </td>
-                        <td>{s.lastDigestSentAt ? new Date(s.lastDigestSentAt).toLocaleDateString() : "—"}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+            <div className="nu-admin-split-grid">
+              <div className="nu-admin-card">
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 8, marginBottom: 10 }}>
+                  <div>
+                    <h3 style={{ margin: 0, fontSize: "1rem", display: "flex", alignItems: "center", gap: 6 }}>
+                      <Eye size={16} /> Live Email Template Preview
+                    </h3>
+                    <small style={{ color: "var(--nu-ink-muted)" }}>
+                      {previewData.subject || "Select a template to inspect responsive layout"}
+                    </small>
+                  </div>
+                  <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+                    <select
+                      value={previewTpl}
+                      onChange={(e) => {
+                        const next = e.target.value;
+                        setPreviewTpl(next);
+                        loadEmailPreview(next, previewMonth);
+                      }}
+                      style={{ height: 32, padding: "0 8px", border: "1px solid var(--nu-border)", borderRadius: 4, fontSize: "0.8rem" }}
+                    >
+                      <option value="monthly">Monthly Dispatch (12-Mo)</option>
+                      <option value="course-stall-10">Course Stall — 10 Days</option>
+                      <option value="course-stall-20">Course Stall — 20 Days</option>
+                      <option value="course-stall-30">Course Stall — 30+ Days</option>
+                      <option value="site-inactive-10">Site Away — 10 Days</option>
+                      <option value="site-inactive-20">Site Away — 20 Days (50% Off)</option>
+                      <option value="site-inactive-30">Site Away — 30+ Days</option>
+                      <option value="digest">Weekly Study Digest</option>
+                      <option value="welcome">Welcome Verification</option>
+                      <option value="certificate">Certificate Earned</option>
+                      <option value="quiz">Quiz Result Breakdown</option>
+                    </select>
+                    {previewTpl === "monthly" && (
+                      <select
+                        value={previewMonth}
+                        onChange={(e) => {
+                          const m = Number(e.target.value);
+                          setPreviewMonth(m);
+                          loadEmailPreview("monthly", m);
+                        }}
+                        style={{ height: 32, padding: "0 8px", border: "1px solid var(--nu-border)", borderRadius: 4, fontSize: "0.8rem" }}
+                      >
+                        {Array.from({ length: 12 }, (_, idx) => (
+                          <option key={idx + 1} value={idx + 1}>Month {idx + 1}</option>
+                        ))}
+                      </select>
+                    )}
+                  </div>
+                </div>
+                {previewLoading ? (
+                  <p style={{ color: "var(--nu-ink-muted)", fontSize: "0.85rem" }}>Rendering preview...</p>
+                ) : (
+                  <iframe
+                    title="Email Template Preview"
+                    srcDoc={previewData.html || "<p style='font-family:sans-serif;padding:16px;'>Select a template above.</p>"}
+                    sandbox="allow-same-origin"
+                    style={{ width: "100%", height: 500, border: "1px solid var(--nu-border)", borderRadius: 6, background: "#F1F5F9" }}
+                  />
+                )}
+              </div>
+
+              <div className="nu-admin-card">
+                <h3 style={{ margin: "0 0 10px", fontSize: "1rem" }}>Weekly Digest Topic Override</h3>
+                <form onSubmit={handleSaveCampaign} style={{ display: "grid", gap: 8 }}>
+                  <input
+                    type="text"
+                    value={subject}
+                    onChange={(e) => setSubject(e.target.value)}
+                    placeholder="Email subject"
+                    required
+                    style={{ height: 36, padding: "0 10px", border: "1px solid var(--nu-border)", borderRadius: 4, fontSize: "0.86rem" }}
+                  />
+                  <input
+                    type="text"
+                    value={topicTitle}
+                    onChange={(e) => setTopicTitle(e.target.value)}
+                    placeholder="Topic heading"
+                    required
+                    style={{ height: 36, padding: "0 10px", border: "1px solid var(--nu-border)", borderRadius: 4, fontSize: "0.86rem" }}
+                  />
+                  <textarea
+                    rows={2}
+                    value={summary}
+                    onChange={(e) => setSummary(e.target.value)}
+                    placeholder="Weekly topic summary"
+                    required
+                    style={{ padding: 8, border: "1px solid var(--nu-border)", borderRadius: 4, fontSize: "0.85rem", fontFamily: "inherit" }}
+                  />
+                  <textarea
+                    rows={2}
+                    value={highlightsText}
+                    onChange={(e) => setHighlightsText(e.target.value)}
+                    placeholder="One agenda highlight per line"
+                    style={{ padding: 8, border: "1px solid var(--nu-border)", borderRadius: 4, fontSize: "0.85rem", fontFamily: "inherit" }}
+                  />
+                  <input
+                    type="url"
+                    value={ctaUrl}
+                    onChange={(e) => setCtaUrl(e.target.value)}
+                    placeholder="CTA URL"
+                    required
+                    style={{ height: 36, padding: "0 10px", border: "1px solid var(--nu-border)", borderRadius: 4, fontSize: "0.86rem" }}
+                  />
+                  <button type="submit" disabled={loading} className="nu-btn nu-btn-dark" style={{ width: "fit-content", height: 36, fontSize: "0.84rem" }}>
+                    Save Active Weekly Topic
+                  </button>
+                </form>
+
+                <hr style={{ margin: "18px 0", border: "none", borderTop: "1px solid var(--nu-border)" }} />
+                <h4 style={{ margin: "0 0 8px", fontSize: "0.92rem" }}>12-Month Automated Newsletter Calendar</h4>
+                <div className="nu-admin-table-wrap" style={{ maxHeight: 230, overflowY: "auto" }}>
+                  <table className="nu-admin-table">
+                    <thead>
+                      <tr><th>Month</th><th>Theme</th><th>Status</th></tr>
+                    </thead>
+                    <tbody>
+                      {(emailsData?.monthlySchedule || []).map((m) => (
+                        <tr key={m.yearMonth}>
+                          <td><code>{m.yearMonth}</code></td>
+                          <td>
+                            <div style={{ fontWeight: 700, fontSize: "0.82rem" }}>{m.seasonLabel}</div>
+                            <small style={{ color: "var(--nu-ink-muted)" }}>{m.subject}</small>
+                          </td>
+                          <td>
+                            <span className={`nu-badge ${m.yearMonth === emailsData?.currentMonthYm ? "nu-badge-free" : "nu-badge-preview"}`}>
+                              {m.yearMonth === emailsData?.currentMonthYm ? "Active Month" : "Scheduled"}
+                            </span>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div className="nu-admin-split-grid">
+              <div className="nu-admin-card">
+                <h3 style={{ margin: "0 0 10px", fontSize: "1rem" }}>
+                  Recent 10/20/30+ Day Lifecycle Nudges ({(emailsData?.retentionNudges || []).length})
+                </h3>
+                <div className="nu-admin-table-wrap">
+                  <table className="nu-admin-table">
+                    <thead>
+                      <tr><th>Recipient</th><th>Trigger</th><th>Target</th><th>Sent</th></tr>
+                    </thead>
+                    <tbody>
+                      {(emailsData?.retentionNudges || []).length === 0 ? (
+                        <tr><td colSpan={4} style={{ color: "var(--nu-ink-muted)" }}>No lifecycle nudges logged yet — runs daily at 05:00 UTC or via button above.</td></tr>
+                      ) : (
+                        (emailsData?.retentionNudges || []).map((n) => (
+                          <tr key={n.id}>
+                            <td>{n.recipient}</td>
+                            <td>
+                              <span className="nu-badge nu-badge-highyield">
+                                {n.nudgeKind === "course_stall" ? "Course" : "Site"} &middot; {n.milestoneDays}d
+                              </span>
+                            </td>
+                            <td><code>{n.targetKey}</code></td>
+                            <td>{n.sentAt ? new Date(n.sentAt).toLocaleDateString() : "—"}</td>
+                          </tr>
+                        ))
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div className="nu-admin-card">
+                <AdminTableHeader
+                  title={`Subscribers (${filteredSubs.length})`}
+                  filter={tableFilter}
+                  onFilter={setTableFilter}
+                  total={filteredSubs.length}
+                  showAll={showAllRows}
+                  onToggleShowAll={() => setShowAllRows((v) => !v)}
+                />
+                <div className="nu-admin-table-wrap">
+                  <table className="nu-admin-table">
+                    <thead>
+                      <tr><th>Email</th><th>Name</th><th>Status</th><th>Monthly</th><th>Digest</th></tr>
+                    </thead>
+                    <tbody>
+                      {sliceRows(filteredSubs).map((s) => (
+                        <tr key={s.id}>
+                          <td>{s.email}</td>
+                          <td>{s.name || "—"}</td>
+                          <td>
+                            <span className={`nu-badge ${s.subscribed ? "nu-badge-free" : "nu-badge-highyield"}`}>
+                              {s.subscribed ? "Active" : "Unsub"}
+                            </span>
+                          </td>
+                          <td><code>{s.lastMonthlySentYm || "—"}</code></td>
+                          <td>{s.lastDigestSentAt ? new Date(s.lastDigestSentAt).toLocaleDateString() : "—"}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
