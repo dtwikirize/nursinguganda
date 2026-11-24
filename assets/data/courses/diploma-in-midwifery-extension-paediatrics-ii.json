@@ -133,7 +133,10 @@
         "WHY IMNCI? (Need for IMCI)",
         "IMCI PROCESS",
         "The Case Management Process",
-        "Nursing Uganda Clinical Lens"
+        "Nursing Uganda Clinical Lens",
+        "Assessment Guide",
+        "Nursing Priorities, Rationales and Outcomes",
+        "Patient Teaching and Revision Check"
       ],
       "images": [
         "/assets/images/medical-illustrations/paediatric-neonatal.webp"
@@ -167,7 +170,7 @@
               "text": "IMCI guidelines help to interview caretakers accurately and recognize clinical signs, choose appropriate treatments, provide counseling and preventive care of children aged unto 5 years."
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "Goals of IMCI"
             },
             {
@@ -229,15 +232,15 @@
             },
             {
               "type": "bullet",
-              "text": "Infectious Diseases : Acute respiratory infections, diarrhea diseases, malaria, and measles are leading causes of death among children under five years old. These diseases can be severe and life-threatening, especially in resource-constrained settings where access to healthcare and preventive measures may be limited."
+              "text": "**Infectious Diseases:** Acute respiratory infections, diarrhea diseases, malaria, and measles are leading causes of death among children under five years old. These diseases can be severe and life-threatening, especially in resource-constrained settings where access to healthcare and preventive measures may be limited."
             },
             {
               "type": "bullet",
-              "text": "Malnutrition : Malnutrition is a significant contributor to child mortality in developing countries. Children who are malnourished have weakened immune systems, making them more susceptible to infectious diseases and less able to recover from illness."
+              "text": "**Malnutrition:** Malnutrition is a significant contributor to child mortality in developing countries. Children who are malnourished have weakened immune systems, making them more susceptible to infectious diseases and less able to recover from illness."
             },
             {
               "type": "paragraph",
-              "text": "It is important to note that these causes often overlap , and children may suffer from a combination of these conditions. The clinical presentations of these diseases can be similar, which may lead to challenges in diagnosing and treating children effectively."
+              "text": "It is important to note that these causes often overlap, and children may suffer from a combination of these conditions. The clinical presentations of these diseases can be similar, which may lead to challenges in diagnosing and treating children effectively."
             }
           ]
         },
@@ -245,36 +248,36 @@
           "title": "WHY IMNCI? (Need for IMCI)",
           "blocks": [
             {
-              "type": "paragraph",
-              "text": "Multiple Conditions:"
+              "type": "subheading",
+              "text": "Multiple Conditions"
             },
             {
               "type": "bullet",
-              "text": "Children often present with multiple potentially deadly conditions at the same time. IMCI takes a holistic approach , considering all the conditions that may affect a child and put them at risk of preventable mortality or impaired growth and development. By facilitating an integrated assessment and combined treatment of these conditions, IMCI focuses on effective case management and prevention of diseases, contributing to healthy growth and development."
+              "text": "Children often present with multiple potentially deadly conditions at the same time. IMCI takes a holistic approach, considering all the conditions that may affect a child and put them at risk of preventable mortality or impaired growth and development. By facilitating an integrated assessment and combined treatment of these conditions, IMCI focuses on effective case management and prevention of diseases, contributing to healthy growth and development."
             },
             {
-              "type": "paragraph",
-              "text": "Lack of Diagnostic Tools:"
+              "type": "subheading",
+              "text": "Lack of Diagnostic Tools"
             },
             {
               "type": "bullet",
               "text": "In many healthcare settings, there is a lack of diagnostic tools such as laboratory tests or radiology. IMCI recognizes this challenge and provides clinical algorithms that rely on patient history, signs, and symptoms for diagnosis. By training healthcare providers in IMCI, they can effectively assess and manage childhood illnesses even in resource-limited settings."
             },
             {
-              "type": "paragraph",
-              "text": "Reliance on Patient History:"
+              "type": "subheading",
+              "text": "Reliance on Patient History"
             },
             {
               "type": "bullet",
               "text": "IMCI acknowledges the importance of patient history in diagnosing and managing childhood illnesses. Healthcare providers are trained to gather comprehensive information about the child’s symptoms, medical history, and other relevant factors. This information, combined with the IMCI clinical algorithms, helps providers make accurate diagnoses and provide appropriate treatment."
             },
             {
-              "type": "paragraph",
-              "text": "Need for Referrals:"
+              "type": "subheading",
+              "text": "Need for Referrals"
             },
             {
               "type": "bullet",
-              "text": "In cases where a child has a serious illness that requires specialized care, IMCI emphasizes the need for timely referrals to a higher level of care . By identifying severe illnesses and facilitating prompt referrals, IMCI ensures that children receive the necessary treatment and support from specialized healthcare providers."
+              "text": "In cases where a child has a serious illness that requires specialized care, IMCI emphasizes the need for timely referrals to a higher level of care. By identifying severe illnesses and facilitating prompt referrals, IMCI ensures that children receive the necessary treatment and support from specialized healthcare providers."
             }
           ]
         },
@@ -283,7 +286,7 @@
           "blocks": [
             {
               "type": "paragraph",
-              "text": "The IMCI (Integrated Management of Childhood Illness) process is a comprehensive approach to the identification and management of childhood illnesses in outpatient settings ."
+              "text": "The IMCI (Integrated Management of Childhood Illness) process is a comprehensive approach to the identification and management of childhood illnesses in outpatient settings."
             },
             {
               "type": "paragraph",
@@ -294,20 +297,20 @@
               "text": "Here is an overview of the IMCI process and the interventions included in the IMCI guidelines:"
             },
             {
-              "type": "paragraph",
-              "text": "IMCI Process:"
+              "type": "subheading",
+              "text": "IMCI Process"
             },
             {
               "type": "bullet",
-              "text": "List of Conditions : The IMCI process involves checking for a list of conditions in children and infants to ensure comprehensive assessment and treatment."
+              "text": "**List of Conditions:** The IMCI process involves checking for a list of conditions in children and infants to ensure comprehensive assessment and treatment."
             },
             {
               "type": "bullet",
-              "text": "Assessment and Treatment : Children are assessed and treated for all conditions that are present, following standardized algorithms that guide management decisions."
+              "text": "**Assessment and Treatment:** Children are assessed and treated for all conditions that are present, following standardized algorithms that guide management decisions."
             },
             {
               "type": "bullet",
-              "text": "Decision to Transfer : If necessary, the IMCI guidelines provide guidance on when to transfer a child to higher levels of care for further management."
+              "text": "**Decision to Transfer:** If necessary, the IMCI guidelines provide guidance on when to transfer a child to higher levels of care for further management."
             },
             {
               "type": "paragraph",
@@ -318,8 +321,8 @@
               "text": "The IMCI guidelines include both curative and preventive interventions for various childhood conditions."
             },
             {
-              "type": "paragraph",
-              "text": "Curative Interventions:"
+              "type": "subheading",
+              "text": "Curative Interventions"
             },
             {
               "type": "bullet",
@@ -370,8 +373,8 @@
               "text": "Neonatal jaundice"
             },
             {
-              "type": "paragraph",
-              "text": "Preventive Interventions:"
+              "type": "subheading",
+              "text": "Preventive Interventions"
             },
             {
               "type": "bullet",
@@ -403,7 +406,7 @@
             },
             {
               "type": "paragraph",
-              "text": "The IMCI process can be used by all doctors , nurses , and other health professionals who provide care for young infants and children under the age of five. It is primarily designed for first-level facilities such as clinics , health centers , or outpatient departments of hospitals ."
+              "text": "The IMCI process can be used by all doctors, nurses, and other health professionals who provide care for young infants and children under the age of five. It is primarily designed for first-level facilities such as clinics, health centers, or outpatient departments of hospitals."
             }
           ]
         },
@@ -411,8 +414,8 @@
           "title": "The Case Management Process",
           "blocks": [
             {
-              "type": "paragraph",
-              "text": "IMCI classifies children into two categories:"
+              "type": "subheading",
+              "text": "IMCI classifies children into two categories"
             },
             {
               "type": "bullet",
@@ -427,8 +430,8 @@
               "text": "IMCI is designed for health workers (doctors, nurses etc) who treat sick children and infants in a first level health facility e.g. clinic, health center or OPD in a hospital."
             },
             {
-              "type": "paragraph",
-              "text": "In the management process the following steps are taken:"
+              "type": "subheading",
+              "text": "In the management process the following steps are taken"
             },
             {
               "type": "bullet",
@@ -464,7 +467,7 @@
             },
             {
               "type": "paragraph",
-              "text": "Note that , classifications are not specific diagnoses but can be used to determine treatment e.g. severe febrile disease is a classification for a child who could be having cerebral malaria, meningitis, septicemia etc, but treatment for this classification covers for all the possible causes of the problem. ****"
+              "text": "Note that, classifications are not specific diagnoses but can be used to determine treatment e.g. severe febrile disease is a classification for a child who could be having cerebral malaria, meningitis, septicemia etc, but treatment for this classification covers for all the possible causes of the problem."
             },
             {
               "type": "paragraph",
@@ -579,8 +582,8 @@
               "text": "Some children or young infants need to be seen more than once for a current episode of illness. Identify such children or young infants and when they are brought back, offer appropriate follow up care as indicated in the IMNCI guidelines and also reassess the child or young infant for any new problems."
             },
             {
-              "type": "paragraph",
-              "text": "The guidelines also aim to empower healthcare workers to:"
+              "type": "subheading",
+              "text": "The guidelines also aim to empower healthcare workers to"
             },
             {
               "type": "bullet",
@@ -605,10 +608,6 @@
             {
               "type": "paragraph",
               "text": "Assessing and Classification of a Sick Child and General Danger Signs."
-            },
-            {
-              "type": "paragraph",
-              "text": "Click Here"
             }
           ]
         },
@@ -753,7 +752,11 @@
         "Four main symptoms",
         "THEN CHECK FOR ACUTE MALNUTRITION",
         "CHECK FOR ANAEMIA",
-        "CHECK FOR HIV EXPOSURE AND INFECTION"
+        "CHECK FOR HIV EXPOSURE AND INFECTION",
+        "Nursing Uganda Clinical Lens",
+        "Assessment Guide",
+        "Nursing Priorities, Rationales and Outcomes",
+        "Patient Teaching and Revision Check"
       ],
       "images": [
         "/assets/images/medical-illustrations/paediatric-neonatal.webp"
@@ -771,7 +774,7 @@
               "text": "If it is an initial visit, Ask, “what is the child’s problem”?"
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "After knowing the problem;"
             },
             {
@@ -783,8 +786,8 @@
               "text": "A general danger sign is an indicator that a child has a severe problem and therefore needs urgent referral."
             },
             {
-              "type": "paragraph",
-              "text": "General danger signs include:"
+              "type": "subheading",
+              "text": "General danger signs include"
             },
             {
               "type": "bullet",
@@ -817,7 +820,7 @@
           "blocks": [
             {
               "type": "paragraph",
-              "text": "General danger signs in children are indicators of serious illness that require immediate action to save the child’s life ."
+              "text": "General danger signs in children are indicators of serious illness that require immediate action to save the child’s life."
             },
             {
               "type": "paragraph",
@@ -825,23 +828,23 @@
             },
             {
               "type": "bullet",
-              "text": "Unable to breastfeed or drink : If a child is unable to suck or swallow when offered a drink or breastmilk, it is considered a danger sign."
+              "text": "**Unable to breastfeed or drink:** If a child is unable to suck or swallow when offered a drink or breastmilk, it is considered a danger sign."
             },
             {
               "type": "bullet",
-              "text": "Vomiting everything : If a child is not able to hold down any food, fluids, or oral medications and vomits everything, it is a cause for concern."
+              "text": "**Vomiting everything:** If a child is not able to hold down any food, fluids, or oral medications and vomits everything, it is a cause for concern."
             },
             {
               "type": "bullet",
-              "text": "Convulsions : Convulsions are characterized by the child’s arms and legs stiffening due to muscle contractions or repeated abnormal movements. The child may also lose consciousness or be unresponsive to spoken directions."
+              "text": "**Convulsions:** Convulsions are characterized by the child’s arms and legs stiffening due to muscle contractions or repeated abnormal movements. The child may also lose consciousness or be unresponsive to spoken directions."
             },
             {
               "type": "bullet",
-              "text": "Lethargic or unconscious : A lethargic child is drowsy, not alert, and shows no interest in their surroundings. They may not look at their mother or respond to stimuli. An unconscious child cannot be awakened and does not respond to touch, shaking, or spoken words."
+              "text": "**Lethargic or unconscious:** A lethargic child is drowsy, not alert, and shows no interest in their surroundings. They may not look at their mother or respond to stimuli. An unconscious child cannot be awakened and does not respond to touch, shaking, or spoken words."
             },
             {
               "type": "paragraph",
-              "text": "Child with any General Danger sign needs URGENT attention : complete assessment, give any pre-referral treatment immediately and refer."
+              "text": "Child with any General Danger sign needs URGENT attention: complete assessment, give any pre-referral treatment immediately and refer."
             },
             {
               "type": "bullet",
@@ -853,14 +856,14 @@
             },
             {
               "type": "paragraph",
-              "text": "NB: if not sure of the mother’s answer, offer the child clean water/breastmilk"
+              "text": "Warning: **Important Clinical Watchpoint:** if not sure of the mother’s answer, offer the child clean water/breastmilk"
             },
             {
               "type": "bullet",
               "text": "Vomiting everything:"
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "“Vomiting everything” means;"
             },
             {
@@ -873,7 +876,7 @@
             },
             {
               "type": "bullet",
-              "text": "NB: if not sure of the mother’s answer, offer the child clean water/breastmilk. Observe if the child vomits"
+              "text": "**NB:** if not sure of the mother’s answer, offer the child clean water/breastmilk. Observe if the child vomits"
             },
             {
               "type": "bullet",
@@ -885,7 +888,7 @@
             },
             {
               "type": "bullet",
-              "text": "A child can have this danger sign if there is a history of convulsions or convulsing during the visit ."
+              "text": "A child can have this danger sign if there is a history of convulsions or convulsing during the visit."
             },
             {
               "type": "bullet",
@@ -900,8 +903,8 @@
               "text": "Lethargic or unconscious:"
             },
             {
-              "type": "paragraph",
-              "text": "“Lethargic or unconscious” means that:"
+              "type": "subheading",
+              "text": "“Lethargic or unconscious” means that"
             },
             {
               "type": "bullet",
@@ -920,7 +923,7 @@
               "text": "Unconscious child cannot be awakened. He does not respond when touched, shaken, or spoken to"
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "CHECK FOR GENERAL DANGER SIGNS"
             },
             {
@@ -1010,7 +1013,7 @@
             },
             {
               "type": "bullet",
-              "text": "IF YES, ASK For how long? Count the breaths in one minute. Use respiratory rate timers where available • Look for chest in-drawing* • Look and listen for stridor** • Look and listen for wheeze*** • Check for central cyanosis • Check for oxygen saturation using pulse oximetry where available. • Check AVPU**** • If wheezing with either chest indrawing or fast breathing: Assess for possible Asthma. • If wheezing assesses for possible TB disease."
+              "text": "IF YES, ASK For how long? Count the breaths in one minute. Use respiratory rate timers where available • Look for chest in-drawing* • Look and listen for stridor** • Look and listen for wheeze*** • Check for central cyanosis • Check for oxygen saturation using pulse oximetry where available. • Check AVPU • If wheezing with either chest indrawing or fast breathing: Assess for possible Asthma. • If wheezing assesses for possible TB disease."
             },
             {
               "type": "bullet",
@@ -1018,7 +1021,7 @@
             },
             {
               "type": "bullet",
-              "text": "If the child is: 2 months up to 12 months 12 months up to 5 years Fast breathing is: 50 breaths per minute or more 40 breaths per minute or more"
+              "text": "**If the child is:** 2 months up to 12 months 12 months up to 5 years Fast breathing is: 50 breaths per minute or more 40 breaths per minute or more"
             },
             {
               "type": "bullet",
@@ -1030,7 +1033,7 @@
             },
             {
               "type": "paragraph",
-              "text": "Note: * ANYTHING IN BOLD IS URGENT PRE-"
+              "text": "**Note:** * ANYTHING IN BOLD IS URGENT PRE-"
             },
             {
               "type": "paragraph",
@@ -1062,10 +1065,10 @@
             },
             {
               "type": "paragraph",
-              "text": "****AVPU – Alert, responsive to Voice,"
+              "text": "AVPU – Alert, responsive to Voice,"
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "responsive to Pain, Unresponsive"
             },
             {
@@ -1109,15 +1112,31 @@
               "text": "ASK LOOK, LISTEN, FEEL"
             },
             {
+              "type": "subheading",
+              "text": "IF YES, ASK For how long? • Is there blood in the stool?"
+            },
+            {
               "type": "bullet",
-              "text": "IF YES, ASK For how long? • Is there blood in the stool? – Look at the child’s general conditions. Check: Weak/ absent pulse Not alert; AVPU*&lt;A Cold hands +Temp gradient Capillary refill &gt;3 sec Is the child: Lethargic or unconscious? Restless and irritable? – Look for sunken eyes – Offer the child fluid, is the child: Not able to drink or drinking poorly? Drinking eagerly, thirsty? – Pinch the skin of the abdomen. Does it go back: Very slowly (longer than 2 seconds)? Slowly? Immediately?"
+              "text": "Look at the child’s general conditions. Check: Weak/ absent pulse Not alert; AVPU*&lt;A Cold hands +Temp gradient Capillary refill &gt;3 sec Is the child: Lethargic or unconscious? Restless and irritable?"
+            },
+            {
+              "type": "bullet",
+              "text": "Look for sunken eyes"
+            },
+            {
+              "type": "bullet",
+              "text": "**Offer the child fluid, is the child:** Not able to drink or drinking poorly? Drinking eagerly, thirsty?"
+            },
+            {
+              "type": "bullet",
+              "text": "Pinch the skin of the abdomen. Does it go back: Very slowly (longer than 2 seconds)? Slowly? Immediately?"
             },
             {
               "type": "bullet",
               "text": "Remember to classify all children with diarrhoea for dehydration."
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "for DEHYDRATION"
             },
             {
@@ -1126,30 +1145,62 @@
             },
             {
               "type": "bullet",
-              "text": "All four of: • Weak/absent pulse • AVPU* &lt; A • Cold hands + Temp gradient • Capillary refill &gt; 3 sec PLUS • sunken eyes and very slow/slow skin pinch. HYPOVOLAEMIC SHOCK FROM DIARRHOEA/ DEHYDRATION • TREAT FOR SHOCK. Give Ringer’s Lactate 20mls/kg. – A second bolus may be given if required before proceeding to step 2 of PLAN C. • Treat for and to prevent low blood sugar. • Assess for severe acute malnutrition. • Assess for severe anaemia. • NB: If HB&lt;5g/dl transfuse urgently • Admit or refer urgently to hospital • Screen for possible TB disease and check for HIV • If a child is 2yrs or older & there’s cholera in your area, give oral cotrimoxazole for cholera."
+              "text": "**All four of:** • Weak/absent pulse • AVPU* &lt; A • Cold hands + Temp gradient • Capillary refill &gt; 3 sec PLUS • sunken eyes and very slow/slow skin pinch. HYPOVOLAEMIC SHOCK FROM DIARRHOEA/ DEHYDRATION • TREAT FOR SHOCK. Give Ringer’s Lactate 20mls/kg. – A second bolus may be given if required before proceeding to step 2 of PLAN C. • Treat for and to prevent low blood sugar. • Assess for severe acute malnutrition. • Assess for severe anaemia. • NB: If HB&lt;5g/dl transfuse urgently • Admit or refer urgently to hospital • Screen for possible TB disease and check for HIV • If a child is 2yrs or older & there’s cholera in your area, give oral cotrimoxazole for cholera."
+            },
+            {
+              "type": "subheading",
+              "text": "Two or more of the following signs: • Restless, irritable • Sunken eyes • Drinks eagerly, thirstily • Skin pinch goes back slowly SOME DEHYDRATION If child also has a severe classification"
             },
             {
               "type": "bullet",
-              "text": "Two or more of the following signs: • Restless, irritable • Sunken eyes • Drinks eagerly, thirstily • Skin pinch goes back slowly SOME DEHYDRATION If child also has a severe classification: – Admit or refer URGENTLY to hospital with mother giving frequent sips of ORS on the way. Advise the mother to continue breastfeeding. OR If the child has no severe classification: – Give fluid and food for some dehydration (Plan B). – Give vitamin A. – Give ORS and Zinc Sulphate. • Follow-up in 2 days if not improving. • Screen for possible TB disease and check for HIV • Advise mother when to return immediately."
+              "text": "Admit or refer URGENTLY to hospital with mother giving frequent sips of ORS on the way. Advise the mother to continue breastfeeding. OR If the child has no severe classification:"
             },
             {
               "type": "bullet",
-              "text": "Not enough signs to classify as some or severe dehydration. NO DEHYDRATION If child also has a severe classification: – Admit or refer URGENTLY to hospital with mother giving frequent sips of ORS on the way. Advise the mother to continue breastfeeding. OR • If the child has no severe classification: – Give fluid and food to treat diarrhoea at home (Plan A). – Give vitamin A. – Give ORS and Zinc Sulphate. • Follow-up in 5 days if not improving. • Screen for possible TB disease and check for HIV. • Advise mother when to return immediately."
+              "text": "Give fluid and food for some dehydration (Plan B)."
             },
             {
-              "type": "paragraph",
+              "type": "bullet",
+              "text": "Give vitamin A."
+            },
+            {
+              "type": "bullet",
+              "text": "Give ORS and Zinc Sulphate. • Follow-up in 2 days if not improving. • Screen for possible TB disease and check for HIV • Advise mother when to return immediately."
+            },
+            {
+              "type": "subheading",
+              "text": "Not enough signs to classify as some or severe dehydration. NO DEHYDRATION If child also has a severe classification"
+            },
+            {
+              "type": "bullet",
+              "text": "Admit or refer URGENTLY to hospital with mother giving frequent sips of ORS on the way. Advise the mother to continue breastfeeding. OR • If the child has no severe classification:"
+            },
+            {
+              "type": "bullet",
+              "text": "Give fluid and food to treat diarrhoea at home (Plan A)."
+            },
+            {
+              "type": "bullet",
+              "text": "Give vitamin A."
+            },
+            {
+              "type": "bullet",
+              "text": "Give ORS and Zinc Sulphate. • Follow-up in 5 days if not improving. • Screen for possible TB disease and check for HIV. • Advise mother when to return immediately."
+            },
+            {
+              "type": "subheading",
               "text": "and if diarrhoea 14 days or more"
             },
             {
               "type": "bullet",
-              "text": "Dehydration present: (hypovolaemic shock, severe dehydration, some dehydration). SEVERE PERSISTENT DIARRHOEA • Treat hypovolaemic shock and any other form of dehydration before referral unless the child has another severe classification. • Give Vitamin A. • Give ORS and Zinc Sulphate. • Give Multivitamin / Mineral supplements. • Admit or refer URGENTLY to hospital with mother giving frequent sips of ORS on the way. • Screen for possible TB disease and check for HIV."
+              "text": "**Dehydration present:** (hypovolaemic shock, severe dehydration, some dehydration). SEVERE PERSISTENT DIARRHOEA • Treat hypovolaemic shock and any other form of dehydration before referral unless the child has another severe classification. • Give Vitamin A. • Give ORS and Zinc Sulphate. • Give Multivitamin / Mineral supplements. • Admit or refer URGENTLY to hospital with mother giving frequent sips of ORS on the way. • Screen for possible TB disease and check for HIV."
             },
             {
               "type": "bullet",
               "text": "No dehydration PERSISTENT DIARRHOEA • Advise the mother on feeding a child who has PERSISTENT DIARRHOEA. • Give vitamin A. • Give ORS and Zinc Sulphate. • Give Multivitamin / Mineral supplements. • Check for HIV infection. • Follow-up in 5 days. • Screen for possible TB disease and check for HIV"
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "and if blood in stool"
             },
             {
@@ -1157,8 +1208,8 @@
               "text": "Blood in the stool. DYSENTERY • Treat with Ciproflaxacin. • Give Vitamin A. • Give ORS and Zinc Sulphate. • Follow-up in 2 days. • Screen for possible TB disease and check for HIV."
             },
             {
-              "type": "paragraph",
-              "text": "Fever is present if :-"
+              "type": "subheading",
+              "text": "Fever is present if"
             },
             {
               "type": "bullet",
@@ -1193,8 +1244,8 @@
               "text": "Does the child have fever? (by history or feels hot or temperature 37.5°C* or above)"
             },
             {
-              "type": "paragraph",
-              "text": "IF YES:"
+              "type": "subheading",
+              "text": "IF YES"
             },
             {
               "type": "bullet",
@@ -1202,7 +1253,7 @@
             },
             {
               "type": "paragraph",
-              "text": "Decide Malaria Risk : high or low risk ."
+              "text": "**Decide Malaria Risk:** high or low risk."
             },
             {
               "type": "bullet",
@@ -1210,11 +1261,11 @@
             },
             {
               "type": "bullet",
-              "text": "THEN ASK: • For how long? • If more than 7 days, has fever been present every day? • Has the child had signs of measles within the last 3 months? LOOK AND FEEL: • Look or feel for stiff neck. • Look for runny nose. Look for signs of MEASLES: • Generalized rash and one of these: cough, runny nose, or red eyes. • Look for any other cause of fever•••"
+              "text": "**THEN ASK:** • For how long? • If more than 7 days, has fever been present every day? • Has the child had signs of measles within the last 3 months? LOOK AND FEEL: • Look or feel for stiff neck. • Look for runny nose. Look for signs of MEASLES: • Generalized rash and one of these: cough, runny nose, or red eyes. • Look for any other cause of fever•••"
             },
             {
               "type": "bullet",
-              "text": "High Malaria risk: Do a malaria test ○ Endemic Zone ○ Seasonal Transmission Zone ○ Epidemic prone areas Low malaria risk: ○ Do a malaria test if there is no obvious cause of fever. TEST POSITIVE • P.falciparum PRESENT • P.vivax PRESENT TEST NEGATIVE • P.falciparum or P.vivax absent NOTE: If you can’t test, don’t withhold treatment ."
+              "text": "**High Malaria risk:** Do a malaria test ○ Endemic Zone ○ Seasonal Transmission Zone ○ Epidemic prone areas Low malaria risk: ○ Do a malaria test if there is no obvious cause of fever. TEST POSITIVE • P.falciparum PRESENT • P.vivax PRESENT TEST NEGATIVE • P.falciparum or P.vivax absent NOTE: If you can’t test, don’t withhold treatment."
             },
             {
               "type": "bullet",
@@ -1231,10 +1282,6 @@
             {
               "type": "bullet",
               "text": "• Malaria test NEGATIVE FEVER: NO MALARIA • Give one dose of paracetamol in clinic for high fever (≥38.5 °C) • Assess for other possible causes of fever • Follow up in 3 days if fever persists. • If fever is present every day for more than 7 days assess further or refer. • Screen for possible TB disease and check for HIV • Advise mother when to return immediately."
-            },
-            {
-              "type": "paragraph",
-              "text": "****"
             },
             {
               "type": "bullet",
@@ -1293,7 +1340,7 @@
               "text": "IF YES, ASK • Is there ear pain? • Is there ear discharge? If yes, for how long? Look for pus draining from the ear. Feel for tender swelling behind the ear. Drinking eagerly, thirsty? Pinch the skin of the abdomen. Does it go back: Very slowly (longer than 2 seconds)? Slowly? Immediately?"
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "Classify EAR PROBLEM"
             },
             {
@@ -1326,7 +1373,7 @@
               "text": "Good nutrition results from the adequate intake of macronutrients, micronutrients and water to supply the metabolic (anabolic and catabolic) processes in the body."
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "There are two components of nutrition;"
             },
             {
@@ -1358,7 +1405,7 @@
               "text": "Undernutrition is the most common form of malnutrition in developing countries."
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "ASSESS FOR MALNUTRITION"
             },
             {
@@ -1371,10 +1418,10 @@
             },
             {
               "type": "bullet",
-              "text": "Check for any medical complication present: • Any general danger signs. • Any severe classification. • Pneumonia with chest in-drawing. If no medical complication present: • Conduct an appetite test. • Child is 6 months or older, offer RUTF to eat Is the child &gt; Not able to finish RUTF portion &gt; Able to finish RUTF portion • Child is less than 6 months, assess breastfeeding &gt; Does the child have breastfeeding problems? If child has acute Malnutrition and is receiving RUTF, DO NOT give iron because there is already adequate amount of IRON in RUTF"
+              "text": "**Check for any medical complication present:** • Any general danger signs. • Any severe classification. • Pneumonia with chest in-drawing. If no medical complication present: • Conduct an appetite test. • Child is 6 months or older, offer RUTF to eat Is the child &gt; Not able to finish RUTF portion &gt; Able to finish RUTF portion • Child is less than 6 months, assess breastfeeding &gt; Does the child have breastfeeding problems? If child has acute Malnutrition and is receiving RUTF, DO NOT give iron because there is already adequate amount of IRON in RUTF"
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "Classify Malnutrition"
             },
             {
@@ -1382,12 +1429,24 @@
               "text": "SIGNS CLASSIFY AS TREATMENT"
             },
             {
-              "type": "bullet",
-              "text": "• Oedema of both feet, OR • WFH/L less than -3 z scores OR • MUAC Less than 11.5 cm and ANY one of the following: – medical complication present or – not able to finish RUTF*** or – Breast feeding problem (&lt;6 months) SEVERE ACUTE MALNUTRITION WITH COMPLICATIONS FOR CHILDREN • Treat the child to prevent low blood sugar. • Keep the child warm • Give first dose of Benzylpenicillin + Gentamicin • Give Vitamin A • Refer URGENTLY to hospital • Admit or refer urgently to hospital if child has any other complications (Danger signs: Diarrhoea, Pneumonia, Fever, No appetite, etc) • Immunize as per schedule. • Screen for possible TB disease and check for HIV."
+              "type": "subheading",
+              "text": "• Oedema of both feet, OR • WFH/L less than -3 z scores OR • MUAC Less than 11.5 cm and ANY one of the following"
             },
             {
               "type": "bullet",
-              "text": "For all children: • With visible severe wasting • Oedema of both feet, • &lt;-3 Z Score ( weight for age or weight for height/Length) For children 6 months up to 59 months: MUAC &lt;11.5 cm SEVERE ACUTE MALNUTRITION As above"
+              "text": "medical complication present or"
+            },
+            {
+              "type": "bullet",
+              "text": "not able to finish RUTF*** or"
+            },
+            {
+              "type": "bullet",
+              "text": "Breast feeding problem (&lt;6 months) SEVERE ACUTE MALNUTRITION WITH COMPLICATIONS FOR CHILDREN • Treat the child to prevent low blood sugar. • Keep the child warm • Give first dose of Benzylpenicillin + Gentamicin • Give Vitamin A • Refer URGENTLY to hospital • Admit or refer urgently to hospital if child has any other complications (Danger signs: Diarrhoea, Pneumonia, Fever, No appetite, etc) • Immunize as per schedule. • Screen for possible TB disease and check for HIV."
+            },
+            {
+              "type": "bullet",
+              "text": "**For all children:** • With visible severe wasting • Oedema of both feet, • &lt;-3 Z Score ( weight for age or weight for height/Length) For children 6 months up to 59 months: MUAC &lt;11.5 cm SEVERE ACUTE MALNUTRITION As above"
             },
             {
               "type": "bullet",
@@ -1395,11 +1454,11 @@
             },
             {
               "type": "bullet",
-              "text": "For all age groups: • Static weight or losing weight • 3 to &lt;-2 Z- Score If age 6 months up to 59 months MUAC 11.5 to 12.5 cm MODERATE ACUTE MALNUTRITION • If growth is faltering for 2 consecutive months, give Vitamin A, assess further or refer to a hospital. • Assess the child’s feeding and counsel the mother on the feeding recommendations. • Give Albendazole if the child is 1 year or older and has not had a dose in the previous 6 months. • If feeding problems, follow up in 14 days. • Screen for possible TB disease and check for HIV • Immunize as per schedule. • Advise mother when to return immediately"
+              "text": "**For all age groups:** • Static weight or losing weight • 3 to &lt;-2 Z- Score If age 6 months up to 59 months MUAC 11.5 to 12.5 cm MODERATE ACUTE MALNUTRITION • If growth is faltering for 2 consecutive months, give Vitamin A, assess further or refer to a hospital. • Assess the child’s feeding and counsel the mother on the feeding recommendations. • Give Albendazole if the child is 1 year or older and has not had a dose in the previous 6 months. • If feeding problems, follow up in 14 days. • Screen for possible TB disease and check for HIV • Immunize as per schedule. • Advise mother when to return immediately"
             },
             {
               "type": "bullet",
-              "text": "For all age groups: • Static weight or losing weight • -2 to &lt;-1 Z- Score If age 6 months up to 59 months MUAC 12.5 to 13.5cms AT RISK OF ACUTE MALNUTRITION • If child is less than 2 years old, and has growth faltering, assess the child’s feeding and counsel the mother on feeding according to the feeding recommendations • Give Albendazole if the child is 1 year or older and has not had a dose in the previous 6 months. • Follow up in 14 days • If feeding problem, follow-up in 5 days • Screen for possible TB disease and check for HIV • Immunize as per schedule • Advise mother when to return immediately"
+              "text": "**For all age groups:** • Static weight or losing weight • -2 to &lt;-1 Z- Score If age 6 months up to 59 months MUAC 12.5 to 13.5cms AT RISK OF ACUTE MALNUTRITION • If child is less than 2 years old, and has growth faltering, assess the child’s feeding and counsel the mother on feeding according to the feeding recommendations • Give Albendazole if the child is 1 year or older and has not had a dose in the previous 6 months. • Follow up in 14 days • If feeding problem, follow-up in 5 days • Screen for possible TB disease and check for HIV • Immunize as per schedule • Advise mother when to return immediately"
             },
             {
               "type": "bullet",
@@ -1419,7 +1478,7 @@
               "text": "The condition of having a lower-than-normal number of red blood cells or quantity of hemoglobin. Anemia diminishes the capacity of the blood to carry oxygen."
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "Common Causes"
             },
             {
@@ -1436,7 +1495,7 @@
             },
             {
               "type": "bullet",
-              "text": "Haemolysis, due to: Malaria and other Inherited blood disorders like sickle cell disease)"
+              "text": "**Haemolysis, due to:** Malaria and other Inherited blood disorders like sickle cell disease)"
             },
             {
               "type": "bullet",
@@ -1447,7 +1506,7 @@
               "text": "Severe malnutrition (due to lack of protein to produce haemoglobin)"
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "ASSESS FOR ANAEMIA"
             },
             {
@@ -1504,7 +1563,7 @@
               "text": "The child’s status may also be the first indicator that their parents are infected too."
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "ASSESS FOR HIV EXPOSURE AND INFECTION"
             },
             {
@@ -1516,7 +1575,7 @@
               "text": "• Ask for mother’s HIV status to establish child’s HIV exposure* Is it: Positive, Negative or Unknown (to establish child’s HIV exposure) • Ask if child has had any TB Contact Child &lt;18 months • If mother is HIV positive**, conduct DNA PCR for the baby at 6 weeks or at first contact with the child • If mother’s HIV status is unknown, conduct an antibody test (rapid test) on mother to determine HIV exposure. PRESUMPTIVE SYMPTOMATIC DIAGNOSIS OF HIV INFECTION IN CHILDREN &lt;18 MONTHS • Pneumonia *** • Oral Candidiasis /thrush • Severe sepsis • Other AIDS defining conditions** Child ≥18 months • If the mother’s antibody test is POSITIVE, the child is exposed. Conduct an antibody test on the child. Child whose mother is NOT available: • Child &lt; 18 months Do an antibody test on the child. If positive, do a DNA PCR test. • Child ≥ 18 months Do an antibody test to determine the HIV status of the child"
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "CLASSIFY HIV STATUS"
             },
             {
@@ -1540,7 +1599,7 @@
               "text": "Mother’s HIV status is NEGATIVE OR Mother’s HIV status is POSITIVE and child is ≥ 18 months with antibody test NEGATIVE 6 weeks after completion of breastfeeding HIV NEGATIVE • Manage presenting conditions according to IMNCI and other recommended national guidelines • Advise the mother about feeding and about her own health"
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "CHECK THE CHILD’S IMMUNIZATION, VITAMIN A & DEWORMING STATUS"
             },
             {
@@ -1580,7 +1639,7 @@
               "text": "A child’s body requires Vitamin A for; Growth and development, Protection against infections & reinforces the body’s immunity. Vit A deficiency may result from; Inadequate intake of vitamin A rich foods, Poor absorption of the vitamin A & rapid utilization of vitamin A stores due to illnesses"
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "Vit A deficiency may lead to;"
             },
             {
@@ -1600,7 +1659,7 @@
               "text": "Increases the risk of death in sick children"
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "Remember, Vit A supplementation can;"
             },
             {
@@ -1616,7 +1675,7 @@
               "text": "Reduces all causes of mortality by 23%"
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "CHECK CHILD’S IMMUNIZATION"
             },
             {
@@ -1633,7 +1692,7 @@
             },
             {
               "type": "bullet",
-              "text": "****RotaVirus vaccine should not be given to children over 15 months"
+              "text": "RotaVirus vaccine should not be given to children over 15 months"
             },
             {
               "type": "bullet",
@@ -1657,7 +1716,7 @@
             },
             {
               "type": "paragraph",
-              "text": "It is important to remember that the already discussed IMCI case management process ;"
+              "text": "It is important to remember that the already discussed IMCI case management process;"
             },
             {
               "type": "bullet",
@@ -1822,7 +1881,24 @@
         "FOR PROPHYLAXIS IN HIV CONFIRMED OR EXPOSED CHILD:",
         "FOR DYSENTERY:",
         "FOR CHOLERA:",
-        "FOR UNCOMPLICATED MALARIA"
+        "FOR UNCOMPLICATED MALARIA",
+        "FOR SEVERE MALARIA",
+        "FOR CONVULSIONS",
+        "TEACH THE MOTHER TO TREAT LOCAL INFECTIONS AT HOME",
+        "Treat eye infection with tetracycline eye ointment",
+        "Dry the ear by wicking",
+        "Treat mouth ulcers with gentian violet",
+        "Treat Thrush with Nystatin",
+        "TREATMENT OF DEHYDRATION",
+        "Plan A: Treat diarrhoea with no dehydration(Treat Diarrhoea at Home)",
+        "Plan B: Treat Diarrhoea at Facility with ORS (Some Dehydration)",
+        "Plan C: Treat severe dehydration quickly",
+        "GIVE FOLLOW-UP CARE",
+        "COUNSEL THE MOTHER",
+        "Nursing Uganda Clinical Lens",
+        "Assessment Guide",
+        "Nursing Priorities, Rationales and Outcomes",
+        "Patient Teaching and Revision Check"
       ],
       "images": [
         "/assets/images/medical-illustrations/paediatric-neonatal.webp"
@@ -1844,7 +1920,7 @@
               "text": "Follow the instructions below for every oral drug to be given at home"
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "Also, follow the instructions listed with each drug’s dose"
             },
             {
@@ -1893,8 +1969,8 @@
           "title": "FOR PNEUMONIA, ACUTE EAR INFECTION:",
           "blocks": [
             {
-              "type": "paragraph",
-              "text": "FIRST-LINE ANTIBIOTIC : Oral Amoxicillin"
+              "type": "subheading",
+              "text": "FIRST-LINE ANTIBIOTIC: Oral Amoxicillin"
             },
             {
               "type": "bullet",
@@ -1918,8 +1994,8 @@
           "title": "FOR PROPHYLAXIS IN HIV CONFIRMED OR EXPOSED CHILD:",
           "blocks": [
             {
-              "type": "paragraph",
-              "text": "ANTIBIOTIC FOR PROPHYLAXIS : Oral Cotrimoxazole"
+              "type": "subheading",
+              "text": "ANTIBIOTIC FOR PROPHYLAXIS: Oral Cotrimoxazole"
             },
             {
               "type": "bullet",
@@ -1939,7 +2015,7 @@
           "title": "FOR DYSENTERY:",
           "blocks": [
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "FIRST-LINE ANTIBIOTIC: Oral Ciprofloxacin"
             },
             {
@@ -1961,11 +2037,11 @@
           "blocks": [
             {
               "type": "paragraph",
-              "text": "FIRST-LINE ANTIBIOTIC FOR CHOLERA: Erythromycin"
+              "text": "**FIRST-LINE ANTIBIOTIC FOR CHOLERA:** Erythromycin"
             },
             {
-              "type": "paragraph",
-              "text": "SECOND-LINE ANTIBIOTIC FOR CHOLERA : Tetracycline"
+              "type": "subheading",
+              "text": "SECOND-LINE ANTIBIOTIC FOR CHOLERA: Tetracycline"
             },
             {
               "type": "bullet",
@@ -1986,14 +2062,14 @@
           "blocks": [
             {
               "type": "paragraph",
-              "text": "FIRST-LINE ANTIMALARIAL : ARTEMETHER + LUMEFANTRINE (AL)"
+              "text": "**FIRST-LINE ANTIMALARIAL:** ARTEMETHER + LUMEFANTRINE (AL)"
             },
             {
               "type": "paragraph",
-              "text": "SECOND-LINE ANTIMALARIAL : DIHYDROARTEMISININ-PIPERAQUINE (DHA-PPQ)"
+              "text": "**SECOND-LINE ANTIMALARIAL:** DIHYDROARTEMISININ-PIPERAQUINE (DHA-PPQ)"
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "Artemether + Lumefantrine Tablets Dosage"
             },
             {
@@ -2038,10 +2114,10 @@
             },
             {
               "type": "paragraph",
-              "text": "SECOND LINE : DIHYDROARTEMISININ 20MG + PIPERAQUINE 160MG"
+              "text": "**SECOND LINE:** DIHYDROARTEMISININ 20MG + PIPERAQUINE 160MG"
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "Dihydroartemisinin + Piperaquine Dosage"
             },
             {
@@ -2067,14 +2143,14 @@
           "blocks": [
             {
               "type": "paragraph",
-              "text": "FIRST-LINE TREATMENT FOR SEVERE MALARIA : ARTESUNATE"
+              "text": "**FIRST-LINE TREATMENT FOR SEVERE MALARIA:** ARTESUNATE"
             },
             {
               "type": "paragraph",
               "text": "Artesunate is provided as a powder accompanied by a 1ml vial of 5% bicarbonate. The preparation involves further dilution with either normal saline or 5% dextrose, with the specific amounts varying for intravenous (IV) or intramuscular (IM) administration (refer to the table below)."
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "Preparing IV/IM Artesunate"
             },
             {
@@ -2098,8 +2174,8 @@
               "text": "Artesunate Concentration (mg/ml) 10mg/ml 20mg/ml"
             },
             {
-              "type": "paragraph",
-              "text": "Note:"
+              "type": "subheading",
+              "text": "Note"
             },
             {
               "type": "bullet",
@@ -2126,8 +2202,8 @@
               "text": "Quinine for Severe Malaria"
             },
             {
-              "type": "paragraph",
-              "text": "For Intravenous (IV) Infusion:"
+              "type": "subheading",
+              "text": "For Intravenous (IV) Infusion"
             },
             {
               "type": "bullet",
@@ -2154,8 +2230,8 @@
               "text": "The 10mg/kg maintenance dose should take 2 hours or longer."
             },
             {
-              "type": "paragraph",
-              "text": "For Intramuscular (IM) Quinine:"
+              "type": "subheading",
+              "text": "For Intramuscular (IM) Quinine"
             },
             {
               "type": "bullet",
@@ -2174,7 +2250,7 @@
               "text": "If more than 3mls is needed (for a child over 8kg for a loading dose or over 15kg for maintenance doses), divide the dose into two IM sites, ensuring not to exceed 3mls per injection site."
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "Artemether for Severe Malaria"
             },
             {
@@ -2186,8 +2262,8 @@
               "text": "Subsequently, provide a complete course of Artemether Lumefantrine (AL)."
             },
             {
-              "type": "paragraph",
-              "text": "Admit or refer patients with:"
+              "type": "subheading",
+              "text": "Admit or refer patients with"
             },
             {
               "type": "bullet",
@@ -2226,8 +2302,8 @@
               "text": "If Referral is Not Possible:"
             },
             {
-              "type": "paragraph",
-              "text": "For Artesunate Injection:"
+              "type": "subheading",
+              "text": "For Artesunate Injection"
             },
             {
               "type": "bullet",
@@ -2242,8 +2318,8 @@
               "text": "Provide the full dose of oral antimalarial as soon as the child can take it orally."
             },
             {
-              "type": "paragraph",
-              "text": "For Artesunate Suppository:"
+              "type": "subheading",
+              "text": "For Artesunate Suppository"
             },
             {
               "type": "bullet",
@@ -2258,8 +2334,8 @@
               "text": "Provide the full dose of oral antimalarial as soon as the child can take it orally."
             },
             {
-              "type": "paragraph",
-              "text": "For Quinine:"
+              "type": "subheading",
+              "text": "For Quinine"
             },
             {
               "type": "bullet",
@@ -2314,8 +2390,8 @@
               "text": "GIVE PARACETAMOL FOR HIGH FEVER &gt;38.5 ° c OR EAR PAIN"
             },
             {
-              "type": "paragraph",
-              "text": "Paracetamol for Fever or Ear Pain:"
+              "type": "subheading",
+              "text": "Paracetamol for Fever or Ear Pain"
             },
             {
               "type": "bullet",
@@ -2335,7 +2411,7 @@
           "title": "FOR CONVULSIONS",
           "blocks": [
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "Give Diazepam to Stop Convulsions"
             },
             {
@@ -2359,7 +2435,7 @@
               "text": "If convulsions have not stopped after 10 minutes, repeat diazepam dose."
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "Diazepam Dosage"
             },
             {
@@ -2384,11 +2460,11 @@
             },
             {
               "type": "paragraph",
-              "text": "Note: Dosages are given in milliliters (ml) based on the child’s weight or age."
+              "text": "**Note:** Dosages are given in milliliters (ml) based on the child’s weight or age."
             },
             {
-              "type": "paragraph",
-              "text": "**For measles, persistent diarrhea, severe malnutrition ****"
+              "type": "subheading",
+              "text": "**For measles, persistent diarrhea, severe malnutrition"
             },
             {
               "type": "bullet",
@@ -2435,23 +2511,23 @@
               "text": "For anemia***"
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "Iron and Folate Administration Guidelines"
             },
             {
               "type": "bullet",
-              "text": "Dosage : Give one dose at 6 mg/kg of iron daily for 14 days."
+              "text": "**Dosage:** Give one dose at 6 mg/kg of iron daily for 14 days."
             },
             {
               "type": "bullet",
-              "text": "Caution : Avoid iron in a child known to suffer from Sickle Cell Anemia."
+              "text": "**Caution:** Avoid iron in a child known to suffer from Sickle Cell Anemia."
             },
             {
               "type": "bullet",
-              "text": "Note : Avoid folate until 2 weeks after the child has completed the dose of sulfa-based drug s."
+              "text": "**Note:** Avoid folate until 2 weeks after the child has completed the dose of sulfa-based drug s."
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "Iron/Folate Tablet Dosage Based on Age or Weight"
             },
             {
@@ -2475,12 +2551,12 @@
               "text": "3 years up to 5 years(14 – 19 kg) 1/2 tablet 1/2 1"
             },
             {
-              "type": "paragraph",
-              "text": "**Zinc Sulphate Administration for Diarrhea:"
+              "type": "subheading",
+              "text": "**Zinc Sulphate Administration for Diarrhea"
             },
             {
               "type": "bullet",
-              "text": "Dosage : Give once daily for 10 days."
+              "text": "**Dosage:** Give once daily for 10 days."
             },
             {
               "type": "bullet",
@@ -2503,8 +2579,8 @@
               "text": "Deworm **"
             },
             {
-              "type": "paragraph",
-              "text": "Give mebendazole if:"
+              "type": "subheading",
+              "text": "Give mebendazole if"
             },
             {
               "type": "bullet",
@@ -2531,16 +2607,16 @@
               "text": "Treat the Child to Prevent Low Blood Sugar"
             },
             {
-              "type": "paragraph",
-              "text": "If the child is able to breastfeed:"
+              "type": "subheading",
+              "text": "If the child is able to breastfeed"
             },
             {
               "type": "bullet",
               "text": "Ask the mother to breastfeed the child."
             },
             {
-              "type": "paragraph",
-              "text": "If the child is not able to breastfeed but is able to swallow:"
+              "type": "subheading",
+              "text": "If the child is not able to breastfeed but is able to swallow"
             },
             {
               "type": "bullet",
@@ -2555,8 +2631,8 @@
               "text": "Give 30 – 50 ml of milk or sugar water* before departure."
             },
             {
-              "type": "paragraph",
-              "text": "If the child is not able to swallow:"
+              "type": "subheading",
+              "text": "If the child is not able to swallow"
             },
             {
               "type": "bullet",
@@ -2617,8 +2693,8 @@
               "text": "Use a clean cloth & water to gently wipe away the pus."
             },
             {
-              "type": "paragraph",
-              "text": "Apply tetracycline eye ointment in both eyes 4 times daily:"
+              "type": "subheading",
+              "text": "Apply tetracycline eye ointment in both eyes 4 times daily"
             },
             {
               "type": "bullet",
@@ -2715,8 +2791,8 @@
               "text": "Soothe the throat, relieve the cough with a safe remedy."
             },
             {
-              "type": "paragraph",
-              "text": "Safe remedies to recommend:"
+              "type": "subheading",
+              "text": "Safe remedies to recommend"
             },
             {
               "type": "bullet",
@@ -2806,8 +2882,8 @@
           "title": "Plan A: Treat diarrhoea with no dehydration(Treat Diarrhoea at Home)",
           "blocks": [
             {
-              "type": "paragraph",
-              "text": "Counsel the mother on the 4 Rules of Home Treatment:"
+              "type": "subheading",
+              "text": "Counsel the mother on the 4 Rules of Home Treatment"
             },
             {
               "type": "bullet",
@@ -2826,7 +2902,7 @@
               "text": "When to Return."
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "ADVISE THE MOTHER"
             },
             {
@@ -2851,7 +2927,7 @@
             },
             {
               "type": "bullet",
-              "text": "Give ORS at home when: The child has been treated with Plan B or Plan C during this visit, OR if the child cannot return to a clinic if the diarrhoea gets worse."
+              "text": "**Give ORS at home when:** The child has been treated with Plan B or Plan C during this visit, OR if the child cannot return to a clinic if the diarrhoea gets worse."
             },
             {
               "type": "bullet",
@@ -2874,8 +2950,8 @@
               "text": "2 years or more 100 to 200 ml"
             },
             {
-              "type": "paragraph",
-              "text": "Advise the mother/caregiver to:"
+              "type": "subheading",
+              "text": "Advise the mother/caregiver to"
             },
             {
               "type": "bullet",
@@ -2890,8 +2966,8 @@
               "text": "Continue giving extra fluids until the diarrhoea stops."
             },
             {
-              "type": "paragraph",
-              "text": "Tell the mother how much zinc to give ( 20 mg tab ):"
+              "type": "subheading",
+              "text": "Tell the mother how much zinc to give ( 20 mg tab )"
             },
             {
               "type": "bullet",
@@ -2906,19 +2982,19 @@
               "text": "6 months or more 1 tablet daily for 14 days"
             },
             {
-              "type": "paragraph",
-              "text": "Show the mother how to give zinc supplements:"
+              "type": "subheading",
+              "text": "Show the mother how to give zinc supplements"
             },
             {
               "type": "bullet",
-              "text": "Infants : Dissolve the tablet in a small amount of expressed breast milk, ORS or safe water, in a small cup or spoon."
+              "text": "**Infants:** Dissolve the tablet in a small amount of expressed breast milk, ORS or safe water, in a small cup or spoon."
             },
             {
               "type": "bullet",
-              "text": "Older children : Tablets can be chewed or dissolved in a small amount of water."
+              "text": "**Older children:** Tablets can be chewed or dissolved in a small amount of water."
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "3. Continue Feeding"
             },
             {
@@ -2926,7 +3002,7 @@
               "text": "Exclusive breastfeeding if age is less than 6 months."
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "4. When to Return"
             },
             {
@@ -2943,8 +3019,8 @@
               "text": "Give in the clinic recommended amount of ORS over 4-hr period:"
             },
             {
-              "type": "paragraph",
-              "text": "1. DETERMINE THE AMOUNT OF ORS TO GIVE DURING THE FIRST 4 HRS:"
+              "type": "subheading",
+              "text": "1. DETERMINE THE AMOUNT OF ORS TO GIVE DURING THE FIRST 4 HRS"
             },
             {
               "type": "bullet",
@@ -2995,8 +3071,8 @@
               "text": "Continue breastfeeding whenever the child wants."
             },
             {
-              "type": "paragraph",
-              "text": "3. AFTER 4 HOURS:"
+              "type": "subheading",
+              "text": "3. AFTER 4 HOURS"
             },
             {
               "type": "bullet",
@@ -3011,8 +3087,8 @@
               "text": "Begin feeding the child in the clinic."
             },
             {
-              "type": "paragraph",
-              "text": "4. IF THE MOTHER MUST LEAVE BEFORE COMPLETING TREATMENT:"
+              "type": "subheading",
+              "text": "4. IF THE MOTHER MUST LEAVE BEFORE COMPLETING TREATMENT"
             },
             {
               "type": "bullet",
@@ -3061,7 +3137,7 @@
             },
             {
               "type": "paragraph",
-              "text": "Start IV fluid immediately . If the child can drink, give ORS by mouth while the drip is set up. Give 100 ml/kg Ringer’s Lactate Solution or, if not available, use normal saline as follows:"
+              "text": "Start IV fluid immediately. If the child can drink, give ORS by mouth while the drip is set up. Give 100 ml/kg Ringer’s Lactate Solution or, if not available, use normal saline as follows:"
             },
             {
               "type": "bullet",
@@ -3105,7 +3181,7 @@
             },
             {
               "type": "paragraph",
-              "text": "Admit or Refer URGENTLY to hospital for IV treatment . If the child can drink, provide the mother with ORS solution and show her how to give frequent sips during the trip."
+              "text": "Admit or Refer URGENTLY to hospital for IV treatment. If the child can drink, provide the mother with ORS solution and show her how to give frequent sips during the trip."
             },
             {
               "type": "bullet",
@@ -3145,11 +3221,11 @@
             },
             {
               "type": "bullet",
-              "text": "If YES ,"
+              "text": "If YES,"
             },
             {
-              "type": "paragraph",
-              "text": "Start rehydration by NG tube (or mouth) with ORS solution:"
+              "type": "subheading",
+              "text": "Start rehydration by NG tube (or mouth) with ORS solution"
             },
             {
               "type": "bullet",
@@ -3160,7 +3236,7 @@
               "text": "Then refer URGENTLY to the hospital for IV or NGT rehydration."
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "Treating Shock"
             },
             {
@@ -3442,7 +3518,7 @@
           "title": "COUNSEL THE MOTHER",
           "blocks": [
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "FOOD"
             },
             {
@@ -3491,7 +3567,7 @@
             },
             {
               "type": "bullet",
-              "text": "If very low weight for age: how large are the servings? does the child receive his/her own serving? who feeds the child & how?"
+              "text": "**If very low weight for age:** how large are the servings? does the child receive his/her own serving? who feeds the child & how?"
             },
             {
               "type": "bullet",
@@ -3518,7 +3594,7 @@
               "text": "Give these foods 1-2 times per day after BF."
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "6-12 MONTHS OF AGE"
             },
             {
@@ -3538,7 +3614,7 @@
               "text": "B) Mixtures of mashed foods made out of posho (maize or millet) or rice or Matooke, potatoes or cassava. Mix with fish or beans or pounded ground. Add green vegetables, give a snack like an egg or banana or bread. 3 times/day if breastfed, 5 times/day if not breastfed."
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "12 MONTHS – 2 YEARS OF AGE"
             },
             {
@@ -3570,7 +3646,7 @@
               "text": "Snacks like an egg or banana or bread or family food 5 times a day."
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "2 YEARS OF AGE AND OLDER"
             },
             {
@@ -3582,7 +3658,7 @@
               "text": "A good daily diet should be adequate in quantity and include an energy-rich food (e.g., thick cereal with added oil), meat, fish, eggs, fruits, and vegetables."
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "COUNSEL THE MOTHER ABOUT FEEDING PROBLEMS"
             },
             {
@@ -3735,7 +3811,7 @@
             },
             {
               "type": "paragraph",
-              "text": "Follow up : If the child has"
+              "text": "**Follow up:** If the child has"
             },
             {
               "type": "bullet",
@@ -3758,7 +3834,7 @@
               "text": "Very low weight for age 30 days"
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "Advise on when to return immediately"
             },
             {
@@ -3767,14 +3843,14 @@
             },
             {
               "type": "bullet",
-              "text": "If child has no pneumonia: cough or cold, return if -fast breathing -difficult breathing"
+              "text": "**If child has no pneumonia:** cough or cold, return if -fast breathing -difficult breathing"
             },
             {
               "type": "bullet",
-              "text": "If child has diarrhea: return if -blood in stool Drinks or breastfeeds poorly"
+              "text": "**If child has diarrhea:** return if -blood in stool Drinks or breastfeeds poorly"
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "Counsel the mother about her own health"
             },
             {
@@ -3940,7 +4016,20 @@
         "Signs of severe disease",
         "ASSESS, CLASSIFY AND TREAT THE YOUNG INFANT",
         "CHECK FOR POSSIBLE SERIOUS BACTERIAL INFECTION OR VERY SEVERE DISEASE, PNEUMONIA AND LOCAL INFECTION",
-        "THEN CHECK FOR JAUNDICE"
+        "THEN CHECK FOR JAUNDICE",
+        "THEN ASSESS FOR DIARRHOEA",
+        "CHECK FOR HIV EXPOSURE AND INFECTION",
+        "THEN CHECK FOR TB",
+        "THEN CHECK FOR FEEDING PROBLEM OR LOW WEIGHT FOR AGE IN BREASTFED INFANTS",
+        "TREAT THE YOUNG INFANT",
+        "COUNSEL THE MOTHER",
+        "For Sick Young Infant with Possible Serious Bacterial Infection or Very Severe Disease",
+        "When to Return Immediately:",
+        "Follow-up Care for Specific Conditions:",
+        "Nursing Uganda Clinical Lens",
+        "Assessment Guide",
+        "Nursing Priorities, Rationales and Outcomes",
+        "Patient Teaching and Revision Check"
       ],
       "images": [
         "/assets/images/medical-illustrations/paediatric-neonatal.webp"
@@ -3960,7 +4049,7 @@
           "blocks": [
             {
               "type": "bullet",
-              "text": "ASK : Child’s age ASK : What are the infant’s problems? ASK : Initial or follow-up visit for problems? MEASURE : Weight and temperature"
+              "text": "**ASK:** Child’s age ASK: What are the infant’s problems? ASK: Initial or follow-up visit for problems? MEASURE: Weight and temperature"
             },
             {
               "type": "bullet",
@@ -4009,7 +4098,7 @@
               "text": "DO QUICK ASSESSMENT OF ALL SICK YOUNG INFANTS BIRTH UP TO 2 MONTHS*"
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "ASK THE MOTHER WHAT THE YOUNG INFANT’S PROBLEMS ARE"
             },
             {
@@ -4026,8 +4115,8 @@
           "title": "CHECK FOR POSSIBLE SERIOUS BACTERIAL INFECTION OR VERY SEVERE DISEASE, PNEUMONIA AND LOCAL INFECTION",
           "blocks": [
             {
-              "type": "paragraph",
-              "text": "ASSESS :"
+              "type": "subheading",
+              "text": "ASSESS"
             },
             {
               "type": "bullet",
@@ -4038,7 +4127,7 @@
               "text": "Is the infant having difficulty in feeding? Has the infant had convulsions (fits) or twitching? ASK and LOOK: Is the infant not able to feed or breastfeed? Is there blood in the stool? Look for breathing: is the baby gasping or not breathing at all even when stimulated Count the breaths in one minute. Repeat the count if elevated. Look for severe chest indrawing Look and listen for grunting or wheezing. Look for nasal flaring. Look for central cyanosis and pulse oximetry where available Look and feel for bulging anterior fontanelle. Look at the umbilicus. Is it red or draining pus? Look for severe abdominal distension. Measure axillary temperature (or feel for fever or low body temperature) Look for skin pustules. Look For high pitched cry. Look at the young infant’s movements (Young infant must be Calm)"
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "CLASSIFY AND IDENTIFY TREATMENT"
             },
             {
@@ -4047,7 +4136,7 @@
             },
             {
               "type": "bullet",
-              "text": "Any of the following signs: Respiratory rate less than 20 breaths per minute or Convulsions or convulsing now or Not able to feed or breastfeed or Fast breathing (more than 60 breaths per minute) or Severe chest indrawing or Grunting or wheezing or Nasal flaring or Bulging anterior fontanelle or Pus draining from the ear or Fever (37.5 º C* or above or feels hot) or Very low body temperature (less than 35.5 º C* or Feels cold) or Movement only when stimulated or No movements at all. Blood in stool. Severe abdominal distension High pitched cry Oxygen saturation &lt;90% POSSIBLE SERIOUS BACTERIAL INFECTION OR VERY SEVERE DISEASE • Immediately resuscitate using a bag and mask if the baby: – Is gasping or not breathing – Has a respiratory rate less than 20 breaths per minute • If convulsing now, give Phenobarbitone • Give the first dose of Benzylpenicillin & Gentamicin. • Treat to prevent low blood sugar • Admit or refer URGENTLY to hospital** • Advise mother how to keep the infant warm on the way to the hospital. • Screen for possible TB disease and check for HIV • If oxygen saturation is less than 90%, start oxygen therapy and refer or admit • IF REFERRAL NOT POSSIBLE (see pg 37)"
+              "text": "**Any of the following signs:** Respiratory rate less than 20 breaths per minute or Convulsions or convulsing now or Not able to feed or breastfeed or Fast breathing (more than 60 breaths per minute) or Severe chest indrawing or Grunting or wheezing or Nasal flaring or Bulging anterior fontanelle or Pus draining from the ear or Fever (37.5 º C* or above or feels hot) or Very low body temperature (less than 35.5 º C* or Feels cold) or Movement only when stimulated or No movements at all. Blood in stool. Severe abdominal distension High pitched cry Oxygen saturation &lt;90% POSSIBLE SERIOUS BACTERIAL INFECTION OR VERY SEVERE DISEASE • Immediately resuscitate using a bag and mask if the baby: – Is gasping or not breathing – Has a respiratory rate less than 20 breaths per minute • If convulsing now, give Phenobarbitone • Give the first dose of Benzylpenicillin & Gentamicin. • Treat to prevent low blood sugar • Admit or refer URGENTLY to hospital** • Advise mother how to keep the infant warm on the way to the hospital. • Screen for possible TB disease and check for HIV • If oxygen saturation is less than 90%, start oxygen therapy and refer or admit • IF REFERRAL NOT POSSIBLE (see pg 37)"
             },
             {
               "type": "bullet",
@@ -4071,7 +4160,7 @@
           "title": "THEN CHECK FOR JAUNDICE",
           "blocks": [
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "**Physiological Jaundice:**"
             },
             {
@@ -4095,7 +4184,7 @@
               "text": "If jaundice appears on the first day, persists for 14 days or more, and extends to palms and soles, it is considered severe jaundice and demands urgent attention."
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "**Pathological Jaundice:**"
             },
             {
@@ -4123,7 +4212,7 @@
               "text": "Does the young infant have yellow discoloration of eyes, palms or soles? If yes, for how long? Look for jaundice (yellow eyes or skin) Look at the young infants’ palms and soles. Are they yellow?"
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "Classify Jaundice"
             },
             {
@@ -4156,7 +4245,7 @@
               "text": "DOES THE YOUNG INFANT HAVE DIARRHOEA OR SIGNS OF DEHYDRATION? IF YES ASK: For how long? Does the child have diarrhoea? Is the child vomiting? Is the child able to feed? * What is diarrhoea in a young infant? A young infant has diarrhoea if the stools have changed from usual pattern and are many and watery (more water than faecal matter). The normally frequent or semi-solid stools of a breastfed baby are not diarrhoea. Infants Movements • Does the infant move on his/her own? • Does the infant move even when stimulated but then stops? • Does the infant not move at all? • Is the infant restless and irritable? • Look for sunken eyes. Pinch the skin of the abdomen. Does it go back: • Very slowly (longer than 2 seconds)? • Slowly? • Immediately? • Assess the young infant’s ability to feed • Assess the young infant’s urine output"
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "Classify for DEHYDRATION"
             },
             {
@@ -4165,11 +4254,11 @@
             },
             {
               "type": "bullet",
-              "text": "Two of the following signs: Movement only when stimulated or no movement at all. Sunken eyes Skin pinch goes back very slowly Child not passing urine. Child not able to feed. SEVERE DEHYDRATION If infant has no other severe classification: • Give fluid for severe dehydration (Plan C) OR If infant also has another severe classification: • Admit/Refer URGENTLY to hospital with mother or caregiver giving frequent sips of ORS on the way • Advise mother to continue breast feeding. • If child is not passing urine admit/refer urgently to hospital. • If child is not able to feed, admit/refer urgently to hospital."
+              "text": "**Two of the following signs:** Movement only when stimulated or no movement at all. Sunken eyes Skin pinch goes back very slowly Child not passing urine. Child not able to feed. SEVERE DEHYDRATION If infant has no other severe classification: • Give fluid for severe dehydration (Plan C) OR If infant also has another severe classification: • Admit/Refer URGENTLY to hospital with mother or caregiver giving frequent sips of ORS on the way • Advise mother to continue breast feeding. • If child is not passing urine admit/refer urgently to hospital. • If child is not able to feed, admit/refer urgently to hospital."
             },
             {
               "type": "bullet",
-              "text": "Two of the following signs: Restless and irritable Sunken eyes Skin pinch goes back slowly. SOME DEHYDRATION • Give fluid and breast milk for some dehydration (Plan B) • Advise mother when to return immediately • Follow-up in 2 days if not improving • If infant also has VERY SEVERE CLASSIFICATION • Admit/Refer URGENTLY to hospital** with the mother giving frequent sips of ORS on the way if child has diarrhoea. • Advise mother to continue breast feeding • Follow-up in 3 days if not improving"
+              "text": "**Two of the following signs:** Restless and irritable Sunken eyes Skin pinch goes back slowly. SOME DEHYDRATION • Give fluid and breast milk for some dehydration (Plan B) • Advise mother when to return immediately • Follow-up in 2 days if not improving • If infant also has VERY SEVERE CLASSIFICATION • Admit/Refer URGENTLY to hospital** with the mother giving frequent sips of ORS on the way if child has diarrhoea. • Advise mother to continue breast feeding • Follow-up in 3 days if not improving"
             },
             {
               "type": "bullet",
@@ -4189,7 +4278,7 @@
               "text": "• Has the mother and/or young infant had an HIV test? IF YES: • What is the mother’s HIV status?: Antibody test is POSITIVE Antibody test is NEGATIVE If mother is HIV positive and NO positive DNA PCR test in child ASK: Is the mother on ART and young infant on ARV prophylaxis? IF NO TEST: Mother and young infant status unknown Perform HIV test for the mother: If positive, perform DNA PCR test for the young infant IF the mother is NOT available, do an antibody test on the child. If positive, do a DNA PCR test."
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "CLASSIFY HIV STATUS"
             },
             {
@@ -4251,8 +4340,24 @@
               "text": "ASSESS BREASTFEEDING:"
             },
             {
+              "type": "subheading",
+              "text": "• Has the infant breast-fed in the previous hour? • If the infant has not fed in the previous hour, ask the mother to put her infant to the breast. Observe the breastfeed for 4 minutes. • (If the infant was fed during the last hour, ask the mother if she can wait and tell you when the infant is willing to feed again.) • Is the infant well attached? -not well attached? -good attachment? TO CHECK ATTACHMENT, LOOK FOR"
+            },
+            {
               "type": "bullet",
-              "text": "• Has the infant breast-fed in the previous hour? • If the infant has not fed in the previous hour, ask the mother to put her infant to the breast. Observe the breastfeed for 4 minutes. • (If the infant was fed during the last hour, ask the mother if she can wait and tell you when the infant is willing to feed again.) • Is the infant well attached? -not well attached? -good attachment? TO CHECK ATTACHMENT, LOOK FOR: – More areola seen above infant’s top lip than below bottom lip – Mouth wide open – Lower lip turned outwards – Chin touching breast (All of these signs should be present if the attachment is good)."
+              "text": "More areola seen above infant’s top lip than below bottom lip"
+            },
+            {
+              "type": "bullet",
+              "text": "Mouth wide open"
+            },
+            {
+              "type": "bullet",
+              "text": "Lower lip turned outwards"
+            },
+            {
+              "type": "bullet",
+              "text": "Chin touching breast (All of these signs should be present if the attachment is good)."
             },
             {
               "type": "paragraph",
@@ -4267,8 +4372,8 @@
               "text": "• Clear a blocked nose if it interferes with breastfeeding."
             },
             {
-              "type": "paragraph",
-              "text": "**** Classify all FEEDING"
+              "type": "subheading",
+              "text": "Classify all FEEDING"
             },
             {
               "type": "bullet",
@@ -4279,15 +4384,27 @@
               "text": "• Weight &lt; 1.5 kg, or • Weight &lt; -3 Z score VERY LOW WEIGHT • Treat to prevent low blood sugar. • Refer URGENTLY to hospital. • Teach the mother to keep the young infant warm on the way to hospital • Check for HIV"
             },
             {
+              "type": "subheading",
+              "text": "• Not well attached to breast or • Not suckling eectively, or • Less than 8 breastfeeds in 24 hours, or • Receives other foods or drinks, or • Low weight for age, or • Thrush (ulcers or white patches in mouth) FEEDING PROBLEM and/or LOW WEIGHT FOR AGE • If not well attached or not suckling effectively, teach correct positioning and attachment."
+            },
+            {
               "type": "bullet",
-              "text": "• Not well attached to breast or • Not suckling eectively, or • Less than 8 breastfeeds in 24 hours, or • Receives other foods or drinks, or • Low weight for age, or • Thrush (ulcers or white patches in mouth) FEEDING PROBLEM and/or LOW WEIGHT FOR AGE • If not well attached or not suckling effectively, teach correct positioning and attachment. – If not able to attach well immediately, teach the mother to express breastmilk and feed by a cup • If breastfeeding less than 8 times in 24 hours, advise to increase frequency of feeding. Advise the mother to breastfeed as often and for as long as the infant wants, day and night. • If receiving other foods or drinks, counsel mother about breastfeeding more, reducing other foods or drinks, and using a cup. • If not breastfeeding at all: – Refer for breastfeeding counselling and possible relactation. – Advise about correctly preparing breastmilk substitutes and using a cup. • Check for TB • Advise the mother how to feed and keep the low weight infant warm at home • If thrush, teach the mother how to treat thrush at home. • Advise mother to give home care for the young infant. • Follow up FEEDING PROBLEM or thrush on day 3. • Follow up LOW WEIGHT FOR AGE on day 14."
+              "text": "If not able to attach well immediately, teach the mother to express breastmilk and feed by a cup • If breastfeeding less than 8 times in 24 hours, advise to increase frequency of feeding. Advise the mother to breastfeed as often and for as long as the infant wants, day and night. • If receiving other foods or drinks, counsel mother about breastfeeding more, reducing other foods or drinks, and using a cup. • If not breastfeeding at all:"
+            },
+            {
+              "type": "bullet",
+              "text": "Refer for breastfeeding counselling and possible relactation."
+            },
+            {
+              "type": "bullet",
+              "text": "Advise about correctly preparing breastmilk substitutes and using a cup. • Check for TB • Advise the mother how to feed and keep the low weight infant warm at home • If thrush, teach the mother how to treat thrush at home. • Advise mother to give home care for the young infant. • Follow up FEEDING PROBLEM or thrush on day 3. • Follow up LOW WEIGHT FOR AGE on day 14."
             },
             {
               "type": "bullet",
               "text": "• Not low weight for age and no other signs of inadequate feeding NO FEEDING PROBLEM • Advise mother to give home care for the young infant. • Praise the mother for feeding the infant well."
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "THEN CHECK THE YOUNG INFANT‘S IMMUNIZATION STATUS"
             },
             {
@@ -4340,7 +4457,7 @@
             },
             {
               "type": "bullet",
-              "text": "Assess the child’s growth and development milestones • Plot the child’s weight on his/her growth card (child health card or mother baby passport) • Ask mother about what the child is now able to do in terms of physical movement, communication and interaction. Assess the Child for ECD / other problems including Congenital Malformations Ask mother for any other problem or identified external malformations • Check child for any external malformations and abnormal signs • Refer infant to hospital, if they have any external malformations ECD-Early Childhood Development Assess the Mother’s Health Needs • Check if had full course of tetanus toxoid, if not, give an appointment. • Ask if pregnant , if so give an antenatal appointment. If not, ask if interested to talk about family planning. • Ask if RCT has been done and the results. • If mother is an adolescent, link to appropriate clinic or service provider for support."
+              "text": "Assess the child’s growth and development milestones • Plot the child’s weight on his/her growth card (child health card or mother baby passport) • Ask mother about what the child is now able to do in terms of physical movement, communication and interaction. Assess the Child for ECD / other problems including Congenital Malformations Ask mother for any other problem or identified external malformations • Check child for any external malformations and abnormal signs • Refer infant to hospital, if they have any external malformations ECD-Early Childhood Development Assess the Mother’s Health Needs • Check if had full course of tetanus toxoid, if not, give an appointment. • Ask if pregnant, if so give an antenatal appointment. If not, ask if interested to talk about family planning. • Ask if RCT has been done and the results. • If mother is an adolescent, link to appropriate clinic or service provider for support."
             }
           ]
         },
@@ -4349,7 +4466,7 @@
           "blocks": [
             {
               "type": "bullet",
-              "text": "– Gentamicin : Give 5 mg/kg/day in once daily injection. In low birthweight (&lt;2.5kg) infants, give 4 mg/kg/day in once daily injection. To prepare the injection: From a 2 ml vial containing 40 mg/ml, remove 1 ml gentamicin from the vial and add 1 ml distilled water to make the required strength of 20 mg/ml. – Ampicillin : Give 50mg/kg IM * If referral is not possible, continue treatment for seven days"
+              "text": "– Gentamicin: Give 5 mg/kg/day in once daily injection. In low birthweight (&lt;2.5kg) infants, give 4 mg/kg/day in once daily injection. To prepare the injection: From a 2 ml vial containing 40 mg/ml, remove 1 ml gentamicin from the vial and add 1 ml distilled water to make the required strength of 20 mg/ml. – Ampicillin: Give 50mg/kg IM * If referral is not possible, continue treatment for seven days"
             },
             {
               "type": "bullet",
@@ -4376,12 +4493,48 @@
               "text": "– Write a referral note for the mother to take to the hospital. – If the infant also has SOME DEHYDRATION OR SEVERE DEHYDRATION and is able to drink: Give the mother some prepared ORS and ask her to give frequent sips of ORS on the way. Advise the mother to continue breastfeeding. – Use the appropriate plan, A, B or C."
             },
             {
-              "type": "bullet",
-              "text": "– Follow the instructions below to teach the mother about each oral medicine to be given at home. Also, follow the instructions listed with each medicine’s dosage table. – Determine the appropriate medicines and dosage for the infant’s age or weight. – Tell the mother the reason for giving the medicine to the infant. – Demonstrate how to measure a dose. – Watch the mother practice measuring a dose by herself. – Ask the mother to give the dose to her infant. – Explain carefully how to give the medicine, then label and package the medicine. – If more than one medicine will be given, collect, count, and package each medicine separately. – Explain that all the tablets or syrups must be used for the course of treatment, even if the infant gets better. – Check the mother’s understanding before she leaves the clinic."
+              "type": "subheading",
+              "text": "– Follow the instructions below to teach the mother about each oral medicine to be given at home. Also, follow the instructions listed with each medicine’s dosage table."
             },
             {
               "type": "bullet",
-              "text": "* Local Infection : Give oral amoxicillin twice daily for 5 days * Pneumonia (fast breathing alone) in infant 7–59 days old: Give oral amoxicillin twice daily for 7 days"
+              "text": "Determine the appropriate medicines and dosage for the infant’s age or weight."
+            },
+            {
+              "type": "bullet",
+              "text": "Tell the mother the reason for giving the medicine to the infant."
+            },
+            {
+              "type": "bullet",
+              "text": "Demonstrate how to measure a dose."
+            },
+            {
+              "type": "bullet",
+              "text": "Watch the mother practice measuring a dose by herself."
+            },
+            {
+              "type": "bullet",
+              "text": "Ask the mother to give the dose to her infant."
+            },
+            {
+              "type": "bullet",
+              "text": "Explain carefully how to give the medicine, then label and package the medicine."
+            },
+            {
+              "type": "bullet",
+              "text": "If more than one medicine will be given, collect, count, and package each medicine separately."
+            },
+            {
+              "type": "bullet",
+              "text": "Explain that all the tablets or syrups must be used for the course of treatment, even if the infant gets better."
+            },
+            {
+              "type": "bullet",
+              "text": "Check the mother’s understanding before she leaves the clinic."
+            },
+            {
+              "type": "bullet",
+              "text": "* Local Infection: Give oral amoxicillin twice daily for 5 days * Pneumonia (fast breathing alone) in infant 7–59 days old: Give oral amoxicillin twice daily for 7 days"
             },
             {
               "type": "paragraph",
@@ -4441,8 +4594,8 @@
               "text": "Apply Gentian Violet twice daily for 5 days."
             },
             {
-              "type": "paragraph",
-              "text": "The mother should:"
+              "type": "subheading",
+              "text": "The mother should"
             },
             {
               "type": "bullet",
@@ -4466,15 +4619,15 @@
             },
             {
               "type": "bullet",
-              "text": "Administer oral antibiotics: Flucloxacillin and Ampicillin."
+              "text": "**Administer oral antibiotics:** Flucloxacillin and Ampicillin."
             },
             {
               "type": "paragraph",
               "text": "TO TREAT THRUSH (WHITE PATCHES IN MOUTH) OR MOUTH ULCERS"
             },
             {
-              "type": "paragraph",
-              "text": "The mother should:"
+              "type": "subheading",
+              "text": "The mother should"
             },
             {
               "type": "bullet",
@@ -4497,7 +4650,7 @@
               "text": "If breastfed, advise the mother to wash her breast after feeds and apply the same medicine on the areola."
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "TREAT EYE INFECTION WITH TETRACYCLINE EYE OINTMENT"
             },
             {
@@ -4585,8 +4738,8 @@
               "text": "TEACH CORRECT POSITIONING AND ATTACHMENT FOR BREASTFEEDING"
             },
             {
-              "type": "paragraph",
-              "text": "Demonstrate how to hold the infant:"
+              "type": "subheading",
+              "text": "Demonstrate how to hold the infant"
             },
             {
               "type": "bullet",
@@ -4605,8 +4758,8 @@
               "text": "Supporting the infant’s whole body, not just the neck and shoulders."
             },
             {
-              "type": "paragraph",
-              "text": "Show how to help the infant attach:"
+              "type": "subheading",
+              "text": "Show how to help the infant attach"
             },
             {
               "type": "bullet",
@@ -4637,7 +4790,7 @@
               "text": "If not able to feed with a cup and spoon, refer to the hospital."
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "TEACH THE MOTHER TO TREAT BREAST OR NIPPLE PROBLEMS"
             },
             {
@@ -4697,8 +4850,8 @@
               "text": "1. Correct Positioning and Attachment for Breastfeeding"
             },
             {
-              "type": "paragraph",
-              "text": "Show the mother how to hold her infant:"
+              "type": "subheading",
+              "text": "Show the mother how to hold her infant"
             },
             {
               "type": "bullet",
@@ -4717,8 +4870,8 @@
               "text": "With the infant’s whole body supported, not just the neck and shoulders."
             },
             {
-              "type": "paragraph",
-              "text": "Show her how to help the infant attach:"
+              "type": "subheading",
+              "text": "Show her how to help the infant attach"
             },
             {
               "type": "bullet",
@@ -4757,8 +4910,8 @@
               "text": "Allow the infant to take the milk himself. DO NOT pour the milk into the infant’s mouth."
             },
             {
-              "type": "paragraph",
-              "text": "Ask the mother to:"
+              "type": "subheading",
+              "text": "Ask the mother to"
             },
             {
               "type": "bullet",
@@ -4849,7 +5002,7 @@
               "text": "Breastfeed the infant frequently (or give expressed breastmilk by cup)."
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "EXCLUSIVELY BREASTFEED THE YOUNG INFANT (for breastfeeding mothers)"
             },
             {
@@ -4861,7 +5014,7 @@
               "text": "Breastfeed frequently, as often and for as long as the infant wants, day or night, during sickness and health."
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "MAKE SURE THAT THE YOUNG INFANT IS KEPT WARM AT ALL TIMES"
             },
             {
@@ -4869,7 +5022,7 @@
               "text": "In cool weather, cover the infant’s head and feet and dress the infant with extra clothing."
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "WHEN TO RETURN (Follow-up visit)"
             },
             {
@@ -4914,7 +5067,7 @@
             },
             {
               "type": "bullet",
-              "text": "CONFIRMED HIV INFECTION or HIV EXPOSED: POSSIBLE HIV INFECTION Per national guidelines"
+              "text": "**CONFIRMED HIV INFECTION or HIV EXPOSED:** POSSIBLE HIV INFECTION Per national guidelines"
             },
             {
               "type": "paragraph",
@@ -4962,8 +5115,8 @@
               "text": "Clinical Severe Infection:"
             },
             {
-              "type": "paragraph",
-              "text": "If using a 2-day gentamicin regimen:"
+              "type": "subheading",
+              "text": "If using a 2-day gentamicin regimen"
             },
             {
               "type": "bullet",
@@ -4982,8 +5135,8 @@
               "text": "Continue oral amoxicillin until all tablets are finished."
             },
             {
-              "type": "paragraph",
-              "text": "If using a 7-day gentamicin regimen:"
+              "type": "subheading",
+              "text": "If using a 7-day gentamicin regimen"
             },
             {
               "type": "bullet",
@@ -5014,8 +5167,8 @@
               "text": "Local Bacterial Infection:"
             },
             {
-              "type": "paragraph",
-              "text": "After 2 days:"
+              "type": "subheading",
+              "text": "After 2 days"
             },
             {
               "type": "bullet",
@@ -5027,7 +5180,7 @@
             },
             {
               "type": "bullet",
-              "text": "Check eyes for pus, swelling, or redness. Treatment :"
+              "text": "Check eyes for pus, swelling, or redness. Treatment:"
             },
             {
               "type": "bullet",
@@ -5043,11 +5196,11 @@
             },
             {
               "type": "paragraph",
-              "text": "Jaundice :"
+              "text": "Jaundice:"
             },
             {
-              "type": "paragraph",
-              "text": "After 1 day:"
+              "type": "subheading",
+              "text": "After 1 day"
             },
             {
               "type": "bullet",
@@ -5066,16 +5219,16 @@
               "text": "Eye Infection:"
             },
             {
-              "type": "paragraph",
-              "text": "After 2 days:"
+              "type": "subheading",
+              "text": "After 2 days"
             },
             {
               "type": "bullet",
               "text": "Look for pus draining from the eyes."
             },
             {
-              "type": "paragraph",
-              "text": "Treatment:"
+              "type": "subheading",
+              "text": "Treatment"
             },
             {
               "type": "bullet",
@@ -5090,8 +5243,8 @@
               "text": "Diarrhoea (Some Dehydration):"
             },
             {
-              "type": "paragraph",
-              "text": "After 2 days:"
+              "type": "subheading",
+              "text": "After 2 days"
             },
             {
               "type": "bullet",
@@ -5209,11 +5362,11 @@
             },
             {
               "type": "bullet",
-              "text": "Exception: If feeding is not expected to improve or if the infant has lost weight, refer to the hospital."
+              "text": "**Exception:** If feeding is not expected to improve or if the infant has lost weight, refer to the hospital."
             },
             {
-              "type": "paragraph",
-              "text": "Thrush or Mouth Ulcers:"
+              "type": "subheading",
+              "text": "Thrush or Mouth Ulcers"
             },
             {
               "type": "bullet",
@@ -5374,7 +5527,39 @@
         "CLASSIFY HIV STATUS",
         "THEN CHECK FOR TB",
         "CLASSIFY",
-        "THEN CHECK THE CHILD‘S IMMUNIZATION AND VITAMIN A STATUS"
+        "THEN CHECK THE CHILD‘S IMMUNIZATION AND VITAMIN A STATUS",
+        "Manage HIV/AIDS using IMCI approach",
+        "Steps when Initiating ART in Children",
+        "Management of HIV in Children Using IMNCI Approach",
+        "STEP 1: ASSESSMENT (Ask and Test)",
+        "Ask the Mother:",
+        "Assess Breastfeeding Risk:",
+        "If Status is Unknown:",
+        "If Mother is Positive:",
+        "STEP 2: CLASSIFICATION",
+        "A. Management of CONFIRMED HIV INFECTION (Red Row)",
+        "B. Management of HIV EXPOSED (Yellow Row)",
+        "C. Management of HIV INFECTION UNLIKELY (Green Row)",
+        "Feeding Advice (Page 26, 29)",
+        "General Care & Hygiene (Page 29)",
+        "STEP 5: FOLLOW-UP",
+        "STEP 1: DECIDE IF THE CHILD HAS CONFIRMED HIV INFECTION",
+        "STEP 2: DECIDE IF CAREGIVER IS ABLE TO GIVE ART",
+        "STEP 3: DECIDE IF ART CAN BE INITIATED IN YOUR FACILITY",
+        "STEP 4: RECORD BASELINE INFORMATION ON THE CHILD’S HIV TREATMENT CARD",
+        "STEP 5: START ON ART, COTRIMOXAZOLE PROPHYLAXIS AND ROUTINE TREATMENTS",
+        "Recommended First-Line ARV Regimens",
+        "Second- and Third-Line ART Regimens",
+        "TB/HIV Co-Infection Treatment Based on Age/Weight",
+        "DOSAGE OF COTRIMOXAZOLE PROPHYLAXIS",
+        "Paediatric ARVs Dosages",
+        "Manage Side Effects of ARV Drugs",
+        "GIVE FOLLOW – UP CARE FOR ACUTE CONDITIONS",
+        "Feeding Counseling",
+        "Nursing Uganda Clinical Lens",
+        "Assessment Guide",
+        "Nursing Priorities, Rationales and Outcomes",
+        "Patient Teaching and Revision Check"
       ],
       "images": [
         "/assets/images/medical-illustrations/paediatric-neonatal.webp"
@@ -5385,7 +5570,7 @@
           "blocks": [
             {
               "type": "paragraph",
-              "text": "All children found to have pneumonia , persistent diarrhea , ear discharge or very low weight for age (any of these features) and have no urgent need or indication for referral , should be assessed for symptomatic HIV infection ."
+              "text": "All children found to have pneumonia, persistent diarrhea, ear discharge or very low weight for age (any of these features) and have no urgent need or indication for referral, should be assessed for symptomatic HIV infection."
             },
             {
               "type": "bullet",
@@ -5485,7 +5670,7 @@
           "title": "THEN CHECK THE CHILD‘S IMMUNIZATION AND VITAMIN A STATUS",
           "blocks": [
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "Immunization Schedule"
             },
             {
@@ -5562,7 +5747,7 @@
             },
             {
               "type": "bullet",
-              "text": "BCG: Bacillus Calmette-Guérin (given at birth) OPV: Oral Polio Vaccine DPT: Diphtheria, Pertussis, Tetanus HepB: Hepatitis B HIB: Haemophilus influenzae type b RTV: Rotavirus Vaccine PCV: Pneumococcal Conjugate Vaccine IPV: Inactivated Polio Vaccine VITAMIN A SUPPLEMENTATION Give every child a dose of Vitamin A every six months from the age of 6 months. Record the dose on the child’s chart. ROUTINE DEWORMING TREATMENT Give every child mebendazole every six months from the age of 1 year. Record the dose on the child’s chart."
+              "text": "**BCG:** Bacillus Calmette-Guérin (given at birth) OPV: Oral Polio Vaccine DPT: Diphtheria, Pertussis, Tetanus HepB: Hepatitis B HIB: Haemophilus influenzae type b RTV: Rotavirus Vaccine PCV: Pneumococcal Conjugate Vaccine IPV: Inactivated Polio Vaccine VITAMIN A SUPPLEMENTATION Give every child a dose of Vitamin A every six months from the age of 6 months. Record the dose on the child’s chart. ROUTINE DEWORMING TREATMENT Give every child mebendazole every six months from the age of 1 year. Record the dose on the child’s chart."
             }
           ]
         },
@@ -5583,16 +5768,16 @@
           "title": "Steps when Initiating ART in Children",
           "blocks": [
             {
-              "type": "paragraph",
-              "text": "Child is under 18 months:"
+              "type": "subheading",
+              "text": "Child is under 18 months"
             },
             {
               "type": "bullet",
               "text": "HIV infection is confirmed if virological test (PCR) is positive."
             },
             {
-              "type": "paragraph",
-              "text": "Child is over 18 months:"
+              "type": "subheading",
+              "text": "Child is over 18 months"
             },
             {
               "type": "bullet",
@@ -5608,11 +5793,7 @@
             },
             {
               "type": "paragraph",
-              "text": "If HIV infection is confirmed, and child is in stable condition , GO TO STEP 2"
-            },
-            {
-              "type": "paragraph",
-              "text": "****"
+              "text": "If HIV infection is confirmed, and child is in stable condition, GO TO STEP 2"
             },
             {
               "type": "paragraph",
@@ -5620,19 +5801,15 @@
             },
             {
               "type": "bullet",
-              "text": "Caregiver able to give ART: GO TO STEP 3"
+              "text": "**Caregiver able to give ART:** GO TO STEP 3"
             },
             {
               "type": "bullet",
-              "text": "Caregiver not able: classify as CONFIRMED HIV INFECTION"
+              "text": "**Caregiver not able:** classify as CONFIRMED HIV INFECTION"
             },
             {
               "type": "paragraph",
               "text": "but NOT ON ART. Counsel and support the caregiver. Follow-up regularly. Move to STEP 3 once the caregiver is willing and able to give ART."
-            },
-            {
-              "type": "paragraph",
-              "text": "****"
             },
             {
               "type": "bullet",
@@ -5640,11 +5817,11 @@
             },
             {
               "type": "bullet",
-              "text": "If child weighs 3 kg or more and does not have TB, GO TO STEP 4 ****"
+              "text": "If child weighs 3 kg or more and does not have TB, GO TO STEP 4"
             },
             {
-              "type": "paragraph",
-              "text": "Record the following information:"
+              "type": "subheading",
+              "text": "Record the following information"
             },
             {
               "type": "bullet",
@@ -5660,7 +5837,7 @@
             },
             {
               "type": "bullet",
-              "text": "Laboratory results (if available): Hb, viral load, CD4 count and percentage. Send for any laboratory tests that are required. Do not wait for results. GO TO STEP 5 ****"
+              "text": "**Laboratory results (if available):** Hb, viral load, CD4 count and percentage. Send for any laboratory tests that are required. Do not wait for results. GO TO STEP 5"
             },
             {
               "type": "bullet",
@@ -5668,11 +5845,11 @@
             },
             {
               "type": "bullet",
-              "text": "Child up to 3 years : ABC or AZT +3TC+ LPV/R or recommended first-line regimen"
+              "text": "**Child up to 3 years:** ABC or AZT +3TC+ LPV/R or recommended first-line regimen"
             },
             {
               "type": "bullet",
-              "text": "Child 3 years or older : ABC + 3TC + DTG , or recommended first-line regimen."
+              "text": "**Child 3 years or older:** ABC + 3TC + DTG, or recommended first-line regimen."
             },
             {
               "type": "bullet",
@@ -5693,7 +5870,7 @@
           "blocks": [
             {
               "type": "paragraph",
-              "text": "**Overview:** The IMNCI guidelines provide a structured approach to managing HIV in children through systematic assessment, classification, treatment, and counseling. This follows the standard IMNCI process flow: Assess → Classify → Treat → Counsel → Follow-up ."
+              "text": "**Overview:** The IMNCI guidelines provide a structured approach to managing HIV in children through systematic assessment, classification, treatment, and counseling. This follows the standard IMNCI process flow: Assess → Classify → Treat → Counsel → Follow-up."
             }
           ]
         },
@@ -5702,7 +5879,7 @@
           "blocks": [
             {
               "type": "paragraph",
-              "text": "Refer to: Page 9 (Child 2 months–5 years) and Page 37 (Young Infant 0–2 months)"
+              "text": "**Refer to:** Page 9 (Child 2 months–5 years) and Page 37 (Young Infant 0–2 months)"
             },
             {
               "type": "paragraph",
@@ -5820,7 +5997,7 @@
             },
             {
               "type": "bullet",
-              "text": "Look for physical signs: lymph node swelling, stiff neck"
+              "text": "**Look for physical signs:** lymph node swelling, stiff neck"
             },
             {
               "type": "bullet",
@@ -6120,8 +6297,8 @@
           "title": "STEP 4: RECORD BASELINE INFORMATION ON THE CHILD’S HIV TREATMENT CARD",
           "blocks": [
             {
-              "type": "paragraph",
-              "text": "Record the following information:"
+              "type": "subheading",
+              "text": "Record the following information"
             },
             {
               "type": "bullet",
@@ -6137,7 +6314,7 @@
             },
             {
               "type": "bullet",
-              "text": "Laboratory results (if available): Hb, viral load, CD4 count and percentage"
+              "text": "**Laboratory results (if available):** Hb, viral load, CD4 count and percentage"
             },
             {
               "type": "bullet",
@@ -6264,11 +6441,11 @@
             },
             {
               "type": "bullet",
-              "text": "If not exposed to INSTIs: DRV/r + DTG ± 1-2 NRTIs"
+              "text": "**If not exposed to INSTIs:** DRV/r + DTG ± 1-2 NRTIs"
             },
             {
               "type": "bullet",
-              "text": "If exposed to INSTIs: DRV/r + ETV±1-2 NRTIs"
+              "text": "**If exposed to INSTIs:** DRV/r + ETV±1-2 NRTIs"
             },
             {
               "type": "bullet",
@@ -6396,7 +6573,7 @@
             },
             {
               "type": "bullet",
-              "text": "Dolutegravir (DTG) benefits: low potential for drug interactions, shorter time to viral suppression, higher resistance barrier, long half-life, and low cost."
+              "text": "**Dolutegravir (DTG) benefits:** low potential for drug interactions, shorter time to viral suppression, higher resistance barrier, long half-life, and low cost."
             },
             {
               "type": "bullet",
@@ -6408,7 +6585,7 @@
             },
             {
               "type": "bullet",
-              "text": "ABC: Abacavir AZT: Zidovudine 3TC: Lamivudine LPV/r: Lopinavir/Ritonavir RTV: Ritonavir NVP: Nevirapine EFV: Efavirenz DTG: Dolutegravir TDF: Tenofovir Disoproxil Fumarate RAL: Raltegravir ATV/r: Atazanavir/Ritonavir"
+              "text": "**ABC:** Abacavir AZT: Zidovudine 3TC: Lamivudine LPV/r: Lopinavir/Ritonavir RTV: Ritonavir NVP: Nevirapine EFV: Efavirenz DTG: Dolutegravir TDF: Tenofovir Disoproxil Fumarate RAL: Raltegravir ATV/r: Atazanavir/Ritonavir"
             }
           ]
         },
@@ -6483,10 +6660,6 @@
             {
               "type": "paragraph",
               "text": "• RAL – for those unable to tolerate super boosted LPV/r"
-            },
-            {
-              "type": "paragraph",
-              "text": "****"
             }
           ]
         },
@@ -6560,7 +6733,7 @@
             },
             {
               "type": "bullet",
-              "text": "Sleep disturbances, nightmares, anxiety Due to efavirenz . Administer at night on an empty stomach with low-fat foods. Call for advice or refer if it persists for more than 2 weeks or worsens."
+              "text": "Sleep disturbances, nightmares, anxiety Due to efavirenz. Administer at night on an empty stomach with low-fat foods. Call for advice or refer if it persists for more than 2 weeks or worsens."
             },
             {
               "type": "bullet",
@@ -6585,51 +6758,51 @@
             },
             {
               "type": "bullet",
-              "text": "PNEUMONIA After 2 days Check the child for general danger signs. Assess the child for cough or difficult breathing. Ask : Is the child breathing slower? Is there less fever? Is the child eating better? Treatment : If any general danger sign , administer a dose of second-line antibiotic, then admit or refer URGENTLY to the hospital. If chest indrawing, breathing rate, fever , and eating have not improved , switch to the second-line antibiotic and ADMIT or REFER (If this child had measles within the last 3 months or is known or confirmed HIV infection, refer). If breathing slower, less fever, or eating better, complete the 5 days of antibiotic."
+              "text": "PNEUMONIA After 2 days Check the child for general danger signs. Assess the child for cough or difficult breathing. Ask: Is the child breathing slower? Is there less fever? Is the child eating better? Treatment: If any general danger sign, administer a dose of second-line antibiotic, then admit or refer URGENTLY to the hospital. If chest indrawing, breathing rate, fever, and eating have not improved, switch to the second-line antibiotic and ADMIT or REFER (If this child had measles within the last 3 months or is known or confirmed HIV infection, refer). If breathing slower, less fever, or eating better, complete the 5 days of antibiotic."
             },
             {
               "type": "bullet",
-              "text": "WHEEZING After 2 days Check the child for general danger signs or chest indrawing. Assess the child for cough or difficult breathing . Ask: Is the child breathing slower? Is the child still wheezing? Is the child eating better? For Children under 1 year: If wheezing and any of the following; General danger sign or stridor in a calm child or chest indrawing, fast breathing, poor feeding; Give intravascular/intramuscular antibiotic. Then admit or refer URGENTLY to the hospital. If no wheezing, breathing slower, and eating better; continue the treatment for 5 days. For Children over 1 year: If wheezing and any of the following; General danger sign or stridor in a calm child or chest indrawing, fast breathing, poor feeding; Give intravascular/intramuscular antibiotic. Then admit or refer URGENTLY to the hospital. If breathing rate and eating have not improved; change to second-line antibiotic and ADMIT OR REFER urgently to the hospital. If still wheezing; continue oral bronchodilator. If breathing slower, no wheezing, and eating better, continue the treatment for 5 days. If the child has unilateral wheeze and is not responding to bronchodilators, TB disease is likely and should be evaluated."
+              "text": "WHEEZING After 2 days Check the child for general danger signs or chest indrawing. Assess the child for cough or difficult breathing. Ask: Is the child breathing slower? Is the child still wheezing? Is the child eating better? For Children under 1 year: If wheezing and any of the following; General danger sign or stridor in a calm child or chest indrawing, fast breathing, poor feeding; Give intravascular/intramuscular antibiotic. Then admit or refer URGENTLY to the hospital. If no wheezing, breathing slower, and eating better; continue the treatment for 5 days. For Children over 1 year: If wheezing and any of the following; General danger sign or stridor in a calm child or chest indrawing, fast breathing, poor feeding; Give intravascular/intramuscular antibiotic. Then admit or refer URGENTLY to the hospital. If breathing rate and eating have not improved; change to second-line antibiotic and ADMIT OR REFER urgently to the hospital. If still wheezing; continue oral bronchodilator. If breathing slower, no wheezing, and eating better, continue the treatment for 5 days. If the child has unilateral wheeze and is not responding to bronchodilators, TB disease is likely and should be evaluated."
             },
             {
               "type": "bullet",
-              "text": "PERSISTENT DIARRHOEA After 5 days Ask: Has the diarrhea stopped? How many loose stools is the child having per day? Treatment: If the diarrhea has not stopped (child is still having 3 or more loose stools per day) , do a full reassessment of the child. Give any treatment needed. Then refer to the hospital. If the diarrhea has stopped (child having fewer than 3 loose stools per day), tell the mother to follow the usual feeding recommendations for the child’s age, but give one extra meal every day for 1 month. Ask her to continue giving Zinc sulfate for a total of 10 days. NB: Attention to diet is an essential part of the management of a child with persistent diarrhea"
+              "text": "**PERSISTENT DIARRHOEA After 5 days Ask:** Has the diarrhea stopped? How many loose stools is the child having per day? Treatment: If the diarrhea has not stopped (child is still having 3 or more loose stools per day), do a full reassessment of the child. Give any treatment needed. Then refer to the hospital. If the diarrhea has stopped (child having fewer than 3 loose stools per day), tell the mother to follow the usual feeding recommendations for the child’s age, but give one extra meal every day for 1 month. Ask her to continue giving Zinc sulfate for a total of 10 days. NB: Attention to diet is an essential part of the management of a child with persistent diarrhea"
             },
             {
               "type": "bullet",
-              "text": "DYSENTERY After 2 days Assess the child for diarrhea. &gt; See ASSESS & CLASSIFY chart Ask: Are there fewer stools? Is there less blood in the stool? Is there less fever? Is there less abdominal pain? Is the child eating better? Treatment: If the child is dehydrated, treat dehydration according to classification. If the number of stools, the amount of blood in stools, fever, abdominal pain, or eating is worse : Admit or Refer to the hospital. If the condition is the same: add Metronidazole to the treatment. Give it for 5 days. Advise the mother to continue ciprofloxacin and zinc and to return in 2 days. Exceptions – if the child: is less than 12 months old, or was dehydrated on the first visit or to the hospital. had measles within the last 3 months , then Admit or Refer URGENTLY If fewer stools, less blood in the stools, less fever, less abdominal pain, and eating better , continue giving Ciprofloxacin and zinc sulfate until finished."
+              "text": "DYSENTERY After 2 days Assess the child for diarrhea. &gt; See ASSESS & CLASSIFY chart Ask: Are there fewer stools? Is there less blood in the stool? Is there less fever? Is there less abdominal pain? Is the child eating better? Treatment: If the child is dehydrated, treat dehydration according to classification. If the number of stools, the amount of blood in stools, fever, abdominal pain, or eating is worse: Admit or Refer to the hospital. If the condition is the same: add Metronidazole to the treatment. Give it for 5 days. Advise the mother to continue ciprofloxacin and zinc and to return in 2 days. Exceptions – if the child: is less than 12 months old, or was dehydrated on the first visit or to the hospital. had measles within the last 3 months, then Admit or Refer URGENTLY If fewer stools, less blood in the stools, less fever, less abdominal pain, and eating better, continue giving Ciprofloxacin and zinc sulfate until finished."
             },
             {
               "type": "bullet",
-              "text": "UNCOMPLICATED MALARIA If fever persists after 3 days, or recurs within 14 days: Do a full reassessment of the child. &gt;See ASSESS & CLASSIFY chart. Assess for other causes of fever. Treatment: If the child has any general danger sign or stiff neck , treat it as VERY SEVERE FEBRILE DISEASE. If the child has any cause of fever other than malaria, provide treatment. If malaria is the only apparent cause of fever and confirmed by microscopy: Give oral DIHYDROARTEMISININ-PIPERAQUINE (DHA-PPQ). Give paracetamol. If the child is under 5 kg and was given DHA-PPQ assess further. Advice mother to return again in 3 days if the fever persists – If fever has been present every day for 7 days, refer for assessment."
+              "text": "UNCOMPLICATED MALARIA If fever persists after 3 days, or recurs within 14 days: Do a full reassessment of the child. &gt;See ASSESS & CLASSIFY chart. Assess for other causes of fever. Treatment: If the child has any general danger sign or stiff neck, treat it as VERY SEVERE FEBRILE DISEASE. If the child has any cause of fever other than malaria, provide treatment. If malaria is the only apparent cause of fever and confirmed by microscopy: Give oral DIHYDROARTEMISININ-PIPERAQUINE (DHA-PPQ). Give paracetamol. If the child is under 5 kg and was given DHA-PPQ assess further. Advice mother to return again in 3 days if the fever persists – If fever has been present every day for 7 days, refer for assessment."
             },
             {
               "type": "bullet",
-              "text": "FEVER – NO MALARIA If fever persists after 3 days: Do a full reassessment of the child. &gt; See ASSESS & CLASSIFY chart (see pg 6) Assess for other causes of fever. Treatment: If the child has any general danger sign or stiff neck , treat as VERY SEVERE FEBRILE DISEASE. If the child has any cause of fever other than malaria , provide appropriate treatment. If malaria is the only apparent cause of fever : Treat with the first-line oral antimalarial. Give paracetamol. Advise the mother to return again in 3 days if the fever persists. If fever has been present every day for 7 days, refer for assessment. If the child has persistent fever, cough, and reduced playfulness despite other treatment, evaluate for TB."
+              "text": "FEVER – NO MALARIA If fever persists after 3 days: Do a full reassessment of the child. &gt; See ASSESS & CLASSIFY chart (see pg 6) Assess for other causes of fever. Treatment: If the child has any general danger sign or stiff neck, treat as VERY SEVERE FEBRILE DISEASE. If the child has any cause of fever other than malaria, provide appropriate treatment. If malaria is the only apparent cause of fever: Treat with the first-line oral antimalarial. Give paracetamol. Advise the mother to return again in 3 days if the fever persists. If fever has been present every day for 7 days, refer for assessment. If the child has persistent fever, cough, and reduced playfulness despite other treatment, evaluate for TB."
             },
             {
               "type": "bullet",
-              "text": "EYE OR MOUTH COMPLICATIONS OF MEASLES After 2 days: Look for red eyes and pus draining from the eyes. Look at mouth ulcers. Smell the mouth. Treatment for Eye Infection: If pus is draining from the eye , ask the mother/caregiver to describe how she has treated the eye infection. If treatment has been correct, refer to the hospital. If treatment has not been correct, teach mother/caregiver correct treatment. If the pus is gone but redness remains , continue the treatment. If there is no pus or redness, stop the treatment. Treatment for Mouth Ulcers: If mouth ulcers are worse, or there is a very foul smell from the mouth, refer to the hospital. If mouth ulcers are the same or better, continue using half-strength gentian violet or Nystatin for a total of 5 days. Treatment for thrush: If thrush is worse, check that treatment is being given correctly. If the child has problems with swallowing, refer to the hospital. If thrush is the same or better, and the child is feeding well, continue Nystatin for a total of 7 days. If thrush is no better or is worse consider symptomatic HIV infection."
+              "text": "EYE OR MOUTH COMPLICATIONS OF MEASLES After 2 days: Look for red eyes and pus draining from the eyes. Look at mouth ulcers. Smell the mouth. Treatment for Eye Infection: If pus is draining from the eye, ask the mother/caregiver to describe how she has treated the eye infection. If treatment has been correct, refer to the hospital. If treatment has not been correct, teach mother/caregiver correct treatment. If the pus is gone but redness remains, continue the treatment. If there is no pus or redness, stop the treatment. Treatment for Mouth Ulcers: If mouth ulcers are worse, or there is a very foul smell from the mouth, refer to the hospital. If mouth ulcers are the same or better, continue using half-strength gentian violet or Nystatin for a total of 5 days. Treatment for thrush: If thrush is worse, check that treatment is being given correctly. If the child has problems with swallowing, refer to the hospital. If thrush is the same or better, and the child is feeding well, continue Nystatin for a total of 7 days. If thrush is no better or is worse consider symptomatic HIV infection."
             },
             {
               "type": "bullet",
-              "text": "EAR INFECTION After 5 days: Reassess for ear problem. &gt; See ASSESS & CLASSIFY chart Measure the child’s temperature. Treatment: If there is tender swelling behind the ear or high fever (38.5°C or above), admit or refer URGENTLY to the hospital. Acute ear infection : if ear pain continues or discharge persists, treat with 5 more days of the same antibiotic. Continue wicking to dry the ear. Follow-up in 5 days. Chronic ear infection : Check that the mother is wicking the ear correctly. Encourage her to continue. Review in 2 weeks. If ear discharge continues for more than 2 months: Admit or refer to the hospital. If no ear pain or discharge , praise the mother for her careful treatment. If she has not yet finished the 5 days of antibiotic, tell her to use till treatment is completed."
+              "text": "**EAR INFECTION After 5 days:** Reassess for ear problem. &gt; See ASSESS & CLASSIFY chart Measure the child’s temperature. Treatment: If there is tender swelling behind the ear or high fever (38.5°C or above), admit or refer URGENTLY to the hospital. Acute ear infection: if ear pain continues or discharge persists, treat with 5 more days of the same antibiotic. Continue wicking to dry the ear. Follow-up in 5 days. Chronic ear infection: Check that the mother is wicking the ear correctly. Encourage her to continue. Review in 2 weeks. If ear discharge continues for more than 2 months: Admit or refer to the hospital. If no ear pain or discharge, praise the mother for her careful treatment. If she has not yet finished the 5 days of antibiotic, tell her to use till treatment is completed."
             },
             {
               "type": "bullet",
-              "text": "FEEDING PROBLEM After 5 days: Reassess feeding. See questions at the top of the COUNSEL THE MOTHER. Ask about any feeding problems found on the initial visit. Counsel the mother/caregiver about any new or continuing feeding problems. If you counsel the mother/caregiver to make significant changes in feeding, ask her to bring the child back again after 5 days. If the child is very low weight for age, ask the mother to return 14 days after the initial visit to measure the child’s weight gain."
+              "text": "**FEEDING PROBLEM After 5 days:** Reassess feeding. See questions at the top of the COUNSEL THE MOTHER. Ask about any feeding problems found on the initial visit. Counsel the mother/caregiver about any new or continuing feeding problems. If you counsel the mother/caregiver to make significant changes in feeding, ask her to bring the child back again after 5 days. If the child is very low weight for age, ask the mother to return 14 days after the initial visit to measure the child’s weight gain."
             },
             {
               "type": "bullet",
-              "text": "PALLOR After 14 days: Give iron and folate. Advise mother to return in 14 days for more iron and folate. Continue giving iron and folate every day for 2 months. If the child has palmar pallor after 2 months, refer for assessment."
+              "text": "**PALLOR After 14 days:** Give iron and folate. Advise mother to return in 14 days for more iron and folate. Continue giving iron and folate every day for 2 months. If the child has palmar pallor after 2 months, refer for assessment."
             },
             {
               "type": "bullet",
-              "text": "MALNUTRITION After 14 days: If the child is gaining weight, encourage the mother to continue with feeding. Counsel the mother about any feeding problem. SEVERE MALNUTRITION WITHOUT COMPLICATIONS After 7 days or during regular follow-up: Do a full assessment of the child &gt;See ASSESS AND CLASSIFY chart. Assess child with the same measurements (WFH/L, MUAC) as on the initial visit. Check for edema of both feet. Check the child’s appetite by offering ready-to-use therapeutic food if the child is 6 months and older. Treatment : If the child has SEVERE MALNUTRITION WITH COMPLICATIONS (WFH/L less than -3 z-scores or MUAC is less than 11.5mm or edema of both feet AND has developed a medical complication or edema, or fails the appetite test), refer URGENTLY to the hospital. If the child has SEVERE MALNUTRITION WITHOUT COMPLICATIONS (WFH/L less than -3 z-scores or MUAC is less than 11.5 mm or edema of both feet but NO medical complication and passes the appetite test) counsel the mother and encourage her to continue with appropriate RUTF feeding. Ask the mother to return in 7 days. If the child has MODERATE ACUTE MALNUTRITION (WFH/L between -3 and -2 z-scores or MUAC between 11.5 and 12.5 mm), advise the mother to continue RUTF. Counsel the mother. MODERATE ACUTE MALNUTRITION After 14 days: Assess the child using the same measurement (WFH/L or MUAC) used on the initial visit. If WFH/L, weigh the child, measure height or length and determine if WFH/L. If MUAC, measure using MUAC tape. Check the child for edema of both feet. Reassess feeding. See questions in the COUNSEL THE MOTHER chart. Treatment : If the child is no longer classified as MODERATE ACUTE MALNUTRITION, praise the mother and encourage her to continue. If the child is still classified as MODERATE ACUTE MALNUTRITION, counsel the mother about any feeding problem found. Ask the mother to return again in 14 days. Continue to see the child every 2 weeks until the child is feeding well and gaining weight regularly or his or her WFH/L is -2 z-scores or more or MUAC is 12.5 or more. Assess all children with failure to thrive or growth faltering for possible TB disease. Exception: If you do not think that feeding will improve, or if the child has lost weight or his or her MUAC has diminished, refer the child."
+              "text": "**MALNUTRITION After 14 days:** If the child is gaining weight, encourage the mother to continue with feeding. Counsel the mother about any feeding problem. SEVERE MALNUTRITION WITHOUT COMPLICATIONS After 7 days or during regular follow-up: Do a full assessment of the child &gt;See ASSESS AND CLASSIFY chart. Assess child with the same measurements (WFH/L, MUAC) as on the initial visit. Check for edema of both feet. Check the child’s appetite by offering ready-to-use therapeutic food if the child is 6 months and older. Treatment: If the child has SEVERE MALNUTRITION WITH COMPLICATIONS (WFH/L less than -3 z-scores or MUAC is less than 11.5mm or edema of both feet AND has developed a medical complication or edema, or fails the appetite test), refer URGENTLY to the hospital. If the child has SEVERE MALNUTRITION WITHOUT COMPLICATIONS (WFH/L less than -3 z-scores or MUAC is less than 11.5 mm or edema of both feet but NO medical complication and passes the appetite test) counsel the mother and encourage her to continue with appropriate RUTF feeding. Ask the mother to return in 7 days. If the child has MODERATE ACUTE MALNUTRITION (WFH/L between -3 and -2 z-scores or MUAC between 11.5 and 12.5 mm), advise the mother to continue RUTF. Counsel the mother. MODERATE ACUTE MALNUTRITION After 14 days: Assess the child using the same measurement (WFH/L or MUAC) used on the initial visit. If WFH/L, weigh the child, measure height or length and determine if WFH/L. If MUAC, measure using MUAC tape. Check the child for edema of both feet. Reassess feeding. See questions in the COUNSEL THE MOTHER chart. Treatment: If the child is no longer classified as MODERATE ACUTE MALNUTRITION, praise the mother and encourage her to continue. If the child is still classified as MODERATE ACUTE MALNUTRITION, counsel the mother about any feeding problem found. Ask the mother to return again in 14 days. Continue to see the child every 2 weeks until the child is feeding well and gaining weight regularly or his or her WFH/L is -2 z-scores or more or MUAC is 12.5 or more. Assess all children with failure to thrive or growth faltering for possible TB disease. Exception: If you do not think that feeding will improve, or if the child has lost weight or his or her MUAC has diminished, refer the child."
             },
             {
               "type": "bullet",
-              "text": "HIV EXPOSED & INFECTED CHILDREN HIV INFECTED CHILD After 1 month: Assess the child’s general condition. Do a full assessment Treat the child for any condition found. Ask for any feeding problems, counsel the mother about any new or continuing feeding problems. Advise the mother/caregiver to bring the child back if any new illness develops or she is worried. Counsel the mother/caregiver on any other problems and ensure community support is being given. Refer for further psychosocial/counseling if necessary. Continue with routine follow-up for growth and development, nutrition, immunization, vitamin A, deworming. Assess adherence to ART and Cotrimoxazole and advise accordingly. Offer or refer child for comprehensive HIV management and care (including ART) as per the national ART guidelines. Plan for defaulter tracking system; identification and tracking of children. Follow up monthly. HIV EXPOSED CHILD (&lt;18 months) : For children tested DNA PCR Negative After 1 month: Assess the child’s general condition. Do a full reassessment. Ask for any feeding problems or poor appetite, counsel the mother about any new or continuing feeding problems. Treat the child for any condition found. Give Cotrimoxazole prophylaxis from 6 weeks and emphasize the importance of compliance. Start or continue with ARV prophylaxis for a total of 12 weeks. Screen for possible TB Disease. Continue with routine follow-up for growth and development, nutrition, immunization, vitamin A, deworming. Follow-up schedule of HIV Exposed infant monthly up to 24 months. Refer to Early Infant Diagnosis (EID) algorithm for confirmation of HIV status. Refer to the HIV exposed infant follow-up card and register for further follow-up instructions."
+              "text": "HIV EXPOSED & INFECTED CHILDREN HIV INFECTED CHILD After 1 month: Assess the child’s general condition. Do a full assessment Treat the child for any condition found. Ask for any feeding problems, counsel the mother about any new or continuing feeding problems. Advise the mother/caregiver to bring the child back if any new illness develops or she is worried. Counsel the mother/caregiver on any other problems and ensure community support is being given. Refer for further psychosocial/counseling if necessary. Continue with routine follow-up for growth and development, nutrition, immunization, vitamin A, deworming. Assess adherence to ART and Cotrimoxazole and advise accordingly. Offer or refer child for comprehensive HIV management and care (including ART) as per the national ART guidelines. Plan for defaulter tracking system; identification and tracking of children. Follow up monthly. HIV EXPOSED CHILD (&lt;18 months): For children tested DNA PCR Negative After 1 month: Assess the child’s general condition. Do a full reassessment. Ask for any feeding problems or poor appetite, counsel the mother about any new or continuing feeding problems. Treat the child for any condition found. Give Cotrimoxazole prophylaxis from 6 weeks and emphasize the importance of compliance. Start or continue with ARV prophylaxis for a total of 12 weeks. Screen for possible TB Disease. Continue with routine follow-up for growth and development, nutrition, immunization, vitamin A, deworming. Follow-up schedule of HIV Exposed infant monthly up to 24 months. Refer to Early Infant Diagnosis (EID) algorithm for confirmation of HIV status. Refer to the HIV exposed infant follow-up card and register for further follow-up instructions."
             }
           ]
         },
@@ -6641,8 +6814,8 @@
               "text": "For Mothers and caregivers of infants under 18 months."
             },
             {
-              "type": "paragraph",
-              "text": "Goals:"
+              "type": "subheading",
+              "text": "Goals"
             },
             {
               "type": "bullet",
@@ -6661,12 +6834,12 @@
               "text": "If positive, discuss the need to start ART immediately."
             },
             {
-              "type": "paragraph",
-              "text": "Just after giving birth, the mother should be counseled on:"
+              "type": "subheading",
+              "text": "Just after giving birth, the mother should be counseled on"
             },
             {
               "type": "bullet",
-              "text": "HIV testing for herself: if she did not test in antenatal, she should be tested soon after delivery."
+              "text": "**HIV testing for herself:** if she did not test in antenatal, she should be tested soon after delivery."
             },
             {
               "type": "bullet",
@@ -6674,10 +6847,10 @@
             },
             {
               "type": "bullet",
-              "text": "HIV testing for the infant: at 6 weeks, the infant can be tested."
+              "text": "**HIV testing for the infant:** at 6 weeks, the infant can be tested."
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "Overview of Infant Feeding Guidelines for Exposed Infants"
             },
             {

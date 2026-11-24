@@ -154,7 +154,26 @@
         "Principles of Paediatric Nursing",
         "Scope of Paediatric Nursing",
         "Roles of the Paediatric Nurse",
-        "Rights of the Child in Healthcare"
+        "Rights of the Child in Healthcare",
+        "Antenatal Care",
+        "Fetal Development",
+        "Nursing Goals",
+        "Definition of Terms",
+        "Characteristics of a Normal Newborn",
+        "The Newborn",
+        "Physical Characteristics",
+        "Sensory Development",
+        "Skin and Body Systems",
+        "Behavior",
+        "Physical Characteristics",
+        "Skin",
+        "Chest and Abdomen",
+        "Genitalia",
+        "The Common Reflexes Observed in the Newborn",
+        "Nursing Uganda Clinical Lens",
+        "Assessment Guide",
+        "Nursing Priorities, Rationales and Outcomes",
+        "Patient Teaching and Revision Check"
       ],
       "images": [
         "/assets/images/medical-illustrations/paediatric-neonatal.webp"
@@ -164,8 +183,8 @@
           "title": "Learning Outcomes for this Section",
           "blocks": [
             {
-              "type": "paragraph",
-              "text": "By the end of this section, the learner shall be able to:"
+              "type": "subheading",
+              "text": "By the end of this section, the learner shall be able to"
             },
             {
               "type": "bullet",
@@ -198,7 +217,7 @@
             },
             {
               "type": "paragraph",
-              "text": "Paediatric nursing requires a deep understanding of genetics, obstetrics, physiological development, management of disabilities, and the effects of social conditions on a child's health. Since a child is entirely dependent on their caregivers, it is essential that the care provided is **family-centered** . Providing quality care for sick children depends on the nurse's ability to understand the developmental variations anticipated in different age groups."
+              "text": "Paediatric nursing requires a deep understanding of genetics, obstetrics, physiological development, management of disabilities, and the effects of social conditions on a child's health. Since a child is entirely dependent on their caregivers, it is essential that the care provided is **family-centered**. Providing quality care for sick children depends on the nurse's ability to understand the developmental variations anticipated in different age groups."
             },
             {
               "type": "paragraph",
@@ -239,8 +258,8 @@
           "title": "Scope of Paediatric Nursing",
           "blocks": [
             {
-              "type": "paragraph",
-              "text": "Paediatric nurses practice in a wide variety of settings, including:"
+              "type": "subheading",
+              "text": "Paediatric nurses practice in a wide variety of settings, including"
             },
             {
               "type": "bullet",
@@ -402,7 +421,7 @@
             },
             {
               "type": "paragraph",
-              "text": "**Normal Baby:** A normal baby should have the following characteristics. A normal term baby weighs approximately 3.5 kg, when fully extended measures 50 cm from the crown of the head to the heels, and has an average occipitofrontal head circumference of 34-35 cm. Most babies are plump and have a prominent abdomen. They lie in an attitude of flexion, with arms **flexed** ; their fingers reach upper thigh level."
+              "text": "**Normal Baby:** A normal baby should have the following characteristics. A normal term baby weighs approximately 3.5 kg, when fully extended measures 50 cm from the crown of the head to the heels, and has an average occipitofrontal head circumference of 34-35 cm. Most babies are plump and have a prominent abdomen. They lie in an attitude of flexion, with arms **flexed**; their fingers reach upper thigh level."
             },
             {
               "type": "paragraph",
@@ -975,8 +994,8 @@
               "text": "Units of information, facts, figures, or knowledge collected during a study. This is also known as processed information."
             },
             {
-              "type": "paragraph",
-              "text": "Data is classified into major categories/scales:"
+              "type": "subheading",
+              "text": "Data is classified into major categories/scales"
             },
             {
               "type": "bullet",
@@ -1016,7 +1035,7 @@
             },
             {
               "type": "bullet",
-              "text": "Examples: Hair colour, Gender, Letters, Colours, Symbols, Words."
+              "text": "**Examples:** Hair colour, Gender, Letters, Colours, Symbols, Words."
             },
             {
               "type": "bullet",
@@ -1024,7 +1043,7 @@
             },
             {
               "type": "bullet",
-              "text": "Examples: Opinion (Agree, neutral, disagree), Tumour Grade (1, 2, 3), Time of day (Morning, Noon, Night), 1 = happy, 2 = neutral, 3 = unhappy."
+              "text": "**Examples:** Opinion (Agree, neutral, disagree), Tumour Grade (1, 2, 3), Time of day (Morning, Noon, Night), 1 = happy, 2 = neutral, 3 = unhappy."
             },
             {
               "type": "paragraph",
@@ -1036,7 +1055,7 @@
             },
             {
               "type": "bullet",
-              "text": "Examples: Number of items, Dates (200; 1000; 1500), Temperature in specific increments (30°C; 45°C; 60°C), pH (1.2; 4.5; 7.2), IQ (80; 120; 140)."
+              "text": "**Examples:** Number of items, Dates (200; 1000; 1500), Temperature in specific increments (30°C; 45°C; 60°C), pH (1.2; 4.5; 7.2), IQ (80; 120; 140)."
             },
             {
               "type": "bullet",
@@ -1044,7 +1063,7 @@
             },
             {
               "type": "bullet",
-              "text": "Examples: Height, Weight, Temperature range, Distance travelled, Time interval, Age range."
+              "text": "**Examples:** Height, Weight, Temperature range, Distance travelled, Time interval, Age range."
             },
             {
               "type": "bullet",
@@ -1052,7 +1071,7 @@
             },
             {
               "type": "bullet",
-              "text": "Examples: Time (from the visual's first diagram), Temperature (from the visual's second diagram, also showing as discrete/interval)."
+              "text": "**Examples:** Time (from the visual's first diagram), Temperature (from the visual's second diagram, also showing as discrete/interval)."
             },
             {
               "type": "bullet",
@@ -1060,7 +1079,7 @@
             },
             {
               "type": "bullet",
-              "text": "Examples: Height, Weight (from the visual's first diagram), Distance travelled, Time interval, Age range (from the visual's second diagram, also showing as continuous/ratio)."
+              "text": "**Examples:** Height, Weight (from the visual's first diagram), Distance travelled, Time interval, Age range (from the visual's second diagram, also showing as continuous/ratio)."
             },
             {
               "type": "paragraph",
@@ -1072,7 +1091,7 @@
             },
             {
               "type": "bullet",
-              "text": "Example: In \"factors influencing the uptake of family planning services,\" the \"factors influencing\" are the independent variables (e.g., educational level, access to clinics, cultural beliefs)."
+              "text": "**Example:** In \"factors influencing the uptake of family planning services,\" the \"factors influencing\" are the independent variables (e.g., educational level, access to clinics, cultural beliefs)."
             },
             {
               "type": "bullet",
@@ -1080,7 +1099,7 @@
             },
             {
               "type": "bullet",
-              "text": "Example: Following the previous example, \"uptake of family planning services\" is the dependent variable."
+              "text": "**Example:** Following the previous example, \"uptake of family planning services\" is the dependent variable."
             },
             {
               "type": "bullet",
@@ -1088,7 +1107,7 @@
             },
             {
               "type": "bullet",
-              "text": "Example: In a study examining the effect of a new teaching method on student performance, students' prior knowledge or motivation could be extraneous variables."
+              "text": "**Example:** In a study examining the effect of a new teaching method on student performance, students' prior knowledge or motivation could be extraneous variables."
             },
             {
               "type": "bullet",
@@ -1096,7 +1115,7 @@
             },
             {
               "type": "bullet",
-              "text": "Example: In a study looking at the relationship between coffee consumption and heart disease, smoking could be a confounding variable if coffee drinkers are also more likely to smoke, and smoking itself increases heart disease risk."
+              "text": "**Example:** In a study looking at the relationship between coffee consumption and heart disease, smoking could be a confounding variable if coffee drinkers are also more likely to smoke, and smoking itself increases heart disease risk."
             },
             {
               "type": "bullet",
@@ -1104,7 +1123,7 @@
             },
             {
               "type": "bullet",
-              "text": "Example: In a study where increased job satisfaction (IV) leads to increased productivity (DV), \"motivation\" could be an intervening variable. Job satisfaction leads to increased motivation, which in turn leads to increased productivity."
+              "text": "**Example:** In a study where increased job satisfaction (IV) leads to increased productivity (DV), \"motivation\" could be an intervening variable. Job satisfaction leads to increased motivation, which in turn leads to increased productivity."
             },
             {
               "type": "bullet",
@@ -1112,7 +1131,7 @@
             },
             {
               "type": "bullet",
-              "text": "Example: In a study on the relationship between stress (IV) and job performance (DV), social support could be a moderating variable. The negative effect of stress on performance might be weaker for individuals with high social support."
+              "text": "**Example:** In a study on the relationship between stress (IV) and job performance (DV), social support could be a moderating variable. The negative effect of stress on performance might be weaker for individuals with high social support."
             },
             {
               "type": "bullet",
@@ -1120,7 +1139,7 @@
             },
             {
               "type": "bullet",
-              "text": "Example: In an experiment testing the effectiveness of a new fertilizer on plant growth, factors like sunlight exposure, soil type, and water amount would be controlled variables."
+              "text": "**Example:** In an experiment testing the effectiveness of a new fertilizer on plant growth, factors like sunlight exposure, soil type, and water amount would be controlled variables."
             },
             {
               "type": "bullet",
@@ -1128,7 +1147,7 @@
             },
             {
               "type": "bullet",
-              "text": "Example: Gender (male, female, non-binary), blood type (A, B, AB, O), religious affiliation."
+              "text": "**Example:** Gender (male, female, non-binary), blood type (A, B, AB, O), religious affiliation."
             },
             {
               "type": "bullet",
@@ -1136,7 +1155,7 @@
             },
             {
               "type": "bullet",
-              "text": "Example: Height, weight, temperature, time."
+              "text": "**Example:** Height, weight, temperature, time."
             },
             {
               "type": "bullet",
@@ -1144,7 +1163,7 @@
             },
             {
               "type": "bullet",
-              "text": "Example: Yes/No, True/False, Alive/Dead, Pass/Fail."
+              "text": "**Example:** Yes/No, True/False, Alive/Dead, Pass/Fail."
             },
             {
               "type": "paragraph",
@@ -1180,7 +1199,7 @@
             },
             {
               "type": "bullet",
-              "text": "Example: All pregnant women in a specific country."
+              "text": "**Example:** All pregnant women in a specific country."
             },
             {
               "type": "bullet",
@@ -1188,7 +1207,7 @@
             },
             {
               "type": "bullet",
-              "text": "Example: All pregnant women attending a particular antenatal clinic during the study period."
+              "text": "**Example:** All pregnant women attending a particular antenatal clinic during the study period."
             },
             {
               "type": "paragraph",
@@ -1208,7 +1227,7 @@
             },
             {
               "type": "bullet",
-              "text": "Examples: Simple Random Sampling, Stratified Random Sampling."
+              "text": "**Examples:** Simple Random Sampling, Stratified Random Sampling."
             },
             {
               "type": "bullet",
@@ -1216,7 +1235,7 @@
             },
             {
               "type": "bullet",
-              "text": "Examples: Convenience Sampling, Purposive Sampling."
+              "text": "**Examples:** Convenience Sampling, Purposive Sampling."
             },
             {
               "type": "paragraph",
@@ -1296,7 +1315,7 @@
             },
             {
               "type": "bullet",
-              "text": "Retrospective Cohort: Studies participants based on their past records or experiences."
+              "text": "**Retrospective Cohort:** Studies participants based on their past records or experiences."
             },
             {
               "type": "bullet",
@@ -1465,7 +1484,11 @@
         "Factors Influencing Growth and Development",
         "Factors Contributing to Effective vs. Poor Growth",
         "Stages of Growth and Development",
-        "Theories of Growth and Development"
+        "Theories of Growth and Development",
+        "Nursing Uganda Clinical Lens",
+        "Assessment Guide",
+        "Nursing Priorities, Rationales and Outcomes",
+        "Patient Teaching and Revision Check"
       ],
       "images": [
         "/assets/images/medical-illustrations/paediatric-neonatal.webp"
@@ -1530,7 +1553,7 @@
             },
             {
               "type": "bullet",
-              "text": "Postnatal: After birth, factors like socioeconomic status, family relationships, housing, access to healthcare, and exposure to environmental hazards influence the child's development."
+              "text": "**Postnatal:** After birth, factors like socioeconomic status, family relationships, housing, access to healthcare, and exposure to environmental hazards influence the child's development."
             },
             {
               "type": "bullet",
@@ -1849,7 +1872,7 @@
             },
             {
               "type": "paragraph",
-              "text": "Example: A baby who is consistently fed when hungry and comforted when crying learns to trust their caregivers and the world around them. Conversely, a baby whose needs are inconsistently met may develop a sense of mistrust, becoming anxious or withdrawn."
+              "text": "**Example:** A baby who is consistently fed when hungry and comforted when crying learns to trust their caregivers and the world around them. Conversely, a baby whose needs are inconsistently met may develop a sense of mistrust, becoming anxious or withdrawn."
             },
             {
               "type": "paragraph",
@@ -1857,7 +1880,7 @@
             },
             {
               "type": "paragraph",
-              "text": "Example: A toddler who is encouraged to choose their own clothes and pour their own juice (even if some spills) develops a sense of autonomy. If caregivers are overly critical or controlling, the toddler might feel shame and doubt about their abilities, becoming hesitant to try new things."
+              "text": "**Example:** A toddler who is encouraged to choose their own clothes and pour their own juice (even if some spills) develops a sense of autonomy. If caregivers are overly critical or controlling, the toddler might feel shame and doubt about their abilities, becoming hesitant to try new things."
             },
             {
               "type": "paragraph",
@@ -1865,7 +1888,7 @@
             },
             {
               "type": "paragraph",
-              "text": "Example: A preschooler who enthusiastically proposes a game of \"hide-and-seek\" and organizes their friends to play is demonstrating initiative. If their attempts to initiate play are constantly dismissed or criticized, they might develop guilt over their desires and become less proactive."
+              "text": "**Example:** A preschooler who enthusiastically proposes a game of \"hide-and-seek\" and organizes their friends to play is demonstrating initiative. If their attempts to initiate play are constantly dismissed or criticized, they might develop guilt over their desires and become less proactive."
             },
             {
               "type": "paragraph",
@@ -1873,7 +1896,7 @@
             },
             {
               "type": "paragraph",
-              "text": "Example: A school-aged child who diligently works on a science project and feels proud of their completed work is developing industry. If they consistently struggle in school despite effort or are told they are \"not good enough,\" they may develop feelings of inferiority."
+              "text": "**Example:** A school-aged child who diligently works on a science project and feels proud of their completed work is developing industry. If they consistently struggle in school despite effort or are told they are \"not good enough,\" they may develop feelings of inferiority."
             },
             {
               "type": "paragraph",
@@ -1881,7 +1904,7 @@
             },
             {
               "type": "paragraph",
-              "text": "Example: An adolescent who tries out for various sports teams, joins different clubs, and explores different academic subjects to discover their interests is forming their identity. Conversely, an adolescent who struggles to find their place, drifts between different social groups without a strong sense of belonging, or adopts an identity without personal reflection, may experience role confusion."
+              "text": "**Example:** An adolescent who tries out for various sports teams, joins different clubs, and explores different academic subjects to discover their interests is forming their identity. Conversely, an adolescent who struggles to find their place, drifts between different social groups without a strong sense of belonging, or adopts an identity without personal reflection, may experience role confusion."
             },
             {
               "type": "paragraph",
@@ -1893,7 +1916,7 @@
             },
             {
               "type": "paragraph",
-              "text": "Example: A baby putting everything in their mouth to explore their environment and soothe themselves is typical of the oral stage. An adult who constantly chews on pens or overeats when stressed might be experiencing an oral fixation."
+              "text": "**Example:** A baby putting everything in their mouth to explore their environment and soothe themselves is typical of the oral stage. An adult who constantly chews on pens or overeats when stressed might be experiencing an oral fixation."
             },
             {
               "type": "paragraph",
@@ -1901,7 +1924,7 @@
             },
             {
               "type": "paragraph",
-              "text": "Example: A toddler who insists on using the potty themselves and is very proud of their ability to control their bladder and bowels is demonstrating control related to the anal stage. An adult with an anal-retentive personality might be excessively neat, punctual, and controlling, while an anal-expulsive person might be messy and disorganized."
+              "text": "**Example:** A toddler who insists on using the potty themselves and is very proud of their ability to control their bladder and bowels is demonstrating control related to the anal stage. An adult with an anal-retentive personality might be excessively neat, punctual, and controlling, while an anal-expulsive person might be messy and disorganized."
             },
             {
               "type": "paragraph",
@@ -1909,7 +1932,7 @@
             },
             {
               "type": "paragraph",
-              "text": "Example: A young boy expressing a strong attachment to his mother and showing some jealousy towards his father, characteristic of the Oedipus complex. Fixation could manifest in adulthood as vanity, exhibitionism, or difficulty with intimate relationships."
+              "text": "**Example:** A young boy expressing a strong attachment to his mother and showing some jealousy towards his father, characteristic of the Oedipus complex. Fixation could manifest in adulthood as vanity, exhibitionism, or difficulty with intimate relationships."
             },
             {
               "type": "paragraph",
@@ -1917,7 +1940,7 @@
             },
             {
               "type": "paragraph",
-              "text": "Example: A child focusing on developing friendships, excelling in school, and participating in extracurricular activities, with little overt interest in romantic relationships. This period allows for the development of social skills and learning."
+              "text": "**Example:** A child focusing on developing friendships, excelling in school, and participating in extracurricular activities, with little overt interest in romantic relationships. This period allows for the development of social skills and learning."
             },
             {
               "type": "paragraph",
@@ -1925,7 +1948,7 @@
             },
             {
               "type": "paragraph",
-              "text": "Example: An adolescent beginning to explore romantic relationships and developing a sense of attraction towards others, leading to the formation of mature, loving relationships."
+              "text": "**Example:** An adolescent beginning to explore romantic relationships and developing a sense of attraction towards others, leading to the formation of mature, loving relationships."
             },
             {
               "type": "paragraph",
@@ -1937,7 +1960,7 @@
             },
             {
               "type": "paragraph",
-              "text": "Example: A baby crying when a toy is hidden under a blanket, then pulling the blanket away to find it, demonstrates developing object permanence. Prior to this, if the toy is out of sight, it's out of mind."
+              "text": "**Example:** A baby crying when a toy is hidden under a blanket, then pulling the blanket away to find it, demonstrates developing object permanence. Prior to this, if the toy is out of sight, it's out of mind."
             },
             {
               "type": "paragraph",
@@ -1945,7 +1968,7 @@
             },
             {
               "type": "paragraph",
-              "text": "Example: A child believing their doll feels sad when it falls (animism), or insisting that a tall, narrow glass has more juice than a short, wide one, even if both contain the same amount (lack of conservation). They might also cover their eyes and think if they can't see you, you can't see them (egocentrism)."
+              "text": "**Example:** A child believing their doll feels sad when it falls (animism), or insisting that a tall, narrow glass has more juice than a short, wide one, even if both contain the same amount (lack of conservation). They might also cover their eyes and think if they can't see you, you can't see them (egocentrism)."
             },
             {
               "type": "paragraph",
@@ -1953,7 +1976,7 @@
             },
             {
               "type": "paragraph",
-              "text": "Example: A child understanding that if you pour water from a tall, thin glass into a short, wide glass, the amount of water remains the same (conservation). They can also sort objects by multiple features, but might struggle with hypothetical questions like \"What if humans had wings?\""
+              "text": "**Example:** A child understanding that if you pour water from a tall, thin glass into a short, wide glass, the amount of water remains the same (conservation). They can also sort objects by multiple features, but might struggle with hypothetical questions like \"What if humans had wings?\""
             },
             {
               "type": "paragraph",
@@ -1961,7 +1984,7 @@
             },
             {
               "type": "paragraph",
-              "text": "Example: A teenager debating complex social issues like climate change or justice, considering different perspectives and hypothetical scenarios, or planning a multi-step project by thinking through all possible outcomes."
+              "text": "**Example:** A teenager debating complex social issues like climate change or justice, considering different perspectives and hypothetical scenarios, or planning a multi-step project by thinking through all possible outcomes."
             },
             {
               "type": "paragraph",
@@ -1977,7 +2000,7 @@
             },
             {
               "type": "paragraph",
-              "text": "Example: A child not stealing a cookie because they know they will get a time-out if caught, or a child refraining from hitting another child solely to avoid being punished by a parent."
+              "text": "**Example:** A child not stealing a cookie because they know they will get a time-out if caught, or a child refraining from hitting another child solely to avoid being punished by a parent."
             },
             {
               "type": "bullet",
@@ -1985,7 +2008,7 @@
             },
             {
               "type": "paragraph",
-              "text": "Example: A child sharing their toy with another child because they expect the other child to share their toy in return, or a child offering to help with chores only if they get paid."
+              "text": "**Example:** A child sharing their toy with another child because they expect the other child to share their toy in return, or a child offering to help with chores only if they get paid."
             },
             {
               "type": "paragraph",
@@ -1997,7 +2020,7 @@
             },
             {
               "type": "paragraph",
-              "text": "Example: A student following classroom rules because they want to be seen as a \"good student\" by their teacher and peers, or a teenager refraining from cheating because they want their friends to see them as honest."
+              "text": "**Example:** A student following classroom rules because they want to be seen as a \"good student\" by their teacher and peers, or a teenager refraining from cheating because they want their friends to see them as honest."
             },
             {
               "type": "bullet",
@@ -2005,7 +2028,7 @@
             },
             {
               "type": "paragraph",
-              "text": "Example: A citizen paying their taxes because they understand it is their duty to uphold the laws of their country and maintain societal order, or a driver obeying traffic laws because it is the rule and necessary for public safety."
+              "text": "**Example:** A citizen paying their taxes because they understand it is their duty to uphold the laws of their country and maintain societal order, or a driver obeying traffic laws because it is the rule and necessary for public safety."
             },
             {
               "type": "paragraph",
@@ -2017,7 +2040,7 @@
             },
             {
               "type": "paragraph",
-              "text": "Example: An individual advocating for changes to a law they believe is unfair, even if it is currently legal, because it violates fundamental human rights and the societal contract for justice, such as protesting against discriminatory policies."
+              "text": "**Example:** An individual advocating for changes to a law they believe is unfair, even if it is currently legal, because it violates fundamental human rights and the societal contract for justice, such as protesting against discriminatory policies."
             },
             {
               "type": "bullet",
@@ -2025,7 +2048,7 @@
             },
             {
               "type": "paragraph",
-              "text": "Example: An activist dedicating their life to fighting for human rights globally, even in the face of personal risk or legal consequences, because they believe in the universal principle of justice for all, like a civil rights leader who non-violently resists unjust laws based on deep moral convictions."
+              "text": "**Example:** An activist dedicating their life to fighting for human rights globally, even in the face of personal risk or legal consequences, because they believe in the universal principle of justice for all, like a civil rights leader who non-violently resists unjust laws based on deep moral convictions."
             }
           ]
         },
@@ -2170,7 +2193,34 @@
         "UNEPI Strategies",
         "Central Level (UNEPI and National Medical Stores)",
         "District Level",
-        "Health Facility Level (The Frontline)"
+        "Health Facility Level (The Frontline)",
+        "Community Level (VHTs, Parents/Caregivers)",
+        "The Uganda National Immunization Schedule",
+        "BCG (Bacillus Calmette-Guérin) Vaccine",
+        "Polio Vaccine",
+        "Pentavalent Vaccine",
+        "Tetanus Toxoid Vaccine",
+        "Pneumococcal Conjugate Vaccine (PCV 10)",
+        "Rotavirus Vaccine",
+        "Malaria Vaccine (RTS,S/AS01)",
+        "Human Papillomavirus (HPV) Vaccine",
+        "Administration of Vaccines: General Principles",
+        "Preparing Vaccines",
+        "Important Points to Remember Before Administering",
+        "Administration Techniques",
+        "Equipment/Logistics Needed for Safe Vaccination",
+        "Post-Vaccination Counselling and Health Education",
+        "Record Keeping: The Foundation of Program Monitoring",
+        "The Immunization Register",
+        "Health Cards",
+        "The Vaccine Refrigerator",
+        "Preventive Maintenance and Repair",
+        "Managing Adverse Events Following Immunization (AEFI)",
+        "Conducting Mass Vaccination Campaigns",
+        "Nursing Uganda Clinical Lens",
+        "Assessment Guide",
+        "Nursing Priorities, Rationales and Outcomes",
+        "Patient Teaching and Revision Check"
       ],
       "images": [
         "/assets/images/medical-illustrations/paediatric-neonatal.webp"
@@ -2181,7 +2231,7 @@
           "blocks": [
             {
               "type": "paragraph",
-              "text": "The **Uganda National Expanded Programme on Immunization (UNEPI)** , officially launched in October 1993, was established to address critical challenges in immunization services. These included low immunization coverage, the use of non-potent vaccines, inadequate skills among health workers, limited community participation, and a lack of regular monitoring and evaluation. The re-launch of the program in 1997 marked a significant turning point, leading to great improvements in routine immunization coverage and a reduction in the incidence of Vaccine Preventable Diseases (VPDs) like measles."
+              "text": "The **Uganda National Expanded Programme on Immunization (UNEPI)**, officially launched in October 1993, was established to address critical challenges in immunization services. These included low immunization coverage, the use of non-potent vaccines, inadequate skills among health workers, limited community participation, and a lack of regular monitoring and evaluation. The re-launch of the program in 1997 marked a significant turning point, leading to great improvements in routine immunization coverage and a reduction in the incidence of Vaccine Preventable Diseases (VPDs) like measles."
             }
           ]
         },
@@ -2189,16 +2239,16 @@
           "title": "UNEPI Strategic Objectives",
           "blocks": [
             {
-              "type": "paragraph",
-              "text": "The core objectives that guide UNEPI's work are:"
+              "type": "subheading",
+              "text": "The core objectives that guide UNEPI's work are"
             },
             {
               "type": "bullet",
-              "text": "To formulate and update national immunization **policy, standards, and guidelines** ."
+              "text": "To formulate and update national immunization **policy, standards, and guidelines**."
             },
             {
               "type": "bullet",
-              "text": "To ensure a consistent and reliable supply of **potent and effective vaccines** ."
+              "text": "To ensure a consistent and reliable supply of **potent and effective vaccines**."
             },
             {
               "type": "bullet",
@@ -2218,8 +2268,8 @@
           "title": "UNEPI Strategies",
           "blocks": [
             {
-              "type": "paragraph",
-              "text": "To achieve its objectives, UNEPI employs a multi-faceted approach:"
+              "type": "subheading",
+              "text": "To achieve its objectives, UNEPI employs a multi-faceted approach"
             },
             {
               "type": "bullet",
@@ -2533,8 +2583,8 @@
               "text": "Polio vaccine is a live attenuated virus vaccine used in the immunization program to protect the child against poliomyelitis. The Sabin type is given orally (by mouth) in Uganda. Some countries use another type called Salk vaccine, which is given by injection."
             },
             {
-              "type": "paragraph",
-              "text": "Oral polio vaccine is given four times beginning:"
+              "type": "subheading",
+              "text": "Oral polio vaccine is given four times beginning"
             },
             {
               "type": "bullet",
@@ -2570,8 +2620,8 @@
               "text": "These are given three times because they do not stimulate the body to produce antibodies as well as the live attenuated vaccines. When the second and the third dose are given, the body’s memory of the earlier dose quickly leads to the production of more antibodies. The Pentavalent vaccine is given by injecting the child intramuscularly (in the muscle) at the left upper thigh."
             },
             {
-              "type": "paragraph",
-              "text": "It is given three times beginning:"
+              "type": "subheading",
+              "text": "It is given three times beginning"
             },
             {
               "type": "bullet",
@@ -2677,8 +2727,40 @@
               "text": "**Preparing DPT and TT:** DPT and TT come in liquid form. You will not need to dissolve or mix them. Remove the metal top from the vial. Draw 0.5 ml into the sterile syringe. Remove bubbles. Keep the vaccine shaded from the light."
             },
             {
+              "type": "subheading",
+              "text": "**Preparing PCV 10:** Ensure availability of a clean vaccine carrier and a sponge. The vaccine carrier should be able to close tightly. Condition icepacks prior to packing vaccines in a vaccine carrier to prevent freezing of PCV, TT, and DPT-Hep B-Hib. On a table with a plastic sheet"
+            },
+            {
               "type": "bullet",
-              "text": "**Preparing PCV 10:** Ensure availability of a clean vaccine carrier and a sponge. The vaccine carrier should be able to close tightly. Condition icepacks prior to packing vaccines in a vaccine carrier to prevent freezing of PCV, TT, and DPT-Hep B-Hib. On a table with a plastic sheet: – Vaccines, diluent, and droppers – Thermometer – Cotton swab in a clean container – Clean water in a clean container for cleaning injection sites – A tin of vitamin A and a pair of scissors – AD syringe and needles – Child health cards – Child register."
+              "text": "Vaccines, diluent, and droppers"
+            },
+            {
+              "type": "bullet",
+              "text": "Thermometer"
+            },
+            {
+              "type": "bullet",
+              "text": "Cotton swab in a clean container"
+            },
+            {
+              "type": "bullet",
+              "text": "Clean water in a clean container for cleaning injection sites"
+            },
+            {
+              "type": "bullet",
+              "text": "A tin of vitamin A and a pair of scissors"
+            },
+            {
+              "type": "bullet",
+              "text": "AD syringe and needles"
+            },
+            {
+              "type": "bullet",
+              "text": "Child health cards"
+            },
+            {
+              "type": "bullet",
+              "text": "Child register."
             }
           ]
         },
@@ -3092,7 +3174,7 @@
             },
             {
               "type": "bullet",
-              "text": "Note: Supplemental doses like extra OPV or Vitamin A given during campaigns are typically recorded on the child's health card, not in the main immunization register."
+              "text": "**Note:** Supplemental doses like extra OPV or Vitamin A given during campaigns are typically recorded on the child's health card, not in the main immunization register."
             }
           ]
         },
@@ -3122,7 +3204,7 @@
           "blocks": [
             {
               "type": "paragraph",
-              "text": "The refrigerator is the most critical piece of equipment for storing vaccines at the health facility. It must be properly maintained and kept in good working condition at all times. All refrigerators must be maintained at a temperature between **+2°C and +8°C** ."
+              "text": "The refrigerator is the most critical piece of equipment for storing vaccines at the health facility. It must be properly maintained and kept in good working condition at all times. All refrigerators must be maintained at a temperature between **+2°C and +8°C**."
             },
             {
               "type": "bullet",
@@ -3138,7 +3220,7 @@
             },
             {
               "type": "paragraph",
-              "text": "The refrigerator should also be able to freeze ice packs. These ice packs are used to keep vaccines cool in vaccine carriers during outreach sessions. Ice packs inside a vaccine carrier are referred to as **Conditioned Icepacks** ."
+              "text": "The refrigerator should also be able to freeze ice packs. These ice packs are used to keep vaccines cool in vaccine carriers during outreach sessions. Ice packs inside a vaccine carrier are referred to as **Conditioned Icepacks**."
             }
           ]
         },
@@ -3386,11 +3468,18 @@
       "readMinutes": 20,
       "headings": [
         "Palliative Care",
-        "**History of Palliative Care**",
-        "**Hospice in Africa**",
-        "**Need for palliative care**",
-        "**Philosophy/Roles of Palliative care**",
-        "Attributes of Palliative Care"
+        "History of Palliative Care",
+        "Hospice in Africa",
+        "Need for palliative care",
+        "Philosophy/Roles of Palliative care",
+        "Attributes of Palliative Care",
+        "Principles of Palliative Care",
+        "Components of holistic care",
+        "Models of Palliative Care",
+        "Nursing Uganda Clinical Lens",
+        "Assessment Guide",
+        "Nursing Priorities, Rationales and Outcomes",
+        "Patient Teaching and Revision Check"
       ],
       "images": [
         "/assets/images/medical-illustrations/obstetric-fetus-pelvis.webp"
@@ -3401,7 +3490,7 @@
           "blocks": [
             {
               "type": "paragraph",
-              "text": "Palliative care is an approach that improves the quality of life of patients and families facing the problem associated with life threating illness through the prevention and relief of suffering by means of early identification and assessment and treatment of pain and other problems which are physical , psychological and spiritual. **WHO definition**"
+              "text": "Palliative care is an approach that improves the quality of life of patients and families facing the problem associated with life threating illness through the prevention and relief of suffering by means of early identification and assessment and treatment of pain and other problems which are physical, psychological and spiritual. **WHO definition**"
             },
             {
               "type": "paragraph",
@@ -3414,7 +3503,7 @@
           ]
         },
         {
-          "title": "**History of Palliative Care**",
+          "title": "History of Palliative Care",
           "blocks": [
             {
               "type": "paragraph",
@@ -3422,11 +3511,11 @@
             },
             {
               "type": "paragraph",
-              "text": "Dame Cicely Saunders an oxford trained nurse noted the trouble of dying and the need for improved pain control . She was a doctor, nurse social worker and a writer. She was the founder of the “ **Hospice Movement** ” in 1918. In 1967 , Dame Cicely Saunders oversaw the building of the world’s first purpose built modern Hospice : St Christopher’s Hospice in London, England."
+              "text": "Dame Cicely Saunders an oxford trained nurse noted the trouble of dying and the need for improved pain control. She was a doctor, nurse social worker and a writer. She was the founder of the “ **Hospice Movement** ” in 1918. In 1967, Dame Cicely Saunders oversaw the building of the world’s first purpose built modern Hospice: St Christopher’s Hospice in London, England."
             },
             {
               "type": "paragraph",
-              "text": "Saunders gave special care for the dying by providing expert pain and symptoms relief , with holistic care to meet the physical, social, psychological and spiritual needs of the patients and their families and friends."
+              "text": "Saunders gave special care for the dying by providing expert pain and symptoms relief, with holistic care to meet the physical, social, psychological and spiritual needs of the patients and their families and friends."
             },
             {
               "type": "paragraph",
@@ -3434,7 +3523,7 @@
             },
             {
               "type": "paragraph",
-              "text": "At first, Hospices provided only inpatient care , isolated from mainstream care. Now there is inpatient Hospice care, home based care, hospital based teams and community outreach services."
+              "text": "At first, Hospices provided only inpatient care, isolated from mainstream care. Now there is inpatient Hospice care, home based care, hospital based teams and community outreach services."
             },
             {
               "type": "paragraph",
@@ -3442,7 +3531,7 @@
             },
             {
               "type": "paragraph",
-              "text": "So now, What is Hospice Care, and is it the same or different from Palliative care. Hospice Care Hospice is an umbrella term for the carrying out of palliative care services and is usually a Centre where the team of professional and volunteers offer palliative services to people mainly with life limiting illness **** There is an interface between hospice and palliative care. People often wonder the difference between hospice and palliative care"
+              "text": "So now, What is Hospice Care, and is it the same or different from Palliative care. Hospice Care Hospice is an umbrella term for the carrying out of palliative care services and is usually a Centre where the team of professional and volunteers offer palliative services to people mainly with life limiting illness There is an interface between hospice and palliative care. People often wonder the difference between hospice and palliative care"
             },
             {
               "type": "paragraph",
@@ -3463,7 +3552,7 @@
           ]
         },
         {
-          "title": "**Hospice in Africa**",
+          "title": "Hospice in Africa",
           "blocks": [
             {
               "type": "paragraph",
@@ -3471,7 +3560,7 @@
             },
             {
               "type": "paragraph",
-              "text": "**In Uganda,** Hospice services, **** were started **in Nsambya Hospital in 1993 by Dr. Anne Merriman** and since then organizations as well as hospitals have come up to offer palliative care services in Uganda such as **Hospice Africa Uganda (HAU)** and **Mild may Uganda.** These service has further been extended to other parts of the Country by training specialist nurses and clinical officers who then deliver this care."
+              "text": "**In Uganda,** Hospice services, were started **in Nsambya Hospital in 1993 by Dr. Anne Merriman** and since then organizations as well as hospitals have come up to offer palliative care services in Uganda such as **Hospice Africa Uganda (HAU)** and **Mild may Uganda.** These service has further been extended to other parts of the Country by training specialist nurses and clinical officers who then deliver this care."
             },
             {
               "type": "bullet",
@@ -3504,7 +3593,7 @@
           ]
         },
         {
-          "title": "**Need for palliative care**",
+          "title": "Need for palliative care",
           "blocks": [
             {
               "type": "bullet",
@@ -3525,15 +3614,11 @@
             {
               "type": "bullet",
               "text": "20-50% HIV patients can expect to suffer from severe"
-            },
-            {
-              "type": "paragraph",
-              "text": "****"
             }
           ]
         },
         {
-          "title": "**Philosophy/Roles of Palliative care**",
+          "title": "Philosophy/Roles of Palliative care",
           "blocks": [
             {
               "type": "bullet",
@@ -3565,7 +3650,7 @@
             },
             {
               "type": "bullet",
-              "text": "Appropriate ethical considerations: Do good; do no harm, patient’s right to decide; and fairness."
+              "text": "**Appropriate ethical considerations:** Do good; do no harm, patient’s right to decide; and fairness."
             }
           ]
         },
@@ -3581,16 +3666,16 @@
               "text": "In palliative care, “attributes” refers to the characteristics, features, or qualities that are associated with or define palliative care. These attributes are the essential elements that make up the nature and scope of palliative care as a specialized form of medical care."
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "**Here are the key attributes of palliative care:**"
             },
             {
               "type": "bullet",
-              "text": "**Holistic approach** : Palliative care takes a comprehensive approach to address the physical, emotional, psychological, social, and spiritual needs of the patient. It considers the person as a whole and not just the disease."
+              "text": "**Holistic approach**: Palliative care takes a comprehensive approach to address the physical, emotional, psychological, social, and spiritual needs of the patient. It considers the person as a whole and not just the disease."
             },
             {
               "type": "bullet",
-              "text": "**Pain and symptom management** : Palliative care aims to alleviate pain, manage symptoms, and improve the patient’s comfort level. This involves using a combination of medications, therapies, and other interventions to control distressing symptoms."
+              "text": "**Pain and symptom management**: Palliative care aims to alleviate pain, manage symptoms, and improve the patient’s comfort level. This involves using a combination of medications, therapies, and other interventions to control distressing symptoms."
             },
             {
               "type": "bullet",
@@ -3598,23 +3683,23 @@
             },
             {
               "type": "bullet",
-              "text": "**Patient-centered care** : Palliative care respects the patient’s autonomy and individual preferences. It involves shared decision-making, where patients are actively involved in making choices about their care and treatment options."
+              "text": "**Patient-centered care**: Palliative care respects the patient’s autonomy and individual preferences. It involves shared decision-making, where patients are actively involved in making choices about their care and treatment options."
             },
             {
               "type": "bullet",
-              "text": "**Family support** : Palliative care recognizes the impact of serious illness on the patient’s family members and caregivers. It offers emotional support, education, and guidance to help them cope with the challenges they may face."
+              "text": "**Family support**: Palliative care recognizes the impact of serious illness on the patient’s family members and caregivers. It offers emotional support, education, and guidance to help them cope with the challenges they may face."
             },
             {
               "type": "bullet",
-              "text": "**Continuity of care** : Palliative care is not limited to a specific location or time frame. It can be provided alongside curative treatments and is often delivered at different stages of the illness."
+              "text": "**Continuity of care**: Palliative care is not limited to a specific location or time frame. It can be provided alongside curative treatments and is often delivered at different stages of the illness."
             },
             {
               "type": "bullet",
-              "text": "**Advance care planning** : Palliative care encourages patients to discuss and document their preferences for medical treatment and end-of-life care in advance. This helps ensure that their wishes are respected and followed."
+              "text": "**Advance care planning**: Palliative care encourages patients to discuss and document their preferences for medical treatment and end-of-life care in advance. This helps ensure that their wishes are respected and followed."
             },
             {
               "type": "bullet",
-              "text": "**Bereavement support** : Palliative care extends its support to the family even after the patient’s death. Bereavement services help family members cope with grief and loss."
+              "text": "**Bereavement support**: Palliative care extends its support to the family even after the patient’s death. Bereavement services help family members cope with grief and loss."
             },
             {
               "type": "bullet",
@@ -3625,8 +3710,8 @@
               "text": "**Dignity and respect:** Palliative care emphasizes the importance of treating patients with respect, preserving their dignity, and providing compassionate care throughout their journey."
             },
             {
-              "type": "paragraph",
-              "text": "Palliative care has two components:"
+              "type": "subheading",
+              "text": "Palliative care has two components"
             },
             {
               "type": "bullet",
@@ -3634,7 +3719,7 @@
             },
             {
               "type": "bullet",
-              "text": "**Supportive care** : The psychological, social, spiritual and cultural needs of the patient and the family, including bereavement care, are attended to."
+              "text": "**Supportive care**: The psychological, social, spiritual and cultural needs of the patient and the family, including bereavement care, are attended to."
             },
             {
               "type": "bullet",
@@ -3671,7 +3756,7 @@
           "blocks": [
             {
               "type": "bullet",
-              "text": "**Patient centered** : Palliative care revolves around the patient and their family. The focus is on maintaining hope with realistic goals, supporting the patient and their loved ones throughout different stages of the illness. Sustain hope with realistic goals in order to help patient and families cope in appropriate way through the different phase of the illness."
+              "text": "**Patient centered**: Palliative care revolves around the patient and their family. The focus is on maintaining hope with realistic goals, supporting the patient and their loved ones throughout different stages of the illness. Sustain hope with realistic goals in order to help patient and families cope in appropriate way through the different phase of the illness."
             },
             {
               "type": "bullet",
@@ -3679,11 +3764,11 @@
             },
             {
               "type": "bullet",
-              "text": "**Continuum of treatment** . This involves management of pain and other symptoms i.e. Palliative care begins from the time of diagnosis and extends beyond the patient’s passing. It includes pain and symptom management as well as providing bereavement care for the family after death. (bereavement care)."
+              "text": "**Continuum of treatment**. This involves management of pain and other symptoms i.e. Palliative care begins from the time of diagnosis and extends beyond the patient’s passing. It includes pain and symptom management as well as providing bereavement care for the family after death. (bereavement care)."
             },
             {
               "type": "bullet",
-              "text": "**Teamwork and partnership** : Palliative care requires an interdisciplinary team to address the diverse needs of patients effectively. It is not easy to address all patients’ needs alone. An interdisciplinary team should be established to deal with all the problems. i.e. no single profession can address all issues that cause total pain. Team members share challenges facing the patient and plan effective management of the patient using their skill mix. A palliative care team includes: 1. Nurses 2. Doctor 3. Social workers 4. Religious leaders 5. Teachers 6. Community health providers &gt; Others as appropriate."
+              "text": "**Teamwork and partnership**: Palliative care requires an interdisciplinary team to address the diverse needs of patients effectively. It is not easy to address all patients’ needs alone. An interdisciplinary team should be established to deal with all the problems. i.e. no single profession can address all issues that cause total pain. Team members share challenges facing the patient and plan effective management of the patient using their skill mix. A palliative care team includes: 1. Nurses 2. Doctor 3. Social workers 4. Religious leaders 5. Teachers 6. Community health providers &gt; Others as appropriate."
             },
             {
               "type": "bullet",
@@ -3704,7 +3789,7 @@
             },
             {
               "type": "bullet",
-              "text": "**Spiritual care** : This is important to terminally ill and it includes allowing patients to express their spirituality, praying with them if they request for arranging for an appropriate leader to visit them."
+              "text": "**Spiritual care**: This is important to terminally ill and it includes allowing patients to express their spirituality, praying with them if they request for arranging for an appropriate leader to visit them."
             },
             {
               "type": "bullet",
@@ -3712,7 +3797,7 @@
             },
             {
               "type": "bullet",
-              "text": "**Social care** : This incorporates discussion of social and family issue e.g. This could include considering the well-being of young children who may become orphans and discussing financial matters that can impact the patient and their family."
+              "text": "**Social care**: This incorporates discussion of social and family issue e.g. This could include considering the well-being of young children who may become orphans and discussing financial matters that can impact the patient and their family."
             }
           ]
         },
@@ -3744,7 +3829,7 @@
               "text": "**Home based palliative care model:** This means a delivery of a comprehensive package of care to the patient and the family at home. The package includes spiritual, psychological, pain and symptom management as well as support in activities of daily living. This model of care is best provided by a specialist palliative care team working in partnership with trained community health volunteers."
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "**Services offered during home based palliative care:**"
             },
             {
@@ -3757,7 +3842,7 @@
             },
             {
               "type": "bullet",
-              "text": "Psychosocial support and counseling: being with the patient and family during a difficult time, providing listening and understanding, sharing a quiet moment, helping the family to access legal support."
+              "text": "**Psychosocial support and counseling:** being with the patient and family during a difficult time, providing listening and understanding, sharing a quiet moment, helping the family to access legal support."
             },
             {
               "type": "bullet",
@@ -3765,7 +3850,7 @@
             },
             {
               "type": "bullet",
-              "text": "Provide spiritual support: listening to patients and families’ spiritual troubles and anxieties, praying with the patient, and preparation for death."
+              "text": "**Provide spiritual support:** listening to patients and families’ spiritual troubles and anxieties, praying with the patient, and preparation for death."
             },
             {
               "type": "bullet",
@@ -3773,14 +3858,14 @@
             },
             {
               "type": "bullet",
-              "text": "Providing health promotion: disease prevention such as HIV, TB"
+              "text": "**Providing health promotion:** disease prevention such as HIV, TB"
             },
             {
               "type": "bullet",
               "text": "Training care takers in basic nursing skills and care."
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "**Advantages and disadvantages of each model**"
             },
             {
@@ -3853,7 +3938,7 @@
             },
             {
               "type": "bullet",
-              "text": "**Perception and recognition** : many people still fear palliative care because they link it to death and many do not want to admit that they are dying. It is also common with health worker, policy makers and others."
+              "text": "**Perception and recognition**: many people still fear palliative care because they link it to death and many do not want to admit that they are dying. It is also common with health worker, policy makers and others."
             },
             {
               "type": "bullet",
@@ -4013,19 +4098,29 @@
       "wordCount": 4809,
       "readMinutes": 25,
       "headings": [
-        "**COMMUNICATION IN PALLIATIVE CARE**",
-        "**Types of communication**",
-        "**Major skills in communication**",
-        "**Listening**",
-        "**Qualities and Attitudes for Effective Communication in Palliative Care**",
-        "**Benefits of Effective Communication in Palliative Care**"
+        "COMMUNICATION IN PALLIATIVE CARE",
+        "Types of communication",
+        "Major skills in communication",
+        "Listening",
+        "Qualities and Attitudes for Effective Communication in Palliative Care",
+        "Benefits of Effective Communication in Palliative Care",
+        "Consequences of Ineffective Communication in Palliative Care",
+        "Special Considerations in HIV and AIDS",
+        "Communication in Children’s Palliative Care",
+        "Good Communication Skills for Interacting with Children:",
+        "Principles for Answering Difficult Questions in Children:",
+        "Key Aspects of Communication in Children’s Palliative Care:",
+        "Nursing Uganda Clinical Lens",
+        "Assessment Guide",
+        "Nursing Priorities, Rationales and Outcomes",
+        "Patient Teaching and Revision Check"
       ],
       "images": [
         "/assets/images/medical-illustrations/obstetric-fetus-pelvis.webp"
       ],
       "sections": [
         {
-          "title": "**COMMUNICATION IN PALLIATIVE CARE**",
+          "title": "COMMUNICATION IN PALLIATIVE CARE",
           "blocks": [
             {
               "type": "paragraph",
@@ -4038,7 +4133,7 @@
           ]
         },
         {
-          "title": "**Types of communication**",
+          "title": "Types of communication",
           "blocks": [
             {
               "type": "bullet",
@@ -4054,7 +4149,7 @@
             },
             {
               "type": "paragraph",
-              "text": "**NB** : Little communication actually takes place verbally, facial expressions, gestures and posture form most of our communication and are a graphic part of our culture and language. Studies show that during interpersonal communication 7% of the message is verbally communicated, while 93% is non-verbally transmitted. Of the 93% non-verbal communication:"
+              "text": "**NB**: Little communication actually takes place verbally, facial expressions, gestures and posture form most of our communication and are a graphic part of our culture and language. Studies show that during interpersonal communication 7% of the message is verbally communicated, while 93% is non-verbally transmitted. Of the 93% non-verbal communication:"
             },
             {
               "type": "bullet",
@@ -4067,10 +4162,10 @@
           ]
         },
         {
-          "title": "**Major skills in communication**",
+          "title": "Major skills in communication",
           "blocks": [
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "These include the following"
             },
             {
@@ -4092,7 +4187,7 @@
           ]
         },
         {
-          "title": "**Listening**",
+          "title": "Listening",
           "blocks": [
             {
               "type": "paragraph",
@@ -4103,8 +4198,8 @@
               "text": "How well do we listen?"
             },
             {
-              "type": "paragraph",
-              "text": "Show that you are listening by using the following techniques:"
+              "type": "subheading",
+              "text": "Show that you are listening by using the following techniques"
             },
             {
               "type": "bullet",
@@ -4116,11 +4211,11 @@
             },
             {
               "type": "paragraph",
-              "text": "**NB** : The following acronym can help to remember the key points about suitable body language that indicates paying attention: (ROLES)"
+              "text": "**NB**: The following acronym can help to remember the key points about suitable body language that indicates paying attention: (ROLES)"
             },
             {
-              "type": "paragraph",
-              "text": "**ROLES** :"
+              "type": "subheading",
+              "text": "**ROLES**"
             },
             {
               "type": "bullet",
@@ -4147,7 +4242,7 @@
               "text": "**S** – Sit near Position yourself close to the person to create a sense of closeness and connection."
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "**Tips for Effective Listening**"
             },
             {
@@ -4179,24 +4274,24 @@
               "text": "c. Listen with empathy, putting yourself in their shoes and refraining from judgment."
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "**Barriers to Effective Listening:**"
             },
             {
               "type": "bullet",
-              "text": "Distractions: Avoid being distracted by things like ringing phones or people entering the room."
+              "text": "**Distractions:** Avoid being distracted by things like ringing phones or people entering the room."
             },
             {
               "type": "bullet",
-              "text": "Judgmental fixations: Refrain from imposing personal values or moral judgments on the patient, particularly religious beliefs."
+              "text": "**Judgmental fixations:** Refrain from imposing personal values or moral judgments on the patient, particularly religious beliefs."
             },
             {
               "type": "bullet",
-              "text": "Filtered listening: Be aware of how your own experiences, culture, and background may influence the way you interpret what you hear."
+              "text": "**Filtered listening:** Be aware of how your own experiences, culture, and background may influence the way you interpret what you hear."
             },
             {
               "type": "bullet",
-              "text": "Prejudice and preconceived bias: Guard against judging others based on their appearance, tribe, gender, or profession."
+              "text": "**Prejudice and preconceived bias:** Guard against judging others based on their appearance, tribe, gender, or profession."
             },
             {
               "type": "paragraph",
@@ -4232,7 +4327,7 @@
             },
             {
               "type": "bullet",
-              "text": "Clarifying what the person has said, by checking you have understood correctly using words like, ‘So, you mentioned you are worried about three things but school fees is the biggest problem, is that right ?”"
+              "text": "Clarifying what the person has said, by checking you have understood correctly using words like, ‘So, you mentioned you are worried about three things but school fees is the biggest problem, is that right?”"
             },
             {
               "type": "bullet",
@@ -4240,15 +4335,15 @@
             },
             {
               "type": "bullet",
-              "text": "Summarizing: This happens during and at the end of the conversation. Expressing in brief and highlighting the key points of the story the person has told you."
+              "text": "**Summarizing:** This happens during and at the end of the conversation. Expressing in brief and highlighting the key points of the story the person has told you."
             },
             {
               "type": "paragraph",
               "text": "**Asking Questions**"
             },
             {
-              "type": "paragraph",
-              "text": "We ask questions in order to help the person:"
+              "type": "subheading",
+              "text": "We ask questions in order to help the person"
             },
             {
               "type": "bullet",
@@ -4275,19 +4370,19 @@
               "text": "Move at their pace and enable dialogue between the counselor and the person seeking help. How do we ask questions?"
             },
             {
-              "type": "paragraph",
-              "text": "There are two kinds of questions:"
+              "type": "subheading",
+              "text": "There are two kinds of questions"
             },
             {
               "type": "bullet",
-              "text": "**Closed questions** : These questions usually receive no more than a ‘Yes’ or “No” answer and are generally very specific e.g. Are you married? ’No’: ‘Do you have pain” “Yes’."
+              "text": "**Closed questions**: These questions usually receive no more than a ‘Yes’ or “No” answer and are generally very specific e.g. Are you married? ’No’: ‘Do you have pain” “Yes’."
             },
             {
               "type": "bullet",
-              "text": "**Open ended questions** : These are questions which invite a person to talk and explain. They usually begin with; What, Where, When, Row? e.g. How did you feel when you were told your diagnosis? Open ended questions permit the person to choose how to respond, and examine the situation more clearly."
+              "text": "**Open ended questions**: These are questions which invite a person to talk and explain. They usually begin with; What, Where, When, Row? e.g. How did you feel when you were told your diagnosis? Open ended questions permit the person to choose how to respond, and examine the situation more clearly."
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "**Points to remember when asking questions**"
             },
             {
@@ -4315,7 +4410,7 @@
               "text": "**Answering Questions**"
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "Points to remember when answering questions"
             },
             {
@@ -4357,7 +4452,7 @@
           ]
         },
         {
-          "title": "**Qualities and Attitudes for Effective Communication in Palliative Care**",
+          "title": "Qualities and Attitudes for Effective Communication in Palliative Care",
           "blocks": [
             {
               "type": "paragraph",
@@ -4450,7 +4545,7 @@
           ]
         },
         {
-          "title": "**Benefits of Effective Communication in Palliative Care**",
+          "title": "Benefits of Effective Communication in Palliative Care",
           "blocks": [
             {
               "type": "paragraph",
@@ -4519,7 +4614,7 @@
           ]
         },
         {
-          "title": "**Consequences of Ineffective Communication in Palliative Care**",
+          "title": "Consequences of Ineffective Communication in Palliative Care",
           "blocks": [
             {
               "type": "paragraph",
@@ -4560,35 +4655,35 @@
             },
             {
               "type": "bullet",
-              "text": "Emotional Challenges : Strong emotions, such as anxiety, fear of rejection, fear of infecting others, anger, betrayal, shame, and worries about coping and family, affect effective communication in HIV and AIDS."
+              "text": "**Emotional Challenges:** Strong emotions, such as anxiety, fear of rejection, fear of infecting others, anger, betrayal, shame, and worries about coping and family, affect effective communication in HIV and AIDS."
             },
             {
               "type": "bullet",
-              "text": "Disclosure of Status : Patients may struggle with disclosing their status due to concerns about respect, abandonment, or fear of family reactions."
+              "text": "**Disclosure of Status:** Patients may struggle with disclosing their status due to concerns about respect, abandonment, or fear of family reactions."
             },
             {
               "type": "bullet",
-              "text": "Adherence to Treatment: Adherence to the prescribed drug regimen is crucial for successful antiretroviral therapy (ART), and effective provider-patient communication plays a vital role in promoting adherence."
+              "text": "**Adherence to Treatment:** Adherence to the prescribed drug regimen is crucial for successful antiretroviral therapy (ART), and effective provider-patient communication plays a vital role in promoting adherence."
             },
             {
               "type": "bullet",
-              "text": "Key Communication Factors for Adherence : **a** . Pre-treatment education and counseling. **b** . Information on HIV, its manifestations, benefits, and side effects. **c** . Peer support involvement in treatment. **d** . Psychosocial support to reduce stigma. **e** . Culturally appropriate adherence programs. **f** . Support groups, particularly in the African region, have proven successful in providing emotional and peer support to individuals coping with HIV and AIDS."
+              "text": "**Key Communication Factors for Adherence:** **a**. Pre-treatment education and counseling. **b**. Information on HIV, its manifestations, benefits, and side effects. **c**. Peer support involvement in treatment. **d**. Psychosocial support to reduce stigma. **e**. Culturally appropriate adherence programs. **f**. Support groups, particularly in the African region, have proven successful in providing emotional and peer support to individuals coping with HIV and AIDS."
             },
             {
               "type": "bullet",
-              "text": "Impairments : Illnesses may impact patients’ hearing or vocal capacity, hindering communication."
+              "text": "**Impairments:** Illnesses may impact patients’ hearing or vocal capacity, hindering communication."
             },
             {
               "type": "bullet",
-              "text": "Limited Knowledge : Service providers with limited knowledge about HIV and AIDS may face challenges in effective communication."
+              "text": "**Limited Knowledge:** Service providers with limited knowledge about HIV and AIDS may face challenges in effective communication."
             },
             {
               "type": "bullet",
-              "text": "Extreme Pain : Severe pain experienced by patients can hinder effective communication."
+              "text": "**Extreme Pain:** Severe pain experienced by patients can hinder effective communication."
             },
             {
               "type": "bullet",
-              "text": "Conspiracy of Silence : Caregivers or patients may choose not to disclose important information, leading to communication barriers."
+              "text": "**Conspiracy of Silence:** Caregivers or patients may choose not to disclose important information, leading to communication barriers."
             }
           ]
         },
@@ -4606,39 +4701,39 @@
           "blocks": [
             {
               "type": "bullet",
-              "text": "Active Listening : Paying attention and genuinely listening to children."
+              "text": "**Active Listening:** Paying attention and genuinely listening to children."
             },
             {
               "type": "bullet",
-              "text": "Showing Interest : Displaying curiosity and engaging with the child."
+              "text": "**Showing Interest:** Displaying curiosity and engaging with the child."
             },
             {
               "type": "bullet",
-              "text": "Age-Appropriate Communication: Adjusting communication style and language to suit the child’s developmental stage."
+              "text": "**Age-Appropriate Communication:** Adjusting communication style and language to suit the child’s developmental stage."
             },
             {
               "type": "bullet",
-              "text": "Non-Judgmental Attitude: Creating a safe space where the child feels comfortable expressing themselves."
+              "text": "**Non-Judgmental Attitude:** Creating a safe space where the child feels comfortable expressing themselves."
             },
             {
               "type": "bullet",
-              "text": "Empathy : Understanding and relating to the child’s feelings and experiences."
+              "text": "**Empathy:** Understanding and relating to the child’s feelings and experiences."
             },
             {
               "type": "bullet",
-              "text": "Confidentiality : Respecting the child’s privacy and keeping sensitive information confidential."
+              "text": "**Confidentiality:** Respecting the child’s privacy and keeping sensitive information confidential."
             },
             {
               "type": "bullet",
-              "text": "Openness and Honesty : Being transparent with the child while using age-appropriate language."
+              "text": "**Openness and Honesty:** Being transparent with the child while using age-appropriate language."
             },
             {
               "type": "bullet",
-              "text": "Cultural Respect : Valuing and incorporating the child and family’s cultural beliefs and values."
+              "text": "**Cultural Respect:** Valuing and incorporating the child and family’s cultural beliefs and values."
             },
             {
               "type": "bullet",
-              "text": "Patience : Allowing the child ample time to express themselves without rushing or interrupting."
+              "text": "**Patience:** Allowing the child ample time to express themselves without rushing or interrupting."
             }
           ]
         },
@@ -4647,23 +4742,23 @@
           "blocks": [
             {
               "type": "bullet",
-              "text": "**Trustworthy Communication** : Building a relationship of trust and security with the child before discussing sensitive topics."
+              "text": "**Trustworthy Communication**: Building a relationship of trust and security with the child before discussing sensitive topics."
             },
             {
               "type": "bullet",
-              "text": "**Individualized Approach** : Assessing the child’s existing knowledge and understanding before providing information."
+              "text": "**Individualized Approach**: Assessing the child’s existing knowledge and understanding before providing information."
             },
             {
               "type": "bullet",
-              "text": "**Questioning Technique** : Answering questions with further questions to clarify the child’s intent."
+              "text": "**Questioning Technique**: Answering questions with further questions to clarify the child’s intent."
             },
             {
               "type": "bullet",
-              "text": "**WPC Chunk Technique:** **a. Warn** : Preparing the child for potentially difficult information. **b. Pause** : Allowing the child to process and indicate readiness to continue. **c. Check** : Verifying the child’s understanding and willingness to proceed. **d. Chunk** : Sharing information in small portions, checking comprehension along the way."
+              "text": "**WPC Chunk Technique:** **a. Warn**: Preparing the child for potentially difficult information. **b. Pause**: Allowing the child to process and indicate readiness to continue. **c. Check**: Verifying the child’s understanding and willingness to proceed. **d. Chunk**: Sharing information in small portions, checking comprehension along the way."
             },
             {
               "type": "bullet",
-              "text": "**Honesty and Avoidance** : Avoiding evasion or dishonesty when addressing difficult questions."
+              "text": "**Honesty and Avoidance**: Avoiding evasion or dishonesty when addressing difficult questions."
             }
           ]
         },
@@ -4672,23 +4767,23 @@
           "blocks": [
             {
               "type": "bullet",
-              "text": "Addressing Beliefs and Values : Discussing death and dying in line with the child and family’s beliefs, alleviating fear, and involving them in preparing for death."
+              "text": "**Addressing Beliefs and Values:** Discussing death and dying in line with the child and family’s beliefs, alleviating fear, and involving them in preparing for death."
             },
             {
               "type": "bullet",
-              "text": "End-of-Life Discussions : Openly discussing end-of-life issues and the child’s anticipated death with honesty and sensitivity."
+              "text": "**End-of-Life Discussions:** Openly discussing end-of-life issues and the child’s anticipated death with honesty and sensitivity."
             },
             {
               "type": "bullet",
-              "text": "Saying Goodbye: Providing opportunities for the child to say goodbye, express their feelings, and share their wishes."
+              "text": "**Saying Goodbye:** Providing opportunities for the child to say goodbye, express their feelings, and share their wishes."
             },
             {
               "type": "bullet",
-              "text": "Bereavement Support : Offering counseling and support to children during the bereavement process."
+              "text": "**Bereavement Support:** Offering counseling and support to children during the bereavement process."
             },
             {
               "type": "paragraph",
-              "text": "**Note** : Effective communication in children’s palliative care not only helps address their unique needs but also fosters trust, emotional well-being, and family involvement throughout the care journey."
+              "text": "**Note**: Effective communication in children’s palliative care not only helps address their unique needs but also fosters trust, emotional well-being, and family involvement throughout the care journey."
             },
             {
               "type": "paragraph",
@@ -4700,7 +4795,7 @@
             },
             {
               "type": "paragraph",
-              "text": "Explanation: Verbal communication entails the use of spoken words or writing to exchange ideas and information."
+              "text": "**Explanation:** Verbal communication entails the use of spoken words or writing to exchange ideas and information."
             },
             {
               "type": "paragraph",
@@ -4708,7 +4803,7 @@
             },
             {
               "type": "paragraph",
-              "text": "Explanation: According to the document, 55% of non-verbal communication is expressed through facial expressions."
+              "text": "**Explanation:** According to the document, 55% of non-verbal communication is expressed through facial expressions."
             },
             {
               "type": "paragraph",
@@ -4716,7 +4811,7 @@
             },
             {
               "type": "paragraph",
-              "text": "Explanation: The document emphasizes that being a good listener is the first and most important skill in effective communication."
+              "text": "**Explanation:** The document emphasizes that being a good listener is the first and most important skill in effective communication."
             },
             {
               "type": "paragraph",
@@ -4724,7 +4819,7 @@
             },
             {
               "type": "paragraph",
-              "text": "Explanation: To show that you are paying attention while listening, you can use techniques such as nodding or using appropriate facial expressions."
+              "text": "**Explanation:** To show that you are paying attention while listening, you can use techniques such as nodding or using appropriate facial expressions."
             },
             {
               "type": "paragraph",
@@ -4732,7 +4827,7 @@
             },
             {
               "type": "paragraph",
-              "text": "Explanation: Open-ended questions invite a person to share more information, thoughts, or feelings, allowing for a more detailed response."
+              "text": "**Explanation:** Open-ended questions invite a person to share more information, thoughts, or feelings, allowing for a more detailed response."
             },
             {
               "type": "paragraph",
@@ -4740,7 +4835,7 @@
             },
             {
               "type": "paragraph",
-              "text": "Explanation: Instead of offering advice or false reassurance, it is important to provide accurate information and engage in meaningful discussions."
+              "text": "**Explanation:** Instead of offering advice or false reassurance, it is important to provide accurate information and engage in meaningful discussions."
             },
             {
               "type": "paragraph",
@@ -4748,7 +4843,7 @@
             },
             {
               "type": "paragraph",
-              "text": "Explanation: After giving information, it is important to check whether the person has understood the information provided."
+              "text": "**Explanation:** After giving information, it is important to check whether the person has understood the information provided."
             },
             {
               "type": "paragraph",
@@ -4756,7 +4851,7 @@
             },
             {
               "type": "paragraph",
-              "text": "Explanation: Judgmental fixations are not listed as barriers to effective listening in the document."
+              "text": "**Explanation:** Judgmental fixations are not listed as barriers to effective listening in the document."
             },
             {
               "type": "paragraph",
@@ -4764,7 +4859,7 @@
             },
             {
               "type": "paragraph",
-              "text": "Explanation: Open-ended questions are essential for encouraging children to express their thoughts and feelings in palliative care."
+              "text": "**Explanation:** Open-ended questions are essential for encouraging children to express their thoughts and feelings in palliative care."
             },
             {
               "type": "paragraph",
@@ -4772,7 +4867,7 @@
             },
             {
               "type": "paragraph",
-              "text": "Explanation: Effective communication in children’s palliative care is crucial for addressing physical needs, providing emotional support, and involving children in decision-making processes."
+              "text": "**Explanation:** Effective communication in children’s palliative care is crucial for addressing physical needs, providing emotional support, and involving children in decision-making processes."
             },
             {
               "type": "paragraph",
@@ -4957,7 +5052,11 @@
         "Key Components of Psychosocial Support",
         "Signs and Symptoms faced by patients with terminal illnesses",
         "Management of Terminal illness",
-        "UNMEB related question. (feb 2022)"
+        "UNMEB related question. (feb 2022)",
+        "Nursing Uganda Clinical Lens",
+        "Assessment Guide",
+        "Nursing Priorities, Rationales and Outcomes",
+        "Patient Teaching and Revision Check"
       ],
       "images": [
         "/assets/images/medical-illustrations/mental-health-biopsychosocial.webp"
@@ -4977,43 +5076,43 @@
           "blocks": [
             {
               "type": "bullet",
-              "text": "**Cancer** . Cancer is a group of diseases involving abnormal cell growth with the potential to invade or spread to other parts of the body."
+              "text": "**Cancer**. Cancer is a group of diseases involving abnormal cell growth with the potential to invade or spread to other parts of the body."
             },
             {
               "type": "bullet",
-              "text": "**Dementia** . Dementia is a general term for loss of memory, language, problem-solving and other thinking abilities that are severe enough to interfere with daily life."
+              "text": "**Dementia**. Dementia is a general term for loss of memory, language, problem-solving and other thinking abilities that are severe enough to interfere with daily life."
             },
             {
               "type": "bullet",
-              "text": "**Heart disease** . Heart disease is a group of conditions that affect your heart. Heart diseases can be caused by a number of factors, including high blood pressure, high cholesterol, smoking, and obesity."
+              "text": "**Heart disease**. Heart disease is a group of conditions that affect your heart. Heart diseases can be caused by a number of factors, including high blood pressure, high cholesterol, smoking, and obesity."
             },
             {
               "type": "bullet",
-              "text": "**Lung disease** . Lung disease is a general term for any condition that affects your lungs. Lung diseases can be caused by a number of factors, including smoking, air pollution, and infections."
+              "text": "**Lung disease**. Lung disease is a general term for any condition that affects your lungs. Lung diseases can be caused by a number of factors, including smoking, air pollution, and infections."
             },
             {
               "type": "bullet",
-              "text": "**Neurological diseases** . Neurological diseases are diseases that affect the brain, spinal cord, or nerves. Neurological diseases can be caused by a number of factors, including genetics, infections, and toxins."
+              "text": "**Neurological diseases**. Neurological diseases are diseases that affect the brain, spinal cord, or nerves. Neurological diseases can be caused by a number of factors, including genetics, infections, and toxins."
             },
             {
               "type": "bullet",
-              "text": "**End-stage renal disease** . End-stage renal disease is a condition in which the kidneys can no longer function properly. End-stage renal disease can be caused by a number of factors, including diabetes, high blood pressure, and infections."
+              "text": "**End-stage renal disease**. End-stage renal disease is a condition in which the kidneys can no longer function properly. End-stage renal disease can be caused by a number of factors, including diabetes, high blood pressure, and infections."
             },
             {
               "type": "bullet",
-              "text": "**HIV/AIDS** . HIV/AIDS is a chronic, life-threatening condition caused by the human immunodeficiency virus (HIV). HIV attacks the body’s immune system, making it difficult to fight off infections."
+              "text": "**HIV/AIDS**. HIV/AIDS is a chronic, life-threatening condition caused by the human immunodeficiency virus (HIV). HIV attacks the body’s immune system, making it difficult to fight off infections."
             },
             {
               "type": "bullet",
-              "text": "**Amyloidosis** . Amyloidosis is a group of diseases in which amyloid proteins build up in organs and tissues. Amyloid proteins are abnormal proteins that can’t be broken down by the body."
+              "text": "**Amyloidosis**. Amyloidosis is a group of diseases in which amyloid proteins build up in organs and tissues. Amyloid proteins are abnormal proteins that can’t be broken down by the body."
             },
             {
               "type": "bullet",
-              "text": "**Lou Gehrig’s disease** . Lou Gehrig’s disease, also known as amyotrophic lateral sclerosis (ALS), is a progressive neurodegenerative disease that affects nerve cells in the brain and spinal cord. ALS causes muscle weakness and wasting, which can eventually lead to paralysis and death."
+              "text": "**Lou Gehrig’s disease**. Lou Gehrig’s disease, also known as amyotrophic lateral sclerosis (ALS), is a progressive neurodegenerative disease that affects nerve cells in the brain and spinal cord. ALS causes muscle weakness and wasting, which can eventually lead to paralysis and death."
             },
             {
               "type": "bullet",
-              "text": "**Parkinson’s disease** . Parkinson’s disease is a chronic, progressive neurological disorder that affects movement. Parkinson’s disease is caused by the loss of dopamine-producing cells in the brain."
+              "text": "**Parkinson’s disease**. Parkinson’s disease is a chronic, progressive neurological disorder that affects movement. Parkinson’s disease is caused by the loss of dopamine-producing cells in the brain."
             }
           ]
         },
@@ -5022,23 +5121,23 @@
           "blocks": [
             {
               "type": "bullet",
-              "text": "A **. Emotional support** : Nurturing mental well-being Emotional support plays a pivotal role in promoting the mental well-being of terminally ill individuals. This component involves actively listening to their concerns, validating their emotions, and offering empathy and compassion. Providing a safe space where patients can freely express their fears, hopes, and anxieties can contribute significantly to their overall emotional well-being. By addressing emotional needs, healthcare providers help alleviate distress and foster a sense of emotional resilience during their journey."
+              "text": "A **. Emotional support**: Nurturing mental well-being Emotional support plays a pivotal role in promoting the mental well-being of terminally ill individuals. This component involves actively listening to their concerns, validating their emotions, and offering empathy and compassion. Providing a safe space where patients can freely express their fears, hopes, and anxieties can contribute significantly to their overall emotional well-being. By addressing emotional needs, healthcare providers help alleviate distress and foster a sense of emotional resilience during their journey."
             },
             {
               "type": "bullet",
-              "text": "B. **Counseling and therapy** : Addressing psychological distress Psychological distress commonly accompanies terminal illness, ranging from depression and anxiety to existential crises. Counseling and therapy offer a structured and supportive environment for individuals to explore these complex emotions and develop coping strategies. Trained professionals can facilitate cognitive-behavioral therapy, creating a space for patients to challenge and reframe negative thoughts, promoting adaptive coping mechanisms."
+              "text": "B. **Counseling and therapy**: Addressing psychological distress Psychological distress commonly accompanies terminal illness, ranging from depression and anxiety to existential crises. Counseling and therapy offer a structured and supportive environment for individuals to explore these complex emotions and develop coping strategies. Trained professionals can facilitate cognitive-behavioral therapy, creating a space for patients to challenge and reframe negative thoughts, promoting adaptive coping mechanisms."
             },
             {
               "type": "bullet",
-              "text": "C. **Social support** : Fostering connections and combating isolation Social support plays a critical role in promoting the well-being of terminally ill individuals. Encouraging connections with loved ones, friends, and support groups can help combat the feelings of isolation that often accompany terminal illness. By fostering a supportive network, patients can find comfort, share experiences, and derive strength from the understanding and empathy of others navigating similar journeys."
+              "text": "C. **Social support**: Fostering connections and combating isolation Social support plays a critical role in promoting the well-being of terminally ill individuals. Encouraging connections with loved ones, friends, and support groups can help combat the feelings of isolation that often accompany terminal illness. By fostering a supportive network, patients can find comfort, share experiences, and derive strength from the understanding and empathy of others navigating similar journeys."
             },
             {
               "type": "bullet",
-              "text": "D. **Spiritual care** : Enhancing existential well-being Recognizing the spiritual dimension of individuals facing terminal illness is vital in providing comprehensive psychosocial support. Spiritual care may involve assisting patients in exploring their values, beliefs, and finding meaning in their lives. By acknowledging and respecting their spiritual needs, healthcare professionals can foster a sense of existential well-being and promote inner peace amidst the challenges of the illness."
+              "text": "D. **Spiritual care**: Enhancing existential well-being Recognizing the spiritual dimension of individuals facing terminal illness is vital in providing comprehensive psychosocial support. Spiritual care may involve assisting patients in exploring their values, beliefs, and finding meaning in their lives. By acknowledging and respecting their spiritual needs, healthcare professionals can foster a sense of existential well-being and promote inner peace amidst the challenges of the illness."
             },
             {
               "type": "bullet",
-              "text": "E. **Supporting families and caregivers** : Recognizing their crucial role Psychosocial support should extend beyond the patient and encompass the families and caregivers who play an integral role in their care. Recognizing and addressing the emotional and psychological well-being of families and caregivers are paramount. By offering support groups, counseling, and respite care, healthcare providers can alleviate the burden and stress faced by these individuals, ensuring they have the resources and support they need to provide optimal care and maintain their own well-being."
+              "text": "E. **Supporting families and caregivers**: Recognizing their crucial role Psychosocial support should extend beyond the patient and encompass the families and caregivers who play an integral role in their care. Recognizing and addressing the emotional and psychological well-being of families and caregivers are paramount. By offering support groups, counseling, and respite care, healthcare providers can alleviate the burden and stress faced by these individuals, ensuring they have the resources and support they need to provide optimal care and maintain their own well-being."
             }
           ]
         },
@@ -5096,11 +5195,11 @@
           "blocks": [
             {
               "type": "paragraph",
-              "text": "Manage according to symptoms, click here for more"
+              "text": "Manage according to symptoms, for more"
             },
             {
-              "type": "paragraph",
-              "text": "**Affective** :"
+              "type": "subheading",
+              "text": "**Affective**"
             },
             {
               "type": "bullet",
@@ -5127,8 +5226,8 @@
               "text": "The effectiveness of pharmacologic treatment for anxiety in palliative care is inconclusive according to a Cochrane review."
             },
             {
-              "type": "paragraph",
-              "text": "**Cognitive** :"
+              "type": "subheading",
+              "text": "**Cognitive**"
             },
             {
               "type": "bullet",
@@ -5155,8 +5254,8 @@
               "text": "Guide the client and family through the process of death and dying."
             },
             {
-              "type": "paragraph",
-              "text": "**Environmental** :"
+              "type": "subheading",
+              "text": "**Environmental**"
             },
             {
               "type": "bullet",
@@ -5189,39 +5288,39 @@
             },
             {
               "type": "bullet",
-              "text": "Inadequate pain assessment: Failure to accurately assess the intensity and characteristics of the patient’s pain can lead to ineffective pain management and uncontrolled pain."
+              "text": "**Inadequate pain assessment:** Failure to accurately assess the intensity and characteristics of the patient’s pain can lead to ineffective pain management and uncontrolled pain."
             },
             {
               "type": "bullet",
-              "text": "Underestimation of pain severity: Healthcare professionals may underestimate the severity of pain experienced by terminally ill patients, leading to insufficient treatment and uncontrolled pain."
+              "text": "**Underestimation of pain severity:** Healthcare professionals may underestimate the severity of pain experienced by terminally ill patients, leading to insufficient treatment and uncontrolled pain."
             },
             {
               "type": "bullet",
-              "text": "Fear of opioid addiction: Misconceptions and fears surrounding opioid addiction may result in healthcare providers prescribing lower doses of pain medication than necessary, resulting in inadequate pain relief."
+              "text": "**Fear of opioid addiction:** Misconceptions and fears surrounding opioid addiction may result in healthcare providers prescribing lower doses of pain medication than necessary, resulting in inadequate pain relief."
             },
             {
               "type": "bullet",
-              "text": "Inadequate knowledge of pain management: Lack of knowledge or training in pain management techniques can contribute to ineffective pain control and uncontrolled pain."
+              "text": "**Inadequate knowledge of pain management:** Lack of knowledge or training in pain management techniques can contribute to ineffective pain control and uncontrolled pain."
             },
             {
               "type": "bullet",
-              "text": "Suboptimal medication administration: Incorrect administration techniques, inadequate dosing intervals, or failure to provide breakthrough pain medication as needed can result in uncontrolled pain."
+              "text": "**Suboptimal medication administration:** Incorrect administration techniques, inadequate dosing intervals, or failure to provide breakthrough pain medication as needed can result in uncontrolled pain."
             },
             {
               "type": "bullet",
-              "text": "Reluctance to escalate pain medication: Healthcare providers may be hesitant to increase pain medication doses or switch to stronger opioids, leading to uncontrolled pain due to fear of side effects or concerns about respiratory depression."
+              "text": "**Reluctance to escalate pain medication:** Healthcare providers may be hesitant to increase pain medication doses or switch to stronger opioids, leading to uncontrolled pain due to fear of side effects or concerns about respiratory depression."
             },
             {
               "type": "bullet",
-              "text": "Lack of access to pain specialists: Limited availability of pain specialists or palliative care teams can result in inadequate pain management, especially in resource-limited settings."
+              "text": "**Lack of access to pain specialists:** Limited availability of pain specialists or palliative care teams can result in inadequate pain management, especially in resource-limited settings."
             },
             {
               "type": "bullet",
-              "text": "Physical tolerance and opioid titration: Some patients may develop tolerance to opioid medications over time, requiring dose adjustments or switching to alternative medications. Failure to titrate opioids appropriately can lead to uncontrolled pain."
+              "text": "**Physical tolerance and opioid titration:** Some patients may develop tolerance to opioid medications over time, requiring dose adjustments or switching to alternative medications. Failure to titrate opioids appropriately can lead to uncontrolled pain."
             },
             {
               "type": "bullet",
-              "text": "Psychological factors: Emotional distress, anxiety, or depression can exacerbate the experience of pain and make it more challenging to achieve adequate pain control."
+              "text": "**Psychological factors:** Emotional distress, anxiety, or depression can exacerbate the experience of pain and make it more challenging to achieve adequate pain control."
             },
             {
               "type": "bullet",
@@ -5229,11 +5328,11 @@
             },
             {
               "type": "bullet",
-              "text": "Co-existing medical conditions: The presence of comorbidities, such as renal or hepatic impairment, can affect the choice and dosing of pain medications, potentially leading to inadequate pain control."
+              "text": "**Co-existing medical conditions:** The presence of comorbidities, such as renal or hepatic impairment, can affect the choice and dosing of pain medications, potentially leading to inadequate pain control."
             },
             {
               "type": "bullet",
-              "text": "Communication barriers: Ineffective communication between patients, caregivers, and healthcare providers can impede the understanding of pain symptoms and hinder appropriate pain management, resulting in uncontrolled pain."
+              "text": "**Communication barriers:** Ineffective communication between patients, caregivers, and healthcare providers can impede the understanding of pain symptoms and hinder appropriate pain management, resulting in uncontrolled pain."
             }
           ]
         },

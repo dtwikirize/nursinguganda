@@ -104,7 +104,7 @@ copyDirSafe(
 );
 
 // 4. Root hosting, agent-readiness & SEO files
-for (const rootFile of [".htaccess", "manifest.webmanifest", "robots.txt", "llms.txt", "sitemap.xml", "_offline.html", "404.html"]) {
+for (const rootFile of [".htaccess", "manifest.webmanifest", "robots.txt", "llms.txt", "sitemap.xml", "service-worker.js", "_offline.html", "404.html"]) {
   copyFileSafe(rootFile);
 }
 copyDirSafe(".well-known");

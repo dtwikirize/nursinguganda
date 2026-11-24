@@ -97,6 +97,13 @@ function resolveRootOrDist(relPath) {
   return null;
 }
 
+app.get(["/service-worker.js", "/sw.js"], (_req, res) => {
+  const file = resolveRootOrDist("service-worker.js");
+  if (!file) return res.status(404).type("text/plain").send("Not found");
+  res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
+  return res.type("application/javascript; charset=utf-8").sendFile(file);
+});
+
 app.get("/robots.txt", (_req, res) => {
   const file = resolveRootOrDist("robots.txt");
   if (!file) return res.status(404).type("text/plain").send("Not found");
@@ -435,7 +442,7 @@ app.use((req, res, next) => {
 });
 
 function setAssetCacheHeaders(res, filePath) {
-  if (filePath.endsWith(".html")) {
+  if (filePath.endsWith(".html") || /[/\\](service-worker|sw)\.js$/i.test(filePath)) {
     res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
   } else if (/\.(json|webmanifest)$/i.test(filePath)) {
     res.setHeader("Cache-Control", "public, max-age=0, must-revalidate");

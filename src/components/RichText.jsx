@@ -1,7 +1,7 @@
 import React from "react";
 
 const HIGHLIGHT_REGEX =
-  /(\b\d+(?:[–-]\d+)?(?:\.\d+)?%\s*(?:[a-zA-Z()0-9\s–-]{0,28})?|\b\d+(?:[–-]\d+)?\s*(?:liters?(?:\s*per\s*day|\/day)?|mL\/(?:hr|min|kg)|mg\/(?:dL|kg)|mmol\/L|mmHg|bpm)\b|prevents\s+[a-z\s]+\([a-z\s]+\)|\([a-z\s]{4,28}\)\s*(?:that\s+[a-z\s]{3,28})?)/i;
+  /(\b\d+(?:[–-]\d+)?(?:\.\d+)?%\s*(?:[a-zA-Z0-9\s–-]{0,20})?|\b\d+(?:[–-]\d+)?\s*(?:liters?(?:\s*per\s*day|\/day)?|mL\/(?:hr|min|kg)|mg\/(?:dL|kg)|mmol\/L|mmHg|bpm)\b)/i;
 
 function renderHighlightedSegments(str, keyPrefix) {
   const s = String(str || "");

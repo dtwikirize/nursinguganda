@@ -116,7 +116,22 @@
         "Data, Information, and Knowledge",
         "Computer Components: Hardware and Software",
         "Hardware",
-        "Software"
+        "Software",
+        "Input Devices",
+        "Output Devices",
+        "1. Central Processing Unit (CPU)",
+        "2. Primary Memory (Main Memory)",
+        "3. Secondary Memory (Storage)",
+        "Storage Measurement",
+        "Speed Measurement",
+        "Types and Classifications of Computers",
+        "Characteristics of a Computer",
+        "A Brief Note on Computer Viruses",
+        "How to Stay Safe:",
+        "Nursing Uganda Clinical Lens",
+        "Assessment Guide",
+        "Nursing Priorities, Rationales and Outcomes",
+        "Patient Teaching and Revision Check"
       ],
       "images": [
         "/assets/images/medical-illustrations/leadership-research-ethics.webp"
@@ -151,12 +166,12 @@
           "title": "Functionalities of a Computer",
           "blocks": [
             {
-              "type": "paragraph",
-              "text": "In simple terms, any computer performs five main functions:"
+              "type": "subheading",
+              "text": "In simple terms, any computer performs five main functions"
             },
             {
               "type": "bullet",
-              "text": "It takes in raw facts and figures, which we call **data** ."
+              "text": "It takes in raw facts and figures, which we call **data**."
             },
             {
               "type": "bullet",
@@ -164,7 +179,7 @@
             },
             {
               "type": "bullet",
-              "text": "It processes the data, turning it into useful **information** ."
+              "text": "It processes the data, turning it into useful **information**."
             },
             {
               "type": "bullet",
@@ -180,8 +195,8 @@
           "title": "Data, Information, and Knowledge",
           "blocks": [
             {
-              "type": "paragraph",
-              "text": "It is important to understand these three related ideas:"
+              "type": "subheading",
+              "text": "It is important to understand these three related ideas"
             },
             {
               "type": "bullet",
@@ -202,7 +217,7 @@
           "blocks": [
             {
               "type": "paragraph",
-              "text": "Every computer system is made of two main parts that must work together: **HARDWARE** and **SOFTWARE** ."
+              "text": "Every computer system is made of two main parts that must work together: **HARDWARE** and **SOFTWARE**."
             }
           ]
         },
@@ -315,7 +330,7 @@
           "blocks": [
             {
               "type": "paragraph",
-              "text": "The CPU is the **brain of the computer** . It is the most important part, responsible for performing almost all of the computer's work. It is made of three main parts:"
+              "text": "The CPU is the **brain of the computer**. It is the most important part, responsible for performing almost all of the computer's work. It is made of three main parts:"
             },
             {
               "type": "bullet",
@@ -381,7 +396,7 @@
             },
             {
               "type": "paragraph",
-              "text": "Other examples of storage include **Flash Disks (USB drives)** and **Optical Disks (CDs, DVDs)** ."
+              "text": "Other examples of storage include **Flash Disks (USB drives)** and **Optical Disks (CDs, DVDs)**."
             }
           ]
         },
@@ -423,7 +438,7 @@
           "blocks": [
             {
               "type": "paragraph",
-              "text": "The speed of a CPU is measured in **Hertz (Hz)** . This tells you how many instructions (or cycles) the CPU can perform per second."
+              "text": "The speed of a CPU is measured in **Hertz (Hz)**. This tells you how many instructions (or cycles) the CPU can perform per second."
             },
             {
               "type": "bullet",
@@ -472,8 +487,8 @@
           "title": "Characteristics of a Computer",
           "blocks": [
             {
-              "type": "paragraph",
-              "text": "Computers are useful because of these key characteristics:"
+              "type": "subheading",
+              "text": "Computers are useful because of these key characteristics"
             },
             {
               "type": "bullet",
@@ -563,7 +578,7 @@
             },
             {
               "type": "bullet",
-              "text": "Which is larger: a Kilobyte (KB) or a Megabyte (MB)? What might you measure in Gigabytes (GB)?"
+              "text": "**Which is larger:** a Kilobyte (KB) or a Megabyte (MB)? What might you measure in Gigabytes (GB)?"
             },
             {
               "type": "bullet",
@@ -715,7 +730,7 @@
     "introduction-to-microsoft-computer-packages": {
       "slug": "introduction-to-microsoft-computer-packages",
       "title": "Introduction to Microsoft computer packages",
-      "excerpt": "Microsoft Office is a collection of application software, often called a **\"suite\"** or **\"package\"** . These programs are designed to work together to help you perform common tasks at work, school, and home. As a nursing student, you will find them extremely useful.",
+      "excerpt": "Microsoft Office is a collection of application software, often called a **\"suite\"** or **\"package\"**. These programs are designed to work together to help you perform common tasks at work, school, and home. As a nursing student, you will find them extremely useful.",
       "wordCount": 1805,
       "readMinutes": 10,
       "headings": [
@@ -724,7 +739,22 @@
         "When would a nurse use Microsoft Word?",
         "Understanding the Word Interface (Screen)",
         "1. Creating and Saving Documents",
-        "2. Formatting Your Text and Paragraphs"
+        "2. Formatting Your Text and Paragraphs",
+        "3. Adding Tables and Pictures",
+        "4. Proofreading Your Document",
+        "Part 2: Microsoft Excel (The Spreadsheet)",
+        "When would a nurse use Microsoft Excel?",
+        "Understanding the Excel Interface",
+        "1. Entering and Formatting Data",
+        "2. Using Formulas and Functions (The Power of Excel)",
+        "3. Creating Charts",
+        "Part 3: Microsoft PowerPoint (The Presentation Tool)",
+        "When would a nurse use PowerPoint?",
+        "Building a Presentation",
+        "Nursing Uganda Clinical Lens",
+        "Assessment Guide",
+        "Nursing Priorities, Rationales and Outcomes",
+        "Patient Teaching and Revision Check"
       ],
       "images": [
         "/assets/images/medical-illustrations/leadership-research-ethics.webp"
@@ -735,11 +765,11 @@
           "blocks": [
             {
               "type": "paragraph",
-              "text": "Microsoft Office is a collection of application software, often called a **\"suite\"** or **\"package\"** . These programs are designed to work together to help you perform common tasks at work, school, and home. As a nursing student, you will find them extremely useful."
+              "text": "Microsoft Office is a collection of application software, often called a **\"suite\"** or **\"package\"**. These programs are designed to work together to help you perform common tasks at work, school, and home. As a nursing student, you will find them extremely useful."
             },
             {
-              "type": "paragraph",
-              "text": "The three most important programs for you to learn are:"
+              "type": "subheading",
+              "text": "The three most important programs for you to learn are"
             },
             {
               "type": "bullet",
@@ -789,16 +819,16 @@
           "title": "Understanding the Word Interface (Screen)",
           "blocks": [
             {
-              "type": "paragraph",
-              "text": "When you open Word, you will see several key areas:"
+              "type": "subheading",
+              "text": "When you open Word, you will see several key areas"
             },
             {
               "type": "bullet",
-              "text": "**The Ribbon:** The large bar across the top. It contains all the tools and commands, organized into different **Tabs** ."
+              "text": "**The Ribbon:** The large bar across the top. It contains all the tools and commands, organized into different **Tabs**."
             },
             {
               "type": "bullet",
-              "text": "**Tabs:** Labels on the Ribbon like Home , Insert , Page Layout , and View . Clicking a tab shows you a different set of buttons. The **Home** tab has the most common formatting tools (font size, bold, alignment)."
+              "text": "**Tabs:** Labels on the Ribbon like Home, Insert, Page Layout, and View. Clicking a tab shows you a different set of buttons. The **Home** tab has the most common formatting tools (font size, bold, alignment)."
             },
             {
               "type": "bullet",
@@ -823,11 +853,11 @@
           "blocks": [
             {
               "type": "bullet",
-              "text": "**Creating a New Document:** Go to File &gt; New &gt; Blank document ."
+              "text": "**Creating a New Document:** Go to File &gt; New &gt; Blank document."
             },
             {
               "type": "bullet",
-              "text": "**Saving Your Work:** This is the most important skill! **Save As:** Use this the first time you save a file. Go to File &gt; Save As . You must choose a **location** (like your Documents folder) and give your file a **name** ."
+              "text": "**Saving Your Work:** This is the most important skill! **Save As:** Use this the first time you save a file. Go to File &gt; Save As. You must choose a **location** (like your Documents folder) and give your file a **name**."
             },
             {
               "type": "bullet",
@@ -856,7 +886,7 @@
             },
             {
               "type": "bullet",
-              "text": "**Bold** , Italic , and Underline : Emphasize important words."
+              "text": "**Bold**, Italic, and Underline: Emphasize important words."
             },
             {
               "type": "bullet",
@@ -941,7 +971,7 @@
           "blocks": [
             {
               "type": "bullet",
-              "text": "**Workbook and Worksheet:** An Excel file is called a **Workbook** . A workbook contains one or more pages called **Worksheets** (or \"sheets\")."
+              "text": "**Workbook and Worksheet:** An Excel file is called a **Workbook**. A workbook contains one or more pages called **Worksheets** (or \"sheets\")."
             },
             {
               "type": "bullet",
@@ -999,7 +1029,7 @@
             },
             {
               "type": "bullet",
-              "text": "**AVERAGE:** Calculates the average of a range of cells. Example: To find the average temperature of a patient, you could use **=AVERAGE(C2:C8)** ."
+              "text": "**AVERAGE:** Calculates the average of a range of cells. Example: To find the average temperature of a patient, you could use **=AVERAGE(C2:C8)**."
             },
             {
               "type": "bullet",
@@ -1260,7 +1290,15 @@
         "1. Back Up Your Data: The MOST Important Task",
         "2. Use and Update Antivirus Software",
         "3. Keep Your Software Updated",
-        "4. Clean Up Your Hard Drive"
+        "4. Clean Up Your Hard Drive",
+        "1. Cleaning the Computer Case and Vents",
+        "2. Cleaning the Keyboard and Mouse",
+        "4. Cleaning the Monitor (Screen)",
+        "A Simple Maintenance Schedule",
+        "Nursing Uganda Clinical Lens",
+        "Assessment Guide",
+        "Nursing Priorities, Rationales and Outcomes",
+        "Patient Teaching and Revision Check"
       ],
       "images": [
         "/assets/images/medical-illustrations/mental-health-biopsychosocial.webp"
@@ -1334,11 +1372,11 @@
             },
             {
               "type": "bullet",
-              "text": "An antivirus program is **useless if it is not updated** . New viruses are created every day, and updates provide your software with the information it needs to fight them."
+              "text": "An antivirus program is **useless if it is not updated**. New viruses are created every day, and updates provide your software with the information it needs to fight them."
             },
             {
               "type": "bullet",
-              "text": "Ensure your antivirus is set to **update automatically** ."
+              "text": "Ensure your antivirus is set to **update automatically**."
             },
             {
               "type": "bullet",
@@ -1372,7 +1410,7 @@
             },
             {
               "type": "bullet",
-              "text": "**Uninstall Unused Programs:** If you installed a program and no longer use it, remove it. Go to the Control Panel &gt; Programs and Features , select the program, and click \"Uninstall\"."
+              "text": "**Uninstall Unused Programs:** If you installed a program and no longer use it, remove it. Go to the Control Panel &gt; Programs and Features, select the program, and click \"Uninstall\"."
             },
             {
               "type": "bullet",
@@ -1467,11 +1505,11 @@
             },
             {
               "type": "bullet",
-              "text": "**DO NOT use paper towels** , tissue paper, or rough cloths, as they can scratch the screen."
+              "text": "**DO NOT use paper towels**, tissue paper, or rough cloths, as they can scratch the screen."
             },
             {
               "type": "bullet",
-              "text": "**DO NOT use window cleaner** , ammonia, or alcohol-based cleaners, as they can damage the screen's anti-glare coating."
+              "text": "**DO NOT use window cleaner**, ammonia, or alcohol-based cleaners, as they can damage the screen's anti-glare coating."
             }
           ]
         },
@@ -1673,7 +1711,18 @@
         "2. A Search Engine",
         "Effective Searching for Health Information: A Critical Skill for Nurses",
         "2. Evaluating the Quality of Online Information (CRITICAL!)",
-        "3. Recommended Sources for Health Information"
+        "3. Recommended Sources for Health Information",
+        "Electronic Mail (Email): Professional Communication",
+        "Understanding an Email Address",
+        "Composing a Professional Email",
+        "Internet Safety and Digital Citizenship: Protecting Yourself and Others",
+        "1. Protecting Your Personal Information",
+        "2. Understanding Malware",
+        "3. Being a Good Digital Citizen",
+        "Nursing Uganda Clinical Lens",
+        "Assessment Guide",
+        "Nursing Priorities, Rationales and Outcomes",
+        "Patient Teaching and Revision Check"
       ],
       "images": [
         "/assets/images/medical-illustrations/mental-health-biopsychosocial.webp"
@@ -1788,8 +1837,8 @@
           "title": "3. Recommended Sources for Health Information",
           "blocks": [
             {
-              "type": "paragraph",
-              "text": "Always start your search with these types of reliable sources:"
+              "type": "subheading",
+              "text": "Always start your search with these types of reliable sources"
             },
             {
               "type": "bullet",

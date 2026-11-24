@@ -1,5 +1,5 @@
 import React from "react";
-import { AlertTriangle, CheckCircle2, Layers, Table2 } from "lucide-react";
+import { AlertTriangle, CheckCircle2, Layers, Sparkles, Table2 } from "lucide-react";
 import RichText from "./RichText";
 
 const IMAGE_VERSION = "20261124f";
@@ -663,7 +663,15 @@ function groupSectionBlocks(blocks = []) {
         grouped.push({ kind: "list", items: bulletBuf });
         bulletBuf = null;
       }
-      grouped.push({ kind: "block", text: b?.text || "" });
+      if (b?.type === "table" && Array.isArray(b.headers) && Array.isArray(b.rows)) {
+        grouped.push({ kind: "table", title: b.title || "", headers: b.headers, rows: b.rows });
+      } else if (b?.type === "diagram") {
+        grouped.push({ kind: "diagram", block: b });
+      } else if (b?.type === "subheading") {
+        grouped.push({ kind: "subheading", text: b.text || "" });
+      } else {
+        grouped.push({ kind: "block", text: b?.text || "" });
+      }
     }
   }
   if (bulletBuf) {
@@ -672,6 +680,106 @@ function groupSectionBlocks(blocks = []) {
   return grouped;
 }
 
+function LessonInlineDiagram({ block }) {
+  const variant = block?.variant || "flow";
+  const title = block?.title || "Clinical Procedure Diagram";
+  const caption = block?.caption || "";
+
+  if (variant === "aseptic_trolley") {
+    return (
+      <figure className="nu-note-diagram-card">
+        <div className="nu-note-diagram-head">
+          <span>{title}</span>
+          <span className="nu-note-diagram-tag">2-Color Clinical Schematic</span>
+        </div>
+        <svg
+          viewBox="0 0 760 270"
+          role="img"
+          aria-label={title}
+          style={{ width: "100%", height: "auto", display: "block", background: "#FFFFFF", borderRadius: 8 }}
+        >
+          {/* Left Panel: Trolley Separation */}
+          <rect x="16" y="16" width="350" height="236" rx="10" fill="#F8FAFC" stroke="#0F172A" strokeWidth="1.6" />
+          <text x="34" y="42" fontSize="13" fontWeight="800" fill="#0F172A">1. TROLLEY ZONE SEPARATION</text>
+
+          {/* Top Shelf (Solid Royal Purple Fill + White Font) */}
+          <rect x="34" y="56" width="314" height="84" rx="8" fill="#6D28D9" />
+          <rect x="44" y="66" width="136" height="20" rx="4" fill="#FFFFFF" />
+          <text x="53" y="80" fontSize="10.5" fontWeight="800" fill="#6D28D9">TOP SHELF · STERILE</text>
+          <text x="44" y="106" fontSize="11.5" fontWeight="700" fill="#FFFFFF">Sterile pack, gallipots, forceps, drapes</text>
+          <text x="44" y="124" fontSize="10.5" fill="#EDE9FE">Use Cheatle forceps · Keep strict asepsis</text>
+
+          {/* Bottom Shelf (Solid Obsidian Fill + White Font) */}
+          <rect x="34" y="152" width="314" height="84" rx="8" fill="#0F172A" />
+          <rect x="44" y="162" width="174" height="20" rx="4" fill="#FFFFFF" />
+          <text x="53" y="176" fontSize="10.5" fontWeight="800" fill="#0F172A">BOTTOM SHELF · UNSTERILE</text>
+          <text x="44" y="202" fontSize="11.5" fontWeight="700" fill="#FFFFFF">Soiled receivers, mackintosh, bandages</text>
+          <text x="44" y="220" fontSize="10.5" fill="#CBD5E1">Never return used instruments to top shelf</text>
+
+          {/* Right Panel: Swabbing Direction */}
+          <rect x="394" y="16" width="350" height="236" rx="10" fill="#F8FAFC" stroke="#0F172A" strokeWidth="1.6" />
+          <text x="412" y="42" fontSize="13" fontWeight="800" fill="#0F172A">2. SWABBING STROKE DIRECTION</text>
+
+          {/* Clean Wound Center-Outward Solid Diagram */}
+          <ellipse cx="569" cy="116" rx="126" ry="48" fill="#0F2942" />
+          <line x1="485" y1="116" x2="653" y2="116" stroke="#FFFFFF" strokeWidth="3.5" strokeLinecap="round" />
+          <circle cx="569" cy="116" r="5.5" fill="#A855F7" stroke="#FFFFFF" strokeWidth="1.5" />
+          {/* Outward arrows */}
+          <path d="M 569 104 L 569 78 M 563 85 L 569 77 L 575 85" fill="none" stroke="#C084FC" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M 569 128 L 569 154 M 563 147 L 569 155 L 575 147" fill="none" stroke="#C084FC" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+
+          <rect x="412" y="174" width="314" height="66" rx="7" fill="#5B21B6" />
+          <text x="424" y="194" fontSize="11.5" fontWeight="800" fill="#FFFFFF">Clean wound: Centre → Sides (Outwards)</text>
+          <text x="424" y="212" fontSize="10.8" fill="#EDE9FE">1 swab = 1 stroke · Discard immediately after pass</text>
+          <text x="424" y="229" fontSize="10.8" fontWeight="700" fill="#FFFFFF">Septic wound: Cleanest periphery → Centre/Pus</text>
+        </svg>
+        {caption && <figcaption>{caption}</figcaption>}
+      </figure>
+    );
+  }
+
+  const steps = Array.isArray(block?.steps) ? block.steps : [];
+  if (!steps.length) return null;
+
+  return (
+    <figure className="nu-note-diagram-card">
+      <div className="nu-note-diagram-head">
+        <span>{title}</span>
+        <span className="nu-note-diagram-tag">Procedure Sequence</span>
+      </div>
+      <div className="nu-proc-flow-grid">
+        {steps.map((st, idx) => (
+          <React.Fragment key={idx}>
+            <div className="nu-proc-flow-node">
+              <div className="nu-proc-flow-step">STEP {st.step || idx + 1}</div>
+              <div className="nu-proc-flow-title">{st.label}</div>
+              {st.detail && <div className="nu-proc-flow-detail">{st.detail}</div>}
+            </div>
+            {idx < steps.length - 1 && (
+              <div className="nu-proc-flow-arrow" aria-hidden="true">
+                &rarr;
+              </div>
+            )}
+          </React.Fragment>
+        ))}
+      </div>
+      {caption && <figcaption>{caption}</figcaption>}
+    </figure>
+  );
+}
+
+function hashVariant(str, mod) {
+  let h = 0;
+  const s = String(str || "");
+  for (let i = 0; i < s.length; i++) {
+    h = (h * 31 + s.charCodeAt(i)) >>> 0;
+  }
+  return mod > 0 ? h % mod : 0;
+}
+
+const TABLE_THEMES = ["minimal", "neutral", "minimal", "navy", "neutral", "purple"]; // Mostly clean neutral/minimal, occasionally accented!
+const HEAD_THEMES = ["navy", "slate", "light", "purple-accent"];
+
 export function LessonSections({ sections = [], lesson = null, topicTitle = "", headingTag = "h2" }) {
   const Heading = headingTag;
   const usedSrcs = new Set(
@@ -679,12 +787,15 @@ export function LessonSections({ sections = [], lesson = null, topicTitle = "", 
   );
   let inlineImagesAdded = 0;
   const maxInlineImages = sections.length >= 16 ? 12 : 4;
+  let tableCounter = 0;
+  const topicSeed = `${topicTitle}::${lesson?.slug || ""}`;
 
   return (
     <div className="nu-notes-pages">
       {sections.map((sec, sIdx) => {
         const cleanHeading = stripTrailingColon(sec.title);
         const grouped = groupSectionBlocks(sec.blocks || []);
+        const headTone = HEAD_THEMES[hashVariant(`${topicSeed}::sec${sIdx}`, HEAD_THEMES.length)];
         const bodySample = (sec.blocks || [])
           .slice(0, 6)
           .map((b) => b.text || (Array.isArray(b.items) ? b.items.join(" ") : ""))
@@ -702,12 +813,65 @@ export function LessonSections({ sections = [], lesson = null, topicTitle = "", 
 
         return (
           <section key={sIdx} id={`lesson-sec-${sIdx}`} className="nu-note-page-card">
-            <div className="nu-note-page-head">
+            <div className={`nu-note-page-head nu-head--${headTone}`}>
               <Heading className="nu-note-section-title">{cleanHeading}</Heading>
             </div>
 
             <div className="nu-note-page-body">
               {grouped.map((g, gIdx) => {
+                if (g.kind === "table") {
+                  const tone = TABLE_THEMES[hashVariant(`${topicSeed}::tbl${tableCounter++}`, TABLE_THEMES.length)];
+                  return (
+                    <div key={gIdx} className={`nu-inline-table-card nu-table-tone--${tone}`}>
+                      {g.title && <div className="nu-inline-table-title">{g.title}</div>}
+                      <div className="nu-admin-table-wrap">
+                        <table className={`nu-clinical-table nu-tbl--${tone}`}>
+                          <thead>
+                            <tr>
+                              {g.headers.map((h, hi) => (
+                                <th key={hi}>{h}</th>
+                              ))}
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {g.rows.map((row, ri) => (
+                              <tr key={ri}>
+                                {row.map((cell, ci) => (
+                                  <td key={ci} className={ci === 0 ? "nu-table-lead" : ""}>
+                                    {Array.isArray(cell) ? (
+                                      <ul className="nu-table-bullet-list">
+                                        {cell.map((bulletItem, bi) => (
+                                          <li key={bi}>
+                                            <RichText text={bulletItem} highlightKeyFacts />
+                                          </li>
+                                        ))}
+                                      </ul>
+                                    ) : (
+                                      <RichText text={cell} highlightKeyFacts />
+                                    )}
+                                  </td>
+                                ))}
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  );
+                }
+
+                if (g.kind === "diagram") {
+                  return <LessonInlineDiagram key={gIdx} block={g.block} />;
+                }
+
+                if (g.kind === "subheading") {
+                  return (
+                    <h4 key={gIdx} className="nu-note-subhead">
+                      {stripTrailingColon(g.text)}
+                    </h4>
+                  );
+                }
+
                 if (g.kind === "list") {
                   return (
                     <ul key={gIdx} className="nu-note-clean-list">
