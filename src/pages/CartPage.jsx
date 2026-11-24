@@ -5,29 +5,22 @@ import {
   Award,
   CheckCircle2,
   FileText,
+  Layers,
   ShieldCheck,
   ShoppingBag,
-  Sparkles,
   Trash2
 } from "lucide-react";
 import { formatUgxApprox, formatUsd, useApp } from "../context/AppContext";
-
-const UNMEB_PASS_ITEM = {
-  slug: "unmeb-mock-pass",
-  title: "UNMEB / UHPAB Full Past Papers & Mock Exam Pass (109+ Papers)",
-  code: "UNMEB-PASS",
-  programmeLabel: "All Nursing & Midwifery Programmes",
-  thumbnail: "/assets/images/udemy/cat-research.webp",
-  priceUsd: 6.99,
-  compareAtUsd: 14.99,
-  lessonCount: 109,
-  type: "bundle",
-  courseSlugs: ["unmeb-mock-pass"]
-};
+import { UNMEB_PASS_ITEM, getAllAccessCartItem } from "../utils/offers";
 
 export default function CartPage() {
-  const { cart, cartTotalUsd, removeFromCart, clearCart, addToCart, enrollments } = useApp();
+  const { catalog, cart, cartTotalUsd, removeFromCart, clearCart, addToCart, enrollments } = useApp();
   const navigate = useNavigate();
+
+  const allAccessItem = getAllAccessCartItem(catalog?.courses || []);
+  const hasAllAccess =
+    cart.some((i) => i.slug === "all-access-pass") ||
+    enrollments.includes("all-access-pass");
 
   const originalTotalUsd = cart.reduce(
     (sum, item) => sum + Number(item.compareAtUsd && item.compareAtUsd > item.priceUsd ? item.compareAtUsd : item.priceUsd || 0),
@@ -205,6 +198,45 @@ export default function CartPage() {
                   </article>
                 );
               })}
+
+              {/* Full Platform All-Access Pass Option */}
+              {!hasAllAccess && (
+                <div
+                  style={{
+                    border: "1.5px solid #0f172a",
+                    borderRadius: 10,
+                    padding: 18,
+                    background: "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)",
+                    color: "#ffffff",
+                    display: "flex",
+                    flexWrap: "wrap",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    gap: 14
+                  }}
+                >
+                  <div style={{ flex: "1 1 280px" }}>
+                    <div style={{ fontSize: "0.73rem", fontWeight: 800, color: "#c084fc", textTransform: "uppercase", marginBottom: 4 }}>
+                      <Layers size={13} style={{ display: "inline", marginRight: 5 }} /> Full Site Access · Save 75%
+                    </div>
+                    <strong style={{ display: "block", fontSize: "1rem", marginBottom: 4 }}>
+                      {allAccessItem.title}
+                    </strong>
+                    <small style={{ color: "#cbd5e1" }}>
+                      Unlock every paid unit across all 6 programmes + 109+ UNMEB past papers for{" "}
+                      <strong style={{ color: "#ffffff" }}>{formatUsd(allAccessItem.priceUsd)}</strong>{" "}
+                      <s style={{ color: "#94a3b8" }}>${allAccessItem.compareAtUsd.toFixed(2)}</s>
+                    </small>
+                  </div>
+                  <button
+                    type="button"
+                    className="nu-btn nu-btn-primary"
+                    onClick={() => addToCart(allAccessItem)}
+                  >
+                    Unlock Everything ({formatUsd(allAccessItem.priceUsd)})
+                  </button>
+                </div>
+              )}
 
               {/* Smart Past Papers Bundle Upsell (when not in cart/enrolled yet) */}
               {!hasPass && (

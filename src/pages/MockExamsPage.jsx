@@ -13,13 +13,13 @@ import {
   RotateCcw,
   Search,
   ShoppingCart,
-  Sparkles,
   XCircle
 } from "lucide-react";
 import AdSlot from "../components/AdSlot";
 import NursingLoader from "../components/NursingLoader";
 import ReferencesBox from "../components/ReferencesBox";
 import { useApp } from "../context/AppContext";
+import { UNMEB_PASS_ITEM, getAllAccessCartItem } from "../utils/offers";
 import { QUICK_SI_US_CHEATSHEET } from "../utils/labUnits";
 import { downloadPastPaperPdf, resolvePastPaper } from "../utils/pdfExport";
 
@@ -28,7 +28,7 @@ const NAVY_BORDER = "#1E3A5F";
 const NAVY_BG = "#F0F5FA";
 
 export default function MockExamsPage() {
-  const { enrollments, addToCart, user } = useApp();
+  const { catalog, enrollments, addToCart, user } = useApp();
   const navigate = useNavigate();
 
   const [data, setData] = useState(null);
@@ -127,18 +127,12 @@ export default function MockExamsPage() {
   }, [submitted, examQuestions, answers]);
 
   const unlockExamPass = () => {
-    addToCart({
-      slug: "unmeb-mock-pass",
-      title: "UNMEB / UHPAB Full Past Papers & Mock Exam Pass (109+ Papers)",
-      code: "UNMEB-PASS",
-      programmeLabel: "All Programmes",
-      thumbnail: "/assets/images/udemy/cat-research.webp",
-      priceUsd: 6.99,
-      compareAtUsd: 14.99,
-      lessonCount: 109,
-      type: "bundle",
-      courseSlugs: ["unmeb-mock-pass"]
-    });
+    addToCart(UNMEB_PASS_ITEM);
+    navigate("/checkout");
+  };
+
+  const unlockAllAccess = () => {
+    addToCart(getAllAccessCartItem(catalog?.courses || []));
     navigate("/checkout");
   };
 
@@ -216,6 +210,25 @@ export default function MockExamsPage() {
 
       <section className="nu-section">
         <div className="nu-container">
+          {!hasExamPass && !activeExam && !resolvedActivePaper && (
+            <div className="nu-allaccess-banner" style={{ marginBottom: 20 }}>
+              <div className="nu-allaccess-copy">
+                <span className="nu-allaccess-eyebrow">50% OFF PAST PAPER PASS OR FULL SITE ACCESS</span>
+                <h3>Unlock All {rawPapers.length}+ Past Papers ($4.99) — or All 83 Courses ($34.99)</h3>
+                <p>
+                  Get every UNMEB &amp; UHPAB marking guide, timed mock drill &amp; PDF export — or unlock every course sitewide.
+                </p>
+              </div>
+              <div className="nu-allaccess-cta" style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                <button type="button" className="nu-btn nu-btn-primary" onClick={unlockExamPass}>
+                  Exam Pass · $4.99
+                </button>
+                <button type="button" className="nu-btn nu-btn-outline" style={{ color: "#fff", borderColor: "#64748b" }} onClick={unlockAllAccess}>
+                  All-Access (83 Units) · $34.99
+                </button>
+              </div>
+            </div>
+          )}
           {!activeExam && !resolvedActivePaper ? (
             <>
               {/* Format Switcher Tabs & International SI/US Lab Reference Bar */}
@@ -383,7 +396,7 @@ export default function MockExamsPage() {
                         >
                           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
                             <span className={`nu-badge ${unlocked ? "nu-badge-free" : "nu-badge-highyield"}`}>
-                              {paper.isFreeSample ? "Free Sample Paper" : unlocked ? "Unlocked" : "Exam Pass ($6.99)"}
+                              {paper.isFreeSample ? "Free Sample Paper" : unlocked ? "Unlocked" : "Exam Pass ($4.99 · 50% Off)"}
                             </span>
                             <span style={{ fontSize: "0.8rem", color: "var(--nu-ink-muted)", display: "inline-flex", alignItems: "center", gap: 4 }}>
                               <Clock size={13} /> {paper.duration} min · {paper.totalMarks} Marks
@@ -455,7 +468,7 @@ export default function MockExamsPage() {
                       <article key={ex.id} style={{ border: "1px solid var(--nu-border)", borderRadius: 12, padding: 22, background: "#fff", display: "flex", flexDirection: "column", gap: 10 }}>
                         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                           <span className={`nu-badge ${unlocked ? "nu-badge-free" : "nu-badge-highyield"}`}>
-                            {ex.isFreeSample ? "Free Sample" : unlocked ? "Unlocked" : "Exam Pass ($6.99)"}
+                            {ex.isFreeSample ? "Free Sample" : unlocked ? "Unlocked" : "Exam Pass ($4.99 · 50% Off)"}
                           </span>
                           <span style={{ fontSize: "0.82rem", color: "var(--nu-ink-muted)", display: "inline-flex", alignItems: "center", gap: 4 }}>
                             <Clock size={14} /> {ex.duration} min

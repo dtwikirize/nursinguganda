@@ -97,7 +97,7 @@ export function AppProvider({ children }) {
   const isEnrolled = (courseSlug, isFree = false) => {
     if (user?.isAdmin) return true;
     if (isFree) return true;
-    return enrollments.includes(courseSlug);
+    return enrollments.includes("all-access-pass") || enrollments.includes(courseSlug);
   };
 
   const addToCart = (course) => {

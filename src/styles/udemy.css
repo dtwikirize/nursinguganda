@@ -3447,3 +3447,218 @@ img {
     font-size: 1.25rem;
   }
 }
+
+/* ── 50% Discount Pill, All-Access Pass & Context Offer Popup ─ */
+.nu-price-cut-badge {
+  display: inline-flex;
+  align-items: center;
+  background: #f3e8ff;
+  color: #6d28d9;
+  border: 1px solid #e9d5ff;
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+.nu-allaccess-banner {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #ffffff;
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border: 1px solid #334155;
+}
+.nu-allaccess-copy {
+  flex: 1 1 320px;
+}
+.nu-allaccess-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #c084fc;
+  margin-bottom: 4px;
+}
+.nu-allaccess-copy h3 {
+  margin: 0 0 4px;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+.nu-allaccess-copy p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: #cbd5e1;
+}
+.nu-allaccess-copy p s {
+  color: #94a3b8;
+  margin-left: 4px;
+}
+.nu-allaccess-cta {
+  flex-shrink: 0;
+}
+.nu-detail-allaccess-box {
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 10px;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.nu-detail-allaccess-kicker {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6d28d9;
+}
+.nu-detail-allaccess-box strong {
+  font-size: 0.9rem;
+  color: #0f172a;
+}
+.nu-detail-allaccess-box p {
+  margin: 0 0 4px;
+  font-size: 0.82rem;
+  color: #475569;
+}
+
+.nu-offer-popup {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: min(390px, calc(100vw - 24px));
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
+  border-top: 4px solid #7c3aed;
+  border-radius: 14px;
+  padding: 18px 18px 16px;
+  box-shadow: 0 18px 46px rgba(15, 23, 42, 0.22);
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  animation: nuPopupSlideIn 0.24s ease-out;
+}
+@keyframes nuPopupSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.nu-offer-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  color: #334155;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.nu-offer-close:hover {
+  background: #e2e8f0;
+}
+.nu-offer-kicker {
+  font-size: 0.71rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #6d28d9;
+  padding-right: 28px;
+}
+.nu-offer-title {
+  margin: 0;
+  font-size: 1.02rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.3;
+  padding-right: 24px;
+}
+.nu-offer-body {
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.48;
+  color: #475569;
+}
+.nu-offer-price-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: #0f172a;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 7px 10px;
+}
+.nu-offer-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-top: 2px;
+}
+.nu-offer-cta-main,
+.nu-offer-cta-alt {
+  width: 100%;
+  min-height: 40px;
+  font-size: 0.85rem;
+}
+.nu-offer-fab {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 88;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #0f172a;
+  color: #ffffff;
+  border: 1px solid #475569;
+  border-radius: 999px;
+  padding: 9px 14px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.25);
+}
+.nu-offer-fab:hover {
+  background: #1e293b;
+}
+@media (max-width: 640px) {
+  .nu-allaccess-banner {
+    padding: 16px;
+  }
+  .nu-allaccess-cta,
+  .nu-allaccess-cta .nu-btn {
+    width: 100%;
+  }
+  .nu-offer-popup {
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    width: auto;
+    padding: 15px 14px 14px;
+  }
+}

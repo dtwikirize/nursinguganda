@@ -2,10 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Star } from "lucide-react";
 import { formatUgxApprox, formatUsd, useApp } from "../context/AppContext";
+import { getDiscountPercent } from "../utils/offers";
 
 export default function CourseCard({ course }) {
   const { isEnrolled } = useApp();
   const enrolled = isEnrolled(course.slug, course.isFree);
+  const discountPct = !course.isFree && !enrolled ? getDiscountPercent(course.priceUsd, course.compareAtUsd) : 0;
 
   const badgeClass = course.isFree
     ? "nu-badge-free"
@@ -51,8 +53,11 @@ export default function CourseCard({ course }) {
           <span className="nu-price-now">
             {enrolled && !course.isFree ? "Enrolled" : formatUsd(course.priceUsd)}
           </span>
-          {!course.isFree && course.compareAtUsd > course.priceUsd && (
+          {!course.isFree && !enrolled && course.compareAtUsd > course.priceUsd && (
             <span className="nu-price-was">${course.compareAtUsd.toFixed(2)}</span>
+          )}
+          {discountPct > 0 && (
+            <span className="nu-price-cut-badge">{discountPct}% OFF</span>
           )}
           {!course.isFree && (
             <span className="nu-ugx-hint">{formatUgxApprox(course.priceUsd)}</span>

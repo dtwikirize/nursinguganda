@@ -4,6 +4,7 @@ import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import RouteSeo from "./components/RouteSeo";
 import NursingLoader from "./components/NursingLoader";
+import ContextOfferPopup from "./components/ContextOfferPopup";
 import HomePage from "./pages/HomePage";
 
 // Code-split secondary routes to minimize unused JS on initial landing load
@@ -88,6 +89,7 @@ export default function App() {
       <ScrollToTop />
       <RouteSeo />
       {!hideChrome && <Navbar />}
+      <ContextOfferPopup />
       <Suspense fallback={<PageLoader />}>
         <Routes>
           <Route path="/" element={<HomePage />} />

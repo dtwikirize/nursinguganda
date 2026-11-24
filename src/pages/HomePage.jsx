@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Award,
   BookOpen,
@@ -7,13 +7,15 @@ import {
   ClipboardCheck,
   FileText,
   GraduationCap,
+  Layers,
   ShieldCheck,
   Stethoscope
 } from "lucide-react";
 import CourseCard from "../components/CourseCard";
 import EbookCover from "../components/EbookCover";
 import NursingLoader from "../components/NursingLoader";
-import { useApp } from "../context/AppContext";
+import { formatUsd, useApp } from "../context/AppContext";
+import { getAllAccessCartItem } from "../utils/offers";
 
 const CATEGORY_CARDS = [
   { name: "Anatomy & Physiology", img: "/assets/images/udemy/cover-anatomy-cardio.webp" },
@@ -27,7 +29,8 @@ const CATEGORY_CARDS = [
 ];
 
 export default function HomePage() {
-  const { catalog, catalogLoading } = useApp();
+  const { catalog, catalogLoading, addToCart, enrollments } = useApp();
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("certificate-in-nursing");
   const [ebooks, setEbooks] = useState([]);
 
@@ -40,6 +43,8 @@ export default function HomePage() {
 
   const programmes = catalog?.programmes || [];
   const courses = catalog?.courses || [];
+  const allAccessItem = getAllAccessCartItem(courses);
+  const hasAllAccess = enrollments.includes("all-access-pass");
 
   const activeProg = useMemo(
     () => programmes.find((p) => p.id === activeTab) || programmes[0],
@@ -109,9 +114,37 @@ export default function HomePage() {
           <div className="nu-section-head">
             <h2>All the nursing &amp; midwifery units you need in one place</h2>
             <p>
-              From Certificate Year 1 fundamentals to Diploma &amp; BScN Top-Up clinical practice, start with free preview lessons or unlock full units.
+              Individual paid courses are now <strong>50% OFF</strong> (from $2.49), or unlock every unit &amp; past paper together.
             </p>
           </div>
+
+          {!hasAllAccess && (
+            <div className="nu-allaccess-banner">
+              <div className="nu-allaccess-copy">
+                <span className="nu-allaccess-eyebrow">
+                  <Layers size={13} /> FULL PLATFORM ALL-ACCESS · 50% OFF UNITS LIVE
+                </span>
+                <h3>Unlock All {catalog?.courses?.length || 83} Courses + 109 UNMEB Past Papers</h3>
+                <p>
+                  One pass unlocks every Certificate, Diploma &amp; BScN unit, all clinical quizzes &amp; verified certificates for{" "}
+                  <strong>{formatUsd(allAccessItem.priceUsd)}</strong>{" "}
+                  <s>${allAccessItem.compareAtUsd.toFixed(2)}</s>
+                </p>
+              </div>
+              <div className="nu-allaccess-cta">
+                <button
+                  type="button"
+                  className="nu-btn nu-btn-primary nu-btn-lg"
+                  onClick={() => {
+                    addToCart(allAccessItem);
+                    navigate("/checkout");
+                  }}
+                >
+                  Unlock Everything · {formatUsd(allAccessItem.priceUsd)}
+                </button>
+              </div>
+            </div>
+          )}
 
           <div className="nu-tabs" role="tablist">
             {programmes.map((p) => (

@@ -284,13 +284,21 @@ function getCatalogPrices() {
       });
     }
 
-    // Standard platform exam pass item sold in Cart & MockExamsPage
+    // Standard platform exam pass item (50% cut) + Full Platform All-Access Pass
     bundleMap.set("unmeb-mock-pass", {
       slug: "unmeb-mock-pass",
       title: "UNMEB / UHPAB Full Past Papers & Mock Exam Pass (109+ Papers)",
-      priceUsd: 6.99,
+      priceUsd: 4.99,
       isFree: false,
       courseSlugs: ["unmeb-mock-pass"]
+    });
+
+    bundleMap.set("all-access-pass", {
+      slug: "all-access-pass",
+      title: "Full Platform All-Access Pass (All 83 Courses + 109 UNMEB Papers)",
+      priceUsd: 34.99,
+      isFree: false,
+      courseSlugs: ["all-access-pass", "unmeb-mock-pass", ...Array.from(courseMap.keys())]
     });
 
     _catalogCache = { courseMap, bundleMap };
@@ -1703,7 +1711,7 @@ function createApiRouter() {
     const isAdmin = String(user.email || "").toLowerCase() === getAdminEmail();
     if (!isAdmin && (!courseInfo || !courseInfo.isFree)) {
       const [enRows] = await pool.query(
-        "SELECT 1 FROM enrollments WHERE user_id = ? AND course_slug = ? LIMIT 1",
+        "SELECT 1 FROM enrollments WHERE user_id = ? AND (course_slug = ? OR course_slug = 'all-access-pass') LIMIT 1",
         [uid, courseSlug]
       );
       if (enRows.length === 0) {

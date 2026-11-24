@@ -20,11 +20,12 @@ import CertificateCard from "../components/CertificateCard";
 import NursingLoader from "../components/NursingLoader";
 import { setPageSeo } from "../components/RouteSeo";
 import { formatUgxApprox, formatUsd, useApp } from "../context/AppContext";
+import { getAllAccessCartItem, getDiscountPercent } from "../utils/offers";
 
 export default function CourseDetailPage() {
   const { slug } = useParams();
   const navigate = useNavigate();
-  const { isEnrolled, enrollments, addToCart, cart, enrollFree, user } = useApp();
+  const { catalog, isEnrolled, enrollments, addToCart, cart, enrollFree, user } = useApp();
 
   const [course, setCourse] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -271,7 +272,14 @@ export default function CourseDetailPage() {
                 <div className="nu-purchase-price">
                   <strong>{enrolled && !course.isFree ? "Enrolled" : formatUsd(course.priceUsd)}</strong>
                   {!course.isFree && course.compareAtUsd > course.priceUsd && !enrolled && (
-                    <span className="nu-price-was">${course.compareAtUsd.toFixed(2)}</span>
+                    <>
+                      <span className="nu-price-was">${course.compareAtUsd.toFixed(2)}</span>
+                      {getDiscountPercent(course.priceUsd, course.compareAtUsd) > 0 && (
+                        <span className="nu-price-cut-badge">
+                          {getDiscountPercent(course.priceUsd, course.compareAtUsd)}% OFF
+                        </span>
+                      )}
+                    </>
                   )}
                 </div>
                 {!course.isFree && !enrolled && (
@@ -319,6 +327,28 @@ export default function CourseDetailPage() {
                     </Link>
                   )}
                 </div>
+
+                {!enrollments.includes("all-access-pass") && (
+                  <div className="nu-detail-allaccess-box">
+                    <div className="nu-detail-allaccess-kicker">Full Site Option · Save 75%</div>
+                    <strong>Unlock All 83 Courses + 109 UNMEB Papers</strong>
+                    <p>
+                      Get every Certificate, Diploma &amp; BScN unit + mock exams for{" "}
+                      <strong>$34.99</strong> <s style={{ color: "#64748b" }}>$139.99</s>
+                    </p>
+                    <button
+                      type="button"
+                      className="nu-btn nu-btn-dark"
+                      style={{ width: "100%", height: 40, fontSize: "0.84rem" }}
+                      onClick={() => {
+                        addToCart(getAllAccessCartItem(catalog?.courses || []));
+                        navigate("/checkout");
+                      }}
+                    >
+                      Get Full All-Access ($34.99)
+                    </button>
+                  </div>
+                )}
 
                 <ul className="nu-purchase-includes">
                   <li><BookOpen size={15} /> {course.lessonCount} comprehensive nursing lessons</li>

@@ -1,12 +1,16 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
-import { BookOpen, Filter, Search } from "lucide-react";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { BookOpen, Filter, Layers, Search } from "lucide-react";
 import CourseCard from "../components/CourseCard";
 import NursingLoader from "../components/NursingLoader";
-import { useApp } from "../context/AppContext";
+import { formatUsd, useApp } from "../context/AppContext";
+import { getAllAccessCartItem } from "../utils/offers";
 
 export default function CoursesCatalogPage() {
-  const { catalog, catalogLoading } = useApp();
+  const { catalog, catalogLoading, addToCart, enrollments } = useApp();
+  const navigate = useNavigate();
+  const allAccessItem = getAllAccessCartItem(catalog?.courses || []);
+  const hasAllAccess = enrollments.includes("all-access-pass");
   const [searchParams, setSearchParams] = useSearchParams();
 
   const initialProg = searchParams.get("programme") || "all";
@@ -90,9 +94,36 @@ export default function CoursesCatalogPage() {
         <div className="nu-section-head">
           <h1>Nursing &amp; Midwifery Course Catalog</h1>
           <p>
-            {courses.length} structured course units across {programmes.length} Ugandan nursing &amp; midwifery programmes.
+            {courses.length} structured course units across {programmes.length} Ugandan nursing &amp; midwifery programmes — individual paid courses now <strong>50% OFF</strong>.
           </p>
         </div>
+
+        {!hasAllAccess && (
+          <div className="nu-allaccess-banner" style={{ marginBottom: 22 }}>
+            <div className="nu-allaccess-copy">
+              <span className="nu-allaccess-eyebrow">
+                <Layers size={13} /> FULL PLATFORM ACCESS · SAVE 75%
+              </span>
+              <h3>Get Every Course ({courses.length} Units) + 109 UNMEB Past Papers</h3>
+              <p>
+                Unlock all 6 programmes together for <strong>{formatUsd(allAccessItem.priceUsd)}</strong>{" "}
+                <s>${allAccessItem.compareAtUsd.toFixed(2)}</s> instead of buying units separately.
+              </p>
+            </div>
+            <div className="nu-allaccess-cta">
+              <button
+                type="button"
+                className="nu-btn nu-btn-primary"
+                onClick={() => {
+                  addToCart(allAccessItem);
+                  navigate("/checkout");
+                }}
+              >
+                Unlock Everything · {formatUsd(allAccessItem.priceUsd)}
+              </button>
+            </div>
+          </div>
+        )}
 
         {/* Filter Bar */}
         <div
