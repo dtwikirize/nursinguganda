@@ -40,21 +40,22 @@ img {
   padding: 0 24px;
 }
 
-/* ── Promo / Country Strip ────────────────────────────────── */
+/* ── Promo / Country Tab Strip (Coursera Style) ────────────── */
 .nu-promo-bar {
-  background: var(--nu-ink);
+  background: #000000;
   color: #ffffff;
-  font-size: 0.8125rem;
-  padding: 7px 42px 7px 16px;
+  font-size: 0.84rem;
+  padding: 0 42px 0 16px;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
   position: relative;
+  min-height: 40px;
 }
 .nu-promo-countries {
   display: flex;
-  align-items: center;
-  gap: 8px;
+  align-items: stretch;
+  gap: 4px;
   overflow-x: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -64,44 +65,50 @@ img {
   display: none;
 }
 .nu-promo-lead {
+  display: inline-flex;
+  align-items: center;
   color: #94a3b8;
-  font-size: 0.75rem;
+  font-size: 0.76rem;
   font-weight: 500;
   white-space: nowrap;
-  margin-right: 2px;
+  margin-right: 8px;
 }
 .nu-promo-country {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 3px 9px;
-  border-radius: 999px;
-  font-size: 0.76rem;
-  font-weight: 500;
-  color: #e2e8f0;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  gap: 7px;
+  padding: 10px 14px 7px;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  border-radius: 0;
+  font-size: 0.83rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.82);
+  background: transparent;
   white-space: nowrap;
   text-decoration: none;
-  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  transition: color 0.15s ease, border-color 0.15s ease;
 }
-.nu-promo-country:hover,
-.nu-promo-country.is-active {
-  background: rgba(255, 255, 255, 0.18);
-  border-color: rgba(255, 255, 255, 0.45);
+.nu-promo-country:hover {
   color: #ffffff;
+  border-bottom-color: rgba(255, 255, 255, 0.4);
+}
+.nu-promo-country.is-active {
+  color: #ffffff;
+  font-weight: 700;
+  border-bottom-color: #ffffff;
 }
 .nu-promo-all {
-  background: transparent;
-  border-color: rgba(255, 255, 255, 0.28);
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.88);
 }
 .nu-promo-close {
   position: absolute;
   right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
   background: transparent;
   border: 0;
-  color: #cbd5e1;
+  color: #94a3b8;
   padding: 4px;
   display: inline-flex;
   cursor: pointer;
@@ -1500,7 +1507,7 @@ img {
     display: inline-flex;
   }
   .nu-promo-bar {
-    padding: 7px 38px 7px 12px;
+    padding: 0 38px 0 10px;
     justify-content: flex-start;
   }
   .nu-notes-two-col {
@@ -2701,7 +2708,7 @@ img {
 
 @media (max-width: 480px) {
   .nu-promo-bar {
-    padding: 6px 34px 6px 10px;
+    padding: 0 34px 0 8px;
     justify-content: flex-start;
   }
 
