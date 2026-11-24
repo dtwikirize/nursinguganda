@@ -40,29 +40,71 @@ img {
   padding: 0 24px;
 }
 
-/* ── Promo Strip ──────────────────────────────────────────── */
+/* ── Promo / Country Strip ────────────────────────────────── */
 .nu-promo-bar {
   background: var(--nu-ink);
   color: #ffffff;
-  font-size: 0.875rem;
-  padding: 10px 24px;
+  font-size: 0.8125rem;
+  padding: 7px 42px 7px 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
   position: relative;
 }
-.nu-promo-bar strong {
-  color: var(--nu-bestseller-bg);
+.nu-promo-countries {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  max-width: 100%;
+}
+.nu-promo-countries::-webkit-scrollbar {
+  display: none;
+}
+.nu-promo-lead {
+  color: #94a3b8;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+  margin-right: 2px;
+}
+.nu-promo-country {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 500;
+  color: #e2e8f0;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+.nu-promo-country:hover,
+.nu-promo-country.is-active {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.45);
+  color: #ffffff;
+}
+.nu-promo-all {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.28);
+  color: #ffffff;
 }
 .nu-promo-close {
   position: absolute;
-  right: 16px;
+  right: 12px;
   background: transparent;
   border: 0;
   color: #cbd5e1;
   padding: 4px;
   display: inline-flex;
+  cursor: pointer;
 }
 .nu-promo-close:hover {
   color: #ffffff;
@@ -1458,10 +1500,8 @@ img {
     display: inline-flex;
   }
   .nu-promo-bar {
-    padding: 8px 38px 8px 14px;
-    font-size: 0.78rem;
-    flex-wrap: wrap;
-    text-align: center;
+    padding: 7px 38px 7px 12px;
+    justify-content: flex-start;
   }
   .nu-nav-inner {
     height: auto;
@@ -2655,10 +2695,8 @@ img {
 
 @media (max-width: 480px) {
   .nu-promo-bar {
-    font-size: 0.76rem;
-    padding: 8px 34px 8px 12px;
-    flex-wrap: wrap;
-    gap: 4px;
+    padding: 6px 34px 6px 10px;
+    justify-content: flex-start;
   }
 
   .nu-inst-grid,

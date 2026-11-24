@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   Award,
   BookOpen,
@@ -19,8 +19,20 @@ import {
   X
 } from "lucide-react";
 import { useApp } from "../context/AppContext";
+import CountryFlag from "./CountryFlag";
 import nuLogoUganda from "../../assets/images/brand/nursing-uganda-logo-light.svg";
 import nuLogoUg from "../../assets/images/brand/nursing-ug-logo-light.svg";
+
+const COUNTRY_TOP_LINKS = [
+  { code: "UG", label: "Uganda", to: "/global-nursing/uganda-unmc-uhpab" },
+  { code: "UK", label: "UK", to: "/nursing-uk" },
+  { code: "US", label: "USA", to: "/nursing-usa" },
+  { code: "CA", label: "Canada", to: "/nursing-canada" },
+  { code: "AU", label: "Australia", to: "/nursing-australia" },
+  { code: "KE", label: "Kenya", to: "/global-nursing/kenya-nck" },
+  { code: "TZ", label: "Tanzania", to: "/global-nursing/tanzania-tnmc" },
+  { code: "AE", label: "UAE / Gulf", to: "/global-nursing/gulf-dha-doh-scfhs" }
+];
 
 const FREE_HUBS = [
   { id: "topics", label: "Nurse Topics & Study Notes", to: "/topics", icon: BookOpen },
@@ -91,6 +103,7 @@ const STATIC_HUB_ITEMS = {
 export default function Navbar() {
   const { catalog, user, cart, enrollments, logout } = useApp();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [promoVisible, setPromoVisible] = useState(true);
   const [megaOpen, setMegaOpen] = useState(false);
@@ -301,20 +314,36 @@ export default function Navbar() {
   return (
     <>
       {promoVisible && (
-        <div className="nu-promo-bar">
-          <span>
-            <strong>UNMEB Exam Season Ready</strong> — Free Referenced eBooks &amp; Full Course Study Bundles.
-          </span>
-          <Link to="/ebooks" style={{ textDecoration: "underline", fontWeight: 700, color: "#fff" }}>
-            Browse Free eBooks
-          </Link>
+        <div className="nu-promo-bar" role="navigation" aria-label="Nursing countries">
+          <div className="nu-promo-countries">
+            <span className="nu-promo-lead">Nursing Hubs:</span>
+            {COUNTRY_TOP_LINKS.map((item) => {
+              const active = location.pathname === item.to;
+              return (
+                <Link
+                  key={item.code}
+                  to={item.to}
+                  className={`nu-promo-country${active ? " is-active" : ""}`}
+                >
+                  <CountryFlag code={item.code} width={15} />
+                  <span>{item.label}</span>
+                </Link>
+              );
+            })}
+            <Link
+              to="/global-nursing"
+              className={`nu-promo-country nu-promo-all${location.pathname === "/global-nursing" ? " is-active" : ""}`}
+            >
+              All 8 →
+            </Link>
+          </div>
           <button
             type="button"
             className="nu-promo-close"
-            aria-label="Close announcement"
+            aria-label="Close country bar"
             onClick={() => setPromoVisible(false)}
           >
-            <X size={16} />
+            <X size={15} />
           </button>
         </div>
       )}
