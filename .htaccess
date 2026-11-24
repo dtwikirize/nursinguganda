@@ -29,7 +29,7 @@ RewriteRule ^ - [L]
 RewriteCond %{DOCUMENT_ROOT}/index.html -f
 RewriteRule ^$ /index.html [L,QSA]
 RewriteCond %{DOCUMENT_ROOT}/index.html -f
-RewriteRule ^(courses|course|learn|ebooks|quizzes|mock-exams|dictionary|instruments|clinical-tools|templates|global-nursing|cart|checkout|login|my-learning|nodadmin|about|brand-kit|editorial-policy|privacy-policy|terms|contact)(\/.*)?$ /index.html [L,QSA]
+RewriteRule ^(courses|course|learn|topics|ebooks|quizzes|mock-exams|dictionary|instruments|clinical-tools|templates|global-nursing|cart|checkout|login|my-learning|nodadmin|about|brand-kit|editorial-policy|privacy-policy|terms|contact)(\/.*)?$ /index.html [L,QSA]
 
 # Return real 404 for unknown paths or missing files
 RewriteRule ^ - [R=404,L]

@@ -23,6 +23,7 @@ import nuLogoUganda from "../../assets/images/brand/nursing-uganda-logo-light.sv
 import nuLogoUg from "../../assets/images/brand/nursing-ug-logo-light.svg";
 
 const FREE_HUBS = [
+  { id: "topics", label: "Nurse Topics & Study Notes", to: "/topics", icon: BookOpen },
   { id: "ebooks", label: "Free Referenced eBooks", to: "/ebooks", icon: BookOpen },
   { id: "quizzes", label: "Free Topic Quizzes (25+ Qs)", to: "/quizzes", icon: Award },
   { id: "mock-exams", label: "UNMEB Mock Exams", to: "/mock-exams", icon: Award },
@@ -33,6 +34,17 @@ const FREE_HUBS = [
 ];
 
 const STATIC_HUB_ITEMS = {
+  topics: [
+    { label: "Browse All 779 Nurse Study Topics", to: "/topics" },
+    { label: "Pharmacology & Clinical Dosages (320)", to: "/topics?cat=Pharmacology" },
+    { label: "Midwifery & Maternal Health (124)", to: "/topics?cat=Midwifery+%26+Maternal+Health" },
+    { label: "Paediatrics & Child Health (70)", to: "/topics?cat=Paediatrics+%26+Child+Health" },
+    { label: "Medical-Surgical Nursing (48)", to: "/topics?cat=Medical-Surgical+Nursing" },
+    { label: "Community & Public Health (44)", to: "/topics?cat=Community+%26+Public+Health" },
+    { label: "Anatomy & Physiology (26)", to: "/topics?cat=Anatomy+%26+Physiology" },
+    { label: "Foundations of Nursing (26)", to: "/topics?cat=Foundations+of+Nursing" },
+    { label: "Mental Health & Psychology (34)", to: "/topics?cat=Mental+Health+%26+Psychology" }
+  ],
   quizzes: [
     { label: "All 10 Major Nursing Topic Quizzes (270 Qs)", to: "/quizzes" },
     { label: "Anatomy & Physiology (27 Qs)", to: "/quizzes?topic=anatomy-physiology" },
@@ -437,6 +449,21 @@ export default function Navbar() {
                     </div>
                   </div>
                 </div>
+
+                {/* Compact All-Visible Quick Strip */}
+                <div className="nu-mega-footer-bar">
+                  <div style={{ display: "flex", gap: 6, flexWrap: "wrap", alignItems: "center" }}>
+                    <Link to="/courses" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>All 83 Courses</Link>
+                    <Link to="/topics" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Nurse Topics (779)</Link>
+                    <Link to="/ebooks" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Free eBooks (8)</Link>
+                    <Link to="/mock-exams" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>UNMEB Papers (109)</Link>
+                    <Link to="/quizzes" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Topic Quizzes (270 Qs)</Link>
+                    <Link to="/dictionary" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Dictionary (1,079)</Link>
+                    <Link to="/instruments" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Instruments (146)</Link>
+                    <Link to="/templates" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Ward PDFs (8)</Link>
+                    <Link to="/global-nursing" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Global Nursing (8 Countries)</Link>
+                  </div>
+                </div>
               </div>
             )}
           </div>
@@ -503,6 +530,9 @@ export default function Navbar() {
           </form>
 
           <nav className="nu-nav-actions">
+            <Link to="/topics" className="nu-nav-link nu-nav-desktop-only">
+              Nurse Topics
+            </Link>
             <Link to="/ebooks" className="nu-nav-link nu-nav-desktop-only">
               Free eBooks
             </Link>
@@ -699,7 +729,14 @@ export default function Navbar() {
                     <GraduationCap size={17} />
                     <span>All Course Units</span>
                   </span>
-                  <span className="nu-mega-count">{courses.length || 95}</span>
+                  <span className="nu-mega-count">{courses.length || 83}</span>
+                </Link>
+                <Link to="/topics" className="nu-mobile-link" onClick={() => setMobileOpen(false)}>
+                  <span className="nu-mobile-link-left">
+                    <FileText size={17} color="#0F2942" />
+                    <span>Nurse Topics &amp; Notes</span>
+                  </span>
+                  <span className="nu-mega-count">779</span>
                 </Link>
                 <Link to="/ebooks" className="nu-mobile-link" onClick={() => setMobileOpen(false)}>
                   <span className="nu-mobile-link-left">

@@ -3,6 +3,7 @@ import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import RouteSeo from "./components/RouteSeo";
+import NursingLoader from "./components/NursingLoader";
 import HomePage from "./pages/HomePage";
 
 // Code-split secondary routes to minimize unused JS on initial landing load
@@ -23,16 +24,42 @@ const InstrumentsPage = lazy(() => import("./pages/InstrumentsPage"));
 const LoginPage = lazy(() => import("./pages/LoginPage"));
 const MockExamsPage = lazy(() => import("./pages/MockExamsPage"));
 const MyLearningPage = lazy(() => import("./pages/MyLearningPage"));
+const NurseTopicsPage = lazy(() => import("./pages/NurseTopicsPage"));
 const TrustPage = lazy(() => import("./pages/TrustPage"));
 
 function PageLoader() {
   return (
     <main className="nu-section">
-      <div className="nu-container" style={{ minHeight: "50vh", display: "flex", alignItems: "center", color: "var(--nu-ink-muted)" }}>
-        Loading Nursing Uganda study module...
+      <div className="nu-container">
+        <NursingLoader label="Loading Nursing Uganda study module..." />
       </div>
     </main>
   );
+}
+
+function ScrollToTop() {
+  const { pathname, search, hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      const id = hash.replace(/^#/, "");
+      const target = document.getElementById(id);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
+    }
+    const scrollTopNow = () => {
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    };
+    scrollTopNow();
+    const t = setTimeout(scrollTopNow, 75);
+    return () => clearTimeout(t);
+  }, [pathname, search, hash]);
+
+  return null;
 }
 
 export default function App() {
@@ -59,12 +86,14 @@ export default function App() {
 
   return (
     <>
+      <ScrollToTop />
       <RouteSeo />
       {!hideChrome && <Navbar />}
       <Suspense fallback={<PageLoader />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/courses" element={<CoursesCatalogPage />} />
+          <Route path="/topics" element={<NurseTopicsPage />} />
           <Route path="/course/:slug" element={<CourseDetailPage />} />
           <Route path="/learn/:courseSlug" element={<CoursePlayerPage />} />
           <Route path="/learn/:courseSlug/:lessonSlug" element={<CoursePlayerPage />} />

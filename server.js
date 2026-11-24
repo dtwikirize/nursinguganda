@@ -209,7 +209,8 @@ function buildRouteMarkdown(reqPath) {
       "> Structured Certificate, Diploma & BScN nursing courses, free referenced study eBooks, UNMEB timed mock & essay past papers, A-Z medical dictionary (1,079+ terms), instrument atlas, and clinical tools aligned with Uganda Ministry of Health & WHO guidelines.",
       "",
       "## Core Study Sections",
-      "- [Explore All 95 Nursing Courses](https://nursinguganda.com/courses)",
+      "- [Explore All 83 Nursing Courses](https://nursinguganda.com/courses)",
+      "- [Nurse Topics & Clinical Study Notes (779 Topics)](https://nursinguganda.com/topics)",
       "- [UNMEB Timed Mock & Essay Past Papers](https://nursinguganda.com/mock-exams)",
       "- [Free Referenced Study eBooks](https://nursinguganda.com/ebooks)",
       "- [Free Topic Quizzes (270 Qs)](https://nursinguganda.com/quizzes)",
@@ -233,7 +234,7 @@ function buildRouteMarkdown(reqPath) {
   if (clean === "/courses") {
     const lines = (catalogData?.courses || []).slice(0, 30)
       .map((c) => `- **${c.code ? `${c.code} · ` : ""}${c.title}** — [${c.programmeLabel}](https://nursinguganda.com/course/${c.slug}) (${c.lessonsCount || 0} lessons)`);
-    return `# Nursing Uganda Course Catalog (${catalogData?.courses?.length || 95} Units)\n\n${lines.join("\n")}\n`;
+    return `# Nursing Uganda Course Catalog (${catalogData?.courses?.length || 83} Units)\n\n${lines.join("\n")}\n`;
   }
   if (clean === "/about" || clean === "/contact" || clean === "/terms" || clean === "/privacy-policy" || clean === "/editorial-policy") {
     return [
@@ -286,7 +287,7 @@ function isValidDynamicRoute(reqPath) {
 }
 
 const BOT_UA_RE = /(googlebot|adsbot-google|mediapartners-google|bingbot|slurp|duckduckbot|facebookexternalhit|twitterbot|whatsapp)/i;
-const SPA_ROUTE_RE = /^\/($|courses|course|learn|ebooks|quizzes|mock-exams|dictionary|instruments|clinical-tools|templates|global-nursing|cart|checkout|login|my-learning|nodadmin|about|brand-kit|editorial-policy|privacy-policy|terms|contact)(\/|$)/i;
+const SPA_ROUTE_RE = /^\/($|courses|course|learn|topics|ebooks|quizzes|mock-exams|dictionary|instruments|clinical-tools|templates|global-nursing|cart|checkout|login|my-learning|nodadmin|about|brand-kit|editorial-policy|privacy-policy|terms|contact)(\/|$)/i;
 
 // Markdown negotiation & `.md` routes
 app.get(["/index.md", "/courses.md", "/about.md", "/contact.md", "/terms.md", "/privacy-policy.md", "/editorial-policy.md"], (req, res) => {
@@ -298,9 +299,14 @@ app.get(["/index.md", "/courses.md", "/about.md", "/contact.md", "/terms.md", "/
 
 const SEO_ROUTE_META = {
   "/courses": {
-    title: "All 95 Nursing & Midwifery Courses (Certificate, Diploma & BScN) | Nursing Uganda",
-    description: "Browse 95 structured Ugandan nursing and midwifery course units covering Anatomy, Pharmacology, Medical-Surgical Nursing, Midwifery, Paediatrics, and Community Health.",
-    h1: "All 95 Nursing & Midwifery Courses"
+    title: "All 83 Nursing & Midwifery Courses (Certificate, Diploma & BScN) | Nursing Uganda",
+    description: "Browse 83 structured Ugandan nursing and midwifery course units covering Anatomy, Pharmacology, Medical-Surgical Nursing, Midwifery, Paediatrics, and Community Health.",
+    h1: "All 83 Nursing & Midwifery Courses"
+  },
+  "/topics": {
+    title: "779 Nurse Topics & Clinical Study Notes (Anatomy to Midwifery) | Nursing Uganda",
+    description: "Browse 779 structured nursing and midwifery study topics by clinical specialty or keyword with Uganda Clinical Guidelines 2023 and WHO references.",
+    h1: "Nurse Topics & Clinical Study Notes"
   },
   "/mock-exams": {
     title: "109 UNMEB & UHPAB Past Papers Archive (Dark Navy Answers & Free PDF) | Nursing Uganda",

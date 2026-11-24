@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { BookMarked, BookOpen, Download, Search } from "lucide-react";
 import AdSlot from "../components/AdSlot";
 import EbookCover from "../components/EbookCover";
+import NursingLoader from "../components/NursingLoader";
 
 export default function EbooksPage() {
   const [ebooks, setEbooks] = useState([]);
@@ -73,7 +74,7 @@ export default function EbooksPage() {
           </div>
 
           {loading ? (
-            <p>Loading Free Referenced eBooks...</p>
+            <NursingLoader label="Loading Free Referenced Study eBooks..." />
           ) : (
             <div className="nu-ebook-grid">
               {filtered.map((eb) => (

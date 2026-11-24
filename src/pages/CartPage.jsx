@@ -89,11 +89,11 @@ export default function CartPage() {
             <ShoppingBag size={42} color="#a137f2" style={{ margin: "0 auto 12px" }} />
             <h2 style={{ margin: "0 0 8px" }}>Your study cart is empty</h2>
             <p style={{ color: "var(--nu-ink-muted)", maxWidth: 480, margin: "0 auto 22px" }}>
-              Browse 95 Certificate, Diploma &amp; BScN nursing units or unlock all 109 UHPAB / UNMEB past papers with Dark Navy PDF solutions.
+              Browse 83 Certificate, Diploma &amp; BScN nursing units or unlock all 109 UHPAB / UNMEB past papers with Dark Navy PDF solutions.
             </p>
             <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
               <Link to="/courses" className="nu-btn nu-btn-primary nu-btn-lg">
-                Browse 95 Courses
+                Browse 83 Courses
               </Link>
               <Link to="/mock-exams" className="nu-btn nu-btn-outline nu-btn-lg">
                 <FileText size={16} /> 109 UNMEB Past Papers

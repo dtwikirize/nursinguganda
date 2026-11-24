@@ -13,6 +13,7 @@ import {
   ShieldCheck
 } from "lucide-react";
 import AdSlot from "../components/AdSlot";
+import NursingLoader from "../components/NursingLoader";
 import { setPageSeo } from "../components/RouteSeo";
 
 export default function GlobalNursingPage() {
@@ -73,7 +74,9 @@ export default function GlobalNursingPage() {
   if (loading) {
     return (
       <main className="nu-section">
-        <div className="nu-container"><p>Loading Global Nursing Licensure Guides...</p></div>
+        <div className="nu-container">
+          <NursingLoader label="Loading Global Nursing Licensure Guides..." />
+        </div>
       </main>
     );
   }

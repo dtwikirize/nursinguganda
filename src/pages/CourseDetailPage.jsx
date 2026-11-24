@@ -16,13 +16,15 @@ import {
   Users
 } from "lucide-react";
 import ReferencesBox from "../components/ReferencesBox";
+import CertificateCard from "../components/CertificateCard";
+import NursingLoader from "../components/NursingLoader";
 import { setPageSeo } from "../components/RouteSeo";
 import { formatUgxApprox, formatUsd, useApp } from "../context/AppContext";
 
 export default function CourseDetailPage() {
   const { slug } = useParams();
   const navigate = useNavigate();
-  const { isEnrolled, enrollments, addToCart, cart, enrollFree } = useApp();
+  const { isEnrolled, enrollments, addToCart, cart, enrollFree, user } = useApp();
 
   const [course, setCourse] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -71,7 +73,9 @@ export default function CourseDetailPage() {
   if (loading) {
     return (
       <main className="nu-section">
-        <div className="nu-container"><p>Loading course curriculum...</p></div>
+        <div className="nu-container">
+          <NursingLoader label="Loading course curriculum & certificate preview..." />
+        </div>
       </main>
     );
   }
@@ -231,6 +235,32 @@ export default function CourseDetailPage() {
                 references={course.references}
                 heading="Course Unit Primary Medical Sources &amp; Guidelines"
               />
+
+              {/* Visible Udemy/Coursera-Style Course Certificate Preview */}
+              <div style={{ marginTop: 28 }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: 10, marginBottom: 14 }}>
+                  <div>
+                    <h2 style={{ fontSize: "1.4rem", margin: "0 0 4px" }}>Earn a Verified Certificate of Completion</h2>
+                    <p style={{ margin: 0, color: "var(--nu-ink-muted)", fontSize: "0.9rem" }}>
+                      Included with this unit — finish the lessons and pass the 30-question Final Evaluation (&ge; 60%) to download your personalized PDF certificate.
+                    </p>
+                  </div>
+                </div>
+                <CertificateCard
+                  previewMode
+                  learnerName={user?.name}
+                  certificate={{
+                    courseTitle: course.title,
+                    programmeLabel: course.programmeLabel,
+                    studyHours: Math.max(1, Math.round((course.totalMinutes || 60) / 60)),
+                    clinicalReviewer: course.clinicalReviewer,
+                    certificateCode: `NU-${new Date().getFullYear()}-${String(course.code || "UNIT").replace(/\s+/g, "").toUpperCase()}`,
+                    score: 26,
+                    totalQuestions: 30,
+                    percent: 87
+                  }}
+                />
+              </div>
             </div>
 
             {/* Sticky Purchase Card spanning the full body height */}
@@ -295,7 +325,7 @@ export default function CourseDetailPage() {
                   <li><BookOpen size={15} /> {course.lessonCount} comprehensive nursing lessons</li>
                   <li><Clock size={15} /> ~{course.totalMinutes} mins structured study</li>
                   <li><FileText size={15} /> Authoritative WHO &amp; MoH references on every topic</li>
-                  <li><Award size={15} /> Interactive flashcards &amp; unit quiz</li>
+                  <li><Award size={15} /> Verified PDF Certificate + interactive unit quiz</li>
                 </ul>
               </div>
             </aside>

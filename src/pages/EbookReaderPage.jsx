@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { ArrowLeft, BookOpen, Download, ShieldCheck } from "lucide-react";
 import AdSlot from "../components/AdSlot";
 import EbookCover from "../components/EbookCover";
+import NursingLoader from "../components/NursingLoader";
 import ReferencesBox from "../components/ReferencesBox";
 import { setPageSeo } from "../components/RouteSeo";
 import TopicVisuals, { LessonSections } from "../components/TopicVisuals";
@@ -57,7 +58,9 @@ export default function EbookReaderPage() {
   if (loading) {
     return (
       <main className="nu-section">
-        <div className="nu-container"><p>Loading eBook...</p></div>
+        <div className="nu-container">
+          <NursingLoader label="Loading Peer-Reviewed Nursing eBook..." />
+        </div>
       </main>
     );
   }

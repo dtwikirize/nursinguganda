@@ -420,13 +420,6 @@ function loadMidwifery() {
       sourceName: "Midwives Revision"
     }),
     parseOutlineProgramme({
-      id: "diploma-in-midwifery-e-learners",
-      label: "Diploma in Midwifery (E-Learners)",
-      file: "diploma-in-midwifery-e-learners-course-outline.html",
-      sourceRoot: MIDWIVES_SOURCE_ROOT,
-      sourceName: "Midwives Revision"
-    }),
-    parseOutlineProgramme({
       id: "diploma-in-midwifery-extension",
       label: "Diploma in Midwifery (Extension)",
       file: "diploma-in-midwifery-extension-course-outline.html",

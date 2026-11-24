@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { BookOpen, Lightbulb, Search, ShieldCheck, Sparkles, Stethoscope } from "lucide-react";
 import AdSlot from "../components/AdSlot";
+import NursingLoader from "../components/NursingLoader";
 import ReferencesBox from "../components/ReferencesBox";
 
 const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
@@ -99,7 +100,9 @@ export default function DictionaryPage() {
   if (!data) {
     return (
       <main className="nu-section">
-        <div className="nu-container"><p>Loading A–Z Medical Dictionary...</p></div>
+        <div className="nu-container">
+          <NursingLoader label="Loading A–Z Medical Dictionary (1,079 Terms)..." />
+        </div>
       </main>
     );
   }

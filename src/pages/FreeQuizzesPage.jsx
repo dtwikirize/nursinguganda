@@ -9,6 +9,7 @@ import {
   RotateCcw,
   ShieldAlert
 } from "lucide-react";
+import NursingLoader from "../components/NursingLoader";
 import { useApp } from "../context/AppContext";
 import { gradeQuizResponses } from "../utils/quizGenerator";
 
@@ -125,7 +126,9 @@ export default function FreeQuizzesPage() {
   if (loading) {
     return (
       <main className="nu-section">
-        <div className="nu-container"><p>Loading Free Major Topic Quizzes...</p></div>
+        <div className="nu-container">
+          <NursingLoader label="Loading Free Major Nursing Topic Quizzes..." />
+        </div>
       </main>
     );
   }

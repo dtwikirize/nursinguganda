@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import AdSlot from "../components/AdSlot";
 import CertificateCard from "../components/CertificateCard";
+import NursingLoader from "../components/NursingLoader";
 import ReferencesBox from "../components/ReferencesBox";
 import TopicVisuals, { LessonSections } from "../components/TopicVisuals";
 import { fetchCourseQA, postCourseQuestion } from "../lib/api";
@@ -134,7 +135,13 @@ export default function CoursePlayerPage() {
   const attemptsRemaining = Math.max(0, 4 - attemptsUsed);
 
   if (loading) {
-    return <div style={{ padding: 40 }}>Loading course player...</div>;
+    return (
+      <main className="nu-section">
+        <div className="nu-container">
+          <NursingLoader label="Loading interactive clinical course player..." />
+        </div>
+      </main>
+    );
   }
 
   if (!course || !activeLesson) {

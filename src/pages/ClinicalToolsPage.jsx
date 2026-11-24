@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { Calculator, CheckSquare, Download, FileSpreadsheet, Globe2, HeartPulse } from "lucide-react";
 import AdSlot from "../components/AdSlot";
+import NursingLoader from "../components/NursingLoader";
 import ReferencesBox from "../components/ReferencesBox";
 import { formatLabItemForUnit, QUICK_SI_US_CHEATSHEET } from "../utils/labUnits";
 import { downloadNursingTemplatePdf, NURSING_TEMPLATES } from "../utils/pdfExport";
@@ -54,7 +55,9 @@ export default function ClinicalToolsPage({ initialTabOverride = "" }) {
   if (!data) {
     return (
       <main className="nu-section">
-        <div className="nu-container"><p>Loading clinical tools...</p></div>
+        <div className="nu-container">
+          <NursingLoader label="Loading clinical calculators, SI/US lab ranges & PDF templates..." />
+        </div>
       </main>
     );
   }

@@ -8,13 +8,18 @@ const ROUTE_META = {
   "/": {
     title: "Nursing Uganda | UNMEB & UHPAB Past Papers, Courses, Free eBooks & Clinical Tools",
     description:
-      "Master Certificate, Diploma & BScN nursing and midwifery in Uganda with 95 courses, 109 UHPAB/UNMEB past papers with Dark Navy PDF answers, free eBooks, 1,079+ medical terms & OSCE tools.",
+      "Master Certificate, Diploma & BScN nursing and midwifery in Uganda with 83 courses, 109 UHPAB/UNMEB past papers with Dark Navy PDF answers, free eBooks, 1,079+ medical terms & OSCE tools.",
     type: "website"
   },
   "/courses": {
-    title: "All 95 Nursing & Midwifery Courses (Certificate, Diploma & BScN) | Nursing Uganda",
+    title: "All 83 Nursing & Midwifery Courses (Certificate, Diploma & BScN) | Nursing Uganda",
     description:
-      "Browse all 95 structured Ugandan nursing and midwifery course units covering Anatomy, Pharmacology, Medical-Surgical Nursing, Midwifery, Paediatrics, and Community Health."
+      "Browse all 83 structured Ugandan nursing and midwifery course units covering Anatomy, Pharmacology, Medical-Surgical Nursing, Midwifery, Paediatrics, and Community Health."
+  },
+  "/topics": {
+    title: "779 Nurse Topics & Clinical Study Notes (Anatomy to Midwifery) | Nursing Uganda",
+    description:
+      "Browse 779 structured nursing & midwifery study topics by clinical specialty or keyword with Uganda Clinical Guidelines 2023 & WHO references."
   },
   "/mock-exams": {
     title: "109 UNMEB & UHPAB Past Papers Archive (Dark Navy Answers & Free PDF) | Nursing Uganda",

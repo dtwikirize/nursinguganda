@@ -30,7 +30,7 @@
     {
       "uri": "https://nursinguganda.com/assets/data/catalog.json",
       "name": "course-catalog",
-      "description": "Complete JSON catalog of 95 nursing and midwifery course units across Certificate, Diploma, and BScN tracks.",
+      "description": "Complete JSON catalog of 83 nursing and midwifery course units across Certificate, Diploma, and BScN tracks.",
       "mimeType": "application/json"
     },
     {
@@ -49,7 +49,7 @@
   "tools": [
     {
       "name": "search_nursing_courses",
-      "description": "Search 95 Certificate, Diploma, and BScN nursing and midwifery units on Nursing Uganda.",
+      "description": "Search 83 Certificate, Diploma, and BScN nursing and midwifery units on Nursing Uganda.",
       "inputSchema": {
         "type": "object",
         "properties": {

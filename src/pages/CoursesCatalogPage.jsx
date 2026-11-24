@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { BookOpen, Filter, Search } from "lucide-react";
 import CourseCard from "../components/CourseCard";
+import NursingLoader from "../components/NursingLoader";
 import { useApp } from "../context/AppContext";
 
 export default function CoursesCatalogPage() {
@@ -187,7 +188,7 @@ export default function CoursesCatalogPage() {
         )}
 
         {catalogLoading ? (
-          <p>Loading catalog...</p>
+          <NursingLoader label="Loading Nursing Uganda courses..." />
         ) : filtered.length === 0 ? (
           <div style={{ padding: 40, textAlign: "center", border: "1px solid var(--nu-border)" }}>
             <h3>No courses match your filters</h3>

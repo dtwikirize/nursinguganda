@@ -17,6 +17,7 @@ import {
   XCircle
 } from "lucide-react";
 import AdSlot from "../components/AdSlot";
+import NursingLoader from "../components/NursingLoader";
 import ReferencesBox from "../components/ReferencesBox";
 import { useApp } from "../context/AppContext";
 import { QUICK_SI_US_CHEATSHEET } from "../utils/labUnits";
@@ -190,7 +191,9 @@ export default function MockExamsPage() {
   if (!data) {
     return (
       <main className="nu-section">
-        <div className="nu-container"><p>Loading UHPAB / UNMEB past papers archive...</p></div>
+        <div className="nu-container">
+          <NursingLoader label="Loading 109 UHPAB / UNMEB Past Papers Archive..." />
+        </div>
       </main>
     );
   }

@@ -68,7 +68,8 @@ function buildHtml({ title, description, canonicalUrl, imageUrl = DEFAULT_IMG, o
 const HUB_FOOTER_LINKS = `
   <nav class="nav" aria-label="Nursing Uganda Hubs">
     <a href="/">Home</a>
-    <a href="/courses">95 Nursing Courses</a>
+    <a href="/courses">83 Nursing Courses</a>
+    <a href="/topics">779 Nurse Topics</a>
     <a href="/mock-exams">109 UHPAB/UNMEB Past Papers (.pdf)</a>
     <a href="/quizzes">Free Mixed Topic Quizzes</a>
     <a href="/ebooks">Free eBooks (.pdf)</a>
@@ -92,6 +93,7 @@ function main() {
   const urls = [
     { loc: `${SITE_URL}/`, priority: "1.0" },
     { loc: `${SITE_URL}/courses`, priority: "0.9" },
+    { loc: `${SITE_URL}/topics`, priority: "0.9" },
     { loc: `${SITE_URL}/ebooks`, priority: "0.9" },
     { loc: `${SITE_URL}/mock-exams`, priority: "0.95" },
     { loc: `${SITE_URL}/quizzes`, priority: "0.85" },

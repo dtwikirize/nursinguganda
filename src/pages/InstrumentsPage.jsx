@@ -11,6 +11,7 @@ import {
   X
 } from "lucide-react";
 import AdSlot from "../components/AdSlot";
+import NursingLoader from "../components/NursingLoader";
 import ReferencesBox from "../components/ReferencesBox";
 
 const INSTRUMENT_REFS = [
@@ -110,7 +111,9 @@ export default function InstrumentsPage() {
   if (!data) {
     return (
       <main className="nu-section">
-        <div className="nu-container"><p>Loading medical instrument atlas...</p></div>
+        <div className="nu-container">
+          <NursingLoader label="Loading 146-Item Medical Instrument Atlas..." />
+        </div>
       </main>
     );
   }

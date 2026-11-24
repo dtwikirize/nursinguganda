@@ -12,17 +12,18 @@ import {
 } from "lucide-react";
 import CourseCard from "../components/CourseCard";
 import EbookCover from "../components/EbookCover";
+import NursingLoader from "../components/NursingLoader";
 import { useApp } from "../context/AppContext";
 
 const CATEGORY_CARDS = [
-  { name: "Anatomy & Physiology", img: "/assets/images/udemy/cat-anatomy.webp" },
-  { name: "Midwifery & Maternal Health", img: "/assets/images/udemy/cat-midwifery.webp" },
-  { name: "Pharmacology", img: "/assets/images/udemy/cat-pharmacology.webp" },
-  { name: "Medical-Surgical Nursing", img: "/assets/images/udemy/cat-medsurg.webp" },
-  { name: "Paediatrics & Child Health", img: "/assets/images/udemy/cat-paediatrics.webp" },
-  { name: "Foundations of Nursing", img: "/assets/images/udemy/cat-foundations.webp" },
-  { name: "Community & Public Health", img: "/assets/images/udemy/cat-community.webp" },
-  { name: "Leadership, Research & Ethics", img: "/assets/images/udemy/cat-research.webp" }
+  { name: "Anatomy & Physiology", img: "/assets/images/udemy/cover-anatomy-cardio.webp" },
+  { name: "Midwifery & Maternal Health", img: "/assets/images/udemy/cover-obstetric-pelvis.webp" },
+  { name: "Pharmacology", img: "/assets/images/udemy/cover-pharmacology-vials.webp" },
+  { name: "Medical-Surgical Nursing", img: "/assets/images/udemy/cover-surgical-tray.webp" },
+  { name: "Paediatrics & Child Health", img: "/assets/images/udemy/cover-paediatrics-neonatal.webp" },
+  { name: "Foundations of Nursing", img: "/assets/images/udemy/cover-foundations-vitals.webp" },
+  { name: "Community & Public Health", img: "/assets/images/udemy/cover-public-health-vaccines.webp" },
+  { name: "Leadership, Research & Ethics", img: "/assets/images/udemy/cover-research-epidemiology.webp" }
 ];
 
 export default function HomePage() {
@@ -78,7 +79,7 @@ export default function HomePage() {
           </p>
           <div className="nu-hero-actions">
             <Link to="/courses" className="nu-btn nu-btn-primary nu-btn-lg">
-              Explore 95 Courses
+              Explore 83 Courses
             </Link>
             <Link to="/ebooks" className="nu-btn nu-btn-outline nu-btn-lg">
               Free Study eBooks
@@ -146,7 +147,7 @@ export default function HomePage() {
             </div>
 
             {catalogLoading ? (
-              <p style={{ color: "var(--nu-ink-muted)" }}>Loading courses...</p>
+              <NursingLoader compact label="Loading nursing & midwifery courses..." />
             ) : (
               <div className="nu-course-grid">
                 {tabCourses.map((course) => (
