@@ -18,6 +18,7 @@ const DictionaryPage = lazy(() => import("./pages/DictionaryPage"));
 const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage"));
 const EbooksPage = lazy(() => import("./pages/EbooksPage"));
 const FreeQuizzesPage = lazy(() => import("./pages/FreeQuizzesPage"));
+const GlobalNursingPage = lazy(() => import("./pages/GlobalNursingPage"));
 const InstrumentsPage = lazy(() => import("./pages/InstrumentsPage"));
 const LoginPage = lazy(() => import("./pages/LoginPage"));
 const MockExamsPage = lazy(() => import("./pages/MockExamsPage"));
@@ -76,6 +77,9 @@ export default function App() {
           <Route path="/dictionary" element={<DictionaryPage />} />
           <Route path="/instruments" element={<InstrumentsPage />} />
           <Route path="/clinical-tools" element={<ClinicalToolsPage />} />
+          <Route path="/templates" element={<ClinicalToolsPage initialTabOverride="templates" />} />
+          <Route path="/global-nursing" element={<GlobalNursingPage />} />
+          <Route path="/global-nursing/:countrySlug" element={<GlobalNursingPage />} />
 
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />

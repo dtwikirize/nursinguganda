@@ -8,6 +8,7 @@ import {
   Eye,
   EyeOff,
   FileText,
+  Globe2,
   Lock,
   RotateCcw,
   Search,
@@ -18,6 +19,7 @@ import {
 import AdSlot from "../components/AdSlot";
 import ReferencesBox from "../components/ReferencesBox";
 import { useApp } from "../context/AppContext";
+import { QUICK_SI_US_CHEATSHEET } from "../utils/labUnits";
 import { downloadPastPaperPdf, resolvePastPaper } from "../utils/pdfExport";
 
 const NAVY_TEXT = "#0F2942";
@@ -49,6 +51,7 @@ export default function MockExamsPage() {
   // Timed MCQ Drill state
   const [answers, setAnswers] = useState({});
   const [submitted, setSubmitted] = useState(false);
+  const [examUnitMode, setExamUnitMode] = useState("si"); // "si" | "us"
 
   useEffect(() => {
     Promise.all([
@@ -212,24 +215,75 @@ export default function MockExamsPage() {
         <div className="nu-container">
           {!activeExam && !resolvedActivePaper ? (
             <>
-              {/* Format Switcher Tabs */}
-              <div className="nu-tabs" style={{ marginBottom: 20, flexWrap: "wrap", gap: 8 }}>
-                <button
-                  type="button"
-                  className={`nu-tab ${modeTab === "essays" ? "active" : ""}`}
-                  onClick={() => setModeTab("essays")}
-                >
-                  <FileText size={15} style={{ marginRight: 6, verticalAlign: "text-bottom" }} />
-                  UHPAB / UNMEB Past Papers Archive ({rawPapers.length})
-                </button>
-                <button
-                  type="button"
-                  className={`nu-tab ${modeTab === "mcq" ? "active" : ""}`}
-                  onClick={() => setModeTab("mcq")}
-                >
-                  <CheckCircle2 size={15} style={{ marginRight: 6, verticalAlign: "text-bottom" }} />
-                  Timed MCQ Speed &amp; Full Mock Drills ({(data.exams || []).length})
-                </button>
+              {/* Format Switcher Tabs & International SI/US Lab Reference Bar */}
+              <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: 12, marginBottom: 14 }}>
+                <div className="nu-tabs" style={{ marginBottom: 0, flexWrap: "wrap", gap: 8 }}>
+                  <button
+                    type="button"
+                    className={`nu-tab ${modeTab === "essays" ? "active" : ""}`}
+                    onClick={() => setModeTab("essays")}
+                  >
+                    <FileText size={15} style={{ marginRight: 6, verticalAlign: "text-bottom" }} />
+                    UHPAB / UNMEB Past Papers Archive ({rawPapers.length})
+                  </button>
+                  <button
+                    type="button"
+                    className={`nu-tab ${modeTab === "mcq" ? "active" : ""}`}
+                    onClick={() => setModeTab("mcq")}
+                  >
+                    <CheckCircle2 size={15} style={{ marginRight: 6, verticalAlign: "text-bottom" }} />
+                    Timed MCQ Speed &amp; Full Mock Drills ({(data.exams || []).length})
+                  </button>
+                </div>
+
+                <div style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "#fff", border: "1px solid var(--nu-border)", borderRadius: 8, padding: "4px 8px" }}>
+                  <Globe2 size={14} color={NAVY_TEXT} />
+                  <span style={{ fontSize: "0.76rem", fontWeight: 700, color: NAVY_TEXT }}>Exam Lab Units:</span>
+                  <button
+                    type="button"
+                    onClick={() => setExamUnitMode("si")}
+                    style={{
+                      padding: "4px 9px",
+                      fontSize: "0.74rem",
+                      fontWeight: 700,
+                      borderRadius: 5,
+                      border: 0,
+                      background: examUnitMode === "si" ? NAVY_TEXT : "transparent",
+                      color: examUnitMode === "si" ? "#fff" : "#475569"
+                    }}
+                  >
+                    SI (mmol/L)
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setExamUnitMode("us")}
+                    style={{
+                      padding: "4px 9px",
+                      fontSize: "0.74rem",
+                      fontWeight: 700,
+                      borderRadius: 5,
+                      border: 0,
+                      background: examUnitMode === "us" ? NAVY_TEXT : "transparent",
+                      color: examUnitMode === "us" ? "#fff" : "#475569"
+                    }}
+                  >
+                    US (mg/dL)
+                  </button>
+                </div>
+              </div>
+
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 10, padding: "8px 12px", marginBottom: 16, background: "#fff", border: "1px solid var(--nu-border-light)", borderRadius: 8, fontSize: "0.77rem", color: "#334155" }}>
+                <strong style={{ color: NAVY_TEXT }}>
+                  {examUnitMode === "si" ? "SI Lab Ranges (Uganda/UK/Canada):" : "US / NCLEX Lab Ranges (mg/dL, °F):"}
+                </strong>
+                {QUICK_SI_US_CHEATSHEET.map((item) => (
+                  <span key={item.test}>
+                    {item.test}: <strong style={{ color: NAVY_TEXT }}>{examUnitMode === "si" ? item.si : item.us}</strong>
+                  </span>
+                ))}
+                <Link to="/global-nursing" style={{ color: "#6d28d9", fontWeight: 700, marginLeft: "auto" }}>
+                  International Nursing Guides &rarr;
+                </Link>
               </div>
 
               {modeTab === "essays" ? (

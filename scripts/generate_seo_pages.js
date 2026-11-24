@@ -98,6 +98,8 @@ function main() {
     { loc: `${SITE_URL}/dictionary`, priority: "0.85" },
     { loc: `${SITE_URL}/instruments`, priority: "0.85" },
     { loc: `${SITE_URL}/clinical-tools`, priority: "0.85" },
+    { loc: `${SITE_URL}/templates`, priority: "0.85" },
+    { loc: `${SITE_URL}/global-nursing`, priority: "0.9" },
     { loc: `${SITE_URL}/about`, priority: "0.5" },
     { loc: `${SITE_URL}/editorial-policy`, priority: "0.5" },
     { loc: `${SITE_URL}/privacy-policy`, priority: "0.4" },
@@ -255,6 +257,67 @@ function main() {
     const outPath = path.join(ROOT, "ebooks", eb.slug, "index.html");
     fs.mkdirSync(path.dirname(outPath), { recursive: true });
     fs.writeFileSync(outPath, html);
+  }
+
+  // Generate Global Nursing Licensure SEO pages (/global-nursing/<slug>/index.html)
+  const globalDataPath = path.join(DATA_DIR, "global-nursing.json");
+  if (fs.existsSync(globalDataPath)) {
+    fs.rmSync(path.join(ROOT, "global-nursing"), { recursive: true, force: true });
+    const countries = JSON.parse(fs.readFileSync(globalDataPath, "utf8")).countries || [];
+    for (const c of countries) {
+      const canonical = `${SITE_URL}/global-nursing/${c.slug}`;
+      urls.push({ loc: canonical, priority: "0.85" });
+      const stepsHtml = (c.steps || []).map((s) => `<li>${esc(s)}</li>`).join("");
+      const docsHtml = (c.documents || []).map((d) => `<li>${esc(d)}</li>`).join("");
+      const html = buildHtml({
+        title: `Becoming a Nurse in ${c.country} (${c.council}) | Nursing Uganda`,
+        description: c.summary,
+        canonicalUrl: canonical,
+        jsonLd: {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
+                { "@type": "ListItem", position: 2, name: "Global Nursing Pathways", item: `${SITE_URL}/global-nursing` },
+                { "@type": "ListItem", position: 3, name: c.country, item: canonical }
+              ]
+            },
+            {
+              "@type": "Article",
+              headline: `How to Become a Registered Nurse in ${c.country}`,
+              description: c.summary,
+              author: { "@type": "Organization", name: "Nursing Uganda", sameAs: SITE_URL },
+              url: canonical
+            }
+          ]
+        },
+        bodyHtml: `
+          <header class="hero">
+            <div class="wrap" style="padding:0">
+              <div>${esc(c.region)} · ${esc(c.council)}</div>
+              <h1>Becoming a Registered Nurse in ${esc(c.country)}</h1>
+              <p>${esc(c.summary)}</p>
+              <a class="btn" href="/global-nursing/${esc(c.slug)}">Open Interactive ${esc(c.country)} Guide</a>
+            </div>
+          </header>
+          <main class="wrap">
+            <h2>Key Requirements</h2>
+            <p><strong>Qualifying Exam:</strong> ${esc(c.examRequired)}</p>
+            <p><strong>Language Test:</strong> ${esc(c.languageTest)}</p>
+            <p><strong>Lab Unit System:</strong> ${esc(c.unitSystem)} · <strong>Timeline:</strong> ${esc(c.timeline)}</p>
+            <h2>Step-by-Step Roadmap</h2>
+            <ol>${stepsHtml}</ol>
+            <h2>Document Checklist</h2>
+            <ul>${docsHtml}</ul>
+            ${HUB_FOOTER_LINKS}
+          </main>`
+      });
+      const outPath = path.join(ROOT, "global-nursing", c.slug, "index.html");
+      fs.mkdirSync(path.dirname(outPath), { recursive: true });
+      fs.writeFileSync(outPath, html);
+    }
   }
 
   const today = new Date().toISOString().slice(0, 10);

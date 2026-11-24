@@ -44,7 +44,17 @@ const ROUTE_META = {
   "/clinical-tools": {
     title: "Nursing IV Drip Rate Calculator, Paediatric Dosages & Normal Lab Ranges | Nursing Uganda",
     description:
-      "Ward-ready clinical nursing calculators for IV drops/min, weight-based paediatric doses, APGAR & GCS scores, plus adult and paediatric normal lab reference ranges."
+      "Ward-ready clinical nursing calculators for IV drops/min, weight-based paediatric doses, APGAR & GCS scores, SI ↔ US lab units, and downloadable ward PDF templates."
+  },
+  "/templates": {
+    title: "8 Printable Nursing Ward Charts, Care Plan, Partograph & MAR PDF Templates | Nursing Uganda",
+    description:
+      "Download direct PDF nursing templates: NANDA-I Care Plan worksheet, WHO Modified Partograph, SBAR handover, SOAPIE notes, 24h Fluid Balance, Vital Signs MEWS, Drug Kardex MAR, and UNMEB Logbook."
+  },
+  "/global-nursing": {
+    title: "Becoming a Nurse in Different Countries (Uganda, UK, USA, Kenya, Canada, Gulf) | Nursing Uganda",
+    description:
+      "Country-by-country nursing licensure roadmaps comparing exams (UNMEB/UHPAB, NCK, TNMC, NMC CBT & OSCE, NCLEX-RN, Prometric), English scores & lab units."
   },
   "/about": {
     title: "About Nursing Uganda & Institutional Non-Affiliation | Nursing Uganda",

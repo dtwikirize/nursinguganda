@@ -28,7 +28,8 @@ const FREE_HUBS = [
   { id: "mock-exams", label: "UNMEB Mock Exams", to: "/mock-exams", icon: Award },
   { id: "dictionary", label: "Medical Dictionary", to: "/dictionary", icon: FileText },
   { id: "instruments", label: "Instrument Atlas", to: "/instruments", icon: Stethoscope },
-  { id: "clinical-tools", label: "Clinical Tools & Dosages", to: "/clinical-tools", icon: Wrench }
+  { id: "clinical-tools", label: "Clinical Tools, Templates & Units", to: "/clinical-tools", icon: Wrench },
+  { id: "global-nursing", label: "Becoming a Nurse (8 Countries)", to: "/global-nursing", icon: GraduationCap }
 ];
 
 const STATIC_HUB_ITEMS = {
@@ -60,10 +61,18 @@ const STATIC_HUB_ITEMS = {
   ],
   "clinical-tools": [
     { label: "IV Drip Rate & Dosage Calculator", to: "/clinical-tools" },
-    { label: "Normal Adult & Pediatric Lab Values", to: "/clinical-tools?tab=normal-values" },
+    { label: "Printable Ward & OSCE Templates (8 PDFs)", to: "/templates" },
+    { label: "Normal Lab Ranges (SI ↔ US Units Toggle)", to: "/clinical-tools?tab=values" },
     { label: "Emergency & Procedure Checklists (10)", to: "/clinical-tools?tab=checklists" },
-    { label: "APGAR & Glasgow Coma Scale Reference", to: "/clinical-tools?tab=checklists" },
-    { label: "Uganda MoH Essential Drug Dosages", to: "/clinical-tools" }
+    { label: "Global Nursing Licensure Guides (8 Countries)", to: "/global-nursing" }
+  ],
+  "global-nursing": [
+    { label: "All 8 Country Licensure Roadmaps", to: "/global-nursing" },
+    { label: "Uganda (UNMC / UHPAB Registration)", to: "/global-nursing/uganda-unmc-uhpab" },
+    { label: "United Kingdom (NMC CBT & OSCE)", to: "/global-nursing/united-kingdom-nmc" },
+    { label: "USA (CGFNS & NextGen NCLEX-RN)", to: "/global-nursing/united-states-nclex" },
+    { label: "Kenya (NCK) & Tanzania (TNMC)", to: "/global-nursing/kenya-nck" },
+    { label: "Canada (NNAS), Australia (AHPRA) & Gulf", to: "/global-nursing/canada-nnas-nclex" }
   ]
 };
 

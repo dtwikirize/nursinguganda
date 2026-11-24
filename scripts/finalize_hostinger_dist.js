@@ -45,6 +45,7 @@ const dataFiles = [
   "clinical-tools.json",
   "dictionary.json",
   "ebooks.json",
+  "global-nursing.json",
   "medical-instruments.json",
   "mock-exams.json",
   "references.json",
@@ -95,5 +96,6 @@ copyDirSafe(".well-known");
 // 5. Static SEO landing folders for crawlers
 copyDirSafe("course");
 copyDirSafe("ebooks");
+copyDirSafe("global-nursing");
 
 console.log("Finalized Hostinger dist/ package successfully.");

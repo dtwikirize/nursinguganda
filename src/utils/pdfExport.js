@@ -610,3 +610,315 @@ export function downloadCertificatePdf(certificate, learnerName) {
   doc.save(`nursing-uganda-certificate-${safeCode}.pdf`);
 }
 
+export const NURSING_TEMPLATES = [
+  {
+    id: "nanda-care-plan",
+    title: "NANDA-I Nursing Care Plan (NCP) Worksheet",
+    category: "Ward & UNMEB Practicals",
+    orientation: "Landscape A4 (6-Column)",
+    colorHex: "#102A43",
+    desc: "6-column NANDA nursing process sheet: Assessment, Nursing Diagnosis, Expected SMART Outcome, Interventions, Scientific Rationales & Evaluation (Page 2 includes filled Pneumonia sample)."
+  },
+  {
+    id: "who-partograph",
+    title: "WHO Modified Partograph Labour Practice Chart",
+    category: "Midwifery Practicum",
+    orientation: "Portrait A4",
+    colorHex: "#4C1D95",
+    desc: "Full intrapartum monitoring grid: FHR (100-180 bpm), Liquor/Moulding, Cervical Dilatation (4-10 cm with Alert & 4-hr Action Lines), Contractions, Oxytocin & Maternal Vitals."
+  },
+  {
+    id: "sbar-handover",
+    title: "SBAR Clinical Handover & Shift Report Sheet",
+    category: "Global Ward Communication",
+    orientation: "Portrait A4",
+    colorHex: "#064E3B",
+    desc: "Structured Situation, Background, Assessment & Recommendation clinical handover template with allergies, escalation flags, and UK NMC / US NCLEX / Uganda ward boxes."
+  },
+  {
+    id: "soap-progress",
+    title: "SOAP / SOAPIE Nursing Progress Note Template",
+    category: "Daily Patient Charting",
+    orientation: "Portrait A4",
+    colorHex: "#1E3A8A",
+    desc: "Clean patient progress chart capturing Subjective complaints, Objective vitals/exam, Assessment impression, Plan, Implementation times & Evaluation outcome."
+  },
+  {
+    id: "fluid-balance",
+    title: "24-Hour Fluid Balance (Intake & Output) Chart",
+    category: "Med-Surg & Paediatrics",
+    orientation: "Portrait A4",
+    colorHex: "#134E4A",
+    desc: "Hourly oral/NGT feeds + IV fluids intake table paired with Urine, Emesis/NGT, Drain/Stool output columns and 24-hour Cumulative Net Balance summary."
+  },
+  {
+    id: "vitals-mews",
+    title: "Ward Vital Signs & MEWS/PEWS Observation Chart",
+    category: "Acute & Early Warning",
+    orientation: "Landscape A4",
+    colorHex: "#991B1B",
+    desc: "Time-stamped bedside observation table covering Temp (°C/°F), Pulse, BP, Respiratory Rate, SpO2 %, Oxygen Flow, AVPU consciousness, Pain (0-10) & escalation signature."
+  },
+  {
+    id: "drug-kardex-mar",
+    title: "Drug Kardex & Medication Administration Record (MAR)",
+    category: "Pharmacology Safety",
+    orientation: "Landscape A4",
+    colorHex: "#0F2942",
+    desc: "Structured inpatient Drug Kardex featuring allergy header box, Scheduled Regular Medicines time-slot grids, STAT/Once-Only doses, and PRN As-Required chart."
+  },
+  {
+    id: "unmeb-case-logbook",
+    title: "UNMEB Practical Case Study & Ward Logbook Form",
+    category: "Logbook & OSCE Assessment",
+    orientation: "Portrait A4",
+    colorHex: "#312E81",
+    desc: "Complete student case-presentation booklet covering Patient Biographics, Chief Complaint, HPI, Physical Exam by System, Investigations/UCG Diagnosis & Discharge Teaching."
+  }
+];
+
+function drawPdfBanner(doc, { title, subtitle, colorRgb = [15, 41, 66] }) {
+  const w = doc.internal.pageSize.getWidth();
+  doc.setFillColor(colorRgb[0], colorRgb[1], colorRgb[2]);
+  doc.rect(0, 0, w, 20, "F");
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(12);
+  doc.setTextColor(255, 255, 255);
+  doc.text(cleanPdfText(title), 14, 9.5);
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(8.5);
+  doc.setTextColor(219, 234, 254);
+  doc.text(cleanPdfText(subtitle), 14, 15.5);
+}
+
+function drawGridTable(doc, startX, startY, colWidths, headers, rows, headerRgb = [15, 41, 66], rowH = 14) {
+  let x = startX;
+  doc.setFillColor(headerRgb[0], headerRgb[1], headerRgb[2]);
+  const totalW = colWidths.reduce((a, b) => a + b, 0);
+  doc.rect(startX, startY, totalW, 9, "F");
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(8.2);
+  doc.setTextColor(255, 255, 255);
+  headers.forEach((h, i) => {
+    doc.text(cleanPdfText(h), x + 2, startY + 6);
+    x += colWidths[i];
+  });
+
+  let y = startY + 9;
+  const pageH = doc.internal.pageSize.getHeight();
+  doc.setDrawColor(180, 194, 210);
+  doc.setLineWidth(0.25);
+
+  rows.forEach((row, rIdx) => {
+    if (y + rowH > pageH - 16) {
+      doc.addPage();
+      y = 18;
+    }
+    if (rIdx % 2 === 1) {
+      doc.setFillColor(248, 250, 252);
+      doc.rect(startX, y, totalW, rowH, "F");
+    }
+    let cx = startX;
+    colWidths.forEach((cw, ci) => {
+      doc.rect(cx, y, cw, rowH, "D");
+      const val = String(row?.[ci] || "");
+      if (val) {
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(8);
+        doc.setTextColor(17, 24, 39);
+        const lines = doc.splitTextToSize(cleanPdfText(val), cw - 4);
+        doc.text(lines.slice(0, Math.floor((rowH - 2) / 3.8)), cx + 2, y + 4.5);
+      }
+      cx += cw;
+    });
+    y += rowH;
+  });
+  return y;
+}
+
+/**
+ * Generates and downloads clean structured Nursing Ward & Practical Exam Templates directly as `.pdf`.
+ */
+export function downloadNursingTemplatePdf(templateId, { withSample = true } = {}) {
+  const tpl = NURSING_TEMPLATES.find((t) => t.id === templateId) || NURSING_TEMPLATES[0];
+  const isLandscape = tpl.orientation.toLowerCase().includes("landscape");
+  const doc = new jsPDF({ unit: "mm", format: "a4", orientation: isLandscape ? "landscape" : "portrait" });
+  const w = doc.internal.pageSize.getWidth();
+  const h = doc.internal.pageSize.getHeight();
+
+  const headerColor = tpl.id === "who-partograph" ? [76, 29, 149] : tpl.id === "sbar-handover" ? [6, 78, 59] : tpl.id === "vitals-mews" ? [153, 27, 27] : [15, 41, 66];
+  drawPdfBanner(doc, {
+    title: `NURSING UGANDA  |  ${tpl.title.toUpperCase()}`,
+    subtitle: `Official Clinical Study & Ward Practice Form   •   nursinguganda.com   •   ${withSample ? "Printable Blank Sheet + Worked Study Example" : "Clean Printable Worksheet"}`,
+    colorRgb: headerColor
+  });
+
+  // Standard Patient / Student Identification Bar
+  doc.setDrawColor(148, 163, 184);
+  doc.setFillColor(248, 250, 252);
+  doc.rect(14, 24, w - 28, 14, "FD");
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(8.5);
+  doc.setTextColor(15, 41, 66);
+  doc.text("Client / Patient Initials: ___________________   Age / Sex: _________   Ward / Unit: _________________   Date: _______________", 17, 30);
+  doc.text("Student / Nurse Name: _____________________   Reg / Index No: _______________   Working Dx: ___________________________", 17, 35.5);
+
+  if (tpl.id === "nanda-care-plan") {
+    const cols = [42, 46, 42, 54, 46, 39];
+    const headers = ["Assessment (S/O)", "Nursing Diagnosis", "Expected Outcomes", "Nursing Interventions", "Scientific Rationale", "Evaluation"];
+    const blankRows = Array.from({ length: 5 }, () => ["", "", "", "", "", ""]);
+    drawGridTable(doc, 14, 42, cols, headers, blankRows, headerColor, 26);
+
+    if (withSample) {
+      doc.addPage();
+      drawPdfBanner(doc, {
+        title: "WORKED EXAMPLE: SEVERE PNEUMONIA CARE PLAN (NANDA-I)",
+        subtitle: "Sample filled guide styled in UNMEB / NMC / NCLEX Care Plan examination rubric",
+        colorRgb: headerColor
+      });
+      const sampleRows = [[
+        "S: Patient reports breathless pain on cough.\nO: Temp 39.1C, RR 32/min, SpO2 87% room air, RLL crackles.",
+        "Impaired Gas Exchange related to alveolar inflammatory exudate AEB SpO2 87% & RR 32/min.",
+        "Within 2 hours, patient maintains SpO2 >= 94%, RR <= 22/min, and effortless breathing.",
+        "1. Sit upright (High-Fowler's).\n2. Humidified O2 via mask.\n3. Give ordered IV Ceftriaxone post sputum culture.\n4. Encourage oral fluids & splinted coughing.",
+        "Upright position lowers diaphragm & boosts ventilation; O2 raises alveolar pO2; antibiotics eradicate pathogen; hydration thins thick secretions.",
+        "Met partly at 2 hrs: SpO2 improved to 95% on 4L O2; RR reduced to 22/min."
+      ]];
+      drawGridTable(doc, 14, 28, cols, headers, sampleRows, headerColor, 58);
+    }
+  } else if (tpl.id === "who-partograph") {
+    drawGridTable(
+      doc,
+      14,
+      42,
+      [34, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 16],
+      ["Hour / Time", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "Notes"],
+      [
+        ["FHR (100-180 bpm)", "", "", "", "", "", "", "", "", "", "", "", ""],
+        ["Liquor (I/C/M/B)", "", "", "", "", "", "", "", "", "", "", "", ""],
+        ["Moulding (0/+/++)", "", "", "", "", "", "", "", "", "", "", "", ""],
+        ["Cervix 10 cm", "", "", "", "", "", "", "", "", "", "", "", ""],
+        ["Cervix 8-9 cm", "", "", "", "", "", "", "", "", "", "", "", ""],
+        ["Cervix 6-7 cm", "", "", "", "", "", "", "", "", "", "", "", "Action ->"],
+        ["Cervix 4-5 cm (Start)", "", "", "", "", "", "", "", "", "", "", "", "Alert ->"],
+        ["Descent (5/5 - 0/5)", "", "", "", "", "", "", "", "", "", "", "", ""],
+        ["Contractions / 10m", "", "", "", "", "", "", "", "", "", "", "", ""],
+        ["Oxytocin IU / dpm", "", "", "", "", "", "", "", "", "", "", "", ""],
+        ["Maternal BP / Pulse", "", "", "", "", "", "", "", "", "", "", "", ""],
+        ["Temp / Urine (P/A)", "", "", "", "", "", "", "", "", "", "", "", ""]
+      ],
+      headerColor,
+      16
+    );
+  } else if (tpl.id === "sbar-handover") {
+    const sections = [
+      { k: "S — SITUATION (Identify self, patient name, unit, exact active problem / urgent concern)", h: 40, sample: withSample ? "Example: Calling regarding Bed 4 Mr. M.K., 58 yrs post-laparotomy Day 1; sudden BP drop 88/54 mmHg, HR 122 bpm." : "" },
+      { k: "B — BACKGROUND (Relevant diagnoses, surgery/admission date, allergies, current IV meds/fluids)", h: 48, sample: withSample ? "Example: Admitted yesterday for perforated appendix repair; known hypertensive on Amlodipine; no drug allergies." : "" },
+      { k: "A — ASSESSMENT (Latest vitals, physical exam, SpO2, lab trends, clinical impression)", h: 52, sample: withSample ? "Example: Incision dressing shows fresh dark oozing; skin cool & clammy; SpO2 94% on air; urine output 15 mL past hr." : "" },
+      { k: "R — RECOMMENDATION (Urgent actions requested, review timeframe, immediate bedside steps taken)", h: 48, sample: withSample ? "Example: Request stat surgical registrar review within 10 mins, cross-match order, & confirm bolus Ringer's Lactate." : "" }
+    ];
+    let sy = 43;
+    sections.forEach((sec) => {
+      doc.setFillColor(headerColor[0], headerColor[1], headerColor[2]);
+      doc.rect(14, sy, w - 28, 7.5, "F");
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(8.5);
+      doc.setTextColor(255, 255, 255);
+      doc.text(cleanPdfText(sec.k), 17, sy + 5.2);
+      doc.setDrawColor(148, 163, 184);
+      doc.rect(14, sy + 7.5, w - 28, sec.h, "D");
+      if (sec.sample) {
+        doc.setFont("helvetica", "italic");
+        doc.setFontSize(8.5);
+        doc.setTextColor(71, 85, 105);
+        doc.text(doc.splitTextToSize(cleanPdfText(sec.sample), w - 36), 17, sy + 14);
+      }
+      sy += 7.5 + sec.h + 5;
+    });
+  } else if (tpl.id === "soap-progress") {
+    const blocks = [
+      { label: "S — Subjective Data (Patient symptoms, pain score 0-10, concerns verbatim)", h: 36 },
+      { label: "O — Objective Data (Temp, BP, HR, RR, SpO2, physical exam, labs, wound status)", h: 46 },
+      { label: "A — Assessment / Nursing Diagnosis (Clinical interpretation & progress)", h: 36 },
+      { label: "P — Plan (Short-term goals, diagnostic/medication/education targets)", h: 34 },
+      { label: "I — Implementation (Timed nursing actions delivered & medications given)", h: 38 },
+      { label: "E — Evaluation (Patient response, unmet needs, plan revision + Sign)", h: 30 }
+    ];
+    let sy = 42;
+    blocks.forEach((b) => {
+      doc.setFillColor(240, 245, 250);
+      doc.setDrawColor(148, 179, 209);
+      doc.rect(14, sy, w - 28, 7, "FD");
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(8.5);
+      doc.setTextColor(15, 41, 66);
+      doc.text(cleanPdfText(b.label), 17, sy + 4.8);
+      doc.rect(14, sy + 7, w - 28, b.h - 7, "D");
+      sy += b.h + 3;
+    });
+  } else if (tpl.id === "fluid-balance") {
+    const cols = [18, 28, 22, 22, 22, 22, 22, 26];
+    const headers = ["Time", "Oral / NGT (mL)", "IV Fluid (mL)", "Blood / Drug", "Urine Out (mL)", "Emesis / NGT", "Drain / Stool", "Initials"];
+    const rows = Array.from({ length: 14 }, (_, i) => [i === 13 ? "24h TOTAL" : `${String((7 + i) % 24).padStart(2, "0")}:00`, "", "", "", "", "", "", ""]);
+    const endY = drawGridTable(doc, 14, 42, cols, headers, rows, headerColor, 13);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(9.5);
+    doc.setTextColor(15, 41, 66);
+    doc.text("Total 24h Intake: _________ mL   |   Total 24h Output: _________ mL   |   Net Fluid Balance (+/-): _________ mL", 14, Math.min(h - 16, endY + 9));
+  } else if (tpl.id === "vitals-mews") {
+    const cols = [24, 24, 24, 28, 22, 24, 24, 24, 24, 51];
+    const headers = ["Time", "Temp (C/F)", "Pulse (bpm)", "BP (mmHg)", "RR /min", "SpO2 %", "O2 L/m", "AVPU", "Pain /10", "MEWS Total / Nurse Sign"];
+    const rows = Array.from({ length: 10 }, () => ["", "", "", "", "", "", "", "", "", ""]);
+    drawGridTable(doc, 14, 42, cols, headers, rows, headerColor, 13.5);
+  } else if (tpl.id === "drug-kardex-mar") {
+    doc.setFillColor(254, 242, 242);
+    doc.setDrawColor(220, 38, 38);
+    doc.rect(14, 41, w - 28, 9, "FD");
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(9);
+    doc.setTextColor(185, 28, 28);
+    doc.text("KNOWN DRUG ALLERGIES & WEIGHT (kg): ____________________________________________________________________", 17, 47);
+
+    const cols = [54, 28, 22, 26, 20, 20, 20, 20, 20, 39];
+    const headers = ["Approved Drug Name", "Dose", "Route", "Freq", "06h", "12h", "18h", "22h", "Start", "Prescriber / Stop"];
+    const rows = Array.from({ length: 8 }, () => ["", "", "", "", "", "", "", "", "", ""]);
+    drawGridTable(doc, 14, 53, cols, headers, rows, headerColor, 15.5);
+  } else {
+    // UNMEB Practical Case Study & Ward Logbook Presentation Template
+    const boxes = [
+      ["1. Chief Presenting Complaint & History of Presenting Illness (SOCRATES)", 42],
+      ["2. Past Medical, Surgical, Obstetric, Drug & Allergy History", 32],
+      ["3. Systematic Physical Examination & Baseline Vitals Findings", 42],
+      ["4. Provisional Diagnosis & Ordered Laboratory / Imaging Investigations", 34],
+      ["5. Priority Nursing Diagnoses & Nursing Process Management Summary (UCG 2023)", 48],
+      ["6. Outcome Evaluation, Discharge Advice & Clinical Preceptor Sign-Off", 30]
+    ];
+    let sy = 42;
+    boxes.forEach(([title, bh]) => {
+      doc.setFillColor(headerColor[0], headerColor[1], headerColor[2]);
+      doc.rect(14, sy, w - 28, 7, "F");
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(8.5);
+      doc.setTextColor(255, 255, 255);
+      doc.text(cleanPdfText(title), 17, sy + 4.9);
+      doc.setDrawColor(148, 163, 184);
+      doc.rect(14, sy + 7, w - 28, bh - 7, "D");
+      sy += bh + 3;
+    });
+  }
+
+  // Standard Footer
+  const totalPages = doc.getNumberOfPages();
+  for (let p = 1; p <= totalPages; p++) {
+    doc.setPage(p);
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(8);
+    doc.setTextColor(100, 116, 139);
+    doc.text("Nursing Uganda (nursinguganda.com)  •  Free Clinical Nursing Ward & Practical Form", 14, h - 8);
+    doc.text(`Page ${p} of ${totalPages}`, w - 14, h - 8, { align: "right" });
+  }
+
+  doc.save(`nursing-uganda-template-${tpl.id}.pdf`);
+}
+
+

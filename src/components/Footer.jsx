@@ -88,7 +88,9 @@ export default function Footer() {
               <li><Link to="/quizzes">Free Major Topic Quizzes</Link></li>
               <li><Link to="/dictionary">Medical Dictionary</Link></li>
               <li><Link to="/instruments">Medical Instrument Atlas</Link></li>
-              <li><Link to="/clinical-tools">Drug Dosage &amp; Checklists</Link></li>
+              <li><Link to="/clinical-tools">Drug Dosage &amp; SI/US Lab Ranges</Link></li>
+              <li><Link to="/templates">Nursing Ward Templates (.pdf)</Link></li>
+              <li><Link to="/global-nursing">Becoming a Nurse Globally (8 Countries)</Link></li>
             </ul>
           </div>
 

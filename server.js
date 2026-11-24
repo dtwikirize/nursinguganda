@@ -29,8 +29,10 @@ function readJsonSafe(filePath, fallback = null) {
 
 const catalogData = readJsonSafe(path.join(DATA_DIR, "catalog.json"), { courses: [] });
 const ebooksData = readJsonSafe(path.join(DATA_DIR, "ebooks.json"), { ebooks: [] });
+const globalNursingData = readJsonSafe(path.join(DATA_DIR, "global-nursing.json"), { countries: [] });
 const validCourseSlugs = new Set((catalogData?.courses || []).map((c) => String(c.slug || "").toLowerCase()).filter(Boolean));
 const validEbookSlugs = new Set((ebooksData?.ebooks || []).map((b) => String(b.slug || "").toLowerCase()).filter(Boolean));
+const validCountrySlugs = new Set((globalNursingData?.countries || []).map((c) => String(c.slug || "").toLowerCase()).filter(Boolean));
 
 // Security Headers
 app.use((req, res, next) => {
@@ -276,11 +278,15 @@ function isValidDynamicRoute(reqPath) {
   if (ebookMatch && validEbookSlugs.size > 0) {
     return validEbookSlugs.has(ebookMatch[1].toLowerCase());
   }
+  const countryMatch = clean.match(/^\/global-nursing\/([^/]+)/i);
+  if (countryMatch && validCountrySlugs.size > 0) {
+    return validCountrySlugs.has(countryMatch[1].toLowerCase());
+  }
   return true;
 }
 
 const BOT_UA_RE = /(googlebot|adsbot-google|mediapartners-google|bingbot|slurp|duckduckbot|facebookexternalhit|twitterbot|whatsapp)/i;
-const SPA_ROUTE_RE = /^\/($|courses|course|learn|ebooks|quizzes|mock-exams|dictionary|instruments|clinical-tools|cart|checkout|login|my-learning|nodadmin|about|brand-kit|editorial-policy|privacy-policy|terms|contact)(\/|$)/i;
+const SPA_ROUTE_RE = /^\/($|courses|course|learn|ebooks|quizzes|mock-exams|dictionary|instruments|clinical-tools|templates|global-nursing|cart|checkout|login|my-learning|nodadmin|about|brand-kit|editorial-policy|privacy-policy|terms|contact)(\/|$)/i;
 
 // Markdown negotiation & `.md` routes
 app.get(["/index.md", "/courses.md", "/about.md", "/contact.md", "/terms.md", "/privacy-policy.md", "/editorial-policy.md"], (req, res) => {
@@ -323,8 +329,18 @@ const SEO_ROUTE_META = {
   },
   "/clinical-tools": {
     title: "Nursing IV Drip Rate Calculator, Paediatric Dosages & Normal Lab Ranges | Nursing Uganda",
-    description: "Ward-ready clinical nursing calculators for IV drops/min, weight-based paediatric doses, APGAR & GCS scores, plus adult and paediatric normal lab values.",
-    h1: "Clinical Calculators & Normal Lab Ranges"
+    description: "Ward-ready clinical nursing calculators for IV drops/min, weight-based paediatric doses, APGAR & GCS scores, SI <-> US lab ranges, plus printable ward PDF templates.",
+    h1: "Clinical Calculators, SI/US Lab Ranges & Ward Templates"
+  },
+  "/templates": {
+    title: "8 Printable Nursing Ward Charts, Care Plan, Partograph & MAR PDF Templates | Nursing Uganda",
+    description: "Download direct binary PDF templates: NANDA-I Care Plan, WHO Modified Partograph, SBAR handover, SOAPIE note, 24h Fluid Balance, Vital Signs MEWS, Drug Kardex MAR, and UNMEB Logbook.",
+    h1: "Printable Nursing Ward & Practical Logbook Templates (.pdf)"
+  },
+  "/global-nursing": {
+    title: "Becoming a Nurse in Different Countries (Uganda, UK, USA, Kenya, Canada, Gulf) | Nursing Uganda",
+    description: "Compare nursing licensure requirements, exams (UNMEB/UHPAB, NCK, TNMC, NMC CBT/OSCE, NCLEX-RN, Prometric), English scores & lab units across 8 countries.",
+    h1: "Becoming a Nurse in Different Countries — Global Licensure Hub"
   },
   "/about": {
     title: "About Nursing Uganda & Institutional Non-Affiliation | Nursing Uganda",
