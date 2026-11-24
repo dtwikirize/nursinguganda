@@ -3445,20 +3445,128 @@ img {
   justify-content: flex-end;
 }
 .nu-auth-photo-frame {
+  position: relative;
   width: 100%;
   max-width: 480px;
   aspect-ratio: 4 / 4.45;
   border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 20px 48px rgba(20, 20, 19, 0.11);
-  background: #eae8e1;
+  box-shadow: 0 20px 48px rgba(15, 41, 66, 0.18);
+  background: #0f2942;
 }
-.nu-auth-photo-frame img {
+.nu-auth-photo-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 62% center;
+  object-position: 68% center;
   display: block;
+  animation: nuAuthKenBurns 16s ease-in-out infinite alternate;
+}
+@keyframes nuAuthKenBurns {
+  from {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.07) translate3d(-1.5%, -1%, 0);
+  }
+}
+.nu-auth-photo-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(15, 41, 66, 0.08) 0%,
+    rgba(124, 58, 237, 0.16) 45%,
+    rgba(15, 41, 66, 0.92) 100%
+  );
+  pointer-events: none;
+}
+.nu-auth-overlay-stack {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  z-index: 2;
+}
+.nu-auth-overlay-card {
+  background: rgba(15, 23, 42, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(192, 132, 252, 0.35);
+  border-radius: 14px;
+  padding: 16px 18px;
+  color: #ffffff;
+  animation: nuAuthCardIn 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes nuAuthCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.nu-auth-overlay-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #e9d5ff;
+  margin-bottom: 6px;
+}
+.nu-auth-pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #a855f7;
+  box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.75);
+  animation: nuAuthDotPulse 2s infinite;
+}
+@keyframes nuAuthDotPulse {
+  0% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.7); }
+  70% { box-shadow: 0 0 0 7px rgba(168, 85, 247, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0); }
+}
+.nu-auth-overlay-card h3 {
+  margin: 0 0 4px;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.25;
+}
+.nu-auth-overlay-card p {
+  margin: 0;
+  font-size: 0.83rem;
+  color: #cbd5e1;
+  line-height: 1.45;
+}
+.nu-auth-slide-dots {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+.nu-auth-slide-dots span {
+  height: 3px;
+  width: 14px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.28);
+  transition: width 0.25s ease, background 0.25s ease;
+}
+.nu-auth-slide-dots span.active {
+  width: 28px;
+  background: #c084fc;
+}
+@media (prefers-reduced-motion: reduce) {
+  .nu-auth-photo-img,
+  .nu-auth-overlay-card,
+  .nu-auth-pulse-dot {
+    animation: none;
+  }
 }
 .nu-auth-verify-account {
   display: flex;

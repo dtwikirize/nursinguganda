@@ -3,7 +3,25 @@ import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { ArrowLeft, Eye, EyeOff, Lock, MailCheck } from "lucide-react";
 import { useApp } from "../context/AppContext";
 import nuLogo from "../../assets/images/brand/nursing-uganda-logo-light.svg";
-import loginPhoto from "../../assets/images/nursing-uganda-hero-nursing-student-skills-lab-01.webp";
+import loginPhoto from "../../assets/images/udemy/hero-banner.webp";
+
+const LOGIN_SLIDES = [
+  {
+    tag: "UNMEB & MoH Aligned",
+    title: "83 Study Units · 779 Clinical Topics",
+    desc: "Structured Certificate, Diploma & BScN notes with verified clinical references."
+  },
+  {
+    tag: "Exam Practice Bank",
+    title: "109+ Past Papers & Marking Schemes",
+    desc: "Timed Section A MCQs, Section B & C essay scenarios with direct PDF export."
+  },
+  {
+    tag: "50% Student Cut Live",
+    title: "Units From $2.49 or Full All-Access",
+    desc: "Sync progress across devices and download QR-verified study certificates."
+  }
+];
 
 export default function LoginPage() {
   const { catalog, user, login, register, googleLogin, verifyEmail, resendVerification } = useApp();
@@ -29,10 +47,18 @@ export default function LoginPage() {
 
   const [googleClientId, setGoogleClientId] = useState("");
   const [googleReady, setGoogleReady] = useState(false);
+  const [slideIdx, setSlideIdx] = useState(0);
   const googleBtnRef = useRef(null);
   const googleWrapRef = useRef(null);
 
   const redirectTo = searchParams.get("redirect") || "/my-learning";
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setSlideIdx((prev) => (prev + 1) % LOGIN_SLIDES.length);
+    }, 3800);
+    return () => clearInterval(id);
+  }, []);
 
   useEffect(() => {
     let active = true;
@@ -388,13 +414,30 @@ export default function LoginPage() {
           </Link>
         </section>
 
-        {/* Right Column: Clean Editorial Nursing Study Photo */}
+        {/* Right Column: Site-Matched Navy/Purple Photo + Animated Clinical Overlay */}
         <aside className="nu-auth-visual-col" aria-hidden="true">
           <div className="nu-auth-photo-frame">
             <img
               src={loginPhoto}
-              alt="Ugandan nursing student revising with textbooks and stethoscope"
+              alt="Ugandan nurse in dark navy and purple scrubs studying with stethoscope and laptop"
+              className="nu-auth-photo-img"
             />
+            <div className="nu-auth-photo-scrim" />
+            <div className="nu-auth-overlay-stack">
+              <div key={slideIdx} className="nu-auth-overlay-card">
+                <div className="nu-auth-overlay-pill">
+                  <span className="nu-auth-pulse-dot" />
+                  <span>{LOGIN_SLIDES[slideIdx].tag}</span>
+                </div>
+                <h3>{LOGIN_SLIDES[slideIdx].title}</h3>
+                <p>{LOGIN_SLIDES[slideIdx].desc}</p>
+                <div className="nu-auth-slide-dots">
+                  {LOGIN_SLIDES.map((s, idx) => (
+                    <span key={s.title} className={idx === slideIdx ? "active" : ""} />
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </aside>
       </div>
