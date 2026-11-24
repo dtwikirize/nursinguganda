@@ -1,0 +1,352 @@
+{
+  "hubs": {
+    "united-kingdom-nmc": {
+      "route": "/nursing-uk",
+      "theme": "coursera-black",
+      "eyebrow": "UK NMC ACADEMY · CBT & 10-STATION OSCE",
+      "headline": "Nursing in the United Kingdom (NMC CBT & OSCE Hub)",
+      "subheadline": "Master NMC Future Nurse standards, Part A Numeracy, Part B Clinical CBT, APIE OSCE stations, NICE guidelines, and UK SI laboratory units.",
+      "highlights": [
+        { "label": "Exam Parts", "value": "CBT (Part A + B) & 10-Station OSCE" },
+        { "label": "Lab System", "value": "SI Units (mmol/L, g/L)" },
+        { "label": "English Bar", "value": "IELTS 7.0 (6.5 Writing) / OET B" },
+        { "label": "Guidelines", "value": "NMC Code 2018 & UK NICE" }
+      ],
+      "sections": [
+        {
+          "title": "1. UK NMC Test of Competence Structure (CBT & OSCE)",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Every internationally educated nurse seeking UK registration with the **Nursing and Midwifery Council (NMC)** completes **Part 1: Computer-Based Test (CBT)** at a Pearson VUE center, followed by **Part 2: Objective Structured Clinical Examination (OSCE)** in the UK."
+            },
+            {
+              "type": "diagram",
+              "variant": "flow",
+              "title": "UK NMC Registration & Examination Sequence",
+              "caption": "From NMC eligibility and CBT numeracy/theory to the 10-station UK OSCE.",
+              "steps": [
+                { "step": 1, "label": "NMC Eligibility", "detail": "Verify UNMC registration & English (IELTS/OET)" },
+                { "step": 2, "label": "CBT Part A", "detail": "15 clinical numeracy & IV math questions (30 mins)" },
+                { "step": 3, "label": "CBT Part B", "detail": "100 clinical/NMC Code questions (2h 30m)" },
+                { "step": 4, "label": "10-Station OSCE", "detail": "4 APIE stations + 4 skills + 2 professional values" },
+                { "step": 5, "label": "NMC PIN Issued", "detail": "Enter UK Register & begin NHS preceptorship" }
+              ]
+            },
+            {
+              "type": "table",
+              "title": "NMC CBT & OSCE Exam Blueprint Overview",
+              "headers": ["Exam Stage", "Format & Pass Focus", "High-Yield UK Priorities"],
+              "rows": [
+                [
+                  "**CBT Part A: Numeracy**",
+                  "15 short-answer calculation items (oral tablets, IV mL/hr, mg/kg, fluid balance).",
+                  ["Zero rounding errors — read exact decimal instructions", "Verify **micrograms vs milligrams** conversions cleanly"]
+                ],
+                [
+                  "**CBT Part B: Clinical**",
+                  "100 MCQs aligned to **Future Nurse: Standards of Proficiency (2018)**.",
+                  ["**NMC Code:** Prioritize people, practice effectively, preserve safety", "**Safeguarding**, Mental Capacity Act & **NICE Sepsis** rules"]
+                ],
+                [
+                  "**10-Station OSCE (UK)**",
+                  "4 APIE (Assessment, Planning, Implementation, Evaluation) + 4 clinical skills + 2 evidence/values stations.",
+                  ["**NEWS2** vital signs escalation", "**ANTT** aseptic wound/catheter care", "Closed-loop communication & patient consent"]
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "title": "2. UK vs. Uganda/US Drug Terminology & SI Lab Reference",
+          "blocks": [
+            {
+              "type": "table",
+              "title": "High-Yield UK NHS Naming & SI Units",
+              "headers": ["Parameter / Medication", "UK NMC / NHS Standard", "Key Clinical Watchpoint"],
+              "rows": [
+                ["**Paracetamol**", "Called *Paracetamol* (US calls it *Acetaminophen*).", "Max adult dose **4 g / 24 hours**; watch hepatotoxicity."],
+                ["**Adrenaline / Noradrenaline**", "Called *Adrenaline* & *Noradrenaline* (US: *Epinephrine*).", "Anaphylaxis adult IM dose: **0.5 mg (0.5 mL of 1:1000)**."],
+                ["**Salbutamol & Frusemide/Furosemide**", "Standard UK **BNF** generic naming on OSCE charts.", "Monitor **K+ (3.5–5.0 mmol/L)** on loop diuretics."],
+                ["**Blood Glucose (SI)**", "**4.0 – 7.0 mmol/L** fasting (multiply mmol/L × 18 for mg/dL).", "Hypoglycemia threshold in UK adults: **< 4.0 mmol/L** (treat fast!)."]
+              ]
+            }
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "uk-q1",
+          "prompt": "In the UK NHS/NMC OSCE, a patient's capillary blood glucose drops to 3.4 mmol/L and they are conscious and able to swallow safely. What is the immediate priority?",
+          "options": [
+            "Administer 15–20 g of fast-acting oral carbohydrate and recheck in 10–15 minutes",
+            "Give regular subcutaneous insulin immediately",
+            "Document and recheck during the next 4-hourly observations",
+            "Place the patient nil by mouth and wait for a doctor"
+          ],
+          "answerIndex": 0,
+          "rationale": "In UK NICE/NHS hypoglycemia management, < 4.0 mmol/L in a conscious patient requires immediate 15–20 g fast-acting oral carbohydrate followed by a repeat glucose check at 10–15 minutes."
+        },
+        {
+          "id": "uk-q2",
+          "prompt": "Which 4-station sequence forms the core patient-scenario backbone of the UK NMC OSCE?",
+          "options": [
+            "SBAR (Situation, Background, Assessment, Recommendation)",
+            "APIE (Assessment, Planning, Implementation, Evaluation)",
+            "SOAPIE only",
+            "GCS & APGAR"
+          ],
+          "answerIndex": 1,
+          "rationale": "The UK NMC OSCE evaluates structured holistic nursing across the 4 linked APIE stations: Assessment, Planning, Implementation, and Evaluation."
+        }
+      ]
+    },
+    "united-states-nclex": {
+      "route": "/nursing-usa",
+      "theme": "red-black",
+      "eyebrow": "USA NURSING ACADEMY · NEXT-GEN NCLEX-RN (NGN)",
+      "headline": "Nursing in the United States (NCLEX-RN & CGFNS Hub)",
+      "subheadline": "Master NCSBN Next-Gen Clinical Judgment (CJMM), US conventional lab units (mg/dL, mEq/L), high-alert pharmacology, and prioritization rules.",
+      "highlights": [
+        { "label": "Exam Engine", "value": "Next-Gen NCLEX-RN (CAT · 85–150 Qs)" },
+        { "label": "Lab System", "value": "US Conventional (mg/dL, mEq/L)" },
+        { "label": "Credentialing", "value": "CGFNS CES + State Board ATT" },
+        { "label": "Core Model", "value": "NCSBN 6-Step CJMM" }
+      ],
+      "sections": [
+        {
+          "title": "1. Next-Gen NCLEX-RN Clinical Judgment Model (CJMM)",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The **Next-Generation NCLEX-RN (NGN)** evaluates safe entry-level practice across **Client Needs** categories and the 6-step **NCSBN Clinical Judgment Measurement Model (CJMM)** using evolving case studies, matrix grids, bowtie items, and trend questions."
+            },
+            {
+              "type": "diagram",
+              "variant": "flow",
+              "title": "NCSBN 6-Step Clinical Judgment Loop",
+              "caption": "Every NGN case study tests these six sequential clinical reasoning steps.",
+              "steps": [
+                { "step": 1, "label": "Recognize Cues", "detail": "Spot abnormal vitals, labs & patient changes" },
+                { "step": 2, "label": "Analyze Cues", "detail": "Link findings to underlying pathophysiology" },
+                { "step": 3, "label": "Prioritize Hypotheses", "detail": "Rank urgent life-threats (ABC, Sepsis, Shock)" },
+                { "step": 4, "label": "Generate Solutions", "detail": "Identify safe nursing & provider interventions" },
+                { "step": 5, "label": "Take Action & Evaluate", "detail": "Intervene first, then verify patient response" }
+              ]
+            },
+            {
+              "type": "table",
+              "title": "NCLEX Prioritization & Delegation Rules",
+              "headers": ["Framework", "Clinical Priority Rule", "Classic NCLEX Examples"],
+              "rows": [
+                [
+                  "**ABCs (Airway · Breathing · Circulation)**",
+                  "Always secure **airway patency** before breathing, and breathing before circulation.",
+                  ["Stridor after thyroidectomy -> **Airway emergency**", "SpO2 86% -> raise HOB & give O2 before charting"]
+                ],
+                [
+                  "**Acute vs. Chronic / Unstable vs. Stable**",
+                  "New sudden deterioration beats expected chronic findings.",
+                  ["Sudden confusion in COPD patient beats baseline productive cough", "New chest pain beats scheduled discharge teaching"]
+                ],
+                [
+                  "**RN vs. LPN vs. UAP Delegation**",
+                  "RNs **never delegate EAT** (Evaluation, Assessment, Teaching) or unstable clients.",
+                  ["**UAP:** routine vitals on stable patients, bathing, I&O", "**LPN:** stable meds, wound dressings", "**RN:** IV push, blood transfusion initiation, initial teaching"]
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "title": "2. US Conventional Lab Values (mg/dL, mEq/L) & High-Alert Antidotes",
+          "blocks": [
+            {
+              "type": "table",
+              "title": "Must-Know US NCLEX Normal Ranges & Antidotes",
+              "headers": ["Lab / High-Alert Drug", "US Normal Value / Antidote", "Priority Nursing Action"],
+              "rows": [
+                ["**Sodium (Na+) / Potassium (K+)**", "**Na+:** 135–145 mEq/L · **K+:** 3.5–5.0 mEq/L", "Never push IV KCl; watch peaked T-waves if K+ > 5.0."],
+                ["**Blood Glucose & HbA1c**", "**Fasting:** 70–100 mg/dL · **HbA1c:** < 5.7% (DM < 7%)", "Note: US uses **mg/dL** (divide by 18 for Uganda/UK mmol/L)."],
+                ["**Warfarin / Heparin**", "**Warfarin:** Vitamin K (INR 2–3) · **Heparin:** Protamine sulfate", "Monitor **PT/INR** for Warfarin; **aPTT** for IV Heparin."],
+                ["**Opioids / Magnesium Sulfate**", "**Opioids:** Naloxone · **MgSO4:** Calcium gluconate", "Hold MgSO4 if **RR < 12–16**, absent DTRs, or urine < 30 mL/hr."]
+              ]
+            }
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "us-q1",
+          "prompt": "On a US medical-surgical unit, which task can the Registered Nurse (RN) safely delegate to an Unlicensed Assistive Personnel (UAP)?",
+          "options": [
+            "Administering IV push furosemide to a heart failure client",
+            "Obtaining routine morning vital signs for a stable post-op Day 2 client",
+            "Performing the initial admission assessment on a new stroke client",
+            "Teaching insulin injection technique prior to discharge"
+          ],
+          "answerIndex": 1,
+          "rationale": "Routine vital signs on a stable client fall within UAP scope; RNs never delegate assessment, teaching, or IV push medications."
+        },
+        {
+          "id": "us-q2",
+          "prompt": "A US client receiving IV Heparin has an aPTT of 118 seconds (therapeutic 60–80 sec) and oozing from the IV site. Which reversal medication should the nurse prepare?",
+          "options": [
+            "Vitamin K (Phytonadione)",
+            "Protamine sulfate",
+            "Naloxone",
+            "Flumazenil"
+          ],
+          "answerIndex": 1,
+          "rationale": "Protamine sulfate is the specific antidote for Heparin toxicity; Vitamin K reverses Warfarin."
+        }
+      ]
+    },
+    "canada-nnas-nclex": {
+      "route": "/nursing-canada",
+      "theme": "red-black",
+      "eyebrow": "CANADA NURSING ACADEMY · NNAS · NCLEX-RN & REx-PN",
+      "headline": "Nursing in Canada (NNAS, NCLEX-RN & REx-PN Hub)",
+      "subheadline": "Master NNAS credential evaluation, provincial CNO/BCCNM/CRNA competencies, NCLEX-RN & REx-PN exam strategies, and Canadian SI lab ranges.",
+      "highlights": [
+        { "label": "Credential Body", "value": "NNAS Advisory Report" },
+        { "label": "Licensing Exams", "value": "NCLEX-RN (RN) & REx-PN (RPN/LPN)" },
+        { "label": "Lab System", "value": "SI Units (mmol/L, g/L)" },
+        { "label": "Key Regulators", "value": "CNO · BCCNM · CRNA" }
+      ],
+      "sections": [
+        {
+          "title": "1. Canadian NNAS Registration & Exam Pathway",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Internationally educated nurses apply through **NNAS (National Nursing Assessment Service)** before seeking registration with a provincial regulator such as **CNO (Ontario)**, **BCCNM (British Columbia)**, or **CRNA (Alberta)**."
+            },
+            {
+              "type": "diagram",
+              "variant": "flow",
+              "title": "Canada IEN Pathway (NNAS to Licensure)",
+              "caption": "Five core stages from NNAS verification to provincial RN or RPN/LPN practice.",
+              "steps": [
+                { "step": 1, "label": "NNAS File", "detail": "Verify education, Uganda UNMC license & experience" },
+                { "step": 2, "label": "Advisory Report", "detail": "Submit NNAS report to CNO, BCCNM or CRNA" },
+                { "step": 3, "label": "Competency Review", "detail": "Meet English, jurisprudence & bridging if required" },
+                { "step": 4, "label": "NCLEX-RN / REx-PN", "detail": "Pass RN (NCLEX-RN) or RPN/LPN (REx-PN)" },
+                { "step": 5, "label": "Provincial Register", "detail": "Receive active practice registration" }
+              ]
+            },
+            {
+              "type": "table",
+              "title": "NCLEX-RN vs. REx-PN & Canadian SI Lab Notes",
+              "headers": ["Exam / Domain", "Who Takes It & Scope", "High-Yield Canadian Focus"],
+              "rows": [
+                [
+                  "**NCLEX-RN (Canada)**",
+                  "Registered Nurses (RNs) across Canadian provinces.",
+                  ["Uses **same NCSBN NGN format** as USA", "Expect **SI Lab Units** (`mmol/L`, `µmol/L`, `g/L`) on Canadian questions"]
+                ],
+                [
+                  "**REx-PN**",
+                  "Registered Practical Nurses (Ontario CNO) & LPNs (BC BCCNM).",
+                  ["Focuses on stable/predictable client care, medication safety & collaboration", "Computerized adaptive exam (90–150 items)"]
+                ],
+                [
+                  "**Entry-to-Practice (ETPCs)**",
+                  "CNO/BCCNM Clinician, Communicator, Collaborator, Leader, Scholar roles.",
+                  ["Cultural safety, informed consent & interprofessional SBAR escalation"]
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "ca-q1",
+          "prompt": "Which two Canadian provincial nursing regulators jointly administer the REx-PN exam for practical nurses?",
+          "options": [
+            "NMC UK and AHPRA",
+            "CNO (Ontario) and BCCNM (British Columbia)",
+            "UNMEB and NCK",
+            "NCSBN and CGFNS only"
+          ],
+          "answerIndex": 1,
+          "rationale": "The REx-PN was jointly developed by the College of Nurses of Ontario (CNO) and British Columbia College of Nurses and Midwives (BCCNM) with NCSBN."
+        }
+      ]
+    },
+    "australia-ahpra-nmba": {
+      "route": "/nursing-australia",
+      "theme": "green-black",
+      "eyebrow": "AUSTRALIA NURSING ACADEMY · AHPRA / NMBA OBA",
+      "headline": "Nursing in Australia (Ahpra & NMBA OBA Hub)",
+      "subheadline": "Master the Ahpra Outcomes-Based Assessment (OBA): Stage 1 NCLEX-RN, Stage 2 Australian OSCE, NMBA Standards for Practice, and SI lab units.",
+      "highlights": [
+        { "label": "Regulator", "value": "Ahpra & NMBA" },
+        { "label": "Stage 1 Exam", "value": "NCLEX-RN (Cognitive)" },
+        { "label": "Stage 2 Exam", "value": "Australian OSCE (10 Stations)" },
+        { "label": "Lab System", "value": "SI Units (mmol/L, g/L)" }
+      ],
+      "sections": [
+        {
+          "title": "1. Australia Outcomes-Based Assessment (OBA) Pathway",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Under **Ahpra** and the **Nursing and Midwifery Board of Australia (NMBA)**, Stream B internationally qualified nurses complete the two-stage **Outcomes-Based Assessment (OBA)**: **Stage 1 NCLEX-RN** followed by **Stage 2 Clinical OSCE** in Australia."
+            },
+            {
+              "type": "diagram",
+              "variant": "flow",
+              "title": "Ahpra / NMBA Stream B OBA Sequence",
+              "caption": "Two-stage assessment combining NCLEX-RN clinical judgment and Australian OSCE practice.",
+              "steps": [
+                { "step": 1, "label": "Ahpra Self-Check", "detail": "Verify UNMC qualification & Stream B placement" },
+                { "step": 2, "label": "Portfolio & Docs", "detail": "Submit identity, English & criminal checks" },
+                { "step": 3, "label": "Stage 1: NCLEX-RN", "detail": "Pass cognitive exam via Pearson VUE" },
+                { "step": 4, "label": "Stage 2: NMBA OSCE", "detail": "Complete behavioural stations in Australia" },
+                { "step": 5, "label": "NMBA Registration", "detail": "Practice across Australian hospitals" }
+              ]
+            },
+            {
+              "type": "table",
+              "title": "Australian NMBA Standards & Clinical Keynotes",
+              "headers": ["Domain", "Australian Standard", "Practical Nursing Watchpoint"],
+              "rows": [
+                [
+                  "**NMBA RN Standards**",
+                  "7 interconnected standards: critical thinking, therapeutic relationships, capability, safe practice, evaluation.",
+                  ["Always explain procedures, verify **3 patient identifiers**, and obtain verbal consent"]
+                ],
+                [
+                  "**SI Units & Generic Drugs**",
+                  "Uses **SI units (`mmol/L`)** and Australian Approved Names (*Paracetamol*, *Adrenaline*, *Lignocaine*).",
+                  ["Same **Paracetamol / Adrenaline** conventions familiar from Uganda & UK training"]
+                ],
+                [
+                  "**OSCE Clinical Safety**",
+                  "Aseptic non-touch technique, medication rights, falls/pressure prevention & escalation.",
+                  ["Verbalize hand hygiene (**5 Moments**) & allergy checks clearly to examiners"]
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "au-q1",
+          "prompt": "In Australia's Ahpra/NMBA Outcomes-Based Assessment (OBA) for Registered Nurses, what are the two examination stages?",
+          "options": [
+            "CBT Numeracy followed by NNAS Advisory Report",
+            "Stage 1 NCLEX-RN (cognitive) followed by Stage 2 OSCE (behavioural)",
+            "REx-PN followed by Prometric",
+            "IELTS only"
+          ],
+          "answerIndex": 1,
+          "rationale": "Stream B candidates complete Stage 1 (NCLEX-RN cognitive exam) and Stage 2 (Australian NMBA OSCE behavioural exam)."
+        }
+      ]
+    }
+  }
+}

@@ -43,6 +43,7 @@ const dataFiles = [
   "catalog.json",
   "canonical-lessons-index.json",
   "clinical-tools.json",
+  "country-study-hubs.json",
   "dictionary.json",
   "ebooks.json",
   "global-nursing.json",

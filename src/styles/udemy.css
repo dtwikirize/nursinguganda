@@ -2181,6 +2181,80 @@ img {
   color: #475569;
   line-height: 1.35;
 }
+
+/* Unique Country Nursing Hub Themes (Black/Black UK · Red/Black USA & Canada · Green/Black Rest) */
+.nu-hub-theme--coursera-black .nu-note-page-head {
+  background: #05070b !important;
+  border-color: #27272a !important;
+  border-left: 5px solid #ffffff !important;
+}
+.nu-hub-theme--coursera-black .nu-note-page-head .nu-note-section-title {
+  color: #ffffff !important;
+}
+.nu-hub-theme--coursera-black .nu-proc-flow-step,
+.nu-hub-theme--coursera-black .nu-inline-table-card .nu-clinical-table th {
+  background: #05070b;
+  color: #ffffff;
+}
+.nu-hub-theme--coursera-black .nu-table-lead {
+  color: #05070b !important;
+}
+
+.nu-hub-theme--red-black .nu-note-page-head {
+  background: #09090b !important;
+  border-color: #27272a !important;
+  border-left: 5px solid #dc2626 !important;
+}
+.nu-hub-theme--red-black .nu-note-page-head .nu-note-section-title {
+  color: #ffffff !important;
+}
+.nu-hub-theme--red-black .nu-proc-flow-step {
+  background: #dc2626;
+  color: #ffffff;
+}
+.nu-hub-theme--red-black .nu-proc-flow-arrow {
+  color: #dc2626;
+}
+.nu-hub-theme--red-black .nu-inline-table-card .nu-clinical-table th,
+.nu-hub-theme--red-black .nu-inline-table-card .nu-inline-table-title {
+  background: #09090b;
+  color: #ffffff;
+  border-bottom: 2px solid #dc2626;
+}
+.nu-hub-theme--red-black .nu-table-lead {
+  color: #b91c1c !important;
+}
+.nu-hub-theme--red-black .nu-table-bullet-list li::marker {
+  color: #dc2626;
+}
+
+.nu-hub-theme--green-black .nu-note-page-head {
+  background: #09090b !important;
+  border-color: #27272a !important;
+  border-left: 5px solid #059669 !important;
+}
+.nu-hub-theme--green-black .nu-note-page-head .nu-note-section-title {
+  color: #ffffff !important;
+}
+.nu-hub-theme--green-black .nu-proc-flow-step {
+  background: #059669;
+  color: #ffffff;
+}
+.nu-hub-theme--green-black .nu-proc-flow-arrow {
+  color: #059669;
+}
+.nu-hub-theme--green-black .nu-inline-table-card .nu-clinical-table th,
+.nu-hub-theme--green-black .nu-inline-table-card .nu-inline-table-title {
+  background: #09090b;
+  color: #ffffff;
+  border-bottom: 2px solid #059669;
+}
+.nu-hub-theme--green-black .nu-table-lead {
+  color: #047857 !important;
+}
+.nu-hub-theme--green-black .nu-table-bullet-list li::marker {
+  color: #059669;
+}
 .nu-proc-flow-arrow {
   display: flex;
   align-items: center;
