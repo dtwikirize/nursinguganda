@@ -212,12 +212,8 @@ export default function HomePage() {
               {ebooks.map((eb) => (
                 <Link key={eb.slug} to={`/ebooks/${eb.slug}`} className="nu-ebook-card">
                   <EbookCover ebook={eb} compact />
-                  <div className="nu-ebook-body">
-                    <span className="nu-badge nu-badge-free">Free eBook · {eb.chapters.length} Chapters</span>
-                    <h3 className="nu-card-title">{eb.title}</h3>
-                    <p style={{ margin: 0, fontSize: "0.82rem", color: "var(--nu-ink-muted)" }}>
-                      {eb.references.length} cited medical references
-                    </p>
+                  <div className="nu-ebook-body" style={{ padding: "12px 14px" }}>
+                    <h3 className="nu-card-title" style={{ margin: 0 }}>{eb.title}</h3>
                   </div>
                 </Link>
               ))}

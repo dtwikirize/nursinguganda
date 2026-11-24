@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { BookMarked, BookOpen, Download, Search } from "lucide-react";
+import { Download, Search } from "lucide-react";
 import AdSlot from "../components/AdSlot";
 import EbookCover from "../components/EbookCover";
 import NursingLoader from "../components/NursingLoader";
@@ -82,26 +82,14 @@ export default function EbooksPage() {
                   <Link to={`/ebooks/${eb.slug}`} className="nu-ebook-cover-link">
                     <EbookCover ebook={eb} />
                   </Link>
-                  <div className="nu-ebook-body">
-                    <span className="nu-badge nu-badge-free">{eb.category}</span>
-                    <h2 style={{ fontSize: "1.02rem", margin: "4px 0 0", lineHeight: 1.35 }}>
+                  <div className="nu-ebook-body" style={{ padding: "12px 14px", gap: 10 }}>
+                    <h2 style={{ fontSize: "0.98rem", margin: 0, lineHeight: 1.35, flex: 1 }}>
                       <Link to={`/ebooks/${eb.slug}`}>{eb.title}</Link>
                     </h2>
-                    <p style={{ margin: 0, fontSize: "0.84rem", color: "var(--nu-ink-muted)", flex: 1 }}>
-                      {eb.subtitle}
-                    </p>
-                    <div style={{ display: "flex", gap: 12, fontSize: "0.78rem", color: "var(--nu-ink-muted)", marginTop: 6 }}>
-                      <span style={{ display: "inline-flex", alignItems: "center", gap: 4 }}>
-                        <BookOpen size={13} /> {eb.chapters.length} chapters (~{eb.estimatedPages} pp.)
-                      </span>
-                      <span style={{ display: "inline-flex", alignItems: "center", gap: 4 }}>
-                        <BookMarked size={13} /> {eb.references.length} refs
-                      </span>
-                    </div>
                     <Link
                       to={`/ebooks/${eb.slug}`}
                       className="nu-btn nu-btn-primary"
-                      style={{ width: "100%", marginTop: 8 }}
+                      style={{ width: "100%", marginTop: "auto" }}
                     >
                       <Download size={15} /> Read &amp; Download Free
                     </Link>
