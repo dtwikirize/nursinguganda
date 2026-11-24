@@ -19,34 +19,49 @@ import { LessonSections } from "../components/TopicVisuals";
 
 const THEME_CONFIG = {
   "coursera-black": {
-    heroBg: "#05070B",
-    heroBorder: "#27272A",
+    heroBg: "#0A0D14",
+    heroBorder: "#1E293B",
+    cardBg: "rgba(255, 255, 255, 0.06)",
+    cardBorder: "rgba(255, 255, 255, 0.14)",
+    cardTopBorder: "#FFFFFF",
+    switchActiveBg: "rgba(255, 255, 255, 0.18)",
+    switchIdleBg: "rgba(255, 255, 255, 0.06)",
     accent: "#111827",
     accentStrong: "#000000",
     badgeBg: "#FFFFFF",
-    badgeText: "#05070B",
+    badgeText: "#0A0D14",
     tintBg: "#F8FAFC",
-    tintBorder: "#CBD5E1"
+    tintBorder: "#E2E8F0"
   },
   "red-black": {
-    heroBg: "#09090B",
-    heroBorder: "#DC2626",
-    accent: "#DC2626",
-    accentStrong: "#B91C1C",
-    badgeBg: "#DC2626",
+    heroBg: "#991B1B",
+    heroBorder: "#09090B",
+    cardBg: "rgba(9, 9, 11, 0.42)",
+    cardBorder: "rgba(255, 255, 255, 0.16)",
+    cardTopBorder: "#09090B",
+    switchActiveBg: "#09090B",
+    switchIdleBg: "rgba(9, 9, 11, 0.28)",
+    accent: "#09090B",
+    accentStrong: "#000000",
+    badgeBg: "#09090B",
     badgeText: "#FFFFFF",
-    tintBg: "#FEF2F2",
-    tintBorder: "#FECACA"
+    tintBg: "#F8FAFC",
+    tintBorder: "#E2E8F0"
   },
   "green-black": {
-    heroBg: "#09090B",
-    heroBorder: "#059669",
-    accent: "#059669",
-    accentStrong: "#047857",
-    badgeBg: "#059669",
+    heroBg: "#064E3B",
+    heroBorder: "#09090B",
+    cardBg: "rgba(9, 9, 11, 0.42)",
+    cardBorder: "rgba(255, 255, 255, 0.16)",
+    cardTopBorder: "#09090B",
+    switchActiveBg: "#09090B",
+    switchIdleBg: "rgba(9, 9, 11, 0.28)",
+    accent: "#09090B",
+    accentStrong: "#000000",
+    badgeBg: "#09090B",
     badgeText: "#FFFFFF",
-    tintBg: "#ECFDF5",
-    tintBorder: "#A7F3D0"
+    tintBg: "#F8FAFC",
+    tintBorder: "#E2E8F0"
   }
 };
 
@@ -199,8 +214,8 @@ export default function CountryStudyHubPage({ forcedSlug = "" }) {
                       gap: 6,
                       padding: "5px 10px",
                       borderRadius: 6,
-                      border: `1px solid ${isCurrent ? theme.heroBorder : "#334155"}`,
-                      background: isCurrent ? theme.accent : "rgba(255,255,255,0.06)",
+                      border: `1px solid ${isCurrent ? "#FFFFFF" : "rgba(255,255,255,0.22)"}`,
+                      background: isCurrent ? theme.switchActiveBg : theme.switchIdleBg,
                       color: "#ffffff",
                       fontSize: "0.76rem",
                       fontWeight: 700,
@@ -219,7 +234,7 @@ export default function CountryStudyHubPage({ forcedSlug = "" }) {
             <CountryFlag code={country.flag} width={46} />
             <span>{hub?.headline || `Becoming a Registered Nurse in ${country.country}`}</span>
           </h1>
-          <p style={{ margin: "0 0 22px", maxWidth: 820, color: "#cbd5e1", fontSize: "1rem", lineHeight: 1.6 }}>
+          <p style={{ margin: "0 0 22px", maxWidth: 820, color: "rgba(255, 255, 255, 0.88)", fontSize: "1rem", lineHeight: 1.6 }}>
             {hub?.subheadline || country.summary}
           </p>
 
@@ -233,14 +248,14 @@ export default function CountryStudyHubPage({ forcedSlug = "" }) {
               <div
                 key={i}
                 style={{
-                  background: "rgba(255, 255, 255, 0.06)",
-                  border: "1px solid rgba(255, 255, 255, 0.14)",
-                  borderTop: `3px solid ${theme.accent === "#111827" ? "#FFFFFF" : theme.accent}`,
+                  background: theme.cardBg,
+                  border: `1px solid ${theme.cardBorder}`,
+                  borderTop: `3px solid ${theme.cardTopBorder}`,
                   borderRadius: 8,
                   padding: "12px 14px"
                 }}
               >
-                <div style={{ fontSize: "0.7rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "#94a3b8" }}>
+                <div style={{ fontSize: "0.7rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "rgba(255, 255, 255, 0.72)" }}>
                   {h.label}
                 </div>
                 <div style={{ marginTop: 4, fontSize: "0.9rem", fontWeight: 700, color: "#ffffff" }}>
