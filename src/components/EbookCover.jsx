@@ -30,8 +30,8 @@ export default function EbookCover({ ebook, presetId = "", compact = false }) {
       />
       {/* Top Color Accent Ribbon */}
       <div className="nu-textbook-topbar" style={{ background: theme.accentHex }}>
-        <span>NURSING UGANDA PRESS · {theme.vol}</span>
-        <span>2026 UCG / WHO EDITION</span>
+        <span>Nursing Uganda Press &middot; {theme.vol}</span>
+        <span>2026 UCG / WHO</span>
       </div>
 
       {/* Cover Main Body */}

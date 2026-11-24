@@ -2928,16 +2928,21 @@ img {
 }
 .nu-textbook-topbar {
   margin-left: -10px;
-  padding: 6px 14px 6px 18px;
+  padding: 5px 12px 5px 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 8px;
-  font-size: 0.64rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
+  font-size: 0.55rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.94);
+  white-space: nowrap;
+}
+.nu-textbook-topbar span {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .nu-textbook-body {
   padding: 12px 14px 8px 10px;

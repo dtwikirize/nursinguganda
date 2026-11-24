@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useEffect } from "react";
+import React, { Component, Suspense, lazy, useEffect } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
@@ -7,25 +7,77 @@ import NursingLoader from "./components/NursingLoader";
 import ContextOfferPopup from "./components/ContextOfferPopup";
 import HomePage from "./pages/HomePage";
 
+function lazyWithRetry(importer) {
+  return lazy(async () => {
+    try {
+      return await importer();
+    } catch (err) {
+      const key = "nu.chunk_reload_at";
+      let reloaded = false;
+      try {
+        const last = Number(sessionStorage.getItem(key) || 0);
+        if (Date.now() - last > 15000) {
+          sessionStorage.setItem(key, String(Date.now()));
+          reloaded = true;
+          window.location.reload();
+        }
+      } catch {
+        reloaded = true;
+        window.location.reload();
+      }
+      if (!reloaded) throw err;
+      return new Promise(() => {});
+    }
+  });
+}
+
+class AppErrorBoundary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <main className="nu-section">
+          <div className="nu-container" style={{ maxWidth: 560, padding: "48px 16px", textAlign: "center" }}>
+            <h1 style={{ marginBottom: 10 }}>Page update ready</h1>
+            <p style={{ color: "var(--nu-ink-muted)", marginBottom: 20 }}>
+              A newer version of this page was just published or your connection dropped briefly.
+            </p>
+            <button type="button" className="nu-btn nu-btn-primary" onClick={() => window.location.reload()}>
+              Reload Page Now
+            </button>
+          </div>
+        </main>
+      );
+    }
+    return this.props.children;
+  }
+}
+
 // Code-split secondary routes to minimize unused JS on initial landing load
-const AdminPage = lazy(() => import("./pages/AdminPage"));
-const CartPage = lazy(() => import("./pages/CartPage"));
-const CheckoutPage = lazy(() => import("./pages/CheckoutPage"));
-const ClinicalToolsPage = lazy(() => import("./pages/ClinicalToolsPage"));
-const CourseDetailPage = lazy(() => import("./pages/CourseDetailPage"));
-const CoursePlayerPage = lazy(() => import("./pages/CoursePlayerPage"));
-const CoursesCatalogPage = lazy(() => import("./pages/CoursesCatalogPage"));
-const DictionaryPage = lazy(() => import("./pages/DictionaryPage"));
-const EbookReaderPage = lazy(() => import("./pages/EbookReaderPage"));
-const EbooksPage = lazy(() => import("./pages/EbooksPage"));
-const FreeQuizzesPage = lazy(() => import("./pages/FreeQuizzesPage"));
-const GlobalNursingPage = lazy(() => import("./pages/GlobalNursingPage"));
-const InstrumentsPage = lazy(() => import("./pages/InstrumentsPage"));
-const LoginPage = lazy(() => import("./pages/LoginPage"));
-const MockExamsPage = lazy(() => import("./pages/MockExamsPage"));
-const MyLearningPage = lazy(() => import("./pages/MyLearningPage"));
-const NurseTopicsPage = lazy(() => import("./pages/NurseTopicsPage"));
-const TrustPage = lazy(() => import("./pages/TrustPage"));
+const AdminPage = lazyWithRetry(() => import("./pages/AdminPage"));
+const CartPage = lazyWithRetry(() => import("./pages/CartPage"));
+const CheckoutPage = lazyWithRetry(() => import("./pages/CheckoutPage"));
+const ClinicalToolsPage = lazyWithRetry(() => import("./pages/ClinicalToolsPage"));
+const CourseDetailPage = lazyWithRetry(() => import("./pages/CourseDetailPage"));
+const CoursePlayerPage = lazyWithRetry(() => import("./pages/CoursePlayerPage"));
+const CoursesCatalogPage = lazyWithRetry(() => import("./pages/CoursesCatalogPage"));
+const DictionaryPage = lazyWithRetry(() => import("./pages/DictionaryPage"));
+const EbookReaderPage = lazyWithRetry(() => import("./pages/EbookReaderPage"));
+const EbooksPage = lazyWithRetry(() => import("./pages/EbooksPage"));
+const FreeQuizzesPage = lazyWithRetry(() => import("./pages/FreeQuizzesPage"));
+const GlobalNursingPage = lazyWithRetry(() => import("./pages/GlobalNursingPage"));
+const InstrumentsPage = lazyWithRetry(() => import("./pages/InstrumentsPage"));
+const LoginPage = lazyWithRetry(() => import("./pages/LoginPage"));
+const MockExamsPage = lazyWithRetry(() => import("./pages/MockExamsPage"));
+const MyLearningPage = lazyWithRetry(() => import("./pages/MyLearningPage"));
+const NurseTopicsPage = lazyWithRetry(() => import("./pages/NurseTopicsPage"));
+const TrustPage = lazyWithRetry(() => import("./pages/TrustPage"));
 
 function PageLoader() {
   return (
@@ -90,7 +142,8 @@ export default function App() {
       <RouteSeo />
       {!hideChrome && <Navbar />}
       <ContextOfferPopup />
-      <Suspense fallback={<PageLoader />}>
+      <AppErrorBoundary>
+        <Suspense fallback={<PageLoader />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/courses" element={<CoursesCatalogPage />} />
@@ -134,14 +187,15 @@ export default function App() {
                   </p>
                   <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
                     <a href="/" className="nu-btn nu-btn-primary">Return Home</a>
-                    <a href="/courses" className="nu-btn nu-btn-outline">Browse 95 Courses</a>
+                    <a href="/courses" className="nu-btn nu-btn-outline">Browse 83 Courses</a>
                   </div>
                 </div>
               </main>
             }
           />
         </Routes>
-      </Suspense>
+        </Suspense>
+      </AppErrorBoundary>
       {!hideChrome && <Footer />}
     </>
   );
