@@ -1,5 +1,6 @@
 import React from "react";
-import { Award, Printer, ShieldAlert } from "lucide-react";
+import { Award, Download, ShieldAlert } from "lucide-react";
+import { downloadCertificatePdf } from "../utils/pdfExport";
 
 export default function CertificateCard({ certificate, learnerName }) {
   if (!certificate) return null;
@@ -35,10 +36,10 @@ export default function CertificateCard({ certificate, learnerName }) {
         <button
           type="button"
           className="nu-btn nu-btn-secondary"
-          onClick={() => window.print()}
+          onClick={() => downloadCertificatePdf(certificate, learnerName)}
           style={{ height: 36, fontSize: "0.82rem", padding: "0 12px" }}
         >
-          <Printer size={14} /> Print / Save PDF Certificate
+          <Download size={14} /> Download PDF Certificate
         </button>
       </div>
 

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { ArrowLeft, BookOpen, Download, Printer, ShieldCheck } from "lucide-react";
+import { ArrowLeft, BookOpen, Download, ShieldCheck } from "lucide-react";
 import AdSlot from "../components/AdSlot";
 import ReferencesBox from "../components/ReferencesBox";
 import TopicVisuals, { LessonSections } from "../components/TopicVisuals";
 import { recordEbookDownload } from "../lib/api";
+import { downloadEbookPdf } from "../utils/pdfExport";
 
 export default function EbookReaderPage() {
   const { slug } = useParams();
@@ -24,11 +25,13 @@ export default function EbookReaderPage() {
       .finally(() => setLoading(false));
   }, [slug]);
 
-  const handlePrintPdf = async (e) => {
+  const handleDownloadPdf = async (e) => {
     if (e) e.preventDefault();
-    await recordEbookDownload({ ebookSlug: slug, email: email.trim() });
-    setDownloadedMsg("Opening clean PDF print/save dialog...");
-    setTimeout(() => window.print(), 150);
+    if (!ebook) return;
+    setDownloadedMsg("Generating and downloading your eBook .pdf...");
+    downloadEbookPdf(ebook);
+    await recordEbookDownload({ ebookSlug: slug, email: email.trim() }).catch(() => {});
+    setDownloadedMsg(`Downloaded ${ebook.title} (.pdf)`);
   };
 
   if (loading) {
@@ -70,11 +73,11 @@ export default function EbookReaderPage() {
             </div>
 
             <div style={{ background: "#fff", color: "var(--nu-ink)", padding: 20, borderRadius: 4 }}>
-              <strong style={{ display: "block", marginBottom: 6 }}>Save or Print Full eBook PDF</strong>
+              <strong style={{ display: "block", marginBottom: 6 }}>Download Full eBook (.pdf)</strong>
               <p style={{ fontSize: "0.82rem", color: "var(--nu-ink-muted)", margin: "0 0 12px" }}>
                 Includes all {ebook.chapters.length} chapters + complete bibliography.
               </p>
-              <form onSubmit={handlePrintPdf} style={{ display: "grid", gap: 8 }}>
+              <form onSubmit={handleDownloadPdf} style={{ display: "grid", gap: 8 }}>
                 <input
                   type="email"
                   value={email}
@@ -83,7 +86,7 @@ export default function EbookReaderPage() {
                   style={{ height: 38, padding: "0 10px", border: "1px solid var(--nu-border)", fontSize: "0.85rem" }}
                 />
                 <button type="submit" className="nu-btn nu-btn-primary" style={{ width: "100%" }}>
-                  <Printer size={16} /> Save as PDF / Print eBook
+                  <Download size={16} /> Download Full eBook (.pdf)
                 </button>
               </form>
               {downloadedMsg && (
