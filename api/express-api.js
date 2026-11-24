@@ -4,6 +4,7 @@ const path = require("node:path");
 const express = require("express");
 const rateLimit = require("express-rate-limit");
 const {
+  escapeHtml,
   buildWelcomeVerificationEmail,
   buildSecurityAlertEmail,
   buildPaymentReceiptEmail,
@@ -239,18 +240,60 @@ let _catalogCache = null;
 function getCatalogPrices() {
   if (_catalogCache) return _catalogCache;
   try {
-    const p = path.join(process.cwd(), "assets", "data", "catalog.json");
-    if (!fs.existsSync(p)) return null;
+    const candidates = [
+      path.join(__dirname, "..", "assets", "data", "catalog.json"),
+      path.join(process.cwd(), "assets", "data", "catalog.json")
+    ];
+    const p = candidates.find((cand) => fs.existsSync(cand));
+    if (!p) return null;
     const raw = JSON.parse(fs.readFileSync(p, "utf8"));
-    const coursePriceMap = new Map();
-    for (const c of raw.courses || []) {
-      coursePriceMap.set(c.slug, Number(c.priceUsd || 0));
+    if (!Array.isArray(raw.courses)) return null;
+
+    const courseMap = new Map();
+    const progCourses = new Map();
+    for (const c of raw.courses) {
+      const slug = String(c.slug || "").trim();
+      if (!slug) continue;
+      const priceUsd = Number(c.priceUsd || 0);
+      const isFree = Boolean(c.isFree) || priceUsd <= 0;
+      courseMap.set(slug, {
+        slug,
+        title: String(c.title || slug),
+        priceUsd: isFree ? 0 : priceUsd,
+        isFree,
+        courseSlugs: [slug]
+      });
+      const progId = String(c.programmeId || "").trim();
+      if (progId) {
+        if (!progCourses.has(progId)) progCourses.set(progId, []);
+        progCourses.get(progId).push(slug);
+      }
     }
-    const bundlePriceMap = new Map();
+
+    const bundleMap = new Map();
     for (const prog of raw.programmes || []) {
-      bundlePriceMap.set(`bundle-${prog.id}`, Number(prog.bundlePriceUsd || 24.99));
+      const progId = String(prog.id || "").trim();
+      if (!progId) continue;
+      const slug = `bundle-${progId}`;
+      bundleMap.set(slug, {
+        slug,
+        title: `${prog.label || progId} Bundle`,
+        priceUsd: Number(prog.bundlePriceUsd || 24.99),
+        isFree: false,
+        courseSlugs: progCourses.get(progId) || []
+      });
     }
-    _catalogCache = { coursePriceMap, bundlePriceMap };
+
+    // Standard platform exam pass item sold in Cart & MockExamsPage
+    bundleMap.set("unmeb-mock-pass", {
+      slug: "unmeb-mock-pass",
+      title: "UNMEB / UHPAB Full Past Papers & Mock Exam Pass (109+ Papers)",
+      priceUsd: 6.99,
+      isFree: false,
+      courseSlugs: ["unmeb-mock-pass"]
+    });
+
+    _catalogCache = { courseMap, bundleMap };
     return _catalogCache;
   } catch {
     return null;
@@ -367,6 +410,26 @@ function verifyToken(token) {
   }
 }
 
+function signUnsubscribeToken(email) {
+  const clean = normalizeEmail(email);
+  if (!clean) return "";
+  return crypto.createHmac("sha256", sessionSecret()).update(`unsub:${clean}`).digest("base64url").slice(0, 32);
+}
+
+function verifyUnsubscribeToken(email, token) {
+  const expected = signUnsubscribeToken(email);
+  const provided = String(token || "").trim();
+  if (!expected || !provided || provided.length !== expected.length) return false;
+  return crypto.timingSafeEqual(Buffer.from(provided), Buffer.from(expected));
+}
+
+function buildSignedUnsubscribeUrl(email) {
+  const clean = normalizeEmail(email);
+  if (!clean) return "https://nursinguganda.com/";
+  const token = signUnsubscribeToken(clean);
+  return `https://nursinguganda.com/api/unsubscribe?email=${encodeURIComponent(clean)}&token=${encodeURIComponent(token)}`;
+}
+
 function parseCookies(req) {
   const header = req.headers.cookie || "";
   const map = {};
@@ -436,7 +499,7 @@ function getClientIp(req) {
 
 function normalizeEmail(email) {
   const clean = String(email || "").trim().toLowerCase();
-  if (clean.length > 190 || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(clean)) return "";
+  if (clean.length > 190 || !/^[^\s<>"'`\\@]+@[^\s<>"'`\\@]+\.[^\s<>"'`\\@]{2,}$/.test(clean)) return "";
   return clean;
 }
 
@@ -619,6 +682,7 @@ async function runDailyDigestBatch(pool, campaignOverride = null) {
     const mail = buildWeeklyDigestEmail({
       name: sub.name,
       email: sub.email,
+      unsubscribeUrl: buildSignedUnsubscribeUrl(sub.email),
       subject: campaign.subject,
       topicTitle: campaign.topic_title,
       summary: campaign.summary,
@@ -1202,7 +1266,7 @@ function createApiRouter() {
     return res.status(400).json({ error: "Unknown auth action." });
   }
 
-  // Free Enrollments
+  // Free Enrollments (strictly verified against server catalog free status)
   router.post("/enrollments", writeRateLimiter, async (req, res) => {
     const pool = await requireDb(res);
     if (!pool) return;
@@ -1211,6 +1275,25 @@ function createApiRouter() {
 
     const courseSlug = String(req.body?.courseSlug || "").trim();
     if (!isValidSlug(courseSlug)) return res.status(400).json({ error: "Invalid courseSlug." });
+
+    const catalogPrices = getCatalogPrices();
+    if (!catalogPrices) {
+      return res.status(503).json({ error: "Course catalog is temporarily unavailable." });
+    }
+    const courseInfo = catalogPrices.courseMap.get(courseSlug);
+    if (!courseInfo) {
+      return res.status(404).json({ error: "Unknown courseSlug." });
+    }
+    if (!courseInfo.isFree || courseInfo.priceUsd > 0) {
+      await recordSecurityEvent(pool, req, {
+        userId: uid,
+        eventType: "SUSPICIOUS_ENROLLMENT",
+        severity: "critical",
+        details: `Blocked free enrollment attempt on paid course "${courseSlug}" ($${courseInfo.priceUsd.toFixed(2)})`,
+        notifyAdmin: true
+      });
+      return res.status(403).json({ error: "Paid courses cannot be enrolled via the free enrollment endpoint." });
+    }
 
     await pool.query("INSERT IGNORE INTO enrollments (user_id, course_slug, access_type) VALUES (?, ?, 'free')", [uid, courseSlug]);
     const [enRows] = await pool.query("SELECT course_slug FROM enrollments WHERE user_id = ?", [uid]);
@@ -1271,6 +1354,39 @@ function createApiRouter() {
       return res.json({ orderId: cleanOrderId, enrollments: enRows.map((r) => r.course_slug) });
     }
 
+    const catalogPrices = getCatalogPrices();
+    if (!catalogPrices) {
+      return res.status(503).json({ error: "Course catalog pricing is temporarily unavailable." });
+    }
+
+    const verifiedItems = [];
+    const verifiedSlugSet = new Set();
+    let expectedTotal = 0;
+
+    for (const rawItem of items) {
+      const slug = String(rawItem?.slug || "").trim();
+      if (!isValidSlug(slug)) {
+        return res.status(400).json({ error: "Invalid item slug in order." });
+      }
+      const catalogEntry = catalogPrices.bundleMap.get(slug) || catalogPrices.courseMap.get(slug);
+      if (!catalogEntry) {
+        return res.status(400).json({ error: `Unknown catalog item in order: ${slug}` });
+      }
+      expectedTotal += Number(catalogEntry.priceUsd || 0);
+      verifiedItems.push({
+        slug: catalogEntry.slug,
+        title: catalogEntry.title,
+        priceUsd: catalogEntry.priceUsd
+      });
+      for (const s of catalogEntry.courseSlugs) {
+        if (isValidSlug(s)) verifiedSlugSet.add(s);
+      }
+    }
+
+    if (expectedTotal <= 0 || verifiedSlugSet.size === 0) {
+      return res.status(400).json({ error: "Order contains no paid catalog items." });
+    }
+
     const isLive = (process.env.PAYPAL_MODE || "sandbox") === "live";
     const baseUrl = isLive ? "https://api-m.paypal.com" : "https://api-m.sandbox.paypal.com";
     const tokenRes = await fetchPayPalAccessToken();
@@ -1289,27 +1405,30 @@ function createApiRouter() {
       return res.status(402).json({ error: "PayPal order is not completed." });
     }
 
-    const paidAmount = Number(orderData?.purchase_units?.[0]?.amount?.value || 0);
-    const catalogPrices = getCatalogPrices();
-    if (catalogPrices) {
-      let expectedTotal = 0;
-      for (const item of items) {
-        if (catalogPrices.bundlePriceMap.has(item.slug)) {
-          expectedTotal += catalogPrices.bundlePriceMap.get(item.slug);
-        } else if (catalogPrices.coursePriceMap.has(item.slug)) {
-          expectedTotal += catalogPrices.coursePriceMap.get(item.slug);
-        }
-      }
-      if (expectedTotal > 0 && paidAmount + 0.05 < expectedTotal) {
-        await recordSecurityEvent(pool, req, {
-          userId: uid,
-          eventType: "SUSPICIOUS_ORDER",
-          severity: "critical",
-          details: `Order ${cleanOrderId} paid $${paidAmount} but expected $${expectedTotal.toFixed(2)}`,
-          notifyAdmin: true
-        });
-        return res.status(402).json({ error: "Paid amount does not match course catalog price." });
-      }
+    const amountObj = orderData?.purchase_units?.[0]?.amount || {};
+    const paidAmount = Number(amountObj.value || 0);
+    const paidCurrency = String(amountObj.currency_code || "").toUpperCase();
+
+    if (paidCurrency !== "USD") {
+      await recordSecurityEvent(pool, req, {
+        userId: uid,
+        eventType: "SUSPICIOUS_ORDER",
+        severity: "critical",
+        details: `Order ${cleanOrderId} paid in unexpected currency "${paidCurrency || "MISSING"}" (expected USD)`,
+        notifyAdmin: true
+      });
+      return res.status(402).json({ error: "PayPal order currency must be USD." });
+    }
+
+    if (paidAmount + 0.05 < expectedTotal) {
+      await recordSecurityEvent(pool, req, {
+        userId: uid,
+        eventType: "SUSPICIOUS_ORDER",
+        severity: "critical",
+        details: `Order ${cleanOrderId} paid $${paidAmount} USD but server catalog requires $${expectedTotal.toFixed(2)} USD`,
+        notifyAdmin: true
+      });
+      return res.status(402).json({ error: "Paid amount does not match course catalog price." });
     }
 
     const conn = await pool.getConnection();
@@ -1317,19 +1436,14 @@ function createApiRouter() {
       await conn.beginTransaction();
       const [ordRes] = await conn.query(
         "INSERT INTO orders (user_id, paypal_order_id, payer_email, amount_usd, status, items_json) VALUES (?, ?, ?, ?, 'COMPLETED', ?)",
-        [uid, cleanOrderId, sanitizeText(payerEmail, 190), paidAmount, JSON.stringify(items)]
+        [uid, cleanOrderId, sanitizeText(payerEmail, 190), paidAmount, JSON.stringify(verifiedItems)]
       );
       const dbOrderId = ordRes.insertId || null;
-      for (const item of items) {
-        const slugs = Array.isArray(item.courseSlugs) ? item.courseSlugs : [item.slug];
-        for (const s of slugs) {
-          if (isValidSlug(s)) {
-            await conn.query(
-              "INSERT IGNORE INTO enrollments (user_id, course_slug, order_id, access_type) VALUES (?, ?, ?, 'purchased')",
-              [uid, s, dbOrderId]
-            );
-          }
-        }
+      for (const s of verifiedSlugSet) {
+        await conn.query(
+          "INSERT IGNORE INTO enrollments (user_id, course_slug, order_id, access_type) VALUES (?, ?, ?, 'purchased')",
+          [uid, s, dbOrderId]
+        );
       }
       await conn.commit();
     } catch {
@@ -1345,7 +1459,7 @@ function createApiRouter() {
         name: uRows[0].name,
         orderId: cleanOrderId,
         amountUsd: paidAmount,
-        items
+        items: verifiedItems
       });
       await sendBrandedEmail(pool, { to: uRows[0].email, ...receipt, category: "transactional" });
     }
@@ -1580,6 +1694,22 @@ function createApiRouter() {
     if (!isValidSlug(courseSlug)) {
       return res.status(400).json({ error: "Invalid course slug." });
     }
+
+    const catalogPrices = getCatalogPrices();
+    const courseInfo = catalogPrices?.courseMap.get(courseSlug);
+    if (catalogPrices && !courseInfo) {
+      return res.status(404).json({ error: "Unknown course slug." });
+    }
+    const isAdmin = String(user.email || "").toLowerCase() === getAdminEmail();
+    if (!isAdmin && (!courseInfo || !courseInfo.isFree)) {
+      const [enRows] = await pool.query(
+        "SELECT 1 FROM enrollments WHERE user_id = ? AND course_slug = ? LIMIT 1",
+        [uid, courseSlug]
+      );
+      if (enRows.length === 0) {
+        return res.status(403).json({ error: "Enroll in or purchase this course before taking its Final Evaluation." });
+      }
+    }
     const cleanTitle = sanitizeText(courseTitle || courseSlug, 255);
     const cleanProgramme = sanitizeText(programmeLabel || "", 120);
     const total = Math.max(10, Math.min(60, Number(totalQuestions) || 30));
@@ -1768,6 +1898,7 @@ function createApiRouter() {
     const mail = buildWeeklyDigestEmail({
       name: cleanName || "Nursing Colleague",
       email: cleanEmail,
+      unsubscribeUrl: buildSignedUnsubscribeUrl(cleanEmail),
       subject: "Subscribed: Nursing Uganda Weekly Study Digest",
       topicTitle: "You're subscribed to Nursing Uganda Weekly Updates",
       summary: "Every week you'll receive high-yield UNMEB revision agendas, new referenced study eBooks, and clinical guideline updates.",
@@ -1782,19 +1913,31 @@ function createApiRouter() {
     return res.json({ ok: true, email: cleanEmail });
   });
 
-  // 1-Click Unsubscribe Link
+  // 1-Click HMAC-Signed Unsubscribe Link
   router.get("/unsubscribe", async (req, res) => {
     const pool = await requireDb(res);
     if (!pool) return;
     const cleanEmail = normalizeEmail(req.query.email || "");
-    if (cleanEmail) {
-      await pool.query("UPDATE email_subscribers SET subscribed = 0 WHERE email = ?", [cleanEmail]);
+    const token = String(req.query.token || "").trim();
+    const valid = Boolean(cleanEmail && verifyUnsubscribeToken(cleanEmail, token));
+
+    if (!valid) {
+      res.setHeader("Content-Type", "text/html; charset=utf-8");
+      return res.status(403).send(`<!doctype html><html><body style="font-family:Poppins,sans-serif;background:#F7F9FA;padding:48px 16px;text-align:center;">
+      <div style="max-width:460px;margin:auto;background:#fff;padding:32px;border-radius:8px;border:1px solid #d1d7dc;">
+        <h2 style="color:#1C1D1F;margin-top:0;">Invalid Unsubscribe Link</h2>
+        <p style="color:#6A6F73;">This unsubscribe signature is missing or invalid. Please use the Unsubscribe link from your latest Nursing Uganda email or sign in to update preferences.</p>
+        <a href="https://nursinguganda.com/login" style="display:inline-block;margin-top:12px;padding:10px 20px;background:#0F2942;color:#fff;text-decoration:none;border-radius:4px;font-weight:700;">Sign In</a>
+      </div>
+    </body></html>`);
     }
+
+    await pool.query("UPDATE email_subscribers SET subscribed = 0 WHERE email = ?", [cleanEmail]);
     res.setHeader("Content-Type", "text/html; charset=utf-8");
     return res.send(`<!doctype html><html><body style="font-family:Poppins,sans-serif;background:#F7F9FA;padding:48px 16px;text-align:center;">
       <div style="max-width:460px;margin:auto;background:#fff;padding:32px;border-radius:8px;border:1px solid #d1d7dc;">
         <h2 style="color:#1C1D1F;margin-top:0;">Unsubscribed</h2>
-        <p style="color:#6A6F73;">${cleanEmail ? `${cleanEmail} has been unsubscribed from Nursing Uganda weekly study digests.` : "Your preference has been updated."}</p>
+        <p style="color:#6A6F73;">${escapeHtml(cleanEmail)} has been unsubscribed from Nursing Uganda weekly study digests.</p>
         <a href="https://nursinguganda.com/" style="display:inline-block;margin-top:12px;padding:10px 20px;background:#A137F2;color:#fff;text-decoration:none;border-radius:4px;font-weight:700;">Return to Nursing Uganda</a>
       </div>
     </body></html>`);

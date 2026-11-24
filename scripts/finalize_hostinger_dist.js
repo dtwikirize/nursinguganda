@@ -84,8 +84,24 @@ if (fs.existsSync(distHtmlPath)) {
   }
 }
 
-// 3. Hostinger PHP + MySQL API (never overwrite live config.php)
-copyDirSafe("api", "api", new Set(["config.php"]));
+// 3. Node.js Hostinger API (clean stale PHP/SQL artifacts so only express-api.js & email-templates.js ship)
+fs.rmSync(path.join(DIST, "api"), { recursive: true, force: true });
+copyDirSafe(
+  "api",
+  "api",
+  new Set([
+    "config.php",
+    "config.example.php",
+    "auth.php",
+    "db.php",
+    "ebooks.php",
+    "enrollments.php",
+    "paypal-capture.php",
+    "progress.php",
+    "qa.php",
+    "schema.sql"
+  ])
+);
 
 // 4. Root hosting, agent-readiness & SEO files
 for (const rootFile of [".htaccess", "manifest.webmanifest", "robots.txt", "llms.txt", "sitemap.xml", "_offline.html", "404.html"]) {

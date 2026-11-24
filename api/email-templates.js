@@ -186,7 +186,7 @@ function buildPaymentReceiptEmail({ name, orderId, amountUsd, items = [] }) {
   return { subject: `Payment Confirmed — Courses Unlocked (Order ${orderId})`, html, text };
 }
 
-function buildWeeklyDigestEmail({ name, subject, topicTitle, summary, highlights = [], ctaUrl, email }) {
+function buildWeeklyDigestEmail({ name, subject, topicTitle, summary, highlights = [], ctaUrl, email, unsubscribeUrl = "" }) {
   const safeName = escapeHtml(name || "Nursing Colleague");
   const safeTopic = escapeHtml(topicTitle);
   const safeSummary = escapeHtml(summary);
@@ -194,7 +194,7 @@ function buildWeeklyDigestEmail({ name, subject, topicTitle, summary, highlights
     .filter(Boolean)
     .map((h) => `<li style="margin-bottom:8px;">${escapeHtml(h)}</li>`)
     .join("");
-  const unsubUrl = `${SITE_URL}/api/unsubscribe?email=${encodeURIComponent(email || "")}`;
+  const unsubUrl = unsubscribeUrl || `${SITE_URL}/api/unsubscribe?email=${encodeURIComponent(email || "")}`;
 
   const html = wrapBrandedLayout({
     preheader: summary,
@@ -301,6 +301,7 @@ function buildCertificateEmail({ name, courseTitle, score, totalQuestions, certi
 }
 
 module.exports = {
+  escapeHtml,
   buildWelcomeVerificationEmail,
   buildSecurityAlertEmail,
   buildPaymentReceiptEmail,
