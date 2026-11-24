@@ -1950,3 +1950,194 @@ img {
     break-inside: avoid;
   }
 }
+
+/* ── Premium Medical Instrument Atlas ────────────────────── */
+.nu-inst-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.nu-inst-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid #d1d7dc;
+  background: #ffffff;
+  color: #1c1d1f;
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.16s ease;
+}
+
+.nu-inst-filter-btn:hover {
+  border-color: #a137f2;
+  color: #6d28d9;
+  background: #faf5ff;
+}
+
+.nu-inst-filter-btn.active {
+  background: #1c1d1f;
+  border-color: #1c1d1f;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(28, 29, 31, 0.16);
+}
+
+.nu-inst-filter-count {
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.nu-inst-filter-btn.active .nu-inst-filter-count {
+  background: #a137f2;
+  color: #ffffff;
+}
+
+.nu-inst-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+  gap: 20px;
+}
+
+.nu-inst-card {
+  text-align: left;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #ffffff;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.nu-inst-card:hover {
+  transform: translateY(-3px);
+  border-color: #a137f2;
+  box-shadow: 0 12px 26px rgba(109, 40, 217, 0.11);
+}
+
+.nu-inst-card.selected {
+  border: 2px solid #a137f2;
+  box-shadow: 0 10px 24px rgba(161, 55, 242, 0.16);
+}
+
+.nu-inst-card-media {
+  position: relative;
+  height: 185px;
+  background: radial-gradient(circle at center, #ffffff 45%, #f8fafc 100%);
+  border-bottom: 1px solid #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+  overflow: hidden;
+}
+
+.nu-inst-card-media img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  transition: transform 0.22s ease;
+}
+
+.nu-inst-card:hover .nu-inst-card-media img {
+  transform: scale(1.04);
+}
+
+.nu-inst-cat-pill {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid #e2e8f0;
+  color: #4c1d95;
+  backdrop-filter: blur(4px);
+}
+
+.nu-inst-card-body {
+  padding: 15px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 8px;
+}
+
+.nu-inst-card-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #1c1d1f;
+}
+
+.nu-inst-card-desc {
+  margin: 0;
+  font-size: 0.83rem;
+  line-height: 1.48;
+  color: #4b5563;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.nu-inst-card-foot {
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.76rem;
+}
+
+.nu-inst-ipc-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #f0fdf4;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.nu-inst-detail-panel {
+  border: 2px solid #a137f2;
+  border-radius: 12px;
+  background: #ffffff;
+  padding: 24px;
+  margin-bottom: 28px;
+  box-shadow: 0 14px 32px rgba(109, 40, 217, 0.12);
+}
+
+.nu-inst-detail-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 24px;
+  margin-top: 16px;
+  align-items: start;
+}
+
+@media (max-width: 760px) {
+  .nu-inst-detail-grid {
+    grid-template-columns: 1fr;
+  }
+}

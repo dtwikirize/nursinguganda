@@ -1,6 +1,6 @@
 # Nursing Uganda (`nursinguganda.com`) — Live Project Status
 
-_Last Updated: 2026-11-24 02:51 EAT_
+_Last Updated: 2026-11-24 06:44 EAT_
 
 ## ✅ Completed & Committed Locally on `main` (Pending `git push origin main`)
 - **Udemy-Style Architecture & Catalog**: 7 Programmes, 95 Course Units, 819 Canonical Lessons (`assets/data/catalog.json` + modular per-course JSONs).
@@ -18,8 +18,9 @@ _Last Updated: 2026-11-24 02:51 EAT_
 - **Custom Medical Artwork & Page-by-Page Study Visuals (`TopicVisuals.jsx` & `assets/data/topic-visuals-manifest.json`)**:
   - 9 AI-generated anatomical plates + 9 crisp vector-to-WebP clinical plates (`assets/images/medical-illustrations/`).
   - Colored page-by-page numbered note cards, shapes, diamond bullets, Clinical Pearls, Red Flag alerts, dynamic 5-step workflows, and clinical reference tables across all `819` unique topics (`1,864` course lessons & `48` eBook chapters); purged `2,382` corrupt/low-res legacy images.
-- **Upgraded & Expanded Medical Instrument Atlas (`146` Instruments — `medical-instruments.json` & `InstrumentsPage.jsx`)**:
+- **Upgraded & Expanded Medical Instrument Atlas (`146` Instruments — `medical-instruments.json`, `InstrumentsPage.jsx` & `udemy.css`)**:
   - Enhanced all `108` clean studio WebP plates, removed duplicates/misspellings, and generated `38` new custom 800x600 clinical vector WebP plates (Airway, Midwifery, IV/Medication, Diagnostic, Theatre) with specific `use`, `preparation`, `sterilization`, `safety`, and 4 OSCE exam points per instrument.
+  - Replaced category dropdown with interactive pill filter buttons with live counts, and upgraded cards + detail inspector to premium clinical cards with IPC tags and 4-point UNMEB OSCE checklists.
 - **Free Major Topic Quizzes (`/quizzes` — `270` Questions across 10 Topics)**:
   - `27` questions per major topic (~70% Single-Choice, ~15% Multi-Choice, ~15% True/False), mandatory Sign-In gate, instant breakdowns & clinical rationales, MySQL tracking (`quiz_attempts`), and automatic result email delivery (`POST /api/quiz-submit`).
 - **Course Session Quizzes (5 Qs), Final Evaluations (30 Qs) & Certificates (`CoursePlayerPage.jsx` & `CertificateCard.jsx`)**:
@@ -30,6 +31,6 @@ _Last Updated: 2026-11-24 02:51 EAT_
   - Comprehensive Terms of Service, Uganda Data Protection & Privacy Act (2019) aligned Privacy & Cookies Policy, Editorial & National Clinical Guideline Hierarchy Policy, UNMEB/UNMC/MoH Non-Affiliation Notice, Acceptable Use/Refund Policy, and Certificate Non-Licensure Disclaimers.
 
 ## ⏳ Operational / Manual Production Items
-- **Push local `main` commits to GitHub (`git push origin main`)** once network access to `github.com:443` is restored so Hostinger auto-deploys the latest build (`140.82.121.4:443` TCP connection timed out during automated push).
+- **Push local `main` commits to GitHub (`git push origin main`)** once network access to `github.com:443` is restored so Hostinger auto-deploys the latest build.
 - Switch `PAYPAL_MODE` from `sandbox` to `live` in Hostinger Environment Variables when ready to accept live billing.
 - Optional: Upload `nu-variant-3-192.png` App Logo manually on Google Cloud Console Branding page (`https://console.cloud.google.com/auth/branding`).

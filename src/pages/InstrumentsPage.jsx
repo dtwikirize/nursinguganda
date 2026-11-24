@@ -1,6 +1,15 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { Search } from "lucide-react";
+import {
+  ArrowRight,
+  CheckCircle2,
+  ClipboardCheck,
+  Search,
+  ShieldAlert,
+  Sparkles,
+  Wrench,
+  X
+} from "lucide-react";
 import AdSlot from "../components/AdSlot";
 import ReferencesBox from "../components/ReferencesBox";
 
@@ -19,6 +28,23 @@ const INSTRUMENT_REFS = [
   }
 ];
 
+function getShortCategoryLabel(title) {
+  return String(title || "")
+    .replace(" And ", " & ")
+    .replace(" Equipment", "")
+    .replace(" Instruments", "")
+    .replace(" Care", "");
+}
+
+function getSterileBadge(sterilizationText = "") {
+  const s = sterilizationText.toLowerCase();
+  if (s.includes("autoclave")) return "Steam Autoclave";
+  if (s.includes("single-use") || s.includes("disposable")) return "Sterile Single-Use";
+  if (s.includes("high-level disinfection") || s.includes("glutaraldehyde")) return "HLD / Disinfect";
+  if (s.includes("chlorine") || s.includes("alcohol")) return "0.5% Chlorine / Alcohol";
+  return "IPC Standard";
+}
+
 export default function InstrumentsPage() {
   const [searchParams] = useSearchParams();
   const initialCatParam = searchParams.get("cat") || "";
@@ -26,6 +52,7 @@ export default function InstrumentsPage() {
   const [q, setQ] = useState("");
   const [cat, setCat] = useState("All");
   const [selected, setSelected] = useState(null);
+  const detailRef = useRef(null);
 
   useEffect(() => {
     fetch("/assets/data/medical-instruments.json")
@@ -44,19 +71,35 @@ export default function InstrumentsPage() {
     return data.categories.flatMap((c) => c.items || []);
   }, [data]);
 
-  const categories = useMemo(() => {
-    if (!data?.categories) return ["All"];
-    return ["All", ...data.categories.map((c) => c.title)];
-  }, [data]);
+  const categoryButtons = useMemo(() => {
+    if (!data?.categories) return [{ title: "All", label: "All Instruments", count: 0 }];
+    return [
+      { title: "All", label: "All Instruments", count: allItems.length },
+      ...data.categories.map((c) => ({
+        title: c.title,
+        label: getShortCategoryLabel(c.title),
+        count: (c.items || []).length
+      }))
+    ];
+  }, [data, allItems.length]);
 
   const filtered = useMemo(() => {
     const query = q.trim().toLowerCase();
     return allItems.filter((it) => {
       if (cat !== "All" && it.category !== cat) return false;
       if (!query) return true;
-      return `${it.name} ${it.category} ${it.use} ${it.safety}`.toLowerCase().includes(query);
+      return `${it.name} ${it.category} ${it.use} ${it.safety} ${it.sterilization || ""}`
+        .toLowerCase()
+        .includes(query);
     });
   }, [allItems, q, cat]);
+
+  const handleSelectInstrument = (item) => {
+    setSelected(item);
+    setTimeout(() => {
+      detailRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }, 40);
+  };
 
   if (!data) {
     return (
@@ -67,70 +110,168 @@ export default function InstrumentsPage() {
   }
 
   return (
-    <main>
+    <main style={{ background: "#F8FAFC" }}>
       <section className="nu-cl-hero">
         <div className="nu-container">
-          <span className="nu-badge nu-badge-free" style={{ marginBottom: 10 }}>OSCE Visual Reference</span>
+          <span className="nu-badge nu-badge-free" style={{ marginBottom: 10 }}>
+            <Sparkles size={13} style={{ display: "inline", marginRight: 4 }} /> OSCE Visual &amp; Sterile Reference
+          </span>
           <h1>Medical Instrument Atlas ({data.count} Instruments)</h1>
-          <p className="nu-cl-subtitle" style={{ maxWidth: 720 }}>
-            Visual identification, clinical use, sterile preparation, and OSCE exam safety points for surgical, obstetric, airway, and ward equipment.
+          <p className="nu-cl-subtitle" style={{ maxWidth: 740 }}>
+            High-resolution identification plates, clinical indications, steam autoclaving / IPC reprocessing standards, and 4-point UNMEB OSCE exam checklists.
           </p>
         </div>
       </section>
 
-      <section className="nu-section">
+      <section className="nu-section" style={{ paddingTop: 28 }}>
         <div className="nu-container">
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginBottom: 24 }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 8, border: "1px solid var(--nu-border)", padding: "0 12px", height: 42, flex: "1 1 260px", maxWidth: 420 }}>
-              <Search size={16} color="#6a6f73" />
+          {/* Search + Result Counter Row */}
+          <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 14, marginBottom: 16 }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 10,
+                border: "1px solid #cbd5e1",
+                borderRadius: 999,
+                background: "#fff",
+                padding: "0 16px",
+                height: 44,
+                flex: "1 1 300px",
+                maxWidth: 480,
+                boxShadow: "0 2px 6px rgba(15, 23, 42, 0.04)"
+              }}
+            >
+              <Search size={17} color="#6a6f73" />
               <input
                 type="search"
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
-                placeholder="Search forceps, speculum, stethoscope, airway..."
-                style={{ border: 0, outline: "none", width: "100%" }}
+                placeholder="Search forceps, speculum, cannula, ambu bag, laryngoscope..."
+                style={{ border: 0, outline: "none", width: "100%", fontSize: "0.92rem", background: "transparent" }}
               />
             </div>
 
-            <select
-              value={cat}
-              onChange={(e) => setCat(e.target.value)}
-              style={{ height: 42, padding: "0 12px", border: "1px solid var(--nu-border)", background: "#fff" }}
-            >
-              {categories.map((c) => <option key={c} value={c}>{c}</option>)}
-            </select>
+            <div style={{ fontSize: "0.88rem", color: "var(--nu-ink-muted)", fontWeight: 600 }}>
+              Showing <strong>{filtered.length}</strong> of {data.count} clinical instruments
+              {(q || cat !== "All") && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setQ("");
+                    setCat("All");
+                  }}
+                  style={{
+                    marginLeft: 10,
+                    background: "none",
+                    border: "none",
+                    color: "#A137F2",
+                    fontWeight: 700,
+                    cursor: "pointer",
+                    textDecoration: "underline"
+                  }}
+                >
+                  Reset filters
+                </button>
+              )}
+            </div>
           </div>
 
+          {/* Interactive Category Pill Filter Buttons (No Dropdown) */}
+          <div className="nu-inst-filter-bar" role="group" aria-label="Filter instruments by clinical category">
+            {categoryButtons.map((cb) => {
+              const isActive = cat === cb.title;
+              return (
+                <button
+                  key={cb.title}
+                  type="button"
+                  className={`nu-inst-filter-btn ${isActive ? "active" : ""}`}
+                  aria-pressed={isActive}
+                  onClick={() => {
+                    setCat(cb.title);
+                    setSelected(null);
+                  }}
+                >
+                  <span>{cb.label}</span>
+                  <span className="nu-inst-filter-count">{cb.count}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Premium Selected Instrument Detail Inspector */}
           {selected && (
-            <div style={{ border: "2px solid var(--nu-purple)", padding: 24, marginBottom: 28, background: "#fff" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 16 }}>
+            <div ref={detailRef} className="nu-inst-detail-panel">
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 16, flexWrap: "wrap", borderBottom: "1px solid #f1f5f9", paddingBottom: 14 }}>
                 <div>
-                  <span className="nu-badge nu-badge-highyield">{selected.category}</span>
-                  <h2 style={{ margin: "8px 0" }}>{selected.name}</h2>
+                  <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center", marginBottom: 6 }}>
+                    <span className="nu-badge nu-badge-highyield">{selected.category}</span>
+                    {selected.sterilization && (
+                      <span className="nu-inst-ipc-tag">
+                        <CheckCircle2 size={13} /> {getSterileBadge(selected.sterilization)}
+                      </span>
+                    )}
+                  </div>
+                  <h2 style={{ margin: 0, fontSize: "1.45rem" }}>{selected.name}</h2>
                 </div>
-                <button type="button" className="nu-btn nu-btn-outline" onClick={() => setSelected(null)}>
-                  Close Detail
+                <button
+                  type="button"
+                  className="nu-btn nu-btn-outline"
+                  style={{ height: 36, padding: "0 12px", fontSize: "0.84rem" }}
+                  onClick={() => setSelected(null)}
+                >
+                  <X size={15} /> Close Inspector
                 </button>
               </div>
-              <div style={{ display: "grid", gridTemplateColumns: "240px 1fr", gap: 24, marginTop: 12 }}>
-                <img
-                  src={`/${selected.image}`}
-                  alt={selected.imageAlt || selected.name}
-                  style={{ width: "100%", height: 200, objectFit: "contain", border: "1px solid var(--nu-border-light)", background: "#fff" }}
-                />
-                <div style={{ display: "grid", gap: 10, fontSize: "0.94rem" }}>
-                  <p style={{ margin: 0 }}><strong>Clinical Use:</strong> {selected.use}</p>
-                  <p style={{ margin: 0 }}><strong>Preparation Before Use:</strong> {selected.preparation}</p>
-                  {selected.sterilization && (
-                    <p style={{ margin: 0 }}><strong>Sterilization &amp; Reprocessing:</strong> {selected.sterilization}</p>
-                  )}
-                  <p style={{ margin: 0 }}><strong>Safety Point:</strong> {selected.safety}</p>
+
+              <div className="nu-inst-detail-grid">
+                <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 10, padding: 14, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <img
+                    src={`/${selected.image}`}
+                    alt={selected.imageAlt || selected.name}
+                    style={{ width: "100%", height: 220, objectFit: "contain", background: "#fff", borderRadius: 6 }}
+                  />
+                </div>
+
+                <div style={{ display: "grid", gap: 12, fontSize: "0.94rem" }}>
+                  <div style={{ padding: "10px 14px", background: "#FAF5FF", borderLeft: "4px solid #A137F2", borderRadius: "0 6px 6px 0" }}>
+                    <strong style={{ color: "#5b21b6", display: "block", marginBottom: 2 }}>Clinical Use &amp; Indications</strong>
+                    <span>{selected.use}</span>
+                  </div>
+
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 12 }}>
+                    <div style={{ padding: 12, border: "1px solid #e2e8f0", borderRadius: 8, background: "#fff" }}>
+                      <strong style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 4, fontSize: "0.86rem" }}>
+                        <Wrench size={14} color="#0284c7" /> Pre-Procedure Setup
+                      </strong>
+                      <span style={{ fontSize: "0.86rem", color: "#334155" }}>{selected.preparation}</span>
+                    </div>
+
+                    {selected.sterilization && (
+                      <div style={{ padding: 12, border: "1px solid #bbf7d0", borderRadius: 8, background: "#f0fdf4" }}>
+                        <strong style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 4, fontSize: "0.86rem", color: "#166534" }}>
+                          <CheckCircle2 size={14} /> Sterilization / IPC
+                        </strong>
+                        <span style={{ fontSize: "0.86rem", color: "#14532d" }}>{selected.sterilization}</span>
+                      </div>
+                    )}
+                  </div>
+
+                  <div style={{ padding: "10px 14px", background: "#FEFCE8", border: "1px solid #FDE047", borderRadius: 8, display: "flex", gap: 10, alignItems: "flex-start" }}>
+                    <ShieldAlert size={17} color="#a16207" style={{ flexShrink: 0, marginTop: 2 }} />
+                    <div style={{ fontSize: "0.88rem", color: "#713F12" }}>
+                      <strong>Patient Safety Watchpoint:</strong> {selected.safety}
+                    </div>
+                  </div>
+
                   {selected.examPoints && (
-                    <div>
-                      <strong>OSCE / Practical Exam Points:</strong>
-                      <ul style={{ margin: "6px 0 0", paddingLeft: 18 }}>
+                    <div style={{ padding: 14, border: "1px solid #e2e8f0", borderRadius: 8, background: "#f8fafc" }}>
+                      <strong style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 8 }}>
+                        <ClipboardCheck size={16} color="#A137F2" /> UNMEB OSCE Practical Checklist
+                      </strong>
+                      <ol style={{ margin: 0, paddingLeft: 20, display: "grid", gap: 5, fontSize: "0.88rem", color: "#334155" }}>
                         {selected.examPoints.map((pt, i) => <li key={i}>{pt}</li>)}
-                      </ul>
+                      </ol>
                     </div>
                   )}
                 </div>
@@ -138,35 +279,60 @@ export default function InstrumentsPage() {
             </div>
           )}
 
-          <div className="nu-course-grid">
-            {filtered.map((item) => (
+          {/* Premium Instrument Cards Grid */}
+          {filtered.length === 0 ? (
+            <div style={{ padding: 48, textAlign: "center", background: "#fff", borderRadius: 12, border: "1px solid #e2e8f0" }}>
+              <h3 style={{ margin: "0 0 8px" }}>No matching instruments found</h3>
+              <p style={{ color: "var(--nu-ink-muted)", marginBottom: 16 }}>
+                Try another keyword or clear your category filter.
+              </p>
               <button
-                key={item.slug}
                 type="button"
-                onClick={() => setSelected(item)}
-                style={{
-                  textAlign: "left",
-                  border: "1px solid var(--nu-border)",
-                  background: "#fff",
-                  padding: 12,
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 8
+                className="nu-btn nu-btn-primary"
+                onClick={() => {
+                  setQ("");
+                  setCat("All");
                 }}
               >
-                <div style={{ aspectRatio: "16/10", background: "#fff", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <img
-                    src={`/${item.image}`}
-                    alt={item.name}
-                    style={{ maxHeight: "100%", maxWidth: "100%", objectFit: "contain" }}
-                    loading="lazy"
-                  />
-                </div>
-                <strong style={{ fontSize: "0.95rem" }}>{item.name}</strong>
-                <small style={{ color: "var(--nu-ink-muted)" }}>{item.category}</small>
+                Show All {data.count} Instruments
               </button>
-            ))}
-          </div>
+            </div>
+          ) : (
+            <div className="nu-inst-grid">
+              {filtered.map((item) => {
+                const isSelected = selected?.slug === item.slug;
+                return (
+                  <button
+                    key={item.slug}
+                    type="button"
+                    className={`nu-inst-card ${isSelected ? "selected" : ""}`}
+                    onClick={() => handleSelectInstrument(item)}
+                  >
+                    <div className="nu-inst-card-media">
+                      <span className="nu-inst-cat-pill">{getShortCategoryLabel(item.category)}</span>
+                      <img
+                        src={`/${item.image}`}
+                        alt={item.name}
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="nu-inst-card-body">
+                      <h3 className="nu-inst-card-title">{item.name}</h3>
+                      <p className="nu-inst-card-desc">{item.use}</p>
+                      <div className="nu-inst-card-foot">
+                        <span className="nu-inst-ipc-tag">
+                          {getSterileBadge(item.sterilization)}
+                        </span>
+                        <span style={{ color: "#A137F2", fontWeight: 700, display: "inline-flex", alignItems: "center", gap: 3 }}>
+                          OSCE Guide <ArrowRight size={13} />
+                        </span>
+                      </div>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          )}
 
           <AdSlot slot="instruments-bottom" />
           <ReferencesBox references={INSTRUMENT_REFS} heading="Instrument &amp; Sterile Technique References" />
