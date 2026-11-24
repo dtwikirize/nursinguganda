@@ -1808,7 +1808,7 @@ img {
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--nu-purple);
+  color: #0f172a;
 }
 .nu-visual-domain-pill {
   font-size: 0.72rem;
@@ -2943,13 +2943,14 @@ img {
 }
 .nu-visual-split-tag {
   align-self: flex-start;
-  background: #7c3aed;
-  color: #ffffff;
+  background: transparent;
+  color: #334155;
+  border: 1px solid #cbd5e1;
   font-size: 0.7rem;
-  font-weight: 800;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  padding: 4px 10px;
+  padding: 2px 9px;
   border-radius: 999px;
 }
 .nu-visual-split-info h4 {
@@ -3234,13 +3235,13 @@ img {
   align-self: flex-start;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  font-size: 0.72rem;
+  font-size: 0.74rem;
   font-weight: 700;
-  color: #7e22ce;
-  background: #f3e8ff;
-  padding: 4px 10px;
-  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #475569;
+  background: transparent;
+  padding: 0;
 }
 .nu-auth-head h1 {
   margin: 4px 0 0;

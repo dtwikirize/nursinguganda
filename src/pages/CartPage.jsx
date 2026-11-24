@@ -222,8 +222,8 @@ export default function CartPage() {
                   }}
                 >
                   <div style={{ flex: "1 1 280px" }}>
-                    <div style={{ fontSize: "0.75rem", fontWeight: 800, color: "#6d28d9", textTransform: "uppercase", marginBottom: 4 }}>
-                      <Sparkles size={13} style={{ display: "inline", marginRight: 4 }} /> Recommended Exam Add-On
+                    <div style={{ fontSize: "0.75rem", fontWeight: 800, color: "#0f172a", textTransform: "uppercase", marginBottom: 4 }}>
+                      Recommended Exam Add-On
                     </div>
                     <strong style={{ display: "block", fontSize: "0.98rem" }}>
                       {UNMEB_PASS_ITEM.title}

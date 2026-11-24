@@ -108,7 +108,7 @@ export default function NurseTopicsPage() {
       <section className="nu-cl-hero">
         <div className="nu-container">
           <span className="nu-badge nu-badge-free" style={{ marginBottom: 10 }}>
-            <Sparkles size={13} style={{ display: "inline", marginRight: 5 }} /> {topics.length} Clinical Study Topics · UNMEB &amp; MoH Aligned
+            {topics.length} Clinical Study Topics · UNMEB &amp; MoH Aligned
           </span>
           <h1>Nurse Topics &amp; Clinical Study Notes</h1>
           <p style={{ maxWidth: 740, color: "#cbd5e1", margin: "10px 0 0", fontSize: "1.02rem" }}>

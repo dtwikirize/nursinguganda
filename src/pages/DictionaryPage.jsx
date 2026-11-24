@@ -114,7 +114,7 @@ export default function DictionaryPage() {
       <section className="nu-cl-hero">
         <div className="nu-container">
           <span className="nu-badge nu-badge-free" style={{ marginBottom: 10 }}>
-            <Sparkles size={13} style={{ display: "inline", marginRight: 4 }} /> Complete A–Z Clinical Glossary
+            Complete A–Z Clinical Glossary
           </span>
           <h1>Nursing &amp; Medical Dictionary ({data.terms.length} Terms · {data.abbreviations.length} Abbreviations)</h1>
           <p className="nu-cl-subtitle" style={{ maxWidth: 740 }}>

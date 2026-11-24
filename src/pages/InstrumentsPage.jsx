@@ -123,7 +123,7 @@ export default function InstrumentsPage() {
       <section className="nu-cl-hero">
         <div className="nu-container">
           <span className="nu-badge nu-badge-free" style={{ marginBottom: 10 }}>
-            <Sparkles size={13} style={{ display: "inline", marginRight: 4 }} /> OSCE Visual &amp; Sterile Reference
+            OSCE Visual &amp; Sterile Reference
           </span>
           <h1>Medical Instrument Atlas ({data.count} Instruments)</h1>
           <p className="nu-cl-subtitle" style={{ maxWidth: 740 }}>

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import { ArrowLeft, Eye, EyeOff, Lock, MailCheck, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowLeft, Eye, EyeOff, Lock, MailCheck, ShieldCheck } from "lucide-react";
 import { useApp } from "../context/AppContext";
 import nuLogo from "../../assets/images/brand/nursing-uganda-logo-light.svg";
 
@@ -213,7 +213,7 @@ export default function LoginPage() {
 
           <div className="nu-auth-head">
             <span className="nu-auth-pill">
-              <Sparkles size={12} /> Nursing Uganda Student Portal
+              Nursing Uganda Student Portal
             </span>
             <h1>
               {mode === "verify"

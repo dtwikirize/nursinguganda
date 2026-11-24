@@ -1,5 +1,5 @@
 import React from "react";
-import { AlertTriangle, CheckCircle2, Layers, Sparkles, Table2 } from "lucide-react";
+import { AlertTriangle, CheckCircle2, Layers, Table2 } from "lucide-react";
 import RichText from "./RichText";
 
 const IMAGE_VERSION = "20261124f";
@@ -550,7 +550,7 @@ export default function TopicVisuals({ lesson, topicTitle }) {
         <div className="nu-visual-plate-box">
           <div className="nu-visual-head">
             <span className="nu-visual-kicker">
-              <Sparkles size={14} /> Medical Textbook Illustration &amp; Anatomy Plate
+              Medical Textbook Illustration &amp; Anatomy Plate
             </span>
             <span className="nu-visual-domain-pill">{tableData.badge}</span>
           </div>
