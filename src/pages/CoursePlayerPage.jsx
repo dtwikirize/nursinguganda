@@ -4,6 +4,8 @@ import {
   ArrowLeft,
   Award,
   CheckCircle2,
+  ChevronLeft,
+  ChevronRight,
   Circle,
   Lock,
   MessageSquare,
@@ -145,12 +147,19 @@ export default function CoursePlayerPage() {
   }
 
   const currentIdx = flatTopics.findIndex((t) => t.slug === activeTopic.slug);
+  const prevTopic = currentIdx > 0 ? flatTopics[currentIdx - 1] : null;
   const nextTopic = currentIdx >= 0 && currentIdx + 1 < flatTopics.length ? flatTopics[currentIdx + 1] : null;
+
+  const goToTopic = (topic) => {
+    if (!topic) return;
+    navigate(`/learn/${courseSlug}/${topic.slug}`);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   const handleMarkAndNext = async () => {
     await toggleLessonComplete(courseSlug, activeTopic.slug, !completedSet.has(activeTopic.slug));
     if (nextTopic) {
-      navigate(`/learn/${courseSlug}/${nextTopic.slug}`);
+      goToTopic(nextTopic);
     }
   };
 
@@ -179,10 +188,54 @@ export default function CoursePlayerPage() {
           </strong>
         </div>
 
-        <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <span style={{ fontSize: "0.82rem", color: "#cbd5e1" }}>
             {completedCount} of {flatTopics.length} completed ({pct}%)
           </span>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+            <button
+              type="button"
+              disabled={!prevTopic}
+              onClick={() => goToTopic(prevTopic)}
+              title={prevTopic ? `Previous: ${prevTopic.title}` : "First topic"}
+              aria-label={prevTopic ? `Previous lesson: ${prevTopic.title}` : "No previous lesson"}
+              style={{
+                background: "transparent",
+                border: "1px solid #4b5563",
+                color: prevTopic ? "#fff" : "#64748b",
+                padding: "6px 10px",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 4,
+                fontSize: "0.82rem",
+                cursor: prevTopic ? "pointer" : "not-allowed",
+                opacity: prevTopic ? 1 : 0.6
+              }}
+            >
+              <ChevronLeft size={15} /> Previous
+            </button>
+            <button
+              type="button"
+              disabled={!nextTopic}
+              onClick={() => goToTopic(nextTopic)}
+              title={nextTopic ? `Next: ${nextTopic.title}` : "Last topic"}
+              aria-label={nextTopic ? `Next lesson: ${nextTopic.title}` : "No next lesson"}
+              style={{
+                background: "transparent",
+                border: "1px solid #4b5563",
+                color: nextTopic ? "#fff" : "#64748b",
+                padding: "6px 10px",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 4,
+                fontSize: "0.82rem",
+                cursor: nextTopic ? "pointer" : "not-allowed",
+                opacity: nextTopic ? 1 : 0.6
+              }}
+            >
+              Next <ChevronRight size={15} />
+            </button>
+          </div>
           <button
             type="button"
             onClick={() => setSidebarOpen((v) => !v)}
@@ -244,8 +297,8 @@ export default function CoursePlayerPage() {
               {/* Medical Illustrations, Napkin Study Flowchart & Clinical Reference Table */}
               <TopicVisuals lesson={activeLesson} topicTitle={activeTopic.title} />
 
-              {/* Page-by-Page Color-Organized Notes */}
-              <LessonSections sections={activeLesson.sections || []} headingTag="h2" />
+              {/* Clean Monochrome Study Notes with Inline Anatomical Plates */}
+              <LessonSections sections={activeLesson.sections || []} lesson={activeLesson} topicTitle={activeTopic.title} headingTag="h2" />
 
               {/* AdSense only on Free Preview / Free Courses — NEVER on Paid Player */}
               {(!course.isFree && activeTopic.isFreePreview && !enrolled) || course.isFree ? (
@@ -258,18 +311,40 @@ export default function CoursePlayerPage() {
                 heading="Topic References &amp; Clinical Sources"
               />
 
-              {/* Complete & Continue Bar */}
+              {/* Complete & Course Navigation Bar */}
               <div style={{ display: "flex", flexWrap: "wrap", gap: 12, justifyContent: "space-between", alignItems: "center", marginTop: 28, paddingTop: 20, borderTop: "1px solid var(--nu-border)" }}>
-                <button
-                  type="button"
-                  className={`nu-btn ${completedSet.has(activeTopic.slug) ? "nu-btn-outline" : "nu-btn-primary"}`}
-                  onClick={handleMarkAndNext}
-                >
-                  <CheckCircle2 size={16} />
-                  {completedSet.has(activeTopic.slug)
-                    ? nextTopic ? "Completed — Next Lesson" : "Completed"
-                    : nextTopic ? "Mark Complete & Continue" : "Mark Lesson Complete"}
-                </button>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center" }}>
+                  <button
+                    type="button"
+                    disabled={!prevTopic}
+                    className="nu-btn nu-btn-outline"
+                    onClick={() => goToTopic(prevTopic)}
+                    title={prevTopic ? prevTopic.title : "Start of course"}
+                    style={{ opacity: prevTopic ? 1 : 0.5, cursor: prevTopic ? "pointer" : "not-allowed" }}
+                  >
+                    <ChevronLeft size={16} /> Previous Lesson
+                  </button>
+                  <button
+                    type="button"
+                    className={`nu-btn ${completedSet.has(activeTopic.slug) ? "nu-btn-outline" : "nu-btn-primary"}`}
+                    onClick={handleMarkAndNext}
+                  >
+                    <CheckCircle2 size={16} />
+                    {completedSet.has(activeTopic.slug)
+                      ? nextTopic ? "Completed — Next Lesson" : "Completed"
+                      : nextTopic ? "Mark Complete & Continue" : "Mark Lesson Complete"}
+                  </button>
+                  <button
+                    type="button"
+                    disabled={!nextTopic}
+                    className="nu-btn nu-btn-outline"
+                    onClick={() => goToTopic(nextTopic)}
+                    title={nextTopic ? nextTopic.title : "End of course"}
+                    style={{ opacity: nextTopic ? 1 : 0.5, cursor: nextTopic ? "pointer" : "not-allowed" }}
+                  >
+                    Next Lesson <ChevronRight size={16} />
+                  </button>
+                </div>
                 {!enrolled && !course.isFree && (
                   <button
                     type="button"
@@ -283,7 +358,38 @@ export default function CoursePlayerPage() {
                   </button>
                 )}
               </div>
+              <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", gap: 8, marginTop: 10, fontSize: "0.8rem", color: "var(--nu-ink-muted)" }}>
+                <span>{prevTopic ? `← ${prevTopic.title}` : "Start of unit"}</span>
+                <span>Topic {currentIdx + 1} of {flatTopics.length}</span>
+                <span>{nextTopic ? `${nextTopic.title} →` : "Final topic"}</span>
+              </div>
             </article>
+          )}
+
+          {!canViewLesson && (
+            <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: 10, marginTop: 18 }}>
+              <button
+                type="button"
+                disabled={!prevTopic}
+                className="nu-btn nu-btn-outline"
+                onClick={() => goToTopic(prevTopic)}
+                style={{ opacity: prevTopic ? 1 : 0.5, cursor: prevTopic ? "pointer" : "not-allowed" }}
+              >
+                <ChevronLeft size={16} /> Previous Lesson
+              </button>
+              <span style={{ fontSize: "0.84rem", color: "var(--nu-ink-muted)" }}>
+                Topic {currentIdx + 1} of {flatTopics.length}
+              </span>
+              <button
+                type="button"
+                disabled={!nextTopic}
+                className="nu-btn nu-btn-outline"
+                onClick={() => goToTopic(nextTopic)}
+                style={{ opacity: nextTopic ? 1 : 0.5, cursor: nextTopic ? "pointer" : "not-allowed" }}
+              >
+                Next Lesson <ChevronRight size={16} />
+              </button>
+            </div>
           )}
 
           {/* Udemy Bottom Tabs: Overview | Q&A | Personal Notes | Session Quiz (5 Qs) | Final Evaluation (30 Qs) */}

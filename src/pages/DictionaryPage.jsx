@@ -16,6 +16,11 @@ export default function DictionaryPage() {
   const [cat, setCat] = useState("All");
   const [letter, setLetter] = useState("ALL");
   const [tab, setTab] = useState(initialTab);
+  const [visibleLimit, setVisibleLimit] = useState(48);
+
+  useEffect(() => {
+    setVisibleLimit(48);
+  }, [tab, q, cat, letter]);
 
   useEffect(() => {
     fetch("/assets/data/dictionary.json")
@@ -66,15 +71,20 @@ export default function DictionaryPage() {
     });
   }, [data, q, cat, letter]);
 
+  const paginatedTerms = useMemo(() => {
+    if (letter !== "ALL" || q.trim()) return filteredTerms;
+    return filteredTerms.slice(0, visibleLimit);
+  }, [filteredTerms, letter, q, visibleLimit]);
+
   const groupedTerms = useMemo(() => {
     const groups = new Map();
-    for (const t of filteredTerms) {
+    for (const t of paginatedTerms) {
       const ch = (t.term || "#")[0].toUpperCase();
       if (!groups.has(ch)) groups.set(ch, []);
       groups.get(ch).push(t);
     }
     return [...groups.entries()].sort((a, b) => a[0].localeCompare(b[0]));
-  }, [filteredTerms]);
+  }, [paginatedTerms]);
 
   const filteredAbbr = useMemo(() => {
     if (!data?.abbreviations) return [];
@@ -293,6 +303,18 @@ export default function DictionaryPage() {
                     </div>
                   </section>
                 ))}
+
+                {letter === "ALL" && !q.trim() && paginatedTerms.length < filteredTerms.length && (
+                  <div style={{ textAlign: "center", paddingTop: 6 }}>
+                    <button
+                      type="button"
+                      className="nu-btn nu-btn-outline nu-btn-lg"
+                      onClick={() => setVisibleLimit((v) => v + 60)}
+                    >
+                      Show More Medical Terms (Showing {paginatedTerms.length} of {filteredTerms.length})
+                    </button>
+                  </div>
+                )}
               </div>
             )
           ) : (

@@ -106,7 +106,7 @@ export function buildSessionQuiz(lesson, course, topicQuizzesData) {
   }
 
   const chosenSingles = customSingle ? [customSingle, ...singles.slice(0, 2)] : singles;
-  const combined = [...chosenSingles, ...multis, ...bools].slice(0, 5);
+  const combined = seededPick([...chosenSingles, ...multis, ...bools].slice(0, 5), 5, seed, 99);
   return combined.map((q, idx) => ({ ...q, qNum: idx + 1 }));
 }
 
@@ -139,7 +139,7 @@ export function buildFinalEvaluation(course, topicQuizzesData) {
   const pickedMulti = seededPick(multiPool, 5, seed, 22);
   const pickedBool = seededPick(boolPool, 4, seed, 33);
 
-  const combined = [...pickedSingle, ...pickedMulti, ...pickedBool].slice(0, 30);
+  const combined = seededPick([...pickedSingle, ...pickedMulti, ...pickedBool].slice(0, 30), 30, seed, 99);
   return combined.map((q, idx) => ({ ...q, qNum: idx + 1 }));
 }
 

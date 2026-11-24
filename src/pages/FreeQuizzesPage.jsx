@@ -12,6 +12,15 @@ import {
 import { useApp } from "../context/AppContext";
 import { gradeQuizResponses } from "../utils/quizGenerator";
 
+function shuffleQuestionsMixed(questions = []) {
+  const arr = [...questions];
+  for (let i = arr.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
 export default function FreeQuizzesPage() {
   const { user, quizAttempts, submitQuizResult } = useApp();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -20,6 +29,7 @@ export default function FreeQuizzesPage() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [activeTopicId, setActiveTopicId] = useState(topicParam);
+  const [shuffleKey, setShuffleKey] = useState(0);
   const [answers, setAnswers] = useState({});
   const [result, setResult] = useState(null);
   const [submitting, setSubmitting] = useState(false);
@@ -38,13 +48,22 @@ export default function FreeQuizzesPage() {
   }, [topicParam]);
 
   const topics = data?.topics || [];
-  const activeTopic = useMemo(
+  const rawActiveTopic = useMemo(
     () => topics.find((t) => t.id === activeTopicId) || null,
     [topics, activeTopicId]
   );
 
+  const activeTopic = useMemo(() => {
+    if (!rawActiveTopic) return null;
+    return {
+      ...rawActiveTopic,
+      questions: shuffleQuestionsMixed(rawActiveTopic.questions || [])
+    };
+  }, [rawActiveTopic, shuffleKey]);
+
   const openTopic = (id) => {
     setActiveTopicId(id);
+    setShuffleKey((k) => k + 1);
     setSearchParams({ topic: id });
     setAnswers({});
     setResult(null);
@@ -287,6 +306,7 @@ export default function FreeQuizzesPage() {
                         onClick={() => {
                           setAnswers({});
                           setResult(null);
+                          setShuffleKey((k) => k + 1);
                         }}
                       >
                         <RotateCcw size={15} /> Retake Quiz

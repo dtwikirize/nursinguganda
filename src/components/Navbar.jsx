@@ -433,11 +433,17 @@ export default function Navbar() {
           </div>
 
           {/* Search Pill */}
-          <form className="nu-search-form" onSubmit={handleSearchSubmit}>
+          <form
+            className="nu-search-form"
+            onSubmit={handleSearchSubmit}
+            toolname="search_nursing_curriculum"
+            tooldescription="Search Nursing Uganda courses, lesson topics, study eBooks, drugs, and medical glossary terms."
+          >
             <div className="nu-search-box">
               <Search size={18} color="#6a6f73" />
               <input
                 type="search"
+                name="query"
                 value={query}
                 placeholder="Search courses, topics (e.g. digestive), drugs, midwifery..."
                 aria-label="Search courses and clinical topics"

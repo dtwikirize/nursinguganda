@@ -28,6 +28,11 @@ const INSTRUMENT_REFS = [
   }
 ];
 
+function normalizeInstImg(rawPath) {
+  const s = String(rawPath || "").replace(/^\//, "");
+  return s ? `/${s}?v=20261124c` : "";
+}
+
 function getShortCategoryLabel(title) {
   return String(title || "")
     .replace(" And ", " & ")
@@ -228,7 +233,7 @@ export default function InstrumentsPage() {
               <div className="nu-inst-detail-grid">
                 <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 10, padding: 14, display: "flex", alignItems: "center", justifyContent: "center" }}>
                   <img
-                    src={`/${selected.image}`}
+                    src={normalizeInstImg(selected.image)}
                     alt={selected.imageAlt || selected.name}
                     style={{ width: "100%", height: 220, objectFit: "contain", background: "#fff", borderRadius: 6 }}
                   />
@@ -302,6 +307,7 @@ export default function InstrumentsPage() {
             <div className="nu-inst-grid">
               {filtered.map((item) => {
                 const isSelected = selected?.slug === item.slug;
+
                 return (
                   <button
                     key={item.slug}
@@ -312,7 +318,7 @@ export default function InstrumentsPage() {
                     <div className="nu-inst-card-media">
                       <span className="nu-inst-cat-pill">{getShortCategoryLabel(item.category)}</span>
                       <img
-                        src={`/${item.image}`}
+                        src={normalizeInstImg(item.image)}
                         alt={item.name}
                         loading="lazy"
                       />

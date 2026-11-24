@@ -49,7 +49,8 @@ const dataFiles = [
   "mock-exams.json",
   "references.json",
   "topic-visuals-manifest.json",
-  "topic-quizzes.json"
+  "topic-quizzes.json",
+  "unmeb-essay-papers.json"
 ];
 for (const f of dataFiles) {
   copyFileSafe(path.join("assets", "data", f));
@@ -85,10 +86,11 @@ if (fs.existsSync(distHtmlPath)) {
 // 3. Hostinger PHP + MySQL API (never overwrite live config.php)
 copyDirSafe("api", "api", new Set(["config.php"]));
 
-// 4. Root hosting & SEO files
-for (const rootFile of [".htaccess", "manifest.webmanifest", "robots.txt", "sitemap.xml", "_offline.html", "404.html"]) {
+// 4. Root hosting, agent-readiness & SEO files
+for (const rootFile of [".htaccess", "manifest.webmanifest", "robots.txt", "llms.txt", "sitemap.xml", "_offline.html", "404.html"]) {
   copyFileSafe(rootFile);
 }
+copyDirSafe(".well-known");
 
 // 5. Static SEO landing folders for crawlers
 copyDirSafe("course");

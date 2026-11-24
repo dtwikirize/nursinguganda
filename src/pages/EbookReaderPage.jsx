@@ -150,7 +150,7 @@ export default function EbookReaderPage() {
               )}
 
               <TopicVisuals lesson={ch} topicTitle={ch.title} />
-              <LessonSections sections={ch.sections || []} headingTag="h3" />
+              <LessonSections sections={ch.sections || []} lesson={ch} topicTitle={ch.title} headingTag="h3" />
 
               <ReferencesBox
                 references={ch.chapterReferences}

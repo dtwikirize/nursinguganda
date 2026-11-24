@@ -22,7 +22,9 @@ const DOMAIN_PLATES = {
   cell: "/assets/images/medical-illustrations/cell-microbiology.webp",
   obstetric: "/assets/images/medical-illustrations/obstetric-fetus-pelvis.webp",
   paediatrics: "/assets/images/medical-illustrations/paediatric-neonatal.webp",
-  pharmacology: "/assets/images/medical-illustrations/pharmacology-adme.webp",
+  pharmacology: "/assets/images/medical-illustrations/pharmacology-oral-drugs.webp",
+  pharmacology_iv: "/assets/images/medical-illustrations/pharmacology-adme.webp",
+  skeletal: "/assets/images/medical-illustrations/inline-types-of-bones.webp",
   endocrine: "/assets/images/medical-illustrations/endocrine-glands.webp",
   blood: "/assets/images/medical-illustrations/blood-immune-lymphatic.webp",
   skin: "/assets/images/medical-illustrations/skin-wound-healing.webp",
@@ -80,8 +82,14 @@ function matchDomainInString(str = "") {
   if (/\b(paediat\w*|pediat\w*|newborn|neonat\w*|infant|child\w*|apgar|imci|malnutrition|kwashiorkor|marasmus|immuniz\w*|immunis\w*|unepi|congenital|measles)\b/.test(text)) {
     return "paediatrics";
   }
-  if (/\b(drug\w*|pharmac\w*|dosage|antibiotic\w*|analgesic\w*|opioid\w*|nsaid\w*|insulin|diuretic\w*|adme|antidote\w*|autacoid\w*|histamine|cholinergic\w*|adrenergic\w*|antihelminth\w*|antifungal\w*|antiviral\w*|antimalarial\w*|antitubercular\w*|anticancer|penicillin\w*|cephalosporin\w*|sulphonamid\w*|quinolon\w*|eicosanoid\w*|prostanoid\w*|nda\b|prescription\w*|intravenous)\b/.test(text)) {
+  if (/\b(intravenous|iv\s+fluid\w*|iv\s+drip\w*|infusion\w*|cannul\w*|parenteral|fluid\s+resuscitat\w*|electrolyte\s+replacement|rehydration)\b/.test(text)) {
+    return "pharmacology_iv";
+  }
+  if (/\b(drug\w*|pharmac\w*|dosage|antibiotic\w*|analgesic\w*|opioid\w*|nsaid\w*|insulin|diuretic\w*|adme|antidote\w*|autacoid\w*|histamine|cholinergic\w*|adrenergic\w*|antihelminth\w*|antifungal\w*|antiviral\w*|antimalarial\w*|antitubercular\w*|anticancer|penicillin\w*|cephalosporin\w*|sulphonamid\w*|quinolon\w*|eicosanoid\w*|prostanoid\w*|nda\b|prescription\w*)\b/.test(text)) {
     return "pharmacology";
+  }
+  if (/\b(skeletal|skeleton|osteolog\w*|bone\w*|fracture\w*|joint\w*|arthritis|femur|patella|vertebra\w*)\b/.test(text)) {
+    return "skeletal";
   }
   if (/\b(endocrin\w*|pituitary|hypothalam\w*|adrenal|diabetes|dka|hormone\w*|parathyroid|metabolic)\b/.test(text)) {
     return "endocrine";

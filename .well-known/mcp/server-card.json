@@ -1,0 +1,111 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schemas/server-card/v1.json",
+  "name": "nursing-uganda",
+  "title": "Nursing Uganda Curriculum & Clinical Reference MCP",
+  "version": "1.0.0",
+  "description": "Read-only clinical study catalog, UNMEB mock exams, A-Z medical dictionary, and nursing instrument atlas for Ugandan nursing and midwifery learners.",
+  "homepage": "https://nursinguganda.com",
+  "documentation": "https://nursinguganda.com/llms.txt",
+  "endpoint": "https://nursinguganda.com/mcp",
+  "transport": "streamable-http",
+  "capabilities": {
+    "tools": {
+      "listChanged": false
+    },
+    "resources": {
+      "subscribe": false,
+      "listChanged": false
+    },
+    "prompts": {
+      "listChanged": false
+    }
+  },
+  "resources": [
+    {
+      "uri": "https://nursinguganda.com/llms.txt",
+      "name": "llms-txt",
+      "description": "Concise Markdown index of Nursing Uganda courses, free study eBooks, mock exams, dictionary, and legal pages.",
+      "mimeType": "text/plain"
+    },
+    {
+      "uri": "https://nursinguganda.com/assets/data/catalog.json",
+      "name": "course-catalog",
+      "description": "Complete JSON catalog of 95 nursing and midwifery course units across Certificate, Diploma, and BScN tracks.",
+      "mimeType": "application/json"
+    },
+    {
+      "uri": "https://nursinguganda.com/assets/data/dictionary.json",
+      "name": "medical-dictionary",
+      "description": "A-Z clinical nursing dictionary with 1,079+ defined medical terms and 183 ward abbreviations.",
+      "mimeType": "application/json"
+    },
+    {
+      "uri": "https://nursinguganda.com/assets/data/unmeb-essay-papers.json",
+      "name": "unmeb-essay-past-papers",
+      "description": "UNMEB Section B and Section C essay past papers with itemized marking schemes and model answers.",
+      "mimeType": "application/json"
+    }
+  ],
+  "tools": [
+    {
+      "name": "search_nursing_courses",
+      "description": "Search 95 Certificate, Diploma, and BScN nursing and midwifery units on Nursing Uganda.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Course title, unit code, or clinical topic keyword"
+          }
+        },
+        "required": ["query"]
+      }
+    },
+    {
+      "name": "lookup_medical_dictionary",
+      "description": "Look up A-Z clinical nursing terms or ward abbreviations in the Nursing Uganda Medical Dictionary.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "term": {
+            "type": "string",
+            "description": "Medical term or hospital ward abbreviation"
+          }
+        },
+        "required": ["term"]
+      }
+    },
+    {
+      "name": "find_clinical_instrument",
+      "description": "Search the Nursing Uganda Medical & Surgical Instrument Atlas by instrument name or tray category.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Instrument name or ward tray category"
+          }
+        },
+        "required": ["query"]
+      }
+    },
+    {
+      "name": "get_unmeb_mock_papers",
+      "description": "List available UNMEB objective mock exams and Section B/C essay past paper series.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["all", "objective", "essay"],
+            "description": "Filter by exam format"
+          }
+        }
+      }
+    }
+  ],
+  "contact": {
+    "email": "support@nursinguganda.com",
+    "url": "https://nursinguganda.com/contact"
+  }
+}

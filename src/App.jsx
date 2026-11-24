@@ -88,7 +88,23 @@ export default function App() {
           <Route path="/terms" element={<TrustPage pageKey="terms" />} />
           <Route path="/contact" element={<TrustPage pageKey="contact" />} />
 
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route
+            path="*"
+            element={
+              <main className="nu-section">
+                <div className="nu-container" style={{ maxWidth: 640, padding: "48px 16px" }}>
+                  <h1>404 — Page Not Found</h1>
+                  <p style={{ color: "var(--nu-ink-muted)", marginBottom: 20 }}>
+                    The study unit or resource you requested does not exist or has moved.
+                  </p>
+                  <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+                    <a href="/" className="nu-btn nu-btn-primary">Return Home</a>
+                    <a href="/courses" className="nu-btn nu-btn-outline">Browse 95 Courses</a>
+                  </div>
+                </div>
+              </main>
+            }
+          />
         </Routes>
       </Suspense>
       {!hideChrome && <Footer />}

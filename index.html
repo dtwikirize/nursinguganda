@@ -9,6 +9,9 @@
       content="Master nursing and midwifery in Uganda with structured courses, free referenced study eBooks, UNMEB mock exams, medical dictionary, and clinical tools."
     />
     <meta name="theme-color" content="#A137F2" />
+    <link rel="canonical" href="https://nursinguganda.com/" />
+    <link rel="alternate" type="text/markdown" href="/index.md" title="Markdown version" />
+    <link rel="llms-txt" href="/llms.txt" />
     <link rel="icon" href="/assets/images/brand/nu-variant-3-32.png" type="image/png" sizes="32x32" />
     <link rel="icon" href="/assets/images/brand/nu-variant-3-192.png" type="image/png" sizes="192x192" />
     <link rel="icon" href="/assets/images/brand/nu-variant-3.svg" type="image/svg+xml" />
@@ -18,21 +21,104 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="dns-prefetch" href="https://analytics.onebigfile.com" />
     <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700;900&family=Poppins:wght@600;700&display=swap"
-      onload="this.onload=null;this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@700&display=swap"
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
     <noscript>
       <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700;900&family=Poppins:wght@600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@700&display=swap"
         rel="stylesheet"
       />
     </noscript>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": ["EducationalOrganization", "Organization"],
+            "@id": "https://nursinguganda.com/#organization",
+            "name": "Nursing Uganda",
+            "url": "https://nursinguganda.com",
+            "logo": "https://nursinguganda.com/assets/images/brand/nu-variant-3-192.png",
+            "description": "Independent nursing and midwifery study platform in Uganda offering structured UNMEB revision courses, free referenced study eBooks, timed mock exams, an A-Z medical dictionary, and clinical tools.",
+            "email": "support@nursinguganda.com",
+            "telephone": "+256-700-000-000",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Kampala",
+              "addressCountry": "UG"
+            },
+            "sameAs": [
+              "https://github.com/dtwikirize/nursinguganda",
+              "https://nursinguganda.com/about",
+              "https://nursinguganda.com/editorial-policy"
+            ],
+            "contactPoint": [
+              {
+                "@type": "ContactPoint",
+                "contactType": "customer support",
+                "email": "support@nursinguganda.com",
+                "telephone": "+256-700-000-000",
+                "url": "https://nursinguganda.com/contact",
+                "areaServed": "UG",
+                "availableLanguage": ["en"]
+              },
+              {
+                "@type": "ContactPoint",
+                "contactType": "editorial",
+                "email": "editorial@nursinguganda.com",
+                "url": "https://nursinguganda.com/editorial-policy",
+                "areaServed": "UG",
+                "availableLanguage": ["en"]
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://nursinguganda.com/#website",
+            "name": "Nursing Uganda",
+            "url": "https://nursinguganda.com",
+            "publisher": { "@id": "https://nursinguganda.com/#organization" },
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://nursinguganda.com/courses?q={search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
+          }
+        ]
+      }
+    </script>
     <script defer src="https://analytics.onebigfile.com/script.js" data-website-id="c4bb829f-2996-48f0-9f73-44bf36fcef47"></script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <main style="font-family:system-ui,-apple-system,sans-serif;max-width:960px;margin:0 auto;padding:32px 20px;color:#1c1d1f">
+        <h1>Clinical mastery that gets you UNMEB-ready</h1>
+        <p>
+          Structured Certificate, Diploma &amp; BScN nursing and midwifery courses, free referenced study eBooks, UNMEB timed mock &amp; essay papers, an A–Z medical dictionary, and clinical tools aligned with Uganda Ministry of Health &amp; WHO guidelines.
+        </p>
+        <nav aria-label="Study Resources" style="margin:20px 0;display:flex;flex-wrap:wrap;gap:14px">
+          <a href="/courses">Explore 95 Nursing Courses</a>
+          <a href="/ebooks">Free Referenced Study eBooks</a>
+          <a href="/mock-exams">UNMEB Mock Exams &amp; Essay Papers</a>
+          <a href="/quizzes">Free Topic Quizzes</a>
+          <a href="/dictionary">A–Z Medical Dictionary</a>
+          <a href="/instruments">Medical Instrument Atlas</a>
+          <a href="/clinical-tools">Clinical Dosage &amp; Checklists</a>
+        </nav>
+        <footer style="margin-top:28px;padding-top:16px;border-top:1px solid #d1d7dc;font-size:14px;display:flex;flex-wrap:wrap;gap:14px">
+          <a href="/about">About Nursing Uganda</a>
+          <a href="/editorial-policy">Editorial Policy</a>
+          <a href="/contact">Contact Desk</a>
+          <a href="/privacy-policy">Privacy Policy</a>
+          <a href="/terms">Terms &amp; Medical Disclaimer</a>
+          <a href="mailto:support@nursinguganda.com">support@nursinguganda.com</a>
+          <a href="tel:+256700000000">+256 700 000 000</a>
+        </footer>
+      </main>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

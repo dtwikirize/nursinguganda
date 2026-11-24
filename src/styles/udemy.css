@@ -766,6 +766,8 @@ img {
 /* ── Sections & Tabbed Carousel ───────────────────────────── */
 .nu-section {
   padding: 28px 0 44px;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 560px;
 }
 .nu-section-head {
   margin-bottom: 20px;
@@ -1163,6 +1165,7 @@ img {
   padding: 28px 40px 64px;
   max-width: 960px;
   width: 100%;
+  min-width: 0;
   margin: 0 auto;
 }
 .nu-player-sidebar {
@@ -1345,7 +1348,7 @@ img {
   }
   .nu-cl-grid,
   .nu-player-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .nu-purchase-card {
     position: static;
@@ -1399,6 +1402,13 @@ img {
   .nu-learn-grid,
   .nu-footer-grid {
     grid-template-columns: 1fr;
+  }
+  .nu-player-bar {
+    height: auto;
+    min-height: 54px;
+    padding: 8px 14px;
+    flex-wrap: wrap;
+    gap: 8px;
   }
   .nu-player-main {
     padding: 20px 16px 48px;
@@ -1840,84 +1850,150 @@ img {
   gap: 6px;
 }
 
-/* Page-by-Page Color-Organized Notes */
+/* Clean Monochrome Lesson Notes (Variant 4 — Zero Rainbow Lines or Numbers) */
+.nu-outline-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+}
+.nu-outline-strip-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #64748b;
+  margin-right: 4px;
+}
+.nu-outline-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.nu-outline-pill {
+  padding: 5px 11px;
+  border-radius: 999px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  color: #334155;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+.nu-outline-pill:hover {
+  border-color: #cbd5e1;
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
 .nu-notes-pages {
   display: grid;
-  gap: 18px;
+  gap: 16px;
 }
 .nu-note-page-card {
   background: #ffffff;
-  border: 1px solid var(--nu-border-light);
-  border-top-width: 4px;
-  border-radius: var(--nu-radius-md);
-  padding: 20px 22px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 20px 24px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
 }
 .nu-note-page-head {
-  display: flex;
-  align-items: center;
-  gap: 12px;
   margin-bottom: 12px;
   padding-bottom: 10px;
-  border-bottom: 1px solid var(--nu-border-light);
+  border-bottom: 1px solid #f1f5f9;
 }
-.nu-note-page-num {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  border: 1.5px solid;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.8rem;
+.nu-note-section-title {
+  margin: 0;
+  font-size: 1.22rem;
   font-weight: 800;
-  flex-shrink: 0;
+  color: #0f172a;
+  letter-spacing: -0.015em;
+}
+.nu-note-subhead {
+  margin: 14px 0 6px;
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+.nu-note-subtopic {
+  color: #0f172a;
+  font-weight: 700;
 }
 .nu-note-page-body p {
-  margin: 0 0 10px;
+  margin: 0 0 11px;
   line-height: 1.72;
+  color: #1e293b;
 }
-.nu-note-styled-list {
-  margin: 4px 0 8px;
-  padding-left: 0;
-  list-style: none;
-}
-.nu-note-styled-list li {
-  position: relative;
+.nu-note-clean-list {
+  margin: 6px 0 12px;
   padding-left: 20px;
-  margin-bottom: 7px;
-  line-height: 1.62;
+  list-style: disc;
 }
-.nu-note-styled-list li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 9px;
-  width: 8px;
-  height: 8px;
+.nu-note-clean-list li {
+  margin-bottom: 7px;
+  line-height: 1.65;
+  color: #1e293b;
+}
+.nu-note-clean-list li::marker {
+  color: #64748b;
+}
+.nu-note-highlight {
+  background: #fef3c7;
+  color: #78350f;
+  padding: 1px 5px;
   border-radius: 3px;
-  background: var(--nu-purple);
-  transform: rotate(45deg);
+  font-weight: 600;
+}
+.nu-note-inline-figure {
+  margin: 16px 0 4px;
+  padding: 12px;
+  border-radius: 10px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  text-align: center;
+}
+.nu-note-inline-figure img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  max-height: 410px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: #ffffff;
+}
+.nu-note-inline-figure figcaption {
+  margin-top: 8px;
+  font-size: 0.79rem;
+  font-weight: 600;
+  color: #475569;
 }
 .nu-note-callout {
   display: flex;
   align-items: flex-start;
   gap: 10px;
   padding: 12px 14px;
-  border-radius: var(--nu-radius-sm);
-  margin: 10px 0;
+  border-radius: 8px;
+  margin: 12px 0;
   font-size: 0.94rem;
   line-height: 1.6;
 }
 .nu-note-callout--pearl {
-  background: #F7EDFF;
-  border-left: 4px solid #A137F2;
-  color: #3B0764;
+  background: #f8fafc;
+  border-left: 3px solid #94a3b8;
+  color: #1e293b;
 }
 .nu-note-callout--alert {
-  background: #FEF2F2;
-  border-left: 4px solid #DC2626;
-  color: #7F1D1D;
+  background: #fef2f2;
+  border-left: 3px solid #dc2626;
+  color: #7f1d1d;
 }
 .nu-note-callout-icon {
   margin-top: 2px;
@@ -2035,7 +2111,7 @@ img {
 .nu-inst-card-media {
   position: relative;
   height: 185px;
-  background: radial-gradient(circle at center, #ffffff 45%, #f8fafc 100%);
+  background: #ffffff;
   border-bottom: 1px solid #f1f5f9;
   display: flex;
   align-items: center;

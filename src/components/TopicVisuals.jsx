@@ -1,6 +1,17 @@
 import React from "react";
-import { Activity, AlertTriangle, ArrowRight, CheckCircle2, Layers, Sparkles, Table2 } from "lucide-react";
+import { AlertTriangle, CheckCircle2, Layers, Sparkles, Table2 } from "lucide-react";
 import RichText from "./RichText";
+
+const IMAGE_VERSION = "20261124c";
+
+function withImgVersion(src) {
+  const s = String(src || "");
+  if (!s) return s;
+  if (s.includes("/assets/images/medical-illustrations/") && !s.includes("?v=")) {
+    return `${s}?v=${IMAGE_VERSION}`;
+  }
+  return s;
+}
 
 const DOMAIN_TABLES = {
   cardiovascular: {
@@ -67,6 +78,28 @@ const DOMAIN_TABLES = {
       ["Heparin / Warfarin", "Protamine Sulfate / Vitamin K", "Monitor aPTT (Heparin) · INR 2.0–3.0 (Warfarin)"],
       ["Opioids / Morphine", "Naloxone (Narcan)", "Hold opioid if Respiratory Rate < 12 breaths/min"],
       ["Magnesium Sulfate (Eclampsia)", "Calcium Gluconate 10% (1g IV)", "Hold MgSO4 if RR < 16, Urine < 30 mL/hr, or absent patellar reflex"]
+    ]
+  },
+  pharmacology_iv: {
+    title: "Parenteral & IV Therapy Drug Calculation Reference",
+    badge: "IV & Parenteral Care",
+    headers: ["Therapy / Rule", "Formula / Monitoring Standard", "Clinical Nursing Watchpoint"],
+    rows: [
+      ["IV Drip Rate", "(Volume mL × Drop Factor) ÷ Time (min)", "Standard adult giving set = 15 or 20 gtt/mL; Burette = 60"],
+      ["Isotonic Fluids", "0.9% Sodium Chloride · Ringer's Lactate", "Monitor lung bases & JVP for fluid overload in elderly/CKD"],
+      ["Cannula Inspection", "Assess Phlebitis score & patency every shift", "Replace immediately if erythema, pain, warmth, or cord develops"],
+      ["High-Alert IV Infusions", "Heparin, Insulin, Potassium Chloride, MgSO4", "Never push undiluted KCl IV; double-check rate with second nurse"]
+    ]
+  },
+  skeletal: {
+    title: "Classification of Bones, Joints & Fracture Care",
+    badge: "Skeletal System",
+    headers: ["Bone Class / Landmark", "Anatomical Example", "High-Yield Clinical Focus"],
+    rows: [
+      ["Long Bones", "Femur, Humerus, Tibia, Radius", "Diaphysis shaft (compact bone) + vascular red marrow epiphyses"],
+      ["Short & Sesamoid Bones", "Carpals, Tarsals, Patella (kneecap)", "Shock absorption & tendon leverage across weight-bearing joints"],
+      ["Flat & Irregular Bones", "Sternum, Ribs, Skull, Vertebrae, Pelvis", "Protect vital organs & major haematopoietic bone marrow sites"],
+      ["Synovial Joints", "Hip, Knee, Shoulder (articular cartilage + synovium)", "Assess 5 Ps (Pain, Pallor, Pulselessness, Paraesthesia, Paralysis)"]
     ]
   },
   paediatrics: {
@@ -258,13 +291,89 @@ const DOMAIN_TABLES = {
   }
 };
 
-const WORKFLOW_COLORS = [
-  { bg: "#F7EDFF", border: "#A137F2", text: "#6B21A8", badge: "#A137F2" },
-  { bg: "#ECFDF5", border: "#0D9488", text: "#065F46", badge: "#0D9488" },
-  { bg: "#EFF6FF", border: "#2563EB", text: "#1E40AF", badge: "#2563EB" },
-  { bg: "#FFFBEB", border: "#D97706", text: "#92400E", badge: "#D97706" },
-  { bg: "#FDF2F8", border: "#DB2777", text: "#9D174D", badge: "#DB2777" }
-];
+function stripTrailingColon(str) {
+  return String(str || "").replace(/:\s*$/, "").trim();
+}
+
+function getInlineSectionRules() {
+  return [
+    {
+      match: /\b(type[s]?\s+of\s+bone|classification\s+of\s+bone|long\s+bone|short\s+bone|flat\s+bone|irregular\s+bone|sesamoid)\b/i,
+      src: "/assets/images/medical-illustrations/inline-types-of-bones.webp",
+      caption: "Types of Bones — Long, Short, Flat, Irregular & Sesamoid Classification"
+    },
+    {
+      match: /\b(epiphysis|diaphysis|periosteum|medullary\s+cavity|compact\s+bone|spongy\s+bone|ossification|fracture\s+healing)\b/i,
+      src: "/assets/images/medical-illustrations/inline-long-bone.webp",
+      caption: "Internal & Macroscopic Anatomy of a Long Bone"
+    },
+    {
+      match: /\b(synovial\s+joint|articular\s+cartilage|joint\s+cavity|ligament|arthritis|articulation[s]?)\b/i,
+      src: "/assets/images/medical-illustrations/inline-synovial-joint.webp",
+      caption: "Synovial Joint Anatomy & Articular Surface Changes"
+    },
+    {
+      match: /\b(lymph\s+node|germinal\s+center|immunity|immune\s+response|macrophage|lymphocyte|b[- ]?cell|t[- ]?cell)\b/i,
+      src: "/assets/images/medical-illustrations/inline-lymph-node.webp",
+      caption: "Structure of a Lymph Node & Immune Surveillance"
+    },
+    {
+      match: /\b(fluid\s+recovery|interstitial\s+fluid|lymphatic\s+capillar|thoracic\s+duct|chyle)\b/i,
+      src: "/assets/images/medical-illustrations/blood-immune-lymphatic.webp",
+      caption: "Lymphatic Drainage Pathways & Capillary Fluid Recovery"
+    },
+    {
+      match: /\b(nephron|glomerul|bowman|loop\s+of\s+henle|tubular\s+reabsorption|filtration\s+rate)\b/i,
+      src: "/assets/images/medical-illustrations/inline-nephron-filtration.webp",
+      caption: "Nephron Filtration, Reabsorption & Secretion"
+    },
+    {
+      match: /\b(alveol|gas\s+exchange|pulmonary\s+capillar|surfactant|respiratory\s+membrane)\b/i,
+      src: "/assets/images/medical-illustrations/inline-alveoli-gas-exchange.webp",
+      caption: "Pulmonary Alveoli & Capillary Gas Exchange"
+    },
+    {
+      match: /\b(heart\s+chamber|coronary|ventricle|atrium|tricuspid|mitral|aortic\s+arch)\b/i,
+      src: "/assets/images/medical-illustrations/inline-heart-anatomy.webp",
+      caption: "Anterior & Posterior Cardiac Anatomy"
+    },
+    {
+      match: /\b(neuron|axon|dendrite|synapse|neurotransmit|action\s+potential|myelin)\b/i,
+      src: "/assets/images/medical-illustrations/inline-neuron-synapse.webp",
+      caption: "Multipolar Neuron & Synaptic Transmission Anatomy"
+    },
+    {
+      match: /\b(intravenous|iv\s+fluid|cannul|drip\s+rate|infusion\s+rate|parenteral)\b/i,
+      src: "/assets/images/medical-illustrations/pharmacology-adme.webp",
+      caption: "Intravenous Fluid Administration & Sterile Cannulation"
+    },
+    {
+      match: /\b(pressure\s+ulcer|pressure\s+injury|stage\s+[1-4]|epidermis|dermis|wound\s+healing)\b/i,
+      src: "/assets/images/medical-illustrations/skin-wound-healing.webp",
+      caption: "Skin Layers & Clinical Wound Depth Staging"
+    }
+  ];
+}
+
+function pickInlineSectionVisual(secTitle, secBodyText, topicTitle, usedSrcs) {
+  const combined = `${secTitle} ${secBodyText} ${topicTitle || ""}`;
+  const titleOnly = `${secTitle}`;
+  const rules = getInlineSectionRules();
+
+  // First check exact section title match (highest relevance to what user is reading right there)
+  for (const r of rules) {
+    if (r.match.test(titleOnly) && !usedSrcs.has(r.src)) {
+      return r;
+    }
+  }
+  // Then check section body + topic title
+  for (const r of rules) {
+    if (r.match.test(combined) && !usedSrcs.has(r.src)) {
+      return r;
+    }
+  }
+  return null;
+}
 
 export default function TopicVisuals({ lesson, topicTitle }) {
   if (!lesson) return null;
@@ -272,13 +381,17 @@ export default function TopicVisuals({ lesson, topicTitle }) {
   const domain = lesson.visualDomain || "adpie";
   const tableData = DOMAIN_TABLES[domain] || DOMAIN_TABLES.adpie;
 
-  // Build Napkin-style connected study nodes from real lesson sections
   const workflowSteps = (lesson.sections || [])
-    .map((s) => s.title)
-    .filter((t) => t && !/^reference/i.test(t))
-    .slice(0, 5);
+    .map((s, idx) => ({ title: stripTrailingColon(s.title), idx }))
+    .filter((s) => s.title && !/^reference/i.test(s.title))
+    .slice(0, 6);
 
   const images = (lesson.images || []).filter(Boolean);
+
+  const jumpToSection = (idx) => {
+    const el = document.getElementById(`lesson-sec-${idx}`);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   return (
     <div className="nu-visual-suite">
@@ -295,7 +408,7 @@ export default function TopicVisuals({ lesson, topicTitle }) {
             {images.slice(0, 2).map((src, i) => (
               <figure key={i} className="nu-visual-figure">
                 <img
-                  src={src}
+                  src={withImgVersion(src)}
                   alt={`${topicTitle} — medical reference diagram ${i + 1}`}
                   loading="lazy"
                 />
@@ -308,45 +421,23 @@ export default function TopicVisuals({ lesson, topicTitle }) {
         </div>
       )}
 
-      {/* 2. Napkin-Style Topic Learning Workflow / Concept Diagram */}
+      {/* 2. Clean Monochrome Quick-Jump Study Outline Strip (Zero Colored Boxes) */}
       {workflowSteps.length >= 2 && (
-        <div className="nu-napkin-card">
-          <div className="nu-visual-head">
-            <span className="nu-visual-kicker">
-              <Layers size={14} /> Visual Study Map &amp; Clinical Sequence
-            </span>
-            <span style={{ fontSize: "0.74rem", color: "var(--nu-ink-muted)", fontWeight: 600 }}>
-              {workflowSteps.length}-Step Lesson Blueprint
-            </span>
-          </div>
-
-          <div className="nu-napkin-flow">
-            {workflowSteps.map((stepTitle, idx) => {
-              const palette = WORKFLOW_COLORS[idx % WORKFLOW_COLORS.length];
-              return (
-                <React.Fragment key={idx}>
-                  <div
-                    className="nu-napkin-node"
-                    style={{
-                      background: palette.bg,
-                      borderColor: palette.border
-                    }}
-                  >
-                    <span className="nu-napkin-step-badge" style={{ background: palette.badge }}>
-                      {String(idx + 1).padStart(2, "0")}
-                    </span>
-                    <div className="nu-napkin-node-title" style={{ color: palette.text }}>
-                      {stepTitle}
-                    </div>
-                  </div>
-                  {idx < workflowSteps.length - 1 && (
-                    <div className="nu-napkin-arrow" aria-hidden="true">
-                      <ArrowRight size={18} color="#A137F2" />
-                    </div>
-                  )}
-                </React.Fragment>
-              );
-            })}
+        <div className="nu-outline-strip">
+          <span className="nu-outline-strip-label">
+            <Layers size={14} /> In this topic:
+          </span>
+          <div className="nu-outline-pills">
+            {workflowSteps.map((step) => (
+              <button
+                key={step.idx}
+                type="button"
+                className="nu-outline-pill"
+                onClick={() => jumpToSection(step.idx)}
+              >
+                {step.title}
+              </button>
+            ))}
           </div>
         </div>
       )}
@@ -396,79 +487,130 @@ export default function TopicVisuals({ lesson, topicTitle }) {
   );
 }
 
-const SECTION_ACCENTS = [
-  { border: "#A137F2", bg: "#F7EDFF", ink: "#6B21A8" },
-  { border: "#0D9488", bg: "#ECFDF5", ink: "#065F46" },
-  { border: "#2563EB", bg: "#EFF6FF", ink: "#1E40AF" },
-  { border: "#D97706", bg: "#FFFBEB", ink: "#92400E" },
-  { border: "#BE185D", bg: "#FDF2F8", ink: "#9D174D" }
-];
-
 function classifyBlockTone(text) {
   const s = String(text || "");
   if (/^(red flag|caution|warning|danger|contraindication|emergency|never|urgent|alert)[:\s]/i.test(s)) {
     return "alert";
   }
-  if (/^(clinical pearl|key point|remember|exam tip|high[- ]yield|note|summary|formula)[:\s]/i.test(s)) {
+  if (/^(clinical pearl|key point|remember|exam tip|high[- ]yield|formula)[:\s]/i.test(s)) {
     return "pearl";
   }
   return null;
 }
 
-export function LessonSections({ sections = [], headingTag = "h2" }) {
+function groupSectionBlocks(blocks = []) {
+  const grouped = [];
+  let bulletBuf = null;
+
+  for (const b of blocks) {
+    if (b?.type === "bullet") {
+      if (!bulletBuf) bulletBuf = [];
+      bulletBuf.push(b.text);
+    } else if (Array.isArray(b?.items)) {
+      if (!bulletBuf) bulletBuf = [];
+      bulletBuf.push(...b.items);
+    } else {
+      if (bulletBuf) {
+        grouped.push({ kind: "list", items: bulletBuf });
+        bulletBuf = null;
+      }
+      grouped.push({ kind: "block", text: b?.text || "" });
+    }
+  }
+  if (bulletBuf) {
+    grouped.push({ kind: "list", items: bulletBuf });
+  }
+  return grouped;
+}
+
+export function LessonSections({ sections = [], lesson = null, topicTitle = "", headingTag = "h2" }) {
   const Heading = headingTag;
+  const usedSrcs = new Set(
+    (lesson?.images || []).map((img) => String(img || "").split("?")[0]).filter(Boolean)
+  );
+  let inlineImagesAdded = 0;
+
   return (
     <div className="nu-notes-pages">
       {sections.map((sec, sIdx) => {
-        const accent = SECTION_ACCENTS[sIdx % SECTION_ACCENTS.length];
+        const cleanHeading = stripTrailingColon(sec.title);
+        const grouped = groupSectionBlocks(sec.blocks || []);
+        const bodySample = (sec.blocks || [])
+          .slice(0, 6)
+          .map((b) => b.text || (Array.isArray(b.items) ? b.items.join(" ") : ""))
+          .join(" ");
+
+        let inlineFig = null;
+        if (inlineImagesAdded < 2 && !/^reference|learning outcome/i.test(cleanHeading)) {
+          const picked = pickInlineSectionVisual(cleanHeading, bodySample, topicTitle, usedSrcs);
+          if (picked) {
+            usedSrcs.add(picked.src);
+            inlineFig = picked;
+            inlineImagesAdded++;
+          }
+        }
+
         return (
-          <section
-            key={sIdx}
-            className="nu-note-page-card"
-            style={{ borderTopColor: accent.border }}
-          >
+          <section key={sIdx} id={`lesson-sec-${sIdx}`} className="nu-note-page-card">
             <div className="nu-note-page-head">
-              <span className="nu-note-page-num" style={{ background: accent.bg, color: accent.ink, borderColor: accent.border }}>
-                {String(sIdx + 1).padStart(2, "0")}
-              </span>
-              <Heading style={{ margin: 0 }}>{sec.title}</Heading>
+              <Heading className="nu-note-section-title">{cleanHeading}</Heading>
             </div>
 
             <div className="nu-note-page-body">
-              {(sec.blocks || []).map((b, bIdx) => {
-                if (b.type === "bullet") {
+              {grouped.map((g, gIdx) => {
+                if (g.kind === "list") {
                   return (
-                    <ul key={bIdx} className="nu-note-styled-list">
-                      <li><RichText text={b.text} /></li>
-                    </ul>
-                  );
-                }
-                if (Array.isArray(b.items)) {
-                  return (
-                    <ul key={bIdx} className="nu-note-styled-list">
-                      {b.items.map((it, ii) => (
-                        <li key={ii}><RichText text={it} /></li>
+                    <ul key={gIdx} className="nu-note-clean-list">
+                      {g.items.map((it, ii) => (
+                        <li key={ii}>
+                          <RichText text={it} highlightKeyFacts />
+                        </li>
                       ))}
                     </ul>
                   );
                 }
-                const tone = classifyBlockTone(b.text);
+                const text = String(g.text || "").trim();
+                if (!text) return null;
+
+                // Bold short standalone sub-topic titles (e.g. "Immune Surveillance & Defense:")
+                if (text.length <= 72 && text.endsWith(":") && !text.includes(". ")) {
+                  return (
+                    <h4 key={gIdx} className="nu-note-subhead">
+                      {stripTrailingColon(text)}
+                    </h4>
+                  );
+                }
+
+                const tone = classifyBlockTone(text);
                 if (tone) {
                   return (
-                    <div key={bIdx} className={`nu-note-callout nu-note-callout--${tone}`}>
+                    <div key={gIdx} className={`nu-note-callout nu-note-callout--${tone}`}>
                       <span className="nu-note-callout-icon">
                         {tone === "alert" ? <AlertTriangle size={16} /> : <Sparkles size={16} />}
                       </span>
-                      <div><RichText text={b.text} /></div>
+                      <div>
+                        <RichText text={text} highlightKeyFacts />
+                      </div>
                     </div>
                   );
                 }
                 return (
-                  <p key={bIdx}>
-                    <RichText text={b.text} />
+                  <p key={gIdx}>
+                    <RichText text={text} highlightKeyFacts />
                   </p>
                 );
               })}
+
+              {inlineFig && (
+                <figure className="nu-note-inline-figure">
+                  <img
+                    src={withImgVersion(inlineFig.src)}
+                    alt={inlineFig.caption}
+                    loading="lazy"
+                  />
+                  <figcaption>{inlineFig.caption}</figcaption>
+                </figure>
+              )}
             </div>
           </section>
         );

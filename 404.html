@@ -1,53 +1,110 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Page Not Found | Nursing Uganda</title>
-    <meta name="description" content="The page you are looking for could not be found on Nursing Uganda.">
-    <meta name="robots" content="noindex">
-    <link rel="icon" href="assets/images/nursing-uganda-favicon.svg" type="image/svg+xml">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <meta name="description" content="The page you are looking for could not be found on Nursing Uganda." />
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="/assets/images/brand/nu-variant-3-32.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="/assets/images/brand/nu-variant-3.svg" type="image/svg+xml" />
     <style>
-      :root{--primary:#0f7f4f;--navy:#1C1917;--bg:#FAF9F5;--card:#fff;--border:#E7E5DE;--muted:#78716C}
-      *{box-sizing:border-box;margin:0;padding:0}
-      body{background:var(--bg);color:var(--navy);font-family:"Inter",system-ui,-apple-system,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}
-      .card{background:var(--card);border:1px solid var(--border);border-radius:20px;box-shadow:0 16px 40px rgba(28,25,23,.08);max-width:540px;padding:48px 40px;text-align:center;width:100%}
-      .icon{font-size:3.5rem;line-height:1;margin-bottom:20px}
-      .wordmark{color:var(--primary);font-size:1rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:24px;display:block}
-      h1{color:var(--navy);font-size:2rem;font-weight:800;letter-spacing:-0.03em;margin-bottom:12px}
-      p{color:var(--muted);font-size:1.05rem;line-height:1.7;margin-bottom:28px}
-      .actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
-      a.btn{border-radius:10px;color:#fff;display:inline-block;font-weight:700;padding:12px 22px;text-decoration:none;transition:opacity .15s}
-      a.btn:hover{opacity:.88}
-      a.btn-primary{background:var(--primary)}
-      a.btn-secondary{background:var(--navy)}
-      .code{color:var(--muted);font-size:.82rem;margin-top:24px;font-variant-numeric:tabular-nums}
-      @media(prefers-color-scheme:dark){
-        body{background:#0d1117}
-        .card{background:#1a1a1a;border-color:#2a2a2a}
-        h1{color:#f5f3ef}
-        .wordmark{color:#2d9e6b}
+      :root {
+        --nu-purple: #a137f2;
+        --nu-purple-hover: #8710d8;
+        --nu-ink: #1c1d1f;
+        --nu-muted: #6a6f73;
+        --nu-bg: #f7f9fa;
+        --nu-card: #ffffff;
+        --nu-border: #d1d7dc;
       }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        background: var(--nu-bg);
+        color: var(--nu-ink);
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+      }
+      .card {
+        background: var(--nu-card);
+        border: 1px solid var(--nu-border);
+        border-radius: 12px;
+        box-shadow: 0 8px 28px rgba(28, 29, 31, 0.08);
+        max-width: 520px;
+        padding: 40px 36px;
+        text-align: center;
+        width: 100%;
+      }
+      .wordmark {
+        color: var(--nu-purple);
+        font-size: 1rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        margin-bottom: 16px;
+        display: inline-block;
+        text-decoration: none;
+      }
+      .badge {
+        display: inline-block;
+        background: #f7edff;
+        color: #6d28d9;
+        border: 1px solid #e9d5ff;
+        font-size: 0.75rem;
+        font-weight: 700;
+        padding: 4px 10px;
+        border-radius: 999px;
+        margin-bottom: 14px;
+      }
+      h1 {
+        color: var(--nu-ink);
+        font-size: 1.85rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        margin-bottom: 10px;
+      }
+      p {
+        color: var(--nu-muted);
+        font-size: 0.98rem;
+        line-height: 1.6;
+        margin-bottom: 24px;
+      }
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+      }
+      a.btn {
+        border-radius: 6px;
+        font-size: 0.92rem;
+        font-weight: 700;
+        padding: 11px 20px;
+        text-decoration: none;
+        display: inline-block;
+      }
+      a.btn-primary { background: var(--nu-purple); color: #ffffff; }
+      a.btn-primary:hover { background: var(--nu-purple-hover); }
+      a.btn-secondary { background: #ffffff; color: var(--nu-ink); border: 1px solid var(--nu-border); }
+      a.btn-secondary:hover { background: #f3f4f6; }
     </style>
   </head>
   <body>
-    <div class="card">
-      <span class="wordmark">Nursing Uganda</span>
-      <div class="icon">📋</div>
+    <main class="card">
+      <a href="/" class="wordmark">Nursing Uganda</a>
+      <div><span class="badge">HTTP 404</span></div>
       <h1>Page Not Found</h1>
       <p>
-        The lesson or page you are looking for does not exist or may have been moved.
-        Use the links below to find what you need.
+        The course unit, lesson, or clinical resource you requested does not exist or may have moved.
       </p>
       <div class="actions">
-        <a class="btn btn-primary" href="/">Home</a>
-        <a class="btn btn-secondary" href="/courses/">Browse Courses</a>
+        <a class="btn btn-primary" href="/courses">Browse 95 Courses</a>
+        <a class="btn btn-secondary" href="/">Go Home</a>
       </div>
-      <p class="code">HTTP 404 | Nursing Uganda</p>
-    </div>
+    </main>
   </body>
 </html>

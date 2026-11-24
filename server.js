@@ -9,11 +9,28 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const DIST_DIR = path.join(__dirname, "dist");
 const ROOT_ASSETS_DIR = path.join(__dirname, "assets");
+const DATA_DIR = path.join(ROOT_ASSETS_DIR, "data");
 
 // Trust Hostinger reverse proxy so req.ip, req.secure, and rate limiters use real client IP
 app.set("trust proxy", 1);
 app.disable("x-powered-by");
 app.use(compression());
+
+function readJsonSafe(filePath, fallback = null) {
+  try {
+    if (fs.existsSync(filePath)) {
+      return JSON.parse(fs.readFileSync(filePath, "utf8"));
+    }
+  } catch {
+    // Ignore parse errors and return fallback
+  }
+  return fallback;
+}
+
+const catalogData = readJsonSafe(path.join(DATA_DIR, "catalog.json"), { courses: [] });
+const ebooksData = readJsonSafe(path.join(DATA_DIR, "ebooks.json"), { ebooks: [] });
+const validCourseSlugs = new Set((catalogData?.courses || []).map((c) => String(c.slug || "").toLowerCase()).filter(Boolean));
+const validEbookSlugs = new Set((ebooksData?.ebooks || []).map((b) => String(b.slug || "").toLowerCase()).filter(Boolean));
 
 // Security Headers
 app.use((req, res, next) => {
@@ -56,34 +73,248 @@ app.use((req, res, next) => {
   next();
 });
 
-// Global baseline rate limiter
-app.use(
-  rateLimit({
-    windowMs: 60 * 1000,
-    max: 240,
-    standardHeaders: true,
-    legacyHeaders: false
-  })
-);
+// Rate-limit API & MCP endpoints cleanly without throttling multi-image static pages (e.g. /instruments)
+const apiRateLimiter = rateLimit({
+  windowMs: 60 * 1000,
+  max: 240,
+  standardHeaders: true,
+  legacyHeaders: false
+});
 
 express.static.mime.define({ "application/manifest+json": ["webmanifest"] });
 
 // Native Hostinger Node.js + MySQL + PayPal + Google Auth API routes
-app.use("/api", createApiRouter());
+app.use("/api", apiRateLimiter, createApiRouter());
+
+// Agent discovery & MCP endpoints
+function resolveRootOrDist(relPath) {
+  const inDist = path.join(DIST_DIR, relPath);
+  if (fs.existsSync(inDist)) return inDist;
+  const inRoot = path.join(__dirname, relPath);
+  if (fs.existsSync(inRoot)) return inRoot;
+  return null;
+}
+
+app.get("/robots.txt", (_req, res) => {
+  const file = resolveRootOrDist("robots.txt");
+  if (!file) return res.status(404).type("text/plain").send("Not found");
+  res.setHeader("Cache-Control", "public, max-age=3600");
+  return res.type("text/plain; charset=utf-8").sendFile(file);
+});
+
+app.get("/llms.txt", (_req, res) => {
+  const file = resolveRootOrDist("llms.txt");
+  if (!file) return res.status(404).type("text/plain").send("Not found");
+  res.setHeader("Cache-Control", "public, max-age=3600");
+  return res.type("text/plain; charset=utf-8").sendFile(file);
+});
+
+app.get("/.well-known/mcp/server-card.json", (_req, res) => {
+  const file = resolveRootOrDist(path.join(".well-known", "mcp", "server-card.json"));
+  if (!file) return res.status(404).json({ error: "Not found" });
+  res.setHeader("Cache-Control", "public, max-age=3600");
+  return res.type("application/json; charset=utf-8").sendFile(file);
+});
+
+// Lightweight read-only MCP Streamable HTTP / JSON-RPC endpoint
+app.get("/mcp", apiRateLimiter, (_req, res) => {
+  const file = resolveRootOrDist(path.join(".well-known", "mcp", "server-card.json"));
+  const card = file ? readJsonSafe(file, {}) : {};
+  return res.json(card);
+});
+
+app.post("/mcp", apiRateLimiter, express.json({ limit: "64kb" }), (req, res) => {
+  const payload = req.body || {};
+  const id = payload.id ?? null;
+  const method = String(payload.method || "");
+  const cardFile = resolveRootOrDist(path.join(".well-known", "mcp", "server-card.json"));
+  const card = cardFile ? readJsonSafe(cardFile, {}) : {};
+
+  if (method === "initialize") {
+    return res.json({
+      jsonrpc: "2.0",
+      id,
+      result: {
+        protocolVersion: "2025-03-26",
+        capabilities: card.capabilities || { tools: { listChanged: false }, resources: { listChanged: false } },
+        serverInfo: { name: card.name || "nursing-uganda", version: card.version || "1.0.0" }
+      }
+    });
+  }
+  if (method === "tools/list") {
+    return res.json({ jsonrpc: "2.0", id, result: { tools: card.tools || [] } });
+  }
+  if (method === "resources/list") {
+    return res.json({ jsonrpc: "2.0", id, result: { resources: card.resources || [] } });
+  }
+  if (method === "tools/call") {
+    const toolName = String(payload.params?.name || "");
+    const args = payload.params?.arguments || {};
+    if (toolName === "search_nursing_courses") {
+      const q = String(args.query || "").trim().toLowerCase();
+      const courses = (catalogData?.courses || [])
+        .filter((c) => !q || `${c.title} ${c.code || ""} ${c.category || ""} ${c.programmeLabel || ""}`.toLowerCase().includes(q))
+        .slice(0, 10)
+        .map((c) => ({ slug: c.slug, title: c.title, programme: c.programmeLabel, url: `https://nursinguganda.com/course/${c.slug}` }));
+      return res.json({ jsonrpc: "2.0", id, result: { content: [{ type: "text", text: JSON.stringify(courses, null, 2) }] } });
+    }
+    if (toolName === "lookup_medical_dictionary") {
+      const dict = readJsonSafe(path.join(DATA_DIR, "dictionary.json"), { terms: [], abbreviations: [] });
+      const q = String(args.term || "").trim().toLowerCase();
+      const terms = (dict?.terms || []).filter((t) => `${t.term} ${t.simpleDefinition}`.toLowerCase().includes(q)).slice(0, 8);
+      return res.json({ jsonrpc: "2.0", id, result: { content: [{ type: "text", text: JSON.stringify(terms, null, 2) }] } });
+    }
+    if (toolName === "find_clinical_instrument") {
+      const inst = readJsonSafe(path.join(DATA_DIR, "medical-instruments.json"), { instruments: [] });
+      const items = Array.isArray(inst?.categories)
+        ? inst.categories.flatMap((c) => c.items || [])
+        : inst?.instruments || [];
+      const q = String(args.query || "").trim().toLowerCase();
+      const hits = items.filter((i) => `${i.name} ${i.category} ${i.use || i.purpose || ""}`.toLowerCase().includes(q)).slice(0, 8);
+      return res.json({ jsonrpc: "2.0", id, result: { content: [{ type: "text", text: JSON.stringify(hits, null, 2) }] } });
+    }
+    if (toolName === "get_unmeb_mock_papers") {
+      const essays = readJsonSafe(path.join(DATA_DIR, "unmeb-essay-papers.json"), { papers: [] });
+      const mocks = readJsonSafe(path.join(DATA_DIR, "mock-exams.json"), { exams: [] });
+      return res.json({
+        jsonrpc: "2.0",
+        id,
+        result: {
+          content: [{
+            type: "text",
+            text: JSON.stringify({
+              objectiveCount: (mocks?.exams || []).length,
+              essayPapers: (essays?.papers || []).map((p) => ({ id: p.id, title: p.title, series: p.series, totalMarks: p.totalMarks }))
+            }, null, 2)
+          }]
+        }
+      });
+    }
+    return res.status(400).json({ jsonrpc: "2.0", id, error: { code: -32601, message: `Unknown tool: ${toolName}` } });
+  }
+  return res.status(400).json({ jsonrpc: "2.0", id, error: { code: -32601, message: `Unsupported method: ${method}` } });
+});
+
+function buildRouteMarkdown(reqPath) {
+  const clean = reqPath.replace(/\.md$/i, "").replace(/\/+$/, "") || "/";
+  if (clean === "/" || clean === "/index") {
+    const sampleCourses = (catalogData?.courses || []).slice(0, 8)
+      .map((c) => `- [${c.title}](https://nursinguganda.com/course/${c.slug}) (${c.programmeLabel})`)
+      .join("\n");
+    return [
+      "# Nursing Uganda — Clinical Mastery That Gets You UNMEB-Ready",
+      "",
+      "> Structured Certificate, Diploma & BScN nursing courses, free referenced study eBooks, UNMEB timed mock & essay past papers, A-Z medical dictionary (1,079+ terms), instrument atlas, and clinical tools aligned with Uganda Ministry of Health & WHO guidelines.",
+      "",
+      "## Core Study Sections",
+      "- [Explore All 95 Nursing Courses](https://nursinguganda.com/courses)",
+      "- [UNMEB Timed Mock & Essay Past Papers](https://nursinguganda.com/mock-exams)",
+      "- [Free Referenced Study eBooks](https://nursinguganda.com/ebooks)",
+      "- [Free Topic Quizzes (270 Qs)](https://nursinguganda.com/quizzes)",
+      "- [A-Z Medical Dictionary (1,079 Terms · 183 Abbreviations)](https://nursinguganda.com/dictionary)",
+      "- [Medical & Surgical Instrument Atlas](https://nursinguganda.com/instruments)",
+      "- [IV Drip Rate & Dosage Calculators](https://nursinguganda.com/clinical-tools)",
+      "",
+      "## Popular Units",
+      sampleCourses,
+      "",
+      "## Organization, Legal & Contact",
+      "- [About Nursing Uganda](https://nursinguganda.com/about)",
+      "- [Editorial & Clinical Review Policy](https://nursinguganda.com/editorial-policy)",
+      "- [Contact Desk](https://nursinguganda.com/contact)",
+      "- [Terms & Medical Disclaimer](https://nursinguganda.com/terms)",
+      "- [Privacy Policy](https://nursinguganda.com/privacy-policy)",
+      "- Support Email: mailto:support@nursinguganda.com",
+      "- Helpline: tel:+256700000000"
+    ].join("\n");
+  }
+  if (clean === "/courses") {
+    const lines = (catalogData?.courses || []).slice(0, 30)
+      .map((c) => `- **${c.code ? `${c.code} · ` : ""}${c.title}** — [${c.programmeLabel}](https://nursinguganda.com/course/${c.slug}) (${c.lessonsCount || 0} lessons)`);
+    return `# Nursing Uganda Course Catalog (${catalogData?.courses?.length || 95} Units)\n\n${lines.join("\n")}\n`;
+  }
+  if (clean === "/about" || clean === "/contact" || clean === "/terms" || clean === "/privacy-policy" || clean === "/editorial-policy") {
+    return [
+      `# Nursing Uganda — ${clean.slice(1).replace(/-/g, " ").replace(/\b\w/g, (m) => m.toUpperCase())}`,
+      "",
+      "Independent nursing and midwifery study platform serving learners across Uganda (Kampala, Uganda).",
+      "",
+      "- Support Email: support@nursinguganda.com",
+      "- Editorial Desk: editorial@nursinguganda.com",
+      "- Full Policy Page: https://nursinguganda.com" + clean,
+      "- Directory & Index: https://nursinguganda.com/llms.txt"
+    ].join("\n");
+  }
+  return null;
+}
+
+function setAgentDiscoveryHeaders(res, { includeHeroPreload = false } = {}) {
+  const links = [
+    '</llms.txt>; rel="llms-txt"',
+    '</index.md>; rel="alternate"; type="text/markdown"',
+    '</.well-known/mcp/server-card.json>; rel="service-desc"; type="application/json"'
+  ];
+  if (includeHeroPreload) {
+    links.push('</assets/images/udemy/hero-banner.webp>; rel="preload"; as="image"; fetchpriority="high"');
+  }
+  res.setHeader("Link", links.join(", "));
+  res.setHeader("Vary", "Accept");
+}
+
+function prefersMarkdown(req) {
+  const accept = String(req.headers.accept || "").toLowerCase();
+  return accept.includes("text/markdown") || req.path.toLowerCase().endsWith(".md");
+}
+
+function isValidDynamicRoute(reqPath) {
+  const clean = reqPath.replace(/\/+$/, "") || "/";
+  const courseMatch = clean.match(/^\/(?:course|learn)\/([^/]+)/i);
+  if (courseMatch && validCourseSlugs.size > 0) {
+    return validCourseSlugs.has(courseMatch[1].toLowerCase());
+  }
+  const ebookMatch = clean.match(/^\/ebooks\/([^/]+)/i);
+  if (ebookMatch && validEbookSlugs.size > 0) {
+    return validEbookSlugs.has(ebookMatch[1].toLowerCase());
+  }
+  return true;
+}
 
 const BOT_UA_RE = /(googlebot|adsbot-google|mediapartners-google|bingbot|slurp|duckduckbot|facebookexternalhit|twitterbot|whatsapp)/i;
 const SPA_ROUTE_RE = /^\/($|courses|course|learn|ebooks|quizzes|mock-exams|dictionary|instruments|clinical-tools|cart|checkout|login|my-learning|nodadmin|about|brand-kit|editorial-policy|privacy-policy|terms|contact)(\/|$)/i;
 
-// Match Hostinger .htaccess behavior: human browsers get React SPA index.html on app routes;
-// search/AdSense bots get static pre-rendered HTML if available.
+// Markdown negotiation & `.md` routes
+app.get(["/index.md", "/courses.md", "/about.md", "/contact.md", "/terms.md", "/privacy-policy.md", "/editorial-policy.md"], (req, res) => {
+  const md = buildRouteMarkdown(req.path);
+  if (!md) return res.status(404).type("text/plain").send("Not found");
+  setAgentDiscoveryHeaders(res);
+  return res.type("text/markdown; charset=utf-8").send(md);
+});
+
+// Match Hostinger .htaccess behavior: human browsers get React SPA index.html on valid app routes;
+// AI agents asking for Accept: text/markdown get concise Markdown; bots get static HTML when present.
 app.use((req, res, next) => {
-  if (req.method === "GET" && SPA_ROUTE_RE.test(req.path) && !BOT_UA_RE.test(req.headers["user-agent"] || "")) {
-    const distIndex = path.join(DIST_DIR, "index.html");
-    if (fs.existsSync(distIndex)) {
-      res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
-      return res.sendFile(distIndex);
+  if (req.method !== "GET" || !SPA_ROUTE_RE.test(req.path)) {
+    return next();
+  }
+  if (!isValidDynamicRoute(req.path)) {
+    return next();
+  }
+  if (prefersMarkdown(req)) {
+    const md = buildRouteMarkdown(req.path) || buildRouteMarkdown("/");
+    if (md) {
+      setAgentDiscoveryHeaders(res);
+      return res.type("text/markdown; charset=utf-8").send(md);
     }
   }
+  if (!BOT_UA_RE.test(req.headers["user-agent"] || "")) {
+    const distIndex = path.join(DIST_DIR, "index.html");
+    const rootIndex = path.join(__dirname, "index.html");
+    const targetIndex = fs.existsSync(distIndex) ? distIndex : rootIndex;
+    setAgentDiscoveryHeaders(res, { includeHeroPreload: req.path === "/" });
+    res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
+    return res.sendFile(targetIndex);
+  }
+  setAgentDiscoveryHeaders(res, { includeHeroPreload: req.path === "/" });
   next();
 });
 
@@ -100,6 +331,7 @@ function setAssetCacheHeaders(res, filePath) {
 if (fs.existsSync(DIST_DIR)) {
   app.use(
     express.static(DIST_DIR, {
+      dotfiles: "allow",
       maxAge: "365d",
       setHeaders: setAssetCacheHeaders
     })
@@ -115,22 +347,23 @@ app.use(
   })
 );
 
-app.get("*", (_req, res) => {
-  const distIndex = path.join(DIST_DIR, "index.html");
-  if (fs.existsSync(distIndex)) {
-    res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
-    res.sendFile(distIndex);
-  } else {
-    res.sendFile(path.join(__dirname, "index.html"));
+// Real 404 handler for missing pages, missing images, or invalid dynamic slugs
+app.use((req, res) => {
+  res.status(404);
+  if (prefersMarkdown(req)) {
+    return res.type("text/markdown; charset=utf-8").send("# 404 — Page Not Found\n\nThe requested page or asset does not exist on nursinguganda.com.");
   }
-});
-
-// Global error handler — never leak stack traces or internal DB details
-app.use((err, _req, res, _next) => {
-  console.error("[Server Error]", err?.message || err);
-  res.status(500).json({ error: "An internal server error occurred." });
+  if (req.accepts("html")) {
+    const notFoundFile = resolveRootOrDist("404.html");
+    if (notFoundFile) {
+      res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
+      return res.sendFile(notFoundFile);
+    }
+    return res.type("text/html; charset=utf-8").send("<h1>404 — Page Not Found</h1>");
+  }
+  return res.json({ error: "Not found", path: req.path });
 });
 
 app.listen(PORT, () => {
-  console.log(`Nursing Uganda running on http://localhost:${PORT}`);
+  console.log(`Nursing Uganda running at http://localhost:${PORT}`);
 });

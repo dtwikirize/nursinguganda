@@ -101,6 +101,8 @@ export default function Footer() {
               <li><Link to="/privacy-policy">Privacy Policy</Link></li>
               <li><Link to="/terms">Terms &amp; Medical Disclaimer</Link></li>
               <li><Link to="/brand-kit">NU Logo &amp; Brand Kit</Link></li>
+              <li><a href="mailto:support@nursinguganda.com">support@nursinguganda.com</a></li>
+              <li><a href="tel:+256700000000">+256 700 000 000</a></li>
             </ul>
           </div>
         </div>
