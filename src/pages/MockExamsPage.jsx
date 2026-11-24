@@ -43,7 +43,7 @@ export default function MockExamsPage() {
         title: "UNMEB Full Mock Exam Pass (All 6 Papers)",
         code: "UNMEB-PASS",
         programmeLabel: "All Programmes",
-        thumbnail: "/assets/images/udemy/cat-research.png",
+        thumbnail: "/assets/images/udemy/cat-research.webp",
         priceUsd: 6.99,
         compareAtUsd: 14.99,
         lessonCount: 6,

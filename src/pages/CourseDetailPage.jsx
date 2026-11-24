@@ -21,7 +21,7 @@ import { formatUgxApprox, formatUsd, useApp } from "../context/AppContext";
 export default function CourseDetailPage() {
   const { slug } = useParams();
   const navigate = useNavigate();
-  const { isEnrolled, addToCart, cart, enrollFree } = useApp();
+  const { isEnrolled, enrollments, addToCart, cart, enrollFree } = useApp();
 
   const [course, setCourse] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -66,16 +66,19 @@ export default function CourseDetailPage() {
   }
 
   const enrolled = isEnrolled(course.slug, course.isFree);
+  const explicitlyEnrolled = enrollments.includes(course.slug);
   const inCart = cart.some((x) => x.slug === course.slug);
   const firstLessonSlug = course.topicGroups?.[0]?.topics?.[0]?.slug || "";
 
   const handleEnrollOrBuy = async () => {
-    if (enrolled) {
+    if (course.isFree) {
+      if (!explicitlyEnrolled) {
+        await enrollFree(course.slug);
+      }
       navigate(`/learn/${course.slug}/${firstLessonSlug}`);
       return;
     }
-    if (course.isFree) {
-      await enrollFree(course.slug);
+    if (enrolled) {
       navigate(`/learn/${course.slug}/${firstLessonSlug}`);
       return;
     }
@@ -233,10 +236,10 @@ export default function CourseDetailPage() {
                     style={{ width: "100%" }}
                     onClick={handleEnrollOrBuy}
                   >
-                    {enrolled
+                    {explicitlyEnrolled || (!course.isFree && enrolled)
                       ? "Go to Course Player"
                       : course.isFree
-                        ? "Enroll for Free"
+                        ? "Enroll & Start Learning (Free)"
                         : "Buy Now with PayPal"}
                   </button>
 

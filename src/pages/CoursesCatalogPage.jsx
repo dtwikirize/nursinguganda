@@ -1,6 +1,6 @@
-import React, { useMemo, useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import { Filter, Search } from "lucide-react";
+import React, { useEffect, useMemo, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
+import { BookOpen, Filter, Search } from "lucide-react";
 import CourseCard from "../components/CourseCard";
 import { useApp } from "../context/AppContext";
 
@@ -16,25 +16,64 @@ export default function CoursesCatalogPage() {
   const [category, setCategory] = useState(initialCat);
   const [priceFilter, setPriceFilter] = useState("all");
   const [q, setQ] = useState(initialQ);
+  const [lessonIndex, setLessonIndex] = useState([]);
+
+  useEffect(() => {
+    setQ(searchParams.get("q") || "");
+    if (searchParams.get("programme")) setProgramme(searchParams.get("programme"));
+    if (searchParams.get("category")) setCategory(searchParams.get("category"));
+  }, [searchParams]);
+
+  useEffect(() => {
+    fetch("/assets/data/canonical-lessons-index.json")
+      .then((r) => (r.ok ? r.json() : []))
+      .then((arr) => {
+        if (Array.isArray(arr)) setLessonIndex(arr);
+      })
+      .catch(() => {});
+  }, []);
 
   const courses = catalog?.courses || [];
   const programmes = catalog?.programmes || [];
   const categories = catalog?.categories || [];
 
+  const matchedLessons = useMemo(() => {
+    const query = q.trim().toLowerCase();
+    if (query.length < 2 || !lessonIndex.length) return [];
+    const tokens = query.split(/\s+/).filter(Boolean);
+    const hits = [];
+    const seen = new Set();
+    for (const l of lessonIndex) {
+      const hay = `${l.title} ${l.excerpt || ""} ${l.courseTitle} ${l.category}`.toLowerCase();
+      if (tokens.every((t) => hay.includes(t))) {
+        hits.push(l);
+        seen.add(l.courseSlug);
+      }
+      if (hits.length >= 16) break;
+    }
+    return { hits: hits.slice(0, 8), courseSlugs: seen };
+  }, [lessonIndex, q]);
+
+  const matchingCourseSlugs = matchedLessons?.courseSlugs || new Set();
+  const directTopics = matchedLessons?.hits || [];
+
   const filtered = useMemo(() => {
     const query = q.trim().toLowerCase();
+    const tokens = query ? query.split(/\s+/).filter(Boolean) : [];
     return courses.filter((c) => {
       if (programme !== "all" && c.programmeId !== programme) return false;
       if (category !== "all" && c.category !== category) return false;
       if (priceFilter === "free" && !c.isFree) return false;
       if (priceFilter === "paid" && c.isFree) return false;
-      if (query) {
-        const hay = `${c.title} ${c.code} ${c.programmeLabel} ${c.category}`.toLowerCase();
-        if (!hay.includes(query)) return false;
+      if (tokens.length > 0) {
+        const hay = `${c.title} ${c.code} ${c.programmeLabel} ${c.category} ${c.subtitle || ""}`.toLowerCase();
+        const metaMatch = tokens.every((t) => hay.includes(t));
+        const topicMatch = matchingCourseSlugs.has(c.slug);
+        if (!metaMatch && !topicMatch) return false;
       }
       return true;
     });
-  }, [courses, programme, category, priceFilter, q]);
+  }, [courses, programme, category, priceFilter, q, matchingCourseSlugs]);
 
   const updateProgramme = (val) => {
     setProgramme(val);
@@ -119,6 +158,33 @@ export default function CoursesCatalogPage() {
           <Filter size={15} />
           <span>Showing <strong>{filtered.length}</strong> course units</span>
         </div>
+
+        {directTopics.length > 0 && (
+          <div style={{ border: "1px solid #e9d5ff", background: "#FAF5FF", borderRadius: 10, padding: "14px 16px", marginBottom: 22 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 6, fontWeight: 700, fontSize: "0.88rem", color: "#5b21b6", marginBottom: 10 }}>
+              <BookOpen size={15} /> Direct Lesson &amp; Clinical Topic Matches for &ldquo;{q}&rdquo;
+            </div>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+              {directTopics.map((topic) => (
+                <Link
+                  key={`${topic.courseSlug}:${topic.slug}`}
+                  to={`/learn/${topic.courseSlug}/${topic.slug}`}
+                  style={{
+                    background: "#fff",
+                    border: "1px solid #d8b4fe",
+                    borderRadius: 999,
+                    padding: "6px 12px",
+                    fontSize: "0.82rem",
+                    fontWeight: 600,
+                    color: "#1c1d1f"
+                  }}
+                >
+                  {topic.title} <small style={{ color: "#6d28d9" }}>({topic.courseTitle})</small>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
 
         {catalogLoading ? (
           <p>Loading catalog...</p>

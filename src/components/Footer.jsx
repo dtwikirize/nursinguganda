@@ -40,6 +40,8 @@ export default function Footer() {
               <img
                 src={nuLogoDark}
                 alt="Nursing Uganda"
+                width="180"
+                height="42"
                 style={{ height: 42, width: "auto", display: "block" }}
               />
             </Link>

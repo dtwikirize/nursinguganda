@@ -19,7 +19,10 @@ export default function CourseCard({ course }) {
         <img
           src={course.thumbnail}
           alt={course.title}
+          width="560"
+          height="315"
           loading="lazy"
+          decoding="async"
         />
         {course.code && <span className="nu-card-code">{course.code}</span>}
       </div>

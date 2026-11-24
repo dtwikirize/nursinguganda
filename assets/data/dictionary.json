@@ -108,439 +108,230 @@
   ],
   "terms": [
     {
-      "id": "epithelial-tissue",
-      "term": "Epithelial Tissue",
-      "slug": "epithelial-tissue",
-      "pronunciation": "ep-ih-THEE-lee-ul",
+      "id": "abruptio-placentae-placental-abruption",
+      "slug": "abruptio-placentae-placental-abruption",
       "partOfSpeech": "noun",
-      "category": "Anatomy",
-      "bodySystem": "Integumentary",
-      "difficulty": "Beginner",
-      "simpleDefinition": "Tissue that covers and protects surfaces inside and outside the body.",
-      "definition": "A type of tissue that covers body surfaces, lines internal cavities and forms glands. It acts as a protective barrier against infection, injury and fluid loss.",
-      "clinicalContext": "Damaged epithelial tissue increases infection risk. Nurses assess skin integrity, wound edges and mucous membranes during routine care.",
-      "example": "The lining of the mouth, the skin surface and the inner wall of the stomach are examples of epithelial tissue.",
-      "relatedTerms": [
-        "connective-tissue",
-        "tissue",
-        "integumentary-system",
-        "mucous-membrane"
-      ],
-      "relatedLessons": [
-        "lesson-2"
-      ],
-      "tags": [
-        "tissue",
-        "anatomy",
-        "cells",
-        "skin",
-        "barrier"
-      ],
-      "mnemonics": "Epithelial tissue covers, lines and forms glands.",
-      "lastUpdated": "Updated weekly"
+      "term": "Abruptio Placentae (Placental Abruption)",
+      "pronunciation": "ab-RUP-shee-oh plah-SEN-tee",
+      "category": "Midwifery & OB",
+      "bodySystem": "Reproductive",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "Premature separation of a normally implanted placenta from the uterine wall after 20 weeks gestation.",
+      "definition": "An obstetric emergency presenting with painful dark vaginal bleeding, tense 'woody' tender uterus, uterine hypertonus, and acute foetal distress or demise.",
+      "clinicalContext": "NEVER perform digital vaginal examination until placenta praevia is excluded; establish two wide-bore 16G/18G IV lines, cross-match blood urgently, and prepare for emergency delivery.",
+      "mnemonics": "Abruption = Acute painful + Board-like uterus."
     },
     {
-      "id": "connective-tissue",
-      "term": "Connective Tissue",
-      "slug": "connective-tissue",
+      "id": "airway",
+      "term": "Airway",
+      "slug": "airway",
       "pronunciation": "",
       "partOfSpeech": "noun",
-      "category": "Anatomy",
-      "bodySystem": "Musculoskeletal",
+      "category": "Clinical Skills",
+      "bodySystem": "Respiratory",
       "difficulty": "Beginner",
-      "simpleDefinition": "Tissue that supports, binds, protects and connects body parts.",
-      "definition": "Connective tissue includes bone, cartilage, blood, adipose tissue and loose support tissue. It gives structure and support to organs and body systems.",
-      "clinicalContext": "Nurses meet connective tissue concepts in wound healing, fractures, pressure injury prevention, blood disorders and mobility care.",
-      "example": "In practice, nurses use the term connective tissue when assessing, documenting or explaining patient care.",
+      "simpleDefinition": "The passage that allows air to move into and out of the lungs.",
+      "definition": "The airway includes the nose, mouth, throat, larynx, trachea and bronchi. A clear airway is essential for breathing.",
+      "clinicalContext": "Airway assessment is a first nursing priority. Obstruction, secretions, vomiting or reduced consciousness can quickly become life-threatening.",
+      "example": "In practice, nurses use the term airway when assessing, documenting or explaining patient care.",
       "relatedTerms": [
-        "epithelial-tissue",
-        "tissue",
-        "cartilage",
-        "blood"
+        "respiration",
+        "hypoxia",
+        "aspiration"
       ],
       "relatedLessons": [
-        "lesson-2"
+        "lesson-3"
       ],
       "tags": [
-        "connective-tissue",
-        "anatomy",
-        "musculoskeletal"
+        "airway",
+        "clinical-skills",
+        "respiratory"
       ],
       "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
       "lastUpdated": "Updated weekly"
     },
     {
-      "id": "muscle-tissue",
-      "term": "Muscle Tissue",
-      "slug": "muscle-tissue",
+      "id": "analgesic",
+      "term": "Analgesic",
+      "slug": "analgesic",
       "pronunciation": "",
       "partOfSpeech": "noun",
-      "category": "Anatomy",
-      "bodySystem": "Musculoskeletal",
-      "difficulty": "Beginner",
-      "simpleDefinition": "Tissue that contracts to produce movement.",
-      "definition": "Muscle tissue is specialized for contraction. Skeletal muscle moves the body, cardiac muscle pumps blood and smooth muscle moves substances through organs.",
-      "clinicalContext": "Weakness, cramps, paralysis and reduced mobility can reflect muscle or nerve problems that require careful nursing assessment.",
-      "example": "In practice, nurses use the term muscle tissue when assessing, documenting or explaining patient care.",
-      "relatedTerms": [
-        "nervous-tissue",
-        "tissue",
-        "musculoskeletal-system"
-      ],
-      "relatedLessons": [
-        "lesson-2"
-      ],
-      "tags": [
-        "muscle-tissue",
-        "anatomy",
-        "musculoskeletal"
-      ],
-      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
-      "lastUpdated": "Updated weekly"
-    },
-    {
-      "id": "nervous-tissue",
-      "term": "Nervous Tissue",
-      "slug": "nervous-tissue",
-      "pronunciation": "",
-      "partOfSpeech": "noun",
-      "category": "Anatomy",
+      "category": "Pharmacology",
       "bodySystem": "Nervous",
       "difficulty": "Beginner",
-      "simpleDefinition": "Tissue that receives and sends messages in the body.",
-      "definition": "Nervous tissue is made of neurons and support cells. It detects change, carries impulses and coordinates body responses.",
-      "clinicalContext": "Nurses assess consciousness, orientation, pain response, pupil reaction and limb movement to monitor nervous system function.",
-      "example": "In practice, nurses use the term nervous tissue when assessing, documenting or explaining patient care.",
+      "simpleDefinition": "A medicine used to relieve pain.",
+      "definition": "Analgesics reduce pain through different mechanisms. Examples include paracetamol, non-steroidal anti-inflammatory medicines and opioids.",
+      "clinicalContext": "Nurses assess pain before and after administration, check allergies, watch adverse effects and document response.",
+      "example": "In practice, nurses use the term analgesic when assessing, documenting or explaining patient care.",
       "relatedTerms": [
-        "muscle-tissue",
-        "neuron",
-        "nervous-system"
+        "pain",
+        "opioid",
+        "medication"
       ],
       "relatedLessons": [
-        "lesson-2"
+        "lesson-1"
       ],
       "tags": [
-        "nervous-tissue",
-        "anatomy",
+        "analgesic",
+        "pharmacology",
         "nervous"
       ],
       "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
       "lastUpdated": "Updated weekly"
     },
     {
-      "id": "tissue",
-      "term": "Tissue",
-      "slug": "tissue",
+      "id": "anaphylaxis",
+      "slug": "anaphylaxis",
+      "partOfSpeech": "noun",
+      "term": "Anaphylaxis",
+      "pronunciation": "an-uh-fih-LAK-sis",
+      "category": "Emergency Care",
+      "bodySystem": "Immune / Respiratory",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "Rapid, life-threatening systemic allergic reaction causing airway swelling and severe hypotension.",
+      "definition": "Type I IgE-mediated hypersensitivity reaction triggering massive mast cell degranulation, bronchospasm, laryngeal oedema, urticaria, and distributive shock.",
+      "clinicalContext": "IMMEDIATE FIRST-LINE: Adrenaline (Epinephrine) 1:1000 — 0.5 mg (0.5 mL) IM into anterolateral thigh (paediatric 0.01 mg/kg), lay patient flat with legs elevated, high-flow oxygen, and IV Normal Saline.",
+      "mnemonics": "ABCDE + Adrenaline IM Outer Thigh FIRST (never wait for antihistamine)."
+    },
+    {
+      "id": "antibiotic",
+      "term": "Antibiotic",
+      "slug": "antibiotic",
       "pronunciation": "",
       "partOfSpeech": "noun",
-      "category": "Anatomy",
-      "bodySystem": "All Systems",
+      "category": "Pharmacology",
+      "bodySystem": "Immune",
       "difficulty": "Beginner",
-      "simpleDefinition": "A group of similar cells working together for one function.",
-      "definition": "A tissue is a level of body organization between cells and organs. The four major tissue groups are epithelial, connective, muscle and nervous tissue.",
-      "clinicalContext": "Understanding tissue helps nurses connect wounds, inflammation, oxygen supply and healing to the patient's overall condition.",
-      "example": "In practice, nurses use the term tissue when assessing, documenting or explaining patient care.",
+      "simpleDefinition": "A medicine used to treat bacterial infection.",
+      "definition": "Antibiotics kill bacteria or stop their growth. They do not treat viral infections unless bacterial infection is also present.",
+      "clinicalContext": "Nurses check prescriptions, allergies, timing, route, cultures where ordered and patient response to treatment.",
+      "example": "In practice, nurses use the term antibiotic when assessing, documenting or explaining patient care.",
       "relatedTerms": [
-        "cell",
-        "organ",
-        "epithelial-tissue"
+        "infection",
+        "sepsis",
+        "asepsis"
       ],
       "relatedLessons": [
-        "lesson-2"
+        "lesson-1"
       ],
       "tags": [
-        "tissue",
-        "anatomy",
-        "all-systems"
+        "antibiotic",
+        "pharmacology",
+        "immune"
       ],
       "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
       "lastUpdated": "Updated weekly"
     },
     {
-      "id": "cell",
-      "term": "Cell",
-      "slug": "cell",
+      "id": "apgar-score",
+      "slug": "apgar-score",
+      "partOfSpeech": "noun",
+      "term": "Apgar Score",
+      "pronunciation": "AP-gar",
+      "category": "Midwifery & Paediatrics",
+      "bodySystem": "Neonatal",
+      "difficulty": "Beginner",
+      "simpleDefinition": "Standardized 0–10 newborn vitality score checked at 1 and 5 minutes after birth.",
+      "definition": "Evaluates Appearance (colour), Pulse (heart rate), Grimace (reflex irritability), Activity (muscle tone), and Respiration — each scored 0, 1, or 2.",
+      "clinicalContext": "Never delay resuscitation to calculate the 1-minute Apgar score; begin drying, stimulation, and bag-valve-mask ventilation immediately if baby is apnoeic or gasping.",
+      "mnemonics": "A-P-G-A-R: Appearance, Pulse, Grimace, Activity, Respiration (7–10 Normal)."
+    },
+    {
+      "id": "ascites",
+      "slug": "ascites",
+      "partOfSpeech": "noun",
+      "term": "Ascites",
+      "pronunciation": "uh-SY-teez",
+      "category": "Medical-Surgical",
+      "bodySystem": "Gastrointestinal",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "Abnormal accumulation of serous fluid within the peritoneal cavity.",
+      "definition": "Commonly caused by portal hypertension in liver cirrhosis, nephrotic syndrome, right heart failure, tuberculous peritonitis, or intra-abdominal malignancy.",
+      "clinicalContext": "Measure daily abdominal girth at the umbilicus and daily morning weight; monitor respiratory distress and electrolytes on spironolactone + furosemide or therapeutic paracentesis."
+    },
+    {
+      "id": "asepsis",
+      "term": "Asepsis",
+      "slug": "asepsis",
       "pronunciation": "",
       "partOfSpeech": "noun",
-      "category": "Anatomy",
-      "bodySystem": "All Systems",
+      "category": "Clinical Skills",
+      "bodySystem": "Immune",
       "difficulty": "Beginner",
-      "simpleDefinition": "The smallest living unit of the body.",
-      "definition": "A cell is the basic structural and functional unit of life. Cells use oxygen and nutrients, remove waste, respond to signals and reproduce when needed.",
-      "clinicalContext": "Poor oxygen, glucose or fluid balance affects cell function first, then tissues, organs and the whole patient.",
-      "example": "In practice, nurses use the term cell when assessing, documenting or explaining patient care.",
+      "simpleDefinition": "Practices that prevent contamination by harmful microorganisms.",
+      "definition": "Asepsis means reducing or preventing the introduction of infection-causing organisms during care.",
+      "clinicalContext": "Hand hygiene, clean technique, sterile technique and safe handling of equipment protect patients from healthcare-associated infection.",
+      "example": "In practice, nurses use the term asepsis when assessing, documenting or explaining patient care.",
       "relatedTerms": [
-        "tissue",
-        "metabolism",
-        "homeostasis"
+        "infection",
+        "wound",
+        "sterile-technique"
       ],
       "relatedLessons": [
-        "lesson-2"
+        "lesson-1"
       ],
       "tags": [
-        "cell",
-        "anatomy",
-        "all-systems"
+        "asepsis",
+        "clinical-skills",
+        "immune"
       ],
       "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
       "lastUpdated": "Updated weekly"
     },
     {
-      "id": "organ",
-      "term": "Organ",
-      "slug": "organ",
+      "id": "aspiration",
+      "term": "Aspiration",
+      "slug": "aspiration",
       "pronunciation": "",
       "partOfSpeech": "noun",
-      "category": "Anatomy",
-      "bodySystem": "All Systems",
-      "difficulty": "Beginner",
-      "simpleDefinition": "A body structure made from two or more tissues with a specific job.",
-      "definition": "An organ is formed when tissues work together for a specific function. Examples include the heart, lungs, kidneys, skin, stomach and brain.",
-      "clinicalContext": "Nurses assess organ function by observing breathing, pulse, urine output, skin condition, consciousness and other clinical signs.",
-      "example": "In practice, nurses use the term organ when assessing, documenting or explaining patient care.",
+      "category": "Pathology",
+      "bodySystem": "Respiratory",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "Entry of food, fluid, saliva or vomit into the airway.",
+      "definition": "Aspiration can irritate the lungs, block breathing or cause aspiration pneumonia.",
+      "clinicalContext": "Nurses reduce risk by positioning patients safely, checking swallowing ability and monitoring coughing, choking or breathing changes.",
+      "example": "In practice, nurses use the term aspiration when assessing, documenting or explaining patient care.",
       "relatedTerms": [
-        "tissue",
-        "organ-system",
-        "homeostasis"
-      ],
-      "relatedLessons": [
-        "lesson-2"
-      ],
-      "tags": [
-        "organ",
-        "anatomy",
-        "all-systems"
-      ],
-      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
-      "lastUpdated": "Updated weekly"
-    },
-    {
-      "id": "organ-system",
-      "term": "Organ System",
-      "slug": "organ-system",
-      "pronunciation": "",
-      "partOfSpeech": "noun",
-      "category": "Anatomy",
-      "bodySystem": "All Systems",
-      "difficulty": "Beginner",
-      "simpleDefinition": "A group of organs working together for a major body function.",
-      "definition": "An organ system is a set of organs that cooperate to maintain life, such as the respiratory, cardiovascular, digestive and urinary systems.",
-      "clinicalContext": "System thinking helps nurses prioritize airway, breathing, circulation, elimination, nutrition and neurological status.",
-      "example": "In practice, nurses use the term organ system when assessing, documenting or explaining patient care.",
-      "relatedTerms": [
-        "organ",
-        "homeostasis"
-      ],
-      "relatedLessons": [
-        "lesson-2"
-      ],
-      "tags": [
-        "organ-system",
-        "anatomy",
-        "all-systems"
-      ],
-      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
-      "lastUpdated": "Updated weekly"
-    },
-    {
-      "id": "homeostasis",
-      "term": "Homeostasis",
-      "slug": "homeostasis",
-      "pronunciation": "",
-      "partOfSpeech": "noun",
-      "category": "Physiology",
-      "bodySystem": "All Systems",
-      "difficulty": "Beginner",
-      "simpleDefinition": "The body's ability to keep internal conditions stable.",
-      "definition": "Homeostasis is the maintenance of a stable internal environment despite changes inside or outside the body.",
-      "clinicalContext": "Nurses support homeostasis through monitoring vital signs, fluids, glucose, temperature, oxygenation and elimination.",
-      "example": "In practice, nurses use the term homeostasis when assessing, documenting or explaining patient care.",
-      "relatedTerms": [
-        "metabolism",
-        "electrolyte",
-        "body-fluids"
+        "airway",
+        "hypoxia",
+        "pneumonia"
       ],
       "relatedLessons": [
         "lesson-3"
       ],
       "tags": [
-        "homeostasis",
-        "physiology",
-        "all-systems"
+        "aspiration",
+        "pathology",
+        "respiratory"
       ],
       "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
       "lastUpdated": "Updated weekly"
     },
     {
-      "id": "metabolism",
-      "term": "Metabolism",
-      "slug": "metabolism",
+      "id": "blood-glucose",
+      "term": "Blood Glucose",
+      "slug": "blood-glucose",
       "pronunciation": "",
       "partOfSpeech": "noun",
-      "category": "Physiology",
+      "category": "Clinical Skills",
       "bodySystem": "Endocrine",
       "difficulty": "Beginner",
-      "simpleDefinition": "All the chemical reactions that keep the body alive.",
-      "definition": "Metabolism includes reactions that build body materials and reactions that break down nutrients to release energy.",
-      "clinicalContext": "Changes in metabolism may appear as altered temperature, weight change, fatigue, glucose imbalance or poor wound healing.",
-      "example": "In practice, nurses use the term metabolism when assessing, documenting or explaining patient care.",
+      "simpleDefinition": "The amount of sugar in the blood.",
+      "definition": "Blood glucose is a key energy measurement. It can become too high or too low in diabetes, illness, fasting or medication effects.",
+      "clinicalContext": "Nurses monitor glucose, recognize hypoglycaemia or hyperglycaemia signs and follow facility protocols.",
+      "example": "In practice, nurses use the term blood glucose when assessing, documenting or explaining patient care.",
       "relatedTerms": [
-        "cell",
-        "glucose",
-        "homeostasis"
-      ],
-      "relatedLessons": [
-        "lesson-2"
-      ],
-      "tags": [
         "metabolism",
-        "physiology",
-        "endocrine"
-      ],
-      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
-      "lastUpdated": "Updated weekly"
-    },
-    {
-      "id": "electrolyte",
-      "term": "Electrolyte",
-      "slug": "electrolyte",
-      "pronunciation": "",
-      "partOfSpeech": "noun",
-      "category": "Physiology",
-      "bodySystem": "All Systems",
-      "difficulty": "Intermediate",
-      "simpleDefinition": "A charged mineral in body fluids that supports nerves, muscles and fluid balance.",
-      "definition": "Electrolytes such as sodium, potassium, calcium and chloride help regulate fluid movement, muscle contraction, heart rhythm and nerve function.",
-      "clinicalContext": "Abnormal electrolytes can cause weakness, confusion, seizures or dangerous heart rhythms, so nurses monitor results and report changes.",
-      "example": "In practice, nurses use the term electrolyte when assessing, documenting or explaining patient care.",
-      "relatedTerms": [
-        "dehydration",
         "homeostasis",
-        "body-fluids"
+        "subcutaneous-injection"
       ],
       "relatedLessons": [
         "lesson-3"
       ],
       "tags": [
-        "electrolyte",
-        "physiology",
-        "all-systems"
-      ],
-      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
-      "lastUpdated": "Updated weekly"
-    },
-    {
-      "id": "dehydration",
-      "term": "Dehydration",
-      "slug": "dehydration",
-      "pronunciation": "",
-      "partOfSpeech": "noun",
-      "category": "Pathology",
-      "bodySystem": "All Systems",
-      "difficulty": "Beginner",
-      "simpleDefinition": "Too little water in the body.",
-      "definition": "Dehydration occurs when fluid loss is greater than fluid intake. It may follow vomiting, diarrhoea, fever, bleeding, poor intake or excessive sweating.",
-      "clinicalContext": "Nurses assess thirst, dry mucous membranes, reduced urine, low blood pressure, fast pulse, poor skin turgor and altered consciousness.",
-      "example": "In practice, nurses use the term dehydration when assessing, documenting or explaining patient care.",
-      "relatedTerms": [
-        "electrolyte",
-        "shock",
-        "blood-pressure"
-      ],
-      "relatedLessons": [
-        "lesson-3"
-      ],
-      "tags": [
-        "dehydration",
-        "pathology",
-        "all-systems"
-      ],
-      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
-      "lastUpdated": "Updated weekly"
-    },
-    {
-      "id": "edema",
-      "term": "Edema",
-      "slug": "edema",
-      "pronunciation": "",
-      "partOfSpeech": "noun",
-      "category": "Pathology",
-      "bodySystem": "Cardiovascular",
-      "difficulty": "Intermediate",
-      "simpleDefinition": "Swelling caused by excess fluid in body tissues.",
-      "definition": "Edema is the accumulation of fluid in the interstitial spaces. It may occur in the legs, hands, face, abdomen or lungs.",
-      "clinicalContext": "Nurses observe swelling, skin tightness, weight gain, shortness of breath and response to positioning or prescribed medicines.",
-      "example": "In practice, nurses use the term edema when assessing, documenting or explaining patient care.",
-      "relatedTerms": [
-        "fluid-balance",
-        "heart-failure",
-        "homeostasis"
-      ],
-      "relatedLessons": [
-        "lesson-3"
-      ],
-      "tags": [
-        "edema",
-        "pathology",
-        "cardiovascular"
-      ],
-      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
-      "lastUpdated": "Updated weekly"
-    },
-    {
-      "id": "hypoxia",
-      "term": "Hypoxia",
-      "slug": "hypoxia",
-      "pronunciation": "",
-      "partOfSpeech": "noun",
-      "category": "Pathology",
-      "bodySystem": "Respiratory",
-      "difficulty": "Intermediate",
-      "simpleDefinition": "Not enough oxygen reaching body tissues.",
-      "definition": "Hypoxia occurs when tissues receive insufficient oxygen for normal function. It may result from airway obstruction, lung disease, poor circulation or anaemia.",
-      "clinicalContext": "Nurses monitor respiratory rate, oxygen saturation, mental status, cyanosis and work of breathing, then escalate quickly when oxygenation is unsafe.",
-      "example": "In practice, nurses use the term hypoxia when assessing, documenting or explaining patient care.",
-      "relatedTerms": [
-        "oxygen-saturation",
-        "cyanosis",
-        "airway"
-      ],
-      "relatedLessons": [
-        "lesson-3"
-      ],
-      "tags": [
-        "hypoxia",
-        "pathology",
-        "respiratory"
-      ],
-      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
-      "lastUpdated": "Updated weekly"
-    },
-    {
-      "id": "cyanosis",
-      "term": "Cyanosis",
-      "slug": "cyanosis",
-      "pronunciation": "",
-      "partOfSpeech": "noun",
-      "category": "Pathology",
-      "bodySystem": "Respiratory",
-      "difficulty": "Intermediate",
-      "simpleDefinition": "Bluish discoloration of skin or mucous membranes from low oxygen.",
-      "definition": "Cyanosis is a clinical sign where the skin, lips or nail beds appear blue or dusky because blood oxygen is low.",
-      "clinicalContext": "Nurses treat cyanosis as an urgent warning sign and assess airway, breathing, circulation and oxygen saturation.",
-      "example": "In practice, nurses use the term cyanosis when assessing, documenting or explaining patient care.",
-      "relatedTerms": [
-        "hypoxia",
-        "oxygen-saturation",
-        "airway"
-      ],
-      "relatedLessons": [
-        "lesson-3"
-      ],
-      "tags": [
-        "cyanosis",
-        "pathology",
-        "respiratory"
+        "blood-glucose",
+        "clinical-skills",
+        "endocrine"
       ],
       "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
       "lastUpdated": "Updated weekly"
@@ -575,120 +366,30 @@
       "lastUpdated": "Updated weekly"
     },
     {
-      "id": "pulse",
-      "term": "Pulse",
-      "slug": "pulse",
-      "pronunciation": "",
+      "id": "bradycardia",
+      "slug": "bradycardia",
       "partOfSpeech": "noun",
-      "category": "Clinical Skills",
+      "term": "Bradycardia",
+      "pronunciation": "brad-ee-KAR-dee-uh",
+      "category": "Assessment",
       "bodySystem": "Cardiovascular",
       "difficulty": "Beginner",
-      "simpleDefinition": "The beat felt as blood is pumped through arteries.",
-      "definition": "Pulse is the rhythmic expansion of an artery caused by heart contraction. It is assessed by rate, rhythm, strength and equality.",
-      "clinicalContext": "Pulse assessment helps nurses identify pain, fever, dehydration, shock, arrhythmia and response to treatment.",
-      "example": "In practice, nurses use the term pulse when assessing, documenting or explaining patient care.",
-      "relatedTerms": [
-        "blood-pressure",
-        "shock",
-        "cardiovascular-system"
-      ],
-      "relatedLessons": [
-        "lesson-8"
-      ],
-      "tags": [
-        "pulse",
-        "clinical-skills",
-        "cardiovascular"
-      ],
-      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
-      "lastUpdated": "Updated weekly"
+      "simpleDefinition": "Abnormally slow resting heart rate below 60 beats per minute in adults.",
+      "definition": "Can result from vagal stimulation, beta-blocker or digoxin toxicity, hypothyroidism, inferior MI, sick sinus syndrome, or increased intracranial pressure (Cushing's reflex).",
+      "clinicalContext": "Always hold digoxin or beta-blockers if adult HR < 60 bpm per facility protocol and assess blood pressure, dizziness, or syncope urgently."
     },
     {
-      "id": "respiration",
-      "term": "Respiration",
-      "slug": "respiration",
-      "pronunciation": "",
+      "id": "bronchodilator",
+      "slug": "bronchodilator",
       "partOfSpeech": "noun",
-      "category": "Clinical Skills",
+      "term": "Bronchodilator",
+      "pronunciation": "brong-koh-dy-LAY-ter",
+      "category": "Pharmacology",
       "bodySystem": "Respiratory",
       "difficulty": "Beginner",
-      "simpleDefinition": "The act of breathing in oxygen and breathing out carbon dioxide.",
-      "definition": "Respiration includes ventilation and gas exchange. Nurses assess rate, depth, rhythm, effort and breath sounds.",
-      "clinicalContext": "Abnormal respiration may indicate pain, anxiety, infection, asthma, hypoxia, shock or neurological changes.",
-      "example": "In practice, nurses use the term respiration when assessing, documenting or explaining patient care.",
-      "relatedTerms": [
-        "oxygen-saturation",
-        "hypoxia",
-        "airway"
-      ],
-      "relatedLessons": [
-        "lesson-3"
-      ],
-      "tags": [
-        "respiration",
-        "clinical-skills",
-        "respiratory"
-      ],
-      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
-      "lastUpdated": "Updated weekly"
-    },
-    {
-      "id": "temperature",
-      "term": "Temperature",
-      "slug": "temperature",
-      "pronunciation": "",
-      "partOfSpeech": "noun",
-      "category": "Clinical Skills",
-      "bodySystem": "All Systems",
-      "difficulty": "Beginner",
-      "simpleDefinition": "A measurement of body heat.",
-      "definition": "Body temperature shows the balance between heat production and heat loss. Fever or low temperature can signal illness or environmental stress.",
-      "clinicalContext": "Nurses record temperature, compare trends and link findings to infection, dehydration, exposure or medication effects.",
-      "example": "In practice, nurses use the term temperature when assessing, documenting or explaining patient care.",
-      "relatedTerms": [
-        "fever",
-        "infection",
-        "homeostasis"
-      ],
-      "relatedLessons": [
-        "lesson-3"
-      ],
-      "tags": [
-        "temperature",
-        "clinical-skills",
-        "all-systems"
-      ],
-      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
-      "lastUpdated": "Updated weekly"
-    },
-    {
-      "id": "oxygen-saturation",
-      "term": "Oxygen Saturation",
-      "slug": "oxygen-saturation",
-      "pronunciation": "",
-      "partOfSpeech": "noun",
-      "category": "Clinical Skills",
-      "bodySystem": "Respiratory",
-      "difficulty": "Beginner",
-      "simpleDefinition": "The percentage of haemoglobin carrying oxygen in the blood.",
-      "definition": "Oxygen saturation is commonly measured with a pulse oximeter and helps estimate how well oxygen is being carried.",
-      "clinicalContext": "A falling saturation can be an early danger sign. Nurses confirm probe placement, assess the patient and escalate according to protocol.",
-      "example": "In practice, nurses use the term oxygen saturation when assessing, documenting or explaining patient care.",
-      "relatedTerms": [
-        "hypoxia",
-        "cyanosis",
-        "respiration"
-      ],
-      "relatedLessons": [
-        "lesson-3"
-      ],
-      "tags": [
-        "oxygen-saturation",
-        "clinical-skills",
-        "respiratory"
-      ],
-      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
-      "lastUpdated": "Updated weekly"
+      "simpleDefinition": "Medication that relaxes bronchial smooth muscle to open constricted airways.",
+      "definition": "Includes short-acting beta-2 agonists (Salbutamol), anticholinergics (Ipratropium), and methylxanthines (Aminophylline) used in asthma and COPD exacerbations.",
+      "clinicalContext": "Deliver short-acting Salbutamol FIRST before inhaled corticosteroids so bronchodilation opens airways cleanly; monitor heart rate for tachycardia and tremors."
     },
     {
       "id": "capillary-refill",
@@ -720,33 +421,607 @@
       "lastUpdated": "Updated weekly"
     },
     {
-      "id": "asepsis",
-      "term": "Asepsis",
-      "slug": "asepsis",
+      "id": "cardiogenic-shock",
+      "slug": "cardiogenic-shock",
+      "partOfSpeech": "noun",
+      "term": "Cardiogenic Shock",
+      "pronunciation": "kar-dee-oh-JEN-ik",
+      "category": "Emergency Care",
+      "bodySystem": "Cardiovascular",
+      "difficulty": "Advanced",
+      "simpleDefinition": "Critical drop in cardiac output caused by acute pump failure of the heart muscle.",
+      "definition": "Occurs after extensive myocardial infarction, myocarditis, or severe arrhythmias leading to hypotension (<90 mmHg SBP), cold clammy skin, oliguria, and pulmonary congestion.",
+      "clinicalContext": "Avoid rapid large IV fluid boluses unless preload-depleted because over-hydration worsens pulmonary oedema; monitor urine output hourly (<0.5 mL/kg/hr alert)."
+    },
+    {
+      "id": "cell",
+      "term": "Cell",
+      "slug": "cell",
       "pronunciation": "",
       "partOfSpeech": "noun",
-      "category": "Clinical Skills",
-      "bodySystem": "Immune",
+      "category": "Anatomy",
+      "bodySystem": "All Systems",
       "difficulty": "Beginner",
-      "simpleDefinition": "Practices that prevent contamination by harmful microorganisms.",
-      "definition": "Asepsis means reducing or preventing the introduction of infection-causing organisms during care.",
-      "clinicalContext": "Hand hygiene, clean technique, sterile technique and safe handling of equipment protect patients from healthcare-associated infection.",
-      "example": "In practice, nurses use the term asepsis when assessing, documenting or explaining patient care.",
+      "simpleDefinition": "The smallest living unit of the body.",
+      "definition": "A cell is the basic structural and functional unit of life. Cells use oxygen and nutrients, remove waste, respond to signals and reproduce when needed.",
+      "clinicalContext": "Poor oxygen, glucose or fluid balance affects cell function first, then tissues, organs and the whole patient.",
+      "example": "In practice, nurses use the term cell when assessing, documenting or explaining patient care.",
       "relatedTerms": [
-        "infection",
-        "wound",
-        "sterile-technique"
+        "tissue",
+        "metabolism",
+        "homeostasis"
       ],
       "relatedLessons": [
-        "lesson-1"
+        "lesson-2"
       ],
       "tags": [
-        "asepsis",
-        "clinical-skills",
+        "cell",
+        "anatomy",
+        "all-systems"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "chorioamnionitis",
+      "slug": "chorioamnionitis",
+      "partOfSpeech": "noun",
+      "term": "Chorioamnionitis",
+      "pronunciation": "kor-ee-oh-am-nee-oh-NY-tis",
+      "category": "Midwifery & OB",
+      "bodySystem": "Reproductive",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "Bacterial infection of the foetal membranes (chorion and amnion) and amniotic fluid.",
+      "definition": "Presents during pregnancy or labour with maternal fever (>=38 C), maternal/foetal tachycardia, uterine tenderness, and foul-smelling amniotic fluid.",
+      "clinicalContext": "Limit unnecessary repeated vaginal exams after membrane rupture; start broad-spectrum IV antibiotics per Uganda MoH guidelines and expedite safe delivery."
+    },
+    {
+      "id": "connective-tissue",
+      "term": "Connective Tissue",
+      "slug": "connective-tissue",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Anatomy",
+      "bodySystem": "Musculoskeletal",
+      "difficulty": "Beginner",
+      "simpleDefinition": "Tissue that supports, binds, protects and connects body parts.",
+      "definition": "Connective tissue includes bone, cartilage, blood, adipose tissue and loose support tissue. It gives structure and support to organs and body systems.",
+      "clinicalContext": "Nurses meet connective tissue concepts in wound healing, fractures, pressure injury prevention, blood disorders and mobility care.",
+      "example": "In practice, nurses use the term connective tissue when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "epithelial-tissue",
+        "tissue",
+        "cartilage",
+        "blood"
+      ],
+      "relatedLessons": [
+        "lesson-2"
+      ],
+      "tags": [
+        "connective-tissue",
+        "anatomy",
+        "musculoskeletal"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "cyanosis",
+      "term": "Cyanosis",
+      "slug": "cyanosis",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Pathology",
+      "bodySystem": "Respiratory",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "Bluish discoloration of skin or mucous membranes from low oxygen.",
+      "definition": "Cyanosis is a clinical sign where the skin, lips or nail beds appear blue or dusky because blood oxygen is low.",
+      "clinicalContext": "Nurses treat cyanosis as an urgent warning sign and assess airway, breathing, circulation and oxygen saturation.",
+      "example": "In practice, nurses use the term cyanosis when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "hypoxia",
+        "oxygen-saturation",
+        "airway"
+      ],
+      "relatedLessons": [
+        "lesson-3"
+      ],
+      "tags": [
+        "cyanosis",
+        "pathology",
+        "respiratory"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "dehydration",
+      "term": "Dehydration",
+      "slug": "dehydration",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Pathology",
+      "bodySystem": "All Systems",
+      "difficulty": "Beginner",
+      "simpleDefinition": "Too little water in the body.",
+      "definition": "Dehydration occurs when fluid loss is greater than fluid intake. It may follow vomiting, diarrhoea, fever, bleeding, poor intake or excessive sweating.",
+      "clinicalContext": "Nurses assess thirst, dry mucous membranes, reduced urine, low blood pressure, fast pulse, poor skin turgor and altered consciousness.",
+      "example": "In practice, nurses use the term dehydration when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "electrolyte",
+        "shock",
+        "blood-pressure"
+      ],
+      "relatedLessons": [
+        "lesson-3"
+      ],
+      "tags": [
+        "dehydration",
+        "pathology",
+        "all-systems"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "dehydration-plan-a-b-c",
+      "slug": "dehydration-plan-a-b-c",
+      "partOfSpeech": "noun",
+      "term": "Dehydration (Plan A/B/C)",
+      "pronunciation": "dee-hy-DRAY-shun",
+      "category": "Paediatrics",
+      "bodySystem": "Fluid & Electrolytes",
+      "difficulty": "Beginner",
+      "simpleDefinition": "Loss of total body water and electrolytes exceeding intake, risking hypovolaemic shock in children.",
+      "definition": "WHO classifies paediatric diarrhoea into No Dehydration (Plan A: home ORS + Zinc), Some Dehydration (Plan B: 75 mL/kg ORS over 4 hrs), and Severe Dehydration (Plan C: IV Ringer's Lactate 100 mL/kg).",
+      "clinicalContext": "Assess sunken eyes, skin pinch elasticity, lethargy, and drinking ability; note Severe Acute Malnutrition children receive ReSoMal cautiously instead of rapid IV boluses."
+    },
+    {
+      "id": "diabetic-ketoacidosis-dka",
+      "slug": "diabetic-ketoacidosis-dka",
+      "partOfSpeech": "noun",
+      "term": "Diabetic Ketoacidosis (DKA)",
+      "pronunciation": "kee-toh-ass-ih-DOH-sis",
+      "category": "Emergency Care",
+      "bodySystem": "Endocrine",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "Life-threatening triad of hyperglycaemia, metabolic acidosis, and ketonaemia in insulin deficiency.",
+      "definition": "Triggers osmotic diuresis, severe dehydration, Kussmaul deep rapid breathing, fruity acetone breath, abdominal pain, and potassium shifts.",
+      "clinicalContext": "Priority sequence: 1) IV 0.9% Normal Saline resuscitation FIRST, 2) Fixed-rate IV Soluble Insulin infusion, 3) Monitor serum K+ closely BEFORE and DURING insulin therapy to avoid fatal hypokalaemia."
+    },
+    {
+      "id": "dyspnoea",
+      "slug": "dyspnoea",
+      "partOfSpeech": "noun",
+      "term": "Dyspnoea",
+      "pronunciation": "disp-NEE-uh",
+      "category": "Assessment",
+      "bodySystem": "Respiratory",
+      "difficulty": "Beginner",
+      "simpleDefinition": "Subjective uncomfortable sensation of shortness of breath or laboured breathing.",
+      "definition": "Observed alongside nasal flaring, intercostal indrawing, tripod posturing, or accessory muscle usage across pneumonia, heart failure, asthma, and anaemia.",
+      "clinicalContext": "Place patient upright in High-Fowler's position, measure respiratory rate, auscultate lung fields, check SpO2, and escalate any drop <92%."
+    },
+    {
+      "id": "eclampsia",
+      "slug": "eclampsia",
+      "partOfSpeech": "noun",
+      "term": "Eclampsia",
+      "pronunciation": "ih-KLAMP-see-uh",
+      "category": "Midwifery & Emergency",
+      "bodySystem": "Neurological / Reproductive",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "New-onset generalized tonic-clonic seizures or coma in a woman with pre-eclampsia.",
+      "definition": "Occurs antenatally, intrapartum, or up to 6 weeks postpartum due to severe cerebral vasospasm, endothelial dysfunction, and hypertensive encephalopathy.",
+      "clinicalContext": "Uganda MoH first-line drug of choice: Magnesium Sulphate (MgSO4 — 4 g IV loading + 10 g IM Pritchard regimen). Keep calcium gluconate 10% (1 g IV) at bedside and check RR >=16, urine output >=30 mL/hr, and patellar reflexes before every maintenance dose.",
+      "mnemonics": "4g IV + 10g IM Pritchard -> Check Knees, Urine, Breaths!"
+    },
+    {
+      "id": "edema",
+      "term": "Edema",
+      "slug": "edema",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Pathology",
+      "bodySystem": "Cardiovascular",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "Swelling caused by excess fluid in body tissues.",
+      "definition": "Edema is the accumulation of fluid in the interstitial spaces. It may occur in the legs, hands, face, abdomen or lungs.",
+      "clinicalContext": "Nurses observe swelling, skin tightness, weight gain, shortness of breath and response to positioning or prescribed medicines.",
+      "example": "In practice, nurses use the term edema when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "fluid-balance",
+        "heart-failure",
+        "homeostasis"
+      ],
+      "relatedLessons": [
+        "lesson-3"
+      ],
+      "tags": [
+        "edema",
+        "pathology",
+        "cardiovascular"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "electrolyte",
+      "term": "Electrolyte",
+      "slug": "electrolyte",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Physiology",
+      "bodySystem": "All Systems",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "A charged mineral in body fluids that supports nerves, muscles and fluid balance.",
+      "definition": "Electrolytes such as sodium, potassium, calcium and chloride help regulate fluid movement, muscle contraction, heart rhythm and nerve function.",
+      "clinicalContext": "Abnormal electrolytes can cause weakness, confusion, seizures or dangerous heart rhythms, so nurses monitor results and report changes.",
+      "example": "In practice, nurses use the term electrolyte when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "dehydration",
+        "homeostasis",
+        "body-fluids"
+      ],
+      "relatedLessons": [
+        "lesson-3"
+      ],
+      "tags": [
+        "electrolyte",
+        "physiology",
+        "all-systems"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "embolism-pulmonary-embolism",
+      "slug": "embolism-pulmonary-embolism",
+      "partOfSpeech": "noun",
+      "term": "Embolism (Pulmonary Embolism)",
+      "pronunciation": "EM-boh-liz-um",
+      "category": "Emergency Care",
+      "bodySystem": "Cardiovascular / Respiratory",
+      "difficulty": "Advanced",
+      "simpleDefinition": "Sudden blockage of a pulmonary artery by a travelling blood clot, air bubble, or fat globule.",
+      "definition": "Usually originates from deep vein thrombosis (DVT) in legs/pelvis, producing sudden pleuritic chest pain, acute dyspnoea, tachycardia, and haemoptysis.",
+      "clinicalContext": "Encourage early ambulation post-surgery and caesarean section; keep high-risk surgical/immobilized patients hydrated and administer prescribed LMWH prophylaxis."
+    },
+    {
+      "id": "endocarditis-infective",
+      "slug": "endocarditis-infective",
+      "partOfSpeech": "noun",
+      "term": "Endocarditis (Infective)",
+      "pronunciation": "en-doh-kar-DY-tis",
+      "category": "Medical-Surgical",
+      "bodySystem": "Cardiovascular",
+      "difficulty": "Advanced",
+      "simpleDefinition": "Microbial infection and vegetation growth on the inner lining and valves of the heart.",
+      "definition": "Complicates rheumatic heart disease, congenital valve defects, or unsterile IV access; causes prolonged fever, new regurgitant murmurs, splenomegaly, and embolic lesions.",
+      "clinicalContext": "Collect THREE sets of sterile blood cultures from separate venepuncture sites BEFORE starting IV antibiotics; strict aseptic IV line care is mandatory."
+    },
+    {
+      "id": "epithelial-tissue",
+      "term": "Epithelial Tissue",
+      "slug": "epithelial-tissue",
+      "pronunciation": "ep-ih-THEE-lee-ul",
+      "partOfSpeech": "noun",
+      "category": "Anatomy",
+      "bodySystem": "Integumentary",
+      "difficulty": "Beginner",
+      "simpleDefinition": "Tissue that covers and protects surfaces inside and outside the body.",
+      "definition": "A type of tissue that covers body surfaces, lines internal cavities and forms glands. It acts as a protective barrier against infection, injury and fluid loss.",
+      "clinicalContext": "Damaged epithelial tissue increases infection risk. Nurses assess skin integrity, wound edges and mucous membranes during routine care.",
+      "example": "The lining of the mouth, the skin surface and the inner wall of the stomach are examples of epithelial tissue.",
+      "relatedTerms": [
+        "connective-tissue",
+        "tissue",
+        "integumentary-system",
+        "mucous-membrane"
+      ],
+      "relatedLessons": [
+        "lesson-2"
+      ],
+      "tags": [
+        "tissue",
+        "anatomy",
+        "cells",
+        "skin",
+        "barrier"
+      ],
+      "mnemonics": "Epithelial tissue covers, lines and forms glands.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "febrile-convulsion",
+      "slug": "febrile-convulsion",
+      "partOfSpeech": "noun",
+      "term": "Febrile Convulsion",
+      "pronunciation": "FEE-bryle kon-VUL-shun",
+      "category": "Paediatrics",
+      "bodySystem": "Neurological",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "Seizure triggered by a rapid spike in fever in children typically aged 6 months to 5 years.",
+      "definition": "Simple febrile seizures are generalized, last under 15 minutes, and do not recur within 24 hours; malaria, URTI, otitis media, or UTI are common triggers in Uganda.",
+      "clinicalContext": "Protect head, turn child to left-lateral recovery position, do NOT force anything into the mouth, give rectal Diazepam 0.5 mg/kg if >5 minutes, and evaluate urgently to rule out meningitis and severe malaria."
+    },
+    {
+      "id": "fever",
+      "term": "Fever",
+      "slug": "fever",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Medical Conditions",
+      "bodySystem": "Immune",
+      "difficulty": "Beginner",
+      "simpleDefinition": "A body temperature higher than normal.",
+      "definition": "Fever is often a response to infection, inflammation or other illness. It reflects changes in temperature regulation.",
+      "clinicalContext": "Nurses monitor temperature trends, hydration, comfort, prescribed medicines and danger signs such as confusion or stiff neck.",
+      "example": "In practice, nurses use the term fever when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "temperature",
+        "infection",
+        "dehydration"
+      ],
+      "relatedLessons": [
+        "lesson-3"
+      ],
+      "tags": [
+        "fever",
+        "medical-conditions",
         "immune"
       ],
       "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
       "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "fistula-obstetric-vesicovaginal",
+      "slug": "fistula-obstetric-vesicovaginal",
+      "partOfSpeech": "noun",
+      "term": "Fistula (Obstetric Vesicovaginal)",
+      "pronunciation": "FIS-tyoo-luh",
+      "category": "Midwifery & OB",
+      "bodySystem": "Reproductive / Urinary",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "Abnormal opening between bladder and vagina caused by prolonged obstructed labour.",
+      "definition": "Ischaemic necrosis from sustained foetal head compression destroys pelvic tissues, resulting in continuous uncontrollable leakage of urine per vaginum and skin excoriation.",
+      "clinicalContext": "Prevention via early partograph monitoring and timely Caesarean section; post-repair nursing demands continuous bladder drainage (Foley catheter strictly patent for 14–21 days) and strict fluid intake >=3 L/day."
+    },
+    {
+      "id": "glasgow-coma-scale-gcs",
+      "slug": "glasgow-coma-scale-gcs",
+      "partOfSpeech": "noun",
+      "term": "Glasgow Coma Scale (GCS)",
+      "pronunciation": "GLAS-goh KOH-muh skayl",
+      "category": "Assessment",
+      "bodySystem": "Neurological",
+      "difficulty": "Beginner",
+      "simpleDefinition": "Standardized 3–15 point neurological scale assessing Eye opening, Verbal response, and Motor response.",
+      "definition": "Scores Eye (1–4), Verbal (1–5), and Motor (1–6). GCS <=8 indicates severe coma and inability to protect the airway.",
+      "clinicalContext": "'GCS 8 or less — Intubate / Secure Airway!' Always record component breakdown (e.g., E3 V4 M6 = 13/15) rather than only a total sum, and escalate any drop >=2 points immediately.",
+      "mnemonics": "Eyes 4, Verbal 5, Motor 6 = 15 max (8 or less = Coma)."
+    },
+    {
+      "id": "glycosuria",
+      "slug": "glycosuria",
+      "partOfSpeech": "noun",
+      "term": "Glycosuria",
+      "pronunciation": "gly-koh-SYOOR-ee-uh",
+      "category": "Assessment",
+      "bodySystem": "Endocrine / Renal",
+      "difficulty": "Beginner",
+      "simpleDefinition": "Presence of measurable glucose in urine when blood sugar exceeds renal threshold (~10 mmol/L).",
+      "definition": "Detected cleanly via urine reagent dipstick strips; hallmark screening finding in uncontrolled diabetes mellitus, gestational diabetes, or renal tubular dysfunction.",
+      "clinicalContext": "Any positive urine glucose must be followed with capillary random/fasting blood glucose testing and dipstick ketones check."
+    },
+    {
+      "id": "gravida-parity-gtpal",
+      "slug": "gravida-parity-gtpal",
+      "partOfSpeech": "noun",
+      "term": "Gravida & Parity (GTPAL)",
+      "pronunciation": "GRAV-ih-duh & PAIR-ih-tee",
+      "category": "Midwifery & OB",
+      "bodySystem": "Reproductive",
+      "difficulty": "Beginner",
+      "simpleDefinition": "Obstetric shorthand recording total pregnancies (Gravida) and viable births >=28 weeks (Parity).",
+      "definition": "In Uganda's obstetric practice, viability is conventionally counted from 28 weeks gestation (or >1000 g); e.g., G3P2+0 means 3 pregnancies, 2 deliveries >=28 wks, 0 abortions/losses.",
+      "clinicalContext": "Grand multiparity (>=5 deliveries) carries elevated risk of uterine atony, malpresentation, and postpartum haemorrhage—actively prepare AMTSL and uterotonics."
+    },
+    {
+      "id": "haemoptysis",
+      "slug": "haemoptysis",
+      "partOfSpeech": "noun",
+      "term": "Haemoptysis",
+      "pronunciation": "hee-MOP-tih-sis",
+      "category": "Assessment",
+      "bodySystem": "Respiratory",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "Coughing up blood or blood-stained sputum from the lower respiratory tract.",
+      "definition": "Key red-flag symptom in Pulmonary Tuberculosis (PTB), bronchiectasis, lung abscess, pulmonary embolism, or mitral stenosis; distinct from haematemesis (vomited GI blood).",
+      "clinicalContext": "Initiate airborne/droplet respiratory isolation precautions immediately if chronic cough >2 weeks + weight loss/night sweats is present, and send sputum GeneXpert / AFB."
+    },
+    {
+      "id": "haemorrhage-postpartum-pph",
+      "slug": "haemorrhage-postpartum-pph",
+      "partOfSpeech": "noun",
+      "term": "Haemorrhage (Postpartum — PPH)",
+      "pronunciation": "HEM-uh-rij",
+      "category": "Midwifery & Emergency",
+      "bodySystem": "Cardiovascular / Reproductive",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "Blood loss >=500 mL after vaginal delivery or >=1000 mL after Caesarean section.",
+      "definition": "Leading cause of maternal mortality worldwide; driven by the '4 Ts': Tone (uterine atony ~70%), Trauma (cervical/vaginal tears), Tissue (retained placenta), and Thrombin (coagulopathy).",
+      "clinicalContext": "Act immediately: Call for help, bimanual/fundal uterine massage, Oxytocin 10 IU IM/IV + 20–40 IU infusion, empty bladder, inspect tears, give Tranexamic acid 1 g IV within 3 hours.",
+      "mnemonics": "4 Ts of PPH: Tone, Trauma, Tissue, Thrombin."
+    },
+    {
+      "id": "hemorrhage",
+      "term": "Hemorrhage",
+      "slug": "hemorrhage",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Pathology",
+      "bodySystem": "Cardiovascular",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "Bleeding from a damaged blood vessel.",
+      "definition": "Hemorrhage may be external or internal and can lead to shock if blood loss is significant.",
+      "clinicalContext": "Nurses monitor bleeding, pulse, blood pressure, skin condition, consciousness and urine output while escalating urgently.",
+      "example": "In practice, nurses use the term hemorrhage when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "shock",
+        "pulse",
+        "blood-pressure"
+      ],
+      "relatedLessons": [
+        "lesson-7"
+      ],
+      "tags": [
+        "hemorrhage",
+        "pathology",
+        "cardiovascular"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "homeostasis",
+      "term": "Homeostasis",
+      "slug": "homeostasis",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Physiology",
+      "bodySystem": "All Systems",
+      "difficulty": "Beginner",
+      "simpleDefinition": "The body's ability to keep internal conditions stable.",
+      "definition": "Homeostasis is the maintenance of a stable internal environment despite changes inside or outside the body.",
+      "clinicalContext": "Nurses support homeostasis through monitoring vital signs, fluids, glucose, temperature, oxygenation and elimination.",
+      "example": "In practice, nurses use the term homeostasis when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "metabolism",
+        "electrolyte",
+        "body-fluids"
+      ],
+      "relatedLessons": [
+        "lesson-3"
+      ],
+      "tags": [
+        "homeostasis",
+        "physiology",
+        "all-systems"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "hyperkalaemia",
+      "slug": "hyperkalaemia",
+      "partOfSpeech": "noun",
+      "term": "Hyperkalaemia",
+      "pronunciation": "hy-per-kuh-LEE-mee-uh",
+      "category": "Medical-Surgical",
+      "bodySystem": "Renal / Cardiovascular",
+      "difficulty": "Advanced",
+      "simpleDefinition": "Dangerously elevated serum potassium above 5.5 mmol/L risking fatal cardiac arrest.",
+      "definition": "Common in acute kidney injury (AKI), severe burns/crush trauma, DKA before therapy, or ACE-inhibitor overuse; ECG shows tall peaked T-waves and widened QRS.",
+      "clinicalContext": "Immediate cardiac membrane protection uses IV Calcium Gluconate 10% (10 mL slow IV over 3–5 min), followed by Insulin-Dextrose infusion to shift K+ intracellularly."
+    },
+    {
+      "id": "hypertension",
+      "term": "Hypertension",
+      "slug": "hypertension",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Medical Conditions",
+      "bodySystem": "Cardiovascular",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "Blood pressure that remains higher than normal.",
+      "definition": "Hypertension increases strain on the heart and blood vessels and raises the risk of stroke, heart disease and kidney disease.",
+      "clinicalContext": "Nurses measure accurately, support lifestyle education, monitor medicine adherence and report very high readings or symptoms.",
+      "example": "In practice, nurses use the term hypertension when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "blood-pressure",
+        "stroke",
+        "myocardial-infarction"
+      ],
+      "relatedLessons": [
+        "lesson-8"
+      ],
+      "tags": [
+        "hypertension",
+        "medical-conditions",
+        "cardiovascular"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "hypoglycaemia",
+      "slug": "hypoglycaemia",
+      "partOfSpeech": "noun",
+      "term": "Hypoglycaemia",
+      "pronunciation": "hy-poh-gly-SEE-mee-uh",
+      "category": "Emergency Care",
+      "bodySystem": "Endocrine / Neurological",
+      "difficulty": "Beginner",
+      "simpleDefinition": "Dangerously low blood glucose (<3.9 mmol/L in diabetics, <2.5 mmol/L in severe malaria/paediatrics).",
+      "definition": "Triggers autonomic signs (sweating, palpitations, tremor, hunger) progressing swiftly to neuroglycopenia (confusion, convulsions, coma) especially with Quinine/Artesunate or Insulin therapy.",
+      "clinicalContext": "Check capillary blood glucose in EVERY confused or convulsing patient immediately. Give 50% Dextrose 50 mL IV in adults (or 10% Dextrose 2–5 mL/kg IV in children) if unconscious.",
+      "mnemonics": "Cold & clammy -> Give sugar candy (Oral 15g) or IV Dextrose if drowsy!"
+    },
+    {
+      "id": "hypovolaemic-shock",
+      "slug": "hypovolaemic-shock",
+      "partOfSpeech": "noun",
+      "term": "Hypovolaemic Shock",
+      "pronunciation": "hy-poh-voh-LEE-mik",
+      "category": "Emergency Care",
+      "bodySystem": "Cardiovascular",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "Acute inadequate organ perfusion from rapid loss of circulating blood or plasma volume.",
+      "definition": "Triggered by trauma bleeding, ruptured ectopic pregnancy, PPH, burns, or cholera diarrhoea; shows tachycardia FIRST before late blood pressure drop, capillary refill >3 s, and oliguria.",
+      "clinicalContext": "Tachycardia and cool extremities appear BEFORE hypotension; insert two large-bore 16G/18G cannulae, raise legs, infuse warm Ringer's Lactate or cross-matched blood."
+    },
+    {
+      "id": "hypoxia",
+      "term": "Hypoxia",
+      "slug": "hypoxia",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Pathology",
+      "bodySystem": "Respiratory",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "Not enough oxygen reaching body tissues.",
+      "definition": "Hypoxia occurs when tissues receive insufficient oxygen for normal function. It may result from airway obstruction, lung disease, poor circulation or anaemia.",
+      "clinicalContext": "Nurses monitor respiratory rate, oxygen saturation, mental status, cyanosis and work of breathing, then escalate quickly when oxygenation is unsafe.",
+      "example": "In practice, nurses use the term hypoxia when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "oxygen-saturation",
+        "cyanosis",
+        "airway"
+      ],
+      "relatedLessons": [
+        "lesson-3"
+      ],
+      "tags": [
+        "hypoxia",
+        "pathology",
+        "respiratory"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "icterus",
+      "slug": "icterus",
+      "partOfSpeech": "noun",
+      "term": "Icterus",
+      "pronunciation": "IK-ter-us",
+      "category": "Assessment",
+      "bodySystem": "Hepatic / Eyes",
+      "difficulty": "Beginner",
+      "simpleDefinition": "Yellowish staining of the sclerae (whites of the eyes) and mucous membranes due to hyperbilirubinaemia.",
+      "definition": "Typically becomes clinically detectable in sclerae when total serum bilirubin exceeds ~35–50 micromol/L in hepatitis, malaria haemolysis, or biliary obstruction.",
+      "clinicalContext": "Always inspect sclerae in natural daylight rather than dim yellow ward bulbs; pair with checking urine colour (dark tea-like) and stool colour (pale/clay in obstruction)."
     },
     {
       "id": "infection",
@@ -807,146 +1082,30 @@
       "lastUpdated": "Updated weekly"
     },
     {
-      "id": "wound",
-      "term": "Wound",
-      "slug": "wound",
+      "id": "intramuscular-injection",
+      "term": "Intramuscular Injection",
+      "slug": "intramuscular-injection",
       "pronunciation": "",
       "partOfSpeech": "noun",
-      "category": "Clinical Skills",
-      "bodySystem": "Integumentary",
+      "category": "Procedures",
+      "bodySystem": "Musculoskeletal",
       "difficulty": "Beginner",
-      "simpleDefinition": "A break or injury in body tissue.",
-      "definition": "A wound may involve skin, mucous membrane or deeper tissue. It can result from surgery, trauma, pressure, burns or disease.",
-      "clinicalContext": "Nurses assess wound size, depth, edges, exudate, odour, pain, surrounding skin and signs of infection.",
-      "example": "In practice, nurses use the term wound when assessing, documenting or explaining patient care.",
+      "simpleDefinition": "An injection given into muscle.",
+      "definition": "An intramuscular injection places medicine into muscle tissue for absorption into the bloodstream.",
+      "clinicalContext": "Nurses select the correct site, needle size, angle and infection prevention steps while observing for pain or reaction.",
+      "example": "In practice, nurses use the term intramuscular injection when assessing, documenting or explaining patient care.",
       "relatedTerms": [
-        "epithelial-tissue",
-        "infection",
-        "inflammation"
-      ],
-      "relatedLessons": [
-        "lesson-2"
-      ],
-      "tags": [
-        "wound",
-        "clinical-skills",
-        "integumentary"
-      ],
-      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
-      "lastUpdated": "Updated weekly"
-    },
-    {
-      "id": "hemorrhage",
-      "term": "Hemorrhage",
-      "slug": "hemorrhage",
-      "pronunciation": "",
-      "partOfSpeech": "noun",
-      "category": "Pathology",
-      "bodySystem": "Cardiovascular",
-      "difficulty": "Intermediate",
-      "simpleDefinition": "Bleeding from a damaged blood vessel.",
-      "definition": "Hemorrhage may be external or internal and can lead to shock if blood loss is significant.",
-      "clinicalContext": "Nurses monitor bleeding, pulse, blood pressure, skin condition, consciousness and urine output while escalating urgently.",
-      "example": "In practice, nurses use the term hemorrhage when assessing, documenting or explaining patient care.",
-      "relatedTerms": [
-        "shock",
-        "pulse",
-        "blood-pressure"
-      ],
-      "relatedLessons": [
-        "lesson-7"
-      ],
-      "tags": [
-        "hemorrhage",
-        "pathology",
-        "cardiovascular"
-      ],
-      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
-      "lastUpdated": "Updated weekly"
-    },
-    {
-      "id": "shock",
-      "term": "Shock",
-      "slug": "shock",
-      "pronunciation": "",
-      "partOfSpeech": "noun",
-      "category": "Medical Conditions",
-      "bodySystem": "Cardiovascular",
-      "difficulty": "Advanced",
-      "simpleDefinition": "A life-threatening state where tissues do not receive enough blood flow and oxygen.",
-      "definition": "Shock occurs when circulation cannot meet tissue needs. Causes include blood loss, severe infection, heart problems and allergic reactions.",
-      "clinicalContext": "Nursing priorities include rapid recognition, airway and breathing support, circulation monitoring, fluid preparation and urgent escalation.",
-      "example": "In practice, nurses use the term shock when assessing, documenting or explaining patient care.",
-      "relatedTerms": [
-        "hypoxia",
-        "hemorrhage",
-        "sepsis"
-      ],
-      "relatedLessons": [
-        "lesson-8"
-      ],
-      "tags": [
-        "shock",
-        "medical-conditions",
-        "cardiovascular"
-      ],
-      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
-      "lastUpdated": "Updated weekly"
-    },
-    {
-      "id": "analgesic",
-      "term": "Analgesic",
-      "slug": "analgesic",
-      "pronunciation": "",
-      "partOfSpeech": "noun",
-      "category": "Pharmacology",
-      "bodySystem": "Nervous",
-      "difficulty": "Beginner",
-      "simpleDefinition": "A medicine used to relieve pain.",
-      "definition": "Analgesics reduce pain through different mechanisms. Examples include paracetamol, non-steroidal anti-inflammatory medicines and opioids.",
-      "clinicalContext": "Nurses assess pain before and after administration, check allergies, watch adverse effects and document response.",
-      "example": "In practice, nurses use the term analgesic when assessing, documenting or explaining patient care.",
-      "relatedTerms": [
-        "pain",
-        "opioid",
+        "subcutaneous-injection",
+        "asepsis",
         "medication"
       ],
       "relatedLessons": [
         "lesson-1"
       ],
       "tags": [
-        "analgesic",
-        "pharmacology",
-        "nervous"
-      ],
-      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
-      "lastUpdated": "Updated weekly"
-    },
-    {
-      "id": "antibiotic",
-      "term": "Antibiotic",
-      "slug": "antibiotic",
-      "pronunciation": "",
-      "partOfSpeech": "noun",
-      "category": "Pharmacology",
-      "bodySystem": "Immune",
-      "difficulty": "Beginner",
-      "simpleDefinition": "A medicine used to treat bacterial infection.",
-      "definition": "Antibiotics kill bacteria or stop their growth. They do not treat viral infections unless bacterial infection is also present.",
-      "clinicalContext": "Nurses check prescriptions, allergies, timing, route, cultures where ordered and patient response to treatment.",
-      "example": "In practice, nurses use the term antibiotic when assessing, documenting or explaining patient care.",
-      "relatedTerms": [
-        "infection",
-        "sepsis",
-        "asepsis"
-      ],
-      "relatedLessons": [
-        "lesson-1"
-      ],
-      "tags": [
-        "antibiotic",
-        "pharmacology",
-        "immune"
+        "intramuscular-injection",
+        "procedures",
+        "musculoskeletal"
       ],
       "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
       "lastUpdated": "Updated weekly"
@@ -981,204 +1140,202 @@
       "lastUpdated": "Updated weekly"
     },
     {
-      "id": "intramuscular-injection",
-      "term": "Intramuscular Injection",
-      "slug": "intramuscular-injection",
-      "pronunciation": "",
+      "id": "intussusception",
+      "slug": "intussusception",
       "partOfSpeech": "noun",
-      "category": "Procedures",
-      "bodySystem": "Musculoskeletal",
-      "difficulty": "Beginner",
-      "simpleDefinition": "An injection given into muscle.",
-      "definition": "An intramuscular injection places medicine into muscle tissue for absorption into the bloodstream.",
-      "clinicalContext": "Nurses select the correct site, needle size, angle and infection prevention steps while observing for pain or reaction.",
-      "example": "In practice, nurses use the term intramuscular injection when assessing, documenting or explaining patient care.",
-      "relatedTerms": [
-        "subcutaneous-injection",
-        "asepsis",
-        "medication"
-      ],
-      "relatedLessons": [
-        "lesson-1"
-      ],
-      "tags": [
-        "intramuscular-injection",
-        "procedures",
-        "musculoskeletal"
-      ],
-      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
-      "lastUpdated": "Updated weekly"
+      "term": "Intussusception",
+      "pronunciation": "in-tuh-suh-SEP-shun",
+      "category": "Paediatrics & Surgery",
+      "bodySystem": "Gastrointestinal",
+      "difficulty": "Advanced",
+      "simpleDefinition": "Telescoping of one proximal segment of bowel inside an adjacent distal segment causing obstruction.",
+      "definition": "Classic paediatric surgical emergency (ages 3–24 months) presenting with intermittent severe colicky crying, drawing knees up, vomiting, 'red currant jelly' mucoid bloody stool, and sausage-shaped RUQ mass.",
+      "clinicalContext": "Keep strictly Nil By Mouth (NBM), insert NG decompression tube, hydrate IV, and refer immediately to surgical theatre for hydrostatic reduction or laparotomy."
     },
     {
-      "id": "subcutaneous-injection",
-      "term": "Subcutaneous Injection",
-      "slug": "subcutaneous-injection",
-      "pronunciation": "",
+      "id": "jaundice-neonatal",
+      "slug": "jaundice-neonatal",
       "partOfSpeech": "noun",
-      "category": "Procedures",
-      "bodySystem": "Integumentary",
-      "difficulty": "Beginner",
-      "simpleDefinition": "An injection given into the fatty layer under the skin.",
-      "definition": "A subcutaneous injection places medicine into tissue below the skin and above the muscle.",
-      "clinicalContext": "Common examples include insulin and some anticoagulants. Nurses rotate sites and assess for bruising or irritation.",
-      "example": "In practice, nurses use the term subcutaneous injection when assessing, documenting or explaining patient care.",
-      "relatedTerms": [
-        "intramuscular-injection",
-        "blood-glucose",
-        "asepsis"
-      ],
-      "relatedLessons": [
-        "lesson-1"
-      ],
-      "tags": [
-        "subcutaneous-injection",
-        "procedures",
-        "integumentary"
-      ],
-      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
-      "lastUpdated": "Updated weekly"
+      "term": "Jaundice (Neonatal)",
+      "pronunciation": "JAWN-dis",
+      "category": "Paediatrics & Midwifery",
+      "bodySystem": "Hepatic / Neurological",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "Yellow skin and eye discolouration in newborns from elevated unconjugated or conjugated bilirubin.",
+      "definition": "Physiological jaundice starts AFTER 24 hours of life; jaundice appearing within the FIRST 24 HOURS is ALWAYS pathological (ABO/Rh incompatibility, G6PD, sepsis) and risks kernicterus brain damage.",
+      "clinicalContext": "Any jaundice within 24 hours of birth or reaching palms/soles is an EMERGENCY requiring serum bilirubin check and immediate phototherapy with eye shields + extra hydration."
     },
     {
-      "id": "blood-glucose",
-      "term": "Blood Glucose",
-      "slug": "blood-glucose",
+      "id": "jugular-venous-pressure-jvp",
+      "slug": "jugular-venous-pressure-jvp",
+      "partOfSpeech": "noun",
+      "term": "Jugular Venous Pressure (JVP)",
+      "pronunciation": "JUG-yoo-ler VEE-nus PRESH-er",
+      "category": "Assessment",
+      "bodySystem": "Cardiovascular",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "Clinical bedside estimate of right atrial pressure observed via internal jugular vein pulsations.",
+      "definition": "Measured with patient resting comfortably at 45 degrees elevation; normal vertical height is <=3–4 cm above the sternal angle of Louis.",
+      "clinicalContext": "Elevated JVP flags right-sided heart failure, fluid overload during IV therapy, tension pneumothorax, or cardiac tamponade—slow IV fluids immediately and notify clinician."
+    },
+    {
+      "id": "kernicterus",
+      "slug": "kernicterus",
+      "partOfSpeech": "noun",
+      "term": "Kernicterus",
+      "pronunciation": "ker-NIK-ter-us",
+      "category": "Paediatrics",
+      "bodySystem": "Neurological",
+      "difficulty": "Advanced",
+      "simpleDefinition": "Irreversible bilirubin encephalopathy causing permanent brain injury in severely jaundiced newborns.",
+      "definition": "Unconjugated lipid-soluble bilirubin crosses the immature neonatal blood-brain barrier and deposits in basal ganglia, producing high-pitched cry, opisthotonus (arched back), hypotonia, and deafness/cerebral palsy.",
+      "clinicalContext": "Preventable through early phototherapy screening and exchange blood transfusion thresholds; monitor poor feeding and lethargy in all jaundiced neonates."
+    },
+    {
+      "id": "koplik-spots",
+      "slug": "koplik-spots",
+      "partOfSpeech": "noun",
+      "term": "Koplik Spots",
+      "pronunciation": "KOP-lik spots",
+      "category": "Community & Paediatrics",
+      "bodySystem": "Integumentary / Immune",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "Tiny bluish-white grain-of-salt lesions on bright red buccal mucosa — pathognomonic of Measles.",
+      "definition": "Appear inside the mouth opposite the upper molar teeth 1–2 days BEFORE the generalized maculopapular measles rash erupts alongside coryza, cough, and conjunctivitis.",
+      "clinicalContext": "Early recognition triggers strict airborne isolation, Vitamin A supplementation (2 doses per Uganda MoH), and public health surveillance reporting."
+    },
+    {
+      "id": "kussmaul-respiration",
+      "slug": "kussmaul-respiration",
+      "partOfSpeech": "noun",
+      "term": "Kussmaul Respiration",
+      "pronunciation": "KOOS-mowl",
+      "category": "Assessment",
+      "bodySystem": "Respiratory / Metabolic",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "Deep, rapid, sighing hyperventilation attempting to blow off CO2 in severe metabolic acidosis.",
+      "definition": "Classic compensatory respiratory drive seen in Diabetic Ketoacidosis (DKA), renal failure uraemia, severe sepsis lactic acidosis, and salicylate poisoning.",
+      "clinicalContext": "Never treat Kussmaul breathing as primary respiratory failure requiring sedation—correct the underlying metabolic acidosis (IV fluids/insulin)."
+    },
+    {
+      "id": "lochia",
+      "slug": "lochia",
+      "partOfSpeech": "noun",
+      "term": "Lochia",
+      "pronunciation": "LOH-kee-uh",
+      "category": "Midwifery & OB",
+      "bodySystem": "Reproductive",
+      "difficulty": "Beginner",
+      "simpleDefinition": "Normal postpartum uterine discharge flowing for 4–6 weeks after childbirth.",
+      "definition": "Progresses sequentially: Lochia Rubra (bright red days 1–4), Lochia Serosa (pinkish-brown days 5–10), and Lochia Alba (yellowish-white days 11–28).",
+      "clinicalContext": "Foul-smelling lochia, sudden return to heavy bright bleeding, large clots, or sub-involution with fever signals puerperal sepsis or retained placental fragments."
+    },
+    {
+      "id": "lumbar-puncture",
+      "slug": "lumbar-puncture",
+      "partOfSpeech": "noun",
+      "term": "Lumbar Puncture",
+      "pronunciation": "LUM-bar PUNK-cher",
+      "category": "Clinical Procedures",
+      "bodySystem": "Neurological",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "Sterile needle insertion into the lumbar subarachnoid space (L3–L4 or L4–L5) to sample CSF.",
+      "definition": "Diagnoses bacterial/cryptococcal meningitis, encephalitis, and subarachnoid haemorrhage using opening pressure, cell counts, protein, glucose, and India Ink/CrAg/culture.",
+      "clinicalContext": "Position patient curled tightly in fetal lateral or sitting posture; monitor for post-LP headache, CSF leak, or lower-limb tingling, and never perform if focal neuro signs/papilloedema indicate herniation risk."
+    },
+    {
+      "id": "malaise",
+      "slug": "malaise",
+      "partOfSpeech": "noun",
+      "term": "Malaise",
+      "pronunciation": "muh-LAYZ",
+      "category": "Assessment",
+      "bodySystem": "Systemic",
+      "difficulty": "Beginner",
+      "simpleDefinition": "General feeling of bodily discomfort, fatigue, and lack of well-being marking infection onset.",
+      "definition": "Early non-specific prodromal symptom of acute viral infections, malaria, HIV seroconversion, tuberculosis, and autoimmune flares.",
+      "clinicalContext": "Probe onset timeline, rigors, weight change, and localizing organ symptoms during holistic nursing history."
+    },
+    {
+      "id": "meconium",
+      "slug": "meconium",
+      "partOfSpeech": "noun",
+      "term": "Meconium",
+      "pronunciation": "meh-KOH-nee-um",
+      "category": "Midwifery & Paediatrics",
+      "bodySystem": "Gastrointestinal / Respiratory",
+      "difficulty": "Beginner",
+      "simpleDefinition": "Dark greenish-black tarry first newborn stool formed from ingested amniotic debris in utero.",
+      "definition": "Passage within 24–48 hours confirms lower GI patency; fresh thick meconium-stained amniotic fluid during cephalic labour signals foetal distress and aspiration risk.",
+      "clinicalContext": "Delayed meconium >48 hrs suggests Hirschsprung disease or imperforate anus; for vigorous babies born through meconium, dry/stimulate without routine deep tracheal suction."
+    },
+    {
+      "id": "melaena",
+      "slug": "melaena",
+      "partOfSpeech": "noun",
+      "term": "Melaena",
+      "pronunciation": "meh-LEE-nuh",
+      "category": "Assessment",
+      "bodySystem": "Gastrointestinal",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "Black, tarry, foul-smelling stools caused by digested blood from upper GI bleeding.",
+      "definition": "Stomach acid digests haemoglobin from bleeding peptic ulcers, oesophageal varices, or NSAID gastritis into dark tarry stools (>50 mL blood loss needed).",
+      "clinicalContext": "Distinguish true melaena from dark stools caused by oral iron tablets (non-foul); monitor pulse, BP, postural drop, haemoglobin, and cross-match urgently."
+    },
+    {
+      "id": "metabolism",
+      "term": "Metabolism",
+      "slug": "metabolism",
       "pronunciation": "",
       "partOfSpeech": "noun",
-      "category": "Clinical Skills",
+      "category": "Physiology",
       "bodySystem": "Endocrine",
       "difficulty": "Beginner",
-      "simpleDefinition": "The amount of sugar in the blood.",
-      "definition": "Blood glucose is a key energy measurement. It can become too high or too low in diabetes, illness, fasting or medication effects.",
-      "clinicalContext": "Nurses monitor glucose, recognize hypoglycaemia or hyperglycaemia signs and follow facility protocols.",
-      "example": "In practice, nurses use the term blood glucose when assessing, documenting or explaining patient care.",
+      "simpleDefinition": "All the chemical reactions that keep the body alive.",
+      "definition": "Metabolism includes reactions that build body materials and reactions that break down nutrients to release energy.",
+      "clinicalContext": "Changes in metabolism may appear as altered temperature, weight change, fatigue, glucose imbalance or poor wound healing.",
+      "example": "In practice, nurses use the term metabolism when assessing, documenting or explaining patient care.",
       "relatedTerms": [
-        "metabolism",
-        "homeostasis",
-        "subcutaneous-injection"
+        "cell",
+        "glucose",
+        "homeostasis"
       ],
       "relatedLessons": [
-        "lesson-3"
+        "lesson-2"
       ],
       "tags": [
-        "blood-glucose",
-        "clinical-skills",
+        "metabolism",
+        "physiology",
         "endocrine"
       ],
       "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
       "lastUpdated": "Updated weekly"
     },
     {
-      "id": "fever",
-      "term": "Fever",
-      "slug": "fever",
+      "id": "muscle-tissue",
+      "term": "Muscle Tissue",
+      "slug": "muscle-tissue",
       "pronunciation": "",
       "partOfSpeech": "noun",
-      "category": "Medical Conditions",
-      "bodySystem": "Immune",
+      "category": "Anatomy",
+      "bodySystem": "Musculoskeletal",
       "difficulty": "Beginner",
-      "simpleDefinition": "A body temperature higher than normal.",
-      "definition": "Fever is often a response to infection, inflammation or other illness. It reflects changes in temperature regulation.",
-      "clinicalContext": "Nurses monitor temperature trends, hydration, comfort, prescribed medicines and danger signs such as confusion or stiff neck.",
-      "example": "In practice, nurses use the term fever when assessing, documenting or explaining patient care.",
+      "simpleDefinition": "Tissue that contracts to produce movement.",
+      "definition": "Muscle tissue is specialized for contraction. Skeletal muscle moves the body, cardiac muscle pumps blood and smooth muscle moves substances through organs.",
+      "clinicalContext": "Weakness, cramps, paralysis and reduced mobility can reflect muscle or nerve problems that require careful nursing assessment.",
+      "example": "In practice, nurses use the term muscle tissue when assessing, documenting or explaining patient care.",
       "relatedTerms": [
-        "temperature",
-        "infection",
-        "dehydration"
+        "nervous-tissue",
+        "tissue",
+        "musculoskeletal-system"
       ],
       "relatedLessons": [
-        "lesson-3"
+        "lesson-2"
       ],
       "tags": [
-        "fever",
-        "medical-conditions",
-        "immune"
-      ],
-      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
-      "lastUpdated": "Updated weekly"
-    },
-    {
-      "id": "airway",
-      "term": "Airway",
-      "slug": "airway",
-      "pronunciation": "",
-      "partOfSpeech": "noun",
-      "category": "Clinical Skills",
-      "bodySystem": "Respiratory",
-      "difficulty": "Beginner",
-      "simpleDefinition": "The passage that allows air to move into and out of the lungs.",
-      "definition": "The airway includes the nose, mouth, throat, larynx, trachea and bronchi. A clear airway is essential for breathing.",
-      "clinicalContext": "Airway assessment is a first nursing priority. Obstruction, secretions, vomiting or reduced consciousness can quickly become life-threatening.",
-      "example": "In practice, nurses use the term airway when assessing, documenting or explaining patient care.",
-      "relatedTerms": [
-        "respiration",
-        "hypoxia",
-        "aspiration"
-      ],
-      "relatedLessons": [
-        "lesson-3"
-      ],
-      "tags": [
-        "airway",
-        "clinical-skills",
-        "respiratory"
-      ],
-      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
-      "lastUpdated": "Updated weekly"
-    },
-    {
-      "id": "aspiration",
-      "term": "Aspiration",
-      "slug": "aspiration",
-      "pronunciation": "",
-      "partOfSpeech": "noun",
-      "category": "Pathology",
-      "bodySystem": "Respiratory",
-      "difficulty": "Intermediate",
-      "simpleDefinition": "Entry of food, fluid, saliva or vomit into the airway.",
-      "definition": "Aspiration can irritate the lungs, block breathing or cause aspiration pneumonia.",
-      "clinicalContext": "Nurses reduce risk by positioning patients safely, checking swallowing ability and monitoring coughing, choking or breathing changes.",
-      "example": "In practice, nurses use the term aspiration when assessing, documenting or explaining patient care.",
-      "relatedTerms": [
-        "airway",
-        "hypoxia",
-        "pneumonia"
-      ],
-      "relatedLessons": [
-        "lesson-3"
-      ],
-      "tags": [
-        "aspiration",
-        "pathology",
-        "respiratory"
-      ],
-      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
-      "lastUpdated": "Updated weekly"
-    },
-    {
-      "id": "hypertension",
-      "term": "Hypertension",
-      "slug": "hypertension",
-      "pronunciation": "",
-      "partOfSpeech": "noun",
-      "category": "Medical Conditions",
-      "bodySystem": "Cardiovascular",
-      "difficulty": "Intermediate",
-      "simpleDefinition": "Blood pressure that remains higher than normal.",
-      "definition": "Hypertension increases strain on the heart and blood vessels and raises the risk of stroke, heart disease and kidney disease.",
-      "clinicalContext": "Nurses measure accurately, support lifestyle education, monitor medicine adherence and report very high readings or symptoms.",
-      "example": "In practice, nurses use the term hypertension when assessing, documenting or explaining patient care.",
-      "relatedTerms": [
-        "blood-pressure",
-        "stroke",
-        "myocardial-infarction"
-      ],
-      "relatedLessons": [
-        "lesson-8"
-      ],
-      "tags": [
-        "hypertension",
-        "medical-conditions",
-        "cardiovascular"
+        "muscle-tissue",
+        "anatomy",
+        "musculoskeletal"
       ],
       "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
       "lastUpdated": "Updated weekly"
@@ -1214,33 +1371,307 @@
       "lastUpdated": "Updated weekly"
     },
     {
-      "id": "stroke",
-      "term": "Stroke",
-      "slug": "stroke",
+      "id": "nephrotic-syndrome",
+      "slug": "nephrotic-syndrome",
+      "partOfSpeech": "noun",
+      "term": "Nephrotic Syndrome",
+      "pronunciation": "neh-FROT-ik",
+      "category": "Medical-Surgical",
+      "bodySystem": "Renal",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "Kidney glomerular disorder causing heavy proteinuria, low blood albumin, generalized oedema, and hyperlipidaemia.",
+      "definition": "Damaged glomerular basement membrane leaks >3.5 g protein daily, slashing oncotic pressure and creating periorbital/pedal oedema, ascites, and infection susceptibility.",
+      "clinicalContext": "Track strict daily weights, fluid intake/output chart, urine dipstick protein, abdominal girth, and protect fragile oedematous skin from breakdown."
+    },
+    {
+      "id": "nervous-tissue",
+      "term": "Nervous Tissue",
+      "slug": "nervous-tissue",
       "pronunciation": "",
       "partOfSpeech": "noun",
-      "category": "Medical Conditions",
+      "category": "Anatomy",
       "bodySystem": "Nervous",
-      "difficulty": "Advanced",
-      "simpleDefinition": "Sudden brain injury caused by blocked or bleeding blood vessels.",
-      "definition": "Stroke occurs when blood supply to part of the brain is interrupted or bleeding occurs in the brain.",
-      "clinicalContext": "Nurses watch for facial droop, arm weakness, speech difficulty, altered consciousness and urgent onset time documentation.",
-      "example": "In practice, nurses use the term stroke when assessing, documenting or explaining patient care.",
+      "difficulty": "Beginner",
+      "simpleDefinition": "Tissue that receives and sends messages in the body.",
+      "definition": "Nervous tissue is made of neurons and support cells. It detects change, carries impulses and coordinates body responses.",
+      "clinicalContext": "Nurses assess consciousness, orientation, pain response, pupil reaction and limb movement to monitor nervous system function.",
+      "example": "In practice, nurses use the term nervous tissue when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "muscle-tissue",
+        "neuron",
+        "nervous-system"
+      ],
+      "relatedLessons": [
+        "lesson-2"
+      ],
+      "tags": [
+        "nervous-tissue",
+        "anatomy",
+        "nervous"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "oliguria-anuria",
+      "slug": "oliguria-anuria",
+      "partOfSpeech": "noun",
+      "term": "Oliguria & Anuria",
+      "pronunciation": "ol-ig-YOOR-ee-uh",
+      "category": "Assessment",
+      "bodySystem": "Renal / Cardiovascular",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "Abnormally low urine output (<400 mL/24 hrs or <0.5 mL/kg/hr in adults); anuria is <100 mL/24 hrs.",
+      "definition": "Critical early marker of pre-renal hypovolaemia/shock, intrinsic acute kidney injury (nephrotoxins, blackwater fever), or post-renal Foley catheter/prostatic obstruction.",
+      "clinicalContext": "Before assuming kidney failure in catheterized patients, FIRST flush/inspect Foley tubing for kinks or clots! Monitor MgSO4 patients closely—withhold MgSO4 if urine <30 mL/hr."
+    },
+    {
+      "id": "organ",
+      "term": "Organ",
+      "slug": "organ",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Anatomy",
+      "bodySystem": "All Systems",
+      "difficulty": "Beginner",
+      "simpleDefinition": "A body structure made from two or more tissues with a specific job.",
+      "definition": "An organ is formed when tissues work together for a specific function. Examples include the heart, lungs, kidneys, skin, stomach and brain.",
+      "clinicalContext": "Nurses assess organ function by observing breathing, pulse, urine output, skin condition, consciousness and other clinical signs.",
+      "example": "In practice, nurses use the term organ when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "tissue",
+        "organ-system",
+        "homeostasis"
+      ],
+      "relatedLessons": [
+        "lesson-2"
+      ],
+      "tags": [
+        "organ",
+        "anatomy",
+        "all-systems"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "organ-system",
+      "term": "Organ System",
+      "slug": "organ-system",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Anatomy",
+      "bodySystem": "All Systems",
+      "difficulty": "Beginner",
+      "simpleDefinition": "A group of organs working together for a major body function.",
+      "definition": "An organ system is a set of organs that cooperate to maintain life, such as the respiratory, cardiovascular, digestive and urinary systems.",
+      "clinicalContext": "System thinking helps nurses prioritize airway, breathing, circulation, elimination, nutrition and neurological status.",
+      "example": "In practice, nurses use the term organ system when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "organ",
+        "homeostasis"
+      ],
+      "relatedLessons": [
+        "lesson-2"
+      ],
+      "tags": [
+        "organ-system",
+        "anatomy",
+        "all-systems"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "orthopnoea",
+      "slug": "orthopnoea",
+      "partOfSpeech": "noun",
+      "term": "Orthopnoea",
+      "pronunciation": "or-THOP-nee-uh",
+      "category": "Assessment",
+      "bodySystem": "Cardiovascular / Respiratory",
+      "difficulty": "Beginner",
+      "simpleDefinition": "Shortness of breath triggered when lying flat that relieves when propped upright on pillows.",
+      "definition": "Classic hallmark of left ventricular congestive heart failure as supine posture shifts peripheral venous blood centrally into congested pulmonary capillaries.",
+      "clinicalContext": "Nurse patient comfortably upright (45–90 degrees Fowler's) supported on pillows or cardiac table; record '2-pillow' or '3-pillow orthopnoea' baseline."
+    },
+    {
+      "id": "oxygen-saturation",
+      "term": "Oxygen Saturation",
+      "slug": "oxygen-saturation",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Clinical Skills",
+      "bodySystem": "Respiratory",
+      "difficulty": "Beginner",
+      "simpleDefinition": "The percentage of haemoglobin carrying oxygen in the blood.",
+      "definition": "Oxygen saturation is commonly measured with a pulse oximeter and helps estimate how well oxygen is being carried.",
+      "clinicalContext": "A falling saturation can be an early danger sign. Nurses confirm probe placement, assess the patient and escalate according to protocol.",
+      "example": "In practice, nurses use the term oxygen saturation when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "hypoxia",
+        "cyanosis",
+        "respiration"
+      ],
+      "relatedLessons": [
+        "lesson-3"
+      ],
+      "tags": [
+        "oxygen-saturation",
+        "clinical-skills",
+        "respiratory"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "partograph",
+      "slug": "partograph",
+      "partOfSpeech": "noun",
+      "term": "Partograph",
+      "pronunciation": "PAR-toh-graf",
+      "category": "Midwifery & OB",
+      "bodySystem": "Reproductive",
+      "difficulty": "Beginner",
+      "simpleDefinition": "WHO graphical labour chart tracking cervical dilatation, contractions, and maternal-foetal status.",
+      "definition": "Begins plotting strictly once active first-stage labour reaches >=4 cm cervical dilatation; compares dilatation pace against the Alert Line (1 cm/hr) and Action Line (+4 hrs).",
+      "clinicalContext": "Crossing the Alert Line warrants heightened monitoring/referral readiness; reaching the Action Line triggers urgent obstetric intervention for prolonged/obstructed labour."
+    },
+    {
+      "id": "pre-eclampsia",
+      "slug": "pre-eclampsia",
+      "partOfSpeech": "noun",
+      "term": "Pre-eclampsia",
+      "pronunciation": "pree-ih-KLAMP-see-uh",
+      "category": "Midwifery & OB",
+      "bodySystem": "Cardiovascular / Reproductive",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "Pregnancy-specific disorder after 20 weeks marked by new hypertension (>=140/90 mmHg) and proteinuria or organ dysfunction.",
+      "definition": "Driven by abnormal placental spiral artery remodelling causing vasospasm, endothelial leak, oedema, hyperreflexia, epigastric RUQ pain, and thrombocytopenia (HELLP).",
+      "clinicalContext": "Screen every ANC mother cleanly with calibrated BP cuff + urine protein dipstick; treat severe BP >=160/110 promptly with Nifedipine or IV Hydralazine + MgSO4 seizure prophylaxis."
+    },
+    {
+      "id": "puerperal-sepsis",
+      "slug": "puerperal-sepsis",
+      "partOfSpeech": "noun",
+      "term": "Puerperal Sepsis",
+      "pronunciation": "pyoo-UR-per-ul SEP-sis",
+      "category": "Midwifery & OB",
+      "bodySystem": "Reproductive / Immune",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "Severe bacterial genital tract infection occurring from membrane rupture/delivery up to 42 days postpartum.",
+      "definition": "Defined clinically by fever >=38 C with pelvic pain, foul lochia, sub-involution of uterus, tachycardia, and tachypnoea; commonly polymicrobial (Streptococci, E. coli, anaerobes).",
+      "clinicalContext": "Prevention via strict 5-Cleans delivery asepsis; treat early with Triple IV Antibiotics (Ampicillin + Gentamicin + Metronidazole) per Uganda Clinical Guidelines."
+    },
+    {
+      "id": "pulse",
+      "term": "Pulse",
+      "slug": "pulse",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Clinical Skills",
+      "bodySystem": "Cardiovascular",
+      "difficulty": "Beginner",
+      "simpleDefinition": "The beat felt as blood is pumped through arteries.",
+      "definition": "Pulse is the rhythmic expansion of an artery caused by heart contraction. It is assessed by rate, rhythm, strength and equality.",
+      "clinicalContext": "Pulse assessment helps nurses identify pain, fever, dehydration, shock, arrhythmia and response to treatment.",
+      "example": "In practice, nurses use the term pulse when assessing, documenting or explaining patient care.",
       "relatedTerms": [
         "blood-pressure",
-        "nervous-tissue",
-        "hypertension"
+        "shock",
+        "cardiovascular-system"
       ],
       "relatedLessons": [
         "lesson-8"
       ],
       "tags": [
-        "stroke",
-        "medical-conditions",
-        "nervous"
+        "pulse",
+        "clinical-skills",
+        "cardiovascular"
       ],
       "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
       "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "qrs-complex",
+      "slug": "qrs-complex",
+      "partOfSpeech": "noun",
+      "term": "QRS Complex",
+      "pronunciation": "kyoo-ar-es KOM-pleks",
+      "category": "Assessment",
+      "bodySystem": "Cardiovascular",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "Sharp ECG waveform deflection representing rapid ventricular depolarization (contraction).",
+      "definition": "Normal QRS duration is <0.12 seconds (<3 small ECG squares). Widened QRS suggests ventricular tachycardia, bundle branch block, or severe hyperkalaemia.",
+      "clinicalContext": "In cardiac arrest strips, rapid broad-complex rhythm without pulse = pulseless VT requiring immediate defibrillation."
+    },
+    {
+      "id": "quickening",
+      "slug": "quickening",
+      "partOfSpeech": "noun",
+      "term": "Quickening",
+      "pronunciation": "KWIK-uh-ning",
+      "category": "Midwifery & OB",
+      "bodySystem": "Reproductive",
+      "difficulty": "Beginner",
+      "simpleDefinition": "First fluttering sensations of foetal movement felt by the mother, usually between 16–20 weeks.",
+      "definition": "Reassuring maternal milestone confirming foetal neuromuscular vitality; multigravidas typically perceive quickening ~2 weeks earlier than primigravidas.",
+      "clinicalContext": "After 28 weeks, instruct mothers to count '10 kicks within 2 hours' or monitor daily foetal movements and report any marked reduction urgently."
+    },
+    {
+      "id": "respiration",
+      "term": "Respiration",
+      "slug": "respiration",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Clinical Skills",
+      "bodySystem": "Respiratory",
+      "difficulty": "Beginner",
+      "simpleDefinition": "The act of breathing in oxygen and breathing out carbon dioxide.",
+      "definition": "Respiration includes ventilation and gas exchange. Nurses assess rate, depth, rhythm, effort and breath sounds.",
+      "clinicalContext": "Abnormal respiration may indicate pain, anxiety, infection, asthma, hypoxia, shock or neurological changes.",
+      "example": "In practice, nurses use the term respiration when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "oxygen-saturation",
+        "hypoxia",
+        "airway"
+      ],
+      "relatedLessons": [
+        "lesson-3"
+      ],
+      "tags": [
+        "respiration",
+        "clinical-skills",
+        "respiratory"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "rh-isoimmunization-rhesus-negative",
+      "slug": "rh-isoimmunization-rhesus-negative",
+      "partOfSpeech": "noun",
+      "term": "Rh Isoimmunization (Rhesus Negative)",
+      "pronunciation": "REE-sus eye-soh-im-yoo-ny-ZAY-shun",
+      "category": "Midwifery & OB",
+      "bodySystem": "Haematological / Reproductive",
+      "difficulty": "Advanced",
+      "simpleDefinition": "Maternal antibody development against Rh-positive foetal red cells risking haemolytic disease of newborn.",
+      "definition": "Occurs when an RhD-negative mother is exposed to RhD-positive foetal blood during birth, miscarriage, ectopic pregnancy, or trauma without Anti-D immunoglobulin prophylaxis.",
+      "clinicalContext": "Check maternal ABO/Rh blood group at first ANC booking! Administer Anti-D immunoglobulin IM within 72 hours of delivery, abortion, or sensitizing bleed if baby is Rh+."
+    },
+    {
+      "id": "rigors",
+      "slug": "rigors",
+      "partOfSpeech": "noun",
+      "term": "Rigors",
+      "pronunciation": "RIG-orz",
+      "category": "Assessment",
+      "bodySystem": "Systemic / Immune",
+      "difficulty": "Beginner",
+      "simpleDefinition": "Violent uncontrollable shivering chills accompanied by teeth chattering as core fever rises steeply.",
+      "definition": "Classic hallmark of sudden pyrogen surges in acute malaria paroxysms, septicaemia, pyelonephritis, pneumonia, or acute blood transfusion reactions.",
+      "clinicalContext": "Obtain blood smear/RDT for malaria + blood cultures BEFORE empirical antipyretics when safe; remove heavy blankets only once shivering stops and hot phase begins."
     },
     {
       "id": "sepsis",
@@ -1270,16 +1701,335 @@
       ],
       "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
       "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "shock",
+      "term": "Shock",
+      "slug": "shock",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Medical Conditions",
+      "bodySystem": "Cardiovascular",
+      "difficulty": "Advanced",
+      "simpleDefinition": "A life-threatening state where tissues do not receive enough blood flow and oxygen.",
+      "definition": "Shock occurs when circulation cannot meet tissue needs. Causes include blood loss, severe infection, heart problems and allergic reactions.",
+      "clinicalContext": "Nursing priorities include rapid recognition, airway and breathing support, circulation monitoring, fluid preparation and urgent escalation.",
+      "example": "In practice, nurses use the term shock when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "hypoxia",
+        "hemorrhage",
+        "sepsis"
+      ],
+      "relatedLessons": [
+        "lesson-8"
+      ],
+      "tags": [
+        "shock",
+        "medical-conditions",
+        "cardiovascular"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "stridor",
+      "slug": "stridor",
+      "partOfSpeech": "noun",
+      "term": "Stridor",
+      "pronunciation": "STRY-dor",
+      "category": "Emergency Care",
+      "bodySystem": "Respiratory",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "High-pitched harsh crowing sound predominantly on INSPIRATION indicating upper airway narrowing.",
+      "definition": "Signifies acute partial obstruction at larynx or trachea from croup, epiglottitis, anaphylaxis angioedema, inhaled foreign body, or post-extubation oedema.",
+      "clinicalContext": "EMERGENCY RED FLAG: Stridor at rest demands calm positioning (on caregiver's lap), humidified oxygen, nebulized Adrenaline + Dexamethasone, and NEVER agitate the child with throat spatulas!"
+    },
+    {
+      "id": "stroke",
+      "term": "Stroke",
+      "slug": "stroke",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Medical Conditions",
+      "bodySystem": "Nervous",
+      "difficulty": "Advanced",
+      "simpleDefinition": "Sudden brain injury caused by blocked or bleeding blood vessels.",
+      "definition": "Stroke occurs when blood supply to part of the brain is interrupted or bleeding occurs in the brain.",
+      "clinicalContext": "Nurses watch for facial droop, arm weakness, speech difficulty, altered consciousness and urgent onset time documentation.",
+      "example": "In practice, nurses use the term stroke when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "blood-pressure",
+        "nervous-tissue",
+        "hypertension"
+      ],
+      "relatedLessons": [
+        "lesson-8"
+      ],
+      "tags": [
+        "stroke",
+        "medical-conditions",
+        "nervous"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "subcutaneous-injection",
+      "term": "Subcutaneous Injection",
+      "slug": "subcutaneous-injection",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Procedures",
+      "bodySystem": "Integumentary",
+      "difficulty": "Beginner",
+      "simpleDefinition": "An injection given into the fatty layer under the skin.",
+      "definition": "A subcutaneous injection places medicine into tissue below the skin and above the muscle.",
+      "clinicalContext": "Common examples include insulin and some anticoagulants. Nurses rotate sites and assess for bruising or irritation.",
+      "example": "In practice, nurses use the term subcutaneous injection when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "intramuscular-injection",
+        "blood-glucose",
+        "asepsis"
+      ],
+      "relatedLessons": [
+        "lesson-1"
+      ],
+      "tags": [
+        "subcutaneous-injection",
+        "procedures",
+        "integumentary"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "tachypnoea",
+      "slug": "tachypnoea",
+      "partOfSpeech": "noun",
+      "term": "Tachypnoea",
+      "pronunciation": "tak-ip-NEE-uh",
+      "category": "Assessment",
+      "bodySystem": "Respiratory",
+      "difficulty": "Beginner",
+      "simpleDefinition": "Abnormally rapid breathing rate exceeding normal age thresholds.",
+      "definition": "WHO pneumonia fast-breathing cut-offs: >=60/min (age <2 months), >=50/min (2–11 months), >=40/min (1–5 years), and >20/min in resting adults.",
+      "clinicalContext": "Count full 60 seconds when child is calm; tachypnoea is the single most sensitive early sign of childhood pneumonia before crackles appear!"
+    },
+    {
+      "id": "temperature",
+      "term": "Temperature",
+      "slug": "temperature",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Clinical Skills",
+      "bodySystem": "All Systems",
+      "difficulty": "Beginner",
+      "simpleDefinition": "A measurement of body heat.",
+      "definition": "Body temperature shows the balance between heat production and heat loss. Fever or low temperature can signal illness or environmental stress.",
+      "clinicalContext": "Nurses record temperature, compare trends and link findings to infection, dehydration, exposure or medication effects.",
+      "example": "In practice, nurses use the term temperature when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "fever",
+        "infection",
+        "homeostasis"
+      ],
+      "relatedLessons": [
+        "lesson-3"
+      ],
+      "tags": [
+        "temperature",
+        "clinical-skills",
+        "all-systems"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "tissue",
+      "term": "Tissue",
+      "slug": "tissue",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Anatomy",
+      "bodySystem": "All Systems",
+      "difficulty": "Beginner",
+      "simpleDefinition": "A group of similar cells working together for one function.",
+      "definition": "A tissue is a level of body organization between cells and organs. The four major tissue groups are epithelial, connective, muscle and nervous tissue.",
+      "clinicalContext": "Understanding tissue helps nurses connect wounds, inflammation, oxygen supply and healing to the patient's overall condition.",
+      "example": "In practice, nurses use the term tissue when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "cell",
+        "organ",
+        "epithelial-tissue"
+      ],
+      "relatedLessons": [
+        "lesson-2"
+      ],
+      "tags": [
+        "tissue",
+        "anatomy",
+        "all-systems"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "uterine-atony",
+      "slug": "uterine-atony",
+      "partOfSpeech": "noun",
+      "term": "Uterine Atony",
+      "pronunciation": "YOO-ter-in AT-uh-nee",
+      "category": "Midwifery & OB",
+      "bodySystem": "Reproductive",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "Failure of uterine myometrial muscles to contract firmly after childbirth, leaving a soft boggy uterus.",
+      "definition": "Permits rapid torrential bleeding from open placental-site spiral arteries; accounts for ~70% of primary postpartum haemorrhage cases.",
+      "clinicalContext": "Prevent routinely with Active Management of Third Stage of Labour (Oxytocin 10 IU IM within 1 minute of birth); feel abdomen immediately postpartum—boggy = massage + uterotonics!"
+    },
+    {
+      "id": "vaso-occlusive-crisis-sickle-cell",
+      "slug": "vaso-occlusive-crisis-sickle-cell",
+      "partOfSpeech": "noun",
+      "term": "Vaso-occlusive Crisis (Sickle Cell)",
+      "pronunciation": "VAY-zoh oh-KLOO-siv KRY-sis",
+      "category": "Paediatrics & Medicine",
+      "bodySystem": "Haematological",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "Severe ischaemic pain crisis when sickled red blood cells block small capillaries in bones or organs.",
+      "definition": "Triggered in Sickle Cell Disease (HbSS) by dehydration, hypoxia, cold weather, or infections (malaria/pneumonia), presenting as dactylitis, long bone pain, or acute chest syndrome.",
+      "clinicalContext": "Priority triage triad: 1) Rapid IV/oral Hydration, 2) Adequate stepped Analgesia (Paracetamol + Ibuprofen/Morphine—never delay opioids!), 3) Oxygen + keep warm + treat infection."
+    },
+    {
+      "id": "wheezes-rhonchi",
+      "slug": "wheezes-rhonchi",
+      "partOfSpeech": "noun",
+      "term": "Wheezes (Rhonchi)",
+      "pronunciation": "WEE-ziz",
+      "category": "Assessment",
+      "bodySystem": "Respiratory",
+      "difficulty": "Beginner",
+      "simpleDefinition": "Continuous high-pitched musical whistling sounds predominantly on EXPIRATION from narrowed small airways.",
+      "definition": "Indicates bronchospasm, airway oedema, or mucus plugging in bronchial asthma, infant bronchiolitis, COPD, or anaphylaxis.",
+      "clinicalContext": "A sudden 'SILENT CHEST' with poor air entry in severe asthma means extreme danger (exhaustion/imminent arrest), NOT improvement!"
+    },
+    {
+      "id": "wound",
+      "term": "Wound",
+      "slug": "wound",
+      "pronunciation": "",
+      "partOfSpeech": "noun",
+      "category": "Clinical Skills",
+      "bodySystem": "Integumentary",
+      "difficulty": "Beginner",
+      "simpleDefinition": "A break or injury in body tissue.",
+      "definition": "A wound may involve skin, mucous membrane or deeper tissue. It can result from surgery, trauma, pressure, burns or disease.",
+      "clinicalContext": "Nurses assess wound size, depth, edges, exudate, odour, pain, surrounding skin and signs of infection.",
+      "example": "In practice, nurses use the term wound when assessing, documenting or explaining patient care.",
+      "relatedTerms": [
+        "epithelial-tissue",
+        "infection",
+        "inflammation"
+      ],
+      "relatedLessons": [
+        "lesson-2"
+      ],
+      "tags": [
+        "wound",
+        "clinical-skills",
+        "integumentary"
+      ],
+      "mnemonics": "Connect the word to assessment, documentation and safe nursing action.",
+      "lastUpdated": "Updated weekly"
+    },
+    {
+      "id": "wound-dehiscence",
+      "slug": "wound-dehiscence",
+      "partOfSpeech": "noun",
+      "term": "Wound Dehiscence",
+      "pronunciation": "deh-HIS-enz",
+      "category": "Surgical Nursing",
+      "bodySystem": "Integumentary",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "Partial or complete separation/bursting open of previously sutured surgical wound edges.",
+      "definition": "Often heralded on postoperative days 5–8 by sudden gush of serosanguinous ('pink watery') fluid; if viscera protrude through fascia, it is called EVISCERATION.",
+      "clinicalContext": "In Evisceration: STAY CALM, call surgeon stat, do NOT push organs back in—cover viscera with sterile saline-soaked gauze, bend patient's knees slightly (low-Fowler's), keep NBM."
+    },
+    {
+      "id": "x-ray-chest-radiograph-checks",
+      "slug": "x-ray-chest-radiograph-checks",
+      "partOfSpeech": "noun",
+      "term": "X-Ray (Chest Radiograph Checks)",
+      "pronunciation": "EKS-ray",
+      "category": "Diagnostics",
+      "bodySystem": "Respiratory / Skeletal",
+      "difficulty": "Beginner",
+      "simpleDefinition": "Common radiographic imaging assessing lungs, heart silhouette, ribs, pneumothorax, and ETT/NGT positions.",
+      "definition": "Reveals lobar consolidation, pleural effusion meniscus, tension pneumothorax tracheal shift, cardiomegaly, and tuberculosis apical cavities.",
+      "clinicalContext": "Always verify pregnancy status BEFORE abdominal/pelvic X-rays in reproductive-age women and apply lead shielding when clinically feasible."
+    },
+    {
+      "id": "yellow-fever",
+      "slug": "yellow-fever",
+      "partOfSpeech": "noun",
+      "term": "Yellow Fever",
+      "pronunciation": "YEL-oh FEE-ver",
+      "category": "Community Health",
+      "bodySystem": "Hepatic / Immune",
+      "difficulty": "Intermediate",
+      "simpleDefinition": "Acute viral haemorrhagic disease transmitted by daytime-biting Aedes aegypti mosquitoes.",
+      "definition": "Features acute fever, severe backache, bradycardia-fever dissociation (Faget's sign), progressing in severe toxic phase to jaundice, haematemesis ('black vomit'), and renal failure.",
+      "clinicalContext": "Single lifetime Yellow Fever vaccine (Stamaril) confers lifelong immunity at >=99%; immediate notifiable viral haemorrhagic surveillance alert in Uganda."
+    },
+    {
+      "id": "zinc-supplementation-diarrhoea",
+      "slug": "zinc-supplementation-diarrhoea",
+      "partOfSpeech": "noun",
+      "term": "Zinc Supplementation (Diarrhoea)",
+      "pronunciation": "zingk sup-leh-men-TAY-shun",
+      "category": "Paediatrics & Pharmacology",
+      "bodySystem": "Gastrointestinal / Immune",
+      "difficulty": "Beginner",
+      "simpleDefinition": "Essential WHO adjunct therapy given alongside ORS for acute childhood diarrhoea.",
+      "definition": "Dispersible Zinc sulphate (20 mg once daily for 10–14 days in children >=6 months; 10 mg if <6 months) restores intestinal mucosal brush border and reduces episode severity/recurrence.",
+      "clinicalContext": "Give strictly WITH ORS (never as a standalone replacement for fluids!) and advise mothers to finish the full 10-day course even after diarrhoea stops."
     }
   ],
   "abbreviations": [
+    {
+      "abbr": "ABCDE",
+      "full": "Airway, Breathing, Circulation, Disability, Exposure"
+    },
     {
       "abbr": "ABG",
       "full": "Arterial Blood Gas"
     },
     {
+      "abbr": "ACT",
+      "full": "Artemisinin-based Combination Therapy (e.g., Artemether-Lumefantrine)"
+    },
+    {
       "abbr": "AIDS",
       "full": "Acquired Immunodeficiency Syndrome"
+    },
+    {
+      "abbr": "AMTSL",
+      "full": "Active Management of the Third Stage of Labour"
+    },
+    {
+      "abbr": "ANC",
+      "full": "Antenatal Care"
+    },
+    {
+      "abbr": "ART",
+      "full": "Antiretroviral Therapy"
+    },
+    {
+      "abbr": "BD / BID",
+      "full": "Bis In Die — Twice Daily (every 12 hours)"
+    },
+    {
+      "abbr": "BMI",
+      "full": "Body Mass Index (kg/m2)"
     },
     {
       "abbr": "BP",
@@ -1290,6 +2040,14 @@
       "full": "Beats Per Minute"
     },
     {
+      "abbr": "BScN",
+      "full": "Bachelor of Science in Nursing"
+    },
+    {
+      "abbr": "C&S",
+      "full": "Culture and Sensitivity (microbiology)"
+    },
+    {
       "abbr": "CBC",
       "full": "Complete Blood Count"
     },
@@ -1298,8 +2056,16 @@
       "full": "Cardiopulmonary Resuscitation"
     },
     {
+      "abbr": "CS / C/S",
+      "full": "Caesarean Section"
+    },
+    {
       "abbr": "CVA",
       "full": "Cerebrovascular Accident"
+    },
+    {
+      "abbr": "DKA",
+      "full": "Diabetic Ketoacidosis"
     },
     {
       "abbr": "DVT",
@@ -1310,8 +2076,28 @@
       "full": "Electrocardiogram"
     },
     {
+      "abbr": "ECG / EKG",
+      "full": "Electrocardiogram"
+    },
+    {
+      "abbr": "EDD",
+      "full": "Estimated Date of Delivery (Naegele's Rule)"
+    },
+    {
+      "abbr": "EmONC",
+      "full": "Emergency Obstetric and Newborn Care"
+    },
+    {
       "abbr": "ENT",
       "full": "Ear, Nose and Throat"
+    },
+    {
+      "abbr": "ETT",
+      "full": "Endotracheal Tube"
+    },
+    {
+      "abbr": "FHR",
+      "full": "Foetal Heart Rate (normal 110–160 bpm)"
     },
     {
       "abbr": "GCS",
@@ -1322,20 +2108,64 @@
       "full": "Haemoglobin"
     },
     {
+      "abbr": "Hb / Hgb",
+      "full": "Haemoglobin (g/dL)"
+    },
+    {
+      "abbr": "HBB",
+      "full": "Helping Babies Breathe (neonatal resuscitation)"
+    },
+    {
       "abbr": "HIV",
       "full": "Human Immunodeficiency Virus"
+    },
+    {
+      "abbr": "HIV / eMTCT",
+      "full": "Human Immunodeficiency Virus / Elimination of Mother-to-Child Transmission"
+    },
+    {
+      "abbr": "ICN / IPC",
+      "full": "Infection Prevention and Control"
     },
     {
       "abbr": "IM",
       "full": "Intramuscular"
     },
     {
+      "abbr": "IU / I.U.",
+      "full": "International Units (e.g., Oxytocin, Insulin)"
+    },
+    {
       "abbr": "IV",
       "full": "Intravenous"
     },
     {
+      "abbr": "LMP",
+      "full": "Last Menstrual Period"
+    },
+    {
+      "abbr": "MAM / SAM",
+      "full": "Moderate / Severe Acute Malnutrition"
+    },
+    {
+      "abbr": "MgSO4",
+      "full": "Magnesium Sulphate (eclampsia prophylaxis & treatment)"
+    },
+    {
+      "abbr": "MUAC",
+      "full": "Mid-Upper Arm Circumference"
+    },
+    {
+      "abbr": "MVA",
+      "full": "Manual Vacuum Aspiration"
+    },
+    {
       "abbr": "NBM",
       "full": "Nil By Mouth"
+    },
+    {
+      "abbr": "NBM / NPO",
+      "full": "Nil By Mouth (Nothing Per Oral)"
     },
     {
       "abbr": "NGT",
@@ -1354,6 +2184,22 @@
       "full": "Once Daily"
     },
     {
+      "abbr": "ORS",
+      "full": "Oral Rehydration Salts (Low-Osmolarity WHO Formula)"
+    },
+    {
+      "abbr": "OSCE",
+      "full": "Objective Structured Clinical Examination"
+    },
+    {
+      "abbr": "PNC",
+      "full": "Postnatal Care"
+    },
+    {
+      "abbr": "PPH",
+      "full": "Postpartum Haemorrhage"
+    },
+    {
       "abbr": "PRN",
       "full": "As Needed"
     },
@@ -1362,8 +2208,28 @@
       "full": "Four Times Daily"
     },
     {
+      "abbr": "QID / QDS",
+      "full": "Quater In Die — Four Times Daily (every 6 hours)"
+    },
+    {
+      "abbr": "RBS / FBS",
+      "full": "Random / Fasting Blood Sugar"
+    },
+    {
+      "abbr": "RDT",
+      "full": "Rapid Diagnostic Test (Malaria / HIV)"
+    },
+    {
       "abbr": "ROM",
       "full": "Range of Motion"
+    },
+    {
+      "abbr": "RUTF",
+      "full": "Ready-to-Use Therapeutic Food (Plumpy'Nut)"
+    },
+    {
+      "abbr": "SFH",
+      "full": "Symphysis-Fundal Height (cm)"
     },
     {
       "abbr": "SOB",
@@ -1382,16 +2248,33 @@
       "full": "Three Times Daily"
     },
     {
+      "abbr": "TDS / TID",
+      "full": "Ter In Die — Three Times Daily (every 8 hours)"
+    },
+    {
       "abbr": "TPR",
       "full": "Temperature, Pulse, Respiration"
+    },
+    {
+      "abbr": "UCG",
+      "full": "Uganda Clinical Guidelines (Ministry of Health)"
+    },
+    {
+      "abbr": "UNMC / UNMEB",
+      "full": "Uganda Nurses & Midwives Council / Examinations Board"
     },
     {
       "abbr": "UTI",
       "full": "Urinary Tract Infection"
     },
     {
+      "abbr": "VIA",
+      "full": "Visual Inspection with Acetic Acid (Cervical Cancer Screening)"
+    },
+    {
       "abbr": "WBC",
       "full": "White Blood Cell"
     }
-  ]
+  ],
+  "updatedAt": "2026-11-24T03:59:22.417Z"
 }

@@ -95,6 +95,7 @@ export function AppProvider({ children }) {
   }, [lessonNotes]);
 
   const isEnrolled = (courseSlug, isFree = false) => {
+    if (user?.isAdmin) return true;
     if (isFree) return true;
     return enrollments.includes(courseSlug);
   };

@@ -82,6 +82,10 @@ export default function Navbar() {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [searchFocused, setSearchFocused] = useState(false);
+  const [searchIndexLoaded, setSearchIndexLoaded] = useState(false);
+  const [lessonIndex, setLessonIndex] = useState([]);
+  const [dictTerms, setDictTerms] = useState([]);
+  const [instrumentList, setInstrumentList] = useState([]);
   const [logoSrc, setLogoSrc] = useState(nuLogoUganda);
 
   useEffect(() => {
@@ -96,6 +100,24 @@ export default function Navbar() {
       })
       .catch(() => {});
   }, [megaOpen, hubEbooks.length]);
+
+  const ensureSearchIndex = () => {
+    if (searchIndexLoaded) return;
+    setSearchIndexLoaded(true);
+    Promise.all([
+      fetch("/assets/data/canonical-lessons-index.json").then((r) => (r.ok ? r.json() : [])),
+      fetch("/assets/data/dictionary.json").then((r) => (r.ok ? r.json() : null)),
+      fetch("/assets/data/medical-instruments.json").then((r) => (r.ok ? r.json() : null)),
+      hubEbooks.length ? Promise.resolve(null) : fetch("/assets/data/ebooks.json").then((r) => (r.ok ? r.json() : null))
+    ])
+      .then(([lessons, dict, inst, eb]) => {
+        if (Array.isArray(lessons)) setLessonIndex(lessons);
+        if (dict?.terms) setDictTerms(dict.terms);
+        if (inst?.categories) setInstrumentList(inst.categories.flatMap((c) => c.items || []));
+        if (eb?.ebooks) setHubEbooks(eb.ebooks);
+      })
+      .catch(() => {});
+  };
 
   useEffect(() => {
     const handler = (e) => {
@@ -161,16 +183,92 @@ export default function Navbar() {
   const searchHits = useMemo(() => {
     const q = query.trim().toLowerCase();
     if (q.length < 2) return [];
-    return courses
-      .filter(
-        (c) =>
-          c.title.toLowerCase().includes(q) ||
-          c.category.toLowerCase().includes(q) ||
-          c.code.toLowerCase().includes(q) ||
-          c.programmeLabel.toLowerCase().includes(q)
-      )
-      .slice(0, 6);
-  }, [courses, query]);
+    const results = [];
+    const tokens = q.split(/\s+/).filter(Boolean);
+    const matchesAll = (hay) => tokens.every((tk) => hay.includes(tk));
+
+    // 1. Direct Course Unit hits
+    for (const c of courses) {
+      const hay = `${c.title} ${c.category} ${c.code} ${c.programmeLabel} ${c.subtitle || ""}`.toLowerCase();
+      if (matchesAll(hay)) {
+        results.push({
+          key: `course:${c.slug}`,
+          kind: "Course Unit",
+          title: c.title,
+          meta: `${c.programmeLabel} · ${c.lessonCount} lessons`,
+          to: `/course/${c.slug}`,
+          rightTag: c.isFree ? "Free" : `$${Number(c.priceUsd || 0).toFixed(2)}`
+        });
+      }
+      if (results.length >= 4) break;
+    }
+
+    // 2. Canonical Lesson / Topic hits (819+ clinical topics!)
+    const seenTopicSlugs = new Set();
+    for (const l of lessonIndex) {
+      const hay = `${l.title} ${l.excerpt || ""} ${l.courseTitle} ${l.category}`.toLowerCase();
+      if (matchesAll(hay) && !seenTopicSlugs.has(l.slug)) {
+        seenTopicSlugs.add(l.slug);
+        results.push({
+          key: `lesson:${l.courseSlug}:${l.slug}`,
+          kind: "Lesson Topic",
+          title: l.title,
+          meta: `${l.courseTitle} · ${l.programmeLabel}`,
+          to: `/learn/${l.courseSlug}/${l.slug}`,
+          rightTag: `${l.readMinutes || 15} min`
+        });
+      }
+      if (seenTopicSlugs.size >= 4) break;
+    }
+
+    // 3. Dictionary & Instruments & eBooks
+    for (const t of dictTerms) {
+      const hay = `${t.term} ${t.simpleDefinition || ""} ${t.category}`.toLowerCase();
+      if (matchesAll(hay)) {
+        results.push({
+          key: `dict:${t.id}`,
+          kind: "Dictionary",
+          title: t.term,
+          meta: t.simpleDefinition,
+          to: `/dictionary?q=${encodeURIComponent(t.term)}`,
+          rightTag: "Glossary"
+        });
+        break;
+      }
+    }
+
+    for (const it of instrumentList) {
+      const hay = `${it.name} ${it.category} ${it.use || ""}`.toLowerCase();
+      if (matchesAll(hay)) {
+        results.push({
+          key: `inst:${it.slug}`,
+          kind: "Instrument",
+          title: it.name,
+          meta: it.category,
+          to: `/instruments?q=${encodeURIComponent(it.name)}`,
+          rightTag: "Atlas"
+        });
+        break;
+      }
+    }
+
+    for (const b of hubEbooks) {
+      const hay = `${b.title} ${b.subtitle || ""} ${b.category}`.toLowerCase();
+      if (matchesAll(hay)) {
+        results.push({
+          key: `eb:${b.slug}`,
+          kind: "Free eBook",
+          title: b.title,
+          meta: `${b.chapters?.length || 6} Chapters · PDF`,
+          to: `/ebooks/${b.slug}`,
+          rightTag: "Free"
+        });
+        break;
+      }
+    }
+
+    return results.slice(0, 9);
+  }, [courses, lessonIndex, dictTerms, instrumentList, hubEbooks, query]);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -203,7 +301,7 @@ export default function Navbar() {
       <header className="nu-header">
         <div className="nu-nav-inner">
           <Link to="/" className="nu-logo" aria-label="Nursing Uganda Home">
-            <img src={logoSrc} alt="Nursing Uganda" className="nu-logo-img" />
+            <img src={logoSrc} alt="Nursing Uganda" width="154" height="34" className="nu-logo-img" />
           </Link>
 
           {/* Explore Mega Menu */}
@@ -341,33 +439,50 @@ export default function Navbar() {
               <input
                 type="search"
                 value={query}
-                placeholder="Search nursing courses, drugs, anatomy, midwifery..."
-                aria-label="Search courses"
-                onFocus={() => setSearchFocused(true)}
-                onBlur={() => setTimeout(() => setSearchFocused(false), 180)}
-                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search courses, topics (e.g. digestive), drugs, midwifery..."
+                aria-label="Search courses and clinical topics"
+                onFocus={() => {
+                  setSearchFocused(true);
+                  ensureSearchIndex();
+                }}
+                onBlur={() => setTimeout(() => setSearchFocused(false), 200)}
+                onChange={(e) => {
+                  setQuery(e.target.value);
+                  ensureSearchIndex();
+                }}
               />
             </div>
             {searchFocused && searchHits.length > 0 && (
               <div className="nu-search-dropdown">
                 {searchHits.map((hit) => (
                   <Link
-                    key={hit.slug}
-                    to={`/course/${hit.slug}`}
+                    key={hit.key}
+                    to={hit.to}
                     className="nu-search-hit"
-                    onMouseDown={() => navigate(`/course/${hit.slug}`)}
+                    onMouseDown={() => navigate(hit.to)}
                   >
-                    <div>
-                      <strong>{hit.title}</strong>
-                      <small>
-                        {hit.programmeLabel} · {hit.lessonCount} lessons
+                    <div style={{ minWidth: 0 }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 2 }}>
+                        <span className="nu-badge nu-badge-free" style={{ fontSize: "0.66rem", padding: "1px 6px" }}>{hit.kind}</span>
+                        <strong style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{hit.title}</strong>
+                      </div>
+                      <small style={{ display: "block", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                        {hit.meta}
                       </small>
                     </div>
-                    <span style={{ fontWeight: 700, fontSize: "0.82rem" }}>
-                      {hit.isFree ? "Free" : `$${hit.priceUsd.toFixed(2)}`}
+                    <span style={{ fontWeight: 700, fontSize: "0.78rem", flexShrink: 0, color: "#6d28d9" }}>
+                      {hit.rightTag}
                     </span>
                   </Link>
                 ))}
+                <Link
+                  to={`/courses?q=${encodeURIComponent(query.trim())}`}
+                  className="nu-search-hit"
+                  style={{ background: "#faf5ff", fontWeight: 700, color: "#A137F2", justifyContent: "center" }}
+                  onMouseDown={() => navigate(`/courses?q=${encodeURIComponent(query.trim())}`)}
+                >
+                  See all course &amp; lesson results for &ldquo;{query.trim()}&rdquo; &rarr;
+                </Link>
               </div>
             )}
           </form>
@@ -435,7 +550,7 @@ export default function Navbar() {
                     </Link>
                     {user.isAdmin && (
                       <Link
-                        to="/admin"
+                        to="/nodadmin"
                         className="nu-mega-sublink"
                         style={{ color: "var(--nu-purple)", fontWeight: 700 }}
                         onClick={() => setUserMenuOpen(false)}
@@ -556,7 +671,7 @@ export default function Navbar() {
                   {enrollments.length > 0 && <span className="nu-mega-count">{enrollments.length}</span>}
                 </Link>
                 {user?.isAdmin && (
-                  <Link to="/admin" className="nu-mobile-link" style={{ color: "var(--nu-purple)", fontWeight: 700 }} onClick={() => setMobileOpen(false)}>
+                  <Link to="/nodadmin" className="nu-mobile-link" style={{ color: "var(--nu-purple)", fontWeight: 700 }} onClick={() => setMobileOpen(false)}>
                     <span className="nu-mobile-link-left">
                       <Award size={17} color="#A137F2" />
                       <span>Owner Admin Panel</span>

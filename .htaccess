@@ -19,7 +19,7 @@ RewriteRule ^ %{REQUEST_URI}/index.html [L]
 
 # Force React SPA for interactive application routes for human browsers
 RewriteCond %{DOCUMENT_ROOT}/index.html -f
-RewriteRule ^(courses|course|learn|ebooks|mock-exams|dictionary|instruments|clinical-tools|cart|checkout|login|my-learning|about|brand-kit|editorial-policy|privacy-policy|terms|contact)(\/.*)?$ /index.html [L,QSA]
+RewriteRule ^(courses|course|learn|ebooks|quizzes|mock-exams|dictionary|instruments|clinical-tools|cart|checkout|login|my-learning|nodadmin|about|brand-kit|editorial-policy|privacy-policy|terms|contact)(\/.*)?$ /index.html [L,QSA]
 
 # Serve existing real static files & directories (assets, sitemap.xml, robots.txt, etc.)
 RewriteCond %{REQUEST_FILENAME} -f [OR]
@@ -43,13 +43,13 @@ RewriteRule ^ /index.html [L,QSA]
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
   <FilesMatch "\.(jpg|jpeg|png|webp|svg|ico|woff|woff2)$">
-    Header set Cache-Control "public, max-age=15552000"
+    Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
   <FilesMatch "\.(html|webmanifest)$">
     Header set Cache-Control "no-cache, must-revalidate"
   </FilesMatch>
   <FilesMatch "\.json$">
-    Header set Cache-Control "public, max-age=3600"
+    Header set Cache-Control "public, max-age=0, must-revalidate"
   </FilesMatch>
   Header always set X-Content-Type-Options "nosniff"
   Header always set X-Frame-Options "SAMEORIGIN"

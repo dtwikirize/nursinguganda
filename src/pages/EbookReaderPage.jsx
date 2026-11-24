@@ -57,7 +57,7 @@ export default function EbookReaderPage() {
           <Link to="/ebooks" style={{ color: "#c0c4fc", fontSize: "0.86rem", display: "inline-flex", alignItems: "center", gap: 6, marginBottom: 12 }}>
             <ArrowLeft size={15} /> All Free Referenced eBooks
           </Link>
-          <div style={{ display: "grid", gridTemplateColumns: "minmax(0, 1fr) 320px", gap: 32, alignItems: "center" }}>
+          <div className="nu-ebook-hero-grid">
             <div>
               <span className="nu-badge nu-badge-free" style={{ marginBottom: 10 }}>{ebook.category}</span>
               <h1>{ebook.title}</h1>

@@ -14,14 +14,14 @@ import CourseCard from "../components/CourseCard";
 import { useApp } from "../context/AppContext";
 
 const CATEGORY_CARDS = [
-  { name: "Anatomy & Physiology", img: "/assets/images/udemy/cat-anatomy.png" },
-  { name: "Midwifery & Maternal Health", img: "/assets/images/udemy/cat-midwifery.png" },
-  { name: "Pharmacology", img: "/assets/images/udemy/cat-pharmacology.png" },
-  { name: "Medical-Surgical Nursing", img: "/assets/images/udemy/cat-medsurg.png" },
-  { name: "Paediatrics & Child Health", img: "/assets/images/udemy/cat-paediatrics.png" },
-  { name: "Foundations of Nursing", img: "/assets/images/udemy/cat-foundations.png" },
-  { name: "Community & Public Health", img: "/assets/images/udemy/cat-community.png" },
-  { name: "Leadership, Research & Ethics", img: "/assets/images/udemy/cat-research.png" }
+  { name: "Anatomy & Physiology", img: "/assets/images/udemy/cat-anatomy.webp" },
+  { name: "Midwifery & Maternal Health", img: "/assets/images/udemy/cat-midwifery.webp" },
+  { name: "Pharmacology", img: "/assets/images/udemy/cat-pharmacology.webp" },
+  { name: "Medical-Surgical Nursing", img: "/assets/images/udemy/cat-medsurg.webp" },
+  { name: "Paediatrics & Child Health", img: "/assets/images/udemy/cat-paediatrics.webp" },
+  { name: "Foundations of Nursing", img: "/assets/images/udemy/cat-foundations.webp" },
+  { name: "Community & Public Health", img: "/assets/images/udemy/cat-community.webp" },
+  { name: "Leadership, Research & Ethics", img: "/assets/images/udemy/cat-research.webp" }
 ];
 
 export default function HomePage() {
@@ -62,8 +62,12 @@ export default function HomePage() {
       {/* Udemy-Style Hero Banner with Floating Card */}
       <section className="nu-hero">
         <img
-          src="/assets/images/udemy/hero-banner.png"
+          src="/assets/images/udemy/hero-banner.webp"
           alt="Ugandan nursing student studying online"
+          width="1280"
+          height="382"
+          fetchPriority="high"
+          decoding="sync"
           className="nu-hero-bg"
         />
         <div className="nu-hero-card">
@@ -173,7 +177,7 @@ export default function HomePage() {
               {ebooks.map((eb) => (
                 <Link key={eb.slug} to={`/ebooks/${eb.slug}`} className="nu-ebook-card">
                   <div className="nu-ebook-cover">
-                    <img src={eb.coverImage} alt={eb.title} loading="lazy" />
+                    <img src={eb.coverImage} alt={eb.title} width="480" height="270" loading="lazy" decoding="async" />
                   </div>
                   <div className="nu-ebook-body">
                     <span className="nu-badge nu-badge-free">Free eBook · {eb.chapters.length} Chapters</span>
@@ -222,7 +226,7 @@ export default function HomePage() {
                 }}
               >
                 <div style={{ aspectRatio: "16/9", overflow: "hidden" }}>
-                  <img src={cat.img} alt={cat.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} loading="lazy" />
+                  <img src={cat.img} alt={cat.name} width="560" height="315" style={{ width: "100%", height: "100%", objectFit: "cover" }} loading="lazy" decoding="async" />
                 </div>
                 <div style={{ padding: "12px 14px", fontWeight: 700, fontSize: "0.95rem" }}>
                   {cat.name}

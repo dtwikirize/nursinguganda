@@ -56,7 +56,8 @@ for (const f of dataFiles) {
 }
 copyDirSafe(path.join("assets", "data", "courses"));
 
-// 2. Core brand, medical illustrations & Udemy imagery (keep 286 MB lesson-images separate or already on Hostinger)
+// 2. Clean stale dist/assets/images then copy current WebP/SVG assets
+fs.rmSync(path.join(DIST, "assets", "images"), { recursive: true, force: true });
 copyDirSafe(path.join("assets", "images", "brand"));
 copyDirSafe(path.join("assets", "images", "medical-illustrations"));
 copyDirSafe(path.join("assets", "images", "udemy"));
@@ -65,6 +66,19 @@ copyDirSafe(path.join("assets", "images", "medical-instruments"));
 for (const entry of fs.readdirSync(path.join(ROOT, "assets", "images"))) {
   if (entry.startsWith("nursing-uganda-") && /\.(png|webp|svg|jpg)$/i.test(entry)) {
     copyFileSafe(path.join("assets", "images", entry));
+  }
+}
+
+// Inject unhashed LCP & catalog preloads directly into dist/index.html
+const distHtmlPath = path.join(DIST, "index.html");
+if (fs.existsSync(distHtmlPath)) {
+  const html = fs.readFileSync(distHtmlPath, "utf8");
+  const preloads = [
+    '<link rel="preload" as="image" href="/assets/images/udemy/hero-banner.webp" fetchpriority="high" />',
+    '<link rel="preload" as="fetch" href="/assets/data/catalog.json" crossorigin="anonymous" />'
+  ].join("\n    ");
+  if (!html.includes("/assets/images/udemy/hero-banner.webp")) {
+    fs.writeFileSync(distHtmlPath, html.replace("</head>", `    ${preloads}\n  </head>`), "utf8");
   }
 }
 

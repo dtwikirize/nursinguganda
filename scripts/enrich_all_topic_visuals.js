@@ -30,72 +30,108 @@ const DOMAIN_PLATES = {
   adpie: "/assets/images/medical-illustrations/nursing-vitals-assessment.webp",
   emergency: "/assets/images/medical-illustrations/emergency-cpr-triage.webp",
   mental: "/assets/images/medical-illustrations/mental-health-biopsychosocial.webp",
-  leadership: "/assets/images/medical-illustrations/leadership-research-ethics.webp"
+  leadership: "/assets/images/medical-illustrations/leadership-research-ethics.webp",
+  malaria: "/assets/images/medical-illustrations/condition-malaria-smear.webp",
+  pneumonia_tb: "/assets/images/medical-illustrations/condition-tb-pneumonia-xray.webp",
+  sickle_cell: "/assets/images/medical-illustrations/condition-sickle-cell.webp",
+  placenta: "/assets/images/medical-illustrations/condition-preeclampsia-placenta.webp",
+  thyroid: "/assets/images/medical-illustrations/condition-goitre-thyroid.webp"
 };
 
-function detectVisualDomain(title = "", category = "", excerpt = "") {
-  const text = `${title} ${excerpt}`.toLowerCase();
-  const cat = String(category || "").toLowerCase();
+function matchDomainInString(str = "") {
+  const text = String(str || "").toLowerCase();
+  if (!text) return "";
 
-  if (/\b(heart|cardiac|cardio|coronary|hypertension|ecg|ekg|myocard|valve|arrhythmia|angina|blood pressure|vascular|circulation|aorta|vein|artery)\b/.test(text)) {
+  // Specific high-yield condition/disease image matches FIRST
+  if (/\b(malaria|plasmodium|falciparum|artemether|quinine)\b/.test(text)) {
+    return "malaria";
+  }
+  if (/\b(tuberculosis|tb\b|pneumonia|pleural|empyema|chest x-ray|radiograph)\b/.test(text)) {
+    return "pneumonia_tb";
+  }
+  if (/\b(sickle cell|drepanocyt\w*|vaso-occlusive|haemolytic anae?mia|hemolytic anae?mia)\b/.test(text)) {
+    return "sickle_cell";
+  }
+  if (/\b(placenta\w*|abruptio|praevia|previa|pph|postpartum ha?emorrhage|amtsl)\b/.test(text)) {
+    return "placenta";
+  }
+  if (/\b(thyroid\w*|goitre|goiter|hyperthyroid\w*|hypothyroid\w*|graves)\b/.test(text)) {
+    return "thyroid";
+  }
+
+  if (/\b(heart|cardiac|cardio\w*|coronary|hypertension|ecg|ekg|myocard\w*|valve|arrhythmia\w*|angina|blood pressure|vascular|circulation|aorta|vein|artery)\b/.test(text)) {
     return "cardiovascular";
   }
-  if (/\b(lung|respirat|pulmonary|alveol|bronch|asthma|pneumonia|tuberculosis|tb\b|copd|airway|trachea|pleur|oxygen|abg)\b/.test(text)) {
+  if (/\b(lung|respirat\w*|pulmonary|alveol\w*|bronch\w*|asthma|copd|airway|trachea|pleur\w*|oxygen\w*|abg)\b/.test(text)) {
     return "respiratory";
   }
-  if (/\b(brain|neuro|cns|cranial|stroke|seizure|epilepsy|meningitis|spinal cord|gcs|coma|nervous|autonomic|migraine|synapse)\b/.test(text)) {
+  if (/\b(brain|neuro\w*|cns|cranial|stroke|seizure\w*|epilepsy|meningitis|spinal cord|gcs|coma|nervous|autonomic|migraine|synapse)\b/.test(text)) {
     return "neurology";
   }
-  if (/\b(kidney|renal|nephron|urinary|urine|bladder|uti|dialysis|electrolyte|fluid balance|dehydration|catheter|glomerul)\b/.test(text)) {
+  if (/\b(kidney|renal|nephron\w*|urinary|urine|bladder|uti|dialysis|electrolyte\w*|fluid balance|dehydration|catheter\w*|glomerul\w*)\b/.test(text)) {
     return "renal";
   }
-  if (/\b(stomach|gastro|digest|liver|hepat|gallbladder|pancreas|bowel|intestine|ulcer|diarrh|nutrition|diet|oral cavity|esophagus)\b/.test(text)) {
+  if (/\b(stomach|gastro\w*|digest\w*|liver|hepat\w*|gallbladder|pancreas|bowel|intestin\w*|ulcer\w*|diarrh\w*|nutrition\w*|diet\w*|oral cavity|oesophag\w*|esophag\w*)\b/.test(text)) {
     return "digestive";
   }
-  if (/\b(obstetric|midwifery|pregnan|labour|labor|pelvis|fetus|fetal|placenta|antenatal|postpartum|pph|eclampsia|cesarean|breech|partograph|gynaec|gynec|reproductive|abortion|ectopic|breastfeed)\b/.test(text)) {
+  if (/\b(obstetric\w*|midwifery|pregnan\w*|labou?r|pelvis|fetus|fetal|antenatal|postpartum|eclampsia|cesarean|caesarean|breech|partograph|gynaec\w*|gynec\w*|reproductive|abortion|ectopic|breastfeed\w*)\b/.test(text)) {
     return "obstetric";
   }
-  if (/\b(paediatric|pediatric|newborn|neonat|infant|child|apgar|imci|malnutrition|kwashiorkor|marasmus|immuniz|unepi|congenital|measles)\b/.test(text)) {
+  if (/\b(paediat\w*|pediat\w*|newborn|neonat\w*|infant|child\w*|apgar|imci|malnutrition|kwashiorkor|marasmus|immuniz\w*|immunis\w*|unepi|congenital|measles)\b/.test(text)) {
     return "paediatrics";
   }
-  if (/\b(drug|pharmac|dosage|antibiotic|analgesic|opioid|nsaid|insulin|diuretic|adme|antidote|autacoid|histamine|cholinergic|adrenergic|prescription|intravenous)\b/.test(text)) {
+  if (/\b(drug\w*|pharmac\w*|dosage|antibiotic\w*|analgesic\w*|opioid\w*|nsaid\w*|insulin|diuretic\w*|adme|antidote\w*|autacoid\w*|histamine|cholinergic\w*|adrenergic\w*|antihelminth\w*|antifungal\w*|antiviral\w*|antimalarial\w*|antitubercular\w*|anticancer|penicillin\w*|cephalosporin\w*|sulphonamid\w*|quinolon\w*|eicosanoid\w*|prostanoid\w*|nda\b|prescription\w*|intravenous)\b/.test(text)) {
     return "pharmacology";
   }
-  if (/\b(endocrine|thyroid|pituitary|hypothalam|adrenal|diabetes|dka|hormone|parathyroid|metabolic)\b/.test(text)) {
+  if (/\b(endocrin\w*|pituitary|hypothalam\w*|adrenal|diabetes|dka|hormone\w*|parathyroid|metabolic)\b/.test(text)) {
     return "endocrine";
   }
-  if (/\b(blood|hematolog|haematolog|anemia|anaemia|sickle cell|leukemia|immune|hiv|aids|lymph|spleen|coagulation|transfusion|platelet|wbc|rbc)\b/.test(text)) {
+  if (/\b(blood|hematolog\w*|haematolog\w*|ana?emia|leuka?emia|immune|immunity|hiv|aids|lymph\w*|spleen|coagulation|transfusion|platelet\w*|wbc|rbc)\b/.test(text)) {
     return "blood";
   }
-  if (/\b(skin|integument|wound|burn|ulcer|dermat|suture|dressing|abscess|soft tissue|ssti)\b/.test(text)) {
+  if (/\b(skin|integument\w*|wound|burn\w*|dermat\w*|suture\w*|dressing\w*|abscess|soft tissue|ssti|pressure injury|pressure ulcer)\b/.test(text)) {
     return "skin";
   }
-  if (/\b(eye|ophthalm|glaucoma|cataract|ear|ent\b|otitis|hearing|vision|retina|cochlea|nose|throat|sinus|tonsill)\b/.test(text)) {
+  if (/\b(eye|ophthalm\w*|glaucoma|cataract|ear|ent\b|otitis|hearing|vision|retina|cochlea|nose|throat|sinus|tonsill\w*)\b/.test(text)) {
     return "sensory";
   }
-  if (/\b(first aid|cpr|emergency|shock|trauma|triage|bleeding|hemorrhage|poison|snake|fracture|burn|resuscitat|anaphylaxis)\b/.test(text)) {
+  if (/\b(first aid|cpr|emergency|shock|trauma|triage|bleeding|ha?emorrhage|poison\w*|snake|fracture|resuscitat\w*|anaphylaxis)\b/.test(text)) {
     return "emergency";
   }
-  if (/\b(mental|psych|depression|schizophrenia|bipolar|anxiety|suicide|substance|counsel|stress|grief|coping)\b/.test(text)) {
+  if (/\b(mental|psych\w*|depression|schizophrenia|bipolar|anxiety|suicide|substance|counsel\w*|stress|grief|coping)\b/.test(text)) {
     return "mental";
   }
-  if (/\b(cell|mitosis|meiosis|tissue|microb|bacteri|virus|fungi|parasit|malaria|steriliz|infection control|gram|taxonomy)\b/.test(text)) {
+  if (/\b(cell|mitosis|meiosis|tissue\w*|microb\w*|bacteri\w*|virus|viral|fungi|fungal|parasit\w*|steriliz\w*|sterilis\w*|infection control|gram|taxonomy)\b/.test(text)) {
     return "cell";
   }
-  if (/\b(plane|anatomical position|skeletal|muscle|musculoskeletal|bone|joint|fracture|arthritis|spine|limb|femur)\b/.test(text)) {
+  if (/\b(plane\w*|anatom\w*|skeletal|muscle|musculoskeletal|bone|joint|arthritis|spine|limb|femur)\b/.test(text)) {
     return "planes";
   }
-  if (/\b(leadership|manage|ethic|law|legal|unmc|research|epidemiol|biostat|informatics|computer|entrepreneur|delegat|teaching)\b/.test(text)) {
+  if (/\b(leadership|manage\w*|ethic\w*|law|legal|unmc|research|epidemiol\w*|biostat\w*|informatics|computer|entrepreneur\w*|delegat\w*|teaching)\b/.test(text)) {
     return "leadership";
   }
+  return "";
+}
 
-  // Fallback by course category
-  if (cat.includes("midwifery")) return "obstetric";
+function detectVisualDomain(title = "", category = "", excerpt = "") {
+  const cat = String(category || "").toLowerCase();
+
+  // 1. Match strictly against the lesson title first (highest precision)
+  const fromTitle = matchDomainInString(title);
+  if (fromTitle) return fromTitle;
+
+  // 2. Next respect the course specialty/category so generic excerpt phrasing doesn't hijack Pharmacology/Midwifery into Leadership
   if (cat.includes("pharmac")) return "pharmacology";
+  if (cat.includes("midwifery")) return "obstetric";
   if (cat.includes("paediat")) return "paediatrics";
   if (cat.includes("mental")) return "mental";
   if (cat.includes("leadership") || cat.includes("research")) return "leadership";
   if (cat.includes("anatomy")) return "planes";
+
+  // 3. Fallback to excerpt keywords for broad Foundations/Medical-Surgical/Community courses
+  const fromExcerpt = matchDomainInString(excerpt);
+  if (fromExcerpt) return fromExcerpt;
+
   if (cat.includes("community")) return "cell";
   return "adpie";
 }
@@ -125,12 +161,11 @@ for (const file of courseFiles) {
     const domain = detectVisualDomain(lesson.title, course.category, lesson.excerpt);
     const customPlate = DOMAIN_PLATES[domain];
     const origImages = Array.isArray(lesson.images) ? lesson.images : [];
-    const crispLegacy = origImages.filter(isCrispLegacyImage);
-    removedJunkImages += origImages.length - crispLegacy.length;
+    const strippedCount = origImages.filter((i) => !String(i || "").includes("/medical-illustrations/")).length;
+    removedJunkImages += strippedCount;
 
-    // Place our crisp custom plate FIRST, followed by up to 1 verified crisp legacy diagram
-    const mergedImages = [customPlate, ...crispLegacy.slice(0, 1)];
-    lesson.images = mergedImages;
+    // Show strictly our curated medical/condition/studio plate cleanly
+    lesson.images = [customPlate];
     lesson.visualDomain = domain;
     updatedLessons++;
 
@@ -141,7 +176,7 @@ for (const file of courseFiles) {
         category: course.category,
         visualDomain: domain,
         primaryImage: customPlate,
-        legacyCrispImages: crispLegacy.slice(0, 1),
+        legacyCrispImages: [],
         hasNapkinWorkflow: (lesson.sections || []).length >= 2,
         hasClinicalTable: true,
         status: "upgraded"

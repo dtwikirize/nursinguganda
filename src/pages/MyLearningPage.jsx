@@ -60,8 +60,13 @@ export default function MyLearningPage() {
 
   const courses = catalog?.courses || [];
   const enrolledCourses = useMemo(
-    () => courses.filter((c) => enrollments.includes(c.slug) || c.isFree),
-    [courses, enrollments]
+    () =>
+      user?.isAdmin
+        ? courses
+        : courses.filter(
+            (c) => enrollments.includes(c.slug) || (Array.isArray(progress[c.slug]) && progress[c.slug].length > 0)
+          ),
+    [courses, enrollments, progress, user]
   );
 
   const categorized = useMemo(() => {
@@ -154,7 +159,7 @@ export default function MyLearningPage() {
 
             {user?.isAdmin && (
               <Link
-                to="/admin"
+                to="/nodadmin"
                 className="nu-dash-nav-btn"
                 style={{ color: "#A137F2", fontWeight: 700, borderTop: "1px solid var(--nu-border-light)", marginTop: 6, paddingTop: 12 }}
               >

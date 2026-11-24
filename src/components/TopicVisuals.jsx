@@ -200,6 +200,61 @@ const DOMAIN_TABLES = {
       ["PICO Clinical Question", "Population · Intervention · Comparison · Outcome", "Guides evidence-based literature search before ward policy change"],
       ["PDSA Quality Cycle", "Plan → Do → Study → Act", "Continuous infection-control & maternal safety improvement"]
     ]
+  },
+  malaria: {
+    title: "Uganda MoH Malaria Classification & Antimalarial Protocol",
+    badge: "Malaria & Parasitology",
+    headers: ["Severity Classification", "Diagnostic & Clinical Criteria", "First-Line Uganda MoH Regimen"],
+    rows: [
+      ["Uncomplicated Malaria", "Positive RDT / smear + fever, chills, zero danger signs", "Oral Artemether-Lumefantrine (Coartem) BD x 3 days + Paracetamol"],
+      ["Severe Malaria", "Prostration, impaired GCS, convulsions, hypoglycaemia, blackwater", "IV Artesunate 2.4 mg/kg at 0, 12, 24h (>20kg) or 3.0 mg/kg (<20kg)"],
+      ["Pregnancy (Trimester 1)", "Symptomatic malaria in first 12 weeks gestation", "Oral Quinine + Clindamycin (or Artesunate if severe—save mother's life!)"],
+      ["Hypoglycaemia Check", "Blood glucose < 2.2–2.5 mmol/L on ward glucometer", "IV Dextrose 10% (2–5 mL/kg child) / 50% Dextrose 50 mL adult"]
+    ]
+  },
+  pneumonia_tb: {
+    title: "Pneumonia & Pulmonary Tuberculosis Clinical Reference",
+    badge: "Respiratory Pathology",
+    headers: ["Condition", "Key Radiograph / Clinical Finding", "Priority Nursing Intervention"],
+    rows: [
+      ["Pulmonary TB", "Chronic cough >2 wks, night sweats, weight loss, apical cavitations", "GeneXpert sputum test, airborne mask isolation, 6-mo 2RHZE/4RH DOTS"],
+      ["Lobar Pneumonia", "Dense consolidation on CXR, fever, productive rust sputum, tachypnoea", "Sputum C&S before antibiotics, O2 if SpO2 < 92%, Amoxicillin/Ceftriaxone"],
+      ["Paediatric IMCI", "Fast breathing >=60 (<2m), >=50 (2–11m), >=40 (1–5y), chest indrawing", "Oral Dispersible Amoxicillin 40 mg/kg BD or IV Ampicillin + Gentamicin"],
+      ["Pleural Effusion", "Blunted costophrenic angle meniscus, stony dull percussion", "Assist diagnostic/therapeutic thoracocentesis sitting leaning forward"]
+    ]
+  },
+  sickle_cell: {
+    title: "Sickle Cell Disease (HbSS) Crisis & Hydroxyurea Matrix",
+    badge: "Haematology Pathology",
+    headers: ["Crisis Type", "Pathophysiology & Clinical Clues", "Priority Emergency Care"],
+    rows: [
+      ["Vaso-Occlusive Crisis", "Sickled RBCs occlude bone/joint capillaries → severe ischaemic pain", "Rapid IV/oral Hydration, Paracetamol + Morphine analgesia, keep warm"],
+      ["Acute Chest Syndrome", "New pulmonary infiltrate + fever, chest pain, hypoxaemia", "Oxygen to keep SpO2 >=95%, broad-spectrum IV antibiotics, exchange transfusion"],
+      ["Splenic Sequestration", "Sudden massive splenomegaly + precipitous Hb drop + hypovolaemic shock", "Urgent isotonic fluid resuscitation + packed RBC transfusion + crossmatch"],
+      ["Long-Term Prophylaxis", "Hyposplenism infection & stroke prevention in Ugandan children", "Oral Penicillin V prophylaxis, Folic Acid 5 mg OD, Hydroxyurea"]
+    ]
+  },
+  placenta: {
+    title: "Obstetric Placenta, APH Differential & Active 3rd Stage Care",
+    badge: "Obstetric Pathology",
+    headers: ["Condition", "Key Differentiation", "Immediate Midwifery Safeguard"],
+    rows: [
+      ["Placenta Praevia", "PAINLESS bright red bleeding >=24 wks, soft non-tender uterus", "STRICTLY NO Digital Vaginal Exam! IV access + ultrasound localization"],
+      ["Abruptio Placentae", "PAINFUL dark bleeding, rigid woody tender uterus, foetal distress", "Resuscitate shock (2x 16G IV), cross-match blood, expedite delivery"],
+      ["Retained Placenta", "Placenta undelivered >30 min despite Controlled Cord Traction", "Manual removal in theatre under anaesthesia + Oxytocin + antibiotics"],
+      ["AMTSL PPH Prevention", "Standard care within 1 minute of every live birth", "Oxytocin 10 IU IM, Controlled Cord Traction, uterine massage q15m x 2h"]
+    ]
+  },
+  thyroid: {
+    title: "Thyroid Disorder, Goitre & Post-Thyroidectomy Care Table",
+    badge: "Endocrine Pathology",
+    headers: ["Disorder / Risk", "Classic Signs & Lab Pattern", "Priority Clinical Safety"],
+    rows: [
+      ["Hypothyroidism / Iodine Goitre", "Weight gain, cold intolerance, bradycardia, lethargy; ↑ TSH, ↓ T4", "Give Levothyroxine morning on empty stomach; promote iodized salt"],
+      ["Hyperthyroidism (Graves)", "Weight loss, tachycardia, heat intolerance, tremor, exophthalmos", "Carbimazole/Propylthiouracil + Propranolol; watch Thyroid Storm fever"],
+      ["Post-Thyroidectomy Bleeding", "Neck fullness, stridor, tracheal deviation in first 24 hours", "Keep Tracheostomy & suture-removal set AT BEDSIDE always"],
+      ["Hypocalcaemia (Parathyroid)", "Circumoral numbness, Chvostek's & Trousseau's signs, laryngospasm", "Verify serum Calcium and administer slow IV Calcium Gluconate 10%"]
+    ]
   }
 };
 

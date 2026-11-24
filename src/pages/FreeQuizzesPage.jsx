@@ -168,7 +168,7 @@ export default function FreeQuizzesPage() {
           )}
 
           {!activeTopic ? (
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: 20 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 275px), 1fr))", gap: 20 }}>
               {topics.map((t) => {
                 const best = bestScoreFor(t.id);
                 const singles = t.questions.filter((q) => q.type === "single").length;

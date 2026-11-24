@@ -1,36 +1,18 @@
 # Nursing Uganda (`nursinguganda.com`) — Live Project Status
 
-_Last Updated: 2026-11-24 06:44 EAT_
+_Last Updated: 2026-11-24 09:44 EAT_
 
-## ✅ Completed & Committed Locally on `main` (Pending `git push origin main`)
-- **Udemy-Style Architecture & Catalog**: 7 Programmes, 95 Course Units, 819 Canonical Lessons (`assets/data/catalog.json` + modular per-course JSONs).
-- **Authoritative References**: 24 verified clinical/academic sources attached to topics and units (`WHO`, `Uganda MoH Clinical Guidelines 2023`, `UNMEB`, `UNMC`, `OpenStax`, `Open RN`).
-- **Free Referenced Study eBooks & Clinical Hubs**: 8 multi-chapter Free eBooks (`/ebooks`), 6 UNMEB Mock Exams (`/mock-exams`), Medical Dictionary (`/dictionary`), Instrument Atlas (`/instruments`), Clinical Tools (`/clinical-tools`), and Free Major Topic Quizzes (`/quizzes`).
-- **Official BrandKit**: Vector stacked logo (`Nursing UGANDA` & `Nursing UG`), Poppins + Inter + Merriweather typography, `/brand-kit` hub.
-- **Hostinger MySQL + PayPal Backend**: Node.js Express API (`api/express-api.js`) connected to Hostinger MySQL (`u443666287_nursingug`) and PayPal Checkout verification.
-- **Hostinger Email Hosting**: Active mailboxes (`no-reply@nursinguganda.com`, `support@nursinguganda.com`, `editorial@nursinguganda.com`) with verified `MX`, `SPF`, `DKIM`, and `DMARC`.
-- **Google OAuth 2.0 Sign-In**: Project `Nursing Uganda` published to **Production** (`In production`) with `GOOGLE_CLIENT_ID` configured on Hostinger.
-- **Security & Cache Hardening**: Per-endpoint rate limits, 5-attempt / 15-minute brute-force lockout, HMAC session cookies (`HttpOnly`, `SameSite=Lax`, `Secure`), CSRF Origin checks, CSP/HSTS/XFO headers, `no-store` HTML cache rules (`server.js`), 6-digit email OTP verification, and security alert emails.
-- **Branded Email Templates & 50/Day Weekly Digest Scheduler**: Custom HTML emails (`api/email-templates.js`) with daily `50` digest / `90` total email safety ceiling under Hostinger's `100/day` limit (`node-cron`), plus automatic Quiz Result & Certificate emails.
-- **Owner-Only Admin Panel (`/admin`)**: Strictly locked to `twikirizederick@gmail.com`; includes visit analytics, top pages, PayPal orders/revenue, subscriber management, digest campaign sender, and security alerts feed.
-- **Clean Distraction-Free Login Page (`/login`)**: Header & Footer removed (`src/App.jsx`, `src/pages/LoginPage.jsx`).
-- **Simplified Interactive Explore Mega Menu & Mobile Drawer (`Navbar.jsx`)**: Free Study & Clinical Hubs update the right panel dynamically on hover/focus with clean one-line topic/unit links (no ratings or promo clutter).
-- **Custom Medical Artwork & Page-by-Page Study Visuals (`TopicVisuals.jsx` & `assets/data/topic-visuals-manifest.json`)**:
-  - 9 AI-generated anatomical plates + 9 crisp vector-to-WebP clinical plates (`assets/images/medical-illustrations/`).
-  - Colored page-by-page numbered note cards, shapes, diamond bullets, Clinical Pearls, Red Flag alerts, dynamic 5-step workflows, and clinical reference tables across all `819` unique topics (`1,864` course lessons & `48` eBook chapters); purged `2,382` corrupt/low-res legacy images.
-- **Upgraded & Expanded Medical Instrument Atlas (`146` Instruments — `medical-instruments.json`, `InstrumentsPage.jsx` & `udemy.css`)**:
-  - Enhanced all `108` clean studio WebP plates, removed duplicates/misspellings, and generated `38` new custom 800x600 clinical vector WebP plates (Airway, Midwifery, IV/Medication, Diagnostic, Theatre) with specific `use`, `preparation`, `sterilization`, `safety`, and 4 OSCE exam points per instrument.
-  - Replaced category dropdown with interactive pill filter buttons with live counts, and upgraded cards + detail inspector to premium clinical cards with IPC tags and 4-point UNMEB OSCE checklists.
-- **Free Major Topic Quizzes (`/quizzes` — `270` Questions across 10 Topics)**:
-  - `27` questions per major topic (~70% Single-Choice, ~15% Multi-Choice, ~15% True/False), mandatory Sign-In gate, instant breakdowns & clinical rationales, MySQL tracking (`quiz_attempts`), and automatic result email delivery (`POST /api/quiz-submit`).
-- **Course Session Quizzes (5 Qs), Final Evaluations (30 Qs) & Certificates (`CoursePlayerPage.jsx` & `CertificateCard.jsx`)**:
-  - Per-session 5-question mixed checkpoint quizzes in every lesson + 30-question Final Course Evaluation with **60% passmark**, **maximum 4 attempts**, printable Certificate of Study Completion, and automatic certificate emails (`POST /api/course-eval`).
-- **Learner Dashboard Badges & Certificates (`/my-learning` — `MyLearningPage.jsx`)**:
-  - `"Badges & Certificates"` sidebar tab showing 6 milestone achievement badges, earned printable Certificates of Completion with verification codes, and full quiz/evaluation attempt history.
-- **Broadened Terms of Service, Privacy Policy, Legal & Medical Disclaimers (`TrustPage.jsx` & `Footer.jsx`)**:
-  - Comprehensive Terms of Service, Uganda Data Protection & Privacy Act (2019) aligned Privacy & Cookies Policy, Editorial & National Clinical Guideline Hierarchy Policy, UNMEB/UNMC/MoH Non-Affiliation Notice, Acceptable Use/Refund Policy, and Certificate Non-Licensure Disclaimers.
+## ✅ Deployed / Ready on `main`
+- **Fixed All 9 Hostinger hPanel Node.js Dependency CVEs (`found 0 vulnerabilities` in `npm audit`)**: Upgraded `proxy-addr`, `body-parser`, `sharp`, `compression`, `express-rate-limit`, `qs`, and `ip-address` via `npm audit fix`. Verified Malware Scanner (`0` files flagged), SSL (`Lifetime SSL Active`), Anti-DDoS (`0` events), Runtime Logs (`0` errors).
+- **Real Condition, Disease & Studio Instrument Images (`assets/images/medical-illustrations/`, `assets/images/medical-instruments/`)**: Replaced ALL UI box diagrams (`23` domain + disease plates across `819` canonical topics / `1,864` course lessons + `48` eBook chapters) and all `146` instrument plates with authentic clinical/anatomical photography & medical textbook art; stripped all `998` legacy `/lesson-images/` diagram references and set `Cache-Control: public, max-age=0, must-revalidate` on `.json` data feeds.
+- **Universal Deep Search (`Navbar.jsx`, `CoursesCatalogPage.jsx`, `InstrumentsPage.jsx`)**: Searches across all 95 Course Units, 819+ Lesson Topics (`canonical-lessons-index.json`), Medical Dictionary, Medical Instruments, and Free eBooks (fixes topic queries like `"digestive"`).
+- **A–Z Medical Dictionary Enrichment (`dictionary.json`, `DictionaryPage.jsx`)**: Expanded to `95` clinical terms across all 26 letters `A–Z` + `70` ward abbreviations with interactive A–Z ribbon bar, pill category filters, Nursing Priorities, and Mnemonics.
+- **Admin UX/UI Optimization & `/nodadmin` Route (`AdminPage.jsx`, `App.jsx`, `Navbar.jsx`, `MyLearningPage.jsx`, `server.js`, `.htaccess`)**: Moved admin URL from `/admin` to `/nodadmin`; replaced cramped sidebar layout with compact horizontal tabs, 4-column KPI bar, 2-column overview grid, and searchable 15-row tables.
+- **Enrolled-Only Learner Courses & Admin Auto-Enrollment (`AppContext.jsx`, `MyLearningPage.jsx`, `CourseDetailPage.jsx`)**: Normal learners see only courses they explicitly enrolled in or started (not all 33 free courses automatically); Admin (`user?.isAdmin`) is enrolled in all 95 courses by default.
+- **Full-Site Mobile Optimization & PageSpeed Core Web Vitals Boost**: WebP hero/category images (`hero-banner.webp` `21.7 KB`), non-blocking async Google Fonts, `React.lazy()` route code-splitting (`79 KB` gzip initial bundle), 1-year static asset caching, explicit image dimensions, and zero horizontal overflow across `375px`, `768px`, and `1280px`.
+- **Upgraded Medical Instrument Atlas (`146` Instruments) & Pill Filter UI (`InstrumentsPage.jsx`)**.
+- **Umami Web Analytics (`c4bb829f-2996-48f0-9f73-44bf36fcef47`) & CSP Headers (`index.html`, `server.js`)**.
+- **Clean `/login`, Simplified Mega Menu, Colored Page Notes, Free 25+ Q Quizzes w/ Auto-Email, 5Q Session Quizzes, 30Q Final Eval (60% Pass / 4 Attempts), Certificates, Dashboard Badges, & Broadened Legal/Medical Disclaimers**.
 
 ## ⏳ Operational / Manual Production Items
-- **Push local `main` commits to GitHub (`git push origin main`)** once network access to `github.com:443` is restored so Hostinger auto-deploys the latest build.
-- Switch `PAYPAL_MODE` from `sandbox` to `live` in Hostinger Environment Variables when ready to accept live billing.
-- Optional: Upload `nu-variant-3-192.png` App Logo manually on Google Cloud Console Branding page (`https://console.cloud.google.com/auth/branding`).
+- Switch `PAYPAL_MODE` from `sandbox` to `live` in Hostinger Environment Variables when ready for live billing.

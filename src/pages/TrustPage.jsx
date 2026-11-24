@@ -70,11 +70,11 @@ const PAGES = {
       },
       {
         heading: "4. Cookies, Local Storage & Google AdSense Advertising",
-        body: "Nursing Uganda uses strictly necessary authentication session cookies and browser localStorage (shopping cart and offline draft lesson notes). Free educational resources (Free eBooks, Medical Dictionary, Instrument Atlas, Clinical Tools, and Free Previews) may display Google AdSense advertisements. Google and third-party vendors may use cookies to serve relevant ads; you may manage personalized ad preferences at Google Ad Settings. Paid course player lessons, /login, /cart, /checkout, and /admin remain strictly ad-free."
+        body: "Nursing Uganda uses strictly necessary authentication session cookies and browser localStorage (shopping cart and offline draft lesson notes). Free educational resources (Free eBooks, Medical Dictionary, Instrument Atlas, Clinical Tools, and Free Previews) may display Google AdSense advertisements. Google and third-party vendors may use cookies to serve relevant ads; you may manage personalized ad preferences at Google Ad Settings. Paid course player lessons, /login, /cart, /checkout, and internal administrative routes remain strictly ad-free."
       },
       {
         heading: "5. Third-Party Service Providers & Data Transfers",
-        body: "To run reliable infrastructure, data is processed strictly through trusted service providers: Hostinger (application & MySQL database hosting and transactional SMTP delivery), PayPal (payment authorization and capture verification), Google Identity Services (optional single sign-on), and Google AdSense (ad delivery on free resource hubs only). We never sell, rent, or trade student email lists to data brokers or marketers."
+        body: "To run reliable infrastructure, data is processed strictly through trusted service providers: Hostinger (application & MySQL database hosting and transactional SMTP delivery), PayPal (payment authorization and capture verification), Google Identity Services (optional single sign-on), Umami Analytics (privacy-preserving aggregate site traffic insights), and Google AdSense (ad delivery on free resource hubs only). We never sell, rent, or trade student email lists to data brokers or marketers."
       },
       {
         heading: "6. Data Retention & Your Statutory Rights",

@@ -33,11 +33,11 @@ app.use((req, res, next) => {
     "Content-Security-Policy",
     [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' https://accounts.google.com https://apis.google.com https://www.paypal.com https://www.sandbox.paypal.com https://pagead2.googlesyndication.com",
+      "script-src 'self' 'unsafe-inline' https://accounts.google.com https://apis.google.com https://www.paypal.com https://www.sandbox.paypal.com https://pagead2.googlesyndication.com https://analytics.onebigfile.com",
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://accounts.google.com",
       "font-src 'self' data: https://fonts.gstatic.com",
       "img-src 'self' data: blob: https://*.googleusercontent.com https://www.paypalobjects.com https://*.paypal.com https://pagead2.googlesyndication.com",
-      "connect-src 'self' https://accounts.google.com https://oauth2.googleapis.com https://www.paypal.com https://www.sandbox.paypal.com https://api-m.paypal.com https://api-m.sandbox.paypal.com",
+      "connect-src 'self' https://accounts.google.com https://oauth2.googleapis.com https://www.paypal.com https://www.sandbox.paypal.com https://api-m.paypal.com https://api-m.sandbox.paypal.com https://analytics.onebigfile.com",
       "frame-src 'self' https://accounts.google.com https://www.paypal.com https://www.sandbox.paypal.com https://googleads.g.doubleclick.net",
       "object-src 'none'",
       "base-uri 'self'",
@@ -72,7 +72,7 @@ express.static.mime.define({ "application/manifest+json": ["webmanifest"] });
 app.use("/api", createApiRouter());
 
 const BOT_UA_RE = /(googlebot|adsbot-google|mediapartners-google|bingbot|slurp|duckduckbot|facebookexternalhit|twitterbot|whatsapp)/i;
-const SPA_ROUTE_RE = /^\/($|courses|course|learn|ebooks|quizzes|mock-exams|dictionary|instruments|clinical-tools|cart|checkout|login|my-learning|admin|about|brand-kit|editorial-policy|privacy-policy|terms|contact)(\/|$)/i;
+const SPA_ROUTE_RE = /^\/($|courses|course|learn|ebooks|quizzes|mock-exams|dictionary|instruments|clinical-tools|cart|checkout|login|my-learning|nodadmin|about|brand-kit|editorial-policy|privacy-policy|terms|contact)(\/|$)/i;
 
 // Match Hostinger .htaccess behavior: human browsers get React SPA index.html on app routes;
 // search/AdSense bots get static pre-rendered HTML if available.
@@ -87,23 +87,33 @@ app.use((req, res, next) => {
   next();
 });
 
+function setAssetCacheHeaders(res, filePath) {
+  if (filePath.endsWith(".html")) {
+    res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
+  } else if (/\.(json|webmanifest)$/i.test(filePath)) {
+    res.setHeader("Cache-Control", "public, max-age=0, must-revalidate");
+  } else if (/\.(webp|png|jpe?g|svg|gif|ico|woff2?|css|js)$/i.test(filePath)) {
+    res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+  }
+}
+
 if (fs.existsSync(DIST_DIR)) {
   app.use(
     express.static(DIST_DIR, {
-      maxAge: "1h",
-      setHeaders: (res, filePath) => {
-        if (filePath.endsWith(".html")) {
-          res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
-        } else if (filePath.includes(`${path.sep}assets${path.sep}app${path.sep}`)) {
-          res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
-        }
-      }
+      maxAge: "365d",
+      setHeaders: setAssetCacheHeaders
     })
   );
 }
 
 // Fallback to root assets/ for large lesson-images not duplicated in dist/
-app.use("/assets", express.static(ROOT_ASSETS_DIR, { maxAge: "90d" }));
+app.use(
+  "/assets",
+  express.static(ROOT_ASSETS_DIR, {
+    maxAge: "365d",
+    setHeaders: setAssetCacheHeaders
+  })
+);
 
 app.get("*", (_req, res) => {
   const distIndex = path.join(DIST_DIR, "index.html");

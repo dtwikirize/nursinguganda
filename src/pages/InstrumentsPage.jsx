@@ -48,8 +48,9 @@ function getSterileBadge(sterilizationText = "") {
 export default function InstrumentsPage() {
   const [searchParams] = useSearchParams();
   const initialCatParam = searchParams.get("cat") || "";
+  const initialQParam = searchParams.get("q") || "";
   const [data, setData] = useState(null);
-  const [q, setQ] = useState("");
+  const [q, setQ] = useState(initialQParam);
   const [cat, setCat] = useState("All");
   const [selected, setSelected] = useState(null);
   const detailRef = useRef(null);

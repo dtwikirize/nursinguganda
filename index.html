@@ -16,10 +16,20 @@
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://analytics.onebigfile.com" />
     <link
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700;900&family=Poppins:wght@600;700&display=swap"
-      rel="stylesheet"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700;900&family=Poppins:wght@600;700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+    <script defer src="https://analytics.onebigfile.com/script.js" data-website-id="c4bb829f-2996-48f0-9f73-44bf36fcef47"></script>
   </head>
   <body>
     <div id="root"></div>
