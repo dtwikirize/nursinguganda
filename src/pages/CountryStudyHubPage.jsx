@@ -77,12 +77,28 @@ const THEME_CONFIG = {
     badgeText: "#FFFFFF",
     tintBg: "#F8FAFC",
     tintBorder: "#E2E8F0"
+  },
+  "blue-black": {
+    heroBg: "#1E3A8A",
+    heroBorder: "#09090B",
+    cardBg: "rgba(9, 9, 11, 0.42)",
+    cardBorder: "rgba(255, 255, 255, 0.16)",
+    cardTopBorder: "#09090B",
+    switchActiveBg: "#09090B",
+    switchIdleBg: "rgba(9, 9, 11, 0.28)",
+    accent: "#09090B",
+    accentStrong: "#000000",
+    badgeBg: "#09090B",
+    badgeText: "#FFFFFF",
+    tintBg: "#F8FAFC",
+    tintBorder: "#E2E8F0"
   }
 };
 
 function resolveThemeKey(slug) {
   if (slug === "united-kingdom-nmc") return "coursera-black";
   if (slug === "united-states-nclex" || slug === "canada-nnas-nclex") return "red-black";
+  if (slug === "kenya-nck") return "blue-black";
   return "green-black";
 }
 
@@ -508,7 +524,7 @@ export default function CountryStudyHubPage({ forcedSlug = "" }) {
           {/* Tab 1: About & Blueprint */}
           {tab === "notes" && hub?.sections?.length > 0 && (
             <div style={{ marginBottom: 28 }}>
-              <LessonSections sections={hub.sections} topicTitle={country.country} headingTag="h2" />
+              <LessonSections sections={hub.sections} topicTitle={country.country} headingTag="h2" disableInlineFigures />
             </div>
           )}
 

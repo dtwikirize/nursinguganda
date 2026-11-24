@@ -110,6 +110,7 @@ export default function Navbar() {
   const [megaOpen, setMegaOpen] = useState(false);
   const [activeProgId, setActiveProgId] = useState("certificate-in-nursing");
   const [activeHubId, setActiveHubId] = useState("");
+  const [activeCountryMegaTab, setActiveCountryMegaTab] = useState("courses");
   const [hubEbooks, setHubEbooks] = useState([]);
   const [hubExams, setHubExams] = useState([]);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -444,6 +445,185 @@ export default function Navbar() {
                   </div>
                 )}
                 <div className="nu-mega-grid nu-mega-grid--simple">
+                  {countryCtx ? (
+                    <>
+                      {/* Country-Specific Explore Column 1 */}
+                      <div className="nu-mega-col">
+                        <div className="nu-mega-kicker">{countryCtx.meta.shortName} Curriculum &amp; Portal</div>
+                        {[
+                          { id: "courses", label: `${countryCtx.meta.shortName} Specialization Courses (${countryCtx.curriculum?.courses?.length || 0})`, to: `${countryCtx.meta.route}?tab=curriculum` },
+                          { id: "modules", label: `Full ${countryCtx.meta.shortName} Syllabus Modules (${countryCtx.curriculum?.modules?.length || 0})`, to: `${countryCtx.meta.route}?tab=curriculum` },
+                          { id: "topics", label: `779 ${countryCtx.meta.shortName} Study Topics`, to: `${countryCtx.meta.route}?tab=topics` },
+                          { id: "tools", label: `${countryCtx.meta.shortName} Practice & Lab Converter`, to: `${countryCtx.meta.route}?tab=practice` },
+                          { id: "offers", label: `${countryCtx.meta.shortName} Prep Bundle (${countryCtx.curriculum?.premiumOffer?.price || "$24.99"})`, to: `${countryCtx.meta.route}?tab=offers` },
+                          { id: "roadmap", label: `Official Licensure Roadmap`, to: `${countryCtx.meta.route}?tab=roadmap` }
+                        ].map((sec) => (
+                          <button
+                            key={sec.id}
+                            type="button"
+                            className={`nu-mega-item ${activeCountryMegaTab === sec.id ? "active" : ""}`}
+                            onMouseEnter={() => setActiveCountryMegaTab(sec.id)}
+                            onFocus={() => setActiveCountryMegaTab(sec.id)}
+                            onClick={() => {
+                              setMegaOpen(false);
+                              navigate(sec.to);
+                            }}
+                          >
+                            <span className="nu-mega-item-left">
+                              <GraduationCap size={15} />
+                              <span>{sec.label}</span>
+                            </span>
+                            <ChevronRight size={14} />
+                          </button>
+                        ))}
+
+                        <div className="nu-mega-divider" />
+                        <div className="nu-mega-kicker">Switch Portal</div>
+                        <button
+                          type="button"
+                          className="nu-mega-item"
+                          onClick={() => {
+                            setMegaOpen(false);
+                            navigate("/courses");
+                          }}
+                        >
+                          <span className="nu-mega-item-left">
+                            <BookOpen size={15} />
+                            <span>Uganda UNMEB Courses (83)</span>
+                          </span>
+                          <ChevronRight size={14} />
+                        </button>
+                        <button
+                          type="button"
+                          className="nu-mega-item"
+                          onClick={() => {
+                            setMegaOpen(false);
+                            navigate("/global-nursing");
+                          }}
+                        >
+                          <span className="nu-mega-item-left">
+                            <Award size={15} />
+                            <span>All 8 Nursing Countries</span>
+                          </span>
+                          <ChevronRight size={14} />
+                        </button>
+                      </div>
+
+                      {/* Country-Specific Explore Column 2 */}
+                      <div className="nu-mega-middle">
+                        <div className="nu-mega-middle-head">
+                          <h4 className="nu-mega-prog-title">
+                            {activeCountryMegaTab === "courses" && `${countryCtx.meta.shortName} Specialization Courses`}
+                            {activeCountryMegaTab === "modules" && `${countryCtx.meta.shortName} Syllabus Modules`}
+                            {activeCountryMegaTab === "topics" && `779 Localized ${countryCtx.meta.shortName} Topics`}
+                            {activeCountryMegaTab === "tools" && `${countryCtx.meta.shortName} Practice & Unit Tools`}
+                            {activeCountryMegaTab === "offers" && `${countryCtx.meta.shortName} Full Prep Bundle`}
+                            {activeCountryMegaTab === "roadmap" && `${countryCtx.meta.name} Licensure Steps`}
+                          </h4>
+                          <Link
+                            to={`${countryCtx.meta.route}?tab=${activeCountryMegaTab === "modules" || activeCountryMegaTab === "courses" ? "curriculum" : activeCountryMegaTab === "tools" ? "practice" : activeCountryMegaTab}`}
+                            className="nu-mega-view-all"
+                            onClick={() => setMegaOpen(false)}
+                          >
+                            Open {countryCtx.meta.shortName} Hub →
+                          </Link>
+                        </div>
+
+                        <div className="nu-mega-links-cols">
+                          {activeCountryMegaTab === "courses" &&
+                            (countryCtx.curriculum?.courses || []).map((c) => (
+                              <Link
+                                key={c.id}
+                                to={`${countryCtx.meta.topicsBase}/${c.sampleTopicSlug}`}
+                                className="nu-mega-clean-link"
+                                onClick={() => setMegaOpen(false)}
+                              >
+                                <span>
+                                  <strong>{c.level} · </strong>
+                                  {c.title}
+                                </span>
+                                <ChevronRight size={14} />
+                              </Link>
+                            ))}
+
+                          {activeCountryMegaTab === "modules" &&
+                            (countryCtx.curriculum?.modules || []).map((m) => (
+                              <Link
+                                key={m.number}
+                                to={`${countryCtx.meta.topicsBase}/${m.topicSlugs?.[0] || "dosage-calculations-and-iv-infusion-rates"}`}
+                                className="nu-mega-clean-link"
+                                onClick={() => setMegaOpen(false)}
+                              >
+                                <span>
+                                  <strong>Module {m.number} · </strong>
+                                  {m.title}
+                                </span>
+                                <ChevronRight size={14} />
+                              </Link>
+                            ))}
+
+                          {activeCountryMegaTab === "topics" &&
+                            [
+                              { label: "Dosage Calculations & IV Infusion Rates", slug: "dosage-calculations-and-iv-infusion-rates" },
+                              { label: "Fluid & Electrolyte Balance", slug: "fluid-and-electrolyte-balance" },
+                              { label: "Diabetes Mellitus & Ketoacidosis", slug: "diabetes-mellitus-and-ketoacidosis" },
+                              { label: "Hypertension & Cardiovascular Care", slug: "hypertension-and-cardiovascular-care" },
+                              { label: "Infection Prevention & Standard Precautions", slug: "infection-prevention-and-control-standard-precautions" },
+                              { label: "Shock & Hemodynamic Monitoring", slug: "shock-and-hemodynamic-monitoring" },
+                              { label: "Normal Labour & Delivery", slug: "normal-labour-and-delivery" },
+                              { label: "Browse All 779 Localized Topics", slug: "" }
+                            ].map((t) => (
+                              <Link
+                                key={t.label}
+                                to={t.slug ? `${countryCtx.meta.topicsBase}/${t.slug}` : `${countryCtx.meta.route}?tab=topics`}
+                                className="nu-mega-clean-link"
+                                onClick={() => setMegaOpen(false)}
+                              >
+                                <span>{t.label}</span>
+                                <ChevronRight size={14} />
+                              </Link>
+                            ))}
+
+                          {activeCountryMegaTab === "tools" &&
+                            [
+                              { label: `${countryCtx.meta.shortName} Exam Practice Check`, to: `${countryCtx.meta.route}?tab=practice` },
+                              { label: "Live SI (mmol/L) ↔ US (mg/dL) Glucose Converter", to: `${countryCtx.meta.route}?tab=practice` },
+                              { label: "UK/AU ↔ USA/CA Drug Name Equivalents", to: `${countryCtx.meta.route}?tab=practice` },
+                              { label: "Normal Lab Ranges (Full Table)", to: "/clinical-tools?tab=values" }
+                            ].map((item) => (
+                              <Link
+                                key={item.label}
+                                to={item.to}
+                                className="nu-mega-clean-link"
+                                onClick={() => setMegaOpen(false)}
+                              >
+                                <span>{item.label}</span>
+                                <ChevronRight size={14} />
+                              </Link>
+                            ))}
+
+                          {(activeCountryMegaTab === "offers" || activeCountryMegaTab === "roadmap") &&
+                            [
+                              { label: countryCtx.curriculum?.premiumOffer?.title || `${countryCtx.meta.shortName} Full Prep Bundle`, to: `${countryCtx.meta.route}?tab=offers` },
+                              { label: `${countryCtx.meta.examBadge} Official Roadmap`, to: `${countryCtx.meta.route}?tab=roadmap` },
+                              { label: `About ${countryCtx.meta.academy} & Blueprint`, to: countryCtx.meta.route },
+                              { label: "Browse Full Study Courses", to: "/courses" }
+                            ].map((item) => (
+                              <Link
+                                key={item.label}
+                                to={item.to}
+                                className="nu-mega-clean-link"
+                                onClick={() => setMegaOpen(false)}
+                              >
+                                <span>{item.label}</span>
+                                <ChevronRight size={14} />
+                              </Link>
+                            ))}
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <>
                   {/* Column 1: Programmes & Free Hubs */}
                   <div className="nu-mega-col">
                     <div className="nu-mega-kicker">Academic Programmes ({programmes.length})</div>
@@ -549,21 +729,34 @@ export default function Navbar() {
                           ))}
                     </div>
                   </div>
+                    </>
+                  )}
                 </div>
 
                 {/* Compact All-Visible Quick Strip */}
                 <div className="nu-mega-footer-bar">
-                  <div style={{ display: "flex", gap: 6, flexWrap: "wrap", alignItems: "center" }}>
-                    <Link to="/courses" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>All 83 Courses</Link>
-                    <Link to="/topics" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Nurse Topics (779)</Link>
-                    <Link to="/ebooks" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Free eBooks (8)</Link>
-                    <Link to="/mock-exams" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>UNMEB Papers (109)</Link>
-                    <Link to="/quizzes" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Topic Quizzes (270 Qs)</Link>
-                    <Link to="/dictionary" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Dictionary (1,079)</Link>
-                    <Link to="/instruments" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Instruments (146)</Link>
-                    <Link to="/templates" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Ward PDFs (8)</Link>
-                    <Link to="/global-nursing" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Global Nursing (8 Countries)</Link>
-                  </div>
+                  {countryCtx ? (
+                    <div style={{ display: "flex", gap: 6, flexWrap: "wrap", alignItems: "center" }}>
+                      <Link to={countryCtx.meta.route} className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>{countryCtx.meta.shortName} Blueprint</Link>
+                      <Link to={`${countryCtx.meta.route}?tab=curriculum`} className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Full Curriculum</Link>
+                      <Link to={`${countryCtx.meta.route}?tab=topics`} className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>779 {countryCtx.meta.shortName} Topics</Link>
+                      <Link to={`${countryCtx.meta.route}?tab=practice`} className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Unit &amp; Drug Converter</Link>
+                      <Link to={`${countryCtx.meta.route}?tab=offers`} className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Prep Bundle</Link>
+                      <Link to="/courses" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Uganda UNMEB (83)</Link>
+                    </div>
+                  ) : (
+                    <div style={{ display: "flex", gap: 6, flexWrap: "wrap", alignItems: "center" }}>
+                      <Link to="/courses" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>All 83 Courses</Link>
+                      <Link to="/topics" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Nurse Topics (779)</Link>
+                      <Link to="/ebooks" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Free eBooks (8)</Link>
+                      <Link to="/mock-exams" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>UNMEB Papers (109)</Link>
+                      <Link to="/quizzes" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Topic Quizzes (270 Qs)</Link>
+                      <Link to="/dictionary" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Dictionary (1,079)</Link>
+                      <Link to="/instruments" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Instruments (146)</Link>
+                      <Link to="/templates" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Ward PDFs (8)</Link>
+                      <Link to="/global-nursing" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Global Nursing (8 Countries)</Link>
+                    </div>
+                  )}
                 </div>
               </div>
             )}
@@ -582,7 +775,7 @@ export default function Navbar() {
                 type="search"
                 name="query"
                 value={query}
-                placeholder="Search courses, topics (e.g. digestive), drugs, midwifery..."
+                placeholder={countryCtx ? `Search ${countryCtx.meta.shortName} topics, drugs, ${countryCtx.meta.examBadge}...` : "Search courses, topics (e.g. digestive), drugs, midwifery..."}
                 aria-label="Search courses and clinical topics"
                 onFocus={() => {
                   setSearchFocused(true);
@@ -631,18 +824,37 @@ export default function Navbar() {
           </form>
 
           <nav className="nu-nav-actions">
-            <Link to="/topics" className="nu-nav-link nu-nav-desktop-only">
-              Nurse Topics
-            </Link>
-            <Link to="/ebooks" className="nu-nav-link nu-nav-desktop-only">
-              Free eBooks
-            </Link>
-            <Link to="/mock-exams" className="nu-nav-link nu-nav-desktop-only">
-              Mock Exams
-            </Link>
-            <Link to="/my-learning" className="nu-nav-link nu-nav-desktop-only">
-              My Learning {enrollments.length > 0 ? `(${enrollments.length})` : ""}
-            </Link>
+            {countryCtx ? (
+              <>
+                <Link to={`${countryCtx.meta.route}?tab=curriculum`} className="nu-nav-link nu-nav-desktop-only">
+                  Curriculum
+                </Link>
+                <Link to={`${countryCtx.meta.route}?tab=topics`} className="nu-nav-link nu-nav-desktop-only">
+                  779 Topics
+                </Link>
+                <Link to={`${countryCtx.meta.route}?tab=practice`} className="nu-nav-link nu-nav-desktop-only">
+                  Unit Tools
+                </Link>
+                <Link to={`${countryCtx.meta.route}?tab=offers`} className="nu-nav-link nu-nav-desktop-only">
+                  Prep Bundle
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link to="/topics" className="nu-nav-link nu-nav-desktop-only">
+                  Nurse Topics
+                </Link>
+                <Link to="/ebooks" className="nu-nav-link nu-nav-desktop-only">
+                  Free eBooks
+                </Link>
+                <Link to="/mock-exams" className="nu-nav-link nu-nav-desktop-only">
+                  Mock Exams
+                </Link>
+                <Link to="/my-learning" className="nu-nav-link nu-nav-desktop-only">
+                  My Learning {enrollments.length > 0 ? `(${enrollments.length})` : ""}
+                </Link>
+              </>
+            )}
 
             <Link to="/cart" className="nu-icon-btn" aria-label="Shopping cart">
               <ShoppingCart size={20} />

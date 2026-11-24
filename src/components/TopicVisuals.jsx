@@ -780,7 +780,7 @@ function hashVariant(str, mod) {
 const TABLE_THEMES = ["minimal", "minimal", "neutral", "minimal", "neutral", "navy", "minimal", "purple"]; // Calm monochrome/neutral by default; color accents sparingly
 const HEAD_THEMES = ["light", "light", "slate-light", "light", "navy", "slate"]; // Calm paper headers by default, occasional dark anchor headers
 
-export function LessonSections({ sections = [], lesson = null, topicTitle = "", headingTag = "h2" }) {
+export function LessonSections({ sections = [], lesson = null, topicTitle = "", headingTag = "h2", disableInlineFigures = false }) {
   const Heading = headingTag;
   const usedSrcs = new Set(
     (lesson?.images || []).map((img) => String(img || "").split("?")[0]).filter(Boolean)
@@ -802,7 +802,7 @@ export function LessonSections({ sections = [], lesson = null, topicTitle = "", 
           .join(" ");
 
         let inlineFig = null;
-        if (inlineImagesAdded < maxInlineImages && !/^reference|learning outcome/i.test(cleanHeading)) {
+        if (!disableInlineFigures && inlineImagesAdded < maxInlineImages && !/^reference|learning outcome/i.test(cleanHeading)) {
           const picked = pickInlineSectionVisual(cleanHeading, bodySample, topicTitle, usedSrcs);
           if (picked) {
             usedSrcs.add(picked.src);
