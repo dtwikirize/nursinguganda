@@ -137,7 +137,7 @@ export default function Footer() {
             <div>
               <h4>Programmes &amp; Units</h4>
               <ul>
-                <li><Link to="/courses">All 83 Study Courses</Link></li>
+                <li><Link to="/courses">All 85 Study Courses</Link></li>
                 <li><Link to="/topics">779 Nurse Study Topics</Link></li>
                 <li><Link to="/courses?programme=certificate-in-nursing">Certificate in Nursing</Link></li>
                 <li><Link to="/courses?programme=diploma-nursing-direct">Diploma in Nursing (Direct)</Link></li>

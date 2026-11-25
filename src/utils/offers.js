@@ -13,7 +13,7 @@ export const UNMEB_PASS_ITEM = {
 
 export const ALL_ACCESS_PASS_ITEM = {
   slug: "all-access-pass",
-  title: "Full Platform All-Access Pass (All 83 Courses + 109 UNMEB Papers)",
+  title: "Full Platform All-Access Pass (All 85 Courses + 109 UNMEB Papers)",
   code: "ALL-ACCESS",
   programmeLabel: "All 6 Programmes · Complete Site Access",
   thumbnail: "/assets/images/udemy/hero-banner.webp",

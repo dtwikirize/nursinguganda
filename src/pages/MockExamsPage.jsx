@@ -214,7 +214,7 @@ export default function MockExamsPage() {
             <div className="nu-allaccess-banner" style={{ marginBottom: 20 }}>
               <div className="nu-allaccess-copy">
                 <span className="nu-allaccess-eyebrow">50% OFF PAST PAPER PASS OR FULL SITE ACCESS</span>
-                <h3>Unlock All {rawPapers.length}+ Past Papers ($4.99) — or All 83 Courses ($34.99)</h3>
+                <h3>Unlock All {rawPapers.length}+ Past Papers ($4.99) — or All 85 Courses ($34.99)</h3>
                 <p>
                   Get every UNMEB &amp; UHPAB marking guide, timed mock drill &amp; PDF export — or unlock every course sitewide.
                 </p>

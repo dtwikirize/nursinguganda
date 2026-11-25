@@ -489,7 +489,7 @@ export default function Navbar() {
                         >
                           <span className="nu-mega-item-left">
                             <BookOpen size={15} />
-                            <span>Uganda UNMEB Courses (83)</span>
+                            <span>Uganda UNMEB Courses (85)</span>
                           </span>
                           <ChevronRight size={14} />
                         </button>
@@ -742,11 +742,11 @@ export default function Navbar() {
                       <Link to={`${countryCtx.meta.route}?tab=topics`} className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>779 {countryCtx.meta.shortName} Topics</Link>
                       <Link to={`${countryCtx.meta.route}?tab=practice`} className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Unit &amp; Drug Converter</Link>
                       <Link to={`${countryCtx.meta.route}?tab=offers`} className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Prep Bundle</Link>
-                      <Link to="/courses" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Uganda UNMEB (83)</Link>
+                      <Link to="/courses" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Uganda UNMEB (85)</Link>
                     </div>
                   ) : (
                     <div style={{ display: "flex", gap: 6, flexWrap: "wrap", alignItems: "center" }}>
-                      <Link to="/courses" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>All 83 Courses</Link>
+                      <Link to="/courses" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>All 85 Courses</Link>
                       <Link to="/topics" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Nurse Topics (779)</Link>
                       <Link to="/ebooks" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Free eBooks (87)</Link>
                       <Link to="/mock-exams" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>UNMEB Papers (109)</Link>

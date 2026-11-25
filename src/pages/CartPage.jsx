@@ -86,7 +86,7 @@ export default function CartPage() {
             </p>
             <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
               <Link to="/courses" className="nu-btn nu-btn-primary nu-btn-lg">
-                Browse 83 Courses
+                Browse 85 Courses
               </Link>
               <Link to="/mock-exams" className="nu-btn nu-btn-outline nu-btn-lg">
                 <FileText size={16} /> 109 UNMEB Past Papers

@@ -368,7 +368,7 @@ export default function CourseDetailPage() {
                 {!enrollments.includes("all-access-pass") && (
                   <div className="nu-detail-allaccess-box">
                     <div className="nu-detail-allaccess-kicker">Full Site Option · Save 75%</div>
-                    <strong>Unlock All 83 Courses + 109 UNMEB Papers</strong>
+                    <strong>Unlock All 85 Courses + 109 UNMEB Papers</strong>
                     <p>
                       Get every Certificate, Diploma &amp; BScN unit + mock exams for{" "}
                       <strong>$34.99</strong> <s style={{ color: "#64748b" }}>$139.99</s>

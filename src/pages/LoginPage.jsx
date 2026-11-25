@@ -8,7 +8,7 @@ import loginPhoto from "../../assets/images/udemy/hero-banner.webp";
 const LOGIN_SLIDES = [
   {
     tag: "UNMEB & MoH Aligned",
-    title: "83 Study Units · 779 Clinical Topics",
+    title: "85 Study Units · 779 Clinical Topics",
     desc: "Structured Certificate, Diploma & BScN notes with verified clinical references."
   },
   {

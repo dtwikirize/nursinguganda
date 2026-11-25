@@ -127,7 +127,7 @@ export default function ContextOfferPopup() {
       secondaryAction = () => buyNow(allAccessItem);
     } else {
       kicker = "FULL REVISION UNLOCK";
-      headline = "Unlock All 83 Courses & 109 Past Papers";
+      headline = "Unlock All 85 Courses & 109 Past Papers";
       body = "Step up to unlimited access across Certificate, Diploma & BScN units plus downloadable exam prep & certificates.";
       primaryLabel = `Get All-Access · ${formatUsd(allAccessItem.priceUsd)}`;
       primaryCompare = `$${allAccessItem.compareAtUsd.toFixed(2)}`;
@@ -160,7 +160,7 @@ export default function ContextOfferPopup() {
       : `Full All-Access · ${formatUsd(allAccessItem.priceUsd)}`;
     primaryCompare = !hasExamPass ? `$${UNMEB_PASS_ITEM.compareAtUsd.toFixed(2)}` : `$${allAccessItem.compareAtUsd.toFixed(2)}`;
     primaryAction = () => buyNow(!hasExamPass ? UNMEB_PASS_ITEM : allAccessItem);
-    secondaryLabel = `All 83 Courses + Papers · ${formatUsd(allAccessItem.priceUsd)}`;
+    secondaryLabel = `All 85 Courses + Papers · ${formatUsd(allAccessItem.priceUsd)}`;
     secondaryAction = () => buyNow(allAccessItem);
   } else if (zone === "cart") {
     kicker = "COMPLETE ACCESS UPGRADE";

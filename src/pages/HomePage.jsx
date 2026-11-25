@@ -12,10 +12,22 @@ import {
   Stethoscope
 } from "lucide-react";
 import CourseCard from "../components/CourseCard";
+import CountryFlag from "../components/CountryFlag";
 import EbookCover from "../components/EbookCover";
 import NursingLoader from "../components/NursingLoader";
 import { formatUsd, useApp } from "../context/AppContext";
 import { getAllAccessCartItem } from "../utils/offers";
+
+const GLOBAL_PATHWAY_CARDS = [
+  { flag: "US", title: "NCLEX-RN Academy ($99)", sub: "16 Course Units · 4 CAT Exams", to: "/nclex-rn" },
+  { flag: "UK", title: "United Kingdom (NMC)", sub: "CBT Numeracy, Clinical & OSCE", to: "/nursing-uk" },
+  { flag: "CA", title: "Canada (NNAS & REx-PN)", sub: "NCLEX-RN, REx-PN & SI Labs", to: "/nursing-canada" },
+  { flag: "AU", title: "Australia (Ahpra OBA)", sub: "NCLEX-RN & 10-Station OSCE", to: "/nursing-australia" },
+  { flag: "KE", title: "Kenya (NCK)", sub: "KRCHN, BScN & KEPI Guides", to: "/global-nursing/kenya-nck" },
+  { flag: "TZ", title: "Tanzania (TNMC)", sub: "TNMC Licensure & EAC Track", to: "/global-nursing/tanzania-tnmc" },
+  { flag: "AE", title: "UAE & Gulf (Prometric)", sub: "DHA, DOH, SCFHS & DataFlow", to: "/global-nursing/gulf-dha-doh-scfhs" },
+  { flag: "UG", title: "Uganda (UHPAB / UNMC)", sub: "Certificate, Diploma & BScN", to: "/global-nursing/uganda-unmc-uhpab" }
+];
 
 const CATEGORY_CARDS = [
   { name: "Anatomy & Physiology", img: "/assets/images/udemy/cover-anatomy-cardio.webp" },
@@ -78,16 +90,16 @@ export default function HomePage() {
           className="nu-hero-bg"
         />
         <div className="nu-hero-card">
-          <h1>Clinical mastery that gets you UNMEB-ready</h1>
+          <h1>Clinical &amp; licensing mastery for nurses worldwide</h1>
           <p>
-            Structured Certificate, Diploma &amp; BScN nursing courses, free referenced study eBooks, and timed mock exams aligned with Uganda Ministry of Health &amp; WHO guidelines.
+            Structured Certificate, Diploma, BScN &amp; NCLEX-RN courses, 87 free referenced textbooks, and timed licensing exams aligned with WHO, Uganda MoH 2023, Saunders &amp; NCSBN standards.
           </p>
           <div className="nu-hero-actions">
             <Link to="/courses" className="nu-btn nu-btn-primary nu-btn-lg">
-              Explore 83 Courses
+              Explore {courses.length || 85} Courses
             </Link>
-            <Link to="/ebooks" className="nu-btn nu-btn-outline nu-btn-lg">
-              Free Study eBooks
+            <Link to="/nclex-rn" className="nu-btn nu-btn-outline nu-btn-lg">
+              NCLEX-RN Academy ($99)
             </Link>
           </div>
         </div>
@@ -97,13 +109,56 @@ export default function HomePage() {
       <section className="nu-trust-strip">
         <div className="nu-container">
           <p className="nu-trust-title">
-            Aligned with official clinical &amp; academic standards trusted across Uganda
+            Aligned with international nursing &amp; clinical standards worldwide
           </p>
           <div className="nu-trust-pills">
-            <span className="nu-trust-pill"><ShieldCheck size={17} color="#a435f0" /> Uganda Clinical Guidelines 2023</span>
-            <span className="nu-trust-pill"><GraduationCap size={17} color="#a435f0" /> UNMEB &amp; UNMC Syllabi</span>
-            <span className="nu-trust-pill"><BookOpen size={17} color="#a435f0" /> WHO Maternal, Newborn &amp; Child Care</span>
-            <span className="nu-trust-pill"><Stethoscope size={17} color="#a435f0" /> Open RN &amp; OpenStax Citations</span>
+            <span className="nu-trust-pill"><ShieldCheck size={17} color="#a435f0" /> Uganda Clinical Guidelines 2023 &amp; WHO</span>
+            <span className="nu-trust-pill"><GraduationCap size={17} color="#a435f0" /> Next-Gen NCLEX-RN &amp; UK NMC</span>
+            <span className="nu-trust-pill"><BookOpen size={17} color="#a435f0" /> 87 Free Reference eBooks</span>
+            <span className="nu-trust-pill"><Stethoscope size={17} color="#a435f0" /> Saunders, Kaplan &amp; OpenStax Citations</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Coursera-Style International Nursing Pathways Grid */}
+      <section className="nu-section" style={{ paddingBottom: 12 }}>
+        <div className="nu-container">
+          <div className="nu-tab-intro" style={{ marginBottom: 16 }}>
+            <div className="nu-section-head" style={{ marginBottom: 0 }}>
+              <h2>Choose your nursing licensing &amp; study academy</h2>
+              <p>Localized exam roadmaps, SI ↔ US lab units, and 779 clinical study topics tailored to each country.</p>
+            </div>
+            <Link to="/global-nursing" className="nu-btn nu-btn-outline">
+              Compare All 8 Countries
+            </Link>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(230px, 1fr))", gap: 12 }}>
+            {GLOBAL_PATHWAY_CARDS.map((card) => (
+              <Link
+                key={card.to}
+                to={card.to}
+                style={{
+                  background: "#ffffff",
+                  border: "1px solid #d1d7dc",
+                  borderRadius: 6,
+                  padding: "14px 16px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 12,
+                  textDecoration: "none",
+                  color: "#1c1d1f"
+                }}
+              >
+                <CountryFlag code={card.flag} width={30} />
+                <div style={{ minWidth: 0 }}>
+                  <div style={{ fontWeight: 700, fontSize: "0.92rem", color: "#1c1d1f" }}>{card.title}</div>
+                  <div style={{ fontSize: "0.78rem", color: "#6a6f73", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                    {card.sub}
+                  </div>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -198,9 +253,9 @@ export default function HomePage() {
           <div className="nu-container">
             <div className="nu-tab-intro" style={{ marginBottom: 20 }}>
               <div className="nu-section-head" style={{ marginBottom: 0 }}>
-                <h2>Free Referenced Study eBooks</h2>
+                <h2>Free Referenced Study eBooks (87 Books)</h2>
                 <p>
-                  Downloadable &amp; printable topic guides complete with WHO, MoH Uganda, and textbook bibliographies.
+                  Browse 87 free nursing, midwifery, pharmacology &amp; clinical reference books complete with downloadable PDFs and full bibliographies.
                 </p>
               </div>
               <Link to="/ebooks" className="nu-btn nu-btn-purple-outline">

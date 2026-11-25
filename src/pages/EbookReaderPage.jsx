@@ -90,7 +90,7 @@ export default function EbookReaderPage() {
               <p className="nu-cl-subtitle">{ebook.subtitle}</p>
               <div className="nu-cl-meta-line">
                 <span><ShieldCheck size={14} style={{ display: "inline", marginRight: 4 }} /> {ebook.clinicalReviewer}</span>
-                <span><BookOpen size={14} style={{ display: "inline", marginRight: 4 }} /> {ebook.chapters.length} Chapters · ~{ebook.estimatedPages} Print Pages</span>
+                <span><BookOpen size={14} style={{ display: "inline", marginRight: 4 }} /> {(ebook.chapters || []).length} Chapters · ~{ebook.estimatedPages} Print Pages</span>
                 <span>Updated {ebook.updatedAt}</span>
               </div>
             </div>
@@ -155,26 +155,40 @@ export default function EbookReaderPage() {
           <div style={{ background: "var(--nu-bg-subtle)", border: "1px solid var(--nu-border)", padding: 20, marginBottom: 28 }}>
             <h3 style={{ margin: "0 0 10px" }}>Table of Contents</h3>
             <ol style={{ margin: 0, paddingLeft: 20, display: "grid", gap: 6 }}>
-              {ebook.chapters.map((ch) => (
+              {(ebook.chapters || []).map((ch) => (
                 <li key={ch.slug}>
                   <a href={`#ch-${ch.chapterNumber}`} style={{ color: "var(--nu-purple)", fontWeight: 600 }}>
                     {ch.title}
                   </a>{" "}
-                  <span style={{ color: "var(--nu-ink-muted)", fontSize: "0.82rem" }}>({ch.wordCount} words)</span>
+                  <span style={{ color: "var(--nu-ink-muted)", fontSize: "0.82rem" }}>({ch.wordCount || 250} words)</span>
                 </li>
               ))}
-              <li>
-                <a href="#ebook-bibliography" style={{ color: "var(--nu-purple)", fontWeight: 600 }}>
-                  Master References &amp; Clinical Bibliography ({ebook.references.length} sources)
-                </a>
-              </li>
+              {(ebook.references || []).length > 0 && (
+                <li>
+                  <a href="#ebook-bibliography" style={{ color: "var(--nu-purple)", fontWeight: 600 }}>
+                    Master References &amp; Clinical Bibliography ({(ebook.references || []).length} sources)
+                  </a>
+                </li>
+              )}
             </ol>
           </div>
 
           <AdSlot slot="ebook-reader-top" />
 
+          {/* Attributed Clinical Figures from Reference Book */}
+          {Array.isArray(ebook.figures) && ebook.figures.length > 0 && (
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 14, marginBottom: 28 }}>
+              {ebook.figures.map((fig) => (
+                <figure key={fig.src} style={{ margin: 0, background: "#ffffff", border: "1px solid #e2e8f0", borderRadius: 8, overflow: "hidden", padding: 10 }}>
+                  <img src={fig.src} alt={fig.caption} loading="lazy" style={{ width: "100%", height: 180, objectFit: "contain", display: "block" }} />
+                  <figcaption style={{ marginTop: 8, fontSize: "0.78rem", color: "#475569", textAlign: "center" }}>{fig.caption}</figcaption>
+                </figure>
+              ))}
+            </div>
+          )}
+
           {/* Chapters */}
-          {ebook.chapters.map((ch) => (
+          {(ebook.chapters || []).map((ch) => (
             <article key={ch.slug} id={`ch-${ch.chapterNumber}`} style={{ marginBottom: 42 }}>
               <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "var(--nu-purple)", textTransform: "uppercase" }}>
                 Chapter {ch.chapterNumber}
@@ -189,20 +203,24 @@ export default function EbookReaderPage() {
               <TopicVisuals lesson={ch} topicTitle={ch.title} />
               <LessonSections sections={ch.sections || []} lesson={ch} topicTitle={ch.title} headingTag="h3" />
 
-              <ReferencesBox
-                references={ch.chapterReferences}
-                heading={`Chapter ${ch.chapterNumber} Sources`}
-              />
+              {Array.isArray(ch.chapterReferences) && ch.chapterReferences.length > 0 && (
+                <ReferencesBox
+                  references={ch.chapterReferences}
+                  heading={`Chapter ${ch.chapterNumber} Sources`}
+                />
+              )}
             </article>
           ))}
 
           {/* Master Bibliography */}
-          <div id="ebook-bibliography">
-            <ReferencesBox
-              references={ebook.references}
-              heading="Master Book &amp; Guideline Bibliography"
-            />
-          </div>
+          {(ebook.references || []).length > 0 && (
+            <div id="ebook-bibliography">
+              <ReferencesBox
+                references={ebook.references}
+                heading="Master Book & Guideline Bibliography"
+              />
+            </div>
+          )}
 
           <div className="nu-no-print" style={{ marginTop: 32, padding: 24, background: "var(--nu-ink)", color: "#fff", display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: 16 }}>
             <div>

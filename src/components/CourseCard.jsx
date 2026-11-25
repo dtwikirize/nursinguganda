@@ -18,12 +18,18 @@ export default function CourseCard({ course }) {
     <Link to={course.customRoute || `/course/${course.slug}`} className="nu-course-card">
       <div className="nu-card-thumb">
         <img
-          src={course.thumbnail}
+          src={course.thumbnail || "/assets/images/udemy/cat-medsurg.webp"}
           alt={course.title}
           width="560"
           height="315"
           loading="lazy"
           decoding="async"
+          onError={(e) => {
+            if (!e.currentTarget.dataset.fb) {
+              e.currentTarget.dataset.fb = "1";
+              e.currentTarget.src = "/assets/images/udemy/cat-medsurg.webp";
+            }
+          }}
         />
       </div>
 

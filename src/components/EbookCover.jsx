@@ -12,7 +12,7 @@ export default function EbookCover({ ebook, presetId = "", compact = false }) {
     ? ebook.coverImage.startsWith("/")
       ? ebook.coverImage
       : `/${ebook.coverImage}`
-    : "/assets/images/medical-illustrations/cardiovascular.webp";
+    : "/assets/images/udemy/cat-anatomy.webp";
 
   if (ebook.importedFromInfoBooks && ebook.coverImage?.includes("/book-covers/")) {
     return (

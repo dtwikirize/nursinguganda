@@ -740,7 +740,7 @@ export const COUNTRY_CURRICULA = {
       price: "$12.99",
       compareAt: "$29.00",
       features: [
-        "All 83 Courses, 109 UNMEB/UHPAB Papers & 779 Study Topics",
+        "All 85 Courses, 109 UNMEB/UHPAB Papers & 779 Study Topics",
         "8 Free Referenced eBooks + Printable Ward Templates",
         "Interactive Dosage Calculators & 270+ Mixed Quizzes",
         "UNMC Registration & CPD Readiness Guides"

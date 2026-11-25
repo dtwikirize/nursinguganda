@@ -2,7 +2,7 @@
 """
 Builds the polished 16-Unit NCLEX-RN Preparation Course ($99) and the separate
 NCLEX-RN Examinations Course from F:/NCLEX PREP COURSE extracted notes,
-triangulated with Saunders 9th Ed., Kaplan NCLEX-RN Prep, and LaCharity PDA.
+aligned with Saunders 9th Ed., Kaplan NCLEX-RN Prep, and LaCharity PDA.
 
 Key quality guarantees:
   - Course Units (1-16), zero "Week" branding, zero tutor names/videos
@@ -767,7 +767,7 @@ def main():
 
         unit_refs = [
             {"id": f"u{u['unitNumber']}-saunders", "citation": u["saundersRef"], "type": "Primary Textbook"},
-            {"id": f"u{u['unitNumber']}-kaplan", "citation": u["kaplanRef"], "type": "Prep Triangulation"},
+            {"id": f"u{u['unitNumber']}-kaplan", "citation": u["kaplanRef"], "type": "Clinical Prep Reference"},
             {"id": f"u{u['unitNumber']}-lacharity", "citation": u["lacharityRef"], "type": "Clinical Judgment & Delegation"},
             {"id": f"u{u['unitNumber']}-ncsbn", "citation": "NCSBN. Next Generation NCLEX (NGN) Registered Nurse Test Plan & Clinical Judgment Measurement Model. Chicago: NCSBN; 2024.", "type": "Official Exam Blueprint"},
         ]
@@ -897,7 +897,7 @@ def main():
     course_payload = {
         "slug": "nclex-rn-preparation-course",
         "title": "NCLEX-RN Preparation Course (16-Unit Complete Academy)",
-        "subtitle": "Complete 16-Unit Next-Gen NCLEX-RN (NGN) mastery course triangulated across Saunders 9th Ed., Kaplan NCLEX-RN Prep & LaCharity PDA — with 20-Q topic quizzes and 60-Q mixed unit evaluations.",
+        "subtitle": "Complete 16-Unit Next-Gen NCLEX-RN (NGN) mastery course aligned across Saunders 9th Ed., Kaplan NCLEX-RN Prep & LaCharity PDA — with 20-Q topic quizzes and 60-Q mixed unit evaluations.",
         "priceUsd": 99,
         "compareAtUsd": 249,
         "badge": "Flagship NGN Academy",

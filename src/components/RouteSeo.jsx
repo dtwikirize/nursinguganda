@@ -8,7 +8,7 @@ const ROUTE_META = {
   "/": {
     title: "Nursing Uganda | UNMEB & UHPAB Past Papers, Courses, Free eBooks & Clinical Tools",
     description:
-      "Master Certificate, Diploma & BScN nursing and midwifery in Uganda with 83 courses, 109 UHPAB/UNMEB past papers with Dark Navy PDF answers, free eBooks, 1,079+ medical terms & OSCE tools.",
+      "Master Certificate, Diploma & BScN nursing and midwifery in Uganda with 85 courses, 109 UHPAB/UNMEB past papers with Dark Navy PDF answers, free eBooks, 1,079+ medical terms & OSCE tools.",
     type: "website"
   },
   "/courses": {

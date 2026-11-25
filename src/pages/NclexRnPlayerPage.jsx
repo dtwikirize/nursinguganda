@@ -75,7 +75,7 @@ export default function NclexRnPlayerPage() {
     if (!activeUnit) return;
     setPageSeo({
       title: `${activeUnit.weekLabel}: ${activeTopic?.title || activeUnit.title} | NCLEX-RN Academy`,
-      description: `NCLEX-RN 16-Week Study Player — ${activeUnit.title}. Triangulated with Saunders 9th Ed., Kaplan & LaCharity PDA.`,
+      description: `NCLEX-RN 16-Unit Study Player — ${activeUnit.title}. Aligned with Saunders 9th Ed., Kaplan & LaCharity PDA.`,
       canonicalPath: `/nclex-rn/unit/${activeUnit.slug}`,
       type: "article"
     });
@@ -286,7 +286,7 @@ export default function NclexRnPlayerPage() {
                   disableInlineFigures
                 />
 
-                {/* Per-Lesson Triangulated References */}
+                {/* Per-Lesson Clinical References */}
                 <div style={{ marginTop: 28, padding: 18, borderRadius: 10, background: "#f8fafc", border: "1px solid #cbd5e1" }}>
                   <h3 style={{ margin: "0 0 10px", fontSize: "0.96rem", color: "#0f172a", display: "flex", alignItems: "center", gap: 6 }}>
                     <ShieldCheck size={16} color="#a435f0" /> Lesson References (Saunders · Kaplan · LaCharity · NCSBN)
