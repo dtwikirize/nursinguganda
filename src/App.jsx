@@ -165,6 +165,7 @@ export default function App() {
           <Route path="/templates" element={<ClinicalToolsPage initialTabOverride="templates" />} />
           <Route path="/global-nursing" element={<GlobalNursingPage />} />
           <Route path="/global-nursing/:countrySlug" element={<CountryStudyHubPage />} />
+          <Route path="/global-nursing/:countrySlug/topics/:topicSlug" element={<CountryTopicPage />} />
           <Route path="/nursing-uk" element={<CountryStudyHubPage forcedSlug="united-kingdom-nmc" />} />
           <Route path="/nursing-uk/topics/:topicSlug" element={<CountryTopicPage countryKey="uk" />} />
           <Route path="/nursing-usa" element={<CountryStudyHubPage forcedSlug="united-states-nclex" />} />

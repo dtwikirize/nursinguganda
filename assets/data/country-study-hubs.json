@@ -347,6 +347,230 @@
           "rationale": "Stream B candidates complete Stage 1 (NCLEX-RN cognitive exam) and Stage 2 (Australian NMBA OSCE behavioural exam)."
         }
       ]
+    },
+    "kenya-nck": {
+      "route": "/global-nursing/kenya-nck",
+      "theme": "blue-black",
+      "eyebrow": "KENYA NURSING ACADEMY · NCK KRCHN & BScN LICENSURE",
+      "headline": "Nursing in Kenya (NCK Licensure & KRCHN/BScN Hub)",
+      "subheadline": "Master Nursing Council of Kenya (NCK) KRCHN & BScN national licensure exams, Kenyan clinical guidelines, maternal-child protocols, and SI laboratory units.",
+      "highlights": [
+        { "label": "Regulatory Body", "value": "Nursing Council of Kenya (NCK)" },
+        { "label": "Licensing Exam", "value": "NCK National Licensure (KRCHN / BSN)" },
+        { "label": "CPD & Renewal", "value": "Annual Practice License + CPD Points" },
+        { "label": "Lab System", "value": "SI Units (mmol/L, g/dL, °C)" }
+      ],
+      "sections": [
+        {
+          "title": "1. Nursing Council of Kenya (NCK) Registration & Licensure",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The **Nursing Council of Kenya (NCK)** regulates Kenya-trained **KRCHN (Kenya Registered Community Health Nurse)**, **BScN**, and **KECHN** graduates, as well as foreign-trained East African nurses seeking Kenyan licensure through the **NCK Online Portal**."
+            },
+            {
+              "type": "diagram",
+              "variant": "flow",
+              "title": "Kenya NCK Licensure & Indexing Sequence",
+              "caption": "From training indexing and clinical logbooks to NCK national licensure and retention.",
+              "steps": [
+                { "step": 1, "label": "NCK Indexing", "detail": "Index with NCK via accredited KMTC or university" },
+                { "step": 2, "label": "Clinical Logbooks", "detail": "Complete medical-surgical, midwifery & community hours" },
+                { "step": 3, "label": "NCK Licensure Exam", "detail": "Pass Paper I & Paper II national licensing exam" },
+                { "step": 4, "label": "Foreign Verification", "detail": "EAC/foreign nurses submit UNMC good standing & transcripts" },
+                { "step": 5, "label": "NCK Practice License", "detail": "Receive registration & renew annual CPD license" }
+              ]
+            },
+            {
+              "type": "table",
+              "title": "NCK KRCHN / BScN Exam Blueprint & High-Yield Clinical Focus",
+              "headers": ["NCK Exam Domain", "Core Focus Areas", "High-Yield Exam Watchpoints"],
+              "rows": [
+                [
+                  "**Medical-Surgical & Critical Care**",
+                  "Shock, DKA, hypertension, sepsis, trauma, and perioperative nursing.",
+                  ["Prioritize **ABCs**, fluid resuscitation & early sepsis recognition", "Monitor **K+ (3.5–5.0 mmol/L)** and blood glucose (**3.9–5.5 mmol/L**)"]
+                ],
+                [
+                  "**Reproductive Health & Midwifery**",
+                  "Antenatal risk screening, partograph monitoring, PPH, eclampsia & newborn care.",
+                  ["Active management of 3rd stage (**Oxytocin 10 IU IM**)", "**MgSO4 (Pritchard)** loading & monitoring for patellar reflexes / respirations"]
+                ],
+                [
+                  "**Community Health & KEPI**",
+                  "Kenya Expanded Programme on Immunization, IMCI, malaria, TB & HIV care.",
+                  ["Cold chain (**+2°C to +8°C**) and vaccine schedules", "Integrated Management of Childhood Illness danger signs"]
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "ke-q1",
+          "prompt": "Which regulatory body oversees KRCHN and BScN nursing registration and national licensure exams in Kenya?",
+          "options": [
+            "NMC UK",
+            "Nursing Council of Kenya (NCK)",
+            "TNMC Tanzania",
+            "AHPRA Australia"
+          ],
+          "answerIndex": 1,
+          "rationale": "The Nursing Council of Kenya (NCK) regulates nursing training, indexing, national licensing exams, and annual practice licenses in Kenya."
+        }
+      ]
+    },
+    "uganda-unmc-uhpab": {
+      "route": "/global-nursing/uganda-unmc-uhpab",
+      "theme": "green-black",
+      "eyebrow": "UGANDA NURSING ACADEMY · UHPAB (UNMEB) & UNMC",
+      "headline": "Nursing in Uganda (UHPAB / UNMEB & UNMC Hub)",
+      "subheadline": "Master Uganda Ministry of Health Clinical Guidelines (2023), UHPAB (formerly UNMEB) Certificate/Diploma theory & OSCEs, and UNMC registration.",
+      "highlights": [
+        { "label": "Exam Board", "value": "UHPAB (formerly UNMEB)" },
+        { "label": "Council", "value": "Uganda Nurses & Midwives Council (UNMC)" },
+        { "label": "Guidelines", "value": "Uganda Clinical Guidelines 2023 & WHO" },
+        { "label": "Lab System", "value": "SI Units (mmol/L, g/dL, °C)" }
+      ],
+      "sections": [
+        {
+          "title": "1. Uganda UHPAB / UNMEB Exams & UNMC Registration",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "In Uganda, nursing and midwifery examinations are conducted by **UHPAB** (formerly **UNMEB**) across Certificate, Diploma, and BScN tracks, followed by registration and annual licensing with the **Uganda Nurses and Midwives Council (UNMC)**."
+            },
+            {
+              "type": "diagram",
+              "variant": "flow",
+              "title": "Uganda Nursing & Midwifery Licensure Sequence",
+              "caption": "From accredited school training and UHPAB final exams to UNMC practicing license.",
+              "steps": [
+                { "step": 1, "label": "School & Indexing", "detail": "Enroll at MoES-accredited school & index with UHPAB" },
+                { "step": 2, "label": "Clinical Practicum", "detail": "Complete ward rotations & logbooks" },
+                { "step": 3, "label": "UHPAB Final Exams", "detail": "Pass theory papers, practicals & OSCE stations" },
+                { "step": 4, "label": "UNMC Registration", "detail": "Apply via UNMC portal with transcript & certificate" },
+                { "step": 5, "label": "Annual Renewal", "detail": "Maintain CPD points & valid UNMC practicing license" }
+              ]
+            }
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "ug-q1",
+          "prompt": "Which council issues practicing licenses and maintains the official register for nurses and midwives in Uganda?",
+          "options": [
+            "Nursing Council of Kenya (NCK)",
+            "Uganda Nurses and Midwives Council (UNMC)",
+            "NCSBN",
+            "NMC UK"
+          ],
+          "answerIndex": 1,
+          "rationale": "The Uganda Nurses and Midwives Council (UNMC) registers qualified nurses and midwives and issues annual practicing licenses."
+        }
+      ]
+    },
+    "tanzania-tnmc": {
+      "route": "/global-nursing/tanzania-tnmc",
+      "theme": "green-black",
+      "eyebrow": "TANZANIA NURSING ACADEMY · TNMC LICENSURE",
+      "headline": "Nursing in Tanzania (TNMC Licensure & EAC Hub)",
+      "subheadline": "Master Tanzania Nursing and Midwifery Council (TNMC) licensing examinations, Certificate/Diploma/BScN registration, and East African mutual recognition.",
+      "highlights": [
+        { "label": "Regulatory Body", "value": "Tanzania Nursing & Midwifery Council (TNMC)" },
+        { "label": "Licensing Exam", "value": "TNMC National Licensing Exam" },
+        { "label": "Mutual Recognition", "value": "EAC Nursing Council Verification" },
+        { "label": "Lab System", "value": "SI Units (mmol/L, g/dL, °C)" }
+      ],
+      "sections": [
+        {
+          "title": "1. Tanzania Nursing and Midwifery Council (TNMC) Pathway",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The **Tanzania Nursing and Midwifery Council (TNMC)** regulates Certificate, Diploma, and BScN nurses and midwives in Tanzania, including foreign-trained East African nurses applying under EAC mutual recognition."
+            },
+            {
+              "type": "diagram",
+              "variant": "flow",
+              "title": "Tanzania TNMC Registration Sequence",
+              "caption": "From qualification verification and TNMC licensing exam to practicing certificate.",
+              "steps": [
+                { "step": 1, "label": "TNMC Application", "detail": "Submit academic transcripts & home-council good standing" },
+                { "step": 2, "label": "Credential Check", "detail": "NACTVET / TCU & TNMC curriculum verification" },
+                { "step": 3, "label": "TNMC Licensing Exam", "detail": "Pass national licensure assessment" },
+                { "step": 4, "label": "Registration & License", "detail": "Receive TNMC Roll/Register number & practicing license" }
+              ]
+            }
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "tz-q1",
+          "prompt": "Which council regulates nursing and midwifery registration and licensing examinations in mainland Tanzania?",
+          "options": [
+            "UNMC Uganda",
+            "Tanzania Nursing and Midwifery Council (TNMC)",
+            "CNO Ontario",
+            "SCFHS Saudi Arabia"
+          ],
+          "answerIndex": 1,
+          "rationale": "TNMC is the statutory regulator for nursing and midwifery education, registration, and licensure in Tanzania."
+        }
+      ]
+    },
+    "gulf-dha-doh-scfhs": {
+      "route": "/global-nursing/gulf-dha-doh-scfhs",
+      "theme": "green-black",
+      "eyebrow": "UAE & GULF NURSING ACADEMY · DHA / DOH / MOHAP / SCFHS",
+      "headline": "Nursing in UAE & Gulf (DHA, DOH, MOHAP & SCFHS Hub)",
+      "subheadline": "Master Gulf Prometric CBT examinations, DataFlow Primary Source Verification (PSV), Good Standing requirements, and acute hospital nursing standards.",
+      "highlights": [
+        { "label": "Regulators", "value": "DHA (Dubai) · DOH (Abu Dhabi) · SCFHS (KSA)" },
+        { "label": "Exam Engine", "value": "Prometric / Pearson VUE CBT" },
+        { "label": "Verification", "value": "DataFlow Primary Source Verification" },
+        { "label": "Experience Bar", "value": "Typically 2+ Years Post-Licensure" }
+      ],
+      "sections": [
+        {
+          "title": "1. UAE (DHA / DOH / MOHAP) & Saudi (SCFHS) Licensure Pathway",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Nurses relocating to the UAE (**DHA Dubai**, **DOH Abu Dhabi**, **MOHAP**) or Saudi Arabia (**SCFHS Mumaris+**) complete **DataFlow Primary Source Verification (PSV)** of their degree, UNMC license, and clinical experience alongside a **Prometric / Pearson VUE** clinical exam."
+            },
+            {
+              "type": "diagram",
+              "variant": "flow",
+              "title": "Gulf Nursing Licensure & DataFlow Sequence",
+              "caption": "From DataFlow PSV and Good Standing verification to Prometric pass & eligibility letter.",
+              "steps": [
+                { "step": 1, "label": "Account & Eligibility", "detail": "Create Sheryan (DHA), TAMM (DOH) or Mumaris+ (SCFHS)" },
+                { "step": 2, "label": "DataFlow PSV", "detail": "Verify degree, UNMC Good Standing & 2+ yrs experience" },
+                { "step": 3, "label": "Prometric CBT Exam", "detail": "Pass clinical nursing MCQ exam at test center" },
+                { "step": 4, "label": "Eligibility Letter", "detail": "Receive Eligibility Letter for employer sponsorship" }
+              ]
+            }
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "gulf-q1",
+          "prompt": "What is DataFlow Primary Source Verification (PSV) used for in UAE (DHA/DOH) and Saudi (SCFHS) nursing applications?",
+          "options": [
+            "Replacing the clinical Prometric exam",
+            "Verifying nursing degrees, licenses, Good Standing, and employment directly with issuing institutions",
+            "Issuing a Schengen visa",
+            "Testing English speaking only"
+          ],
+          "answerIndex": 1,
+          "rationale": "DataFlow PSV independently verifies your nursing qualification, home-country registration/Good Standing, and clinical experience directly with the source institutions."
+        }
+      ]
     }
   }
 }

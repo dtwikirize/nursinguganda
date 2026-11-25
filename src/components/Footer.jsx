@@ -155,10 +155,10 @@ export default function Footer() {
               <h4>{countryCtx.meta.shortName} Topics &amp; Tools</h4>
               <ul>
                 <li><Link to={`${countryCtx.meta.route}?tab=practice`}>{countryCtx.meta.shortName} Interactive Quiz &amp; Lab Converter</Link></li>
-                <li><Link to={`${countryCtx.meta.topicsBase}/dosage-calculations-and-iv-infusion-rates`}>Dosage &amp; IV Calculations</Link></li>
-                <li><Link to={`${countryCtx.meta.topicsBase}/fluid-and-electrolyte-balance`}>Fluids &amp; Electrolytes</Link></li>
-                <li><Link to={`${countryCtx.meta.topicsBase}/diabetes-mellitus-and-ketoacidosis`}>Diabetes &amp; DKA Management</Link></li>
-                <li><Link to={`${countryCtx.meta.topicsBase}/hypertension-and-cardiovascular-care`}>Cardiovascular &amp; Hypertension</Link></li>
+                <li><Link to={`${countryCtx.meta.topicsBase}/dosage-calculations`}>Dosage &amp; IV Calculations</Link></li>
+                <li><Link to={`${countryCtx.meta.topicsBase}/fluid-and-electrolyte-imbalance`}>Fluids &amp; Electrolytes</Link></li>
+                <li><Link to={`${countryCtx.meta.topicsBase}/certificate-in-nursing-medical-nursing-ll-and-pharmacology-ll-diabetes-mellitus`}>Diabetes &amp; DKA Management</Link></li>
+                <li><Link to={`${countryCtx.meta.topicsBase}/certificate-in-nursing-medical-nursing-i-and-pharmacology-i-hypertension`}>Cardiovascular &amp; Hypertension</Link></li>
                 <li><Link to="/clinical-tools?tab=values">SI ↔ US Lab Reference</Link></li>
               </ul>
             </div>

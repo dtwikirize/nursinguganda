@@ -333,27 +333,37 @@ export default function CountryStudyHubPage({ forcedSlug = "" }) {
             {hub?.subheadline || country.summary}
           </p>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 12 }}>
+          {/* Coursera-style Unified Horizontal Stats Bar */}
+          <div
+            style={{
+              background: "#ffffff",
+              color: "#0f172a",
+              borderRadius: 10,
+              border: "1px solid rgba(15, 23, 42, 0.1)",
+              boxShadow: "0 4px 16px rgba(0, 0, 0, 0.1)",
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(190px, 1fr))",
+              overflow: "hidden"
+            }}
+          >
             {(hub?.highlights || [
               { label: "Regulatory Body", value: country.council },
               { label: "Licensing Exam", value: country.examRequired },
               { label: "Language Bar", value: country.languageTest },
               { label: "Lab System", value: `${country.unitSystem} · ${country.timeline}` }
-            ]).map((h, i) => (
+            ]).map((h, i, arr) => (
               <div
                 key={i}
                 style={{
-                  background: theme.cardBg,
-                  border: `1px solid ${theme.cardBorder}`,
-                  borderTop: `3px solid ${theme.cardTopBorder}`,
-                  borderRadius: 8,
-                  padding: "12px 14px"
+                  padding: "14px 18px",
+                  borderRight: i < arr.length - 1 ? "1px solid #e2e8f0" : "none",
+                  borderBottom: "1px solid #f1f5f9"
                 }}
               >
-                <div style={{ fontSize: "0.7rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "rgba(255, 255, 255, 0.72)" }}>
+                <div style={{ fontSize: "0.7rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", color: "#64748b" }}>
                   {h.label}
                 </div>
-                <div style={{ marginTop: 4, fontSize: "0.9rem", fontWeight: 700, color: "#ffffff" }}>
+                <div style={{ marginTop: 4, fontSize: "0.9rem", fontWeight: 700, color: "#0f172a", lineHeight: 1.35 }}>
                   {h.value}
                 </div>
               </div>

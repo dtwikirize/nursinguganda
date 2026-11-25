@@ -17,12 +17,14 @@ import { LessonSections } from "../components/TopicVisuals";
 import {
   COUNTRY_CURRICULA,
   COUNTRY_META,
-  DRUG_NAME_EQUIVALENTS
+  DRUG_NAME_EQUIVALENTS,
+  SLUG_TO_COUNTRY_KEY
 } from "../data/countryCurricula";
 
-export default function CountryTopicPage({ countryKey = "uk" }) {
-  const { topicSlug } = useParams();
-  const meta = COUNTRY_META[countryKey] || COUNTRY_META.uk;
+export default function CountryTopicPage({ countryKey: forcedKey = "" }) {
+  const { topicSlug, countrySlug } = useParams();
+  const resolvedKey = forcedKey || SLUG_TO_COUNTRY_KEY[countrySlug] || "uk";
+  const meta = COUNTRY_META[resolvedKey] || COUNTRY_META.uk;
   const curriculum = COUNTRY_CURRICULA[meta.slug];
 
   const [indexList, setIndexList] = useState([]);

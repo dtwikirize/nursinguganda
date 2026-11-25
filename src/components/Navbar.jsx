@@ -550,7 +550,7 @@ export default function Navbar() {
                             (countryCtx.curriculum?.modules || []).map((m) => (
                               <Link
                                 key={m.number}
-                                to={`${countryCtx.meta.topicsBase}/${m.topicSlugs?.[0] || "dosage-calculations-and-iv-infusion-rates"}`}
+                                to={`${countryCtx.meta.topicsBase}/${m.topicSlugs?.[0] || "dosage-calculations"}`}
                                 className="nu-mega-clean-link"
                                 onClick={() => setMegaOpen(false)}
                               >
@@ -564,13 +564,13 @@ export default function Navbar() {
 
                           {activeCountryMegaTab === "topics" &&
                             [
-                              { label: "Dosage Calculations & IV Infusion Rates", slug: "dosage-calculations-and-iv-infusion-rates" },
-                              { label: "Fluid & Electrolyte Balance", slug: "fluid-and-electrolyte-balance" },
-                              { label: "Diabetes Mellitus & Ketoacidosis", slug: "diabetes-mellitus-and-ketoacidosis" },
-                              { label: "Hypertension & Cardiovascular Care", slug: "hypertension-and-cardiovascular-care" },
-                              { label: "Infection Prevention & Standard Precautions", slug: "infection-prevention-and-control-standard-precautions" },
-                              { label: "Shock & Hemodynamic Monitoring", slug: "shock-and-hemodynamic-monitoring" },
-                              { label: "Normal Labour & Delivery", slug: "normal-labour-and-delivery" },
+                              { label: "Dosage Calculations & IV Infusion Rates", slug: "dosage-calculations" },
+                              { label: "Fluid & Electrolyte Balance", slug: "fluid-and-electrolyte-imbalance" },
+                              { label: "Diabetes Mellitus & Ketoacidosis", slug: "certificate-in-nursing-medical-nursing-ll-and-pharmacology-ll-diabetes-mellitus" },
+                              { label: "Hypertension & Cardiovascular Care", slug: "certificate-in-nursing-medical-nursing-i-and-pharmacology-i-hypertension" },
+                              { label: "Infection Prevention & Standard Precautions", slug: "infection-prevention-and-control" },
+                              { label: "Shock & Hemodynamic Monitoring", slug: "surgical-shock" },
+                              { label: "Normal Labour & Delivery", slug: "certificate-in-midwifery-midwifery-i-and-pharmacology-i-1-8-labour" },
                               { label: "Browse All 779 Localized Topics", slug: "" }
                             ].map((t) => (
                               <Link

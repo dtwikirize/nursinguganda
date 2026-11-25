@@ -71,6 +71,74 @@ export const COUNTRY_META = {
     themeKey: "green-black",
     heroBg: "#064E3B",
     accent: "#09090B"
+  },
+  kenya: {
+    key: "kenya",
+    slug: "kenya-nck",
+    route: "/global-nursing/kenya-nck",
+    topicsBase: "/global-nursing/kenya-nck/topics",
+    flag: "KE",
+    name: "Kenya",
+    shortName: "Kenya",
+    academy: "Kenya NCK Nursing Academy",
+    examBadge: "NCK KRCHN & BScN Licensure",
+    unitLabel: "SI Units (mmol/L, g/dL, °C)",
+    drugConvention: "WHO / Kenya Essential Medicines List (KEML)",
+    guidelineAuthority: "Nursing Council of Kenya (NCK) · Ministry of Health Kenya",
+    themeKey: "blue-black",
+    heroBg: "#1E3A8A",
+    accent: "#09090B"
+  },
+  uganda: {
+    key: "uganda",
+    slug: "uganda-unmc-uhpab",
+    route: "/global-nursing/uganda-unmc-uhpab",
+    topicsBase: "/global-nursing/uganda-unmc-uhpab/topics",
+    flag: "UG",
+    name: "Uganda",
+    shortName: "Uganda",
+    academy: "Uganda UHPAB & UNMC Academy",
+    examBadge: "UHPAB (UNMEB) & UNMC",
+    unitLabel: "SI Units (mmol/L, g/dL, °C)",
+    drugConvention: "Uganda Essential Medicines & WHO Generic Names",
+    guidelineAuthority: "Uganda Clinical Guidelines 2023 · UNMC · UHPAB",
+    themeKey: "green-black",
+    heroBg: "#064E3B",
+    accent: "#09090B"
+  },
+  tanzania: {
+    key: "tanzania",
+    slug: "tanzania-tnmc",
+    route: "/global-nursing/tanzania-tnmc",
+    topicsBase: "/global-nursing/tanzania-tnmc/topics",
+    flag: "TZ",
+    name: "Tanzania",
+    shortName: "Tanzania",
+    academy: "Tanzania TNMC Nursing Academy",
+    examBadge: "TNMC National Licensure",
+    unitLabel: "SI Units (mmol/L, g/dL, °C)",
+    drugConvention: "Tanzania STG & WHO Generic Names",
+    guidelineAuthority: "Tanzania Nursing and Midwifery Council (TNMC) · EAC",
+    themeKey: "green-black",
+    heroBg: "#064E3B",
+    accent: "#09090B"
+  },
+  gulf: {
+    key: "gulf",
+    slug: "gulf-dha-doh-scfhs",
+    route: "/global-nursing/gulf-dha-doh-scfhs",
+    topicsBase: "/global-nursing/gulf-dha-doh-scfhs/topics",
+    flag: "AE",
+    name: "UAE & Gulf",
+    shortName: "UAE / Gulf",
+    academy: "UAE & Gulf Prometric Academy",
+    examBadge: "DHA · DOH · MOHAP · SCFHS",
+    unitLabel: "SI & US Lab Values",
+    drugConvention: "International Generic & Hospital Formulary",
+    guidelineAuthority: "DHA / DOH / MOHAP / SCFHS · DataFlow PSV",
+    themeKey: "green-black",
+    heroBg: "#064E3B",
+    accent: "#09090B"
   }
 };
 
@@ -78,7 +146,11 @@ export const SLUG_TO_COUNTRY_KEY = {
   "united-kingdom-nmc": "uk",
   "united-states-nclex": "usa",
   "canada-nnas-nclex": "canada",
-  "australia-ahpra-nmba": "australia"
+  "australia-ahpra-nmba": "australia",
+  "kenya-nck": "kenya",
+  "uganda-unmc-uhpab": "uganda",
+  "tanzania-tnmc": "tanzania",
+  "gulf-dha-doh-scfhs": "gulf"
 };
 
 export const DRUG_NAME_EQUIVALENTS = [
@@ -116,7 +188,7 @@ export const COUNTRY_CURRICULA = {
         rating: "4.9",
         topicsCount: 18,
         summary: "Zero-rounding-error drills for oral dosages, mg/kg weight-based dosing, IV drip rates (mL/hr), and fluid balance charts.",
-        sampleTopicSlug: "dosage-calculations-and-iv-infusion-rates"
+        sampleTopicSlug: "dosage-calculations"
       },
       {
         id: "uk-cbt-clinical",
@@ -126,7 +198,7 @@ export const COUNTRY_CURRICULA = {
         rating: "4.9",
         topicsCount: 120,
         summary: "100-question blueprint covering Safeguarding, Mental Capacity Act, NICE Sepsis, infection control, and BNF pharmacology.",
-        sampleTopicSlug: "infection-prevention-and-control-standard-precautions"
+        sampleTopicSlug: "infection-prevention-and-control"
       },
       {
         id: "uk-osce-apie",
@@ -136,7 +208,7 @@ export const COUNTRY_CURRICULA = {
         rating: "4.8",
         topicsCount: 64,
         summary: "Step-by-step APIE care planning, NEWS2 escalation, ANTT wound/catheter care, and structured SBAR communication.",
-        sampleTopicSlug: "vital-signs-assessment-and-monitoring"
+        sampleTopicSlug: "taking-vital-signs-or-observations"
       }
     ],
     modules: [
@@ -148,7 +220,7 @@ export const COUNTRY_CURRICULA = {
           "Apply the 4 pillars of The NMC Code (Prioritize people, Practice effectively, Preserve safety, Promote professionalism).",
           "Navigate Mental Capacity Act (2005), Deprivation of Liberty Safeguards (DoLS), and Duty of Candour."
         ],
-        topicSlugs: ["nursing-ethics-and-legal-issues", "therapeutic-communication-in-nursing"]
+        topicSlugs: ["ethics-in-research", "communication-in-palliative-care"]
       },
       {
         number: 2,
@@ -158,7 +230,7 @@ export const COUNTRY_CURRICULA = {
           "Solve 15-question Part A numeracy sets within 30 minutes with exact decimal rules.",
           "Convert microgram/milligram/gram and mL/hr infusion pumps without rounding mistakes."
         ],
-        topicSlugs: ["dosage-calculations-and-iv-infusion-rates", "fluid-and-electrolyte-balance"]
+        topicSlugs: ["dosage-calculations", "fluid-and-electrolyte-imbalance"]
       },
       {
         number: 3,
@@ -168,7 +240,7 @@ export const COUNTRY_CURRICULA = {
           "Complete Assessment, Planning, Implementation, and Evaluation stations within UK OSCE time limits.",
           "Calculate NEWS2 scores and escalate deteriorating patients using SBAR."
         ],
-        topicSlugs: ["vital-signs-assessment-and-monitoring", "shock-and-hemodynamic-monitoring"]
+        topicSlugs: ["taking-vital-signs-or-observations", "surgical-shock"]
       },
       {
         number: 4,
@@ -178,7 +250,7 @@ export const COUNTRY_CURRICULA = {
           "Master UK drug naming (Paracetamol, Adrenaline, Salbutamol, Furosemide) and high-alert IV safety.",
           "Execute Aseptic Non-Touch Technique (ANTT) for cannulation, catheterization, and wound dressings."
         ],
-        topicSlugs: ["infection-prevention-and-control-standard-precautions", "administration-of-medications-and-rights"]
+        topicSlugs: ["infection-prevention-and-control", "instilling-medication"]
       },
       {
         number: 5,
@@ -188,7 +260,7 @@ export const COUNTRY_CURRICULA = {
           "Apply NICE Sepsis Six bundle within 1 hour of red-flag recognition.",
           "Interpret UK SI blood glucose (<4.0 mmol/L hypoglycemia), ABGs, and heart failure management."
         ],
-        topicSlugs: ["diabetes-mellitus-and-ketoacidosis", "hypertension-and-cardiovascular-care"]
+        topicSlugs: ["certificate-in-nursing-medical-nursing-ll-and-pharmacology-ll-diabetes-mellitus", "certificate-in-nursing-medical-nursing-i-and-pharmacology-i-hypertension"]
       }
     ],
     premiumOffer: {
@@ -220,7 +292,7 @@ export const COUNTRY_CURRICULA = {
         rating: "4.9",
         topicsCount: 95,
         summary: "Master Recognize Cues, Analyze Cues, Prioritize Hypotheses, Generate Solutions, Take Action, and Evaluate Outcomes.",
-        sampleTopicSlug: "nursing-process-and-clinical-judgment"
+        sampleTopicSlug: "nursing-process"
       },
       {
         id: "us-pharm-labs",
@@ -230,7 +302,7 @@ export const COUNTRY_CURRICULA = {
         rating: "4.9",
         topicsCount: 160,
         summary: "High-alert US generic names (Acetaminophen, Epinephrine, Albuterol), therapeutic drug ranges, and conventional lab drills.",
-        sampleTopicSlug: "administration-of-medications-and-rights"
+        sampleTopicSlug: "instilling-medication"
       },
       {
         id: "us-delegation-priority",
@@ -240,7 +312,7 @@ export const COUNTRY_CURRICULA = {
         rating: "4.8",
         topicsCount: 110,
         summary: "Master ABCs, Maslow, acute-vs-chronic triage, airborne/droplet/contact isolation, and State Board scope of practice.",
-        sampleTopicSlug: "disaster-triage-and-emergency-management"
+        sampleTopicSlug: "first-aid"
       }
     ],
     modules: [
@@ -252,7 +324,7 @@ export const COUNTRY_CURRICULA = {
           "Understand CES evaluation, VisaScreen, ATT scheduling, and the 85–150 question adaptive CAT engine.",
           "Break down the 8 NCSBN Client Needs categories by exam weight."
         ],
-        topicSlugs: ["nursing-ethics-and-legal-issues", "nursing-process-and-clinical-judgment"]
+        topicSlugs: ["ethics-in-research", "nursing-process"]
       },
       {
         number: 2,
@@ -262,7 +334,7 @@ export const COUNTRY_CURRICULA = {
           "Solve NGN unfolding 6-item case studies (Extended Multiple Response, Highlight, Drag-and-Drop).",
           "Avoid common distractors in acute medical-surgical deterioration."
         ],
-        topicSlugs: ["shock-and-hemodynamic-monitoring", "fluid-and-electrolyte-balance"]
+        topicSlugs: ["surgical-shock", "fluid-and-electrolyte-imbalance"]
       },
       {
         number: 3,
@@ -272,7 +344,7 @@ export const COUNTRY_CURRICULA = {
           "Delegate safely between RN, LPN/LVN, and UAP/CNA using US scope-of-practice rules.",
           "Apply HIPAA, informed consent, advance directives, and CDC transmission precautions."
         ],
-        topicSlugs: ["infection-prevention-and-control-standard-precautions", "leadership-and-management-in-nursing"]
+        topicSlugs: ["infection-prevention-and-control", "leadership-introduction"]
       },
       {
         number: 4,
@@ -282,7 +354,7 @@ export const COUNTRY_CURRICULA = {
           "Convert seamlessly from SI units to US conventional units (glucose 70–99 mg/dL, creatinine 0.7–1.2 mg/dL).",
           "Monitor digoxin, lithium, warfarin (INR), heparin (aPTT), and vancomycin troughs."
         ],
-        topicSlugs: ["administration-of-medications-and-rights", "diabetes-mellitus-and-ketoacidosis"]
+        topicSlugs: ["instilling-medication", "certificate-in-nursing-medical-nursing-ll-and-pharmacology-ll-diabetes-mellitus"]
       },
       {
         number: 5,
@@ -292,7 +364,7 @@ export const COUNTRY_CURRICULA = {
           "Interpret fetal heart rate decelerations (VEAL CHOP), postpartum hemorrhage, and pediatric milestones.",
           "Apply therapeutic communication and suicide/lithium/MAOI precautions."
         ],
-        topicSlugs: ["normal-labour-and-delivery", "therapeutic-communication-in-nursing"]
+        topicSlugs: ["certificate-in-midwifery-midwifery-i-and-pharmacology-i-1-8-labour", "communication-in-palliative-care"]
       }
     ],
     premiumOffer: {
@@ -324,7 +396,7 @@ export const COUNTRY_CURRICULA = {
         rating: "4.9",
         topicsCount: 28,
         summary: "Navigate NNAS Main vs Expedited pathways, CNO Ontario jurisprudence, BCCNM BC, and CRNA Alberta requirements.",
-        sampleTopicSlug: "nursing-ethics-and-legal-issues"
+        sampleTopicSlug: "ethics-in-research"
       },
       {
         id: "ca-nclex-rexpn",
@@ -334,7 +406,7 @@ export const COUNTRY_CURRICULA = {
         rating: "4.9",
         topicsCount: 150,
         summary: "Dual-track prep for RN (NCLEX-RN) and RPN/LPN (REx-PN 90–150 items) using Canadian SI laboratory standards.",
-        sampleTopicSlug: "fluid-and-electrolyte-balance"
+        sampleTopicSlug: "fluid-and-electrolyte-imbalance"
       },
       {
         id: "ca-safety-culture",
@@ -344,7 +416,7 @@ export const COUNTRY_CURRICULA = {
         rating: "4.8",
         topicsCount: 75,
         summary: "Trauma-informed care, Indigenous cultural safety, interprofessional SBAR, and Health Canada drug standards.",
-        sampleTopicSlug: "therapeutic-communication-in-nursing"
+        sampleTopicSlug: "communication-in-palliative-care"
       }
     ],
     modules: [
@@ -356,7 +428,7 @@ export const COUNTRY_CURRICULA = {
           "Prepare NNAS academic/registration packages and compare CNO, BCCNM, CRNA, and NSCN rules.",
           "Pass provincial Jurisprudence exams on consent, privacy, and mandatory reporting."
         ],
-        topicSlugs: ["nursing-ethics-and-legal-issues", "leadership-and-management-in-nursing"]
+        topicSlugs: ["ethics-in-research", "leadership-introduction"]
       },
       {
         number: 2,
@@ -366,7 +438,7 @@ export const COUNTRY_CURRICULA = {
           "Interpret Canadian SI labs (mmol/L, µmol/L, g/L) alongside Health Canada drug naming.",
           "Calculate pediatric mg/kg, insulin titrations, and IV pump rates accurately."
         ],
-        topicSlugs: ["dosage-calculations-and-iv-infusion-rates", "diabetes-mellitus-and-ketoacidosis"]
+        topicSlugs: ["dosage-calculations", "certificate-in-nursing-medical-nursing-ll-and-pharmacology-ll-diabetes-mellitus"]
       },
       {
         number: 3,
@@ -376,7 +448,7 @@ export const COUNTRY_CURRICULA = {
           "Differentiate stable/predictable RPN care from unstable/complex RN escalation.",
           "Manage sepsis, stroke, ACS, COPD, and acute kidney injury."
         ],
-        topicSlugs: ["shock-and-hemodynamic-monitoring", "hypertension-and-cardiovascular-care"]
+        topicSlugs: ["surgical-shock", "certificate-in-nursing-medical-nursing-i-and-pharmacology-i-hypertension"]
       },
       {
         number: 4,
@@ -386,7 +458,7 @@ export const COUNTRY_CURRICULA = {
           "Integrate cultural humility and trauma-informed communication across diverse Canadian populations.",
           "Review perinatal complications, neonatal resuscitation, and psychiatric emergencies."
         ],
-        topicSlugs: ["normal-labour-and-delivery", "therapeutic-communication-in-nursing"]
+        topicSlugs: ["certificate-in-midwifery-midwifery-i-and-pharmacology-i-1-8-labour", "communication-in-palliative-care"]
       }
     ],
     premiumOffer: {
@@ -418,7 +490,7 @@ export const COUNTRY_CURRICULA = {
         rating: "4.9",
         topicsCount: 140,
         summary: "Targeted NCLEX-RN cognitive mastery bridged to Australian SI units and clinical reasoning.",
-        sampleTopicSlug: "nursing-process-and-clinical-judgment"
+        sampleTopicSlug: "nursing-process"
       },
       {
         id: "au-oba-stage2-osce",
@@ -428,7 +500,7 @@ export const COUNTRY_CURRICULA = {
         rating: "4.9",
         topicsCount: 68,
         summary: "Behavioral stations, 3-identifier checks, 5 Moments of Hand Hygiene, NSQHS safety, and PBS medication charts.",
-        sampleTopicSlug: "vital-signs-assessment-and-monitoring"
+        sampleTopicSlug: "taking-vital-signs-or-observations"
       },
       {
         number: 3,
@@ -439,7 +511,7 @@ export const COUNTRY_CURRICULA = {
         rating: "4.8",
         topicsCount: 45,
         summary: "Master Australian Approved Names (Paracetamol, Adrenaline, Lignocaine) and NMBA professional accountability.",
-        sampleTopicSlug: "administration-of-medications-and-rights"
+        sampleTopicSlug: "instilling-medication"
       }
     ],
     modules: [
@@ -451,7 +523,7 @@ export const COUNTRY_CURRICULA = {
           "Complete Stream B documentation, English verification, and NMBA Code of Conduct alignment.",
           "Apply the 7 interconnected NMBA Registered Nurse Standards for Practice."
         ],
-        topicSlugs: ["nursing-ethics-and-legal-issues", "leadership-and-management-in-nursing"]
+        topicSlugs: ["ethics-in-research", "leadership-introduction"]
       },
       {
         number: 2,
@@ -461,7 +533,7 @@ export const COUNTRY_CURRICULA = {
           "Pass Stage 1 NCLEX-RN via Pearson VUE while keeping Australian SI units clear.",
           "Prioritize acute deterioration, fluid/electrolyte crises, and maternal-pediatric safety."
         ],
-        topicSlugs: ["fluid-and-electrolyte-balance", "shock-and-hemodynamic-monitoring"]
+        topicSlugs: ["fluid-and-electrolyte-imbalance", "surgical-shock"]
       },
       {
         number: 3,
@@ -471,7 +543,7 @@ export const COUNTRY_CURRICULA = {
           "Verbalize 3 patient identifiers, allergies, and 5 Moments of Hand Hygiene in every OSCE station.",
           "Execute Australian National Inpatient Medication Chart (NIMC) checks and ISBAR handover."
         ],
-        topicSlugs: ["vital-signs-assessment-and-monitoring", "infection-prevention-and-control-standard-precautions"]
+        topicSlugs: ["taking-vital-signs-or-observations", "infection-prevention-and-control"]
       },
       {
         number: 4,
@@ -481,7 +553,7 @@ export const COUNTRY_CURRICULA = {
           "Use Australian PBS naming (Paracetamol, Adrenaline, Frusemide/Furosemide, Lignocaine) fluently.",
           "Manage sepsis, anaphylaxis, diabetic ketoacidosis, and mental health de-escalation."
         ],
-        topicSlugs: ["administration-of-medications-and-rights", "diabetes-mellitus-and-ketoacidosis"]
+        topicSlugs: ["instilling-medication", "certificate-in-nursing-medical-nursing-ll-and-pharmacology-ll-diabetes-mellitus"]
       }
     ],
     premiumOffer: {
@@ -494,6 +566,310 @@ export const COUNTRY_CURRICULA = {
         "NIMC Medication Chart & ISBAR Handover Checklists",
         "Australian SI Units & PBS Pharmacology Guide",
         "Full Access to All 779 Localized Australia Study Topics"
+      ],
+      ctaLabel: "Browse Full Prep Courses",
+      ctaTo: "/courses"
+    }
+  },
+  "kenya-nck": {
+    partnerLine: "Aligned to Nursing Council of Kenya (NCK) KRCHN & BScN Syllabi",
+    totalHours: "64 hours",
+    level: "KRCHN / BScN Track",
+    certificateTitle: "Kenya NCK Licensure & Clinical Readiness Certificate",
+    courses: [
+      {
+        id: "ke-medsurg",
+        title: "NCK Medical-Surgical, Critical Care & Pharmacology",
+        provider: "Kenya NCK Academy",
+        level: "Module 1 · 24 hrs",
+        rating: "4.9",
+        topicsCount: 140,
+        summary: "High-yield Kenyan ward priorities: shock, DKA, hypertension, sepsis, perioperative care & KEML drug safety.",
+        sampleTopicSlug: "surgical-shock"
+      },
+      {
+        id: "ke-midwifery",
+        title: "NCK Reproductive Health, Partograph & Maternal-Newborn Care",
+        provider: "Kenya NCK Academy",
+        level: "Module 2 · 22 hrs",
+        rating: "4.9",
+        topicsCount: 95,
+        summary: "Antenatal screening, AMTSL, PPH, eclampsia (MgSO4 Pritchard), and newborn resuscitation.",
+        sampleTopicSlug: "certificate-in-midwifery-midwifery-i-and-pharmacology-i-1-8-labour"
+      },
+      {
+        id: "ke-community",
+        title: "Community Health, KEPI Immunization & IMCI",
+        provider: "Kenya NCK Academy",
+        level: "Module 3 · 18 hrs",
+        rating: "4.8",
+        topicsCount: 80,
+        summary: "Kenya immunization schedule, cold chain, IMCI danger signs, TB/HIV, and primary healthcare management.",
+        sampleTopicSlug: "infection-prevention-and-control"
+      }
+    ],
+    modules: [
+      {
+        number: 1,
+        title: "NCK Indexing, Scope of Practice & Nursing Ethics",
+        duration: "8 hours · 10 readings · 1 quiz",
+        outcomes: [
+          "Navigate NCK indexing, logbook sign-off, and foreign EAC nurse verification.",
+          "Apply Kenyan Nurses Act ethics, informed consent, and documentation standards."
+        ],
+        topicSlugs: ["ethics-in-research", "communication-in-palliative-care"]
+      },
+      {
+        number: 2,
+        title: "Medical-Surgical Nursing & Clinical Pharmacology",
+        duration: "22 hours · 30 readings · 2 mocks",
+        outcomes: [
+          "Manage DKA, severe malaria, hypertensive emergencies, and acute respiratory distress.",
+          "Calculate weight-based IV fluids, pediatric dosages, and infusion drip rates."
+        ],
+        topicSlugs: ["dosage-calculations", "certificate-in-nursing-medical-nursing-ll-and-pharmacology-ll-diabetes-mellitus"]
+      },
+      {
+        number: 3,
+        title: "Midwifery, Obstetric Emergencies & Paediatrics",
+        duration: "20 hours · 25 readings · OSCE checklists",
+        outcomes: [
+          "Plot partographs accurately and intervene early for obstructed labour and PPH.",
+          "Execute neonatal resuscitation and IMCI danger-sign triage."
+        ],
+        topicSlugs: ["certificate-in-midwifery-midwifery-i-and-pharmacology-i-1-8-labour", "fluid-and-electrolyte-imbalance"]
+      },
+      {
+        number: 4,
+        title: "KEPI Immunization, Community Health & Research",
+        duration: "14 hours · 18 readings · Final Mock",
+        outcomes: [
+          "Maintain +2°C to +8°C vaccine cold chain and community disease surveillance.",
+          "Apply ward leadership and nursing research basics for NCK Paper I & II."
+        ],
+        topicSlugs: ["infection-prevention-and-control", "leadership-introduction"]
+      }
+    ],
+    premiumOffer: {
+      badge: "KENYA NCK EXAM BUNDLE",
+      title: "Kenya NCK KRCHN & BScN Full Licensure Prep Pack",
+      price: "$14.99",
+      compareAt: "$39.00",
+      features: [
+        "Full Access to 83 Structured Courses & 779 Localized Study Topics",
+        "Med-Surg, Midwifery, Community & Pharmacology Revision Guides",
+        "Printable Ward & OSCE Checklists + Dosage Calculators",
+        "Downloadable Referenced Study eBooks (.pdf)"
+      ],
+      ctaLabel: "Browse Full Prep Courses",
+      ctaTo: "/courses"
+    }
+  },
+  "uganda-unmc-uhpab": {
+    partnerLine: "Aligned to Uganda Clinical Guidelines 2023, UHPAB (UNMEB) & UNMC",
+    totalHours: "80 hours",
+    level: "Certificate, Diploma & BScN",
+    certificateTitle: "Uganda UHPAB / UNMEB & UNMC Readiness Certificate",
+    courses: [
+      {
+        id: "ug-full-unmeb",
+        title: "UHPAB (UNMEB) Certificate & Diploma Nursing Core",
+        provider: "Nursing Uganda",
+        level: "All Years · 40 hrs",
+        rating: "4.9",
+        topicsCount: 320,
+        summary: "Complete Ugandan nursing & midwifery syllabi aligned with UCG 2023 and 109 past UNMEB papers.",
+        sampleTopicSlug: "dosage-calculations"
+      },
+      {
+        id: "ug-midwifery",
+        title: "Uganda Midwifery, Maternal & Newborn Health",
+        provider: "Nursing Uganda",
+        level: "Midwifery Track · 24 hrs",
+        rating: "4.9",
+        topicsCount: 124,
+        summary: "Partograph, PPH, pre-eclampsia, UNEPI immunization, and neonatal resuscitation protocols.",
+        sampleTopicSlug: "certificate-in-midwifery-midwifery-i-and-pharmacology-i-1-8-labour"
+      },
+      {
+        id: "ug-osce-viva",
+        title: "Uganda Practicals, OSCE & Ward Procedures",
+        provider: "Nursing Uganda",
+        level: "Clinical Track · 16 hrs",
+        rating: "4.8",
+        topicsCount: 65,
+        summary: "Step-by-step ward trays, aseptic technique, vital signs, and UHPAB viva preparation.",
+        sampleTopicSlug: "taking-vital-signs-or-observations"
+      }
+    ],
+    modules: [
+      {
+        number: 1,
+        title: "Anatomy, Physiology & Foundations of Nursing",
+        duration: "20 hours · 30 readings · Past Papers",
+        outcomes: [
+          "Master body systems, vital signs, bed-making, infection control, and patient safety.",
+          "Solve UHPAB Year 1 Semester 1 & 2 theory and practical questions."
+        ],
+        topicSlugs: ["terms-used-in-anatomy-and-physiology", "taking-vital-signs-or-observations"]
+      },
+      {
+        number: 2,
+        title: "Pharmacology, Medical-Surgical & UCG 2023",
+        duration: "28 hours · 45 readings · Drug drills",
+        outcomes: [
+          "Apply Uganda Clinical Guidelines 2023 for malaria, pneumonia, HIV/TB, DKA, and shock.",
+          "Calculate IV drip rates and pediatric mg/kg doses with zero errors."
+        ],
+        topicSlugs: ["dosage-calculations", "certificate-in-nursing-medical-nursing-ll-and-pharmacology-ll-diabetes-mellitus"]
+      },
+      {
+        number: 3,
+        title: "Midwifery, Paediatrics & Community Health (UNEPI)",
+        duration: "32 hours · 40 readings · OSCE Prep",
+        outcomes: [
+          "Manage normal and complicated labour, PPH, and neonatal sepsis.",
+          "Execute UNEPI immunization schedules and IMCI child assessment."
+        ],
+        topicSlugs: ["certificate-in-midwifery-midwifery-i-and-pharmacology-i-1-8-labour", "infection-prevention-and-control"]
+      }
+    ],
+    premiumOffer: {
+      badge: "UGANDA UNMEB COMPLETE ACCESS",
+      title: "Full Programme Study Bundle (Certificate, Diploma & BScN)",
+      price: "$12.99",
+      compareAt: "$29.00",
+      features: [
+        "All 83 Courses, 109 UNMEB/UHPAB Papers & 779 Study Topics",
+        "8 Free Referenced eBooks + Printable Ward Templates",
+        "Interactive Dosage Calculators & 270+ Mixed Quizzes",
+        "UNMC Registration & CPD Readiness Guides"
+      ],
+      ctaLabel: "Explore Full Course Bundles",
+      ctaTo: "/courses"
+    }
+  },
+  "tanzania-tnmc": {
+    partnerLine: "Aligned to Tanzania Nursing and Midwifery Council (TNMC) & EAC Standards",
+    totalHours: "60 hours",
+    level: "TNMC Licensure Track",
+    certificateTitle: "Tanzania TNMC Licensure Readiness Certificate",
+    courses: [
+      {
+        id: "tz-licensure",
+        title: "TNMC National Licensing Exam Core (Med-Surg & Pharm)",
+        provider: "Tanzania TNMC Academy",
+        level: "Module 1 · 24 hrs",
+        rating: "4.9",
+        topicsCount: 120,
+        summary: "Core medical-surgical, emergency resuscitation, and Tanzania Standard Treatment Guidelines pharmacology.",
+        sampleTopicSlug: "surgical-shock"
+      },
+      {
+        id: "tz-rmnch",
+        title: "Tanzania Reproductive, Maternal & Child Health",
+        provider: "Tanzania TNMC Academy",
+        level: "Module 2 · 20 hrs",
+        rating: "4.8",
+        topicsCount: 90,
+        summary: "Focused antenatal care, partograph, BEmONC/CEmONC emergencies, and immunization.",
+        sampleTopicSlug: "certificate-in-midwifery-midwifery-i-and-pharmacology-i-1-8-labour"
+      }
+    ],
+    modules: [
+      {
+        number: 1,
+        title: "TNMC Registration, Ethics & EAC Mutual Recognition",
+        duration: "10 hours · 12 readings",
+        outcomes: [
+          "Prepare NACTVET/TCU credentials and EAC home-council verification.",
+          "Apply TNMC professional conduct and patient advocacy standards."
+        ],
+        topicSlugs: ["ethics-in-research", "communication-in-palliative-care"]
+      },
+      {
+        number: 2,
+        title: "Acute Clinical Nursing, Midwifery & Pharmacology",
+        duration: "30 hours · 40 readings · Mock Quiz",
+        outcomes: [
+          "Manage malaria, sepsis, hypertension, diabetes, and obstetric hemorrhage.",
+          "Interpret SI lab values and execute safe medication administration."
+        ],
+        topicSlugs: ["dosage-calculations", "certificate-in-nursing-medical-nursing-ll-and-pharmacology-ll-diabetes-mellitus"]
+      }
+    ],
+    premiumOffer: {
+      badge: "TANZANIA TNMC PREP BUNDLE",
+      title: "Tanzania TNMC National Licensure Full Study Pack",
+      price: "$14.99",
+      compareAt: "$39.00",
+      features: [
+        "Complete Med-Surg, Midwifery, Community & Pharmacology Notes",
+        "779 Localized Clinical Study Topics + Practice Quizzes",
+        "Dosage Calculators & Printable Ward Checklists"
+      ],
+      ctaLabel: "Browse Full Prep Courses",
+      ctaTo: "/courses"
+    }
+  },
+  "gulf-dha-doh-scfhs": {
+    partnerLine: "Aligned to UAE DHA / DOH / MOHAP & Saudi SCFHS Prometric Blueprints",
+    totalHours: "66 hours",
+    level: "Prometric CBT Candidate",
+    certificateTitle: "UAE & Gulf Prometric Nursing Readiness Certificate",
+    courses: [
+      {
+        id: "gulf-prometric-core",
+        title: "DHA / DOH / SCFHS Prometric Clinical Nursing Mastery",
+        provider: "Gulf Prometric Academy",
+        level: "Module 1 · 32 hrs",
+        rating: "4.9",
+        topicsCount: 150,
+        summary: "High-yield ICU, Med-Surg, Maternity, Pediatrics, and Infection Control MCQs for Gulf Prometric exams.",
+        sampleTopicSlug: "surgical-shock"
+      },
+      {
+        id: "gulf-dataflow",
+        title: "DataFlow PSV, Sheryan/TAMM & High-Alert Pharmacology",
+        provider: "Gulf Prometric Academy",
+        level: "Module 2 · 18 hrs",
+        rating: "4.8",
+        topicsCount: 80,
+        summary: "Step-by-step DataFlow PSV checklist, Good Standing rules, and IV/electrolyte safety.",
+        sampleTopicSlug: "fluid-and-electrolyte-imbalance"
+      }
+    ],
+    modules: [
+      {
+        number: 1,
+        title: "DataFlow PSV, Good Standing & Exam Eligibility",
+        duration: "8 hours · 10 readings",
+        outcomes: [
+          "Avoid DataFlow PSV delays on degree, UNMC license, and 2-year experience letters.",
+          "Understand DHA Sheryan, DOH TAMM, and SCFHS Mumaris+ workflows."
+        ],
+        topicSlugs: ["ethics-in-research", "leadership-introduction"]
+      },
+      {
+        number: 2,
+        title: "Prometric Acute Care, Pharmacology & Patient Safety",
+        duration: "36 hours · 45 readings · Practice Mocks",
+        outcomes: [
+          "Prioritize unstable cardiac, respiratory, sepsis, and endocrine patients.",
+          "Convert between SI and US lab ranges seamlessly on Prometric exams."
+        ],
+        topicSlugs: ["dosage-calculations", "certificate-in-nursing-medical-nursing-i-and-pharmacology-i-hypertension"]
+      }
+    ],
+    premiumOffer: {
+      badge: "UAE & GULF PROMETRIC BUNDLE",
+      title: "DHA, DOH, MOHAP & SCFHS Prometric Full Prep Pack",
+      price: "$24.99",
+      compareAt: "$59.00",
+      features: [
+        "Prometric-Style Med-Surg, ICU, Maternal & Pediatric Prep",
+        "DataFlow PSV & Good Standing Step-by-Step Checklist",
+        "779 Localized Clinical Study Topics + Lab Unit Converter"
       ],
       ctaLabel: "Browse Full Prep Courses",
       ctaTo: "/courses"
