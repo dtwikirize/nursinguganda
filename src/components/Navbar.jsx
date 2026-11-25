@@ -826,17 +826,17 @@ export default function Navbar() {
           <nav className="nu-nav-actions">
             {countryCtx ? (
               <>
+                <Link to="/nclex-rn" className="nu-nav-link nu-nav-desktop-only" style={{ fontWeight: 700, color: "#991B1B" }}>
+                  NCLEX-RN ($99)
+                </Link>
+                <Link to="/nclex-rn/exams" className="nu-nav-link nu-nav-desktop-only">
+                  NCLEX Exams
+                </Link>
                 <Link to={`${countryCtx.meta.route}?tab=curriculum`} className="nu-nav-link nu-nav-desktop-only">
                   Curriculum
                 </Link>
                 <Link to={`${countryCtx.meta.route}?tab=topics`} className="nu-nav-link nu-nav-desktop-only">
                   779 Topics
-                </Link>
-                <Link to={`${countryCtx.meta.route}?tab=practice`} className="nu-nav-link nu-nav-desktop-only">
-                  Unit Tools
-                </Link>
-                <Link to={`${countryCtx.meta.route}?tab=offers`} className="nu-nav-link nu-nav-desktop-only">
-                  Prep Bundle
                 </Link>
               </>
             ) : (

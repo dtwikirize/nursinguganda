@@ -49,6 +49,8 @@ const dataFiles = [
   "global-nursing.json",
   "medical-instruments.json",
   "mock-exams.json",
+  "nclex-rn-course.json",
+  "nclex-rn-exams.json",
   "references.json",
   "topic-visuals-manifest.json",
   "topic-quizzes.json",
@@ -117,7 +119,10 @@ try {
     const lessons = JSON.parse(fs.readFileSync(lessonsPath, "utf8")) || [];
     const today = new Date().toISOString().slice(0, 10);
     const hubs = ["/nursing-uk", "/nursing-usa", "/nursing-canada", "/nursing-australia"];
-    const urls = [];
+    const urls = [
+      `  <url>\n    <loc>https://nursinguganda.com/nclex-rn</loc>\n    <lastmod>${today}</lastmod>\n    <priority>0.95</priority>\n  </url>`,
+      `  <url>\n    <loc>https://nursinguganda.com/nclex-rn/exams</loc>\n    <lastmod>${today}</lastmod>\n    <priority>0.90</priority>\n  </url>`
+    ];
     for (const h of hubs) {
       urls.push(`  <url>\n    <loc>https://nursinguganda.com${h}</loc>\n    <lastmod>${today}</lastmod>\n    <priority>0.95</priority>\n  </url>`);
       for (const t of lessons) {

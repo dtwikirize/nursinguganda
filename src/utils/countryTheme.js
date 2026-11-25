@@ -4,7 +4,7 @@ export function getActiveCountryContext(pathname = "") {
   const path = pathname.toLowerCase();
   let key = null;
   if (path.startsWith("/nursing-uk") || path.startsWith("/global-nursing/united-kingdom-nmc")) key = "uk";
-  else if (path.startsWith("/nursing-usa") || path.startsWith("/global-nursing/united-states-nclex")) key = "usa";
+  else if (path.startsWith("/nursing-usa") || path.startsWith("/nclex-rn") || path.startsWith("/global-nursing/united-states-nclex")) key = "usa";
   else if (path.startsWith("/nursing-canada") || path.startsWith("/global-nursing/canada-nnas-nclex")) key = "canada";
   else if (path.startsWith("/nursing-australia") || path.startsWith("/global-nursing/australia-ahpra-nmba")) key = "australia";
 

@@ -296,7 +296,7 @@ function isValidDynamicRoute(reqPath) {
 }
 
 const BOT_UA_RE = /(googlebot|adsbot-google|mediapartners-google|bingbot|slurp|duckduckbot|facebookexternalhit|twitterbot|whatsapp)/i;
-const SPA_ROUTE_RE = /^\/($|courses|course|learn|topics|ebooks|quizzes|mock-exams|dictionary|instruments|clinical-tools|templates|global-nursing|nursing-uk|nursing-usa|nursing-canada|nursing-australia|cart|checkout|login|my-learning|nodadmin|about|editorial-policy|privacy-policy|terms|contact)(\/|$)/i;
+const SPA_ROUTE_RE = /^\/($|courses|course|learn|topics|ebooks|quizzes|mock-exams|dictionary|instruments|clinical-tools|templates|global-nursing|nursing-uk|nursing-usa|nursing-canada|nursing-australia|nclex-rn|cart|checkout|login|my-learning|nodadmin|about|editorial-policy|privacy-policy|terms|contact)(\/|$)/i;
 
 // Markdown negotiation & `.md` routes
 app.get(["/index.md", "/courses.md", "/about.md", "/contact.md", "/terms.md", "/privacy-policy.md", "/editorial-policy.md"], (req, res) => {

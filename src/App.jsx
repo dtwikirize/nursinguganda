@@ -78,6 +78,9 @@ const InstrumentsPage = lazyWithRetry(() => import("./pages/InstrumentsPage"));
 const LoginPage = lazyWithRetry(() => import("./pages/LoginPage"));
 const MockExamsPage = lazyWithRetry(() => import("./pages/MockExamsPage"));
 const MyLearningPage = lazyWithRetry(() => import("./pages/MyLearningPage"));
+const NclexRnAcademyPage = lazyWithRetry(() => import("./pages/NclexRnAcademyPage"));
+const NclexRnExamsPage = lazyWithRetry(() => import("./pages/NclexRnExamsPage"));
+const NclexRnPlayerPage = lazyWithRetry(() => import("./pages/NclexRnPlayerPage"));
 const NurseTopicsPage = lazyWithRetry(() => import("./pages/NurseTopicsPage"));
 const TrustPage = lazyWithRetry(() => import("./pages/TrustPage"));
 
@@ -174,6 +177,10 @@ export default function App() {
           <Route path="/nursing-canada/topics/:topicSlug" element={<CountryTopicPage countryKey="canada" />} />
           <Route path="/nursing-australia" element={<CountryStudyHubPage forcedSlug="australia-ahpra-nmba" />} />
           <Route path="/nursing-australia/topics/:topicSlug" element={<CountryTopicPage countryKey="australia" />} />
+          <Route path="/nclex-rn" element={<NclexRnAcademyPage />} />
+          <Route path="/nclex-rn/learn" element={<NclexRnPlayerPage />} />
+          <Route path="/nclex-rn/unit/:unitSlug" element={<NclexRnPlayerPage />} />
+          <Route path="/nclex-rn/exams" element={<NclexRnExamsPage />} />
 
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
