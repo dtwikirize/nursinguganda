@@ -7,7 +7,6 @@ import { getDiscountPercent } from "../utils/offers";
 export default function CourseCard({ course }) {
   const { isEnrolled } = useApp();
   const enrolled = isEnrolled(course.slug, course.isFree);
-  const discountPct = !course.isFree && !enrolled ? getDiscountPercent(course.priceUsd, course.compareAtUsd) : 0;
 
   const badgeClass = course.isFree
     ? "nu-badge-free"
@@ -16,7 +15,7 @@ export default function CourseCard({ course }) {
       : "nu-badge-highyield";
 
   return (
-    <Link to={`/course/${course.slug}`} className="nu-course-card">
+    <Link to={course.customRoute || `/course/${course.slug}`} className="nu-course-card">
       <div className="nu-card-thumb">
         <img
           src={course.thumbnail}
@@ -26,11 +25,6 @@ export default function CourseCard({ course }) {
           loading="lazy"
           decoding="async"
         />
-        <div className="nu-card-overlay" aria-hidden="true" />
-        {course.code && <span className="nu-card-code">{course.code}</span>}
-        <span className="nu-card-hover-pill" aria-hidden="true">
-          Preview Unit <ArrowRight size={12} />
-        </span>
       </div>
 
       <div className="nu-card-body">
@@ -43,10 +37,10 @@ export default function CourseCard({ course }) {
           <span className="nu-rating-num">{Number(course.rating || 4.8).toFixed(1)}</span>
           <span className="nu-stars" aria-label={`Rated ${course.rating} out of 5`}>
             {[0, 1, 2, 3, 4].map((i) => (
-              <Star key={i} size={13} fill="#e59819" stroke="#e59819" />
+              <Star key={i} size={12} fill="#b4690e" stroke="#b4690e" />
             ))}
           </span>
-          <span className="nu-rating-count">({course.reviewCount || 120})</span>
+          <span className="nu-rating-count">({(course.reviewCount || 120).toLocaleString()})</span>
         </div>
 
         <div className="nu-price-row">
@@ -55,12 +49,6 @@ export default function CourseCard({ course }) {
           </span>
           {!course.isFree && !enrolled && course.compareAtUsd > course.priceUsd && (
             <span className="nu-price-was">${course.compareAtUsd.toFixed(2)}</span>
-          )}
-          {discountPct > 0 && (
-            <span className="nu-price-cut-badge">{discountPct}% OFF</span>
-          )}
-          {!course.isFree && (
-            <span className="nu-ugx-hint">{formatUgxApprox(course.priceUsd)}</span>
           )}
         </div>
 

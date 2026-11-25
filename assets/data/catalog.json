@@ -1,8 +1,8 @@
 {
   "generatedAtUtc": "2026-11-24T21:30:14.933Z",
   "totals": {
-    "programmes": 6,
-    "courses": 83,
+    "programmes": 7,
+    "courses": 85,
     "uniqueLessons": 779,
     "validTopics": 1653,
     "strippedJunkTopics": 115
@@ -49,6 +49,13 @@
       "courseCount": 10,
       "totalLessons": 226,
       "bundlePriceUsd": 12.99
+    },
+    {
+      "id": "nclex-rn-academy",
+      "label": "NCLEX-RN (USA & International)",
+      "courseCount": 2,
+      "totalLessons": 52,
+      "bundlePriceUsd": 99
     }
   ],
   "categories": [
@@ -63,6 +70,54 @@
     "Pharmacology"
   ],
   "courses": [
+    {
+      "slug": "nclex-rn-examinations",
+      "customRoute": "/nclex-rn/exams",
+      "code": "NCLEX-EXAMS",
+      "title": "NCLEX-RN Examinations (CAT & Next-Gen NGN Mock Suite)",
+      "subtitle": "4 timed NCLEX-RN simulations (75-Q Diagnostic, 60-Q NGN CJMM, 85-Q CAT Med-Surg/Pharm, 100-Q Comprehensive Final) with rationales.",
+      "programmeId": "nclex-rn-academy",
+      "programmeLabel": "NCLEX-RN (USA & International)",
+      "year": "all-years",
+      "semester": "exams",
+      "category": "International Licensure & NCLEX",
+      "thumbnail": "/assets/images/udemy/cat-leadership.webp",
+      "lessonCount": 4,
+      "freePreviewCount": 1,
+      "totalMinutes": 385,
+      "isFree": false,
+      "priceUsd": 99,
+      "compareAtUsd": 199,
+      "rating": 4.9,
+      "reviewCount": 298,
+      "studentCount": 1620,
+      "badge": "4 CAT Exams",
+      "updatedAt": "2026-11"
+    },
+    {
+      "slug": "nclex-rn-preparation-course",
+      "customRoute": "/nclex-rn",
+      "code": "NCLEX-RN 16W",
+      "title": "NCLEX-RN Preparation Course (16-Week Complete Academy)",
+      "subtitle": "16 weekly Course Units (48 topics) triangulated with Saunders 9th Ed., Kaplan & LaCharity PDA — 20-Q topic quizzes + 60-Q mixed unit evaluations.",
+      "programmeId": "nclex-rn-academy",
+      "programmeLabel": "NCLEX-RN (USA & International)",
+      "year": "all-years",
+      "semester": "16-weeks",
+      "category": "International Licensure & NCLEX",
+      "thumbnail": "/assets/images/udemy/cat-medsurg.webp",
+      "lessonCount": 48,
+      "freePreviewCount": 3,
+      "totalMinutes": 1200,
+      "isFree": false,
+      "priceUsd": 99,
+      "compareAtUsd": 249,
+      "rating": 4.9,
+      "reviewCount": 412,
+      "studentCount": 1850,
+      "badge": "Flagship $99",
+      "updatedAt": "2026-11"
+    },
     {
       "slug": "certificate-in-nursing-anatomy-and-physiology-l-and-first-aid",
       "unitId": "anatomy-and-physiology-l-and-first-aid",
