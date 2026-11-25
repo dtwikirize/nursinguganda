@@ -108,13 +108,12 @@ export default function Navbar() {
 
   const [promoVisible, setPromoVisible] = useState(true);
   const [megaOpen, setMegaOpen] = useState(false);
-  const [activeProgId, setActiveProgId] = useState("certificate-in-nursing");
-  const [activeHubId, setActiveHubId] = useState("");
-  const [activeCountryMegaTab, setActiveCountryMegaTab] = useState("courses");
+  const [activeNavMenu, setActiveNavMenu] = useState("");
   const [hubEbooks, setHubEbooks] = useState([]);
   const [hubExams, setHubExams] = useState([]);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileProgExpanded, setMobileProgExpanded] = useState("");
+  const [mobileNavExpanded, setMobileNavExpanded] = useState("");
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [searchFocused, setSearchFocused] = useState(false);
@@ -126,8 +125,15 @@ export default function Navbar() {
 
   const countryCtx = useMemo(() => getActiveCountryContext(location.pathname), [location.pathname]);
 
+  const cleanCourseTitle = (title = "") =>
+    String(title || "")
+      .replace(/^(CN|DN|CM|DM)\s*\d+\s*[-–·:]\s*/i, "")
+      .replace(/\(\s*i+\s*\)/gi, (m) => ` ${m.trim().toUpperCase()}`)
+      .replace(/\s{2,}/g, " ")
+      .trim();
+
   useEffect(() => {
-    if (!megaOpen || hubEbooks.length > 0) return;
+    if ((!megaOpen && activeNavMenu !== "ebooks" && activeNavMenu !== "mock-exams") || hubEbooks.length > 0) return;
     Promise.all([
       fetch("/assets/data/ebooks.json").then((r) => (r.ok ? r.json() : null)),
       fetch("/assets/data/mock-exams.json").then((r) => (r.ok ? r.json() : null))
@@ -137,7 +143,7 @@ export default function Navbar() {
         if (ex?.exams) setHubExams(ex.exams);
       })
       .catch(() => {});
-  }, [megaOpen, hubEbooks.length]);
+  }, [megaOpen, activeNavMenu, hubEbooks.length]);
 
   const ensureSearchIndex = () => {
     if (searchIndexLoaded) return;
@@ -187,36 +193,6 @@ export default function Navbar() {
 
   const programmes = catalog?.programmes || [];
   const courses = catalog?.courses || [];
-
-  const activeProg = useMemo(
-    () => programmes.find((p) => p.id === activeProgId) || programmes[0],
-    [programmes, activeProgId]
-  );
-
-  const activeProgAllCourses = useMemo(
-    () => courses.filter((c) => c.programmeId === activeProgId),
-    [courses, activeProgId]
-  );
-
-  const activeHub = useMemo(
-    () => FREE_HUBS.find((h) => h.id === activeHubId) || null,
-    [activeHubId]
-  );
-
-  const activeHubItems = useMemo(() => {
-    if (!activeHubId) return [];
-    if (activeHubId === "ebooks") {
-      return hubEbooks.length
-        ? hubEbooks.map((b) => ({ label: b.title, to: `/ebooks/${b.slug}` }))
-        : [{ label: "Browse All 8 Free Referenced Study eBooks", to: "/ebooks" }];
-    }
-    if (activeHubId === "mock-exams") {
-      return hubExams.length
-        ? hubExams.map((ex) => ({ label: ex.title, to: `/mock-exams?exam=${encodeURIComponent(ex.id)}` }))
-        : [{ label: "Launch UNMEB Mock Exam Simulator", to: "/mock-exams" }];
-    }
-    return STATIC_HUB_ITEMS[activeHubId] || [];
-  }, [activeHubId, hubEbooks, hubExams]);
 
   const searchHits = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -385,7 +361,7 @@ export default function Navbar() {
             )}
           </div>
 
-          {/* Explore Mega Menu */}
+          {/* Coursera-Style Compact 4-Column Explore Mega Menu */}
           <div
             className="nu-explore-wrap nu-nav-desktop-only"
             onMouseEnter={() => setMegaOpen(true)}
@@ -396,368 +372,222 @@ export default function Navbar() {
               className="nu-nav-link-btn"
               aria-expanded={megaOpen}
               onClick={() => setMegaOpen((v) => !v)}
+              style={{
+                background: megaOpen ? "#ede9fe" : "#f5f3ff",
+                color: "var(--nu-purple)",
+                fontWeight: 700,
+                padding: "8px 14px",
+                borderRadius: 6
+              }}
             >
               Explore <ChevronDown size={15} />
             </button>
 
             {megaOpen && (
               <div className="nu-megamenu" role="menu" aria-label="Explore Nursing Curriculum">
-                {countryCtx && (
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                      gap: 12,
-                      padding: "10px 18px",
-                      background: countryCtx.meta.heroBg,
-                      color: "#ffffff",
-                      borderBottom: "1px solid rgba(255,255,255,0.14)"
-                    }}
-                  >
-                    <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: "0.84rem", fontWeight: 700 }}>
-                      <CountryFlag code={countryCtx.meta.flag} width={18} />
-                      <span>{countryCtx.meta.academy} — {countryCtx.meta.examBadge}</span>
-                    </div>
-                    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                      <Link
-                        to={`${countryCtx.meta.route}?tab=curriculum`}
-                        onClick={() => setMegaOpen(false)}
-                        style={{ color: "#ffffff", fontSize: "0.78rem", fontWeight: 600, textDecoration: "underline" }}
-                      >
-                        Full Curriculum
-                      </Link>
-                      <Link
-                        to={`${countryCtx.meta.route}?tab=topics`}
-                        onClick={() => setMegaOpen(false)}
-                        style={{ color: "#ffffff", fontSize: "0.78rem", fontWeight: 600, textDecoration: "underline" }}
-                      >
-                        779 Topics
-                      </Link>
-                      <Link
-                        to={`${countryCtx.meta.route}?tab=offers`}
-                        onClick={() => setMegaOpen(false)}
-                        style={{ color: "#ffffff", fontSize: "0.78rem", fontWeight: 600, textDecoration: "underline" }}
-                      >
-                        Prep Bundle
-                      </Link>
-                    </div>
-                  </div>
-                )}
-                <div className="nu-mega-grid nu-mega-grid--simple">
-                  {countryCtx ? (
-                    <>
-                      {/* Country-Specific Explore Column 1 */}
-                      <div className="nu-mega-col">
-                        <div className="nu-mega-kicker">{countryCtx.meta.shortName} Curriculum &amp; Portal</div>
-                        {[
-                          { id: "courses", label: `${countryCtx.meta.shortName} Specialization Courses (${countryCtx.curriculum?.courses?.length || 0})`, to: `${countryCtx.meta.route}?tab=curriculum` },
-                          { id: "modules", label: `Full ${countryCtx.meta.shortName} Syllabus Modules (${countryCtx.curriculum?.modules?.length || 0})`, to: `${countryCtx.meta.route}?tab=curriculum` },
-                          { id: "topics", label: `779 ${countryCtx.meta.shortName} Study Topics`, to: `${countryCtx.meta.route}?tab=topics` },
-                          { id: "tools", label: `${countryCtx.meta.shortName} Practice & Lab Converter`, to: `${countryCtx.meta.route}?tab=practice` },
-                          { id: "offers", label: `${countryCtx.meta.shortName} Prep Bundle (${countryCtx.curriculum?.premiumOffer?.price || "$24.99"})`, to: `${countryCtx.meta.route}?tab=offers` },
-                          { id: "roadmap", label: `Official Licensure Roadmap`, to: `${countryCtx.meta.route}?tab=roadmap` }
-                        ].map((sec) => (
-                          <button
-                            key={sec.id}
-                            type="button"
-                            className={`nu-mega-item ${activeCountryMegaTab === sec.id ? "active" : ""}`}
-                            onMouseEnter={() => setActiveCountryMegaTab(sec.id)}
-                            onFocus={() => setActiveCountryMegaTab(sec.id)}
-                            onClick={() => {
-                              setMegaOpen(false);
-                              navigate(sec.to);
-                            }}
-                          >
-                            <span className="nu-mega-item-left">
-                              <GraduationCap size={15} />
-                              <span>{sec.label}</span>
-                            </span>
-                            <ChevronRight size={14} />
-                          </button>
-                        ))}
-
-                        <div className="nu-mega-divider" />
-                        <div className="nu-mega-kicker">Switch Portal</div>
-                        <button
-                          type="button"
-                          className="nu-mega-item"
-                          onClick={() => {
-                            setMegaOpen(false);
-                            navigate("/courses");
-                          }}
-                        >
-                          <span className="nu-mega-item-left">
-                            <BookOpen size={15} />
-                            <span>Uganda UNMEB Courses (85)</span>
-                          </span>
-                          <ChevronRight size={14} />
-                        </button>
-                        <button
-                          type="button"
-                          className="nu-mega-item"
-                          onClick={() => {
-                            setMegaOpen(false);
-                            navigate("/global-nursing");
-                          }}
-                        >
-                          <span className="nu-mega-item-left">
-                            <Award size={15} />
-                            <span>All 8 Nursing Countries</span>
-                          </span>
-                          <ChevronRight size={14} />
-                        </button>
-                      </div>
-
-                      {/* Country-Specific Explore Column 2 */}
-                      <div className="nu-mega-middle">
-                        <div className="nu-mega-middle-head">
-                          <h4 className="nu-mega-prog-title">
-                            {activeCountryMegaTab === "courses" && `${countryCtx.meta.shortName} Specialization Courses`}
-                            {activeCountryMegaTab === "modules" && `${countryCtx.meta.shortName} Syllabus Modules`}
-                            {activeCountryMegaTab === "topics" && `779 Localized ${countryCtx.meta.shortName} Topics`}
-                            {activeCountryMegaTab === "tools" && `${countryCtx.meta.shortName} Practice & Unit Tools`}
-                            {activeCountryMegaTab === "offers" && `${countryCtx.meta.shortName} Full Prep Bundle`}
-                            {activeCountryMegaTab === "roadmap" && `${countryCtx.meta.name} Licensure Steps`}
-                          </h4>
+                {countryCtx ? (
+                  <>
+                    <div className="nu-coursera-mega-cols">
+                      <div className="nu-coursera-mega-col">
+                        <h4 className="nu-coursera-mega-head">{countryCtx.meta.shortName} Nursing Tracks</h4>
+                        {(countryCtx.curriculum?.courses || []).slice(0, 7).map((c) => (
                           <Link
-                            to={`${countryCtx.meta.route}?tab=${activeCountryMegaTab === "modules" || activeCountryMegaTab === "courses" ? "curriculum" : activeCountryMegaTab === "tools" ? "practice" : activeCountryMegaTab}`}
-                            className="nu-mega-view-all"
+                            key={c.id}
+                            to={`${countryCtx.meta.topicsBase}/${c.sampleTopicSlug}`}
+                            className="nu-coursera-mega-link"
                             onClick={() => setMegaOpen(false)}
                           >
-                            Open {countryCtx.meta.shortName} Hub →
+                            {cleanCourseTitle(c.title)}
                           </Link>
-                        </div>
-
-                        <div className="nu-mega-links-cols">
-                          {activeCountryMegaTab === "courses" &&
-                            (countryCtx.curriculum?.courses || []).map((c) => (
-                              <Link
-                                key={c.id}
-                                to={`${countryCtx.meta.topicsBase}/${c.sampleTopicSlug}`}
-                                className="nu-mega-clean-link"
-                                onClick={() => setMegaOpen(false)}
-                              >
-                                <span>
-                                  <strong>{c.level} · </strong>
-                                  {c.title}
-                                </span>
-                                <ChevronRight size={14} />
-                              </Link>
-                            ))}
-
-                          {activeCountryMegaTab === "modules" &&
-                            (countryCtx.curriculum?.modules || []).map((m) => (
-                              <Link
-                                key={m.number}
-                                to={`${countryCtx.meta.topicsBase}/${m.topicSlugs?.[0] || "dosage-calculations"}`}
-                                className="nu-mega-clean-link"
-                                onClick={() => setMegaOpen(false)}
-                              >
-                                <span>
-                                  <strong>Module {m.number} · </strong>
-                                  {m.title}
-                                </span>
-                                <ChevronRight size={14} />
-                              </Link>
-                            ))}
-
-                          {activeCountryMegaTab === "topics" &&
-                            [
-                              { label: "Dosage Calculations & IV Infusion Rates", slug: "dosage-calculations" },
-                              { label: "Fluid & Electrolyte Balance", slug: "fluid-and-electrolyte-imbalance" },
-                              { label: "Diabetes Mellitus & Ketoacidosis", slug: "certificate-in-nursing-medical-nursing-ll-and-pharmacology-ll-diabetes-mellitus" },
-                              { label: "Hypertension & Cardiovascular Care", slug: "certificate-in-nursing-medical-nursing-i-and-pharmacology-i-hypertension" },
-                              { label: "Infection Prevention & Standard Precautions", slug: "infection-prevention-and-control" },
-                              { label: "Shock & Hemodynamic Monitoring", slug: "surgical-shock" },
-                              { label: "Normal Labour & Delivery", slug: "certificate-in-midwifery-midwifery-i-and-pharmacology-i-1-8-labour" },
-                              { label: "Browse All 779 Localized Topics", slug: "" }
-                            ].map((t) => (
-                              <Link
-                                key={t.label}
-                                to={t.slug ? `${countryCtx.meta.topicsBase}/${t.slug}` : `${countryCtx.meta.route}?tab=topics`}
-                                className="nu-mega-clean-link"
-                                onClick={() => setMegaOpen(false)}
-                              >
-                                <span>{t.label}</span>
-                                <ChevronRight size={14} />
-                              </Link>
-                            ))}
-
-                          {activeCountryMegaTab === "tools" &&
-                            [
-                              { label: `${countryCtx.meta.shortName} Exam Practice Check`, to: `${countryCtx.meta.route}?tab=practice` },
-                              { label: "Live SI (mmol/L) ↔ US (mg/dL) Glucose Converter", to: `${countryCtx.meta.route}?tab=practice` },
-                              { label: "UK/AU ↔ USA/CA Drug Name Equivalents", to: `${countryCtx.meta.route}?tab=practice` },
-                              { label: "Normal Lab Ranges (Full Table)", to: "/clinical-tools?tab=values" }
-                            ].map((item) => (
-                              <Link
-                                key={item.label}
-                                to={item.to}
-                                className="nu-mega-clean-link"
-                                onClick={() => setMegaOpen(false)}
-                              >
-                                <span>{item.label}</span>
-                                <ChevronRight size={14} />
-                              </Link>
-                            ))}
-
-                          {(activeCountryMegaTab === "offers" || activeCountryMegaTab === "roadmap") &&
-                            [
-                              { label: countryCtx.curriculum?.premiumOffer?.title || `${countryCtx.meta.shortName} Full Prep Bundle`, to: `${countryCtx.meta.route}?tab=offers` },
-                              { label: `${countryCtx.meta.examBadge} Official Roadmap`, to: `${countryCtx.meta.route}?tab=roadmap` },
-                              { label: `About ${countryCtx.meta.academy} & Blueprint`, to: countryCtx.meta.route },
-                              { label: "Browse Full Study Courses", to: "/courses" }
-                            ].map((item) => (
-                              <Link
-                                key={item.label}
-                                to={item.to}
-                                className="nu-mega-clean-link"
-                                onClick={() => setMegaOpen(false)}
-                              >
-                                <span>{item.label}</span>
-                                <ChevronRight size={14} />
-                              </Link>
-                            ))}
-                        </div>
+                        ))}
+                        <Link to={`${countryCtx.meta.route}?tab=curriculum`} className="nu-coursera-mega-viewall" onClick={() => setMegaOpen(false)}>
+                          View all
+                        </Link>
                       </div>
-                    </>
-                  ) : (
-                    <>
-                  {/* Column 1: Programmes & Free Hubs */}
-                  <div className="nu-mega-col">
-                    <div className="nu-mega-kicker">Academic Programmes ({programmes.length})</div>
-                    {programmes.map((p) => {
-                      const isMidwifery = p.id.includes("midwifery");
-                      const isSelected = !activeHubId && activeProgId === p.id;
-                      return (
-                        <button
-                          key={p.id}
-                          type="button"
-                          className={`nu-mega-item ${isSelected ? "active" : ""}`}
-                          onMouseEnter={() => {
-                            setActiveHubId("");
-                            setActiveProgId(p.id);
-                          }}
-                          onFocus={() => {
-                            setActiveHubId("");
-                            setActiveProgId(p.id);
-                          }}
-                          onClick={() => {
-                            setMegaOpen(false);
-                            navigate(`/courses?programme=${encodeURIComponent(p.id)}`);
-                          }}
-                        >
-                          <span className="nu-mega-item-left">
-                            {isMidwifery ? <HeartPulse size={15} /> : <GraduationCap size={15} />}
-                            <span>{p.label}</span>
-                          </span>
-                          <ChevronRight size={14} />
-                        </button>
-                      );
-                    })}
 
-                    <div className="nu-mega-divider" />
-                    <div className="nu-mega-kicker">Free Study &amp; Clinical Hubs</div>
+                      <div className="nu-coursera-mega-col">
+                        <h4 className="nu-coursera-mega-head">Core Clinical Modules</h4>
+                        {(countryCtx.curriculum?.modules || []).slice(0, 8).map((m) => (
+                          <Link
+                            key={m.number}
+                            to={`${countryCtx.meta.topicsBase}/${m.topicSlugs?.[0] || "dosage-calculations"}`}
+                            className="nu-coursera-mega-link"
+                            onClick={() => setMegaOpen(false)}
+                          >
+                            {m.title}
+                          </Link>
+                        ))}
+                        <Link to={`${countryCtx.meta.route}?tab=topics`} className="nu-coursera-mega-viewall" onClick={() => setMegaOpen(false)}>
+                          View all 779 topics
+                        </Link>
+                      </div>
 
-                    {FREE_HUBS.map((hub) => {
-                      const HubIcon = hub.icon;
-                      const isSelected = activeHubId === hub.id;
-                      return (
-                        <button
-                          key={hub.id}
-                          type="button"
-                          className={`nu-mega-item ${isSelected ? "active" : ""}`}
-                          onMouseEnter={() => setActiveHubId(hub.id)}
-                          onFocus={() => setActiveHubId(hub.id)}
-                          onClick={() => {
-                            setMegaOpen(false);
-                            navigate(hub.to);
-                          }}
-                        >
-                          <span className="nu-mega-item-left">
-                            <HubIcon size={15} />
-                            <span>{hub.label}</span>
-                          </span>
-                          <ChevronRight size={14} />
-                        </button>
-                      );
-                    })}
-                  </div>
+                      <div className="nu-coursera-mega-col">
+                        <h4 className="nu-coursera-mega-head">Localized Topics &amp; Tools</h4>
+                        {[
+                          { label: "Dosage Calculations & IV Rates", to: `${countryCtx.meta.topicsBase}/dosage-calculations` },
+                          { label: "Fluid & Electrolyte Balance", to: `${countryCtx.meta.topicsBase}/fluid-and-electrolyte-imbalance` },
+                          { label: "Diabetes & DKA Management", to: `${countryCtx.meta.topicsBase}/certificate-in-nursing-medical-nursing-ll-and-pharmacology-ll-diabetes-mellitus` },
+                          { label: "SI ↔ US Lab Unit Converter", to: `${countryCtx.meta.route}?tab=practice` },
+                          { label: "UK/AU ↔ USA Drug Equivalents", to: `${countryCtx.meta.route}?tab=practice` }
+                        ].map((item) => (
+                          <Link key={item.label} to={item.to} className="nu-coursera-mega-link" onClick={() => setMegaOpen(false)}>
+                            {item.label}
+                          </Link>
+                        ))}
+                        <Link to={`${countryCtx.meta.route}?tab=practice`} className="nu-coursera-mega-viewall" onClick={() => setMegaOpen(false)}>
+                          View tools
+                        </Link>
+                      </div>
 
-                  {/* Column 2: Clean Stretched One-Line Submenu Topics */}
-                  <div className="nu-mega-middle">
-                    <div className="nu-mega-middle-head">
-                      <h4 className="nu-mega-prog-title">
-                        {activeHub ? activeHub.label : activeProg?.label || "Nursing Programme"}
-                      </h4>
-                      <Link
-                        to={activeHub ? activeHub.to : `/courses?programme=${encodeURIComponent(activeProgId)}`}
-                        className="nu-mega-view-all"
-                        onClick={() => setMegaOpen(false)}
-                      >
-                        {activeHub ? `Open ${activeHub.label} →` : `View all ${activeProgAllCourses.length} units →`}
-                      </Link>
+                      <div className="nu-coursera-mega-col">
+                        <h4 className="nu-coursera-mega-head">Exam &amp; Licensure Prep</h4>
+                        <Link to="/nclex-rn" className="nu-coursera-mega-link" onClick={() => setMegaOpen(false)}>
+                          NCLEX-RN Complete Course <span className="nu-coursera-mega-badge">New</span>
+                        </Link>
+                        <Link to="/nclex-rn/exams" className="nu-coursera-mega-link" onClick={() => setMegaOpen(false)}>
+                          NCLEX-RN CAT Mock Exams
+                        </Link>
+                        <Link to={`${countryCtx.meta.route}?tab=roadmap`} className="nu-coursera-mega-link" onClick={() => setMegaOpen(false)}>
+                          {countryCtx.meta.examBadge} Licensure Roadmap
+                        </Link>
+                        <Link to={`${countryCtx.meta.route}?tab=offers`} className="nu-coursera-mega-link" onClick={() => setMegaOpen(false)}>
+                          {countryCtx.meta.shortName} Prep Bundle ({countryCtx.curriculum?.premiumOffer?.price || "$24.99"})
+                        </Link>
+                        <Link to="/global-nursing" className="nu-coursera-mega-link" onClick={() => setMegaOpen(false)}>
+                          Compare All 8 Countries
+                        </Link>
+                      </div>
                     </div>
 
-                    <div className="nu-mega-links-cols">
-                      {activeHub
-                        ? activeHubItems.map((item) => (
-                            <Link
-                              key={item.label}
-                              to={item.to}
-                              className="nu-mega-clean-link"
-                              onClick={() => setMegaOpen(false)}
-                            >
-                              <span>{item.label}</span>
-                              <ChevronRight size={14} />
-                            </Link>
-                          ))
-                        : activeProgAllCourses.map((c) => (
-                            <Link
-                              key={c.slug}
-                              to={`/course/${c.slug}`}
-                              className="nu-mega-clean-link"
-                              onClick={() => setMegaOpen(false)}
-                            >
-                              <span>
-                                {c.code ? <strong>{c.code} · </strong> : null}
-                                {c.title}
-                              </span>
-                              <ChevronRight size={14} />
-                            </Link>
-                          ))}
+                    <div className="nu-coursera-mega-footer">
+                      <span>Switch learning hub:</span>
+                      <Link to="/courses" onClick={() => setMegaOpen(false)}>Uganda UNMEB Courses (85)</Link>
+                      <span>or</span>
+                      <Link to="/ebooks" onClick={() => setMegaOpen(false)}>Browse Free Textbooks (87)</Link>
                     </div>
-                  </div>
-                    </>
-                  )}
-                </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="nu-coursera-mega-cols">
+                      {/* Column 1: Programmes & Global Licensure */}
+                      <div className="nu-coursera-mega-col">
+                        <h4 className="nu-coursera-mega-head">Explore Programmes</h4>
+                        {programmes.map((p) => (
+                          <Link
+                            key={p.id}
+                            to={`/courses?programme=${encodeURIComponent(p.id)}`}
+                            className="nu-coursera-mega-link"
+                            onClick={() => setMegaOpen(false)}
+                          >
+                            {p.label}
+                          </Link>
+                        ))}
+                        <Link to="/nclex-rn" className="nu-coursera-mega-link" onClick={() => setMegaOpen(false)}>
+                          NCLEX-RN Preparation <span className="nu-coursera-mega-badge">New</span>
+                        </Link>
+                        <Link to="/global-nursing" className="nu-coursera-mega-link" onClick={() => setMegaOpen(false)}>
+                          International Nursing (8 Countries)
+                        </Link>
+                        <Link to="/courses" className="nu-coursera-mega-viewall" onClick={() => setMegaOpen(false)}>
+                          View all 85 course units
+                        </Link>
+                      </div>
 
-                {/* Compact All-Visible Quick Strip */}
-                <div className="nu-mega-footer-bar">
-                  {countryCtx ? (
-                    <div style={{ display: "flex", gap: 6, flexWrap: "wrap", alignItems: "center" }}>
-                      <Link to={countryCtx.meta.route} className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>{countryCtx.meta.shortName} Blueprint</Link>
-                      <Link to={`${countryCtx.meta.route}?tab=curriculum`} className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Full Curriculum</Link>
-                      <Link to={`${countryCtx.meta.route}?tab=topics`} className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>779 {countryCtx.meta.shortName} Topics</Link>
-                      <Link to={`${countryCtx.meta.route}?tab=practice`} className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Unit &amp; Drug Converter</Link>
-                      <Link to={`${countryCtx.meta.route}?tab=offers`} className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Prep Bundle</Link>
-                      <Link to="/courses" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Uganda UNMEB (85)</Link>
+                      {/* Column 2: Clinical Categories / Topics */}
+                      <div className="nu-coursera-mega-col">
+                        <h4 className="nu-coursera-mega-head">Explore Clinical Subjects</h4>
+                        {[
+                          { label: "Anatomy & Physiology", to: "/topics?cat=Anatomy+%26+Physiology" },
+                          { label: "Foundations of Nursing", to: "/topics?cat=Foundations+of+Nursing" },
+                          { label: "Pharmacology & Prescribing", to: "/topics?cat=Pharmacology" },
+                          { label: "Midwifery & Maternal Health", to: "/topics?cat=Midwifery+%26+Maternal+Health" },
+                          { label: "Paediatrics & Child Health", to: "/topics?cat=Paediatrics+%26+Child+Health" },
+                          { label: "Medical-Surgical Nursing", to: "/topics?cat=Medical-Surgical+Nursing" },
+                          { label: "Community & Public Health", to: "/topics?cat=Community+%26+Public+Health" },
+                          { label: "Mental Health & Psychology", to: "/topics?cat=Mental+Health+%26+Psychology" },
+                          { label: "Tropical Medicine & First Aid", to: "/topics?cat=Emergency+%26+Critical+Care" }
+                        ].map((cat) => (
+                          <Link key={cat.label} to={cat.to} className="nu-coursera-mega-link" onClick={() => setMegaOpen(false)}>
+                            {cat.label}
+                          </Link>
+                        ))}
+                        <Link to="/topics" className="nu-coursera-mega-viewall" onClick={() => setMegaOpen(false)}>
+                          View all 779 study topics
+                        </Link>
+                      </div>
+
+                      {/* Column 3: Free Textbooks + Reference Tools */}
+                      <div className="nu-coursera-mega-col">
+                        <h4 className="nu-coursera-mega-head">Free Reference Books</h4>
+                        <Link to="/ebooks/book-instant-clinical-pharmacology" className="nu-coursera-mega-link" onClick={() => setMegaOpen(false)}>
+                          Instant Clinical Pharmacology
+                        </Link>
+                        <Link to="/ebooks?cat=Anatomy+%26+Physiology" className="nu-coursera-mega-link" onClick={() => setMegaOpen(false)}>
+                          Anatomy &amp; Physiology Texts
+                        </Link>
+                        <Link to="/ebooks?cat=Midwifery+%26+Maternal+Health" className="nu-coursera-mega-link" onClick={() => setMegaOpen(false)}>
+                          Midwifery &amp; Maternal Library
+                        </Link>
+                        <Link to="/ebooks" className="nu-coursera-mega-viewall" onClick={() => setMegaOpen(false)}>
+                          View all 87 free books
+                        </Link>
+
+                        <h4 className="nu-coursera-mega-head nu-coursera-mega-head--spaced">Clinical Reference Tools</h4>
+                        <Link to="/dictionary" className="nu-coursera-mega-link" onClick={() => setMegaOpen(false)}>
+                          Medical Dictionary (1,079 Terms)
+                        </Link>
+                        <Link to="/instruments" className="nu-coursera-mega-link" onClick={() => setMegaOpen(false)}>
+                          Surgical Instrument Atlas (146)
+                        </Link>
+                        <Link to="/clinical-tools" className="nu-coursera-mega-link" onClick={() => setMegaOpen(false)}>
+                          Dosage &amp; IV Drip Calculator
+                        </Link>
+                        <Link to="/templates" className="nu-coursera-mega-link" onClick={() => setMegaOpen(false)}>
+                          Printable OSCE &amp; Ward PDFs
+                        </Link>
+                      </div>
+
+                      {/* Column 4: Trending Topics + Exams */}
+                      <div className="nu-coursera-mega-col">
+                        <h4 className="nu-coursera-mega-head">Explore High-Yield Notes</h4>
+                        {[
+                          { label: "Pharmacokinetics & Dosing", to: "/topics?q=pharmacokinetics" },
+                          { label: "Fluid & Electrolyte Balance", to: "/topics?q=electrolyte" },
+                          { label: "Stages of Normal Labour", to: "/topics?q=labour" },
+                          { label: "Infection Prevention & Sepsis", to: "/topics?q=infection" },
+                          { label: "Acid-Base Balance & ABGs", to: "/topics?q=respiratory" },
+                          { label: "Hypertension & Stroke Care", to: "/topics?q=hypertension" }
+                        ].map((sk) => (
+                          <Link key={sk.label} to={sk.to} className="nu-coursera-mega-link" onClick={() => setMegaOpen(false)}>
+                            {sk.label}
+                          </Link>
+                        ))}
+                        <Link to="/topics" className="nu-coursera-mega-viewall" onClick={() => setMegaOpen(false)}>
+                          View all topics
+                        </Link>
+
+                        <h4 className="nu-coursera-mega-head nu-coursera-mega-head--spaced">Prepare for Licensing Exams</h4>
+                        <Link to="/mock-exams" className="nu-coursera-mega-link" onClick={() => setMegaOpen(false)}>
+                          UNMEB Mock Exams (109 Papers)
+                        </Link>
+                        <Link to="/nclex-rn/exams" className="nu-coursera-mega-link" onClick={() => setMegaOpen(false)}>
+                          NextGen NCLEX-RN Mock Suite
+                        </Link>
+                        <Link to="/quizzes" className="nu-coursera-mega-link" onClick={() => setMegaOpen(false)}>
+                          Free Topic Quizzes (270 Qs)
+                        </Link>
+                      </div>
                     </div>
-                  ) : (
-                    <div style={{ display: "flex", gap: 6, flexWrap: "wrap", alignItems: "center" }}>
-                      <Link to="/courses" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>All 85 Courses</Link>
-                      <Link to="/topics" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Nurse Topics (779)</Link>
-                      <Link to="/ebooks" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Free eBooks (87)</Link>
-                      <Link to="/mock-exams" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>UNMEB Papers (109)</Link>
-                      <Link to="/quizzes" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Topic Quizzes (270 Qs)</Link>
-                      <Link to="/dictionary" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Dictionary (1,079)</Link>
-                      <Link to="/instruments" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Instruments (146)</Link>
-                      <Link to="/templates" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Ward PDFs (8)</Link>
-                      <Link to="/global-nursing" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Global Nursing (8 Countries)</Link>
+
+                    <div className="nu-coursera-mega-footer">
+                      <span>Not sure where to begin?</span>
+                      <Link to="/topics" onClick={() => setMegaOpen(false)}>Browse free study notes</Link>
+                      <span>or</span>
+                      <Link to="/nclex-rn" onClick={() => setMegaOpen(false)}>Explore the NCLEX-RN 16-Unit Academy</Link>
                     </div>
-                  )}
-                </div>
+                  </>
+                )}
               </div>
             )}
           </div>
@@ -841,18 +671,197 @@ export default function Navbar() {
               </>
             ) : (
               <>
-                <Link to="/topics" className="nu-nav-link nu-nav-desktop-only">
-                  Nurse Topics
-                </Link>
-                <Link to="/ebooks" className="nu-nav-link nu-nav-desktop-only">
-                  Free eBooks
-                </Link>
-                <Link to="/mock-exams" className="nu-nav-link nu-nav-desktop-only">
-                  Mock Exams
-                </Link>
-                <Link to="/my-learning" className="nu-nav-link nu-nav-desktop-only">
-                  My Learning {enrollments.length > 0 ? `(${enrollments.length})` : ""}
-                </Link>
+                {/* Nurse Topics Submenu */}
+                <div
+                  className="nu-nav-dropdown-wrap nu-nav-desktop-only"
+                  onMouseEnter={() => setActiveNavMenu("topics")}
+                  onMouseLeave={() => setActiveNavMenu("")}
+                >
+                  <Link to="/topics" className="nu-nav-link nu-nav-dropdown-trigger" aria-expanded={activeNavMenu === "topics"}>
+                    <span>Nurse Topics</span>
+                    <ChevronDown size={13} />
+                  </Link>
+                  {activeNavMenu === "topics" && (
+                    <div className="nu-nav-dropdown" role="menu" aria-label="Nurse Topics Submenu">
+                      <div className="nu-nav-dropdown-head">Study Topics &amp; Clinical Subjects</div>
+                      {STATIC_HUB_ITEMS.topics.map((item) => (
+                        <Link
+                          key={item.label}
+                          to={item.to}
+                          className="nu-nav-dropdown-link"
+                          onClick={() => setActiveNavMenu("")}
+                        >
+                          <span>{item.label}</span>
+                          <ChevronRight size={13} />
+                        </Link>
+                      ))}
+                      <div className="nu-nav-dropdown-sep" />
+                      <Link to="/dictionary" className="nu-nav-dropdown-link" onClick={() => setActiveNavMenu("")}>
+                        <span>Medical Dictionary (A–Z)</span>
+                        <ChevronRight size={13} />
+                      </Link>
+                      <Link to="/instruments" className="nu-nav-dropdown-link" onClick={() => setActiveNavMenu("")}>
+                        <span>Surgical Instrument Atlas</span>
+                        <ChevronRight size={13} />
+                      </Link>
+                    </div>
+                  )}
+                </div>
+
+                {/* Free eBooks Submenu */}
+                <div
+                  className="nu-nav-dropdown-wrap nu-nav-desktop-only"
+                  onMouseEnter={() => setActiveNavMenu("ebooks")}
+                  onMouseLeave={() => setActiveNavMenu("")}
+                >
+                  <Link to="/ebooks" className="nu-nav-link nu-nav-dropdown-trigger" aria-expanded={activeNavMenu === "ebooks"}>
+                    <span>Free eBooks</span>
+                    <ChevronDown size={13} />
+                  </Link>
+                  {activeNavMenu === "ebooks" && (
+                    <div className="nu-nav-dropdown" role="menu" aria-label="Free eBooks Submenu">
+                      <div className="nu-nav-dropdown-head">Free Textbooks &amp; Guides (87)</div>
+                      <Link to="/ebooks" className="nu-nav-dropdown-link" style={{ fontWeight: 700, color: "var(--nu-purple)" }} onClick={() => setActiveNavMenu("")}>
+                        <span>Browse All Free Study Books</span>
+                        <ChevronRight size={13} />
+                      </Link>
+                      <Link to="/ebooks/book-instant-clinical-pharmacology" className="nu-nav-dropdown-link" onClick={() => setActiveNavMenu("")}>
+                        <span>Instant Clinical Pharmacology</span>
+                        <ChevronRight size={13} />
+                      </Link>
+                      <Link to="/ebooks?cat=Anatomy+%26+Physiology" className="nu-nav-dropdown-link" onClick={() => setActiveNavMenu("")}>
+                        <span>Anatomy &amp; Physiology Library</span>
+                        <ChevronRight size={13} />
+                      </Link>
+                      <Link to="/ebooks?cat=Midwifery+%26+Maternal+Health" className="nu-nav-dropdown-link" onClick={() => setActiveNavMenu("")}>
+                        <span>Midwifery &amp; Obstetrics</span>
+                        <ChevronRight size={13} />
+                      </Link>
+                      <Link to="/ebooks?cat=Medical-Surgical+Nursing" className="nu-nav-dropdown-link" onClick={() => setActiveNavMenu("")}>
+                        <span>Medical-Surgical Nursing</span>
+                        <ChevronRight size={13} />
+                      </Link>
+                      <Link to="/ebooks?cat=Paediatrics+%26+Child+Health" className="nu-nav-dropdown-link" onClick={() => setActiveNavMenu("")}>
+                        <span>Paediatrics &amp; Child Health</span>
+                        <ChevronRight size={13} />
+                      </Link>
+                      {hubEbooks.length > 0 && (
+                        <>
+                          <div className="nu-nav-dropdown-sep" />
+                          <div className="nu-nav-dropdown-head">Featured Books</div>
+                          {hubEbooks.slice(0, 4).map((b) => (
+                            <Link
+                              key={b.slug}
+                              to={`/ebooks/${b.slug}`}
+                              className="nu-nav-dropdown-link"
+                              onClick={() => setActiveNavMenu("")}
+                            >
+                              <span>{b.title}</span>
+                              <ChevronRight size={13} />
+                            </Link>
+                          ))}
+                        </>
+                      )}
+                    </div>
+                  )}
+                </div>
+
+                {/* Mock Exams Submenu */}
+                <div
+                  className="nu-nav-dropdown-wrap nu-nav-desktop-only"
+                  onMouseEnter={() => setActiveNavMenu("mock-exams")}
+                  onMouseLeave={() => setActiveNavMenu("")}
+                >
+                  <Link to="/mock-exams" className="nu-nav-link nu-nav-dropdown-trigger" aria-expanded={activeNavMenu === "mock-exams"}>
+                    <span>Mock Exams</span>
+                    <ChevronDown size={13} />
+                  </Link>
+                  {activeNavMenu === "mock-exams" && (
+                    <div className="nu-nav-dropdown nu-nav-dropdown--right" role="menu" aria-label="Mock Exams Submenu">
+                      <div className="nu-nav-dropdown-head">Exam Prep &amp; Simulators</div>
+                      <Link to="/mock-exams" className="nu-nav-dropdown-link" style={{ fontWeight: 700, color: "var(--nu-purple)" }} onClick={() => setActiveNavMenu("")}>
+                        <span>All UNMEB Mock Exams (109)</span>
+                        <ChevronRight size={13} />
+                      </Link>
+                      <Link to="/nclex-rn/exams" className="nu-nav-dropdown-link" onClick={() => setActiveNavMenu("")}>
+                        <span>NextGen NCLEX-RN Mock Suite</span>
+                        <ChevronRight size={13} />
+                      </Link>
+                      <Link to="/quizzes" className="nu-nav-dropdown-link" onClick={() => setActiveNavMenu("")}>
+                        <span>Free Topic Quizzes (270 Qs)</span>
+                        <ChevronRight size={13} />
+                      </Link>
+                      {hubExams.length > 0 && (
+                        <>
+                          <div className="nu-nav-dropdown-sep" />
+                          <div className="nu-nav-dropdown-head">Featured Mock Papers</div>
+                          {hubExams.slice(0, 5).map((ex) => (
+                            <Link
+                              key={ex.id}
+                              to={`/mock-exams?exam=${encodeURIComponent(ex.id)}`}
+                              className="nu-nav-dropdown-link"
+                              onClick={() => setActiveNavMenu("")}
+                            >
+                              <span>{cleanCourseTitle(ex.title)}</span>
+                              <ChevronRight size={13} />
+                            </Link>
+                          ))}
+                        </>
+                      )}
+                    </div>
+                  )}
+                </div>
+
+                {/* My Learning Submenu */}
+                <div
+                  className="nu-nav-dropdown-wrap nu-nav-desktop-only"
+                  onMouseEnter={() => setActiveNavMenu("my-learning")}
+                  onMouseLeave={() => setActiveNavMenu("")}
+                >
+                  <Link to="/my-learning" className="nu-nav-link nu-nav-dropdown-trigger" aria-expanded={activeNavMenu === "my-learning"}>
+                    <span>My Learning {enrollments.length > 0 ? `(${enrollments.length})` : ""}</span>
+                    <ChevronDown size={13} />
+                  </Link>
+                  {activeNavMenu === "my-learning" && (
+                    <div className="nu-nav-dropdown nu-nav-dropdown--right" role="menu" aria-label="My Learning Submenu">
+                      <div className="nu-nav-dropdown-head">Student Dashboard &amp; Study Tools</div>
+                      <Link to="/my-learning" className="nu-nav-dropdown-link" style={{ fontWeight: 700, color: "var(--nu-purple)" }} onClick={() => setActiveNavMenu("")}>
+                        <span>My Learning Dashboard</span>
+                        <ChevronRight size={13} />
+                      </Link>
+                      <Link to="/courses" className="nu-nav-dropdown-link" onClick={() => setActiveNavMenu("")}>
+                        <span>All Enrolled &amp; Available Units</span>
+                        <ChevronRight size={13} />
+                      </Link>
+                      <Link to="/nclex-rn" className="nu-nav-dropdown-link" onClick={() => setActiveNavMenu("")}>
+                        <span>NCLEX-RN 16-Unit Academy</span>
+                        <ChevronRight size={13} />
+                      </Link>
+                      <div className="nu-nav-dropdown-sep" />
+                      <Link to="/clinical-tools" className="nu-nav-dropdown-link" onClick={() => setActiveNavMenu("")}>
+                        <span>Dosage &amp; Lab Converters</span>
+                        <ChevronRight size={13} />
+                      </Link>
+                      <Link to="/templates" className="nu-nav-dropdown-link" onClick={() => setActiveNavMenu("")}>
+                        <span>Printable OSCE &amp; Ward PDFs</span>
+                        <ChevronRight size={13} />
+                      </Link>
+                      <Link to="/cart" className="nu-nav-dropdown-link" onClick={() => setActiveNavMenu("")}>
+                        <span>Shopping Cart {cart.length > 0 ? `(${cart.length})` : ""}</span>
+                        <ChevronRight size={13} />
+                      </Link>
+                      {user?.isAdmin && (
+                        <>
+                          <div className="nu-nav-dropdown-sep" />
+                          <Link to="/nodadmin" className="nu-nav-dropdown-link" style={{ fontWeight: 700, color: "var(--nu-purple)" }} onClick={() => setActiveNavMenu("")}>
+                            <span>Owner Admin Panel</span>
+                            <ChevronRight size={13} />
+                          </Link>
+                        </>
+                      )}
+                    </div>
+                  )}
+                </div>
               </>
             )}
 
@@ -1019,15 +1028,33 @@ export default function Navbar() {
               </div>
 
               <div className="nu-mobile-drawer-body">
-                {/* Primary Study Navigation */}
+                {/* Expandable Primary Study Submenus */}
                 <div className="nu-mobile-sec-title">Learn &amp; Dashboard</div>
-                <Link to="/my-learning" className="nu-mobile-link" onClick={() => setMobileOpen(false)}>
-                  <span className="nu-mobile-link-left">
-                    <BookOpen size={17} color="#A137F2" />
-                    <span>My Learning Dashboard</span>
-                  </span>
-                  {enrollments.length > 0 && <span className="nu-mega-count">{enrollments.length}</span>}
-                </Link>
+                <div className="nu-mobile-prog-group">
+                  <button
+                    type="button"
+                    className={`nu-mobile-link nu-mobile-prog-btn ${mobileNavExpanded === "my-learning" ? "open" : ""}`}
+                    onClick={() => setMobileNavExpanded((v) => (v === "my-learning" ? "" : "my-learning"))}
+                    aria-expanded={mobileNavExpanded === "my-learning"}
+                  >
+                    <span className="nu-mobile-link-left">
+                      <BookOpen size={17} color="#A137F2" />
+                      <span>My Learning</span>
+                    </span>
+                    <span className="nu-mega-item-right">
+                      {enrollments.length > 0 && <span className="nu-mega-count">{enrollments.length}</span>}
+                      <ChevronDown size={15} style={{ transform: mobileNavExpanded === "my-learning" ? "rotate(180deg)" : "none", transition: "transform 0.15s" }} />
+                    </span>
+                  </button>
+                  {mobileNavExpanded === "my-learning" && (
+                    <div className="nu-mobile-sublist">
+                      <Link to="/my-learning" className="nu-mobile-sublink" onClick={() => setMobileOpen(false)}>My Learning Dashboard</Link>
+                      <Link to="/nclex-rn" className="nu-mobile-sublink" onClick={() => setMobileOpen(false)}>NCLEX-RN 16-Unit Academy</Link>
+                      <Link to="/templates" className="nu-mobile-sublink" onClick={() => setMobileOpen(false)}>Printable OSCE &amp; Ward PDFs</Link>
+                      <Link to="/clinical-tools" className="nu-mobile-sublink" onClick={() => setMobileOpen(false)}>Dosage &amp; Clinical Tools</Link>
+                    </div>
+                  )}
+                </div>
                 {user?.isAdmin && (
                   <Link to="/nodadmin" className="nu-mobile-link" style={{ color: "var(--nu-purple)", fontWeight: 700 }} onClick={() => setMobileOpen(false)}>
                     <span className="nu-mobile-link-left">
@@ -1042,29 +1069,83 @@ export default function Navbar() {
                     <GraduationCap size={17} />
                     <span>All Course Units</span>
                   </span>
-                  <span className="nu-mega-count">{courses.length || 83}</span>
+                  <span className="nu-mega-count">{courses.length || 85}</span>
                 </Link>
-                <Link to="/topics" className="nu-mobile-link" onClick={() => setMobileOpen(false)}>
-                  <span className="nu-mobile-link-left">
-                    <FileText size={17} color="#0F2942" />
-                    <span>Nurse Topics &amp; Notes</span>
-                  </span>
-                  <span className="nu-mega-count">779</span>
-                </Link>
-                <Link to="/ebooks" className="nu-mobile-link" onClick={() => setMobileOpen(false)}>
-                  <span className="nu-mobile-link-left">
-                    <BookOpen size={17} color="#065F46" />
-                    <span>Free Referenced eBooks</span>
-                  </span>
-                  <span className="nu-mega-count">8</span>
-                </Link>
-                <Link to="/mock-exams" className="nu-mobile-link" onClick={() => setMobileOpen(false)}>
-                  <span className="nu-mobile-link-left">
-                    <Award size={17} />
-                    <span>UNMEB Mock Exams</span>
-                  </span>
-                  <ChevronRight size={16} />
-                </Link>
+                <div className="nu-mobile-prog-group">
+                  <button
+                    type="button"
+                    className={`nu-mobile-link nu-mobile-prog-btn ${mobileNavExpanded === "topics" ? "open" : ""}`}
+                    onClick={() => setMobileNavExpanded((v) => (v === "topics" ? "" : "topics"))}
+                    aria-expanded={mobileNavExpanded === "topics"}
+                  >
+                    <span className="nu-mobile-link-left">
+                      <FileText size={17} color="#0F2942" />
+                      <span>Nurse Topics</span>
+                    </span>
+                    <span className="nu-mega-item-right">
+                      <span className="nu-mega-count">779</span>
+                      <ChevronDown size={15} style={{ transform: mobileNavExpanded === "topics" ? "rotate(180deg)" : "none", transition: "transform 0.15s" }} />
+                    </span>
+                  </button>
+                  {mobileNavExpanded === "topics" && (
+                    <div className="nu-mobile-sublist">
+                      {STATIC_HUB_ITEMS.topics.slice(0, 6).map((item) => (
+                        <Link key={item.label} to={item.to} className="nu-mobile-sublink" onClick={() => setMobileOpen(false)}>
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <div className="nu-mobile-prog-group">
+                  <button
+                    type="button"
+                    className={`nu-mobile-link nu-mobile-prog-btn ${mobileNavExpanded === "ebooks" ? "open" : ""}`}
+                    onClick={() => setMobileNavExpanded((v) => (v === "ebooks" ? "" : "ebooks"))}
+                    aria-expanded={mobileNavExpanded === "ebooks"}
+                  >
+                    <span className="nu-mobile-link-left">
+                      <BookOpen size={17} color="#065F46" />
+                      <span>Free eBooks</span>
+                    </span>
+                    <span className="nu-mega-item-right">
+                      <span className="nu-mega-count">87</span>
+                      <ChevronDown size={15} style={{ transform: mobileNavExpanded === "ebooks" ? "rotate(180deg)" : "none", transition: "transform 0.15s" }} />
+                    </span>
+                  </button>
+                  {mobileNavExpanded === "ebooks" && (
+                    <div className="nu-mobile-sublist">
+                      <Link to="/ebooks" className="nu-mobile-sublink" onClick={() => setMobileOpen(false)}>Browse All Free Books</Link>
+                      <Link to="/ebooks/book-instant-clinical-pharmacology" className="nu-mobile-sublink" onClick={() => setMobileOpen(false)}>Instant Clinical Pharmacology</Link>
+                      <Link to="/ebooks?cat=Midwifery+%26+Maternal+Health" className="nu-mobile-sublink" onClick={() => setMobileOpen(false)}>Midwifery &amp; Obstetrics Books</Link>
+                      <Link to="/ebooks?cat=Medical-Surgical+Nursing" className="nu-mobile-sublink" onClick={() => setMobileOpen(false)}>Medical-Surgical Nursing Books</Link>
+                    </div>
+                  )}
+                </div>
+                <div className="nu-mobile-prog-group">
+                  <button
+                    type="button"
+                    className={`nu-mobile-link nu-mobile-prog-btn ${mobileNavExpanded === "mock-exams" ? "open" : ""}`}
+                    onClick={() => setMobileNavExpanded((v) => (v === "mock-exams" ? "" : "mock-exams"))}
+                    aria-expanded={mobileNavExpanded === "mock-exams"}
+                  >
+                    <span className="nu-mobile-link-left">
+                      <Award size={17} />
+                      <span>Mock Exams</span>
+                    </span>
+                    <span className="nu-mega-item-right">
+                      <span className="nu-mega-count">109</span>
+                      <ChevronDown size={15} style={{ transform: mobileNavExpanded === "mock-exams" ? "rotate(180deg)" : "none", transition: "transform 0.15s" }} />
+                    </span>
+                  </button>
+                  {mobileNavExpanded === "mock-exams" && (
+                    <div className="nu-mobile-sublist">
+                      <Link to="/mock-exams" className="nu-mobile-sublink" onClick={() => setMobileOpen(false)}>UNMEB Mock Exams (109 Papers)</Link>
+                      <Link to="/nclex-rn/exams" className="nu-mobile-sublink" onClick={() => setMobileOpen(false)}>NextGen NCLEX-RN Mock Suite</Link>
+                      <Link to="/quizzes" className="nu-mobile-sublink" onClick={() => setMobileOpen(false)}>Free Topic Quizzes (270 Qs)</Link>
+                    </div>
+                  )}
+                </div>
                 <Link to="/cart" className="nu-mobile-link" onClick={() => setMobileOpen(false)}>
                   <span className="nu-mobile-link-left">
                     <ShoppingCart size={17} />
@@ -1108,8 +1189,7 @@ export default function Navbar() {
                               className="nu-mobile-sublink"
                               onClick={() => setMobileOpen(false)}
                             >
-                              {c.code ? <strong>{c.code} · </strong> : null}
-                              {c.title}
+                              {cleanCourseTitle(c.title)}
                             </Link>
                           ))}
                           <Link

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { ArrowLeft, BookOpen, Download, ShieldCheck } from "lucide-react";
+import { ArrowLeft, BookOpen, ChevronLeft, ChevronRight, Download, List, ShieldCheck } from "lucide-react";
 import AdSlot from "../components/AdSlot";
 import EbookCover from "../components/EbookCover";
 import NursingLoader from "../components/NursingLoader";
@@ -15,27 +15,62 @@ export default function EbookReaderPage() {
   const { slug } = useParams();
   const [ebook, setEbook] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [activeChapterNum, setActiveChapterNum] = useState(1);
+  const [viewAllChapters, setViewAllChapters] = useState(false);
   const [email, setEmail] = useState("");
   const [themePreset, setThemePreset] = useState("");
   const [downloadedMsg, setDownloadedMsg] = useState("");
 
   useEffect(() => {
+    let cancelled = false;
     setLoading(true);
+    setActiveChapterNum(1);
+    setViewAllChapters(false);
+
     fetch("/assets/data/ebooks.json")
       .then((r) => r.json())
-      .then((d) => {
+      .then(async (d) => {
         const found = (d.ebooks || []).find((e) => e.slug === slug);
-        setEbook(found || null);
-        if (found?.title) {
+        if (!found) {
+          if (!cancelled) setEbook(null);
+          return;
+        }
+
+        let merged = found;
+        if (found.hasFullBookData) {
+          try {
+            const fullRes = await fetch(`/assets/data/books/${found.slug}.json`);
+            if (fullRes.ok) {
+              const fullBook = await fullRes.json();
+              merged = {
+                ...found,
+                ...fullBook,
+                chapters: Array.isArray(fullBook.chapters) && fullBook.chapters.length ? fullBook.chapters : found.chapters,
+                references: Array.isArray(fullBook.references) && fullBook.references.length ? fullBook.references : found.references,
+                figures: Array.isArray(fullBook.figures) ? fullBook.figures : found.figures
+              };
+            }
+          } catch {
+            // Fall back cleanly to summary record in ebooks.json
+          }
+        }
+
+        if (cancelled) return;
+        setEbook(merged);
+        if (merged?.chapters?.length) {
+          setActiveChapterNum(merged.chapters[0].chapterNumber || 1);
+        }
+
+        if (merged?.title) {
           setPageSeo({
-            title: `${found.title} (Free PDF Study eBook) | Nursing Uganda`,
-            description: found.subtitle || `Free printable PDF study guide on ${found.title} citing MoH Uganda and WHO references.`,
-            canonicalPath: `/ebooks/${found.slug}`,
+            title: `${merged.title} (Free Study Textbook) | Nursing Uganda`,
+            description: merged.subtitle || `Free structured study textbook on ${merged.title} with full chapters and references.`,
+            canonicalPath: `/ebooks/${merged.slug}`,
             type: "book",
             schema: {
               "@type": "Book",
-              name: found.title,
-              description: found.subtitle,
+              name: merged.title,
+              description: merged.subtitle,
               bookFormat: "https://schema.org/EBook",
               inLanguage: "en-UG",
               publisher: { "@type": "Organization", name: "Nursing Uganda" }
@@ -43,7 +78,13 @@ export default function EbookReaderPage() {
           });
         }
       })
-      .finally(() => setLoading(false));
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
   }, [slug]);
 
   const handleDownloadPdf = async (e) => {
@@ -141,98 +182,264 @@ export default function EbookReaderPage() {
       </section>
 
       <section className="nu-section nu-ebook-print-sheet">
-        <div className="nu-container" style={{ maxWidth: 920 }}>
-          {/* Print Header */}
-          <div style={{ borderBottom: "2px solid var(--nu-ink)", paddingBottom: 16, marginBottom: 24 }}>
-            <div style={{ fontSize: "0.8rem", fontWeight: 700, color: "var(--nu-purple)", textTransform: "uppercase", letterSpacing: "0.06em" }}>
-              Nursing Uganda Free Referenced Study Guide
-            </div>
-            <h2 style={{ fontFamily: "var(--nu-font-serif)", fontSize: "1.8rem", margin: "6px 0" }}>{ebook.title}</h2>
-            <p style={{ margin: 0, color: "var(--nu-ink-muted)" }}>{ebook.subtitle}</p>
-          </div>
+        <div className="nu-container" style={{ maxWidth: 1180 }}>
+          {(() => {
+            const allChapters = ebook.chapters || [];
+            const isStructuredBook = Boolean(ebook.importedFromInfoBooks || ebook.hasFullBookData);
+            const currentIdx = Math.max(0, allChapters.findIndex((c) => c.chapterNumber === activeChapterNum));
+            const currentChapter = allChapters[currentIdx] || allChapters[0];
+            const visibleChapters = viewAllChapters || allChapters.length <= 1 ? allChapters : currentChapter ? [currentChapter] : [];
+            const prevChapter = currentIdx > 0 ? allChapters[currentIdx - 1] : null;
+            const nextChapter = currentIdx < allChapters.length - 1 ? allChapters[currentIdx + 1] : null;
 
-          {/* Table of Contents */}
-          <div style={{ background: "var(--nu-bg-subtle)", border: "1px solid var(--nu-border)", padding: 20, marginBottom: 28 }}>
-            <h3 style={{ margin: "0 0 10px" }}>Table of Contents</h3>
-            <ol style={{ margin: 0, paddingLeft: 20, display: "grid", gap: 6 }}>
-              {(ebook.chapters || []).map((ch) => (
-                <li key={ch.slug}>
-                  <a href={`#ch-${ch.chapterNumber}`} style={{ color: "var(--nu-purple)", fontWeight: 600 }}>
-                    {ch.title}
-                  </a>{" "}
-                  <span style={{ color: "var(--nu-ink-muted)", fontSize: "0.82rem" }}>({ch.wordCount || 250} words)</span>
-                </li>
-              ))}
-              {(ebook.references || []).length > 0 && (
-                <li>
-                  <a href="#ebook-bibliography" style={{ color: "var(--nu-purple)", fontWeight: 600 }}>
-                    Master References &amp; Clinical Bibliography ({(ebook.references || []).length} sources)
-                  </a>
-                </li>
-              )}
-            </ol>
-          </div>
+            const selectChapter = (num, secIdx = null) => {
+              setActiveChapterNum(num);
+              if (secIdx !== null) {
+                setTimeout(() => {
+                  const target = document.getElementById(`ch-${num}-sec-${secIdx}`);
+                  if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+                }, 40);
+              } else {
+                const bodyTop = document.getElementById("ebook-reader-top");
+                if (bodyTop) bodyTop.scrollIntoView({ behavior: "smooth", block: "start" });
+              }
+            };
 
-          <AdSlot slot="ebook-reader-top" />
+            return (
+              <div
+                className="nu-notes-two-col"
+                style={{ display: "grid", gridTemplateColumns: "300px minmax(0, 1fr)", gap: 28, alignItems: "start" }}
+              >
+                {/* Sticky Side Table of Contents (All Chapters + Active Chapter Sections) */}
+                <aside
+                  className="nu-no-print"
+                  style={{
+                    position: "sticky",
+                    top: 78,
+                    maxHeight: "calc(100vh - 96px)",
+                    background: "#ffffff",
+                    border: "1px solid var(--nu-border)",
+                    borderRadius: 10,
+                    display: "flex",
+                    flexDirection: "column",
+                    overflow: "hidden"
+                  }}
+                >
+                  <div style={{ padding: "14px 16px", borderBottom: "1px solid var(--nu-border-light)", background: "#faf5ff" }}>
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
+                      <span style={{ display: "inline-flex", alignItems: "center", gap: 6, fontWeight: 800, fontSize: "0.9rem", color: "var(--nu-ink)" }}>
+                        <List size={16} color="var(--nu-purple)" /> Table of Contents
+                      </span>
+                      {allChapters.length > 1 && (
+                        <button
+                          type="button"
+                          onClick={() => setViewAllChapters((v) => !v)}
+                          style={{
+                            border: "1px solid var(--nu-border)",
+                            background: viewAllChapters ? "var(--nu-purple)" : "#ffffff",
+                            color: viewAllChapters ? "#ffffff" : "var(--nu-ink)",
+                            fontSize: "0.72rem",
+                            fontWeight: 700,
+                            padding: "3px 8px",
+                            borderRadius: 999,
+                            cursor: "pointer"
+                          }}
+                        >
+                          {viewAllChapters ? "Single Ch." : "View All"}
+                        </button>
+                      )}
+                    </div>
+                    <div style={{ fontSize: "0.76rem", color: "var(--nu-ink-muted)", marginTop: 4 }}>
+                      {allChapters.length} chapters · {(ebook.totalWords || 0).toLocaleString()} words
+                    </div>
+                  </div>
 
-          {/* Attributed Clinical Figures from Reference Book */}
-          {Array.isArray(ebook.figures) && ebook.figures.length > 0 && (
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 14, marginBottom: 28 }}>
-              {ebook.figures.map((fig) => (
-                <figure key={fig.src} style={{ margin: 0, background: "#ffffff", border: "1px solid #e2e8f0", borderRadius: 8, overflow: "hidden", padding: 10 }}>
-                  <img src={fig.src} alt={fig.caption} loading="lazy" style={{ width: "100%", height: 180, objectFit: "contain", display: "block" }} />
-                  <figcaption style={{ marginTop: 8, fontSize: "0.78rem", color: "#475569", textAlign: "center" }}>{fig.caption}</figcaption>
-                </figure>
-              ))}
-            </div>
-          )}
+                  <nav aria-label="Book chapters and sections" style={{ overflowY: "auto", padding: "8px 6px", flex: 1 }}>
+                    {allChapters.map((ch) => {
+                      const isActive = !viewAllChapters && currentChapter?.chapterNumber === ch.chapterNumber;
+                      const secList = ch.sections || [];
+                      return (
+                        <div key={ch.slug || ch.chapterNumber} style={{ marginBottom: 4 }}>
+                          <button
+                            type="button"
+                            className={`nu-ebook-toc-item ${isActive ? "is-active" : ""}`}
+                            onClick={() => {
+                              if (viewAllChapters) {
+                                const el = document.getElementById(`ch-${ch.chapterNumber}`);
+                                if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+                              } else {
+                                selectChapter(ch.chapterNumber);
+                              }
+                            }}
+                          >
+                            <div style={{ fontSize: "0.7rem", fontWeight: 700, color: "var(--nu-purple)", textTransform: "uppercase", letterSpacing: "0.04em" }}>
+                              Chapter {ch.chapterNumber}{ch.pageRange ? ` · ${ch.pageRange}` : ""}
+                            </div>
+                            <div style={{ fontSize: "0.83rem", fontWeight: isActive ? 700 : 600, lineHeight: 1.35, marginTop: 2 }}>
+                              {ch.title}
+                            </div>
+                          </button>
 
-          {/* Chapters */}
-          {(ebook.chapters || []).map((ch) => (
-            <article key={ch.slug} id={`ch-${ch.chapterNumber}`} style={{ marginBottom: 42 }}>
-              <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "var(--nu-purple)", textTransform: "uppercase" }}>
-                Chapter {ch.chapterNumber}
+                          {(isActive || viewAllChapters) && secList.length > 0 && (
+                            <ul style={{ listStyle: "none", margin: "4px 0 6px 14px", paddingLeft: 10, borderLeft: "1px solid var(--nu-border-light)", display: "grid", gap: 3 }}>
+                              {secList.map((sec, sIdx) => (
+                                <li key={sIdx}>
+                                  <a
+                                    href={`#ch-${ch.chapterNumber}-sec-${sIdx}`}
+                                    onClick={(e) => {
+                                      e.preventDefault();
+                                      if (!viewAllChapters) {
+                                        selectChapter(ch.chapterNumber, sIdx);
+                                      } else {
+                                        const el = document.getElementById(`ch-${ch.chapterNumber}-sec-${sIdx}`);
+                                        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+                                      }
+                                    }}
+                                    style={{ display: "block", fontSize: "0.76rem", color: "var(--nu-ink-muted)", padding: "3px 6px", borderRadius: 4, textDecoration: "none", lineHeight: 1.3 }}
+                                  >
+                                    {sec.title}
+                                  </a>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
+                      );
+                    })}
+
+                    {(ebook.references || []).length > 0 && (
+                      <a
+                        href="#ebook-bibliography"
+                        style={{
+                          display: "block",
+                          margin: "8px 6px 4px",
+                          padding: "8px 10px",
+                          borderTop: "1px solid var(--nu-border-light)",
+                          fontSize: "0.8rem",
+                          fontWeight: 700,
+                          color: "var(--nu-purple)"
+                        }}
+                      >
+                        Master References ({(ebook.references || []).length})
+                      </a>
+                    )}
+                  </nav>
+                </aside>
+
+                {/* Main Book Content Column */}
+                <div id="ebook-reader-top" style={{ minWidth: 0 }}>
+                  <div style={{ borderBottom: "2px solid var(--nu-ink)", paddingBottom: 16, marginBottom: 22 }}>
+                    <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "var(--nu-purple)", textTransform: "uppercase", letterSpacing: "0.06em" }}>
+                      {ebook.category || "Nursing Study Textbook"}
+                    </div>
+                    <h2 style={{ fontFamily: "var(--nu-font-serif)", fontSize: "1.85rem", margin: "6px 0" }}>{ebook.title}</h2>
+                    <p style={{ margin: 0, color: "var(--nu-ink-muted)" }}>{ebook.subtitle}</p>
+                  </div>
+
+                  <AdSlot slot="ebook-reader-top" />
+
+                  {/* Attributed Figures from Book (if any) */}
+                  {Array.isArray(ebook.figures) && ebook.figures.length > 0 && (
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 14, marginBottom: 28 }}>
+                      {ebook.figures.map((fig) => (
+                        <figure key={fig.src} style={{ margin: 0, background: "#ffffff", border: "1px solid #e2e8f0", borderRadius: 8, overflow: "hidden", padding: 10 }}>
+                          <img src={fig.src} alt={fig.caption} loading="lazy" style={{ width: "100%", height: 180, objectFit: "contain", display: "block" }} />
+                          <figcaption style={{ marginTop: 8, fontSize: "0.78rem", color: "#475569", textAlign: "center" }}>{fig.caption}</figcaption>
+                        </figure>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Chapters — Clean Narrative Content (No auto-injected tables for full textbooks) */}
+                  {visibleChapters.map((ch) => (
+                    <article key={ch.slug || ch.chapterNumber} id={`ch-${ch.chapterNumber}`} style={{ marginBottom: 40 }}>
+                      <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 10, fontSize: "0.78rem", fontWeight: 700, color: "var(--nu-purple)", textTransform: "uppercase" }}>
+                        <span>Chapter {ch.chapterNumber} of {allChapters.length}</span>
+                        {ch.pageRange && <span style={{ color: "var(--nu-ink-muted)" }}>· {ch.pageRange}</span>}
+                        {ch.wordCount > 0 && <span style={{ color: "var(--nu-ink-muted)" }}>· ~{ch.wordCount.toLocaleString()} words</span>}
+                      </div>
+                      <h2 style={{ fontFamily: "var(--nu-font-serif)", fontSize: "1.65rem", margin: "6px 0 12px" }}>
+                        {ch.title}
+                      </h2>
+
+                      {!isStructuredBook && <TopicVisuals lesson={ch} topicTitle={ch.title} />}
+                      <LessonSections
+                        sections={ch.sections || []}
+                        lesson={ch}
+                        topicTitle={ch.title}
+                        headingTag="h3"
+                        disableInlineFigures={isStructuredBook}
+                        idPrefix={`ch-${ch.chapterNumber}-sec-`}
+                      />
+
+                      {Array.isArray(ch.chapterReferences) && ch.chapterReferences.length > 0 && (
+                        <ReferencesBox
+                          references={ch.chapterReferences}
+                          heading={`Chapter ${ch.chapterNumber} Sources`}
+                        />
+                      )}
+                    </article>
+                  ))}
+
+                  {/* Prev / Next Chapter Bar */}
+                  {!viewAllChapters && allChapters.length > 1 && (
+                    <div
+                      className="nu-no-print"
+                      style={{
+                        display: "flex",
+                        flexWrap: "wrap",
+                        justifyContent: "space-between",
+                        gap: 12,
+                        padding: "16px 0 28px",
+                        borderTop: "1px solid var(--nu-border-light)"
+                      }}
+                    >
+                      {prevChapter ? (
+                        <button
+                          type="button"
+                          className="nu-btn nu-btn-outline"
+                          onClick={() => selectChapter(prevChapter.chapterNumber)}
+                        >
+                          <ChevronLeft size={16} /> Ch. {prevChapter.chapterNumber}: {prevChapter.title}
+                        </button>
+                      ) : <span />}
+                      {nextChapter && (
+                        <button
+                          type="button"
+                          className="nu-btn nu-btn-primary"
+                          onClick={() => selectChapter(nextChapter.chapterNumber)}
+                        >
+                          Ch. {nextChapter.chapterNumber}: {nextChapter.title} <ChevronRight size={16} />
+                        </button>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Master Bibliography */}
+                  {(ebook.references || []).length > 0 && (
+                    <div id="ebook-bibliography">
+                      <ReferencesBox
+                        references={ebook.references}
+                        heading="Master Book & Guideline Bibliography"
+                      />
+                    </div>
+                  )}
+
+                  <div className="nu-no-print" style={{ marginTop: 32, padding: 24, background: "var(--nu-ink)", color: "#fff", display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: 16, borderRadius: 10 }}>
+                    <div>
+                      <h3 style={{ margin: "0 0 4px" }}>Ready to test yourself on this subject?</h3>
+                      <p style={{ margin: 0, color: "#cbd5e1", fontSize: "0.9rem" }}>
+                        Practice with timed mock exams and explore related study topics.
+                      </p>
+                    </div>
+                    <Link to="/mock-exams" className="nu-btn nu-btn-primary">
+                      <Download size={16} /> Try Mock Exams
+                    </Link>
+                  </div>
+                </div>
               </div>
-              <h2 style={{ fontFamily: "var(--nu-font-serif)", fontSize: "1.55rem", margin: "4px 0 10px" }}>
-                {ch.title}
-              </h2>
-              {ch.excerpt && (
-                <p style={{ fontSize: "1rem", color: "var(--nu-ink-muted)", fontStyle: "italic" }}>{ch.excerpt}</p>
-              )}
-
-              <TopicVisuals lesson={ch} topicTitle={ch.title} />
-              <LessonSections sections={ch.sections || []} lesson={ch} topicTitle={ch.title} headingTag="h3" />
-
-              {Array.isArray(ch.chapterReferences) && ch.chapterReferences.length > 0 && (
-                <ReferencesBox
-                  references={ch.chapterReferences}
-                  heading={`Chapter ${ch.chapterNumber} Sources`}
-                />
-              )}
-            </article>
-          ))}
-
-          {/* Master Bibliography */}
-          {(ebook.references || []).length > 0 && (
-            <div id="ebook-bibliography">
-              <ReferencesBox
-                references={ebook.references}
-                heading="Master Book & Guideline Bibliography"
-              />
-            </div>
-          )}
-
-          <div className="nu-no-print" style={{ marginTop: 32, padding: 24, background: "var(--nu-ink)", color: "#fff", display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: 16 }}>
-            <div>
-              <h3 style={{ margin: "0 0 4px" }}>Ready to test yourself on this topic?</h3>
-              <p style={{ margin: 0, color: "#cbd5e1", fontSize: "0.9rem" }}>
-                Practice with timed UNMEB mock exams and unlock full course units.
-              </p>
-            </div>
-            <Link to="/mock-exams" className="nu-btn nu-btn-primary">
-              <Download size={16} /> Try UNMEB Mock Exams
-            </Link>
-          </div>
+            );
+          })()}
         </div>
       </section>
     </main>

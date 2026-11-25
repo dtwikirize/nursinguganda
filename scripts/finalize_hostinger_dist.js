@@ -60,6 +60,7 @@ for (const f of dataFiles) {
   copyFileSafe(path.join("assets", "data", f));
 }
 copyDirSafe(path.join("assets", "data", "courses"));
+copyDirSafe(path.join("assets", "data", "books"));
 
 // 2. Clean stale dist/assets/images then copy current WebP/SVG assets
 fs.rmSync(path.join(DIST, "assets", "images"), { recursive: true, force: true });

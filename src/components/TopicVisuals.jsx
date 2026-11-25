@@ -780,7 +780,7 @@ function hashVariant(str, mod) {
 const TABLE_THEMES = ["minimal", "minimal", "neutral", "minimal", "neutral", "navy", "minimal", "purple"]; // Calm monochrome/neutral by default; color accents sparingly
 const HEAD_THEMES = ["light", "light", "slate-light", "light", "navy", "slate"]; // Calm paper headers by default, occasional dark anchor headers
 
-export function LessonSections({ sections = [], lesson = null, topicTitle = "", headingTag = "h2", disableInlineFigures = false }) {
+export function LessonSections({ sections = [], lesson = null, topicTitle = "", headingTag = "h2", disableInlineFigures = false, idPrefix = "lesson-sec-" }) {
   const Heading = headingTag;
   const usedSrcs = new Set(
     (lesson?.images || []).map((img) => String(img || "").split("?")[0]).filter(Boolean)
@@ -812,7 +812,7 @@ export function LessonSections({ sections = [], lesson = null, topicTitle = "", 
         }
 
         return (
-          <section key={sIdx} id={`lesson-sec-${sIdx}`} className="nu-note-page-card">
+          <section key={sIdx} id={`${idPrefix}${sIdx}`} className="nu-note-page-card">
             <div className={`nu-note-page-head nu-head--${headTone}`}>
               <Heading className="nu-note-section-title">{cleanHeading}</Heading>
             </div>
