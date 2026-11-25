@@ -64,6 +64,7 @@ copyDirSafe(path.join("assets", "data", "courses"));
 // 2. Clean stale dist/assets/images then copy current WebP/SVG assets
 fs.rmSync(path.join(DIST, "assets", "images"), { recursive: true, force: true });
 copyDirSafe(path.join("assets", "images", "brand"));
+copyDirSafe(path.join("assets", "images", "book-figures"));
 copyDirSafe(path.join("assets", "images", "medical-illustrations"));
 copyDirSafe(path.join("assets", "images", "udemy"));
 copyDirSafe(path.join("assets", "images", "pwa"));

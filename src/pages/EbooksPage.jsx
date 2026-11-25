@@ -18,10 +18,13 @@ export default function EbooksPage() {
       .finally(() => setLoading(false));
   }, []);
 
-  const categories = useMemo(
-    () => ["All", ...new Set(ebooks.map((e) => e.category))],
-    [ebooks]
-  );
+  const categories = useMemo(() => {
+    const counts = new Map();
+    for (const e of ebooks) {
+      counts.set(e.category, (counts.get(e.category) || 0) + 1);
+    }
+    return [{ name: "All", count: ebooks.length }, ...Array.from(counts.entries()).map(([name, count]) => ({ name, count }))];
+  }, [ebooks]);
 
   const filtered = useMemo(() => {
     const query = q.trim().toLowerCase();
@@ -36,10 +39,10 @@ export default function EbooksPage() {
     <main>
       <section className="nu-cl-hero">
         <div className="nu-container">
-          <span className="nu-badge nu-badge-free" style={{ marginBottom: 12 }}>100% Free Study Guides</span>
-          <h1>Free Referenced Nursing &amp; Midwifery eBooks</h1>
+          <span className="nu-badge nu-badge-free" style={{ marginBottom: 12 }}>100% Free Reference Library ({ebooks.length} Books)</span>
+          <h1>Free Referenced Nursing &amp; Medical eBooks</h1>
           <p className="nu-cl-subtitle" style={{ maxWidth: 740 }}>
-            High-yield revision eBooks compiled from the official Ugandan syllabus and backed by WHO, Ministry of Health Uganda Clinical Guidelines, Open RN, and standard nursing textbooks. Read online or save as a clean PDF.
+            High-yield revision eBooks, open clinical textbooks, and WHO/MSF guidelines organized by specialty. All books are 100% free to read online or print to PDF — zero books are sold.
           </p>
         </div>
       </section>
@@ -61,13 +64,13 @@ export default function EbooksPage() {
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
               {categories.map((cat) => (
                 <button
-                  key={cat}
+                  key={cat.name}
                   type="button"
-                  onClick={() => setCategory(cat)}
-                  className={`nu-btn ${category === cat ? "nu-btn-dark" : "nu-btn-outline"}`}
+                  onClick={() => setCategory(cat.name)}
+                  className={`nu-btn ${category === cat.name ? "nu-btn-dark" : "nu-btn-outline"}`}
                   style={{ height: 38, fontSize: "0.82rem" }}
                 >
-                  {cat}
+                  {cat.name} ({cat.count})
                 </button>
               ))}
             </div>

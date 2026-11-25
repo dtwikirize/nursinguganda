@@ -168,7 +168,7 @@ export default function Footer() {
               <ul>
                 <li><Link to="/mock-exams">109 UNMEB &amp; UHPAB Papers</Link></li>
                 <li><Link to="/quizzes">Free Mixed Topic Quizzes (270 Qs)</Link></li>
-                <li><Link to="/ebooks">8 Free Referenced eBooks (.pdf)</Link></li>
+                <li><Link to="/ebooks">87 Free Referenced eBooks (.pdf)</Link></li>
                 <li><Link to="/dictionary">A–Z Medical Dictionary (1,079)</Link></li>
                 <li><Link to="/dictionary?tab=abbreviations">183 Ward Abbreviations</Link></li>
                 <li><Link to="/instruments">Medical Instrument Atlas (146)</Link></li>

@@ -748,7 +748,7 @@ export default function Navbar() {
                     <div style={{ display: "flex", gap: 6, flexWrap: "wrap", alignItems: "center" }}>
                       <Link to="/courses" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>All 83 Courses</Link>
                       <Link to="/topics" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Nurse Topics (779)</Link>
-                      <Link to="/ebooks" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Free eBooks (8)</Link>
+                      <Link to="/ebooks" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Free eBooks (87)</Link>
                       <Link to="/mock-exams" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>UNMEB Papers (109)</Link>
                       <Link to="/quizzes" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Topic Quizzes (270 Qs)</Link>
                       <Link to="/dictionary" className="nu-mega-footer-chip" onClick={() => setMegaOpen(false)}>Dictionary (1,079)</Link>
