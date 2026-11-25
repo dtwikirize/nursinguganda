@@ -14,6 +14,38 @@ export default function EbookCover({ ebook, presetId = "", compact = false }) {
       : `/${ebook.coverImage}`
     : "/assets/images/medical-illustrations/cardiovascular.webp";
 
+  if (ebook.importedFromInfoBooks && ebook.coverImage?.includes("/book-covers/")) {
+    return (
+      <div
+        className={`nu-textbook-cover ${compact ? "is-compact" : ""}`}
+        style={{ background: "#0f172a", borderColor: "#cbd5e1", padding: 0, overflow: "hidden", position: "relative" }}
+      >
+        <img
+          src={coverThumb}
+          alt={ebook.title}
+          width="360"
+          height="480"
+          loading="lazy"
+          decoding="async"
+          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top center", display: "block" }}
+        />
+        <span
+          className="nu-textbook-badge"
+          style={{
+            position: "absolute",
+            bottom: 10,
+            right: 10,
+            background: "#09090B",
+            color: "#ffffff",
+            boxShadow: "0 2px 8px rgba(0,0,0,0.45)"
+          }}
+        >
+          FREE · {ebook.estimatedPages || 90} pp.
+        </span>
+      </div>
+    );
+  }
+
   return (
     <div
       className={`nu-textbook-cover ${compact ? "is-compact" : ""}`}
