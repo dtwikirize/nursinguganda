@@ -1667,9 +1667,13 @@ img {
   border: 1px solid var(--nu-border);
   border-radius: var(--nu-radius-sm);
   padding: 20px;
+  min-width: 0;
+  overflow: hidden;
 }
 .nu-admin-table-wrap {
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
 }
 .nu-admin-table {
   width: 100%;
@@ -3012,14 +3016,47 @@ img {
   }
 }
 
-@media (max-width: 540px) {
+@media (max-width: 640px) {
+  .nu-admin-nav-strip {
+    position: static;
+  }
+  .nu-admin-pill {
+    padding: 7px 12px;
+    font-size: 0.78rem;
+    flex-shrink: 0;
+  }
   .nu-admin-kpi-grid--compact {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .nu-admin-kpi-grid--compact .nu-admin-kpi {
+    padding: 10px 12px;
+  }
+  .nu-admin-kpi-grid--compact .nu-admin-kpi strong {
+    font-size: 1.18rem;
+  }
+  .nu-admin-card {
+    padding: 14px 12px;
+  }
+  .nu-admin-table th,
+  .nu-admin-table td {
+    padding: 7px 8px;
+    font-size: 0.78rem;
+  }
+  .nu-admin-iframe-preview {
+    height: 340px !important;
+  }
+  .nu-admin-actions-row {
+    width: 100%;
+  }
+  .nu-admin-actions-row button {
+    flex: 1 1 140px;
+    justify-content: center;
   }
   .nu-admin-trend-row {
-    grid-template-columns: 76px 1fr 68px;
-    font-size: 0.76rem;
-    gap: 8px;
+    grid-template-columns: 74px 1fr 64px;
+    font-size: 0.75rem;
+    gap: 6px;
   }
 }
 

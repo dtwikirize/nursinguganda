@@ -400,7 +400,7 @@ export default function AdminPage() {
                     {emailsData?.emailQuota?.monthlyToday || 0}/{emailsData?.emailQuota?.monthlyLimit || 25}
                   </small>
                 </div>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                <div className="nu-admin-actions-row" style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
                   <button type="button" onClick={handleSendRetention} disabled={loading} className="nu-btn nu-btn-dark" style={{ height: 34, fontSize: "0.8rem", padding: "0 12px" }}>
                     <Clock size={14} /> Run 10/20/30d Nudges
                   </button>
@@ -469,6 +469,7 @@ export default function AdminPage() {
                 ) : (
                   <iframe
                     title="Email Template Preview"
+                    className="nu-admin-iframe-preview"
                     srcDoc={previewData.html || "<p style='font-family:sans-serif;padding:16px;'>Select a template above.</p>"}
                     sandbox="allow-same-origin"
                     style={{ width: "100%", height: 500, border: "1px solid var(--nu-border)", borderRadius: 6, background: "#F1F5F9" }}
@@ -731,15 +732,15 @@ function AdminTableHeader({ title, filter, onFilter, total, showAll, onToggleSho
   return (
     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 10, marginBottom: 12 }}>
       <h3 style={{ margin: 0, fontSize: "1rem" }}>{title}</h3>
-      <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 6, border: "1px solid var(--nu-border)", borderRadius: 6, padding: "0 10px", height: 32, background: "#fff" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", flex: "1 1 200px", justifyContent: "flex-end" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 6, border: "1px solid var(--nu-border)", borderRadius: 6, padding: "0 10px", height: 34, background: "#fff", flex: "1 1 150px", maxWidth: 240 }}>
           <Search size={13} color="#64748b" />
           <input
             type="search"
             value={filter}
             onChange={(e) => onFilter(e.target.value)}
             placeholder="Filter rows..."
-            style={{ border: 0, outline: "none", width: 140, fontSize: "0.8rem" }}
+            style={{ border: 0, outline: "none", width: "100%", minWidth: 0, fontSize: "0.82rem" }}
           />
         </div>
         {total > DEFAULT_ROW_CAP && !filter && (
