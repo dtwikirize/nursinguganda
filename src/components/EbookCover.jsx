@@ -14,6 +14,49 @@ export default function EbookCover({ ebook, presetId = "", compact = false }) {
       : `/${ebook.coverImage}`
     : "/assets/images/udemy/cat-anatomy.webp";
 
+  if (ebook.importedFromInfoBooks && ebook.useEditorialCover) {
+    return (
+      <div
+        className={`nu-textbook-cover ${compact ? "is-compact" : ""}`}
+        style={{
+          background: `linear-gradient(155deg, ${theme.primaryHex} 0%, ${theme.primaryHex} 62%, #0f172a 100%)`,
+          borderColor: theme.accentHex
+        }}
+      >
+        <span
+          className="nu-textbook-spine"
+          style={{ background: "linear-gradient(90deg, rgba(255,255,255,0.22), rgba(0,0,0,0.34), transparent)" }}
+          aria-hidden="true"
+        />
+        <div className="nu-textbook-topbar" style={{ background: theme.accentHex }}>
+          <span>{ebook.category}</span>
+          <span>{ebook.updatedAt || "2026"}</span>
+        </div>
+        <div className="nu-textbook-body" style={{ justifyContent: "space-between" }}>
+          <div>
+            <div className="nu-textbook-kicker" style={{ color: "#e2e8f0" }}>
+              FREE CLINICAL REFERENCE
+            </div>
+            <h3 className="nu-textbook-title" style={{ fontSize: compact ? "1.02rem" : "1.14rem", WebkitLineClamp: 4 }}>
+              {ebook.title}
+            </h3>
+          </div>
+          {!compact && ebook.clinicalReviewer && (
+            <p className="nu-textbook-sub" style={{ marginTop: "auto" }}>
+              {ebook.clinicalReviewer}
+            </p>
+          )}
+        </div>
+        <div className="nu-textbook-foot">
+          <span>{(ebook.chapters || []).length || 5} Sections · ~{ebook.estimatedPages || 90} pp.</span>
+          <span className="nu-textbook-badge" style={{ background: theme.accentHex }}>
+            FREE BOOK
+          </span>
+        </div>
+      </div>
+    );
+  }
+
   if (ebook.importedFromInfoBooks && ebook.coverImage?.includes("/book-covers/")) {
     return (
       <div
