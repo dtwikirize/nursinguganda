@@ -1,6 +1,15 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { ArrowRight, CheckCircle2, Layers, ShoppingCart, X } from "lucide-react";
+import { useLocation, useNavigate } from "react-router-dom";
+import {
+  ArrowRight,
+  BookOpen,
+  CheckCircle2,
+  GraduationCap,
+  Layers,
+  ShoppingCart,
+  Sparkles,
+  X
+} from "lucide-react";
 import { formatUgxApprox, formatUsd, useApp } from "../context/AppContext";
 import { UNMEB_PASS_ITEM, getAllAccessCartItem, getProgrammeBundleItem } from "../utils/offers";
 
@@ -26,30 +35,51 @@ export default function ContextOfferPopup() {
     enrollments.length >= 1;
 
   const zone = useMemo(() => {
+    if (path.startsWith("/cart")) return "cart";
     if (path.startsWith("/learn/")) return "learn";
     if (path.startsWith("/course/")) return "course";
+    if (path.startsWith("/nclex-rn")) return "nclex";
     if (
-      path.startsWith("/mock-exams") ||
-      path.startsWith("/quizzes") ||
-      path.startsWith("/ebooks") ||
-      path.startsWith("/clinical-tools") ||
-      path.startsWith("/templates") ||
-      path.startsWith("/dictionary") ||
-      path.startsWith("/instruments")
+      path.startsWith("/global-nursing") ||
+      path.startsWith("/nursing-uk") ||
+      path.startsWith("/nursing-usa") ||
+      path.startsWith("/nursing-canada") ||
+      path.startsWith("/nursing-australia")
     ) {
-      return "exams";
+      return "global";
     }
-    if (path.startsWith("/cart")) return "cart";
-    return "browse";
+    if (path.startsWith("/ebooks")) return "books";
+    if (path.startsWith("/mock-exams") || path.startsWith("/quizzes")) return "exams";
+    if (path.startsWith("/topics") || path.startsWith("/dictionary") || path.startsWith("/clinical-tools") || path.startsWith("/templates")) {
+      return "topics";
+    }
+    return "home";
   }, [path]);
+
+  // Smart rotating spotlight modes: "nclex" | "books" | "offer" | "exams"
+  const availableModes = useMemo(() => {
+    const list = [];
+    if (zone === "cart") return ["offer"];
+    if (zone === "learn" || zone === "course") {
+      if (!hasAllAccess) list.push("offer");
+      list.push("nclex", "books");
+      return list;
+    }
+    if (zone === "global") return ["nclex", "books", ...(!hasAllAccess ? ["offer"] : [])];
+    if (zone === "books") return ["books", "nclex", ...(!hasAllAccess ? ["offer"] : [])];
+    if (zone === "topics") return ["books", "nclex", ...(!hasAllAccess ? ["offer"] : [])];
+    if (zone === "exams") return [...(!hasAllAccess ? ["offer"] : []), "nclex", "books"];
+    if (zone === "nclex") return ["nclex", "books"];
+    // Home page rotates across NCLEX-RN, New Books, and All-Access 50% Cut
+    return ["nclex", "books", ...(!hasAllAccess ? ["offer"] : [])];
+  }, [zone, hasAllAccess]);
+
+  const [modeIdx, setModeIdx] = useState(0);
+  const activeMode = availableModes[modeIdx % availableModes.length] || "nclex";
 
   const activeCourse = useMemo(() => {
     const courses = catalog?.courses || [];
-    if (path.startsWith("/learn/")) {
-      const slug = path.split("/")[2] || "";
-      return courses.find((c) => c.slug === slug) || null;
-    }
-    if (path.startsWith("/course/")) {
+    if (path.startsWith("/learn/") || path.startsWith("/course/")) {
       const slug = path.split("/")[2] || "";
       return courses.find((c) => c.slug === slug) || null;
     }
@@ -63,34 +93,32 @@ export default function ContextOfferPopup() {
   }, [activeCourse, catalog]);
 
   const [open, setOpen] = useState(false);
-  const [dismissed, setDismissed] = useState(false);
 
   useEffect(() => {
+    setModeIdx(0);
     setOpen(false);
-    if (isHiddenRoute || hasAllAccess) return;
+    if (isHiddenRoute) return;
     if (zone === "cart" && cart.length === 0) return;
 
     let alreadyClosed = false;
     try {
-      alreadyClosed = sessionStorage.getItem(`nu_offer_closed_${zone}`) === "1";
+      alreadyClosed = sessionStorage.getItem(`nu_popup_closed_${zone}`) === "1";
     } catch {}
-    setDismissed(alreadyClosed);
     if (alreadyClosed) return;
 
-    const delayMs = zone === "cart" ? 1800 : zone === "learn" || zone === "course" ? 4200 : 5200;
+    const delayMs = zone === "cart" ? 1800 : zone === "learn" || zone === "course" ? 4200 : 4800;
     const timer = setTimeout(() => setOpen(true), delayMs);
     return () => clearTimeout(timer);
-  }, [zone, path, isHiddenRoute, hasAllAccess, cart.length]);
+  }, [zone, path, isHiddenRoute, cart.length]);
 
   const handleClose = () => {
     setOpen(false);
-    setDismissed(true);
     try {
-      sessionStorage.setItem(`nu_offer_closed_${zone}`, "1");
+      sessionStorage.setItem(`nu_popup_closed_${zone}`, "1");
     } catch {}
   };
 
-  if (isHiddenRoute || hasAllAccess) return null;
+  if (isHiddenRoute) return null;
   if (zone === "cart" && cart.length === 0) return null;
 
   const allAccessItem = getAllAccessCartItem(catalog?.courses || []);
@@ -102,75 +130,88 @@ export default function ContextOfferPopup() {
     navigate("/checkout");
   };
 
-  let kicker = "50% STUDENT PRICE CUT LIVE";
-  let headline = "Courses From $2.49 — Or Unlock Everything";
-  let body = "Every individual paid course is cut by 50% today. Or get the Full Platform All-Access Pass covering all 83 courses and 109+ UNMEB past papers.";
-  let primaryLabel = `Full All-Access · ${formatUsd(allAccessItem.priceUsd)}`;
-  let primaryCompare = `$${allAccessItem.compareAtUsd.toFixed(2)}`;
-  let primaryAction = () => buyNow(allAccessItem);
-  let secondaryLabel = "Browse 50% Off Courses";
-  let secondaryAction = () => {
-    setOpen(false);
-    navigate("/courses");
-  };
+  // Build popup card content by activeMode
+  let badgeIcon = <Sparkles size={14} />;
+  let fabText = "NCLEX-RN · New Books";
+  let kicker = "INTERNATIONAL LICENSING TRACK";
+  let headline = "NCLEX-RN Complete 16-Unit Academy ($99)";
+  let body = "Prepare for US, Canadian & Australian licensure with NGN 6-step Clinical Judgment lessons, High-Yield Pharmacology, and 4 adaptive CAT exams.";
+  let priceMeta = "$99.00 complete academy (was $249.00)";
+  let primaryLabel = "Open NCLEX-RN Academy";
+  let primaryAction = () => { setOpen(false); navigate("/nclex-rn"); };
+  let secondaryLabel = "Try CAT Mock Exams";
+  let secondaryAction = () => { setOpen(false); navigate("/nclex-rn/exams"); };
 
-  if (zone === "learn" && activeCourse) {
-    const unitEnrolled = isEnrolled(activeCourse.slug, activeCourse.isFree);
-    if (!activeCourse.isFree && !unitEnrolled) {
-      kicker = "STUDY PREVIEW · 50% OFF TODAY";
-      headline = `Unlock Full ${activeCourse.title}`;
-      body = `Get all ${activeCourse.lessonCount} clinical topics, quizzes & certificate at 50% OFF — or unlock every course sitewide.`;
-      primaryLabel = `Unlock Unit · ${formatUsd(activeCourse.priceUsd)}`;
-      primaryCompare = activeCourse.compareAtUsd > activeCourse.priceUsd ? `$${Number(activeCourse.compareAtUsd).toFixed(2)}` : "";
-      primaryAction = () => buyNow(activeCourse);
-      secondaryLabel = `All-Access (83 Units) · ${formatUsd(allAccessItem.priceUsd)}`;
-      secondaryAction = () => buyNow(allAccessItem);
-    } else {
-      kicker = "FULL REVISION UNLOCK";
-      headline = "Unlock All 85 Courses & 109 Past Papers";
-      body = "Step up to unlimited access across Certificate, Diploma & BScN units plus downloadable exam prep & certificates.";
-      primaryLabel = `Get All-Access · ${formatUsd(allAccessItem.priceUsd)}`;
-      primaryCompare = `$${allAccessItem.compareAtUsd.toFixed(2)}`;
-      primaryAction = () => buyNow(allAccessItem);
-      secondaryLabel = hasExamPass ? "Browse More Units" : `Past Papers Pass · ${formatUsd(UNMEB_PASS_ITEM.priceUsd)}`;
-      secondaryAction = hasExamPass
-        ? () => { setOpen(false); navigate("/courses"); }
-        : () => buyNow(UNMEB_PASS_ITEM);
-    }
-  } else if (zone === "course" && activeCourse) {
-    const unitEnrolled = isEnrolled(activeCourse.slug, activeCourse.isFree);
-    if (!activeCourse.isFree && !unitEnrolled) {
-      kicker = "50% UNIT CUT OR FULL ACCESS";
-      headline = `Choose Single Unit (50% Off) or Everything`;
-      body = `Enroll in ${activeCourse.title} for ${formatUsd(activeCourse.priceUsd)} (was $${Number(activeCourse.compareAtUsd || activeCourse.priceUsd * 2).toFixed(2)}), or unlock ALL 83 courses + 109 past papers.`;
-      primaryLabel = `Full All-Access · ${formatUsd(allAccessItem.priceUsd)}`;
-      primaryCompare = `$${allAccessItem.compareAtUsd.toFixed(2)}`;
-      primaryAction = () => buyNow(allAccessItem);
-      secondaryLabel = activeProgBundle
-        ? `${activeCourse.programmeLabel} Bundle · ${formatUsd(activeProgBundle.priceUsd)}`
-        : `Single Unit · ${formatUsd(activeCourse.priceUsd)}`;
-      secondaryAction = () => buyNow(activeProgBundle || activeCourse);
-    }
-  } else if (zone === "exams") {
-    kicker = "UNMEB EXAM PREP · 50% OFF";
-    headline = "Unlock All 109+ Past Papers & Full Courses";
-    body = "Practice timed UNMEB & UHPAB mock exams with complete marking guides, or unlock every study course & exam bank together.";
-    primaryLabel = !hasExamPass
-      ? `Unlock Past Papers · ${formatUsd(UNMEB_PASS_ITEM.priceUsd)}`
-      : `Full All-Access · ${formatUsd(allAccessItem.priceUsd)}`;
-    primaryCompare = !hasExamPass ? `$${UNMEB_PASS_ITEM.compareAtUsd.toFixed(2)}` : `$${allAccessItem.compareAtUsd.toFixed(2)}`;
-    primaryAction = () => buyNow(!hasExamPass ? UNMEB_PASS_ITEM : allAccessItem);
-    secondaryLabel = `All 85 Courses + Papers · ${formatUsd(allAccessItem.priceUsd)}`;
-    secondaryAction = () => buyNow(allAccessItem);
-  } else if (zone === "cart") {
-    kicker = "COMPLETE ACCESS UPGRADE";
-    headline = `Switch to All-Access for ${formatUsd(allAccessItem.priceUsd)}`;
-    body = `Your cart totals ${formatUsd(cartTotalUsd)}. Upgrade to unlock all 83 nursing courses across every programme plus 109+ UNMEB papers.`;
-    primaryLabel = `Upgrade to All-Access · ${formatUsd(allAccessItem.priceUsd)}`;
-    primaryCompare = `$${allAccessItem.compareAtUsd.toFixed(2)}`;
+  if (activeMode === "books") {
+    badgeIcon = <BookOpen size={14} />;
+    fabText = "New · 87 Full Books";
+    kicker = "NEW · 79 COMPLETE TEXTBOOKS ADDED";
+    headline = "Read Full-Book Pharmacology & Clinical Guides";
+    body = "Explore 87 free nursing & medical books featuring organized whole-book chapters, sticky side Table of Contents, and instant PDF exports.";
+    priceMeta = "100% Free Open Study Access · All 87 Books";
+    primaryLabel = "Open Instant Clinical Pharmacology";
+    primaryAction = () => { setOpen(false); navigate("/ebooks/book-instant-clinical-pharmacology"); };
+    secondaryLabel = "Browse 87 Free Books";
+    secondaryAction = () => { setOpen(false); navigate("/ebooks"); };
+  } else if (activeMode === "offer") {
+    badgeIcon = <Layers size={14} />;
+    fabText = "50% OFF · Full Access";
+    kicker = "50% STUDENT PRICE CUT LIVE";
+    headline = "Courses From $2.49 — Or Unlock Everything";
+    body = "Every individual paid unit is cut by 50% today. Or get the Full Platform All-Access Pass covering all 85 courses and 109+ mock papers.";
+    priceMeta = `${formatUsd(allAccessItem.priceUsd)} (was $${allAccessItem.compareAtUsd.toFixed(2)} · ${formatUgxApprox(allAccessItem.priceUsd)})`;
+    primaryLabel = `Full All-Access · ${formatUsd(allAccessItem.priceUsd)}`;
     primaryAction = () => buyNow(allAccessItem);
-    secondaryLabel = "Continue With Cart";
-    secondaryAction = handleClose;
+    secondaryLabel = "Browse 50% Off Courses";
+    secondaryAction = () => { setOpen(false); navigate("/courses"); };
+
+    if (zone === "learn" && activeCourse) {
+      const unitEnrolled = isEnrolled(activeCourse.slug, activeCourse.isFree);
+      if (!activeCourse.isFree && !unitEnrolled) {
+        kicker = "STUDY PREVIEW · 50% OFF TODAY";
+        headline = `Unlock Full ${activeCourse.title}`;
+        body = `Get all ${activeCourse.lessonCount} clinical topics, quizzes & certificate at 50% OFF — or unlock every course sitewide.`;
+        priceMeta = `${formatUsd(activeCourse.priceUsd)} (${formatUgxApprox(activeCourse.priceUsd)})`;
+        primaryLabel = `Unlock Unit · ${formatUsd(activeCourse.priceUsd)}`;
+        primaryAction = () => buyNow(activeCourse);
+        secondaryLabel = `All-Access (85 Units) · ${formatUsd(allAccessItem.priceUsd)}`;
+        secondaryAction = () => buyNow(allAccessItem);
+      }
+    } else if (zone === "course" && activeCourse) {
+      const unitEnrolled = isEnrolled(activeCourse.slug, activeCourse.isFree);
+      if (!activeCourse.isFree && !unitEnrolled) {
+        kicker = "50% UNIT CUT OR FULL ACCESS";
+        headline = "Choose Single Unit (50% Off) or Everything";
+        body = `Enroll in ${activeCourse.title} for ${formatUsd(activeCourse.priceUsd)}, or unlock ALL 85 courses + 109 past papers.`;
+        primaryLabel = `Full All-Access · ${formatUsd(allAccessItem.priceUsd)}`;
+        primaryAction = () => buyNow(allAccessItem);
+        secondaryLabel = activeProgBundle
+          ? `${activeCourse.programmeLabel} Bundle · ${formatUsd(activeProgBundle.priceUsd)}`
+          : `Single Unit · ${formatUsd(activeCourse.priceUsd)}`;
+        secondaryAction = () => buyNow(activeProgBundle || activeCourse);
+      }
+    } else if (zone === "exams") {
+      kicker = "UNMEB EXAM PREP · 50% OFF";
+      headline = "Unlock All 109+ Past Papers & Full Courses";
+      body = "Practice timed UNMEB & UHPAB mock exams with complete marking guides, or unlock every study course & exam bank together.";
+      priceMeta = !hasExamPass
+        ? `${formatUsd(UNMEB_PASS_ITEM.priceUsd)} (was $${UNMEB_PASS_ITEM.compareAtUsd.toFixed(2)} · ${formatUgxApprox(UNMEB_PASS_ITEM.priceUsd)})`
+        : `${formatUsd(allAccessItem.priceUsd)} (${formatUgxApprox(allAccessItem.priceUsd)})`;
+      primaryLabel = !hasExamPass
+        ? `Unlock Past Papers · ${formatUsd(UNMEB_PASS_ITEM.priceUsd)}`
+        : `Full All-Access · ${formatUsd(allAccessItem.priceUsd)}`;
+      primaryAction = () => buyNow(!hasExamPass ? UNMEB_PASS_ITEM : allAccessItem);
+      secondaryLabel = `All 85 Courses + Papers · ${formatUsd(allAccessItem.priceUsd)}`;
+      secondaryAction = () => buyNow(allAccessItem);
+    } else if (zone === "cart") {
+      kicker = "COMPLETE ACCESS UPGRADE";
+      headline = `Switch to All-Access for ${formatUsd(allAccessItem.priceUsd)}`;
+      body = `Your cart totals ${formatUsd(cartTotalUsd)}. Upgrade to unlock all 85 nursing courses plus 109+ UNMEB mock papers.`;
+      primaryLabel = `Upgrade to All-Access · ${formatUsd(allAccessItem.priceUsd)}`;
+      primaryAction = () => buyNow(allAccessItem);
+      secondaryLabel = "Continue With Cart";
+      secondaryAction = handleClose;
+    }
   }
 
   if (!open) {
@@ -179,32 +220,54 @@ export default function ContextOfferPopup() {
         type="button"
         className="nu-offer-fab nu-no-print"
         onClick={() => setOpen(true)}
-        aria-label="View current 50% off course & all-access offers"
+        aria-label="Open NCLEX-RN, New Books & Offers spotlight"
       >
-        <Layers size={14} /> 50% OFF · Full Access
+        {badgeIcon} {fabText}
       </button>
     );
   }
 
   return (
-    <aside className="nu-offer-popup nu-no-print" role="dialog" aria-label="Course & All-Access Offer">
-      <button type="button" className="nu-offer-close" onClick={handleClose} aria-label="Close offer">
+    <aside className="nu-offer-popup nu-no-print" role="dialog" aria-label="Featured Nursing Spotlight">
+      <button type="button" className="nu-offer-close" onClick={handleClose} aria-label="Close spotlight popup">
         <X size={16} />
       </button>
+
+      {availableModes.length > 1 && (
+        <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 10, paddingRight: 22 }}>
+          {availableModes.map((m, idx) => (
+            <button
+              key={m}
+              type="button"
+              onClick={() => setModeIdx(idx)}
+              style={{
+                border: "1px solid",
+                borderColor: activeMode === m ? "var(--nu-purple)" : "#e2e8f0",
+                background: activeMode === m ? "#f5f3ff" : "#ffffff",
+                color: activeMode === m ? "var(--nu-purple)" : "#475569",
+                fontSize: "0.68rem",
+                fontWeight: 700,
+                padding: "3px 9px",
+                borderRadius: 999,
+                cursor: "pointer"
+              }}
+            >
+              {m === "nclex" ? "NCLEX-RN ($99)" : m === "books" ? "New 87 Books" : "50% Off Pass"}
+            </button>
+          ))}
+        </div>
+      )}
+
       <div className="nu-offer-kicker">{kicker}</div>
       <h3 className="nu-offer-title">{headline}</h3>
       <p className="nu-offer-body">{body}</p>
       <div className="nu-offer-price-meta">
-        <CheckCircle2 size={14} color="#7c3aed" />
-        <span>
-          <strong>{primaryLabel}</strong>
-          {primaryCompare && <s style={{ marginLeft: 6, color: "#64748b" }}>{primaryCompare}</s>}
-          <span style={{ marginLeft: 6, color: "#64748b" }}>({formatUgxApprox(zone === "exams" && !hasExamPass ? UNMEB_PASS_ITEM.priceUsd : zone === "learn" && activeCourse && !activeCourse.isFree && !isEnrolled(activeCourse.slug, activeCourse.isFree) ? activeCourse.priceUsd : allAccessItem.priceUsd)})</span>
-        </span>
+        {activeMode === "nclex" ? <GraduationCap size={14} color="#7c3aed" /> : <CheckCircle2 size={14} color="#7c3aed" />}
+        <span><strong>{priceMeta}</strong></span>
       </div>
       <div className="nu-offer-actions">
         <button type="button" className="nu-btn nu-btn-primary nu-offer-cta-main" onClick={primaryAction}>
-          <ShoppingCart size={15} /> {primaryLabel}
+          {activeMode === "offer" && <ShoppingCart size={15} />} {primaryLabel}
         </button>
         <button type="button" className="nu-btn nu-btn-outline nu-offer-cta-alt" onClick={secondaryAction}>
           {secondaryLabel} <ArrowRight size={14} />

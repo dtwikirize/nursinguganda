@@ -1,14 +1,19 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
+  ArrowRight,
   Award,
   BookOpen,
   CheckCircle2,
+  ChevronLeft,
+  ChevronRight,
   ClipboardCheck,
   FileText,
   GraduationCap,
   Layers,
   ShieldCheck,
+  Sparkles,
+  Star,
   Stethoscope
 } from "lucide-react";
 import CourseCard from "../components/CourseCard";
@@ -17,6 +22,75 @@ import EbookCover from "../components/EbookCover";
 import NursingLoader from "../components/NursingLoader";
 import { formatUsd, useApp } from "../context/AppContext";
 import { getAllAccessCartItem } from "../utils/offers";
+
+const CLINICAL_SERIES_CARDS = [
+  {
+    title: "NextGen NCLEX-RN Mastery",
+    coverTitle: "NCLEX-RN: NextGen Clinical Judgment",
+    rating: "4.9",
+    count: "1.4K",
+    type: "Study Plan",
+    to: "/nclex-rn",
+    orb: "rgba(168, 85, 247, 0.85)",
+    core: "#6d28d9",
+    badges: ["NCSBN", "CAT", "NGN"]
+  },
+  {
+    title: "Clinical Pharmacology & Safe Dosing",
+    coverTitle: "Pharmacology & Safe Prescribing",
+    rating: "4.9",
+    count: "2.1K",
+    type: "Study Plan",
+    to: "/ebooks/book-instant-clinical-pharmacology",
+    orb: "rgba(139, 92, 246, 0.82)",
+    core: "#4c1d95",
+    badges: ["WHO", "BNF", "IV"]
+  },
+  {
+    title: "Midwifery, Labour & Newborn Care",
+    coverTitle: "Midwifery & Safe Delivery",
+    rating: "4.8",
+    count: "1.8K",
+    type: "Study Plan",
+    to: "/topics?cat=Midwifery+%26+Maternal+Health",
+    orb: "rgba(192, 132, 252, 0.85)",
+    core: "#7e22ce",
+    badges: ["WHO", "MoH", "OB"]
+  },
+  {
+    title: "Medical-Surgical Ward Practice",
+    coverTitle: "Medical-Surgical Nursing",
+    rating: "4.9",
+    count: "1.6K",
+    type: "Study Plan",
+    to: "/topics?cat=Medical-Surgical+Nursing",
+    orb: "rgba(129, 140, 248, 0.82)",
+    core: "#4338ca",
+    badges: ["ICU", "OR", "MED"]
+  },
+  {
+    title: "UK NMC CBT & OSCE Track",
+    coverTitle: "United Kingdom NMC Licensing",
+    rating: "4.9",
+    count: "980",
+    type: "Study Plan",
+    to: "/nursing-uk",
+    orb: "rgba(167, 139, 250, 0.82)",
+    core: "#5b21b6",
+    badges: ["NMC", "CBT", "OSCE"]
+  },
+  {
+    title: "Paediatrics, IMCI & Child Health",
+    coverTitle: "Paediatrics & Child Health",
+    rating: "4.8",
+    count: "1.1K",
+    type: "Study Plan",
+    to: "/topics?cat=Paediatrics+%26+Child+Health",
+    orb: "rgba(168, 85, 247, 0.82)",
+    core: "#6b21a8",
+    badges: ["IMCI", "WHO", "PAED"]
+  }
+];
 
 const GLOBAL_PATHWAY_CARDS = [
   { flag: "US", title: "NCLEX-RN Academy ($99)", sub: "16 Course Units · 4 CAT Exams", to: "/nclex-rn" },
@@ -45,6 +119,13 @@ export default function HomePage() {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("certificate-in-nursing");
   const [ebooks, setEbooks] = useState([]);
+  const [seriesScrolled, setSeriesScrolled] = useState(false);
+  const seriesTrackRef = useRef(null);
+
+  const scrollSeries = (dir) => {
+    if (!seriesTrackRef.current) return;
+    seriesTrackRef.current.scrollBy({ left: dir * 320, behavior: "smooth" });
+  };
 
   useEffect(() => {
     fetch("/assets/data/ebooks.json")
@@ -116,6 +197,103 @@ export default function HomePage() {
             <span className="nu-trust-pill"><GraduationCap size={17} color="#a435f0" /> Next-Gen NCLEX-RN &amp; UK NMC</span>
             <span className="nu-trust-pill"><BookOpen size={17} color="#a435f0" /> 87 Free Reference eBooks</span>
             <span className="nu-trust-pill"><Stethoscope size={17} color="#a435f0" /> Saunders, Kaplan &amp; OpenStax Citations</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Coursera-Style Dark Spotlight Carousel */}
+      <section className="nu-section" style={{ paddingTop: 0, paddingBottom: 16 }}>
+        <div className="nu-container">
+          <div className="nu-series-band">
+            <div className="nu-series-head">
+              <Link to="/nclex-rn" className="nu-series-title-link">
+                <span>Introducing Clinical Mastery Series</span>
+                <ArrowRight size={20} />
+              </Link>
+              <p className="nu-series-sub">
+                Build the clinical &amp; licensing skills your international nursing career demands.
+              </p>
+            </div>
+
+            <div className="nu-series-carousel-wrap">
+              {seriesScrolled && (
+                <button
+                  type="button"
+                  aria-label="Scroll series left"
+                  className="nu-series-nav-btn nu-series-nav-btn--left"
+                  onClick={() => scrollSeries(-1)}
+                >
+                  <ChevronLeft size={18} />
+                </button>
+              )}
+
+              <div
+                className="nu-series-track"
+                ref={seriesTrackRef}
+                onScroll={(e) => setSeriesScrolled(e.currentTarget.scrollLeft > 16)}
+              >
+                {CLINICAL_SERIES_CARDS.map((card) => (
+                  <Link key={card.title} to={card.to} className="nu-series-card">
+                    <div className="nu-series-art">
+                      <span
+                        className="nu-series-orb"
+                        style={{
+                          background: `radial-gradient(circle at 38% 52%, ${card.orb} 0%, ${card.core} 44%, rgba(9, 8, 18, 0) 74%)`
+                        }}
+                        aria-hidden="true"
+                      />
+                      <svg className="nu-series-constellation" viewBox="0 0 150 146" fill="none" aria-hidden="true">
+                        <g stroke="rgba(226, 232, 240, 0.36)" strokeWidth="0.8">
+                          <line x1="72" y1="20" x2="108" y2="46" />
+                          <line x1="108" y1="46" x2="136" y2="28" />
+                          <line x1="108" y1="46" x2="94" y2="88" />
+                          <line x1="94" y1="88" x2="134" y2="78" />
+                          <line x1="94" y1="88" x2="122" y2="124" />
+                          <line x1="62" y1="68" x2="94" y2="88" />
+                        </g>
+                        <g fill="rgba(248, 250, 252, 0.85)">
+                          <circle cx="72" cy="20" r="2" />
+                          <circle cx="108" cy="46" r="2.6" />
+                          <circle cx="136" cy="28" r="1.8" />
+                          <circle cx="94" cy="88" r="2.4" />
+                          <circle cx="134" cy="78" r="1.9" />
+                          <circle cx="122" cy="124" r="1.7" />
+                          <circle cx="62" cy="68" r="1.6" />
+                        </g>
+                      </svg>
+
+                      <span className="nu-series-pill">
+                        <Sparkles size={10} /> Clinical Series
+                      </span>
+                      <div className="nu-series-art-title">{card.coverTitle}</div>
+                      <div className="nu-series-badges">
+                        {card.badges.map((b) => (
+                          <span key={b} className="nu-series-micro">{b}</span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="nu-series-body">
+                      <h3 className="nu-series-card-title">{card.title}</h3>
+                      <div className="nu-series-meta">
+                        <Star size={12} fill="#0f172a" stroke="#0f172a" />
+                        <strong>{card.rating}</strong>
+                        <span>({card.count}) · {card.type}</span>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+
+              <button
+                type="button"
+                aria-label="Scroll series right"
+                className="nu-series-nav-btn nu-series-nav-btn--right"
+                onClick={() => scrollSeries(1)}
+              >
+                <ChevronRight size={18} />
+              </button>
+            </div>
           </div>
         </div>
       </section>

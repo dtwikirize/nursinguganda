@@ -1091,35 +1091,223 @@ img {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 20px;
 }
+/* ── Coursera-Style Dark Spotlight Carousel Band ─────────── */
+.nu-series-band {
+  background: #0c0f17;
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 26px 26px 28px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 14px 36px rgba(12, 15, 23, 0.18);
+}
+.nu-series-head {
+  margin-bottom: 18px;
+}
+.nu-series-title-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.32rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+.nu-series-title-link:hover {
+  color: #e9d5ff;
+}
+.nu-series-sub {
+  margin: 4px 0 0;
+  font-size: 0.9rem;
+  color: #cbd5e1;
+}
+.nu-series-carousel-wrap {
+  position: relative;
+}
+.nu-series-track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(242px, 258px);
+  gap: 14px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding: 2px 2px 4px;
+}
+.nu-series-track::-webkit-scrollbar {
+  display: none;
+}
+.nu-series-card {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 8px;
+  text-decoration: none;
+  color: var(--nu-ink);
+  transition: transform 0.16s ease, box-shadow 0.18s ease;
+}
+.nu-series-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.28);
+}
+.nu-series-art {
+  position: relative;
+  height: 146px;
+  border-radius: 8px;
+  background: #090812;
+  padding: 12px 13px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.nu-series-orb {
+  position: absolute;
+  width: 190px;
+  height: 190px;
+  border-radius: 999px;
+  top: -18px;
+  left: -18px;
+  pointer-events: none;
+  opacity: 0.95;
+}
+.nu-series-constellation {
+  position: absolute;
+  right: -6px;
+  top: 0;
+  width: 150px;
+  height: 146px;
+  pointer-events: none;
+  opacity: 0.85;
+}
+.nu-series-pill {
+  position: relative;
+  z-index: 2;
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.72);
+  border: 1px solid rgba(192, 132, 252, 0.55);
+  color: #f3e8ff;
+  font-size: 0.68rem;
+  font-weight: 600;
+}
+.nu-series-art-title {
+  position: relative;
+  z-index: 2;
+  margin: 4px 0 0;
+  font-size: 0.96rem;
+  font-weight: 700;
+  line-height: 1.24;
+  color: #ffffff;
+  max-width: 78%;
+}
+.nu-series-badges {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.nu-series-micro {
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #1e1b4b;
+  font-size: 0.54rem;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+.nu-series-body {
+  padding: 11px 6px 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+.nu-series-card-title {
+  margin: 0 0 8px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.32;
+  color: #0f172a;
+}
+.nu-series-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.77rem;
+  color: #475569;
+  font-weight: 500;
+}
+.nu-series-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 6;
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #0f172a;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
+  cursor: pointer;
+}
+.nu-series-nav-btn:hover {
+  background: #f8fafc;
+  color: var(--nu-purple);
+}
+.nu-series-nav-btn--right {
+  right: -8px;
+}
+.nu-series-nav-btn--left {
+  left: -8px;
+}
+
 .nu-course-card {
   display: flex;
   flex-direction: column;
   background: #ffffff;
-  border: 1px solid #d1d7dc;
-  border-radius: 4px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 8px;
   overflow: hidden;
   text-decoration: none;
-  transition: box-shadow 0.18s ease, border-color 0.18s ease;
+  transition: transform 0.16s ease, box-shadow 0.18s ease, border-color 0.18s ease;
 }
 .nu-course-card:hover {
-  border-color: #1c1d1f;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  border-color: #c4b5fd;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.09);
 }
 .nu-course-card:hover .nu-card-thumb img {
-  filter: brightness(0.88);
+  filter: brightness(0.9);
 }
 .nu-card-thumb {
   position: relative;
   aspect-ratio: 16 / 9;
+  border-radius: 8px;
   overflow: hidden;
-  background: #1c1d1f;
-  border-bottom: 1px solid #e2e8f0;
+  background: #090812;
 }
 .nu-card-thumb--editorial {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 14px 16px;
+  padding: 12px 13px;
   color: #ffffff;
 }
 .nu-card-editorial-grid {
@@ -1131,9 +1319,9 @@ img {
 }
 .nu-card-editorial-wm {
   position: absolute;
-  right: -10px;
-  bottom: -12px;
-  color: rgba(255, 255, 255, 0.12);
+  right: -6px;
+  bottom: -6px;
+  color: rgba(255, 255, 255, 0.14);
   pointer-events: none;
   transition: transform 0.25s ease;
 }
@@ -1142,7 +1330,7 @@ img {
 }
 .nu-card-editorial-inner {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -1155,18 +1343,17 @@ img {
   gap: 8px;
 }
 .nu-card-editorial-code {
-  background: rgba(255, 255, 255, 0.16);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  color: #ffffff;
-  font-size: 0.68rem;
+  background: rgba(15, 23, 42, 0.72);
+  border: 1px solid rgba(192, 132, 252, 0.45);
+  color: #f3e8ff;
+  font-size: 0.65rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
   padding: 2px 8px;
-  border-radius: 4px;
+  border-radius: 999px;
   white-space: nowrap;
 }
 .nu-card-editorial-cat {
-  font-size: 0.68rem;
+  font-size: 0.66rem;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.82);
   text-align: right;
@@ -1176,12 +1363,12 @@ img {
 }
 .nu-card-editorial-mid {
   display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.84rem;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.86rem;
   font-weight: 700;
   color: #ffffff;
-  line-height: 1.3;
+  line-height: 1.28;
   max-width: 82%;
 }
 .nu-card-thumb img {

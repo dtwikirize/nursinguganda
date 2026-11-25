@@ -4,7 +4,7 @@
   "subtitle": "Free Reference Textbook · Cardiology & Acute Care (71 pp., 2.18 MB) — Open Clinical / Medical Educational Authors.",
   "category": "Cardiology & Acute Care",
   "estimatedPages": 71,
-  "totalWords": 17401,
+  "totalWords": 17145,
   "references": [
     {
       "id": "src-book-the-gross-physiology-of-the-cardiovascular-system",
@@ -18,14 +18,18 @@
     {
       "chapterNumber": 1,
       "slug": "ch-1",
-      "title": "Part 1: Core Clinical Content (pp. 2–9)",
+      "title": "Section 1: Clinical Study Notes (pp. 2–9)",
       "pageRange": "pp. 2–9",
       "excerpt": "Emeritus Associate Dean and Associate Professor of Surgery,",
-      "wordCount": 820,
+      "wordCount": 835,
       "sections": [
         {
-          "title": "Part 1: Core Clinical Content (pp. 2–9) — Part 1",
+          "title": "Cardiovascular System",
           "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Robert M. Anderson, M.D."
+            },
             {
               "type": "paragraph",
               "text": "Emeritus Associate Dean and Associate Professor of Surgery,"
@@ -45,12 +49,7 @@
             {
               "type": "paragraph",
               "text": "Fellow of the American College of Cardiology"
-            }
-          ]
-        },
-        {
-          "title": "Part 1: Core Clinical Content (pp. 2–9) — Part 2",
-          "blocks": [
+            },
             {
               "type": "paragraph",
               "text": "Fellow of the American College of Surgeons"
@@ -70,20 +69,16 @@
             {
               "type": "paragraph",
               "text": "Citation for the original 1993 print version: Anderson, Robert M. The Gross Physiology of the Cardiovascular System. Tucson, AZ: Racquet Press, 1993. Print. ISBN: 0961752815 ISBN-13: 9780961752811"
+            },
+            {
+              "type": "paragraph",
+              "text": "This text and other materials are available online at:"
             }
           ]
         },
         {
-          "title": "Part 1: Core Clinical Content (pp. 2–9) — Part 3",
+          "title": "Table of Contents",
           "blocks": [
-            {
-              "type": "paragraph",
-              "text": "This text and other materials are available online at:"
-            },
-            {
-              "type": "paragraph",
-              "text": "http://www.cardiac-output.info"
-            },
             {
               "type": "paragraph",
               "text": "Chapter 1: Normal Circulation 3"
@@ -95,12 +90,7 @@
             {
               "type": "paragraph",
               "text": "Chapter 3: Open Heart Surgery with Passive-Filling Pumps 22"
-            }
-          ]
-        },
-        {
-          "title": "Part 1: Core Clinical Content (pp. 2–9) — Part 4",
-          "blocks": [
+            },
             {
               "type": "paragraph",
               "text": "Chapter 4: Animal Experiments with Passive-Filling Pumps 31"
@@ -115,74 +105,60 @@
             },
             {
               "type": "paragraph",
-              "text": "The Gross Physiology of the Cardiovascular System │ 1"
+              "text": "About the Author 63"
             },
             {
               "type": "paragraph",
-              "text": "At a time when knowledge about microvascular physiology and subcellular myocardial and vascular biochemistry has accumulated at such a tremendous rate, I perceive that a realistic global understanding of the cardiovascular system has been partially lost in that voluminous accumulation of minutiae. In order to be able to see \"the forest, and not just individual leaves on the trees,\" one must first have a clear understanding of the gross mechanical function of the cardiovascular system as a whole."
+              "text": "Additional Resources 64"
+            },
+            {
+              "type": "paragraph",
+              "text": "The Gross Physiology of the Cardiovascular System │ 1"
             }
           ]
         },
         {
-          "title": "Part 1: Core Clinical Content (pp. 2–9) — Part 5",
+          "title": "Introduction",
           "blocks": [
+            {
+              "type": "paragraph",
+              "text": "At a time when knowledge about microvascular physiology and subcellular myocardial and vascular biochemistry has accumulated at such a tremendous rate, I perceive that a realistic global understanding of the cardiovascular system has been partially lost in that voluminous accumulation of minutiae. In order to be able to see \"the forest, and not just individual leaves on the trees,\" one must first have a clear understanding of the gross mechanical function of the cardiovascular system as a whole."
+            },
             {
               "type": "paragraph",
               "text": "In determining whether to replace older \"sacred cows\" with newer concepts, your litmus test should be the extent to which each explains observations in both normal and pathological states. Thus, a valid concept of cardiovascular physiology must be compatible with the following frequently overlooked facts:"
             },
             {
               "type": "paragraph",
-              "text": " A blood volume equilibrium persists between the systemic and pulmonary"
+              "text": " A blood volume equilibrium persists between the systemic and pulmonary circuits even when there are massive shunts between the two, and remains even after closure of those shunts."
             },
             {
               "type": "paragraph",
-              "text": "circuits even when there are massive shunts between the two, and remains even after closure of those shunts."
+              "text": " During cardiopulmonary bypass, the empty heart may continue to beat strongly even in the absence of any diastolic filling or stretching of the ventricles."
             },
-            {
-              "type": "paragraph",
-              "text": " During cardiopulmonary bypass, the empty heart may continue to beat"
-            },
-            {
-              "type": "paragraph",
-              "text": "strongly even in the absence of any diastolic filling or stretching of the ventricles."
-            }
-          ]
-        },
-        {
-          "title": "Part 1: Core Clinical Content (pp. 2–9) — Part 6",
-          "blocks": [
             {
               "type": "paragraph",
               "text": " Booster pumping does not increase circulation rate in the absence of heart"
             },
             {
               "type": "paragraph",
-              "text": " Increasing pacemaker rate above that necessary to prevent failure does not"
+              "text": " Increasing pacemaker rate above that necessary to prevent failure does not increase cardiac output."
             },
             {
               "type": "paragraph",
-              "text": " Ventricular pressures measured during heart catheterization are always"
+              "text": " Ventricular pressures measured during heart catheterization are always above zero (in relation to the intrathoracic pressure)."
             },
             {
               "type": "paragraph",
-              "text": "above zero (in relation to the intrathoracic pressure)."
+              "text": "2 │ Introduction"
             },
             {
               "type": "paragraph",
-              "text": " After heart transplantation, without nerve supply to the heart or artificial"
-            }
-          ]
-        },
-        {
-          "title": "Part 1: Core Clinical Content (pp. 2–9) — Part 7",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "pacing, the cardiac output and pulmonary/systemic blood volume balance remain normal."
+              "text": " After heart transplantation, without nerve supply to the heart or artificial pacing, the cardiac output and pulmonary/systemic blood volume balance remain normal."
             },
             {
               "type": "paragraph",
-              "text": " In the absence of heart failure, an increase in arterial resistance does not"
+              "text": " In the absence of heart failure, an increase in arterial resistance does not reduce cardiac output."
             },
             {
               "type": "paragraph",
@@ -191,15 +167,11 @@
             {
               "type": "paragraph",
               "text": "The Gross Physiology of the Cardiovascular System │ 3"
-            },
-            {
-              "type": "paragraph",
-              "text": "Chapter 1: Normal Circulation"
             }
           ]
         },
         {
-          "title": "Part 1: Core Clinical Content (pp. 2–9) — Part 8",
+          "title": "Chapter 1: Normal Circulation",
           "blocks": [
             {
               "type": "paragraph",
@@ -216,26 +188,31 @@
     {
       "chapterNumber": 2,
       "slug": "ch-2",
-      "title": "Part 2: Core Clinical Content (pp. 10–17)",
+      "title": "Section 2: Clinical Study Notes (pp. 10–17)",
       "pageRange": "pp. 10–17",
-      "excerpt": "4 │ Chapter 1: Normal Circulation",
-      "wordCount": 3148,
+      "excerpt": "10. The slowing effect of any vascular resistance on flow rate depends on its location, with reference to upstream compliance, as well as its magnitude.",
+      "wordCount": 3068,
       "sections": [
         {
-          "title": "Part 2: Core Clinical Content (pp. 10–17) — Part 1",
+          "title": "Section 2: Clinical Study Notes (pp. 10–17)",
           "blocks": [
             {
               "type": "paragraph",
               "text": "4 │ Chapter 1: Normal Circulation"
             },
             {
-              "type": "bullet",
+              "type": "paragraph",
               "text": "10. The slowing effect of any vascular resistance on flow rate depends on its location, with reference to upstream compliance, as well as its magnitude."
             },
             {
               "type": "paragraph",
               "text": "In order to understand circulatory phenomena in the elastic circular hydraulic system (Fig. 1), where every point is both upstream and downstream from every other point, and where the non-sucking ventricles pump out of the same system they pump into, we need to examine the ten unique factors individually, before we can amalgamate them into a meaningful whole."
-            },
+            }
+          ]
+        },
+        {
+          "title": "Ventricles (The Pumps)",
+          "blocks": [
             {
               "type": "paragraph",
               "text": "To clarify and facilitate understanding of the features peculiar to the heart, it is helpful to compare three major types of pumps. The heart's unique characteristics as a pump are of paramount importance in understanding how the cardiovascular system works."
@@ -243,12 +220,7 @@
             {
               "type": "paragraph",
               "text": "PUMP TYPE #1: This type of pump both sucks and forcibly ejects fluid. This pump uses energy both to actively fill at its inlet and to empty its contents at its outlet. Two examples of this type of pump are: (1) a piston pump, which expends energy to suck in the stroke volume which is then forcibly ejected; and (2) a roller pump, which sucks at its inlet by the recoil of the resilient tubing that has been compressed by the roller as it moves forward, ejecting the fluid in front of it. With type #1 pumps, the output in a hydraulic system is determined exclusively by two pump variables: the stroke rate and the stroke volume. The reason for discussing this is that the heart is a different type of pump, and those two variables are frequently and erroneously projected onto cardiovascular function, in a way in which they do not apply."
-            }
-          ]
-        },
-        {
-          "title": "Part 2: Core Clinical Content (pp. 10–17) — Part 2",
-          "blocks": [
+            },
             {
               "type": "paragraph",
               "text": "PUMP TYPE #2: This pump sucks and blows but, instead of producing a specific flow rate, creates a specific pressure gradient between its inlet and outlet. Centrifugal pumps fall into this category. With this type, two pump factors (rate and power), as well as two non-pump factors (pressure and resistance in the system), effect output. As the heart is not such a pump, there is danger in borrowing explanations of cardiovascular function from hydraulic systems containing centrifugal pumps."
@@ -259,20 +231,12 @@
             },
             {
               "type": "paragraph",
-              "text": "The Gross Physiology of the Cardiovascular System │ 5"
-            },
-            {
-              "type": "paragraph",
-              "text": "the output. At a given rate of urinary production, stroke rate and stroke volume are reciprocals of one another. If the bladder is emptied twice as often, the stroke volume will be one half as much."
-            },
-            {
-              "type": "paragraph",
-              "text": "The Right and Left Ventricles Are Two Type #3 Pumps"
+              "text": "The Gross Physiology of the Cardiovascular System │ 5 the output. At a given rate of urinary production, stroke rate and stroke volume are reciprocals of one another. If the bladder is emptied twice as often, the stroke volume will be one half as much."
             }
           ]
         },
         {
-          "title": "Part 2: Core Clinical Content (pp. 10–17) — Part 3",
+          "title": "The Right and Left Ventricles Are Two Type #3 Pumps",
           "blocks": [
             {
               "type": "paragraph",
@@ -289,20 +253,12 @@
             {
               "type": "paragraph",
               "text": "One can calculate cardiac output in the same way as in the urinary bladder example: by multiplying stroke rate times stroke volume. Also, just as in that example, while stroke rate multiplied by stroke volume measures the amount of output, those variables are not determinants of that output. The heart, by filling passively, pumps out blood at a rate determined by the rate of blood coming to it. Given that the heart is a pump that produces the flow but has a flow rate determined by extra-cardiac factors, let us examine those factors that determine circulation rate."
-            },
-            {
-              "type": "paragraph",
-              "text": "Determination of Cardiac Output in a Circular Elastic"
             }
           ]
         },
         {
-          "title": "Part 2: Core Clinical Content (pp. 10–17) — Part 4",
+          "title": "System with Passive-Filling Pumps",
           "blocks": [
-            {
-              "type": "paragraph",
-              "text": "System with Passive-Filling Pumps"
-            },
             {
               "type": "paragraph",
               "text": "With pumps that cannot suck to fill, there must be a positive pressure at the inlets for any blood to run into the ventricles, in order for there to be any pump output. If there is no pressure in the cardiovascular system, no blood can run into the ventricles and there can be no flow. Normally, there is a mean cardiovascular pressure above zero, which the heart distributes. The heart, rather than being responsible for the pressure in the vascular system, is a circulating device. It lowers the pressure at the ventricular inlets and raises it at the ventricular outlets. With a positive pressure in the cardiovascular system, when blood is ejected into the arterial side of the circle, a pressure gradient is created between the arteries and veins. This gradient causes blood to flow around the circle back to the ventricular inlets. Therefore, the output rate varies directly with the magnitude of that mean cardiovascular pressure. The higher the pressure, the higher the gradient, the greater the flow rate. The circular system being elastic, and having resistance and other impediments to flow, the energy from ventricular contraction does not transfer instantaneously around the circle after each heart beat, as would occur in a rigid system. The energy of venous flow is several heart beats behind that of ventricular ejection. The greater the elasticity and impediments to flow, the slower the flow rate."
@@ -310,31 +266,23 @@
             {
               "type": "paragraph",
               "text": "Therefore, during normal function, cardiac output varies directly with the mean cardiovascular pressure and inversely with the impedance to blood flow to the heart."
-            },
-            {
-              "type": "paragraph",
-              "text": "Mean Cardiovascular Pressure"
-            },
-            {
-              "type": "paragraph",
-              "text": "Definition: The mean cardiovascular pressure is the pressure in the cardiovascular system with the circulation stopped, after the pressure has equalized between the arteries, capillaries, veins, and cardiac chambers. Do not confuse this pressure with central venous pressure, venous filling pressure, or mean arterial pressure. Mean cardiovascular pressure is the pressure related to the blood volume and the compliance of the entire elastic cardiovascular compartment."
             }
           ]
         },
         {
-          "title": "Part 2: Core Clinical Content (pp. 10–17) — Part 5",
+          "title": "Mean Cardiovascular Pressure",
           "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Definition: The mean cardiovascular pressure is the pressure in the cardiovascular system with the circulation stopped, after the pressure has equalized between the arteries, capillaries, veins, and cardiac chambers. Do not confuse this pressure with central venous pressure, venous filling pressure, or mean arterial pressure. Mean cardiovascular pressure is the pressure related to the blood volume and the compliance of the entire elastic cardiovascular compartment."
+            },
             {
               "type": "paragraph",
               "text": "Measurement: Mean cardiovascular pressure is expressed in centimeters of water above ambient pressure, with zero being at mid-heart level. The mean cardiovascular pressure can be approximated during cardiac arrest. After arrest, a pressure equalization occurs between the various cardiovascular compartments in about thirty seconds. The arterial pressure falls and the venous pressure rises as some of the arterial blood moves into the veins during pressure equalization. Therefore, the mean cardiovascular pressure is always above venous pressure and below arterial pressure. Normally, mean cardiovascular pressure is between 15 and 18 cm. of water above mid-heart level. We have some approximation of its magnitude from fortuitous"
             },
             {
               "type": "paragraph",
-              "text": "The Gross Physiology of the Cardiovascular System │ 7"
-            },
-            {
-              "type": "paragraph",
-              "text": "records of the arterial and venous pressures equalizing, obtained during short periods of cardiac arrest of patients in coronary care settings, in emergency rooms, or in operating rooms during heart surgery. Even in these situations, the resulting pressure can be regarded as only an approximation, as the shift in fluid, from hypoxia caused by lack of circulation, may have altered the vascular compliance. (See Appendix for clinical measurement technique)"
+              "text": "The Gross Physiology of the Cardiovascular System │ 7 records of the arterial and venous pressures equalizing, obtained during short periods of cardiac arrest of patients in coronary care settings, in emergency rooms, or in operating rooms during heart surgery. Even in these situations, the resulting pressure can be regarded as only an approximation, as the shift in fluid, from hypoxia caused by lack of circulation, may have altered the vascular compliance. (See Appendix for clinical measurement technique)"
             },
             {
               "type": "paragraph",
@@ -343,12 +291,7 @@
             {
               "type": "paragraph",
               "text": "The higher the mean cardiovascular pressure, if the ventricles are not failing, the higher the ventricles can elevate the arterial pressure while reducing the venous pressure toward zero, and thus the greater the cardiac output. Conversely, the lower the mean cardiovascular pressure, the less the heart can raise the arterial pressure by lowering the venous pressure, and thus the lower the cardiac output."
-            }
-          ]
-        },
-        {
-          "title": "Part 2: Core Clinical Content (pp. 10–17) — Part 6",
-          "blocks": [
+            },
             {
               "type": "paragraph",
               "text": "Origin of the mean cardiovascular pressure: The mean cardiovascular pressure results from the volume of blood and the compliance of the cardiovascular system. The volume in the cardiovascular system results from an equilibrium between the rate of water, electrolytes, and other blood constituents entering the body by way of the gastrointestinal tract, and leaving the body primarily by the kidneys (Fig. 3). The mean cardiovascular pressure is the result of a continuing dynamic process."
@@ -356,24 +299,16 @@
             {
               "type": "paragraph",
               "text": "MEAN CARDIOVASCULAR PRESSURE = energy forcing fluid into the body / resistance to fluid loss from the body"
-            },
-            {
-              "type": "paragraph",
-              "text": "Homeostatic maintenance of normal mean cardiovascular pressure:"
-            },
-            {
-              "type": "paragraph",
-              "text": "(1) Slow feedback mechanism:"
-            },
-            {
-              "type": "paragraph",
-              "text": "A slow homeostatic feedback mechanism tends to keep the mean cardiovascular pressure at a constant level: Elevation of the mean cardiovascular pressure above normal —› causes increase in cardiac output —› causes increased renal blood flow —› results in increased renal output —› thereby lowering blood volume and mean cardiovascular pressure back to normal. Conversely, low mean cardiovascular pressure —› low cardiac output —› low renal blood flow —› decreased renal output until the mean cardiovascular pressure is restored to normal by continuing fluid intake. With elevated mean cardiovascular pressure, the rate of return to normal is dependent on renal function, whereas, with low mean cardiovascular pressure the rate of return can vary greatly, depending on the rate of restoration of blood volume."
             }
           ]
         },
         {
-          "title": "Part 2: Core Clinical Content (pp. 10–17) — Part 7",
+          "title": "(1) Slow feedback mechanism",
           "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A slow homeostatic feedback mechanism tends to keep the mean cardiovascular pressure at a constant level: Elevation of the mean cardiovascular pressure above normal —› causes increase in cardiac output —› causes increased renal blood flow —› results in increased renal output —› thereby lowering blood volume and mean cardiovascular pressure back to normal. Conversely, low mean cardiovascular pressure —› low cardiac output —› low renal blood flow —› decreased renal output until the mean cardiovascular pressure is restored to normal by continuing fluid intake. With elevated mean cardiovascular pressure, the rate of return to normal is dependent on renal function, whereas, with low mean cardiovascular pressure the rate of return can vary greatly, depending on the rate of restoration of blood volume."
+            },
             {
               "type": "paragraph",
               "text": "8 │ Chapter 1: Normal Circulation"
@@ -385,28 +320,25 @@
             {
               "type": "paragraph",
               "text": " Response to weightlessness by going into orbit: In the absence of gravity, normal blood volume shifts centrally from the lower part of the body, thereby, increasing the mean cardiovascular pressure at heart level —› resulting in increased cardiac output —› causing greater renal blood flow —› leading to greater urinary output —› causing a decrease in blood volume and, thus, a decrease in mean cardiovascular pressure back to normal. The converse is found when astronauts return to gravity. It takes a few hours to restore normal mean cardiovascular pressure by intake of fluid and electrolytes after returning to earth, during which transition time they conserve the fluid they take in by putting out very little urine.  During any hypovolemic shock state, such as massive hemorrhage or severe dehydration, the urinary output goes abruptly down and remains low until restoration of normal mean cardiovascular pressure."
-            },
-            {
-              "type": "paragraph",
-              "text": "(2) Rapid mean cardiovascular pressure buffer mechanisms:"
-            },
-            {
-              "type": "paragraph",
-              "text": "(a) Elasticity: The elasticity of the vascular system prevents sudden blood volume loss or gain from causing a linear, temporary change in mean cardiovascular pressure. Elasticity has, of course, an instantaneous buffer effect. Evidence of this is found in one's ability to give a pint of blood at the blood bank without going into severe low cardiac output. This buffer effect bolsters circulation while the blood volume — and, thus, mean cardiovascular pressure — is restored by subsequent oral intake of fluid."
             }
           ]
         },
         {
-          "title": "Part 2: Core Clinical Content (pp. 10–17) — Part 8",
+          "title": "(2) Rapid mean cardiovascular pressure buffer mechanisms",
           "blocks": [
             {
               "type": "paragraph",
-              "text": "(b) Vascular/extravascular equilibrium: There is a pressure equilibrium between the various extravascular compartments of the body and the cardiovascular space (Fig. 3). Changes in mean cardiovascular pressure result in shifts of fluid back and forth which tend to buffer sudden changes. This buffer system is fairly rapid but not instantaneous, as evidenced by the observation that a person going into severe shock from sudden loss of blood would not have had the same severe shock state if the loss had occurred more gradually over a period of an hour or so."
+              "text": "(a) Elasticity: The elasticity of the vascular system prevents sudden blood volume loss or gain from causing a linear, temporary change in mean cardiovascular pressure. Elasticity has, of course, an instantaneous buffer effect. Evidence of this is found in one's ability to give a pint of blood at the blood bank without going into severe low cardiac output. This buffer effect bolsters circulation while the blood volume — and, thus, mean cardiovascular pressure — is restored by subsequent oral intake of fluid."
             },
             {
               "type": "paragraph",
-              "text": "(3) Humeral and neuro-muscular-vascular reflexes:"
-            },
+              "text": "(b) Vascular/extravascular equilibrium: There is a pressure equilibrium between the various extravascular compartments of the body and the cardiovascular space (Fig. 3). Changes in mean cardiovascular pressure result in shifts of fluid back and forth which tend to buffer sudden changes. This buffer system is fairly rapid but not instantaneous, as evidenced by the observation that a person going into severe shock from sudden loss of blood would not have had the same severe shock state if the loss had occurred more gradually over a period of an hour or so."
+            }
+          ]
+        },
+        {
+          "title": "(3) Humeral and neuro-muscular-vascular reflexes",
+          "blocks": [
             {
               "type": "paragraph",
               "text": "These responses from stimuli, which alter vascular compliance, act as buffer systems. They prevent sudden changes in mean cardiovascular pressure from sudden position changes, such as going from lying to standing. They also buffer the effect of sudden loss of blood volume from hemorrhage."
@@ -422,33 +354,20 @@
           ]
         },
         {
-          "title": "Part 2: Core Clinical Content (pp. 10–17) — Part 9",
+          "title": "Around to the Inlets of the Ventricles",
           "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Impedance to the Flow of Blood from the Outlets"
-            },
-            {
-              "type": "paragraph",
-              "text": "Around to the Inlets of the Ventricles"
-            },
             {
               "type": "paragraph",
               "text": "Four factors tend to impede the flow of blood in the cardiovascular circle. Therefore, they are inverse determinants of cardiac output: (1) resistance, (2) elasticity, (3) limited compliance of the ventricles to filling, and (4) inertia of intermittent blood flow to the ventricles. The interrelationship of these four factors makes flow determination much more complicated than plain resistance, which is the single impediment in rigid, open ended, linear hydraulic systems."
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "(1) Resistance and (2) Elasticity"
             },
             {
               "type": "paragraph",
               "text": "Unlike rigid linear hydraulic systems, where a given resistance may have the same effect on flow, irrespective of its location, the elasticity of the vascular system makes location of the resistance a significant parameter. Because of the elasticity of the circle, the location of any particular resistance determines to what extent that resistance has on impeding blood flow. A given resistance may have little or no effect in determining cardiac output if it is near the outlet of the ventricles, yet the same magnitude of resistance may have tremendous slowing effect on circulation if located near the inlets of the heart. Resistance points that have little compliant vascular bed \"upstream\" (arteriolar resistance), increase pump work but may not affect cardiac output significantly. The heart, except during failure, exerts enough energy to force the blood past any resistance near its outlet, with no hold up in flow. On the other hand, resistance located with a large compliant bed upstream has a tremendous effect on flow rate by slowing blood return to the ventricles. Venous sided resistance, with the compliance of the whole vascular bed upstream, is a major inhibitor of circulation rate. Thus, venous sided resistance is a major determinant of cardiac output, but arterial resistance is not. Interpolation of the additive effect of all resistance points in the circle on cardiac output must include the amount of compliant bed upstream from each resistance point."
-            }
-          ]
-        },
-        {
-          "title": "Part 2: Core Clinical Content (pp. 10–17) — Part 10",
-          "blocks": [
+            },
             {
               "type": "paragraph",
               "text": "All resistance factors — including blood viscosity, cross-section area of any vascular bed, margination of blood constituents, etc. — play roles in flow rate determination only when linked with their location to compliance upstream. Adding venous sided resistance of a magnitude that results in only a few mm. water pressure gradient may cause a marked reduction of flow. Whereas, increasing arteriolar resistance to the point of severe arterial hypertension may not appreciably change cardiac output."
@@ -456,32 +375,25 @@
             {
               "type": "paragraph",
               "text": "In human cardiovascular physiology, the significance of resistance can only be understood when coupled with upstream compliance. It is not just the magnitude of resistance but the location of that resistance that determines its effect on circulation rate."
-            },
-            {
-              "type": "paragraph",
-              "text": "(3) Impediment to Ventricular Filling"
-            },
+            }
+          ]
+        },
+        {
+          "title": "(3) Impediment to Ventricular Filling",
+          "blocks": [
             {
               "type": "paragraph",
               "text": "The end-diastolic pressure: Ventricles not only do not suck to fill, they offer an impediment to filling. The left ventricle has thicker and stiffer walls than the"
             },
             {
               "type": "paragraph",
-              "text": "The Gross Physiology of the Cardiovascular System │ 11"
+              "text": "The Gross Physiology of the Cardiovascular System │ 11 right, so it tends to retard filling more than the right ventricle. Catheterization data shows end-diastolic pressure of five to ten centimeters of water above intrathoracic pressure. Don't confuse the negative pressure of inspiration, transmitted to the heart, as the heart sucking. The intracardiac pressure is always above that intrathoracic pressure (Fig. 2 at C)."
             }
           ]
         },
         {
-          "title": "Part 2: Core Clinical Content (pp. 10–17) — Part 11",
+          "title": "(4) Inertia of Intermittent Blood Flow Offset by \"The Atrial Effect\"",
           "blocks": [
-            {
-              "type": "paragraph",
-              "text": "right, so it tends to retard filling more than the right ventricle. Catheterization data shows end-diastolic pressure of five to ten centimeters of water above intrathoracic pressure. Don't confuse the negative pressure of inspiration, transmitted to the heart, as the heart sucking. The intracardiac pressure is always above that intrathoracic pressure (Fig. 2 at C)."
-            },
-            {
-              "type": "paragraph",
-              "text": "(4) Inertia of Intermittent Blood Flow Offset by \"The Atrial Effect\""
-            },
             {
               "type": "paragraph",
               "text": "Atrial function facilitates circulation by preventing the retarding effect that would otherwise occur from the intermittent inflow to the intermittent outflow ventricles. By being partially empty and distensible, atria prevent the interruption of venous flow to the heart that would occur during ventricular systole if the veins ended at the inlet valves of the heart."
@@ -493,12 +405,7 @@
             {
               "type": "paragraph",
               "text": "By preventing the inertia of interrupted venous flow that would otherwise occur at each ventricular systole, atria allow approximately 75% more cardiac output than would otherwise occur. The fact that atrial contraction is 15% of the amount of the succeeding ventricular ejection has led to the false conclusion that atria have their benefit by pumping up the ventricles (the so-called \"atrial kick\"). The real benefit is in preventing inertia and allowing uninterrupted venous flow."
-            }
-          ]
-        },
-        {
-          "title": "Part 2: Core Clinical Content (pp. 10–17) — Part 12",
-          "blocks": [
+            },
             {
               "type": "paragraph",
               "text": "The 20% to 25% increase in cardiac output from synchronized atrial function over that of atrial fibrillation doesn't belie the 75% contribution of the atrial effect, as atrial fibrillation eliminates only part of that effect. Atrial compliance, elasticity, and gravity help in emptying the atria at ventricular diastole during atrial fibrillation. Also, cardiac output during atrial dysfunction is buffered: the initial fall in circulation rate during atrial fibrillation reduces renal flow, thereby causing retention of water and the subsequent rise in mean cardiovascular pressure, which then partially offsets the slowing effect on circulation."
@@ -514,38 +421,26 @@
     {
       "chapterNumber": 3,
       "slug": "ch-3",
-      "title": "Part 3: Core Clinical Content (pp. 18–25)",
+      "title": "Section 3: Clinical Study Notes (pp. 18–25)",
       "pageRange": "pp. 18–25",
-      "excerpt": "12 │ Chapter 1: Normal Circulation",
-      "wordCount": 3411,
+      "excerpt": "12 │ Chapter 1: Normal Circulation the ventricles and, therefore, determine cardiac output in a negative way, will be referred to as: inlet impedance.",
+      "wordCount": 3363,
       "sections": [
         {
-          "title": "Part 3: Core Clinical Content (pp. 18–25) — Part 1",
+          "title": "Section 3: Clinical Study Notes (pp. 18–25)",
           "blocks": [
             {
               "type": "paragraph",
-              "text": "12 │ Chapter 1: Normal Circulation"
+              "text": "12 │ Chapter 1: Normal Circulation the ventricles and, therefore, determine cardiac output in a negative way, will be referred to as: inlet impedance."
             },
             {
-              "type": "paragraph",
-              "text": "the ventricles and, therefore, determine cardiac output in a negative way, will be referred to as: inlet impedance."
-            },
-            {
-              "type": "paragraph",
-              "text": "In summary, during normal physiology:"
-            },
-            {
-              "type": "paragraph",
-              "text": "CARDIAC OUTPUT = FUNCTION OF MEAN CARDIOVASCULAR PRESSURE /"
-            },
-            {
-              "type": "paragraph",
-              "text": "Automatic Balancing of the Pulmonary and"
+              "type": "subheading",
+              "text": "In summary, during normal physiology"
             }
           ]
         },
         {
-          "title": "Part 3: Core Clinical Content (pp. 18–25) — Part 2",
+          "title": "Systemic Blood Volumes",
           "blocks": [
             {
               "type": "paragraph",
@@ -561,29 +456,17 @@
             },
             {
               "type": "paragraph",
-              "text": "The Gross Physiology of the Cardiovascular System │ 13"
+              "text": "The Gross Physiology of the Cardiovascular System │ 13 defect, resulting in much smaller right heart output, the volume equilibrium remains. This equilibrium, which persists after such sudden, massive changes in right heart output, occurs automatically because of the passive filling characteristic of the ventricles. It is the physical characteristics of the two vascular beds (e.g., relative size, compliance, and impediment to flow), that determines the volume balance with passive filling ventricles."
             },
             {
               "type": "paragraph",
-              "text": "defect, resulting in much smaller right heart output, the volume equilibrium remains. This equilibrium, which persists after such sudden, massive changes in right heart output, occurs automatically because of the passive filling characteristic of the ventricles. It is the physical characteristics of the two vascular beds (e.g., relative size, compliance, and impediment to flow), that determines the volume balance with passive filling ventricles."
+              "text": "The passive filling of the ventricles accounts for the maintenance of blood volume equilibrium between the systemic and pulmonary vascular systems."
             }
           ]
         },
         {
-          "title": "Part 3: Core Clinical Content (pp. 18–25) — Part 3",
+          "title": "Heart Rate and Stroke Volume",
           "blocks": [
-            {
-              "type": "paragraph",
-              "text": "The passive filling of the ventricles accounts for the maintenance of blood volume"
-            },
-            {
-              "type": "paragraph",
-              "text": "equilibrium between the systemic and pulmonary vascular systems."
-            },
-            {
-              "type": "paragraph",
-              "text": "Heart Rate and Stroke Volume"
-            },
             {
               "type": "paragraph",
               "text": "Normally, the passively filling ventricles are not maximally filled at diastole. Also, they are exerting excess energy over that needed to eject blood at the flow rate of blood entering the ventricles. With such volume and energy reserve, if blood enters the heart faster, the flow rate can go up without any change in strength of contraction or heart rate, unless the heart is being filled maximally (heart failure). Conversely, if blood enters the ventricles at a slower flow rate, the output will go down irrespective of any lowering of the rate or decrease in strength of cardiac contraction."
@@ -591,12 +474,7 @@
             {
               "type": "paragraph",
               "text": "Thus, at a given flow rate, with the normal excess pump power, in both strength and rate, the heart rate and stroke volume become reciprocals of one another, as long as the heart doesn’t go into failure. At a given flow rate, decreasing the heart rate increases the stroke volume; while increasing the heart rate decreases the stroke volume. The observation — that cardiac output usually parallels the cardiac rate and strength of contraction — has resulted in the fallacious conclusion, based on post hoc ergo propter hoc reasoning (\"following this, therefore because of this\"), that they are cause and effect."
-            }
-          ]
-        },
-        {
-          "title": "Part 3: Core Clinical Content (pp. 18–25) — Part 4",
-          "blocks": [
+            },
             {
               "type": "paragraph",
               "text": "Even though these two variables do not normally control cardiac output, their variability has physiological benefit in energy conservation. During low circulation rates, when the heart is not filling to its maximal volume during diastole, the heart down shifts its rate and strength of contraction, thus conserving energy. Also, during high output states, it increases its rate and strength of contraction, thus preventing failure from any limitation of output that might be imposed by ventricular chamber size. If the heart functioned at its maximum strength of contraction and a rate of 150 beats a minute, the cardiac output would go up and down just as it does normally. But what a waste of energy would result! So the variability of rate and strength of contraction have only ecological value: that of conserving world food supply."
@@ -607,71 +485,64 @@
             },
             {
               "type": "paragraph",
-              "text": "14 │ Chapter 1: Normal Circulation"
-            },
-            {
-              "type": "paragraph",
-              "text": "cardiac contractions continue even when the heart is completely empty, as seen during cardiac bypass surgery."
+              "text": "14 │ Chapter 1: Normal Circulation cardiac contractions continue even when the heart is completely empty, as seen during cardiac bypass surgery."
             },
             {
               "type": "paragraph",
               "text": "The reciprocal relationship of heart rate and stroke volume can be demonstrated in patients with complete heart block by varying the rate of firing of their pacemakers. Variations in rate, within physiological levels, above that required to prevent complete diastolic ventricular filling, are associated with no change in cardiac output. Therefore, a compromise rate of 78 is a commonly used setting that allows a wide range of activity acceptable to most patients."
+            },
+            {
+              "type": "paragraph",
+              "text": "Conclusion: During normal physiologic states, there is always pump energy excess over that used in circulation."
             }
           ]
         },
         {
-          "title": "Part 3: Core Clinical Content (pp. 18–25) — Part 5",
+          "title": "Exercise and Cardiac Output Increase",
           "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Conclusion: During normal physiologic states, there is always pump energy excess over"
-            },
-            {
-              "type": "paragraph",
-              "text": "Exercise and Cardiac Output Increase"
-            },
             {
               "type": "paragraph",
               "text": "Two factors cause the increase in cardiac output during exercise: Exercise causes the cardiovascular impedance to be decreased and the mean cardiovascular pressure to be increased. The intermittent skeletal muscle contractions around venous beds, which contain one-way valves, act as a peripheral pump which overcomes significant impedance to flow. Neuro-humeral reflexes speed the heart rate, which slightly lowers the inlet impedance to the heart, by lowering the end-diastolic pressure over what it would otherwise be. The increased heart rate guarantees excess energy expenditure, thus preventing cardiac power failure at the higher circulation rate. The neuro-humeral response to exercise also throws the vascular system into spasm, thereby increasing the mean cardiovascular pressure from the \"G-suit\" effect of tensing the body in general. These are temporary changes, lasting only during the exercise period, which do not effect the long term homeostatic control of circulation."
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "Distribution of Blood Flow: Pulsatile Blood Flow and"
-            },
-            {
-              "type": "paragraph",
-              "text": "Pulsatile arterial blood flow tends to result in diffuse, fairly equal distribution of blood to all tissues of the body. This phenomenon would not occur with a non-pulsatile steady flow. Arteriolar resistance variability from time to time and from place to place, superimposed on the otherwise diffuse distribution, controls preferential blood flow to specific areas, with physiologic benefit. The diverting of a greater portion of cardiac output to the digestive tract after meals and the increased flow to muscles during exercise are examples of changes in distribution of blood flow controlled by variable arteriolar resistance. Peripheral arteriolar resistance, rather than having a cardiac output control function, has its physiological significance by its determination of distribution of blood flow."
             }
           ]
         },
         {
-          "title": "Part 3: Core Clinical Content (pp. 18–25) — Part 6",
+          "title": "Arteriolar Resistance",
           "blocks": [
             {
               "type": "paragraph",
-              "text": "The Gross Physiology of the Cardiovascular System │ 15"
+              "text": "Pulsatile arterial blood flow tends to result in diffuse, fairly equal distribution of blood to all tissues of the body. This phenomenon would not occur with a non-pulsatile steady flow. Arteriolar resistance variability from time to time and from place to place, superimposed on the otherwise diffuse distribution, controls preferential blood flow to specific areas, with physiologic benefit. The diverting of a greater portion of cardiac output to the digestive tract after meals and the increased flow to muscles during exercise are examples of changes in distribution of blood flow controlled by variable arteriolar resistance. Peripheral arteriolar resistance, rather than having a cardiac output control function, has its physiological significance by its determination of distribution of blood flow."
             },
             {
               "type": "paragraph",
-              "text": "Chapter 2: Abnormal Circulation"
-            },
+              "text": "The Gross Physiology of the Cardiovascular System │ 15"
+            }
+          ]
+        },
+        {
+          "title": "Chapter 2: Abnormal Circulation",
+          "blocks": [
             {
               "type": "paragraph",
               "text": "Now that we have amalgamated the ten unique characteristics into an integrated concept of normal cardiovascular function, we proceed to examine the implications of those ten unique characteristics during pathological states."
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "Heart Failure (Pump Energy Failure) Contrasted with"
-            },
-            {
-              "type": "paragraph",
-              "text": "Heart failure is the only situation where the non-sucking heart determines its output. In this state, the heart is pumping at its maximum output and therefore, in effect, by limiting the output, it determines the output."
             }
           ]
         },
         {
-          "title": "Part 3: Core Clinical Content (pp. 18–25) — Part 7",
+          "title": "Pump Energy Excess",
           "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Heart failure is the only situation where the non-sucking heart determines its output. In this state, the heart is pumping at its maximum output and therefore, in effect, by limiting the output, it determines the output."
+            },
             {
               "type": "paragraph",
               "text": "Normally, the heart rate and pump energy are in excess of that needed to eject enough blood at systole, so that the ventricles are empty enough at diastole to allow unobstructed passive filling. Normally ventricles are not maximally filled so there is reserve compliance which allows cardiac output to be determined by the extra-cardiac factors, rather than being limited by the heart. If the heart fails, it pumps less than the normally controlling extra-cardiac factors would dictate. During pump energy failure the heart's output is being limited by whatever amount it is able to pump. The heart in such a situation of failure, by limiting output, becomes the sole regulator of cardiac output."
@@ -691,12 +562,7 @@
             {
               "type": "paragraph",
               "text": "The high end-diastolic ventricular pressure and high-end systolic volume, from a low ejection fraction in heart failure, would also be factors limiting flow, if the heart weren't already determining a lower output."
-            }
-          ]
-        },
-        {
-          "title": "Part 3: Core Clinical Content (pp. 18–25) — Part 8",
-          "blocks": [
+            },
             {
               "type": "paragraph",
               "text": "A secondary change occurs when the left ventricle fails. The lowered cardiac output decreases renal blood flow, thereby causing retention of fluid and elevation of the mean vascular pressure. Fluid equilibrium, which exists between the cardiovascular system and extra-vascular spaces, then results in edema, liver engorgement, and the other fluid abnormalities of congestive heart failure. Heart failure can intensify in a descending spiral if the blood volume progressively expands. The over-stretching of the heart puts it at a poor mechanical advantage, thus further increasing its failure (the descending limb of Starling's curve)."
@@ -704,7 +570,12 @@
             {
               "type": "paragraph",
               "text": "An extreme example of right heart failure is seen after a \"Glen\" right atrial-pulmonary artery anastomosis procedure for palliation of tricuspid atresia. Here, the person has virtually complete failure of a non-functioning right heart, with a surgical bypass of the right ventricle so that, in effect, the circulation is by the left ventricle alone. Circulation is slowed by the increase in impediment that normally would be overcome by the right ventricle. As a consequence of the slowed circulation, the kidneys receive slow flow, causing retention of fluid, resulting in a permanent elevation in the homeostatic level of mean cardiovascular pressure, resulting in some compensatory increase in cardiac output at the new equilibrium."
-            },
+            }
+          ]
+        },
+        {
+          "title": "Causes of Heart Failure",
+          "blocks": [
             {
               "type": "paragraph",
               "text": "Cardiac causes (low myocardial power):"
@@ -715,21 +586,21 @@
             },
             {
               "type": "paragraph",
+              "text": "Peripheral vascular causes:"
+            },
+            {
+              "type": "paragraph",
               "text": " Abnormally high mean cardiovascular pressure causing potentially higher circulation rate than a normal heart is able to deliver, e.g., renal shutdown resulting in high output failure  Abnormally low impedance to the heart, e.g., arteriovenous fistula"
+            },
+            {
+              "type": "paragraph",
+              "text": "The Gross Physiology of the Cardiovascular System │ 17"
             }
           ]
         },
         {
-          "title": "Part 3: Core Clinical Content (pp. 18–25) — Part 9",
+          "title": "Signs and Characteristics of Heart Failure",
           "blocks": [
-            {
-              "type": "paragraph",
-              "text": "The Gross Physiology of the Cardiovascular System │ 17"
-            },
-            {
-              "type": "paragraph",
-              "text": "Signs and Characteristics of Heart Failure:"
-            },
             {
               "type": "paragraph",
               "text": "1. High venous pressure is the major pathognomonic finding in cardiac failure. If the heart were not in failure, the pressure would be normally low. 2. A new equilibrium occurs between the two vascular systems with a shift in volume to the field behind the failing ventricle. I.e., left ventricular failure shifts the equilibrium with a greater volume in the pulmonary circuit, resulting in x-ray evidence of pulmonary vascular engorgement and high pulmonary venous pressure. With right heart failure, the neck vein pressure is seen to be elevated. However, the systemic system initially is large enough to accommodate the shift in blood volume from the lungs without significant venous engorgement until secondary changes (as seen below) occur. 3. With either left or right heart failure, increased fluid accumulation in the body progresses in a descending spiral caused by slowed cardiac output —› less than optimum renal blood flow —› low renal output —› retained fluid in the vascular system —› increased mean cardiovascular pressure —› edema —› liver engorgement and ascites."
@@ -741,20 +612,16 @@
             {
               "type": "paragraph",
               "text": "Increase in rate —› increase in cardiac output Increase contraction —› no increase in cardiac output"
+            },
+            {
+              "type": "paragraph",
+              "text": "Increase contraction —› increase in cardiac output Cardiac output = f mcvp/inlet impedance Heart determines cardiac output Body water equilibrium Progressive water retention Normal cardiac output Low cardiac output"
             }
           ]
         },
         {
-          "title": "Part 3: Core Clinical Content (pp. 18–25) — Part 10",
+          "title": "Pathologic Conditions Resulting in Heart Failure",
           "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Increase contraction —› increase in cardiac output Cardiac output = f mcvp/inlet impedance Heart determines cardiac output Body water equilibrium Progressive water retention Normal cardiac output Low cardiac output"
-            },
-            {
-              "type": "paragraph",
-              "text": "Pathologic Conditions Resulting in Heart Failure:"
-            },
             {
               "type": "paragraph",
               "text": " Complete heart block with slow pulse  Extremely rapid pulse  Intermittent, pulsatile venous flow  Low ejection fraction  Myocardiopathy with weak myocardial contraction  Myocardial infarction to the point of low ejection volume  Valvular heart disease with stenosis or insufficiency  Myocardial failure  Pericardial tamponade  Constrictive pericarditis"
@@ -762,15 +629,11 @@
             {
               "type": "paragraph",
               "text": "18 │ Chapter 2: Abnormal Circulation"
-            },
-            {
-              "type": "paragraph",
-              "text": "Goals in the Treatment of Heart Failure:"
             }
           ]
         },
         {
-          "title": "Part 3: Core Clinical Content (pp. 18–25) — Part 11",
+          "title": "Goals in the Treatment of Heart Failure",
           "blocks": [
             {
               "type": "paragraph",
@@ -779,7 +642,12 @@
             {
               "type": "paragraph",
               "text": "If failure is due to myocardial contractility, lessening the failure state by lowering mean cardiovascular pressure to the point of producing normal venous pressure, without increasing myocardial energy, may create hypovolemic shock rather than restoring normal circulation."
-            },
+            }
+          ]
+        },
+        {
+          "title": "Shock",
+          "blocks": [
             {
               "type": "paragraph",
               "text": "Shock is a low cardiac output state that results from low mean cardiovascular pressure. The low mean cardiovascular pressure can result from altering of one or the other of the two determinants of that pressure: (1) Increasing vascular compliance, and (2) Loss of blood volume."
@@ -791,12 +659,7 @@
             {
               "type": "paragraph",
               "text": "A combination of the two mechanisms of shock is seen in anaphylaxis, where there is both relaxation of the vascular system plus a shift in blood volume to the extra-vascular space, caused by increased capillary porosity."
-            }
-          ]
-        },
-        {
-          "title": "Part 3: Core Clinical Content (pp. 18–25) — Part 12",
-          "blocks": [
+            },
             {
               "type": "paragraph",
               "text": "Whatever the cause, the resulting low mean cardiovascular pressure in shock can be restored to normal by rapid infusion of fluid and electrolytes, aided by the use of vasopressor drugs."
@@ -808,20 +671,16 @@
             {
               "type": "paragraph",
               "text": "The Gross Physiology of the Cardiovascular System │ 19"
-            },
-            {
-              "type": "paragraph",
-              "text": "Arterial Hypertension (Low and High Output Types)"
-            },
-            {
-              "type": "paragraph",
-              "text": "Arterial hypertension results from two radically different mechanisms. One is caused by increased arteriolar resistance in a system with normal mean cardiovascular pressure. The other results, in the presence of normal arteriolar resistance, from elevated mean cardiovascular pressure."
             }
           ]
         },
         {
-          "title": "Part 3: Core Clinical Content (pp. 18–25) — Part 13",
+          "title": "Arterial Hypertension (Low and High Output Types)",
           "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Arterial hypertension results from two radically different mechanisms. One is caused by increased arteriolar resistance in a system with normal mean cardiovascular pressure. The other results, in the presence of normal arteriolar resistance, from elevated mean cardiovascular pressure."
+            },
             {
               "type": "paragraph",
               "text": "1. In arterial hypertension from increased arteriolar resistance, there is no slowing of the circulation rate from the resistance. The heart, which normally expends excess energy, just forces whatever blood that comes to it right past the resistance point. The only change in circulation is the elevated arterial pressure. Such arterial abnormal resistance may have its origin from transient neuro-humeral stimuli. However, with longstanding arterial hypertension, changes eventually occur, resulting in more permanent structural resistance increase. If, eventually, the vascular changes affect blood flow to the kidneys, the second type of hypertension may develop. 2. High mean cardiovascular pressure hypertension: The most graphic example of this state is seen during renal shutdown, from whatever cause. Here, if fluid and electrolyte intake continues, and there is reduced fluid leaving the body, the vascular volume progressively rises, with a corresponding increase in mean cardiovascular pressure. If the heart is strong enough that it continues to exert excess energy over that necessary to maintain a low ventricular inlet pressure, cardiac output increases. With the increased flow, even in the presence of unaltered arteriolar state, the resulting arterial pressure is elevated. If the heart is normal, but the pressure becomes so high that venous pressure rises, high output heart failure occurs. Severe high output failure has been seen where the systemic arterial pressure was 350/200, the systemic venous pressure was elevated with the neck veins at 30 cm., the pulmonary artery pressure was doubled, and the pulmonary capillary pressure was so high as to cause pulmonary edema with frothing of blood from the mouth and nose. This is in marked contrast to the distribution hypertension caused by arteriolar resistance increase."
@@ -833,7 +692,12 @@
             {
               "type": "paragraph",
               "text": "Therapy for the two types of hypertension should be aimed at the etiology. For high mean cardiovascular hypertension, improving renal blood flow by removing renal arterial obstruction, diuretics, low salt diet, and water restriction to lower mean cardiovascular pressure or even renal transplant may be indicated. For hypertension caused by high arteriolar resistance, arteriolar vaso-relaxing drugs and changing the patient's response to stress may be effective."
-            },
+            }
+          ]
+        },
+        {
+          "title": "Arteriovenous Fistula",
+          "blocks": [
             {
               "type": "paragraph",
               "text": "An arteriovenous fistula, with blood flow going directly from an artery to a vein without going through arterioles, capillaries, and venules, bypasses most of the resistance that has"
@@ -845,41 +709,33 @@
     {
       "chapterNumber": 4,
       "slug": "ch-4",
-      "title": "Part 4: Core Clinical Content (pp. 26–33)",
+      "title": "Section 4: Clinical Study Notes (pp. 26–33)",
       "pageRange": "pp. 26–33",
-      "excerpt": "20 │ Chapter 2: Abnormal Circulation",
-      "wordCount": 2456,
+      "excerpt": "20 │ Chapter 2: Abnormal Circulation upstream compliance. Therefore, depending on size, a fistula can cause tremendous increase in cardiac output. If a shunt is great enough, high ",
+      "wordCount": 2426,
       "sections": [
         {
-          "title": "Part 4: Core Clinical Content (pp. 26–33) — Part 1",
+          "title": "Section 4: Clinical Study Notes (pp. 26–33)",
           "blocks": [
             {
               "type": "paragraph",
-              "text": "20 │ Chapter 2: Abnormal Circulation"
-            },
-            {
-              "type": "paragraph",
-              "text": "upstream compliance. Therefore, depending on size, a fistula can cause tremendous increase in cardiac output. If a shunt is great enough, high output failure can result. If a shunt is in an extremity, where it can be occluded by manual pressure, alternating decrease and increase of cardiac output can be observed, as the shunt is intermittently occluded and opened. This maneuver is a good demonstration of the peripheral vascular control of circulation rate."
+              "text": "20 │ Chapter 2: Abnormal Circulation upstream compliance. Therefore, depending on size, a fistula can cause tremendous increase in cardiac output. If a shunt is great enough, high output failure can result. If a shunt is in an extremity, where it can be occluded by manual pressure, alternating decrease and increase of cardiac output can be observed, as the shunt is intermittently occluded and opened. This maneuver is a good demonstration of the peripheral vascular control of circulation rate."
             },
             {
               "type": "paragraph",
               "text": "Arteriovenous fistula shunts occur in a number of disease states. For example, blood flow is shunted from arteries to veins in thyrotoxic goiters. Rather than there being one large arteriovenous channel, there are many small shunting vessels. The blood may be flowing so rapidly through the many small shunts that a loud, continuous murmur may be heard over the thyroid gland. This arteriovenous shunting of blood flow accounts, in part, for the high cardiac output associated with toxic goiter."
-            },
-            {
-              "type": "paragraph",
-              "text": "Changes In Size of the Vascular System"
-            },
-            {
-              "type": "paragraph",
-              "text": "Because of the peripheral control of cardiac output, changing the size of the vascular bed, permanently (such as by a leg amputation) or by short term decrease (such as by cross-clamping the aorta and vena cava during surgery), causes an instantaneous decrease in cardiac output, mechanically, without any involvement or need of neurologic or humeral reflexes."
             }
           ]
         },
         {
-          "title": "Part 4: Core Clinical Content (pp. 26–33) — Part 2",
+          "title": "Changes In Size of the Vascular System",
           "blocks": [
             {
               "type": "paragraph",
+              "text": "Because of the peripheral control of cardiac output, changing the size of the vascular bed, permanently (such as by a leg amputation) or by short term decrease (such as by cross-clamping the aorta and vena cava during surgery), causes an instantaneous decrease in cardiac output, mechanically, without any involvement or need of neurologic or humeral reflexes."
+            },
+            {
+              "type": "subheading",
               "text": "Complete Heart Block and Fixed-Rate Pacemakers"
             },
             {
@@ -893,15 +749,11 @@
             {
               "type": "paragraph",
               "text": "The Gross Physiology of the Cardiovascular System │ 21"
-            },
-            {
-              "type": "paragraph",
-              "text": "Left Ventricular Booster Pumping"
             }
           ]
         },
         {
-          "title": "Part 4: Core Clinical Content (pp. 26–33) — Part 3",
+          "title": "Left Ventricular Booster Pumping",
           "blocks": [
             {
               "type": "paragraph",
@@ -926,18 +778,14 @@
           ]
         },
         {
-          "title": "Part 4: Core Clinical Content (pp. 26–33) — Part 4",
+          "title": "Chapter 3: Open-Heart Surgery with PassiveFilling Pumps",
           "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Chapter 3: Open-Heart Surgery with PassiveFilling Pumps"
-            },
             {
               "type": "paragraph",
               "text": "The advent of open-heart surgery has provided a wealth of data and observations regarding cardiovascular physiology. Furthermore, our expanding ability to correct cardiovascular defects has been a stimulus to better understand how the system works. Delineation of the essential mechanical features of the heart has allowed construction of heart replacement pumps that: (1) automatically provide normal circulation during heart bypass, with the flow rate remaining under control of normal physiological mechanisms; (2) allow research, in animals, by isolating the peripheral vascular versus cardiac effect on circulation rate from responses to various drug, humeral, and neural stimuli; and (3) provide a mechanical model having the ten unique characteristics of the cardiovascular system, for teaching and the study of circulatory phenomena."
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "The Mechanical Heart Replacement Pumps"
             },
             {
@@ -947,62 +795,41 @@
             {
               "type": "paragraph",
               "text": "Many designs of pumps with the above characteristics could be made. One of the six variations that the author has used is shown in Figure 4. The pump consists of a flat atrialventricular silicone rubber tube with a reinforcing flat cotton cover (Fig. 5). The flat configuration, which prevents rebound to a round cross-section after being compressed, is responsible for the passive filling characteristic. The tube is mechanically compressed, sequentially, by four plates activated by cams and lifters (Fig. 6). Two narrow plates act as inlet and outlet valves to the ventricular portion of the tube. Two wide plates act as atrial and ventricular impellers (Fig. 4). The atrial impeller compression and sequence are critical in preventing interruption of venous inflow when the ventricles are being emptied. Therefore, atrial compression is incomplete, leaving the atria with a 3/16\" channel at maximum compression. The slope of the atrial cams is gentle, to prevent any sharp rise in pump atrial pressure that might"
-            }
-          ]
-        },
-        {
-          "title": "Part 4: Core Clinical Content (pp. 26–33) — Part 5",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "The Gross Physiology of the Cardiovascular System │ 23"
             },
             {
               "type": "paragraph",
-              "text": "interrupt venous flow. The cam's timing is such that the \"compression let go\" occurs just before the inlet valve closes. (For more detailed schematics of one pump design, see Dr. Anderson’s “Extracorporeal Heart” patent, listed in the “Additional Materials” at the end of the text.)"
+              "text": "The Gross Physiology of the Cardiovascular System │ 23 interrupt venous flow. The cam's timing is such that the \"compression let go\" occurs just before the inlet valve closes. (For more detailed schematics of one pump design, see Dr. Anderson’s “Extracorporeal Heart” patent, listed in the “Additional Materials” at the end of the text.)"
             },
             {
               "type": "paragraph",
               "text": "24 │ Chapter 3: Open-Heart Surgery with Passive-Filling Pumps"
-            },
-            {
-              "type": "paragraph",
-              "text": "Clinical Surgery Using the Heart-Simulating Pump"
-            },
-            {
-              "type": "paragraph",
-              "text": "Cardiac surgery using both right and left heart bypass pumps has one significant advantage over conventional cardiopulmonary bypass: No oxygenator is used, as the lungs are left in the perfusion circuit and are provided with normal circulation. With normal pulmonary blood flow during the operation, post-operative pulmonary insufficiency is less of a problem than when the lungs are bypassed using an oxygenator."
             }
           ]
         },
         {
-          "title": "Part 4: Core Clinical Content (pp. 26–33) — Part 6",
+          "title": "Clinical Surgery Using the Heart-Simulating Pump",
           "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Cardiac surgery using both right and left heart bypass pumps has one significant advantage over conventional cardiopulmonary bypass: No oxygenator is used, as the lungs are left in the perfusion circuit and are provided with normal circulation. With normal pulmonary blood flow during the operation, post-operative pulmonary insufficiency is less of a problem than when the lungs are bypassed using an oxygenator."
+            },
             {
               "type": "paragraph",
               "text": "By connecting the unique pumps in parallel to the heart's ventricles and with the pumps at heart level, cardiac function can be temporarily interrupted during surgical procedures without any interruption in normal circulation. When both the heart and bypass pumps are functioning simultaneously, the combined output remains the same as when the heart alone is pumping. Because both fill passively, the combined output remains regulated by the mean cardiovascular pressure and inlet impedance. Any amount that goes to the pumps doesn't go to the heart, and vice versa. If the heart function is then interrupted, by induced fibrillation or diversion of all the venous flow from one or both ventricles, the flow automatically goes to the pumps and circulation is uninterrupted and continues at the same rate. Subsequently, when the heart is defibrillated, or when the flow to the heart is no longer interrupted, the heart output takes over part of the circulation, with the total circulation rate still remaining the same. Weaning off of bypass is done simply by sequentially elevating the pumps a few centimeters at a time, thereby diverting more and more of the venous flow to the heart. Myocardial competence to take over the entire circulation becomes evident if the circulation rate and blood pressure remain unchanged after the incremental elevations are made. By appropriate elevation of the pumps above heart"
             },
             {
               "type": "paragraph",
-              "text": "The Gross Physiology of the Cardiovascular System │ 25"
-            },
-            {
-              "type": "paragraph",
-              "text": "level, booster pumping can be done to maintain any desired atrial pressure in the heart during a recovery period."
-            },
-            {
-              "type": "paragraph",
-              "text": "Specific Applications of the Mechanical Pumps"
-            },
-            {
-              "type": "paragraph",
-              "text": "Cardiac bypass during coronary surgery is used to provide a non-moving target with decompressed ventricles and the security that adequate circulation is being maintained during manipulation of the heart. Coronary artery surgery is not an open heart procedure, as the coronary arteries are on the surface of the heart. Therefore, closed bypass is applicable. Four cannulae are used. One pump is connected from the left atrium to the aorta, and the other from the right atrium to the pulmonary artery (Fig. 7)."
+              "text": "The Gross Physiology of the Cardiovascular System │ 25 level, booster pumping can be done to maintain any desired atrial pressure in the heart during a recovery period."
             }
           ]
         },
         {
-          "title": "Part 4: Core Clinical Content (pp. 26–33) — Part 7",
+          "title": "Coronary Bypass Surgery",
           "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Cardiac bypass during coronary surgery is used to provide a non-moving target with decompressed ventricles and the security that adequate circulation is being maintained during manipulation of the heart. Coronary artery surgery is not an open heart procedure, as the coronary arteries are on the surface of the heart. Therefore, closed bypass is applicable. Four cannulae are used. One pump is connected from the left atrium to the aorta, and the other from the right atrium to the pulmonary artery (Fig. 7)."
+            },
             {
               "type": "paragraph",
               "text": "It is important to start the left-sided bypass before the right. If the right one is started and the heart happens to fibrillate before the left bypass is started, blood will be pumped into the pulmonary circuit while no blood is leaving it. The result would be acute pulmonary engorgement (\"liver lungs\") with a fatal outcome. Likewise, the leftsided bypass should be discontinued last."
@@ -1018,18 +845,18 @@
             {
               "type": "paragraph",
               "text": "During cardiac bypass with the two pumps, with the lungs functioning and without the use of an oxygenator, the anesthesiologist maintains ventilation and support of circulation just as he would in other non-cardiac procedures. Circulation rate reacts to blood loss, fluid infusion, and vasoactive drugs, just as when the heart is functioning."
-            },
-            {
-              "type": "paragraph",
-              "text": "While it might appear that pulmonary stenosis could be repaired by using a right-sided bypass alone, one laboratory experience has demonstrated this to be too hazardous for clinical application. During the course of a right heart bypass, with the left ventricle functioning, the heart unexpectedly fibrillated. With the left ventricle suddenly not pumping, and before the right heart bypass pump could be turned off and the heart defibrillated, the lungs became irreparably overloaded with blood. The resulting \"liver lungs\" were not reversible, causing the death of the animal. Therefore, for safety, total heart bypass is always used, even when a right heart bypass alone could allow adequate access for correction of the lesion."
             }
           ]
         },
         {
-          "title": "Part 4: Core Clinical Content (pp. 26–33) — Part 8",
+          "title": "Pulmonary Stenosis",
           "blocks": [
             {
               "type": "paragraph",
+              "text": "While it might appear that pulmonary stenosis could be repaired by using a right-sided bypass alone, one laboratory experience has demonstrated this to be too hazardous for clinical application. During the course of a right heart bypass, with the left ventricle functioning, the heart unexpectedly fibrillated. With the left ventricle suddenly not pumping, and before the right heart bypass pump could be turned off and the heart defibrillated, the lungs became irreparably overloaded with blood. The resulting \"liver lungs\" were not reversible, causing the death of the animal. Therefore, for safety, total heart bypass is always used, even when a right heart bypass alone could allow adequate access for correction of the lesion."
+            },
+            {
+              "type": "subheading",
               "text": "Use of a Passive Filling Pump with a Bubble Oxygenator"
             },
             {
@@ -1042,17 +869,8 @@
             },
             {
               "type": "paragraph",
-              "text": "The Gross Physiology of the Cardiovascular System │ 27"
+              "text": "The Gross Physiology of the Cardiovascular System │ 27 circulation rate with a normal pulse wave, without any control adjustments, and without the hazard of oxygenator blood level fluctuations or air emboli."
             },
-            {
-              "type": "paragraph",
-              "text": "circulation rate with a normal pulse wave, without any control adjustments, and without the hazard of oxygenator blood level fluctuations or air emboli."
-            }
-          ]
-        },
-        {
-          "title": "Part 4: Core Clinical Content (pp. 26–33) — Part 9",
-          "blocks": [
             {
               "type": "paragraph",
               "text": "If the inlet of the pump is placed at the priming level in the oxygenator (Fig. 9), because the pump is non-sucking, the blood will never fall below that level. Any blood that runs into the oxygenator that would tend to raise the level is automatically pumped back into the patient. The oxygenator is positioned at such a level that normal venous pressure is maintained by gravity drainage during bypass."
@@ -1072,21 +890,17 @@
     {
       "chapterNumber": 5,
       "slug": "ch-5",
-      "title": "Part 5: Core Clinical Content (pp. 34–41)",
+      "title": "Section 5: Clinical Study Notes (pp. 34–41)",
       "pageRange": "pp. 34–41",
-      "excerpt": "28 │ Chapter 3: Open-Heart Surgery with Passive-Filling Pumps",
-      "wordCount": 1836,
+      "excerpt": "28 │ Chapter 3: Open-Heart Surgery with Passive-Filling Pumps wide, abnormal pulse wave of aortic insufficiency is followed with a normal pulse wave while on bypass and after valve",
+      "wordCount": 1796,
       "sections": [
         {
-          "title": "Part 5: Core Clinical Content (pp. 34–41) — Part 1",
+          "title": "Section 5: Clinical Study Notes (pp. 34–41)",
           "blocks": [
             {
               "type": "paragraph",
-              "text": "28 │ Chapter 3: Open-Heart Surgery with Passive-Filling Pumps"
-            },
-            {
-              "type": "paragraph",
-              "text": "wide, abnormal pulse wave of aortic insufficiency is followed with a normal pulse wave while on bypass and after valve replacement. Figure 11 shows typical pulse waves during bypass and Figure 12 shows superimposed waves during circulation produced by parallel pumping of the heart and extra-corporeal pump."
+              "text": "28 │ Chapter 3: Open-Heart Surgery with Passive-Filling Pumps wide, abnormal pulse wave of aortic insufficiency is followed with a normal pulse wave while on bypass and after valve replacement. Figure 11 shows typical pulse waves during bypass and Figure 12 shows superimposed waves during circulation produced by parallel pumping of the heart and extra-corporeal pump."
             },
             {
               "type": "paragraph",
@@ -1094,27 +908,19 @@
             },
             {
               "type": "paragraph",
-              "text": "The Gross Physiology of the Cardiovascular System │ 29"
-            },
-            {
-              "type": "paragraph",
-              "text": "output episode. After the tube was re-advanced properly into the inferior vena cava, the blood flow to and from the pump automatically returned to normal."
+              "text": "The Gross Physiology of the Cardiovascular System │ 29 output episode. After the tube was re-advanced properly into the inferior vena cava, the blood flow to and from the pump automatically returned to normal."
             }
           ]
         },
         {
-          "title": "Part 5: Core Clinical Content (pp. 34–41) — Part 2",
+          "title": "The Non-Sucking Pump Used with a Membrane Oxygenator",
           "blocks": [
-            {
-              "type": "paragraph",
-              "text": "The Non-Sucking Pump Used with a Membrane Oxygenator"
-            },
             {
               "type": "paragraph",
               "text": "The non-sucking heart replacement pump is ideal for use with a membrane oxygenator. It automatically allows a constant blood volume in the system with this closed-volume oxygenator. There is no need for a reservoir for volume monitoring of changing blood levels, which would occur and require alteration of pump rate with other types of pumps. In effect, the passive filling, continuous inflow pump used with a membrane oxygenator provides a closed automatic bypass system. (Note: In all clinical applications of passive filling pumps, it is important to use large caliber venous drainage tubing so as not to add to the vascular system's normal inlet impedance to the pumps.)"
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "Pulsatile Blood Flow During Bypass Surgery"
             },
             {
@@ -1123,21 +929,13 @@
             },
             {
               "type": "paragraph",
-              "text": "30 │ Chapter 3: Open-Heart Surgery with Passive-Filling Pumps"
+              "text": "30 │ Chapter 3: Open-Heart Surgery with Passive-Filling Pumps ensures diffuse normal distribution of blood flow to all the organs and tissue of the body, while non-pulsatile flow results in reduced flow to certain vascular beds and excessive flow to others. With non-pulsatile flow, the brain and kidneys receive reduced blood supply. Also, incomplete metabolism from islands of under-perfused tissue results in acidosis, not found when pulsatile flow is provided. When hypothermia is used, the need of pulsatile flow to insure diffuse distribution of circulation is increased. While the adverse effects of non-pulsatile flow can be offset by the use of vaso-relaxers, blood dilution, and other methods, the value of pulsatile flow in normal function is illustrated by comparing findings from the two types of pumping systems."
             }
           ]
         },
         {
-          "title": "Part 5: Core Clinical Content (pp. 34–41) — Part 3",
+          "title": "Ventricular Compliance — an Inlet Impedance Factor",
           "blocks": [
-            {
-              "type": "paragraph",
-              "text": "ensures diffuse normal distribution of blood flow to all the organs and tissue of the body, while non-pulsatile flow results in reduced flow to certain vascular beds and excessive flow to others. With non-pulsatile flow, the brain and kidneys receive reduced blood supply. Also, incomplete metabolism from islands of under-perfused tissue results in acidosis, not found when pulsatile flow is provided. When hypothermia is used, the need of pulsatile flow to insure diffuse distribution of circulation is increased. While the adverse effects of non-pulsatile flow can be offset by the use of vaso-relaxers, blood dilution, and other methods, the value of pulsatile flow in normal function is illustrated by comparing findings from the two types of pumping systems."
-            },
-            {
-              "type": "paragraph",
-              "text": "Ventricular Compliance — an Inlet Impedance Factor"
-            },
             {
               "type": "paragraph",
               "text": "Open-heart surgery on a patient with severe hypertrophy of the left ventricle, from longstanding aortic stenosis, illustrated how ventricular compliance can be a factor in the inlet impedance determination of cardiac output. This patient's left ventricle measured three-fourths of an inch in thickness. After replacement of the aortic valve, the bypass was discontinued. The heart contracted very strongly, with a normal pulmonary venous pressure of 12 cm. water. However, there was practically no cardiac output and the blood pressure remained at only 55/25. The blood volume was, therefore, increased by increments while watching the pulmonary venous pressure go to 16, 18, 20, 25, and 30 cm., with no effect on output or blood pressure. The heart continued to beat very forcibly. Suddenly, at a pulmonary venous pressure of 35 cm., almost at the point of causing pulmonary edema, the heart distended during diastole, cardiac output went beyond normal with a resulting blood pressure of 160/90. The non-compliance of this thick ventricle was a significant impediment to passive filling and cardiac output."
@@ -1145,15 +943,11 @@
             {
               "type": "paragraph",
               "text": "The Gross Physiology of the Cardiovascular System │ 31"
-            },
-            {
-              "type": "paragraph",
-              "text": "Chapter 4: Animal Experiments with Passive-Filling Pumps"
             }
           ]
         },
         {
-          "title": "Part 5: Core Clinical Content (pp. 34–41) — Part 4",
+          "title": "Chapter 4: Animal Experiments with Passive-Filling Pumps",
           "blocks": [
             {
               "type": "paragraph",
@@ -1162,7 +956,12 @@
             {
               "type": "paragraph",
               "text": "1. Blood volume balancing between the systemic and pulmonary circuits 2. Blood volume's effect on mean cardiovascular pressure and thus on cardiac output 3. Circulation rate control by the peripheral vascular effects of chemical, humeral, and neural stimuli 4. The atrial effect in providing uninterrupted venous flow to the heart 5. Pulsatile blood flow causing diffuse distribution of circulation"
-            },
+            }
+          ]
+        },
+        {
+          "title": "The Dog-Pump Model",
+          "blocks": [
             {
               "type": "paragraph",
               "text": "The following demonstrations were obtained during cardiac replacement of both right and left ventricles with passive filling pumps in greyhound dogs. One pump was hooked up with a cannula connected from the right atrium to the pulmonary artery; the other was connected from the left atrium to the aorta (Fig. 7). After the pumps were started, the hearts were fibrillated with a low voltage alternating electric current, thereby diverting all of the blood flow to the pumps. The pump rate was set arbitrarily at 80 beats per minute. The ventricles had a maximum capacity of 80 cc. (Figs. 14 & 15)."
@@ -1170,15 +969,11 @@
             {
               "type": "paragraph",
               "text": "32 │ Chapter 4: Animal Experiments with Passive-Filling Pumps"
-            },
-            {
-              "type": "paragraph",
-              "text": "Blood Volume Balancing Between the Pulmonary and"
             }
           ]
         },
         {
-          "title": "Part 5: Core Clinical Content (pp. 34–41) — Part 5",
+          "title": "Systemic Circuits",
           "blocks": [
             {
               "type": "paragraph",
@@ -1199,12 +994,7 @@
             {
               "type": "paragraph",
               "text": "34 │ Chapter 4: Animal Experiments with Passive-Filling Pumps"
-            }
-          ]
-        },
-        {
-          "title": "Part 5: Core Clinical Content (pp. 34–41) — Part 6",
-          "blocks": [
+            },
             {
               "type": "paragraph",
               "text": "With the passive filling pumps, reversing the great vessel shunt and introducing shunts at other locations all failed to create a disequilibrium between the blood volumes in the systemic and pulmonary circuits."
@@ -1220,15 +1010,11 @@
             {
               "type": "paragraph",
               "text": "The Gross Physiology of the Cardiovascular System │ 35"
-            },
-            {
-              "type": "paragraph",
-              "text": "Single Ventricle Replacement"
             }
           ]
         },
         {
-          "title": "Part 5: Core Clinical Content (pp. 34–41) — Part 7",
+          "title": "Single Ventricle Replacement",
           "blocks": [
             {
               "type": "paragraph",
@@ -1245,15 +1031,11 @@
             {
               "type": "paragraph",
               "text": "This experience not only prevented the use of this procedure in human heart surgery, but gave one other significant benefit: The exposed hazard made it clear what the order of cannulation should be in two ventricle bypass. The left heart should be cannulated first and the pump started. If the heart should happen to fibrillate before the right cannulation was completed, pumping all of the pulmonary blood into the systemic circuit would not be disastrous because of the lung's comparative low blood volume. Then the right cannulation can be done, and total bypass then initiated."
-            },
-            {
-              "type": "paragraph",
-              "text": "The Relationship of Blood Volume to Mean Cardiovascular"
             }
           ]
         },
         {
-          "title": "Part 5: Core Clinical Content (pp. 34–41) — Part 8",
+          "title": "Pressure and Cardiac Output",
           "blocks": [
             {
               "type": "paragraph",
@@ -1266,17 +1048,21 @@
     {
       "chapterNumber": 6,
       "slug": "ch-6",
-      "title": "Part 6: Core Clinical Content (pp. 42–49)",
+      "title": "Section 6: Clinical Study Notes (pp. 42–49)",
       "pageRange": "pp. 42–49",
       "excerpt": "36 │ Chapter 4: Animal Experiments with Passive-Filling Pumps",
-      "wordCount": 1102,
+      "wordCount": 1095,
       "sections": [
         {
-          "title": "Part 6: Core Clinical Content (pp. 42–49) — Part 1",
+          "title": "Section 6: Clinical Study Notes (pp. 42–49)",
           "blocks": [
             {
               "type": "paragraph",
               "text": "36 │ Chapter 4: Animal Experiments with Passive-Filling Pumps"
+            },
+            {
+              "type": "subheading",
+              "text": "Hypovolemia"
             },
             {
               "type": "paragraph",
@@ -1289,15 +1075,11 @@
             {
               "type": "paragraph",
               "text": "38 │ Chapter 4: Animal Experiments with Passive-Filling Pumps"
-            },
-            {
-              "type": "paragraph",
-              "text": "The Effects of Peripheral Vascular Response from Chemical"
             }
           ]
         },
         {
-          "title": "Part 6: Core Clinical Content (pp. 42–49) — Part 2",
+          "title": "Stimuli on Cardiac Output",
           "blocks": [
             {
               "type": "paragraph",
@@ -1306,7 +1088,12 @@
             {
               "type": "paragraph",
               "text": "*Note: The use of terms \"vasoconstrictors\" and \"vasodilators\" are conventionally used for stimuli that would better be referred to as \"vasopressors\" and \"vasorelaxers,\" as blood is noncompressible. For every increment that vessels constrict in one place, there must be a simultaneous dilation somewhere else in the vascular system. When one segment dilates, there must be a corresponding constriction elsewhere, unless additional fluid enters the vascular space. Unless referring to a localized area of the vascular bed, such as the arterioles, it is more accurate to refer to vasopressors and vasorelaxers."
-            },
+            }
+          ]
+        },
+        {
+          "title": "Vasopressors",
+          "blocks": [
             {
               "type": "paragraph",
               "text": "Figures 24 and 25 document responses to epinephrine, with the heart function replaced with the passive filling pumps. Figure 24 shows an increase in the circulation rate going from 4 1/2 liters per minute to 7 liters per minute after intravenous injection of 1 cc. of 1/10,000 epinephrine. Figure 25 shows the mean vascular pressure, from a normal of 15 cm. water, going to 19 cm. after the epinephrine. Any slowing effect on pump output that might be expected because of increased resistance from spasm of the vascular system is obviously offset by the increased circulation rate caused by the increase in mean cardiovascular pressure. The increase in arterial blood pressure, in this case, is from a combination of increased arteriolar resistance and elevation in pump output from the increased mean cardiovascular pressure."
@@ -1318,19 +1105,10 @@
             {
               "type": "paragraph",
               "text": "Figures 26 and 27 show the circulation response to neo-synephrine in an animal preparation, with the heart replaced with a passive filling pump. The pump has no control or regulating devices. The circulatory changes are, therefore, without any cardiac effect and are purely from the effect of the drug on the vascular system. Note that the increased arteriolar"
-            }
-          ]
-        },
-        {
-          "title": "Part 6: Core Clinical Content (pp. 42–49) — Part 3",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "40 │ Chapter 4: Animal Experiments with Passive-Filling Pumps"
             },
             {
               "type": "paragraph",
-              "text": "resistance, having little upstream compliance, does not decrease the flow rate. The increased mean cardiovascular pressure, which increases the circulatory rate, more than offsets the outflow impediment of the arteriolar resistance. Note also that the pulmonary artery pressure rises as well as the systemic pressure in response to neo-synephrine. The venous pressure stays the same after the injection, showing that the pump is not in failure at the increased flow rate."
+              "text": "40 │ Chapter 4: Animal Experiments with Passive-Filling Pumps resistance, having little upstream compliance, does not decrease the flow rate. The increased mean cardiovascular pressure, which increases the circulatory rate, more than offsets the outflow impediment of the arteriolar resistance. Note also that the pulmonary artery pressure rises as well as the systemic pressure in response to neo-synephrine. The venous pressure stays the same after the injection, showing that the pump is not in failure at the increased flow rate."
             },
             {
               "type": "paragraph",
@@ -1347,7 +1125,7 @@
           ]
         },
         {
-          "title": "Part 6: Core Clinical Content (pp. 42–49) — Part 4",
+          "title": "Vaso-Relaxers",
           "blocks": [
             {
               "type": "paragraph",
@@ -1376,13 +1154,13 @@
     {
       "chapterNumber": 7,
       "slug": "ch-7",
-      "title": "Part 7: Core Clinical Content (pp. 50–57)",
+      "title": "Section 7: Clinical Study Notes (pp. 50–57)",
       "pageRange": "pp. 50–57",
       "excerpt": "44 │ Chapter 4: Animal Experiments with Passive-Filling Pumps",
-      "wordCount": 1446,
+      "wordCount": 1434,
       "sections": [
         {
-          "title": "Part 7: Core Clinical Content (pp. 50–57) — Part 1",
+          "title": "Section 7: Clinical Study Notes (pp. 50–57)",
           "blocks": [
             {
               "type": "paragraph",
@@ -1391,13 +1169,18 @@
             {
               "type": "paragraph",
               "text": "The Gross Physiology of the Cardiovascular System │ 45"
-            },
+            }
+          ]
+        },
+        {
+          "title": "Conclusion",
+          "blocks": [
             {
               "type": "paragraph",
               "text": "The vasopressor and vasorelaxer findings illustrate that the circulation changes in response to these stimuli are the result of their peripheral vascular effect. Any cardiac change in rate or strength of contraction in the intact animal from those stimuli is responsible for the heart staying out of failure concomitant with the peripheral vascular circulatory rate control changes. The pump-animal preparation becomes a useful study method of separating the cardiac from the peripheral vascular effect of drugs on circulation."
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "The Atrial Effect Experiment"
             },
             {
@@ -1407,23 +1190,15 @@
           ]
         },
         {
-          "title": "Part 7: Core Clinical Content (pp. 50–57) — Part 2",
+          "title": "Pulsatile Blood Flow Experiment",
           "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Pulsatile Blood Flow Experiment"
-            },
             {
               "type": "paragraph",
               "text": "In order to observe circulation with and without pulsatile flow, the omentum of a dog was placed on the stage of a dissection microscope. Two parallel tubes, joined at the end with a \"Y\" connector, were interposed in the omental artery. Blood to the omentum could be diverted through one tube or the other by cross-clamping one of them. One of the tubes contained an elastic section with a slightly constricted outlet, which would damp out the pulse wave and make uninterrupted flow to the omentum when the other tube was clamped. Using this setup, the omental circulation could be observed during either pulsatile or non-pulsatile flow. During pulsatile flow, blood flow remained unchanged and stable through the many vessels. With nonpulsatile flow at the same rate, a marked change in distribution of blood flow progressively occurred. More and more of the flow went to fewer and fewer channels. After 15 minutes, a few vessels had dilated with most of the blood going through them, while other vessels had become empty with no flow. There were small islands of omentum with no blood flow next to others"
             },
             {
               "type": "paragraph",
-              "text": "46 │ Chapter 4: Animal Experiments with Passive-Filling Pumps"
-            },
-            {
-              "type": "paragraph",
-              "text": "with higher than normal flow. When pulsatile flow was re-initiated, it took two minutes for the original flow distribution to be established. Parenthetically, the easiest way to produce a diffuse hydraulic distribution system is to make it pulsatile like the vascular system."
+              "text": "46 │ Chapter 4: Animal Experiments with Passive-Filling Pumps with higher than normal flow. When pulsatile flow was re-initiated, it took two minutes for the original flow distribution to be established. Parenthetically, the easiest way to produce a diffuse hydraulic distribution system is to make it pulsatile like the vascular system."
             },
             {
               "type": "paragraph",
@@ -1432,12 +1207,8 @@
           ]
         },
         {
-          "title": "Part 7: Core Clinical Content (pp. 50–57) — Part 3",
+          "title": "Chapter 5: Hydraulic Model of the Cardiovascular System",
           "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Chapter 5: Hydraulic Model of the Cardiovascular System"
-            },
             {
               "type": "paragraph",
               "text": "A model, incorporating many of the unique characteristics of the cardiovascular system, allows the opportunity to observe the significance of each of those features. The characteristics reproduced in the model are: (1) the hydraulic system is a circle; (2) it is an elastic system, (3) it is filled with fluid producing a mean pressure; (4) there are two pumps in series between two vascular beds; (5) the pumps fill passively; (6) pump output is intermittent; (7) the pumps have atria that allow continuous, unimpeded flow to the pumps; (8) the pumps are capable of pumping out a greater volume than the system will produce; and (9) there are resistance points near the pumps' inlets as well as near their outlets."
@@ -1449,20 +1220,25 @@
             {
               "type": "paragraph",
               "text": "48 │ Chapter 5: Hydraulic Model of the Cardiovascular System"
-            },
-            {
-              "type": "paragraph",
-              "text": "Figure 38 shows the layout of the model pictured in Figure 39."
             }
           ]
         },
         {
-          "title": "Part 7: Core Clinical Content (pp. 50–57) — Part 4",
+          "title": "The Model",
           "blocks": [
             {
               "type": "paragraph",
-              "text": "The Gross Physiology of the Cardiovascular System │ 49"
+              "text": "Figure 38 shows the layout of the model pictured in Figure 39."
             },
+            {
+              "type": "paragraph",
+              "text": "The Gross Physiology of the Cardiovascular System │ 49"
+            }
+          ]
+        },
+        {
+          "title": "The Pumps",
+          "blocks": [
             {
               "type": "paragraph",
               "text": "The model pumps share the three unique characteristics of the heart: They are nonsucking, and therefore fill passively at their inlets, they have a pulsatile outflow, and they have atria which allow uninterrupted inflow to the intermittent, pulsatile outflow ventricles."
@@ -1477,16 +1253,7 @@
             },
             {
               "type": "paragraph",
-              "text": "50 │ Chapter 5: Hydraulic Model of the Cardiovascular System"
-            }
-          ]
-        },
-        {
-          "title": "Part 7: Core Clinical Content (pp. 50–57) — Part 5",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "an inlet and an outlet port containing inlet and outlet valves, respectively. The atrial half of the rigid side has a single port with no valve. There is a \"Y\" connection between the atrial port, inlet port to the ventricle and the venous line. This \"Y\" inlet allows venous fluid to run both into the atrium, when the inlet ventricular valve is closed during systole, and into the ventricular chamber during both ventricular diastole and atrial systole. This arrangement reproduces the \"atrial effect\" by allowing continuous uninterrupted flow from the veins to the intermittent outflow ventricles, thus preventing the need of overcoming inertia by starting stopped flow after each pump beat."
+              "text": "50 │ Chapter 5: Hydraulic Model of the Cardiovascular System an inlet and an outlet port containing inlet and outlet valves, respectively. The atrial half of the rigid side has a single port with no valve. There is a \"Y\" connection between the atrial port, inlet port to the ventricle and the venous line. This \"Y\" inlet allows venous fluid to run both into the atrium, when the inlet ventricular valve is closed during systole, and into the ventricular chamber during both ventricular diastole and atrial systole. This arrangement reproduces the \"atrial effect\" by allowing continuous uninterrupted flow from the veins to the intermittent outflow ventricles, thus preventing the need of overcoming inertia by starting stopped flow after each pump beat."
             },
             {
               "type": "paragraph",
@@ -1507,7 +1274,7 @@
           ]
         },
         {
-          "title": "Part 7: Core Clinical Content (pp. 50–57) — Part 6",
+          "title": "Simulated Vascular Network",
           "blocks": [
             {
               "type": "paragraph",
@@ -1520,26 +1287,27 @@
     {
       "chapterNumber": 8,
       "slug": "ch-8",
-      "title": "Part 8: Core Clinical Content (pp. 58–71)",
+      "title": "Section 8: Clinical Study Notes (pp. 58–71)",
       "pageRange": "pp. 58–71",
       "excerpt": "52 │ Chapter 5: Hydraulic Model of the Cardiovascular System",
-      "wordCount": 3182,
+      "wordCount": 3128,
       "sections": [
         {
-          "title": "Part 8: Core Clinical Content (pp. 58–71) — Part 1",
+          "title": "Section 8: Clinical Study Notes (pp. 58–71)",
           "blocks": [
             {
               "type": "paragraph",
               "text": "52 │ Chapter 5: Hydraulic Model of the Cardiovascular System"
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "Findings Correlate with Observations in Human Physiology"
-            },
-            {
-              "type": "paragraph",
-              "text": "Experiment 1: The Relationship of Mean Cardiovascular Pressure"
-            },
+            }
+          ]
+        },
+        {
+          "title": "to System Volume",
+          "blocks": [
             {
               "type": "paragraph",
               "text": "With the pumps turned off, the compliance remaining unchanged, and starting with the system full of water, at a volume of 2000 cc. at a pressure of zero, pressure was recorded as fluid was added by way of the transfusion reservoir. Figure 43 shows the non-linear relationship between the mean system pressure and the volume."
@@ -1551,12 +1319,8 @@
           ]
         },
         {
-          "title": "Part 8: Core Clinical Content (pp. 58–71) — Part 2",
+          "title": "Experiment 2: The Relationship of Circulation Rate to Mean System Pressure",
           "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Experiment 2: The Relationship of Circulation Rate to Mean System Pressure"
-            },
             {
               "type": "paragraph",
               "text": "Starting with a mean system pressure of zero, and with arbitrary settings of the resistance points, the pumps were started. Appropriate amounts of fluid were added to increase the mean system pressure by increments of 2 cm. water pressure (Fig. 44)"
@@ -1568,41 +1332,20 @@
             {
               "type": "paragraph",
               "text": "54 │ Chapter 5: Hydraulic Model of the Cardiovascular System"
-            },
-            {
-              "type": "paragraph",
-              "text": "Experiment 3: Pump Rate Correlation with Pump Output"
             }
           ]
         },
         {
-          "title": "Part 8: Core Clinical Content (pp. 58–71) — Part 3",
+          "title": "Experiment 3: Pump Rate Correlation with Pump Output",
           "blocks": [
             {
               "type": "paragraph",
               "text": "The pump rate in the model was varied from 0 to 170 beats per minute with other variables remaining constant (Fig. 45). The mean system pressure was kept at 12 cm. water pressure, with the impeller pressure at 14 p.s.i. and the resistance kept constant."
             },
             {
-              "type": "bullet",
-              "text": "1. At pump rates between 0 and 20/min.: o The pump output correlated in a linear way with the pump rate (Fig. 45, from A to"
-            },
-            {
               "type": "paragraph",
-              "text": "halfway to B). o The ventricles filled to capacity at each ventricular diastole. o The atria filled to capacity during each ventricular systole. 2. At pump rates between 20 and 40/min.: o The pump rate correlated in a non-linear way with the pump output (Fig. 45, from"
+              "text": "1. At pump rates between 0 and 20/min.: o The pump output correlated in a linear way with the pump rate (Fig. 45, from A to halfway to B). o The ventricles filled to capacity at each ventricular diastole. o The atria filled to capacity during each ventricular systole. 2. At pump rates between 20 and 40/min.: o The pump rate correlated in a non-linear way with the pump output (Fig. 45, from halfway in between A and B, to B). o The ventricles filled slightly less than capacity at ventricular diastole. o The atria were filled to capacity at the end of ventricular systole. o Venous flow was slowed but not completely interrupted before the end of ventricular systole. 3. Increasing the pump rate from 50 to 110: o Caused no increase in pump output (Fig. 45, B to C). o Was associated with progressive decrease in ventricular end-diastolic volume. o Caused progressive decrease in atrial diastolic volume. o Was unaccompanied by any interruption in venous flow. o The pump rate and stroke volume were reciprocals of one another. 4. Increasing the pump rate from 110 to 170 beats/min. (Fig. 45, C to D) was accompanied by a progressive increase in residual air pressure in the ventricular impeller after ventricular systole which:"
             },
-            {
-              "type": "paragraph",
-              "text": "halfway in between A and B, to B). o The ventricles filled slightly less than capacity at ventricular diastole. o The atria were filled to capacity at the end of ventricular systole. o Venous flow was slowed but not completely interrupted before the end of"
-            },
-            {
-              "type": "paragraph",
-              "text": "ventricular systole. 3. Increasing the pump rate from 50 to 110: o Caused no increase in pump output (Fig. 45, B to C). o Was associated with progressive decrease in ventricular end-diastolic volume. o Caused progressive decrease in atrial diastolic volume. o Was unaccompanied by any interruption in venous flow. o The pump rate and stroke volume were reciprocals of one another. 4. Increasing the pump rate from 110 to 170 beats/min. (Fig. 45, C to D) was accompanied by a progressive increase in residual air pressure in the ventricular impeller after ventricular systole which:"
-            }
-          ]
-        },
-        {
-          "title": "Part 8: Core Clinical Content (pp. 58–71) — Part 4",
-          "blocks": [
             {
               "type": "paragraph",
               "text": "o Progressively decreased pump output. o Impeded ventricular filling at ventricular diastole. o Caused venous flow interruption at ventricular systole."
@@ -1610,24 +1353,20 @@
             {
               "type": "paragraph",
               "text": "The Gross Physiology of the Cardiovascular System │ 55"
-            },
-            {
-              "type": "paragraph",
-              "text": "Experiment 4: Ventricular Impeller-Force Correlation with Pump Output"
-            },
+            }
+          ]
+        },
+        {
+          "title": "Experiment 4: Ventricular Impeller-Force Correlation with Pump Output",
+          "blocks": [
             {
               "type": "paragraph",
               "text": "The ventricular impeller pressure was varied from 0 to 20 p.s.i., in increments of 2 p.s.i., while keeping other variables constant (Fig. 46). The pump rate was 80, the mean system pressure was 12 cm. water pressure and all resistances remained unchanged."
             },
             {
-              "type": "bullet",
+              "type": "paragraph",
               "text": "1. At impeller pressures between 0 and 10 p.s.i. there was: o Linear correlation between impeller pressure and pump output (Fig. 46, from A to"
-            }
-          ]
-        },
-        {
-          "title": "Part 8: Core Clinical Content (pp. 58–71) — Part 5",
-          "blocks": [
+            },
             {
               "type": "paragraph",
               "text": "B). o The ventricles were never completely emptied at ventricular systole. o The ventricles were completely filled at ventricular diastole. o Venous flow to the pumps was interrupted at each ventricular systole. 2. At impeller pressures between 10 and 18 p.s.i. there was: o No increase in the output as the pressure increased (Fig. 46, from B to C). o Maximal ventricular emptying at systole. o Sub-maximal filling of the ventricles at diastole o No venous flow interruption at any time. 3. As the impeller pressure was progressively increased above 18 p.s.i. (Fig. 46, from C to D) there was progressively incomplete evacuation of compressed air in the ventricle during diastole which:"
@@ -1635,11 +1374,12 @@
             {
               "type": "paragraph",
               "text": "56 │ Chapter 5: Hydraulic Model of the Cardiovascular System"
-            },
-            {
-              "type": "paragraph",
-              "text": "Experiment 5: Relationship of Resistance to Pump Output"
-            },
+            }
+          ]
+        },
+        {
+          "title": "Experiment 5: Relationship of Resistance to Pump Output",
+          "blocks": [
             {
               "type": "paragraph",
               "text": "Resistance at a variety of sites was changed in the model's vascular network while maintaining other factors constant, with the mean system pressure at 12 cm. water pressure, pump rate at 80 beats per minute, and an impeller pressure of 16 p.s.i. There was a marked difference in response to a given resistance depending on where the resistance was placed in the model. Responses fell into two categories which became more obvious the closer the resistance was to either the inlet or outlet of a pump. Therefore, resistance was studied in two situations: near a pump inlet, where there was a large compliant bed upstream; and near a pump outlet, with no compliant bed upstream."
@@ -1647,12 +1387,7 @@
             {
               "type": "paragraph",
               "text": "Relationship of Resistance Near a Pump Outlet to Pump Output: (Fig. 47)"
-            }
-          ]
-        },
-        {
-          "title": "Part 8: Core Clinical Content (pp. 58–71) — Part 6",
-          "blocks": [
+            },
             {
               "type": "paragraph",
               "text": "A variable resistance clamp was placed 20 cm. from the left heart homologue pump outlet (Fig. 38, #9), across which a pressure gradient could be monitored by transducers (Fig. 38, #8)."
@@ -1672,12 +1407,7 @@
             {
               "type": "paragraph",
               "text": "The Effect of Resistance Near a Pump Inlet on Pump Output: (Fig. 48)"
-            }
-          ]
-        },
-        {
-          "title": "Part 8: Core Clinical Content (pp. 58–71) — Part 7",
-          "blocks": [
+            },
             {
               "type": "paragraph",
               "text": "An adjustable resistance clamp was placed 20 cm. from the left pump's inlet (Fig. 38, #7), across which a pressure gradient could be monitored using the transducers (Fig. 38, #6). The clamp was progressively closed. The resulting inflow resistance magnitude is represented by the pressure gradient between the transducers. Figure 48 shows the two superimposed pressure lines (Fig. 48, A to B) in the absence of resistance. When resistance is progressively increased, starting at B, a pressure gradient becomes evident (Fig. 48, B to C)."
@@ -1689,22 +1419,18 @@
             {
               "type": "paragraph",
               "text": "58 │ Chapter 5: Hydraulic Model of the Cardiovascular System"
-            },
-            {
-              "type": "paragraph",
-              "text": "Experiment 6: The Atrial Effect"
-            },
-            {
-              "type": "paragraph",
-              "text": "In the model, to eliminate the atrial effect, the air pressure in the atria can be left continuously obliterating the atrial chambers, while not impinging on the connection of the venous tubes to the ventricles. By intermittently producing circulation with and without the atrial effect, its contribution to pump output was determined. At pump rates between 60 and 90 there was four times the pump output (2400 cc./min.) with the atria functioning as with no atrial effect (600 cc./min.). The output without atria progressively decreased as the rate was increased. At 130 beats per minute, flow stopped completely. It is demonstrated that atria markedly increase flow when used with pulsatile, passively filling pumps. They prevent inertia, which would otherwise occur if the inlet valves were allowed to stop venous flow at each beat."
             }
           ]
         },
         {
-          "title": "Part 8: Core Clinical Content (pp. 58–71) — Part 8",
+          "title": "Experiment 6: The Atrial Effect",
           "blocks": [
             {
               "type": "paragraph",
+              "text": "In the model, to eliminate the atrial effect, the air pressure in the atria can be left continuously obliterating the atrial chambers, while not impinging on the connection of the venous tubes to the ventricles. By intermittently producing circulation with and without the atrial effect, its contribution to pump output was determined. At pump rates between 60 and 90 there was four times the pump output (2400 cc./min.) with the atria functioning as with no atrial effect (600 cc./min.). The output without atria progressively decreased as the rate was increased. At 130 beats per minute, flow stopped completely. It is demonstrated that atria markedly increase flow when used with pulsatile, passively filling pumps. They prevent inertia, which would otherwise occur if the inlet valves were allowed to stop venous flow at each beat."
+            },
+            {
+              "type": "subheading",
               "text": "Experiment 7: Pulsatile Flow"
             },
             {
@@ -1718,15 +1444,11 @@
             {
               "type": "paragraph",
               "text": "There is obviously a difference in the mechanism of aggregation of silk particles in this system and the mechanism that caused poor distribution with non-pulsatile flow in the animal in the previous chapter. However, this experiment does show that the simplest way to guarantee diffuse, equal distribution of fluid in a hydraulic system is to make flow pulsatile."
-            },
-            {
-              "type": "paragraph",
-              "text": "The Model As a Teaching Tool"
             }
           ]
         },
         {
-          "title": "Part 8: Core Clinical Content (pp. 58–71) — Part 9",
+          "title": "The Model As a Teaching Tool",
           "blocks": [
             {
               "type": "paragraph",
@@ -1734,11 +1456,7 @@
             },
             {
               "type": "paragraph",
-              "text": "The Gross Physiology of the Cardiovascular System │ 59"
-            },
-            {
-              "type": "paragraph",
-              "text": "critically ill that she may have difficulty surviving such a big operation. Maybe it would be the better part of valor to correct only one valve. Then, when she is better, go back and replace the other one.\" I asked him which valve he thought I should replace first. He responded that he would go to the model and put an inlet and outlet obstruction on the circuit. Then remove one and then the other and see what improvement would result from a single obstruction removal. When he only removed the inlet obstruction, the increased flow to the pump put it into power failure. When he removed only the outlet obstruction it decreased the workload of the pump, but the output didn't increase."
+              "text": "The Gross Physiology of the Cardiovascular System │ 59 critically ill that she may have difficulty surviving such a big operation. Maybe it would be the better part of valor to correct only one valve. Then, when she is better, go back and replace the other one.\" I asked him which valve he thought I should replace first. He responded that he would go to the model and put an inlet and outlet obstruction on the circuit. Then remove one and then the other and see what improvement would result from a single obstruction removal. When he only removed the inlet obstruction, the increased flow to the pump put it into power failure. When he removed only the outlet obstruction it decreased the workload of the pump, but the output didn't increase."
             },
             {
               "type": "paragraph",
@@ -1746,66 +1464,45 @@
             },
             {
               "type": "paragraph",
-              "text": "The close correlation of model findings to physiological observations in man makes the"
+              "text": "The close correlation of model findings to physiological observations in man makes the model useful in understanding how the cardiovascular system works, and helps to anticipate cause and effect in human physiology."
+            },
+            {
+              "type": "paragraph",
+              "text": "60 │ Summary"
             }
           ]
         },
         {
-          "title": "Part 8: Core Clinical Content (pp. 58–71) — Part 10",
+          "title": "Summary",
           "blocks": [
-            {
-              "type": "paragraph",
-              "text": "model useful in understanding how the cardiovascular system works, and helps to"
-            },
-            {
-              "type": "paragraph",
-              "text": "anticipate cause and effect in human physiology."
-            },
             {
               "type": "paragraph",
               "text": "The significance of ten unique characteristics of the cardiovascular system has been demonstrated by clinical observations, cardio-bypass data, animal mechanical heart replacement experiments, and a simulated cardiovascular model. All of the evidence validates that:"
             },
             {
               "type": "paragraph",
-              "text": " The cardiovascular system is a circle containing a mean"
+              "text": " The cardiovascular system is a circle containing a mean cardiovascular pressure dependent upon volume and compliance.  The heart is a passively filling pump."
             },
             {
               "type": "paragraph",
-              "text": "cardiovascular pressure dependent upon volume and compliance.  The heart is a passively filling pump."
-            }
-          ]
-        },
-        {
-          "title": "Part 8: Core Clinical Content (pp. 58–71) — Part 11",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": " Atria increase cardiac output by causing continuous venous flow to"
-            },
-            {
-              "type": "paragraph",
-              "text": "the intermittently contracting ventricles, not by pumping up the ventricles.  Circulation rate is normally determined by the extra-cardiac"
-            },
-            {
-              "type": "paragraph",
-              "text": "factors: Mean cardiovascular pressure and inlet impedance.  It is only during heart failure that the heart is the regulator of"
+              "text": " Atria increase cardiac output by causing continuous venous flow to the intermittently contracting ventricles, not by pumping up the ventricles.  Circulation rate is normally determined by the extra-cardiac factors: Mean cardiovascular pressure and inlet impedance.  It is only during heart failure that the heart is the regulator of"
             },
             {
               "type": "paragraph",
               "text": "The Gross Physiology of the Cardiovascular System │ 61"
-            },
-            {
-              "type": "paragraph",
-              "text": "Appendix: Clinical Determination of Mean Cardiovascular Pressure"
             }
           ]
         },
         {
-          "title": "Part 8: Core Clinical Content (pp. 58–71) — Part 12",
+          "title": "Appendix: Clinical Determination of Mean Cardiovascular Pressure",
           "blocks": [
             {
               "type": "paragraph",
               "text": "A useful approximation of the mean cardiovascular pressure can be made without the need of stopping the heart and letting the pressure equalize in the entire cardiovascular system. The assumption is made that the same pressure would be found by isolating a representative sample of the arteries, capillaries, and veins at ventricular diastole, and letting the pressure equilibrate in that sample. By instantaneously interrupting arterial inflow to the arm and venous outflow from it, the pressure will fall in the arteries and rise in the veins until they are equal. This equalized pressure, which will occur within 30 seconds, approximates that found when circulation is stopped in the entire body."
+            },
+            {
+              "type": "subheading",
+              "text": "Equipment"
             },
             {
               "type": "paragraph",
@@ -1818,16 +1515,16 @@
             {
               "type": "paragraph",
               "text": "Two pressure transducers and recorders are needed, to allow pressure recording without any loss of fluid from the vascular bed, which would occur with a simple manometer system."
-            },
-            {
-              "type": "paragraph",
-              "text": "1. The patient should be lying perfectly horizontal. 2. Both an artery and a vein are cannulated at the antecubital area of the arm and connected to the pressure transducers. 3. The blood pressure cuff is applied above the biceps bulge of the arm. It must be applied loose enough that it does not cause any venous obstruction, as evidenced by the observation that it produces no elevation of venous pressure above that seen before its application. 4. The cuff must be applied tight enough that its inflation, to 300 mm. Hg pressure, completely interrupts the arterial flow to the arm. Complete interruption can be assumed if arterial and venous pressure approach equalization after 30 seconds, and do not continue to rise thereafter."
             }
           ]
         },
         {
-          "title": "Part 8: Core Clinical Content (pp. 58–71) — Part 13",
+          "title": "Technique",
           "blocks": [
+            {
+              "type": "paragraph",
+              "text": "1. The patient should be lying perfectly horizontal. 2. Both an artery and a vein are cannulated at the antecubital area of the arm and connected to the pressure transducers. 3. The blood pressure cuff is applied above the biceps bulge of the arm. It must be applied loose enough that it does not cause any venous obstruction, as evidenced by the observation that it produces no elevation of venous pressure above that seen before its application. 4. The cuff must be applied tight enough that its inflation, to 300 mm. Hg pressure, completely interrupts the arterial flow to the arm. Complete interruption can be assumed if arterial and venous pressure approach equalization after 30 seconds, and do not continue to rise thereafter."
+            },
             {
               "type": "paragraph",
               "text": "62 │ Appendix: Clinical Determination of Mean Cardiovascular Pressure"
@@ -1851,7 +1548,7 @@
           ]
         },
         {
-          "title": "Part 8: Core Clinical Content (pp. 58–71) — Part 14",
+          "title": "About the Author",
           "blocks": [
             {
               "type": "paragraph",
@@ -1859,11 +1556,7 @@
             },
             {
               "type": "paragraph",
-              "text": "A pioneer in heart surgery and an inventor of cardiopulmonary bypass equipment, Dr. Anderson was the author of more than sixty scientific papers. His mechanical heart patent (U.S. Patent no. 3,518,033, applied for Nov. 28, 1966) entitled \"Extracorporeal Heart,\" was based on physiologic factors that his research delineated as essential for mechanical heart replacement. The mechanical model of the cardiovascular system presented in this book incorporates those factors. The model proved to be such an"
-            },
-            {
-              "type": "paragraph",
-              "text": "effective teaching tool that Dr. Anderson hoped others would reproduce it to introduce their students to cardiovascular physiology."
+              "text": "A pioneer in heart surgery and an inventor of cardiopulmonary bypass equipment, Dr. Anderson was the author of more than sixty scientific papers. His mechanical heart patent (U.S. Patent no. 3,518,033, applied for Nov. 28, 1966) entitled \"Extracorporeal Heart,\" was based on physiologic factors that his research delineated as essential for mechanical heart replacement. The mechanical model of the cardiovascular system presented in this book incorporates those factors. The model proved to be such an effective teaching tool that Dr. Anderson hoped others would reproduce it to introduce their students to cardiovascular physiology."
             },
             {
               "type": "paragraph",
@@ -1871,12 +1564,12 @@
             },
             {
               "type": "paragraph",
-              "text": "Additional Resources by Dr. Anderson"
+              "text": "64 │ Additional Resources"
             }
           ]
         },
         {
-          "title": "Part 8: Core Clinical Content (pp. 58–71) — Part 15",
+          "title": "Additional Resources by Dr. Anderson",
           "blocks": [
             {
               "type": "paragraph",
@@ -1897,19 +1590,14 @@
             {
               "type": "paragraph",
               "text": " Available online at http://ats.ctsnetjournals.org/cgi/reprint/10/5/424.pdf Anderson, Robert M. “Extracorporeal Heart.” United States Patent no. 3, 518,033 (June 30, 1970)."
-            }
-          ]
-        },
-        {
-          "title": "Part 8: Core Clinical Content (pp. 58–71) — Part 16",
-          "blocks": [
+            },
             {
               "type": "paragraph",
               "text": " Available online at http://www.google.com/patents/US3518033.pdf Anderson, R.M., Fritz, J.M., and O’Hare, J.E. “The Mechanical Nature of the Heart as a Pump.” American Heart Journal 73 (1967):92-105. Anderson, R.M., Larson, D.F., and Lundell, D.C. “The Interrelationship of Factors Controlling Cardiac Output.” Medical Hypothesis 10 (1983): 77-95."
             },
             {
               "type": "paragraph",
-              "text": "Please visit http://www.cardiac-output.info for additional, downloadable versions of this"
+              "text": "Please visit http://www.cardiac-output.info for additional, downloadable versions of this text, and other materials."
             }
           ]
         }

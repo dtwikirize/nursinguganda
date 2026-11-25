@@ -670,7 +670,20 @@ function groupSectionBlocks(blocks = []) {
       } else if (b?.type === "subheading") {
         grouped.push({ kind: "subheading", text: b.text || "" });
       } else {
-        grouped.push({ kind: "block", text: b?.text || "" });
+        const raw = String(b?.text || "");
+        if (/\s*[•▪◦●]\s+/.test(raw)) {
+          const parts = raw.split(/\s*[•▪◦●]\s+/).map((p) => p.trim()).filter(Boolean);
+          if (parts.length > 1) {
+            if (!raw.trim().startsWith("•") && !raw.trim().startsWith("▪") && !raw.trim().startsWith("◦")) {
+              grouped.push({ kind: "block", text: parts[0] });
+              grouped.push({ kind: "list", items: parts.slice(1) });
+            } else {
+              grouped.push({ kind: "list", items: parts });
+            }
+            continue;
+          }
+        }
+        grouped.push({ kind: "block", text: raw });
       }
     }
   }
@@ -886,8 +899,11 @@ export function LessonSections({ sections = [], lesson = null, topicTitle = "", 
                 const text = String(g.text || "").trim();
                 if (!text) return null;
 
-                // Bold short standalone sub-topic titles (e.g. "Immune Surveillance & Defense:")
-                if (text.length <= 72 && text.endsWith(":") && !text.includes(". ")) {
+                // Bold short standalone sub-topic titles or clean question subheadings
+                if (
+                  (text.length <= 72 && text.endsWith(":") && !text.includes(". ")) ||
+                  (text.length <= 82 && text.endsWith("?") && !text.includes(". "))
+                ) {
                   return (
                     <h4 key={gIdx} className="nu-note-subhead">
                       {stripTrailingColon(text)}

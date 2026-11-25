@@ -4,7 +4,7 @@
   "subtitle": "Free Reference Textbook · Paediatrics & Child Health (19 pp., 1.55 MB) — Lambton Public Health.",
   "category": "Paediatrics & Child Health",
   "estimatedPages": 19,
-  "totalWords": 7512,
+  "totalWords": 7670,
   "references": [
     {
       "id": "src-book-a-guide-to-common-childhood-infections",
@@ -18,21 +18,21 @@
     {
       "chapterNumber": 1,
       "slug": "ch-1",
-      "title": "Part 1: Core Clinical Content (pp. 2–5)",
+      "title": "Section 1: Clinical Study Notes (pp. 2–5)",
       "pageRange": "pp. 2–5",
-      "excerpt": "Welcome to the online interactive version of the Guide to Common Childhood Infections.",
-      "wordCount": 1220,
+      "excerpt": "Look for this symbol throughout the guide and click for more information.",
+      "wordCount": 1181,
       "sections": [
         {
-          "title": "Part 1: Core Clinical Content (pp. 2–5) — Part 1",
+          "title": "Section 1: Clinical Study Notes (pp. 2–5)",
           "blocks": [
             {
               "type": "paragraph",
-              "text": "Welcome to the online interactive version of the Guide to Common Childhood Infections."
+              "text": "Look for this symbol throughout the guide and click for more information."
             },
             {
-              "type": "paragraph",
-              "text": "Look for this symbol throughout the guide and click for more information."
+              "type": "subheading",
+              "text": "Table of Contents"
             },
             {
               "type": "paragraph",
@@ -45,15 +45,31 @@
             {
               "type": "paragraph",
               "text": "This guide will help you determine your role in the event a child attending your school or day care has an infectious disease. This resource provides general information about:"
+            },
+            {
+              "type": "bullet",
+              "text": "Infectious diseases including signs and symptoms"
+            },
+            {
+              "type": "bullet",
+              "text": "How they are spread"
+            },
+            {
+              "type": "bullet",
+              "text": "How to prevent spread"
             }
           ]
         },
         {
-          "title": "Part 1: Core Clinical Content (pp. 2–5) — Part 2",
+          "title": "Section 1: Clinical Study Notes (pp. 2–5) (Continued 2)",
           "blocks": [
             {
               "type": "bullet",
-              "text": "Infectious diseases including signs and symptoms • How they are spread • How to prevent spread • When to exclude from school and daycare • When to report"
+              "text": "When to exclude from school and daycare"
+            },
+            {
+              "type": "bullet",
+              "text": "When to report"
             },
             {
               "type": "paragraph",
@@ -70,12 +86,7 @@
             {
               "type": "paragraph",
               "text": "Note: This guide is for information purposes only. Diagnosis of an infection must be made by a health care provider."
-            }
-          ]
-        },
-        {
-          "title": "Part 1: Core Clinical Content (pp. 2–5) — Part 3",
-          "blocks": [
+            },
             {
               "type": "paragraph",
               "text": "American Pediatric Society (2012) Red Book, 29th edition Canadian Paediatric Society (2008) Well-Beings, 3rd edition Heymann (2015) Control of Communicable Diseases Manual, 20th edition Ministry of Health and Long-Term Care (2009) Infectious Disease Protocol"
@@ -83,11 +94,21 @@
             {
               "type": "paragraph",
               "text": "In your school or day care you can control the spread of germs by:"
-            },
+            }
+          ]
+        },
+        {
+          "title": "Section 1: Clinical Study Notes (pp. 2–5) (Continued 3)",
+          "blocks": [
             {
               "type": "bullet",
               "text": "Washing your hands often using warm water, soap, and rubbing your hands together for 20 seconds, about the length of time it takes to sing “Happy Birthday”."
-            },
+            }
+          ]
+        },
+        {
+          "title": "Infectious Disease Basics",
+          "blocks": [
             {
               "type": "paragraph",
               "text": "WHAT IS AN INFECTIOUS DISEASE? A disease that can be spread from one person to another is considered to be an infectious disease. When a person is sick with an infection there are only certain times they can give that disease to others; this is known as the infectious period. During this time, the person may be excluded from school or day care to prevent spreading the infection to others."
@@ -95,19 +116,14 @@
             {
               "type": "bullet",
               "text": "Ensuring there’s always a supply of alcohol-based hand sanitizer and/or soap and water and paper towels available."
-            }
-          ]
-        },
-        {
-          "title": "Part 1: Core Clinical Content (pp. 2–5) — Part 4",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "• Teaching good hand hygiene practices. Hand hygiene is the single most important measure to prevent the spread of infections. Allow time for children to wash hands after washroom breaks and before eating."
             },
             {
-              "type": "paragraph",
-              "text": "• Teaching and practicing respiratory etiquette which includes coughing and/or sneezing into your elbow or tissue, throwing the tissue in the garbage, and then washing your hands. Ensure tissues are available."
+              "type": "bullet",
+              "text": "Teaching good hand hygiene practices. Hand hygiene is the single most important measure to prevent the spread of infections. Allow time for children to wash hands after washroom breaks and before eating."
+            },
+            {
+              "type": "bullet",
+              "text": "Teaching and practicing respiratory etiquette which includes coughing and/or sneezing into your elbow or tissue, throwing the tissue in the garbage, and then washing your hands. Ensure tissues are available."
             },
             {
               "type": "paragraph",
@@ -120,12 +136,7 @@
             {
               "type": "bullet",
               "text": "Being vigilant about cleaning and disinfecting surfaces and objects that are touched often (e.g., toys, books, desks, doorknobs, workstations, countertops, etc.)."
-            }
-          ]
-        },
-        {
-          "title": "Part 1: Core Clinical Content (pp. 2–5) — Part 5",
-          "blocks": [
+            },
             {
               "type": "bullet",
               "text": "Increasing the frequency of cleaning and disinfecting when indicated, to control certain infectious diseases."
@@ -137,23 +148,19 @@
             {
               "type": "bullet",
               "text": "Encouraging parents to keep their child at home if they are sick and show signs of illness."
-            },
-            {
-              "type": "paragraph",
-              "text": "Refer to the following chart when determining whether to exclude staff/students:"
-            },
-            {
-              "type": "paragraph",
-              "text": "Disease Exclusion Requirements"
             }
           ]
         },
         {
-          "title": "Part 1: Core Clinical Content (pp. 2–5) — Part 6",
+          "title": "Disease Exclusion Requirements",
           "blocks": [
             {
               "type": "paragraph",
               "text": "Chickenpox (Varicella) Exclude until lesions are dry and crusted over (usually 5 days after rash onset)."
+            },
+            {
+              "type": "paragraph",
+              "text": "Diarrhea (e.g. Norovirus,"
             },
             {
               "type": "paragraph",
@@ -170,12 +177,7 @@
             {
               "type": "paragraph",
               "text": "Measles Exclude until at least 4 days after the onset of rash. Non-immune children and staff must also be excluded from 5 days after the first exposure and up to 21 days after the last exposure, unless they: 1) can be immunized within 72 hours from the first exposure; 2) show lab confirmation of immunity or, 3) have received immune globulin. Meningitis, bacterial Exclude until 24 hours after the start of antibiotic treatment and well enough to take part in activities."
-            }
-          ]
-        },
-        {
-          "title": "Part 1: Core Clinical Content (pp. 2–5) — Part 7",
-          "blocks": [
+            },
             {
               "type": "paragraph",
               "text": "Mumps Exclude until 5 days after the onset of swelling of the glands at the jaw line on one or both sides of the face. Pink eye, bacterial and viral"
@@ -199,18 +201,14 @@
           ]
         },
         {
-          "title": "Part 1: Core Clinical Content (pp. 2–5) — Part 8",
+          "title": "Infectious Diseases and Pregnancy",
           "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Infectious Diseases and Pregnancy"
-            },
             {
               "type": "paragraph",
               "text": "If you are pregnant or planning to become pregnant:"
             },
             {
-              "type": "bullet",
+              "type": "paragraph",
               "text": "1. Review your immunization status and occupation with a family doctor, preferably before pregnancy. 2. Avoid contact with people who appear ill. 3. Clean your hands often."
             }
           ]
@@ -220,13 +218,13 @@
     {
       "chapterNumber": 2,
       "slug": "ch-2",
-      "title": "Part 2: Core Clinical Content (pp. 6–9)",
+      "title": "Section 2: Clinical Study Notes (pp. 6–9)",
       "pageRange": "pp. 6–9",
       "excerpt": "What are the symptoms? Diarrhea (with or without blood), abdominal pain, malaise, fever, nausea and vomiting. The symptoms can range from mild to severe and illness may last for 1 ",
-      "wordCount": 1903,
+      "wordCount": 2061,
       "sections": [
         {
-          "title": "Part 2: Core Clinical Content (pp. 6–9) — Part 1",
+          "title": "Campylobacter*",
           "blocks": [
             {
               "type": "paragraph",
@@ -235,23 +233,11 @@
             {
               "type": "paragraph",
               "text": "Incubation period: 2 - 5 days after contact with the bacteria. Infectious period: While diarrhea is present."
-            },
-            {
-              "type": "paragraph",
-              "text": "How is it spread? Through contact with the stool of person or animal who is sick and through eating or drinking contaminated food or water."
-            },
-            {
-              "type": "paragraph",
-              "text": "How to prevent spread Wash hands after using the washroom, before preparing and eating food and after handling animals."
-            },
-            {
-              "type": "paragraph",
-              "text": "Exclusion Recommendations Exclude food handlers, staff and students until symptom free for at least 48 hours."
             }
           ]
         },
         {
-          "title": "Part 2: Core Clinical Content (pp. 6–9) — Part 2",
+          "title": "Chickenpox (Varicella)*",
           "blocks": [
             {
               "type": "paragraph",
@@ -260,23 +246,11 @@
             {
               "type": "paragraph",
               "text": "Incubation period: 14 - 21 days after contact with the virus. Infectious period: Can be as long as 5 days, but usually 1 - 2 days before rash starts until the rash is crusted over. Usually takes 5 days from rash onset for rash to crust over."
-            },
-            {
-              "type": "paragraph",
-              "text": "How is it spread? Person-to-person through breathing in air contaminated with the virus as well as being in direct contact with the fluid from a blister or saliva of a sick person. Also spread through contact with surfaces or items that have become contaminated."
-            },
-            {
-              "type": "paragraph",
-              "text": "How to prevent spread 1) Keep blisters covered. 2) Avoid contact with infants, children, pregnant women and adults who have never had chickenpox. 3) Wash hands with soap and water or use alcohol-based hand sanitizer. 4) Notify staff and parents. 5) Consider chickenpox vaccine if no history of chickenpox. 6) Pregnant staff who have not had chickenpox and immunocompromised and HIV infected persons should consult with their health care provider promptly."
-            },
-            {
-              "type": "paragraph",
-              "text": "Exclusion Recommendations Exclude until lesions are dry and crusted Over (usually 5 days after rash onset)."
             }
           ]
         },
         {
-          "title": "Part 2: Core Clinical Content (pp. 6–9) — Part 3",
+          "title": "Common Cold/Croup",
           "blocks": [
             {
               "type": "paragraph",
@@ -288,7 +262,19 @@
             },
             {
               "type": "paragraph",
-              "text": "How is it spread? Person-to-person through contact with nose and throat secretions of someone who is sick or from sharing items with a sick person. Also spread from touching contaminated surfaces or objects then touching your eyes, nose or mouth."
+              "text": "Exclusion Recommendations Exclude food handlers, staff and students until symptom free for at least 48 hours."
+            },
+            {
+              "type": "paragraph",
+              "text": "How to prevent spread Wash hands after using the washroom, before preparing and eating food and after handling animals."
+            },
+            {
+              "type": "paragraph",
+              "text": "How to prevent spread 1) Keep blisters covered. 2) Avoid contact with infants, children, pregnant women and adults who have never had chickenpox. 3) Wash hands with soap and water or use alcohol-based hand sanitizer. 4) Notify staff and parents. 5) Consider chickenpox vaccine if no history of chickenpox. 6) Pregnant staff who have not had chickenpox and immunocompromised and HIV infected persons should consult with their health care provider promptly."
+            },
+            {
+              "type": "paragraph",
+              "text": "Exclusion Recommendations Exclude until lesions are dry and crusted Over (usually 5 days after rash onset)."
             },
             {
               "type": "paragraph",
@@ -297,16 +283,24 @@
             {
               "type": "paragraph",
               "text": "Exclusion Recommendations Exclude until afebrile and 24 hours symptoms improving"
+            },
+            {
+              "type": "paragraph",
+              "text": "How is it spread? Through contact with the stool of person or animal who is sick and through eating or drinking contaminated food or water."
+            },
+            {
+              "type": "paragraph",
+              "text": "How is it spread? Person-to-person through breathing in air contaminated with the virus as well as being in direct contact with the fluid from a blister or saliva of a sick person. Also spread through contact with surfaces or items that have become contaminated."
+            },
+            {
+              "type": "paragraph",
+              "text": "How is it spread? Person-to-person through contact with nose and throat secretions of someone who is sick or from sharing items with a sick person. Also spread from touching contaminated surfaces or objects then touching your eyes, nose or mouth."
             }
           ]
         },
         {
-          "title": "Part 2: Core Clinical Content (pp. 6–9) — Part 4",
+          "title": "Covid 19",
           "blocks": [
-            {
-              "type": "paragraph",
-              "text": "*Indicates a reportable disease Return to top"
-            },
             {
               "type": "paragraph",
               "text": "What are the symptoms? Muscle/joint pain, fatigue, sore throat, runny nose, headache, nausea, vomiting, cough. Also can progress to fever, shortness of breath, loss of taste and smell. Other symptoms include conjunctivitis, abdominal pain and loss of appetite."
@@ -314,19 +308,11 @@
             {
               "type": "paragraph",
               "text": "Incubation Period: 1-14 days. The median is 5-6 days Infectious Period: The time period in which and individual with COVID 19 is infectious remains uncertain. A person may be infectious for up to 3 days before showing symptoms, and up to 10 days after onset of symptoms."
-            },
-            {
-              "type": "paragraph",
-              "text": "How is it spread? COVID-19 spreads from an infected person to others through respiratory droplets and aerosols"
-            },
-            {
-              "type": "paragraph",
-              "text": "How to prevent spread Wash hands with soap and water or use alcohol-based hand sanitizer. Cover coughs and sneezes and throw away used tissues into garbage followed by hand hygiene. Stay home when sick and follow current public health guidelines"
             }
           ]
         },
         {
-          "title": "Part 2: Core Clinical Content (pp. 6–9) — Part 5",
+          "title": "Cryptosporidiosis*",
           "blocks": [
             {
               "type": "paragraph",
@@ -335,11 +321,12 @@
             {
               "type": "paragraph",
               "text": "Incubation Period: Usually 1 week, but illness may start as soon as 1 day or as long as 12 days after contact with the parasite. Infectious Period: From the start of diarrhea up to several weeks after diarrhea stops."
-            },
-            {
-              "type": "paragraph",
-              "text": "How is it spread? Through contact with the stool of a person or animal who is sick, or through eating contaminated food water."
-            },
+            }
+          ]
+        },
+        {
+          "title": "Diarrhea",
+          "blocks": [
             {
               "type": "paragraph",
               "text": "What are the symptoms? Increase in frequency of stools and/or change to unformed, loose, or watery stool. Fever, loss of appetite, nausea, vomiting, abdominal pain, mucus or blood in stool may also occur. Diarrhea may lead to dehydration that can be dangerous in infants and young children."
@@ -347,15 +334,10 @@
             {
               "type": "paragraph",
               "text": "Incubation Period: Varies depending on the cause of diarrhea. Infectious Period: While diarrhea is present."
-            }
-          ]
-        },
-        {
-          "title": "Part 2: Core Clinical Content (pp. 6–9) — Part 6",
-          "blocks": [
+            },
             {
               "type": "paragraph",
-              "text": "How is it spread? Through contact with the stool of someone who is sick or through contact with surfaces or food that have become contaminated or through eating contaminated food or drinking contaminated water."
+              "text": "How to prevent spread Wash hands with soap and water or use alcohol-based hand sanitizer. Cover coughs and sneezes and throw away used tissues into garbage followed by hand hygiene. Stay home when sick and follow current public health guidelines"
             },
             {
               "type": "paragraph",
@@ -367,7 +349,27 @@
             },
             {
               "type": "paragraph",
+              "text": "How is it spread? COVID-19 spreads from an infected person to others through respiratory droplets and aerosols"
+            },
+            {
+              "type": "paragraph",
+              "text": "How is it spread? Through contact with the stool of a person or animal who is sick, or through eating contaminated food water."
+            },
+            {
+              "type": "paragraph",
+              "text": "How is it spread? Through contact with the stool of someone who is sick or through contact with surfaces or food that have become contaminated or through eating contaminated food or drinking contaminated water."
+            },
+            {
+              "type": "paragraph",
+              "text": "*Indicates a reportable disease Return to top"
+            },
+            {
+              "type": "paragraph",
               "text": "E. coli* What are the Incubation period: How is it spread? How to prevent spread Exclusion symptoms? Diarrhea with abdominal cramps ranging from mild non-bloody to nearly straight blood. Generally, no fever is present. Some people may develop a serious complication called haemolytic uremic syndrome (HUS)."
+            },
+            {
+              "type": "paragraph",
+              "text": "Person-to-person especially in families and childcare, from animals to people through direct contact with animal waste or their environment and through eating contaminated food or drinking contaminated water."
             },
             {
               "type": "paragraph",
@@ -376,11 +378,23 @@
           ]
         },
         {
-          "title": "Part 2: Core Clinical Content (pp. 6–9) — Part 7",
+          "title": "Fifth Disease (Parvovirus B19)",
           "blocks": [
             {
               "type": "paragraph",
-              "text": "Person-to-person especially in families and childcare, from animals to people through direct contact with animal waste or their environment and through eating contaminated food or drinking contaminated water."
+              "text": "contact with the virus. Infectious period: Most contagious several days before onset of rash. Once the rash develops, the person is no longer contagious."
+            },
+            {
+              "type": "subheading",
+              "text": "Giardia*"
+            },
+            {
+              "type": "paragraph",
+              "text": "What are the symptoms? Watery diarrhea or foul smelling pale stools, abdominal pain and weight loss. Children may not have symptoms."
+            },
+            {
+              "type": "paragraph",
+              "text": "Incubation period: 1 - 3 weeks after contact with the parasite. Infectious period: For entire period of infection and can be several months."
             },
             {
               "type": "paragraph",
@@ -388,32 +402,7 @@
             },
             {
               "type": "paragraph",
-              "text": "Recommendations Exclude symptomatic food handlers, staff and students until two consecutive stool specimens or rectal swabs taken at least 24 hours apart are negative, or 48 hours following the completion of anti-diarrheal or antibiotic therapy"
-            },
-            {
-              "type": "paragraph",
-              "text": "Fifth Disease (Parvovirus B19)"
-            },
-            {
-              "type": "paragraph",
-              "text": "What are the Incubation period: How is it spread? How to prevent spread Exclusion symptoms? 4 - 20 days from Person-to-person 1) Advise parents to have their Recommendations Very red rash on the cheeks followed 1 - 4 days later by a lace-like rash on the torso and arms, then over the rest of the body. The rash may be itchy and may come and go for 1 - 3 weeks. There may be a slight fever and mild cold symptoms prior to the rash. Adults with fifth disease may have fever and joint pain. About 50% of adults have had fifth disease and will not get it again."
-            }
-          ]
-        },
-        {
-          "title": "Part 2: Core Clinical Content (pp. 6–9) — Part 8",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "contact with the virus. Infectious period: Most contagious several days before onset of rash. Once the rash develops, the person is no longer contagious."
-            },
-            {
-              "type": "paragraph",
-              "text": "through contact direct or indirect contact with fluids from the nose or throat of someone who is sick. Direct contact may include touching your eyes, nose or mouth with contaminated hands. Indirect contact may include touching surfaces and objects that have become contaminated with the virus. If a pregnant woman is infected, there is a small risk of spread from mother to fetus."
-            },
-            {
-              "type": "paragraph",
-              "text": "child seen by their healthcare provider as soon as possible. 2) Avoid sharing objects that have been in someone else's mouth like eating utensils and drinking cups. 3) Wash your hands often, especially after wiping a child's nose, after going to the washroom, before eating etc. 4) Advise exposed pregnant staff and parents to consult with their healthcare provider. A routine policy of exclusion of pregnant staff is not recommended."
+              "text": "Recommendations Exclude symptomatic food handlers, staff and students until two consecutive stool specimens or rectal swabs taken at least 24 hours apart are negative, or 48 hours following the completion of anti-diarrheal or antibiotic therapy child seen by their healthcare provider as soon as possible. 2) Avoid sharing objects that have been in someone else's mouth like eating utensils and drinking cups. 3) Wash your hands often, especially after wiping a child's nose, after going to the washroom, before eating etc. 4) Advise exposed pregnant staff and parents to consult with their healthcare provider. A routine policy of exclusion of pregnant staff is not recommended."
             },
             {
               "type": "paragraph",
@@ -421,50 +410,42 @@
             },
             {
               "type": "paragraph",
-              "text": "What are the symptoms? Watery diarrhea or foul smelling pale stools, abdominal pain and weight loss. Children may not have symptoms."
-            }
-          ]
-        },
-        {
-          "title": "Part 2: Core Clinical Content (pp. 6–9) — Part 9",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Incubation period: 1 - 3 weeks after contact with the parasite. Infectious period: For entire period of infection and can be several months."
-            },
-            {
-              "type": "paragraph",
-              "text": "How is it spread? Person-to-person through contact with the stool of someone who is sick with the parasite especially in childcare or institutions where children are not toilet trained, or through eating or drinking contaminated food or water."
-            },
-            {
-              "type": "paragraph",
               "text": "How to prevent spread 1) Wash hands after using the washroom, changing diapers and before preparing and eating food. 2) Drink only treated water."
             },
             {
               "type": "paragraph",
-              "text": "Hand, Foot, and Mouth Disease (Coxsackie virus or Enterovirus)"
+              "text": "What are the Incubation period: How is it spread? How to prevent spread Exclusion symptoms? 4 - 20 days from Person-to-person 1) Advise parents to have their Recommendations Very red rash on the cheeks followed 1 - 4 days later by a lace-like rash on the torso and arms, then over the rest of the body. The rash may be itchy and may come and go for 1 - 3 weeks. There may be a slight fever and mild cold symptoms prior to the rash. Adults with fifth disease may have fever and joint pain. About 50% of adults have had fifth disease and will not get it again."
             },
             {
               "type": "paragraph",
-              "text": "What are the symptoms? Fever, headache, sore throat, blister-like sores in the mouth, loss of appetite, lack of energy, and a skin rash. Red spots, often with small blisters on top, appear on the hands and feet and sometimes elsewhere on the body. Symptoms usually last 710 days. It is possible to have the infection and not have any symptoms."
+              "text": "through contact direct or indirect contact with fluids from the nose or throat of someone who is sick. Direct contact may include touching your eyes, nose or mouth with contaminated hands. Indirect contact may include touching surfaces and objects that have become contaminated with the virus. If a pregnant woman is infected, there is a small risk of spread from mother to fetus."
+            },
+            {
+              "type": "paragraph",
+              "text": "How is it spread? Person-to-person through contact with the stool of someone who is sick with the parasite especially in childcare or institutions where children are not toilet trained, or through eating or drinking contaminated food or water."
             }
           ]
         },
         {
-          "title": "Part 2: Core Clinical Content (pp. 6–9) — Part 10",
+          "title": "Hand, Foot, and Mouth Disease (Coxsackie virus or Enterovirus)",
           "blocks": [
             {
               "type": "paragraph",
+              "text": "How is it spread? Person-to-person through contact with the stool, saliva or fluid from blisters of someone who is sick or through contact with contaminated surfaces and objects. The infection spreads easily in settings where children are close together."
+            },
+            {
+              "type": "paragraph",
+              "text": "What are the symptoms? Fever, headache, sore throat, blister-like sores in the mouth, loss of appetite, lack of energy, and a skin rash. Red spots, often with small blisters on top, appear on the hands and feet and sometimes elsewhere on the body. Symptoms usually last 710 days. It is possible to have the infection and not have any symptoms."
+            },
+            {
+              "type": "paragraph",
               "text": "Incubation period: 3 - 7 days after contact with the virus. Infectious period: Most contagious during the first week of illness. The virus may remain in the stool weeks from the onset of symptoms."
-            },
-            {
-              "type": "paragraph",
-              "text": "How to prevent spread 1) Avoid sharing objects that have been in someone else's mouth like eating utensils and drinking cups. 2) Wash your hands often, especially after using the washroom, changing diapers and before preparing and eating food. 3) Dispose or clean and disinfect any objects that may have come in contact with nose and mouth secretions or stool."
-            },
-            {
-              "type": "paragraph",
-              "text": "Exclusion Recommendations Do not exclude unless too ill to take part in activities."
-            },
+            }
+          ]
+        },
+        {
+          "title": "Hepatitis A*",
+          "blocks": [
             {
               "type": "paragraph",
               "text": "What are the symptoms? Fever, loss of appetite, nausea, and abdominal discomfort followed by jaundice (yellowing of skin and eyes). Children under 6 years may not have symptoms. Symptoms may be mild and last 1 -2 weeks or be severe and last several months."
@@ -476,12 +457,8 @@
           ]
         },
         {
-          "title": "Part 2: Core Clinical Content (pp. 6–9) — Part 11",
+          "title": "Hepatitis B*",
           "blocks": [
-            {
-              "type": "paragraph",
-              "text": "How to prevent spread 1) Talk to your health care provider about immunization. 2) Wash hands after using the washroom, changing diapers and before eating. 3) Travelers going to developing countries should be aware of how to select food and drink to avoid infection."
-            },
             {
               "type": "paragraph",
               "text": "What are the symptoms? Lack of appetite, nausea, vomiting, tiredness, abdominal pain and jaundice (yellowing of skin and eyes). Only 10% of infected children will have symptoms."
@@ -492,11 +469,35 @@
             },
             {
               "type": "paragraph",
+              "text": "How to prevent spread 1) Avoid sharing objects that have been in someone else's mouth like eating utensils and drinking cups. 2) Wash your hands often, especially after using the washroom, changing diapers and before preparing and eating food. 3) Dispose or clean and disinfect any objects that may have come in contact with nose and mouth secretions or stool."
+            },
+            {
+              "type": "paragraph",
+              "text": "Exclusion Recommendations Do not exclude unless too ill to take part in activities."
+            },
+            {
+              "type": "paragraph",
+              "text": "How to prevent spread 1) Talk to your health care provider about immunization. 2) Wash hands after using the washroom, changing diapers and before eating. 3) Travelers going to developing countries should be aware of how to select food and drink to avoid infection."
+            },
+            {
+              "type": "paragraph",
+              "text": "Exclusion Recommendations Exclude food handlers, staff and students for one week after the start of jaundice or for 2 weeks after the start of illness, whichever starts first."
+            },
+            {
+              "type": "paragraph",
               "text": "How to prevent spread 1) Review routine practices for all contact with blood and body fluids. Staff should be adequately trained and regularly updated in the proper care of blood exposure or bite wounds. 2) Immediately report any bites that cause bleeding to the health unit. 3) Hepatitis B vaccine and/or immune globulin may be indicated for close contacts under special circumstances."
             },
             {
               "type": "paragraph",
               "text": "Exclusion Recommendations Do not exclude."
+            },
+            {
+              "type": "paragraph",
+              "text": "How is it spread? Person-to-person through contact with the stool of an infected person or through eating/drinking contaminated food or water."
+            },
+            {
+              "type": "paragraph",
+              "text": "How is it spread? Person-to-person through contact with the blood or body fluids of an infected person. The virus mainly spreads through unprotected sex, from an infected mother to her baby, and through sharing needles. It is rare for the infection to be passed through biting; for transmission to occur, the bite must break the skin. The majority of children’s bites cause bruising only. The biting child is more likely to be exposed to blood than the child who has been bitten."
             }
           ]
         }
@@ -505,39 +506,22 @@
     {
       "chapterNumber": 3,
       "slug": "ch-3",
-      "title": "Part 3: Core Clinical Content (pp. 10–13)",
+      "title": "Section 3: Clinical Study Notes (pp. 10–13)",
       "pageRange": "pp. 10–13",
-      "excerpt": "What are the Incubation period: How is it spread? How to prevent spread Exclusion symptoms? High fever, many painful ulcers in and around the lips and mouth, often referred to as “",
-      "wordCount": 2236,
+      "excerpt": "2 - 14 days after contact with the virus. Infectious period: 1 week - several weeks with first infection; up to 5 days after cold sores return.",
+      "wordCount": 2223,
       "sections": [
         {
-          "title": "Part 3: Core Clinical Content (pp. 10–13) — Part 1",
+          "title": "Herpes Simplex",
           "blocks": [
-            {
-              "type": "paragraph",
-              "text": "What are the Incubation period: How is it spread? How to prevent spread Exclusion symptoms? High fever, many painful ulcers in and around the lips and mouth, often referred to as “cold sores”. Infection can recur over a lifetime. Many infections occur without any symptoms."
-            },
             {
               "type": "paragraph",
               "text": "2 - 14 days after contact with the virus. Infectious period: 1 week - several weeks with first infection; up to 5 days after cold sores return."
             },
             {
-              "type": "paragraph",
-              "text": "Person-to-person through touching saliva or blisters of someone with cold sores."
+              "type": "subheading",
+              "text": "Impetigo"
             },
-            {
-              "type": "bullet",
-              "text": "1) Wash hands with soap and water after having contact with an infected person. 2) Avoid touching blisters or cold sores of an infected person."
-            },
-            {
-              "type": "paragraph",
-              "text": "Recommendations Do not exclude unless too ill to take part in activities."
-            }
-          ]
-        },
-        {
-          "title": "Part 3: Core Clinical Content (pp. 10–13) — Part 2",
-          "blocks": [
             {
               "type": "paragraph",
               "text": "What are the symptoms? Fluid filled blisters followed by crusted honey colored rash around the face, arms or legs. Common skin condition caused by the same bacteria that causes strep throat."
@@ -545,23 +529,11 @@
             {
               "type": "paragraph",
               "text": "Incubation period: 7 - 10 days after contact with the bacteria. Infectious period: From onset of rash until one day after the start of treatment with antibiotics. Contagious until blisters go away if untreated."
-            },
-            {
-              "type": "paragraph",
-              "text": "How is it spread? Person-to-person through touching fluid from the blisters. Also spread through contact with contaminated surfaces or objects."
-            },
-            {
-              "type": "paragraph",
-              "text": "How to prevent spread 1) Wash hands with soap and water after having contact with rash. 2) Keep rash covered. 3) Clean and disinfect toys and objects and surfaces that are touched often. 4) Avoid sharing towels and clothing."
-            },
-            {
-              "type": "paragraph",
-              "text": "Exclusion Recommendations Exclude until 24 hours after the start of appropriate antibiotic treatment and child is well enough to take part in activities."
             }
           ]
         },
         {
-          "title": "Part 3: Core Clinical Content (pp. 10–13) — Part 3",
+          "title": "Influenza*",
           "blocks": [
             {
               "type": "paragraph",
@@ -573,7 +545,19 @@
             },
             {
               "type": "paragraph",
-              "text": "How is it spread? Person-to-person through contact with the fluids from the nose or throat of an infected person or from sharing items that have been in the sick person's mouth. Also spread from touching contaminated surfaces then touching your eyes, nose or mouth."
+              "text": "1) Wash hands with soap and water after having contact with an infected person. 2) Avoid touching blisters or cold sores of an infected person."
+            },
+            {
+              "type": "paragraph",
+              "text": "Recommendations Do not exclude unless too ill to take part in activities."
+            },
+            {
+              "type": "paragraph",
+              "text": "How to prevent spread 1) Wash hands with soap and water after having contact with rash. 2) Keep rash covered. 3) Clean and disinfect toys and objects and surfaces that are touched often. 4) Avoid sharing towels and clothing."
+            },
+            {
+              "type": "paragraph",
+              "text": "Exclusion Recommendations Exclude until 24 hours after the start of appropriate antibiotic treatment and child is well enough to take part in activities."
             },
             {
               "type": "paragraph",
@@ -586,11 +570,27 @@
           ]
         },
         {
-          "title": "Part 3: Core Clinical Content (pp. 10–13) — Part 4",
+          "title": "Influenza* (Continued 2)",
           "blocks": [
             {
               "type": "paragraph",
-              "text": "Return to top *Indicates a reportable disease"
+              "text": "What are the Incubation period: How is it spread? How to prevent spread Exclusion symptoms? High fever, many painful ulcers in and around the lips and mouth, often referred to as “cold sores”. Infection can recur over a lifetime. Many infections occur without any symptoms."
+            },
+            {
+              "type": "paragraph",
+              "text": "Person-to-person through touching saliva or blisters of someone with cold sores."
+            },
+            {
+              "type": "paragraph",
+              "text": "How is it spread? Person-to-person through touching fluid from the blisters. Also spread through contact with contaminated surfaces or objects."
+            },
+            {
+              "type": "paragraph",
+              "text": "How is it spread? Person-to-person through contact with the fluids from the nose or throat of an infected person or from sharing items that have been in the sick person's mouth. Also spread from touching contaminated surfaces then touching your eyes, nose or mouth."
+            },
+            {
+              "type": "paragraph",
+              "text": "How is it spread? Person-to-person through hair to hair contact or indirectly by sharing items that come into contact with the head such as hats, hairbrushes, combs or headphones."
             },
             {
               "type": "paragraph",
@@ -602,45 +602,16 @@
             },
             {
               "type": "paragraph",
-              "text": "How is it spread? Person-to-person through hair to hair contact or indirectly by sharing items that come into contact with the head such as hats, hairbrushes, combs or headphones."
-            },
-            {
-              "type": "paragraph",
-              "text": "How to prevent spread 1) Encourage parents to check for head lice. 2) Treat using insecticide or noninsecticide product that has been approved for use in Canada. 3) Discourage direct head-to-head contact between children and sharing of items that come in contact with the head. 4) Items that may have had prolonged contact with the child’s head at the school can be washed in hot water or placed in a plastic bag for two weeks or in the freezer for 48 hours."
+              "text": "Measles* What are the symptoms? High fever, cough, runny nose, and red eyes for a few days before the rash appears. The rash usually starts on the face and moves to the rest of the body."
             }
           ]
         },
         {
-          "title": "Part 3: Core Clinical Content (pp. 10–13) — Part 5",
+          "title": "Influenza* (Continued 3)",
           "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Exclusion Recommendations Refer to school board/day care policy."
-            },
-            {
-              "type": "paragraph",
-              "text": "Measles* What are the symptoms? High fever, cough, runny nose, and red eyes for a few days before the rash appears. The rash usually starts on the face and moves to the rest of the body."
-            },
             {
               "type": "paragraph",
               "text": "Incubation period: 10 - 14 days (range seven to 21 days) from contact with an infected person. Infectious period: 4 days before onset of rash until 4 days after the onset of rash."
-            },
-            {
-              "type": "paragraph",
-              "text": "How is it spread? Person-to-person through breathing in air contaminated with measles virus or through direct contact with the nose or respiratory secretions of an infected person."
-            },
-            {
-              "type": "paragraph",
-              "text": "How to prevent spread 1) Stay up to date with immunizations. 2) Advise parents to call their healthcare provider by phone to arrange for child to be assessed. 3) Contact the health unit immediately. Be prepared to provide immunization records for all children and staff. 4) Distribute information about measles to the parents of all children in co-ordination with the local public health unit."
-            }
-          ]
-        },
-        {
-          "title": "Part 3: Core Clinical Content (pp. 10–13) — Part 6",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Exclusion Recommendations Infected children should be excluded for at least 4 days after the onset of rash. Public Health will provide direction on exclusion of contacts, based on their immunization status."
             },
             {
               "type": "paragraph",
@@ -652,7 +623,19 @@
             },
             {
               "type": "paragraph",
-              "text": "How is it spread? Some forms of bacterial meningitis are contagious, although it doesn’t spread very easily from person-toperson. The bacteria may be passed person-toperson through contact with the fluid from the mouth and nose of a person who is sick. The bacteria is not spread by casual contact or by breathing the air where a person with meningitis has been. If you are around someone with viral meningitis, you may be at risk of becoming infected with the virus that made them sick."
+              "text": "How to prevent spread 1) Encourage parents to check for head lice. 2) Treat using insecticide or noninsecticide product that has been approved for use in Canada. 3) Discourage direct head-to-head contact between children and sharing of items that come in contact with the head. 4) Items that may have had prolonged contact with the child’s head at the school can be washed in hot water or placed in a plastic bag for two weeks or in the freezer for 48 hours."
+            },
+            {
+              "type": "paragraph",
+              "text": "Exclusion Recommendations Refer to school board/day care policy."
+            },
+            {
+              "type": "paragraph",
+              "text": "How to prevent spread 1) Stay up to date with immunizations. 2) Advise parents to call their healthcare provider by phone to arrange for child to be assessed. 3) Contact the health unit immediately. Be prepared to provide immunization records for all children and staff. 4) Distribute information about measles to the parents of all children in co-ordination with the local public health unit."
+            },
+            {
+              "type": "paragraph",
+              "text": "Exclusion Recommendations Infected children should be excluded for at least 4 days after the onset of rash. Public Health will provide direction on exclusion of contacts, based on their immunization status."
             },
             {
               "type": "paragraph",
@@ -661,7 +644,7 @@
           ]
         },
         {
-          "title": "Part 3: Core Clinical Content (pp. 10–13) — Part 7",
+          "title": "Influenza* (Continued 4)",
           "blocks": [
             {
               "type": "paragraph",
@@ -669,29 +652,30 @@
             },
             {
               "type": "paragraph",
+              "text": "How is it spread? Person-to-person through breathing in air contaminated with measles virus or through direct contact with the nose or respiratory secretions of an infected person."
+            },
+            {
+              "type": "paragraph",
+              "text": "How is it spread? Some forms of bacterial meningitis are contagious, although it doesn’t spread very easily from person-toperson. The bacteria may be passed person-toperson through contact with the fluid from the mouth and nose of a person who is sick. The bacteria is not spread by casual contact or by breathing the air where a person with meningitis has been. If you are around someone with viral meningitis, you may be at risk of becoming infected with the virus that made them sick."
+            }
+          ]
+        },
+        {
+          "title": "Molluscum Contagiosum",
+          "blocks": [
+            {
+              "type": "paragraph",
               "text": "What are the symptoms? A benign infection of the skin. Initially, the infection appears as tiny bumps on the skin that may be itchy but painless. They grow into small waxy, pinkish white, clear or yellow colored raised lesions that may have a dip in the middle. In children, the bumps most often appear on the face, body, legs and arms."
             },
             {
               "type": "paragraph",
               "text": "Incubation period: 7 days - 6 months after contact with the virus. Infectious period: While the bumps on the skin (lesions) are present. Does not spread easily from person-toperson."
-            },
-            {
-              "type": "paragraph",
-              "text": "How is it spread? Person-to-person through skin to skin contact with the lesions or by contact with contaminated objects such as clothing, towels or toys. The lesions can also be spread to another part of the child’s own body by scratching or picking at the lesion."
-            },
-            {
-              "type": "paragraph",
-              "text": "How to prevent spread 1) Encourage children to avoid scratching the bumps. 2) Practice good hand hygiene."
             }
           ]
         },
         {
-          "title": "Part 3: Core Clinical Content (pp. 10–13) — Part 8",
+          "title": "Mononucleosis",
           "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Exclusion Recommendations Do not exclude unless too ill to take part in activities."
-            },
             {
               "type": "paragraph",
               "text": "What are the symptoms? Fever, sore throat and swollen glands, extreme fatigue, enlarged liver and spleen and sometimes jaundice (Yellowing of the skin and eyes). Symptoms are present in about 50% of people. People often get better in a few weeks but for some people it may take months."
@@ -699,23 +683,6 @@
             {
               "type": "paragraph",
               "text": "Incubation period: Usually 4 - 6 weeks from contact with a sick person. Infectious period: Unknown. The infected person is likely most infectious when the symptoms are at their peak."
-            },
-            {
-              "type": "paragraph",
-              "text": "How is it spread? Person-to-person through contact with nose or throat secretions of someone who is sick or from sharing items that have been in the sick person's mouth. Also spread from touching contaminated surfaces or objects then touching your eyes, nose or mouth."
-            },
-            {
-              "type": "paragraph",
-              "text": "How to prevent spread 1) Wash hands with soap and water or use alcohol-based hand sanitizer. 2) Do not share anything that has been in another person's mouth. 3) Clean and disinfect all common touch surfaces."
-            }
-          ]
-        },
-        {
-          "title": "Part 3: Core Clinical Content (pp. 10–13) — Part 9",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Methicillin-Resistant Staphylococcus Aureus (MRSA)"
             },
             {
               "type": "paragraph",
@@ -727,20 +694,44 @@
             },
             {
               "type": "paragraph",
-              "text": "How is it spread? Person-to-person through skin-to-skin contact or by contact with surfaces or objects that have the germs on them."
+              "text": "How to prevent spread 1) Encourage children to avoid scratching the bumps. 2) Practice good hand hygiene."
+            },
+            {
+              "type": "paragraph",
+              "text": "Exclusion Recommendations Do not exclude unless too ill to take part in activities."
+            },
+            {
+              "type": "paragraph",
+              "text": "How to prevent spread 1) Wash hands with soap and water or use alcohol-based hand sanitizer. 2) Do not share anything that has been in another person's mouth. 3) Clean and disinfect all common touch surfaces."
             },
             {
               "type": "paragraph",
               "text": "How to prevent spread 1) Avoid activities such as sports that involve skin-to-skin contact until the infection is healed. 2) Anything that has come in to contact with the drainage from an infected person’s wound should be disposed of or cleaned and disinfected (if applicable). 3) Avoid sharing towels and clothing. 4) Linens should be laundered in hot water and dried with heat. 5) Clean hands often."
+            },
+            {
+              "type": "paragraph",
+              "text": "Exclusion Recommendations Do not exclude unless the wound is draining and cannot be covered by a dry dressing. Wounds should be kept clean and covered until they have healed."
+            },
+            {
+              "type": "paragraph",
+              "text": "How is it spread? Person-to-person through skin to skin contact with the lesions or by contact with contaminated objects such as clothing, towels or toys. The lesions can also be spread to another part of the child’s own body by scratching or picking at the lesion."
+            },
+            {
+              "type": "paragraph",
+              "text": "How is it spread? Person-to-person through contact with nose or throat secretions of someone who is sick or from sharing items that have been in the sick person's mouth. Also spread from touching contaminated surfaces or objects then touching your eyes, nose or mouth."
             }
           ]
         },
         {
-          "title": "Part 3: Core Clinical Content (pp. 10–13) — Part 10",
+          "title": "Methicillin-Resistant Staphylococcus Aureus (MRSA)",
           "blocks": [
             {
               "type": "paragraph",
-              "text": "Exclusion Recommendations Do not exclude unless the wound is draining and cannot be covered by a dry dressing. Wounds should be kept clean and covered until they have healed."
+              "text": "How is it spread? Person-to-person through skin-to-skin contact or by contact with surfaces or objects that have the germs on them."
+            },
+            {
+              "type": "subheading",
+              "text": "Mumps*"
             },
             {
               "type": "paragraph",
@@ -749,24 +740,12 @@
             {
               "type": "paragraph",
               "text": "Incubation period: 16 - 18 days (range 12-25 days) from contact with the virus. Infectious period: 7 days before symptoms start until 5 days after the onset of swelling."
-            },
-            {
-              "type": "paragraph",
-              "text": "How is it spread? Person-to-person through contact with fluids from the nose or throat of someone who is sick. It is spread through sneezing, coughing, kissing and sharing food, drinks or other items that have been in the infected person’s mouth."
-            },
-            {
-              "type": "paragraph",
-              "text": "How to prevent spread 1) Stay up-to-date with your immunizations. 2) Contact the health unit and be prepared to provide immunization records for all children and staff. 3) Do not share anything that has been in another person's mouth. 4) Clean hands often. 5) Cover coughs and sneezes and throw away used tissues into garbage followed by hand hygiene"
             }
           ]
         },
         {
-          "title": "Part 3: Core Clinical Content (pp. 10–13) — Part 11",
+          "title": "Norovirus",
           "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Exclusion Recommendations Exclude until 5 days after the onset of swelling."
-            },
             {
               "type": "paragraph",
               "text": "What are the symptoms? Diarrhea, nausea, vomiting, abdominal cramps, headache, malaise and low grade fever. Sick people usually recover without any specific treatment. Symptoms usually last 24-48 hours."
@@ -774,28 +753,12 @@
             {
               "type": "paragraph",
               "text": "Incubation period: 1 - 2 days after contact the virus. Infectious period: During the entire illness. The virus may be shed in the stool for 2 days or longer after the symptoms have stopped."
-            },
-            {
-              "type": "paragraph",
-              "text": "How is it spread? Person-to-person especially in families and childcare through contact with the stool or vomit of a sick person or through contact with contaminated surfaces or food."
-            },
-            {
-              "type": "paragraph",
-              "text": "How to prevent spread 1) Wash hands after using the washroom and before preparing and eating food. 2) Use appropriate disinfectants approved for use against norovirus."
             }
           ]
         },
         {
-          "title": "Part 3: Core Clinical Content (pp. 10–13) — Part 12",
+          "title": "Otitis media (Ear Infection)",
           "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Exclusion Recommendations Exclude food handlers, staff and students until symptom free for at least 48 hours. Longer exclusion may be required in outbreak situations."
-            },
-            {
-              "type": "paragraph",
-              "text": "Otitis media (Ear Infection)"
-            },
             {
               "type": "paragraph",
               "text": "What are the symptoms? Ear pain, fever and cold symptoms."
@@ -803,19 +766,6 @@
             {
               "type": "paragraph",
               "text": "Incubation period: Not applicable Infectious period: Not applicable"
-            },
-            {
-              "type": "paragraph",
-              "text": "How is it spread? Doesn't spread from person-to-person."
-            }
-          ]
-        },
-        {
-          "title": "Part 3: Core Clinical Content (pp. 10–13) — Part 13",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "How to prevent spread Not Applicable."
             },
             {
               "type": "paragraph",
@@ -827,20 +777,52 @@
             },
             {
               "type": "paragraph",
-              "text": "How is it spread? Person-to-person through direct contact with the tears or discharge from someone who is sick or through indirect contact with surfaces and objects that have become contaminated with eye discharge. When pinkeye is caused by a cold virus, the droplets from a sneeze or cough can also spread the infection."
+              "text": "How to prevent spread 1) Stay up-to-date with your immunizations. 2) Contact the health unit and be prepared to provide immunization records for all children and staff. 3) Do not share anything that has been in another person's mouth. 4) Clean hands often. 5) Cover coughs and sneezes and throw away used tissues into garbage followed by hand hygiene"
             },
             {
               "type": "paragraph",
-              "text": "How to prevent spread 1) Advise parents to have their child seen by their healthcare provider as soon as possible. 2) Wipe eyes from the inside out, in one direction only. Use a clean part of the cloth each time. Do not re-use the cloth. 3) Clean your hands often, especially before and after contact with the child’s eyes or contaminated cloths. 4) Any objects that may have come in contact with eye discharge should be disposed of or cleaned and disinfected (if applicable) immediately after use."
+              "text": "Exclusion Recommendations Exclude until 5 days after the onset of swelling."
+            },
+            {
+              "type": "paragraph",
+              "text": "How to prevent spread 1) Wash hands after using the washroom and before preparing and eating food. 2) Use appropriate disinfectants approved for use against norovirus."
+            },
+            {
+              "type": "paragraph",
+              "text": "Exclusion Recommendations Exclude food handlers, staff and students until symptom free for at least 48 hours. Longer exclusion may be required in outbreak situations."
             }
           ]
         },
         {
-          "title": "Part 3: Core Clinical Content (pp. 10–13) — Part 14",
+          "title": "Otitis media (Ear Infection) (Continued 2)",
           "blocks": [
             {
               "type": "paragraph",
+              "text": "How to prevent spread Not Applicable."
+            },
+            {
+              "type": "paragraph",
+              "text": "How to prevent spread 1) Advise parents to have their child seen by their healthcare provider as soon as possible. 2) Wipe eyes from the inside out, in one direction only. Use a clean part of the cloth each time. Do not re-use the cloth. 3) Clean your hands often, especially before and after contact with the child’s eyes or contaminated cloths. 4) Any objects that may have come in contact with eye discharge should be disposed of or cleaned and disinfected (if applicable) immediately after use."
+            },
+            {
+              "type": "paragraph",
               "text": "Exclusion Recommendations A person with pinkeye should be excluded until seen by their healthcare provider. Bacterial pinkeye: Exclude until 24 hours after the start of treatment. Viral pinkeye: May return to school with the approval of a healthcare provider."
+            },
+            {
+              "type": "paragraph",
+              "text": "How is it spread? Person-to-person through contact with fluids from the nose or throat of someone who is sick. It is spread through sneezing, coughing, kissing and sharing food, drinks or other items that have been in the infected person’s mouth."
+            },
+            {
+              "type": "paragraph",
+              "text": "How is it spread? Person-to-person especially in families and childcare through contact with the stool or vomit of a sick person or through contact with contaminated surfaces or food."
+            },
+            {
+              "type": "paragraph",
+              "text": "How is it spread? Doesn't spread from person-to-person."
+            },
+            {
+              "type": "paragraph",
+              "text": "How is it spread? Person-to-person through direct contact with the tears or discharge from someone who is sick or through indirect contact with surfaces and objects that have become contaminated with eye discharge. When pinkeye is caused by a cold virus, the droplets from a sneeze or cough can also spread the infection."
             }
           ]
         }
@@ -849,13 +831,13 @@
     {
       "chapterNumber": 4,
       "slug": "ch-4",
-      "title": "Part 4: Core Clinical Content (pp. 14–19)",
+      "title": "Section 4: Clinical Study Notes (pp. 14–19)",
       "pageRange": "pp. 14–19",
       "excerpt": "What are the symptoms? Pinworms are small, white, thread-like worms. They reside in the large intestine and crawl out of the anus at night to lay eggs on nearby skin. Severe itchin",
-      "wordCount": 2153,
+      "wordCount": 2205,
       "sections": [
         {
-          "title": "Part 4: Core Clinical Content (pp. 14–19) — Part 1",
+          "title": "Pinworm",
           "blocks": [
             {
               "type": "paragraph",
@@ -864,23 +846,11 @@
             {
               "type": "paragraph",
               "text": "Incubation period: 1 - 2 months or longer from contact with eggs of the worms. Infectious period: As long as female worms are still present and laying eggs around the anal (bum) area."
-            },
-            {
-              "type": "paragraph",
-              "text": "How is it spread? Person-to-person by scratching itchy area and touching own or another’s mouth. May also be spread indirectly through objects that may have been contaminated with pinworm eggs such as toys, clothing or bedding. Eggs can survive for two weeks outside of the body."
-            },
-            {
-              "type": "paragraph",
-              "text": "How to prevent spread 1) Advise parents to have their child seen by their healthcare provider for a diagnosis and treatment. The infection should be treated with medication, usually in single doses 2 weeks apart. 2) Clean your hands with soap and warm water after using the toilet, changing diapers and before preparing and eating food. 3) Infected people should bathe in the morning to help remove a large number of eggs from the skin. 4) Change underclothes and bedding in the morning to prevent spreading the eggs in the environment. Eggs remain infective in the environment for 2 - 3 weeks. Do not shake out these items and place carefully in the washer and dryer to kill any eggs that may be there. 5) Cut fingernails frequently and try not to bite your nails. 6) Teach children the importance of washing hands to prevent infection. 7 ) In institutions, day care centres, and schools, control of pinworm can be difficult, but mass use of medication during an outbreak can be successful."
-            },
-            {
-              "type": "paragraph",
-              "text": "Exclusion Recommendations Do not exclude."
             }
           ]
         },
         {
-          "title": "Part 4: Core Clinical Content (pp. 14–19) — Part 2",
+          "title": "Ringworm",
           "blocks": [
             {
               "type": "paragraph",
@@ -892,7 +862,11 @@
             },
             {
               "type": "paragraph",
-              "text": "How is it spread? Person-to-person through touching the rash of an infected person or animal. Also through contact with contaminated floors, shower stalls and benches."
+              "text": "How to prevent spread 1) Advise parents to have their child seen by their healthcare provider for a diagnosis and treatment. The infection should be treated with medication, usually in single doses 2 weeks apart. 2) Clean your hands with soap and warm water after using the toilet, changing diapers and before preparing and eating food. 3) Infected people should bathe in the morning to help remove a large number of eggs from the skin. 4) Change underclothes and bedding in the morning to prevent spreading the eggs in the environment. Eggs remain infective in the environment for 2 - 3 weeks. Do not shake out these items and place carefully in the washer and dryer to kill any eggs that may be there. 5) Cut fingernails frequently and try not to bite your nails. 6) Teach children the importance of washing hands to prevent infection. 7 ) In institutions, day care centres, and schools, control of pinworm can be difficult, but mass use of medication during an outbreak can be successful."
+            },
+            {
+              "type": "paragraph",
+              "text": "Exclusion Recommendations Do not exclude."
             },
             {
               "type": "paragraph",
@@ -901,11 +875,19 @@
             {
               "type": "paragraph",
               "text": "Exclusion Recommendations Exclude until appropriate treatment has started."
+            },
+            {
+              "type": "paragraph",
+              "text": "How is it spread? Person-to-person by scratching itchy area and touching own or another’s mouth. May also be spread indirectly through objects that may have been contaminated with pinworm eggs such as toys, clothing or bedding. Eggs can survive for two weeks outside of the body."
+            },
+            {
+              "type": "paragraph",
+              "text": "How is it spread? Person-to-person through touching the rash of an infected person or animal. Also through contact with contaminated floors, shower stalls and benches."
             }
           ]
         },
         {
-          "title": "Part 4: Core Clinical Content (pp. 14–19) — Part 3",
+          "title": "Rotavirus",
           "blocks": [
             {
               "type": "paragraph",
@@ -914,23 +896,11 @@
             {
               "type": "paragraph",
               "text": "Incubation period: 1 - 3 days after contact with the virus. Infectious period: 1 - 3 days before symptoms start to about 8 days after contact with the virus."
-            },
-            {
-              "type": "paragraph",
-              "text": "How is it spread? Person-to-person through contact with the stool of someone who is sick or through contact with surfaces that have become contaminated. May also spread through contact with respiratory secretions."
-            },
-            {
-              "type": "paragraph",
-              "text": "How to prevent spread 1) Wash hands after using the washroom and before eating. 2) Use appropriate disinfectants approved for use against rotavirus."
-            },
-            {
-              "type": "paragraph",
-              "text": "Exclusion Recommendations Exclude symptomatic staff and students until symptom free for at least 48 hours."
             }
           ]
         },
         {
-          "title": "Part 4: Core Clinical Content (pp. 14–19) — Part 4",
+          "title": "Rubella (German Measles) *",
           "blocks": [
             {
               "type": "paragraph",
@@ -939,23 +909,11 @@
             {
               "type": "paragraph",
               "text": "Incubation period: Usually 14 - 21 days from contact with the virus. Infectious period: 7 days before rash appears to at least 4 days after the rash appears."
-            },
-            {
-              "type": "paragraph",
-              "text": "How is it spread? Person-to-person through contact with fluids from the nose and throat of someone who is sick. It is spread through sneezing, coughing, kissing and sharing food, drinks or other items that have been in the infected person’s mouth."
-            },
-            {
-              "type": "paragraph",
-              "text": "How to prevent spread 1) Stay up-to-date with immunizations. 2) Contact the health unit immediately and be prepared to provide immunization records for all children and staff. 3) Do not share anything that has been in another person's mouth. 4) Wash hands with soap and water or use alcohol based hand sanitizer. 5) Cover coughs and sneezes and throw away used tissues into garbage followed by hand washing."
-            },
-            {
-              "type": "paragraph",
-              "text": "Exclusion Recommendations Exclude for 7 days from the onset of rash."
             }
           ]
         },
         {
-          "title": "Part 4: Core Clinical Content (pp. 14–19) — Part 5",
+          "title": "Salmonella*",
           "blocks": [
             {
               "type": "paragraph",
@@ -967,7 +925,23 @@
             },
             {
               "type": "paragraph",
-              "text": "How is it spread? Through contact with the stool of person who is sick or animal and through eating contaminated food or drinking contaminated water."
+              "text": "How to prevent spread 1) Wash hands after using the washroom and before eating. 2) Use appropriate disinfectants approved for use against rotavirus."
+            },
+            {
+              "type": "paragraph",
+              "text": "Exclusion Recommendations Exclude symptomatic staff and students until symptom free for at least 48 hours."
+            },
+            {
+              "type": "paragraph",
+              "text": "How to prevent spread 1) Stay up-to-date with immunizations. 2) Contact the health unit immediately and be prepared to provide immunization records for all children and staff. 3) Do not share anything that has been in another person's mouth. 4) Wash hands with soap and water or use alcohol based hand sanitizer. 5) Cover coughs and sneezes and throw away used tissues into garbage followed by hand washing."
+            },
+            {
+              "type": "paragraph",
+              "text": "Exclusion Recommendations Exclude for 7 days from the onset of rash."
+            },
+            {
+              "type": "paragraph",
+              "text": "How to prevent spread 1) Wash hands after using the washroom, before preparing and eating food and after handling animals. 2) Drink only pasteurized milk, wash fruit and vegetables carefully and thoroughly cook food products."
             },
             {
               "type": "paragraph",
@@ -975,12 +949,20 @@
             },
             {
               "type": "paragraph",
-              "text": "*Indicates a reportable disease Return to top"
+              "text": "How is it spread? Person-to-person through contact with the stool of someone who is sick or through contact with surfaces that have become contaminated. May also spread through contact with respiratory secretions."
+            },
+            {
+              "type": "paragraph",
+              "text": "How is it spread? Person-to-person through contact with fluids from the nose and throat of someone who is sick. It is spread through sneezing, coughing, kissing and sharing food, drinks or other items that have been in the infected person’s mouth."
+            },
+            {
+              "type": "paragraph",
+              "text": "How is it spread? Through contact with the stool of person who is sick or animal and through eating contaminated food or drinking contaminated water."
             }
           ]
         },
         {
-          "title": "Part 4: Core Clinical Content (pp. 14–19) — Part 6",
+          "title": "Scabies",
           "blocks": [
             {
               "type": "paragraph",
@@ -989,23 +971,11 @@
             {
               "type": "paragraph",
               "text": "Incubation period: 2 - 6 weeks after contact with scabies for those with no previous exposure to scabies and 1 - 4 days in those that have had scabies in the past. Infectious period: Until mites and eggs are destroyed by treatment. Usually after 1 or occasionally 2 courses of treatment a week apart."
-            },
-            {
-              "type": "paragraph",
-              "text": "How is it spread? Person-to-person through prolonged close contact with the skin. It is also spread by sharing clothing, towels or bed sheets. Mites can survive off of human skin for two-three days."
-            },
-            {
-              "type": "paragraph",
-              "text": "How to prevent spread 1) Avoid close skin-to-skin contact and sharing personal items. 2) Close contacts and family members may also need treatment."
-            },
-            {
-              "type": "paragraph",
-              "text": "Exclusion Recommendations Exclude until 24 hours after appropriate treatment is first applied."
             }
           ]
         },
         {
-          "title": "Part 4: Core Clinical Content (pp. 14–19) — Part 7",
+          "title": "Shigella*",
           "blocks": [
             {
               "type": "paragraph",
@@ -1014,23 +984,11 @@
             {
               "type": "paragraph",
               "text": "Incubation period: Symptoms usually start 1 - 3 days after contact with the bacteria. Infectious period: While diarrhea is present and up to 4 weeks after symptoms start."
-            },
-            {
-              "type": "paragraph",
-              "text": "How is it spread? Through contact with the stool of person or animal who is sick or through eating/drinking contaminated food or water."
-            },
-            {
-              "type": "paragraph",
-              "text": "How to prevent spread Washing hands is very important after using the washroom and before preparing and eating food."
-            },
-            {
-              "type": "paragraph",
-              "text": "Exclusion Recommendations Exclude until symptom free for at least 48 hours. Extended exclusion may be required."
             }
           ]
         },
         {
-          "title": "Part 4: Core Clinical Content (pp. 14–19) — Part 8",
+          "title": "Shingles",
           "blocks": [
             {
               "type": "paragraph",
@@ -1042,7 +1000,19 @@
             },
             {
               "type": "paragraph",
-              "text": "How is it spread? Shingles is the reactivation of the chickenpox virus. If a person who has never had chickenpox touches the rash, they may develop chickenpox not shingles. The virus is not known to be transmitted through the air."
+              "text": "How to prevent spread 1) Avoid close skin-to-skin contact and sharing personal items. 2) Close contacts and family members may also need treatment."
+            },
+            {
+              "type": "paragraph",
+              "text": "Exclusion Recommendations Exclude until 24 hours after appropriate treatment is first applied."
+            },
+            {
+              "type": "paragraph",
+              "text": "How to prevent spread Washing hands is very important after using the washroom and before preparing and eating food."
+            },
+            {
+              "type": "paragraph",
+              "text": "Exclusion Recommendations Exclude until symptom free for at least 48 hours. Extended exclusion may be required."
             },
             {
               "type": "paragraph",
@@ -1051,11 +1021,23 @@
             {
               "type": "paragraph",
               "text": "Exclusion Recommendations Do not exclude unless too ill to take part in activities, regardless of the state of the rash."
+            },
+            {
+              "type": "paragraph",
+              "text": "How is it spread? Person-to-person through prolonged close contact with the skin. It is also spread by sharing clothing, towels or bed sheets. Mites can survive off of human skin for two-three days."
+            },
+            {
+              "type": "paragraph",
+              "text": "How is it spread? Through contact with the stool of person or animal who is sick or through eating/drinking contaminated food or water."
+            },
+            {
+              "type": "paragraph",
+              "text": "How is it spread? Shingles is the reactivation of the chickenpox virus. If a person who has never had chickenpox touches the rash, they may develop chickenpox not shingles. The virus is not known to be transmitted through the air."
             }
           ]
         },
         {
-          "title": "Part 4: Core Clinical Content (pp. 14–19) — Part 9",
+          "title": "Sixth Disease (Roseola)",
           "blocks": [
             {
               "type": "paragraph",
@@ -1064,11 +1046,12 @@
             {
               "type": "paragraph",
               "text": "Incubation period: 9 - 10 days from contact with the virus. Infectious period: While fever is present. Once the rash develops, the child is no longer contagious."
-            },
-            {
-              "type": "paragraph",
-              "text": "How to prevent spread 1) Wash hands with soap and water or use alcohol-based hand sanitizer. 2) Cover coughs and sneezes and throw away used tissues into garbage followed by hand washing."
-            },
+            }
+          ]
+        },
+        {
+          "title": "Strep Throat/Scarlet Fever",
+          "blocks": [
             {
               "type": "paragraph",
               "text": "What are the symptoms? Strep Throat and Scarlet Fever is caused by the same bacteria. Strep throat: fever and sore throat. Scarlet Fever: sandpaper like rash on neck, chest, in folds of arm pit, elbow, groin and inner surface of thighs."
@@ -1080,12 +1063,8 @@
           ]
         },
         {
-          "title": "Part 4: Core Clinical Content (pp. 14–19) — Part 10",
+          "title": "Whooping Cough* (Pertussis)",
           "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Exclusion Recommendations Exclude until 24 hours after the start of antibiotic treatment and are feeling well enough to take part in activities."
-            },
             {
               "type": "paragraph",
               "text": "What are the symptoms? Runny nose, watery eyes, mild fever, coughing spells. High pitched gasp or “whoop” sound heard. Difficulty breathing and vomiting is common after coughing spell."
@@ -1096,29 +1075,33 @@
             },
             {
               "type": "paragraph",
-              "text": "How is it spread? Person-to-person through coughing and sneezing and contact with fluids from the nose and throat of someone who is sick."
+              "text": "How to prevent spread 1) Wash hands with soap and water or use alcohol-based hand sanitizer. 2) Cover coughs and sneezes and throw away used tissues into garbage followed by hand washing."
+            },
+            {
+              "type": "paragraph",
+              "text": "Exclusion Recommendations Exclude until 24 hours after the start of antibiotic treatment and are feeling well enough to take part in activities."
             },
             {
               "type": "paragraph",
               "text": "How to prevent spread 1) Stay up to date with immunizations. 2) Wash hands with soap and water or use alcohol-based hand sanitizer. 3) Cover coughs and sneezes and throw used tissue into the garbage."
-            }
-          ]
-        },
-        {
-          "title": "Part 4: Core Clinical Content (pp. 14–19) — Part 11",
-          "blocks": [
+            },
             {
               "type": "paragraph",
               "text": "Exclusion Recommendations Exclude until 5 days after the start of treatment or three weeks from onset of “whooping” cough if no treatment is given."
             },
             {
               "type": "paragraph",
-              "text": "Health Protection and Promotion Act"
+              "text": "How is it spread? Person-to-person through contact with the nose or throat secretions of an infected person."
             },
             {
               "type": "paragraph",
-              "text": "Reportable Diseases of Public"
-            },
+              "text": "How is it spread? Person-to-person through coughing and sneezing and contact with fluids from the nose and throat of someone who is sick."
+            }
+          ]
+        },
+        {
+          "title": "Health Significance",
+          "blocks": [
             {
               "type": "paragraph",
               "text": "If a principal of a school or an operator of an institution, such as a day care, has knowledge of, or suspects that a child in their school or day care has a reportable disease, they must monitor and report it immediately to the local Medical Officer of Health as per Ontario Reg. 135/18 and amendments under the Health Protection and Promotion Act"
@@ -1126,19 +1109,6 @@
             {
               "type": "paragraph",
               "text": "Timely reporting of communicable diseases is essential for their prevention and control."
-            }
-          ]
-        },
-        {
-          "title": "Part 4: Core Clinical Content (pp. 14–19) — Part 12",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Acquired Immunodeficiency Syndrome (AIDS)"
-            },
-            {
-              "type": "paragraph",
-              "text": "Paralytic Shellfish Poisoning"
             },
             {
               "type": "paragraph",
@@ -1146,24 +1116,52 @@
             },
             {
               "type": "paragraph",
-              "text": "Paratyphoid Fever Pertussis (Whooping Cough) *Plague"
+              "text": "Acquired Immunodeficiency Syndrome (AIDS)"
             },
             {
               "type": "paragraph",
               "text": "*Acute Flaccid Paralysis (less than 15 years of age)"
+            },
+            {
+              "type": "paragraph",
+              "text": "*Anthrax"
+            },
+            {
+              "type": "paragraph",
+              "text": "*Botulism enteritis Chancroid"
+            },
+            {
+              "type": "paragraph",
+              "text": "Carbapenamase Producing Enterobacteriaceae (CPE), colonization or infection Chickenpox"
             }
           ]
         },
         {
-          "title": "Part 4: Core Clinical Content (pp. 14–19) — Part 13",
+          "title": "Health Significance (Continued 2)",
           "blocks": [
             {
               "type": "paragraph",
-              "text": "invasive Group B Streptococcal disease,"
+              "text": "(Varicella) Chlamydia trachomatis *Cholera *Clostridium difficile Infection (CDAD) outbreaks in public hospitals"
             },
             {
               "type": "paragraph",
-              "text": "Haemophilus influenzae disease all types, invasive Hantavirus Pulmonary Syndrome"
+              "text": "Creutzfeldt-Jakob Disease, all types Cryptosporidiosis Cyclosporiasis *Diphtheria E.coli (see Verotoxin producing E.coli) Echinoccoccus Multiocularis Infection Encephalitis, including, i. Primary, viral ii. Post-infectious iii. Vaccine-related iv. Subacute sclerosing panencephalitis v. Unspecified"
+            },
+            {
+              "type": "paragraph",
+              "text": "Food poisoning, all causes"
+            },
+            {
+              "type": "paragraph",
+              "text": "*Gastroenteritis, outbreaks in institutions and public hospitals"
+            },
+            {
+              "type": "paragraph",
+              "text": "Paralytic Shellfish Poisoning"
+            },
+            {
+              "type": "paragraph",
+              "text": "Paratyphoid Fever Pertussis (Whooping Cough) *Plague"
             },
             {
               "type": "paragraph",
@@ -1171,25 +1169,13 @@
             },
             {
               "type": "paragraph",
-              "text": "*Hemorrhagic fevers, including: i. Ebola virus ii. Marburg virus iii. Other viral causes Hepatitis, viral"
-            },
-            {
-              "type": "paragraph",
-              "text": "sis Q Fever *Rabies *Respiratory infection outbreaks in institutions and public hospitals"
+              "text": "Psittacosis/Ornitho sis Q Fever *Rabies *Respiratory infection outbreaks in institutions and public hospitals"
             }
           ]
         },
         {
-          "title": "Part 4: Core Clinical Content (pp. 14–19) — Part 14",
+          "title": "Health Significance (Continued 3)",
           "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Carbapenamase Producing Enterobacteriaceae (CPE), colonization or infection Chickenpox"
-            },
-            {
-              "type": "paragraph",
-              "text": "i. Hepatitis A ii. Hepatitis B iii. Hepatitis C"
-            },
             {
               "type": "paragraph",
               "text": "Rubella, congenital syndrome Salmonellosis"
@@ -1200,37 +1186,32 @@
             },
             {
               "type": "paragraph",
-              "text": "trachomatis *Cholera *Clostridium difficile Infection (CDAD) outbreaks in public hospitals"
+              "text": "(SARS) Shigellosis"
+            },
+            {
+              "type": "paragraph",
+              "text": "*Smallpox and other Orthopox viruses including Monkeypox i. Active Disease ii. Latent Infection (LTBI) Tularemia"
+            },
+            {
+              "type": "paragraph",
+              "text": "Verotoxin-producing E. coli infection indicator conditions-Haemolytic Uraemic Syndrome (HUS) West Nile Virus Yersiniosis invasive Group B Streptococcal disease,"
+            },
+            {
+              "type": "paragraph",
+              "text": "Haemophilus influenzae disease all types, invasive Hantavirus Pulmonary Syndrome"
+            },
+            {
+              "type": "paragraph",
+              "text": "*Hemorrhagic fevers, including: i. Ebola virus ii. Marburg virus iii. Other viral causes Hepatitis, viral i. Hepatitis A ii. Hepatitis B iii. Hepatitis C"
+            },
+            {
+              "type": "paragraph",
+              "text": "*Measles Meningitis, acute i. *Bacterial ii. Viral iii. Other"
             }
           ]
         },
         {
-          "title": "Part 4: Core Clinical Content (pp. 14–19) — Part 15",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "*Smallpox and other Orthopox viruses including Monkeypox"
-            },
-            {
-              "type": "paragraph",
-              "text": "Creutzfeldt-Jakob Disease, all"
-            },
-            {
-              "type": "paragraph",
-              "text": "types Cryptosporidiosis Cyclosporiasis *Diphtheria E.coli (see Verotoxin producing E.coli) Echinoccoccus Multiocularis Infection Encephalitis, including, i. Primary, viral ii. Post-infectious iii. Vaccine-related iv. Subacute sclerosing panencephalitis v. Unspecified"
-            },
-            {
-              "type": "paragraph",
-              "text": "i. *Bacterial ii. Viral iii. Other"
-            },
-            {
-              "type": "paragraph",
-              "text": "i. Active Disease ii. Latent Infection (LTBI) Tularemia"
-            }
-          ]
-        },
-        {
-          "title": "Part 4: Core Clinical Content (pp. 14–19) — Part 16",
+          "title": "Health Significance (Continued 4)",
           "blocks": [
             {
               "type": "paragraph",
@@ -1242,32 +1223,15 @@
             },
             {
               "type": "paragraph",
-              "text": "Verotoxin-producing E. coli infection indicator conditions-Haemolytic Uraemic Syndrome (HUS) West Nile Virus Yersiniosis"
-            },
-            {
-              "type": "paragraph",
               "text": "Syndrome (SARS) ii. Middle East Respiratory"
             },
             {
               "type": "paragraph",
               "text": "Syndrome (MERS-CoV) iii. COVID-19 Ophthalmia neonatorum"
-            }
-          ]
-        },
-        {
-          "title": "Part 4: Core Clinical Content (pp. 14–19) — Part 17",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "*Gastroenteritis, outbreaks in institutions and public hospitals"
             },
             {
               "type": "paragraph",
-              "text": "Diseases marked with an asterisk () should be reported immediately to the Medical Officer of Health"
-            },
-            {
-              "type": "paragraph",
-              "text": "by telephone (24 hours/day, 7 days/week). Other diseases can be reported the next business day."
+              "text": "Diseases marked with an asterisk () should be reported immediately to the Medical Officer of Health by telephone (24 hours/day, 7 days/week). Other diseases can be reported the next business day."
             },
             {
               "type": "paragraph",
@@ -1276,16 +1240,16 @@
             {
               "type": "paragraph",
               "text": " Name of the school or childcare program  Name of the person reporting  Child’s first and last name  Child’s date of birth  Child’s phone number and address  Name of the disease  Symptoms  Date of symptom onset Reporting Outbreaks By law you must report outbreaks to your local public health unit (HPPA, R.S.O 1990, CH 7). This also includes when you observe an increase of Non-Reportable Diseases. Call as soon as you suspect an outbreak or when you see an increase in absent/ill children."
+            },
+            {
+              "type": "paragraph",
+              "text": "Chatham-Kent Public Health Unit Communicable Disease Team 519-355-1071 ext 5902"
             }
           ]
         },
         {
-          "title": "Part 4: Core Clinical Content (pp. 14–19) — Part 18",
+          "title": "Health Significance (Continued 5)",
           "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Chatham-Kent Public Health Unit Communicable Disease Team 519-355-1071 ext 5902"
-            },
             {
               "type": "paragraph",
               "text": "Lambton Public Health Unit Infectious Disease and Prevention Control PHONE: 519-383-8331 ext 3537 TOLL FREE: 1-800-667-1839 FAX: 519-383-7092"

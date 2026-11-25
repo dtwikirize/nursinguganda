@@ -4,7 +4,7 @@
   "subtitle": "Free Reference Textbook · Cardiology & Acute Care (21 pp., 1.06 MB) — Dr. Araz Rawshani, MD, PhD.",
   "category": "Cardiology & Acute Care",
   "estimatedPages": 21,
-  "totalWords": 2140,
+  "totalWords": 2069,
   "references": [
     {
       "id": "src-book-pocket-guide-to-ecg-interpretation",
@@ -18,17 +18,21 @@
     {
       "chapterNumber": 1,
       "slug": "ch-1",
-      "title": "Part 1: Core Clinical Content (pp. 2–6)",
+      "title": "Section 1: Clinical Study Notes (pp. 2–6)",
       "pageRange": "pp. 2–6",
       "excerpt": "Methodological ECG Interpretation The ECG must always be interpreted systematically. Failure to perform a systematic interpretation of the ECG may be detrimental. The interpretatio",
-      "wordCount": 1754,
+      "wordCount": 1750,
       "sections": [
         {
-          "title": "Part 1: Core Clinical Content (pp. 2–6) — Part 1",
+          "title": "Section 1: Clinical Study Notes (pp. 2–6)",
           "blocks": [
             {
               "type": "paragraph",
               "text": "Methodological ECG Interpretation The ECG must always be interpreted systematically. Failure to perform a systematic interpretation of the ECG may be detrimental. The interpretation algorithm presented below is easy to follow and it can be carried out by anyone. The reader will gradually notice that ECG interpretation is markedly facilitated by using an algorithm, as it minimizes the risk of missing important abnormalities and also speeds up the interpretation."
+            },
+            {
+              "type": "subheading",
+              "text": "1. Rhythm"
             },
             {
               "type": "paragraph",
@@ -37,7 +41,12 @@
             {
               "type": "paragraph",
               "text": "♥ Sinus rhythm (which is the normal rhythm) has the following characteristics: (1) heart rate 50–100 beats per minute; (2) P-wave precedes every QRS complex; (3) the Pwave is positive in lead II and (4) the PR interval is constant. ♥ Causes of bradycardia: sinus bradycardia, sinoatrial block, sinoatrial arrest/inhibition, second-degree AV block, thirddegree AV block. Note that escape rhythms may arise during bradycardia. Also note that bradycardia due to dysfunction in the sinoatrial node is referred to as sinus node dysfunction (SND). If a person with ECG signs of SND is symptomatic, the condition is classified as sick sinus syndrome (SSS). ♥ Causes of tachycardia (tachyarrhythmia) with narrow QRS complexes (QRS duration <0,12 s): sinus tachycardia, inappropriate sinus tachycardia, sinoatrial re-entry tachycardia, atrial fibrillation, atrial flutter, atrial tachycardia, multifocal atrial tachycardia, AVNRT, AVRT (pre-excitation, WPW). Note that narrow complex tachyarrhythmia rarely causes circulatory compromise or collapse. ♥ Causes of tachycardia (tachyarrhythmia) with wide QRS complexes (QRS duration ≥0,12 s): ventricular tachycardia is the most common cause and it is potentially life-threatening. Note that 10% of wide complex tachycardias actually originate from the atria but the QRS complexes become wide due to abnormal ventricular depolarization (e.g sinus tachycardia with simultaneous left bundle branch block)."
-            },
+            }
+          ]
+        },
+        {
+          "title": "2. P-wave and PR interval",
+          "blocks": [
             {
               "type": "paragraph",
               "text": "ASSESSMENTS EVALUATION ♥ P-wave always positive in lead II (actually always positive in leads II, III and aVF). ♥ P-wave duration should be <0,12 s (all leads)."
@@ -45,15 +54,6 @@
             {
               "type": "paragraph",
               "text": "♥ P-wave must be positive in lead II, otherwise the rhythm cannot be sinus rhythm. ♥ P-wave may be biphasic (diphasic) in V1 (the negative deflection should be <1 mm). It may have a prominent second hump in the inferior limb leads (particularly lead II)."
-            }
-          ]
-        },
-        {
-          "title": "Part 1: Core Clinical Content (pp. 2–6) — Part 2",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "www.ecgwaves.com | Learn ECG Interpretation Online"
             },
             {
               "type": "paragraph",
@@ -62,28 +62,29 @@
             {
               "type": "paragraph",
               "text": "♥ P-wave amplitude should be ≤2,5 mm (all leads). PR interval must be 0,12–0,22 s (all leads)."
-            },
+            }
+          ]
+        },
+        {
+          "title": "3. QRS complex",
+          "blocks": [
             {
               "type": "paragraph",
               "text": "ASSESSMENTS EVALUATION ♥ QRS duration must be <0,12 s (normally 0,07-0,10 s). ♥ There must be at least one limb lead with R-wave amplitude >5 mm and at least one chest (precordial) lead with R-wave amplitude >10 mm; otherwise there is low voltage. ♥ High voltage exists if the amplitudes are too high, i.e if the following condition is satisfied: SwaveV1 or V2 + R-waveV5 >35 mm. ♥ Look for pathological Q-waves. Pathological Q-waves are ≥0,03 s and/or amplitude ≥25% of R-wave amplitude in same lead, in at least 2 anatomically contiguous leads. ♥ Is the R-wave progression in the chest leads (V1–V6) normal?"
             },
             {
               "type": "paragraph",
-              "text": "♥ Wide QRS complex (QRS duration ≥0.12 s): Left bundle branch block. Right bundle branch block. Nonspecific intraventricular conduction disturbance. Hyperkalemia. Class I antiarrhythmic drugs. Tricyclic antidepressants. Ventricular rhythms and ventricular extrasystoles (premature complexes). Artificial pacemaker which stimulates in the ventricle. Aberrant conduction (abberancy). Pre-excitation (Wolff-Parkinson-White syndrome). ♥ Short QRS duration: no clinical relevance. ♥ High voltage: Hypertrophy (any lead). Left bundle branch block (leads V5, V6, I, aVL). Right bundle branch block (V1– V3). Normal variant in younger, well-trained and slender individuals. ♥ Low voltage: Normal variant. Misplaced leads. Cardiomyopathy. Chronic obstructive pulmonary disease. Perimyocarditis. Hypothyreosis (typically accompanied by bradycardia). Pneumothorax. Extensive myocardial infarction. Obesity. Pericardial effusion. Pleural effusion. Amyloidosis. ♥ Pathological Q-waves: Myocardial infarction. Left-sided pneumothorax. Dextrocadia. Perimyocarditis. Cardiomyopathy. Amyloidosis. Bundle branch blocks. Anterior"
-            }
-          ]
-        },
-        {
-          "title": "Part 1: Core Clinical Content (pp. 2–6) — Part 3",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "fascicular block. Pre-excitation. Ventricular hypertrophy. Acute cor pulmonale. Myxoma. ♥ Fragmented QRS complexes indicates myocardial scarring (mostly due to infarction). ♥ Abnormal R-wave progression: Myocardial infarction. Right ventricular hypertrophy (reversed R-wave progression). Left ventricular hypertrophy (amplified R-wave progression). Cardiomyopathy. Chronic cor pulmonale. Left bundle branch block. Pre-excitation. ♥ Dominant R-wave in V1/V2: Misplaced chest electrodes. Normal variant. Situs inversus. Posterolateral infarction/ischemia (if patient experiences chest discomfort). Right ventricular hypertrophy. Hypertrophic cardiomyopathy. Right bundle branch block. Pre-excitation. ♥ Right axis deviation: Normal in newborns. Right ventricular hypertrophy. Acute cor pulmonale (pulmonary embolism). Chronic cor pulmonale (COPD, pulmonary hypertension, pulmonary valve stenosis). Lateral ventricular infarction. Preexcitation. Switched arm electrodes (negative P and QRS-T in lead I). Situs inversus. Left posterior fascicular block is diagnosed when the axis is between 90° and 180° with rS complex in I and aVL as well as qR complex in III and aVF (with QRS duration <0.12 seconds), provided that other causes of right axis deviation have been excluded. ♥ Left axis deviation: Left bundle branch block. Left ventricular hypertrophy. Inferior infarction. Pre-excitation. Left anterior fascicular block is diagnosed if the axis is between -45° and 90° with qR-complex in aVL and QRS duration is 0,12 s, provided that other causes of left axis deviation have been excluded. ♥ Extreme axis deviation: Rarely seen. Probably misplaced electrodes. If the rhythm is wide QRS complex tachycardia, then the cause is probably ventricular tachycardia."
+              "text": "♥ Wide QRS complex (QRS duration ≥0.12 s): Left bundle branch block. Right bundle branch block. Nonspecific intraventricular conduction disturbance. Hyperkalemia. Class I antiarrhythmic drugs. Tricyclic antidepressants. Ventricular rhythms and ventricular extrasystoles (premature complexes). Artificial pacemaker which stimulates in the ventricle. Aberrant conduction (abberancy). Pre-excitation (Wolff-Parkinson-White syndrome). ♥ Short QRS duration: no clinical relevance. ♥ High voltage: Hypertrophy (any lead). Left bundle branch block (leads V5, V6, I, aVL). Right bundle branch block (V1– V3). Normal variant in younger, well-trained and slender individuals. ♥ Low voltage: Normal variant. Misplaced leads. Cardiomyopathy. Chronic obstructive pulmonary disease. Perimyocarditis. Hypothyreosis (typically accompanied by bradycardia). Pneumothorax. Extensive myocardial infarction. Obesity. Pericardial effusion. Pleural effusion. Amyloidosis. ♥ Pathological Q-waves: Myocardial infarction. Left-sided pneumothorax. Dextrocadia. Perimyocarditis. Cardiomyopathy. Amyloidosis. Bundle branch blocks. Anterior fascicular block. Pre-excitation. Ventricular hypertrophy. Acute cor pulmonale. Myxoma. ♥ Fragmented QRS complexes indicates myocardial scarring (mostly due to infarction). ♥ Abnormal R-wave progression: Myocardial infarction. Right ventricular hypertrophy (reversed R-wave progression). Left ventricular hypertrophy (amplified R-wave progression). Cardiomyopathy. Chronic cor pulmonale. Left bundle branch block. Pre-excitation. ♥ Dominant R-wave in V1/V2: Misplaced chest electrodes. Normal variant. Situs inversus. Posterolateral infarction/ischemia (if patient experiences chest discomfort). Right ventricular hypertrophy. Hypertrophic cardiomyopathy. Right bundle branch block. Pre-excitation. ♥ Right axis deviation: Normal in newborns. Right ventricular hypertrophy. Acute cor pulmonale (pulmonary embolism). Chronic cor pulmonale (COPD, pulmonary hypertension, pulmonary valve stenosis). Lateral ventricular infarction. Preexcitation. Switched arm electrodes (negative P and QRS-T in lead I). Situs inversus. Left posterior fascicular block is diagnosed when the axis is between 90° and 180° with rS complex in I and aVL as well as qR complex in III and aVF (with QRS duration <0.12 seconds), provided that other causes of right axis deviation have been excluded. ♥ Left axis deviation: Left bundle branch block. Left ventricular hypertrophy. Inferior infarction. Pre-excitation. Left anterior fascicular block is diagnosed if the axis is between -45° and 90° with qR-complex in aVL and QRS duration is 0,12 s, provided that other causes of left axis deviation have been excluded. ♥ Extreme axis deviation: Rarely seen. Probably misplaced electrodes. If the rhythm is wide QRS complex tachycardia, then the cause is probably ventricular tachycardia."
             },
             {
               "type": "paragraph",
               "text": "♥ Is the electrical axis normal? Electrical axis is assessed in limb leads and should be between –30° to 90°."
-            },
+            }
+          ]
+        },
+        {
+          "title": "4. ST segment",
+          "blocks": [
             {
               "type": "paragraph",
               "text": "ASSESSMENTS EVALUATION ♥ The ST-segment should be flat and isoelectric (in level with the baseline). It may be slightly upsloping at the transition with the T-wave. ♥ ST segment deviation (elevation and depression) is measured in the J point."
@@ -99,7 +100,7 @@
           ]
         },
         {
-          "title": "Part 1: Core Clinical Content (pp. 2–6) — Part 4",
+          "title": "5. T-wave",
           "blocks": [
             {
               "type": "paragraph",
@@ -108,7 +109,12 @@
             {
               "type": "paragraph",
               "text": "♥ Normal variants: An isolated (single) T-wave inversion is accepted in lead V1 and lead III. In some instances the T-wave inversions from childhood may persist in V1–V3(V4), which is called persistent juvenile T-wave pattern. Rarely, all T-waves remain inverted, which is called global idiopathic T-wave inversion (V1–V6). ♥ T-wave inversion without simultaneous ST-segment deviation: This is not a sign of ongoing ischemia, but may be post-ischemic. One type of post-ischemic T-wave inversion is especially acute, namely Wellen's syndrome (characterized by deep T-wave inversions in V1–V6 in patient with recent episodes of chest pain). Cerebrovascular insult (bleeding). Pulmonary embolism. Perimyocarditis (after normalization of the ST-segment elevation, T-waves become inverted in perimyocarditis). Cardiomyopathy. ♥ T-wave inversion with simultaneous ST-segment deviation: acute (ongoing) myocardial ischaemia. ♥ High T-waves: Normal variant. Early repolarization. Hyperkalemia. Left ventricular hypertrophy. Left bundle branch block. Occasionally perimyocarditis. High (hyperacute) T-waves may be seen in the very early phase of STEMI."
-            },
+            }
+          ]
+        },
+        {
+          "title": "6. QTc interval and U-wave",
+          "blocks": [
             {
               "type": "paragraph",
               "text": "ASSESSMENTS EVALUATION ♥ QTc duration men ≤0,45 s. ♥ QTc duration women ≤0,46 s. ♥ Prolonged QTc duration may cause malignant arrhythmias (torsade de pointes, which is a type of ventricular tachycardia). ♥ Shortened QTc duration (≤0.32 s) is rare, but may also cause malignant ventricular arrhythmias. ♥ The U-wave is seen occasionally, especially in welltrained individuals, and during low heart rate. It is largest in V3– V4. Amplitude is one fourth of Twave amplitude."
@@ -118,14 +124,9 @@
               "text": "♥ Acquired QT prolongation: anti arrhythmic drugs (procainamide, disopyramide, amiodarone, sotalol), psychiatric medications (tricyclic antidepressants, SSRI, lithium etc); antibiotics (macrolides, kinolones, atovaquone, klorokine, amantadin, foscarnet, atazanavir); hypokalemia, hypocalcemia, hypomagnesemia; cerebrovascular insult (bleeding); myocardial ischemia; cardiomyopathy; bradycardia; hypothyroidism; hypothermia. A complete list of drugs causing QT prolongation can be found here. ♥ Congenital QT prolongation: genetic disease of which there are approximately 15 variants. ♥ Short QTc syndrome (≤ 0,32 s): caused by hyperkalcemia and digoxin treatment. May cause malignant ventricular arrhythmia. ♥ Negative U-wave: high specificity for heart disease (including ischemia)."
             },
             {
-              "type": "bullet",
+              "type": "paragraph",
               "text": "7. Compare with earlier ECG tracings It is fundamental to compare the current ECG with previous recordings. All changes are of interest and may indicate pathology."
-            }
-          ]
-        },
-        {
-          "title": "Part 1: Core Clinical Content (pp. 2–6) — Part 5",
-          "blocks": [
+            },
             {
               "type": "paragraph",
               "text": "8. Clinical context ECG changes should be put into a clinical context. For example, ST-segment elevations are common in the population and should not raise suspicion of myocardial ischemia if the patient do not have symptoms suggestive of ischemia."
@@ -141,77 +142,42 @@
     {
       "chapterNumber": 2,
       "slug": "ch-2",
-      "title": "Part 2: Core Clinical Content (pp. 7–11)",
+      "title": "Section 2: Clinical Study Notes (pp. 7–11)",
       "pageRange": "pp. 7–11",
-      "excerpt": "The cardiac conduction system",
+      "excerpt": "Section 2: Clinical Study Notes (pp. 7–11)",
       "wordCount": 30,
-      "sections": [
-        {
-          "title": "Part 2: Core Clinical Content (pp. 7–11)",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "The cardiac conduction system"
-            },
-            {
-              "type": "paragraph",
-              "text": "Waves, intervals and durations on the ECG"
-            },
-            {
-              "type": "paragraph",
-              "text": "www.ecgwaves.com | Learn ECG Interpretation Online"
-            },
-            {
-              "type": "paragraph",
-              "text": "The walls of the left ventricle and the leads that view"
-            }
-          ]
-        }
-      ]
+      "sections": []
     },
     {
       "chapterNumber": 3,
       "slug": "ch-3",
-      "title": "Part 3: Core Clinical Content (pp. 12–16)",
+      "title": "Section 3: Clinical Study Notes (pp. 12–16)",
       "pageRange": "pp. 12–16",
-      "excerpt": "www.ecgwaves.com | Learn ECG Interpretation Online",
-      "wordCount": 175,
+      "excerpt": "As evident from the figure above, the normal heart axis is between –30° and 90°. If the axis is more positive than 90° it is referred to as right axis deviation. If the axis is mor",
+      "wordCount": 139,
       "sections": [
         {
-          "title": "Part 3: Core Clinical Content (pp. 12–16) — Part 1",
+          "title": "Electrical axis of the heart",
           "blocks": [
-            {
-              "type": "paragraph",
-              "text": "www.ecgwaves.com | Learn ECG Interpretation Online"
-            },
-            {
-              "type": "paragraph",
-              "text": "Electrical axis of the heart"
-            },
             {
               "type": "paragraph",
               "text": "As evident from the figure above, the normal heart axis is between –30° and 90°. If the axis is more positive than 90° it is referred to as right axis deviation. If the axis is more negative than –30° it is referred to as left axis deviation. The axis is calculated (to the nearest degree) by the ECG machine. The axis can also be approximated manually by judging the net direction of the QRS complex in leads I and II. The following rules apply:"
             },
             {
-              "type": "paragraph",
-              "text": "• Normal axis: Net positive QRS complex in leads I and II. • Right axis deviation: Net negative QRS complex in lead I but positive in lead II. • Left axis deviation: Net positive QRS complex in lead I but negative in lead II. • Extreme axis deviation (–90°to 180°): Net negative QRS complex in leads I and II."
+              "type": "bullet",
+              "text": "Normal axis: Net positive QRS complex in leads I and II."
             },
             {
-              "type": "paragraph",
-              "text": "Pro-arrhythmic ECG changes during sinus rhythm"
-            }
-          ]
-        },
-        {
-          "title": "Part 3: Core Clinical Content (pp. 12–16) — Part 2",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Assessment of RP interval for tachyarrhythmias"
+              "type": "bullet",
+              "text": "Right axis deviation: Net negative QRS complex in lead I but positive in lead II."
             },
             {
-              "type": "paragraph",
-              "text": "Diagnosis and management of tachyarrhythmias with narrow QRS complex"
+              "type": "bullet",
+              "text": "Left axis deviation: Net positive QRS complex in lead I but negative in lead II."
+            },
+            {
+              "type": "bullet",
+              "text": "Extreme axis deviation (–90°to 180°): Net negative QRS complex in leads I and II."
             }
           ]
         }
@@ -220,39 +186,18 @@
     {
       "chapterNumber": 4,
       "slug": "ch-4",
-      "title": "Part 4: Core Clinical Content (pp. 17–21)",
+      "title": "Section 4: Clinical Study Notes (pp. 17–21)",
       "pageRange": "pp. 17–21",
-      "excerpt": "Diagnosis and management of tachyarrhythmias with wide QRS complex",
-      "wordCount": 181,
+      "excerpt": "Criteria for acute myocardial infarction (AMI) STE-ACS (STEMI) – ST elevation acute myocardial infarction",
+      "wordCount": 150,
       "sections": [
         {
-          "title": "Part 4: Core Clinical Content (pp. 17–21) — Part 1",
+          "title": "Classification of acute coronary syndromes (ACS)",
           "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Diagnosis and management of tachyarrhythmias with wide QRS complex"
-            },
-            {
-              "type": "paragraph",
-              "text": "www.ecgwaves.com | Learn ECG Interpretation Online"
-            },
-            {
-              "type": "paragraph",
-              "text": "Intraventricular conduction defects"
-            },
-            {
-              "type": "paragraph",
-              "text": "Classification of acute coronary syndromes (ACS)"
-            },
             {
               "type": "paragraph",
               "text": "Criteria for acute myocardial infarction (AMI) STE-ACS (STEMI) – ST elevation acute myocardial infarction"
-            }
-          ]
-        },
-        {
-          "title": "Part 4: Core Clinical Content (pp. 17–21) — Part 2",
-          "blocks": [
+            },
             {
               "type": "paragraph",
               "text": "Criteria for STEMI New ST segment elevations in at least two anatomically contiguous leads:"
@@ -272,12 +217,7 @@
             {
               "type": "bullet",
               "text": "Men & women V4R and V3R: ≥0,5 mm, except from men <30 years in whom the criteria is ≥1 mm."
-            }
-          ]
-        },
-        {
-          "title": "Part 4: Core Clinical Content (pp. 17–21) — Part 3",
-          "blocks": [
+            },
             {
               "type": "bullet",
               "text": "Men & women V7-V9: ≥0,5 mm."
@@ -287,8 +227,12 @@
               "text": "NSTE-ACS (NSTE-ACS) – Non ST elevation acute myocardial infarction: NSTEMI and unstable angina"
             },
             {
-              "type": "paragraph",
-              "text": "• New horizontal or downsloping ST segment depressions ≥0,5 mm in at least two anatomically contiguous leads. • T wave inversion ≥1 mm in at least two anatomically contiguous leads. These leads must have evident R-waves, or R-waves larger than S-waves."
+              "type": "bullet",
+              "text": "New horizontal or downsloping ST segment depressions ≥0,5 mm in at least two anatomically contiguous leads."
+            },
+            {
+              "type": "bullet",
+              "text": "T wave inversion ≥1 mm in at least two anatomically contiguous leads. These leads must have evident R-waves, or R-waves larger than S-waves."
             }
           ]
         }

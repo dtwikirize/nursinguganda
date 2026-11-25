@@ -812,53 +812,58 @@ export default function Navbar() {
                   )}
                 </div>
 
-                {/* My Learning Submenu */}
+                {/* NCLEX-RN Submenu (Moved directly to Header; My Learning moved under Account) */}
                 <div
                   className="nu-nav-dropdown-wrap nu-nav-desktop-only"
-                  onMouseEnter={() => setActiveNavMenu("my-learning")}
+                  onMouseEnter={() => setActiveNavMenu("nclex-rn")}
                   onMouseLeave={() => setActiveNavMenu("")}
                 >
-                  <Link to="/my-learning" className="nu-nav-link nu-nav-dropdown-trigger" aria-expanded={activeNavMenu === "my-learning"}>
-                    <span>My Learning {enrollments.length > 0 ? `(${enrollments.length})` : ""}</span>
+                  <Link
+                    to="/nclex-rn"
+                    className="nu-nav-link nu-nav-dropdown-trigger"
+                    style={{ fontWeight: 700, color: "#6d28d9" }}
+                    aria-expanded={activeNavMenu === "nclex-rn"}
+                  >
+                    <span>NCLEX-RN</span>
                     <ChevronDown size={13} />
                   </Link>
-                  {activeNavMenu === "my-learning" && (
-                    <div className="nu-nav-dropdown nu-nav-dropdown--right" role="menu" aria-label="My Learning Submenu">
-                      <div className="nu-nav-dropdown-head">Student Dashboard &amp; Study Tools</div>
-                      <Link to="/my-learning" className="nu-nav-dropdown-link" style={{ fontWeight: 700, color: "var(--nu-purple)" }} onClick={() => setActiveNavMenu("")}>
-                        <span>My Learning Dashboard</span>
+                  {activeNavMenu === "nclex-rn" && (
+                    <div className="nu-nav-dropdown nu-nav-dropdown--right" role="menu" aria-label="NCLEX-RN Submenu">
+                      <div className="nu-nav-dropdown-head">International Licensing Track</div>
+                      <Link to="/nclex-rn" className="nu-nav-dropdown-link" style={{ fontWeight: 700, color: "var(--nu-purple)" }} onClick={() => setActiveNavMenu("")}>
+                        <span>NCLEX-RN 16-Unit Academy ($99)</span>
                         <ChevronRight size={13} />
                       </Link>
-                      <Link to="/courses" className="nu-nav-dropdown-link" onClick={() => setActiveNavMenu("")}>
-                        <span>All Enrolled &amp; Available Units</span>
+                      <Link to="/nclex-rn/exams" className="nu-nav-dropdown-link" onClick={() => setActiveNavMenu("")}>
+                        <span>NextGen CAT Mock Exams (4)</span>
                         <ChevronRight size={13} />
                       </Link>
-                      <Link to="/nclex-rn" className="nu-nav-dropdown-link" onClick={() => setActiveNavMenu("")}>
-                        <span>NCLEX-RN 16-Unit Academy</span>
+                      <Link to="/nclex-rn/unit/unit-1-ngn-clinical-judgment-strategies?topic=ngn-cjmm-6-steps" className="nu-nav-dropdown-link" onClick={() => setActiveNavMenu("")}>
+                        <span>NGN Clinical Judgment (CJMM)</span>
                         <ChevronRight size={13} />
                       </Link>
                       <div className="nu-nav-dropdown-sep" />
-                      <Link to="/clinical-tools" className="nu-nav-dropdown-link" onClick={() => setActiveNavMenu("")}>
-                        <span>Dosage &amp; Lab Converters</span>
+                      <div className="nu-nav-dropdown-head">Country Nursing Hubs</div>
+                      <Link to="/nursing-usa" className="nu-nav-dropdown-link" onClick={() => setActiveNavMenu("")}>
+                        <span>USA (CGFNS &amp; NCLEX-RN)</span>
                         <ChevronRight size={13} />
                       </Link>
-                      <Link to="/templates" className="nu-nav-dropdown-link" onClick={() => setActiveNavMenu("")}>
-                        <span>Printable OSCE &amp; Ward PDFs</span>
+                      <Link to="/nursing-uk" className="nu-nav-dropdown-link" onClick={() => setActiveNavMenu("")}>
+                        <span>United Kingdom (NMC CBT &amp; OSCE)</span>
                         <ChevronRight size={13} />
                       </Link>
-                      <Link to="/cart" className="nu-nav-dropdown-link" onClick={() => setActiveNavMenu("")}>
-                        <span>Shopping Cart {cart.length > 0 ? `(${cart.length})` : ""}</span>
+                      <Link to="/nursing-canada" className="nu-nav-dropdown-link" onClick={() => setActiveNavMenu("")}>
+                        <span>Canada (NNAS &amp; REx-PN)</span>
                         <ChevronRight size={13} />
                       </Link>
-                      {user?.isAdmin && (
-                        <>
-                          <div className="nu-nav-dropdown-sep" />
-                          <Link to="/nodadmin" className="nu-nav-dropdown-link" style={{ fontWeight: 700, color: "var(--nu-purple)" }} onClick={() => setActiveNavMenu("")}>
-                            <span>Owner Admin Panel</span>
-                            <ChevronRight size={13} />
-                          </Link>
-                        </>
-                      )}
+                      <Link to="/nursing-australia" className="nu-nav-dropdown-link" onClick={() => setActiveNavMenu("")}>
+                        <span>Australia (AHPRA OBA)</span>
+                        <ChevronRight size={13} />
+                      </Link>
+                      <Link to="/global-nursing" className="nu-nav-dropdown-link" style={{ fontWeight: 600 }} onClick={() => setActiveNavMenu("")}>
+                        <span>All 8 Nursing Countries →</span>
+                        <ChevronRight size={13} />
+                      </Link>
                     </div>
                   )}
                 </div>
@@ -871,7 +876,11 @@ export default function Navbar() {
             </Link>
 
             {user ? (
-              <div style={{ position: "relative" }}>
+              <div
+                style={{ position: "relative" }}
+                onMouseEnter={() => setUserMenuOpen(true)}
+                onMouseLeave={() => setUserMenuOpen(false)}
+              >
                 <button
                   type="button"
                   onClick={() => setUserMenuOpen((v) => !v)}
@@ -883,7 +892,8 @@ export default function Navbar() {
                     background: "var(--nu-ink)",
                     color: "#fff",
                     fontWeight: 700,
-                    fontSize: "0.82rem"
+                    fontSize: "0.82rem",
+                    cursor: "pointer"
                   }}
                   title={user.name}
                 >
@@ -894,64 +904,117 @@ export default function Navbar() {
                     style={{
                       position: "absolute",
                       right: 0,
-                      top: 44,
-                      width: 230,
-                      background: "#fff",
-                      border: "1px solid var(--nu-border)",
-                      boxShadow: "var(--nu-shadow-lg)",
-                      padding: 12,
-                      zIndex: 90
+                      top: "100%",
+                      paddingTop: 8,
+                      zIndex: 95
                     }}
                   >
-                    <div style={{ paddingBottom: 10, borderBottom: "1px solid var(--nu-border-light)" }}>
-                      <strong style={{ display: "block", fontSize: "0.9rem" }}>{user.name}</strong>
-                      <small style={{ color: "var(--nu-ink-muted)" }}>{user.email}</small>
-                    </div>
-                    <Link
-                      to="/my-learning"
-                      className="nu-mega-sublink"
-                      onClick={() => setUserMenuOpen(false)}
+                    <div
+                      style={{
+                        width: 245,
+                        background: "#fff",
+                        border: "1px solid var(--nu-border)",
+                        borderTop: "2px solid var(--nu-purple)",
+                        borderRadius: "0 0 8px 8px",
+                        boxShadow: "var(--nu-shadow-lg)",
+                        padding: 12
+                      }}
                     >
-                      <BookOpen size={14} style={{ display: "inline", marginRight: 6 }} />
-                      My Learning
-                    </Link>
-                    {user.isAdmin && (
+                      <div style={{ paddingBottom: 10, borderBottom: "1px solid var(--nu-border-light)", marginBottom: 6 }}>
+                        <strong style={{ display: "block", fontSize: "0.9rem" }}>{user.name}</strong>
+                        <small style={{ color: "var(--nu-ink-muted)" }}>{user.email}</small>
+                      </div>
                       <Link
-                        to="/nodadmin"
+                        to="/my-learning"
                         className="nu-mega-sublink"
-                        style={{ color: "var(--nu-purple)", fontWeight: 700 }}
+                        style={{ fontWeight: 700, color: "var(--nu-purple)", display: "flex", alignItems: "center", justifyContent: "space-between" }}
                         onClick={() => setUserMenuOpen(false)}
                       >
-                        <Award size={14} style={{ display: "inline", marginRight: 6 }} />
-                        Owner Admin Panel
+                        <span>
+                          <BookOpen size={14} style={{ display: "inline", marginRight: 6 }} />
+                          My Learning
+                        </span>
+                        {enrollments.length > 0 && (
+                          <span className="nu-mega-count">{enrollments.length}</span>
+                        )}
                       </Link>
-                    )}
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setUserMenuOpen(false);
-                        logout();
-                      }}
-                      className="nu-mega-sublink"
-                      style={{
-                        background: "transparent",
-                        border: 0,
-                        width: "100%",
-                        textAlign: "left",
-                        color: "var(--nu-danger)"
-                      }}
-                    >
-                      <LogOut size={14} style={{ display: "inline", marginRight: 6 }} />
-                      Log out
-                    </button>
+                      <Link
+                        to="/courses"
+                        className="nu-mega-sublink"
+                        onClick={() => setUserMenuOpen(false)}
+                      >
+                        <GraduationCap size={14} style={{ display: "inline", marginRight: 6 }} />
+                        Enrolled &amp; All Courses
+                      </Link>
+                      <Link
+                        to="/templates"
+                        className="nu-mega-sublink"
+                        onClick={() => setUserMenuOpen(false)}
+                      >
+                        <FileText size={14} style={{ display: "inline", marginRight: 6 }} />
+                        OSCE &amp; Ward Templates
+                      </Link>
+                      {user.isAdmin && (
+                        <Link
+                          to="/nodadmin"
+                          className="nu-mega-sublink"
+                          style={{ color: "var(--nu-purple)", fontWeight: 700 }}
+                          onClick={() => setUserMenuOpen(false)}
+                        >
+                          <Award size={14} style={{ display: "inline", marginRight: 6 }} />
+                          Owner Admin Panel
+                        </Link>
+                      )}
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setUserMenuOpen(false);
+                          logout();
+                        }}
+                        className="nu-mega-sublink"
+                        style={{
+                          background: "transparent",
+                          border: 0,
+                          width: "100%",
+                          textAlign: "left",
+                          color: "var(--nu-danger)"
+                        }}
+                      >
+                        <LogOut size={14} style={{ display: "inline", marginRight: 6 }} />
+                        Log out
+                      </button>
+                    </div>
                   </div>
                 )}
               </div>
             ) : (
               <>
-                <Link to="/login" className="nu-btn nu-btn-outline nu-nav-desktop-only">
-                  Log in
-                </Link>
+                <div
+                  className="nu-nav-dropdown-wrap nu-nav-desktop-only"
+                  onMouseEnter={() => setUserMenuOpen(true)}
+                  onMouseLeave={() => setUserMenuOpen(false)}
+                >
+                  <Link to="/login" className="nu-btn nu-btn-outline">
+                    Log in
+                  </Link>
+                  {userMenuOpen && (
+                    <div className="nu-nav-dropdown nu-nav-dropdown--right" role="menu" aria-label="Account Menu">
+                      <div className="nu-nav-dropdown-head">Account &amp; My Learning</div>
+                      <Link to="/my-learning" className="nu-nav-dropdown-link" style={{ fontWeight: 700, color: "var(--nu-purple)" }} onClick={() => setUserMenuOpen(false)}>
+                        <span>My Learning {enrollments.length > 0 ? `(${enrollments.length})` : ""}</span>
+                        <ChevronRight size={13} />
+                      </Link>
+                      <Link to="/login" className="nu-nav-dropdown-link" onClick={() => setUserMenuOpen(false)}>
+                        <span>Student Sign In / Google</span>
+                        <ChevronRight size={13} />
+                      </Link>
+                      <Link to="/login?mode=signup" className="nu-nav-dropdown-link" onClick={() => setUserMenuOpen(false)}>
+                        <span>Create Free Account</span>
+                        <ChevronRight size={13} />
+                      </Link>
+                    </div>
+                  )}
+                </div>
                 <Link to="/login?mode=signup" className="nu-btn nu-btn-dark">
                   Sign up
                 </Link>

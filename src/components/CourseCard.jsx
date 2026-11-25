@@ -16,17 +16,17 @@ import {
 import { formatUsd, useApp } from "../context/AppContext";
 
 const DESIGN_PALETTES = {
-  "Anatomy & Physiology": { bg: "#102A43", accent: "#334E68", Icon: HeartPulse },
-  "Medical-Surgical Nursing": { bg: "#1C1D1F", accent: "#374151", Icon: Activity },
-  "Pharmacology": { bg: "#064E3B", accent: "#0F766E", Icon: Pill },
-  "Midwifery & Maternal Health": { bg: "#4C1D95", accent: "#6D28D9", Icon: Baby },
-  "Paediatrics & Child Health": { bg: "#1E3A8A", accent: "#1D4ED8", Icon: Baby },
-  "Community & Public Health": { bg: "#14532D", accent: "#15803D", Icon: ShieldCheck },
-  "Foundations of Nursing": { bg: "#1E293B", accent: "#334155", Icon: Stethoscope },
-  "Mental Health & Psychology": { bg: "#3B0764", accent: "#581C87", Icon: Brain },
-  "Microbiology & Pathology": { bg: "#134E4A", accent: "#0F766E", Icon: Microscope },
-  "Leadership, Research & Ethics": { bg: "#27272A", accent: "#3F3F46", Icon: Award },
-  "International Licensure & NCLEX": { bg: "#7F1D1D", accent: "#991B1B", Icon: BookOpen }
+  "Anatomy & Physiology": { orb: "rgba(96, 165, 250, 0.72)", core: "#2563eb", Icon: HeartPulse },
+  "Medical-Surgical Nursing": { orb: "rgba(168, 85, 247, 0.78)", core: "#6d28d9", Icon: Activity },
+  "Pharmacology": { orb: "rgba(45, 212, 191, 0.68)", core: "#0d9488", Icon: Pill },
+  "Midwifery & Maternal Health": { orb: "rgba(192, 132, 252, 0.82)", core: "#7e22ce", Icon: Baby },
+  "Paediatrics & Child Health": { orb: "rgba(129, 140, 248, 0.78)", core: "#4338ca", Icon: Baby },
+  "Community & Public Health": { orb: "rgba(52, 211, 153, 0.68)", core: "#059669", Icon: ShieldCheck },
+  "Foundations of Nursing": { orb: "rgba(167, 139, 250, 0.78)", core: "#5b21b6", Icon: Stethoscope },
+  "Mental Health & Psychology": { orb: "rgba(217, 70, 239, 0.72)", core: "#86198f", Icon: Brain },
+  "Microbiology & Pathology": { orb: "rgba(56, 189, 248, 0.72)", core: "#0284c7", Icon: Microscope },
+  "Leadership, Research & Ethics": { orb: "rgba(168, 85, 247, 0.74)", core: "#581c87", Icon: Award },
+  "International Licensure & NCLEX": { orb: "rgba(192, 132, 252, 0.85)", core: "#6b21a8", Icon: BookOpen }
 };
 
 export default function CourseCard({ course }) {
@@ -39,34 +39,61 @@ export default function CourseCard({ course }) {
       ? "nu-badge-bestseller"
       : "nu-badge-highyield";
 
-  const theme = DESIGN_PALETTES[course.category] || { bg: "#1C1D1F", accent: "#334155", Icon: BookOpen };
+  const theme = DESIGN_PALETTES[course.category] || { orb: "rgba(168, 85, 247, 0.76)", core: "#6d28d9", Icon: BookOpen };
   const IconComp = theme.Icon;
-  const yearLabel = course.year ? course.year.replace(/-/g, " ").toUpperCase() : "CLINICAL UNIT";
+  const displayUnitTitle = String(course.title || "").replace(/^(CN|DN|CM|DM)\s*\d+\s*[-–·:]\s*/i, "").trim();
 
   return (
     <Link to={course.customRoute || `/course/${course.slug}`} className="nu-course-card">
-      <div
-        className="nu-card-thumb nu-card-thumb--editorial"
-        style={{
-          background: `linear-gradient(135deg, ${theme.bg} 0%, ${theme.accent} 100%)`
-        }}
-      >
-        <span className="nu-card-editorial-grid" aria-hidden="true" />
-        <IconComp className="nu-card-editorial-wm" size={76} strokeWidth={1.25} aria-hidden="true" />
+      <div className="nu-card-thumb nu-card-thumb--editorial">
+        <span
+          className="nu-series-orb"
+          style={{
+            background: `radial-gradient(circle at 38% 48%, ${theme.orb} 0%, ${theme.core} 42%, rgba(9, 8, 18, 0) 74%)`
+          }}
+          aria-hidden="true"
+        />
+        <svg className="nu-series-constellation" viewBox="0 0 150 146" fill="none" aria-hidden="true">
+          <g stroke="rgba(226, 232, 240, 0.34)" strokeWidth="0.8">
+            <line x1="68" y1="22" x2="104" y2="48" />
+            <line x1="104" y1="48" x2="134" y2="30" />
+            <line x1="104" y1="48" x2="92" y2="86" />
+            <line x1="92" y1="86" x2="132" y2="76" />
+            <line x1="92" y1="86" x2="118" y2="120" />
+            <line x1="60" y1="68" x2="92" y2="86" />
+          </g>
+          <g fill="rgba(248, 250, 252, 0.78)">
+            <circle cx="68" cy="22" r="2" />
+            <circle cx="104" cy="48" r="2.6" />
+            <circle cx="134" cy="30" r="1.8" />
+            <circle cx="92" cy="86" r="2.4" />
+            <circle cx="132" cy="76" r="1.9" />
+            <circle cx="118" cy="120" r="1.7" />
+            <circle cx="60" cy="68" r="1.6" />
+          </g>
+        </svg>
+
         <div className="nu-card-editorial-inner">
           <div className="nu-card-editorial-top">
-            <span className="nu-card-editorial-code">{course.code || yearLabel}</span>
-            <span className="nu-card-editorial-cat">{course.category || "Nursing"}</span>
+            <span className="nu-card-editorial-code">{course.category || "Clinical Unit"}</span>
           </div>
           <div className="nu-card-editorial-mid">
-            <IconComp size={20} strokeWidth={1.9} />
-            <span>{course.programmeLabel}</span>
+            <span style={{ display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
+              {displayUnitTitle}
+            </span>
+          </div>
+          <div className="nu-series-badges">
+            <span className="nu-series-micro" title={course.programmeLabel}>
+              <IconComp size={12} strokeWidth={2.2} />
+            </span>
+            <span className="nu-series-micro">NU</span>
+            <span className="nu-series-micro">{course.isFree ? "FREE" : "PRO"}</span>
           </div>
         </div>
       </div>
 
       <div className="nu-card-body">
-        <h3 className="nu-card-title">{course.title}</h3>
+        <h3 className="nu-card-title">{displayUnitTitle}</h3>
         <div className="nu-card-meta">
           {course.programmeLabel} · {course.lessonCount} lessons
         </div>

@@ -4,7 +4,7 @@
   "subtitle": "Free Reference Textbook · Cardiology & Acute Care (33 pp., 1.27 MB) — Lisa Leonard, FNP-C, ENP-C.",
   "category": "Cardiology & Acute Care",
   "estimatedPages": 33,
-  "totalWords": 874,
+  "totalWords": 896,
   "references": [
     {
       "id": "src-book-basic-ecg-interpretation",
@@ -28,6 +28,10 @@
           "blocks": [
             {
               "type": "paragraph",
+              "text": "Lisa Leonard FNP-C, ENP-C"
+            },
+            {
+              "type": "paragraph",
               "text": "Departmental Lead Emergency Department PRISMA Health"
             }
           ]
@@ -39,12 +43,20 @@
       "slug": "ch-2",
       "title": "Disclosures",
       "pageRange": "pp. 2–3",
-      "excerpt": "●Be able to interpret a basic ECG",
-      "wordCount": 34,
+      "excerpt": "Disclosures",
+      "wordCount": 38,
       "sections": [
         {
           "title": "Disclosures",
           "blocks": [
+            {
+              "type": "paragraph",
+              "text": "●No Disclosures"
+            },
+            {
+              "type": "subheading",
+              "text": "Learning Objectives"
+            },
             {
               "type": "paragraph",
               "text": "●Be able to interpret a basic ECG"
@@ -93,19 +105,32 @@
       "slug": "ch-4",
       "title": "What are normal adult heart rates",
       "pageRange": "pp. 5–6",
-      "excerpt": "What are normal adult heart rates",
-      "wordCount": 30,
+      "excerpt": "●It is waveform components that consist of the electrical events during one heartbeat",
+      "wordCount": 33,
       "sections": [
         {
-          "title": "What are normal adult heart rates",
+          "title": "Normal =",
           "blocks": [
             {
               "type": "paragraph",
-              "text": "What are normal adult heart rates"
+              "text": "60 – 100 bpm"
+            },
+            {
+              "type": "subheading",
+              "text": "Tachycardia >"
             },
             {
               "type": "paragraph",
-              "text": "●It is waveform components that consist of the electrical events"
+              "text": "100 bpm"
+            }
+          ]
+        },
+        {
+          "title": "What are the components",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "●It is waveform components that consist of the electrical events during one heartbeat"
             },
             {
               "type": "paragraph",
@@ -133,7 +158,12 @@
             {
               "type": "paragraph",
               "text": "●Amplitude: 2-3 mm high The P-wave should be 2–3 small squares in duration Duration: 0.06 - 0.12 sec"
-            },
+            }
+          ]
+        },
+        {
+          "title": "QRS complex",
+          "blocks": [
             {
               "type": "paragraph",
               "text": "●The QRS complex, normally beginning with a downward deflection, Q; a larger upwards deflection, a peak (R); and then a downwards S wave. The QRS complex represents ventricular depolarization and contraction."
@@ -152,7 +182,7 @@
       "title": "PR interval",
       "pageRange": "pp. 9–9",
       "excerpt": "●The PR interval indicates the transit time for the electrical signal to travel from the sinus node to the ventricles.",
-      "wordCount": 30,
+      "wordCount": 34,
       "sections": [
         {
           "title": "PR interval",
@@ -160,6 +190,10 @@
             {
               "type": "paragraph",
               "text": "●The PR interval indicates the transit time for the electrical signal to travel from the sinus node to the ventricles."
+            },
+            {
+              "type": "paragraph",
+              "text": "●Duration: 0.012 - 0.20 sec"
             },
             {
               "type": "paragraph",
@@ -175,7 +209,7 @@
       "title": "QT interval",
       "pageRange": "pp. 10–11",
       "excerpt": "●The QT interval should be 9–11 small squares",
-      "wordCount": 30,
+      "wordCount": 32,
       "sections": [
         {
           "title": "QT interval",
@@ -183,6 +217,10 @@
             {
               "type": "paragraph",
               "text": "●The QT interval should be 9–11 small squares"
+            },
+            {
+              "type": "subheading",
+              "text": "T wave"
             },
             {
               "type": "paragraph",
@@ -247,31 +285,48 @@
       "slug": "ch-10",
       "title": "What if the rhythm is irregular?",
       "pageRange": "pp. 15–16",
-      "excerpt": "What if the rhythm is irregular?",
-      "wordCount": 103,
+      "excerpt": "The first method of calculating the heart rate doesn’t work when the R-R interval differs significantly throughout the ECG and therefore another method is required",
+      "wordCount": 100,
       "sections": [
         {
           "title": "What if the rhythm is irregular?",
           "blocks": [
             {
-              "type": "paragraph",
-              "text": "What if the rhythm is irregular?"
-            },
-            {
               "type": "bullet",
               "text": "The first method of calculating the heart rate doesn’t work when the R-R interval differs significantly throughout the ECG and therefore another method is required"
             },
             {
-              "type": "paragraph",
-              "text": "▪ Count the number of complexes on the rhythm strip (each rhythm strip is 10 seconds long) ▪ Multiply the number of complexes by 6 (giving you the average number of complexes in 1 minute) e.g. 10 complexes on a rhythm strip X 6 = 60 beats per minute"
+              "type": "bullet",
+              "text": "Count the number of complexes on the rhythm strip (each rhythm strip is 10 seconds long)"
             },
+            {
+              "type": "bullet",
+              "text": "Multiply the number of complexes by 6 (giving you the average number of complexes in 1 minute) e.g. 10 complexes on a rhythm strip X 6 = 60 beats per minute"
+            }
+          ]
+        },
+        {
+          "title": "Irregular rhythms",
+          "blocks": [
             {
               "type": "paragraph",
               "text": "●Mark out the RR patterns on a piece of paper to see if intervals are the same"
             },
             {
               "type": "paragraph",
+              "text": "●Regularly irregular"
+            },
+            {
+              "type": "paragraph",
               "text": "●In a reoccurring irregular pattern"
+            },
+            {
+              "type": "paragraph",
+              "text": "●Irregularly irregular"
+            },
+            {
+              "type": "paragraph",
+              "text": "●completely disorganized"
             }
           ]
         }
@@ -290,7 +345,7 @@
           "blocks": [
             {
               "type": "paragraph",
-              "text": "Complete reference notes covering A-Fib across pages 17–17."
+              "text": "Complete clinical study notes covering A-Fib across pages 17–17."
             }
           ]
         }
@@ -340,6 +395,10 @@
             },
             {
               "type": "paragraph",
+              "text": "●First Degree Heart Block"
+            },
+            {
+              "type": "paragraph",
               "text": "●Involves a fixed prolonged interval >200ms"
             }
           ]
@@ -352,11 +411,19 @@
       "title": "Second Degree Heart block",
       "pageRange": "pp. 21–22",
       "excerpt": "●If the PR interval slowly increases then there is a dropped QRS complex",
-      "wordCount": 39,
+      "wordCount": 46,
       "sections": [
         {
           "title": "Second Degree Heart block",
           "blocks": [
+            {
+              "type": "paragraph",
+              "text": "●Mobitz type 1"
+            },
+            {
+              "type": "paragraph",
+              "text": "●Wenkebach"
+            },
             {
               "type": "paragraph",
               "text": "●If the PR interval slowly increases then there is a dropped QRS complex"
@@ -364,6 +431,10 @@
             {
               "type": "paragraph",
               "text": "Second Degree Heart block cont."
+            },
+            {
+              "type": "paragraph",
+              "text": "●Mobitz type 2"
             },
             {
               "type": "paragraph",
@@ -382,12 +453,16 @@
       "slug": "ch-15",
       "title": "Third degree Heart Block",
       "pageRange": "pp. 23–24",
-      "excerpt": "●Think baby shark from the fin like look",
-      "wordCount": 56,
+      "excerpt": "●The P waves and the QRS complex are completely unrelated",
+      "wordCount": 59,
       "sections": [
         {
           "title": "Third degree Heart Block",
           "blocks": [
+            {
+              "type": "paragraph",
+              "text": "●Complete Heart Block"
+            },
             {
               "type": "paragraph",
               "text": "●Think baby shark from the fin like look"
@@ -395,7 +470,12 @@
             {
               "type": "paragraph",
               "text": "●The P waves and the QRS complex are completely unrelated"
-            },
+            }
+          ]
+        },
+        {
+          "title": "The shortened PR interval",
+          "blocks": [
             {
               "type": "paragraph",
               "text": "●Wolf Parkinson White Syndrome (WPW)"
@@ -437,7 +517,7 @@
       "title": "ST depression",
       "pageRange": "pp. 26–27",
       "excerpt": "●ST depression > or equal to 0.5 mm in greater than or equal to 2 contiguous leads, it indicates myocardial ischemia",
-      "wordCount": 52,
+      "wordCount": 58,
       "sections": [
         {
           "title": "ST depression",
@@ -447,8 +527,12 @@
               "text": "●ST depression > or equal to 0.5 mm in greater than or equal to 2 contiguous leads, it indicates myocardial ischemia"
             },
             {
-              "type": "paragraph",
+              "type": "subheading",
               "text": "BEWARE: T waves are too tall"
+            },
+            {
+              "type": "paragraph",
+              "text": "●>5 mm in the limb leads"
             },
             {
               "type": "paragraph",
@@ -502,7 +586,20 @@
           "blocks": [
             {
               "type": "paragraph",
+              "text": "●They have 2 peaks"
+            },
+            {
+              "type": "paragraph",
               "text": "●Can be indicative of ischemia and hypokalemia"
+            }
+          ]
+        },
+        {
+          "title": "Flat T waves",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "●non specific"
             },
             {
               "type": "paragraph",
@@ -517,19 +614,19 @@
       "slug": "ch-20",
       "title": "The only stable rhythm… Asystole",
       "pageRange": "pp. 31–33",
-      "excerpt": "The only stable rhythm… Asystole",
-      "wordCount": 63,
+      "excerpt": "●A cardiac arrest rhythm with no electrical activity. There are no P waves or QRS complexes, The heart is not functioning.",
+      "wordCount": 59,
       "sections": [
         {
           "title": "The only stable rhythm… Asystole",
           "blocks": [
             {
               "type": "paragraph",
-              "text": "The only stable rhythm… Asystole"
+              "text": "●A cardiac arrest rhythm with no electrical activity. There are no P waves or QRS complexes, The heart is not functioning."
             },
             {
-              "type": "paragraph",
-              "text": "●A cardiac arrest rhythm with no electrical activity. There are no P waves or QRS complexes, The heart is not functioning."
+              "type": "subheading",
+              "text": "References"
             },
             {
               "type": "paragraph",

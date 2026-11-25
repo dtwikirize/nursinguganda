@@ -4,7 +4,7 @@
   "subtitle": "Free Reference Textbook · Pharmacology & Prescribing (87 pp., 3.12 MB) — Open Clinical / Medical Educational Authors.",
   "category": "Pharmacology & Prescribing",
   "estimatedPages": 87,
-  "totalWords": 9513,
+  "totalWords": 9307,
   "references": [
     {
       "id": "src-book-principles-of-pharmacology-study-guide",
@@ -20,7 +20,7 @@
       "slug": "ch-1",
       "title": "Principles of Pharmacology - Study Guide",
       "pageRange": "pp. 1–2",
-      "excerpt": "Principles of Pharmacology - Study Guide",
+      "excerpt": "Pages 1–2",
       "wordCount": 30,
       "sections": [
         {
@@ -28,7 +28,7 @@
           "blocks": [
             {
               "type": "paragraph",
-              "text": "Principles of Pharmacology - Study Guide"
+              "text": "Complete clinical study notes covering Principles of Pharmacology - Study Guide across pages 1–2."
             }
           ]
         }
@@ -39,16 +39,12 @@
       "slug": "ch-2",
       "title": "Principles of Pharmacology - Study Guide",
       "pageRange": "pp. 3–6",
-      "excerpt": "Principles of Pharmacology - Study Guide",
-      "wordCount": 175,
+      "excerpt": "Edited by Dr. Esam El-Fakahany and Becky Merkey, MEd",
+      "wordCount": 169,
       "sections": [
         {
           "title": "Principles of Pharmacology - Study Guide",
           "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Principles of Pharmacology - Study Guide"
-            },
             {
               "type": "paragraph",
               "text": "Edited by Dr. Esam El-Fakahany and Becky Merkey, MEd"
@@ -56,7 +52,12 @@
             {
               "type": "paragraph",
               "text": "Principles of Pharmacology - Study Guide by Edited by Dr. Esam El-Fakahany and Becky Merkey, MEd is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License, except where otherwise noted."
-            },
+            }
+          ]
+        },
+        {
+          "title": "Contents",
+          "blocks": [
             {
               "type": "paragraph",
               "text": "1. Introduction to Pharmacology 1 2. Introduction to Drug-Receptor Interactions and Pharmacodynamics 5 3. Factors Contributing to Drug Effect 9 4. Pharmacological Descriptors of Drug-Receptor Interactions 13 5. Drug Action vs. Drug Effect 15 6. Characteristics of Drug-Receptor Interactions: 17 7. Response to Excessive and Reduced Stimulation of Receptors: 19 8. Two Main Classes of Receptor Ligands in Pharmacology: Agonists & Antagonists 21 9. Receptor Allosteric Modulators 29 10. Competitive Antagonist vs. Negative Allosteric Modulator 31 11. Types of Drug-Drug Interactions 33 12. Introduction to Signal Transduction 35 13. Enzyme-Linked Receptors 41 15. Nuclear Receptors 47 16. Receptor Regulation 57 17. Ion Channels 65 21. Agents and Actions of the Autonomic Nervous System: Parasympathetic Nervous System 75 22. Agents and Actions of the Autonomic Nervous System: Sympathetic Nervous System 79"
@@ -70,16 +71,12 @@
       "slug": "ch-3",
       "title": "1. Introduction to Pharmacology",
       "pageRange": "pp. 7–10",
-      "excerpt": "1. Introduction to Pharmacology",
-      "wordCount": 215,
+      "excerpt": "Pharmacology: the study of interaction of drugs with living systems.",
+      "wordCount": 205,
       "sections": [
         {
-          "title": "1. Introduction to Pharmacology — Part 1",
+          "title": "1. Introduction to Pharmacology",
           "blocks": [
-            {
-              "type": "bullet",
-              "text": "1. Introduction to Pharmacology"
-            },
             {
               "type": "paragraph",
               "text": "Pharmacology: the study of interaction of drugs with living systems."
@@ -95,15 +92,14 @@
             {
               "type": "bullet",
               "text": "Drug-Receptor Interactions"
-            }
-          ]
-        },
-        {
-          "title": "1. Introduction to Pharmacology — Part 2",
-          "blocks": [
+            },
             {
               "type": "bullet",
               "text": "Dose-Response Relationships"
+            },
+            {
+              "type": "bullet",
+              "text": "Signal Transduction"
             },
             {
               "type": "bullet",
@@ -111,12 +107,50 @@
             },
             {
               "type": "bullet",
+              "text": "Absorption"
+            }
+          ]
+        },
+        {
+          "title": "1. Introduction to Pharmacology (Continued 2)",
+          "blocks": [
+            {
+              "type": "bullet",
+              "text": "Distribution"
+            },
+            {
+              "type": "bullet",
+              "text": "Metabolism"
+            },
+            {
+              "type": "bullet",
+              "text": "Excretion"
+            },
+            {
+              "type": "bullet",
               "text": "Pharmacogenetics: genetic factors play a role in the following:"
+            },
+            {
+              "type": "bullet",
+              "text": "Rate of Drug Metabolism"
+            },
+            {
+              "type": "bullet",
+              "text": "Drug-Induced Toxicity"
+            },
+            {
+              "type": "bullet",
+              "text": "Drug-Induced Allergies"
             },
             {
               "type": "paragraph",
               "text": "2 Principles of Pharmacology - Study Guide"
-            },
+            }
+          ]
+        },
+        {
+          "title": "1. Introduction to Pharmacology (Continued 3)",
+          "blocks": [
             {
               "type": "paragraph",
               "text": "Pharmacology and the Pharmacist"
@@ -124,12 +158,8 @@
           ]
         },
         {
-          "title": "1. Introduction to Pharmacology — Part 3",
+          "title": "Key Questions you should be asking as a Pharmacist",
           "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Key Questions you should be asking as a Pharmacist:"
-            },
             {
               "type": "bullet",
               "text": "Where is the molecular site of action?"
@@ -145,14 +175,9 @@
             {
               "type": "bullet",
               "text": "How does a drug produce its effect?"
-            }
-          ]
-        },
-        {
-          "title": "1. Introduction to Pharmacology — Part 4",
-          "blocks": [
+            },
             {
-              "type": "bullet",
+              "type": "paragraph",
               "text": "1. Introduction to Pharmacology 3"
             },
             {
@@ -170,12 +195,7 @@
             {
               "type": "paragraph",
               "text": "Drug Action: selective binding to cardiac muscle beta 1 adrenergic receptors that respond to norepinephrine (at higher doses, also inhibits bronchial and vascular smooth muscle by acting on beta 2 adrenergic receptors) to inhibit the binding of norepinephrine."
-            }
-          ]
-        },
-        {
-          "title": "1. Introduction to Pharmacology — Part 5",
-          "blocks": [
+            },
             {
               "type": "paragraph",
               "text": "Drug Effect: reduced inotropic effect (contractility) and chronotropic effect (heart rate)"
@@ -193,16 +213,12 @@
       "slug": "ch-4",
       "title": "2. Introduction to Drug-Receptor Interactions and Pharmacodynamics",
       "pageRange": "pp. 11–14",
-      "excerpt": "2. Introduction to Drug-Receptor Interactions and Pharmacodynamics",
-      "wordCount": 232,
+      "excerpt": "Receptors: protein molecules including enzymes, transporters and ion channels where a ligand (specific endogenous neurotransmitter/hormone or an external pharmacological agent (dru",
+      "wordCount": 243,
       "sections": [
         {
-          "title": "2. Introduction to Drug-Receptor Interactions and Pharmacodynamics — Part 1",
+          "title": "2. Introduction to Drug-Receptor Interactions and Pharmacodynamics",
           "blocks": [
-            {
-              "type": "bullet",
-              "text": "2. Introduction to Drug-Receptor Interactions and Pharmacodynamics"
-            },
             {
               "type": "paragraph",
               "text": "Receptors: protein molecules including enzymes, transporters and ion channels where a ligand (specific endogenous neurotransmitter/hormone or an external pharmacological agent (drug)) binds to, resulting in a cellular response."
@@ -218,16 +234,28 @@
             {
               "type": "paragraph",
               "text": "Examples of Endogenous Ligands:"
-            }
-          ]
-        },
-        {
-          "title": "2. Introduction to Drug-Receptor Interactions and Pharmacodynamics — Part 2",
-          "blocks": [
+            },
             {
               "type": "bullet",
               "text": "Neurotransmitters[NT]: chemical messengers signaling across a synaptic cleft"
             },
+            {
+              "type": "bullet",
+              "text": "Acetylcholine [Ach]"
+            },
+            {
+              "type": "bullet",
+              "text": "Epinephrine [EPI]"
+            },
+            {
+              "type": "bullet",
+              "text": "Norepinephrine [NE]"
+            }
+          ]
+        },
+        {
+          "title": "2. Introduction to Drug-Receptor Interactions and Pharmacodynamics (Continued 2)",
+          "blocks": [
             {
               "type": "paragraph",
               "text": "6 Principles of Pharmacology - Study Guide"
@@ -237,18 +265,38 @@
               "text": "Hormones (peptide): secreted from neuroendocrine cells into the blood to signal at distant cells and tissues."
             },
             {
-              "type": "paragraph",
-              "text": "• Insulin is synthesized and released by pancreatic beta cells. It is transported through the blood to a variety of cells to stimulate those cells to express glucose transporters allowing those cells to bring glucose into the cell for energy utilization."
+              "type": "bullet",
+              "text": "Aldosterone"
+            },
+            {
+              "type": "bullet",
+              "text": "Insulin"
+            },
+            {
+              "type": "bullet",
+              "text": "Nerve growth factor [NGF]"
+            },
+            {
+              "type": "bullet",
+              "text": "Thyroid hormone [TH]"
             },
             {
               "type": "paragraph",
-              "text": "DRUG: A chemical agent that selectively interacts with specific target molecules (i.e. receptors) to alter their specific physiological functions."
+              "text": "2. Introduction to Drug-Receptor Interactions and Pharmacodynamics 7"
+            },
+            {
+              "type": "bullet",
+              "text": "Insulin is synthesized and released by pancreatic beta cells. It is transported through the blood to a variety of cells to stimulate those cells to express glucose transporters allowing those cells to bring glucose into the cell for energy utilization."
             }
           ]
         },
         {
-          "title": "2. Introduction to Drug-Receptor Interactions and Pharmacodynamics — Part 3",
+          "title": "2. Introduction to Drug-Receptor Interactions and Pharmacodynamics (Continued 3)",
           "blocks": [
+            {
+              "type": "paragraph",
+              "text": "DRUG: A chemical agent that selectively interacts with specific target molecules (i.e. receptors) to alter their specific physiological functions."
+            },
             {
               "type": "bullet",
               "text": "Agonist: drug that activates receptors to result in either stimulation or inhibition of the function of various types of cells and organs."
@@ -268,11 +316,19 @@
             {
               "type": "bullet",
               "text": "Ionic interaction: cation & anion"
+            },
+            {
+              "type": "bullet",
+              "text": "Hydrogen bonding"
+            },
+            {
+              "type": "bullet",
+              "text": "Lipophilic interaction"
             }
           ]
         },
         {
-          "title": "2. Introduction to Drug-Receptor Interactions and Pharmacodynamics — Part 4",
+          "title": "2. Introduction to Drug-Receptor Interactions and Pharmacodynamics (Continued 4)",
           "blocks": [
             {
               "type": "bullet",
@@ -287,39 +343,30 @@
       "slug": "ch-5",
       "title": "3. Factors Contributing to Drug Effect",
       "pageRange": "pp. 15–18",
-      "excerpt": "3. Factors Contributing to Drug Effect",
-      "wordCount": 447,
+      "excerpt": "The Effect a Drug may have is Dependent on a Variety of Factors:",
+      "wordCount": 438,
       "sections": [
         {
-          "title": "3. Factors Contributing to Drug Effect — Part 1",
+          "title": "3. Factors Contributing to Drug Effect",
           "blocks": [
-            {
-              "type": "bullet",
-              "text": "3. Factors Contributing to Drug Effect"
-            },
             {
               "type": "paragraph",
               "text": "The Effect a Drug may have is Dependent on a Variety of Factors:"
             },
             {
-              "type": "bullet",
+              "type": "paragraph",
               "text": "1. Drug dosage: effect of drug increases with increased amount of drug up to the POINT OF RECEPTOR SATURATION"
             },
             {
-              "type": "bullet",
+              "type": "paragraph",
               "text": "2. Number of Receptors: receptors may be differentially expressed in one tissue to the next and, therefore, mediate different levels of biological responses."
             },
             {
-              "type": "paragraph",
-              "text": "◦ Example: Beta-1 receptors are most concentrated in the heart; therefore, beta-1 agonists produce the greatest effects in the heart. Beta-2 receptors are most expressed in the bronchioles of the lungs and the arteries of skeletal muscle; therefore, beta-2 agonists produce the greatest effects in these tissues and organs."
-            }
-          ]
-        },
-        {
-          "title": "3. Factors Contributing to Drug Effect — Part 2",
-          "blocks": [
-            {
               "type": "bullet",
+              "text": "Example: Beta-1 receptors are most concentrated in the heart; therefore, beta-1 agonists produce the greatest effects in the heart. Beta-2 receptors are most expressed in the bronchioles of the lungs and the arteries of skeletal muscle; therefore, beta-2 agonists produce the greatest effects in these tissues and organs."
+            },
+            {
+              "type": "paragraph",
               "text": "3. Disease states: disease states can effect drug pharmacology"
             },
             {
@@ -333,16 +380,16 @@
             {
               "type": "paragraph",
               "text": "[CKD]. Clearance also decreases causing digoxin’s half-life to increase, meaning that patient with CKD actually needs a lower dose than a patient with normal functioning kidney to achieve safe and effective digoxin levels."
-            },
-            {
-              "type": "bullet",
-              "text": "4. Drug Efficacy/Intrinsic activity: ability to activate or block a receptor: maximum effect a drug can produce regardless of the dose"
             }
           ]
         },
         {
-          "title": "3. Factors Contributing to Drug Effect — Part 3",
+          "title": "3. Factors Contributing to Drug Effect (Continued 2)",
           "blocks": [
+            {
+              "type": "paragraph",
+              "text": "4. Drug Efficacy/Intrinsic activity: ability to activate or block a receptor: maximum effect a drug can produce regardless of the dose"
+            },
             {
               "type": "paragraph",
               "text": "10 Principles of Pharmacology - Study Guide"
@@ -362,20 +409,20 @@
             {
               "type": "paragraph",
               "text": "POTENCY since one could manipulate the drug dose to produce the desirable response in case of a drug with low potency but a drug with low efficacy could not be manipulated in the same way."
-            }
-          ]
-        },
-        {
-          "title": "3. Factors Contributing to Drug Effect — Part 4",
-          "blocks": [
+            },
             {
-              "type": "bullet",
+              "type": "paragraph",
               "text": "3. Factors Contributing to Drug Effect 11"
             },
             {
               "type": "paragraph",
               "text": "Spare Receptors: often times occupation of only a fraction of receptors is necessary for obtaining a maximal response. In this case the remaining unbound receptors are known as spare receptors. This means that there can be a reduction in receptors (up to a limit!!!) without a corresponding decrease in the maximal response."
-            },
+            }
+          ]
+        },
+        {
+          "title": "3. Factors Contributing to Drug Effect (Continued 3)",
+          "blocks": [
             {
               "type": "paragraph",
               "text": "12 Principles of Pharmacology - Study Guide"
@@ -389,16 +436,12 @@
       "slug": "ch-6",
       "title": "4. Pharmacological Descriptors of Drug-Receptor Interactions",
       "pageRange": "pp. 19–20",
-      "excerpt": "4. Pharmacological Descriptors of Drug-Receptor Interactions",
-      "wordCount": 86,
+      "excerpt": "Pharmacological Descriptors of Drug-Receptor Interactions are used to describe and compare potency of drugs",
+      "wordCount": 78,
       "sections": [
         {
-          "title": "4. Pharmacological Descriptors of Drug-Receptor Interactions — Part 1",
+          "title": "4. Pharmacological Descriptors of Drug-Receptor Interactions",
           "blocks": [
-            {
-              "type": "bullet",
-              "text": "4. Pharmacological Descriptors of Drug-Receptor Interactions"
-            },
             {
               "type": "paragraph",
               "text": "Pharmacological Descriptors of Drug-Receptor Interactions are used to describe and compare potency of drugs"
@@ -414,12 +457,7 @@
             {
               "type": "bullet",
               "text": "Bmax [maximal specific binding]: represents the total number of receptors present in a cell or tissue"
-            }
-          ]
-        },
-        {
-          "title": "4. Pharmacological Descriptors of Drug-Receptor Interactions — Part 2",
-          "blocks": [
+            },
             {
               "type": "paragraph",
               "text": "Reminder: a drug does not have to bind all available receptors in order to achieve the maximal effect (see spare receptors)"
@@ -433,16 +471,12 @@
       "slug": "ch-7",
       "title": "5. Drug Action vs. Drug Effect",
       "pageRange": "pp. 21–22",
-      "excerpt": "5. Drug Action vs. Drug Effect",
-      "wordCount": 87,
+      "excerpt": "Drug Action: drug-receptor interaction that results in a change in the tertiary structure of the receptor (conformational change) by agonists",
+      "wordCount": 79,
       "sections": [
         {
-          "title": "5. Drug Action vs. Drug Effect — Part 1",
+          "title": "5. Drug Action vs. Drug Effect",
           "blocks": [
-            {
-              "type": "bullet",
-              "text": "5. Drug Action vs. Drug Effect"
-            },
             {
               "type": "paragraph",
               "text": "Drug Action: drug-receptor interaction that results in a change in the tertiary structure of the receptor (conformational change) by agonists"
@@ -458,12 +492,7 @@
             {
               "type": "bullet",
               "text": "See right: the drug-receptor interaction leads to a cascade of events ultimately causing the heart to contract."
-            }
-          ]
-        },
-        {
-          "title": "5. Drug Action vs. Drug Effect — Part 2",
-          "blocks": [
+            },
             {
               "type": "paragraph",
               "text": "16 Principles of Pharmacology - Study Guide"
@@ -477,18 +506,14 @@
       "slug": "ch-8",
       "title": "6. Characteristics of Drug-Receptor Interactions:",
       "pageRange": "pp. 23–24",
-      "excerpt": "6. Characteristics of Drug-Receptor Interactions:",
-      "wordCount": 233,
+      "excerpt": "1. Follow Mass-Action Law: rate of reaction is DIRECTLY proportional to the concentration of the reactants, however, there is a limit. This limit is called the point of saturation",
+      "wordCount": 226,
       "sections": [
         {
-          "title": "6. Characteristics of Drug-Receptor Interactions: — Part 1",
+          "title": "6. Characteristics of Drug-Receptor Interactions",
           "blocks": [
             {
-              "type": "bullet",
-              "text": "6. Characteristics of Drug-Receptor Interactions:"
-            },
-            {
-              "type": "bullet",
+              "type": "paragraph",
               "text": "1. Follow Mass-Action Law: rate of reaction is DIRECTLY proportional to the concentration of the reactants, however, there is a limit. This limit is called the point of saturation"
             },
             {
@@ -502,18 +527,13 @@
             {
               "type": "bullet",
               "text": "Not to be confused with “specificity” meaning drug can only bind to one type of receptor, regardless of the drug dose: drugs that are “specific” are unheard of at this point"
-            }
-          ]
-        },
-        {
-          "title": "6. Characteristics of Drug-Receptor Interactions: — Part 2",
-          "blocks": [
+            },
             {
-              "type": "bullet",
+              "type": "paragraph",
               "text": "3. Response is Proportional to Drug Dose [Concentration] up to the point of saturation"
             },
             {
-              "type": "bullet",
+              "type": "paragraph",
               "text": "4. Binding Changes the Receptor: when a drug binds a receptor it results in one of two changes as outlined below:"
             },
             {
@@ -537,16 +557,12 @@
       "slug": "ch-9",
       "title": "7. Response to Excessive and Reduced Stimulation of Receptors:",
       "pageRange": "pp. 25–26",
-      "excerpt": "7. Response to Excessive and Reduced Stimulation of Receptors:",
-      "wordCount": 283,
+      "excerpt": "Excessive Receptor Activation can result in desensitization or down regulation.",
+      "wordCount": 255,
       "sections": [
         {
-          "title": "7. Response to Excessive and Reduced Stimulation of Receptors: — Part 1",
+          "title": "7. Response to Excessive and Reduced Stimulation of Receptors",
           "blocks": [
-            {
-              "type": "bullet",
-              "text": "7. Response to Excessive and Reduced Stimulation of Receptors:"
-            },
             {
               "type": "paragraph",
               "text": "Excessive Receptor Activation can result in desensitization or down regulation."
@@ -554,28 +570,25 @@
             {
               "type": "paragraph",
               "text": "Desensitization: receptor becomes less responsive when exposed to a high concentration of an agonist drug for a long duration (several minutes)."
-            },
-            {
-              "type": "paragraph",
-              "text": "What is an example of receptor desensitization?"
-            },
-            {
-              "type": "paragraph",
-              "text": "Under normal physiological conditions acetylcholine stimulates nicotinic acetylcholine receptors on skeletal muscle to open an ion channel that allows calcium influx to cause muscle contraction. Acetylcholine is hydrolyzed rapidly by acetylcholinesterase; the channel closes and is ready to be opened again upon the arrival of new acetylcholine molecules. Pharmacological inhibitors of acetylcholine esterase cause accumulation of high concentrations of acetylcholine in the synaptic cleft. The ion channel on the receptor becomes insensitive to acetylcholine in attempt to protect the muscle from being overly activated."
             }
           ]
         },
         {
-          "title": "7. Response to Excessive and Reduced Stimulation of Receptors: — Part 2",
+          "title": "What is an example of receptor desensitization?",
           "blocks": [
             {
               "type": "paragraph",
-              "text": "Down Regulation: the number of receptors decreases (by proteolysis) upon exposure to a high concentration of agonist for a very long time (hours), making the cell less responsive to the same agonist or others that work at the same receptor."
+              "text": "Under normal physiological conditions acetylcholine stimulates nicotinic acetylcholine receptors on skeletal muscle to open an ion channel that allows calcium influx to cause muscle contraction. Acetylcholine is hydrolyzed rapidly by acetylcholinesterase; the channel closes and is ready to be opened again upon the arrival of new acetylcholine molecules. Pharmacological inhibitors of acetylcholine esterase cause accumulation of high concentrations of acetylcholine in the synaptic cleft. The ion channel on the receptor becomes insensitive to acetylcholine in attempt to protect the muscle from being overly activated."
             },
             {
               "type": "paragraph",
-              "text": "What is an example of downregulation?"
-            },
+              "text": "Down Regulation: the number of receptors decreases (by proteolysis) upon exposure to a high concentration of agonist for a very long time (hours), making the cell less responsive to the same agonist or others that work at the same receptor."
+            }
+          ]
+        },
+        {
+          "title": "What is an example of downregulation?",
+          "blocks": [
             {
               "type": "paragraph",
               "text": "20 Principles of Pharmacology - Study Guide"
@@ -587,20 +600,16 @@
             {
               "type": "paragraph",
               "text": "Reduced Receptor stimulation: can result in receptor supersensitivity and upregulation."
+            },
+            {
+              "type": "paragraph",
+              "text": "Supersensitivity and Upregulation: occurs when a cell is deprived of its natural ligand for a long time, resulting in increased receptor expression over time and making the cell more sensitive to its ligand"
             }
           ]
         },
         {
-          "title": "7. Response to Excessive and Reduced Stimulation of Receptors: — Part 3",
+          "title": "What is an example of supersensitivity?",
           "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Supersensitivity and Upregulation: occurs when a cell is deprived of its natural ligand for a long time, resulting in increased receptor expression over time and making the cell more sensitive to its ligand"
-            },
-            {
-              "type": "paragraph",
-              "text": "What is an example of supersensitivity?"
-            },
             {
               "type": "paragraph",
               "text": "Reserpine depletes stores of catecholamines (e.g. norepinephrine) in neurons. Catecholamine receptors compensate by becoming more abundant and therefore more responsive to exogenous catecholamine-like drugs."
@@ -614,16 +623,12 @@
       "slug": "ch-10",
       "title": "8. Two Main Classes of Receptor Ligands in Pharmacology: Agonists & Antagonists",
       "pageRange": "pp. 27–34",
-      "excerpt": "8. Two Main Classes of Receptor Ligands in Pharmacology: Agonists & Antagonists",
-      "wordCount": 1083,
+      "excerpt": "Agonists: tend to be smaller molecules that effect activation of receptors.",
+      "wordCount": 1052,
       "sections": [
         {
-          "title": "8. Two Main Classes of Receptor Ligands in Pharmacology: Agonists & Antagonists — Part 1",
+          "title": "8. Two Main Classes of Receptor Ligands in Pharmacology: Agonists & Antagonists",
           "blocks": [
-            {
-              "type": "bullet",
-              "text": "8. Two Main Classes of Receptor Ligands in Pharmacology: Agonists & Antagonists"
-            },
             {
               "type": "paragraph",
               "text": "Agonists: tend to be smaller molecules that effect activation of receptors."
@@ -639,12 +644,7 @@
             {
               "type": "bullet",
               "text": "Has maximal POSITIVE INTRINSIC activity (EFFICACY)"
-            }
-          ]
-        },
-        {
-          "title": "8. Two Main Classes of Receptor Ligands in Pharmacology: Agonists & Antagonists — Part 2",
-          "blocks": [
+            },
             {
               "type": "paragraph",
               "text": "Partial agonists: produces partial maximal biological response as compared to full agonist"
@@ -660,16 +660,16 @@
             {
               "type": "bullet",
               "text": "If the partial agonist is bound to the receptor, the full agonist cannot bind"
-            },
-            {
-              "type": "bullet",
-              "text": "may have higher, lower or the same affinity (potency) for the receptor as the full agonist"
             }
           ]
         },
         {
-          "title": "8. Two Main Classes of Receptor Ligands in Pharmacology: Agonists & Antagonists — Part 3",
+          "title": "8. Two Main Classes of Receptor Ligands in Pharmacology: Agonists & Antagonists (Continued 2)",
           "blocks": [
+            {
+              "type": "bullet",
+              "text": "may have higher, lower or the same affinity (potency) for the receptor as the full agonist"
+            },
             {
               "type": "paragraph",
               "text": "22 Principles of Pharmacology - Study Guide"
@@ -683,22 +683,26 @@
               "text": "Inverse agonists: produces opposite biological response to that of the endogenous agonist/ neurotransmitter"
             },
             {
-              "type": "paragraph",
-              "text": "• has NEGATIVE INTRINSIC activity (EFFICACY) Example: GABAA receptor: agonists (benzodiazepines) produce a sedative effect whereas inverse agonists (i.e. Rho15-4513 — originally designed as alcohol antidote) produce anxiety-like effects."
+              "type": "bullet",
+              "text": "has NEGATIVE INTRINSIC activity (EFFICACY) Example: GABAA receptor: agonists (benzodiazepines) produce a sedative effect whereas inverse agonists (i.e. Rho15-4513 — originally designed as alcohol antidote) produce anxiety-like effects."
             },
             {
               "type": "paragraph",
               "text": "Antagonists: tend to be larger molecules producing INHIBITORY effect."
-            }
-          ]
-        },
-        {
-          "title": "8. Two Main Classes of Receptor Ligands in Pharmacology: Agonists & Antagonists — Part 4",
-          "blocks": [
+            },
             {
               "type": "bullet",
               "text": "there are antagonists that act at the receptor, also known as receptor antagonists,"
             },
+            {
+              "type": "paragraph",
+              "text": "8. Two Main Classes of Receptor Ligands in Pharmacology: Agonists & Antagonists 23"
+            }
+          ]
+        },
+        {
+          "title": "8. Two Main Classes of Receptor Ligands in Pharmacology: Agonists & Antagonists (Continued 3)",
+          "blocks": [
             {
               "type": "paragraph",
               "text": "**Antagonists DO NOT have INTRINSIC ACTIVITY (EFFICACY): reminder: antagonist simply block the agonist from binding. Furthermore, keep in mind that just because antagonists do not have intrinsic activity does not mean they do not have physiological consequences."
@@ -706,27 +710,27 @@
             {
               "type": "paragraph",
               "text": "Example: While the beta-1 antagonist DOES NOT have INTRINSIC activity on its own, it still has pharmacological effects in vivo. Under normal circumstances, when a person is exercising norepinephrine is released binds to beta-1 receptors resulting in increased cardiac inotropy (contractility) as well as increased chronotropy (heart rate) to accommodate the increased demand for oxygen. If an individual were using a beta-1 antagonist (a.k.a. beta blocker), it would prevent norepinephrine from binding to beta-1 receptors thus causing reduced contractility and lower heart rate compared to someone who is not using a beta-1 antagonist. Labetalol is an example of a beta-1 antagonist used in individuals who have angina (chest pain) associated with increased heart rate. This drug enables them to exercise, while maintaining a lower heart rate so as to avoid chest pain."
-            },
-            {
-              "type": "paragraph",
-              "text": "Competitive Antagonist/Inhibitor: REVERSIBLE or SURMMOUNTABLE"
-            },
-            {
-              "type": "bullet",
-              "text": "Binds to a receptor at the same site as an endogenous or pharmacological agonist, blocking agonist binding and therefore receptor activation."
             }
           ]
         },
         {
-          "title": "8. Two Main Classes of Receptor Ligands in Pharmacology: Agonists & Antagonists — Part 5",
+          "title": "Competitive Antagonist/Inhibitor: REVERSIBLE or SURMMOUNTABLE",
           "blocks": [
+            {
+              "type": "bullet",
+              "text": "Binds to a receptor at the same site as an endogenous or pharmacological agonist, blocking agonist binding and therefore receptor activation."
+            },
             {
               "type": "paragraph",
               "text": "24 Principles of Pharmacology - Study Guide"
             },
             {
-              "type": "paragraph",
-              "text": "• Antagonism is reversed by increasing the amount/dose of agonist (surmountable). While competitive antagonists do not affect agonist efficacy (maximal response), they do decrease AFFINITY and POTENCY. Thus, a normal maximal response to the agonist may be attained in the presence of a competitive antagonist, albeit at higher agonist concentrations. Thus, agonist dose-response curve is therefore SHIFTED TO THE RIGHT (more agonist needed to produce the same response) in the presence of a competitive antagonist (REFER TO GRAPH)."
+              "type": "bullet",
+              "text": "Antagonism is reversed by increasing the amount/dose of agonist (surmountable). While competitive antagonists do not affect agonist efficacy (maximal response), they do decrease AFFINITY and POTENCY. Thus, a normal maximal response to the agonist may be attained in the presence of a competitive antagonist, albeit at higher agonist concentrations. Thus, agonist dose-response curve is therefore SHIFTED TO THE RIGHT (more agonist needed to produce the same response) in the presence of a competitive antagonist (REFER TO GRAPH)."
+            },
+            {
+              "type": "bullet",
+              "text": "A: agonist"
             },
             {
               "type": "bullet",
@@ -739,40 +743,23 @@
             {
               "type": "paragraph",
               "text": "See above: When the agonist concentration/dose is gradually increased, the equilibrium shifts towards formation of agonist-receptor complex [B]. The opposite is true when the antagonist concentration is increased [A]."
-            }
-          ]
-        },
-        {
-          "title": "8. Two Main Classes of Receptor Ligands in Pharmacology: Agonists & Antagonists — Part 6",
-          "blocks": [
+            },
             {
               "type": "bullet",
               "text": "Competitive antagonists have an affinity (potency) for a receptor, however, do not have intrinsic activity: REMINDER: antagonists lack intrinsic activity"
-            },
-            {
-              "type": "paragraph",
-              "text": "Non-Competitive Receptor Antagonists: UNSRUMMOUNTABLE Two class:"
-            },
-            {
-              "type": "paragraph",
-              "text": "A. IRREVERSIBLE B. ALLOSTERIC"
-            },
-            {
-              "type": "paragraph",
-              "text": "A. Irreversible Non-Competitive Antagonists:"
-            },
-            {
-              "type": "bullet",
-              "text": "Usually bind to the same site as the agonist, however, it is not readily displaced like"
             }
           ]
         },
         {
-          "title": "8. Two Main Classes of Receptor Ligands in Pharmacology: Agonists & Antagonists — Part 7",
+          "title": "A. Irreversible Non-Competitive Antagonists",
           "blocks": [
             {
+              "type": "bullet",
+              "text": "Usually bind to the same site as the agonist, however, it is not readily displaced like"
+            },
+            {
               "type": "paragraph",
-              "text": "26 Principles of Pharmacology - Study Guide"
+              "text": "26 Principles of Pharmacology - Study Guide competitive antagonists."
             },
             {
               "type": "bullet",
@@ -783,30 +770,34 @@
               "text": "In the ABSENCE of SPARE RECEPTORS: The agonist dose-response curve will exhibit a lower maximum that is proportional to the dose of the non-competitive antagoinst."
             },
             {
-              "type": "paragraph",
-              "text": "• See above: Unlike competitive antagonists, non-competitive antagonists reduce the actual number of receptors available to be activated, therefore, EFFICACY is REDUCED. The agonist exhibits a lower maximum response in the presence of the non-competitive inhibitor."
+              "type": "bullet",
+              "text": "See above: Unlike competitive antagonists, non-competitive antagonists reduce the actual number of receptors available to be activated, therefore, EFFICACY is REDUCED. The agonist exhibits a lower maximum response in the presence of the non-competitive inhibitor."
+            },
+            {
+              "type": "bullet",
+              "text": "A agonist"
             },
             {
               "type": "bullet",
               "text": "A + B agonist with irreversible non-competitive antagonist"
-            }
-          ]
-        },
-        {
-          "title": "8. Two Main Classes of Receptor Ligands in Pharmacology: Agonists & Antagonists — Part 8",
-          "blocks": [
+            },
             {
               "type": "paragraph",
               "text": "In the presence of spare receptors: Agonist dose-response curve will exhibit unaltered maximal response with increasing doses of the irreversible antagonist, until all spare receptors are exhausted. At this point, higher doses of the antagonist will cause dose-dependent reduction in the maximal response (reduced efficacy)."
             },
             {
-              "type": "paragraph",
-              "text": "• See above: A, agonist alone exhibits maximal response (efficacy) and affinity (potency) for the receptor. B, agonist plus non-competitive antagonist: the agonist still exhibits maximal response because there are spare receptors, however, its affinity for the receptor is reduced. It is not until D, agonist plus higher concentration of non-competitive antagonist, that the agonist starts to exhibit a lower maximal response as all spare receptors have been eliminated by the irreversible antagonist."
+              "type": "bullet",
+              "text": "See above: A, agonist alone exhibits maximal response (efficacy) and affinity (potency) for the receptor. B, agonist plus non-competitive antagonist: the agonist still exhibits maximal response because there are spare receptors, however, its affinity for the receptor is reduced. It is not until D, agonist plus higher concentration of non-competitive antagonist, that the agonist starts to exhibit a lower maximal response as all spare receptors have been eliminated by the irreversible antagonist."
             },
             {
               "type": "paragraph",
               "text": "B. Allosteric Non-Competitive Antagonists: A drug may bind to a site (allosteric site) on the receptor different from that where an agonist binds (primary or classical binding site). Binding to the allosteric site modifies the conformation of the primary site. In case of (negative) allosteric antagonists the altered conformation is less responsive to the agonist. Increasing agonist concentration does not displace the allosteric antagonist from the receptors since the two drugs bind to different sites, i.e. this type of antagonism is non-competitive and unsurmountable. See other types of allosteric modulators below."
-            },
+            }
+          ]
+        },
+        {
+          "title": "Physiological Antagonist",
+          "blocks": [
             {
               "type": "bullet",
               "text": "Molecules that do NOT bind the same receptor as the endogenous or a pharmacological agonist, but produce an effect that is opposite to the agonist effect."
@@ -818,7 +809,7 @@
           ]
         },
         {
-          "title": "8. Two Main Classes of Receptor Ligands in Pharmacology: Agonists & Antagonists — Part 9",
+          "title": "Chemical Antagonists",
           "blocks": [
             {
               "type": "paragraph",
@@ -841,39 +832,30 @@
       "slug": "ch-11",
       "title": "9. Receptor Allosteric Modulators",
       "pageRange": "pp. 35–36",
-      "excerpt": "9. Receptor Allosteric Modulators",
-      "wordCount": 171,
+      "excerpt": "Allosteric modulators interact with sites on the receptor different from the primary agonist binding site. This results in modulation of the conformation of the agonist binding sit",
+      "wordCount": 167,
       "sections": [
         {
-          "title": "9. Receptor Allosteric Modulators — Part 1",
+          "title": "9. Receptor Allosteric Modulators",
           "blocks": [
-            {
-              "type": "bullet",
-              "text": "9. Receptor Allosteric Modulators"
-            },
             {
               "type": "paragraph",
               "text": "Allosteric modulators interact with sites on the receptor different from the primary agonist binding site. This results in modulation of the conformation of the agonist binding site to impart higher (allosteric enhancers) or lower (allosteric inhibitors) affinity for the agonist. Some allosteric modulators are able to induce an active conformation of the receptor primary binding site to result in receptor activation in the absence of an agonist."
             },
             {
-              "type": "paragraph",
-              "text": "Three Classes of Allosteric Modulators:"
+              "type": "subheading",
+              "text": "Three Classes of Allosteric Modulators"
             },
             {
-              "type": "bullet",
+              "type": "paragraph",
               "text": "1. Allosteric Agonists: agonist by itself in absence of any other agonist"
             },
             {
-              "type": "bullet",
+              "type": "paragraph",
               "text": "2. Allosteric Enhancer (Agonist): enhances (potentiates) agonist biological response"
-            }
-          ]
-        },
-        {
-          "title": "9. Receptor Allosteric Modulators — Part 2",
-          "blocks": [
+            },
             {
-              "type": "bullet",
+              "type": "paragraph",
               "text": "3. Allosteric Inhibitors (Antagonist): inhibits agonist biological response"
             },
             {
@@ -889,16 +871,12 @@
       "slug": "ch-12",
       "title": "10. Competitive Antagonist vs. Negative Allosteric Modulator",
       "pageRange": "pp. 37–38",
-      "excerpt": "10. Competitive Antagonist vs. Negative Allosteric Modulator",
-      "wordCount": 371,
+      "excerpt": "A competitive antagonist directly and physically blocks access of the agonist to the receptor, whereas a negative allosteric modulator indirectly changes agonist binding by interac",
+      "wordCount": 364,
       "sections": [
         {
-          "title": "10. Competitive Antagonist vs. Negative Allosteric Modulator — Part 1",
+          "title": "10. Competitive Antagonist vs. Negative Allosteric Modulator",
           "blocks": [
-            {
-              "type": "bullet",
-              "text": "10. Competitive Antagonist vs. Negative Allosteric Modulator"
-            },
             {
               "type": "paragraph",
               "text": "A competitive antagonist directly and physically blocks access of the agonist to the receptor, whereas a negative allosteric modulator indirectly changes agonist binding by interacting at a secondary site on the receptor to diminish the ability of the agonist to bind to the primary site. While a competitive antagonist shifts the doseresponse curve of an agonist indefinitely by increasing antagonist dose, the shift caused by an allosteric antagonist (negative allosteric modulator) reaches a limit. This limit is dictated by the cooperatively factor that represents the maximal magnitude of interaction between the allosteric and primary binding sites. This limit makes negative allosteric modulators safer and more amenable to producing fine tuning of receptor unction. This ceiling effect also ensures achieving the same response to a maximal dose of the antagonist regardless of different blood concentrations, e.g. due to differences in metabolism in one patient versus another. Another advantage of negative allosteric modulators is their higher organ selectivity as compared with competitive antagonists. This is because of uniqueness of the chemical nature of the allosteric site on the same receptor expressed in different tissues and organs. This is in contrast to the well conserved nature of the primary binding site. This results in better selectivity and less side effects of allosteric modulators."
@@ -914,12 +892,7 @@
             {
               "type": "paragraph",
               "text": "Why does this matter? There is need to reduce certain biological responses without completely shutting them down. For example, a person who has gastrointestinal spasms needs a modulator that returns the hyperactive state of gastric and intestinal muscles to normal, without causing complete paralysis of the gastrointestinal tract."
-            }
-          ]
-        },
-        {
-          "title": "10. Competitive Antagonist vs. Negative Allosteric Modulator — Part 2",
-          "blocks": [
+            },
             {
               "type": "paragraph",
               "text": "To summarize, ADVANTAGES of negative allosteric modulators over competitive antagonists include:"
@@ -937,16 +910,12 @@
       "slug": "ch-13",
       "title": "11. Types of Drug-Drug Interactions",
       "pageRange": "pp. 39–40",
-      "excerpt": "11. Types of Drug-Drug Interactions",
-      "wordCount": 118,
+      "excerpt": "Additivity: when the effect of two drugs given in combination equals the mathematical summation of their effects when given alone.",
+      "wordCount": 130,
       "sections": [
         {
-          "title": "11. Types of Drug-Drug Interactions — Part 1",
+          "title": "11. Types of Drug-Drug Interactions",
           "blocks": [
-            {
-              "type": "bullet",
-              "text": "11. Types of Drug-Drug Interactions"
-            },
             {
               "type": "paragraph",
               "text": "Additivity: when the effect of two drugs given in combination equals the mathematical summation of their effects when given alone."
@@ -962,12 +931,19 @@
             {
               "type": "paragraph",
               "text": "Examples of Drug-Drug Interactions: given responses to 4 drugs"
-            }
-          ]
-        },
-        {
-          "title": "11. Types of Drug-Drug Interactions — Part 2",
-          "blocks": [
+            },
+            {
+              "type": "bullet",
+              "text": "Drug A = 0 units response"
+            },
+            {
+              "type": "bullet",
+              "text": "Drug B = 3 units response"
+            },
+            {
+              "type": "bullet",
+              "text": "Drug C = 5 units response"
+            },
             {
               "type": "bullet",
               "text": "Drug D = 10 units response"
@@ -989,91 +965,107 @@
       "slug": "ch-14",
       "title": "12. Introduction to Signal Transduction",
       "pageRange": "pp. 41–46",
-      "excerpt": "12. Introduction to Signal Transduction",
-      "wordCount": 634,
+      "excerpt": "transmission of molecular signals from outside the cell into the cell via cell-surface receptors. Signal transmission is caused either by:",
+      "wordCount": 593,
       "sections": [
         {
-          "title": "12. Introduction to Signal Transduction — Part 1",
+          "title": "12. Introduction to Signal Transduction",
           "blocks": [
             {
-              "type": "bullet",
-              "text": "12. Introduction to Signal Transduction"
+              "type": "paragraph",
+              "text": "Signal Transduction"
             },
             {
-              "type": "paragraph",
-              "text": "Signal Transduction • transmission of molecular signals from outside the cell into the cell via cell-surface receptors. Signal transmission is caused either by:"
+              "type": "bullet",
+              "text": "transmission of molecular signals from outside the cell into the cell via cell-surface receptors. Signal transmission is caused either by:"
             },
             {
               "type": "bullet",
               "text": "a cascade of events or biochemical changes within the cell"
             },
             {
-              "type": "paragraph",
-              "text": "◦ o receptors that initiate biochemical changes accomplish this either by intrinsic enzymatic activities (within the receptor itself) or by activating intracellular messenger molecules"
+              "type": "bullet",
+              "text": "o receptors that initiate biochemical changes accomplish this either by intrinsic enzymatic activities (within the receptor itself) or by activating intracellular messenger molecules"
             },
             {
               "type": "bullet",
               "text": "modification of the cell membrane potential initiated by the movement of ions into or out of the cell"
+            },
+            {
+              "type": "paragraph",
+              "text": "Why is this important? Identifying the cellular events that take place upon receptor activation is necessary for designing pharmacological agents that potentiate (increase) or diminish (decrease) signaling. For example, certain signaling pathways become overly active in cancerous cells. Suppression of these exaggerated signals may be one way to reduce cell proliferation in cancer."
             }
           ]
         },
         {
-          "title": "12. Introduction to Signal Transduction — Part 2",
+          "title": "Purpose of Signal Transduction",
           "blocks": [
             {
-              "type": "paragraph",
-              "text": "Why is this important? Identifying the cellular events that take place upon receptor activation is necessary for designing pharmacological agents that potentiate (increase) or diminish (decrease) signaling. For example, certain signaling pathways become overly active in cancerous cells. Suppression of these exaggerated signals may be one way to reduce cell proliferation in cancer."
-            },
-            {
-              "type": "paragraph",
-              "text": "Purpose of Signal Transduction"
+              "type": "bullet",
+              "text": "Signal amplification"
             },
             {
               "type": "bullet",
-              "text": "Signal amplification • increasing a signal so that minimal receptor occupation by small amounts of neurotransmitters in the synapse produces significant cellular responses."
-            },
-            {
-              "type": "paragraph",
-              "text": "https://highered.mheducation.com/olcweb/cgi/pluginpop.cgi?it=swf::535::535::/sites/dl/free/0072437316/ 120069/bio08.swf::Signal%20Amplification"
+              "text": "increasing a signal so that minimal receptor occupation by small amounts of neurotransmitters in the synapse produces significant cellular responses."
             },
             {
               "type": "paragraph",
               "text": "36 Principles of Pharmacology - Study Guide"
+            },
+            {
+              "type": "bullet",
+              "text": "Signal dampening"
+            },
+            {
+              "type": "bullet",
+              "text": "decreasing an abnormally high signal to maintain physiological homeostasis. An example is how receptors on the presynaptic nerve ending respond to high levels of a neurotransmitter in the synapse by decreasing further neurotransmitter release (auto receptors)"
+            },
+            {
+              "type": "bullet",
+              "text": "Feedback inhibition: Output of signal transduction is used as a signal to decrease the signaling process itself (which will usually limit the production of intracellular messengers)"
             }
           ]
         },
         {
-          "title": "12. Introduction to Signal Transduction — Part 3",
+          "title": "Types of Signal Transduction",
           "blocks": [
             {
-              "type": "paragraph",
-              "text": "• Signal dampening • decreasing an abnormally high signal to maintain physiological homeostasis. An example is how receptors on the presynaptic nerve ending respond to high levels of a neurotransmitter in the synapse by decreasing further neurotransmitter release (auto receptors)"
-            },
-            {
-              "type": "paragraph",
-              "text": "◦ Feedback inhibition: Output of signal transduction is used as a signal to decrease the signaling process itself (which will usually limit the production of intracellular messengers)"
-            },
-            {
-              "type": "paragraph",
-              "text": "Types of Signal Transduction"
+              "type": "bullet",
+              "text": "Autocrine"
             },
             {
               "type": "bullet",
+              "text": "Paracrine"
+            },
+            {
+              "type": "bullet",
+              "text": "Endocrine"
+            },
+            {
+              "type": "paragraph",
               "text": "12. Introduction to Signal Transduction 37"
             },
             {
               "type": "paragraph",
-              "text": "Autocrine • cell secretes chemical messenger or hormone that will then activate receptors on that same cell."
+              "text": "Autocrine"
+            },
+            {
+              "type": "bullet",
+              "text": "cell secretes chemical messenger or hormone that will then activate receptors on that same cell."
+            },
+            {
+              "type": "paragraph",
+              "text": "Paracrine"
+            },
+            {
+              "type": "bullet",
+              "text": "cell secretes chemical messenger or hormone that will then activate cell-surface receptors on a cell nearby."
             }
           ]
         },
         {
-          "title": "12. Introduction to Signal Transduction — Part 4",
+          "title": "Types of Signal Transduction (Continued 2)",
           "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Paracrine • cell secretes chemical messenger or hormone that will then activate cell-surface receptors on a cell nearby."
-            },
             {
               "type": "bullet",
               "text": "A good example is synaptic transmission, which is how neurons communicate through neurotransmitters."
@@ -1084,75 +1076,130 @@
             },
             {
               "type": "paragraph",
-              "text": "Endocrine • cell secretes chemical messenger or hormone that needs to be transported via the blood stream to reach a distant target cell."
+              "text": "Endocrine"
+            },
+            {
+              "type": "bullet",
+              "text": "cell secretes chemical messenger or hormone that needs to be transported via the blood stream to reach a distant target cell."
+            },
+            {
+              "type": "bullet",
+              "text": "Neuroendocrine cells receive neuronal input (neurotransmitters released by nerve cells or neurosecretory cells) and, as a consequence of this input, release message molecules (hormones) to the bloodstream."
             },
             {
               "type": "paragraph",
-              "text": "• Neuroendocrine cells receive neuronal input (neurotransmitters released by nerve cells or neurosecretory cells) and, as a consequence of this input, release message molecules (hormones) to the bloodstream."
-            }
-          ]
-        },
-        {
-          "title": "12. Introduction to Signal Transduction — Part 5",
-          "blocks": [
+              "text": "Example"
+            },
             {
-              "type": "paragraph",
-              "text": "Example • insulin is synthesized and secreted by pancreatic beta cells, released into the blood and transported to cells all over the body. Insulin then stimulates its receptors on these cells to initiate a cascade of events leading to expression of glucose transporters to allow cells to take glucose in for energy utilization."
+              "type": "bullet",
+              "text": "insulin is synthesized and secreted by pancreatic beta cells, released into the blood and transported to cells all over the body. Insulin then stimulates its receptors on these cells to initiate a cascade of events leading to expression of glucose transporters to allow cells to take glucose in for energy utilization."
             },
             {
               "type": "paragraph",
               "text": "Signal Transduction Pathways are not always linear."
-            },
-            {
-              "type": "bullet",
-              "text": "Convergence • when signals from a variety of unrelated receptors can converge and activate common effectors."
-            },
-            {
-              "type": "bullet",
-              "text": "Divergence • when a signal from a single receptor can activate multiple effectors."
-            },
-            {
-              "type": "bullet",
-              "text": "12. Introduction to Signal Transduction 39"
             }
           ]
         },
         {
-          "title": "12. Introduction to Signal Transduction — Part 6",
+          "title": "Types of Signal Transduction (Continued 3)",
           "blocks": [
             {
               "type": "bullet",
-              "text": "Crosstalk • when different signals increase or decrease the production of other signals"
-            },
-            {
-              "type": "paragraph",
-              "text": "Effector • The eventual target of signaling. For example, the heart is an effector of norepinephrine released from nerve terminals."
-            },
-            {
-              "type": "paragraph",
-              "text": "Types of Signal Transducing Messengers"
+              "text": "Convergence"
             },
             {
               "type": "bullet",
+              "text": "when signals from a variety of unrelated receptors can converge and activate common effectors."
+            },
+            {
+              "type": "bullet",
+              "text": "Divergence"
+            },
+            {
+              "type": "bullet",
+              "text": "when a signal from a single receptor can activate multiple effectors."
+            },
+            {
+              "type": "paragraph",
+              "text": "12. Introduction to Signal Transduction 39"
+            },
+            {
+              "type": "bullet",
+              "text": "Crosstalk"
+            },
+            {
+              "type": "bullet",
+              "text": "when different signals increase or decrease the production of other signals"
+            },
+            {
+              "type": "paragraph",
+              "text": "Effector"
+            }
+          ]
+        },
+        {
+          "title": "Types of Signal Transduction (Continued 4)",
+          "blocks": [
+            {
+              "type": "bullet",
+              "text": "The eventual target of signaling. For example, the heart is an effector of norepinephrine released from nerve terminals."
+            }
+          ]
+        },
+        {
+          "title": "Types of Signal Transducing Messengers",
+          "blocks": [
+            {
+              "type": "paragraph",
               "text": "1. First Messengers •agonists(i.e. hormones, neurotransmitters, pharmacological agonists)"
             },
             {
+              "type": "paragraph",
+              "text": "2. Second Messengers"
+            },
+            {
               "type": "bullet",
-              "text": "2. Second Messengers • molecules that transmit signals received at receptors (i.e., cAMP, cGMP, DNA binding, ions)"
+              "text": "molecules that transmit signals received at receptors (i.e., cAMP, cGMP, DNA binding, ions)"
             }
           ]
         },
         {
-          "title": "12. Introduction to Signal Transduction — Part 7",
+          "title": "3. Third Messengers • (i.e., ions, protein kinases)",
           "blocks": [
             {
-              "type": "bullet",
-              "text": "3. Third Messengers • (i.e., ions, protein kinases)"
+              "type": "paragraph",
+              "text": "Types of Receptors"
             },
             {
-              "type": "bullet",
-              "text": "2. Signal Transduction Receptors"
+              "type": "paragraph",
+              "text": "1. Carriers (Transporters)"
+            }
+          ]
+        },
+        {
+          "title": "2. Signal Transduction Receptors",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "1. Enzyme-linked"
             },
+            {
+              "type": "paragraph",
+              "text": "2. G-protein-coupled"
+            },
+            {
+              "type": "paragraph",
+              "text": "3. Ligand-gated channels"
+            },
+            {
+              "type": "paragraph",
+              "text": "4. Intracellular"
+            }
+          ]
+        },
+        {
+          "title": "3. Enzymes",
+          "blocks": [
             {
               "type": "paragraph",
               "text": "Receptors Responsible for Signal Transduction"
@@ -1162,25 +1209,36 @@
               "text": "There are 4 Classes of Signal Transducing Receptors:"
             },
             {
+              "type": "paragraph",
+              "text": "1. Enzyme-Linked Receptors (Receptor Kinases)"
+            },
+            {
               "type": "bullet",
-              "text": "1. Enzyme-Linked Receptors (Receptor Kinases) • have intrinsic enzymatic activity or are associated with an intracellular enzyme"
-            }
-          ]
-        },
-        {
-          "title": "12. Introduction to Signal Transduction — Part 8",
-          "blocks": [
+              "text": "have intrinsic enzymatic activity or are associated with an intracellular enzyme"
+            },
             {
               "type": "paragraph",
-              "text": "2. GPCRs (G-Protein-Coupled Receptors) • couple to GTP binding proteins (G-proteins) inside the cell to activate them. Active G proteins modulate the activity of various ion channels and enzymes."
+              "text": "2. GPCRs (G-Protein-Coupled Receptors)"
             },
             {
               "type": "bullet",
-              "text": "3. Ligand-Gated Ion Channels • allow specific ions to flow into or out of the cell in response to binding of a chemical messenger"
+              "text": "couple to GTP binding proteins (G-proteins) inside the cell to activate them. Active G proteins modulate the activity of various ion channels and enzymes."
+            },
+            {
+              "type": "paragraph",
+              "text": "3. Ligand-Gated Ion Channels"
             },
             {
               "type": "bullet",
-              "text": "4. Intracellular Receptors (Cytoplasmic & Nuclear Receptors) • activation of these receptors located within a cell results in directly altered gene transcription"
+              "text": "allow specific ions to flow into or out of the cell in response to binding of a chemical messenger"
+            },
+            {
+              "type": "paragraph",
+              "text": "4. Intracellular Receptors (Cytoplasmic & Nuclear Receptors)"
+            },
+            {
+              "type": "bullet",
+              "text": "activation of these receptors located within a cell results in directly altered gene transcription"
             }
           ]
         }
@@ -1191,19 +1249,31 @@
       "slug": "ch-15",
       "title": "13. Enzyme-Linked Receptors",
       "pageRange": "pp. 47–52",
-      "excerpt": "Enzyme-Linked Receptors • have intrinsic enzymatic activity or are associated with an enzyme (usually a kinase) • play a role in apoptosis, cell differentiation, cell division, cel",
-      "wordCount": 1128,
+      "excerpt": "have intrinsic enzymatic activity or are associated with an enzyme (usually a kinase)",
+      "wordCount": 1079,
       "sections": [
         {
-          "title": "13. Enzyme-Linked Receptors — Part 1",
+          "title": "13. Enzyme-Linked Receptors",
           "blocks": [
             {
               "type": "paragraph",
-              "text": "Enzyme-Linked Receptors • have intrinsic enzymatic activity or are associated with an enzyme (usually a kinase) • play a role in apoptosis, cell differentiation, cell division, cell growth, immune response, inflammation, and tissue repair."
+              "text": "Enzyme-Linked Receptors"
+            },
+            {
+              "type": "bullet",
+              "text": "have intrinsic enzymatic activity or are associated with an enzyme (usually a kinase)"
+            },
+            {
+              "type": "bullet",
+              "text": "play a role in apoptosis, cell differentiation, cell division, cell growth, immune response, inflammation, and tissue repair."
             },
             {
               "type": "paragraph",
-              "text": "Kinases (Protein Kinases [PKs]) • enzymes that catalyze the phosphorylation of target molecules to cause their activation. In other words, they add a phosphate group to a molecule/protein/another kinase."
+              "text": "Kinases (Protein Kinases [PKs])"
+            },
+            {
+              "type": "bullet",
+              "text": "enzymes that catalyze the phosphorylation of target molecules to cause their activation. In other words, they add a phosphate group to a molecule/protein/another kinase."
             },
             {
               "type": "bullet",
@@ -1211,49 +1281,73 @@
             },
             {
               "type": "paragraph",
-              "text": "Phosphatases • enzymes that catalyze the dephosphorylation of target molecules. This dephosphorylation usually inactivates the target molecule (effector). Phosphatases act in opposition to kinases."
+              "text": "Phosphatases"
             },
+            {
+              "type": "bullet",
+              "text": "enzymes that catalyze the dephosphorylation of target molecules. This dephosphorylation usually inactivates the target molecule (effector). Phosphatases act in opposition to kinases."
+            }
+          ]
+        },
+        {
+          "title": "13. Enzyme-Linked Receptors (Continued 2)",
+          "blocks": [
             {
               "type": "paragraph",
               "text": "It is the balanced activity of kinases and phosphatases that results in effective, and fast, signaling events to allow for the desired biological effect and enable our bodies to maintain homeostasis."
+            },
+            {
+              "type": "paragraph",
+              "text": "Enzyme Linked Receptor Structure"
+            },
+            {
+              "type": "bullet",
+              "text": "composed of three key domains"
+            },
+            {
+              "type": "bullet",
+              "text": "Ligand-Binding Domain"
+            },
+            {
+              "type": "bullet",
+              "text": "often has a large EXTRACELLULAR ligand-binding domain allowing for easy access and activation to the receptor."
+            },
+            {
+              "type": "bullet",
+              "text": "Transmembrane Domain"
+            },
+            {
+              "type": "bullet",
+              "text": "composed of a series of hydrophobic amino acids (reminder: inner membrane is lipophilic/hydrophobic) that tethers the receptor to the cell membrane."
+            },
+            {
+              "type": "bullet",
+              "text": "Intracellular “Active Enzyme” Domain"
             }
           ]
         },
         {
-          "title": "13. Enzyme-Linked Receptors — Part 2",
+          "title": "13. Enzyme-Linked Receptors (Continued 3)",
           "blocks": [
             {
+              "type": "bullet",
+              "text": "either intrinsic to the receptor or"
+            },
+            {
               "type": "paragraph",
-              "text": "Enzyme Linked Receptor Structure • composed of three key domains"
+              "text": "42 Principles of Pharmacology - Study Guide tightly bound to the transmembrane domain. The majority of the “active enzyme” domains are kinases that phosphorylate the amino acids serine, threonine and tyrosine of proteins."
+            },
+            {
+              "type": "paragraph",
+              "text": "Example"
             },
             {
               "type": "bullet",
-              "text": "Ligand-Binding Domain • often has a large EXTRACELLULAR ligand-binding domain allowing for easy access and activation to the receptor."
+              "text": "Insulin Receptor"
             },
             {
               "type": "bullet",
-              "text": "Transmembrane Domain • composed of a series of hydrophobic amino acids (reminder: inner membrane is lipophilic/hydrophobic) that tethers the receptor to the cell membrane."
-            },
-            {
-              "type": "bullet",
-              "text": "Intracellular “Active Enzyme” Domain • either intrinsic to the receptor or"
-            },
-            {
-              "type": "paragraph",
-              "text": "42 Principles of Pharmacology - Study Guide"
-            }
-          ]
-        },
-        {
-          "title": "13. Enzyme-Linked Receptors — Part 3",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "tightly bound to the transmembrane domain. The majority of the “active enzyme” domains are kinases that phosphorylate the amino acids serine, threonine and tyrosine of proteins."
-            },
-            {
-              "type": "paragraph",
-              "text": "Example • Insulin Receptor • ligand is insulin, which stimulates carbohydrate (glucose) utilization and protein synthesis."
+              "text": "ligand is insulin, which stimulates carbohydrate (glucose) utilization and protein synthesis."
             },
             {
               "type": "paragraph",
@@ -1270,108 +1364,140 @@
           ]
         },
         {
-          "title": "13. Enzyme-Linked Receptors — Part 4",
+          "title": "13. Enzyme-Linked Receptors (Continued 4)",
           "blocks": [
             {
-              "type": "bullet",
+              "type": "paragraph",
               "text": "13. Enzyme-Linked Receptors 43"
             },
             {
               "type": "paragraph",
               "text": "Once activated, the insulin receptor leads to a cascade of events eventually resulting in expression of glucose transporters (GLUTs) on the surface of a cell to allow it to bring in glucose for energy utilization."
-            },
-            {
-              "type": "paragraph",
-              "text": "Signal Transduction by Enzyme-Linked Receptors"
-            },
-            {
-              "type": "bullet",
-              "text": "1. Ligand binding leads to dimerization of two neighboring receptors."
-            },
-            {
-              "type": "bullet",
-              "text": "2. Neighboring dimerized receptors auto phosphorylate one another"
             }
           ]
         },
         {
-          "title": "13. Enzyme-Linked Receptors — Part 5",
+          "title": "Signal Transduction by Enzyme-Linked Receptors",
           "blocks": [
             {
-              "type": "bullet",
+              "type": "paragraph",
+              "text": "1. Ligand binding leads to dimerization of two neighboring receptors."
+            },
+            {
+              "type": "paragraph",
+              "text": "2. Neighboring dimerized receptors auto phosphorylate one another"
+            },
+            {
+              "type": "paragraph",
               "text": "3. SH2-domain proteins bind to the phosphorylated receptors and are then phosphorylated enabling the continuation of the signal eventually leading to gene transcription."
             },
             {
-              "type": "paragraph",
-              "text": "• SH2-domain [Scr homology 2] • protein domain composed of about 100 amino acid residues. SH2-domains most commonly play a role in the signal transduction by receptor tyrosine kinase pathways as you will see later on in this section. They interact with specific target molecules (peptides) with a phosphorylated tyrosine residue."
+              "type": "bullet",
+              "text": "SH2-domain [Scr homology 2]"
             },
             {
-              "type": "paragraph",
-              "text": "3 Main Types of Enzyme-Linked Receptors •"
-            },
+              "type": "bullet",
+              "text": "protein domain composed of about 100 amino acid residues. SH2-domains most commonly play a role in the signal transduction by receptor tyrosine kinase pathways as you will see later on in this section. They interact with specific target molecules (peptides) with a phosphorylated tyrosine residue."
+            }
+          ]
+        },
+        {
+          "title": "3 Main Types of Enzyme-Linked Receptors •",
+          "blocks": [
             {
               "type": "paragraph",
               "text": "44 Principles of Pharmacology - Study Guide"
             },
             {
+              "type": "bullet",
+              "text": "Receptor Tyrosine Kinases [RTK]"
+            },
+            {
+              "type": "bullet",
+              "text": "make up the majority of enzyme-linked receptors. Signal transduction through RTK results in specific phosphorylation of tyrosine residues on target proteins and subsequent increase in gene transcription and regulation of cell growth, differentiation and survival."
+            },
+            {
+              "type": "bullet",
+              "text": "Serine/Threonine Kinases"
+            },
+            {
+              "type": "bullet",
+              "text": "specifically phosphorylate the hydroxyl side chains of serine or threonine amino acid residues. These kinases may have a role in cell proliferation, differentiation, apoptosis and even embryonic development."
+            },
+            {
+              "type": "bullet",
+              "text": "Tyrosine Kinase-Associated Receptors [“mixed”]"
+            },
+            {
+              "type": "bullet",
+              "text": "do not have a tyrosine kinase domain, rather act through cytoplasmic tyrosine kinases."
+            },
+            {
               "type": "paragraph",
-              "text": "• Receptor Tyrosine Kinases [RTK] • make up the majority of enzyme-linked receptors. Signal transduction through RTK results in specific phosphorylation of tyrosine residues on target proteins and subsequent increase in gene transcription and regulation of cell growth, differentiation and survival."
+              "text": "Receptor Tyrosine Kinases [RTK]"
             }
           ]
         },
         {
-          "title": "13. Enzyme-Linked Receptors — Part 6",
+          "title": "3 Main Types of Enzyme-Linked Receptors • (Continued 2)",
           "blocks": [
             {
-              "type": "paragraph",
-              "text": "• Serine/Threonine Kinases • specifically phosphorylate the hydroxyl side chains of serine or threonine amino acid residues. These kinases may have a role in cell proliferation, differentiation, apoptosis and even embryonic development."
+              "type": "bullet",
+              "text": "This class of receptors are also considered enzymes that have intrinsic enzymatic activity. When RTK agonists bind to these receptors, their intrinsic enzymatic activity is stimulated. RTKs bind growth factors to signal processes that result in the regulation of cell growth, differentiation and survival through gene transcription. Subclasses include:"
             },
             {
               "type": "bullet",
-              "text": "Tyrosine Kinase-Associated Receptors [“mixed”] • do not have a tyrosine kinase domain, rather act through cytoplasmic tyrosine kinases."
+              "text": "Epidermal Growth Factor Receptors [EGFR, ErbB1, HER1]"
             },
             {
-              "type": "paragraph",
-              "text": "Receptor Tyrosine Kinases [RTK] • This class of receptors are also considered enzymes that have intrinsic enzymatic activity. When RTK agonists bind to these receptors, their intrinsic enzymatic activity is stimulated. RTKs bind growth factors to signal processes that result in the regulation of cell growth, differentiation and survival through gene transcription. Subclasses include:"
+              "type": "bullet",
+              "text": "This RTK subclass is activated by epidermal growth factor resulting in cell division that leads to cell growth, proliferation and differentiation. These receptors are found in abnormally high levels on the surface of a number of types of cancer cells allowing these cells to multiply excessively."
             },
             {
-              "type": "paragraph",
-              "text": "• Epidermal Growth Factor Receptors [EGFR, ErbB1, HER1] • This RTK subclass is activated by epidermal growth factor resulting in cell division that leads to cell growth, proliferation and differentiation. These receptors are found in abnormally high levels on the surface of a number of types of cancer cells allowing these cells to multiply excessively."
+              "type": "bullet",
+              "text": "Nerve Growth Factor Receptors [NGF]"
             },
             {
-              "type": "paragraph",
-              "text": "• Nerve Growth Factor Receptors [NGF] • This RTK subclass is activated by nerve growth factors, more specifically neurotropins; a family of proteins involved with development, survival and function of neurons."
+              "type": "bullet",
+              "text": "This RTK subclass is activated by nerve growth factors, more specifically neurotropins; a family of proteins involved with development, survival and function of neurons."
+            },
+            {
+              "type": "bullet",
+              "text": "Insulin Receptors"
+            },
+            {
+              "type": "bullet",
+              "text": "This RTK subclass is activated by insulin resulting in expression of glucose transporters [GLUT] and allow cells to accumulate glucose from the blood."
+            },
+            {
+              "type": "bullet",
+              "text": "Toll Like Receptors [TLRs]"
             }
           ]
         },
         {
-          "title": "13. Enzyme-Linked Receptors — Part 7",
+          "title": "3 Main Types of Enzyme-Linked Receptors • (Continued 3)",
           "blocks": [
             {
               "type": "bullet",
-              "text": "Insulin Receptors • This RTK subclass is activated by insulin resulting in expression of glucose transporters [GLUT] and allow cells to accumulate glucose from the blood."
-            },
-            {
-              "type": "paragraph",
-              "text": "• Toll Like Receptors [TLRs]• This RTK subclass is activated by pathogen-derived molecules allowing the body to detect unwanted pathogens early on as well as sense “danger” signals leading to the eventual destruction of those pathogens."
+              "text": "This RTK subclass is activated by pathogen-derived molecules allowing the body to detect unwanted pathogens early on as well as sense “danger” signals leading to the eventual destruction of those pathogens."
             },
             {
               "type": "paragraph",
               "text": "When RTKs are activated by an agonist, they form cross-linked dimers resulting in the activation of the tyrosine kinase by phosphorylation. Remember, kinases specifically act to catalyze the phosphorylation of a target molecule, which in this case is a neighboring RTK. The dimerized RTKs phosphorylate each other multiple times to result in signal amplification. This process is known as cross-phosphorylation. RTK cross-phosphorylation then leads to the phosphorylation of other proteins that will eventually result in modulation of gene transcription."
             },
             {
-              "type": "bullet",
+              "type": "paragraph",
               "text": "13. Enzyme-Linked Receptors 45"
             },
             {
               "type": "paragraph",
-              "text": "Key Pathway • Ras/RAF/Mitogen-Activated Protein [MAP] Kinase Pathway"
-            }
-          ]
-        },
-        {
-          "title": "13. Enzyme-Linked Receptors — Part 8",
-          "blocks": [
+              "text": "Key Pathway"
+            },
+            {
+              "type": "bullet",
+              "text": "Ras/RAF/Mitogen-Activated Protein [MAP] Kinase Pathway"
+            },
             {
               "type": "paragraph",
               "text": "Ras = G-protein specific to this pathway RAF = proto-oncogene serine/threonine kinase"
@@ -1382,21 +1508,33 @@
             },
             {
               "type": "paragraph",
-              "text": "Ras • a small G protein (GTPase) involved in signal transduction leading to cell division and proliferation. If not regulated properly, Ras proteins can lead to uncontrolled cell division that eventually results in tumor formation."
-            },
-            {
-              "type": "paragraph",
-              "text": "RAF [Rapidly Accelerated Fibrosarcoma] • family of protein kinases that are involved with retroviral oncogenes (genes that can potentially cause cancer)."
-            },
-            {
-              "type": "paragraph",
-              "text": "Tyrosine-Kinase Associated Receptors • associate with intracellular proteins that have tyrosine kinase activity. These receptors lack the tyrosine kinase domain that was discussed earlier and, therefore, accomplish tyrosine phosphorylation by cytoplasmic tyrosine kinases instead."
+              "text": "Ras"
             }
           ]
         },
         {
-          "title": "13. Enzyme-Linked Receptors — Part 9",
+          "title": "3 Main Types of Enzyme-Linked Receptors • (Continued 4)",
           "blocks": [
+            {
+              "type": "bullet",
+              "text": "a small G protein (GTPase) involved in signal transduction leading to cell division and proliferation. If not regulated properly, Ras proteins can lead to uncontrolled cell division that eventually results in tumor formation."
+            },
+            {
+              "type": "paragraph",
+              "text": "RAF [Rapidly Accelerated Fibrosarcoma]"
+            },
+            {
+              "type": "bullet",
+              "text": "family of protein kinases that are involved with retroviral oncogenes (genes that can potentially cause cancer)."
+            },
+            {
+              "type": "paragraph",
+              "text": "Tyrosine-Kinase Associated Receptors"
+            },
+            {
+              "type": "bullet",
+              "text": "associate with intracellular proteins that have tyrosine kinase activity. These receptors lack the tyrosine kinase domain that was discussed earlier and, therefore, accomplish tyrosine phosphorylation by cytoplasmic tyrosine kinases instead."
+            },
             {
               "type": "paragraph",
               "text": "Cytokine receptors make up the largest family of receptors that relay signals into the cell by cytoplasmic tyrosine kinases. These particular receptors are associated with the cytoplasmic kinase, Jak (Janus kinase). Jak will go on to activate a gene regulatory protein called STAT (signal transducers and activators of transcription). The pathway is described and depicted below:"
@@ -1407,15 +1545,24 @@
             },
             {
               "type": "paragraph",
-              "text": "Key Pathway • Jak/Stat pathway (Janus kinase/signal transducers and activators of transcription) • The Jak/ Stat pathway is the principal pathway for cytokines and growth factors in humans. This pathway is activated by a number of cytokines (most commonly interferons) and growth factors. Activation stimulates cell proliferation, differentiation, migration and apoptosis. Furthermore, cytokines control the synthesis and release of a number of inflammatory mediators. When a cytokine binds to its enzyme-linked receptor it results in a conformational change leading to phosphorylation of the intracellular active-enzyme domain, eventually leading to the transcription of inflammatory mediators. As with all signal transduction mechanisms, homeostasis is reliant on proper regulation of all these different pathways. Lack of proper regulation of the JAK pathway can cause inflammatory disease, erythrocytosis, gigantism and leukemias."
+              "text": "Key Pathway"
+            }
+          ]
+        },
+        {
+          "title": "3 Main Types of Enzyme-Linked Receptors • (Continued 5)",
+          "blocks": [
+            {
+              "type": "bullet",
+              "text": "Jak/Stat pathway (Janus kinase/signal transducers and activators of transcription)"
+            },
+            {
+              "type": "bullet",
+              "text": "The Jak/ Stat pathway is the principal pathway for cytokines and growth factors in humans. This pathway is activated by a number of cytokines (most commonly interferons) and growth factors. Activation stimulates cell proliferation, differentiation, migration and apoptosis. Furthermore, cytokines control the synthesis and release of a number of inflammatory mediators. When a cytokine binds to its enzyme-linked receptor it results in a conformational change leading to phosphorylation of the intracellular active-enzyme domain, eventually leading to the transcription of inflammatory mediators. As with all signal transduction mechanisms, homeostasis is reliant on proper regulation of all these different pathways. Lack of proper regulation of the JAK pathway can cause inflammatory disease, erythrocytosis, gigantism and leukemias."
             },
             {
               "type": "paragraph",
               "text": "**For more information on enzyme-linked receptors, see this link below:"
-            },
-            {
-              "type": "paragraph",
-              "text": "https://www.ncbi.nlm.nih.gov/books/NBK26822/"
             }
           ]
         }
@@ -1427,10 +1574,10 @@
       "title": "15. Nuclear Receptors",
       "pageRange": "pp. 53–62",
       "excerpt": "Nuclear receptors are receptors located inside the cell. These receptors are found either in the cytoplasm (Type I) or the nucleus (Type II) of a cell. Examples include: estrogen, ",
-      "wordCount": 732,
+      "wordCount": 742,
       "sections": [
         {
-          "title": "15. Nuclear Receptors — Part 1",
+          "title": "15. Nuclear Receptors",
           "blocks": [
             {
               "type": "paragraph",
@@ -1438,7 +1585,11 @@
             },
             {
               "type": "bullet",
-              "text": "Type I • intracellular receptors located in the cytoplasm of a cell. These receptors are translocated to the nucleus after stimulation by an agonist."
+              "text": "Type I"
+            },
+            {
+              "type": "bullet",
+              "text": "intracellular receptors located in the cytoplasm of a cell. These receptors are translocated to the nucleus after stimulation by an agonist."
             },
             {
               "type": "bullet",
@@ -1446,20 +1597,32 @@
             },
             {
               "type": "bullet",
-              "text": "Type II • intracellular receptors located in the nucleus of a cell, even in the absence of agonists."
+              "text": "Type II"
             },
             {
               "type": "bullet",
-              "text": "Examples • peroxidsome proliferator [PPAR a,ß,g, sigma], retinoic acid [RAR a,ß,g], thyroid receptors [TR a,ß]."
+              "text": "intracellular receptors located in the nucleus of a cell, even in the absence of agonists."
+            },
+            {
+              "type": "bullet",
+              "text": "Examples"
+            },
+            {
+              "type": "bullet",
+              "text": "peroxidsome proliferator [PPAR a,ß,g, sigma], retinoic acid [RAR a,ß,g], thyroid receptors [TR a,ß]."
             }
           ]
         },
         {
-          "title": "15. Nuclear Receptors — Part 2",
+          "title": "15. Nuclear Receptors (Continued 2)",
           "blocks": [
             {
               "type": "paragraph",
-              "text": "Nuclear Receptors • a subtype (Type II) of intracellular receptors that directly alter gene transcription. Nuclear receptors [NR] are a superfamily of transcription factors. They are modulated by and bind small lipophilic molecules (partial or mixed agonists) with low affinity. Some NRs do not have a known ligand at this point in time and are therefore known as Orphan Receptors."
+              "text": "Nuclear Receptors"
+            },
+            {
+              "type": "bullet",
+              "text": "a subtype (Type II) of intracellular receptors that directly alter gene transcription. Nuclear receptors [NR] are a superfamily of transcription factors. They are modulated by and bind small lipophilic molecules (partial or mixed agonists) with low affinity. Some NRs do not have a known ligand at this point in time and are therefore known as Orphan Receptors."
             },
             {
               "type": "paragraph",
@@ -1467,78 +1630,132 @@
             },
             {
               "type": "paragraph",
-              "text": "Structure • monomeric proteins with similar general structure"
+              "text": "Structure"
             },
             {
-              "type": "paragraph",
-              "text": "• N-terminal Domain • Activation function 1 [AF1] site binds other transcription factors to modify the binding or activity of the receptor itself. These transcription factors are specific to a given cell."
+              "type": "bullet",
+              "text": "monomeric proteins with similar general structure"
             },
             {
-              "type": "paragraph",
-              "text": "• Core Domain • It is at this domain that DNA recognition and binding of hormone response elements [HREs] occur. The domain is made of two zinc fingers (cysteine/histidine rich loops in the amino acid chain that are held in a particular conformation by zinc ions)."
+              "type": "bullet",
+              "text": "N-terminal Domain"
+            },
+            {
+              "type": "bullet",
+              "text": "Activation function 1 [AF1] site binds other transcription factors to modify the binding or activity of the receptor itself. These transcription factors are specific to a given cell."
+            },
+            {
+              "type": "bullet",
+              "text": "Core Domain"
             }
           ]
         },
         {
-          "title": "15. Nuclear Receptors — Part 3",
+          "title": "15. Nuclear Receptors (Continued 3)",
           "blocks": [
             {
               "type": "bullet",
-              "text": "o HREs • portion of gene regulated by NRs that also result in receptor dimerization."
+              "text": "It is at this domain that DNA recognition and binding of hormone response elements [HREs] occur. The domain is made of two zinc fingers (cysteine/histidine rich loops in the amino acid chain that are held in a particular conformation by zinc ions)."
+            },
+            {
+              "type": "bullet",
+              "text": "o HREs"
+            },
+            {
+              "type": "bullet",
+              "text": "portion of gene regulated by NRs that also result in receptor dimerization."
             },
             {
               "type": "paragraph",
               "text": "There are a number of nuclear receptors that produce a wide range of physiological functions. These receptors and their resultant functions will be discussed throughout the curriculum."
+            }
+          ]
+        },
+        {
+          "title": "Type I Nuclear Receptors",
+          "blocks": [
+            {
+              "type": "bullet",
+              "text": "Androgen Receptors [AR] Endogenous AR agonists include testosterone and dihydrotestosterone [DHT]. These ligands bind AR in the cytosol of a cell and then translocate to the nucleus in order to alter transcription leading to protein synthesis, cell growth, formation of gonads, development of secondary sex characteristics and more."
             },
             {
-              "type": "paragraph",
-              "text": "• Androgen Receptors [AR] Endogenous AR agonists include testosterone and dihydrotestosterone [DHT]. These ligands bind AR in the cytosol of a cell and then translocate to the nucleus in order to alter transcription leading to protein synthesis, cell growth, formation of gonads, development of secondary sex characteristics and more."
-            },
-            {
-              "type": "paragraph",
-              "text": "• Glucocorticoid Receptors [GR] Cortisol is one of the most a common pharmaceutical targets as a endogenous GR agonist. Cortisol and other glucocorticoid hormones are stress hormones essential to maintaining homeostasis for a number of physiological processes such as metabolism, immune function, skeletal growth, cardiovascular function, reproduction and cognition. Upon binding, GR agonists can result in either activation or repression of transcription (depending on the particular isoform). For more details, see the link below:https://www.ncbi.nlm.nih.gov/pmc/articles/ PMC4084612/"
+              "type": "bullet",
+              "text": "Glucocorticoid Receptors [GR] Cortisol is one of the most a common pharmaceutical targets as a endogenous GR agonist. Cortisol and other glucocorticoid hormones are stress hormones essential to maintaining homeostasis for a number of physiological processes such as metabolism, immune function, skeletal growth, cardiovascular function, reproduction and cognition. Upon binding, GR agonists can result in either activation or repression of transcription (depending on the particular isoform). For more details, see the link below:https://www.ncbi.nlm.nih.gov/pmc/articles/ PMC4084612/"
             },
             {
               "type": "bullet",
               "text": "Progesterone Receptors [PR] Upon binding PR in the cytosol, progesterone results in activation of transcription affecting a number of biological processes"
+            },
+            {
+              "type": "paragraph",
+              "text": "15. Nuclear Receptors 49 including the menstrual cycle."
             }
           ]
         },
         {
-          "title": "15. Nuclear Receptors — Part 4",
+          "title": "Type II Nuclear Receptors",
           "blocks": [
             {
-              "type": "paragraph",
-              "text": "including the menstrual cycle."
+              "type": "bullet",
+              "text": "Peroxisome Proliferator-Activated Receptor Alpha Receptors [PPAR]. Upon stimulation, these receptors lead to an increase in lipoprotein lipase (an enzyme that catalyzes the breakdown of lipoproteins) resulting in decreased hepatic triglyceride [TG] production. Fibrates, a drug class that targets these receptors, are PPARa agonists. Their primary action is to decrease TG blood levels, however, they also help increase HDL (“good fat”), lower LDL (“bad fat”), improving a patient’s lipid profile and providing improved cardiovascular protection."
             },
             {
               "type": "paragraph",
-              "text": "• Peroxisome Proliferator-Activated Receptor Alpha Receptors [PPAR]. Upon stimulation, these receptors lead to an increase in lipoprotein lipase (an enzyme that catalyzes the breakdown of lipoproteins) resulting in decreased hepatic triglyceride [TG] production. Fibrates, a drug class that targets these receptors, are PPARa agonists. Their primary action is to decrease TG blood levels, however, they also help increase HDL (“good fat”), lower LDL (“bad fat”), improving a patient’s lipid profile and providing improved cardiovascular protection."
+              "text": "RXR"
+            },
+            {
+              "type": "bullet",
+              "text": "Retinoid X Receptor"
             },
             {
               "type": "paragraph",
-              "text": "PPRE • Peroxisome Proliferator Response Element"
+              "text": "PPRE"
+            },
+            {
+              "type": "bullet",
+              "text": "Peroxisome Proliferator Response Element"
+            },
+            {
+              "type": "bullet",
+              "text": "Thyroid Hormone Receptors [THR a,ß] Upon stimulation, these receptors play a role in the rate of metabolism, neural development and cholesterol metabolism. Hypothyroidism, reduced TR stimulation, leads to slowed metabolism and presents as general fatigue and lethargy, weight gain, slowed heart rate, feeling cold and more. Conversely, hyperthyroidism, increases TR stimulation, leads to increased metabolism and presents as weight loss, increased heart rate, feeling hot and more. Nuclear Receptor-mediated transcriptional regulation can be"
             },
             {
               "type": "paragraph",
-              "text": "• Thyroid Hormone Receptors [THR a,ß] Upon stimulation, these receptors play a role in the rate of metabolism, neural development and cholesterol metabolism. Hypothyroidism, reduced TR stimulation, leads to slowed metabolism and presents as general fatigue and lethargy, weight gain, slowed heart rate, feeling cold and more. Conversely, hyperthyroidism, increases TR stimulation, leads to increased metabolism and presents as weight loss, increased heart rate, feeling hot and more. Nuclear Receptor-mediated transcriptional regulation can be"
+              "text": "50 Principles of Pharmacology - Study Guide modulated by several signaling pathways; this is a great example of convergence. Convergence is when multiple pathways lead to the same effect and in the case of nuclear receptors the effect is transcription. These pathways can be initiated by either both external and internal signals involving GPCRs, ion channels, TRKs as well as several other receptors."
             },
             {
               "type": "paragraph",
-              "text": "50 Principles of Pharmacology - Study Guide"
+              "text": "15. Nuclear Receptors 51"
             }
           ]
         },
         {
-          "title": "15. Nuclear Receptors — Part 5",
+          "title": "Overview of Receptor Types",
           "blocks": [
-            {
-              "type": "paragraph",
-              "text": "modulated by several signaling pathways; this is a great example of convergence. Convergence is when multiple pathways lead to the same effect and in the case of nuclear receptors the effect is transcription. These pathways can be initiated by either both external and internal signals involving GPCRs, ion channels, TRKs as well as several other receptors."
-            },
             {
               "type": "paragraph",
               "text": "52 Principles of Pharmacology - Study Guide"
+            },
+            {
+              "type": "subheading",
+              "text": "Enzyme-Linked Receptors G"
+            },
+            {
+              "type": "paragraph",
+              "text": "Location cell membrane c"
+            },
+            {
+              "type": "paragraph",
+              "text": "Effector protein kinases c"
+            }
+          ]
+        },
+        {
+          "title": "Coupling",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "15. Nuclear Receptors 53"
             },
             {
               "type": "paragraph",
@@ -1550,13 +1767,12 @@
             },
             {
               "type": "paragraph",
+              "text": "15. Nuclear Receptors 55"
+            },
+            {
+              "type": "paragraph",
               "text": "Hormones bind to a receptor dimer to result in activation."
-            }
-          ]
-        },
-        {
-          "title": "15. Nuclear Receptors — Part 6",
-          "blocks": [
+            },
             {
               "type": "paragraph",
               "text": "Examples insulin, growth factors, cytokine receptors m"
@@ -1570,90 +1786,180 @@
       "slug": "ch-17",
       "title": "16. Receptor Regulation",
       "pageRange": "pp. 63–70",
-      "excerpt": "• Intrinsic Regulation • receptors initiate regulation of a variety of events and are themselves subject to regulatory and homeostatic controls.",
-      "wordCount": 1342,
+      "excerpt": "receptors initiate regulation of a variety of events and are themselves subject to regulatory and homeostatic controls.",
+      "wordCount": 1328,
       "sections": [
         {
-          "title": "16. Receptor Regulation — Part 1",
+          "title": "Overview",
           "blocks": [
             {
               "type": "bullet",
-              "text": "Intrinsic Regulation • receptors initiate regulation of a variety of events and are themselves subject to regulatory and homeostatic controls."
+              "text": "Intrinsic Regulation"
             },
             {
               "type": "bullet",
-              "text": "Disease States • disease states can alter the number, function, and/or activity of receptors."
+              "text": "receptors initiate regulation of a variety of events and are themselves subject to regulatory and homeostatic controls."
             },
             {
               "type": "bullet",
-              "text": "Drugs • drugs can act as agonist, antagonists and allosteric modulators all of which can alter receptor function and number."
+              "text": "Disease States"
+            },
+            {
+              "type": "bullet",
+              "text": "disease states can alter the number, function, and/or activity of receptors."
+            },
+            {
+              "type": "bullet",
+              "text": "Drugs"
+            },
+            {
+              "type": "bullet",
+              "text": "drugs can act as agonist, antagonists and allosteric modulators all of which can alter receptor function and number."
             },
             {
               "type": "paragraph",
-              "text": "Intrinsic Regulation • receptors are subject to regulation and homeostatic control. Left unregulated, receptors may be over stimulated, which may lead to pathological changes, including apoptosis. Therefore, regulation helps protect cells. There are times when an increased response is needed and others when a decreased response is preferred."
+              "text": "Intrinsic Regulation"
             },
             {
               "type": "paragraph",
-              "text": "Cellular mechanisms of Increased Response"
+              "text": "Intrinsic Regulation"
+            },
+            {
+              "type": "bullet",
+              "text": "receptors are subject to regulation and homeostatic control. Left unregulated, receptors may be over stimulated, which may lead to pathological changes, including apoptosis. Therefore, regulation helps protect cells. There are times when an increased response is needed and others when a decreased response is preferred."
             }
           ]
         },
         {
-          "title": "16. Receptor Regulation — Part 2",
+          "title": "Cellular mechanisms of Increased Response",
           "blocks": [
             {
-              "type": "paragraph",
-              "text": "Super/Hypersensitivity • Super or hypersensitivity refers to an enhanced response to an agonist. Hypersensitivity may occur as a result of unmasking of receptors or accentuation of signal amplification."
+              "type": "bullet",
+              "text": "Super/Hyper Sensitivity"
+            },
+            {
+              "type": "bullet",
+              "text": "Synergism"
+            },
+            {
+              "type": "bullet",
+              "text": "Upregulation"
             },
             {
               "type": "paragraph",
-              "text": "• Unmasking of Receptors • some receptors have a masking protein covering the intracellular portion of a receptor, like the GPCR seen below for example. This masking protein prevents signal transduction and leads to decreased activity. When a masking protein in removed, activity increases."
+              "text": "Super/Hypersensitivity"
+            },
+            {
+              "type": "bullet",
+              "text": "Super or hypersensitivity refers to an enhanced response to an agonist. Hypersensitivity may occur as a result of unmasking of receptors or accentuation of signal amplification."
+            },
+            {
+              "type": "bullet",
+              "text": "Unmasking of Receptors"
+            },
+            {
+              "type": "bullet",
+              "text": "some receptors have a masking protein covering the intracellular portion of a receptor, like the GPCR seen below for example. This masking protein prevents signal transduction and leads to decreased activity. When a masking protein in removed, activity increases."
             },
             {
               "type": "paragraph",
               "text": "58 Principles of Pharmacology - Study Guide"
-            },
-            {
-              "type": "paragraph",
-              "text": "• Accentuation of Signal Amplification • this may occur with an increase in receptor phosphorylation or increased enzymatic activity. As was discussed earlier, phosphorylation can lead to the activation of a chain of second messengers and signal amplification. Therefore, as phosphorylation increases, so does signal transduction and amplification. Likewise, there are enzymes that catalyze components in a signal transduction pathway leading to increased signal transduction and amplification as well.The image below shows how signal amplification can be initiated by a single molecule. This particular example leads to the activation of protein kinases, which goes on to phosphorylate specific target molecules. As the signal is amplified, so is the amount of phosphorylation leading to an accentuation of signal amplification. If these kinases are not balanced by phosphatases, enzymes that reverse phosphorylation, phosphorylation can predominate and lead to further accentuation of the original signal."
-            },
-            {
-              "type": "paragraph",
-              "text": "Synergism • when two receptors produce a combined effect that is greater than the sum of their individual effect."
             }
           ]
         },
         {
-          "title": "16. Receptor Regulation — Part 3",
+          "title": "Cellular mechanisms of Increased Response (Continued 2)",
           "blocks": [
             {
+              "type": "bullet",
+              "text": "Accentuation of Signal Amplification"
+            },
+            {
+              "type": "bullet",
+              "text": "this may occur with an increase in receptor phosphorylation or increased enzymatic activity. As was discussed earlier, phosphorylation can lead to the activation of a chain of second messengers and signal amplification. Therefore, as phosphorylation increases, so does signal transduction and amplification. Likewise, there are enzymes that catalyze components in a signal transduction pathway leading to increased signal transduction and amplification as well.The image below shows how signal amplification can be initiated by a single molecule. This particular example leads to the activation of protein kinases, which goes on to phosphorylate specific target molecules. As the signal is amplified, so is the amount of phosphorylation leading to an accentuation of signal amplification. If these kinases are not balanced by phosphatases, enzymes that reverse phosphorylation, phosphorylation can predominate and lead to further accentuation of the original signal."
+            },
+            {
               "type": "paragraph",
-              "text": "Example • Glucocorticoids stimulate glucocorticoid receptors [GR], a type of nuclear receptor, resulting in increased erythroid cell (series of cell leading to red blood cells) production. When peroxisome proliferatoractivated receptor alpha [PPARa] and GRs are stimulated simultaneously by their respective agonists, the resultant erythroid cell production is greater than the sum of production by each receptor individually. Together, PPARa and GR stimulation result in an enhanced response."
+              "text": "16. Receptor Regulation 59"
+            },
+            {
+              "type": "paragraph",
+              "text": "Synergism"
+            },
+            {
+              "type": "bullet",
+              "text": "when two receptors produce a combined effect that is greater than the sum of their individual effect."
+            },
+            {
+              "type": "paragraph",
+              "text": "Example"
+            },
+            {
+              "type": "bullet",
+              "text": "Glucocorticoids stimulate glucocorticoid receptors [GR], a type of nuclear receptor, resulting in increased erythroid cell (series of cell leading to red blood cells) production. When peroxisome proliferatoractivated receptor alpha [PPARa] and GRs are stimulated simultaneously by their respective agonists, the resultant erythroid cell production is greater than the sum of production by each receptor individually. Together, PPARa and GR stimulation result in an enhanced response."
             },
             {
               "type": "paragraph",
               "text": "60 Principles of Pharmacology - Study Guide"
-            },
-            {
-              "type": "paragraph",
-              "text": "Upregulation • Upregulation refers to an increase in the number of receptors due to prolonged deprivation of receptors of interacting with their physiological neurotransmitter (e.g. by denervation of chronic use of a receptor antagonist). By expressing more receptors, there is a greater probability that a hormone will bump into and stimulate its receptor."
-            },
-            {
-              "type": "paragraph",
-              "text": "Cellular mechanisms of Decreased Response"
-            },
-            {
-              "type": "paragraph",
-              "text": "Desensitization • Desensitization refers to a reduced response to an agonist drug due to over activation of a receptor (high doses, prolonged exposure to agonist). There is a number of mechanisms of desensitization including: loss of receptor function through a decrease in receptor-coupled signaling components (e.g., Gproteins). Receptor desensitization may occur in the absence of significant changes in the number of receptors."
             }
           ]
         },
         {
-          "title": "16. Receptor Regulation — Part 4",
+          "title": "Cellular mechanisms of Increased Response (Continued 3)",
           "blocks": [
             {
               "type": "paragraph",
-              "text": "This example here demonstrates loss of receptor function; one of several types of desensitization. As you can see on the far right, the agonist is bound to the receptor, however, this does not result in the channel opening. Downregulation • Downregulation specifically refers to a reduction in the total number of receptors available to be stimulated due to prolonged receptor activation (e.g. by chronic treatment with a pharmacological agonist drug or prolonged inhibition of metabolism of a neurotransmitter). This reduction in receptors in turn will decrease the cell’s sensitivity to an agonist or drug. Downregulation occurs through endocytosis. Internalized receptors may either be degraded in the lysosomes or recycled back to the membrane surface later."
+              "text": "Upregulation"
+            },
+            {
+              "type": "bullet",
+              "text": "Upregulation refers to an increase in the number of receptors due to prolonged deprivation of receptors of interacting with their physiological neurotransmitter (e.g. by denervation of chronic use of a receptor antagonist). By expressing more receptors, there is a greater probability that a hormone will bump into and stimulate its receptor."
+            }
+          ]
+        },
+        {
+          "title": "Cellular mechanisms of Decreased Response",
+          "blocks": [
+            {
+              "type": "bullet",
+              "text": "Desensitization"
+            },
+            {
+              "type": "bullet",
+              "text": "Downregulation"
+            },
+            {
+              "type": "bullet",
+              "text": "Tachyphylaxis"
+            },
+            {
+              "type": "bullet",
+              "text": "Tolerance"
+            },
+            {
+              "type": "paragraph",
+              "text": "Desensitization"
+            },
+            {
+              "type": "bullet",
+              "text": "Desensitization refers to a reduced response to an agonist drug due to over activation of a receptor (high doses, prolonged exposure to agonist). There is a number of mechanisms of desensitization including: loss of receptor function through a decrease in receptor-coupled signaling components (e.g., Gproteins). Receptor desensitization may occur in the absence of significant changes in the number of receptors."
+            },
+            {
+              "type": "paragraph",
+              "text": "16. Receptor Regulation 61"
+            },
+            {
+              "type": "paragraph",
+              "text": "This example here demonstrates loss of receptor function; one of several types of desensitization. As you can see on the far right, the agonist is bound to the receptor, however, this does not result in the channel opening. Downregulation"
+            }
+          ]
+        },
+        {
+          "title": "Cellular mechanisms of Decreased Response (Continued 2)",
+          "blocks": [
+            {
+              "type": "bullet",
+              "text": "Downregulation specifically refers to a reduction in the total number of receptors available to be stimulated due to prolonged receptor activation (e.g. by chronic treatment with a pharmacological agonist drug or prolonged inhibition of metabolism of a neurotransmitter). This reduction in receptors in turn will decrease the cell’s sensitivity to an agonist or drug. Downregulation occurs through endocytosis. Internalized receptors may either be degraded in the lysosomes or recycled back to the membrane surface later."
             },
             {
               "type": "paragraph",
@@ -1665,24 +1971,36 @@
             },
             {
               "type": "paragraph",
-              "text": "Tachyphylaxis • Tachyphylaxis is a rapid decrease in response to an agonist drug following repeated administration within a brief period; an acute form of desensitization. This can occur without a change in the number of receptors or the ability of a receptor to affect the downstream signaling molecules. Increasing the dose of the drug will not improve the response."
+              "text": "Tachyphylaxis"
+            },
+            {
+              "type": "bullet",
+              "text": "Tachyphylaxis is a rapid decrease in response to an agonist drug following repeated administration within a brief period; an acute form of desensitization. This can occur without a change in the number of receptors or the ability of a receptor to affect the downstream signaling molecules. Increasing the dose of the drug will not improve the response."
             },
             {
               "type": "paragraph",
-              "text": "Tolerance • Tolerance refers to a gradual decreased response to a drug, requiring a higher dose of drug to achieve the same initial response. Tolerance is different from tachyphylaxis because it develops over a long period of time, whereas, tachyphylaxis is an acute event. In addition, tolerance can be overcome by increasing the dose, unlike tachyphylaxis."
+              "text": "16. Receptor Regulation 63"
+            },
+            {
+              "type": "paragraph",
+              "text": "Tolerance"
+            },
+            {
+              "type": "bullet",
+              "text": "Tolerance refers to a gradual decreased response to a drug, requiring a higher dose of drug to achieve the same initial response. Tolerance is different from tachyphylaxis because it develops over a long period of time, whereas, tachyphylaxis is an acute event. In addition, tolerance can be overcome by increasing the dose, unlike tachyphylaxis."
             }
           ]
         },
         {
-          "title": "16. Receptor Regulation — Part 5",
+          "title": "Cellular mechanisms of Decreased Response (Continued 3)",
           "blocks": [
             {
               "type": "paragraph",
-              "text": "Example • A great example of tolerance is in the story of Brett Favre, a Hall of Fame quarterback who played for the Green Bay Packers 1991-2010. In the midst of his career he developed an addiction to Vicodin (an analgesic medication that contains hydrocodone, an agonist of opiate receptors). He started taking two tablets to treat his sports-related injuries/pain and eventually worked his way up to 15 tablets due to a development of tolerance to Vicodin. At his worst, he was taking 14-days’ worth of Vicodin each day in order to achieve the same effect he originally had with 2 tablets, which contributed to his streak of 297 consecutive games played; currently the longest streak in NFL history by 27 games. You may read more about it at the link below:"
+              "text": "Example"
             },
             {
-              "type": "paragraph",
-              "text": "http://www.cbssports.com/nfl/news/brett-favre-says-he-used-to-take-a-months-worth-of-painkillers-in-two-days/"
+              "type": "bullet",
+              "text": "A great example of tolerance is in the story of Brett Favre, a Hall of Fame quarterback who played for the Green Bay Packers 1991-2010. In the midst of his career he developed an addiction to Vicodin (an analgesic medication that contains hydrocodone, an agonist of opiate receptors). He started taking two tablets to treat his sports-related injuries/pain and eventually worked his way up to 15 tablets due to a development of tolerance to Vicodin. At his worst, he was taking 14-days’ worth of Vicodin each day in order to achieve the same effect he originally had with 2 tablets, which contributed to his streak of 297 consecutive games played; currently the longest streak in NFL history by 27 games. You may read more about it at the link below:"
             },
             {
               "type": "paragraph",
@@ -1691,16 +2009,16 @@
             {
               "type": "paragraph",
               "text": "Disease states may alter the number of available receptors, which can alter the sensitivity and response of a given cell or tissue. Disease states may therefore alter the actual function or activity of those receptors; either through loss or gain of function."
-            },
-            {
-              "type": "paragraph",
-              "text": "Myasthenia Gravis is an autoimmune disorder in which antibodies destroy nicotinic acetylcholine receptors [nAChR] located in skeletal muscle. nAChRs help communicate signals resulting in muscle contraction. Thus, Myasthenia Gravis causes muscle weakness, droopy eyes and even difficulty in swallowing."
             }
           ]
         },
         {
-          "title": "16. Receptor Regulation — Part 6",
+          "title": "Example • Loss of Receptors",
           "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Myasthenia Gravis is an autoimmune disorder in which antibodies destroy nicotinic acetylcholine receptors [nAChR] located in skeletal muscle. nAChRs help communicate signals resulting in muscle contraction. Thus, Myasthenia Gravis causes muscle weakness, droopy eyes and even difficulty in swallowing."
+            },
             {
               "type": "paragraph",
               "text": "64 Principles of Pharmacology - Study Guide"
@@ -1711,7 +2029,15 @@
             },
             {
               "type": "paragraph",
-              "text": "Example • Loss of Function • Androgen Receptors [AR]"
+              "text": "Example"
+            },
+            {
+              "type": "bullet",
+              "text": "Loss of Function"
+            },
+            {
+              "type": "bullet",
+              "text": "Androgen Receptors [AR]"
             },
             {
               "type": "paragraph",
@@ -1724,19 +2050,31 @@
           ]
         },
         {
-          "title": "16. Receptor Regulation — Part 7",
+          "title": "Example • Loss of Receptors (Continued 2)",
           "blocks": [
             {
               "type": "paragraph",
-              "text": "Example • Gain-of-Function •A number of endocrine diseases are caused by gain-of-function mutations of GPCRs."
+              "text": "Example"
+            },
+            {
+              "type": "bullet",
+              "text": "Gain-of-Function •A number of endocrine diseases are caused by gain-of-function mutations of GPCRs."
             },
             {
               "type": "paragraph",
-              "text": "Type 2 Diabetes Mellitus [DM2] • DM2 can be associated with a gain-of-function mutation, resulting in increased expression of the a2A-adrenergic receptor; a GPCR that prevents or suppresses the secretion of insulin. As you can imagine, a patient with this gain-of-function mutation will have elevated blood glucose, potentially leading to type II diabetes mellitus."
+              "text": "Type 2 Diabetes Mellitus [DM2]"
+            },
+            {
+              "type": "bullet",
+              "text": "DM2 can be associated with a gain-of-function mutation, resulting in increased expression of the a2A-adrenergic receptor; a GPCR that prevents or suppresses the secretion of insulin. As you can imagine, a patient with this gain-of-function mutation will have elevated blood glucose, potentially leading to type II diabetes mellitus."
             },
             {
               "type": "paragraph",
-              "text": "Familial Hypocalcemia Hypocalciuria • This disease involves a gain-of-function mutation of the calcium-sensing receptor [CaSR]; a GPCR that allows the body to monitor and regulate the amount of calcium in the blood. This gain-of-function leads to increased sensitivity to calcium. Because CaSR maintains calcium homeostasis, its exaggerated response to calcium tells the body to excrete more calcium. This leads to decreased calcium levels in the blood (hypocalcemia) by suppressing the secretion of parathyroid hormone and increased renal excretion of calcium (hypercalciuria)."
+              "text": "Familial Hypocalcemia Hypocalciuria"
+            },
+            {
+              "type": "bullet",
+              "text": "This disease involves a gain-of-function mutation of the calcium-sensing receptor [CaSR]; a GPCR that allows the body to monitor and regulate the amount of calcium in the blood. This gain-of-function leads to increased sensitivity to calcium. Because CaSR maintains calcium homeostasis, its exaggerated response to calcium tells the body to excrete more calcium. This leads to decreased calcium levels in the blood (hypocalcemia) by suppressing the secretion of parathyroid hormone and increased renal excretion of calcium (hypercalciuria)."
             }
           ]
         }
@@ -1748,10 +2086,10 @@
       "title": "17. Ion Channels",
       "pageRange": "pp. 71–80",
       "excerpt": "pore-forming membrane proteins that allow ions to pass through a channel pore",
-      "wordCount": 1446,
+      "wordCount": 1438,
       "sections": [
         {
-          "title": "17. Ion Channels — Part 1",
+          "title": "17. Ion Channels",
           "blocks": [
             {
               "type": "paragraph",
@@ -1772,23 +2110,31 @@
             {
               "type": "bullet",
               "text": "Ion channels that open and close in response to changes in membrane potential"
-            }
-          ]
-        },
-        {
-          "title": "17. Ion Channels — Part 2",
-          "blocks": [
+            },
             {
               "type": "paragraph",
               "text": "66 Principles of Pharmacology - Study Guide"
             },
             {
               "type": "paragraph",
-              "text": "Ligand-Gated Ion Channels – allow ions to flow into or out of the cell in response to the binding of a chemical messenger to their respective receptors."
+              "text": "Ligand-Gated Ion Channels"
             },
+            {
+              "type": "paragraph",
+              "text": "Ligand-Gated Ion Channels – allow ions to flow into or out of the cell in response to the binding of a chemical messenger to their respective receptors."
+            }
+          ]
+        },
+        {
+          "title": "17. Ion Channels (Continued 2)",
+          "blocks": [
             {
               "type": "bullet",
               "text": "Acetylcholine Receptors (nicotinic)"
+            },
+            {
+              "type": "bullet",
+              "text": "GABAA Receptors"
             },
             {
               "type": "bullet",
@@ -1797,20 +2143,20 @@
             {
               "type": "paragraph",
               "text": "Receptor Stimulation – Ligand binds to the receptor –>> causes receptor conformational change –>> channel opens allowing SPECIFIC ions to pass through."
+            },
+            {
+              "type": "paragraph",
+              "text": "17. Ion Channels 67"
+            },
+            {
+              "type": "paragraph",
+              "text": "IONOTROPIC vs METABOTROPIC Receptors"
             }
           ]
         },
         {
-          "title": "17. Ion Channels — Part 3",
+          "title": "Ionotropic Receptor Metabotropic Receptor",
           "blocks": [
-            {
-              "type": "paragraph",
-              "text": "IONOTROPIC vs METABOTROPIC Receptors"
-            },
-            {
-              "type": "paragraph",
-              "text": "Ionotropic Receptor Metabotropic Receptor"
-            },
             {
               "type": "paragraph",
               "text": "Receptor Type ligand-gated transmembrane protein ligand-gated transmembrane protein"
@@ -1826,11 +2172,15 @@
           ]
         },
         {
-          "title": "17. Ion Channels — Part 4",
+          "title": "Result of Ligand Binding",
           "blocks": [
             {
               "type": "paragraph",
               "text": "ligand directly opens ion channel ligand activates G-protein leading to a cascade of events that may eventually result in opening an ion channel"
+            },
+            {
+              "type": "paragraph",
+              "text": "ACETYLCHOLINE RECEPTORS"
             },
             {
               "type": "paragraph",
@@ -1847,12 +2197,7 @@
             {
               "type": "paragraph",
               "text": "68 Principles of Pharmacology - Study Guide"
-            }
-          ]
-        },
-        {
-          "title": "17. Ion Channels — Part 5",
-          "blocks": [
+            },
             {
               "type": "paragraph",
               "text": "Muscarinic Acetylcholine Receptors [mAChRs] – mAChRs are G protein coupled receptors [GPCRs] and, therefore, will not be discussed in detail in this section."
@@ -1860,6 +2205,15 @@
             {
               "type": "paragraph",
               "text": "nAChR Synapse – nAChRs are found in neuromuscular and ganglionic synapses. Reminder – a synapse is the gap through which electrical or chemical signals are transmitted from a nerve to a muscle or another nerve. Presynaptic nAChRs facilitate ACh release during synaptic activity. Excess neurotransmitter is recycled and broken down by an enzyme called acetylcholinesterase [AChE], rendering ACh inactive as a neurotransmitter."
+            }
+          ]
+        },
+        {
+          "title": "Result of Ligand Binding (Continued 2)",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "17. Ion Channels 69"
             },
             {
               "type": "paragraph",
@@ -1872,12 +2226,7 @@
             {
               "type": "paragraph",
               "text": "Below – In this image, the nicotinic acetylcholine receptor [nAChR] functions to regulate the release of the neurotransmitters [NT] norepinephrine [NE]. Two acetylcholine [ACh] molecules bind the nAChR resulting in the release of NE from the postganglionic fiber. NE will bind to alpha and beta receptors [GPCRs] located on peripheral tissues producing a number of effects associated with a “fight or flight” response such as increased heart rate and contractility, and bronchiole dilation."
-            }
-          ]
-        },
-        {
-          "title": "17. Ion Channels — Part 6",
-          "blocks": [
+            },
             {
               "type": "paragraph",
               "text": "70 Principles of Pharmacology - Study Guide"
@@ -1888,8 +2237,17 @@
             },
             {
               "type": "paragraph",
-              "text": "GABA (gamma aminobutyric acid) RECEPTORS"
+              "text": "17. Ion Channels 71"
             },
+            {
+              "type": "paragraph",
+              "text": "GABA (gamma aminobutyric acid) RECEPTORS"
+            }
+          ]
+        },
+        {
+          "title": "Result of Ligand Binding (Continued 3)",
+          "blocks": [
             {
               "type": "paragraph",
               "text": "GABAA Receptors – these receptors are pentamers (i.e. five subunits) that include a GABA binding site, a channel through which ions (chloride) can travel, as well as a variety of modulatory sites."
@@ -1897,12 +2255,7 @@
             {
               "type": "paragraph",
               "text": "GABA is an endogenous agonist synthesized from glutamate"
-            }
-          ]
-        },
-        {
-          "title": "17. Ion Channels — Part 7",
-          "blocks": [
+            },
             {
               "type": "paragraph",
               "text": "GABA is the main INHIBITORY transmitter in the brain. It acts on both GABAA receptors (GPCRs)."
@@ -1922,37 +2275,37 @@
             {
               "type": "paragraph",
               "text": "Example – Endogenous neurosteroids are synthesized in the brain, adrenals and gonads. These neurosteroids are metabolites of steroids such as progesterone and testosterone; some are positive modulators (agonists) and others are negative modulators (antagonists) of GABAA receptors."
+            },
+            {
+              "type": "paragraph",
+              "text": "GABAA receptors provide one of the best examples of the application of allosteric modulators. For example, benzodiazepines (e.g., valium) bind to a receptor subunit different from (i.e., allosteric) that where GABA binds. This binding results in altering the conformation of the GABA binding site to a state that has higher affinity for GABA (positive allosteric modulation). This results in potentiating the CNS suppression induced by GABA and explains the effectiveness of benzodiazepines in the treatment of anxiety."
             }
           ]
         },
         {
-          "title": "17. Ion Channels — Part 8",
+          "title": "Result of Ligand Binding (Continued 4)",
           "blocks": [
-            {
-              "type": "paragraph",
-              "text": "GABAA receptors provide one of the best examples of the application of allosteric modulators. For example, benzodiazepines (e.g., valium) bind to a receptor subunit different from (i.e., allosteric) that where GABA binds. This binding results in altering the conformation of the GABA binding site to a state that has higher affinity for GABA (positive allosteric modulation). This results in potentiating the CNS suppression induced by GABA and explains the effectiveness of benzodiazepines in the treatment of anxiety."
-            },
             {
               "type": "paragraph",
               "text": "GABAA Antagonists – Decrease central nervous system activity, sometimes used with anesthesia in an inpatient setting. Sedatives, hypnotics, muscle relaxants and anti-convulsants."
             },
             {
               "type": "paragraph",
-              "text": "Glutamate Receptors – composed of homoor hetero-tetramers (four subunits). Found in the CNS on presynaptic neurons that control the release of neurotransmitters. Some glutamate receptors are couple to G proteins (metabotropic) while others are coupled to ion channels (ionotropic)."
+              "text": "GLUTAMATE RECEPTORS"
             },
             {
               "type": "paragraph",
-              "text": "Types of ionotropic Glutamate Receptors"
-            },
-            {
-              "type": "bullet",
-              "text": "AMPA Receptors – Expressed on astrocytes as well on neurons and mediate fast excitatory synaptic transmission."
+              "text": "Glutamate Receptors – composed of homoor hetero-tetramers (four subunits). Found in the CNS on presynaptic neurons that control the release of neurotransmitters. Some glutamate receptors are couple to G proteins (metabotropic) while others are coupled to ion channels (ionotropic)."
             }
           ]
         },
         {
-          "title": "17. Ion Channels — Part 9",
+          "title": "Types of ionotropic Glutamate Receptors",
           "blocks": [
+            {
+              "type": "bullet",
+              "text": "AMPA Receptors – Expressed on astrocytes as well on neurons and mediate fast excitatory synaptic transmission."
+            },
             {
               "type": "bullet",
               "text": "Kainate Receptors – Expressed on presynaptic neurons as well as nerve terminals. No known drug targets currently available for this particular receptor."
@@ -1967,17 +2320,12 @@
             },
             {
               "type": "paragraph",
-              "text": "highly permeable to sodium and calcium. As mentioned above, NMDA receptors are expressed on presynaptic and postsynaptic neurons as well as nerve terminals. It is at these nerve terminals that glutamate acts on NMDA receptors to alter neurotransmitter release; mainly enhancing it. Furthermore, postsynaptic receptors contribute a slow component to the excitatory synaptic potential."
+              "text": "17. Ion Channels 73 highly permeable to sodium and calcium. As mentioned above, NMDA receptors are expressed on presynaptic and postsynaptic neurons as well as nerve terminals. It is at these nerve terminals that glutamate acts on NMDA receptors to alter neurotransmitter release; mainly enhancing it. Furthermore, postsynaptic receptors contribute a slow component to the excitatory synaptic potential."
             },
             {
               "type": "paragraph",
               "text": "NMDA receptors have a number of important roles such as in the development of the CNS, rhythmic breathing as well as learning and memory."
-            }
-          ]
-        },
-        {
-          "title": "17. Ion Channels — Part 10",
-          "blocks": [
+            },
             {
               "type": "paragraph",
               "text": "Agonists – NMDA receptors need both glutamate and glycine to bind to the receptor in order to produce a biological effect. Actions – increased NA+ and Ca2+ influx"
@@ -1985,7 +2333,12 @@
             {
               "type": "paragraph",
               "text": "Structure – each subunit of the NMDA Receptor has an extracellular N-terminus with 3 transmembrane domains, an intramembrane reentrant “p-loop” between the 1st and 3rd transmemrane domains and an intracellular C-terminus."
-            },
+            }
+          ]
+        },
+        {
+          "title": "Types of ionotropic Glutamate Receptors (Continued 2)",
+          "blocks": [
             {
               "type": "bullet",
               "text": "Active Site – site at which agonist (glutamate) binds to stimulate a biological effect or response"
@@ -1997,20 +2350,20 @@
             {
               "type": "bullet",
               "text": "Glycine is a co-agonist. This means that both glutamate and glycine must simultaneously bind and stimulate the receptor in order to produce a physiological effect."
-            }
-          ]
-        },
-        {
-          "title": "17. Ion Channels — Part 11",
-          "blocks": [
+            },
             {
-              "type": "paragraph",
-              "text": "• Allosteric Site – secondary site at which drugs bind to modulate the binding of the agonist to the receptor primary binding site to either enhance (positive allosterism) or reduce (negative allosterism) its effects."
+              "type": "bullet",
+              "text": "Allosteric Site – secondary site at which drugs bind to modulate the binding of the agonist to the receptor primary binding site to either enhance (positive allosterism) or reduce (negative allosterism) its effects."
             },
             {
               "type": "bullet",
               "text": "Channel-blocking Site – site at which drugs bind to block the movement of Na+ and CA2+ ions into the cell"
-            },
+            }
+          ]
+        },
+        {
+          "title": "NMDA Antagonists –",
+          "blocks": [
             {
               "type": "bullet",
               "text": "Competitive NMDA Antagonists – block glutamate from binding to the active site"
@@ -2022,12 +2375,7 @@
             {
               "type": "bullet",
               "text": "Noncompetitive Antagonists – inhibit glutamate binding indirectly by binding at negative allosteric sites"
-            }
-          ]
-        },
-        {
-          "title": "17. Ion Channels — Part 12",
-          "blocks": [
+            },
             {
               "type": "bullet",
               "text": "Uncompetitive Antagonists – bind inside the channel pore to block the ion channel and prevent ion movement into and out of a cell"
@@ -2046,20 +2394,11 @@
             },
             {
               "type": "bullet",
-              "text": "Ketamine is an anesthetic adjunct. It is indicated for surgical or diagnostic"
-            }
-          ]
-        },
-        {
-          "title": "17. Ion Channels — Part 13",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "procedures; ideally short procedures. Ketamine is a noncompetitive NMDA receptor antagonist, which means this drug acts at an allosteric site (site other than ligand-binding site) to inhibit receptor function."
+              "text": "Ketamine is an anesthetic adjunct. It is indicated for surgical or diagnostic procedures; ideally short procedures. Ketamine is a noncompetitive NMDA receptor antagonist, which means this drug acts at an allosteric site (site other than ligand-binding site) to inhibit receptor function."
             },
             {
-              "type": "paragraph",
-              "text": "◦ Anti-tussives (cough suppressants) – dextromethorphan/dextrophan is a noncompetitive NMDA receptor antagonist. It is the main active ingredient in Robitussin ®, a widely used cough suppressant"
+              "type": "bullet",
+              "text": "Anti-tussives (cough suppressants) – dextromethorphan/dextrophan is a noncompetitive NMDA receptor antagonist. It is the main active ingredient in Robitussin ®, a widely used cough suppressant"
             },
             {
               "type": "bullet",
@@ -2067,11 +2406,7 @@
             },
             {
               "type": "bullet",
-              "text": "Neurodegenerative disorders such as Alzheimer’s disease are caused by"
-            },
-            {
-              "type": "paragraph",
-              "text": "abnormally high neuronal excitation (excitotoxicity). Meamantine is a noncompetitive NMDA receptor antagonist that binds to the NMDA receptor cation channel to prevent Ca2+ influx. It is therefore indicated for Alzheimer’s disease."
+              "text": "Neurodegenerative disorders such as Alzheimer’s disease are caused by abnormally high neuronal excitation (excitotoxicity). Meamantine is a noncompetitive NMDA receptor antagonist that binds to the NMDA receptor cation channel to prevent Ca2+ influx. It is therefore indicated for Alzheimer’s disease."
             }
           ]
         }
@@ -2082,16 +2417,12 @@
       "slug": "ch-19",
       "title": "21. Agents and Actions of the Autonomic Nervous System: Parasympathetic Nervous System",
       "pageRange": "pp. 81–84",
-      "excerpt": "21. Agents and Actions of the Autonomic Nervous System: Parasympathetic Nervous System",
-      "wordCount": 275,
+      "excerpt": "Parasympathetic Nervous System [PNS] – “rest and digest”",
+      "wordCount": 266,
       "sections": [
         {
-          "title": "21. Agents and Actions of the Autonomic Nervous System: Parasympathetic Nervous System — Part 1",
+          "title": "21. Agents and Actions of the Autonomic Nervous System: Parasympathetic Nervous System",
           "blocks": [
-            {
-              "type": "bullet",
-              "text": "21. Agents and Actions of the Autonomic Nervous System: Parasympathetic Nervous System"
-            },
             {
               "type": "paragraph",
               "text": "Parasympathetic Nervous System"
@@ -2111,12 +2442,8 @@
           ]
         },
         {
-          "title": "21. Agents and Actions of the Autonomic Nervous System: Parasympathetic Nervous System — Part 2",
+          "title": "What does your body need when at rest?",
           "blocks": [
-            {
-              "type": "paragraph",
-              "text": "What does your body need when at rest?"
-            },
             {
               "type": "bullet",
               "text": "Decreased cardiac output (compared to sympathetic) – lower oxygen demand when at rest"
@@ -2132,12 +2459,11 @@
             {
               "type": "bullet",
               "text": "Waste elimination – defecation and urination"
-            }
-          ]
-        },
-        {
-          "title": "21. Agents and Actions of the Autonomic Nervous System: Parasympathetic Nervous System — Part 3",
-          "blocks": [
+            },
+            {
+              "type": "paragraph",
+              "text": "Parasympathetic Neurons"
+            },
             {
               "type": "paragraph",
               "text": "Pre-ganglionic and post-ganglionic parasympathetic neurons release acetylcholine [ACh]."
@@ -2151,26 +2477,31 @@
               "text": "Acetylcholine interacts with two types of receptors:"
             },
             {
-              "type": "bullet",
+              "type": "paragraph",
               "text": "1. Nicotinic receptors – located on ganglion"
             },
             {
-              "type": "bullet",
+              "type": "paragraph",
               "text": "2. Muscarinic receptors – located on effector organ/tissue"
             }
           ]
         },
         {
-          "title": "21. Agents and Actions of the Autonomic Nervous System: Parasympathetic Nervous System — Part 4",
+          "title": "5. M5 –",
           "blocks": [
             {
               "type": "paragraph",
-              "text": "Physiological Effects of PNS on Organs/Tissue & Respective Receptors"
+              "text": "21. Agents and Actions of the Autonomic Nervous System: Parasympathetic Nervous System 77"
             },
             {
               "type": "paragraph",
-              "text": "Organ/Tissue Receptor Subtype Physiological Effect"
-            },
+              "text": "Physiological Effects of PNS on Organs/Tissue & Respective Receptors"
+            }
+          ]
+        },
+        {
+          "title": "Organ/Tissue Receptor Subtype Physiological Effect",
+          "blocks": [
             {
               "type": "paragraph",
               "text": "BLADDER – detrusor M3 contracts promotes urination"
@@ -2182,12 +2513,11 @@
             {
               "type": "paragraph",
               "text": "EYE – ciliary muscle M3 contracts improves near-sighted vision"
-            }
-          ]
-        },
-        {
-          "title": "21. Agents and Actions of the Autonomic Nervous System: Parasympathetic Nervous System — Part 5",
-          "blocks": [
+            },
+            {
+              "type": "paragraph",
+              "text": "EYE – pupil M3 contracts"
+            },
             {
               "type": "paragraph",
               "text": "GASTROINTESTINAL – glands M3 promotes secretion enhances digestion"
@@ -2203,16 +2533,16 @@
             {
               "type": "paragraph",
               "text": "HEART – AV node M2 decreases conduction"
-            },
-            {
-              "type": "paragraph",
-              "text": "HEART – cardiac muscle M2 decreases contractility negative ionotropic effect [atria only]"
             }
           ]
         },
         {
-          "title": "21. Agents and Actions of the Autonomic Nervous System: Parasympathetic Nervous System — Part 6",
+          "title": "Organ/Tissue Receptor Subtype Physiological Effect (Continued 2)",
           "blocks": [
+            {
+              "type": "paragraph",
+              "text": "HEART – cardiac muscle M2 decreases contractility negative ionotropic effect [atria only]"
+            },
             {
               "type": "paragraph",
               "text": "HEART – cardiac output M2 decreases decreases blood delivery"
@@ -2242,15 +2572,15 @@
       "slug": "ch-20",
       "title": "22. Agents and Actions of the Autonomic Nervous System: Sympathetic Nervous System",
       "pageRange": "pp. 85–87",
-      "excerpt": "22. Agents and Actions of the Autonomic Nervous System: Sympathetic Nervous System",
+      "excerpt": "Sympathetic Nervous System [SNS] – “fight or flight”",
       "wordCount": 425,
       "sections": [
         {
-          "title": "22. Agents and Actions of the Autonomic Nervous System: Sympathetic Nervous System — Part 1",
+          "title": "22. Agents and Actions of the Autonomic Nervous System: Sympathetic Nervous System",
           "blocks": [
             {
-              "type": "bullet",
-              "text": "22. Agents and Actions of the Autonomic Nervous System: Sympathetic Nervous System"
+              "type": "paragraph",
+              "text": "Sympathetic Nervous System"
             },
             {
               "type": "paragraph",
@@ -2259,20 +2589,20 @@
             {
               "type": "paragraph",
               "text": "The SNS can also be thought of as the “E division” – embarrassment, emergency, exercise, excitement"
-            },
-            {
-              "type": "paragraph",
-              "text": "What do you want your body to do when in fight or flight situation?"
-            },
-            {
-              "type": "bullet",
-              "text": "Bronchodilation – increased oxygen necessary for brain and muscles to function well"
             }
           ]
         },
         {
-          "title": "22. Agents and Actions of the Autonomic Nervous System: Sympathetic Nervous System — Part 2",
+          "title": "What do you want your body to do when in fight or flight situation?",
           "blocks": [
+            {
+              "type": "bullet",
+              "text": "Alertness"
+            },
+            {
+              "type": "bullet",
+              "text": "Bronchodilation – increased oxygen necessary for brain and muscles to function well"
+            },
             {
               "type": "bullet",
               "text": "Blood shunted to organs and muscles – need organs and muscles to function well"
@@ -2292,16 +2622,16 @@
             {
               "type": "bullet",
               "text": "Prevention of waste elimination – body does not need to exert energy on elimination in emergency"
+            },
+            {
+              "type": "bullet",
+              "text": "Sweat – help maintain homeostasis"
             }
           ]
         },
         {
-          "title": "22. Agents and Actions of the Autonomic Nervous System: Sympathetic Nervous System — Part 3",
+          "title": "What do you want your body to do when in fight or flight situation? (Continued 2)",
           "blocks": [
-            {
-              "type": "bullet",
-              "text": "Sweat – help maintain homeostasis"
-            },
             {
               "type": "paragraph",
               "text": "EXCEPTIONS – most blood vessels and all sweat glands only have sympathetic innervation"
@@ -2312,32 +2642,56 @@
             },
             {
               "type": "paragraph",
+              "text": "Sympathetic Neurons"
+            },
+            {
+              "type": "paragraph",
               "text": "Pre-ganglionic sympathetic neurons release acetylcholine [ACh] and post-ganglionic sympathetic neurons release norepinephrine [NE]. ACh will then go onto stimulate the post-ganglion sympathetic neurons at muscarinic receptors releasing NE and then NE will go onto stimulate adrenoceptors located on a variety of effector organs and tissue such as cardiac muscle, smooth muscle, and glands."
             },
             {
               "type": "paragraph",
               "text": "EXCEPTIONS – acetylcholine [ACh] is released by post-ganglionic sympathetic neurons innervating sweat glands, which means ACh receptors (as opposed to adrenoceptors) have to be blocked in order to decrease sweating as"
-            }
-          ]
-        },
-        {
-          "title": "22. Agents and Actions of the Autonomic Nervous System: Sympathetic Nervous System — Part 4",
-          "blocks": [
+            },
             {
               "type": "paragraph",
               "text": "Norepinephrine [NE] interacts with two types of receptors:"
             },
             {
-              "type": "bullet",
+              "type": "paragraph",
               "text": "1. Alpha-adrenergic receptors [alpha adrenoceptors]"
             },
             {
-              "type": "bullet",
+              "type": "paragraph",
+              "text": "1. Alpha-1 – blood vessels"
+            }
+          ]
+        },
+        {
+          "title": "What do you want your body to do when in fight or flight situation? (Continued 3)",
+          "blocks": [
+            {
+              "type": "paragraph",
               "text": "2. Alpha-2 – CNS (presynaptic)"
             },
             {
-              "type": "bullet",
+              "type": "paragraph",
               "text": "2. Beta-adrenergic receptors [beta adrenoceptors]"
+            },
+            {
+              "type": "paragraph",
+              "text": "1. Beta-1 – heart"
+            },
+            {
+              "type": "paragraph",
+              "text": "2. Beta-2 – lungs"
+            },
+            {
+              "type": "paragraph",
+              "text": "3. Beta-3 – bladder"
+            },
+            {
+              "type": "paragraph",
+              "text": "22. Agents and Actions of the Autonomic Nervous System: Sympathetic Nervous System 81"
             },
             {
               "type": "paragraph",
@@ -2346,11 +2700,23 @@
           ]
         },
         {
-          "title": "22. Agents and Actions of the Autonomic Nervous System: Sympathetic Nervous System — Part 5",
+          "title": "Organ/Tissue Receptor Subtype",
           "blocks": [
             {
               "type": "paragraph",
-              "text": "Organ/Tissue Receptor Subtype"
+              "text": "GASTROINTESTINAL – smooth muscle"
+            },
+            {
+              "type": "paragraph",
+              "text": "HEART – AV node Beta-1 increased conduction"
+            },
+            {
+              "type": "paragraph",
+              "text": "Heart – cardiac muscle Beta-1 increased contractility"
+            },
+            {
+              "type": "paragraph",
+              "text": "Vasculature – smooth muscle Alpha-1 Beta-2 positive ionotropic effect – enhances blood delivery shunt blood to vital organs (brain, heart, etc), enhance cardiac output"
             },
             {
               "type": "paragraph",
@@ -2371,40 +2737,15 @@
           ]
         },
         {
-          "title": "22. Agents and Actions of the Autonomic Nervous System: Sympathetic Nervous System — Part 6",
+          "title": "Organ/Tissue Receptor Subtype (Continued 2)",
           "blocks": [
             {
               "type": "paragraph",
-              "text": "GASTROINTESTINAL – glands Beta-2 inhibits secretion prevents digestion"
-            },
-            {
-              "type": "paragraph",
-              "text": "GASTROINTESTINAL – smooth muscle"
-            },
-            {
-              "type": "paragraph",
-              "text": "relaxes smooth muscle prevents digestion"
+              "text": "GASTROINTESTINAL – glands Beta-2 inhibits secretion prevents digestion relaxes smooth muscle prevents digestion"
             },
             {
               "type": "paragraph",
               "text": "GASTROINTESTINAL – sphincter Alpha-1 contracts prevents defecation"
-            },
-            {
-              "type": "paragraph",
-              "text": "HEART – AV node Beta-1 increased conduction"
-            }
-          ]
-        },
-        {
-          "title": "22. Agents and Actions of the Autonomic Nervous System: Sympathetic Nervous System — Part 7",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Heart – cardiac muscle Beta-1 increased contractility"
-            },
-            {
-              "type": "paragraph",
-              "text": "positive ionotropic effect – enhances blood delivery"
             },
             {
               "type": "paragraph",
@@ -2417,31 +2758,14 @@
             {
               "type": "paragraph",
               "text": "Lung – smooth muscle (bronchioles & trachea) Beta-2 dilation/relaxation enhances breathing"
-            }
-          ]
-        },
-        {
-          "title": "22. Agents and Actions of the Autonomic Nervous System: Sympathetic Nervous System — Part 8",
-          "blocks": [
+            },
             {
               "type": "paragraph",
               "text": "Salivary Gland Beta-2 stimulates viscous secretions"
             },
             {
               "type": "paragraph",
-              "text": "Sweat Gland stimulates sweat secretion regulates body temperature"
-            },
-            {
-              "type": "paragraph",
-              "text": "contracts relaxes coronary arteries"
-            },
-            {
-              "type": "paragraph",
-              "text": "Vasculature – smooth muscle Alpha-1 Beta-2"
-            },
-            {
-              "type": "paragraph",
-              "text": "shunt blood to vital organs (brain, heart, etc), enhance cardiac output"
+              "text": "Sweat Gland stimulates sweat secretion regulates body temperature contracts relaxes coronary arteries"
             }
           ]
         }
