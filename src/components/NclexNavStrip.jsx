@@ -23,7 +23,7 @@ export default function NclexNavStrip() {
   });
 
   return (
-    <div style={{ background: "#09090B", borderBottom: "1px solid #27272A" }}>
+    <div style={{ background: "#1c1d1f", borderBottom: "1px solid #27272A" }}>
       <div
         className="nu-container"
         style={{
@@ -43,7 +43,7 @@ export default function NclexNavStrip() {
 
         <nav style={{ display: "flex", alignItems: "stretch", gap: 4 }} aria-label="NCLEX-RN Academy Navigation">
           <Link to="/nclex-rn" style={linkStyle(isOverview)}>
-            <GraduationCap size={15} /> 16-Week Course ($99)
+            <GraduationCap size={15} /> 16-Unit Course ($99)
           </Link>
           <Link to="/nclex-rn/learn" style={linkStyle(isPlayer)}>
             <BookOpen size={15} /> Study Player &amp; Unit Quizzes

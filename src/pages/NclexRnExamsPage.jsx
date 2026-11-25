@@ -82,9 +82,9 @@ export default function NclexRnExamsPage() {
     <main style={{ background: "#f8fafc", minHeight: "86vh" }}>
       <NclexNavStrip />
 
-      <section style={{ background: "#09090B", color: "#ffffff", padding: "30px 0", borderBottom: "4px solid #991B1B" }}>
+      <section style={{ background: "#1c1d1f", color: "#ffffff", padding: "30px 0", borderBottom: "4px solid #a435f0" }}>
         <div className="nu-container" style={{ maxWidth: 1180 }}>
-          <div style={{ fontSize: "0.74rem", fontWeight: 800, color: "#FCA5A5", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: 6 }}>
+          <div style={{ fontSize: "0.74rem", fontWeight: 800, color: "#d8b4fe", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: 6 }}>
             DEDICATED SIMULATION COURSE · INCLUDED WITH $99 ACADEMY
           </div>
           <h1 style={{ margin: "0 0 8px", fontSize: "clamp(1.5rem, 2.6vw, 2.1rem)", color: "#ffffff" }}>
@@ -112,8 +112,8 @@ export default function NclexRnExamsPage() {
                     textAlign: "left",
                     padding: 16,
                     borderRadius: 10,
-                    border: `2px solid ${isCurrent ? "#991B1B" : "#cbd5e1"}`,
-                    background: isCurrent ? "#991B1B" : "#ffffff",
+                    border: `2px solid ${isCurrent ? "#a435f0" : "#cbd5e1"}`,
+                    background: isCurrent ? "#a435f0" : "#ffffff",
                     color: isCurrent ? "#ffffff" : "#0f172a",
                     cursor: "pointer"
                   }}
@@ -140,7 +140,7 @@ export default function NclexRnExamsPage() {
                   </p>
                 </div>
                 {submitted && (
-                  <span style={{ padding: "6px 14px", borderRadius: 999, background: "#09090B", color: "#ffffff", fontWeight: 800, fontSize: "0.86rem" }}>
+                  <span style={{ padding: "6px 14px", borderRadius: 999, background: "#1c1d1f", color: "#ffffff", fontWeight: 800, fontSize: "0.86rem" }}>
                     Final Score: {score} / {questions.length} ({Math.round((score / Math.max(1, questions.length)) * 100)}%)
                   </span>
                 )}
@@ -148,7 +148,7 @@ export default function NclexRnExamsPage() {
 
               {!isExamUnlocked ? (
                 <div style={{ padding: "36px 20px", textAlign: "center", background: "#f8fafc", borderRadius: 10 }}>
-                  <Lock size={34} color="#991B1B" style={{ marginBottom: 10 }} />
+                  <Lock size={34} color="#a435f0" style={{ marginBottom: 10 }} />
                   <h3 style={{ margin: "0 0 8px", color: "#0f172a" }}>Included with NCLEX-RN Preparation Course ($99)</h3>
                   <p style={{ margin: "0 auto 18px", maxWidth: 500, color: "#475569", fontSize: "0.92rem" }}>
                     Exam 1 (75 Questions) is open as a free diagnostic preview. Enroll for $99 to unlock Exams 2, 3, and 4 plus all 16 weekly study units.
@@ -160,7 +160,7 @@ export default function NclexRnExamsPage() {
                       navigate("/cart");
                     }}
                     className="nu-btn nu-btn-primary"
-                    style={{ background: "#991B1B", borderColor: "#991B1B" }}
+                    style={{ background: "#a435f0", borderColor: "#a435f0" }}
                   >
                     <ShoppingCart size={15} /> {inCart ? "Go to Cart ($99)" : "Unlock Full Academy ($99)"}
                   </button>
@@ -188,8 +188,8 @@ export default function NclexRnExamsPage() {
                                   textAlign: "left",
                                   padding: "10px 12px",
                                   borderRadius: 8,
-                                  border: `1.5px solid ${isRight ? "#059669" : isWrong ? "#dc2626" : chosen ? "#09090B" : "#cbd5e1"}`,
-                                  background: isRight ? "#ECFDF5" : isWrong ? "#FEF2F2" : chosen ? "#f1f5f9" : "#ffffff",
+                                  border: `1.5px solid ${isRight ? "#059669" : isWrong ? "#dc2626" : chosen ? "#1c1d1f" : "#cbd5e1"}`,
+                                  background: isRight ? "#ECFDF5" : isWrong ? "#f3e8ff" : chosen ? "#f1f5f9" : "#ffffff",
                                   color: "#0f172a",
                                   fontWeight: chosen || isRight ? 700 : 500,
                                   cursor: submitted ? "default" : "pointer"
@@ -201,7 +201,7 @@ export default function NclexRnExamsPage() {
                           })}
                         </div>
                         {submitted && q.rationale && (
-                          <div style={{ marginTop: 10, padding: "10px 12px", borderRadius: 6, background: "#f8fafc", borderLeft: "3px solid #991B1B", fontSize: "0.84rem", color: "#334155" }}>
+                          <div style={{ marginTop: 10, padding: "10px 12px", borderRadius: 6, background: "#f8fafc", borderLeft: "3px solid #a435f0", fontSize: "0.84rem", color: "#334155" }}>
                             <strong>Rationale:</strong> {q.rationale}
                           </div>
                         )}
@@ -215,7 +215,7 @@ export default function NclexRnExamsPage() {
                         type="button"
                         onClick={() => setSubmitted(true)}
                         className="nu-btn nu-btn-primary"
-                        style={{ background: "#991B1B", borderColor: "#991B1B" }}
+                        style={{ background: "#a435f0", borderColor: "#a435f0" }}
                       >
                         <CheckCircle2 size={16} /> Submit Examination &amp; Score
                       </button>

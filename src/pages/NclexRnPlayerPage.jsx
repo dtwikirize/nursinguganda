@@ -124,8 +124,8 @@ export default function NclexRnPlayerPage() {
           {/* Unique 16-Week Sidebar Navigation */}
           <aside style={{ background: "#ffffff", border: "1px solid #cbd5e1", borderRadius: 12, padding: 14, maxHeight: "82vh", overflowY: "auto", position: "sticky", top: 76 }}>
             <div style={{ padding: "6px 8px 12px", borderBottom: "1px solid #e2e8f0", marginBottom: 10 }}>
-              <div style={{ fontSize: "0.72rem", fontWeight: 800, color: "#991B1B", textTransform: "uppercase", letterSpacing: "0.05em" }}>
-                16-Week Curriculum
+              <div style={{ fontSize: "0.72rem", fontWeight: 800, color: "#a435f0", textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                16 Course Units
               </div>
               <div style={{ fontSize: "0.94rem", fontWeight: 800, color: "#0f172a", marginTop: 2 }}>
                 NCLEX-RN Preparation
@@ -137,7 +137,7 @@ export default function NclexRnPlayerPage() {
                 const isCurrentUnit = u.slug === activeUnit.slug;
                 const unitFree = u.unitNumber === 1 || enrolled;
                 return (
-                  <div key={u.slug} style={{ border: `1px solid ${isCurrentUnit ? "#991B1B" : "#e2e8f0"}`, borderRadius: 8, overflow: "hidden" }}>
+                  <div key={u.slug} style={{ border: `1px solid ${isCurrentUnit ? "#a435f0" : "#e2e8f0"}`, borderRadius: 8, overflow: "hidden" }}>
                     <Link
                       to={`/nclex-rn/unit/${u.slug}`}
                       style={{
@@ -146,14 +146,14 @@ export default function NclexRnPlayerPage() {
                         alignItems: "center",
                         gap: 8,
                         padding: "9px 10px",
-                        background: isCurrentUnit ? "#991B1B" : "#f8fafc",
+                        background: isCurrentUnit ? "#a435f0" : "#f8fafc",
                         color: isCurrentUnit ? "#ffffff" : "#0f172a",
                         fontSize: "0.8rem",
                         fontWeight: 700,
                         textDecoration: "none"
                       }}
                     >
-                      <span>{u.weekLabel}: {u.title.replace(/^Week \d+:\s*/, "").slice(0, 34)}</span>
+                      <span>{u.title}</span>
                       {!unitFree && <Lock size={13} />}
                     </Link>
 
@@ -171,8 +171,8 @@ export default function NclexRnPlayerPage() {
                                 padding: "7px 8px",
                                 borderRadius: 6,
                                 border: 0,
-                                background: isCurrentTopic ? "#FEF2F2" : "transparent",
-                                color: isCurrentTopic ? "#991B1B" : "#334155",
+                                background: isCurrentTopic ? "#f3e8ff" : "transparent",
+                                color: isCurrentTopic ? "#a435f0" : "#334155",
                                 fontWeight: isCurrentTopic ? 700 : 500,
                                 fontSize: "0.78rem",
                                 cursor: "pointer"
@@ -189,9 +189,9 @@ export default function NclexRnPlayerPage() {
                             textAlign: "left",
                             padding: "7px 8px",
                             borderRadius: 6,
-                            border: "1px dashed #991B1B",
-                            background: mode === "eval" ? "#09090B" : "#ffffff",
-                            color: mode === "eval" ? "#ffffff" : "#991B1B",
+                            border: "1px dashed #a435f0",
+                            background: mode === "eval" ? "#1c1d1f" : "#ffffff",
+                            color: mode === "eval" ? "#ffffff" : "#a435f0",
                             fontWeight: 700,
                             fontSize: "0.78rem",
                             cursor: "pointer",
@@ -212,7 +212,7 @@ export default function NclexRnPlayerPage() {
           <div style={{ background: "#ffffff", border: "1px solid #cbd5e1", borderRadius: 12, padding: "24px 26px" }}>
             <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: 12, paddingBottom: 16, borderBottom: "1px solid #e2e8f0", marginBottom: 20 }}>
               <div>
-                <div style={{ fontSize: "0.76rem", fontWeight: 800, color: "#991B1B", textTransform: "uppercase" }}>
+                <div style={{ fontSize: "0.76rem", fontWeight: 800, color: "#a435f0", textTransform: "uppercase" }}>
                   {activeUnit.title}
                 </div>
                 <h1 style={{ margin: "4px 0 0", fontSize: "1.45rem", color: "#0f172a" }}>
@@ -228,8 +228,8 @@ export default function NclexRnPlayerPage() {
                     style={{
                       padding: "8px 14px",
                       borderRadius: 8,
-                      border: `1.5px solid ${mode === "notes" ? "#09090B" : "#cbd5e1"}`,
-                      background: mode === "notes" ? "#09090B" : "#ffffff",
+                      border: `1.5px solid ${mode === "notes" ? "#1c1d1f" : "#cbd5e1"}`,
+                      background: mode === "notes" ? "#1c1d1f" : "#ffffff",
                       color: mode === "notes" ? "#ffffff" : "#0f172a",
                       fontWeight: 700,
                       fontSize: "0.82rem",
@@ -245,8 +245,8 @@ export default function NclexRnPlayerPage() {
                     style={{
                       padding: "8px 14px",
                       borderRadius: 8,
-                      border: `1.5px solid ${mode === "quiz" ? "#991B1B" : "#cbd5e1"}`,
-                      background: mode === "quiz" ? "#991B1B" : "#ffffff",
+                      border: `1.5px solid ${mode === "quiz" ? "#a435f0" : "#cbd5e1"}`,
+                      background: mode === "quiz" ? "#a435f0" : "#ffffff",
                       color: mode === "quiz" ? "#ffffff" : "#0f172a",
                       fontWeight: 700,
                       fontSize: "0.82rem",
@@ -262,8 +262,8 @@ export default function NclexRnPlayerPage() {
 
             {!isUnlocked ? (
               <div style={{ padding: "36px 20px", textAlign: "center", background: "#f8fafc", borderRadius: 10, border: "1px solid #e2e8f0" }}>
-                <Lock size={34} color="#991B1B" style={{ marginBottom: 10 }} />
-                <h2 style={{ margin: "0 0 8px", color: "#0f172a" }}>Unlock All 16 Weekly Units &amp; 1,920+ Questions</h2>
+                <Lock size={34} color="#a435f0" style={{ marginBottom: 10 }} />
+                <h2 style={{ margin: "0 0 8px", color: "#0f172a" }}>Unlock All 16 Course Units &amp; 1,920+ Questions</h2>
                 <p style={{ margin: "0 auto 20px", maxWidth: 520, color: "#475569", fontSize: "0.94rem" }}>
                   Week 1 is available as a free preview. Enroll in the <strong>NCLEX-RN Preparation Course ($99)</strong> to unlock Weeks 2–16, all 48 topics, 20-Q topic quizzes, 60-Q unit evaluations, and the NCLEX-RN Examinations suite.
                 </p>
@@ -271,7 +271,7 @@ export default function NclexRnPlayerPage() {
                   type="button"
                   onClick={handleEnroll}
                   className="nu-btn nu-btn-primary"
-                  style={{ background: "#991B1B", borderColor: "#991B1B", padding: "12px 24px" }}
+                  style={{ background: "#a435f0", borderColor: "#a435f0", padding: "12px 24px" }}
                 >
                   <ShoppingCart size={16} /> {inCart ? "Go to Cart ($99)" : "Enroll Now — $99"}
                 </button>
@@ -289,7 +289,7 @@ export default function NclexRnPlayerPage() {
                 {/* Per-Lesson Triangulated References */}
                 <div style={{ marginTop: 28, padding: 18, borderRadius: 10, background: "#f8fafc", border: "1px solid #cbd5e1" }}>
                   <h3 style={{ margin: "0 0 10px", fontSize: "0.96rem", color: "#0f172a", display: "flex", alignItems: "center", gap: 6 }}>
-                    <ShieldCheck size={16} color="#991B1B" /> Lesson References (Saunders · Kaplan · LaCharity · NCSBN)
+                    <ShieldCheck size={16} color="#a435f0" /> Lesson References (Saunders · Kaplan · LaCharity · NCSBN)
                   </h3>
                   <ul style={{ margin: 0, paddingLeft: 18, display: "grid", gap: 6, fontSize: "0.84rem", color: "#334155" }}>
                     {(activeTopic.references || activeUnit.references || []).map((r) => (
@@ -305,7 +305,7 @@ export default function NclexRnPlayerPage() {
                     type="button"
                     onClick={() => setSearchParams({ topic: activeTopic.slug, mode: "quiz" })}
                     className="nu-btn nu-btn-primary"
-                    style={{ background: "#991B1B", borderColor: "#991B1B" }}
+                    style={{ background: "#a435f0", borderColor: "#a435f0" }}
                   >
                     <ClipboardCheck size={15} /> Start 20-Question Topic Quiz <ArrowRight size={15} />
                   </button>
@@ -328,7 +328,7 @@ export default function NclexRnPlayerPage() {
                       : `Topic Quiz — ${activeQuestions.length} Questions (${activeTopic?.title})`}
                   </div>
                   {submitted && (
-                    <span style={{ padding: "5px 12px", borderRadius: 999, background: "#09090B", color: "#ffffff", fontWeight: 800, fontSize: "0.84rem" }}>
+                    <span style={{ padding: "5px 12px", borderRadius: 999, background: "#1c1d1f", color: "#ffffff", fontWeight: 800, fontSize: "0.84rem" }}>
                       Score: {score} / {activeQuestions.length} ({Math.round((score / Math.max(1, activeQuestions.length)) * 100)}%)
                     </span>
                   )}
@@ -355,8 +355,8 @@ export default function NclexRnPlayerPage() {
                                 textAlign: "left",
                                 padding: "10px 12px",
                                 borderRadius: 8,
-                                border: `1.5px solid ${isRight ? "#059669" : isWrong ? "#dc2626" : chosen ? "#09090B" : "#cbd5e1"}`,
-                                background: isRight ? "#ECFDF5" : isWrong ? "#FEF2F2" : chosen ? "#f1f5f9" : "#ffffff",
+                                border: `1.5px solid ${isRight ? "#059669" : isWrong ? "#dc2626" : chosen ? "#1c1d1f" : "#cbd5e1"}`,
+                                background: isRight ? "#ECFDF5" : isWrong ? "#f3e8ff" : chosen ? "#f1f5f9" : "#ffffff",
                                 color: "#0f172a",
                                 fontWeight: chosen || isRight ? 700 : 500,
                                 cursor: submitted ? "default" : "pointer"
@@ -368,7 +368,7 @@ export default function NclexRnPlayerPage() {
                         })}
                       </div>
                       {submitted && q.rationale && (
-                        <div style={{ marginTop: 10, padding: "10px 12px", borderRadius: 6, background: "#f8fafc", borderLeft: "3px solid #991B1B", fontSize: "0.84rem", color: "#334155" }}>
+                        <div style={{ marginTop: 10, padding: "10px 12px", borderRadius: 6, background: "#f8fafc", borderLeft: "3px solid #a435f0", fontSize: "0.84rem", color: "#334155" }}>
                           <strong>Rationale:</strong> {q.rationale}
                         </div>
                       )}
@@ -382,7 +382,7 @@ export default function NclexRnPlayerPage() {
                       type="button"
                       onClick={() => setSubmitted(true)}
                       className="nu-btn nu-btn-primary"
-                      style={{ background: "#991B1B", borderColor: "#991B1B" }}
+                      style={{ background: "#a435f0", borderColor: "#a435f0" }}
                     >
                       <CheckCircle2 size={16} /> Submit &amp; View Rationales
                     </button>
