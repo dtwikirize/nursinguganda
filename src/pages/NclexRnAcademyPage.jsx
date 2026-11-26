@@ -89,17 +89,17 @@ export default function NclexRnAcademyPage() {
     <main style={{ background: "#f8fafc", minHeight: "85vh" }}>
       <NclexNavStrip />
 
-      {/* Flagship NCLEX-RN Hero with Layered Clinical Study Background */}
+      {/* Flagship NCLEX-RN Hero with Obsidian Black + Blue Clinical Monitor Backdrop */}
       <section
         style={{
           backgroundImage:
-            'linear-gradient(95deg, rgba(46, 16, 101, 0.90) 0%, rgba(107, 33, 168, 0.80) 52%, rgba(28, 29, 31, 0.86) 100%), url("/assets/images/nclex-rn-hero-bg.webp")',
+            'linear-gradient(95deg, rgba(9, 9, 11, 0.94) 0%, rgba(15, 23, 42, 0.86) 52%, rgba(29, 78, 216, 0.72) 100%), url("/assets/images/nclex-rn-hero-bg.webp")',
           backgroundSize: "cover",
           backgroundPosition: "center",
-          backgroundColor: "#581c87",
+          backgroundColor: "#09090b",
           color: "#ffffff",
           padding: "42px 0 38px",
-          borderBottom: "4px solid #1c1d1f"
+          borderBottom: "4px solid #2563eb"
         }}
       >
         <div className="nu-container" style={{ maxWidth: 1180 }}>
@@ -153,23 +153,23 @@ export default function NclexRnAcademyPage() {
             </div>
 
             {/* $99 Enrollment Box */}
-            <div style={{ background: "#1c1d1f", color: "#ffffff", borderRadius: 12, padding: 24, border: "1px solid rgba(255,255,255,0.18)" }}>
-              <div style={{ fontSize: "0.74rem", fontWeight: 700, color: "#d8b4fe", textTransform: "uppercase", letterSpacing: "0.06em" }}>
+            <div style={{ background: "#09090b", color: "#ffffff", borderRadius: 12, padding: 24, border: "1px solid rgba(59, 130, 246, 0.35)" }}>
+              <div style={{ fontSize: "0.74rem", fontWeight: 700, color: "#60a5fa", textTransform: "uppercase", letterSpacing: "0.06em" }}>
                 Full 16-Unit Access + NCLEX Exams
               </div>
               <div style={{ display: "flex", alignItems: "baseline", gap: 10, margin: "8px 0 14px" }}>
                 <strong style={{ fontSize: "2.3rem", color: "#ffffff" }}>$99</strong>
                 <span style={{ textDecoration: "line-through", color: "#94a3b8", fontSize: "1rem" }}>$249</span>
-                <span style={{ fontSize: "0.76rem", background: "#a435f0", color: "#fff", padding: "3px 8px", borderRadius: 999, fontWeight: 700 }}>
+                <span style={{ fontSize: "0.76rem", background: "#1d4ed8", color: "#fff", padding: "3px 8px", borderRadius: 999, fontWeight: 700 }}>
                   60% OFF
                 </span>
               </div>
 
               <ul style={{ margin: "0 0 18px", padding: 0, listStyle: "none", display: "grid", gap: 8, fontSize: "0.85rem", color: "#e2e8f0" }}>
-                <li style={{ display: "flex", gap: 8, alignItems: "center" }}><CheckCircle2 size={15} color="#d8b4fe" /> 16 Course Units (48 Topics)</li>
-                <li style={{ display: "flex", gap: 8, alignItems: "center" }}><CheckCircle2 size={15} color="#d8b4fe" /> 20-Q Quiz per Topic + Rationales</li>
-                <li style={{ display: "flex", gap: 8, alignItems: "center" }}><CheckCircle2 size={15} color="#d8b4fe" /> 60-Q Mixed Final Evaluation per Unit</li>
-                <li style={{ display: "flex", gap: 8, alignItems: "center" }}><CheckCircle2 size={15} color="#d8b4fe" /> Includes NCLEX-RN Examinations Course</li>
+                <li style={{ display: "flex", gap: 8, alignItems: "center" }}><CheckCircle2 size={15} color="#60a5fa" /> 16 Course Units (48 Topics)</li>
+                <li style={{ display: "flex", gap: 8, alignItems: "center" }}><CheckCircle2 size={15} color="#60a5fa" /> 20-Q Quiz per Topic + Rationales</li>
+                <li style={{ display: "flex", gap: 8, alignItems: "center" }}><CheckCircle2 size={15} color="#60a5fa" /> 60-Q Mixed Final Evaluation per Unit</li>
+                <li style={{ display: "flex", gap: 8, alignItems: "center" }}><CheckCircle2 size={15} color="#60a5fa" /> Includes NCLEX-RN Examinations Course</li>
               </ul>
 
               <button
@@ -238,22 +238,22 @@ export default function NclexRnAcademyPage() {
                 badge: "BEST VALUE FOR MONEY",
                 title: "$99 Complete vs $160–$300+ Elsewhere",
                 text: "One-time access covers 16 structured units, 1,920+ rationalized questions, 4 timed mock CAT exams, and lifetime reference updates with zero monthly subscription traps.",
-                bg: "#1c1d1f",
-                accent: "#d8b4fe"
+                bg: "#09090b",
+                accent: "#60a5fa"
               },
               {
                 badge: "24-WEEK UNIFIED ROADMAP",
                 title: "Saunders 9th + Kaplan + LaCharity PDA",
                 text: "Weekly guided study progression maps Foundations, Systems, Paediatrics, Maternity, Psych & NGN Prioritization directly to official Saunders units and LaCharity cases.",
-                bg: "#4c1d95",
-                accent: "#f3e8ff"
+                bg: "#1e3a8a",
+                accent: "#dbeafe"
               },
               {
                 badge: "FOREIGN NURSE USA PATHWAY",
                 title: "CGFNS -> State Board -> Visa & Jobs",
                 text: "Clear orientation on CGFNS CES document checks, TBON / compact State Board ATT, Pearson VUE scheduling, and EB-3 Green Card vs H-1B direct-hire pathways.",
-                bg: "#0f172a",
-                accent: "#c084fc"
+                bg: "#111827",
+                accent: "#93c5fd"
               }
             ].map((card) => (
               <div
@@ -290,7 +290,7 @@ export default function NclexRnAcademyPage() {
                   Step-by-step visual guides covering Foreign RN licensure &amp; visas, NGN Clinical Judgment item styles, and the 24-week ROI plan.
                 </p>
               </div>
-              <Link to="/nursing-usa" style={{ fontSize: "0.85rem", fontWeight: 700, color: "#7c3aed", textDecoration: "none" }}>
+              <Link to="/nursing-usa" style={{ fontSize: "0.85rem", fontWeight: 700, color: "#1d4ed8", textDecoration: "none" }}>
                 Open Full USA NCLEX &amp; Lab Converter Hub →
               </Link>
             </div>
@@ -329,7 +329,7 @@ export default function NclexRnAcademyPage() {
 
           {/* 3. Summarized 24-Week Syllabus Table + Foreign RN Fee & Visa Guide */}
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: 20, marginBottom: 38 }}>
-            <div style={{ background: "#ffffff", border: "1px solid #cbd5e1", borderTop: "4px solid #7c3aed", borderRadius: 12, padding: 20 }}>
+            <div style={{ background: "#ffffff", border: "1px solid #cbd5e1", borderTop: "4px solid #1d4ed8", borderRadius: 12, padding: 20 }}>
               <h3 style={{ margin: "0 0 6px", fontSize: "1.12rem", color: "#0f172a" }}>
                 24-Week Master Study Tracker (Saunders + Kaplan + LaCharity)
               </h3>
@@ -339,10 +339,10 @@ export default function NclexRnAcademyPage() {
               <div style={{ overflowX: "auto" }}>
                 <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.81rem" }}>
                   <thead>
-                    <tr style={{ background: "#f5f3ff", textAlign: "left" }}>
-                      <th style={{ padding: "8px 10px", borderBottom: "1px solid #cbd5e1" }}>Weeks</th>
-                      <th style={{ padding: "8px 10px", borderBottom: "1px solid #cbd5e1" }}>Core Clinical Domain</th>
-                      <th style={{ padding: "8px 10px", borderBottom: "1px solid #cbd5e1" }}>Mapped Texts</th>
+                    <tr style={{ background: "#09090b", color: "#ffffff", textAlign: "left" }}>
+                      <th style={{ padding: "8px 10px", borderBottom: "2px solid #2563eb" }}>Weeks</th>
+                      <th style={{ padding: "8px 10px", borderBottom: "2px solid #2563eb" }}>Core Clinical Domain</th>
+                      <th style={{ padding: "8px 10px", borderBottom: "2px solid #2563eb" }}>Mapped Texts</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -355,7 +355,7 @@ export default function NclexRnAcademyPage() {
                       ["Wks 23–24", "Daily Timed CAT Mock Simulations & Weak-Area Remediation", "4 Full CAT Mock Exams · Detailed Rationales"]
                     ].map(([wk, dom, ref]) => (
                       <tr key={wk}>
-                        <td style={{ padding: "8px 10px", borderBottom: "1px solid #e2e8f0", fontWeight: 800, color: "#7c3aed", whiteSpace: "nowrap" }}>{wk}</td>
+                        <td style={{ padding: "8px 10px", borderBottom: "1px solid #e2e8f0", fontWeight: 800, color: "#1d4ed8", whiteSpace: "nowrap" }}>{wk}</td>
                         <td style={{ padding: "8px 10px", borderBottom: "1px solid #e2e8f0", fontWeight: 600, color: "#0f172a" }}>{dom}</td>
                         <td style={{ padding: "8px 10px", borderBottom: "1px solid #e2e8f0", color: "#475569" }}>{ref}</td>
                       </tr>
@@ -365,7 +365,7 @@ export default function NclexRnAcademyPage() {
               </div>
             </div>
 
-            <div style={{ background: "#ffffff", border: "1px solid #cbd5e1", borderTop: "4px solid #0f172a", borderRadius: 12, padding: 20 }}>
+            <div style={{ background: "#ffffff", border: "1px solid #cbd5e1", borderTop: "4px solid #09090b", borderRadius: 12, padding: 20 }}>
               <h3 style={{ margin: "0 0 6px", fontSize: "1.12rem", color: "#0f172a" }}>
                 Foreign-Trained RN Process, Regulatory Fees &amp; US Visas
               </h3>
@@ -375,10 +375,10 @@ export default function NclexRnAcademyPage() {
               <div style={{ overflowX: "auto", marginBottom: 14 }}>
                 <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.81rem" }}>
                   <thead>
-                    <tr style={{ background: "#f1f5f9", textAlign: "left" }}>
-                      <th style={{ padding: "8px 10px", borderBottom: "1px solid #cbd5e1" }}>Stage &amp; Authority</th>
-                      <th style={{ padding: "8px 10px", borderBottom: "1px solid #cbd5e1" }}>Typical Fee</th>
-                      <th style={{ padding: "8px 10px", borderBottom: "1px solid #cbd5e1" }}>Action Needed</th>
+                    <tr style={{ background: "#09090b", color: "#ffffff", textAlign: "left" }}>
+                      <th style={{ padding: "8px 10px", borderBottom: "2px solid #2563eb" }}>Stage &amp; Authority</th>
+                      <th style={{ padding: "8px 10px", borderBottom: "2px solid #2563eb" }}>Typical Fee</th>
+                      <th style={{ padding: "8px 10px", borderBottom: "2px solid #2563eb" }}>Action Needed</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -390,7 +390,7 @@ export default function NclexRnAcademyPage() {
                     ].map(([st, fee, act]) => (
                       <tr key={st}>
                         <td style={{ padding: "8px 10px", borderBottom: "1px solid #e2e8f0", fontWeight: 700, color: "#0f172a" }}>{st}</td>
-                        <td style={{ padding: "8px 10px", borderBottom: "1px solid #e2e8f0", fontWeight: 800, color: "#7c3aed", whiteSpace: "nowrap" }}>{fee}</td>
+                        <td style={{ padding: "8px 10px", borderBottom: "1px solid #e2e8f0", fontWeight: 800, color: "#1d4ed8", whiteSpace: "nowrap" }}>{fee}</td>
                         <td style={{ padding: "8px 10px", borderBottom: "1px solid #e2e8f0", color: "#475569" }}>{act}</td>
                       </tr>
                     ))}
@@ -438,7 +438,7 @@ export default function NclexRnAcademyPage() {
                     }}
                   >
                     <div>
-                      <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: "0.74rem", fontWeight: 700, color: "#a435f0", textTransform: "uppercase" }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: "0.74rem", fontWeight: 700, color: "#1d4ed8", textTransform: "uppercase" }}>
                         <span>{u.weekLabel}</span>
                         <span>·</span>
                         <span>{u.topics.length} Topics · 60-Q Mixed Evaluation</span>
@@ -474,7 +474,7 @@ export default function NclexRnAcademyPage() {
                             }}
                           >
                             <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                              {isFreePreview ? <BookOpen size={15} color="#a435f0" /> : <Lock size={15} color="#64748b" />}
+                              {isFreePreview ? <BookOpen size={15} color="#1d4ed8" /> : <Lock size={15} color="#64748b" />}
                               <span style={{ fontWeight: 600, fontSize: "0.9rem", color: "#0f172a" }}>
                                 {u.unitNumber}.{tIdx + 1} {t.title}
                               </span>
@@ -485,7 +485,7 @@ export default function NclexRnAcademyPage() {
                               </span>
                               <Link
                                 to={`/nclex-rn/unit/${u.slug}?topic=${t.slug}`}
-                                style={{ fontSize: "0.8rem", fontWeight: 700, color: "#a435f0", textDecoration: "none" }}
+                                style={{ fontSize: "0.8rem", fontWeight: 700, color: "#1d4ed8", textDecoration: "none" }}
                               >
                                 {isFreePreview ? "Open Lesson →" : "Preview →"}
                               </Link>
@@ -514,10 +514,10 @@ export default function NclexRnAcademyPage() {
           </div>
 
           {/* Separate Course: NCLEX-RN Examinations */}
-          <div style={{ background: "#1c1d1f", color: "#ffffff", borderRadius: 12, padding: 28, borderTop: "4px solid #a435f0" }}>
+          <div style={{ background: "#09090b", color: "#ffffff", borderRadius: 12, padding: 28, borderTop: "4px solid #2563eb" }}>
             <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: 16, marginBottom: 18 }}>
               <div>
-                <div style={{ fontSize: "0.74rem", fontWeight: 800, color: "#d8b4fe", letterSpacing: "0.06em", textTransform: "uppercase" }}>
+                <div style={{ fontSize: "0.74rem", fontWeight: 800, color: "#60a5fa", letterSpacing: "0.06em", textTransform: "uppercase" }}>
                   INCLUDED COMPANION COURSE
                 </div>
                 <h2 style={{ margin: "4px 0 6px", fontSize: "1.45rem", color: "#ffffff" }}>
@@ -527,7 +527,7 @@ export default function NclexRnAcademyPage() {
                   {examsData?.subtitle}
                 </p>
               </div>
-              <Link to="/nclex-rn/exams" className="nu-btn nu-btn-primary" style={{ background: "#a435f0", borderColor: "#a435f0" }}>
+              <Link to="/nclex-rn/exams" className="nu-btn nu-btn-primary" style={{ background: "#2563eb", borderColor: "#2563eb" }}>
                 Open NCLEX-RN Examinations <ArrowRight size={15} />
               </Link>
             </div>
@@ -539,14 +539,14 @@ export default function NclexRnAcademyPage() {
                   to={`/nclex-rn/exams?exam=${ex.id}`}
                   style={{
                     background: "rgba(255,255,255,0.06)",
-                    border: "1px solid rgba(255,255,255,0.16)",
+                    border: "1px solid rgba(59, 130, 246, 0.25)",
                     borderRadius: 10,
                     padding: 16,
                     textDecoration: "none",
                     color: "#ffffff"
                   }}
                 >
-                  <div style={{ fontSize: "0.74rem", color: "#d8b4fe", fontWeight: 700, marginBottom: 4 }}>
+                  <div style={{ fontSize: "0.74rem", color: "#60a5fa", fontWeight: 700, marginBottom: 4 }}>
                     {ex.questions.length} Questions · {ex.durationMinutes} mins
                   </div>
                   <div style={{ fontWeight: 700, fontSize: "0.94rem", lineHeight: 1.35, marginBottom: 6 }}>

@@ -949,4 +949,100 @@ export function downloadNursingTemplatePdf(templateId, { withSample = true } = {
   doc.save(`nursing-uganda-template-${tpl.id}.pdf`);
 }
 
+/**
+ * Exports an entire NCLEX-RN Course Unit (all topics, structured study tables,
+ * takeaways, and textbooks references) as a crisp Obsidian Black & Blue PDF.
+ */
+export function exportNclexUnitPdf(unit) {
+  if (!unit) return;
+  const doc = new jsPDF({ unit: "mm", format: "a4", orientation: "portrait" });
+  const pageWidth = doc.internal.pageSize.getWidth();
+  const pageHeight = doc.internal.pageSize.getHeight();
+  const marginX = 15;
+  const maxWidth = pageWidth - marginX * 2;
+  let y = 18;
+
+  const ensureSpace = (needed = 14) => {
+    if (y + needed > pageHeight - 16) {
+      doc.addPage();
+      y = 18;
+    }
+  };
+
+  const writeLine = (txt, { size = 9.5, bold = false, color = [9, 9, 11], indent = 0, lh = 4.6 } = {}) => {
+    doc.setFont("helvetica", bold ? "bold" : "normal");
+    doc.setFontSize(size);
+    doc.setTextColor(color[0], color[1], color[2]);
+    const clean = cleanPdfText(String(txt || "").replace(/\*\*([^*]+)\*\*/g, "$1"));
+    const lines = doc.splitTextToSize(clean, maxWidth - indent);
+    for (const ln of lines) {
+      ensureSpace(lh + 2);
+      doc.text(ln, marginX + indent, y);
+      y += lh;
+    }
+    y += 1;
+  };
+
+  // Obsidian Black + Blue Accent Header Banner
+  doc.setFillColor(9, 9, 11);
+  doc.rect(0, 0, pageWidth, 26, "F");
+  doc.setFillColor(37, 99, 235);
+  doc.rect(0, 24.5, pageWidth, 1.5, "F");
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(8.5);
+  doc.setTextColor(147, 197, 253);
+  doc.text(`NURSING UGANDA · NCLEX-RN MASTER STUDY GUIDE · ${cleanPdfText(unit.weekLabel || "")}`.toUpperCase(), marginX, 9);
+  doc.setFontSize(12.5);
+  doc.setTextColor(255, 255, 255);
+  doc.text(cleanPdfText(unit.title || "NCLEX-RN Course Unit").slice(0, 78), marginX, 18.5);
+  y = 34;
+
+  (unit.topics || []).forEach((topic, tIdx) => {
+    ensureSpace(16);
+    doc.setFillColor(239, 246, 255);
+    doc.setDrawColor(29, 78, 216);
+    doc.rect(marginX, y - 4, maxWidth, 9, "FD");
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(11);
+    doc.setTextColor(9, 9, 11);
+    doc.text(cleanPdfText(`${unit.unitNumber}.${tIdx + 1} ${topic.title}`), marginX + 3, y + 1.8);
+    y += 10;
+
+    (topic.sections || []).forEach((sec) => {
+      ensureSpace(10);
+      writeLine(sec.title, { size: 10, bold: true, color: [29, 78, 216] });
+      (sec.blocks || []).forEach((blk) => {
+        if (blk.type === "paragraph") {
+          writeLine(blk.text, { size: 9.2, color: [30, 41, 59] });
+        } else if (blk.type === "list" && Array.isArray(blk.items)) {
+          blk.items.forEach((it) => writeLine(`- ${it}`, { size: 9, indent: 3, color: [15, 23, 42] }));
+        } else if (blk.type === "callout") {
+          writeLine(`[${blk.title || "Clinical Rule"}] ${blk.text || ""}`, { size: 9, bold: true, color: [29, 78, 216], indent: 2 });
+        } else if (blk.type === "table" && Array.isArray(blk.rows)) {
+          if (blk.title) writeLine(blk.title, { size: 9.2, bold: true, color: [9, 9, 11] });
+          blk.rows.forEach((row) => {
+            const formatted = row.map((c) => (Array.isArray(c) ? c.join("; ") : String(c))).join("  |  ");
+            writeLine(`* ${formatted}`, { size: 8.6, indent: 2, color: [30, 41, 59], lh: 4.3 });
+          });
+        }
+      });
+      y += 2;
+    });
+    y += 3;
+  });
+
+  const pages = doc.getNumberOfPages();
+  for (let p = 1; p <= pages; p++) {
+    doc.setPage(p);
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(8);
+    doc.setTextColor(100, 116, 139);
+    doc.text("Nursing Uganda NCLEX-RN Academy · nursinguganda.com", marginX, pageHeight - 8);
+    doc.text(`Page ${p} of ${pages}`, pageWidth - marginX, pageHeight - 8, { align: "right" });
+  }
+
+  doc.save(`nclex-rn-${unit.slug || "unit-guide"}.pdf`);
+}
+
+
 

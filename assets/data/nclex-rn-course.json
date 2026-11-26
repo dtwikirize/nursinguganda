@@ -545,112 +545,67 @@
           ],
           "sections": [
             {
-              "title": "1. Clinical Overview & NCLEX-RN Blueprint",
+              "title": "1. Clinical Overview & NCLEX-RN Computer Adaptive Testing (CAT)",
               "blocks": [
                 {
                   "type": "paragraph",
-                  "text": "The **NCLEX-RN Computerized Adaptive Test (CAT)** adjusts question difficulty dynamically in real time based on your previous responses. For **internationally educated nurses (IENs)** licensed in Uganda, Kenya, UK, India, or the Philippines, success requires transitioning from SI laboratory units (`mmol/L`) and local drug names (Paracetamol, Adrenaline) to **US Conventional Units (`mg/dL`, `mEq/L`)** and **USAN drug names (Acetaminophen, Epinephrine)**."
+                  "text": "The **NCLEX-RN Computerized Adaptive Test (CAT)** continuously recalculates your clinical competency logit estimate after every single response. Passing requires demonstrating with **95% statistical confidence** that your ability exceeds the NCSBN passing standard within **85 to 150 questions** (maximum **5 hours**, including 15 unscored pretest items). Internationally educated nurses (IENs) must also master converting SI lab values (`mmol/L`) and BAN/rINN drug names into **US Conventional units (`mg/dL`, `mEq/L`)** and **USAN nomenclature**."
                 },
                 {
-                  "type": "diagram",
-                  "variant": "flow",
-                  "title": "Foreign-Trained Nurse NCLEX-RN & US Licensure Sequence",
-                  "caption": "Core steps from UNMC/home-council credential evaluation to passing the NGN CAT examination.",
-                  "steps": [
-                    {
-                      "step": 1,
-                      "label": "Credential Evaluation",
-                      "detail": "Submit transcripts & home license to CGFNS CES / State Board"
-                    },
-                    {
-                      "step": 2,
-                      "label": "English (If Required)",
-                      "detail": "Verify IELTS/OET or English-instruction exemption by State"
-                    },
-                    {
-                      "step": 3,
-                      "label": "ATT Issued",
-                      "detail": "Receive Authorization to Test & schedule at Pearson VUE"
-                    },
-                    {
-                      "step": 4,
-                      "label": "NGN CAT Exam",
-                      "detail": "85–150 questions (max 5 hours) using 95% confidence rule"
-                    },
-                    {
-                      "step": 5,
-                      "label": "RN License & VisaScreen",
-                      "detail": "Obtain State RN license & complete CGFNS VisaScreen"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "2. High-Yield Clinical Concepts & Nursing Priorities",
-              "blocks": [
-                {
-                  "type": "list",
-                  "items": [
-                    "**CAT Length & Time:** Minimum **85 questions** (includes 15 unscored pretest items), maximum **150 questions**, total time limit **5 hours** including breaks.",
-                    "**95% Confidence Interval Rule:** The computer stops when it is 95% certain your ability is either above or below the passing standard — stopping at 85 does NOT mean you failed or passed.",
-                    "**US Conventional Lab Transition:** Memorize fasting glucose (`70–99 mg/dL`), K+ (`3.5–5.0 mEq/L`), Na+ (`135–145 mEq/L`), Creatinine (`0.7–1.2 mg/dL`), BUN (`10–20 mg/dL`), and INR (`0.8–1.1`, therapeutic warfarin `2.0–3.0`).",
-                    "**US Drug Name Conversion:** Paracetamol = Acetaminophen; Adrenaline = Epinephrine; Salbutamol = Albuterol; Lignocaine = Lidocaine; Pethidine = Meperidine.",
-                    "Second: Use tools to eliminate answer choices Opposites can’t attract Sneaky similarities Don’t know it? Don’t guess it.",
-                    "Opposites can’t attract Sneaky similarities Don’t know it? Don’t guess it.",
-                    "If multiple symptoms, treatments, medications, etc. are listed in an answer choice, they must ALL be correct for the answer choice to be correct.",
-                    "For each potential intervention, click to specify if it is essential or contraindicated.",
-                    "Opposites can’t attract Don’t know it? Don’t guess it.",
-                    "Third: invasive medications Opioids, PRN antipsychotics Restraints are always the last resort!!!!"
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "3. NCSBN NCLEX-RN Test Plan — Client Needs Blueprint Weights",
-              "blocks": [
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u1t2-cat-logit-blueprint.webp",
+                  "alt": "Real nurse study cohort photo with CAT adaptive logit trajectory curve and NCSBN Client Needs blueprint percentages",
+                  "caption": "Figure 1.3: NCLEX-RN Computer Adaptive Testing (CAT) Logit Stopping Rule & NCSBN Client Needs Exam Weights."
+                },
                 {
                   "type": "table",
                   "title": "NCSBN NCLEX-RN Test Plan — Client Needs Blueprint Weights",
                   "headers": [
                     "NCSBN Client Needs Category",
-                    "Approx. Weight",
-                    "High-Yield Topics Tested"
+                    "Test Plan Weight",
+                    "High-Yield Exam Focus Areas"
                   ],
                   "rows": [
                     [
                       "**Management of Care**",
                       "15% – 21%",
                       [
-                        "Delegation (RN/LPN/UAP), Prioritization, HIPAA, Advance Directives, Informed Consent"
-                      ]
-                    ],
-                    [
-                      "**Safety & Infection Control**",
-                      "10% – 16%",
-                      [
-                        "Airborne/Droplet/Contact precautions, Falls/Restraints, Disaster Triage, Error Prevention"
+                        "Delegation (RN vs. LPN vs. UAP), Client Rights, Informed Consent, HIPAA, Prioritization & Case Management."
                       ]
                     ],
                     [
                       "**Pharmacological & Parenteral Therapies**",
                       "13% – 19%",
                       [
-                        "High-alert drugs (Insulin, Heparin, Warfarin, Digoxin), IV compatibility, Blood transfusions"
+                        "High-alert IV medications (Insulin, Heparin, Warfarin, Digoxin, Potassium), blood transfusions, TPN & central lines."
                       ]
                     ],
                     [
                       "**Physiological Adaptation**",
                       "11% – 17%",
                       [
-                        "ICU/ER emergencies, Shock, DKA, Sepsis, Increased ICP, ABG compensation, Fluid crises"
+                        "ICU/ED acute instability: sepsis, shock, DKA/HHS, acute MI, respiratory failure & ABG acid-base emergencies."
+                      ]
+                    ],
+                    [
+                      "**Safety & Infection Control**",
+                      "10% – 16%",
+                      [
+                        "Transmission precautions (Airborne/Droplet/Contact), fire RACE/PASS, restraint safety & incident reporting."
                       ]
                     ],
                     [
                       "**Reduction of Risk Potential**",
                       "9% – 15%",
                       [
-                        "US lab ranges (BMP, CBC, Coags), Post-op complications, Diagnostic prep (NPO, allergies)"
+                        "US Conventional lab values (BMP, CBC, Coags), vital-sign shifts, endoscopy/catheter pre/post-procedure safety."
+                      ]
+                    ],
+                    [
+                      "**Health Promotion & Psychosocial**",
+                      "6% – 12% each",
+                      [
+                        "US CDC vaccine schedules, cancer screening, therapeutic communication, abuse reporting & crisis intervention."
                       ]
                     ]
                   ]
@@ -658,19 +613,120 @@
               ]
             },
             {
-              "title": "4. Exam Synthesis & Bedside Takeaways",
+              "title": "2. International Nurse Licensure Pathway, Fees & Work Visas",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "D is correct. The first intervention is to approach the client calmly and attempt to remove him from the day room. Staff members should not contact the agitated client alone but should be accompanied by other personnel.",
-                    "For each client need, click to specify the potential nursing intervention that would be appropriate for the client's care. Each category must have at least one option selected.",
-                    "NCLEX is available in two versions: the NCLEX-RN for registered nurses and the NCLEX-PN for practical/vocational nurses.",
-                    "Same adaptive test format but reduced number of items The Next Generation NCLEX (NGN) will retain the adaptive test format, similar to the current NCLEX, but with fewer test items.",
-                    "Psychosocial Integrity, and Physiological Integrity. Some of these categories are divided further into subcategories.",
-                    "Safety and Infection Control category includes content that tests the nurse’s ability required to protect clients, families, and healthcare personnel from health and environmental hazards.",
-                    "Overview - Physiological Integrity In the Physiological Integrity category are items that test the nurse’s ability to promote physical health and wellness by providing care and comfort, reducing risk potential, and managing health alterations."
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u1t2-cgfns-us-licensure-visas.webp",
+                  "alt": "US clinical orientation photography with CGFNS CES verification, State Board fees, Pearson VUE ATT, and EB-3 vs H-1B comparison",
+                  "caption": "Figure 1.4: Foreign-Trained Nurse Registration Portals, Official Fee Benchmarks & US Employment Visa Pathways."
+                },
+                {
+                  "type": "table",
+                  "title": "Foreign-Trained RN Registration Steps, Official Portals & Work Visa Tracks",
+                  "headers": [
+                    "Stage / Pathway",
+                    "Key Authority & Approximate Cost",
+                    "Action Required & Deployment Rules"
+                  ],
+                  "rows": [
+                    [
+                      "**01. Eligibility & Records**",
+                      "Diploma or BScN + Home Council (2yr bedside exp ideal)",
+                      [
+                        "Active, unencumbered nursing license from home council (e.g., UNMC/NCK/NMC); nursing school & council must dispatch transcripts directly."
+                      ]
+                    ],
+                    [
+                      "**02. CGFNS Verification**",
+                      "CGFNS Credentials Evaluation Service (CES ~**$485**)",
+                      [
+                        "Candidate uploads secondary certificates; home school and regulatory board send official syllabi and verification forms straight to CGFNS."
+                      ]
+                    ],
+                    [
+                      "**03. State Board & Prints**",
+                      "BON (e.g., Texas TBON ~**$75**) + IdentoGO (~**$40**)",
+                      [
+                        "Open State Board of Nursing account, complete background check/fingerprinting, and satisfy English exemption or IELTS/OET if required by board."
+                      ]
+                    ],
+                    [
+                      "**04. Pearson VUE & ATT**",
+                      "Pearson VUE (**$200** exam + ~$150 intl surcharge)",
+                      [
+                        "Receive Authorization to Test (ATT), book at Pearson VUE test center, sit 85–150 NGN CAT items."
+                      ]
+                    ],
+                    [
+                      "**EB-3 vs. H-1B Visas**",
+                      "Direct Hospital Hire or Staffing Agency Sponsor",
+                      [
+                        "**EB-3 (Permanent Green Card):** Diploma or BSN eligible; spouse gets open work permit & children attend US schools. **H-1B:** BSN min., employer-tied, spouse restricted."
+                      ]
+                    ]
                   ]
+                }
+              ]
+            },
+            {
+              "title": "3. Critical Transition: SI Units & British Drugs -> US NCLEX Standards",
+              "blocks": [
+                {
+                  "type": "paragraph",
+                  "text": "NCLEX-RN tests exclusively in **US Conventional Laboratory Units** and **US Adopted Names (USAN)** for medications. Missing a unit shift between `mmol/L` and `mg/dL` or mistaking Paracetamol/Adrenaline terminology costs critical exam points."
+                },
+                {
+                  "type": "table",
+                  "title": "Essential Unit & Drug Name Translations for International NCLEX Candidates",
+                  "headers": [
+                    "Clinical Parameter / Drug",
+                    "SI / UK / East Africa Standard",
+                    "US NCLEX Standard (Tested Value)"
+                  ],
+                  "rows": [
+                    [
+                      "**Blood Glucose (Fasting)**",
+                      "3.9 – 5.5 mmol/L (Urgent low < 3.9)",
+                      [
+                        "**70 – 99 mg/dL** (Hypoglycemia < 70 mg/dL; DKA > 250 mg/dL)"
+                      ]
+                    ],
+                    [
+                      "**Serum Creatinine / BUN**",
+                      "Creatinine 62 – 106 µmol/L · Urea 2.5 – 6.7 mmol/L",
+                      [
+                        "Creatinine **0.7 – 1.2 mg/dL** · BUN **10 – 20 mg/dL**"
+                      ]
+                    ],
+                    [
+                      "**Potassium (K+) & Sodium (Na+)**",
+                      "Same mEq/L / mmol/L (K+ 3.5–5.0; Na+ 135–145)",
+                      [
+                        "**K+ 3.5 – 5.0 mEq/L** · **Na+ 135 – 145 mEq/L** · **Ca2+ 8.5 – 10.5 mg/dL**"
+                      ]
+                    ],
+                    [
+                      "**Hemoglobin (Adult)**",
+                      "Female 120–150 g/L · Male 135–175 g/L",
+                      [
+                        "Female **12 – 15 g/dL** · Male **13.5 – 17.5 g/dL**"
+                      ]
+                    ],
+                    [
+                      "**High-Yield USAN Drug Names**",
+                      "Paracetamol · Adrenaline · Salbutamol · Pethidine · Frusemide",
+                      [
+                        "**Acetaminophen** · **Epinephrine** · **Albuterol** · **Meperidine** · **Furosemide**"
+                      ]
+                    ]
+                  ]
+                },
+                {
+                  "type": "callout",
+                  "tone": "pearl",
+                  "title": "24-Week Cohort Study Cadence (Saunders + Kaplan + LaCharity)",
+                  "text": "Follow the three-phase progression: master core organ pathophysiology in **Saunders 9th Ed.** (Weeks 1–14), apply structured elimination rules with **Kaplan Decision Trees** (Weeks 15–18), and drill daily **LaCharity PDA** delegation/prioritization plus timed full CAT simulations (Weeks 19–24) before scheduling your ATT exam date."
                 }
               ]
             }
@@ -946,105 +1002,104 @@
           ],
           "sections": [
             {
-              "title": "1. Clinical Overview & NCLEX-RN Blueprint",
+              "title": "1. Kaplan 5-Step Decision Tree & Bedside Safety Frameworks",
               "blocks": [
                 {
                   "type": "paragraph",
-                  "text": "Clinical knowledge alone does not guarantee NCLEX-RN success when all four answer choices look partially right. Combining the **Kaplan Decision Tree** with **Saunders Priority Frameworks** allows you to eliminate distractors consistently and select the safest, least-invasive, highest-priority nursing response."
+                  "text": "On the Next-Gen NCLEX-RN, clinical knowledge alone will not save you when two or three options look clinically appropriate. Mastering the **Kaplan 5-Step Decision Tree**, **Maslow's Physiological Hierarchy**, **ABCs (Airway -> Breathing -> Circulation)**, and **Acute vs. Chronic Priority Rules** ensures you systematically eliminate distractors and pick the safest first bedside nursing action."
+                },
+                {
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u1t3-abcs-maslow-priority.webp",
+                  "alt": "Real clinician assessment photo paired with ABCs Maslow bedside rescue pyramid and Stable vs Unstable priority rules",
+                  "caption": "Figure 1.5: Clinical Prioritization Pyramid (ABCs -> Maslow -> Acute vs. Chronic Instability) and the Assess-First Exception Rule."
                 },
                 {
                   "type": "diagram",
                   "variant": "flow",
-                  "title": "Kaplan & Saunders 5-Step NCLEX Question Decision Tree",
-                  "caption": "Systematic elimination process for prioritizing when multiple options appear clinically sound.",
+                  "title": "Kaplan 5-Step NCLEX Question Decision Tree",
+                  "caption": "Apply in strict sequence whenever multiple options seem clinically reasonable.",
                   "steps": [
                     {
                       "step": 1,
                       "label": "Identify Topic & Issue",
-                      "detail": "Re-read the final question stem — what is specifically asked?"
+                      "detail": "Re-read the final question sentence—what clinical outcome is tested?"
                     },
                     {
                       "step": 2,
-                      "label": "Assessment vs. Implementation",
-                      "detail": "Have you assessed the patient yet? Assess before acting unless emergency"
+                      "label": "Assess vs. Implement",
+                      "detail": "Gather physical assessment cues BEFORE calling provider unless emergency rescue needed"
                     },
                     {
                       "step": 3,
-                      "label": "Apply Maslow & ABCs",
-                      "detail": "Airway > Breathing > Circulation > Safety > Psychosocial"
+                      "label": "Maslow & ABCs Filter",
+                      "detail": "Airway obstruction, hypoxia, shock, and acute safety beat routine teaching or psychosocial comfort"
                     },
                     {
                       "step": 4,
-                      "label": "Patient-Centered Safety",
-                      "detail": "Stay with the patient; never leave an unstable client unattended"
+                      "label": "Outcome of Each Option",
+                      "detail": "Test drug safety holds (HR <60, K+ <3.5, RR <12) & verify bedside protection"
                     },
                     {
                       "step": 5,
-                      "label": "Eliminate Absolutes & Traps",
-                      "detail": "Reject 'always', 'never', 'why?' questions, and premature referrals"
+                      "label": "Confirm Question Fit",
+                      "detail": "Re-read chosen answer back into step 1 to verify zero contraindications"
                     }
                   ]
                 }
               ]
             },
             {
-              "title": "2. High-Yield Clinical Concepts & Nursing Priorities",
+              "title": "2. Therapeutic Communication, Medication Holds & Priority Scenarios",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "**Assess vs. Implement Rule:** If the stem gives an incomplete assessment (e.g., client complains of calf pain), **assess first** (inspect/measure/vital signs) rather than intervening blindly — Exception: obvious life threat like choking, ventricular fibrillation, or blood transfusion reaction (stop infusion immediately).",
-                    "**Least Invasive to Most Invasive:** Try repositioning, deep breathing/coughing, and oxygen before suctioning or intubation; try bladder scan/running water before straight catheterization.",
-                    "**Look for the Umbrella Option:** When 3 choices are narrow specific steps of the same process, the broader comprehensive option often wins (and vice versa if one option clearly addresses Airway).",
-                    "**Never 'Pass the Buck':** Avoid answers where the RN tells a distressed client 'Ask your doctor' or leaves an anxious/suicidal client alone.",
-                    "Testing Strategies Your test taking toolkit First: READ the entire question!",
-                    "Don’t know it? Don’t guess it If you’ve never heard of the Med Disease Symptom Assessment finding Don’t guess it!! Chances are - no one else has either.",
-                    "Take action “What will I do?” Implementing the highest-priority solution(s) identified.",
-                    "In nursing practice and for the NGN, students must use their pathophysiology knowledge to analyze client assessments and connect them with common conditions in healthcare settings.",
-                    "Nursing Process. A systematic approach to client care encompassing assessment, analysis, planning, implementation, and evaluation.",
-                    "Communication and Documentation. Verbal and nonverbal interactions between nurses, clients, significant others, and the healthcare team. Accurate and comprehensive documentation ensures adherence to practice standards and accountability in care provision."
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "3. Saunders & Kaplan High-Yield Elimination Rules",
-              "blocks": [
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u1t3-kaplan-decision-tree.webp",
+                  "alt": "Real registered nurse in blue uniform during patient consultation with Kaplan 5-step decision tree and medication safety hold thresholds",
+                  "caption": "Figure 1.6: Therapeutic Communication Golden Rules, High-Alert Medication Hold Limits & Distractor Elimination."
+                },
                 {
                   "type": "table",
-                  "title": "Saunders & Kaplan High-Yield Elimination Rules",
+                  "title": "Saunders & Kaplan High-Yield Question Pattern Matrix",
                   "headers": [
-                    "Question Pattern",
-                    "Correct Priority Rule",
-                    "Classic NCLEX Trap to Reject"
+                    "NCLEX Pattern",
+                    "Winning First Action / Rule",
+                    "Distractor Traps to Reject Immediately"
                   ],
                   "rows": [
                     [
-                      "**Call Provider vs. Assess/Act**",
-                      "Collect vital signs/lungs or perform immediate bedside safety action FIRST.",
+                      "**Assess vs. Call Provider**",
+                      "Check apical HR, lung sounds, SpO2, pain/swelling or bladder scan BEFORE notifying physician.",
                       [
-                        "'Notify the healthcare provider' before you have assessed lung sounds, BP, or SpO2."
+                        "'Notify the healthcare provider immediately' when physical vital signs haven't been checked yet."
+                      ]
+                    ],
+                    [
+                      "**Acute Emergency Exception**",
+                      "Stop blood transfusion for hives/chills, apply O2 for SpO2 84%, clear airway for stridor FIRST.",
+                      [
+                        "'Assess IV patency for 15 minutes' during anaphylaxis or delayed airway support."
                       ]
                     ],
                     [
                       "**Therapeutic Communication**",
-                      "Reflect client's feelings, use open-ended statements, offer self, focus on client.",
+                      "Reflect emotions ('You seem frightened...'), open-ended prompt, offer silent presence.",
                       [
-                        "Asking **'Why?'**, giving false reassurance ('Everything will be fine'), or changing the subject."
+                        "Asking **'Why?'**, giving false reassurance ('Everything will be fine'), or passing blame ('Ask your doctor')."
                       ]
                     ],
                     [
-                      "**Medication Administration Hold Rules**",
-                      "Hold if target parameter is unsafe (e.g., HR < 60 for Digoxin/Metoprolol; K+ < 3.5 for Lasix).",
+                      "**High-Alert Drug Hold Thresholds**",
+                      "Hold Digoxin/Metoprolol if HR <60; Loop diuretics if K+ <3.5; ACEi if K+ >5.0; Opioids if RR <12; MgSO4 if DTR absent.",
                       [
-                        "Giving the drug first and monitoring later, or doubling a missed dose."
+                        "Administering unsafe dose anyway and charting 'will monitor closely'."
                       ]
                     ],
                     [
-                      "**Acute vs. Chronic Priority**",
-                      "See **unstable, new-onset, post-op day 0, or bleeding** clients before stable/chronic clients.",
+                      "**Least Invasive -> Most Invasive**",
+                      "Elevate HOB, cough/deep breath, bladder scan, verbal de-escalation BEFORE suction, Foley, PRN haloperidol or restraints.",
                       [
-                        "Seeing a routine dressing change or stable discharge teaching client first."
+                        "Applying physical restraints or chemical sedation as a first-line measure."
                       ]
                     ]
                   ]
@@ -1052,18 +1107,55 @@
               ]
             },
             {
-              "title": "4. Exam Synthesis & Bedside Takeaways",
+              "title": "3. Option Elimination Logic & Compound-Answer Safeguards",
               "blocks": [
                 {
                   "type": "list",
                   "items": [
-                    "Communication and Documentation. Verbal and nonverbal interactions between nurses, clients, significant others, and the healthcare team. Accurate and comprehensive documentation ensures adherence to practice standards and accountability in care provision.",
-                    "Nursing Process. A systematic approach to client care encompassing assessment, analysis, planning, implementation, and evaluation.",
-                    "Testing Strategies Your test taking toolkit First: READ the entire question!",
-                    "Don’t know it? Don’t guess it If you’ve never heard of the Med Disease Symptom Assessment finding Don’t guess it!! Chances are - no one else has either.",
-                    "What assessment is unnecessary before administering the digoxin? Enter the assessment in the box below.",
-                    "Check pedal pulses Enter the rationale for included assessments in the box below."
+                    "**Opposites Attract Strategy:** When two single-choice answers express direct medical opposites (e.g., *Monitor for hyperkalemia* vs. *Monitor for hypokalemia*), the core mechanism almost always points toward one of those two.",
+                    "**Equal Options Cancel Out:** If Option B and Option C mean clinically the same thing on a single-choice question (e.g., *Reduce dietary sodium* vs. *Avoid canned/processed salty foods*), neither can be the single right answer.",
+                    "**Compound Choice Verification Rule:** If an answer contains multiple symptoms, teachings, or actions linked by 'and', **every single part** must be clinically true—one false clause disqualifies the whole option.",
+                    "**Eliminate Absolute Language:** Reject 'Always', 'Never', 'Every', 'Only', or 'All clients' unless referring to immutable physical safety absolutes (e.g., never recap contaminated needles, never give KCl IV push).",
+                    "**Unstable Before Stable Rule:** On priority triage stems, always see acute airway distress, new post-op bleeding, compartment syndrome (unrelieved pain despite opioids), or sudden confusion before routine wound dressing or stable chronic arthritis."
                   ]
+                },
+                {
+                  "type": "table",
+                  "title": "Worked Test-Taking Strategy Vignettes (Master-Study Drills)",
+                  "headers": [
+                    "Clinical Question Vignette",
+                    "Competing Options Tested",
+                    "Kaplan/LaCharity Winning Rationale"
+                  ],
+                  "rows": [
+                    [
+                      "**Post-Op Total Knee Replacement (Day 0)** reports sudden calf tenderness & tight warm swelling.",
+                      "A. Massage calf gently · B. Measure calf & assess pedal pulses · C. Notify provider now · D. Apply heat pack",
+                      [
+                        "**B wins:** Assess vascular perfusion & DVT signs first before reporting (**Never massage calf** = PE embolus risk!)."
+                      ]
+                    ],
+                    [
+                      "**Blood Transfusion (Packed RBCs)** develops sudden low back pain, chills & hives 10 mins in.",
+                      "A. Slow infusion rate · B. Administer diphenhydramine first · C. Stop transfusion immediately & keep line open with NS",
+                      [
+                        "**C wins:** Emergency exception — stop the infusion immediately with new saline tubing to halt hemolytic/anaphylactic exposure."
+                      ]
+                    ],
+                    [
+                      "**Pre-Op Cataract Client** asks: 'Will my vision definitely come back 100%?'",
+                      "A. 'Why are you worrying about that?' · B. 'Of course, everyone recovers fully.' · C. 'Tell me what concerns you most about the surgery.'",
+                      [
+                        "**C wins:** Open-ended therapeutic exploration of feelings without false reassurance ('Of course') or probing ('Why?')."
+                      ]
+                    ]
+                  ]
+                },
+                {
+                  "type": "callout",
+                  "tone": "pearl",
+                  "title": "Don't Panic On Unfamiliar Drug/Disease Terms",
+                  "text": "When the CAT engine presents an unfamiliar medication or rare condition above passing logit level, **decode the Greek/Latin suffix** (`-olol`, `-pril`, `-sartan`, `-mycin`), apply the **patient's presenting symptom & organ risk**, protect **Airway/Safety**, and never guess blindly on +/- SATA checkboxes."
                 }
               ]
             }

@@ -4,17 +4,23 @@ import {
   ArrowLeft,
   ArrowRight,
   BookOpen,
+  Check,
   CheckCircle2,
   ClipboardCheck,
+  Download,
+  FlaskConical,
   Lock,
+  Search,
   ShieldCheck,
   ShoppingCart
 } from "lucide-react";
 import { useApp } from "../context/AppContext";
+import NclexLabDrawer from "../components/NclexLabDrawer";
 import NclexNavStrip from "../components/NclexNavStrip";
 import NursingLoader from "../components/NursingLoader";
 import { setPageSeo } from "../components/RouteSeo";
 import { LessonSections } from "../components/TopicVisuals";
+import { exportNclexUnitPdf } from "../utils/pdfExport";
 
 const NCLEX_COURSE_ITEM = {
   slug: "nclex-rn-preparation-course",
@@ -27,6 +33,8 @@ const NCLEX_COURSE_ITEM = {
   isFree: false
 };
 
+const MASTERED_KEY = "nu_nclex_mastered_v1";
+
 export default function NclexRnPlayerPage() {
   const { unitSlug } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -37,6 +45,16 @@ export default function NclexRnPlayerPage() {
   const [loading, setLoading] = useState(true);
   const [answers, setAnswers] = useState({});
   const [submitted, setSubmitted] = useState(false);
+  const [sidebarQuery, setSidebarQuery] = useState("");
+  const [labOpen, setLabOpen] = useState(false);
+  const [masteredSlugs, setMasteredSlugs] = useState(() => {
+    try {
+      const saved = JSON.parse(localStorage.getItem(MASTERED_KEY) || "[]");
+      return Array.isArray(saved) ? saved : [];
+    } catch {
+      return [];
+    }
+  });
 
   const enrolled = isEnrolled(NCLEX_COURSE_ITEM.slug) || Boolean(user?.isAdmin);
   const inCart = cart.some((c) => c.slug === NCLEX_COURSE_ITEM.slug);
@@ -64,6 +82,38 @@ export default function NclexRnPlayerPage() {
     return activeUnit.topics.find((t) => t.slug === topicParam) || activeUnit.topics[0];
   }, [activeUnit, topicParam]);
 
+  // Flat ordered topic sequence across all 16 units for instant Prev/Next master navigation
+  const flatTopics = useMemo(() => {
+    const arr = [];
+    for (const u of units) {
+      for (let i = 0; i < (u.topics || []).length; i++) {
+        arr.push({
+          unitSlug: u.slug,
+          unitNumber: u.unitNumber,
+          topic: u.topics[i],
+          label: `${u.unitNumber}.${i + 1} ${u.topics[i].title}`
+        });
+      }
+    }
+    return arr;
+  }, [units]);
+
+  const currentIdx = flatTopics.findIndex(
+    (entry) => entry.unitSlug === activeUnit?.slug && entry.topic.slug === activeTopic?.slug
+  );
+  const prevEntry = currentIdx > 0 ? flatTopics[currentIdx - 1] : null;
+  const nextEntry = currentIdx >= 0 && currentIdx < flatTopics.length - 1 ? flatTopics[currentIdx + 1] : null;
+
+  const filteredUnits = useMemo(() => {
+    const q = sidebarQuery.trim().toLowerCase();
+    if (!q) return units;
+    return units.filter(
+      (u) =>
+        u.title.toLowerCase().includes(q) ||
+        (u.topics || []).some((t) => t.title.toLowerCase().includes(q))
+    );
+  }, [units, sidebarQuery]);
+
   const isUnlocked = activeUnit ? activeUnit.unitNumber === 1 || enrolled : false;
 
   useEffect(() => {
@@ -81,6 +131,17 @@ export default function NclexRnPlayerPage() {
     });
   }, [activeUnit, activeTopic]);
 
+  const toggleMastered = (slug) => {
+    if (!slug) return;
+    setMasteredSlugs((prev) => {
+      const next = prev.includes(slug) ? prev.filter((s) => s !== slug) : [...prev, slug];
+      try {
+        localStorage.setItem(MASTERED_KEY, JSON.stringify(next));
+      } catch {}
+      return next;
+    });
+  };
+
   const activeQuestions = useMemo(() => {
     if (mode === "eval") return activeUnit?.finalEvaluation?.questions || [];
     if (mode === "quiz") return activeTopic?.quiz || [];
@@ -92,6 +153,12 @@ export default function NclexRnPlayerPage() {
   const handleEnroll = () => {
     if (!inCart) addToCart(NCLEX_COURSE_ITEM);
     navigate("/cart");
+  };
+
+  const goToTopicEntry = (entry) => {
+    if (!entry) return;
+    navigate(`/nclex-rn/unit/${entry.unitSlug}?topic=${entry.topic.slug}`);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   if (loading) {
@@ -115,27 +182,60 @@ export default function NclexRnPlayerPage() {
     );
   }
 
+  const totalTopicsCount = flatTopics.length || 48;
+  const masteredCount = masteredSlugs.length;
+  const masteryPct = Math.round((masteredCount / Math.max(1, totalTopicsCount)) * 100);
+  const isCurrentMastered = activeTopic ? masteredSlugs.includes(activeTopic.slug) : false;
+
   return (
     <main className="nu-nclex-theme" style={{ background: "#f8fafc", minHeight: "86vh" }}>
       <NclexNavStrip />
+      <NclexLabDrawer open={labOpen} onClose={() => setLabOpen(false)} />
 
-      <div className="nu-container" style={{ maxWidth: 1260, padding: "24px 16px 48px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "300px minmax(0, 1fr)", gap: 24, alignItems: "start" }} className="nu-notes-two-col">
-          {/* Unique 16-Week Sidebar Navigation (Mostly Black + Clinical Blue) */}
-          <aside style={{ background: "#ffffff", border: "1px solid #cbd5e1", borderTop: "4px solid #09090b", borderRadius: 12, padding: 14, maxHeight: "82vh", overflowY: "auto", position: "sticky", top: 76 }}>
-            <div style={{ padding: "6px 8px 12px", borderBottom: "1px solid #e2e8f0", marginBottom: 10 }}>
-              <div style={{ fontSize: "0.72rem", fontWeight: 800, color: "#1d4ed8", textTransform: "uppercase", letterSpacing: "0.05em" }}>
-                16 Course Units
+      <div className="nu-container" style={{ maxWidth: 1280, padding: "24px 16px 48px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "316px minmax(0, 1fr)", gap: 24, alignItems: "start" }} className="nu-notes-two-col">
+          {/* Master-Study 16-Week Sidebar Navigation (Obsidian Black + Clinical Blue) */}
+          <aside style={{ background: "#ffffff", border: "1px solid #cbd5e1", borderTop: "4px solid #09090b", borderRadius: 12, padding: 14, maxHeight: "84vh", overflowY: "auto", position: "sticky", top: 76 }}>
+            <div style={{ padding: "6px 6px 12px", borderBottom: "1px solid #e2e8f0", marginBottom: 10 }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <span style={{ fontSize: "0.7rem", fontWeight: 800, color: "#1d4ed8", textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                  MASTER STUDY TRACKER
+                </span>
+                <span style={{ fontSize: "0.72rem", fontWeight: 800, color: "#09090b" }}>
+                  {masteredCount}/{totalTopicsCount} ({masteryPct}%)
+                </span>
               </div>
-              <div style={{ fontSize: "0.94rem", fontWeight: 800, color: "#09090b", marginTop: 2 }}>
-                NCLEX-RN Preparation
+              <div style={{ marginTop: 6, height: 6, background: "#e2e8f0", borderRadius: 999, overflow: "hidden" }}>
+                <div style={{ width: `${masteryPct}%`, height: "100%", background: "#1d4ed8", transition: "width 0.25s ease" }} />
+              </div>
+
+              {/* Instant Topic Search */}
+              <div style={{ marginTop: 10, position: "relative" }}>
+                <Search size={14} color="#64748b" style={{ position: "absolute", left: 10, top: "50%", transform: "translateY(-50%)" }} />
+                <input
+                  type="search"
+                  value={sidebarQuery}
+                  onChange={(e) => setSidebarQuery(e.target.value)}
+                  placeholder="Jump to organ, drug, topic..."
+                  aria-label="Filter NCLEX topics"
+                  style={{
+                    width: "100%",
+                    padding: "7px 10px 7px 30px",
+                    borderRadius: 7,
+                    border: "1px solid #cbd5e1",
+                    fontSize: "0.78rem",
+                    color: "#09090b",
+                    background: "#f8fafc"
+                  }}
+                />
               </div>
             </div>
 
             <div style={{ display: "grid", gap: 6 }}>
-              {units.map((u) => {
+              {filteredUnits.map((u) => {
                 const isCurrentUnit = u.slug === activeUnit.slug;
                 const unitFree = u.unitNumber === 1 || enrolled;
+                const showTopics = isCurrentUnit || sidebarQuery.trim().length > 0;
                 return (
                   <div key={u.slug} style={{ border: `1.5px solid ${isCurrentUnit ? "#09090b" : "#e2e8f0"}`, borderRadius: 8, overflow: "hidden" }}>
                     <Link
@@ -149,7 +249,7 @@ export default function NclexRnPlayerPage() {
                         background: isCurrentUnit ? "#09090b" : "#f8fafc",
                         color: isCurrentUnit ? "#ffffff" : "#09090b",
                         borderLeft: isCurrentUnit ? "4px solid #2563eb" : "none",
-                        fontSize: "0.8rem",
+                        fontSize: "0.79rem",
                         fontWeight: 700,
                         textDecoration: "none"
                       }}
@@ -158,15 +258,22 @@ export default function NclexRnPlayerPage() {
                       {!unitFree && <Lock size={13} />}
                     </Link>
 
-                    {isCurrentUnit && (
+                    {showTopics && (
                       <div style={{ padding: 8, background: "#ffffff", display: "grid", gap: 4 }}>
                         {u.topics.map((t, idx) => {
-                          const isCurrentTopic = mode !== "eval" && activeTopic?.slug === t.slug;
+                          const isCurrentTopic = isCurrentUnit && mode !== "eval" && activeTopic?.slug === t.slug;
+                          const done = masteredSlugs.includes(t.slug);
                           return (
                             <button
                               key={t.slug}
                               type="button"
-                              onClick={() => setSearchParams({ topic: t.slug })}
+                              onClick={() => {
+                                if (isCurrentUnit) {
+                                  setSearchParams({ topic: t.slug });
+                                } else {
+                                  navigate(`/nclex-rn/unit/${u.slug}?topic=${t.slug}`);
+                                }
+                              }}
                               style={{
                                 textAlign: "left",
                                 padding: "7px 8px",
@@ -176,26 +283,34 @@ export default function NclexRnPlayerPage() {
                                 background: isCurrentTopic ? "#eff6ff" : "transparent",
                                 color: isCurrentTopic ? "#09090b" : "#334155",
                                 fontWeight: isCurrentTopic ? 800 : 500,
-                                fontSize: "0.78rem",
-                                cursor: "pointer"
+                                fontSize: "0.77rem",
+                                cursor: "pointer",
+                                display: "flex",
+                                alignItems: "flex-start",
+                                justifyContent: "space-between",
+                                gap: 6
                               }}
                             >
-                              {u.unitNumber}.{idx + 1} {t.title}
+                              <span>{u.unitNumber}.{idx + 1} {t.title}</span>
+                              {done && <Check size={13} color="#1d4ed8" style={{ flexShrink: 0, marginTop: 2 }} />}
                             </button>
                           );
                         })}
                         <button
                           type="button"
-                          onClick={() => setSearchParams({ mode: "eval" })}
+                          onClick={() => {
+                            if (isCurrentUnit) setSearchParams({ mode: "eval" });
+                            else navigate(`/nclex-rn/unit/${u.slug}?mode=eval`);
+                          }}
                           style={{
                             textAlign: "left",
                             padding: "7px 8px",
                             borderRadius: 6,
                             border: "1px dashed #1d4ed8",
-                            background: mode === "eval" ? "#09090b" : "#ffffff",
-                            color: mode === "eval" ? "#ffffff" : "#1d4ed8",
+                            background: isCurrentUnit && mode === "eval" ? "#09090b" : "#ffffff",
+                            color: isCurrentUnit && mode === "eval" ? "#ffffff" : "#1d4ed8",
                             fontWeight: 700,
-                            fontSize: "0.78rem",
+                            fontSize: "0.76rem",
                             cursor: "pointer",
                             marginTop: 4
                           }}
@@ -210,57 +325,170 @@ export default function NclexRnPlayerPage() {
             </div>
           </aside>
 
-          {/* Main Study & Quiz Workspace */}
-          <div style={{ background: "#ffffff", border: "1px solid #cbd5e1", borderTop: "4px solid #09090b", borderRadius: 12, padding: "24px 26px" }}>
-            <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: 12, paddingBottom: 16, borderBottom: "1px solid #e2e8f0", marginBottom: 20 }}>
+          {/* Main Master-Study & Quiz Workspace */}
+          <div style={{ background: "#ffffff", border: "1px solid #cbd5e1", borderTop: "4px solid #09090b", borderRadius: 12, padding: "22px 26px" }}>
+            {/* Top Master-Study Utility Bar */}
+            <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: 10, paddingBottom: 14, borderBottom: "1px solid #e2e8f0", marginBottom: 16 }}>
               <div>
-                <div style={{ fontSize: "0.76rem", fontWeight: 800, color: "#1d4ed8", textTransform: "uppercase" }}>
+                <div style={{ fontSize: "0.74rem", fontWeight: 800, color: "#1d4ed8", textTransform: "uppercase" }}>
                   {activeUnit.title}
                 </div>
-                <h1 style={{ margin: "4px 0 0", fontSize: "1.45rem", color: "#09090b" }}>
+                <h1 style={{ margin: "4px 0 0", fontSize: "clamp(1.25rem, 2.2vw, 1.55rem)", color: "#09090b" }}>
                   {mode === "eval" ? activeUnit.finalEvaluation.title : activeTopic?.title}
                 </h1>
               </div>
 
-              {isUnlocked && mode !== "eval" && activeTopic && (
-                <div style={{ display: "flex", gap: 8 }}>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                <button
+                  type="button"
+                  onClick={() => setLabOpen(true)}
+                  style={{
+                    padding: "8px 12px",
+                    borderRadius: 8,
+                    border: "1.5px solid #09090b",
+                    background: "#ffffff",
+                    color: "#09090b",
+                    fontWeight: 700,
+                    fontSize: "0.8rem",
+                    cursor: "pointer",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 6
+                  }}
+                >
+                  <FlaskConical size={14} color="#1d4ed8" /> US Labs &amp; Antidotes
+                </button>
+
+                {isUnlocked && (
                   <button
                     type="button"
-                    onClick={() => setSearchParams({ topic: activeTopic.slug })}
+                    onClick={() => exportNclexUnitPdf(activeUnit)}
                     style={{
-                      padding: "8px 14px",
+                      padding: "8px 12px",
                       borderRadius: 8,
-                      border: `1.5px solid ${mode === "notes" ? "#09090b" : "#cbd5e1"}`,
-                      background: mode === "notes" ? "#09090b" : "#ffffff",
-                      color: mode === "notes" ? "#ffffff" : "#09090b",
+                      border: "1.5px solid #cbd5e1",
+                      background: "#f8fafc",
+                      color: "#09090b",
                       fontWeight: 700,
-                      fontSize: "0.82rem",
-                      cursor: "pointer"
+                      fontSize: "0.8rem",
+                      cursor: "pointer",
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: 6
                     }}
                   >
-                    <BookOpen size={14} style={{ display: "inline", marginRight: 5, verticalAlign: "text-bottom" }} />
-                    Study Notes
+                    <Download size={14} color="#1d4ed8" /> Export Unit PDF
                   </button>
-                  <button
-                    type="button"
-                    onClick={() => setSearchParams({ topic: activeTopic.slug, mode: "quiz" })}
-                    style={{
-                      padding: "8px 14px",
-                      borderRadius: 8,
-                      border: `1.5px solid ${mode === "quiz" ? "#1d4ed8" : "#cbd5e1"}`,
-                      background: mode === "quiz" ? "#1d4ed8" : "#ffffff",
-                      color: mode === "quiz" ? "#ffffff" : "#09090b",
-                      fontWeight: 700,
-                      fontSize: "0.82rem",
-                      cursor: "pointer"
-                    }}
-                  >
-                    <ClipboardCheck size={14} style={{ display: "inline", marginRight: 5, verticalAlign: "text-bottom" }} />
-                    Topic Quiz ({activeTopic.quiz?.length || 20} Qs)
-                  </button>
-                </div>
-              )}
+                )}
+
+                {isUnlocked && mode !== "eval" && activeTopic && (
+                  <>
+                    <button
+                      type="button"
+                      onClick={() => setSearchParams({ topic: activeTopic.slug })}
+                      style={{
+                        padding: "8px 13px",
+                        borderRadius: 8,
+                        border: `1.5px solid ${mode === "notes" ? "#09090b" : "#cbd5e1"}`,
+                        background: mode === "notes" ? "#09090b" : "#ffffff",
+                        color: mode === "notes" ? "#ffffff" : "#09090b",
+                        fontWeight: 700,
+                        fontSize: "0.8rem",
+                        cursor: "pointer"
+                      }}
+                    >
+                      <BookOpen size={14} style={{ display: "inline", marginRight: 5, verticalAlign: "text-bottom" }} />
+                      Notes
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setSearchParams({ topic: activeTopic.slug, mode: "quiz" })}
+                      style={{
+                        padding: "8px 13px",
+                        borderRadius: 8,
+                        border: `1.5px solid ${mode === "quiz" ? "#1d4ed8" : "#cbd5e1"}`,
+                        background: mode === "quiz" ? "#1d4ed8" : "#ffffff",
+                        color: mode === "quiz" ? "#ffffff" : "#09090b",
+                        fontWeight: 700,
+                        fontSize: "0.8rem",
+                        cursor: "pointer"
+                      }}
+                    >
+                      <ClipboardCheck size={14} style={{ display: "inline", marginRight: 5, verticalAlign: "text-bottom" }} />
+                      Quiz ({activeTopic.quiz?.length || 20})
+                    </button>
+                  </>
+                )}
+              </div>
             </div>
+
+            {/* Section Outline & Topic Prev/Next Master Navigation Strip */}
+            {isUnlocked && mode === "notes" && activeTopic && (
+              <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: 10, padding: "10px 14px", background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 10, marginBottom: 20 }}>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 6, alignItems: "center" }}>
+                  <span style={{ fontSize: "0.72rem", fontWeight: 800, color: "#475569", textTransform: "uppercase" }}>Jump:</span>
+                  {(activeTopic.sections || []).map((sec, sIdx) => (
+                    <a
+                      key={sIdx}
+                      href={`#lesson-sec-${sIdx}`}
+                      style={{
+                        padding: "4px 9px",
+                        borderRadius: 6,
+                        background: "#ffffff",
+                        border: "1px solid #cbd5e1",
+                        fontSize: "0.74rem",
+                        fontWeight: 700,
+                        color: "#09090b",
+                        textDecoration: "none"
+                      }}
+                    >
+                      §{sIdx + 1}
+                    </a>
+                  ))}
+                </div>
+
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 8, alignItems: "center" }}>
+                  <button
+                    type="button"
+                    onClick={() => toggleMastered(activeTopic.slug)}
+                    style={{
+                      padding: "6px 11px",
+                      borderRadius: 7,
+                      border: `1.5px solid ${isCurrentMastered ? "#1d4ed8" : "#cbd5e1"}`,
+                      background: isCurrentMastered ? "#1d4ed8" : "#ffffff",
+                      color: isCurrentMastered ? "#ffffff" : "#09090b",
+                      fontSize: "0.76rem",
+                      fontWeight: 700,
+                      cursor: "pointer",
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: 5
+                    }}
+                  >
+                    <CheckCircle2 size={13} /> {isCurrentMastered ? "Mastered ✓" : "Mark Mastered"}
+                  </button>
+
+                  {prevEntry && (
+                    <button
+                      type="button"
+                      onClick={() => goToTopicEntry(prevEntry)}
+                      style={{ padding: "6px 10px", borderRadius: 7, border: "1px solid #cbd5e1", background: "#ffffff", color: "#09090b", fontSize: "0.76rem", fontWeight: 700, cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 4 }}
+                    >
+                      <ArrowLeft size={13} /> Prev
+                    </button>
+                  )}
+                  {nextEntry && (
+                    <button
+                      type="button"
+                      onClick={() => goToTopicEntry(nextEntry)}
+                      style={{ padding: "6px 10px", borderRadius: 7, border: "1px solid #09090b", background: "#09090b", color: "#ffffff", fontSize: "0.76rem", fontWeight: 700, cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 4 }}
+                    >
+                      Next <ArrowRight size={13} />
+                    </button>
+                  )}
+                </div>
+              </div>
+            )}
 
             {!isUnlocked ? (
               <div style={{ padding: "36px 20px", textAlign: "center", background: "#f8fafc", borderRadius: 10, border: "1px solid #e2e8f0" }}>
@@ -303,22 +531,46 @@ export default function NclexRnPlayerPage() {
                 </div>
 
                 <div style={{ marginTop: 22, display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
-                  <button
-                    type="button"
-                    onClick={() => setSearchParams({ topic: activeTopic.slug, mode: "quiz" })}
-                    className="nu-btn nu-btn-primary"
-                    style={{ background: "#09090b", borderColor: "#09090b" }}
-                  >
-                    <ClipboardCheck size={15} /> Start 20-Question Topic Quiz <ArrowRight size={15} />
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setSearchParams({ mode: "eval" })}
-                    className="nu-btn nu-btn-outline"
-                    style={{ borderColor: "#1d4ed8", color: "#1d4ed8" }}
-                  >
-                    Jump to {activeUnit.weekLabel} 60-Q Final Evaluation
-                  </button>
+                  <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+                    <button
+                      type="button"
+                      onClick={() => setSearchParams({ topic: activeTopic.slug, mode: "quiz" })}
+                      className="nu-btn nu-btn-primary"
+                      style={{ background: "#09090b", borderColor: "#09090b" }}
+                    >
+                      <ClipboardCheck size={15} /> Start 20-Q Topic Quiz
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setSearchParams({ mode: "eval" })}
+                      className="nu-btn nu-btn-outline"
+                      style={{ borderColor: "#1d4ed8", color: "#1d4ed8" }}
+                    >
+                      {activeUnit.weekLabel} 60-Q Eval
+                    </button>
+                  </div>
+
+                  <div style={{ display: "flex", gap: 8 }}>
+                    {prevEntry && (
+                      <button
+                        type="button"
+                        onClick={() => goToTopicEntry(prevEntry)}
+                        className="nu-btn nu-btn-outline"
+                      >
+                        <ArrowLeft size={15} /> Previous Topic
+                      </button>
+                    )}
+                    {nextEntry && (
+                      <button
+                        type="button"
+                        onClick={() => goToTopicEntry(nextEntry)}
+                        className="nu-btn nu-btn-primary"
+                        style={{ background: "#1d4ed8", borderColor: "#1d4ed8" }}
+                      >
+                        Next: {nextEntry.label.slice(0, 32)}... <ArrowRight size={15} />
+                      </button>
+                    )}
+                  </div>
                 </div>
               </>
             ) : (
