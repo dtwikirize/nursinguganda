@@ -4083,89 +4083,99 @@
           ],
           "sections": [
             {
-              "title": "1. Clinical Overview & NCLEX-RN Blueprint",
+              "title": "1. Fluid Compartments, IV Tonicity & High-Alert Electrolytes",
               "blocks": [
                 {
                   "type": "paragraph",
-                  "text": "Covers isotonic, hypotonic, and hypertonic IV fluids plus US conventional reference ranges and ECG/neurological manifestations of **Sodium**, **Potassium**, **Calcium**, and **Magnesium** imbalances."
-                }
-              ]
-            },
-            {
-              "title": "2. High-Yield Clinical Concepts & Nursing Priorities",
-              "blocks": [
+                  "text": "Safe parenteral fluid resuscitation and rapid recognition of lethal electrolyte shifts form the backbone of NCLEX Physiological Adaptation. Always evaluate **IV tonicity** (`Isotonic`, `Hypotonic`, `Hypertonic`) against **intracranial pressure (ICP)**, renal urine output (`>= 30 mL/hr`), and **12-lead ECG** waveform changes before infusing potassium or magnesium."
+                },
                 {
-                  "type": "list",
-                  "items": [
-                    "Transcellular fluid This is the smallest compartment fluids surrounding the heart, lungs, spinal cord joints Conti…..",
-                    "Potassium | 3.5-5.0 mEq/L (3.5-5.0 mmol/L) Protein Total | 6.4-8.3 g/dL (64-83 g/dL) Prothrombin time (Protime, PT) | 11-12.5 sec (11-12.5 sec) For those receiving anticoagulant therapy, PT is 1.5–2.0 times control value in seconds.",
-                    "D) Administer a potassium-sparing diuretic to increase urine production The correct answer is: C) Encourage the patient to breathe deeply and slowly to increase CO2.",
-                    "Providing potassium supplements may be necessary due to potential hypokalemia from nasogastric suction, but it will not directly correct the acid-base imbalance.",
-                    "Administering a potassium-sparing diuretic may worsen the metabolic alkalosis by increasing HCO3- levels.",
-                    "The intracellular compartment The body compartments Conti… Conti….",
-                    "Solute- A solute that has dissolved in a liquid e.g. NaCl Osmolarity – Amount of solute which is in a specific volume (total solute concentration per litre of solution.",
-                    "Indications Severe hypernatremia Brain swelling (cerebral edema) Examples 3% NaCl D10%, Dextrose 5%in 0.9%N/S D5% in 0.45% N/S Contin…..",
-                    "Laboratory Test | Conventional Units (SI Units) Activated partial thromboplastin time (aPTT) | 30-40 sec (30-40 sec) For those receiving anticoagulant therapy, aPTT is 1.5–2.5 times control value in seconds.",
-                    "Eosinophils | 50-100/mm3 - 1-4% (0.00-0.5 × 109/L) Basophils | 15-50/mm3 - 0.5-1% (0.02-0.05 × 109/L) Note: Laboratory values may vary with different techniques and in different laboratories."
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "3. NCLEX High-Yield Electrolyte Thresholds (US Conventional Units)",
-              "blocks": [
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u3t1-fluid-electrolytes.webp",
+                  "alt": "Hospital Baxter infusion pump paired with IV tonicity shifts and K+, Na+, Ca2+, Mg2+ emergency thresholds",
+                  "caption": "Figure 3.1: IV Fluid Tonicity Shifts and High-Alert Electrolyte Crises (US Conventional Units)."
+                },
                 {
                   "type": "table",
-                  "title": "NCLEX High-Yield Electrolyte Thresholds (US Conventional Units)",
+                  "title": "Parenteral IV Solution Tonicity & Clinical Indications",
                   "headers": [
-                    "Electrolyte",
-                    "Normal US Range",
-                    "Hypo- Signs / Priority Action",
-                    "Hyper- Signs / Priority Action"
+                    "Tonicity Class",
+                    "Common Solutions",
+                    "Mechanism & NCLEX Contraindications"
                   ],
                   "rows": [
                     [
-                      "**Potassium (K+)**",
-                      "**3.5 – 5.0 mEq/L**",
-                      "U waves, flat T waves, muscle weakness. Oral/IV KCl (**never IV push!** max 10–20 mEq/hr).",
-                      "Peaked T waves, wide QRS, VF arrest! Give **Ca gluconate** (stabilize heart), **Insulin + D50**, Kayexalate."
+                      "**Isotonic** (~275–295 mOsm/L)",
+                      "0.9% Normal Saline (NS), Lactated Ringer's (LR), D5W (in bag)",
+                      [
+                        "Expands extracellular volume without cellular swelling. **Hold LR** in severe hyperkalemia or liver failure (contains K+ and lactate)."
+                      ]
                     ],
                     [
-                      "**Sodium (Na+)**",
-                      "**135 – 145 mEq/L**",
-                      "Confusion, lethargy, cerebral edema, seizures. Restrict fluids / 3% NS slowly.",
-                      "Thirst, dry mucous membranes, agitation, fever. Oral water / hypotonic IV (0.45% NS)."
+                      "**Hypotonic** (<250 mOsm/L)",
+                      "0.45% Normal Saline (Half-NS), 0.225% NS",
+                      [
+                        "Shifts water **into cells** to treat hypernatremia/cellular dehydration. **Contraindicated in ↑ICP, burns, or trauma** (worsens cerebral edema)."
+                      ]
                     ],
                     [
-                      "**Calcium (Ca2+)**",
-                      "**8.5 – 10.5 mg/dL**",
-                      "**Chvostek & Trousseau signs**, tetany, laryngospasm! IV Ca gluconate + seizure precautions.",
-                      "Lethargy, bone pain, kidney stones, constipation. IV 0.9% NS hydration + loop diuretic."
-                    ],
-                    [
-                      "**Magnesium (Mg2+)**",
-                      "**1.5 – 2.5 mEq/L**",
-                      "Hyperactive DTRs, **Torsades de Pointes**, tetany. IV MgSO4.",
-                      "Absent DTRs, RR < 12/min, hypotension. Stop MgSO4; antidote **Calcium Gluconate**!"
+                      "**Hypertonic** (>375 mOsm/L)",
+                      "3% NaCl, 5% NaCl, D5NS, D5LR, D10W",
+                      [
+                        "Pulls water **out of swollen cells** into vasculature (e.g., severe symptomatic hyponatremia/SIADH). Infuse slowly in ICU via pump; watch for **fluid overload/pulmonary edema**."
+                      ]
                     ]
                   ]
                 }
               ]
             },
             {
-              "title": "4. Exam Synthesis & Bedside Takeaways",
+              "title": "2. Electrolyte Thresholds, ECG Waves & Emergency Antidotes",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "Solute- A solute that has dissolved in a liquid e.g. NaCl Osmolarity – Amount of solute which is in a specific volume (total solute concentration per litre of solution.",
-                    "Indications Severe hypernatremia Brain swelling (cerebral edema) Examples 3% NaCl D10%, Dextrose 5%in 0.9%N/S D5% in 0.45% N/S Contin…..",
-                    "Laboratory Test | Conventional Units (SI Units) Activated partial thromboplastin time (aPTT) | 30-40 sec (30-40 sec) For those receiving anticoagulant therapy, aPTT is 1.5–2.5 times control value in seconds.",
-                    "Eosinophils | 50-100/mm3 - 1-4% (0.00-0.5 × 109/L) Basophils | 15-50/mm3 - 0.5-1% (0.02-0.05 × 109/L) Note: Laboratory values may vary with different techniques and in different laboratories.",
-                    "Lewis et.al (2019), Medical-Surgical Nursing in Canada: Assessment and Management of clinical problems (10th ed.), St. Louis: Elsevier. Appendix B Laboratory Values, Adapted by Jana Lok.",
-                    "Lewis et.al (2017), Medical-Surgical Nursing: Assessment and Management of clinical problems (10th ed.), St. Louis: Elsevier. Appendix C Laboratory Reference Intervals.",
-                    "National Council of State Boards of Nursing (2018), NCLEX-RN® Examination: Test Plan for the National Council Licensure Examination for Registered Nurses (Effective April 2019), Chicago: National Council of State Boards of Nursing, Inc. (NCSBN)."
+                  "type": "table",
+                  "title": "NCLEX High-Yield Electrolyte Thresholds (US Conventional Units)",
+                  "headers": [
+                    "Electrolyte (Normal)",
+                    "Hypo- Manifestations & Rescue",
+                    "Hyper- Manifestations & Rescue"
+                  ],
+                  "rows": [
+                    [
+                      "**Potassium (K+)**\n`3.5 – 5.0 mEq/L`",
+                      "**ECG:** Prominent **U waves**, flattened T waves, ST depression, muscle cramps, ileus. Give PO or diluted IV KCl (**NEVER IV push!** Max 10–20 mEq/hr peripheral/pump).",
+                      [
+                        "**ECG:** Tall **peaked T waves**, wide QRS, VF arrest! Give **IV Calcium Gluconate** (stabilizes heart membrane) + **Regular Insulin w/ D50W** + Kayexalate / Albuterol."
+                      ]
+                    ],
+                    [
+                      "**Sodium (Na+)**\n`135 – 145 mEq/L`",
+                      "**Neuro:** Cerebral edema, confusion, headache, seizures. Restrict free water; severe neuro symptoms -> slow **3% NaCl**.",
+                      [
+                        "**Neuro:** Extreme thirst, dry sticky mucous membranes, fever, restlessness. Give oral water or slow **0.45% NS**; monitor for neuro drops."
+                      ]
+                    ],
+                    [
+                      "**Calcium (Ca2+)**\n`8.5 – 10.5 mg/dL`",
+                      "**Neuromuscular:** **+Chvostek** (facial twitch) & **+Trousseau** (BP cuff carpal spasm), tetany, stridor/laryngospasm! IV Calcium Gluconate + seizure pads.",
+                      [
+                        "**Systemic:** 'Stones, bones, abdominal groans, psychiatric overtones', hypotonia. Hydrate with **0.9% NS + Furosemide** (loop diuretic)."
+                      ]
+                    ],
+                    [
+                      "**Magnesium (Mg2+)**\n`1.5 – 2.5 mEq/L`",
+                      "**Cardio/Neuro:** Hyperactive DTRs, tremors, **Torsades de Pointes** arrhythmia. Give IV MgSO4.",
+                      [
+                        "**Toxicity:** **Absent DTRs** (patellar reflex gone first!), RR <12/min, hypotension. Stop MgSO4 immediately & give **IV Calcium Gluconate**!"
+                      ]
+                    ]
                   ]
+                },
+                {
+                  "type": "callout",
+                  "tone": "pearl",
+                  "title": "Potassium Infusion Golden Rule",
+                  "text": "Before hanging any IV bag containing potassium (`KCl`), ALWAYS confirm **urine output >= 30 mL/hr** (`renal clearance`). Never administer potassium as an IV bolus/push — fatal cardiac arrest occurs within seconds."
                 }
               ]
             }
@@ -4441,83 +4451,99 @@
           ],
           "sections": [
             {
-              "title": "1. Clinical Overview & NCLEX-RN Blueprint",
+              "title": "1. Systematic ROME & Tic-Tac-Toe ABG Interpretation",
               "blocks": [
                 {
                   "type": "paragraph",
-                  "text": "Step-by-step **ROME** interpretation (Respiratory Opposite, Metabolic Equal) of **pH (`7.35–7.45`)**, **PaCO2 (`35–45 mmHg`)**, **HCO3- (`22–26 mEq/L`)**, and compensation status."
-                }
-              ]
-            },
-            {
-              "title": "2. High-Yield Clinical Concepts & Nursing Priorities",
-              "blocks": [
+                  "text": "Mastering **Arterial Blood Gases (ABGs)** turns complex ICU/ER deterioration stems into predictable points. Use the **R-O-M-E** rule (**R**espiratory = **O**pposite `pH` vs `PaCO2`; **M**etabolic = **E**qual `pH` vs `HCO3-`) and always verify **Allen's test** collateral ulnar circulation prior to radial arterial puncture."
+                },
                 {
-                  "type": "list",
-                  "items": [
-                    "Eosinophils | 50-100/mm3 - 1-4% (0.00-0.5 × 109/L) Basophils | 15-50/mm3 - 0.5-1% (0.02-0.05 × 109/L) Note: Laboratory values may vary with different techniques and in different laboratories.",
-                    "Arterial Blood Gases (ABGs) are a diagnostic tool used to assess the oxygenation and acid-base balance of the blood.",
-                    "Definition: Respiratory acidosis is a condition where the lungs cannot remove enough carbon dioxide (CO2) from the blood, leading to a buildup of acid in the body.",
-                    "Definition: Respiratory alkalosis is a condition where the lungs remove too much carbon dioxide (CO2) from the blood, leading to a decrease in acid levels in the body.",
-                    "Definition: Metabolic acidosis is a condition where the body produces excess acid or cannot remove enough acid, leading to a decrease in blood pH.",
-                    "Definition: Metabolic alkalosis is a condition where the body loses excess hydrogen ions or gains excess bicarbonate ions, leading to an increase in blood pH.",
-                    "The patient's pH is below normal (7.28), indicating acidosis.",
-                    "The PaCO2 is elevated (55 mmHg), indicating respiratory acidosis.",
-                    "The HCO3- level is normal (28 mmol/L), ruling out metabolic acidosis or alkalosis.",
-                    "The patient's COPD and increased shortness of breath suggest alveolar hypoventilation, leading to respiratory acidosis."
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "3. ABG Reference Values & ROME Acid-Base Interpretation",
-              "blocks": [
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u3t2-abgs-acid-base.webp",
+                  "alt": "Real ICU clinicians operating mechanical ventilator paired with ABG ROME 4-quadrant guide and compensation rules",
+                  "caption": "Figure 3.2: Arterial Blood Gas Reference Values, ROME Four-Quadrant Causes & 3-Step Compensation."
+                },
                 {
                   "type": "table",
-                  "title": "ABG Reference Values & ROME Acid-Base Interpretation",
+                  "title": "US Conventional ABG Normal Values & Acid-Base Disorders",
                   "headers": [
-                    "Imbalance",
-                    "pH / PaCO2 / HCO3 Pattern",
-                    "Primary Causes & Priority Nursing Action"
+                    "Acid-Base Imbalance",
+                    "pH / PaCO2 / HCO3- Pattern",
+                    "Top NCLEX Causes & Bedside Nursing Action"
                   ],
                   "rows": [
                     [
+                      "**Normal Arterial Values**",
+                      "**pH 7.35–7.45** · **PaCO2 35–45 mmHg** · **HCO3- 22–26 mEq/L** · PaO2 80–100 mmHg",
+                      [
+                        "Check **PaCO2** (respiratory/lungs) first when breathing/opioid/COPD cues appear; check **HCO3-** (metabolic/kidneys) in DKA/shock/NG suction."
+                      ]
+                    ],
+                    [
                       "**Respiratory Acidosis**",
-                      "pH **< 7.35**, PaCO2 **> 45**, HCO3 normal/high",
-                      "COPD hypoventilation, opioids, pneumonia. **Improve ventilation** (HOB up, bronchodilators, Naloxone if opioid)."
+                      "pH **< 7.35** · PaCO2 **> 45 mmHg** (Opposite!)",
+                      [
+                        "**Hypoventilation:** COPD exacerbation, opioid overdose (RR <10), airway obstruction, oversedation. **Action:** Airway/O2 (88–92% target in COPD), **Naloxone**, BiPAP/ventilator."
+                      ]
                     ],
                     [
                       "**Respiratory Alkalosis**",
-                      "pH **> 7.45**, PaCO2 **< 35**, HCO3 normal/low",
-                      "Hyperventilation (anxiety, pain, early PE, fever). **Slow breathing**, coach pursed-lip breathing, treat cause."
+                      "pH **> 7.45** · PaCO2 **< 35 mmHg** (Opposite!)",
+                      [
+                        "**Hyperventilation:** Acute panic/anxiety, severe pain, high fever, early salicylate toxicity, PE. **Action:** Coach slow breathing, treat pain/fever/hypoxia."
+                      ]
                     ],
                     [
                       "**Metabolic Acidosis**",
-                      "pH **< 7.35**, HCO3 **< 22**, PaCO2 normal/low",
-                      "**DKA**, renal failure, severe diarrhea, lactic shock. Treat underlying cause (Insulin/NS for DKA); watch hyperkalemia!"
+                      "pH **< 7.35** · HCO3- **< 22 mEq/L** (Equal!)",
+                      [
+                        "**Acid gain / base loss:** **DKA** (Kussmaul respirations), lactic sepsis shock, renal failure, severe prolonged diarrhea. **Action:** Regular insulin + NS (DKA), treat shock, monitor hyperkalemia."
+                      ]
                     ],
                     [
                       "**Metabolic Alkalosis**",
-                      "pH **> 7.45**, HCO3 **> 26**, PaCO2 normal/high",
-                      "NG suctioning, vomiting, excess antacids/diuretics. Replace fluids & **KCl**, treat vomiting."
+                      "pH **> 7.45** · HCO3- **> 26 mEq/L** (Equal!)",
+                      [
+                        "**H+ loss / base gain:** Prolonged vomiting, continuous **NG suction**, loop/thiazide diuretics, antacid overuse. **Action:** Pause NG suction if ordered, replace **KCl + 0.9% NS**."
+                      ]
                     ]
                   ]
                 }
               ]
             },
             {
-              "title": "4. Exam Synthesis & Bedside Takeaways",
+              "title": "2. Determining Compensation Status (Uncompensated vs. Partial vs. Full)",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "The patient's pH is below normal (7.28), indicating acidosis.",
-                    "The PaCO2 is elevated (55 mmHg), indicating respiratory acidosis.",
-                    "The HCO3- level is normal (28 mmol/L), ruling out metabolic acidosis or alkalosis.",
-                    "The patient's COPD and increased shortness of breath suggest alveolar hypoventilation, leading to respiratory acidosis.",
-                    "The patient's ABG results indicate metabolic alkalosis (elevated pH and HCO3- levels).",
-                    "Nasogastric suction can lead to loss of hydrogen ions (H+) and subsequent metabolic alkalosis.",
-                    "To correct metabolic alkalosis, the nurse should aim to increase CO2 levels, which will help reduce HCO3- levels and decrease pH."
+                  "type": "table",
+                  "title": "3-Step Compensation Drill Examples",
+                  "headers": [
+                    "Sample ABG Strip",
+                    "Primary Disorder",
+                    "Compensation Status & Rationale"
+                  ],
+                  "rows": [
+                    [
+                      "`pH 7.26`, `PaCO2 56`, `HCO3- 24`",
+                      "**Respiratory Acidosis**",
+                      [
+                        "**Uncompensated** — `pH` is abnormal (`<7.35`), `PaCO2` matches acidosis, and `HCO3-` (`24`) has not moved yet."
+                      ]
+                    ],
+                    [
+                      "`pH 7.30`, `PaCO2 29`, `HCO3- 16`",
+                      "**Metabolic Acidosis**",
+                      [
+                        "**Partially Compensated** — `pH` is STILL abnormal (`7.30`), `HCO3-` (`16`) explains acidosis, and lungs are blowing off `PaCO2` (`29`) to help."
+                      ]
+                    ],
+                    [
+                      "`pH 7.37`, `PaCO2 58`, `HCO3- 33`",
+                      "**Respiratory Acidosis** (Classic Chronic COPD)",
+                      [
+                        "**Fully Compensated** — `pH` returned into normal (`7.35–7.45`, leaning slightly `<7.40` acid side) while both `PaCO2` and `HCO3-` are elevated."
+                      ]
+                    ]
                   ]
                 }
               ]
@@ -4794,65 +4820,53 @@
           ],
           "sections": [
             {
-              "title": "1. Clinical Overview & NCLEX-RN Blueprint",
+              "title": "1. CDC Transmission-Based Precautions & PPE Donning/Doffing",
               "blocks": [
                 {
                   "type": "paragraph",
-                  "text": "**Transmission-Based Precautions, Enteral/TPN Nutrition & Safety** is a high-yield focus area in **Course Unit 3: Foundations, Safety, Fluid & Electrolytes, ABGs & Nutrition** for the Next-Generation NCLEX-RN (NGN). This study guide integrates core pathophysiology, clinical judgment cues, pharmacology safety, and bedside nursing priorities across **Saunders Comprehensive Review (9th Ed.)**, **Kaplan NCLEX-RN Prep**, and **LaCharity PDA**."
-                }
-              ]
-            },
-            {
-              "title": "2. High-Yield Clinical Concepts & Nursing Priorities",
-              "blocks": [
+                  "text": "NCLEX Safety & Infection Control (`10–16%`) frequently tests **disease-to-isolation matching**, strict **PPE donning/doffing sequence**, **hand hygiene exceptions (`C. difficile`)**, and **central venous TPN / enteral tube safety**."
+                },
                 {
-                  "type": "list",
-                  "items": [
-                    "The intracellular compartment The body compartments Conti… Conti….",
-                    "Transcellular fluid This is the smallest compartment fluids surrounding the heart, lungs, spinal cord joints Conti…..",
-                    "Solute- A solute that has dissolved in a liquid e.g. NaCl Osmolarity – Amount of solute which is in a specific volume (total solute concentration per litre of solution.",
-                    "Indications Severe hypernatremia Brain swelling (cerebral edema) Examples 3% NaCl D10%, Dextrose 5%in 0.9%N/S D5% in 0.45% N/S Contin…..",
-                    "Laboratory Test | Conventional Units (SI Units) Activated partial thromboplastin time (aPTT) | 30-40 sec (30-40 sec) For those receiving anticoagulant therapy, aPTT is 1.5–2.5 times control value in seconds.",
-                    "Potassium | 3.5-5.0 mEq/L (3.5-5.0 mmol/L) Protein Total | 6.4-8.3 g/dL (64-83 g/dL) Prothrombin time (Protime, PT) | 11-12.5 sec (11-12.5 sec) For those receiving anticoagulant therapy, PT is 1.5–2.0 times control value in seconds.",
-                    "Eosinophils | 50-100/mm3 - 1-4% (0.00-0.5 × 109/L) Basophils | 15-50/mm3 - 0.5-1% (0.02-0.05 × 109/L) Note: Laboratory values may vary with different techniques and in different laboratories.",
-                    "Lewis et.al (2019), Medical-Surgical Nursing in Canada: Assessment and Management of clinical problems (10th ed.), St. Louis: Elsevier. Appendix B Laboratory Values, Adapted by Jana Lok.",
-                    "Lewis et.al (2017), Medical-Surgical Nursing: Assessment and Management of clinical problems (10th ed.), St. Louis: Elsevier. Appendix C Laboratory Reference Intervals.",
-                    "National Council of State Boards of Nursing (2018), NCLEX-RN® Examination: Test Plan for the National Council Licensure Examination for Registered Nurses (Effective April 2019), Chicago: National Council of State Boards of Nursing, Inc. (NCSBN)."
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "3. Transmission-Based Precautions, Enteral/TPN Nutrition & Safety — Saunders & Kaplan Clinical Decision Matrix",
-              "blocks": [
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u3t3-isolation-tpn-safety.webp",
+                  "alt": "Surgical PPE barrier photography paired with Airborne, Droplet, Contact isolation protocols, donning/doffing sequence, and TPN line safety",
+                  "caption": "Figure 3.3: CDC Isolation Precautions (Airborne, Droplet, Contact), PPE Order & TPN Air Embolism Rescue."
+                },
                 {
                   "type": "table",
-                  "title": "Transmission-Based Precautions, Enteral/TPN Nutrition & Safety — Saunders & Kaplan Clinical Decision Matrix",
+                  "title": "CDC Transmission-Based Precautions & Required PPE",
                   "headers": [
-                    "Clinical Domain",
-                    "Priority Nursing Action",
-                    "NCLEX Exam Trap to Avoid"
+                    "Precaution Tier",
+                    "High-Yield NCLEX Pathogens",
+                    "Room & PPE Safeguards"
                   ],
                   "rows": [
                     [
-                      "**Acute Cue Recognition**",
-                      "Assess ABCs, mental status, SpO2, and perfusion trends immediately.",
+                      "**Airborne** (<5 microns)",
+                      "**M**easles (Rubeola), **T**uberculosis, **V**aricella (Chickenpox / Disseminated Shingles) — `'MTV'`",
                       [
-                        "Do NOT delegate unstable assessment to UAP or delay airway support."
+                        "**Negative-pressure AIIR room** (door closed), **fit-tested N95 respirator**; place surgical mask on client during transport."
                       ]
                     ],
                     [
-                      "**Medication Safety**",
-                      "Verify target lab values, allergies, and vital parameters before administration.",
+                      "**Droplet** (>5 microns, 3–6 ft)",
+                      "Influenza, **Pertussis**, **Meningococcal meningitis**, Rubella, Mumps, Diphtheria, RSV (sometimes Contact+Droplet)",
                       [
-                        "Hold K+-wasting diuretics if K+ < 3.5 mEq/L; hold Digoxin if apical HR < 60 bpm."
+                        "**Surgical mask** within 3–6 feet of client; private room or cohort with same active infection."
                       ]
                     ],
                     [
-                      "**Delegation (RN/LPN/UAP)**",
-                      "RN: Assessment, teaching, unstable clients. LPN: Stable meds. UAP: Routine vitals & ADLs.",
+                      "**Contact** (Direct/Surface)",
+                      "**MRSA, VRE, *C. difficile*, RSV, Scabies**, Herpes Simplex, draining wounds",
                       [
-                        "Do NOT assign newly admitted or unstable clients to LPN or UAP."
+                        "**Gown + Gloves** before entry. **C. diff Rule:** Use **soap & water** handwashing (alcohol sanitizer does NOT kill *C. diff* spores!). Dedicated BP cuff/stethoscope."
+                      ]
+                    ],
+                    [
+                      "**Neutropenic (Protective)**",
+                      "ANC `< 1,000/mm3`, chemotherapy, bone marrow transplant",
+                      [
+                        "Private positive-pressure room, **NO fresh flowers/plants**, NO raw fruits/salads/pepper, strict hand hygiene, screen sick visitors."
                       ]
                     ]
                   ]
@@ -4860,18 +4874,38 @@
               ]
             },
             {
-              "title": "4. Exam Synthesis & Bedside Takeaways",
+              "title": "2. Enteral Feeding Tubes & Total Parenteral Nutrition (TPN) Safety",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "Eosinophils | 50-100/mm3 - 1-4% (0.00-0.5 × 109/L) Basophils | 15-50/mm3 - 0.5-1% (0.02-0.05 × 109/L) Note: Laboratory values may vary with different techniques and in different laboratories.",
-                    "Lewis et.al (2019), Medical-Surgical Nursing in Canada: Assessment and Management of clinical problems (10th ed.), St. Louis: Elsevier. Appendix B Laboratory Values, Adapted by Jana Lok.",
-                    "Lewis et.al (2017), Medical-Surgical Nursing: Assessment and Management of clinical problems (10th ed.), St. Louis: Elsevier. Appendix C Laboratory Reference Intervals.",
-                    "National Council of State Boards of Nursing (2018), NCLEX-RN® Examination: Test Plan for the National Council Licensure Examination for Registered Nurses (Effective April 2019), Chicago: National Council of State Boards of Nursing, Inc. (NCSBN).",
-                    "Pagana, K., Pagana, T. (2019) Mosby’s Canadian manual of diagnostic and laboratory tests, (2nd Canadian ed.) St. Louis: Elsevier (Canadian Editor, Sandra A. Pike-MacDonald).",
-                    "Copyright © 2020, 2019 by Saunders, an imprint of Elsevier Inc."
+                  "type": "table",
+                  "title": "Enteral Nutrition vs. TPN Central Line Nursing Protocols",
+                  "headers": [
+                    "Therapy",
+                    "Verification & Infusion Rules",
+                    "Critical Complication & Emergency Rescue"
+                  ],
+                  "rows": [
+                    [
+                      "**Enteral (NG / PEG / Dobhoff)**",
+                      "Confirm initial placement by **radiograph (X-ray)** (not air auscultation alone!). Keep **HOB >= 30–45°** during and 30–60 min post-feed. Flush 30 mL water before/after crushed meds.",
+                      [
+                        "**Aspiration / Diarrhea:** Stop feed if acute coughing/dyspnea/residual exceeds facility limit; keep formula at room temp & hang <= 4–8h (open bag)."
+                      ]
+                    ],
+                    [
+                      "**TPN (Central Venous Hyperalimentation)**",
+                      "Dedicated central lumen (PICC/subclavian), **0.22-micron inline filter**, change bag & tubing **every 24h**, monitor **blood glucose q4–6h**.",
+                      [
+                        "**Bag Runs Dry:** Hang **D10W** immediately to prevent rebound hypoglycemia! **Air Embolism** (dyspnea, chest pain, mill-wheel murmur): Clamp catheter, place client in **Left Lateral Trendelenburg** (Durant maneuver) & give 100% O2."
+                      ]
+                    ]
                   ]
+                },
+                {
+                  "type": "callout",
+                  "tone": "pearl",
+                  "title": "Fire Safety (RACE) & Falls Check",
+                  "text": "In any hospital fire stem, follow **R-A-C-E**: **R**escue clients in immediate danger first -> **A**ctivate alarm -> **C**ontain fire (close doors, turn off O2 if safe) -> **E**xtinguish / Evacuate. Use **P-A-S-S** on extinguisher (**P**ull, **A**im at base, **S**queeze, **S**weep)."
                 }
               ]
             }
