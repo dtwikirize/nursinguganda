@@ -5938,72 +5938,85 @@
           ],
           "sections": [
             {
-              "title": "1. Clinical Overview & NCLEX-RN Blueprint",
+              "title": "1. Heart Failure (Left vs. Right), BNP & Acute Pulmonary Edema",
               "blocks": [
                 {
                   "type": "paragraph",
-                  "text": "**Heart Failure, Hypertension, Coronary Artery Disease & ACS/MI** is a high-yield focus area in **Course Unit 4: Cardiovascular System, ECGs, Hemodynamics & Cardiac Medications** for the Next-Generation NCLEX-RN (NGN). This study guide integrates core pathophysiology, clinical judgment cues, pharmacology safety, and bedside nursing priorities across **Saunders Comprehensive Review (9th Ed.)**, **Kaplan NCLEX-RN Prep**, and **LaCharity PDA**."
-                }
-              ]
-            },
-            {
-              "title": "2. High-Yield Clinical Concepts & Nursing Priorities",
-              "blocks": [
+                  "text": "Distinguishing **left-sided ventricular failure (pulmonary congestion)** from **right-sided ventricular failure (systemic venous backup)** drives immediate NCLEX bedside positioning, oxygen therapy, diuretic administration, and fluid-overload monitoring. A serum **BNP > 100 pg/mL** confirms acute decompensated heart failure."
+                },
                 {
-                  "type": "list",
-                  "items": [
-                    "Prioritize airway, breathing, circulation (ABCs), and acute safety cues before routine tasks in Heart Failure, Hypertension, Coronary Artery Disease & ACS/MI.",
-                    "Verify US conventional lab values (mg/dL, mEq/L) and target vital signs prior to administering high-alert medications.",
-                    "Keep initial assessments, unstable clients, IV push medications, and discharge teaching under direct RN responsibility."
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "3. Cardiovascular Safety, Antidotes & Hemodynamic Targets",
-              "blocks": [
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u4t1-heart-failure-acs.webp",
+                  "alt": "Hospital defibrillator clinical team paired with Left vs Right Heart Failure, MONA ACS protocol, and PCI catheterization care",
+                  "caption": "Figure 4.1: Acute Coronary Syndrome (MONA), Left vs. Right Heart Failure, PCI Cath Care & Hypertensive Crisis."
+                },
                 {
                   "type": "table",
-                  "title": "Cardiovascular Safety, Antidotes & Hemodynamic Targets",
+                  "title": "Left-Sided vs. Right-Sided Heart Failure Comparison",
                   "headers": [
-                    "Drug / Condition",
-                    "Critical Safety Lab / Vital Check",
-                    "Toxicity Signs & Antidote"
+                    "Clinical Feature",
+                    "Left-Sided HF (Lungs)",
+                    "Right-Sided HF (Systemic Body)"
                   ],
                   "rows": [
                     [
-                      "**Digoxin**",
-                      "Hold if **apical HR < 60 bpm**; monitor **K+ (3.5–5.0)** (hypokalemia causes toxicity!).",
-                      "Yellow-green halos, nausea, bradycardia. Antidote: **Digibind (Digoxin immune Fab)**."
+                      "**Pathophysiology & Cues**",
+                      "Blood backs up into pulmonary alveoli: **bibasilar crackles, dyspnea, orthopnea, PND, pink frothy sputum** (acute pulmonary edema), S3 gallop.",
+                      [
+                        "Blood backs up into vena cava: **Jugular Venous Distension (JVD)**, **dependent pitting edema**, ascites, hepatomegaly, nocturia."
+                      ]
                     ],
                     [
-                      "**Warfarin (Coumadin)**",
-                      "Target **INR 2.0–3.0** (mechanical valves 2.5–3.5); steady Vitamin K diet.",
-                      "Bleeding gums/melena/INR > 4. Antidote: **Vitamin K (Phytonadione)** + FFP."
-                    ],
-                    [
-                      "**Heparin IV**",
-                      "Target **aPTT 1.5–2.5x control** (~60–80 sec); monitor platelets (HIT risk!).",
-                      "Hemorrhage. Antidote: **Protamine Sulfate**."
-                    ],
-                    [
-                      "**Acute MI (MONA-B)**",
-                      "Oxygen (if SpO2 < 94%), Nitroglycerin (check **BP > 90/60**, no PDE5i!), Aspirin 325 mg, Morphine.",
-                      "Watch cardiogenic shock & ventricular fibrillation; **Troponin I (>0.04 ng/mL)**."
+                      "**Priority Nursing Care**",
+                      "Place in **High-Fowler's**, apply O2, give **IV Furosemide** + IV Morphine (reduces preload/anxiety).",
+                      [
+                        "Monitor **daily weight** (same scale/time AM — notify provider for **> 2 lb/24h** or **> 3–5 lb/week**), restrict Na+ < 2 g/day & fluids."
+                      ]
                     ]
                   ]
                 }
               ]
             },
             {
-              "title": "4. Exam Synthesis & Bedside Takeaways",
+              "title": "2. Acute Coronary Syndrome (STEMI/NSTEMI), PCI & Hypertensive Crisis",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "Integrate Heart Failure, Hypertension, Coronary Artery Disease & ACS/MI cues across the 6-Step NCSBN CJMM: Recognize -> Analyze -> Prioritize -> Generate -> Act -> Evaluate.",
-                    "Compare US Conventional lab values (mg/dL, mEq/L) and US generic drug names (Acetaminophen, Epinephrine, Albuterol) before choosing an option.",
-                    "Verify mastery of Heart Failure, Hypertension, Coronary Artery Disease & ACS/MI using the 20-question topic quiz and the Course Unit 4 60-question mixed Final Evaluation."
+                  "type": "table",
+                  "title": "Acute MI Rescue, Cardiac Cath Safety & Hypertensive Emergency",
+                  "headers": [
+                    "Condition / Procedure",
+                    "Diagnostic Markers & Time Targets",
+                    "Critical Nursing Interventions & Contraindications"
+                  ],
+                  "rows": [
+                    [
+                      "**ACS / STEMI (MONA)**",
+                      "12-Lead ECG **within 10 min**; **Troponin I > 0.04 ng/mL** (most specific, rises 3–6h, stays elevated 7–10 days). Door-to-balloon PCI **<= 90 min**.",
+                      [
+                        "**Aspirin** 162–325 mg chewed first; **Nitroglycerin** SL q5min x3 (sits/lies down); **O2** if SpO2 < 90–94%; **Morphine** IV. **Contraindications:** Hold Nitro if **SBP < 90 mmHg** or **Sildenafil/Tadalafil** within 24–48h."
+                      ]
+                    ],
+                    [
+                      "**Cardiac Catheterization / PCI**",
+                      "Verify **iodine/shellfish contrast allergy**, baseline BUN/Creatinine, and peripheral pedal pulses prior to dye.",
+                      [
+                        "**Hold Metformin 48h** pre/post-contrast (prevents lactic acidosis!). **Post-Cath:** Keep femoral leg **straight 4–6h**, check distal pulses/bleeding q15min; if groin hematoma/bleeding erupts, **apply firm direct manual pressure first**."
+                      ]
+                    ],
+                    [
+                      "**Hypertensive Crisis** (`BP >180/120` + Organ Injury)",
+                      "Watch neuro stroke cues, papilledema, acute chest pain, or oliguria.",
+                      [
+                        "Administer IV **Nicardipine or Labetalol**; lower **MAP by no more than 25% in hour 1** (too fast drops cerebral perfusion -> ischemic stroke!)."
+                      ]
+                    ],
+                    [
+                      "**Cardiac Tamponade**",
+                      "**Beck's Triad:** Hypotension + JVD + Muffled heart sounds (+ pulsus paradoxus).",
+                      [
+                        "Emergency **pericardiocentesis** preparation + IV fluid bolus support."
+                      ]
+                    ]
                   ]
                 }
               ]
@@ -6280,72 +6293,100 @@
           ],
           "sections": [
             {
-              "title": "1. Clinical Overview & NCLEX-RN Blueprint",
+              "title": "1. Systematic 12-Lead ECG Reading & Lethal Arrest Rhythms",
               "blocks": [
                 {
                   "type": "paragraph",
-                  "text": "**ECG Strip Interpretation, Dysrhythmias & Cardiogenic Shock** is a high-yield focus area in **Course Unit 4: Cardiovascular System, ECGs, Hemodynamics & Cardiac Medications** for the Next-Generation NCLEX-RN (NGN). This study guide integrates core pathophysiology, clinical judgment cues, pharmacology safety, and bedside nursing priorities across **Saunders Comprehensive Review (9th Ed.)**, **Kaplan NCLEX-RN Prep**, and **LaCharity PDA**."
-                }
-              ]
-            },
-            {
-              "title": "2. High-Yield Clinical Concepts & Nursing Priorities",
-              "blocks": [
+                  "text": "Always evaluate **the patient before the monitor strip** — check consciousness and carotid pulse first. Normal intervals: **PR 0.12–0.20 sec**, **QRS < 0.12 sec**, **QTc < 0.44 sec**. Differentiating **shockable** (`VFib`, `Pulseless VT`) from **non-shockable** (`Asystole`, `PEA`) rhythms is mandatory on NGN critical-care items."
+                },
                 {
-                  "type": "list",
-                  "items": [
-                    "Prioritize airway, breathing, circulation (ABCs), and acute safety cues before routine tasks in ECG Strip Interpretation, Dysrhythmias & Cardiogenic Shock.",
-                    "Verify US conventional lab values (mg/dL, mEq/L) and target vital signs prior to administering high-alert medications.",
-                    "Keep initial assessments, unstable clients, IV push medications, and discharge teaching under direct RN responsibility."
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "3. Cardiovascular Safety, Antidotes & Hemodynamic Targets",
-              "blocks": [
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u4t2-ecg-dysrhythmias-shock.webp",
+                  "alt": "Real 12-lead ECG tracing paired with ACLS shockable vs non-shockable rhythms, AFib, SVT, Bradycardia, and Cardiogenic Shock",
+                  "caption": "Figure 4.2: 12-Lead ECG Interpretation, ACLS Defibrillation vs. Cardioversion & Cardiogenic Shock Hemodynamics."
+                },
                 {
                   "type": "table",
-                  "title": "Cardiovascular Safety, Antidotes & Hemodynamic Targets",
+                  "title": "High-Yield NCLEX Dysrhythmias, ACLS Drugs & Electrical Therapy",
                   "headers": [
-                    "Drug / Condition",
-                    "Critical Safety Lab / Vital Check",
-                    "Toxicity Signs & Antidote"
+                    "Rhythm / Disorder",
+                    "ECG Key Features",
+                    "Immediate Bedside Nursing Action"
                   ],
                   "rows": [
                     [
-                      "**Digoxin**",
-                      "Hold if **apical HR < 60 bpm**; monitor **K+ (3.5–5.0)** (hypokalemia causes toxicity!).",
-                      "Yellow-green halos, nausea, bradycardia. Antidote: **Digibind (Digoxin immune Fab)**."
+                      "**Ventricular Fibrillation (VF) / Pulseless VT**",
+                      "Chaotic baseline (VF) or wide rapid sawtooth QRS (VT) with **NO pulse**.",
+                      [
+                        "**SHOCKABLE:** Start high-quality **CPR immediately**, perform **unsynchronized defibrillation**, administer **Epinephrine** q3–5min & **Amiodarone**."
+                      ]
                     ],
                     [
-                      "**Warfarin (Coumadin)**",
-                      "Target **INR 2.0–3.0** (mechanical valves 2.5–3.5); steady Vitamin K diet.",
-                      "Bleeding gums/melena/INR > 4. Antidote: **Vitamin K (Phytonadione)** + FFP."
+                      "**Asystole / PEA**",
+                      "Flat line (confirm in 2 leads!) or organized rhythm without a palpable pulse.",
+                      [
+                        "**NON-SHOCKABLE (Never Shock!):** Continuous **CPR (100–120/min)** + **Epinephrine 1 mg IV q3–5m** + reverse **Hs & Ts** (Hypovolemia, Hypoxia, Hyper/Hypokalemia, Tension pneumo, Tamponade)."
+                      ]
                     ],
                     [
-                      "**Heparin IV**",
-                      "Target **aPTT 1.5–2.5x control** (~60–80 sec); monitor platelets (HIT risk!).",
-                      "Hemorrhage. Antidote: **Protamine Sulfate**."
+                      "**Ventricular Tachycardia WITH Pulse**",
+                      "Wide bizarre QRS (`> 0.12s`), rate 150–250 bpm, **pulse palpable**.",
+                      [
+                        "**Stable:** IV **Amiodarone**. **Unstable** (chest pain, BP <90, altered LOC): **Synchronized Cardioversion**."
+                      ]
                     ],
                     [
-                      "**Acute MI (MONA-B)**",
-                      "Oxygen (if SpO2 < 94%), Nitroglycerin (check **BP > 90/60**, no PDE5i!), Aspirin 325 mg, Morphine.",
-                      "Watch cardiogenic shock & ventricular fibrillation; **Troponin I (>0.04 ng/mL)**."
+                      "**Supraventricular Tachycardia (SVT)**",
+                      "Narrow regular QRS, rate 150–250 bpm, hidden P waves.",
+                      [
+                        "**Stable:** Vagal maneuvers -> **Adenosine 6 mg rapid IV push** over 1–2s + immediate 20 mL NS flush (warn client of brief 5-sec asystole/chest pressure). **Unstable:** Synchronized cardioversion."
+                      ]
+                    ],
+                    [
+                      "**Atrial Fibrillation (AFib)**",
+                      "No distinct P waves (f-waves), **irregularly irregular R-R**.",
+                      [
+                        "**Stroke risk** from left atrial stasis! Rate control (**Diltiazem / Metoprolol**) + anticoagulation (**Warfarin / Apixaban**); TEE before elective cardioversion if >48h."
+                      ]
+                    ],
+                    [
+                      "**Symptomatic Bradycardia / 3rd° Block**",
+                      "HR < 50 bpm; 3rd° block shows completely dissociated P waves & QRS.",
+                      [
+                        "**Atropine 1 mg IV** first-line; prepare **transcutaneous pacing** (definitive permanent pacemaker for Complete Heart Block)."
+                      ]
                     ]
                   ]
                 }
               ]
             },
             {
-              "title": "4. Exam Synthesis & Bedside Takeaways",
+              "title": "2. Cardiogenic Shock & Invasive Hemodynamic Monitoring",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "Integrate ECG Strip Interpretation, Dysrhythmias & Cardiogenic Shock cues across the 6-Step NCSBN CJMM: Recognize -> Analyze -> Prioritize -> Generate -> Act -> Evaluate.",
-                    "Compare US Conventional lab values (mg/dL, mEq/L) and US generic drug names (Acetaminophen, Epinephrine, Albuterol) before choosing an option.",
-                    "Verify mastery of ECG Strip Interpretation, Dysrhythmias & Cardiogenic Shock using the 20-question topic quiz and the Course Unit 4 60-question mixed Final Evaluation."
+                  "type": "table",
+                  "title": "Cardiogenic Shock & Pulmonary Artery Catheter Targets",
+                  "headers": [
+                    "Parameter",
+                    "Normal Range",
+                    "Cardiogenic Shock Pattern & Action"
+                  ],
+                  "rows": [
+                    [
+                      "**CVP (Right Preload)**",
+                      "`2 – 8 mmHg`",
+                      "Elevated (>12) from pump backup; avoid aggressive IV fluid boluses that trigger flash pulmonary edema."
+                    ],
+                    [
+                      "**PCWP (Left Preload)**",
+                      "`6 – 12 mmHg`",
+                      "**> 18 mmHg** confirms left ventricular failure / pulmonary congestion."
+                    ],
+                    [
+                      "**Cardiac Output / MAP**",
+                      "`CO 4–8 L/min` · `MAP >= 65`",
+                      "Decreased CO, cool clammy extremities, urine output `< 30 mL/hr`. Titrate **Dobutamine / Norepinephrine**, prepare IABP if refractory."
+                    ]
                   ]
                 }
               ]
@@ -6622,72 +6663,99 @@
           ],
           "sections": [
             {
-              "title": "1. Clinical Overview & NCLEX-RN Blueprint",
+              "title": "1. Anticoagulants, Antiplatelets & Reversal Antidotes",
               "blocks": [
                 {
                   "type": "paragraph",
-                  "text": "**Cardiac Medications: ACEi, Beta-Blockers, Digoxin, Heparin & Warfarin** is a high-yield focus area in **Course Unit 4: Cardiovascular System, ECGs, Hemodynamics & Cardiac Medications** for the Next-Generation NCLEX-RN (NGN). This study guide integrates core pathophysiology, clinical judgment cues, pharmacology safety, and bedside nursing priorities across **Saunders Comprehensive Review (9th Ed.)**, **Kaplan NCLEX-RN Prep**, and **LaCharity PDA**."
-                }
-              ]
-            },
-            {
-              "title": "2. High-Yield Clinical Concepts & Nursing Priorities",
-              "blocks": [
+                  "text": "High-alert cardiovascular medications account for the highest pharmacology testing density on NCLEX. Memorize exact **pre-administration hold parameters** (`HR`, `BP`, `K+`), **therapeutic coagulation labs (`aPTT` vs `INR`)**, and **emergency reversal antidotes**."
+                },
                 {
-                  "type": "list",
-                  "items": [
-                    "Prioritize airway, breathing, circulation (ABCs), and acute safety cues before routine tasks in Cardiac Medications: ACEi, Beta-Blockers, Digoxin, Heparin & Warfarin.",
-                    "Verify US conventional lab values (mg/dL, mEq/L) and target vital signs prior to administering high-alert medications.",
-                    "Keep initial assessments, unstable clients, IV push medications, and discharge teaching under direct RN responsibility."
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "3. Cardiovascular Safety, Antidotes & Hemodynamic Targets",
-              "blocks": [
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u4t3-cardiac-pharmacology.webp",
+                  "alt": "Heparin ampoule paired with Heparin vs Warfarin bridging, Digoxin, ACE inhibitors, Beta-Blockers and Statin safety rules",
+                  "caption": "Figure 4.3: High-Alert Cardiac Pharmacology, Coagulation Monitoring & Emergency Reversal Agents."
+                },
                 {
                   "type": "table",
-                  "title": "Cardiovascular Safety, Antidotes & Hemodynamic Targets",
+                  "title": "Anticoagulation Therapy: Heparin vs. Enoxaparin vs. Warfarin",
                   "headers": [
-                    "Drug / Condition",
-                    "Critical Safety Lab / Vital Check",
-                    "Toxicity Signs & Antidote"
+                    "Drug & Route",
+                    "Lab Target & Onset",
+                    "Side Effects, Diet & Antidote"
                   ],
                   "rows": [
                     [
-                      "**Digoxin**",
-                      "Hold if **apical HR < 60 bpm**; monitor **K+ (3.5–5.0)** (hypokalemia causes toxicity!).",
-                      "Yellow-green halos, nausea, bradycardia. Antidote: **Digibind (Digoxin immune Fab)**."
+                      "**Unfractionated Heparin** (IV / SubQ)",
+                      "**aPTT 60–80 sec** (1.5–2.5x normal 30–40s). Immediate onset.",
+                      [
+                        "Watch **HIT** (Heparin-Induced Thrombocytopenia — platelets drop >50% -> stop ALL heparin!). Antidote: **Protamine Sulfate**."
+                      ]
                     ],
                     [
-                      "**Warfarin (Coumadin)**",
-                      "Target **INR 2.0–3.0** (mechanical valves 2.5–3.5); steady Vitamin K diet.",
-                      "Bleeding gums/melena/INR > 4. Antidote: **Vitamin K (Phytonadione)** + FFP."
+                      "**Enoxaparin (LMWH)** (SubQ)",
+                      "Fixed weight-based dosing (no routine aPTT).",
+                      [
+                        "Inject SubQ into abdomen **2 inches from umbilicus**; **do NOT expel air bubble** or massage site (prevents bruising). Antidote: Protamine (partial)."
+                      ]
                     ],
                     [
-                      "**Heparin IV**",
-                      "Target **aPTT 1.5–2.5x control** (~60–80 sec); monitor platelets (HIT risk!).",
-                      "Hemorrhage. Antidote: **Protamine Sulfate**."
-                    ],
-                    [
-                      "**Acute MI (MONA-B)**",
-                      "Oxygen (if SpO2 < 94%), Nitroglycerin (check **BP > 90/60**, no PDE5i!), Aspirin 325 mg, Morphine.",
-                      "Watch cardiogenic shock & ventricular fibrillation; **Troponin I (>0.04 ng/mL)**."
+                      "**Warfarin** (Oral)",
+                      "**INR 2.0–3.0** (2.5–3.5 mechanical valve); takes **3–5 days** (overlap/bridge with Heparin).",
+                      [
+                        "Keep dietary **Vitamin K** (spinach, kale, broccoli) **consistent** (don't binge or eliminate!). Avoid NSAIDs/ginkgo. Antidote: **Vitamin K (Phytonadione)** + FFP if bleeding."
+                      ]
                     ]
                   ]
                 }
               ]
             },
             {
-              "title": "4. Exam Synthesis & Bedside Takeaways",
+              "title": "2. Core Cardiac Drug Classes: Digoxin, ACEi, ARBs, Beta-Blockers & Statins",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "Integrate Cardiac Medications: ACEi, Beta-Blockers, Digoxin, Heparin & Warfarin cues across the 6-Step NCSBN CJMM: Recognize -> Analyze -> Prioritize -> Generate -> Act -> Evaluate.",
-                    "Compare US Conventional lab values (mg/dL, mEq/L) and US generic drug names (Acetaminophen, Epinephrine, Albuterol) before choosing an option.",
-                    "Verify mastery of Cardiac Medications: ACEi, Beta-Blockers, Digoxin, Heparin & Warfarin using the 20-question topic quiz and the Course Unit 4 60-question mixed Final Evaluation."
+                  "type": "table",
+                  "title": "Cardiovascular Safety, Hold Rules & Antidotes Matrix",
+                  "headers": [
+                    "Drug Class",
+                    "Critical Pre-Dose Hold Check",
+                    "Key Adverse Effects & Patient Teaching"
+                  ],
+                  "rows": [
+                    [
+                      "**Digoxin** (Cardiac Glycoside)",
+                      "Count **apical pulse 1 full minute — HOLD if HR < 60 bpm** (adult) and check **K+** (`3.5–5.0`).",
+                      [
+                        "**Hypokalemia (<3.5)** triggers fatal Digoxin toxicity: N/V, anorexia, bradycardia, **yellow-green halos**. Therapeutic `0.5–2.0 ng/mL`. Antidote: **Digibind**."
+                      ]
+                    ],
+                    [
+                      "**ACE Inhibitors** (`-pril`: Lisinopril)",
+                      "Monitor **BP** & **K+ > 5.0**; avoid pregnancy (**Teratogenic**).",
+                      [
+                        "Dry nagging **cough** (switch to ARB `-sartan`); **Angioedema** (lip/tongue swelling = airway emergency -> Epinephrine & stop drug!)."
+                      ]
+                    ],
+                    [
+                      "**Beta-Blockers** (`-olol`: Metoprolol)",
+                      "Hold if **HR < 60 bpm** or **SBP < 90–100 mmHg**.",
+                      [
+                        "Masks **tachycardia** sign of hypoglycemia in diabetics; non-selective (Propranolol) **contraindicated in asthma/COPD** (bronchospasm). Never stop abruptly (rebound angina)."
+                      ]
+                    ],
+                    [
+                      "**Calcium Channel Blockers** (Amlodipine, Diltiazem)",
+                      "Check BP and HR (Diltiazem/Verapamil slow AV node).",
+                      [
+                        "**Avoid grapefruit juice** (raises toxicity); teach slow position changes (orthostatic hypotension); gingival hyperplasia/constipation."
+                      ]
+                    ],
+                    [
+                      "**Loop Diuretics** (Furosemide) & **Statins** (Atorvastatin)",
+                      "Furosemide: Hold if **K+ < 3.5** or BP low; push IV slowly.",
+                      [
+                        "Furosemide: Give **in morning** (avoid nocturia), ototoxicity if pushed fast IV. **Statins:** Take in **evening**, monitor LFTs & report **muscle pain/weakness (rhabdomyolysis)**."
+                      ]
+                    ]
                   ]
                 }
               ]
