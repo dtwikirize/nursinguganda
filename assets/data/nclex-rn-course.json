@@ -18956,79 +18956,72 @@
           ],
           "sections": [
             {
-              "title": "1. Clinical Overview & NCLEX-RN Blueprint",
+              "title": "1. AKI Etiologies: Prerenal, Intrarenal & Postrenal",
               "blocks": [
                 {
                   "type": "paragraph",
-                  "text": "**Acute Kidney Injury (Prerenal, Intrarenal, Postrenal) & Phases** is a high-yield focus area in **Course Unit 11: Renal System, Acute Kidney Injury (AKI), CKD & Dialysis** for the Next-Generation NCLEX-RN (NGN). This study guide integrates core pathophysiology, clinical judgment cues, pharmacology safety, and bedside nursing priorities across **Saunders Comprehensive Review (9th Ed.)**, **Kaplan NCLEX-RN Prep**, and **LaCharity PDA**."
-                }
-              ]
-            },
-            {
-              "title": "2. High-Yield Clinical Concepts & Nursing Priorities",
-              "blocks": [
+                  "text": "**Acute Kidney Injury (AKI)** is a rapid decline in GFR marked by **rising serum creatinine** and **oliguria (`< 30 mL/hr` or `< 400 mL/day`)**. Early **Prerenal AKI** (hypoperfusion) is rapidly reversible with fluid resuscitation; **Intrarenal AKI** (ATN from aminoglycosides, contrast dye, NSAIDs, sepsis) requires stopping nephrotoxins; **Postrenal AKI** (BPH, stones, kinked Foley) requires immediate relief of obstruction."
+                },
                 {
-                  "type": "list",
-                  "items": [
-                    "Causes of AKI 1. Prerenal causes: Decreased blood flow to the kidneys, such as dehydration, shock, or heart failure.",
-                    "Phases Onset: Begins with precipitating event 2. Oliguric phase.",
-                    "Monitor blood urea nitrogen (BUN) and creatinine levels.",
-                    "VII. Education and Support 1. Educate the patient and family about AKI, its causes, and its treatment.",
-                    "Functions of the kidney Excretory Functions Waste removal: Kidneys filter waste products, such as urea, creatinine, and other toxins, from the blood.",
-                    "Excessive urine output indicates that damaged nephrons are recovering their ability to excrete wastes.",
-                    "Monitor urine output hourly and calculate fluid balance.",
-                    "Assess for signs of fluid overload (e.g., edema, hypertension, pulmonary edema).",
-                    "Monitor electrolyte levels (e.g., potassium, sodium, calcium).",
-                    "Assess for signs of electrolyte imbalances (e.g., muscle weakness, cardiac arrhythmias)."
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "3. Renal Failure (AKI Phases), CKD & Dialysis Precautions",
-              "blocks": [
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u11t1-aki-phases-prerenal-intrarenal.webp",
+                  "alt": "Nephron anatomy diagram with NCLEX-RN AKI etiologies and oliguric/diuretic phase priorities",
+                  "caption": "Nephron functional anatomy with AKI classification and phase priorities (NU · nursinguganda.com)."
+                },
                 {
                   "type": "table",
-                  "title": "Renal Failure (AKI Phases), CKD & Dialysis Precautions",
+                  "title": "AKI Classification & Clinical Phases",
                   "headers": [
-                    "Renal Concept",
-                    "Key Labs & Assessment",
-                    "Critical Nursing Precautions"
+                    "Category / Phase",
+                    "Key Causes & Lab Hallmarks",
+                    "Priority Nursing Interventions"
                   ],
                   "rows": [
                     [
-                      "**AKI Oliguric Phase**",
-                      "Urine **< 400 mL/24h (< 30 mL/hr)**, high K+, high Cr/BUN, fluid overload.",
-                      "Daily weights, strict I&O, restrict K+/P+/fluid; watch **peaked T waves**."
+                      "**Prerenal** (Hypoperfusion)",
+                      "Dehydration, hemorrhage, HF, sepsis; **BUN:Cr > 20:1**, high urine SG (> 1.020), low urine Na+.",
+                      [
+                        "Restore perfusion (**0.9% NS / LR**), treat shock/HF, monitor **hourly urine output >= 30 mL/hr**."
+                      ]
                     ],
                     [
-                      "**Hemodialysis AV Fistula**",
-                      "Palpate **thrill** & auscultate **bruit** at fistula site every shift.",
-                      "**NO BP cuffs, NO venipunctures, NO IV lines** on the fistula arm! Hold dialyzable meds before HD."
+                      "**Intrarenal** (Parenchymal ATN)",
+                      "**Aminoglycosides, Vancomycin, IV Contrast, NSAIDs**, glomerulonephritis, rhabdomyolysis; **muddy brown casts**.",
+                      [
+                        "**Stop nephrotoxic drugs**; **Acetylcysteine + 0.9% NS** pre-contrast; hold **Metformin 48h**."
+                      ]
                     ],
                     [
-                      "**Peritoneal Dialysis**",
-                      "Warm dialysate before instilling; monitor outflow volume.",
-                      "**Cloudy outflow = Peritonitis** (notify provider & culture!). Reposition if slow drain."
+                      "**Postrenal** (Obstruction)",
+                      "**BPH**, kidney stones, tumor, **kinked Foley catheter**.",
+                      [
+                        "**Check/irrigate Foley** or insert catheter; relieve stone/obstruction immediately."
+                      ]
+                    ],
+                    [
+                      "**Oliguric Phase** (1–2 wks)",
+                      "Urine **< 400 mL/day**; **HYPERKALEMIA**, fluid overload, metabolic acidosis.",
+                      [
+                        "**ECG monitoring** (peaked T waves -> **Calcium Gluconate -> Insulin+D50 -> Kayexalate**); **fluid restrict**; daily weights."
+                      ]
+                    ],
+                    [
+                      "**Diuretic Phase**",
+                      "Urine **4–5 L/day** (nephrons recovering but cannot concentrate urine yet).",
+                      [
+                        "Watch **HYPOVOLEMIA**, hypotension, & **HYPOKALEMIA / hyponatremia**; replace fluids & electrolytes."
+                      ]
                     ]
                   ]
                 }
               ]
             },
             {
-              "title": "4. Exam Synthesis & Bedside Takeaways",
+              "title": "2. Exam Synthesis & Bedside Takeaways",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "Monitor urine output hourly and calculate fluid balance.",
-                    "Assess for signs of fluid overload (e.g., edema, hypertension, pulmonary edema).",
-                    "Monitor electrolyte levels (e.g., potassium, sodium, calcium).",
-                    "Assess for signs of electrolyte imbalances (e.g., muscle weakness, cardiac arrhythmias).",
-                    "Assess for signs of uremia (e.g., nausea, vomiting, lethargy).",
-                    "II. Fluid Management 1. Administer IV fluids as prescribed to maintain adequate hydration and urine output.",
-                    "III. Electrolyte Management Monitor potassium levels closely and report any elevations to the healthcare provider."
-                  ]
+                  "type": "paragraph",
+                  "text": "**NCLEX-RN Bottom Line:** **Hourly urine output < 30 mL/hr** for 2 consecutive hours requires immediate assessment (check Foley kinks/bladder scan first). In the **oliguric phase**, the #1 killer is **hyperkalemia**; in the **diuretic phase**, watch for **dehydration and hypokalemia**."
                 }
               ]
             }
@@ -19304,79 +19297,72 @@
           ],
           "sections": [
             {
-              "title": "1. Clinical Overview & NCLEX-RN Blueprint",
+              "title": "1. Chronic Kidney Disease (CKD) & Hemodialysis Safety",
               "blocks": [
                 {
                   "type": "paragraph",
-                  "text": "**Chronic Kidney Disease (CKD), AV Fistula Care & Dialysis Nursing** is a high-yield focus area in **Course Unit 11: Renal System, Acute Kidney Injury (AKI), CKD & Dialysis** for the Next-Generation NCLEX-RN (NGN). This study guide integrates core pathophysiology, clinical judgment cues, pharmacology safety, and bedside nursing priorities across **Saunders Comprehensive Review (9th Ed.)**, **Kaplan NCLEX-RN Prep**, and **LaCharity PDA**."
-                }
-              ]
-            },
-            {
-              "title": "2. High-Yield Clinical Concepts & Nursing Priorities",
-              "blocks": [
+                  "text": "End-stage **Chronic Kidney Disease (CKD)** causes uremia, **hyperkalemia**, **hyperphosphatemia**, **hypocalcemia** (renal osteodystrophy), **anemia** (decreased erythropoietin), and **fluid overload**. Safe **hemodialysis** depends on strict **AV fistula limb protection**, **pre-dialysis medication holds**, and rapid recognition of **dialysis disequilibrium syndrome**."
+                },
                 {
-                  "type": "list",
-                  "items": [
-                    "While kayexalate and insulin/glucose may also be used to treat hyperkalemia, calcium gluconate is the first-line treatment in this scenario. Emergency dialysis may be necessary if the patient's condition does not improve with medical treatment.",
-                    "Causes of AKI 1. Prerenal causes: Decreased blood flow to the kidneys, such as dehydration, shock, or heart failure.",
-                    "Phases Onset: Begins with precipitating event 2. Oliguric phase.",
-                    "Excessive urine output indicates that damaged nephrons are recovering their ability to excrete wastes.",
-                    "Monitor urine output hourly and calculate fluid balance.",
-                    "Assess for signs of fluid overload (e.g., edema, hypertension, pulmonary edema).",
-                    "Monitor electrolyte levels (e.g., potassium, sodium, calcium).",
-                    "Assess for signs of electrolyte imbalances (e.g., muscle weakness, cardiac arrhythmias).",
-                    "Monitor blood urea nitrogen (BUN) and creatinine levels.",
-                    "Assess for signs of uremia (e.g., nausea, vomiting, lethargy)."
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "3. Renal Failure (AKI Phases), CKD & Dialysis Precautions",
-              "blocks": [
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u11t2-ckd-hemodialysis-peritoneal.webp",
+                  "alt": "Clinical hemodialysis machine with NCLEX-RN AV fistula, medication hold and PD peritonitis priorities",
+                  "caption": "Hemodialysis machine with AV fistula protection, pre-HD medication holds and PD peritonitis rules (NU · nursinguganda.com)."
+                },
                 {
                   "type": "table",
-                  "title": "Renal Failure (AKI Phases), CKD & Dialysis Precautions",
+                  "title": "CKD Diet, AV Fistula Protection & Dialysis Modalities",
                   "headers": [
-                    "Renal Concept",
-                    "Key Labs & Assessment",
-                    "Critical Nursing Precautions"
+                    "Focus Area",
+                    "Clinical Standard & Assessment",
+                    "Priority Nursing Actions"
                   ],
                   "rows": [
                     [
-                      "**AKI Oliguric Phase**",
-                      "Urine **< 400 mL/24h (< 30 mL/hr)**, high K+, high Cr/BUN, fluid overload.",
-                      "Daily weights, strict I&O, restrict K+/P+/fluid; watch **peaked T waves**."
+                      "**CKD Diet & Meds**",
+                      "**Low Na+, Low K+, Low Phosphorus**, fluid restriction; **Sevelamer / Calcium acetate** (phosphate binders).",
+                      [
+                        "Give **phosphate binders WITH meals**; give **Epoetin alfa** (check BP & Hgb <= 11 g/dL) + iron."
+                      ]
                     ],
                     [
-                      "**Hemodialysis AV Fistula**",
-                      "Palpate **thrill** & auscultate **bruit** at fistula site every shift.",
-                      "**NO BP cuffs, NO venipunctures, NO IV lines** on the fistula arm! Hold dialyzable meds before HD."
+                      "**AV Fistula / Graft**",
+                      "**Palpate THRILL** (vibration) and **auscultate BRUIT** (whoosh) q4–8h.",
+                      [
+                        "Post **\"Limb Alert\"** sign: **NO BP cuffs, NO IVs, NO venipunctures, NO tight jewelry** on fistula arm; report absent thrill/bruit STAT."
+                      ]
                     ],
                     [
-                      "**Peritoneal Dialysis**",
-                      "Warm dialysate before instilling; monitor outflow volume.",
-                      "**Cloudy outflow = Peritonitis** (notify provider & culture!). Reposition if slow drain."
+                      "**Pre-Hemodialysis Meds**",
+                      "Dialysis strips water-soluble drugs and drops BP.",
+                      [
+                        "**HOLD antihypertensives, Digoxin, water-soluble vitamins, & dialyzable antibiotics** BEFORE HD; weigh **before & after** HD."
+                      ]
+                    ],
+                    [
+                      "**Dialysis Disequilibrium**",
+                      "Rapid urea drop -> cerebral edema: **headache, nausea, restlessness, seizures**.",
+                      [
+                        "**Slow or STOP dialysis rate**, notify MD, prepare **Mannitol / anticonvulsants**."
+                      ]
+                    ],
+                    [
+                      "**Peritoneal Dialysis (PD)**",
+                      "Warm dialysate with **heating pad/warming chamber** (NEVER microwave!).",
+                      [
+                        "**Cloudy/opaque effluent + fever/abdominal pain = PERITONITIS** (send culture + IP antibiotics). If outflow stops: **turn side-to-side**, check for kinks/constipation."
+                      ]
                     ]
                   ]
                 }
               ]
             },
             {
-              "title": "4. Exam Synthesis & Bedside Takeaways",
+              "title": "2. Exam Synthesis & Bedside Takeaways",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "Monitor electrolyte levels (e.g., potassium, sodium, calcium).",
-                    "Assess for signs of electrolyte imbalances (e.g., muscle weakness, cardiac arrhythmias).",
-                    "Monitor blood urea nitrogen (BUN) and creatinine levels.",
-                    "Assess for signs of uremia (e.g., nausea, vomiting, lethargy).",
-                    "II. Fluid Management 1. Administer IV fluids as prescribed to maintain adequate hydration and urine output.",
-                    "III. Electrolyte Management Monitor potassium levels closely and report any elevations to the healthcare provider.",
-                    "Administer potassium-lowering medications as prescribed (e.g., Kayexalate)."
-                  ]
+                  "type": "paragraph",
+                  "text": "**NCLEX-RN Bottom Line:** **Never take BP, draw blood, or place an IV in an AV fistula arm.** Always **hold antihypertensives before hemodialysis** (unless explicitly ordered), give **phosphate binders WITH meals**, and treat **cloudy peritoneal dialysis effluent** as **peritonitis** immediately."
                 }
               ]
             }
@@ -19652,79 +19638,72 @@
           ],
           "sections": [
             {
-              "title": "1. Clinical Overview & NCLEX-RN Blueprint",
+              "title": "1. UTI, Pyelonephritis, Kidney Stones & Post-TURP Care",
               "blocks": [
                 {
                   "type": "paragraph",
-                  "text": "**UTI, Pyelonephritis, Nephrolithiasis, BPH & Renal Medications** is a high-yield focus area in **Course Unit 11: Renal System, Acute Kidney Injury (AKI), CKD & Dialysis** for the Next-Generation NCLEX-RN (NGN). This study guide integrates core pathophysiology, clinical judgment cues, pharmacology safety, and bedside nursing priorities across **Saunders Comprehensive Review (9th Ed.)**, **Kaplan NCLEX-RN Prep**, and **LaCharity PDA**."
-                }
-              ]
-            },
-            {
-              "title": "2. High-Yield Clinical Concepts & Nursing Priorities",
-              "blocks": [
+                  "text": "Urological nursing focuses on **early sepsis recognition in pyelonephritis** (`CVA tenderness`, high fever, chills), **acute confusion as the #1 UTI sign in older adults**, **straining urine for renal calculi**, and **continuous bladder irrigation (CBI)** patency after **TURP**."
+                },
                 {
-                  "type": "list",
-                  "items": [
-                    "Causes of AKI 1. Prerenal causes: Decreased blood flow to the kidneys, such as dehydration, shock, or heart failure.",
-                    "Administer medications that are renally cleared at adjusted doses as prescribed.",
-                    "V. Nutrition and Diet Provide a renal-friendly diet that is low in protein, sodium, and potassium.",
-                    "This is examination of urine to diagnose and monitor renal and urinary tract disorders.",
-                    "Evaluates kidney anatomy and detects abnormalities Detects kidney stones, tumors, cysts, and infection.",
-                    "Phases Onset: Begins with precipitating event 2. Oliguric phase.",
-                    "Excessive urine output indicates that damaged nephrons are recovering their ability to excrete wastes.",
-                    "Monitor urine output hourly and calculate fluid balance.",
-                    "Assess for signs of fluid overload (e.g., edema, hypertension, pulmonary edema).",
-                    "Monitor electrolyte levels (e.g., potassium, sodium, calcium)."
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "3. Renal Failure (AKI Phases), CKD & Dialysis Precautions",
-              "blocks": [
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u11t3-uti-urolithiasis-bph-meds.webp",
+                  "alt": "Extracted renal calculi (kidney stones) with NCLEX-RN urolithiasis, TURP and UTI medication rules",
+                  "caption": "Renal calculi with stone straining, post-TURP CBI and UTI pharmacology rules (NU · nursinguganda.com)."
+                },
                 {
                   "type": "table",
-                  "title": "Renal Failure (AKI Phases), CKD & Dialysis Precautions",
+                  "title": "Urological Disorders & Renal Pharmacology",
                   "headers": [
-                    "Renal Concept",
-                    "Key Labs & Assessment",
-                    "Critical Nursing Precautions"
+                    "Condition / Medication",
+                    "Key Assessment & Clinical Cues",
+                    "Priority Nursing Interventions"
                   ],
                   "rows": [
                     [
-                      "**AKI Oliguric Phase**",
-                      "Urine **< 400 mL/24h (< 30 mL/hr)**, high K+, high Cr/BUN, fluid overload.",
-                      "Daily weights, strict I&O, restrict K+/P+/fluid; watch **peaked T waves**."
+                      "**UTI & Pyelonephritis**",
+                      "Dysuria, frequency, urgency; **elderly: acute confusion/falls**. Pyelonephritis: **CVA tenderness + fever**.",
+                      [
+                        "Obtain **UA + Urine C&S BEFORE antibiotics**; wipe **front-to-back**; void after intercourse; drink **2–3 L/day**."
+                      ]
                     ],
                     [
-                      "**Hemodialysis AV Fistula**",
-                      "Palpate **thrill** & auscultate **bruit** at fistula site every shift.",
-                      "**NO BP cuffs, NO venipunctures, NO IV lines** on the fistula arm! Hold dialyzable meds before HD."
+                      "**Nephrolithiasis (Stones)**",
+                      "Severe **flank pain radiating to groin/testes**, hematuria, nausea.",
+                      [
+                        "**IV Opioids + Ketorolac** (pain) -> **IV fluids** -> **STRAIN ALL URINE** -> send stone to lab -> **Tamsulosin** to relax ureter."
+                      ]
                     ],
                     [
-                      "**Peritoneal Dialysis**",
-                      "Warm dialysate before instilling; monitor outflow volume.",
-                      "**Cloudy outflow = Peritonitis** (notify provider & culture!). Reposition if slow drain."
+                      "**BPH & Post-TURP (CBI)**",
+                      "**3-way Foley catheter** with Continuous Bladder Irrigation (0.9% NS).",
+                      [
+                        "Titrate CBI rate to maintain **light pink** urine; **if bright red or clots -> INCREASE CBI rate** & **manually irrigate** per order (NEVER milk/clamp!). Report **rigid abdomen** (bladder perforation)."
+                      ]
+                    ],
+                    [
+                      "**Phenazopyridine (Pyridium)**",
+                      "Urinary analgesic (does NOT treat infection!).",
+                      [
+                        "Warn client urine will turn **bright orange-red** (stains underwear/contacts); finish full antibiotic course."
+                      ]
+                    ],
+                    [
+                      "**BPH Meds** (`Tamsulosin`, `Finasteride`)",
+                      "`Tamsulosin` (alpha-blocker: fast relief); `Finasteride` (5-ARI: shrinks prostate over 6 mos).",
+                      [
+                        "`Tamsulosin`: **orthostatic hypotension** (take at bedtime). `Finasteride`: **teratogenic** (pregnant women must NOT handle crushed tablets)."
+                      ]
                     ]
                   ]
                 }
               ]
             },
             {
-              "title": "4. Exam Synthesis & Bedside Takeaways",
+              "title": "2. Exam Synthesis & Bedside Takeaways",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "Excessive urine output indicates that damaged nephrons are recovering their ability to excrete wastes.",
-                    "Monitor urine output hourly and calculate fluid balance.",
-                    "Assess for signs of fluid overload (e.g., edema, hypertension, pulmonary edema).",
-                    "Monitor electrolyte levels (e.g., potassium, sodium, calcium).",
-                    "Assess for signs of electrolyte imbalances (e.g., muscle weakness, cardiac arrhythmias).",
-                    "Monitor blood urea nitrogen (BUN) and creatinine levels.",
-                    "Assess for signs of uremia (e.g., nausea, vomiting, lethargy)."
-                  ]
+                  "type": "paragraph",
+                  "text": "**NCLEX-RN Bottom Line:** In **kidney stones**, **pain control + IV hydration + straining ALL urine** are top priorities. Post-TURP **CBI goal is light pink urine** — increase CBI flow if bright red/clots appear. In **older adults**, **sudden new confusion = check for UTI** (always get **culture BEFORE antibiotics**)."
                 }
               ]
             }
