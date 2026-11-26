@@ -3,7 +3,7 @@ import { AlertTriangle, CheckCircle2, Layers, Sparkles, Table2 } from "lucide-re
 import MedicalImageFrame from "./MedicalImageFrame";
 import RichText from "./RichText";
 
-const IMAGE_VERSION = "20261126h";
+const IMAGE_VERSION = "20261126i";
 
 function withImgVersion(src) {
   const s = String(src || "");
@@ -905,6 +905,54 @@ function getInlineSectionRules() {
       titleOnly: true,
       src: "/assets/images/medical-illustrations/neuro-autonomic-sympathetic-parasympathetic.webp",
       caption: "Neuron Synapse & Sympathetic vs Parasympathetic Outflow"
+    },
+    {
+      match: /\b(gram\s+stain|bacterial\s+growth|prokaryote|normal\s+flora|bacterial\s+taxonomy|concepts\s+of\s+microbiology)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/micro-bacterial-cell-taxonomy-gram.webp",
+      caption: "Microbiology: Bacterial Cell, Gram Stain & Growth Curve"
+    },
+    {
+      match: /\b(chain\s+of\s+infection|anthrax|typhoid\s+fever|enteric\s+fever|mumps|parotitis|toxoplasmosis|communicable\s+disease)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/micro-chain-of-infection-pathogenesis.webp",
+      caption: "Chain of Infection & Communicable Pathogens"
+    },
+    {
+      match: /\b(environmental\s+hygiene|personal\s+hygiene|safe\s+water|food\s+hygiene|sanitation|housing.*ventilation)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/micro-wash-sanitation-food-housing.webp",
+      caption: "WASH F-Diagram, Safe Water, Food Hygiene & Housing"
+    },
+    {
+      match: /\b(gonorrhoea|urethral\s+discharge|vaginal\s+discharge|pelvic\s+inflammatory|trichomonas|bacterial\s+vaginosis)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/sti-urethral-vaginal-discharge-pid.webp",
+      caption: "STI Discharge Syndromes & Pelvic Inflammatory Disease"
+    },
+    {
+      match: /\b(chancroid|balanitis|syphilis|inguinal\s+buboes|genital\s+ulcer)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/sti-genital-ulcer-syphilis-chancroid-buboes.webp",
+      caption: "Genital Ulcers: Syphilis, Chancroid & Inguinal Buboes"
+    },
+    {
+      match: /\b(adaptive\s+immunity|natural\s+body\s+defence|humoral\s+immunity|systemic\s+lupus|\bsle\b|hypersensitivity)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/immune-innate-adaptive-b-t-cells.webp",
+      caption: "Innate Leukocytes, B vs T Immunity & Autoimmunity"
+    },
+    {
+      match: /\b(lymphatic\s+system|hodgkin|lymphangitis|lymphadenitis|splenomegaly|hypersplenism|neoplasms)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/immune-lymphatic-system-hodgkin-spleen.webp",
+      caption: "Lymphatic System, Hodgkin's Lymphoma, Splenomegaly & Tumors"
+    },
+    {
+      match: /\b(opportunistic\s+infections|post[- ]exposure\s+prophylaxis|hiv\s+and\s+pregnancy|\bemtct\b|hiv\/aids\s+counsel)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/immune-hiv-opportunistic-infections-pep.webp",
+      caption: "HIV/AIDS Care, CD4 Opportunistic Infections & 72h PEP"
     },
     {
       match: /\b(pressure\s+ulcer|pressure\s+injury|pressure\s+sore|stage\s+[1-4]\s+ulcer|epidermis|dermis|wound\s+healing|skin\s+layers|integumentary)\b/i,

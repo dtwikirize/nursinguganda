@@ -16,7 +16,9 @@
     "Medical-Surgical & Pathology",
     "Leadership, Ethics, Safety & Fundamentals",
     "Mental Health & Psychiatry",
-    "Neurology & Clinical Neurosurgery"
+    "Neurology & Clinical Neurosurgery",
+    "Microbiology, STI & WASH",
+    "Immunology, HIV & Lymphatic System"
   ],
   "images": [
     {
@@ -2972,6 +2974,174 @@
         {
           "label": "Autonomic Nervous System Agents",
           "to": "/learn/bachelor-of-nursing-science-top-up-pharmacology-i/autonomic-nervous-system-agents"
+        }
+      ]
+    },
+    {
+      "id": "micro-bacterial-cell-taxonomy-gram",
+      "title": "Microbiology: Bacterial Cell, Gram Stain & Growth Curve",
+      "category": "Microbiology, STI & WASH",
+      "file": "/assets/images/medical-illustrations/micro-bacterial-cell-taxonomy-gram.webp",
+      "alt": "Eukaryotic cell organelles compared with prokaryotic bacterial cell, Gram-positive vs Gram-negative cell walls, bacterial shapes, and 4-phase growth curve",
+      "summary": "Contrasts membrane-bound eukaryotic cells with prokaryotic bacterial anatomy, Crystal Violet vs Safranin Gram staining, morphology, and antibiotic Log-phase targeting.",
+      "structures": [
+        "Prokaryotic 70S & Plasmid",
+        "Gram+ Peptidoglycan Wall",
+        "Gram- LPS Outer Membrane",
+        "Lag-Log-Stationary-Death Curve"
+      ],
+      "clinicalPearl": "Penicillins and Cephalosporins act during active Log-phase cell wall synthesis; collect cultures BEFORE antibiotics.",
+      "relatedTopics": [
+        {
+          "label": "Cell Biology & Bacterial Taxonomy",
+          "to": "/learn/bachelor-of-nursing-science-top-up-microbiology/cell-biology-bacterial-taxonomy"
+        }
+      ]
+    },
+    {
+      "id": "micro-chain-of-infection-pathogenesis",
+      "title": "Chain of Infection & Communicable Pathogens",
+      "category": "Microbiology, STI & WASH",
+      "file": "/assets/images/medical-illustrations/micro-chain-of-infection-pathogenesis.webp",
+      "alt": "Six-link Chain of Infection wheel around IPC portal blockers alongside Typhoid, Anthrax, Mumps, and Congenital Toxoplasmosis disease profiles",
+      "summary": "Illustrates breaking the six links of infection with IPC interventions alongside clinical hallmarks for Typhoid, Anthrax, Mumps parotitis, and TORCH toxoplasmosis.",
+      "structures": [
+        "6-Link Infection Cycle",
+        "Autoclave & Hand Hygiene IPC",
+        "Typhoid Ileal Perforation Risk",
+        "Anthrax Eschar & TORCH Triad"
+      ],
+      "clinicalPearl": "Sudden severe abdominal pain and rebound tenderness in week 3 of Typhoid signals ileal perforation emergency.",
+      "relatedTopics": [
+        {
+          "label": "Introduction to communicable diseases - Midwives Revision",
+          "to": "/learn/certificate-in-midwifery-midwifery-ii-and-tropical-medicine/introduction-to-communicable-diseases"
+        }
+      ]
+    },
+    {
+      "id": "micro-wash-sanitation-food-housing",
+      "title": "WASH F-Diagram, Safe Water, Food Hygiene & Housing",
+      "category": "Microbiology, STI & WASH",
+      "file": "/assets/images/medical-illustrations/micro-wash-sanitation-food-housing.webp",
+      "alt": "WHO 6-F fecal-oral transmission barriers alongside household water purification steps, WHO 5 Keys to Safer Food, and cross-ventilated housing standards",
+      "summary": "Maps WASH fecal-oral barriers, Uganda MOH 30-metre downhill VIP latrine siting, 3-step water treatment, 5 Keys to Safer Food, and healthy housing ventilation.",
+      "structures": [
+        "WHO F-Diagram WASH Barriers",
+        "30m Downhill Latrine Rule",
+        "Household Water Purification",
+        "WHO 5 Keys to Safer Food"
+      ],
+      "clinicalPearl": "Site latrines >=30m downhill from wells, boil/chlorinate turbid water after filtration, and cook food above 70 C.",
+      "relatedTopics": [
+        {
+          "label": "Introduction to personal hygiene",
+          "to": "/learn/certificate-in-midwifery-personal-and-communal-health-and-microbiology/introduction-to-personal-hygiene"
+        }
+      ]
+    },
+    {
+      "id": "sti-urethral-vaginal-discharge-pid",
+      "title": "STI Discharge Syndromes & Pelvic Inflammatory Disease",
+      "category": "Microbiology, STI & WASH",
+      "file": "/assets/images/medical-illustrations/sti-urethral-vaginal-discharge-pid.webp",
+      "alt": "Ascending pelvic inflammatory disease diagram paired with Uganda MOH dual Urethral Discharge therapy, Candidiasis, Bacterial Vaginosis, Trichomoniasis, and 4 C's",
+      "summary": "Pairs ascending reproductive tract infection and PID tubal damage with Uganda MOH syndromic management for Urethral Discharge and Vaginal Discharge differentials.",
+      "structures": [
+        "Ascending Salpingitis (PID)",
+        "Dual Gonorrhoea + Chlamydia Rx",
+        "Candida vs BV vs Trichomonas",
+        "4 C's of STI Control"
+      ],
+      "clinicalPearl": "Always treat BOTH Gonorrhoea and Chlamydia plus all sexual partners together to prevent PID infertility.",
+      "relatedTopics": [
+        {
+          "label": "GONORRHOEA",
+          "to": "/learn/certificate-in-midwifery-gynecology-and-reproductive-health/gonorrhoea"
+        }
+      ]
+    },
+    {
+      "id": "sti-genital-ulcer-syphilis-chancroid-buboes",
+      "title": "Genital Ulcer Disease: Syphilis, Chancroid & Inguinal Buboes",
+      "category": "Microbiology, STI & WASH",
+      "file": "/assets/images/medical-illustrations/sti-genital-ulcer-syphilis-chancroid-buboes.webp",
+      "alt": "Visual comparison of painless indurated Syphilis chancre, painful ragged Chancroid, grouped HSV-2 vesicles, systemic syphilis stages, and inguinal bubo aspiration rule",
+      "summary": "Differentiates Primary Syphilis, Chancroid, and Genital Herpes ulcers alongside first-visit syndromic dual treatment, ANC RPR screening, and safe bubo aspiration.",
+      "structures": [
+        "Painless Indurated Chancre",
+        "Painful Bleeding Chancroid",
+        "ANC Dual Syphilis Screening",
+        "Aspirate vs Do-Not-Incise Bubo"
+      ],
+      "clinicalPearl": "Aspirate fluctuant inguinal buboes through intact healthy skin; never incise and drain due to fistula risk.",
+      "relatedTopics": [
+        {
+          "label": "CHANCROID, BALANITIS & SYPHILIS",
+          "to": "/learn/certificate-in-midwifery-gynecology-and-reproductive-health/chancroid-balanitis-syphilis"
+        }
+      ]
+    },
+    {
+      "id": "immune-innate-adaptive-b-t-cells",
+      "title": "Innate Leukocytes, B vs T Immunity & Autoimmunity",
+      "category": "Immunology, HIV & Lymphatic System",
+      "file": "/assets/images/medical-illustrations/immune-innate-adaptive-b-t-cells.webp",
+      "alt": "3D White Blood Cells and B vs T Lymphocytes alongside Active/Passive immunity quadrant matrix and Type I-IV hypersensitivity reactions including SLE",
+      "summary": "Combines leukocyte phagocytosis and humoral B-cell vs cellular T-cell immunity with vaccine vs antiserum matrices and Type I-IV hypersensitivity / SLE pathophysiology.",
+      "structures": [
+        "Monocyte, Neutrophil & Eosinophil",
+        "Humoral B-Cell & Antibodies",
+        "Cellular CD4/CD8 T-Cells",
+        "2x2 Active/Passive Immunity Matrix"
+      ],
+      "clinicalPearl": "Natural barriers (intact skin, stomach acid, lysozyme, cilia) + passive colostrum IgA protect neonates early.",
+      "relatedTopics": [
+        {
+          "label": "Immunity",
+          "to": "/learn/certificate-in-midwifery-personal-and-communal-health-and-microbiology/immunity-for-nurses-pharmacology"
+        }
+      ]
+    },
+    {
+      "id": "immune-lymphatic-system-hodgkin-spleen",
+      "title": "Lymphatic System, Hodgkin's Lymphoma, Splenomegaly & Tumors",
+      "category": "Immunology, HIV & Lymphatic System",
+      "file": "/assets/images/medical-illustrations/immune-lymphatic-system-hodgkin-spleen.webp",
+      "alt": "Full-body 3D lymphatic vessels and lymph nodes paired with enlarged lymphoma node, Hodgkin Reed-Sternberg features, lymphangitis, splenomegaly, and tumor contrast",
+      "summary": "Details Thoracic Duct and Right Lymphatic drainage alongside Hodgkin's lymphoma B-symptoms, acute lymphangitis/lymphadenitis, hypersplenism safety, and neoplasms.",
+      "structures": [
+        "Thoracic Duct & Lymph Nodes",
+        "Hodgkin Reed-Sternberg Cell",
+        "Lymphangitis vs Lymphadenitis",
+        "Splenomegaly & TNM Neoplasms"
+      ],
+      "clinicalPearl": "Left arm & lower body lymph drains into the Thoracic Duct (left subclavian vein); guard enlarged spleens from trauma.",
+      "relatedTopics": [
+        {
+          "label": "BNS 123: Pathology Curriculum",
+          "to": "/learn/bachelor-of-nursing-science-top-up-pathology/pathology-bns-curriculum"
+        }
+      ]
+    },
+    {
+      "id": "immune-hiv-opportunistic-infections-pep",
+      "title": "HIV/AIDS Care, CD4 Opportunistic Infections & 72h PEP",
+      "category": "Immunology, HIV & Lymphatic System",
+      "file": "/assets/images/medical-illustrations/immune-hiv-opportunistic-infections-pep.webp",
+      "alt": "CD4 T-cell decline opportunistic infection thresholds, oral screening, Uganda Option B+ EMTCT regimen TDF+3TC+DTG, 72-hour PEP protocol, and 5 C's HIV counseling",
+      "summary": "Links CD4 threshold prediction for TB, PCP, Cryptococcus, and Toxoplasmosis with Uganda Option B+ pregnancy EMTCT, ACTS HIV counseling, and 72-hour PEP steps.",
+      "structures": [
+        "CD4 Opportunistic Ladder",
+        "Uganda Option B+ EMTCT (TLD)",
+        "72-Hour HIV PEP Rescue",
+        "5 C's HIV Counseling & U=U"
+      ],
+      "clinicalPearl": "Cotrimoxazole prophylaxis at CD4 <200 (or WHO stage 3/4) prevents PCP pneumonia and cerebral toxoplasmosis.",
+      "relatedTopics": [
+        {
+          "label": "Sexually Transmitted Diseases (STDs)/HIV/AIDS",
+          "to": "/learn/certificate-in-midwifery-gynecology-and-reproductive-health/sexually-transmitted-diseases-stds"
         }
       ]
     }
