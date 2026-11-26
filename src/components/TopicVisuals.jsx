@@ -3,7 +3,7 @@ import { AlertTriangle, CheckCircle2, Layers, Sparkles, Table2 } from "lucide-re
 import MedicalImageFrame from "./MedicalImageFrame";
 import RichText from "./RichText";
 
-const IMAGE_VERSION = "20261126e";
+const IMAGE_VERSION = "20261126f";
 
 function withImgVersion(src) {
   const s = String(src || "");
@@ -671,6 +671,96 @@ function getInlineSectionRules() {
       titleOnly: true,
       src: "/assets/images/medical-illustrations/condition-burns-rule-of-nines.webp",
       caption: "Burn TBSA Estimation (Wallace Rule of Nines)"
+    },
+    {
+      match: /\b(myocardial\s+infarction|\bangina\b|coronary\s+atherosclerosis|heart\s+failure|congestive\s+cardiac|rheumatic\s+heart|pericarditis|myocarditis|endocarditis)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/medsurg-cardiovascular-mi-hf.webp",
+      caption: "Cardiovascular Emergencies: Myocardial Infarction & CAD"
+    },
+    {
+      match: /\b(hypertension|deep\s+vein\s+thrombosis|\bdvt\b)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/medsurg-hypertension-dvt-vascular.webp",
+      caption: "Hypertension, LV Hypertrophy & Deep Vein Thrombosis (DVT)"
+    },
+    {
+      match: /\b(cerebral\s+vascular\s+accident|\bstroke\b|intracranial\s+hemorrhage)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/medsurg-stroke-cva-hemorrhage.webp",
+      caption: "Cerebrovascular Accident (Stroke): Ischaemic vs. Haemorrhagic"
+    },
+    {
+      match: /\b(meningitis|encephalitis|lumbar\s+puncture|subarachnoid\s+space)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/medsurg-meningitis-lumbar-puncture.webp",
+      caption: "CNS Infections: Meningitis, Meningeal Layers & Lumbar Puncture"
+    },
+    {
+      match: /\b(pneumonia|pleural\s+effusion|pneumothorax|tuberculosis|empyema)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/medsurg-pneumonia-pleural-effusion.webp",
+      caption: "Lower Respiratory Pathology: Pneumonia, Effusion & Pneumothorax"
+    },
+    {
+      match: /\b(asthma|bronchitis|emphysema|\bcopd\b|bronchospasm)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/medsurg-asthma-copd-airways.webp",
+      caption: "Asthma, Bronchitis & Obstructive Airway Disease"
+    },
+    {
+      match: /\b(kidney\s+stones|renal\s+calculi|nephrolithiasis|renal\s+failure|pyelonephritis|cystitis|hydronephrosis)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/medsurg-kidney-stones-renal-failure.webp",
+      caption: "Renal & Urological Disorders: Calculi, Pyelonephritis & AKI"
+    },
+    {
+      match: /\b(catheterization|foley\s+catheter|cauti)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/medsurg-urinary-catheterization-uti.webp",
+      caption: "Urinary Catheterization & Catheter-Associated UTI Prevention"
+    },
+    {
+      match: /\b(thyrotoxicosis|goitre|goiter|diabetes\s+mellitus|ketoacidosis|\bdka\b|cushing|addison)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/medsurg-endocrine-goitre-diabetes.webp",
+      caption: "Endocrine Disorders: Goitre, Thyrotoxicosis & Diabetes Mellitus"
+    },
+    {
+      match: /\b(glaucoma|cataract|canal\s+of\s+schlemm|eye\s+trauma)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/medsurg-eye-glaucoma-cataract.webp",
+      caption: "Ophthalmic Pathology: Glaucoma, Cataract & Anterior Eye"
+    },
+    {
+      match: /\b(otitis\s+media|tonsillitis|tympanic\s+membrane|epistaxis)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/medsurg-ent-otitis-tonsillitis.webp",
+      caption: "ENT Disorders: Acute Otitis Media & Exudative Tonsillitis"
+    },
+    {
+      match: /\b(sickle\s+cell|blood\s+transfusion|\banaemia\b|\banemia\b|leukemia)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/medsurg-haematology-sickle-transfusion.webp",
+      caption: "Haematology: Sickle Cell Disease & Blood Transfusion Safety"
+    },
+    {
+      match: /\b(elephantiasis|filariasis|schistosomiasis|bilharzia|onchocerciasis|trypanosomiasis|ebola|yellow\s+fever)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/medsurg-ntds-filariasis-schisto.webp",
+      caption: "Tropical NTDs: Lymphatic Filariasis & Schistosomiasis"
+    },
+    {
+      match: /\b(gangrene|wound\s+dressing|furunculosis|leprosy)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/medsurg-wound-gangrene-dressing.webp",
+      caption: "Integumentary Pathology: Tissue Perfusion & Gangrene"
+    },
+    {
+      match: /\b(surgical\s+shock|\bhaemorrhage\b|\bhemorrhage\b|cardiopulmonary\s+resuscitation|\bcpr\b|first\s+aid)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/medsurg-shock-haemorrhage-cpr.webp",
+      caption: "Surgical Emergencies: Shock, Haemorrhage & Adult BLS/CPR"
     },
     {
       match: /\b(pressure\s+ulcer|pressure\s+injury|pressure\s+sore|stage\s+[1-4]\s+ulcer|epidermis|dermis|wound\s+healing|skin\s+layers|integumentary)\b/i,

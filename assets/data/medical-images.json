@@ -12,7 +12,8 @@
     "Clinical Conditions & Nursing",
     "Foundations & Clinical Nursing",
     "Pharmacology & Medications",
-    "Paediatrics & Child Health"
+    "Paediatrics & Child Health",
+    "Medical-Surgical & Pathology"
   ],
   "images": [
     {
@@ -2163,6 +2164,321 @@
         {
           "label": "Burns Lecture Notes",
           "to": "/learn/certificate-in-nursing-surgical-nursing-i-and-gynecological-nursing/certificate-in-nursing-surgical-nursing-i-and-gynecological-nursing-burns-lecture-notes"
+        }
+      ]
+    },
+    {
+      "id": "medsurg-cardiovascular-mi-hf",
+      "title": "Cardiovascular Emergencies: Myocardial Infarction & CAD",
+      "category": "Medical-Surgical & Pathology",
+      "file": "/assets/images/medical-illustrations/medsurg-cardiovascular-mi-hf.webp",
+      "alt": "Myocardial infarction coronary thrombus cutaway paired with normal versus atherosclerotic narrowed coronary artery",
+      "summary": "Illustrates acute coronary arterial occlusion causing myocardial ischaemic necrosis alongside progressive lipid plaque narrowing of the coronary lumen.",
+      "structures": [
+        "Occluded Coronary Artery",
+        "Ischaemic Myocardial Zone",
+        "Intimal Lipid Plaque",
+        "Lumen Narrowing"
+      ],
+      "clinicalPearl": "Central chest pain >20 min + ST elevation -> Urgent 12-lead ECG, Troponin, O2 (if hypoxic), Aspirin 300 mg, GTN.",
+      "relatedTopics": [
+        {
+          "label": "Pericarditis",
+          "to": "/learn/certificate-in-nursing-medical-nursing-i-and-pharmacology-i/certificate-in-nursing-medical-nursing-i-and-pharmacology-i-pericarditis"
+        }
+      ]
+    },
+    {
+      "id": "medsurg-hypertension-dvt-vascular",
+      "title": "Hypertension, Heart Failure & Deep Vein Thrombosis (DVT)",
+      "category": "Medical-Surgical & Pathology",
+      "file": "/assets/images/medical-illustrations/medsurg-hypertension-dvt-vascular.webp",
+      "alt": "Hypertensive left ventricular hypertrophy and vascular atherosclerosis paired with lower-limb deep vein thrombosis valve clot",
+      "summary": "Shows pressure-overload left ventricular hypertrophy progressing to heart failure and atherosclerosis alongside deep calf vein thrombosis at venous valves.",
+      "structures": [
+        "Left Ventricular Hypertrophy",
+        "Atherosclerotic Plaque",
+        "Deep Calf Vein",
+        "Venous Thrombus at Valve"
+      ],
+      "clinicalPearl": "Unilateral calf swelling/warmth -> Assess DVT risk; elevate limb, initiate anticoagulation, and NEVER massage the calf (PE risk).",
+      "relatedTopics": [
+        {
+          "label": "Hypertension",
+          "to": "/learn/certificate-in-nursing-medical-nursing-i-and-pharmacology-i/certificate-in-nursing-medical-nursing-i-and-pharmacology-i-hypertension"
+        }
+      ]
+    },
+    {
+      "id": "medsurg-stroke-cva-hemorrhage",
+      "title": "Cerebrovascular Accident (Stroke): Ischaemic vs Haemorrhagic",
+      "category": "Medical-Surgical & Pathology",
+      "file": "/assets/images/medical-illustrations/medsurg-stroke-cva-hemorrhage.webp",
+      "alt": "Side-by-side brain comparison of ischaemic thrombotic stroke versus haemorrhagic intracerebral vessel rupture",
+      "summary": "Contrasts cerebral infarction due to arterial thrombosis/embolism (~85%) against intracerebral haemorrhage from a ruptured cerebral artery (~15%).",
+      "structures": [
+        "Occluded Cerebral Artery",
+        "Ischaemic Infarct Penumbra",
+        "Ruptured Vessel Wall",
+        "Intracerebral Haematoma"
+      ],
+      "clinicalPearl": "Perform BE-FAST assessment -> Obtain urgent non-contrast head CT to exclude haemorrhage BEFORE giving aspirin or thrombolytics.",
+      "relatedTopics": [
+        {
+          "label": "Cerebral vascular accidents (Stroke)",
+          "to": "/learn/certificate-in-nursing-medical-nursing-ll-and-pharmacology-ll/certificate-in-nursing-medical-nursing-ll-and-pharmacology-ll-cerebral-vascular-accidents-stroke"
+        }
+      ]
+    },
+    {
+      "id": "medsurg-meningitis-lumbar-puncture",
+      "title": "CNS Infections: Meningitis, Meningeal Layers & Lumbar Puncture",
+      "category": "Medical-Surgical & Pathology",
+      "file": "/assets/images/medical-illustrations/medsurg-meningitis-lumbar-puncture.webp",
+      "alt": "Cranial meningeal layers covering brain paired with lateral lying and sitting lumbar puncture positioning at L3-L4",
+      "summary": "Depicts cranial meninges and subarachnoid CSF space alongside safe lying and sitting lumbar puncture positioning into the L3-L4/L4-L5 interspace.",
+      "structures": [
+        "Dura Mater & Arachnoid",
+        "Subarachnoid CSF Space",
+        "L3-L4 Interspinous Space",
+        "Lateral vs Sitting LP Position"
+      ],
+      "clinicalPearl": "Fever + neck stiffness + photophobia (Kernig/Brudzinski+) -> Rule out raised ICP before LP, take cultures, and start IV Ceftriaxone promptly.",
+      "relatedTopics": [
+        {
+          "label": "Infections of the Central Nervous System (CNS)",
+          "to": "/learn/bachelor-of-nursing-science-top-up-microbiology/infections-of-the-central-nervous-system-cns"
+        }
+      ]
+    },
+    {
+      "id": "medsurg-pneumonia-pleural-effusion",
+      "title": "Lower Respiratory Pathology: Pneumonia, Effusion & Pneumothorax",
+      "category": "Medical-Surgical & Pathology",
+      "file": "/assets/images/medical-illustrations/medsurg-pneumonia-pleural-effusion.webp",
+      "alt": "Normal vs purulent pneumonia alveoli paired with pleural effusion lung compression and collapsed lung pneumothorax",
+      "summary": "Compares pus-filled consolidated pneumonia alveoli, fluid accumulation in the pleural cavity (effusion), and air-induced lung collapse (pneumothorax).",
+      "structures": [
+        "Consolidated Alveoli",
+        "Purulent Alveolar Exudate",
+        "Pleural Fluid Level",
+        "Collapsed Lung Margin"
+      ],
+      "clinicalPearl": "High-Fowler positioning, titrate O2 to SpO2 >=94%, and keep underwater-seal chest drainage bottles strictly below chest level without clamping.",
+      "relatedTopics": [
+        {
+          "label": "Tuberculosis",
+          "to": "/learn/certificate-in-midwifery-midwifery-ii-and-tropical-medicine/tuberculosis"
+        }
+      ]
+    },
+    {
+      "id": "medsurg-asthma-copd-airways",
+      "title": "Asthma, Bronchitis & Obstructive Airway Disease",
+      "category": "Medical-Surgical & Pathology",
+      "file": "/assets/images/medical-illustrations/medsurg-asthma-copd-airways.webp",
+      "alt": "Normal dilated bronchiole lumen compared against inflamed asthmatic bronchiole with smooth muscle constriction and excess mucus",
+      "summary": "Contrasts patent healthy bronchiolar lumen against acute bronchospasm, mucosal wall oedema, and thick intraluminal mucus plugging.",
+      "structures": [
+        "Relaxed Smooth Muscle",
+        "Hypertrophied Bronchial Wall",
+        "Epithelial Mucus Plug",
+        "Narrowed Airway Lumen"
+      ],
+      "clinicalPearl": "Acute dyspnoea/wheeze -> Administer nebulised Salbutamol + systemic Hydrocortisone; a sudden silent chest signals impending respiratory arrest.",
+      "relatedTopics": [
+        {
+          "label": "Upper Respiratory Tract Infections (URTIs)",
+          "to": "/learn/bachelor-of-nursing-science-top-up-microbiology/upper-respiratory-tract-infections-urtis"
+        }
+      ]
+    },
+    {
+      "id": "medsurg-kidney-stones-renal-failure",
+      "title": "Renal & Urological Disorders: Calculi, Pyelonephritis & AKI",
+      "category": "Medical-Surgical & Pathology",
+      "file": "/assets/images/medical-illustrations/medsurg-kidney-stones-renal-failure.webp",
+      "alt": "Normal renal cortex, medulla, pelvis, and ureter anatomy paired with obstructing renal calyceal and pelvic kidney stones",
+      "summary": "Pairs internal renal landmarks (cortex, medulla, calyces, pelvis, ureter) with nephrolithiasis stone impaction risking hydronephrosis and acute kidney injury.",
+      "structures": [
+        "Renal Cortex & Medulla",
+        "Major & Minor Calyces",
+        "Renal Pelvis & Ureter",
+        "Obstructing Renal Calculi"
+      ],
+      "clinicalPearl": "Monitor hourly urine output (<30 mL/h oliguria), assess flank colic and haematuria, strain urine for stones, and check K+ and serum creatinine.",
+      "relatedTopics": [
+        {
+          "label": "Urinary Tract Infections (UTIs)",
+          "to": "/learn/bachelor-of-nursing-science-top-up-microbiology/urinary-tract-infections-utis"
+        }
+      ]
+    },
+    {
+      "id": "medsurg-urinary-catheterization-uti",
+      "title": "Urinary Catheterization & Catheter-Associated UTI Prevention",
+      "category": "Medical-Surgical & Pathology",
+      "file": "/assets/images/medical-illustrations/medsurg-urinary-catheterization-uti.webp",
+      "alt": "Dual-lumen indwelling Foley catheter showing balloon, drainage ports, French size, and four-step CAUTI prevention checklist",
+      "summary": "Identifies Foley catheter anatomy (drainage lumen, 10 mL balloon port, French/mm gauge, bladder opening) paired with aseptic CAUTI prevention steps.",
+      "structures": [
+        "Urine Drainage Port",
+        "10 mL Balloon Inflation Port",
+        "Retaining Balloon",
+        "French Gauge Marking"
+      ],
+      "clinicalPearl": "Confirm urine flow BEFORE inflating balloon with 10 mL sterile water (never normal saline); keep closed drainage bag below bladder level.",
+      "relatedTopics": [
+        {
+          "label": "Catheterization",
+          "to": "/learn/certificate-in-midwifery-foundations-of-nursing-ii-sociology-and-psychology/catheterization"
+        }
+      ]
+    },
+    {
+      "id": "medsurg-endocrine-goitre-diabetes",
+      "title": "Endocrine Disorders: Goitre, Thyrotoxicosis & Diabetes Mellitus",
+      "category": "Medical-Surgical & Pathology",
+      "file": "/assets/images/medical-illustrations/medsurg-endocrine-goitre-diabetes.webp",
+      "alt": "Enlarged goitre thyroid gland lobes paired with Type 1 beta-cell insulin deficiency and Type 2 insulin receptor resistance",
+      "summary": "Illustrates diffuse thyroid hypertrophy (goitre) alongside pancreatic Type 1 absolute insulin loss and Type 2 peripheral cellular insulin resistance.",
+      "structures": [
+        "Hypertrophied Thyroid Lobes",
+        "Pancreatic Islet Beta Cells",
+        "Insulin-Receptor Channel",
+        "Glucose Transport"
+      ],
+      "clinicalPearl": "DKA emergency -> IV 0.9% NaCl volume resuscitation, regular insulin infusion, and K+ monitoring; assess airway stridor after thyroidectomy.",
+      "relatedTopics": [
+        {
+          "label": "Diabetes Mellitus",
+          "to": "/learn/certificate-in-nursing-medical-nursing-ll-and-pharmacology-ll/certificate-in-nursing-medical-nursing-ll-and-pharmacology-ll-diabetes-mellitus"
+        }
+      ]
+    },
+    {
+      "id": "medsurg-eye-glaucoma-cataract",
+      "title": "Ophthalmic Pathology: Glaucoma, Cataract & Anterior Eye Anatomy",
+      "category": "Medical-Surgical & Pathology",
+      "file": "/assets/images/medical-illustrations/medsurg-eye-glaucoma-cataract.webp",
+      "alt": "Sectional anterior eye anatomy showing lens and Canal of Schlemm paired with real cataract lens opacity and glaucoma drainage block",
+      "summary": "Combines anterior eye cutaway (cornea, lens, iris, ciliary body, Canal of Schlemm), clinical lens cataract opacity, and glaucoma aqueous outflow block.",
+      "structures": [
+        "Crystalline Lens",
+        "Canal of Schlemm",
+        "Trabecular Drainage Block",
+        "Optic Nerve Cupping"
+      ],
+      "clinicalPearl": "Acute angle-closure glaucoma -> severe eye pain, haloes, rock-hard globe (urgent Acetazolamide/Timolol); flush chemical eye burns immediately.",
+      "relatedTopics": [
+        {
+          "label": "Foreign body in the Eye",
+          "to": "/learn/certificate-in-nursing-tropical-medicine-and-surgical-nursing-lll/foreign-body-in-the-eye"
+        }
+      ]
+    },
+    {
+      "id": "medsurg-ent-otitis-tonsillitis",
+      "title": "ENT Disorders: Acute Otitis Media & Exudative Tonsillitis",
+      "category": "Medical-Surgical & Pathology",
+      "file": "/assets/images/medical-illustrations/medsurg-ent-otitis-tonsillitis.webp",
+      "alt": "Middle ear ossicles with bulging red otoscopy tympanic membrane paired with tonsillar anatomy and exudative acute tonsillitis",
+      "summary": "Shows middle ear ossicles and Eustachian tube beside otoscopic tympanic bulging, plus normal-versus-inflamed exudative palatine tonsils.",
+      "structures": [
+        "Tympanic Membrane & Ossicles",
+        "Eustachian Tube",
+        "Bulging Erythematous Drum",
+        "Purulent Tonsillar Exudate"
+      ],
+      "clinicalPearl": "Otoscopy -> pull pinna up/back (adults) vs down/back (<3 yr); after tonsillectomy monitor frequent swallowing for concealed haemorrhage.",
+      "relatedTopics": [
+        {
+          "label": "Tonsillitis",
+          "to": "/learn/certificate-in-nursing-medical-nursing-i-and-pharmacology-i/certificate-in-nursing-medical-nursing-i-and-pharmacology-i-tonsillitis"
+        }
+      ]
+    },
+    {
+      "id": "medsurg-haematology-sickle-transfusion",
+      "title": "Haematology: Sickle Cell Disease & Blood Transfusion Safety",
+      "category": "Medical-Surgical & Pathology",
+      "file": "/assets/images/medical-illustrations/medsurg-haematology-sickle-transfusion.webp",
+      "alt": "Crescent sickle red blood cells occluding capillary flow paired with nurse verifying IV blood transfusion",
+      "summary": "Depicts rigid sickle erythrocytes triggering capillary vaso-occlusion compared with normal pliable biconcave RBCs and bedside blood transfusion safety.",
+      "structures": [
+        "Normal Biconcave RBC",
+        "Rigid Sickled Erythrocyte",
+        "Vaso-Occlusive Capillary",
+        "Cross-Matched IV Blood Unit"
+      ],
+      "clinicalPearl": "Sickle crisis -> IV hydration, O2, warmth, analgesia; transfusion fever/chills/flank pain -> STOP blood immediately & keep line open with 0.9% NaCl.",
+      "relatedTopics": [
+        {
+          "label": "Anaemia",
+          "to": "/learn/certificate-in-nursing-medical-nursing-i-and-pharmacology-i/certificate-in-nursing-medical-nursing-i-and-pharmacology-i-anaemia"
+        }
+      ]
+    },
+    {
+      "id": "medsurg-ntds-filariasis-schisto",
+      "title": "Tropical NTDs: Lymphatic Filariasis & Schistosomiasis",
+      "category": "Medical-Surgical & Pathology",
+      "file": "/assets/images/medical-illustrations/medsurg-ntds-filariasis-schisto.webp",
+      "alt": "Clinical bilateral lower-limb elephantiasis lymphoedema paired with CDC schistosomiasis freshwater snail transmission life cycle",
+      "summary": "Illustrates chronic Wuchereria bancrofti lymphatic obstruction (elephantiasis) alongside snail-borne Schistosoma cercariae transmission to human portal and bladder veins.",
+      "structures": [
+        "Bilateral Limb Lymphoedema",
+        "Freshwater Snail Vector",
+        "Infective Cercaria",
+        "Paired Adult Worms"
+      ],
+      "clinicalPearl": "Filariasis -> Albendazole + Ivermectin/DEC & meticulous limb washing; Schistosomiasis -> Praziquantel 40 mg/kg single oral dose.",
+      "relatedTopics": [
+        {
+          "label": "Trypanosomiasis (sleeping sickness) - Midwives Revision",
+          "to": "/learn/certificate-in-midwifery-midwifery-ii-and-tropical-medicine/trypanosomiasis-sleeping-sickness"
+        }
+      ]
+    },
+    {
+      "id": "medsurg-wound-gangrene-dressing",
+      "title": "Integumentary Pathology: Tissue Perfusion & Gangrene",
+      "category": "Medical-Surgical & Pathology",
+      "file": "/assets/images/medical-illustrations/medsurg-wound-gangrene-dressing.webp",
+      "alt": "3D skin vascular plexus layers paired with clinical foot gangrene and dry versus wet gangrene care guide",
+      "summary": "Pairs epidermis, dermis, hypodermis, and cutaneous microvascular plexus with ischaemic diabetic foot gangrene necrosis and wet-versus-dry differentiation.",
+      "structures": [
+        "Epidermis & Dermis",
+        "Cutaneous Vascular Plexus",
+        "Dry Necrotic Eschar",
+        "Wet Gangrene Ulceration"
+      ],
+      "clinicalPearl": "Use ANTT aseptic dressing; keep dry gangrene dry pending vascular review, while wet gangrene requires urgent IV antibiotics and surgical debridement.",
+      "relatedTopics": [
+        {
+          "label": "Skin and Soft Tissue Infections (SSTIs)",
+          "to": "/learn/bachelor-of-nursing-science-top-up-microbiology/skin-and-soft-tissue-infections-sstis"
+        }
+      ]
+    },
+    {
+      "id": "medsurg-shock-haemorrhage-cpr",
+      "title": "Surgical Emergencies: Shock, Haemorrhage & Adult BLS/CPR",
+      "category": "Medical-Surgical & Pathology",
+      "file": "/assets/images/medical-illustrations/medsurg-shock-haemorrhage-cpr.webp",
+      "alt": "Proper adult CPR hand placement on lower sternum and underlying heart compression mechanics plus ABCDE haemorrhage shock guide",
+      "summary": "Demonstrates interlocked adult CPR heel placement on the lower sternum (5-6 cm depth, 100-120/min, 30:2) alongside acute haemorrhage shock resuscitation.",
+      "structures": [
+        "Interlocked Hands on Sternum",
+        "Thoracic Cardiac Pump",
+        "Dual Large-Bore IV Access",
+        "Capillary Refill Alert"
+      ],
+      "clinicalPearl": "Minimise CPR pauses (<10s) and allow full chest recoil; hypovolaemic shock drops BP late, so act urgently on tachycardia, cool skin, and oliguria.",
+      "relatedTopics": [
+        {
+          "label": "First Aid - Midwives Revision",
+          "to": "/learn/certificate-in-midwifery-anatomy-and-physiology-1-and-first-aid/first-aid"
         }
       ]
     }
