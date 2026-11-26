@@ -13424,79 +13424,102 @@
           ],
           "sections": [
             {
-              "title": "1. Clinical Overview & NCLEX-RN Blueprint",
+              "title": "1. Anaphylaxis Emergency & Epinephrine Administration",
               "blocks": [
                 {
                   "type": "paragraph",
-                  "text": "**Types I–IV Hypersensitivity, Anaphylaxis & Latex Allergy Precautions** is a high-yield focus area in **Course Unit 8: Immune System, Hypersensitivity, HIV/AIDS & Autoimmune Care** for the Next-Generation NCLEX-RN (NGN). This study guide integrates core pathophysiology, clinical judgment cues, pharmacology safety, and bedside nursing priorities across **Saunders Comprehensive Review (9th Ed.)**, **Kaplan NCLEX-RN Prep**, and **LaCharity PDA**."
-                }
-              ]
-            },
-            {
-              "title": "2. High-Yield Clinical Concepts & Nursing Priorities",
-              "blocks": [
+                  "text": "**Type I IgE-mediated Anaphylaxis** is a life-threatening distributive shock + airway emergency (`stridor`, `wheezing`, `laryngeal edema`, `hypotension`, `urticaria`). The **#1 immediate nursing priority** is **IM Epinephrine** into the **vastus lateralis (outer mid-thigh)** — never delay epinephrine to give IV diphenhydramine or corticosteroids first."
+                },
                 {
-                  "type": "list",
-                  "items": [
-                    "Foods and things to avoid Symptoms of the allergy Mild contact dermatitis Moderately severe symptoms of rhinitis, Conjunctivitis Urticaria Bronchospasm to severe life-threatening anaphylaxis.",
-                    "Epinephrine This is an adrenaline hormone produced by your body when under stress or experiencing trauma such as an injury or heart attack by increasing blood flow throughout the body.",
-                    "A) Contact dermatitis B) Latex allergy C) Skin irritation D) Allergic reaction to soap.",
-                    "Elite nurses’ forum Over view Our immune system is your body’s defense against infections and other harmful invaders. Without it, you would constantly get sick from bacteria or viruses.",
-                    "Your immune system is made up of special cells, tissues, and organs that work together to protect you.",
-                    "The lymph, or lymphatic, system is a major part of the immune system. It's a network of lymph nodes and vessels.",
-                    "Lymphatic vessels are thin tubes that branch, like blood vessels, throughout the body. They carry a clear fluid called lymph.",
-                    "Lymph contains tissue fluid, waste products, and immune system cells.",
-                    "Lymph nodes are small, bean-shaped clumps of immune system cells that are connected by lymphatic vessels.",
-                    "They contain white blood cells that trap viruses, bacteria, and other invaders, including cancer cells."
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "3. Immune Hypersensitivity, Anaphylaxis & HIV Care",
-              "blocks": [
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u8t1-hypersensitivity-anaphylaxis.webp",
+                  "alt": "Epinephrine autoinjector internal mechanism with NCLEX-RN anaphylaxis and latex allergy rules",
+                  "caption": "Epinephrine autoinjector mechanism with anaphylaxis and latex cross-reactivity priorities (NU · nursinguganda.com)."
+                },
                 {
                   "type": "table",
-                  "title": "Immune Hypersensitivity, Anaphylaxis & HIV Care",
+                  "title": "Types I–IV Hypersensitivity Reactions (Gell & Coombs)",
                   "headers": [
-                    "Condition",
-                    "Priority Manifestations",
-                    "First-Line Action & Teaching"
+                    "Type & Mediator",
+                    "Clinical Examples",
+                    "Key Nursing Action"
                   ],
                   "rows": [
                     [
-                      "**Anaphylaxis (Type I IgE)**",
-                      "Stridor, wheezing, angioedema, urticaria, hypotension.",
-                      "**IM Epinephrine (1:1000)** into vastus lateralis immediately + O2 + IV 0.9% NS."
+                      "**Type I (IgE — Immediate)**",
+                      "Anaphylaxis, allergic asthma, bee sting, penicillin/food allergy.",
+                      [
+                        "**IM Epinephrine** (outer mid-thigh), **O2**, **0.9% NS bolus**, supine with legs elevated, **repeat Epinephrine q5–15 min** if needed."
+                      ]
                     ],
                     [
-                      "**Latex Allergy**",
-                      "Cross-reactivity with **bananas, avocados, kiwis, chestnuts**.",
-                      "Screen all clients prior to surgery/catheterization; use latex-free gloves & equipment."
+                      "**Type II (IgG/IgM — Cytotoxic)**",
+                      "**ABO transfusion reaction**, Rh incompatibility, myasthenia gravis.",
+                      [
+                        "**STOP blood transfusion immediately**, hang **new 0.9% NS tubing**, notify blood bank & MD."
+                      ]
                     ],
                     [
-                      "**HIV/AIDS (CD4 < 200)**",
-                      "Risk for Pneumocystis (PCP), TB, Kaposi sarcoma, candidiasis.",
-                      "Strict **ART adherence** (>95% doses); TMP-SMX (Bactrim) prophylaxis when CD4 < 200."
+                      "**Type III (Immune Complex)**",
+                      "**SLE (Lupus)**, serum sickness, post-streptococcal glomerulonephritis.",
+                      [
+                        "Monitor **BUN/Creatinine** & urine protein; administer corticosteroids/immunosuppressants."
+                      ]
+                    ],
+                    [
+                      "**Type IV (T-Cell — Delayed 24–72h)**",
+                      "**Mantoux PPD (TB skin test)**, poison ivy, **contact dermatitis (latex)**, transplant rejection.",
+                      [
+                        "Read PPD induration (not redness) at **48–72 hours**; remove offending allergen."
+                      ]
                     ]
                   ]
                 }
               ]
             },
             {
-              "title": "4. Exam Synthesis & Bedside Takeaways",
+              "title": "2. Latex Allergy & Food Cross-Reactivity",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "Lymphatic vessels are thin tubes that branch, like blood vessels, throughout the body. They carry a clear fluid called lymph.",
-                    "Lymph contains tissue fluid, waste products, and immune system cells.",
-                    "Lymph nodes are small, bean-shaped clumps of immune system cells that are connected by lymphatic vessels.",
-                    "They contain white blood cells that trap viruses, bacteria, and other invaders, including cancer cells.",
-                    "White blood cells are the cells of the immune system. They are made in one of your lymph organs, the bone marrow. Other lymph organs include the spleen and thymus.",
-                    "When your immune system doesn't work the way it should, it is called an immune system disorder.",
-                    "Immune system disorders Autoimmune Disorders Description In autoimmune diseases, the body attacks normal, healthy tissues. The cause is unknown. It is probably a combination of a person’s genes and something in the environment that triggers those genes."
+                  "type": "table",
+                  "title": "Latex Allergy Precautions & Cross-Reactive Foods",
+                  "headers": [
+                    "Risk Category",
+                    "High-Yield Triggers & Products",
+                    "Perioperative / Bedside Safety"
+                  ],
+                  "rows": [
+                    [
+                      "**High-Risk Clients**",
+                      "**Spina bifida**, multiple surgeries, healthcare workers, severe food allergies.",
+                      [
+                        "Screen ALL clients on admission; place **\"Latex Allergy\"** door sign & allergy band."
+                      ]
+                    ],
+                    [
+                      "**Cross-Reactive Foods**",
+                      "**Bananas, Avocados, Kiwis, Chestnuts, Tomatoes, Potatoes**.",
+                      [
+                        "Any client allergic to these fruits must be treated as **latex-sensitive** until proven otherwise."
+                      ]
+                    ],
+                    [
+                      "**Hospital Equipment**",
+                      "Gloves, Foley catheters, tourniquets, BP cuff tubing, IV injection ports, surgical masks.",
+                      [
+                        "Schedule client as **FIRST surgical case of the day** (lowest airborne latex powder); use **100% silicone/nitrile/vinyl** supplies."
+                      ]
+                    ]
                   ]
+                }
+              ]
+            },
+            {
+              "title": "3. Exam Synthesis & Bedside Takeaways",
+              "blocks": [
+                {
+                  "type": "paragraph",
+                  "text": "**NCLEX-RN Bottom Line:** In **anaphylaxis**, **IM Epinephrine in the outer mid-thigh** is ALWAYS the first medication — even before IV antihistamines or steroids — and clients should carry **2 EpiPens** at all times because biphasic reactions can recur 4–12 hours later. Always screen clients allergic to **bananas, avocados, or kiwis** for **latex allergy**."
                 }
               ]
             }
@@ -13772,60 +13795,103 @@
           ],
           "sections": [
             {
-              "title": "1. Clinical Overview & NCLEX-RN Blueprint",
+              "title": "1. HIV Pathophysiology, CD4 Staging & Viral Load",
               "blocks": [
                 {
                   "type": "paragraph",
-                  "text": "**HIV/AIDS Staging, CD4 Counts, Opportunistic Infections & ART** is a high-yield focus area in **Course Unit 8: Immune System, Hypersensitivity, HIV/AIDS & Autoimmune Care** for the Next-Generation NCLEX-RN (NGN). This study guide integrates core pathophysiology, clinical judgment cues, pharmacology safety, and bedside nursing priorities across **Saunders Comprehensive Review (9th Ed.)**, **Kaplan NCLEX-RN Prep**, and **LaCharity PDA**."
+                  "text": "**HIV** infects and destroys **CD4+ T-helper lymphocytes**, progressively impairing cell-mediated immunity. **AIDS** is diagnosed when **CD4 < 200 cells/mm³** (normal 500–1,500) OR when the client develops an **AIDS-defining opportunistic infection** (e.g., `Pneumocystis jirovecii` pneumonia, Kaposi sarcoma, toxoplasmosis, esophageal candidiasis). **HIV Viral Load** measures treatment efficacy; sustained undetectable viral load = **Undetectable = Untransmittable (U=U)**."
+                },
+                {
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u8t2-hiv-aids-opportunistic-art.webp",
+                  "alt": "HIV virion structure diagram with NCLEX-RN CD4 cutoffs, prophylaxis and ART adherence rules",
+                  "caption": "HIV virion structure with CD4 prophylaxis thresholds and ART adherence priorities (NU · nursinguganda.com)."
                 }
               ]
             },
             {
-              "title": "2. High-Yield Clinical Concepts & Nursing Priorities",
+              "title": "2. Opportunistic Infections & Prophylaxis Cutoffs",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "Elite nurses’ forum Over view Our immune system is your body’s defense against infections and other harmful invaders. Without it, you would constantly get sick from bacteria or viruses.",
-                    "Your immune system is made up of special cells, tissues, and organs that work together to protect you.",
-                    "The lymph, or lymphatic, system is a major part of the immune system. It's a network of lymph nodes and vessels.",
-                    "Lymphatic vessels are thin tubes that branch, like blood vessels, throughout the body. They carry a clear fluid called lymph.",
-                    "Lymph contains tissue fluid, waste products, and immune system cells.",
-                    "Lymph nodes are small, bean-shaped clumps of immune system cells that are connected by lymphatic vessels.",
-                    "They contain white blood cells that trap viruses, bacteria, and other invaders, including cancer cells.",
-                    "White blood cells are the cells of the immune system. They are made in one of your lymph organs, the bone marrow. Other lymph organs include the spleen and thymus.",
-                    "When your immune system doesn't work the way it should, it is called an immune system disorder.",
-                    "Immune system disorders Autoimmune Disorders Description In autoimmune diseases, the body attacks normal, healthy tissues. The cause is unknown. It is probably a combination of a person’s genes and something in the environment that triggers those genes."
+                  "type": "table",
+                  "title": "CD4 Thresholds, Opportunistic Infections & Prophylaxis",
+                  "headers": [
+                    "CD4 Count / Infection",
+                    "Classic Clinical Presentation",
+                    "Treatment & Prophylaxis"
+                  ],
+                  "rows": [
+                    [
+                      "**CD4 < 200: PJP Pneumonia** (`Pneumocystis jirovecii`)",
+                      "Subacute dry cough, progressive dyspnea, hypoxemia, bilateral ground-glass infiltrates.",
+                      [
+                        "**TMP-SMX (Bactrim)** for prophylaxis & treatment (watch sulfa rash/hydration); add **prednisone** if severe hypoxemia."
+                      ]
+                    ],
+                    [
+                      "**CD4 < 100: Toxoplasmosis & Cryptococcus**",
+                      "Neuro changes, ring-enhancing brain lesions; severe headache/meningitis.",
+                      [
+                        "**TMP-SMX** prophylaxis for Toxo (avoid **cat litter boxes** & raw meat); **Amphotericin B + Flucytosine** for Crypto."
+                      ]
+                    ],
+                    [
+                      "**CD4 < 50: MAC & CMV Retinitis**",
+                      "`Mycobacterium avium` (fever, night sweats, weight loss, diarrhea); `CMV` (floaters, **blindness**).",
+                      [
+                        "**Azithromycin** weekly prophylaxis for MAC; **Ganciclovir / Valganciclovir** for CMV (watch neutropenia)."
+                      ]
+                    ],
+                    [
+                      "**Oral / Esophageal Candidiasis**",
+                      "White cheesy plaques on tongue/buccal mucosa; odynophagia.",
+                      [
+                        "**Nystatin** swish-and-swallow (topical) or **Fluconazole** (esophageal)."
+                      ]
+                    ]
                   ]
                 }
               ]
             },
             {
-              "title": "3. Immune Hypersensitivity, Anaphylaxis & HIV Care",
+              "title": "3. Antiretroviral Therapy (ART), PrEP & PEP Safety",
               "blocks": [
                 {
                   "type": "table",
-                  "title": "Immune Hypersensitivity, Anaphylaxis & HIV Care",
+                  "title": "ART Adherence, PrEP/PEP & Vaccine Rules",
                   "headers": [
-                    "Condition",
-                    "Priority Manifestations",
-                    "First-Line Action & Teaching"
+                    "Clinical Topic",
+                    "Evidence-Based Nursing Standard",
+                    "NCLEX-RN Safety Trap"
                   ],
                   "rows": [
                     [
-                      "**Anaphylaxis (Type I IgE)**",
-                      "Stridor, wheezing, angioedema, urticaria, hypotension.",
-                      "**IM Epinephrine (1:1000)** into vastus lateralis immediately + O2 + IV 0.9% NS."
+                      "**ART Adherence**",
+                      "Must maintain **>= 95% adherence** (take same time daily; never skip).",
+                      [
+                        "Missing doses rapidly breeds **drug-resistant HIV mutations**."
+                      ]
                     ],
                     [
-                      "**Latex Allergy**",
-                      "Cross-reactivity with **bananas, avocados, kiwis, chestnuts**.",
-                      "Screen all clients prior to surgery/catheterization; use latex-free gloves & equipment."
+                      "**PEP (Post-Exposure)**",
+                      "Start within **72 hours** (ideally <= 2 hr) of needlestick/exposure; continue **28 days**.",
+                      [
+                        "Wash needlestick site immediately with **soap & water** (never squeeze/bleach)."
+                      ]
                     ],
                     [
-                      "**HIV/AIDS (CD4 < 200)**",
-                      "Risk for Pneumocystis (PCP), TB, Kaposi sarcoma, candidiasis.",
-                      "Strict **ART adherence** (>95% doses); TMP-SMX (Bactrim) prophylaxis when CD4 < 200."
+                      "**Pregnancy & Breastfeeding**",
+                      "Continue **ART throughout pregnancy**, give **IV Zidovudine (AZT)** during labor + infant AZT.",
+                      [
+                        "In the **US/NCLEX**, advise **against breastfeeding** if safe formula is available (vertical transmission)."
+                      ]
+                    ],
+                    [
+                      "**Immunizations**",
+                      "Give **inactivated** vaccines (Influenza, Pneumococcal, Hep B).",
+                      [
+                        "**AVOID live attenuated vaccines** (MMR, Varicella, Zoster-live, intranasal flu) when **CD4 < 200**."
+                      ]
                     ]
                   ]
                 }
@@ -13835,15 +13901,8 @@
               "title": "4. Exam Synthesis & Bedside Takeaways",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "They contain white blood cells that trap viruses, bacteria, and other invaders, including cancer cells.",
-                    "White blood cells are the cells of the immune system. They are made in one of your lymph organs, the bone marrow. Other lymph organs include the spleen and thymus.",
-                    "When your immune system doesn't work the way it should, it is called an immune system disorder.",
-                    "Immune system disorders Autoimmune Disorders Description In autoimmune diseases, the body attacks normal, healthy tissues. The cause is unknown. It is probably a combination of a person’s genes and something in the environment that triggers those genes.",
-                    "Body is unable to recognize its own cells as a part of itself.",
-                    "Joint pain, swelling, stiffness, stiffness Nursing considerations Manage symptoms Promote mobility by providing range-of-motion exercises to maintain joint motion and muscle strengthening."
-                  ]
+                  "type": "paragraph",
+                  "text": "**NCLEX-RN Bottom Line:** **Standard Precautions** apply to ALL clients with HIV (no special isolation unless TB or C. diff is present). Remember **CD4 < 200 = AIDS + start TMP-SMX (PJP)**, **CD4 < 50 = start Azithromycin (MAC)**, avoid **cat litter/raw meat**, and **>= 95% ART adherence** prevents viral resistance."
                 }
               ]
             }
@@ -14119,79 +14178,88 @@
           ],
           "sections": [
             {
-              "title": "1. Clinical Overview & NCLEX-RN Blueprint",
+              "title": "1. Autoimmune Disorders: SLE vs. Rheumatoid Arthritis",
               "blocks": [
                 {
                   "type": "paragraph",
-                  "text": "**Systemic Lupus Erythematosus (SLE), RA & Organ Transplant Rejection** is a high-yield focus area in **Course Unit 8: Immune System, Hypersensitivity, HIV/AIDS & Autoimmune Care** for the Next-Generation NCLEX-RN (NGN). This study guide integrates core pathophysiology, clinical judgment cues, pharmacology safety, and bedside nursing priorities across **Saunders Comprehensive Review (9th Ed.)**, **Kaplan NCLEX-RN Prep**, and **LaCharity PDA**."
-                }
-              ]
-            },
-            {
-              "title": "2. High-Yield Clinical Concepts & Nursing Priorities",
-              "blocks": [
+                  "text": "**Systemic Lupus Erythematosus (SLE)** and **Rheumatoid Arthritis (RA)** are chronic multisystem autoimmune diseases marked by alternating **remissions and flares**. SLE targets connective tissue and **renal glomeruli (lupus nephritis)**, whereas RA causes symmetric **synovial inflammation** (`morning stiffness > 1 hour`, `swan-neck` & `ulnar drift` deformities)."
+                },
                 {
-                  "type": "list",
-                  "items": [
-                    "Methotrexate is a drug that is used to help treat rheumatoid arthritis, psoriasis, Crohn’s disease, and some cancers. It works by blocking a chemical in the body that slows the process of cell growth.",
-                    "Cyclosporine This is another drug used to treat certain cancers, but it can also be used to help prevent organ rejection after an organ transplant. It works by stopping the immune system from attacking foreign bodies like transplanted organs or tissues.",
-                    "Azathioprine This is another immunosuppressant drug that can be used to prevent organ rejection after transplantation. It works by stopping the immune system from attacking foreign bodies like transplanted organs or tissues.",
-                    "Elite nurses’ forum Over view Our immune system is your body’s defense against infections and other harmful invaders. Without it, you would constantly get sick from bacteria or viruses.",
-                    "Your immune system is made up of special cells, tissues, and organs that work together to protect you.",
-                    "The lymph, or lymphatic, system is a major part of the immune system. It's a network of lymph nodes and vessels.",
-                    "Lymphatic vessels are thin tubes that branch, like blood vessels, throughout the body. They carry a clear fluid called lymph.",
-                    "Lymph contains tissue fluid, waste products, and immune system cells.",
-                    "Lymph nodes are small, bean-shaped clumps of immune system cells that are connected by lymphatic vessels.",
-                    "They contain white blood cells that trap viruses, bacteria, and other invaders, including cancer cells."
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "3. Immune Hypersensitivity, Anaphylaxis & HIV Care",
-              "blocks": [
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u8t3-autoimmune-sle-transplant.webp",
+                  "alt": "Rheumatoid arthritis hand deformities with NCLEX-RN SLE, RA and organ transplant rejection priorities",
+                  "caption": "Symmetric rheumatoid hand deformity with SLE, RA and transplant rejection priorities (NU · nursinguganda.com)."
+                },
                 {
                   "type": "table",
-                  "title": "Immune Hypersensitivity, Anaphylaxis & HIV Care",
+                  "title": "SLE vs. Rheumatoid Arthritis Nursing Priorities",
                   "headers": [
                     "Condition",
-                    "Priority Manifestations",
-                    "First-Line Action & Teaching"
+                    "Hallmark Cues & Labs",
+                    "Medications & Client Teaching"
                   ],
                   "rows": [
                     [
-                      "**Anaphylaxis (Type I IgE)**",
-                      "Stridor, wheezing, angioedema, urticaria, hypotension.",
-                      "**IM Epinephrine (1:1000)** into vastus lateralis immediately + O2 + IV 0.9% NS."
+                      "**SLE (Lupus)**",
+                      "**Butterfly (malar) facial rash**, photosensitivity, joint pain, **lupus nephritis** (proteinuria, high BUN/Cr), **+ANA / +anti-dsDNA**.",
+                      [
+                        "Use **SPF 30+ sunblock**, wide-brim hat, avoid direct UV; **monitor kidney function & daily weight**; **Hydroxychloroquine** (annual eye exam for retinal toxicity); **mild soap** only."
+                      ]
                     ],
                     [
-                      "**Latex Allergy**",
-                      "Cross-reactivity with **bananas, avocados, kiwis, chestnuts**.",
-                      "Screen all clients prior to surgery/catheterization; use latex-free gloves & equipment."
-                    ],
-                    [
-                      "**HIV/AIDS (CD4 < 200)**",
-                      "Risk for Pneumocystis (PCP), TB, Kaposi sarcoma, candidiasis.",
-                      "Strict **ART adherence** (>95% doses); TMP-SMX (Bactrim) prophylaxis when CD4 < 200."
+                      "**Rheumatoid Arthritis (RA)**",
+                      "Symmetric small-joint swelling, **morning stiffness > 60 min** (improves with activity), **+RF / +anti-CCP**.",
+                      [
+                        "**DMARDs (Methotrexate)** start early: **teratogenic** (2 forms contraception), **avoid alcohol** (hepatotoxicity), watch **infection/CBC**; **TNF inhibitors** (screen for **latent TB** first!)."
+                      ]
                     ]
                   ]
                 }
               ]
             },
             {
-              "title": "4. Exam Synthesis & Bedside Takeaways",
+              "title": "2. Organ Transplant Rejection & Immunosuppressant Safety",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "Lymphatic vessels are thin tubes that branch, like blood vessels, throughout the body. They carry a clear fluid called lymph.",
-                    "Lymph contains tissue fluid, waste products, and immune system cells.",
-                    "Lymph nodes are small, bean-shaped clumps of immune system cells that are connected by lymphatic vessels.",
-                    "They contain white blood cells that trap viruses, bacteria, and other invaders, including cancer cells.",
-                    "White blood cells are the cells of the immune system. They are made in one of your lymph organs, the bone marrow. Other lymph organs include the spleen and thymus.",
-                    "When your immune system doesn't work the way it should, it is called an immune system disorder.",
-                    "Immune system disorders Autoimmune Disorders Description In autoimmune diseases, the body attacks normal, healthy tissues. The cause is unknown. It is probably a combination of a person’s genes and something in the environment that triggers those genes."
+                  "type": "table",
+                  "title": "Transplant Rejection Types & Lifelong Immunosuppression",
+                  "headers": [
+                    "Rejection Type / Drug",
+                    "Timing & Warning Signs",
+                    "Priority Nursing Action"
+                  ],
+                  "rows": [
+                    [
+                      "**Hyperacute Rejection**",
+                      "**Minutes to hours** (on OR table); antibody-mediated.",
+                      [
+                        "Immediate **organ removal** (cannot be reversed)."
+                      ]
+                    ],
+                    [
+                      "**Acute Rejection**",
+                      "**Days to months**; **fever**, **graft tenderness/swelling**, **oliguria + rising BUN/Cr** (kidney), elevated LFTs (liver).",
+                      [
+                        "**Report immediately** (reversible with high-dose **IV corticosteroids / Thymoglobulin**); **NEVER discontinue immunosuppressants**."
+                      ]
+                    ],
+                    [
+                      "**Calcineurin Inhibitors** (`Tacrolimus`, `Cyclosporine`)",
+                      "Nephrotoxicity, **hypertension**, **hyperkalemia**, **gingival hyperplasia**, infection/malignancy risk.",
+                      [
+                        "Monitor **trough drug levels**, **serum creatinine**, & **K+**; **AVOID grapefruit juice** (raises toxic drug levels); **no live vaccines**."
+                      ]
+                    ]
                   ]
+                }
+              ]
+            },
+            {
+              "title": "3. Exam Synthesis & Bedside Takeaways",
+              "blocks": [
+                {
+                  "type": "paragraph",
+                  "text": "**NCLEX-RN Bottom Line:** In **SLE**, protect the **kidneys** (monitor BUN/Cr/urine protein) and **skin** (SPF 30+, avoid sun). Before starting **TNF inhibitors** for RA, always screen for **latent TB (PPD/QuantiFERON)**. After **organ transplant**, **fever + graft tenderness + oliguria = acute rejection** — notify the transplant team immediately and **never stop immunosuppressants**."
                 }
               ]
             }
