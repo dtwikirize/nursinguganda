@@ -17146,84 +17146,109 @@
           ],
           "sections": [
             {
-              "title": "1. Clinical Overview & NCLEX-RN Blueprint",
+              "title": "1. Neurological Assessment (GCS), Increased ICP & Stroke",
               "blocks": [
                 {
                   "type": "paragraph",
-                  "text": "**GCS, Cranial Nerves, Increased ICP (Cushing's Triad) & Stroke (tPA)** is a high-yield focus area in **Course Unit 10: Neurological System, Stroke, Increased ICP & Neuro Medications** for the Next-Generation NCLEX-RN (NGN). This study guide integrates core pathophysiology, clinical judgment cues, pharmacology safety, and bedside nursing priorities across **Saunders Comprehensive Review (9th Ed.)**, **Kaplan NCLEX-RN Prep**, and **LaCharity PDA**."
-                }
-              ]
-            },
-            {
-              "title": "2. High-Yield Clinical Concepts & Nursing Priorities",
-              "blocks": [
+                  "text": "The **earliest and most sensitive indicator of increased intracranial pressure (ICP)** is a **change in level of consciousness (LOC)** — restlessness, confusion, or lethargy. **Cushing's Triad** (`hypertension with widening pulse pressure`, `bradycardia`, and `irregular/Cheyne-Stokes respirations`) is a **LATE, life-threatening sign of impending brainstem herniation**. In acute stroke, **STAT non-contrast Head CT** must rule out hemorrhage **before** thrombolytics (`Alteplase / tPA`)."
+                },
                 {
-                  "type": "list",
-                  "items": [
-                    "NEUROLOGICAL PROBLEMS OF AN ADULT STROKE/CEREBROVASCULAR ACCIDENT (CVA) Pathophysiology 1. Ischemic Stroke: Blood flow interruption (thrombosis, embolism, or stenosis) leads to brain tissue damage.",
-                    "Tips for NCLEX-RN Exam 1. Prioritize airway management and ICP control.",
-                    "Max daily dose = 4g ○ For long term use - the maximum daily dose is only 3 grams per day!!",
-                    "Action: Block prostaglandin which causes inflammation, pain, and fever.",
-                    "Indication: Pain Action: Binds to opiate receptors in the CNS and alters perception of pain while producing a general depression of the CNS.",
-                    "Common side effect: constipation CNS depressant ○ Decreased respiration, decreased heart rate, etc.",
-                    "Stay focused, and good luck on your NCLEX-RN exam!",
-                    "Tips for NCLEX-RN Exam 1. Prioritize airway management and hemodynamic stability.",
-                    "Pathophysiology 1. Progressive neurological disorder: Irreversible brain damage, cognitive decline.",
-                    "Stages 1. Preclinical: Asymptomatic, biomarker presence."
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "3. Neurological Emergencies (Stroke, Increased ICP, SCI & Neuro Meds)",
-              "blocks": [
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u10t1-neuro-icp-stroke-tpa.webp",
+                  "alt": "Non-contrast brain CT scan with NCLEX-RN Increased ICP, Cushing's Triad and Stroke tPA priorities",
+                  "caption": "Non-contrast head CT with Increased ICP, Cushing's Triad and tPA window priorities (NU · nursinguganda.com)."
+                },
                 {
                   "type": "table",
-                  "title": "Neurological Emergencies (Stroke, Increased ICP, SCI & Neuro Meds)",
+                  "title": "GCS, Increased ICP Care & Ischemic vs. Hemorrhagic Stroke",
                   "headers": [
-                    "Neuro Condition / Drug",
-                    "Key Warning Signs",
-                    "Priority Action / Threshold"
+                    "Clinical Domain",
+                    "Key Thresholds & Assessment Cues",
+                    "Priority Nursing Actions"
                   ],
                   "rows": [
                     [
-                      "**Increased ICP & Cushing's Triad**",
-                      "Late triad: **Widening pulse pressure**, **bradycardia**, **irregular respirations**; early sign = change in LOC.",
-                      "HOB **30 degrees**, midline head, avoid straining/clustering suctioning, give **IV Mannitol**."
+                      "**Glasgow Coma Scale (GCS)**",
+                      "**Eye (1–4) + Verbal (1–5) + Motor (1–6)** = **3–15**. **GCS <= 8 = \"Intubate\"** (coma).",
+                      [
+                        "Report a **>= 2-point drop** immediately; **decorticate** (flexion to core) vs. **decerebrate** (extension — worse brainstem injury)."
+                      ]
                     ],
                     [
-                      "**Acute Ischemic Stroke (tPA)**",
-                      "Rule out hemorrhage with **STAT Non-Contrast Head CT** first!",
-                      "Alteplase (tPA) window typically **<= 3 to 4.5 hours**; monitor neuro checks & BP q15m; no anticoagulants x24h."
+                      "**Increased ICP (Normal 5–15 mmHg)**",
+                      "Earliest: **restlessness/LOC change**. Late: **Cushing's Triad**, fixed dilated pupils.",
+                      [
+                        "**HOB 30°**, head/neck **midline**, **avoid hip flexion**, **stool softeners** (no Valsalva), **limit suctioning <= 10–15 sec**, quiet dark room, **Mannitol IV**."
+                      ]
                     ],
                     [
-                      "**Autonomic Dysreflexia (SCI >= T6)**",
-                      "Sudden **severe HTN**, pounding headache, flushing/sweating above injury.",
-                      "**Sit upright immediately** -> check Foley kink/bladder distension -> loosen tight clothes."
+                      "**Ischemic Stroke (`tPA / Alteplase`)**",
+                      "Sudden unilateral weakness, facial droop, aphasia (**FAST**); **non-contrast CT negative for blood**.",
+                      [
+                        "**tPA window: <= 3–4.5 hr** from last known well; keep **BP < 185/110** pre-tPA; **NO anticoagulants/antiplatelets or Foley/NG tubes for 24 hr** post-tPA."
+                      ]
                     ],
                     [
-                      "**Phenytoin (Dilantin)**",
-                      "Therapeutic range **10–20 mcg/mL**; causes gingival hyperplasia.",
-                      "Push IV slowly (<= 50 mg/min) in **0.9% NS only**; regular soft brushing + dental visits."
+                      "**Swallowing & Neglect**",
+                      "Hemianopsia / left-sided neglect (right-brain stroke); dysphagia.",
+                      [
+                        "Keep **NPO until formal swallow screen passed**; place food/call light on **unaffected side**; **chin-tuck** when swallowing."
+                      ]
                     ]
                   ]
                 }
               ]
             },
             {
-              "title": "4. Exam Synthesis & Bedside Takeaways",
+              "title": "2. High-Yield Cranial Nerves for NCLEX-RN",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "Stay focused, and good luck on your NCLEX-RN exam!",
-                    "Tips for NCLEX-RN Exam 1. Prioritize airway management and hemodynamic stability.",
-                    "Pathophysiology 1. Progressive neurological disorder: Irreversible brain damage, cognitive decline.",
-                    "Stages 1. Preclinical: Asymptomatic, biomarker presence.",
-                    "Signs and Symptoms 1. Cognitive: Memory loss, confusion, disorientation.",
-                    "Nursing Assessment 1. Mini-Mental State Examination (MMSE): Cognitive function evaluation.",
-                    "Nursing Interventions 1. Create a safe environment: Fall prevention, wandering prevention."
+                  "type": "table",
+                  "title": "Critical Cranial Nerves Tested on NCLEX-RN",
+                  "headers": [
+                    "Cranial Nerve",
+                    "Bedside Assessment",
+                    "Safety / Nursing Priority"
+                  ],
+                  "rows": [
+                    [
+                      "**CN II (Optic) & CN III (Oculomotor)**",
+                      "Visual acuity; **PERRLA** (pupil constriction & extraocular movement).",
+                      [
+                        "**Unilateral fixed/dilated pupil** = CN III compression / uncal herniation emergency!"
+                      ]
+                    ],
+                    [
+                      "**CN V (Trigeminal) & CN VII (Facial)**",
+                      "Facial sensation & corneal blink reflex; symmetrical smile/frown.",
+                      [
+                        "Corneal reflex loss -> **lubricating eye drops / tape eyelid shut** to prevent corneal abrasion."
+                      ]
+                    ],
+                    [
+                      "**CN VIII (Vestibulocochlear)**",
+                      "Hearing & balance (`vertigo`, `tinnitus`).",
+                      [
+                        "Fall precautions with Meniere's / ototoxic drugs (Aminoglycosides, Vancomycin, Furosemide)."
+                      ]
+                    ],
+                    [
+                      "**CN IX (Glossopharyngeal) & CN X (Vagus)**",
+                      "**Gag & swallow reflex**, uvula midline, voice quality.",
+                      [
+                        "**Absent gag reflex = ASPIRATION RISK** -> keep **NPO** until intact."
+                      ]
+                    ]
                   ]
+                }
+              ]
+            },
+            {
+              "title": "3. Exam Synthesis & Bedside Takeaways",
+              "blocks": [
+                {
+                  "type": "paragraph",
+                  "text": "**NCLEX-RN Bottom Line:** **LOC change = earliest sign of increased ICP**; **Cushing's Triad = late sign**. Always obtain a **STAT non-contrast head CT** before giving **tPA**, keep stroke clients **NPO until dysphagia screening**, and position ICP clients with **HOB 30° and head midline**."
                 }
               ]
             }
@@ -17499,84 +17524,65 @@
           ],
           "sections": [
             {
-              "title": "1. Clinical Overview & NCLEX-RN Blueprint",
+              "title": "1. Seizures, Autonomic Dysreflexia, Myasthenia Gravis & Parkinson's",
               "blocks": [
                 {
                   "type": "paragraph",
-                  "text": "**Seizures, Spinal Cord Injury (Autonomic Dysreflexia), MG & Parkinson's** is a high-yield focus area in **Course Unit 10: Neurological System, Stroke, Increased ICP & Neuro Medications** for the Next-Generation NCLEX-RN (NGN). This study guide integrates core pathophysiology, clinical judgment cues, pharmacology safety, and bedside nursing priorities across **Saunders Comprehensive Review (9th Ed.)**, **Kaplan NCLEX-RN Prep**, and **LaCharity PDA**."
-                }
-              ]
-            },
-            {
-              "title": "2. High-Yield Clinical Concepts & Nursing Priorities",
-              "blocks": [
+                  "text": "Acute neurological emergencies include **Status Epilepticus** (seizure > 5 min or repeated seizures without recovery -> **IV Lorazepam/Diazepam**), **Autonomic Dysreflexia** in **T6 or higher spinal cord injury** (noxious stimulus below lesion triggers severe **hypertension + pounding headache + bradycardia**), and **Myasthenic vs. Cholinergic Crisis**."
+                },
                 {
-                  "type": "list",
-                  "items": [
-                    "NURSING ASSESSMENT 1. Unified Parkinson's Disease Rating Scale (UPDRS): Evaluates motor and non-motor symptoms.",
-                    "SEIZURE DISORDERS (EPILEPSY) PATHOPHYSIOLOGY 1. Abnormal electrical activity: Brain's electrical impulses disrupt normal function.",
-                    "TYPES OF SEIZURES 1. Generalized seizures: Affect entire brain.",
-                    "NURSING ASSESSMENT 1. Seizure history: Onset, duration, frequency.",
-                    "TIPS FOR NCLEX-RN EXAM 1. Prioritize seizure management and safety.",
-                    "Max daily dose = 4g ○ For long term use - the maximum daily dose is only 3 grams per day!!",
-                    "Action: Block prostaglandin which causes inflammation, pain, and fever.",
-                    "Indication: Pain Action: Binds to opiate receptors in the CNS and alters perception of pain while producing a general depression of the CNS.",
-                    "Common side effect: constipation CNS depressant ○ Decreased respiration, decreased heart rate, etc.",
-                    "NEUROLOGICAL PROBLEMS OF AN ADULT STROKE/CEREBROVASCULAR ACCIDENT (CVA) Pathophysiology 1. Ischemic Stroke: Blood flow interruption (thrombosis, embolism, or stenosis) leads to brain tissue damage."
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "3. Neurological Emergencies (Stroke, Increased ICP, SCI & Neuro Meds)",
-              "blocks": [
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u10t2-seizures-sci-myasthenia.webp",
+                  "alt": "Neuromuscular junction acetylcholine deficiency in Myasthenia Gravis with NCLEX-RN seizure and SCI priorities",
+                  "caption": "Myasthenia Gravis neuromuscular junction with seizure and autonomic dysreflexia priorities (NU · nursinguganda.com)."
+                },
                 {
                   "type": "table",
-                  "title": "Neurological Emergencies (Stroke, Increased ICP, SCI & Neuro Meds)",
+                  "title": "Neurological Emergencies & Chronic Neuro Disorders",
                   "headers": [
-                    "Neuro Condition / Drug",
-                    "Key Warning Signs",
-                    "Priority Action / Threshold"
+                    "Condition",
+                    "Hallmark Clinical Cues",
+                    "Immediate Nursing Priorities"
                   ],
                   "rows": [
                     [
-                      "**Increased ICP & Cushing's Triad**",
-                      "Late triad: **Widening pulse pressure**, **bradycardia**, **irregular respirations**; early sign = change in LOC.",
-                      "HOB **30 degrees**, midline head, avoid straining/clustering suctioning, give **IV Mannitol**."
+                      "**Seizures & Status Epilepticus**",
+                      "Tonic-clonic activity, postictal confusion; **> 5 min = Status Epilepticus**.",
+                      [
+                        "**Side-lying position**, **loosen tight clothing**, **pad side rails**, **time seizure**; **NEVER restrain or put anything in mouth**. Status: **IV Lorazepam** -> **Phenytoin/Fosphenytoin**."
+                      ]
                     ],
                     [
-                      "**Acute Ischemic Stroke (tPA)**",
-                      "Rule out hemorrhage with **STAT Non-Contrast Head CT** first!",
-                      "Alteplase (tPA) window typically **<= 3 to 4.5 hours**; monitor neuro checks & BP q15m; no anticoagulants x24h."
+                      "**Autonomic Dysreflexia** (SCI **>= T6**)",
+                      "**Severe HTN**, pounding headache, flushing/sweating **above** lesion, **bradycardia**, pale cool skin **below**.",
+                      [
+                        "**1st: Sit client upright (90° HOB)** -> loosen tight clothes -> **check Foley for kinks / bladder distention** -> check fecal impaction (use **lidocaine jelly**!) -> IV antihypertensive."
+                      ]
                     ],
                     [
-                      "**Autonomic Dysreflexia (SCI >= T6)**",
-                      "Sudden **severe HTN**, pounding headache, flushing/sweating above injury.",
-                      "**Sit upright immediately** -> check Foley kink/bladder distension -> loosen tight clothes."
+                      "**Myasthenia Gravis (MG)**",
+                      "Descending muscle weakness (**ptosis, diplopia, dysphagia**), worse with activity/late day.",
+                      [
+                        "**Myasthenic Crisis** (under-medicated) vs. **Cholinergic Crisis** (over-medicated): **Edrophonium (Tensilon) test** -> improves Myasthenic, worsens Cholinergic (keep **Atropine** at bedside)."
+                      ]
                     ],
                     [
-                      "**Phenytoin (Dilantin)**",
-                      "Therapeutic range **10–20 mcg/mL**; causes gingival hyperplasia.",
-                      "Push IV slowly (<= 50 mg/min) in **0.9% NS only**; regular soft brushing + dental visits."
+                      "**Parkinson's & Guillain-Barré**",
+                      "**Parkinson's:** pill-rolling tremor, cogwheel rigidity, bradykinesia, shuffling gait. **GBS:** ascending paralysis.",
+                      [
+                        "**Parkinson's:** fall & aspiration safety, wide-based gait. **GBS:** monitor **respiratory status / vital capacity** (ascending paralysis -> intubation!)."
+                      ]
                     ]
                   ]
                 }
               ]
             },
             {
-              "title": "4. Exam Synthesis & Bedside Takeaways",
+              "title": "2. Exam Synthesis & Bedside Takeaways",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "Action: Block prostaglandin which causes inflammation, pain, and fever.",
-                    "Indication: Pain Action: Binds to opiate receptors in the CNS and alters perception of pain while producing a general depression of the CNS.",
-                    "Common side effect: constipation CNS depressant ○ Decreased respiration, decreased heart rate, etc.",
-                    "NEUROLOGICAL PROBLEMS OF AN ADULT STROKE/CEREBROVASCULAR ACCIDENT (CVA) Pathophysiology 1. Ischemic Stroke: Blood flow interruption (thrombosis, embolism, or stenosis) leads to brain tissue damage.",
-                    "Stay focused, and good luck on your NCLEX-RN exam!",
-                    "Tips for NCLEX-RN Exam 1. Prioritize airway management and ICP control.",
-                    "Tips for NCLEX-RN Exam 1. Prioritize airway management and hemodynamic stability."
-                  ]
+                  "type": "paragraph",
+                  "text": "**NCLEX-RN Bottom Line:** In **Autonomic Dysreflexia (T6+ SCI)**, **sit the client upright (90°) FIRST** to drop BP, then **check for a kinked Foley catheter or bladder distention**. In **Guillain-Barré Syndrome**, monitor **breathing/vital capacity** continuously as paralysis ascends toward the diaphragm."
                 }
               ]
             }
@@ -17852,83 +17858,72 @@
           ],
           "sections": [
             {
-              "title": "1. Clinical Overview & NCLEX-RN Blueprint",
+              "title": "1. Anticonvulsants, Osmotic Diuretics, Antiparkinson & MG Drugs",
               "blocks": [
                 {
                   "type": "paragraph",
-                  "text": "**Neuro Medications: Phenytoin, Mannitol, Levodopa & Pyridostigmine** is a high-yield focus area in **Course Unit 10: Neurological System, Stroke, Increased ICP & Neuro Medications** for the Next-Generation NCLEX-RN (NGN). This study guide integrates core pathophysiology, clinical judgment cues, pharmacology safety, and bedside nursing priorities across **Saunders Comprehensive Review (9th Ed.)**, **Kaplan NCLEX-RN Prep**, and **LaCharity PDA**."
-                }
-              ]
-            },
-            {
-              "title": "2. High-Yield Clinical Concepts & Nursing Priorities",
-              "blocks": [
+                  "text": "Neurologic pharmacology requires strict **therapeutic drug monitoring (`Phenytoin 10–20 mcg/mL`)**, **IV line/filter compatibility (`Phenytoin = 0.9% NS only`, `Mannitol = filter needle/tubing`)**, and **exact mealtime dosing** (`Pyridostigmine` before meals vs. `Levodopa` away from high-protein meals)."
+                },
                 {
-                  "type": "list",
-                  "items": [
-                    "Max daily dose = 4g ○ For long term use - the maximum daily dose is only 3 grams per day!!",
-                    "Action: Block prostaglandin which causes inflammation, pain, and fever.",
-                    "Indication: Pain Action: Binds to opiate receptors in the CNS and alters perception of pain while producing a general depression of the CNS.",
-                    "Common side effect: constipation CNS depressant ○ Decreased respiration, decreased heart rate, etc.",
-                    "NEUROLOGICAL PROBLEMS OF AN ADULT STROKE/CEREBROVASCULAR ACCIDENT (CVA) Pathophysiology 1. Ischemic Stroke: Blood flow interruption (thrombosis, embolism, or stenosis) leads to brain tissue damage.",
-                    "Stay focused, and good luck on your NCLEX-RN exam!",
-                    "Tips for NCLEX-RN Exam 1. Prioritize airway management and ICP control.",
-                    "Tips for NCLEX-RN Exam 1. Prioritize airway management and hemodynamic stability.",
-                    "Pathophysiology 1. Progressive neurological disorder: Irreversible brain damage, cognitive decline.",
-                    "Stages 1. Preclinical: Asymptomatic, biomarker presence."
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "3. Neurological Emergencies (Stroke, Increased ICP, SCI & Neuro Meds)",
-              "blocks": [
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u10t3-neuro-meds-phenytoin-mannitol.webp",
+                  "alt": "Phenytoin chemical structure with NCLEX-RN neuro pharmacology safety rules",
+                  "caption": "Phenytoin structure with Phenytoin, Mannitol, Levodopa and Pyridostigmine safety rules (NU · nursinguganda.com)."
+                },
                 {
                   "type": "table",
-                  "title": "Neurological Emergencies (Stroke, Increased ICP, SCI & Neuro Meds)",
+                  "title": "High-Yield Neuro Medications & Nursing Safety Alerts",
                   "headers": [
-                    "Neuro Condition / Drug",
-                    "Key Warning Signs",
-                    "Priority Action / Threshold"
+                    "Medication & Class",
+                    "Therapeutic Range / Timing",
+                    "Critical NCLEX-RN Nursing Alerts"
                   ],
                   "rows": [
                     [
-                      "**Increased ICP & Cushing's Triad**",
-                      "Late triad: **Widening pulse pressure**, **bradycardia**, **irregular respirations**; early sign = change in LOC.",
-                      "HOB **30 degrees**, midline head, avoid straining/clustering suctioning, give **IV Mannitol**."
-                    ],
-                    [
-                      "**Acute Ischemic Stroke (tPA)**",
-                      "Rule out hemorrhage with **STAT Non-Contrast Head CT** first!",
-                      "Alteplase (tPA) window typically **<= 3 to 4.5 hours**; monitor neuro checks & BP q15m; no anticoagulants x24h."
-                    ],
-                    [
-                      "**Autonomic Dysreflexia (SCI >= T6)**",
-                      "Sudden **severe HTN**, pounding headache, flushing/sweating above injury.",
-                      "**Sit upright immediately** -> check Foley kink/bladder distension -> loosen tight clothes."
-                    ],
-                    [
                       "**Phenytoin (Dilantin)**",
-                      "Therapeutic range **10–20 mcg/mL**; causes gingival hyperplasia.",
-                      "Push IV slowly (<= 50 mg/min) in **0.9% NS only**; regular soft brushing + dental visits."
+                      "Therapeutic: **10–20 mcg/mL**. Infuse IV **<= 50 mg/min** in **0.9% NS ONLY** (precipitates in D5W!).",
+                      [
+                        "**Gingival hyperplasia** (soft toothbrush, dental visits), **hirsutism**, **stevens-johnson rash**, **reduces oral contraceptive efficacy**; **NEVER stop abruptly**."
+                      ]
+                    ],
+                    [
+                      "**Valproic Acid & Carbamazepine**",
+                      "Monitor baseline & periodic **LFTs + CBC**.",
+                      [
+                        "**Valproate:** hepatotoxicity, pancreatitis, **teratogenic** (neural tube defects). **Carbamazepine:** agranulocytosis/aplastic anemia (report fever/sore throat)."
+                      ]
+                    ],
+                    [
+                      "**Mannitol (Osmotic Diuretic)**",
+                      "For acute **increased ICP**; use **in-line micron filter** (crystallizes at room temp!).",
+                      [
+                        "Monitor **BUN/Cr**, serum osmolality, **lung crackles** (pulmonary edema / HF risk), & strict **I&O**."
+                      ]
+                    ],
+                    [
+                      "**Carbidopa-Levodopa** (Parkinson's)",
+                      "Increases brain dopamine.",
+                      [
+                        "**Avoid high-protein meals** (compete for absorption); **avoid Vitamin B6** (reverses Levodopa); **avoid MAOIs** (hypertensive crisis); **harmless dark urine/sweat**."
+                      ]
+                    ],
+                    [
+                      "**Pyridostigmine (Mestinon)** (MG)",
+                      "Give **30–60 minutes BEFORE meals**.",
+                      [
+                        "Maximizes chewing/swallowing strength during meals to prevent **aspiration**."
+                      ]
                     ]
                   ]
                 }
               ]
             },
             {
-              "title": "4. Exam Synthesis & Bedside Takeaways",
+              "title": "2. Exam Synthesis & Bedside Takeaways",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "Tips for NCLEX-RN Exam 1. Prioritize airway management and ICP control.",
-                    "Tips for NCLEX-RN Exam 1. Prioritize airway management and hemodynamic stability.",
-                    "Pathophysiology 1. Progressive neurological disorder: Irreversible brain damage, cognitive decline.",
-                    "Stages 1. Preclinical: Asymptomatic, biomarker presence.",
-                    "Signs and Symptoms 1. Cognitive: Memory loss, confusion, disorientation.",
-                    "Nursing Assessment 1. Mini-Mental State Examination (MMSE): Cognitive function evaluation."
-                  ]
+                  "type": "paragraph",
+                  "text": "**NCLEX-RN Bottom Line:** Infuse **IV Phenytoin slowly in 0.9% NS only** (never D5W) and check **10–20 mcg/mL** levels. Always use a **filter** for **Mannitol** and monitor for **pulmonary edema**. Give **Pyridostigmine 30–60 min before meals**, and separate **Levodopa** from **high-protein meals and Vitamin B6**."
                 }
               ]
             }
