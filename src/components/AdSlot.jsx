@@ -6,7 +6,10 @@ import React from "react";
  * (Free eBooks, Dictionary, Instrument Atlas, Free Lesson Previews).
  * Never mounted on Checkout, Cart, Login, 404, or Paid Course Player routes.
  */
+const SHOW_AD_SLOTS = false;
+
 export default function AdSlot({ slot = "in-article", label = "Sponsored Educational Partner" }) {
+  if (!SHOW_AD_SLOTS) return null;
   return (
     <div className="nu-ad-slot" data-ad-slot={slot} aria-label="Advertisement">
       <div style={{ fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase", fontSize: "0.7rem" }}>
