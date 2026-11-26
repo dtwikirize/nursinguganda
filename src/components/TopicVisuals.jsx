@@ -2,7 +2,7 @@ import React from "react";
 import { AlertTriangle, CheckCircle2, Layers, Sparkles, Table2 } from "lucide-react";
 import RichText from "./RichText";
 
-const IMAGE_VERSION = "20261126b";
+const IMAGE_VERSION = "20261126c";
 
 function withImgVersion(src) {
   const s = String(src || "");
@@ -368,6 +368,72 @@ function getInlineSectionRules() {
       titleOnly: true,
       src: "/assets/images/medical-illustrations/digestive-gi-tract.webp",
       caption: "Digestive System | Gastrointestinal Tract & Accessory Organs"
+    },
+    {
+      match: /\bsalivary\s+glands?\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/digestive-salivary-glands.webp",
+      caption: "Salivary Glands (Parotid, Submandibular & Sublingual) & Oral Secretions"
+    },
+    {
+      match: /\bteeth\b|\bdentition\b|\bdentes\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/digestive-tooth-structure.webp",
+      caption: "Anatomy of a Tooth (Enamel, Dentine, Pulp) & Human Dentition"
+    },
+    {
+      match: /\b(pharynx|oesophagus|esophagus)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/digestive-pharynx-oesophagus-swallowing.webp",
+      caption: "Pharynx Divisions, Oesophagus & Deglutition Peristalsis"
+    },
+    {
+      match: /\b(layers?\s+of\s+the\s+gi\s+tract|peritoneum|gi\s+wall)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/digestive-gi-wall-layers-peritoneum.webp",
+      caption: "Four Histological Layers of GI Tract Wall & Peritoneal Cavity"
+    },
+    {
+      match: /\bstomach\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/digestive-stomach-anatomy-secretions.webp",
+      caption: "Stomach Anatomy (Cardia, Fundus, Body, Pylorus) & Gastric Secretions"
+    },
+    {
+      match: /\bpancreas\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/digestive-pancreas-exocrine-endocrine.webp",
+      caption: "Pancreas Anatomy | Exocrine Acinar Ducts & Endocrine Islets"
+    },
+    {
+      match: /\b(liver\s+and\s+gallbladder|biliary\s+tract|gallbladder)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/digestive-liver-gallbladder-biliary.webp",
+      caption: "Liver, Gallbladder & Biliary Tract Drainage into Duodenum"
+    },
+    {
+      match: /\bsmall\s+intestine\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/digestive-small-intestine-anatomy.webp",
+      caption: "Small Intestine Regional Anatomy (Duodenum, Jejunum & Ileum)"
+    },
+    {
+      match: /\b(process\s+of\s+digestion\s+and\s+absorption|intestinal\s+villi|brush\s+border)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/digestive-intestinal-villi-absorption.webp",
+      caption: "Intestinal Villi, Microvilli Brush Border & Dual Capillary / Lacteal Uptake"
+    },
+    {
+      match: /\blarge\s+intestine\b|\bcolon\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/digestive-large-intestine-colon.webp",
+      caption: "Large Intestine Anatomy (Caecum, Appendix, Colon & Rectum)"
+    },
+    {
+      match: /\b(disorders?\s+of\s+the\s+digestive|peptic\s+ulcer|gastroesophageal\s+reflux|gerd)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/digestive-gerd-peptic-ulcer-disorders.webp",
+      caption: "Digestive System Disorders | GERD, Gastric Ulcer & Duodenal Ulcer"
     },
     {
       match: /\burinary\s+system\b/i,

@@ -429,18 +429,20 @@
     },
     {
       "id": "digestive-gi-tract",
-      "title": "Digestive System & Accessory Organs",
+      "title": "Human Digestive System & Alimentary Canal",
       "category": "Digestive, Endocrine & Senses",
       "file": "/assets/images/medical-illustrations/digestive-gi-tract.webp",
-      "alt": "Human gastrointestinal tract illustrating esophagus, liver, gallbladder, stomach with rugae, pancreas, small intestine, and colon",
-      "summary": "Anatomical plate of the gastrointestinal tract and accessory digestive organs | esophagus, stomach rugae, liver, biliary tree/gallbladder, pancreas, duodenum/jejunum/ileum, and colon with appendix.",
+      "alt": "Labeled anatomical illustration of the human digestive system from oesophagus, liver, gallbladder, stomach rugae, and pancreas to small intestine, colon, appendix, and rectum",
+      "summary": "Labeled regional map contrasting the continuous alimentary canal (mouth to anus) with accessory digestive glands and the bedside abdominal assessment order (Inspect, Auscultate, Percuss, Palpate).",
       "structures": [
-        "Esophagus",
-        "Stomach & Gastric Rugae",
+        "Oesophagus",
+        "Stomach (Rugae)",
         "Liver & Gallbladder",
         "Pancreas",
-        "Duodenum, Jejunum & Ileum",
-        "Cecum, Appendix & Colon"
+        "Small Intestine (~6 m)",
+        "Ascending & Descending Colon",
+        "Appendix",
+        "Rectum & Anus"
       ],
       "clinicalPearl": "In acute diarrhea, oral rehydration salts (ORS) restore water and sodium across small-intestinal villi via SGLT1 sodium-glucose co-transport.",
       "relatedTopics": [
@@ -1422,6 +1424,244 @@
         {
           "label": "Ectopic Pregnancy",
           "to": "/learn/certificate-in-midwifery-gynecology-and-reproductive-health/ectopic-pregnancy"
+        }
+      ]
+    },
+    {
+      "id": "digestive-salivary-glands",
+      "title": "Salivary Glands & Oral Secretions",
+      "category": "Digestive, Endocrine & Senses",
+      "file": "/assets/images/medical-illustrations/digestive-salivary-glands.webp",
+      "alt": "3D anatomical view showing parotid, submandibular, and sublingual salivary glands and their oral ducts",
+      "summary": "Illustrates the three paired salivary glands, Stensen and Wharton ducts, salivary amylase starch digestion, and mucosal IgA immunity.",
+      "structures": [
+        "Parotid Gland (Stensen Duct)",
+        "Submandibular Gland (Wharton Duct)",
+        "Sublingual Gland",
+        "Salivary Amylase & Lysozyme"
+      ],
+      "clinicalPearl": "Routine oral hygiene prevents acute suppurative parotitis in NPO, dehydrated, or ventilated ward patients.",
+      "relatedTopics": [
+        {
+          "label": "Digestive System Notes",
+          "to": "/learn/certificate-in-nursing-anatomy-and-physiology-l-and-first-aid/digestive-system-notes"
+        }
+      ]
+    },
+    {
+      "id": "digestive-tooth-structure",
+      "title": "Anatomy of a Tooth & Human Dentition",
+      "category": "Digestive, Endocrine & Senses",
+      "file": "/assets/images/medical-illustrations/digestive-tooth-structure.webp",
+      "alt": "Coronal section of a molar tooth labeling crown, neck, root, enamel, dentin, gums, pulp, cementum, alveolar bone, and neurovascular supply",
+      "summary": "Details crown/neck/root divisions, enamel, dentine, cementum, neurovascular pulp cavity, and adult permanent (32) vs deciduous (20) dental formulas.",
+      "structures": [
+        "Crown, Neck & Root",
+        "Enamel & Dentin",
+        "Pulp Cavity (Vessels & Nerves)",
+        "Gingiva (Gums) & Cementum",
+        "Alveolar Bone Socket"
+      ],
+      "clinicalPearl": "Inspect oral mucosa and loose dentition prior to solid feeding or endotracheal intubation to prevent aspiration.",
+      "relatedTopics": [
+        {
+          "label": "Digestive System Notes",
+          "to": "/learn/certificate-in-nursing-anatomy-and-physiology-l-and-first-aid/digestive-system-notes"
+        }
+      ]
+    },
+    {
+      "id": "digestive-pharynx-oesophagus-swallowing",
+      "title": "Pharynx Divisions, Oesophagus & Peristalsis",
+      "category": "Digestive, Endocrine & Senses",
+      "file": "/assets/images/medical-illustrations/digestive-pharynx-oesophagus-swallowing.webp",
+      "alt": "Sagittal head and neck anatomy showing nasal cavity, soft palate, uvula, nasopharynx, oropharynx, laryngopharynx, epiglottis, glottis, trachea, and oesophagus",
+      "summary": "Maps the nasopharynx, oropharynx, and laryngopharynx alongside the 25 cm muscular oesophagus, UES/LES sphincters, and epiglottic aspiration protection.",
+      "structures": [
+        "Nasopharynx, Oropharynx & Laryngopharynx",
+        "Soft Palate & Uvula",
+        "Epiglottis & Glottis",
+        "Oesophagus (~25 cm Posterior)",
+        "Upper & Lower Oesophageal Sphincters"
+      ],
+      "clinicalPearl": "Feed stroke or drowsy patients upright at 45-90 degrees and hold oral intake immediately if coughing or wet voice suggests aspiration.",
+      "relatedTopics": [
+        {
+          "label": "Digestive System Notes",
+          "to": "/learn/certificate-in-nursing-anatomy-and-physiology-l-and-first-aid/digestive-system-notes"
+        }
+      ]
+    },
+    {
+      "id": "digestive-gi-wall-layers-peritoneum",
+      "title": "Four Tissue Layers of GI Wall & Peritoneum",
+      "category": "Digestive, Endocrine & Senses",
+      "file": "/assets/images/medical-illustrations/digestive-gi-wall-layers-peritoneum.webp",
+      "alt": "3D cutaway diagram of the gastrointestinal wall showing lumen, mucosa, submucosa with Meissner plexus, circular/longitudinal muscularis with Auerbach myenteric plexus, serosa, and mesentery",
+      "summary": "3D histological cutaway demonstrating the four conserved alimentary wall tunics (Mucosa, Submucosa, Muscularis Externa, Serosa) suspended by vascular mesentery.",
+      "structures": [
+        "Mucosa (Epithelium, Lamina Propria, Muscularis Mucosae)",
+        "Submucosa & Meissner Plexus",
+        "Muscularis (Circular & Longitudinal) + Auerbach Plexus",
+        "Serosa (Visceral Peritoneum)",
+        "Mesentery Vessels & Nerves"
+      ],
+      "clinicalPearl": "A full-thickness breach through the serosa (e.g., perforated peptic ulcer) leaks gastric acid into the peritoneal cavity causing board-like rigidity.",
+      "relatedTopics": [
+        {
+          "label": "Digestive System Notes",
+          "to": "/learn/certificate-in-nursing-anatomy-and-physiology-l-and-first-aid/digestive-system-notes"
+        }
+      ]
+    },
+    {
+      "id": "digestive-stomach-anatomy-secretions",
+      "title": "Stomach Anatomy, Regions & Gastric Secretions",
+      "category": "Digestive, Endocrine & Senses",
+      "file": "/assets/images/medical-illustrations/digestive-stomach-anatomy-secretions.webp",
+      "alt": "Cutaway textbook illustration of the stomach showing cardia, fundus, body, pyloric antrum, pyloric sphincter, greater/lesser curvatures, three muscularis externa coats, and mucosal rugae",
+      "summary": "Shows stomach regions, triple smooth-muscle coats (longitudinal, circular, oblique), mucosal rugae, and gastric parietal/chief/G-cell secretions.",
+      "structures": [
+        "Cardia & Fundus",
+        "Body & Mucosal Rugae",
+        "Pyloric Antrum, Canal & Sphincter",
+        "Longitudinal, Circular & Oblique Muscle",
+        "Lesser & Greater Curvatures"
+      ],
+      "clinicalPearl": "Parietal cells secrete both HCl and Intrinsic Factor | loss of Intrinsic Factor leads to Vitamin B12 deficiency (Pernicious anaemia).",
+      "relatedTopics": [
+        {
+          "label": "Digestive System Notes",
+          "to": "/learn/certificate-in-nursing-anatomy-and-physiology-l-and-first-aid/digestive-system-notes"
+        }
+      ]
+    },
+    {
+      "id": "digestive-pancreas-exocrine-endocrine",
+      "title": "Pancreas Anatomy (Exocrine Ducts & Endocrine Islets)",
+      "category": "Digestive, Endocrine & Senses",
+      "file": "/assets/images/medical-illustrations/digestive-pancreas-exocrine-endocrine.webp",
+      "alt": "3D illustration of the retroperitoneal pancreas showing head, body, tail, lobules, main and accessory pancreatic ducts joining common bile duct at duodenal papilla",
+      "summary": "Illustrates the retroperitoneal pancreas head, body, and tail draining pancreatic amylase, lipase, and zymogens alongside endocrine Islets of Langerhans.",
+      "structures": [
+        "Pancreatic Head, Body & Tail",
+        "Main & Accessory Pancreatic Ducts",
+        "Common Bile Duct & Duodenal Papilla",
+        "Exocrine Acinar Lobules",
+        "Endocrine Islets (Insulin & Glucagon)"
+      ],
+      "clinicalPearl": "Serum Amylase or Lipase >3x normal with severe epigastric pain radiating to the back indicates acute pancreatitis | keep NPO and resuscitate IV fluids.",
+      "relatedTopics": [
+        {
+          "label": "Digestive System Notes",
+          "to": "/learn/certificate-in-nursing-anatomy-and-physiology-l-and-first-aid/digestive-system-notes"
+        }
+      ]
+    },
+    {
+      "id": "digestive-liver-gallbladder-biliary",
+      "title": "Liver, Gallbladder & Biliary Tract Anatomy",
+      "category": "Digestive, Endocrine & Senses",
+      "file": "/assets/images/medical-illustrations/digestive-liver-gallbladder-biliary.webp",
+      "alt": "3D anatomical diagram of biliary ducts showing right and left hepatic ducts, common hepatic duct, cystic duct, gallbladder, common bile duct, and ampulla of Vater",
+      "summary": "Traces bile drainage from right/left hepatic ducts into the gallbladder via the cystic duct and down the common bile duct to the ampulla of Vater.",
+      "structures": [
+        "Right & Left Hepatic Ducts",
+        "Common Hepatic Duct",
+        "Gallbladder & Cystic Duct",
+        "Common Bile Duct",
+        "Ampulla of Vater (2nd Duodenum)"
+      ],
+      "clinicalPearl": "Gallstones obstructing the cystic or common bile duct trigger RUQ pain (Murphy sign), pale clay-coloured stools, dark urine, and obstructive jaundice.",
+      "relatedTopics": [
+        {
+          "label": "Digestive System Notes",
+          "to": "/learn/certificate-in-nursing-anatomy-and-physiology-l-and-first-aid/digestive-system-notes"
+        }
+      ]
+    },
+    {
+      "id": "digestive-small-intestine-anatomy",
+      "title": "Small Intestine Anatomy (Duodenum, Jejunum & Ileum)",
+      "category": "Digestive, Endocrine & Senses",
+      "file": "/assets/images/medical-illustrations/digestive-small-intestine-anatomy.webp",
+      "alt": "3D regional view of the human small intestine highlighting duodenum, jejunum, and ileum relative to the stomach and colon",
+      "summary": "Distinguishes the C-shaped duodenum (iron uptake), coiled jejunum (main nutrient absorption), and terminal ileum (Vitamin B12 and bile-salt recycling).",
+      "structures": [
+        "Duodenum (~25 cm)",
+        "Jejunum (~2.5 m)",
+        "Ileum (~3.5 m)",
+        "Pylorus-to-Ileocaecal Junction"
+      ],
+      "clinicalPearl": "Oral Rehydration Solution (ORS) activates SGLT1 Na+-glucose co-transport across the small intestine even during acute secretory diarrhoea.",
+      "relatedTopics": [
+        {
+          "label": "Digestive System Notes",
+          "to": "/learn/certificate-in-nursing-anatomy-and-physiology-l-and-first-aid/digestive-system-notes"
+        }
+      ]
+    },
+    {
+      "id": "digestive-intestinal-villi-absorption",
+      "title": "Intestinal Villi, Microvilli Brush Border & Lacteal",
+      "category": "Digestive, Endocrine & Senses",
+      "file": "/assets/images/medical-illustrations/digestive-intestinal-villi-absorption.webp",
+      "alt": "Magnified diagram of circular folds, intestinal villi with goblet cells, central green lacteal lymphatic, capillary loop, intestinal crypt, muscularis mucosae, and brush border microvilli",
+      "summary": "Magnifies small-intestinal absorptive architecture from circular plicae to finger-like villi and microvilli brush border enzymes feeding capillaries and lacteals.",
+      "structures": [
+        "Circular Folds (Plicae)",
+        "Intestinal Villi & Goblet Cells",
+        "Microvilli (Brush Border)",
+        "Central Lacteal Lymphatic",
+        "Blood Capillaries & Crypts"
+      ],
+      "clinicalPearl": "Water-soluble sugars and amino acids enter portal capillaries straight to the liver, while dietary fats enter lacteals to reach venous blood via the thoracic duct.",
+      "relatedTopics": [
+        {
+          "label": "Digestive System Notes",
+          "to": "/learn/certificate-in-nursing-anatomy-and-physiology-l-and-first-aid/digestive-system-notes"
+        }
+      ]
+    },
+    {
+      "id": "digestive-large-intestine-colon",
+      "title": "Large Intestine Anatomy (Caecum, Colon & Rectum)",
+      "category": "Digestive, Endocrine & Senses",
+      "file": "/assets/images/medical-illustrations/digestive-large-intestine-colon.webp",
+      "alt": "3D torso view of large intestine showing caecum, appendix, ascending colon, transverse colon, descending colon, sigmoid colon, rectum, and anus",
+      "summary": "Traces colonic segments from the caecum and appendix through the four colon divisions into the rectum, detailing water recovery and Vitamin K synthesis.",
+      "structures": [
+        "Caecum & Vermiform Appendix",
+        "Ascending & Transverse Colon",
+        "Descending & Sigmoid Colon",
+        "Rectum & Anal Canal"
+      ],
+      "clinicalPearl": "Colostomy stool consistency follows anatomy: right-sided ascending stomas produce liquid output, whereas descending/sigmoid stomas pass formed stool.",
+      "relatedTopics": [
+        {
+          "label": "Digestive System Notes",
+          "to": "/learn/certificate-in-nursing-anatomy-and-physiology-l-and-first-aid/digestive-system-notes"
+        }
+      ]
+    },
+    {
+      "id": "digestive-gerd-peptic-ulcer-disorders",
+      "title": "Digestive Disorders (GERD & Peptic Ulcer Disease)",
+      "category": "Digestive, Endocrine & Senses",
+      "file": "/assets/images/medical-illustrations/digestive-gerd-peptic-ulcer-disorders.webp",
+      "alt": "Diagram comparing esophageal, gastric, and duodenal ulcer locations with mucosal/submucosal wall depth cross-section",
+      "summary": "Differentiates gastric vs duodenal peptic ulcer timing and depth alongside GERD reflux management and perforation red flags.",
+      "structures": [
+        "Oesophageal Ulcer / GERD",
+        "Gastric Ulcer",
+        "Duodenal Ulcer",
+        "Mucosa, Submucosa & Muscle Depth"
+      ],
+      "clinicalPearl": "Suspect GI bleeding or perforation urgently if a PUD patient develops coffee-ground emesis, black tarry melaena stools, or rigid abdominal guarding.",
+      "relatedTopics": [
+        {
+          "label": "Digestive System Notes",
+          "to": "/learn/certificate-in-nursing-anatomy-and-physiology-l-and-first-aid/digestive-system-notes"
         }
       ]
     }
