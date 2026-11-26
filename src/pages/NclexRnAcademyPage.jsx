@@ -327,22 +327,22 @@ export default function NclexRnAcademyPage() {
             </div>
           </div>
 
-          {/* 3. Summarized 24-Week Syllabus Table + Foreign RN Fee & Visa Guide */}
+          {/* 3. Summarized 24-Week Syllabus Table (Solid 100% Blue) + Foreign RN Fee & Visa Guide (Solid 100% Black) */}
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: 20, marginBottom: 38 }}>
-            <div style={{ background: "#ffffff", border: "1px solid #cbd5e1", borderTop: "4px solid #1d4ed8", borderRadius: 12, padding: 20 }}>
-              <h3 style={{ margin: "0 0 6px", fontSize: "1.12rem", color: "#0f172a" }}>
+            <div style={{ background: "#1d4ed8", color: "#ffffff", border: "1.5px solid #1e40af", borderRadius: 14, padding: 22, boxShadow: "0 10px 28px rgba(29, 78, 216, 0.22)" }}>
+              <h3 style={{ margin: "0 0 6px", fontSize: "1.14rem", color: "#ffffff", fontWeight: 800 }}>
                 24-Week Master Study Tracker (Saunders + Kaplan + LaCharity)
               </h3>
-              <p style={{ margin: "0 0 12px", fontSize: "0.83rem", color: "#475569" }}>
+              <p style={{ margin: "0 0 14px", fontSize: "0.84rem", color: "rgba(255,255,255,0.88)" }}>
                 Condenses the full 24-week US NCLEX syllabus into six focused clinical blocks paired with interactive evaluations below.
               </p>
-              <div style={{ overflowX: "auto" }}>
+              <div style={{ overflowX: "auto", borderRadius: 10, border: "1px solid rgba(255,255,255,0.18)" }}>
                 <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.81rem" }}>
                   <thead>
                     <tr style={{ background: "#09090b", color: "#ffffff", textAlign: "left" }}>
-                      <th style={{ padding: "8px 10px", borderBottom: "2px solid #2563eb" }}>Weeks</th>
-                      <th style={{ padding: "8px 10px", borderBottom: "2px solid #2563eb" }}>Core Clinical Domain</th>
-                      <th style={{ padding: "8px 10px", borderBottom: "2px solid #2563eb" }}>Mapped Texts</th>
+                      <th style={{ padding: "9px 10px", borderBottom: "2px solid #60a5fa" }}>Weeks</th>
+                      <th style={{ padding: "9px 10px", borderBottom: "2px solid #60a5fa" }}>Core Clinical Domain</th>
+                      <th style={{ padding: "9px 10px", borderBottom: "2px solid #60a5fa" }}>Mapped Texts</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -353,11 +353,11 @@ export default function NclexRnAcademyPage() {
                       ["Wks 15–18", "Maternity, Paediatrics, Psychiatric Nursing, Lifespan & ICU", "Saunders IV–VI, XVIII–XIX · LaCharity Ch.18, 19, 22"],
                       ["Wks 19–22", "Client Needs: Safe Care, Health Promo, Pharm/IV, Risk Reduction", "Kaplan Ch.4–10 · HIPAA · CDC Schedule · Septic Shock"],
                       ["Wks 23–24", "Daily Timed CAT Mock Simulations & Weak-Area Remediation", "4 Full CAT Mock Exams · Detailed Rationales"]
-                    ].map(([wk, dom, ref]) => (
-                      <tr key={wk}>
-                        <td style={{ padding: "8px 10px", borderBottom: "1px solid #e2e8f0", fontWeight: 800, color: "#1d4ed8", whiteSpace: "nowrap" }}>{wk}</td>
-                        <td style={{ padding: "8px 10px", borderBottom: "1px solid #e2e8f0", fontWeight: 600, color: "#0f172a" }}>{dom}</td>
-                        <td style={{ padding: "8px 10px", borderBottom: "1px solid #e2e8f0", color: "#475569" }}>{ref}</td>
+                    ].map(([wk, dom, ref], idx) => (
+                      <tr key={wk} style={{ background: idx % 2 === 0 ? "rgba(9, 9, 11, 0.24)" : "rgba(255, 255, 255, 0.06)" }}>
+                        <td style={{ padding: "8px 10px", borderBottom: "1px solid rgba(255,255,255,0.12)", fontWeight: 800, color: "#bfdbfe", whiteSpace: "nowrap" }}>{wk}</td>
+                        <td style={{ padding: "8px 10px", borderBottom: "1px solid rgba(255,255,255,0.12)", fontWeight: 700, color: "#ffffff" }}>{dom}</td>
+                        <td style={{ padding: "8px 10px", borderBottom: "1px solid rgba(255,255,255,0.12)", color: "#e2e8f0" }}>{ref}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -365,20 +365,20 @@ export default function NclexRnAcademyPage() {
               </div>
             </div>
 
-            <div style={{ background: "#ffffff", border: "1px solid #cbd5e1", borderTop: "4px solid #09090b", borderRadius: 12, padding: 20 }}>
-              <h3 style={{ margin: "0 0 6px", fontSize: "1.12rem", color: "#0f172a" }}>
+            <div style={{ background: "#09090b", color: "#ffffff", border: "1.5px solid #27272a", borderRadius: 14, padding: 22, boxShadow: "0 10px 28px rgba(9, 9, 11, 0.25)" }}>
+              <h3 style={{ margin: "0 0 6px", fontSize: "1.14rem", color: "#ffffff", fontWeight: 800 }}>
                 Foreign-Trained RN Process, Regulatory Fees &amp; US Visas
               </h3>
-              <p style={{ margin: "0 0 12px", fontSize: "0.83rem", color: "#475569" }}>
+              <p style={{ margin: "0 0 14px", fontSize: "0.84rem", color: "#cbd5e1" }}>
                 Transparent breakdown of statutory licensing fees paid directly to US bodies plus post-pass employment &amp; visa routes.
               </p>
-              <div style={{ overflowX: "auto", marginBottom: 14 }}>
+              <div style={{ overflowX: "auto", marginBottom: 14, borderRadius: 10, border: "1px solid #27272a" }}>
                 <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.81rem" }}>
                   <thead>
-                    <tr style={{ background: "#09090b", color: "#ffffff", textAlign: "left" }}>
-                      <th style={{ padding: "8px 10px", borderBottom: "2px solid #2563eb" }}>Stage &amp; Authority</th>
-                      <th style={{ padding: "8px 10px", borderBottom: "2px solid #2563eb" }}>Typical Fee</th>
-                      <th style={{ padding: "8px 10px", borderBottom: "2px solid #2563eb" }}>Action Needed</th>
+                    <tr style={{ background: "#1d4ed8", color: "#ffffff", textAlign: "left" }}>
+                      <th style={{ padding: "9px 10px", borderBottom: "2px solid #60a5fa" }}>Stage &amp; Authority</th>
+                      <th style={{ padding: "9px 10px", borderBottom: "2px solid #60a5fa" }}>Typical Fee</th>
+                      <th style={{ padding: "9px 10px", borderBottom: "2px solid #60a5fa" }}>Action Needed</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -387,20 +387,20 @@ export default function NclexRnAcademyPage() {
                       ["2. State Board (e.g. TBON)", "~$75 + $40 prints", "Board application + IdentoGO fingerprints"],
                       ["3. Pearson VUE (ATT & Exam)", "~$200 + $150 intl", "Obtain ATT & schedule at global Pearson center"],
                       ["4. Nursing Uganda Academy", "$99 One-Time", "16 Units, 1,920+ Qs, 4 Mocks (vs $160–$300 elsewhere)"]
-                    ].map(([st, fee, act]) => (
-                      <tr key={st}>
-                        <td style={{ padding: "8px 10px", borderBottom: "1px solid #e2e8f0", fontWeight: 700, color: "#0f172a" }}>{st}</td>
-                        <td style={{ padding: "8px 10px", borderBottom: "1px solid #e2e8f0", fontWeight: 800, color: "#1d4ed8", whiteSpace: "nowrap" }}>{fee}</td>
-                        <td style={{ padding: "8px 10px", borderBottom: "1px solid #e2e8f0", color: "#475569" }}>{act}</td>
+                    ].map(([st, fee, act], idx) => (
+                      <tr key={st} style={{ background: idx % 2 === 0 ? "#111827" : "#18181b" }}>
+                        <td style={{ padding: "8px 10px", borderBottom: "1px solid #27272a", fontWeight: 700, color: "#ffffff" }}>{st}</td>
+                        <td style={{ padding: "8px 10px", borderBottom: "1px solid #27272a", fontWeight: 800, color: "#60a5fa", whiteSpace: "nowrap" }}>{fee}</td>
+                        <td style={{ padding: "8px 10px", borderBottom: "1px solid #27272a", color: "#cbd5e1" }}>{act}</td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
               </div>
-              <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 10, padding: "10px 14px", fontSize: "0.81rem", color: "#0f172a", lineHeight: 1.5 }}>
-                <strong>After Passing (Visas &amp; Placement):</strong> Compare direct hospital sponsorship vs staffing agency contracts.{" "}
-                <strong>EB-3 Immigrant Visa</strong> grants permanent Green Card residency with spouse work authorization and children's schooling;{" "}
-                <strong>H-1B Visa</strong> requires a bachelor's degree (BScN) tied to one contract employer.
+              <div style={{ background: "#111827", border: "1px solid #2563eb", borderRadius: 10, padding: "12px 14px", fontSize: "0.81rem", color: "#e2e8f0", lineHeight: 1.55 }}>
+                <strong style={{ color: "#60a5fa" }}>After Passing (Visas &amp; Placement):</strong> Compare direct hospital sponsorship vs staffing agency contracts.{" "}
+                <strong style={{ color: "#ffffff" }}>EB-3 Immigrant Visa</strong> grants permanent Green Card residency with spouse work authorization and children's schooling;{" "}
+                <strong style={{ color: "#ffffff" }}>H-1B Visa</strong> requires a bachelor's degree (BScN) tied to one contract employer.
               </div>
             </div>
           </div>

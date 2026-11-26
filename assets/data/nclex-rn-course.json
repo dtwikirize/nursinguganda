@@ -7789,83 +7789,92 @@
           ],
           "sections": [
             {
-              "title": "1. Clinical Overview & NCLEX-RN Blueprint",
+              "title": "1. Respiratory Diagnostics, Breath Sounds & Thoracentesis",
               "blocks": [
                 {
                   "type": "paragraph",
-                  "text": "**Respiratory A&P, Breath Sounds, ABGs, Thoracentesis & Chest Tubes** is a high-yield focus area in **Course Unit 5: Respiratory System, Diagnostic Tests, Acute Care & Medications** for the Next-Generation NCLEX-RN (NGN). This study guide integrates core pathophysiology, clinical judgment cues, pharmacology safety, and bedside nursing priorities across **Saunders Comprehensive Review (9th Ed.)**, **Kaplan NCLEX-RN Prep**, and **LaCharity PDA**."
-                }
-              ]
-            },
-            {
-              "title": "2. High-Yield Clinical Concepts & Nursing Priorities",
-              "blocks": [
+                  "text": "Respiratory assessment prioritizes airway patency, breath sounds (`crackles`, `wheezes`, `stridor`, `absent sounds`), pulse oximetry, and **chest tube water-seal maintenance**. Always verify return of the **gag reflex** before offering fluids after **bronchoscopy**, and never exceed **1,000 mL** fluid removal during a single **thoracentesis** to prevent re-expansion pulmonary edema and cardiovascular collapse."
+                },
                 {
-                  "type": "list",
-                  "items": [
-                    "DIAGNOSTIC TESTS OF THE RESPIRATORY SYSTEM 1. Chest X-Ray: This is often the first test done to assess lung health. It can help identify pneumonia, tumours, broken ribs, or fluid accumulation.",
-                    "Post procedure: Monitor the patient's vital signs and oxygen saturation. Check for any difficulty breathing or changes in voice, which may indicate laryngeal edema. The patient should not eat or drink until the gag reflex returns.",
-                    "Monitor for signs of allergic reaction to the contrast dye (such as itching, hives, difficulty breathing).",
-                    "Instruct the patient to report any chest pain, difficulty breathing, or changes at the insertion site immediately.",
-                    "The patient may be asked to hold their breath at certain points during a needle biopsy.",
-                    "Monitor for complications: pneumothorax (sudden chest pain, dyspnea, decreased breath sounds), bleeding, infection.",
-                    "For bronchoscopy, monitor for return of gag reflex before allowing oral intake.",
-                    "Post-procedure, instruct the patient to report any chest pain, difficulty breathing, or changes in sputum colour immediately.",
-                    "The patient will be instructed to stay still and not to cough or take deep breaths during the procedure.",
-                    "Ensure the chest tube system is set up correctly if a chest tube is being inserted."
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "3. Respiratory Emergencies, Chest Tubes & Medication Safety",
-              "blocks": [
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u5t1-chest-tube-respiratory.webp",
+                  "alt": "Real Pleur-Evac Sahara chest tube drainage system with water-seal tidaling and bedside dislodgement rules",
+                  "caption": "Figure 5.1: Chest Tube Drainage Chambers, Water-Seal Tidaling vs. Continuous Bubbling & Emergency Rescue."
+                },
                 {
                   "type": "table",
-                  "title": "Respiratory Emergencies, Chest Tubes & Medication Safety",
+                  "title": "Diagnostic Procedures & Adventitious Breath Sounds",
                   "headers": [
-                    "Condition / Device",
-                    "Immediate Priority Action",
-                    "Critical NCLEX Trap"
+                    "Test / Sound",
+                    "Key Clinical Findings",
+                    "Pre- / Post-Procedure Nursing Safety"
                   ],
                   "rows": [
                     [
-                      "**Chest Tube (Water-Seal)**",
-                      "Continuous gentle bubbling in **suction chamber** = normal; **tidaling** in water seal = normal.",
-                      "Intermittent bubbling is OK; **continuous bubbling in water seal = air leak**. If dislodged, tape **3 sides**!"
+                      "**Bronchoscopy**",
+                      "Direct airway visualization + biopsy/lavage.",
+                      [
+                        "NPO 4–8h pre; remove dentures. **Post-Procedure:** Keep NPO until **gag reflex returns**; watch stridor/laryngeal edema."
+                      ]
                     ],
                     [
-                      "**COPD Oxygenation**",
-                      "Low-flow O2 **1–2 L/min NC** (target SpO2 **88–92%**); teach pursed-lip breathing.",
-                      "Never blast high-flow O2 unnecessarily — may blunt hypoxic respiratory drive and worsen CO2 retention."
+                      "**Thoracentesis**",
+                      "Aspirates pleural effusion fluid/air.",
+                      [
+                        "Sit **upright leaning over bedside table** (do not cough/move). Post: Check breath sounds & CXR for **pneumothorax**; limit single draw <= 1,000 mL."
+                      ]
                     ],
                     [
-                      "**Tension Pneumothorax**",
-                      "Tracheal deviation to **unaffected side**, absent breath sounds, JVD, shock.",
-                      "Emergency **needle decompression** followed by chest tube insertion."
-                    ],
-                    [
-                      "**Tuberculosis (RIPE)**",
-                      "Airborne precautions (**N95 respirator, negative-pressure room**); sputum negative x3.",
-                      "Rifampin turns urine **red-orange**; Isoniazid causes peripheral neuropathy (give **Vitamin B6**) & hepatotoxicity."
+                      "**Stridor / Wheeze / Crackles**",
+                      "Stridor = high-pitched inspiratory obstruction; Crackles = fluid; Wheeze = constricted airways.",
+                      [
+                        "**Inspiratory Stridor** post-extubation or thyroidectomy = **Airway Emergency** (call rapid response / prepare intubation)."
+                      ]
                     ]
                   ]
                 }
               ]
             },
             {
-              "title": "4. Exam Synthesis & Bedside Takeaways",
+              "title": "2. Chest Tube Drainage (Pleur-Evac) Troubleshooting",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "For bronchoscopy, monitor for return of gag reflex before allowing oral intake.",
-                    "Post-procedure, instruct the patient to report any chest pain, difficulty breathing, or changes in sputum colour immediately.",
-                    "The patient will be instructed to stay still and not to cough or take deep breaths during the procedure.",
-                    "Ensure the chest tube system is set up correctly if a chest tube is being inserted.",
-                    "Signs include severe respiratory distress, tracheal deviation, distended neck veins, and hypotension. Immediate needle decompression is required, followed by chest tube placement.",
-                    "Breathing: Administer high-flow oxygen. Monitor for signs of respiratory distress. Prepare for chest tube insertion if indicated.",
-                    "Pain Management: Administer pain medication as ordered. Pain control is important to facilitate effective breathing and coughing."
+                  "type": "table",
+                  "title": "Chest Tube Chambers & Emergency Nursing Actions",
+                  "headers": [
+                    "Chamber / Event",
+                    "Normal vs. Abnormal Observation",
+                    "Immediate Bedside Nursing Action"
+                  ],
+                  "rows": [
+                    [
+                      "**1. Collection Chamber**",
+                      "Expect gradual serosanguinous/bloody drainage.",
+                      [
+                        "Keep unit **below chest level**; **NEVER strip or milk tubing**; notify provider if bright red drainage **> 70–100 mL/hr**."
+                      ]
+                    ],
+                    [
+                      "**2. Water-Seal Chamber**",
+                      "**Tidaling** (rise/fall with breaths) = NORMAL. **Continuous bubbling** = AIR LEAK!",
+                      [
+                        "Clamp briefly near chest moving outward to locate leak; **sudden stop in tidaling** = lung re-expanded OR kinked/clotted tube."
+                      ]
+                    ],
+                    [
+                      "**3. Suction Control**",
+                      "Gentle steady bubbling (wet) or dial/float indicator (dry, -20 cm H2O).",
+                      [
+                        "Excessive vigorous bubbling in wet suction only evaporates water faster (turn down wall regulator slightly)."
+                      ]
+                    ],
+                    [
+                      "**Tube Dislodged vs. Disconnected**",
+                      "Pulled out of chest wall vs. detached from collection tubing.",
+                      [
+                        "**Pulled from Chest:** Apply **sterile occlusive dressing taped on 3 sides** immediately! **Tubing Detached:** Dip distal tip 2 cm into **sterile water bottle** (never leave clamped)."
+                      ]
+                    ]
                   ]
                 }
               ]
@@ -8142,83 +8151,62 @@
           ],
           "sections": [
             {
-              "title": "1. Clinical Overview & NCLEX-RN Blueprint",
+              "title": "1. Acute & Chronic Pulmonary Disorders Comparison",
               "blocks": [
                 {
                   "type": "paragraph",
-                  "text": "**COPD, Asthma, Pneumonia, Pulmonary Embolism & ARDS** is a high-yield focus area in **Course Unit 5: Respiratory System, Diagnostic Tests, Acute Care & Medications** for the Next-Generation NCLEX-RN (NGN). This study guide integrates core pathophysiology, clinical judgment cues, pharmacology safety, and bedside nursing priorities across **Saunders Comprehensive Review (9th Ed.)**, **Kaplan NCLEX-RN Prep**, and **LaCharity PDA**."
-                }
-              ]
-            },
-            {
-              "title": "2. High-Yield Clinical Concepts & Nursing Priorities",
-              "blocks": [
+                  "text": "Differentiating chronic hypercapnic **COPD** (`SpO2 target 88–92%`) from **acute pulmonary embolism (PE)**, **status asthmaticus**, **lobar pneumonia**, and **ARDS** guides immediate oxygen titration, positioning, and emergency escalation."
+                },
                 {
-                  "type": "list",
-                  "items": [
-                    "DIAGNOSTIC TESTS OF THE RESPIRATORY SYSTEM 1. Chest X-Ray: This is often the first test done to assess lung health. It can help identify pneumonia, tumours, broken ribs, or fluid accumulation.",
-                    "Post-procedure: Monitor the patient's vital signs, oxygen saturation, and respiratory status. The patient should not eat or drink until the gag reflex returns. Monitor for complications, such as bleeding, infection, pneumothorax, or bronchospasm.",
-                    "Monitor for complications: pneumothorax (sudden chest pain, dyspnea, decreased breath sounds), bleeding, infection.",
-                    "Pneumothorax or Hemothorax: Signs include decreased or absent breath sounds on one side, respiratory distress, hypoxia, and chest pain.",
-                    "Tension Pneumothorax: Signs include severe respiratory distress, tracheal deviation, distended neck veins, and hypotension.",
-                    "Asthma A respiratory condition marked by spasms in the bronchi of the lungs, causing difﬁculty in breathing.",
-                    "Bronchospasm decreases the airway diameter Airﬂow becomes obstructed After many asthma reactions, airway remodeling occurs which causes scarring and changes to lung tissue.",
-                    "Antipyretics Analgesia Cough suppressant Expectorants Antibiotics if bacterial Isolation QN. 12 year old diagnosed with pneumonia home today. Which of the following points should they review? Select all that apply.",
-                    "Life threatening blood clot in the lungs Can be caused by an embolism from a vein entering the lung, or a clot during surgery.",
-                    "Choice D is correct. During a pulmonary embolism, circulation in the pulmonary bed is altered, thus affecting the oxygenation of the client. Oxygen should be started immediately at 8-10 liters per minute to decrease hypoxia."
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "3. Respiratory Emergencies, Chest Tubes & Medication Safety",
-              "blocks": [
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u5t2-pneumonia-copd-pe.webp",
+                  "alt": "Chest radiograph showing right lower lobe pneumonia paired with COPD, Asthma, PE, and ARDS rescue targets",
+                  "caption": "Figure 5.2: Lobar Pneumonia Chest Radiograph & Acute Pulmonary Priorities (COPD, Asthma, PE & ARDS)."
+                },
                 {
                   "type": "table",
-                  "title": "Respiratory Emergencies, Chest Tubes & Medication Safety",
+                  "title": "High-Yield NCLEX Respiratory Disorders Matrix",
                   "headers": [
-                    "Condition / Device",
-                    "Immediate Priority Action",
-                    "Critical NCLEX Trap"
+                    "Disorder",
+                    "Hallmark Clinical Cues",
+                    "Priority Nursing Actions"
                   ],
                   "rows": [
                     [
-                      "**Chest Tube (Water-Seal)**",
-                      "Continuous gentle bubbling in **suction chamber** = normal; **tidaling** in water seal = normal.",
-                      "Intermittent bubbling is OK; **continuous bubbling in water seal = air leak**. If dislodged, tape **3 sides**!"
+                      "**COPD (Emphysema / Chronic Bronchitis)**",
+                      "Barrel chest, pursed-lip breathing, tripod posture, chronic ↑PaCO2 (compensated resp. acidosis).",
+                      [
+                        "Titrate O2 carefully to **SpO2 88–92%** (`1–2 L/min NC` or Venturi mask); encourage **pursed-lip breathing** + small frequent high-calorie meals."
+                      ]
                     ],
                     [
-                      "**COPD Oxygenation**",
-                      "Low-flow O2 **1–2 L/min NC** (target SpO2 **88–92%**); teach pursed-lip breathing.",
-                      "Never blast high-flow O2 unnecessarily — may blunt hypoxic respiratory drive and worsen CO2 retention."
+                      "**Status Asthmaticus**",
+                      "Expiratory wheezing transitioning to **silent chest (no air movement!)** + cyanosis.",
+                      [
+                        "**Silent chest = critical emergency!** Give high-flow O2, continuous **Albuterol**, IV corticosteroids, magnesium sulfate; prepare intubation."
+                      ]
                     ],
                     [
-                      "**Tension Pneumothorax**",
-                      "Tracheal deviation to **unaffected side**, absent breath sounds, JVD, shock.",
-                      "Emergency **needle decompression** followed by chest tube insertion."
+                      "**Pneumonia**",
+                      "Fever, productive rust/purulent sputum, crackles, dull percussion, **acute confusion in elderly**!",
+                      [
+                        "Obtain **sputum culture BEFORE first IV antibiotic**; hydrate `2–3 L/day` (unless HF), incentive spirometer q1–2h, semi-Fowler's."
+                      ]
                     ],
                     [
-                      "**Tuberculosis (RIPE)**",
-                      "Airborne precautions (**N95 respirator, negative-pressure room**); sputum negative x3.",
-                      "Rifampin turns urine **red-orange**; Isoniazid causes peripheral neuropathy (give **Vitamin B6**) & hepatotoxicity."
+                      "**Pulmonary Embolism (PE)**",
+                      "Sudden severe dyspnea, pleuritic chest pain, tachycardia, anxiety, hemoptysis (`D-dimer ↑`, CT angio).",
+                      [
+                        "Place in **High-Fowler's**, apply **high-flow O2**, initiate **IV Heparin** or thrombolytic; assess DVT/immobilization risk."
+                      ]
+                    ],
+                    [
+                      "**ARDS**",
+                      "**Refractory hypoxemia** despite 100% O2 + bilateral diffuse pulmonary infiltrates ('white-out CXR').",
+                      [
+                        "Mechanical ventilation with **PEEP** (watch tension pneumothorax & ↓BP!) + **Prone positioning** to recruit alveoli."
+                      ]
                     ]
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "4. Exam Synthesis & Bedside Takeaways",
-              "blocks": [
-                {
-                  "type": "list",
-                  "items": [
-                    "Bronchospasm decreases the airway diameter Airﬂow becomes obstructed After many asthma reactions, airway remodeling occurs which causes scarring and changes to lung tissue.",
-                    "Antipyretics Analgesia Cough suppressant Expectorants Antibiotics if bacterial Isolation QN. 12 year old diagnosed with pneumonia home today. Which of the following points should they review? Select all that apply.",
-                    "Life threatening blood clot in the lungs Can be caused by an embolism from a vein entering the lung, or a clot during surgery.",
-                    "Choice D is correct. During a pulmonary embolism, circulation in the pulmonary bed is altered, thus affecting the oxygenation of the client. Oxygen should be started immediately at 8-10 liters per minute to decrease hypoxia.",
-                    "COPDs Chronic Obstructive Pulmonary Disease (COPD) is a chronic illness that affects the respiratory system. It's primarily caused by long-term exposure to irritating gases or particulate matter, most often from cigarette smoke.",
-                    "The two most common conditions of COPD are emphysema (damage to the air sacs in the lungs) and chronic bronchitis (long-term inflammation of the bronchial tubes).",
-                    "Diagnosis: COPD is diagnosed using spirometry, which measures how well the lungs are working by assessing how much air the patient can exhale and how quickly."
                   ]
                 }
               ]
@@ -8495,83 +8483,69 @@
           ],
           "sections": [
             {
-              "title": "1. Clinical Overview & NCLEX-RN Blueprint",
+              "title": "1. Inhaler Administration Order, Bronchodilators & Steroids",
               "blocks": [
                 {
                   "type": "paragraph",
-                  "text": "**Respiratory Medications: Bronchodilators, Steroids & Anti-TB Regimens** is a high-yield focus area in **Course Unit 5: Respiratory System, Diagnostic Tests, Acute Care & Medications** for the Next-Generation NCLEX-RN (NGN). This study guide integrates core pathophysiology, clinical judgment cues, pharmacology safety, and bedside nursing priorities across **Saunders Comprehensive Review (9th Ed.)**, **Kaplan NCLEX-RN Prep**, and **LaCharity PDA**."
-                }
-              ]
-            },
-            {
-              "title": "2. High-Yield Clinical Concepts & Nursing Priorities",
-              "blocks": [
+                  "text": "When a patient is prescribed both a **bronchodilator (`Albuterol`)** and an **inhaled corticosteroid (`Fluticasone` / `Budesonide`)**, ALWAYS administer the **bronchodilator FIRST** to open airways, wait 5 minutes, then administer the steroid and instruct the client to **rinse and spit** to prevent **oral candidiasis (thrush)**."
+                },
                 {
-                  "type": "list",
-                  "items": [
-                    "Bronchodilator Helps keep bronchioles open and prevent wheezing, but must be used regularly.",
-                    "Treatment: Treatment options include bronchodilators, inhaled steroids, oxygen therapy, and pulmonary rehabilitation. In severe cases, surgery may be necessary.",
-                    "RESPIRATORY MEDICATIONS Bronchodilators: These medications relax bronchial smooth muscles, which widens the airways, improves airflow, and facilitates respiration. Examples include albuterol and salmeterol.",
-                    "Mode of Action: It's a bronchodilator that works by relaxing muscles in the airways and increasing air flow to the lungs.",
-                    "Contraindications: Hypersensitivity to albuterol; caution in patients with heart disease, hypertension, diabetes, hyperthyroidism.",
-                    "Nursing Considerations: Monitor heart rate and blood pressure, teach patient how to use the inhaler properly.",
-                    "THEOPHYLLINE Mode of Action: It's a bronchodilator that works by relaxing and opening air passages in the lungs, making it easier to breathe.",
-                    "Contraindications: Hypersensitivity to theophylline, active peptic ulcer disease, seizure disorders.",
-                    "Respiratory Therapies Respiratory therapies include medications (like bronchodilators, corticosteroids, and antibiotics), oxygen therapy, chest physiotherapy, and in severe cases, mechanical ventilation.",
-                    "Status asthmaticus This is a severe and persistent asthma attack that doesn't respond to initial treatment with bronchodilators. It's a medical emergency that can lead to respiratory failure and death if not treated promptly."
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "3. Respiratory Emergencies, Chest Tubes & Medication Safety",
-              "blocks": [
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u5t3-inhalers-tb-meds.webp",
+                  "alt": "Adult using metered-dose inhaler with spacer paired with SABA first rule, steroid mouth-rinse, and RIPE TB drug toxicities",
+                  "caption": "Figure 5.3: Proper MDI Spacer Technique, Bronchodilator-Before-Steroid Rule & RIPE Anti-TB Safety."
+                },
                 {
                   "type": "table",
-                  "title": "Respiratory Emergencies, Chest Tubes & Medication Safety",
+                  "title": "Respiratory Pharmacology & RIPE Anti-TB Toxicity Matrix",
                   "headers": [
-                    "Condition / Device",
-                    "Immediate Priority Action",
-                    "Critical NCLEX Trap"
+                    "Drug / Class",
+                    "Mechanism & Timing Rule",
+                    "Critical Side Effects & NCLEX Teaching"
                   ],
                   "rows": [
                     [
-                      "**Chest Tube (Water-Seal)**",
-                      "Continuous gentle bubbling in **suction chamber** = normal; **tidaling** in water seal = normal.",
-                      "Intermittent bubbling is OK; **continuous bubbling in water seal = air leak**. If dislodged, tape **3 sides**!"
+                      "**Albuterol (SABA)**",
+                      "**Rescue inhaler** (`beta-2 agonist`) — use **FIRST** for acute wheezing.",
+                      [
+                        "Causes **tachycardia, palpitations & tremors**; never substitute Salmeterol (LABA) for acute asthma attacks."
+                      ]
                     ],
                     [
-                      "**COPD Oxygenation**",
-                      "Low-flow O2 **1–2 L/min NC** (target SpO2 **88–92%**); teach pursed-lip breathing.",
-                      "Never blast high-flow O2 unnecessarily — may blunt hypoxic respiratory drive and worsen CO2 retention."
+                      "**Ipratropium / Tiotropium** (Anticholinergic)",
+                      "Blocks muscarinic bronchoconstriction (maintenance).",
+                      [
+                        "Dry mouth (sugarless candy), blurred vision / urinary retention; avoid soy/peanut allergy cross-check if older formulation."
+                      ]
                     ],
                     [
-                      "**Tension Pneumothorax**",
-                      "Tracheal deviation to **unaffected side**, absent breath sounds, JVD, shock.",
-                      "Emergency **needle decompression** followed by chest tube insertion."
+                      "**Inhaled Corticosteroids** (Fluticasone, Beclomethasone)",
+                      "Reduces airway inflammation — use **SECOND** after SABA; not for acute rescue.",
+                      [
+                        "**Rinse mouth & spit with water** immediately after each dose to prevent **oral thrush**; use spacer."
+                      ]
                     ],
                     [
-                      "**Tuberculosis (RIPE)**",
-                      "Airborne precautions (**N95 respirator, negative-pressure room**); sputum negative x3.",
-                      "Rifampin turns urine **red-orange**; Isoniazid causes peripheral neuropathy (give **Vitamin B6**) & hepatotoxicity."
+                      "**Rifampin** (TB `RIPE`)",
+                      "Bactericidal RNA synthesis inhibitor.",
+                      [
+                        "Turns **urine, tears, sweat & saliva harmless orange-red** (stains soft contact lenses!); potent **CYP450 inducer** (decreases OCPs & Warfarin -> use backup contraception!)."
+                      ]
+                    ],
+                    [
+                      "**Isoniazid (INH)** (TB `RIPE`)",
+                      "Cell wall inhibitor (also latent TB monotherapy).",
+                      [
+                        "Causes **peripheral neuropathy** (tingling hands/feet) -> give **Vitamin B6 (Pyridoxine)**! Monitor LFTs & **avoid alcohol** (hepatotoxicity)."
+                      ]
+                    ],
+                    [
+                      "**Pyrazinamide (PZA) & Ethambutol (EMB)**",
+                      "Complete 4-drug intensive TB phase.",
+                      [
+                        "**PZA:** Hyperuricemia (gout flares) + hepatotoxicity. **Ethambutol:** **Optic neuritis** (blurred vision / red-green color loss -> baseline & monthly eye exams!)."
+                      ]
                     ]
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "4. Exam Synthesis & Bedside Takeaways",
-              "blocks": [
-                {
-                  "type": "list",
-                  "items": [
-                    "THEOPHYLLINE Mode of Action: It's a bronchodilator that works by relaxing and opening air passages in the lungs, making it easier to breathe.",
-                    "Contraindications: Hypersensitivity to theophylline, active peptic ulcer disease, seizure disorders.",
-                    "Respiratory Therapies Respiratory therapies include medications (like bronchodilators, corticosteroids, and antibiotics), oxygen therapy, chest physiotherapy, and in severe cases, mechanical ventilation.",
-                    "Status asthmaticus This is a severe and persistent asthma attack that doesn't respond to initial treatment with bronchodilators. It's a medical emergency that can lead to respiratory failure and death if not treated promptly.",
-                    "Nebulized bronchodilators (beta 2 agonists like albuterol) are used to relax the smooth muscles in the bronchi and bronchioles.",
-                    "Treatment: Treatment options include bronchodilators, inhaled steroids, oxygen therapy, and pulmonary rehabilitation. In severe cases, surgery may be necessary.",
-                    "RESPIRATORY MEDICATIONS 1. Bronchodilators: These medications relax bronchial smooth muscles, which widens the airways, improves airflow, and facilitates respiration. Examples include albuterol and salmeterol."
                   ]
                 }
               ]
