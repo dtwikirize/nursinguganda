@@ -40,7 +40,7 @@ const IMAGE_ATLAS_REFS = [
 function imgUrlWithVersion(src) {
   const s = String(src || "");
   if (!s) return "";
-  return s.includes("?") ? s : `${s}?v=20261126g`;
+  return s.includes("?") ? s : `${s}?v=20261126h`;
 }
 
 export default function MedicalImagesPage() {

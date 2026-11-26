@@ -3,7 +3,7 @@ import { AlertTriangle, CheckCircle2, Layers, Sparkles, Table2 } from "lucide-re
 import MedicalImageFrame from "./MedicalImageFrame";
 import RichText from "./RichText";
 
-const IMAGE_VERSION = "20261126g";
+const IMAGE_VERSION = "20261126h";
 
 function withImgVersion(src) {
   const s = String(src || "");
@@ -833,6 +833,78 @@ function getInlineSectionRules() {
       titleOnly: true,
       src: "/assets/images/medical-illustrations/informatics-telehealth-health-entrepreneurship.webp",
       caption: "Nursing Informatics, Digital HMIS & Health Entrepreneurship"
+    },
+    {
+      match: /\b(biopsychosocial|mental\s+status\s+exam|\bmse\b|mental\s+treatment\s+act|forensic\s+psych|psychosocial\s+support)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/psych-biopsychosocial-mental-status-exam.webp",
+      caption: "Biopsychosocial Model & Mental Status Examination (ASEPTIC)"
+    },
+    {
+      match: /\b(nurse[- ]patient\s+relationship|soler\s+posture|peplau|erikson|defense\s+mechanisms|mental\s+mechanisms|socialization)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/psych-therapeutic-nurse-patient-erikson.webp",
+      caption: "Therapeutic Nurse-Patient Relationship & Lifespan Development"
+    },
+    {
+      match: /\b(bipolar|major\s+depress|mania|manic|suicid|puerperal\s+psychosis|postpartum\s+depress|bereavement)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/psych-mood-bipolar-suicide-safety.webp",
+      caption: "Mood Disorders, Bipolar Cycle & Suicide Ward Safety"
+    },
+    {
+      match: /\b(schizophren|cataton|de[- ]escalation|antipsychotic|neuroleptic\s+malignant|\bautism\b|\badhd\b|intellectual\s+disab)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/psych-schizophrenia-catatonic-violence-care.webp",
+      caption: "Psychosis, Catatonia, Safe De-Escalation & Antipsychotic EPS"
+    },
+    {
+      match: /\b(panic\s+attack|\bptsd\b|generalized\s+anxiety|stress\s+management|sensory\s+grounding|eating\s+disorder|anorexia|bulimia)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/psych-anxiety-ptsd-panic-stress.webp",
+      caption: "Anxiety, Panic Attacks, PTSD & 5-4-3-2-1 Grounding"
+    },
+    {
+      match: /\b(alcohol\s+withdrawal|delirium\s+tremens|wernicke|korsakoff|substance\s+use|opioid\s+overdose|naloxone)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/psych-substance-use-alcohol-withdrawal.webp",
+      caption: "Substance Use, Alcohol Withdrawal (CIWA-Ar) & Overdose Rescue"
+    },
+    {
+      match: /\b(epilep|status\s+epilepticus|tonic[- ]clonic|seizure\s+first\s+aid|febrile\s+convulsion|reye)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/neuro-epilepsy-status-epilepticus-firstaid.webp",
+      caption: "Epilepsy, Recovery Position & Status Epilepticus Ladder"
+    },
+    {
+      match: /\b(brain\s+lobes|glasgow\s+coma|\bgcs\b|cushing.?s\s+triad|motor\s+cortex|sensory\s+cortex|raised\s+icp)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/neuro-brain-lobes-motor-sensory-gcs.webp",
+      caption: "Brain Lobes, Motor-Sensory Cortex & GCS Assessment"
+    },
+    {
+      match: /\b(cranial\s+nerve|bell.?s\s+palsy|trigeminal\s+neuralgia|forehead\s+sparing)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/neuro-cranial-nerves-trigeminal-bells-palsy.webp",
+      caption: "12 Cranial Nerves, Bell's Palsy vs Stroke & CN V Neuralgia"
+    },
+    {
+      match: /\b(parkinson|alzheimer|dementia|substantia\s+nigra|levodopa)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/neuro-parkinsons-alzheimers-neurodegenerative.webp",
+      caption: "Parkinson's TRAP Signs & Alzheimer's Dementia Care"
+    },
+    {
+      match: /\b(spinal\s+cord\s+compression|transverse\s+myelitis|poliomyelitis|tetanus|opisthotonos|cerebral\s+palsy)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/neuro-spinal-cord-myelitis-polio-tetanus.webp",
+      caption: "Spinal Cord, Meninges, Polio LMN & Tetanus Opisthotonos"
+    },
+    {
+      match: /\b(autonomic\s+nervous|sympathetic\s+nervous|parasympathetic|multipolar\s+neuron|cholinergic|anticholinergic)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/neuro-autonomic-sympathetic-parasympathetic.webp",
+      caption: "Neuron Synapse & Sympathetic vs Parasympathetic Outflow"
     },
     {
       match: /\b(pressure\s+ulcer|pressure\s+injury|pressure\s+sore|stage\s+[1-4]\s+ulcer|epidermis|dermis|wound\s+healing|skin\s+layers|integumentary)\b/i,
