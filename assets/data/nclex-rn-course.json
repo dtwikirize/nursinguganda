@@ -22488,79 +22488,58 @@
           ],
           "sections": [
             {
-              "title": "1. Clinical Overview & NCLEX-RN Blueprint",
+              "title": "1. Burn Emergencies: Airway, Rule of Nines & Parkland Resuscitation",
               "blocks": [
                 {
                   "type": "paragraph",
-                  "text": "**Thermal/Electrical Burns, Rule of Nines, Parkland Formula & Skin Care** is a high-yield focus area in **Course Unit 13: Integumentary System, Burns & Musculoskeletal Trauma** for the Next-Generation NCLEX-RN (NGN). This study guide integrates core pathophysiology, clinical judgment cues, pharmacology safety, and bedside nursing priorities across **Saunders Comprehensive Review (9th Ed.)**, **Kaplan NCLEX-RN Prep**, and **LaCharity PDA**."
-                }
-              ]
-            },
-            {
-              "title": "2. High-Yield Clinical Concepts & Nursing Priorities",
-              "blocks": [
+                  "text": "In major burns, **inhalation injury (`singed nasal hairs`, `facial burns`, `carbonaceous sputum`, `hoarseness/stridor`) is the #1 immediate priority** — prepare for **early endotracheal intubation** before airway edema closes the glottis. Next, establish **2 large-bore IVs** and start **Lactated Ringer's (LR)** using the **Parkland Formula**: `4 mL × kg × %TBSA`, giving **50% in the first 8 hours from the TIME OF INJURY** and **50% over the next 16 hours**."
+                },
                 {
-                  "type": "list",
-                  "items": [
-                    "Tacrolimus may increase the risk of developing skin cancer and lymphoma.",
-                    "IV. Medications to Treat Actinic Keratosis 1. Diclofenac sodium -A non steroidal anti-inflammatory topical medication; it may take up to 3 months to be effective. b. Side and adverse effects include dry skin, itching, redness, and rash.",
-                    "V. Sunscreens Ultraviolet (UV) light can damage the skin and cause premalignant actinic keratoses and some types of skin cancer.",
-                    "Sunscreens prevent the penetration of UV light and protect the skin.",
-                    "INTEGUMENTARY PROBLEMS PREPARED BY: CYNTHIA KENOR KRN/USRN ANATOMY AND PHYSIOLOGY . The skin is the largest sensory organ of the body, with a surface area of 15 to 20 square feet (1.4 to 1.9 square meters) and a weight of about 9 lb (4 kg).",
-                    "A superficial fungal infection of the skin and mucous membranes. Also known as a yeast infection (oral candidiasis), or thrush when it occurs in the mouth.",
-                    "Common areas of occurrence include skinfolds, perineum, vagina, axilla, and under the breasts.",
-                    "Interventions Teach the client to keep skinfold areas clean and dry.",
-                    "For the hospitalized client, inspect skinfold areas frequently, turn and reposition the client frequently, and keep the skin and bed linens clean and dry.",
-                    "Assess for signs and symptoms of infection, including skin infections and eye infections; skin necrosis can also occur."
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "3. Burns (Parkland Formula), Traction & Compartment Syndrome",
-              "blocks": [
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u13t1-burns-parkland-wound-care.webp",
+                  "alt": "Wallace Rule of Nines burn surface area diagram with NCLEX-RN Parkland Formula and airway priorities",
+                  "caption": "Wallace Rule of Nines TBSA chart with airway and Parkland fluid priorities (NU · nursinguganda.com)."
+                },
                 {
                   "type": "table",
-                  "title": "Burns (Parkland Formula), Traction & Compartment Syndrome",
+                  "title": "Burn Phases, Electrolyte Shifts & Carbon Monoxide / Electrical Burns",
                   "headers": [
-                    "Condition",
-                    "Formula / Assessment",
-                    "Priority Action"
+                    "Phase / Burn Type",
+                    "Key Pathophysiology & Cues",
+                    "Priority Nursing Actions"
                   ],
                   "rows": [
                     [
-                      "**Major Burns & Airway**",
-                      "Singed nasal hairs, soot in sputum, hoarseness = **inhalation injury**!",
-                      "Intubate/O2 early. **Parkland:** **4 mL x kg x %TBSA (LR)** -> give **1/2 in first 8 hrs** from time of burn."
+                      "**Emergent Phase (0–72 hr)**",
+                      "Massive capillary leak -> hypovolemic shock, **HYPERKALEMIA** (cell lysis), **high Hct**, hyponatremia.",
+                      [
+                        "Infuse **LR** titrated to **urine output 30–50 mL/hr** (adults); **IV opioids ONLY** (no IM/PO); **never apply ice**."
+                      ]
                     ],
                     [
-                      "**Compartment Syndrome (6 Ps)**",
-                      "**Severe pain unrelieved by opioids/elevation**, paresthesia, pallor, pulselessness (late), poikilothermia.",
-                      "Keep limb **at heart level** (do NOT elevate above heart or ice), loosen cast, prep for **fasciotomy**."
+                      "**Acute / Diuretic Phase (72+ hr)**",
+                      "Capillary leak seals -> fluid shifts back -> **diuresis**, **HYPOKALEMIA**, **infection** risk.",
+                      [
+                        "Monitor for **fluid overload (crackles)**, replace **K+**, high-protein/high-calorie diet (**4,000–5,000 kcal/day**)."
+                      ]
                     ],
                     [
-                      "**Skeletal Traction & Fat Embolism**",
-                      "Weights must **hang freely** (never lift/rest on floor). Fat embolism: **petechiae on chest/neck** + dyspnea.",
-                      "Elevate HOB, apply O2, assess respiratory/neuro changes in long-bone/pelvic fractures."
+                      "**Electrical & Carbon Monoxide**",
+                      "Electrical: internal muscle damage (**myoglobinuria** -> dark tea urine). CO: **pulse ox reads falsely normal (100%)!**",
+                      [
+                        "Electrical: **ECG monitoring + force LR fluids** (target urine **75–100 mL/hr**). CO: **100% non-rebreather O2**."
+                      ]
                     ]
                   ]
                 }
               ]
             },
             {
-              "title": "4. Exam Synthesis & Bedside Takeaways",
+              "title": "2. Exam Synthesis & Bedside Takeaways",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "Common areas of occurrence include skinfolds, perineum, vagina, axilla, and under the breasts.",
-                    "Interventions Teach the client to keep skinfold areas clean and dry.",
-                    "For the hospitalized client, inspect skinfold areas frequently, turn and reposition the client frequently, and keep the skin and bed linens clean and dry.",
-                    "Assess for signs and symptoms of infection, including skin infections and eye infections; skin necrosis can also occur.",
-                    "Teach the client about measures to keep the skin clean to prevent infection.",
-                    "Erysipelas is an acute, superficial infection affecting the upper layers of skin caused by group A Streptococcus, which enters the tissue via an abrasion, bite, trauma, or wound.",
-                    "Interventions 1. Cleanse the skin of the plant oils immediately."
-                  ]
+                  "type": "paragraph",
+                  "text": "**NCLEX-RN Bottom Line:** **Singed nasal hairs + hoarseness = intubate immediately.** Always calculate the Parkland **first 8 hours from the exact time of the burn**, expect **hyperkalemia** in the emergent phase and **hypokalemia** in the diuretic phase, and remember **pulse oximetry is unreliable in carbon monoxide poisoning**."
                 }
               ]
             }
@@ -22836,74 +22815,65 @@
           ],
           "sections": [
             {
-              "title": "1. Clinical Overview & NCLEX-RN Blueprint",
+              "title": "1. Pressure Injury Staging, Topical Steroids & Isotretinoin",
               "blocks": [
                 {
                   "type": "paragraph",
-                  "text": "**Integumentary Medications: Topical Steroids, Isotretinoin & Antifungals** is a high-yield focus area in **Course Unit 13: Integumentary System, Burns & Musculoskeletal Trauma** for the Next-Generation NCLEX-RN (NGN). This study guide integrates core pathophysiology, clinical judgment cues, pharmacology safety, and bedside nursing priorities across **Saunders Comprehensive Review (9th Ed.)**, **Kaplan NCLEX-RN Prep**, and **LaCharity PDA**."
-                }
-              ]
-            },
-            {
-              "title": "2. High-Yield Clinical Concepts & Nursing Priorities",
-              "blocks": [
+                  "text": "Preventing **hospital-acquired pressure injuries** requires **turning q2h**, keeping **HOB <= 30°** (reduces shear), floating heels, and ensuring **high-protein + Vitamin C + Zinc** nutrition. Dermatologic pharmacology centers on **strict teratogenic prevention (`Isotretinoin`)** and **burn topical antimicrobials**."
+                },
                 {
-                  "type": "list",
-                  "items": [
-                    "Topical corticosteroids are effective to prevent or relieve inflammation, especially when used before blisters form Oral corticosteroids may be prescribed for severe reactions, and an antihistamine to promote sleep such as diphenhydramine may be prescribed.",
-                    "II. Medications to Treat Dermatitis May be treated with moisturizer and topical glucocorticoids (preferred treatment); systemic immuno-suppressants may need to be prescribed if topical treatment is ineffective or with systemic exposure.",
-                    "IV. Medications to Treat Actinic Keratosis 1. Diclofenac sodium -A non steroidal anti-inflammatory topical medication; it may take up to 3 months to be effective. b. Side and adverse effects include dry skin, itching, redness, and rash.",
-                    "VII. Acne Products Mild acne is usually treated pharmacologically with topical agents (antimicrobials and retinoids).",
-                    "Teach the client about topical treatment and antiviral medications; antiviral therapies begun within 3 days of rash reduce pain and lessen the likelihood of post herpetic neuralgia.",
-                    "Tetanus prophylaxis is necessary, and topical and systemic antibiotics may be prescribed.",
-                    "The types of lesions include comedones (open and closed), pustules, papules, and nodules Interventions Instruct the client in prescribed skin-cleansing methods, with emphasis on not scrubbing the face and using only prescribed topical agents.",
-                    "Instruct the client in the administration of topical or oral medications as prescribed.",
-                    "Treatment includes immediate discontinuation of the medication causing the syndrome; antibiotics, corticosteroids, and supportive therapy may be necessary."
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "3. Burns (Parkland Formula), Traction & Compartment Syndrome",
-              "blocks": [
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u13t2-integumentary-meds-pressure.webp",
+                  "alt": "Pressure injury stages 1 to 4 diagram with NCLEX-RN wound care and isotretinoin safety",
+                  "caption": "Pressure injury staging with wound prevention and dermatologic medication safety (NU · nursinguganda.com)."
+                },
                 {
                   "type": "table",
-                  "title": "Burns (Parkland Formula), Traction & Compartment Syndrome",
+                  "title": "Pressure Injury Staging & High-Yield Integumentary Medications",
                   "headers": [
-                    "Condition",
-                    "Formula / Assessment",
-                    "Priority Action"
+                    "Stage / Medication",
+                    "Clinical Hallmarks & Mechanism",
+                    "Priority Nursing Actions & Alerts"
                   ],
                   "rows": [
                     [
-                      "**Major Burns & Airway**",
-                      "Singed nasal hairs, soot in sputum, hoarseness = **inhalation injury**!",
-                      "Intubate/O2 early. **Parkland:** **4 mL x kg x %TBSA (LR)** -> give **1/2 in first 8 hrs** from time of burn."
+                      "**Pressure Injuries (Stages 1–4)**",
+                      "**Stage 1:** intact non-blanchable red skin. **Stage 2:** partial-thickness/blister. **Stage 3:** full-thickness fat. **Stage 4:** bone/muscle/tendon.",
+                      [
+                        "**Unstageable** = covered by eschar/slough (cannot see base). Never massage reddened bony prominences!"
+                      ]
                     ],
                     [
-                      "**Compartment Syndrome (6 Ps)**",
-                      "**Severe pain unrelieved by opioids/elevation**, paresthesia, pallor, pulselessness (late), poikilothermia.",
-                      "Keep limb **at heart level** (do NOT elevate above heart or ice), loosen cast, prep for **fasciotomy**."
+                      "**Isotretinoin (Accutane)**",
+                      "Oral retinoid for severe cystic acne.",
+                      [
+                        "**EXTREME TERATOGEN (iPLEDGE):** **2 forms of contraception** + **monthly negative pregnancy tests**; watch **depression/suicidality** & elevated **triglycerides/LFTs**."
+                      ]
                     ],
                     [
-                      "**Skeletal Traction & Fat Embolism**",
-                      "Weights must **hang freely** (never lift/rest on floor). Fat embolism: **petechiae on chest/neck** + dyspnea.",
-                      "Elevate HOB, apply O2, assess respiratory/neuro changes in long-bone/pelvic fractures."
+                      "**Topical Corticosteroids**",
+                      "Anti-inflammatory for eczema/psoriasis.",
+                      [
+                        "Apply **thin layer**; avoid **occlusive dressings** & prolonged use on face/groin (**skin atrophy**, adrenal suppression)."
+                      ]
+                    ],
+                    [
+                      "**Burn Topicals** (`Silver Sulfadiazine`, `Mafenide`)",
+                      "Prevent wound sepsis.",
+                      [
+                        "**Silver sulfadiazine:** avoid if **sulfa allergy**, watch **neutropenia**. **Mafenide acetate:** penetrates eschar, causes **stinging & metabolic acidosis**."
+                      ]
                     ]
                   ]
                 }
               ]
             },
             {
-              "title": "4. Exam Synthesis & Bedside Takeaways",
+              "title": "2. Exam Synthesis & Bedside Takeaways",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "The types of lesions include comedones (open and closed), pustules, papules, and nodules Interventions Instruct the client in prescribed skin-cleansing methods, with emphasis on not scrubbing the face and using only prescribed topical agents.",
-                    "Instruct the client in the administration of topical or oral medications as prescribed.",
-                    "Treatment includes immediate discontinuation of the medication causing the syndrome; antibiotics, corticosteroids, and supportive therapy may be necessary."
-                  ]
+                  "type": "paragraph",
+                  "text": "**NCLEX-RN Bottom Line:** **Isotretinoin** requires **2 contraception methods + monthly pregnancy tests + suicide/depression screening**. Never massage a **Stage 1 non-blanchable pressure injury**; turn q2h and provide **high-protein + Vitamin C** nutrition."
                 }
               ]
             }
@@ -23179,78 +23149,72 @@
           ],
           "sections": [
             {
-              "title": "1. Clinical Overview & NCLEX-RN Blueprint",
+              "title": "1. Orthopedic Emergencies: Compartment Syndrome & Fat Embolism",
               "blocks": [
                 {
                   "type": "paragraph",
-                  "text": "**Fractures, Traction Safety, Fat Embolism & Compartment Syndrome (6 Ps)** is a high-yield focus area in **Course Unit 13: Integumentary System, Burns & Musculoskeletal Trauma** for the Next-Generation NCLEX-RN (NGN). This study guide integrates core pathophysiology, clinical judgment cues, pharmacology safety, and bedside nursing priorities across **Saunders Comprehensive Review (9th Ed.)**, **Kaplan NCLEX-RN Prep**, and **LaCharity PDA**."
-                }
-              ]
-            },
-            {
-              "title": "2. High-Yield Clinical Concepts & Nursing Priorities",
-              "blocks": [
+                  "text": "Long-bone and pelvic fractures carry two lethal emergencies: **Acute Compartment Syndrome** (`unrelieved pain out of proportion to injury, not relieved by opioids`, `paresthesia` = earliest neuro sign, `pulselessness` = late) and **Fat Embolism Syndrome** (`dyspnea/hypoxemia + acute confusion + petechial rash on chest/neck/axillae` within 24–72 hr of femur/pelvis fracture)."
+                },
                 {
-                  "type": "list",
-                  "items": [
-                    "Topical corticosteroids are effective to prevent or relieve inflammation, especially when used before blisters form Oral corticosteroids may be prescribed for severe reactions, and an antihistamine to promote sleep such as diphenhydramine may be prescribed.",
-                    "II. Medications to Treat Dermatitis May be treated with moisturizer and topical glucocorticoids (preferred treatment); systemic immuno-suppressants may need to be prescribed if topical treatment is ineffective or with systemic exposure.",
-                    "Tacrolimus may increase the risk of contracting varicella zoster infection in children.",
-                    "Tacrolimus may increase the risk of developing skin cancer and lymphoma.",
-                    "IV. Medications to Treat Actinic Keratosis 1. Diclofenac sodium -A non steroidal anti-inflammatory topical medication; it may take up to 3 months to be effective. b. Side and adverse effects include dry skin, itching, redness, and rash.",
-                    "V. Sunscreens Ultraviolet (UV) light can damage the skin and cause premalignant actinic keratoses and some types of skin cancer.",
-                    "Sunscreens prevent the penetration of UV light and protect the skin.",
-                    "Organic (chemical) sunscreens absorb UV light; inorganic (physical) sunscreens reflect and scatter UV light.",
-                    "A sunscreen that protects against both UVB and UVA rays and one that has a sun protection factor (SPF) of at least 15 should be used.",
-                    "Sunscreens are most effective when applied at least 30 minutes before exposure to the sun (sunscreens containing para-aminobenzoic acid or padimate O require application 2 hours before sun exposure)."
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "3. Burns (Parkland Formula), Traction & Compartment Syndrome",
-              "blocks": [
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u13t3-fractures-traction-compartment.webp",
+                  "alt": "Anteroposterior X-ray of total hip arthroplasty with NCLEX-RN compartment syndrome, fat embolism and traction rules",
+                  "caption": "Total hip arthroplasty radiograph with orthopedic emergencies and traction rules (NU · nursinguganda.com)."
+                },
                 {
                   "type": "table",
-                  "title": "Burns (Parkland Formula), Traction & Compartment Syndrome",
+                  "title": "Orthopedic Emergencies, Traction, Hip Replacement & Mobility Aids",
                   "headers": [
-                    "Condition",
-                    "Formula / Assessment",
-                    "Priority Action"
+                    "Condition / Device",
+                    "Hallmark Cues & Rules",
+                    "Priority Nursing Actions"
                   ],
                   "rows": [
                     [
-                      "**Major Burns & Airway**",
-                      "Singed nasal hairs, soot in sputum, hoarseness = **inhalation injury**!",
-                      "Intubate/O2 early. **Parkland:** **4 mL x kg x %TBSA (LR)** -> give **1/2 in first 8 hrs** from time of burn."
-                    ],
-                    [
                       "**Compartment Syndrome (6 Ps)**",
-                      "**Severe pain unrelieved by opioids/elevation**, paresthesia, pallor, pulselessness (late), poikilothermia.",
-                      "Keep limb **at heart level** (do NOT elevate above heart or ice), loosen cast, prep for **fasciotomy**."
+                      "**Pain** (unrelieved by opioids, worse with passive stretch), **Paresthesia**, **Pallor**, **Paralysis**, **Poikilothermia**, **Pulselessness** (late).",
+                      [
+                        "**Keep limb at HEART LEVEL** (do NOT elevate above heart!), **remove/bivalve cast STAT**, notify surgeon for **emergent fasciotomy**; **no ice**."
+                      ]
                     ],
                     [
-                      "**Skeletal Traction & Fat Embolism**",
-                      "Weights must **hang freely** (never lift/rest on floor). Fat embolism: **petechiae on chest/neck** + dyspnea.",
-                      "Elevate HOB, apply O2, assess respiratory/neuro changes in long-bone/pelvic fractures."
+                      "**Fat Embolism Syndrome (FES)**",
+                      "24–72 hr post-femur/pelvic fracture: **tachypnea/hypoxia**, **restlessness/confusion**, **petechiae on chest/neck**.",
+                      [
+                        "**1st: High-flow O2** + **immobilize fracture** + IV fluids; notify MD STAT."
+                      ]
+                    ],
+                    [
+                      "**Buck's / Skeletal Traction**",
+                      "Maintains bone alignment & reduces spasms.",
+                      [
+                        "**Weights MUST hang freely** (never lift/rest on floor); **never remove weights** without MD order; check **pin sites** for infection (clean w/ chlorhexidine/NS per policy)."
+                      ]
+                    ],
+                    [
+                      "**Total Hip Arthroplasty (Posterior)**",
+                      "Prevent prosthesis dislocation.",
+                      [
+                        "Use **abduction pillow**; **NO hip flexion > 90°** (elevated toilet seat!), **NO crossing legs**, **NO internal rotation**."
+                      ]
+                    ],
+                    [
+                      "**Crutches & Canes**",
+                      "Crutch fit: **2–3 fingerbreadths** below axilla; weight on **hands** (prevent brachial plexus palsy).",
+                      [
+                        "**Stairs (Crutches):** **\"Up with the GOOD, Down with the BAD.\"** **Cane:** hold on **STRONG (unaffected) side**; advance cane + weak leg together."
+                      ]
                     ]
                   ]
                 }
               ]
             },
             {
-              "title": "4. Exam Synthesis & Bedside Takeaways",
+              "title": "2. Exam Synthesis & Bedside Takeaways",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "Sunscreens prevent the penetration of UV light and protect the skin.",
-                    "Organic (chemical) sunscreens absorb UV light; inorganic (physical) sunscreens reflect and scatter UV light.",
-                    "A sunscreen that protects against both UVB and UVA rays and one that has a sun protection factor (SPF) of at least 15 should be used.",
-                    "Sunscreens are most effective when applied at least 30 minutes before exposure to the sun (sunscreens containing para-aminobenzoic acid or padimate O require application 2 hours before sun exposure).",
-                    "Sunscreen should be reapplied every 2 to 3 hours and after swimming or sweating; otherwise, the duration of protection is reduced.",
-                    "Products containing para-aminobenzoic acid need to be avoided by individuals allergic to benzocaine, sulfonamides, or thiazides. H. Sunscreens can cause contact dermatitis and photosensitivity reactions."
-                  ]
+                  "type": "paragraph",
+                  "text": "**NCLEX-RN Bottom Line:** **Pain unrelieved by opioids + paresthesia in a casted limb = Compartment Syndrome** -> **bivalve cast + keep at heart level** (not elevated!). **Dyspnea + confusion + chest petechiae after femur fracture = Fat Embolism** -> give **O2 first**. Hold a **cane on the strong side**, and **never lift traction weights**."
                 }
               ]
             }
