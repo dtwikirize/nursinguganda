@@ -2733,6 +2733,78 @@ img {
 .nu-hub-theme--green-black .nu-table-bullet-list li::marker {
   color: #059669;
 }
+
+/* Dedicated NCLEX-RN Academy Theme: Mostly Black (#09090b) + Clinical Blue (#1d4ed8 / #2563eb), ZERO Purple */
+.nu-nclex-theme .nu-note-page-card {
+  border-color: #cbd5e1;
+  box-shadow: 0 2px 10px rgba(9, 9, 11, 0.04);
+}
+.nu-nclex-theme .nu-note-page-head {
+  background: #09090b !important;
+  border-color: #18181b !important;
+  border-left: 5px solid #2563eb !important;
+}
+.nu-nclex-theme .nu-note-page-head.nu-head--light,
+.nu-nclex-theme .nu-note-page-head.nu-head--slate-light {
+  background: #f8fafc !important;
+  border: 1px solid #cbd5e1 !important;
+  border-left: 5px solid #09090b !important;
+}
+.nu-nclex-theme .nu-note-page-head .nu-note-section-title {
+  color: #ffffff !important;
+}
+.nu-nclex-theme .nu-note-page-head.nu-head--light .nu-note-section-title,
+.nu-nclex-theme .nu-note-page-head.nu-head--slate-light .nu-note-section-title {
+  color: #09090b !important;
+}
+.nu-nclex-theme .nu-inline-table-card {
+  border-color: #cbd5e1;
+}
+.nu-nclex-theme .nu-inline-table-card .nu-inline-table-title,
+.nu-nclex-theme .nu-inline-table-card .nu-clinical-table th {
+  background: #09090b !important;
+  color: #ffffff !important;
+  border-bottom: 2px solid #2563eb !important;
+}
+.nu-nclex-theme .nu-inline-table-card.nu-table-tone--minimal .nu-inline-table-title {
+  background: #09090b !important;
+  color: #ffffff !important;
+  border-bottom: 2px solid #2563eb !important;
+}
+.nu-nclex-theme .nu-table-lead {
+  color: #09090b !important;
+  font-weight: 800;
+}
+.nu-nclex-theme .nu-table-bullet-list li::marker {
+  color: #1d4ed8;
+}
+.nu-nclex-theme .nu-proc-flow-node {
+  border: 1.5px solid #cbd5e1;
+  background: #ffffff;
+}
+.nu-nclex-theme .nu-proc-flow-step {
+  background: #09090b !important;
+  color: #ffffff !important;
+  border-left: 3px solid #2563eb;
+}
+.nu-nclex-theme .nu-proc-flow-arrow {
+  color: #1d4ed8 !important;
+}
+.nu-nclex-theme .nu-note-callout--pearl {
+  background: #eff6ff !important;
+  border-color: #93c5fd !important;
+  border-left: 5px solid #1d4ed8 !important;
+  color: #09090b !important;
+}
+.nu-nclex-theme mark {
+  background: #dbeafe;
+  color: #09090b;
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+.nu-nclex-theme .nu-note-list li::marker {
+  color: #1d4ed8;
+}
 .nu-proc-flow-arrow {
   display: flex;
   align-items: center;

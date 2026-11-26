@@ -66,110 +66,166 @@
           ],
           "sections": [
             {
-              "title": "1. Clinical Overview & NCLEX-RN Blueprint",
+              "title": "1. Clinical Overview & NCSBN CJMM Telemetry Cues",
               "blocks": [
                 {
                   "type": "paragraph",
-                  "text": "The **NCSBN Clinical Judgment Measurement Model (NCJMM)** is the scoring backbone of the Next-Generation NCLEX-RN (NGN). Rather than testing isolated memorization, NGN unfolding 6-item case studies and standalone clinical judgment items evaluate your ability to notice unstable patient cues, link them to pathophysiology, rank urgent threats, choose safe interventions, and verify outcomes."
+                  "text": "The **NCSBN Clinical Judgment Measurement Model (NCJMM)** is the clinical scoring backbone of the Next-Generation NCLEX-RN (NGN). Instead of testing isolated recall, unfolding 6-item case studies evaluate whether you can notice unstable bedside monitor and lab trends early, connect findings to organ risk, rank life threats, select safe interventions, and verify physiological recovery."
+                },
+                {
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u1t1-cjmm-bedside-monitor.webp",
+                  "alt": "Real ICU vital signs telemetry monitor paired with the 6-step NCSBN Clinical Judgment Measurement Model in Black and Blue",
+                  "caption": "Figure 1.1: Filtering unstable bedside telemetry cues through the 6-Step NCSBN Clinical Judgment Measurement Model (Saunders Unit I · Kaplan Ch. 1–3)."
                 },
                 {
                   "type": "diagram",
                   "variant": "flow",
                   "title": "NCSBN 6-Step Clinical Judgment Measurement Model (CJMM)",
-                  "caption": "Sequential cognitive steps tested across every Next-Generation NCLEX (NGN) unfolding case study.",
+                  "caption": "Sequential clinical reasoning cycle tested across every NGN unfolding case.",
                   "steps": [
                     {
                       "step": 1,
                       "label": "Recognize Cues",
-                      "detail": "Identify relevant vital signs, labs & history vs. noise"
+                      "detail": "Identify abnormal vitals, labs & symptom trends vs. normal baseline"
                     },
                     {
                       "step": 2,
                       "label": "Analyze Cues",
-                      "detail": "Connect findings to organ systems & potential complications"
+                      "detail": "Connect findings to likely complications & underlying pathophysiology"
                     },
                     {
                       "step": 3,
                       "label": "Prioritize Hypotheses",
-                      "detail": "Rank urgent life threats (ABCs, sepsis, shock) first"
+                      "detail": "Rank immediate airway, breathing & shock threats first"
                     },
                     {
                       "step": 4,
                       "label": "Generate Solutions",
-                      "detail": "Select safe interventions & identify contraindicated orders"
+                      "detail": "Select safe bedside orders & flag contraindicated interventions"
                     },
                     {
                       "step": 5,
                       "label": "Take Action",
-                      "detail": "Execute the #1 safest bedside priority intervention first"
+                      "detail": "Perform the single safest #1 priority bedside intervention first"
                     },
                     {
                       "step": 6,
                       "label": "Evaluate Outcomes",
-                      "detail": "Compare post-action findings against expected recovery"
+                      "detail": "Measure post-intervention vitals, labs & clinical stability"
                     }
                   ]
                 }
               ]
             },
             {
-              "title": "2. High-Yield Clinical Concepts & Nursing Priorities",
+              "title": "2. Step-by-Step Bedside Cue Matrix (What NGN Scores)",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "**Recognize Cues (Filter Noise):** Focus on trends over time (e.g., BP dropping from 128/78 to 92/58 while HR rises from 76 to 114 = early hypovolemic/septic shock).",
-                    "**Analyze Cues:** Connect abnormal labs to clinical signs (e.g., Na+ 122 mEq/L + confusion = cerebral edema/seizure risk; K+ 6.4 mEq/L + peaked T waves = immediate cardiac arrest risk).",
-                    "**Prioritize Hypotheses (Maslow + ABCs):** Airway obstruction, respiratory distress, circulatory collapse, and acute neurological decline always outrank chronic pain or routine teaching.",
-                    "**Generate Solutions:** Anticipate expected orders (oxygen, isotonic NS/LR bolus, ECG monitoring) and identify **contraindicated orders to clarify/hold** (e.g., beta-blockers in bradycardia, potassium in anuria, vaginal exam in placenta previa).",
-                    "**Take Action:** Assess the patient first unless immediate life-saving action is clear (e.g., apply oxygen for SpO2 84%, stop IV infusion for anaphylaxis, raise HOB for dyspnea).",
-                    "**Evaluate Outcomes:** Confirm intervention effectiveness (e.g., urine output >= 30 mL/hr after fluid resuscitation, clear lung sounds after furosemide, glucose rising above 70 mg/dL after D50W).",
-                    "Same adaptive test format but reduced number of items The Next Generation NCLEX (NGN) will retain the adaptive test format, similar to the current NCLEX, but with fewer test items.",
-                    "Recognize cues “What matters most?” Identifying relevant and important information from various sources, such as medical history, laboratory studies, and vital signs.",
-                    "Analyze cues “What could it mean?” Organizing and connecting recognized cues to the client’s clinical presentation.",
-                    "Prioritize hypotheses “Where do I start?” Evaluating and prioritizing hypotheses based on urgency, likelihood, risk, difficulty, time constraints, and other factors."
+                  "type": "table",
+                  "title": "NCSBN 6 Cognitive Layers: Bedside Triggers & Exam Rules",
+                  "headers": [
+                    "CJMM Layer",
+                    "Guiding Clinical Question",
+                    "High-Yield Red-Flag Cues vs. Noise"
+                  ],
+                  "rows": [
+                    [
+                      "**1. Recognize Cues**",
+                      "\"What matters most right now?\"",
+                      [
+                        "Focus on changing trends: BP dropping from 128/78 to 90/56 while HR climbs 74 -> 118 indicates impending shock rather than benign pain."
+                      ]
+                    ],
+                    [
+                      "**2. Analyze Cues**",
+                      "\"What pathophysiology does this signal?\"",
+                      [
+                        "Link lab shifts to organ risk: Na+ 121 mEq/L + lethargy -> cerebral edema/seizure risk; K+ 6.4 mEq/L + peaked T waves -> lethal ventricular arrhythmia."
+                      ]
+                    ],
+                    [
+                      "**3. Prioritize Hypotheses**",
+                      "\"Which threat kills first?\"",
+                      [
+                        "Apply ABCs + Maslow's physiological tier: airway stridor, tension pneumothorax, and sepsis hypotension always precede discharge teaching."
+                      ]
+                    ],
+                    [
+                      "**4. Generate Solutions**",
+                      "\"Which orders help vs. harm?\"",
+                      [
+                        "Anticipate IV isotonic fluids, oxygen, cultures, and **hold contraindicated orders** (e.g., beta-blockers in bradycardia, K+ in anuria, vaginal exam in placenta previa)."
+                      ]
+                    ],
+                    [
+                      "**5. Take Action**",
+                      "\"What single bedside step comes first?\"",
+                      [
+                        "Act on immediate life support before calling the provider when intervention is clear (raise HOB for acute dyspnea, stop anaphylactic infusion, apply pressure to active arterial bleeding)."
+                      ]
+                    ],
+                    [
+                      "**6. Evaluate Outcomes**",
+                      "\"Did the client improve or worsen?\"",
+                      [
+                        "Verify concrete targets: urine output >= 30 mL/hr post-bolus, crackles clearing after furosemide, glucose > 70 mg/dL post-D50W."
+                      ]
+                    ]
                   ]
+                },
+                {
+                  "type": "callout",
+                  "tone": "pearl",
+                  "title": "Kaplan & LaCharity Safety Anchor",
+                  "text": "On NGN bedside dilemmas, NEVER skip physical safety to wait for chart review when an acute ABC threat is evident on assessment—stabilize oxygenation, perfusion, or infusion toxicity first, then notify the provider with complete ISBAR data."
                 }
               ]
             },
             {
-              "title": "3. Next-Generation NCLEX (NGN) Item Formats & Partial-Credit Scoring Rules",
+              "title": "3. Next-Generation NCLEX (NGN) Item Formats & Partial-Credit Scoring",
               "blocks": [
+                {
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u1t1-ngn-examination-items.webp",
+                  "alt": "Real blood pressure bedside verification photo with NGN Bow-Tie item layout, Matrix grid, and +/- partial credit scoring guide",
+                  "caption": "Figure 1.2: NGN Bow-Tie Architecture, Matrix Indicated/Contraindicated rows, and +/- Partial Credit Scoring Rules."
+                },
                 {
                   "type": "table",
                   "title": "Next-Generation NCLEX (NGN) Item Formats & Partial-Credit Scoring Rules",
                   "headers": [
                     "NGN Item Type",
-                    "How It Works",
-                    "Kaplan / Saunders Scoring Tip"
+                    "Screen Mechanics",
+                    "Scoring Rule (+/- vs. 0/1) & Strategy"
                   ],
                   "rows": [
                     [
                       "**Extended Multiple Response (EMR)**",
-                      "Choose all clinically appropriate actions from 5–10 options.",
+                      "Choose all clinically safe actions from 5–10 checkboxes.",
                       [
-                        "Uses **+/- partial credit scoring**: you gain +1 for right answers and lose -1 for wrong picks. Never guess blindly!"
+                        "**+/- Polytomous Scoring:** +1 per correct selection, **-1 per wrong pick** (floor 0). Never guess unsure options."
                       ]
                     ],
                     [
                       "**Bow-Tie Item**",
-                      "Select 1 likely condition (center), 2 findings (left), 2 actions & 2 monitoring parameters (right).",
+                      "Pick 1 likely diagnosis (center), 2 actions & 2 monitoring targets.",
                       [
-                        "Start from the **center diagnosis** first, then align causes on the left and immediate actions/labs on the right."
+                        "**0/1 Per Cell:** Solve the **center diagnosis first**, then check left urgent actions and right evaluation targets."
                       ]
                     ],
                     [
                       "**Matrix / Grid**",
-                      "Indicate for each row whether an intervention is **Indicated**, **Contraindicated**, or **Non-Essential**.",
+                      "Mark each clinical row as **Indicated**, **Contraindicated**, or **Non-Essential**.",
                       [
-                        "Evaluate each row independently against **ABCs, allergies, and lab contraindications** (e.g., K+ < 3.5 -> hold furosemide)."
+                        "Evaluate each row independently against drug allergies, bleeding risk, electrolyte levels, and vitals."
                       ]
                     ],
                     [
-                      "**Drop-Down / Cloze & Highlight**",
-                      "Complete a clinical reasoning sentence or highlight abnormal chart cues.",
+                      "**Highlight & Cloze Drop-Down**",
+                      "Click abnormal chart spans or complete clinical reasoning dropdowns.",
                       [
-                        "Highlight only **abnormal trends** (rising Cr, dropping BP, SpO2 < 90%) — avoid highlighting normal values."
+                        "Highlight **only abnormal trends** (rising Cr/lactate, falling SpO2); leave normal baseline text unmarked."
                       ]
                     ]
                   ]
@@ -177,14 +233,42 @@
               ]
             },
             {
-              "title": "4. Exam Synthesis & Bedside Takeaways",
+              "title": "4. Worked NGN Unfolding Case Walkthrough (Post-Op Septic Shock)",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "Analyze cues “What could it mean?” Organizing and connecting recognized cues to the client’s clinical presentation.",
-                    "Prioritize hypotheses “Where do I start?” Evaluating and prioritizing hypotheses based on urgency, likelihood, risk, difficulty, time constraints, and other factors.",
-                    "These new item types are intended to evaluate a candidate’s ability to utilize the dynamic skill of clinical judgment, rather than knowledge or recall alone."
+                  "type": "paragraph",
+                  "text": "Apply all 6 CJMM steps across a classic surgical-unit unfolding deterioration scenario adapted for NGN Bow-Tie and Matrix questions:"
+                },
+                {
+                  "type": "table",
+                  "title": "Unfolding NGN Case Example: 68-Year-Old Post-Op Colectomy Day 2",
+                  "headers": [
+                    "CJMM Phase",
+                    "Chart Data / Nurse Finding",
+                    "Correct Clinical Decision"
+                  ],
+                  "rows": [
+                    [
+                      "**Recognize & Analyze**",
+                      "Temp 38.9 °C, HR 122 bpm, BP 84/50 mmHg, RR 28/min, Lactate 4.1 mmol/L, warm flushed skin turning mottled.",
+                      [
+                        "Progressive **septic shock** with tissue hypoperfusion and metabolic lactic acidosis."
+                      ]
+                    ],
+                    [
+                      "**Prioritize & Generate**",
+                      "Orders: (A) NS 30 mL/kg IV bolus, (B) Broad-spectrum antibiotics after blood cultures, (C) Foley catheter I&O, (D) PRN lisinopril 20 mg PO.",
+                      [
+                        "**Indicated:** A, B, C (after cultures). **Contraindicated:** Lisinopril (worsens vasodilatory shock)."
+                      ]
+                    ],
+                    [
+                      "**Take Action & Evaluate**",
+                      "Start rapid isotonic NS infusion + oxygen, draw 2 sets blood cultures first, infuse broad-spectrum IV antibiotics within 1 hour.",
+                      [
+                        "**Expected Recovery:** MAP >= 65 mmHg, urine output >= 30 mL/hr, lactate trending down."
+                      ]
+                    ]
                   ]
                 }
               ]
