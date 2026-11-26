@@ -10,7 +10,8 @@
     "Digestive, Endocrine & Senses",
     "Reproductive & Midwifery",
     "Clinical Conditions & Nursing",
-    "Foundations & Clinical Nursing"
+    "Foundations & Clinical Nursing",
+    "Pharmacology & Medications"
   ],
   "images": [
     {
@@ -1662,6 +1663,259 @@
         {
           "label": "Digestive System Notes",
           "to": "/learn/certificate-in-nursing-anatomy-and-physiology-l-and-first-aid/digestive-system-notes"
+        }
+      ]
+    },
+    {
+      "id": "pharmacology-oral-drugs",
+      "title": "Oral Medications, Dosage Forms & Safe Administration",
+      "category": "Pharmacology & Medications",
+      "file": "/assets/images/medical-illustrations/pharmacology-oral-drugs.webp",
+      "alt": "3D pills, tablets, and capsules paired with Rights of Medication Administration and enteric-coated safety rules",
+      "summary": "Illustrates oral solid dosage forms, enteric-coated and sustained-release crushing warnings, generic-versus-brand naming, and the 10 Rights of Medication Administration.",
+      "structures": [
+        "Enteric-Coated Tablets",
+        "Sustained-Release Capsules",
+        "Oral Suspension",
+        "Ten Rights Checkpoints"
+      ],
+      "clinicalPearl": "Never crush enteric-coated or sustained-release tablets; monitor closely for overdose toxicity and gastric irritation.",
+      "relatedTopics": [
+        {
+          "label": "Introduction to Pharmacology",
+          "to": "/learn/bachelor-of-nursing-science-top-up-pharmacology-i/bachelor-of-nursing-science-top-up-pharmacology-i-introduction-to-pharmacology"
+        }
+      ]
+    },
+    {
+      "id": "pharmacology-adme",
+      "title": "Pharmacokinetics (ADME) & First-Pass Hepatic Metabolism",
+      "category": "Pharmacology & Medications",
+      "file": "/assets/images/medical-illustrations/pharmacology-adme.webp",
+      "alt": "Hepatic portal vein first-pass liver metabolism diagram alongside Absorption, Distribution, Metabolism, and Excretion clinical guide",
+      "summary": "Traces oral drug passage from intestinal absorption through the hepatic portal vein to liver CYP450 first-pass biotransformation, plasma distribution, and renal excretion.",
+      "structures": [
+        "GI Tract Absorption",
+        "Hepatic Portal Vein",
+        "Liver CYP450 First-Pass",
+        "Renal Excretion Clearance"
+      ],
+      "clinicalPearl": "Always check serum creatinine and eGFR before dosing renally cleared drugs such as gentamicin, vancomycin, digoxin, or tenofovir.",
+      "relatedTopics": [
+        {
+          "label": "Absorption & Distribution",
+          "to": "/learn/bachelor-of-nursing-science-top-up-pharmacology-i/bachelor-of-nursing-science-top-up-pharmacology-i-absorption-distribution"
+        }
+      ]
+    },
+    {
+      "id": "pharmacology-pharmacodynamics-receptors",
+      "title": "Pharmacodynamics: Synaptic Receptors & Drug Signalling",
+      "category": "Pharmacology & Medications",
+      "file": "/assets/images/medical-illustrations/pharmacology-pharmacodynamics-receptors.webp",
+      "alt": "3D presynaptic nerve terminal, neurotransmitter vesicles, synaptic cleft, and postsynaptic receptors with agonist versus antagonist action",
+      "summary": "Explains agonist stimulation versus competitive and non-competitive receptor antagonism, EC50 potency, therapeutic index safety margins, and synaptic transmission.",
+      "structures": [
+        "Presynaptic Terminal",
+        "Neurotransmitter Vesicles",
+        "Synaptic Cleft",
+        "Postsynaptic Receptors"
+      ],
+      "clinicalPearl": "Narrow therapeutic index drugs such as warfarin, digoxin, lithium, phenytoin, and aminophylline require routine drug level monitoring.",
+      "relatedTopics": [
+        {
+          "label": "Mechanism of Action",
+          "to": "/learn/bachelor-of-nursing-science-top-up-pharmacology-i/bachelor-of-nursing-science-top-up-pharmacology-i-mechanism-of-action"
+        }
+      ]
+    },
+    {
+      "id": "pharmacology-iv-fluids-infusion",
+      "title": "Intravenous Fluid Therapy, Cannulation & Flow Rates",
+      "category": "Pharmacology & Medications",
+      "file": "/assets/images/medical-illustrations/pharmacology-iv-fluids-infusion.webp",
+      "alt": "Intravenous infusion bag, drip chamber, sterile tubing, and cannula paired with isotonic, hypotonic, and hypertonic fluid rules",
+      "summary": "Details isotonic (0.9% NaCl, Ringer's Lactate), hypotonic, and hypertonic IV fluid shifts, drip-rate formulas, cannula gauge selection, and VIP phlebitis monitoring.",
+      "structures": [
+        "IV Fluid Bag & Additive Port",
+        "Calibrated Drip Chamber",
+        "Roller Flow Clamp",
+        "Peripheral IV Cannula"
+      ],
+      "clinicalPearl": "Stop the infusion immediately and assess site grade if infiltration, redness, cord-like vein tenderness (phlebitis), or vesicant extravasation occurs.",
+      "relatedTopics": [
+        {
+          "label": "Dosage Calculations",
+          "to": "/learn/bachelor-of-nursing-science-top-up-pharmacology-i/bachelor-of-nursing-science-top-up-pharmacology-i-dosage-calculations"
+        }
+      ]
+    },
+    {
+      "id": "pharmacology-parenteral-injection-angles",
+      "title": "Parenteral Routes & Tissue Needle Insertion Angles",
+      "category": "Pharmacology & Medications",
+      "file": "/assets/images/medical-illustrations/pharmacology-parenteral-injection-angles.webp",
+      "alt": "Cross-section of epidermis, dermis, subcutaneous fat, and muscle showing 90-degree IM, 45-degree SC, 25-degree IV, and 10-to-15-degree ID injection angles",
+      "summary": "Compares exact skin-to-tissue entry angles and anatomical landmarks for intramuscular (90 deg), subcutaneous (45 deg), intravenous (25 deg), and intradermal (10-15 deg) injections.",
+      "structures": [
+        "IM 90-Degree Muscle Layer",
+        "SC 45-Degree Adipose Layer",
+        "IV 25-Degree Vein Entry",
+        "ID 10-15 Degree Dermis Bleb"
+      ],
+      "clinicalPearl": "Prefer the ventrogluteal site for adult IM injections (avoiding the sciatic nerve) and vastus lateralis in infants under 2 years.",
+      "relatedTopics": [
+        {
+          "label": "Routes of Administration",
+          "to": "/learn/bachelor-of-nursing-science-top-up-pharmacology-i/bachelor-of-nursing-science-top-up-pharmacology-i-routes-of-administration"
+        }
+      ]
+    },
+    {
+      "id": "pharmacology-autonomic-receptors-ans",
+      "title": "Autonomic Nervous System (ANS) Receptors & Drug Targets",
+      "category": "Pharmacology & Medications",
+      "file": "/assets/images/medical-illustrations/pharmacology-autonomic-receptors-ans.webp",
+      "alt": "Sympathetic vs parasympathetic dual innervation of pupil, heart, lungs, GI tract, and bladder showing alpha, beta, and muscarinic targets",
+      "summary": "Maps adrenergic (Alpha-1, Beta-1, Beta-2) sympathetic drugs against cholinergic (Muscarinic, Nicotinic) agonists and anticholinergic blockers like atropine.",
+      "structures": [
+        "Alpha-1 Vasoconstriction",
+        "Beta-1 Cardiac SA/AV Node",
+        "Beta-2 Bronchodilation",
+        "M3 Parasympathetic Targets"
+      ],
+      "clinicalPearl": "Keep Atropine 0.6-1 mg IV immediately available when treating organophosphate poisoning ('SLUDGE' cholinergic crisis) or symptomatic bradycardia.",
+      "relatedTopics": [
+        {
+          "label": "ANS Drugs Introduction",
+          "to": "/learn/bachelor-of-nursing-science-top-up-pharmacology-i/bachelor-of-nursing-science-top-up-pharmacology-i-ans-drugs-introduction"
+        }
+      ]
+    },
+    {
+      "id": "pharmacology-raas-antihypertensives",
+      "title": "RAAS Pathway & Stepwise Antihypertensive Pharmacology",
+      "category": "Pharmacology & Medications",
+      "file": "/assets/images/medical-illustrations/pharmacology-raas-antihypertensives.webp",
+      "alt": "Renin-Angiotensin-Aldosterone System cascade showing ACE inhibitors, ARBs, CCBs, and pregnancy-safe methyldopa/hydralazine sites",
+      "summary": "Traces renin, ACE conversion to Angiotensin II, and aldosterone sodium retention alongside ACE inhibitors, ARBs, calcium channel blockers, and obstetric antihypertensives.",
+      "structures": [
+        "Juxtaglomerular Renin Release",
+        "ACE (Lungs) Conversion",
+        "AT1 Vascular Receptors",
+        "Adrenal Aldosterone Output"
+      ],
+      "clinicalPearl": "ACE inhibitors and ARBs are teratogenic in pregnancy (use oral methyldopa, nifedipine, or IV hydralazine for pre-eclampsia) and can cause dry cough or angio-oedema.",
+      "relatedTopics": [
+        {
+          "label": "Cardiovascular System Agents",
+          "to": "/learn/bachelor-of-nursing-science-top-up-pharmacology-i/bachelor-of-nursing-science-top-up-pharmacology-i-cardiovascular-system-agents"
+        }
+      ]
+    },
+    {
+      "id": "pharmacology-diuretics-nephron-sites",
+      "title": "Diuretic Sites of Action Along the Renal Nephron",
+      "category": "Pharmacology & Medications",
+      "file": "/assets/images/medical-illustrations/pharmacology-diuretics-nephron-sites.webp",
+      "alt": "3D nephron diagram showing PCT, Loop of Henle, Distal Convoluted Tubule, and Collecting Duct drug targets for osmotic, loop, thiazide, and potassium-sparing diuretics",
+      "summary": "Locates osmotic (Mannitol), Loop (Furosemide), Thiazide (Hydrochlorothiazide), and K+-sparing (Spironolactone) diuretic action sites and potassium shifts.",
+      "structures": [
+        "Proximal Convoluted Tubule (Osmotic)",
+        "Thick Ascending Loop of Henle (Furosemide)",
+        "Distal Convoluted Tubule (Thiazide)",
+        "Collecting Duct (Spironolactone)"
+      ],
+      "clinicalPearl": "Give diuretics in the morning to avoid nocturia, weigh patients daily on the same scale, and watch hypokalaemia with furosemide vs hyperkalaemia with spironolactone.",
+      "relatedTopics": [
+        {
+          "label": "Reproductive & Urinary System Agents",
+          "to": "/learn/bachelor-of-nursing-science-top-up-pharmacology-i/bachelor-of-nursing-science-top-up-pharmacology-i-reproductive-urinary-system-agents"
+        }
+      ]
+    },
+    {
+      "id": "pharmacology-antibiotic-targets-bacteria",
+      "title": "Antibiotic Mechanisms & Bacterial Cell Targets",
+      "category": "Pharmacology & Medications",
+      "file": "/assets/images/medical-illustrations/pharmacology-antibiotic-targets-bacteria.webp",
+      "alt": "3D prokaryotic bacterial cell cutaway labeling peptidoglycan cell wall, plasma membrane, 30S/50S ribosomes, nucleoid DNA/RNA, and cytoplasm folate pathway",
+      "summary": "Maps major antibacterial drug classes onto bacterial targets: beta-lactams and vancomycin at the cell wall, aminoglycosides and macrolides at 30S/50S ribosomes, and quinolones/cotrimoxazole at DNA and folate synthesis.",
+      "structures": [
+        "Cell Wall Peptidoglycan",
+        "Plasma Membrane",
+        "30S & 50S Ribosomes",
+        "Nucleoid DNA & RNA",
+        "Cytoplasm Folate Pathway"
+      ],
+      "clinicalPearl": "Collect blood or urine culture & sensitivity (C&S) specimens BEFORE the first antibiotic dose, verify penicillin allergy, and educate on 2RHZE/4RH TB DOTS adherence.",
+      "relatedTopics": [
+        {
+          "label": "Penicillins & Cephalosporins",
+          "to": "/learn/bachelor-of-nursing-science-top-up-pharmacology-i/bachelor-of-nursing-science-top-up-pharmacology-i-penicillins-cephalosporins"
+        }
+      ]
+    },
+    {
+      "id": "pharmacology-antiretrovirals-hiv-cycle",
+      "title": "HIV Life Cycle & Antiretroviral (ART) Drug Targets",
+      "category": "Pharmacology & Medications",
+      "file": "/assets/images/medical-illustrations/pharmacology-antiretrovirals-hiv-cycle.webp",
+      "alt": "3D HIV replication cycle inside CD4 T-lymphocyte highlighting CCR5 entry, reverse transcription, integrase DNA integration, and protease assembly steps",
+      "summary": "Aligns Uganda MoH first-line TLD regimen (Tenofovir + Lamivudine + Dolutegravir) with HIV CD4 binding, reverse transcription, nuclear integration, and protease maturation.",
+      "structures": [
+        "CD4 / CCR5 Entry Binding",
+        "Reverse Transcriptase (NRTIs)",
+        "Integrase Enzyme (Dolutegravir)",
+        "Protease Virion Maturation"
+      ],
+      "clinicalPearl": "Reinforce >=95% daily ART adherence and monitor renal eGFR for Tenofovir to achieve viral load suppression (<1,000 copies/mL) and eliminate PMTCT risk.",
+      "relatedTopics": [
+        {
+          "label": "Antihelminthic, Antifungal, Antiviral",
+          "to": "/learn/bachelor-of-nursing-science-top-up-pharmacology-i/bachelor-of-nursing-science-top-up-pharmacology-i-antihelminthic-antifungal-antiviral"
+        }
+      ]
+    },
+    {
+      "id": "pharmacology-insulin-diabetes-therapy",
+      "title": "Insulin Delivery, Onset Profiles & Antidiabetic Drugs",
+      "category": "Pharmacology & Medications",
+      "file": "/assets/images/medical-illustrations/pharmacology-insulin-diabetes-therapy.webp",
+      "alt": "3D insulin vial, prefilled insulin pen, and U-100 syringe alongside rapid, short, intermediate NPH, and long-acting insulin kinetics",
+      "summary": "Compares rapid, regular soluble, NPH, and glargine insulin peaks, safe 'Clear-before-Cloudy' syringe mixing, metformin contrast precautions, and hypoglycaemia (<3.9 mmol/L) rescue.",
+      "structures": [
+        "U-100 Insulin Syringe",
+        "Clear Regular Soluble Insulin",
+        "Cloudy NPH Suspension",
+        "Prefilled Subcutaneous Pen"
+      ],
+      "clinicalPearl": "Draw clear Regular insulin BEFORE cloudy NPH insulin into one syringe, rotate abdominal/thigh injection sites, and never omit insulin completely on Type 1 sick days.",
+      "relatedTopics": [
+        {
+          "label": "Endocrine and Metabolic Drugs",
+          "to": "/learn/diploma-in-midwifery-extension-mental-health-and-pharmacology/diploma-in-midwifery-extension-mental-health-and-pharmacology-endocrine-and-metabolic-drugs-midwives-revision"
+        }
+      ]
+    },
+    {
+      "id": "pharmacology-respiratory-asthma-bronchodilators",
+      "title": "Respiratory Pharmacology: Asthma & Bronchodilators",
+      "category": "Pharmacology & Medications",
+      "file": "/assets/images/medical-illustrations/pharmacology-respiratory-asthma-bronchodilators.webp",
+      "alt": "3D comparison of normal dilated bronchiole versus constricted inflamed asthmatic bronchiole showing smooth muscle constriction and excess mucous",
+      "summary": "Contrasts SABA relievers (Salbutamol) against Inhaled Corticosteroids (Beclomethasone), anticholinergics (Ipratropium), aminophylline toxicity, and acute Status Asthmaticus protocol.",
+      "structures": [
+        "Normal Bronchial Smooth Muscle",
+        "Airway Mucosal Oedema",
+        "Excess Mucous Plug",
+        "Beta-2 Adrenergic Receptors"
+      ],
+      "clinicalPearl": "Always rinse the mouth after inhaled corticosteroids (prevent oral candidiasis), use spacers with MDIs, and avoid non-selective beta-blockers like propranolol.",
+      "relatedTopics": [
+        {
+          "label": "Sympathomimetics (Adrenergic Agonists)",
+          "to": "/learn/bachelor-of-nursing-science-top-up-pharmacology-i/bachelor-of-nursing-science-top-up-pharmacology-i-sympathomimetics-adrenergic-agonists"
         }
       ]
     }

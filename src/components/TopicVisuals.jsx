@@ -2,7 +2,7 @@ import React from "react";
 import { AlertTriangle, CheckCircle2, Layers, Sparkles, Table2 } from "lucide-react";
 import RichText from "./RichText";
 
-const IMAGE_VERSION = "20261126c";
+const IMAGE_VERSION = "20261126d";
 
 function withImgVersion(src) {
   const s = String(src || "");
@@ -535,9 +535,69 @@ function getInlineSectionRules() {
       caption: "Multipolar Neuron & Synaptic Transmission Anatomy"
     },
     {
-      match: /\b(intravenous|iv\s+fluid|cannul|drip\s+rate|infusion\s+rate|parenteral)\b/i,
+      match: /\b(intravenous|iv\s+fluid|cannul|drip\s+rate|infusion\s+rate|ringer'?s?\s+lactate|normal\s+saline|phlebitis|extravasation)\b/i,
+      src: "/assets/images/medical-illustrations/pharmacology-iv-fluids-infusion.webp",
+      caption: "Intravenous Fluid Administration, Drip Rates & Sterile Cannulation"
+    },
+    {
+      match: /\b(injection\s+angle|intramuscular|subcutaneous|intradermal|ventrogluteal|vastus\s+lateralis|deltoid\s+injection|z[- ]track|parenteral\s+route)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/pharmacology-parenteral-injection-angles.webp",
+      caption: "Parenteral Routes & Needle Insertion Angles (IM 90°, SC 45°, IV 25°, ID 10-15°)"
+    },
+    {
+      match: /\b(pharmacokinetic|first[- ]pass|adme|bioavailabilit|drug\s+absorption|drug\s+metabolism|cytochrome|half[- ]life|renal\s+clearance|dosage\s+calculation)\b/i,
+      titleOnly: true,
       src: "/assets/images/medical-illustrations/pharmacology-adme.webp",
-      caption: "Intravenous Fluid Administration & Sterile Cannulation"
+      caption: "Pharmacokinetics (ADME) & First-Pass Hepatic Portal Metabolism"
+    },
+    {
+      match: /\b(pharmacodynamic|drug[- ]receptor|agonist|antagonist|therapeutic\s+index|signaling\s+mechanism|dose[- ]response)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/pharmacology-pharmacodynamics-receptors.webp",
+      caption: "Pharmacodynamics: Synaptic Receptors & Drug Signalling"
+    },
+    {
+      match: /\b(autonomic\s+nervous\s+system\s+agents|cholinergic|adrenergic|sympathomimetic|sympatholytic|parasympathomimetic|anticholinergic|muscarinic|nicotinic)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/pharmacology-autonomic-receptors-ans.webp",
+      caption: "Autonomic Nervous System (ANS) Receptors & Drug Targets"
+    },
+    {
+      match: /\b(raas|renin[- ]angiotensin|antihypertensive|ace\s+inhibitor|angiotensin\s+receptor|calcium\s+channel\s+blocker|methyldopa|hydralazine|enalapril|losartan|amlodipine)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/pharmacology-raas-antihypertensives.webp",
+      caption: "RAAS Pathway & Stepwise Antihypertensive Pharmacology"
+    },
+    {
+      match: /\b(diuretic|furosemide|lasix|thiazide|hydrochlorothiazide|spironolactone|mannitol)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/pharmacology-diuretics-nephron-sites.webp",
+      caption: "Diuretic Sites of Action Along the Renal Nephron"
+    },
+    {
+      match: /\b(antibiotic|antimicrobial|penicillin|cephalosporin|aminoglycoside|gentamicin|tetracycline|macrolide|azithromycin|fluoroquinolone|ciprofloxacin|sulphonamide|cotrimoxazole|antitubercular|dots\s+regimen|rifampicin)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/pharmacology-antibiotic-targets-bacteria.webp",
+      caption: "Antibiotic Mechanisms & Bacterial Cell Targets"
+    },
+    {
+      match: /\b(antiretroviral|art\s+regimen|dolutegravir|tenofovir|lamivudine|efavirenz|protease\s+inhibitor|reverse\s+transcriptase|hiv\s+life\s+cycle|pmtct)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/pharmacology-antiretrovirals-hiv-cycle.webp",
+      caption: "HIV Life Cycle & Antiretroviral (ART) Drug Targets"
+    },
+    {
+      match: /\b(insulin|clear\s+before\s+cloudy|metformin|hypoglycaemic\s+agent|antidiabetic|diabetic\s+ketoacidosis|dka\s+management)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/pharmacology-insulin-diabetes-therapy.webp",
+      caption: "Insulin Delivery, Onset Profiles & Antidiabetic Pharmacology"
+    },
+    {
+      match: /\b(bronchodilator|salbutamol|albuterol|inhaled\s+corticosteroid|beclomethasone|ipratropium|aminophylline|theophylline|status\s+asthmaticus|asthma\s+pharmacology)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/pharmacology-respiratory-asthma-bronchodilators.webp",
+      caption: "Respiratory Pharmacology: Asthma & Bronchodilator Targets"
     },
     {
       match: /\b(pressure\s+ulcer|pressure\s+injury|pressure\s+sore|stage\s+[1-4]\s+ulcer|epidermis|dermis|wound\s+healing|skin\s+layers|integumentary)\b/i,
