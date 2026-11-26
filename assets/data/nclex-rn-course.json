@@ -2188,68 +2188,53 @@
           ],
           "sections": [
             {
-              "title": "1. Clinical Overview & NCLEX-RN Blueprint",
+              "title": "1. US Nursing Legal Standards, Tort Law & Chart Integrity",
               "blocks": [
                 {
                   "type": "paragraph",
-                  "text": "Covers US nursing scope-of-practice, **HIPAA privacy**, **Informed Consent**, **Advance Directives (Living Will & Healthcare Proxy)**, tort law (negligence/malpractice), and mandatory reporting of abuse/communicable diseases."
-                }
-              ]
-            },
-            {
-              "title": "2. High-Yield Clinical Concepts & Nursing Priorities",
-              "blocks": [
+                  "text": "US state **Nurse Practice Acts** define legal accountability across informed consent, **HIPAA patient privacy**, **Advance Directives**, intentional vs. unintentional torts, physical restraints, and statutory mandatory reporting. On NCLEX-RN Management of Care (`15–21%` test weight), legal safety dilemmas consistently appear as priority actions and matrix items."
+                },
                 {
-                  "type": "list",
-                  "items": [
-                    "No intentional harm No unintentional harm Tort law Un intentional tort Un intended accidents that cause harm eg Negligence failure to provide care that another reasonable, prudent co-worker would do in a similar situation.",
-                    "Legal Concepts 1. Advanced Directives & Living Wills Advanced Directive: a set of instructions someone prepares in advance of ill health that determines his healthcare wishes.",
-                    "Legal documents Prepared for when the client is not able to communicate their own wishes Can specify DNR, Full code, or speciﬁc interventions Note...",
-                    "EMTs are legally obligated to provide emergency care to a client, regardless of advance directive status. If the client is brought to a hospital, physicians will evaluate the client and implement the advance directive, if necessary.",
-                    "Advance directives don’t expire. If a new advance directive is created, the most recent one will be honored when presented to medical personnel.",
-                    "HIPAA Health Insurance Portability and Accountability Act Protecting patient health information Speciﬁc rules about sharing this information If someone doesn’t NEED the information to do their job, DON’T share it with them."
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "3. Legal & Ethical Responsibilities of the Registered Nurse",
-              "blocks": [
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u2t1-hipaa-consent-legal.webp",
+                  "alt": "Hospital nursing EHR workstation photo with Informed Consent, HIPAA privacy, Advance Directives and Restraints legal summaries in Black and Blue",
+                  "caption": "Figure 2.1: Legal Responsibilities of the US Registered Nurse — Informed Consent, HIPAA Confidentiality, Advance Directives & Chart Protection."
+                },
                 {
                   "type": "table",
-                  "title": "Legal & Ethical Responsibilities of the Registered Nurse",
+                  "title": "Unintentional vs. Intentional Torts & Malpractice Risk",
                   "headers": [
-                    "Legal Domain",
-                    "RN Legal Responsibility",
-                    "Common NCLEX Legal Trap"
+                    "Tort Classification",
+                    "Clinical Definition & Elements",
+                    "High-Yield NCLEX Exam Example"
                   ],
                   "rows": [
                     [
-                      "**Informed Consent**",
-                      "Verify client competence, voluntary agreement & witness signature.",
+                      "**Negligence / Malpractice** (Unintentional)",
+                      "Failure to act as a reasonably prudent nurse (Duty -> Breach -> Causation -> Injury).",
                       [
-                        "RN does **NOT** explain procedural risks/alternatives — that is the **performing provider's** duty."
+                        "Failing to put bed alarms up for a dizzy post-op patient resulting in hip fracture; failing to verify allergies before cefazolin."
                       ]
                     ],
                     [
-                      "**HIPAA & Confidentiality**",
-                      "Share chart/PHI only with direct care team; log off unattended screens.",
+                      "**Assault** (Intentional)",
+                      "Threat or attempt to make unwanted physical contact causing fear.",
                       [
-                        "Do NOT look up charts of family, neighbors, or non-assigned patients out of curiosity."
+                        "Threatening an uncooperative client: 'If you don't swallow these pills, I will give you an injection instead.'"
                       ]
                     ],
                     [
-                      "**Incident Reports**",
-                      "Document factual care in chart; file internal report separately without bias.",
+                      "**Battery** (Intentional)",
+                      "Actual unconsented touching or performing treatment after refusal.",
                       [
-                        "Never reference 'Incident Report filed' inside the patient's permanent medical record."
+                        "Inserting a urinary catheter, drawing blood, or giving medication after an alert client explicitly refuses."
                       ]
                     ],
                     [
-                      "**Restraints Safety**",
-                      "Obtain provider order (within 1 hr for violent restraints), neurovascular checks q15–30m, release q2h.",
+                      "**False Imprisonment** (Intentional)",
+                      "Confining a competent client against their will without legal authority.",
                       [
-                        "Never tie restraints to **side rails** (use quick-release knot on bed frame) or order PRN."
+                        "Holding an alert voluntary patient who requests **AMA discharge**, or applying restraints strictly for staff convenience."
                       ]
                     ]
                   ]
@@ -2257,15 +2242,59 @@
               ]
             },
             {
-              "title": "4. Exam Synthesis & Bedside Takeaways",
+              "title": "2. Informed Consent, HIPAA Privacy & Advance Directives",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "Integrate Legal Issues, Informed Consent, HIPAA & Mandatory Reporting cues across the 6-Step NCSBN CJMM: Recognize -> Analyze -> Prioritize -> Generate -> Act -> Evaluate.",
-                    "Compare US Conventional lab values (mg/dL, mEq/L) and US generic drug names (Acetaminophen, Epinephrine, Albuterol) before choosing an option.",
-                    "Verify mastery of Legal Issues, Informed Consent, HIPAA & Mandatory Reporting using the 20-question topic quiz and the Course Unit 2 60-question mixed Final Evaluation."
+                  "type": "table",
+                  "title": "Legal Responsibilities: Consent, Privacy & End-of-Life Orders",
+                  "headers": [
+                    "Domain",
+                    "RN Legal Responsibility",
+                    "Mandatory NCLEX Safeguard / Trap"
+                  ],
+                  "rows": [
+                    [
+                      "**Informed Consent**",
+                      "Confirm patient is alert, competent, non-medicated & signing voluntarily; witness signature.",
+                      [
+                        "RN does **NOT** explain risks, benefits, or surgical alternatives — notify the **performing physician** if the client still has questions."
+                      ]
+                    ],
+                    [
+                      "**HIPAA & Confidentiality**",
+                      "Limit PHI (verbal, EHR, whiteboards) exclusively to staff directly caring for the patient.",
+                      [
+                        "**Never** look up medical records of neighbors, coworkers, or discharged patients you are no longer assigned to care for."
+                      ]
+                    ],
+                    [
+                      "**Advance Directives**",
+                      "Follow **Living Will** (treatment limits) or **Durable POA / Healthcare Proxy** once client cannot speak.",
+                      [
+                        "Most recently dated directive governs; paramedics must initiate resuscitation if signed out-of-hospital DNR is unavailable."
+                      ]
+                    ],
+                    [
+                      "**Incident / Occurrence Reports**",
+                      "Document purely objective assessment & care in chart; complete internal report separately.",
+                      [
+                        "**NEVER write 'Incident report filed'** or 'Nurse forgot dose' in the permanent medical chart."
+                      ]
+                    ],
+                    [
+                      "**Mandatory Reporting**",
+                      "Legally required reporting even without consent: child/elder abuse, gunshot/stab wounds, TB/STIs.",
+                      [
+                        "Report suspected child/vulnerable-adult abuse to CPS/APS immediately — suspicion alone triggers duty to report, not proof."
+                      ]
+                    ]
                   ]
+                },
+                {
+                  "type": "callout",
+                  "tone": "pearl",
+                  "title": "Restraint Legal Checklist (Saunders Unit II)",
+                  "text": "Physical/chemical restraints are ALWAYS a last resort after alternatives fail. Obtain a face-to-face provider evaluation within **1 hour** (violent/behavioral), tie quick-release slip knots ONLY to the **moveable bed frame (never side rails)**, inspect skin/circulation every **15–30 minutes**, and release every **2 hours** for toileting and range-of-motion."
                 }
               ]
             }
@@ -2541,82 +2570,118 @@
           ],
           "sections": [
             {
-              "title": "1. Clinical Overview & NCLEX-RN Blueprint",
+              "title": "1. NCSBN Five Rights of Delegation & Scope of Practice",
               "blocks": [
                 {
                   "type": "paragraph",
-                  "text": "Applies **NCSBN Five Rights of Delegation** and **LaCharity Prioritization, Delegation, and Assignment** rules differentiating the scope of practice of **RN**, **LPN/LVN**, and **UAP/CNA**."
-                }
-              ]
-            },
-            {
-              "title": "2. High-Yield Clinical Concepts & Nursing Priorities",
-              "blocks": [
+                  "text": "Safe delegation enables the RN to focus cognitive priority on unstable clients while safely assigning predictable tasks to **LPNs/LVNs** and routine care to **UAPs/CNAs**. Remember the golden **LaCharity Rule**: delegation transfers authority to perform a task, **never accountability** for patient safety or clinical outcomes."
+                },
                 {
-                  "type": "list",
-                  "items": [
-                    "PRIORITIZATION AND DELEGATION Prioritization & Delegation These are essential concepts and skills for nursing practice and for a nurse to be able to effectively and safely practice in the real world setting.",
-                    "Delegation in Nursing This where a licensed Nurse that is the RN transfers responsibility to a person who is competent to complete a task FIVE RIGHTS OF DELEGATION From the Board of Nursing….",
-                    "Licensed Practice Nurse (LPN) REGISTERED NURSE (RN) SCOPE OF PRACTICE NCLEX QN 1 A nurse working in a busy long-term care facility needs to delegate to the unlicensed assistive personnel she is working with.",
-                    "A is incorrect. Performing an initial assessment is not an appropriate task to delegate. Assessment is out of the scope of practice of unlicensed assistive personnel.",
-                    "D is incorrect. Listening to the client’s lung sounds requires assessment, which is out of the scope of practice of unlicensed assistive personnel.",
-                    "Choice B is correct. Clients with advanced dementia are expected to be confused and disoriented. In the absence of any new or acute int the mental status, the LPN is fully qualified to take care of this client.",
-                    "Choice C is correct. The LPN can perform a colostomy change. This is a routine nursing procedure that the LPN can perform adequately.",
-                    "An LPN may not perform initial assessment: Initial assessments are to be performed by a registered nurse (RN).",
-                    "RN in nursing process. The LPN is to communicate any change of a patient’s status to the RN.",
-                    "Choice B is incorrect. The LPN cannot provide discharge instructions."
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u2t2-delegation-rn-lpn-uap.webp",
+                  "alt": "Hospital bedside healthcare team in blue PPE with NCSBN Five Rights of Delegation and RN vs LPN vs UAP scope matrices",
+                  "caption": "Figure 2.2: NCSBN Five Rights of Delegation, RN-Only EAT Rule, and Team Scope-of-Practice Division."
+                },
+                {
+                  "type": "diagram",
+                  "variant": "flow",
+                  "title": "NCSBN Five Rights of Clinical Delegation",
+                  "caption": "Verify every step before assigning any nursing task to an LPN or UAP.",
+                  "steps": [
+                    {
+                      "step": 1,
+                      "label": "Right Task",
+                      "detail": "Task falls within legal job description & hospital policy for that staff role"
+                    },
+                    {
+                      "step": 2,
+                      "label": "Right Circumstance",
+                      "detail": "Patient is clinically stable, predictable & chronic (never fresh post-op/unstable)"
+                    },
+                    {
+                      "step": 3,
+                      "label": "Right Person",
+                      "detail": "Staff member holds verified competency for that exact procedure"
+                    },
+                    {
+                      "step": 4,
+                      "label": "Right Communication",
+                      "detail": "Give crystal-clear limits: what parameters to report back & exact deadline"
+                    },
+                    {
+                      "step": 5,
+                      "label": "Right Supervision",
+                      "detail": "Monitor completion, verify normal vs. abnormal cues & evaluate patient outcome"
+                    }
                   ]
                 }
               ]
             },
             {
-              "title": "3. RN vs. LPN/LVN vs. UAP Scope-of-Practice Matrix",
+              "title": "2. RN vs. LPN/LVN vs. UAP Scope-of-Practice Matrix",
               "blocks": [
                 {
                   "type": "table",
-                  "title": "RN vs. LPN/LVN vs. UAP Scope-of-Practice Matrix",
+                  "title": "Definitive NCLEX Delegation Scope Matrix (EAT Framework)",
                   "headers": [
-                    "Team Member",
-                    "Safely Delegated Tasks",
-                    "Must NEVER Be Delegated"
+                    "Team Role",
+                    "Safe Tasks to Assign",
+                    "NEVER Delegate / High-Yield Traps"
                   ],
                   "rows": [
                     [
                       "**RN (Registered Nurse)**",
-                      "Admission assessments, initial teaching, care planning, IV push/blood transfusion, unstable clients.",
+                      "Admission assessments, initial client/discharge teaching, clinical evaluation, care plan creation, unstable or fresh post-op clients, **IV push / blood transfusions / TPN titration**.",
                       [
-                        "Remain directly responsible for the **EAT** framework: Evaluation, Assessment, Teaching."
+                        "RN retains exclusive duty for **E-A-T**: **E**valuation, initial **A**ssessment, and initial/discharge **T**eaching."
                       ]
                     ],
                     [
                       "**LPN / LVN**",
-                      "Oral/IM/SubQ meds, stable chronic dressing changes, Foley insertion, reinforcing existing teaching, monitoring chronic clients.",
+                      "PO/IM/SubQ meds, **stable chronic clients** (dementia, CHF follow-up), chronic dressing changes, Foley catheter insertion, trach suctioning, ostomy care, **reinforcing** existing RN teaching.",
                       [
-                        "Initial admission assessment, IV push meds, blood administration, unstable/fresh post-op clients."
+                        "**NEVER assign to LPN:** Initial patient admission assessment, unstable vitals, blood product initiation, IV push pain/cardiac boluses."
                       ]
                     ],
                     [
                       "**UAP / CNA**",
-                      "Routine vitals on stable clients, ADLs, ambulation, strict I&O, bed-making, specimen transport, capillary glucose checks.",
+                      "Routine vital signs on **stable** clients, ADLs/bathing, ambulation, strict I&O totals, empty Foley bags, daily weights, non-dysphagic feeding, standard fingerstick glucose, urine/stool specimen transport.",
                       [
-                        "Any nursing assessment, sterile dressing changes, medication administration, or dysphagia feeding evaluation."
+                        "**NEVER assign to UAP:** Listening to lungs/bowel sounds, feeding stroke/dysphagia patients, sterile wound care, any medication (including OTC/topical barrier creams if medicated)."
                       ]
                     ]
                   ]
-                }
-              ]
-            },
-            {
-              "title": "4. Exam Synthesis & Bedside Takeaways",
-              "blocks": [
+                },
                 {
-                  "type": "list",
-                  "items": [
-                    "Choice C is correct. The LPN can perform a colostomy change. This is a routine nursing procedure that the LPN can perform adequately.",
-                    "An LPN may not perform initial assessment: Initial assessments are to be performed by a registered nurse (RN).",
-                    "RN in nursing process. The LPN is to communicate any change of a patient’s status to the RN.",
-                    "Choice B is incorrect. The LPN cannot provide discharge instructions.",
-                    "The leader assigns patients to the team members who are accountable for patient care and outcomes 3. Primary nursing- (relationship based nursing)- this model focus on keeping the nurse at bedside actively involved in patient care."
+                  "type": "table",
+                  "title": "Worked Delegation Assignment Scenarios (Unit Leadership)",
+                  "headers": [
+                    "Patient Assignment Scenario",
+                    "Assigned Provider",
+                    "Clinical Delegation Rationale"
+                  ],
+                  "rows": [
+                    [
+                      "Client with chronic Parkinson's disease requiring assistance eating lunch & routine vitals.",
+                      "**UAP** (unless severe dysphagia)",
+                      [
+                        "Predictable ADLs and stable vitals belong to UAP (if dysphagia risk present, keep with RN/Speech guidelines)."
+                      ]
+                    ],
+                    [
+                      "Stable day-5 stroke client needing routine Foley insertion & oral metformin administration.",
+                      "**LPN / LVN**",
+                      [
+                        "LPNs perform sterile straight/Foley catheterization and administer scheduled PO medications safely."
+                      ]
+                    ],
+                    [
+                      "New admission from ED with GI bleed (BP 88/52, hematemesis) ordered for packed RBCs.",
+                      "**RN Only**",
+                      [
+                        "Unstable hemodynamics + initial admission assessment + blood transfusion require direct RN care."
+                      ]
+                    ]
                   ]
                 }
               ]
@@ -2893,72 +2958,53 @@
           ],
           "sections": [
             {
-              "title": "1. Clinical Overview & NCLEX-RN Blueprint",
+              "title": "1. Mass Casualty Disaster Triage (START Protocol) vs. Routine ED",
               "blocks": [
                 {
                   "type": "paragraph",
-                  "text": "Synthesizes **emergency room & mass-casualty START triage** alongside **multi-client assignment prioritization** on medical-surgical and critical care units."
-                }
-              ]
-            },
-            {
-              "title": "2. High-Yield Clinical Concepts & Nursing Priorities",
-              "blocks": [
+                  "text": "During routine Emergency Department triage, the sickest patient (including cardiac arrest) receives maximum resuscitation first. During a **Mass Casualty Incident (MCI)** where victims vastly outnumber resources, nursing ethics shift to saving the **greatest number of salvageable lives** using the rapid **START (Simple Triage And Rapid Treatment)** 30-second color tag algorithm."
+                },
                 {
-                  "type": "list",
-                  "items": [
-                    "Awareness of altered behaviors Health interventions should be focused on treating a medical condition, followed by behaviors interventions Cont….",
-                    "Legal documents Prepared for when the client is not able to communicate their own wishes Can specify DNR, Full code, or speciﬁc interventions Note...",
-                    "Advance directives don’t expire. If a new advance directive is created, the most recent one will be honored when presented to medical personnel.",
-                    "Directory information Includes the client’s name and facility location CAN be shared, UNLESS the client ops out of being included in the directory No speciﬁcs should be shared - that’s not included in the directory!",
-                    "PRIORITIZATION AND DELEGATION Prioritization & Delegation These are essential concepts and skills for nursing practice and for a nurse to be able to effectively and safely practice in the real world setting.",
-                    "Choice B is correct. Elevating the head of the bed allows the abdominal organs to descend, giving the diaphragm more room and facilitating lung expansion. Dyspnea is difficult or labored breathing.",
-                    "B is incorrect. This client is a new diagnosis and is the second client the nurse should prioritize.",
-                    "B is incorrect. Requesting a prescription to consult psychiatry is important, but not the priority. This client has a physiological issue that must be addressed first.",
-                    "D is incorrect. Establishing a therapeutic relationship falls under the love and belonging category of the hierarchy of needs. The nurse should prioritize any physiological needs first, which in this case includes the risk for cardiac arrhythmias.",
-                    "Choice C is incorrect. Intermittent claudication is a cramp-like pain in the leg or buttock during activity due to poor blood supply. This is a sign of arterial disease, but not of postoperative complication, and would not be a priority for this client."
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "3. Mass Casualty Disaster Triage Color Tagging (START Protocol)",
-              "blocks": [
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u2t3-disaster-triage-start.webp",
+                  "alt": "Paramedic emergency response ambulance paired with Red, Yellow, Green and Black START mass casualty disaster triage rules",
+                  "caption": "Figure 2.3: Mass Casualty Disaster Triage Tagging (START 30-2-Can Do Rule) vs. Routine Emergency Care."
+                },
                 {
                   "type": "table",
-                  "title": "Mass Casualty Disaster Triage Color Tagging (START Protocol)",
+                  "title": "Mass Casualty START Color Triage Tagging Matrix",
                   "headers": [
-                    "Triage Tag",
-                    "Priority Level",
-                    "Clinical Examples"
+                    "Triage Tag & Priority",
+                    "START Clinical Cutoff",
+                    "Classic NCLEX Examples & Intervention"
                   ],
                   "rows": [
                     [
-                      "**RED (Immediate — Emergent)**",
-                      "1st Priority — Life-threatening but salvageable within 1 hr.",
+                      "**RED — Immediate (Priority 1)**",
+                      "RR >30, Cap Refill >2 sec, absent radial pulse, or cannot follow simple commands.",
                       [
-                        "Airway obstruction, tension pneumothorax, active arterial hemorrhage, shock."
+                        "Airway compromise (reposition airway first!), tension pneumothorax, active arterial hemorrhage, hemothorax, severe shock."
                       ]
                     ],
                     [
-                      "**YELLOW (Delayed — Urgent)**",
-                      "2nd Priority — Serious injuries; stable to wait 30 min–2 hrs.",
+                      "**YELLOW — Delayed (Priority 2)**",
+                      "RR <30, intact radial pulse (<2s refill), follows commands, serious but non-lethal injury.",
                       [
-                        "Open fractures with intact distal pulses, large non-life-threatening wounds."
+                        "Open femur fracture with intact distal pulses, large non-bleeding lacerations, stable moderate burns (<20% TBSA non-airway)."
                       ]
                     ],
                     [
-                      "**GREEN (Minimal — Walking Wounded)**",
-                      "3rd Priority — Minor injuries; can wait hours/days.",
+                      "**GREEN — Minimal (Priority 3)**",
+                      "Able to walk away to safe zone ('Walking Wounded').",
                       [
-                        "Minor lacerations, sprains, abrasions, anxiety."
+                        "Minor abrasions, ankle sprains, emotional distress — direct to holding area to assist others safely."
                       ]
                     ],
                     [
-                      "**BLACK (Expectant — Deceased/Unsalvageable)**",
-                      "4th Priority — Comfort care only when resources limited.",
+                      "**BLACK — Expectant (Priority 4)**",
+                      "Apneic AFTER jaw-thrust airway opening, or nonsalvageable massive trauma.",
                       [
-                        "Massive head trauma with absent brain activity, fixed pupils, full cardiac arrest in mass disaster."
+                        "Open cranial brain trauma with fixed dilated pupils, pulseless cardiac arrest in mass disaster — provide comfort/pain relief only."
                       ]
                     ]
                   ]
@@ -2966,18 +3012,45 @@
               ]
             },
             {
-              "title": "4. Exam Synthesis & Bedside Takeaways",
+              "title": "2. Hospital Surge Bed Clearing & Acute Patient Prioritization",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "B is incorrect. This client is a new diagnosis and is the second client the nurse should prioritize.",
-                    "B is incorrect. Requesting a prescription to consult psychiatry is important, but not the priority. This client has a physiological issue that must be addressed first.",
-                    "D is incorrect. Establishing a therapeutic relationship falls under the love and belonging category of the hierarchy of needs. The nurse should prioritize any physiological needs first, which in this case includes the risk for cardiac arrhythmias.",
-                    "Choice C is incorrect. Intermittent claudication is a cramp-like pain in the leg or buttock during activity due to poor blood supply. This is a sign of arterial disease, but not of postoperative complication, and would not be a priority for this client.",
-                    "Licensed Practice Nurse (LPN) REGISTERED NURSE (RN) SCOPE OF PRACTICE NCLEX QN 1 A nurse working in a busy long-term care facility needs to delegate to the unlicensed assistive personnel she is working with.",
-                    "An LPN may not perform initial assessment: Initial assessments are to be performed by a registered nurse (RN)."
+                  "type": "table",
+                  "title": "Prioritizing Across 4 Simultaneous Patients (Shift Assessment Drills)",
+                  "headers": [
+                    "Scenario / Patient Finding",
+                    "Order Seen",
+                    "Kaplan / LaCharity Clinical Priority Logic"
+                  ],
+                  "rows": [
+                    [
+                      "**Acute airway/perfusion shift** (thyroidectomy client with stridor; post-op day 0 BP dropping; chest pain)",
+                      "**1st (Immediate)**",
+                      [
+                        "True systemic threats affecting **Airway, Breathing, Circulation, or Acute Neuro** demand immediate RN rescue."
+                      ]
+                    ],
+                    [
+                      "**Fresh post-op assessment or new lab critical** (K+ 6.2 mEq/L, WBC <1,000, sudden blurred vision post-stroke)",
+                      "**2nd (Urgent)**",
+                      [
+                        "High-risk electrolyte/neuro deterioration can progress rapidly into arrest or stroke expansion if delayed."
+                      ]
+                    ],
+                    [
+                      "**Hospital Surge Bed Discharge Rule** (Mass disaster arrives -> need 4 beds immediately)",
+                      "**Discharge Stable First**",
+                      [
+                        "Discharge **uncomplicated stable chronic clients or ready home-discharge clients** (e.g., cellulitis Day 3 PO step-down, mild resolved exacerbation) to free inpatient beds."
+                      ]
+                    ]
                   ]
+                },
+                {
+                  "type": "callout",
+                  "tone": "pearl",
+                  "title": "START 60-Second Airway Rule",
+                  "text": "During disaster field triage, if an unconscious victim is **not breathing**, perform ONE rapid **jaw-thrust / chin-lift** maneuver: if spontaneous breathing resumes -> tag **RED** immediately; if apnea persists -> tag **BLACK** and move immediately to the next salvageable victim."
                 }
               ]
             }
