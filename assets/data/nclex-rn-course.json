@@ -20736,84 +20736,58 @@
           ],
           "sections": [
             {
-              "title": "1. Clinical Overview & NCLEX-RN Blueprint",
+              "title": "1. Glaucoma, Cataracts, Retinal Detachment & Eye Drop Rules",
               "blocks": [
                 {
                   "type": "paragraph",
-                  "text": "**Glaucoma, Cataracts, Retinal Detachment & Eye Drop Administration** is a high-yield focus area in **Course Unit 12: Sensory System (Eye & Ear Disorders) & Perioperative Care** for the Next-Generation NCLEX-RN (NGN). This study guide integrates core pathophysiology, clinical judgment cues, pharmacology safety, and bedside nursing priorities across **Saunders Comprehensive Review (9th Ed.)**, **Kaplan NCLEX-RN Prep**, and **LaCharity PDA**."
-                }
-              ]
-            },
-            {
-              "title": "2. High-Yield Clinical Concepts & Nursing Priorities",
-              "blocks": [
+                  "text": "Ophthalmic nursing centers on **preventing permanent optic nerve or retinal ischemia** (`acute angle-closure glaucoma`, `retinal detachment`) and **preventing post-op intraocular pressure (IOP) spikes** (`cataract surgery`). Always instill **aqueous drops before suspensions/ointments**, wait **5 minutes between drops**, and apply **punctal occlusion** (gentle pressure on inner canthus) for systemic drugs like `Timolol`."
+                },
                 {
-                  "type": "list",
-                  "items": [
-                    "The cornea is the clear front surface of the eye that helps focus light.",
-                    "The iris is the coloured part of the eye The pupil is the black circular opening in the iris that lets light in.",
-                    "The optic nerve carries these electrical signals from the retina to the brain, where they are interpreted as visual images.",
-                    "The lens sits behind the iris and focuses light onto the retina, which is the light-sensitive layer at the back of the eye.",
-                    "Six extraocular muscles control the movements of the eye, allowing us to look in different directions without moving our heads.",
-                    "Conti… 6. Pain and Discomfort: Ask the patient about any pain, discomfort, itchiness, or foreign body sensation in the eyes.",
-                    "Diagnostic tests 1. Visual Acuity Test: This is a standard eye exam that measures the sharpness of your vision. It usually involves reading letters on a chart from a specific distance.",
-                    "This is a condition where the normally clear lens of the eye becomes cloudy, causing vision impairment.",
-                    "This condition causes loss of central vision due to damage to the macula (part of the retina).",
-                    "This is a complication of diabetes that affects the eyes, leading to damage of the blood vessels in the retina."
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "3. Sensory (Eye & Ear) & Perioperative Safety",
-              "blocks": [
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u12t1-eye-glaucoma-cataracts-retina.webp",
+                  "alt": "Retinal detachment illustration with NCLEX-RN glaucoma, cataract and eye drop priorities",
+                  "caption": "Retinal detachment anatomy with glaucoma, cataract and eye drop rules (NU · nursinguganda.com)."
+                },
                 {
                   "type": "table",
-                  "title": "Sensory (Eye & Ear) & Perioperative Safety",
+                  "title": "High-Yield Eye Disorders & Nursing Priorities",
                   "headers": [
-                    "Disorder / Phase",
+                    "Disorder",
                     "Hallmark Clinical Cues",
-                    "Nursing Priority"
+                    "Priority Nursing Interventions"
                   ],
                   "rows": [
                     [
-                      "**Glaucoma (High IOP)**",
-                      "Tunnel vision, halos, ocular emergency in angle-closure.",
-                      "Give **Timolol** / **Pilocarpine**; **NO mydriatics (atropine)** in angle-closure glaucoma!"
+                      "**Open- vs. Angle-Closure Glaucoma**",
+                      "Open: painless **tunnel vision**. Acute Angle-Closure: **sudden severe eye pain, halos around lights, N/V, IOP > 21 mmHg**.",
+                      [
+                        "**Acute Angle-Closure = EMERGENCY**: **IV Mannitol**, **Pilocarpine** (miotic), **Timolol** (watch **bradycardia/asthma!**), **Acetazolamide**. **AVOID anticholinergics (Atropine)**."
+                      ]
+                    ],
+                    [
+                      "**Cataracts (Post-Op)**",
+                      "Painless cloudy/blurry vision, glare.",
+                      [
+                        "Wear **eye shield at night**; **avoid bending at waist, coughing, straining, lifting > 5–10 lb**, or sleeping on operative side."
+                      ]
                     ],
                     [
                       "**Retinal Detachment**",
-                      "Flashes of light, floaters, **'curtain falling' over vision** (painless).",
-                      "Bedrest, eye patches, maintain prescribed post-op positioning (often **face-down**)."
-                    ],
-                    [
-                      "**Meniere's Disease**",
-                      "Episodic **vertigo**, tinnitus, sensorineural hearing loss.",
-                      "Low-sodium diet, avoid caffeine/alcohol/sudden head turns; **Meclizine**."
-                    ],
-                    [
-                      "**Malignant Hyperthermia (OR)**",
-                      "Early sign: **unexplained hypercarbia (rising EtCO2)**, tachycardia, jaw rigidity; late = extreme fever.",
-                      "Stop triggering volatile anesthetics/succinylcholine + give **IV Dantrolene** + cold fluids."
+                      "**Sudden painless flashes of light (photopsia)**, **floaters**, **\"curtain\" or shadow** over visual field.",
+                      [
+                        "**EMERGENCY**: **Bedrest**, **cover BOTH eyes** (reduce conjugate eye movement), position head per tear location, **no reading/TV** -> prep for surgery."
+                      ]
                     ]
                   ]
                 }
               ]
             },
             {
-              "title": "4. Exam Synthesis & Bedside Takeaways",
+              "title": "2. Exam Synthesis & Bedside Takeaways",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "Diagnostic tests 1. Visual Acuity Test: This is a standard eye exam that measures the sharpness of your vision. It usually involves reading letters on a chart from a specific distance.",
-                    "This is a condition where the normally clear lens of the eye becomes cloudy, causing vision impairment.",
-                    "This condition causes loss of central vision due to damage to the macula (part of the retina).",
-                    "This is a complication of diabetes that affects the eyes, leading to damage of the blood vessels in the retina.",
-                    "This is an emergency situation where the retina pulls away from the back of the eye.",
-                    "Inflammatory conditions of the eyes 1. Conjunctivitis: Also known as pink eye, this is an inflammation or infection of the outer membrane of the eyeball and the inner eyelid.",
-                    "Ophthalmic Medications Glaucoma Medications These include prostaglandin analogues (e.g., latanoprost), beta blockers (e.g., timolol), alpha-adrenergic agonists (e.g., brimonidine), and carbonic anhydrase inhibitors (e.g., dorzolamide)."
-                  ]
+                  "type": "paragraph",
+                  "text": "**NCLEX-RN Bottom Line:** **Sudden painless flashes + floaters + curtain over vision = Retinal Detachment** (bedrest + patch both eyes). **Sudden severe eye pain + halos + N/V = Acute Angle-Closure Glaucoma** (avoid Atropine/mydriatics!). **Timolol eye drops** are a beta-blocker — hold/question if client has **asthma or bradycardia**."
                 }
               ]
             }
@@ -21089,84 +21063,65 @@
           ],
           "sections": [
             {
-              "title": "1. Clinical Overview & NCLEX-RN Blueprint",
+              "title": "1. Meniere's Disease, Otitis, Mastoiditis & Ear Procedures",
               "blocks": [
                 {
                   "type": "paragraph",
-                  "text": "**Meniere's Disease, Otitis, Mastoiditis & Ear Irrigation Safety** is a high-yield focus area in **Course Unit 12: Sensory System (Eye & Ear Disorders) & Perioperative Care** for the Next-Generation NCLEX-RN (NGN). This study guide integrates core pathophysiology, clinical judgment cues, pharmacology safety, and bedside nursing priorities across **Saunders Comprehensive Review (9th Ed.)**, **Kaplan NCLEX-RN Prep**, and **LaCharity PDA**."
-                }
-              ]
-            },
-            {
-              "title": "2. High-Yield Clinical Concepts & Nursing Priorities",
-              "blocks": [
+                  "text": "**Meniere's disease** causes excess endolymphatic fluid in the inner ear, producing the classic triad of **episodic vertigo**, **tinnitus**, and **sensorineural hearing loss**. Safety focuses on **fall prevention during acute vertigo** and **avoiding tympanic membrane perforation** during ear irrigation."
+                },
                 {
-                  "type": "list",
-                  "items": [
-                    "The structure of the ear THE TRANSMISSION AND PERCEPTION OF SOUND BY THE EAR 1. Sound waves enter the ear through the external auditory canal, a tube running from the outer ear to the middle ear.",
-                    "Diagnostic tests of the ear 1. Audiometry: This test measures a person's ability to hear different sounds, pitches, or frequencies. Any deviations from normal hearing thresholds can indicate hearing loss.",
-                    "Ear problems Otitis Media This is an infection or inflammation of the middle ear often caused by bacteria or viruses Symptoms include; ear pain, fever, and hearing loss.",
-                    "Treatment may include antibiotics, pain relievers, or in severe cases, surgery to drain fluid from the middle ear.",
-                    "Tinnitus This is the perception of noise or ringing in the ears when no external sound is present.",
-                    "It can be caused by age-related hearing loss, exposure to loud noise, earwax blockage, or ear bone changes.",
-                    "Treatment focuses on managing the underlying condition and may include medications, noise suppression, or hearing aids.",
-                    "This is an inner ear disorder that causes episodes of vertigo (spinning sensation), tinnitus, hearing loss, and a feeling of fullness or pressure in the ear.",
-                    "This occurs when sound waves cannot reach the inner ear due to blockages or damage in the outer or middle ear.",
-                    "Causes include; ear infections, fluid in the middle ear, earwax buildup, or a perforated eardrum."
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "3. Sensory (Eye & Ear) & Perioperative Safety",
-              "blocks": [
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u12t2-ear-meniere-otitis-hearing.webp",
+                  "alt": "Anatomy of the human ear with NCLEX-RN Meniere's disease, ear drop and irrigation rules",
+                  "caption": "Outer, middle and inner ear anatomy with Meniere's and ear procedure rules (NU · nursinguganda.com)."
+                },
                 {
                   "type": "table",
-                  "title": "Sensory (Eye & Ear) & Perioperative Safety",
+                  "title": "Ear Disorders, Irrigation & Communication",
                   "headers": [
-                    "Disorder / Phase",
-                    "Hallmark Clinical Cues",
-                    "Nursing Priority"
+                    "Condition / Procedure",
+                    "Clinical Cues & Rules",
+                    "Priority Nursing Actions"
                   ],
                   "rows": [
                     [
-                      "**Glaucoma (High IOP)**",
-                      "Tunnel vision, halos, ocular emergency in angle-closure.",
-                      "Give **Timolol** / **Pilocarpine**; **NO mydriatics (atropine)** in angle-closure glaucoma!"
-                    ],
-                    [
-                      "**Retinal Detachment**",
-                      "Flashes of light, floaters, **'curtain falling' over vision** (painless).",
-                      "Bedrest, eye patches, maintain prescribed post-op positioning (often **face-down**)."
-                    ],
-                    [
                       "**Meniere's Disease**",
-                      "Episodic **vertigo**, tinnitus, sensorineural hearing loss.",
-                      "Low-sodium diet, avoid caffeine/alcohol/sudden head turns; **Meclizine**."
+                      "Severe **spinning vertigo**, **tinnitus**, fluctuating **hearing loss**, N/V.",
+                      [
+                        "**Fall precautions**: lie down in **quiet, dark room**, keep head still; **low-sodium diet (< 1.5–2 g/day)**, avoid **caffeine, alcohol, nicotine**; **Meclizine / Diazepam**."
+                      ]
                     ],
                     [
-                      "**Malignant Hyperthermia (OR)**",
-                      "Early sign: **unexplained hypercarbia (rising EtCO2)**, tachycardia, jaw rigidity; late = extreme fever.",
-                      "Stop triggering volatile anesthetics/succinylcholine + give **IV Dantrolene** + cold fluids."
+                      "**Otitis Media & Mastoiditis**",
+                      "Ear pain, fever; **mastoiditis** = **postauricular swelling/redness** + protruding ear (meningitis risk!).",
+                      [
+                        "Finish full antibiotic course; post-mastoidectomy watch **CN VII (facial droop)**."
+                      ]
+                    ],
+                    [
+                      "**Ear Drops & Irrigation**",
+                      "**Adult:** pull pinna **UP & BACK**. **Child < 3 yr:** pull **DOWN & BACK**.",
+                      [
+                        "Warm drops/irrigant to **body temperature** (cold causes vertigo/N/V); **CONTRAINDICATED if tympanic membrane perforated**; aim stream at **upper canal wall**."
+                      ]
+                    ],
+                    [
+                      "**Hearing Loss Communication**",
+                      "Presbycusis (high-frequency loss) / conductive loss.",
+                      [
+                        "**Face client directly**, speak **slowly & clearly** in **normal/low-pitched voice** (never shout!), reduce background noise."
+                      ]
                     ]
                   ]
                 }
               ]
             },
             {
-              "title": "4. Exam Synthesis & Bedside Takeaways",
+              "title": "2. Exam Synthesis & Bedside Takeaways",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "Treatment focuses on managing the underlying condition and may include medications, noise suppression, or hearing aids.",
-                    "This is an inner ear disorder that causes episodes of vertigo (spinning sensation), tinnitus, hearing loss, and a feeling of fullness or pressure in the ear.",
-                    "This occurs when sound waves cannot reach the inner ear due to blockages or damage in the outer or middle ear.",
-                    "Causes include; ear infections, fluid in the middle ear, earwax buildup, or a perforated eardrum.",
-                    "Treatment depends on the cause and may include medications, surgery, or hearing aids.",
-                    "This is caused by damage to the inner ear or the auditory nerve.",
-                    "This is an abnormal growth of bone in the middle ear which can cause hearing loss."
-                  ]
+                  "type": "paragraph",
+                  "text": "**NCLEX-RN Bottom Line:** Pull pinna **UP & BACK for adults** and **DOWN & BACK for children under 3**. Never irrigate an ear with **body-temp solution** if a **perforated eardrum** is suspected. Manage **Meniere's disease** with **fall safety, low-sodium diet, and Meclizine**."
                 }
               ]
             }
@@ -21442,76 +21397,65 @@
           ],
           "sections": [
             {
-              "title": "1. Clinical Overview & NCLEX-RN Blueprint",
+              "title": "1. Pre-Op Consent, Malignant Hyperthermia & PACU Safety",
               "blocks": [
                 {
                   "type": "paragraph",
-                  "text": "**Preoperative Consent, Malignant Hyperthermia & PACU Post-Op Safety** is a high-yield focus area in **Course Unit 12: Sensory System (Eye & Ear Disorders) & Perioperative Care** for the Next-Generation NCLEX-RN (NGN). This study guide integrates core pathophysiology, clinical judgment cues, pharmacology safety, and bedside nursing priorities across **Saunders Comprehensive Review (9th Ed.)**, **Kaplan NCLEX-RN Prep**, and **LaCharity PDA**."
-                }
-              ]
-            },
-            {
-              "title": "2. High-Yield Clinical Concepts & Nursing Priorities",
-              "blocks": [
+                  "text": "Perioperative nursing spans **legal informed consent verification** (provider explains risks/alternatives; RN witnesses signature **BEFORE any sedative/opioid** is given), **Universal Protocol time-out**, **Malignant Hyperthermia** emergency response (`Dantrolene`), and **PACU airway/wound complication management**."
+                },
                 {
-                  "type": "list",
-                  "items": [
-                    "Management often includes; antibiotics, analgesics for pain, and sometimes myringotomy, a surgical procedure to drain fluid.",
-                    "Confirm informed consent perform baseline visual acuity assessment, administer preoperative medications as prescribed (usually antibiotic and dilating drops).",
-                    "Confirm informed consent provide reassurance to the patient administer preoperative medications as prescribed.",
-                    "Preoperative Care: Confirm informed consent, provide emotional support, educate about the procedure and the use of an ocular prosthesis.",
-                    "Postoperative Care: Monitor for signs of infection, administer pain medications as needed, provide emotional support, refer to support groups if needed, educate on the care of the eye socket and prosthesis.",
-                    "This is a surgical procedure that involves removing the vitreous – a clear gel-like substance inside the eye."
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "3. Sensory (Eye & Ear) & Perioperative Safety",
-              "blocks": [
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u12t3-perioperative-mh-pacu-safety.webp",
+                  "alt": "Laparoscopic operating theatre with NCLEX-RN Informed Consent, Malignant Hyperthermia and PACU rules",
+                  "caption": "Operating theatre with informed consent, Malignant Hyperthermia and PACU priorities (NU · nursinguganda.com)."
+                },
                 {
                   "type": "table",
-                  "title": "Sensory (Eye & Ear) & Perioperative Safety",
+                  "title": "Perioperative Nursing Priorities & Emergencies",
                   "headers": [
-                    "Disorder / Phase",
-                    "Hallmark Clinical Cues",
-                    "Nursing Priority"
+                    "Phase / Emergency",
+                    "Hallmark Cues & Timing",
+                    "Immediate Nursing Action"
                   ],
                   "rows": [
                     [
-                      "**Glaucoma (High IOP)**",
-                      "Tunnel vision, halos, ocular emergency in angle-closure.",
-                      "Give **Timolol** / **Pilocarpine**; **NO mydriatics (atropine)** in angle-closure glaucoma!"
+                      "**Informed Consent**",
+                      "Required before invasive procedures.",
+                      [
+                        "Surgeon obtains consent; RN **witnesses signature** and verifies client is **alert & unmedicated** (if client has questions -> **stop & call surgeon**!)."
+                      ]
                     ],
                     [
-                      "**Retinal Detachment**",
-                      "Flashes of light, floaters, **'curtain falling' over vision** (painless).",
-                      "Bedrest, eye patches, maintain prescribed post-op positioning (often **face-down**)."
+                      "**Malignant Hyperthermia (MH)**",
+                      "Triggered by **Succinylcholine / inhaled anesthetics**: **rising ETCO2 (earliest sign!)**, **masseter jaw rigidity**, tachycardia, **rapidly rising fever**.",
+                      [
+                        "**STOP triggering agent** -> **IV Dantrolene sodium** -> **100% O2** -> **active cooling** (cold NS IV, ice packs) -> treat hyperkalemia."
+                      ]
                     ],
                     [
-                      "**Meniere's Disease**",
-                      "Episodic **vertigo**, tinnitus, sensorineural hearing loss.",
-                      "Low-sodium diet, avoid caffeine/alcohol/sudden head turns; **Meclizine**."
+                      "**PACU Airway & Post-Op Fever**",
+                      "Early: tongue obstruction/laryngospasm. **Atelectasis (Day 1–2)**; **Wound/UTI (Day 3–5)**.",
+                      [
+                        "**Side-lying / jaw-thrust** until gag returns; **incentive spirometry** q1–2h; splinting incision."
+                      ]
                     ],
                     [
-                      "**Malignant Hyperthermia (OR)**",
-                      "Early sign: **unexplained hypercarbia (rising EtCO2)**, tachycardia, jaw rigidity; late = extreme fever.",
-                      "Stop triggering volatile anesthetics/succinylcholine + give **IV Dantrolene** + cold fluids."
+                      "**Dehiscence & Evisceration**",
+                      "**\"Something popped\"** -> wound separates (**dehiscence**) or organs protrude (**evisceration**).",
+                      [
+                        "**Stay with client**, cover organs with **sterile 0.9% NS-soaked gauze**, place in **low-Fowler's with knees flexed**, keep **NPO**, call **surgeon STAT**."
+                      ]
                     ]
                   ]
                 }
               ]
             },
             {
-              "title": "4. Exam Synthesis & Bedside Takeaways",
+              "title": "2. Exam Synthesis & Bedside Takeaways",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "Integrate Preoperative Consent, Malignant Hyperthermia & PACU Post-Op Safety cues across the 6-Step NCSBN CJMM: Recognize -> Analyze -> Prioritize -> Generate -> Act -> Evaluate.",
-                    "Compare US Conventional lab values (mg/dL, mEq/L) and US generic drug names (Acetaminophen, Epinephrine, Albuterol) before choosing an option.",
-                    "Verify mastery of Preoperative Consent, Malignant Hyperthermia & PACU Post-Op Safety using the 20-question topic quiz and the Course Unit 12 60-question mixed Final Evaluation."
-                  ]
+                  "type": "paragraph",
+                  "text": "**NCLEX-RN Bottom Line:** **Never witness consent after pre-op sedation is given**, and if the client doesn't understand the procedure, **call the surgeon back**. **Rising ETCO2 + jaw rigidity under anesthesia = Malignant Hyperthermia** -> give **IV Dantrolene**. For **evisceration**, cover with **sterile wet 0.9% NS dressings** and **flex knees**."
                 }
               ]
             }
