@@ -9579,63 +9579,135 @@
           ],
           "sections": [
             {
-              "title": "1. Clinical Overview & NCLEX-RN Blueprint",
+              "title": "1. Glycemic Control, Hypoglycemia & Sick-Day Rules",
               "blocks": [
                 {
                   "type": "paragraph",
-                  "text": "Compares **DKA** (Type 1, ketones, Kussmaul respirations, acidosis) vs. **HHS** (Type 2, extreme hyperglycemia > 600 mg/dL, severe dehydration, NO ketones) plus **Insulin Onset/Peak/Duration** profiles."
-                }
-              ]
-            },
-            {
-              "title": "2. High-Yield Clinical Concepts & Nursing Priorities",
-              "blocks": [
+                  "text": "Endocrine nursing prioritizes **rapid recognition of acute glycemic emergencies** (`Hypoglycemia < 70 mg/dL`, `DKA`, and `HHS`) alongside strict **insulin peak-time safety**. For a conscious client with hypoglycemia, administer **15 g fast-acting carbohydrate** (4 oz fruit juice or glucose tablets) and recheck in **15 minutes** (`15/15 Rule`); for an unconscious or NPO client, give **IV D50W** or **IM/intranasal Glucagon**."
+                },
                 {
-                  "type": "list",
-                  "items": [
-                    "Prioritize airway, breathing, circulation (ABCs), and acute safety cues before routine tasks in Diabetes Mellitus, DKA vs. HHS & Insulin Peak/Onset Profiles.",
-                    "Verify US conventional lab values (mg/dL, mEq/L) and target vital signs prior to administering high-alert medications.",
-                    "Keep initial assessments, unstable clients, IV push medications, and discharge teaching under direct RN responsibility."
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u6t1-diabetes-dka-hhs.webp",
+                  "alt": "Blood glucose meter showing capillary blood glucose testing with NCLEX-RN DKA vs HHS priority rules",
+                  "caption": "Point-of-care capillary glucose testing with DKA vs. HHS emergency priorities (NU · nursinguganda.com)."
+                },
+                {
+                  "type": "table",
+                  "title": "Sick-Day Rules & Perioperative Metformin Safety",
+                  "headers": [
+                    "Clinical Scenario",
+                    "Priority Nursing Action",
+                    "NCLEX-RN Safety Trap"
+                  ],
+                  "rows": [
+                    [
+                      "**Sick Day (Illness / Infection)**",
+                      "Check blood glucose **q3–4h**; **NEVER hold basal insulin** even if NPO/poor intake.",
+                      [
+                        "Stress hormones raise glucose; check urine **ketones** if BG **> 240 mg/dL**."
+                      ]
+                    ],
+                    [
+                      "**Contrast Dye / Surgery (Metformin)**",
+                      "Hold **Metformin** **48 hours** before/after iodinated contrast or surgery.",
+                      [
+                        "Prevents **lactic acidosis**; verify **serum creatinine** normal before restarting."
+                      ]
+                    ],
+                    [
+                      "**Somogyi vs. Dawn Phenomenon**",
+                      "Check **02:00–03:00 AM** blood glucose to differentiate.",
+                      [
+                        "**Somogyi** = 3 AM hypoglycemia -> rebound AM hyperglycemia (decrease PM insulin). **Dawn** = 3 AM normal/high -> AM high (increase PM insulin)."
+                      ]
+                    ]
                   ]
                 }
               ]
             },
             {
-              "title": "3. Insulin Profiles & Peak Hypoglycemia Watch Times",
+              "title": "2. Insulin Onset, Peak & Duration Profiles",
               "blocks": [
                 {
                   "type": "table",
-                  "title": "Insulin Profiles & Peak Hypoglycemia Watch Times",
+                  "title": "Insulin Types & Peak Hypoglycemia Watch Times",
                   "headers": [
                     "Insulin Class & Examples",
-                    "Onset",
-                    "Peak (Highest Hypoglycemia Risk)",
-                    "Nursing Priority"
+                    "Onset / Peak / Duration",
+                    "Bedside Administration & Mixing Rules"
                   ],
                   "rows": [
                     [
-                      "**Rapid-Acting** (Lispro, Aspart, Glulisine)",
-                      "10 – 15 min",
-                      "**1 – 3 hours**",
-                      "Give only when meal tray is **in front of client**!"
+                      "**Rapid-Acting** (`Lispro`, `Aspart`, `Glulisine`)",
+                      "Onset **15 min** · Peak **1–3 hr** · Dur **3–5 hr**",
+                      [
+                        "Give **only when meal tray is at bedside**; highest immediate hypoglycemia risk."
+                      ]
                     ],
                     [
-                      "**Short-Acting** (Regular — Humulin R)",
-                      "30 – 60 min",
-                      "**2 – 4 hours**",
-                      "ONLY insulin safe for **IV push/drip (DKA)**; draw clear before cloudy (RN)."
+                      "**Short-Acting** (`Regular` — Humulin R)",
+                      "Onset **30 min** · Peak **2–4 hr** · Dur **5–8 hr**",
+                      [
+                        "**ONLY insulin given IV** (for DKA & hyperkalemia). Draw **Clear (Regular) before Cloudy (NPH)**."
+                      ]
                     ],
                     [
-                      "**Intermediate** (NPH — Cloudy)",
-                      "1 – 2 hours",
-                      "**4 – 12 hours**",
-                      "Roll gently between palms (do not shake); risk for afternoon/evening low glucose."
+                      "**Intermediate-Acting** (`NPH` — Cloudy)",
+                      "Onset **1–2 hr** · Peak **4–12 hr** · Dur **12–18 hr**",
+                      [
+                        "Roll vial gently between palms (never shake); watch for **late-afternoon hypoglycemia**."
+                      ]
                     ],
                     [
-                      "**Long-Acting** (Glargine, Detemir)",
-                      "1 – 2 hours",
-                      "**Peakless (No pronounced peak)**",
-                      "Do **NOT mix** in same syringe with any other insulin; give once daily same time."
+                      "**Long-Acting** (`Glargine`, `Detemir`)",
+                      "Onset **1–2 hr** · **NO PEAK** · Dur **24 hr**",
+                      [
+                        "**NEVER mix** in the same syringe with any other insulin; provides steady basal coverage."
+                      ]
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "3. DKA vs. HHS Emergency Management",
+              "blocks": [
+                {
+                  "type": "table",
+                  "title": "Diabetic Ketoacidosis (DKA) vs. Hyperosmolar Hyperglycemic State (HHS)",
+                  "headers": [
+                    "Feature",
+                    "DKA (Typically Type 1 DM)",
+                    "HHS (Typically Type 2 DM)"
+                  ],
+                  "rows": [
+                    [
+                      "**Blood Glucose & Osmolality**",
+                      "**250–600 mg/dL**; mild–moderate hyperosmolality.",
+                      [
+                        "**> 600 mg/dL** (often 800–1,200); **severe hyperosmolality** (> 320 mOsm/kg)."
+                      ]
+                    ],
+                    [
+                      "**Acid-Base & Ketones**",
+                      "**Metabolic acidosis (pH < 7.30)**, **(+) ketones**, **Kussmaul respirations**, fruity breath.",
+                      [
+                        "**NO significant ketoacidosis** (pH > 7.30, trace/negative ketones); enough insulin remains to prevent lipolysis."
+                      ]
+                    ],
+                    [
+                      "**1st Priority Intervention**",
+                      "**0.9% Normal Saline** bolus (restore perfusion) -> then **Regular Insulin IV**.",
+                      [
+                        "Aggressive **0.9% NS** fluid resuscitation first (often 6–10 L deficit); watch elderly for fluid overload."
+                      ]
+                    ],
+                    [
+                      "**Potassium & Dextrose Switch**",
+                      "**Check K+ BEFORE IV insulin** (hold if K+ < 3.3 mEq/L); add **D5W** when BG hits **200–250 mg/dL**.",
+                      [
+                        "Insulin shifts K+ into cells -> lethal **hypokalemia** if not replaced; D5W prevents **cerebral edema**."
+                      ]
                     ]
                   ]
                 }
@@ -9645,12 +9717,8 @@
               "title": "4. Exam Synthesis & Bedside Takeaways",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "Integrate Diabetes Mellitus, DKA vs. HHS & Insulin Peak/Onset Profiles cues across the 6-Step NCSBN CJMM: Recognize -> Analyze -> Prioritize -> Generate -> Act -> Evaluate.",
-                    "Compare US Conventional lab values (mg/dL, mEq/L) and US generic drug names (Acetaminophen, Epinephrine, Albuterol) before choosing an option.",
-                    "Verify mastery of Diabetes Mellitus, DKA vs. HHS & Insulin Peak/Onset Profiles using the 20-question topic quiz and the Course Unit 6 60-question mixed Final Evaluation."
-                  ]
+                  "type": "paragraph",
+                  "text": "**NCLEX-RN Bottom Line:** In DKA/HHS, **isotonic fluid resuscitation (0.9% NS) ALWAYS precedes IV Regular insulin**, and **serum potassium must be >= 3.3 mEq/L** before starting the insulin drip. Never mix **Glargine/Detemir** with other insulins, draw **Clear before Cloudy**, and monitor for **cerebral edema** (headache, lethargy, bradycardia) if glucose drops too rapidly."
                 }
               ]
             }
@@ -9926,53 +9994,89 @@
           ],
           "sections": [
             {
-              "title": "1. Clinical Overview & NCLEX-RN Blueprint",
+              "title": "1. Thyroid & Parathyroid Anatomy & Clinical Assessment",
               "blocks": [
                 {
                   "type": "paragraph",
-                  "text": "**Hypothyroidism, Hyperthyroidism (Thyroid Storm) & Parathyroid** is a high-yield focus area in **Course Unit 6: Endocrine & Metabolic Disorders (Diabetes, Thyroid, Adrenal & Pituitary)** for the Next-Generation NCLEX-RN (NGN). This study guide integrates core pathophysiology, clinical judgment cues, pharmacology safety, and bedside nursing priorities across **Saunders Comprehensive Review (9th Ed.)**, **Kaplan NCLEX-RN Prep**, and **LaCharity PDA**."
+                  "text": "The **thyroid gland** regulates systemic metabolic rate (`T3`/`T4`), while the four posterior **parathyroid glands** regulate **serum calcium** (`8.6–10.2 mg/dL`) and **phosphate** (`2.5–4.5 mg/dL`) via PTH. Accidental parathyroid removal or trauma during thyroidectomy causes **acute hypocalcemia** (`tetany`, `laryngospasm`, `Chvostek` & `Trousseau` signs)."
+                },
+                {
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u6t2-thyroid-parathyroid.webp",
+                  "alt": "Anterior and posterior anatomy of the thyroid and parathyroid glands with thyroid storm and post-thyroidectomy safety",
+                  "caption": "Anterior & posterior thyroid/parathyroid anatomy with NCLEX-RN bedside emergency priorities (NU · nursinguganda.com)."
                 }
               ]
             },
             {
-              "title": "2. High-Yield Clinical Concepts & Nursing Priorities",
+              "title": "2. Hypothyroidism (Myxedema) vs. Hyperthyroidism (Thyroid Storm)",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "Prioritize airway, breathing, circulation (ABCs), and acute safety cues before routine tasks in Hypothyroidism, Hyperthyroidism (Thyroid Storm) & Parathyroid.",
-                    "Verify US conventional lab values (mg/dL, mEq/L) and target vital signs prior to administering high-alert medications.",
-                    "Keep initial assessments, unstable clients, IV push medications, and discharge teaching under direct RN responsibility."
+                  "type": "table",
+                  "title": "Thyroid Disorders & Life-Threatening Crises",
+                  "headers": [
+                    "Condition",
+                    "Key Clinical Manifestations & Labs",
+                    "Priority Nursing Interventions"
+                  ],
+                  "rows": [
+                    [
+                      "**Hypothyroidism / Myxedema Coma**",
+                      "Bradycardia, cold intolerance, weight gain, constipation, lethargy; **High TSH, Low T3/T4**. Coma: **hypothermia, hypoventilation, hypotension**.",
+                      [
+                        "**Levothyroxine** empty stomach **AM** (lifelong); start low & go slow in elderly; report **chest pain/palpitations**. Myxedema coma: **airway/ventilation + IV levothyroxine + passive rewarming** (avoid rapid warming blankets)."
+                      ]
+                    ],
+                    [
+                      "**Hyperthyroidism (Graves')**",
+                      "Tachycardia/AFib, heat intolerance, weight loss, diarrhea, **exophthalmos**; **Low TSH, High T3/T4**.",
+                      [
+                        "**PTU / Methimazole** (watch **agranulocytosis**—report sore throat/fever), **Propranolol** for HR, high-calorie diet, eye lubrication/tape eyelids at night."
+                      ]
+                    ],
+                    [
+                      "**Thyroid Storm (Crisis)**",
+                      "**Hyperthermia (> 38.5–41°C)**, extreme tachycardia (> 130), agitation/delirium, pulmonary edema.",
+                      [
+                        "**PTU first** -> **Iodine (Lugol's)** 1 hr later -> **IV Propranolol** -> **Hydrocortisone** + cooling blankets. **NEVER give Aspirin** (displaces T4 from binding proteins!)."
+                      ]
+                    ]
                   ]
                 }
               ]
             },
             {
-              "title": "3. Endocrine Crises Comparison (DKA/HHS, Thyroid, Adrenal, SIADH vs. DI)",
+              "title": "3. Post-Thyroidectomy & Parathyroid Calcium Balance",
               "blocks": [
                 {
                   "type": "table",
-                  "title": "Endocrine Crises Comparison (DKA/HHS, Thyroid, Adrenal, SIADH vs. DI)",
+                  "title": "Post-Thyroidectomy Bedside Safety & Parathyroid Disorders",
                   "headers": [
-                    "Endocrine Condition",
-                    "Hallmark Lab & Assessment Cues",
-                    "Priority Nursing Intervention"
+                    "Scenario / Disorder",
+                    "Assessment Cues",
+                    "Immediate Nursing Action"
                   ],
                   "rows": [
                     [
-                      "**Thyroid Storm vs. Myxedema**",
-                      "**Storm:** Fever > 104°F, HR > 140, delirium. **Myxedema:** Hypothermia, bradycardia, coma.",
-                      "**Storm:** PTU, iodine, beta-blockers, cooling (NO aspirin!). **Myxedema:** IV Levothyroxine + warming."
+                      "**Post-Thyroidectomy Airway & Bleeding**",
+                      "Stridor, hoarseness, frequent swallowing, tight neck dressing.",
+                      [
+                        "Place in **Semi-Fowler's**, support head/neck with pillows, **check behind the neck** for pooled blood, keep **tracheostomy tray + suction** at bedside."
+                      ]
                     ],
                     [
-                      "**Addison's vs. Cushing's**",
-                      "**Addison (Low steroid):** Hypotension, hyperkalemia, bronze skin. **Cushing (High):** Moon face, hyperglycemia, K+ loss.",
-                      "**Addisonian Crisis:** Rapid IV 0.9% NS + **IV Hydrocortisone**; never stop chronic steroids abruptly."
+                      "**Hypoparathyroidism (Low Ca2+, High PO4)**",
+                      "Perioral numbness, tingling, **+Chvostek's** (facial twitch), **+Trousseau's** (carpal spasm), **laryngospasm**.",
+                      [
+                        "Keep **IV Calcium Gluconate** at bedside; administer slowly on cardiac monitor; teach high-calcium / **low-phosphate** diet + Vitamin D."
+                      ]
                     ],
                     [
-                      "**SIADH vs. Diabetes Insipidus**",
-                      "**SIADH (High ADH):** Fluid overload, hyponatremia, high urine SG. **DI (Low ADH):** Polyuria, hypernatremia, low urine SG (<1.005).",
-                      "**SIADH:** Fluid restriction + 3% NS if seizures. **DI:** Desmopressin (DDAVP) + IV fluids."
+                      "**Hyperparathyroidism (High Ca2+, Low PO4)**",
+                      "\"Bones, stones, groans, psychiatric overtones\" — bone pain, kidney stones, constipation, shortened QT.",
+                      [
+                        "**Hydrate aggressively** (3–4 L/day) to prevent renal calculi, **strain all urine**, promote mobility, **Calcitonin** / bisphosphonates."
+                      ]
                     ]
                   ]
                 }
@@ -9982,12 +10086,8 @@
               "title": "4. Exam Synthesis & Bedside Takeaways",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "Integrate Hypothyroidism, Hyperthyroidism (Thyroid Storm) & Parathyroid cues across the 6-Step NCSBN CJMM: Recognize -> Analyze -> Prioritize -> Generate -> Act -> Evaluate.",
-                    "Compare US Conventional lab values (mg/dL, mEq/L) and US generic drug names (Acetaminophen, Epinephrine, Albuterol) before choosing an option.",
-                    "Verify mastery of Hypothyroidism, Hyperthyroidism (Thyroid Storm) & Parathyroid using the 20-question topic quiz and the Course Unit 6 60-question mixed Final Evaluation."
-                  ]
+                  "type": "paragraph",
+                  "text": "**NCLEX-RN Bottom Line:** Post-thyroidectomy clients require **two bedside emergency kits**: a **tracheostomy tray** (airway edema/hematoma) and **IV Calcium Gluconate** (accidental parathyroid injury -> hypocalcemic laryngospasm). In **Thyroid Storm**, give **PTU before iodine** and **never give Aspirin**."
                 }
               ]
             }
@@ -10263,53 +10363,96 @@
           ],
           "sections": [
             {
-              "title": "1. Clinical Overview & NCLEX-RN Blueprint",
+              "title": "1. Pituitary-Adrenal Axis & Endocrine Feedback",
               "blocks": [
                 {
                   "type": "paragraph",
-                  "text": "**Addison's vs. Cushing's Disease, SIADH & Diabetes Insipidus** is a high-yield focus area in **Course Unit 6: Endocrine & Metabolic Disorders (Diabetes, Thyroid, Adrenal & Pituitary)** for the Next-Generation NCLEX-RN (NGN). This study guide integrates core pathophysiology, clinical judgment cues, pharmacology safety, and bedside nursing priorities across **Saunders Comprehensive Review (9th Ed.)**, **Kaplan NCLEX-RN Prep**, and **LaCharity PDA**."
+                  "text": "The **anterior pituitary** secretes **ACTH** to stimulate adrenal cortisol production, while the **posterior pituitary** releases **ADH (vasopressin)** to conserve free water in the renal collecting ducts. NCLEX-RN questions heavily test the opposite fluid/electrolyte pairs: **Addison's vs. Cushing's** and **SIADH vs. Diabetes Insipidus**."
+                },
+                {
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u6t3-adrenal-pituitary-siadh-di.webp",
+                  "alt": "Hypothalamic-pituitary regulatory hormones diagram with Addison's, Cushing's, SIADH and Diabetes Insipidus nursing priorities",
+                  "caption": "Pituitary-adrenal regulatory pathways with NCLEX-RN crisis priorities (NU · nursinguganda.com)."
                 }
               ]
             },
             {
-              "title": "2. High-Yield Clinical Concepts & Nursing Priorities",
+              "title": "2. Adrenal Cortex: Addison's Disease vs. Cushing's Syndrome",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "Prioritize airway, breathing, circulation (ABCs), and acute safety cues before routine tasks in Addison's vs. Cushing's Disease, SIADH & Diabetes Insipidus.",
-                    "Verify US conventional lab values (mg/dL, mEq/L) and target vital signs prior to administering high-alert medications.",
-                    "Keep initial assessments, unstable clients, IV push medications, and discharge teaching under direct RN responsibility."
+                  "type": "table",
+                  "title": "Addison's (Hypo-Cortisol/Aldosterone) vs. Cushing's (Hyper-Cortisol)",
+                  "headers": [
+                    "Clinical Feature",
+                    "Addison's Disease (Adrenal Insufficiency)",
+                    "Cushing's Syndrome (Cortisol Excess)"
+                  ],
+                  "rows": [
+                    [
+                      "**Electrolytes & Glucose**",
+                      "**Low Na+**, **High K+**, **Hypoglycemia**, hypercalcemia.",
+                      [
+                        "**High Na+** (fluid retention), **Low K+**, **Hyperglycemia**."
+                      ]
+                    ],
+                    [
+                      "**Physical Assessment**",
+                      "**Hypotension**, weight loss, **bronze hyperpigmentation**, fatigue, GI distress.",
+                      [
+                        "**Hypertension**, **moon face**, **buffalo hump**, truncal obesity, purple striae, thin skin/bruising."
+                      ]
+                    ],
+                    [
+                      "**Acute Crisis / Priority**",
+                      "**Addisonian Crisis** (shock, severe hypotension, hyperkalemia): **IV 0.9% NS + D5W** + **IV Hydrocortisone** immediately.",
+                      [
+                        "**Infection & fall/fracture risk** (immunosuppression + osteoporosis); monitor daily weight, BP, and blood glucose."
+                      ]
+                    ],
+                    [
+                      "**Client Teaching**",
+                      "Wear **MedicAlert bracelet**; **NEVER stop steroids abruptly**; **increase dose during stress/illness**.",
+                      [
+                        "**Taper exogenous steroids slowly**; high-protein, high-K+, **low-sodium** diet."
+                      ]
+                    ]
                   ]
                 }
               ]
             },
             {
-              "title": "3. Endocrine Crises Comparison (DKA/HHS, Thyroid, Adrenal, SIADH vs. DI)",
+              "title": "3. Posterior Pituitary: SIADH vs. Diabetes Insipidus (DI)",
               "blocks": [
                 {
                   "type": "table",
-                  "title": "Endocrine Crises Comparison (DKA/HHS, Thyroid, Adrenal, SIADH vs. DI)",
+                  "title": "ADH Excess (SIADH) vs. ADH Deficiency (Diabetes Insipidus)",
                   "headers": [
-                    "Endocrine Condition",
-                    "Hallmark Lab & Assessment Cues",
-                    "Priority Nursing Intervention"
+                    "Parameter",
+                    "SIADH (Too Much ADH — \"Soaked Inside\")",
+                    "Diabetes Insipidus (Too Little ADH — \"Dry Inside\")"
                   ],
                   "rows": [
                     [
-                      "**Thyroid Storm vs. Myxedema**",
-                      "**Storm:** Fever > 104°F, HR > 140, delirium. **Myxedema:** Hypothermia, bradycardia, coma.",
-                      "**Storm:** PTU, iodine, beta-blockers, cooling (NO aspirin!). **Myxedema:** IV Levothyroxine + warming."
+                      "**Urine Output & Specific Gravity**",
+                      "**Oliguria**; **High Urine Specific Gravity (> 1.030)** (concentrated).",
+                      [
+                        "**Polyuria (4–18 L/day)**; **Low Urine Specific Gravity (< 1.005)** (dilute, water-like)."
+                      ]
                     ],
                     [
-                      "**Addison's vs. Cushing's**",
-                      "**Addison (Low steroid):** Hypotension, hyperkalemia, bronze skin. **Cushing (High):** Moon face, hyperglycemia, K+ loss.",
-                      "**Addisonian Crisis:** Rapid IV 0.9% NS + **IV Hydrocortisone**; never stop chronic steroids abruptly."
+                      "**Serum Na+ & Osmolality**",
+                      "**Dilutional Hyponatremia (< 135 mEq/L)** -> **seizure risk!** Low serum osmolality.",
+                      [
+                        "**Hypernatremia (> 145 mEq/L)**, severe dehydration, hypotension, **high serum osmolality**."
+                      ]
                     ],
                     [
-                      "**SIADH vs. Diabetes Insipidus**",
-                      "**SIADH (High ADH):** Fluid overload, hyponatremia, high urine SG. **DI (Low ADH):** Polyuria, hypernatremia, low urine SG (<1.005).",
-                      "**SIADH:** Fluid restriction + 3% NS if seizures. **DI:** Desmopressin (DDAVP) + IV fluids."
+                      "**Priority Nursing Actions**",
+                      "**Fluid restriction** (500–1,000 mL/day), **seizure precautions**, **3% Hypertonic Saline** slowly if Na+ < 120 + neuro symptoms, **Demeclocycline** / Tolvaptan.",
+                      [
+                        "**Desmopressin (DDAVP)** or IV Vasopressin, **IV hypotonic fluids** (0.45% NS or D5W), strict I&O + **daily weights**."
+                      ]
                     ]
                   ]
                 }
@@ -10319,12 +10462,8 @@
               "title": "4. Exam Synthesis & Bedside Takeaways",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "Integrate Addison's vs. Cushing's Disease, SIADH & Diabetes Insipidus cues across the 6-Step NCSBN CJMM: Recognize -> Analyze -> Prioritize -> Generate -> Act -> Evaluate.",
-                    "Compare US Conventional lab values (mg/dL, mEq/L) and US generic drug names (Acetaminophen, Epinephrine, Albuterol) before choosing an option.",
-                    "Verify mastery of Addison's vs. Cushing's Disease, SIADH & Diabetes Insipidus using the 20-question topic quiz and the Course Unit 6 60-question mixed Final Evaluation."
-                  ]
+                  "type": "paragraph",
+                  "text": "**NCLEX-RN Bottom Line:** **SIADH = Soaked Inside** -> **Fluid Restrict + Seizure Precautions** (watch `Na+ < 120`). **DI = Dry Inside** -> **DDAVP + Replace Fluids** (watch `Urine SG < 1.005` & polyuria). In **Addisonian Crisis**, push **IV Hydrocortisone + 0.9% NS** immediately and never allow abrupt steroid withdrawal."
                 }
               ]
             }
