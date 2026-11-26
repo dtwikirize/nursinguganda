@@ -24247,65 +24247,53 @@
           ],
           "sections": [
             {
-              "title": "1. Clinical Overview & NCLEX-RN Blueprint",
+              "title": "1. Antepartum Bleeding, Preeclampsia & Magnesium Sulfate",
               "blocks": [
                 {
                   "type": "paragraph",
-                  "text": "**Antepartum Care, Preeclampsia (MgSO4), Placenta Previa vs. Abruption** is a high-yield focus area in **Course Unit 14: Maternity & Newborn Nursing (Antepartum, Labour & Postpartum)** for the Next-Generation NCLEX-RN (NGN). This study guide integrates core pathophysiology, clinical judgment cues, pharmacology safety, and bedside nursing priorities across **Saunders Comprehensive Review (9th Ed.)**, **Kaplan NCLEX-RN Prep**, and **LaCharity PDA**."
-                }
-              ]
-            },
-            {
-              "title": "2. High-Yield Clinical Concepts & Nursing Priorities",
-              "blocks": [
+                  "text": "Third-trimester bleeding differentiates **Placenta Previa** (`painless bright-red bleeding, soft uterus` — **NEVER perform a digital vaginal exam!**) from **Placental Abruption** (`painful dark-red bleeding, rigid board-like uterus, fetal distress`). In **Preeclampsia with Severe Features**, **IV Magnesium Sulfate (`MgSO4`)** prevents eclamptic seizures — monitor for toxicity using **BURP** and keep **IV Calcium Gluconate** at the bedside."
+                },
                 {
-                  "type": "list",
-                  "items": [
-                    "Severe Preeclampsia: BP >= 160/110 mmHg, proteinuria, severe headache, visual disturbances, RUQ/epigastric pain.",
-                    "Magnesium Sulfate (MgSO4): Prevents eclamptic seizures; monitor DTRs (absent = hold!), RR >= 12/min, urine output >= 30 mL/hr.",
-                    "Antidote for Magnesium Toxicity: Keep Calcium Gluconate 10% IV immediately available at the bedside.",
-                    "Placenta Previa: Painless bright red vaginal bleeding in 2nd/3rd trimester — NEVER perform a digital vaginal exam!",
-                    "Abruptio Placentae: Painful dark red bleeding, rigid board-like abdomen, fetal distress — emergency delivery priority.",
-                    "Other Resources in the Saunders Pyramid to Success There are several other resources in the Saunders Pyramid to Success program.",
-                    "Saunders Q&A Review Cards for the NCLEX-RN® Exam, and Saunders RNtertainment for the NCLEX-RN® Exam.",
-                    "All of these resources in the Saunders Pyramid to Success are described in the preface of this book and can be obtained online by visiting http://elsevierhealth.com or by calling 800-545-2522.",
-                    "Let’s begin our journey through the Pyramid to Success.",
-                    "When taking a CAT, once an answer is recorded, all subsequent questions administered depend, to an extent, on the answer selected for that question."
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "3. Antepartum Care, Preeclampsia (MgSO4), Placenta Previa vs. Abruption — Saunders & Kaplan Clinical Decision Matrix",
-              "blocks": [
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u14t1-antepartum-preeclampsia-previa.webp",
+                  "alt": "Placental abruption medical illustration with NCLEX-RN Previa vs Abruption and MgSO4 toxicity rules",
+                  "caption": "Placental abruption anatomy with Previa/Abruption and MgSO4 toxicity rules (NU · nursinguganda.com)."
+                },
                 {
                   "type": "table",
-                  "title": "Antepartum Care, Preeclampsia (MgSO4), Placenta Previa vs. Abruption — Saunders & Kaplan Clinical Decision Matrix",
+                  "title": "High-Yield Antepartum Emergencies & Calculations",
                   "headers": [
-                    "Clinical Domain",
-                    "Priority Nursing Action",
-                    "NCLEX Exam Trap to Avoid"
+                    "Condition / Topic",
+                    "Key Assessment & Labs",
+                    "Priority Nursing Actions"
                   ],
                   "rows": [
                     [
-                      "**Acute Cue Recognition**",
-                      "Assess ABCs, mental status, SpO2, and perfusion trends immediately.",
+                      "**Placenta Previa vs. Abruption**",
+                      "**Previa:** painless bright red bleeding, soft uterus. **Abruption:** painful dark bleeding, **board-like rigid uterus**, fetal distress.",
                       [
-                        "Do NOT delegate unstable assessment to UAP or delay airway support."
+                        "**Previa:** **NO vaginal exams (VE)**; bedrest, **Betamethasone** if < 34 wks, C-section. **Abruption:** 2 large-bore IVs, **blood transfusion**, emergent delivery."
                       ]
                     ],
                     [
-                      "**Medication Safety**",
-                      "Verify target lab values, allergies, and vital parameters before administration.",
+                      "**Preeclampsia & `MgSO4` (4–7 mEq/L)**",
+                      "BP >= 140/90 (>= 160/110 severe) + proteinuria, **HA, vision changes, RUQ pain, hyperreflexia/clonus**.",
                       [
-                        "Hold K+-wasting diuretics if K+ < 3.5 mEq/L; hold Digoxin if apical HR < 60 bpm."
+                        "**Seizure precautions** (dark quiet room, padded rails). **Toxicity (BURP):** **B**P drop, **U**rine < 30 mL/hr, **R**R < 12, **P**atellar DTR absent -> **STOP MgSO4 + give IV Calcium Gluconate**."
                       ]
                     ],
                     [
-                      "**Delegation (RN/LPN/UAP)**",
-                      "RN: Assessment, teaching, unstable clients. LPN: Stable meds. UAP: Routine vitals & ADLs.",
+                      "**Gestational Diabetes & RhoGAM**",
+                      "1-hr glucose screen at 24–28 wks (>= 140 -> 3-hr OGTT). Rh-negative mother.",
                       [
-                        "Do NOT assign newly admitted or unstable clients to LPN or UAP."
+                        "Give **RhoGAM at 28 wks** AND **within 72 hr postpartum** (if baby Rh+); also after amniocentesis/bleeding."
+                      ]
+                    ],
+                    [
+                      "**GTPAL & Naegele's Rule**",
+                      "**G**ravida, **T**erm (>=37w), **P**reterm (20–36w), **A**bortion (<20w), **L**iving.",
+                      [
+                        "**Naegele's Rule:** LMP **- 3 months + 7 days + 1 year** (multiples count as 1 pregnancy for G, but each baby for L)."
                       ]
                     ]
                   ]
@@ -24313,18 +24301,11 @@
               ]
             },
             {
-              "title": "4. Exam Synthesis & Bedside Takeaways",
+              "title": "2. Exam Synthesis & Bedside Takeaways",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "Table 1-1 Levels of Cognitive Ability: Descriptions and Examples Level Description and Example Knowledge Recalling information from memorizing.",
-                    "Example: A normal blood glucose level is 70 to 99 mg/dL (3.9 to 5.5 mmol/L).",
-                    "Understanding Recognizing the meaning of information.",
-                    "Example: A blood glucose level of 60 mg/dL (3.34 mmol/L) is lower than the normal reference range.",
-                    "Applying Carrying out an appropriate action based on information.",
-                    "Example: Administering 10 to 15 g of carbohydrate such as a 1⁄2 glass of fruit juice to treat mild hypoglycemia."
-                  ]
+                  "type": "paragraph",
+                  "text": "**NCLEX-RN Bottom Line:** **Painless bright-red bleeding = Placenta Previa (NO vaginal exam!)**; **Painful rigid uterus = Placental Abruption**. During **MgSO4 infusion**, if **RR < 12, Urine < 30 mL/hr, or patellar DTRs disappear**, **STOP MgSO4 immediately** and give **IV Calcium Gluconate**."
                 }
               ]
             }
@@ -24600,65 +24581,60 @@
           ],
           "sections": [
             {
-              "title": "1. Clinical Overview & NCLEX-RN Blueprint",
+              "title": "1. Fetal Heart Rate Monitoring (VEAL CHOP) & Labour Emergencies",
               "blocks": [
                 {
                   "type": "paragraph",
-                  "text": "**Intrapartum Labour Stages & Fetal Heart Rate Strips (VEAL CHOP)** is a high-yield focus area in **Course Unit 14: Maternity & Newborn Nursing (Antepartum, Labour & Postpartum)** for the Next-Generation NCLEX-RN (NGN). This study guide integrates core pathophysiology, clinical judgment cues, pharmacology safety, and bedside nursing priorities across **Saunders Comprehensive Review (9th Ed.)**, **Kaplan NCLEX-RN Prep**, and **LaCharity PDA**."
-                }
-              ]
-            },
-            {
-              "title": "2. High-Yield Clinical Concepts & Nursing Priorities",
-              "blocks": [
+                  "text": "Normal baseline **FHR is 110–160 bpm** with **moderate variability (6–25 bpm)** indicating a well-oxygenated fetus. Master **VEAL CHOP** to identify the cause and immediate bedside intervention for every FHR pattern, and remember **umbilical cord prolapse** requires immediate manual elevation of the presenting part off the cord."
+                },
                 {
-                  "type": "list",
-                  "items": [
-                    "VEAL CHOP: Variable = Cord compression (reposition mother, knee-chest, O2); Early = Head compression (normal!); Accelerations = Okay; Late = Placental insufficiency (LION: Left lateral, IV fluids, O2, Notify, stop Oxytocin).",
-                    "Normal Baseline FHR: 110–160 bpm with moderate variability (6–25 bpm).",
-                    "Oxytocin (Pitocin) Safety: Discontinue immediately for tachysystole (>5 contractions in 10 min) or late decelerations.",
-                    "Other Resources in the Saunders Pyramid to Success There are several other resources in the Saunders Pyramid to Success program.",
-                    "Saunders Q&A Review Cards for the NCLEX-RN® Exam, and Saunders RNtertainment for the NCLEX-RN® Exam.",
-                    "All of these resources in the Saunders Pyramid to Success are described in the preface of this book and can be obtained online by visiting http://elsevierhealth.com or by calling 800-545-2522.",
-                    "Let’s begin our journey through the Pyramid to Success.",
-                    "When taking a CAT, once an answer is recorded, all subsequent questions administered depend, to an extent, on the answer selected for that question.",
-                    "The NCSBN also conducts an important study every 3 years, known as a practice analysis study, that is conducted to link the examination to nursing practice. The results of this study determine the framework for the test plan for the examination.",
-                    "Table 1-1 Levels of Cognitive Ability: Descriptions and Examples Level Description and Example Knowledge Recalling information from memorizing."
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "3. Intrapartum Labour Stages & Fetal Heart Rate Strips (VEAL CHOP) — Saunders & Kaplan Clinical Decision Matrix",
-              "blocks": [
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u14t2-intrapartum-fhr-veal-chop.webp",
+                  "alt": "Cardiotocography fetal heart rate tracing with NCLEX-RN VEAL CHOP and LION priorities",
+                  "caption": "Cardiotocography (CTG) FHR strip with VEAL CHOP and LION emergency priorities (NU · nursinguganda.com)."
+                },
                 {
                   "type": "table",
-                  "title": "Intrapartum Labour Stages & Fetal Heart Rate Strips (VEAL CHOP) — Saunders & Kaplan Clinical Decision Matrix",
+                  "title": "VEAL CHOP Fetal Heart Rate Interpretation & Interventions",
                   "headers": [
-                    "Clinical Domain",
-                    "Priority Nursing Action",
-                    "NCLEX Exam Trap to Avoid"
+                    "FHR Pattern (VEAL)",
+                    "Cause (CHOP)",
+                    "Immediate Nursing Action"
                   ],
                   "rows": [
                     [
-                      "**Acute Cue Recognition**",
-                      "Assess ABCs, mental status, SpO2, and perfusion trends immediately.",
+                      "**V — Variable Decelerations** (abrupt V/W dips)",
+                      "**C — Cord Compression**",
                       [
-                        "Do NOT delegate unstable assessment to UAP or delay airway support."
+                        "**1st: Reposition mother** (left/right lateral or knee-chest); **check for cord prolapse**; amnioinfusion if ordered."
                       ]
                     ],
                     [
-                      "**Medication Safety**",
-                      "Verify target lab values, allergies, and vital parameters before administration.",
+                      "**E — Early Decelerations** (mirror contractions)",
+                      "**H — Head Compression** (normal 4–10 cm)",
                       [
-                        "Hold K+-wasting diuretics if K+ < 3.5 mEq/L; hold Digoxin if apical HR < 60 bpm."
+                        "**Normal finding!** Document & continue monitoring (no intervention needed)."
                       ]
                     ],
                     [
-                      "**Delegation (RN/LPN/UAP)**",
-                      "RN: Assessment, teaching, unstable clients. LPN: Stable meds. UAP: Routine vitals & ADLs.",
+                      "**A — Accelerations** (+15 bpm × 15 sec)",
+                      "**O — Okay / Oxygenated**",
                       [
-                        "Do NOT assign newly admitted or unstable clients to LPN or UAP."
+                        "**Reassuring finding!** Indicates intact fetal autonomic oxygenation."
+                      ]
+                    ],
+                    [
+                      "**L — Late Decelerations** (dip AFTER contraction peak)",
+                      "**P — Placental Insufficiency**",
+                      [
+                        "**LION:** **L**eft lateral position -> **I**V fluid bolus -> **O**2 (8–10 L non-rebreather) -> **N**O Pitocin (**STOP Oxytocin immediately!**)."
+                      ]
+                    ],
+                    [
+                      "**Umbilical Cord Prolapse**",
+                      "Cord visible/palpable after ROM -> severe bradycardia.",
+                      [
+                        "**Gloved hand in vagina** to **push presenting part UP off cord** (keep hand there until C-section!), **knee-chest / Trendelenburg**, 100% O2."
                       ]
                     ]
                   ]
@@ -24666,18 +24642,11 @@
               ]
             },
             {
-              "title": "4. Exam Synthesis & Bedside Takeaways",
+              "title": "2. Exam Synthesis & Bedside Takeaways",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "Table 1-1 Levels of Cognitive Ability: Descriptions and Examples Level Description and Example Knowledge Recalling information from memorizing.",
-                    "Example: A normal blood glucose level is 70 to 99 mg/dL (3.9 to 5.5 mmol/L).",
-                    "Understanding Recognizing the meaning of information.",
-                    "Example: A blood glucose level of 60 mg/dL (3.34 mmol/L) is lower than the normal reference range.",
-                    "Applying Carrying out an appropriate action based on information.",
-                    "Example: Administering 10 to 15 g of carbohydrate such as a 1⁄2 glass of fruit juice to treat mild hypoglycemia."
-                  ]
+                  "type": "paragraph",
+                  "text": "**NCLEX-RN Bottom Line:** For **Late Decelerations**, **STOP Oxytocin (Pitocin)**, turn to **left side**, give **O2**, and **increase IV fluids**. For **Variable Decelerations**, **reposition the mother first**. For **Cord Prolapse**, **lift the fetal head off the cord with a sterile gloved hand** and never remove your hand until delivery."
                 }
               ]
             }
@@ -24953,65 +24922,60 @@
           ],
           "sections": [
             {
-              "title": "1. Clinical Overview & NCLEX-RN Blueprint",
+              "title": "1. Postpartum Assessment (BUBBLE-HE), PPH & Newborn Resuscitation",
               "blocks": [
                 {
                   "type": "paragraph",
-                  "text": "**Postpartum Hemorrhage (BUBBLE-HE), APGAR Scoring & Newborn Care** is a high-yield focus area in **Course Unit 14: Maternity & Newborn Nursing (Antepartum, Labour & Postpartum)** for the Next-Generation NCLEX-RN (NGN). This study guide integrates core pathophysiology, clinical judgment cues, pharmacology safety, and bedside nursing priorities across **Saunders Comprehensive Review (9th Ed.)**, **Kaplan NCLEX-RN Prep**, and **LaCharity PDA**."
-                }
-              ]
-            },
-            {
-              "title": "2. High-Yield Clinical Concepts & Nursing Priorities",
-              "blocks": [
+                  "text": "Postpartum hemorrhage (**> 500 mL vaginal / > 1,000 mL C-section**) is most commonly caused by **uterine atony** (`boggy fundus`) — the **#1 first action is firm fundal massage** (supporting the lower uterine segment), followed by **emptying a full bladder** and administering **uterotonics**. In the newborn, assess **APGAR at 1 and 5 minutes** and prevent **cold stress** (`hypoglycemia + metabolic acidosis`)."
+                },
                 {
-                  "type": "list",
-                  "items": [
-                    "Postpartum Hemorrhage (>500 mL vaginal / >1000 mL C-section): First action for boggy uterus is firm fundal massage; assess/empty distended bladder.",
-                    "BUBBLE-HE Postpartum Check: Breasts, Uterus, Bladder, Bowel, Lochia (Rubra -> Serosa -> Alba), Episiotomy, Homans/DVT, Emotional status.",
-                    "APGAR at 1 & 5 minutes: Appearance, Pulse (>100), Grimace, Activity, Respiration (7–10 normal; 4–6 moderate distress; 0–3 resuscitate).",
-                    "Newborn Hypoglycemia (<40–45 mg/dL): Feed early; watch jitteriness, poor feeding, hypothermia, high-pitched cry.",
-                    "Utilize the nursing process to determine characteristics of thenormal newborn and associatedinterventions to provide appropriate nursing care for identified health care needs.",
-                    "Other Resources in the Saunders Pyramid to Success There are several other resources in the Saunders Pyramid to Success program.",
-                    "Saunders Q&A Review Cards for the NCLEX-RN® Exam, and Saunders RNtertainment for the NCLEX-RN® Exam.",
-                    "All of these resources in the Saunders Pyramid to Success are described in the preface of this book and can be obtained online by visiting http://elsevierhealth.com or by calling 800-545-2522.",
-                    "Let’s begin our journey through the Pyramid to Success.",
-                    "When taking a CAT, once an answer is recorded, all subsequent questions administered depend, to an extent, on the answer selected for that question."
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "3. Postpartum Hemorrhage (BUBBLE-HE), APGAR Scoring & Newborn Care — Saunders & Kaplan Clinical Decision Matrix",
-              "blocks": [
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u14t3-postpartum-pph-newborn-apgar.webp",
+                  "alt": "Newborn infant assessment with NCLEX-RN PPH fundal massage, APGAR and newborn medication priorities",
+                  "caption": "Newborn assessment with postpartum hemorrhage (PPH) and APGAR priorities (NU · nursinguganda.com)."
+                },
                 {
                   "type": "table",
-                  "title": "Postpartum Hemorrhage (BUBBLE-HE), APGAR Scoring & Newborn Care — Saunders & Kaplan Clinical Decision Matrix",
+                  "title": "Postpartum Hemorrhage (BUBBLE-HE) & Newborn Care Priorities",
                   "headers": [
-                    "Clinical Domain",
-                    "Priority Nursing Action",
-                    "NCLEX Exam Trap to Avoid"
+                    "Focus Area",
+                    "Assessment Cues & Thresholds",
+                    "Priority Nursing Actions"
                   ],
                   "rows": [
                     [
-                      "**Acute Cue Recognition**",
-                      "Assess ABCs, mental status, SpO2, and perfusion trends immediately.",
+                      "**Uterine Atony & PPH**",
+                      "**Boggy uterus**, heavy lochia (saturating >= 1 pad/15 min), **fundus displaced right/high** (= full bladder!).",
                       [
-                        "Do NOT delegate unstable assessment to UAP or delay airway support."
+                        "**1st: MASSAGE boggy fundus** -> **void/catheterize** -> **Oxytocin / Methylergonovine** (**CONTRAINDICATED in HTN!**) / **Carboprost** (**CONTRAINDICATED in asthma!**)."
                       ]
                     ],
                     [
-                      "**Medication Safety**",
-                      "Verify target lab values, allergies, and vital parameters before administration.",
+                      "**Lochia & Hematoma**",
+                      "Rubra (Days 1–3) -> Serosa (4–10) -> Alba (11+). **Severe perineal pain + firm uterus** = hematoma.",
                       [
-                        "Hold K+-wasting diuretics if K+ < 3.5 mEq/L; hold Digoxin if apical HR < 60 bpm."
+                        "Ice pack first 24h -> sitz bath after 24h; **foul lochia + fever = endometritis**."
                       ]
                     ],
                     [
-                      "**Delegation (RN/LPN/UAP)**",
-                      "RN: Assessment, teaching, unstable clients. LPN: Stable meds. UAP: Routine vitals & ADLs.",
+                      "**APGAR Score (1 & 5 min)**",
+                      "**A**ppearance, **P**ulse (>100=2), **G**rimace, **A**ctivity, **R**espirations (0–2 each).",
                       [
-                        "Do NOT assign newly admitted or unstable clients to LPN or UAP."
+                        "**7–10:** routine care. **4–6:** dry, stimulate, O2. **0–3:** full resuscitation (**PPV/CPR**)."
+                      ]
+                    ],
+                    [
+                      "**Newborn Meds & Hypoglycemia**",
+                      "Blood glucose **< 40–45 mg/dL** (jitteriness, poor feeding, weak cry, hypothermia).",
+                      [
+                        "**Vitamin K (Phytonadione) IM** vastus lateralis (clotting); **Erythromycin eye ointment** (ophthalmia neonatorum); **Hep B vaccine**. **Feed immediately** for hypoglycemia!"
+                      ]
+                    ],
+                    [
+                      "**Jaundice & Phototherapy**",
+                      "**Pathologic (< 24 hr)** vs. Physiologic (> 24 hr); kernicterus risk.",
+                      [
+                        "**Shield eyes & genitalia**, keep infant **undressed**, turn q2h, **no lotions/oils**, frequent feeding (excretes bilirubin in stool)."
                       ]
                     ]
                   ]
@@ -25019,19 +24983,11 @@
               ]
             },
             {
-              "title": "4. Exam Synthesis & Bedside Takeaways",
+              "title": "2. Exam Synthesis & Bedside Takeaways",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "The NCSBN also conducts an important study every 3 years, known as a practice analysis study, that is conducted to link the examination to nursing practice. The results of this study determine the framework for the test plan for the examination.",
-                    "Table 1-1 Levels of Cognitive Ability: Descriptions and Examples Level Description and Example Knowledge Recalling information from memorizing.",
-                    "Example: A normal blood glucose level is 70 to 99 mg/dL (3.9 to 5.5 mmol/L).",
-                    "Understanding Recognizing the meaning of information.",
-                    "Example: A blood glucose level of 60 mg/dL (3.34 mmol/L) is lower than the normal reference range.",
-                    "Applying Carrying out an appropriate action based on information.",
-                    "Example: Administering 10 to 15 g of carbohydrate such as a 1⁄2 glass of fruit juice to treat mild hypoglycemia."
-                  ]
+                  "type": "paragraph",
+                  "text": "**NCLEX-RN Bottom Line:** **Boggy uterus = massage fundus first**; **firm uterus deviated to the right = empty the bladder**. Never give **Methylergonovine (Methergine)** to a client with **hypertension/preeclampsia** or **Carboprost (Hemabate)** to a client with **asthma**. For **newborn hypoglycemia (< 40 mg/dL) or jitteriness**, **feed the baby immediately**."
                 }
               ]
             }
