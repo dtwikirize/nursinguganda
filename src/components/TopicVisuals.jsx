@@ -1195,6 +1195,12 @@ function groupSectionBlocks(blocks = []) {
         grouped.push({ kind: "table", title: b.title || "", headers: b.headers, rows: b.rows });
       } else if (b?.type === "diagram") {
         grouped.push({ kind: "diagram", block: b });
+      } else if (b?.type === "figure" && b.src) {
+        grouped.push({ kind: "figure", src: b.src, alt: b.alt || b.caption || "", caption: b.caption || "" });
+      } else if (b?.type === "cards" && Array.isArray(b.items)) {
+        grouped.push({ kind: "cards", title: b.title || "", items: b.items });
+      } else if (b?.type === "callout") {
+        grouped.push({ kind: "callout", tone: b.tone || "pearl", title: b.title || "", text: b.text || "" });
       } else if (b?.type === "subheading") {
         grouped.push({ kind: "subheading", text: b.text || "" });
       } else {
@@ -1407,6 +1413,68 @@ export function LessonSections({ sections = [], lesson = null, topicTitle = "", 
 
                 if (g.kind === "diagram") {
                   return <LessonInlineDiagram key={gIdx} block={g.block} />;
+                }
+
+                if (g.kind === "figure") {
+                  return (
+                    <figure key={gIdx} className="nu-note-inline-figure" style={{ margin: "14px 0" }}>
+                      <MedicalImageFrame
+                        src={withImgVersion(g.src)}
+                        alt={g.alt || topicTitle}
+                        title={g.caption || topicTitle}
+                        caption={g.caption || topicTitle}
+                        loading="lazy"
+                      />
+                      {g.caption && <figcaption>{g.caption}</figcaption>}
+                    </figure>
+                  );
+                }
+
+                if (g.kind === "cards") {
+                  return (
+                    <div key={gIdx} style={{ margin: "14px 0" }}>
+                      {g.title && <h4 className="nu-note-subhead" style={{ marginBottom: 10 }}>{g.title}</h4>}
+                      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 12 }}>
+                        {g.items.map((card, ci) => (
+                          <div
+                            key={ci}
+                            style={{
+                              background: ci % 2 === 0 ? "#f8fafc" : "#f5f3ff",
+                              border: `1.5px solid ${ci % 2 === 0 ? "#cbd5e1" : "#ddd6fe"}`,
+                              borderRadius: 10,
+                              padding: "13px 15px"
+                            }}
+                          >
+                            {card.tag && (
+                              <div style={{ fontSize: "0.7rem", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.05em", color: "#7c3aed", marginBottom: 4 }}>
+                                {card.tag}
+                              </div>
+                            )}
+                            <div style={{ fontWeight: 800, fontSize: "0.94rem", color: "#0f172a", marginBottom: 5 }}>
+                              {card.title}
+                            </div>
+                            <div style={{ fontSize: "0.84rem", color: "#334155", lineHeight: 1.5 }}>
+                              <RichText text={card.text || ""} highlightKeyFacts />
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                }
+
+                if (g.kind === "callout") {
+                  return (
+                    <div key={gIdx} className={`nu-note-callout nu-note-callout--${g.tone || "pearl"}`} style={{ margin: "12px 0" }}>
+                      <span className="nu-note-callout-icon">
+                        {g.tone === "alert" ? <AlertTriangle size={16} /> : <Sparkles size={16} />}
+                      </span>
+                      <div>
+                        {g.title && <strong style={{ display: "block", marginBottom: 2 }}>{g.title}</strong>}
+                        <RichText text={g.text} highlightKeyFacts />
+                      </div>
+                    </div>
+                  );
                 }
 
                 if (g.kind === "subheading") {

@@ -102,6 +102,80 @@ function resolveThemeKey(slug) {
   return "green-black";
 }
 
+const COUNTRY_HERO_IMAGES = {
+  "united-kingdom-nmc": "/assets/images/nursing-uganda-home-hero-1.webp",
+  "united-states-nclex": "/assets/images/nclex-rn-hero-bg.webp",
+  "canada-nnas-nclex": "/assets/images/nursing-uganda-hero-nursing-student-skills-lab-01.webp",
+  "australia-ahpra-nmba": "/assets/images/nursing-uganda-home-hero-2.webp",
+  "kenya-nck": "/assets/images/nursing-uganda-disease-assessment-learning-01.webp",
+  "uganda-unmc": "/assets/images/nursing-uganda-curriculum-study-group-01.webp",
+  "tanzania-tnmc": "/assets/images/nursing-uganda-midwifery-newborn-care-training-01.webp",
+  "gulf-dha-moh-scfhs": "/assets/images/nursing-uganda-medical-instruments-clinical-tray-01.webp"
+};
+
+const COUNTRY_SWITCHER_LINKS = [
+  { label: "UK", code: "UK", to: "/nursing-uk" },
+  { label: "USA", code: "US", to: "/nursing-usa" },
+  { label: "Canada", code: "CA", to: "/nursing-canada" },
+  { label: "Australia", code: "AU", to: "/nursing-australia" },
+  { label: "Kenya", code: "KE", to: "/global-nursing/kenya-nck" },
+  { label: "Uganda", code: "UG", to: "/global-nursing/uganda-unmc" },
+  { label: "Tanzania", code: "TZ", to: "/global-nursing/tanzania-tnmc" },
+  { label: "Gulf", code: "AE", to: "/global-nursing/gulf-dha-moh-scfhs" }
+];
+
+const COUNTRY_FEATURED_PLATES = {
+  "united-kingdom-nmc": [
+    { src: "/assets/images/medical-illustrations/hub-uk-nmc-pathway-news2.webp", title: "NMC 4-Stage Pipeline & NEWS2 Scoring", tag: "NMC CBT · OSCE" },
+    { src: "/assets/images/medical-illustrations/foundations-vital-signs-monitoring.webp", title: "Adult Observation Chart & ABCDE Escalation", tag: "NEWS2 Triggers" },
+    { src: "/assets/images/medical-illustrations/medsurg-pneumonia-pleural-effusion.webp", title: "Sepsis Six, Oxygen Target & Chest Auscultation", tag: "NICE Guidelines" },
+    { src: "/assets/images/medical-illustrations/ethics-medico-legal-nursing-principles.webp", title: "NMC Code: Duty of Candour & Delegation", tag: "NHS Governance" }
+  ],
+  "united-states-nclex": [
+    { src: "/assets/images/medical-illustrations/nclex-foreign-rn-licensure-roadmap.webp", title: "CGFNS, State Board, ATT & Visa Roadmap", tag: "Foreign RN Track" },
+    { src: "/assets/images/medical-illustrations/nclex-ngn-cat-question-formats.webp", title: "Next-Gen NCLEX CJMM & CAT Blueprint", tag: "NGN Exam Model" },
+    { src: "/assets/images/medical-illustrations/medsurg-shock-haemorrhage-cpr.webp", title: "Critical Care Stabilization & ACLS Priorities", tag: "Physiological Integrity" },
+    { src: "/assets/images/medical-illustrations/medsurg-cardiovascular-mi-hf.webp", title: "Acute Coronary Care & Haemodynamic Monitoring", tag: "Prioritization" }
+  ],
+  "canada-nnas-rexpn": [],
+  "canada-nnas-nclex": [
+    { src: "/assets/images/medical-illustrations/hub-canada-nnas-rexpn.webp", title: "NNAS Advisory, CNO / BCCNM & NCLEX/REx-PN", tag: "Provincial Licensure" },
+    { src: "/assets/images/medical-illustrations/psych-therapeutic-nurse-patient-erikson.webp", title: "Therapeutic Communication & Trauma-Informed Care", tag: "Cultural Safety" },
+    { src: "/assets/images/medical-illustrations/pharmacology-iv-fluids-infusion.webp", title: "SI Medication Calculations & Electrolyte Safety", tag: "CNO Standard" },
+    { src: "/assets/images/medical-illustrations/leadership-research-ethics.webp", title: "Scope of Practice, Autonomy & MAiD Ethics", tag: "CNA Ethics" }
+  ],
+  "australia-ahpra-nmba": [
+    { src: "/assets/images/medical-illustrations/hub-australia-oba-isbar.webp", title: "AHPRA OBA, MCQ/OSCE & ISBAR Clinical Handover", tag: "NSQHS Standards" },
+    { src: "/assets/images/medical-illustrations/safety-disaster-management-triage.webp", title: "ED Triage (ATS Categories) & Deterioration", tag: "NMBA Safety" },
+    { src: "/assets/images/medical-illustrations/foundations-palliative-end-of-life-care.webp", title: "Voluntary Assisted Care & Goals of Care", tag: "Aged & Acute Care" },
+    { src: "/assets/images/medical-illustrations/medsurg-stroke-cva-hemorrhage.webp", title: "Stroke Code FAST, Thrombolysis & swallow screen", tag: "NSQHS Partnering" }
+  ],
+  "kenya-nck": [
+    { src: "/assets/images/medical-illustrations/condition-malaria-smear.webp", title: "Severe Malaria, Artesunate & WHO Protocols", tag: "KEMSA / MoH" },
+    { src: "/assets/images/medical-illustrations/condition-preeclampsia-placenta.webp", title: "Eclampsia & Pritchard MgSO4 Emergency Pack", tag: "Paper I & II" },
+    { src: "/assets/images/medical-illustrations/paed-imci-dehydration-ors-plans.webp", title: "IMCI Paediatric Dehydration Plan A, B & C", tag: "Paediatric Paper" },
+    { src: "/assets/images/medical-illustrations/immune-hiv-opportunistic-infections-pep.webp", title: "NASCOP HIV Care, Opportunistic Infections & PEP", tag: "Community Health" }
+  ],
+  "uganda-unmc": [
+    { src: "/assets/images/medical-illustrations/leadership-hrm-uganda-health-policies.webp", title: "UNMC Regulation, MoH 7-Tier Referral & HRM", tag: "UCG 2023" },
+    { src: "/assets/images/medical-illustrations/paed-unepi-immunization-schedule.webp", title: "UNEPI Immunization Schedule & Cold Chain", tag: "MoH Uganda" },
+    { src: "/assets/images/medical-illustrations/community-phc-cbhc-home-visiting.webp", title: "VHTs, Primary Health Care & CBHC Home Visits", tag: "Community Paper" },
+    { src: "/assets/images/medical-illustrations/pharmacology-antiretrovirals-hiv-cycle.webp", title: "First-Line TLD, EMTCT & Paediatric ARV Dosing", tag: "UCG Pharmacology" }
+  ],
+  "tanzania-tnmc": [
+    { src: "/assets/images/medical-illustrations/who-modified-partograph-chart.webp", title: "WHO Modified Partograph & Alert/Action Lines", tag: "TNMC Midwifery" },
+    { src: "/assets/images/medical-illustrations/paed-newborn-resuscitation-apgar-kmc.webp", title: "Helping Babies Breathe & Kangaroo Mother Care", tag: "Neonatal Care" },
+    { src: "/assets/images/medical-illustrations/condition-tb-pneumonia-xray.webp", title: "NTLP Tuberculosis DOTS & GeneXpert Screening", tag: "STG/NEMLIT" },
+    { src: "/assets/images/medical-illustrations/micro-wash-sanitation-food-housing.webp", title: "Cholera Outbreak Control, WASH & Sanitation", tag: "Public Health" }
+  ],
+  "gulf-dha-moh-scfhs": [
+    { src: "/assets/images/medical-illustrations/hand-hygiene-who-11-steps.webp", title: "JCI IPSG Infection Control & Hand Hygiene Audit", tag: "JCI Hospital Prep" },
+    { src: "/assets/images/medical-illustrations/pharmacology-parenteral-injection-angles.webp", title: "High-Alert Medication Independent Double Check", tag: "IPSG Goal 3" },
+    { src: "/assets/images/medical-illustrations/safety-occupational-hazards-ppe-fire.webp", title: "OSHAD Fire Safety, Isolation & Hazardous PPE", tag: "DHA / SCFHS" },
+    { src: "/assets/images/medical-illustrations/blood-transfusion-clinical-procedure.webp", title: "2-Nurse Blood Transfusion Bedside Verification", tag: "IPSG Goal 1" }
+  ]
+};
+
 export default function CountryStudyHubPage({ forcedSlug = "" }) {
   const { countrySlug: paramSlug } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -245,17 +319,22 @@ export default function CountryStudyHubPage({ forcedSlug = "" }) {
 
   return (
     <main className={`nu-country-hub nu-hub-theme--${themeKey}`} style={{ background: "#f8fafc", minHeight: "80vh" }}>
-      {/* Unique Country Academy Hero (Black/Black UK · Red/Black USA & Canada · Green/Black Rest) */}
+      {/* Rich Editorial Country Academy Hero with Atmospheric Clinical Photography */}
       <section
         style={{
+          position: "relative",
+          overflow: "hidden",
           background: theme.heroBg,
+          backgroundImage: `linear-gradient(105deg, rgba(10, 13, 20, 0.94) 0%, ${theme.heroBg}E6 56%, rgba(10, 13, 20, 0.78) 100%), url('${COUNTRY_HERO_IMAGES[targetSlug] || "/assets/images/nursing-uganda-home-hero-1.webp"}')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
           color: "#ffffff",
           borderBottom: `4px solid ${theme.heroBorder}`,
-          padding: "36px 0 32px"
+          padding: "42px 0 36px"
         }}
       >
-        <div className="nu-container">
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 10, marginBottom: 18 }}>
+        <div className="nu-container" style={{ maxWidth: 1180, position: "relative", zIndex: 2 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 10, marginBottom: 20 }}>
             <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: 8 }}>
               <Link
                 to="/global-nursing"
@@ -271,13 +350,13 @@ export default function CountryStudyHubPage({ forcedSlug = "" }) {
               >
                 <ArrowLeft size={14} /> Global Hub
               </Link>
-              <span style={{ color: "#475569" }}>/</span>
+              <span style={{ color: "#64748b" }}>/</span>
               <span
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
                   gap: 6,
-                  padding: "3px 10px",
+                  padding: "4px 12px",
                   borderRadius: 999,
                   background: theme.badgeBg,
                   color: theme.badgeText,
@@ -290,15 +369,10 @@ export default function CountryStudyHubPage({ forcedSlug = "" }) {
               </span>
             </div>
 
-            {/* Quick Country Flag Switcher */}
+            {/* Complete 8-Country Switcher */}
             <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-              {[
-                { label: "UK", code: "UK", to: "/nursing-uk" },
-                { label: "USA", code: "US", to: "/nursing-usa" },
-                { label: "Canada", code: "CA", to: "/nursing-canada" },
-                { label: "Australia", code: "AU", to: "/nursing-australia" }
-              ].map((nav) => {
-                const isCurrent = (hub?.route || `/global-nursing/${country.slug}`) === nav.to;
+              {COUNTRY_SWITCHER_LINKS.map((nav) => {
+                const isCurrent = (hub?.route || `/global-nursing/${country.slug}`) === nav.to || `/global-nursing/${country.slug}` === nav.to;
                 return (
                   <Link
                     key={nav.to}
@@ -306,18 +380,18 @@ export default function CountryStudyHubPage({ forcedSlug = "" }) {
                     style={{
                       display: "inline-flex",
                       alignItems: "center",
-                      gap: 6,
-                      padding: "5px 10px",
+                      gap: 5,
+                      padding: "5px 9px",
                       borderRadius: 6,
                       border: `1px solid ${isCurrent ? "#FFFFFF" : "rgba(255,255,255,0.22)"}`,
                       background: isCurrent ? theme.switchActiveBg : theme.switchIdleBg,
                       color: "#ffffff",
-                      fontSize: "0.76rem",
+                      fontSize: "0.74rem",
                       fontWeight: 700,
                       textDecoration: "none"
                     }}
                   >
-                    <CountryFlag code={nav.code} width={18} />
+                    <CountryFlag code={nav.code} width={16} />
                     {nav.label}
                   </Link>
                 );
@@ -325,24 +399,56 @@ export default function CountryStudyHubPage({ forcedSlug = "" }) {
             </div>
           </div>
 
-          <h1 style={{ margin: "0 0 10px", fontSize: "clamp(1.55rem, 2.8vw, 2.2rem)", display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap", color: "#ffffff" }}>
-            <CountryFlag code={country.flag} width={46} />
+          <h1 style={{ margin: "0 0 12px", fontSize: "clamp(1.65rem, 3vw, 2.45rem)", display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap", color: "#ffffff", lineHeight: 1.18 }}>
+            <CountryFlag code={country.flag} width={48} />
             <span>{hub?.headline || `Becoming a Registered Nurse in ${country.country}`}</span>
           </h1>
-          <p style={{ margin: "0 0 22px", maxWidth: 820, color: "rgba(255, 255, 255, 0.88)", fontSize: "1rem", lineHeight: 1.6 }}>
+          <p style={{ margin: "0 0 20px", maxWidth: 840, color: "rgba(255, 255, 255, 0.9)", fontSize: "1.02rem", lineHeight: 1.62 }}>
             {hub?.subheadline || country.summary}
           </p>
 
-          {/* Coursera-style Unified Horizontal Stats Bar */}
+          {/* Primary Hero CTAs matching HomePage clarity */}
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginBottom: 24 }}>
+            {curriculum && (
+              <button
+                type="button"
+                onClick={() => switchTab("curriculum")}
+                className="nu-btn nu-btn-primary"
+                style={{ background: "#ffffff", color: "#0f172a", borderColor: "#ffffff", fontWeight: 800 }}
+              >
+                <Layers size={16} /> Start {curriculum.courses.length} {countryMeta?.shortName} Courses <ArrowRight size={15} />
+              </button>
+            )}
+            {countryMeta && (
+              <button
+                type="button"
+                onClick={() => switchTab("topics")}
+                className="nu-btn nu-btn-outline"
+                style={{ background: "rgba(15, 23, 42, 0.55)", color: "#ffffff", borderColor: "rgba(255,255,255,0.38)" }}
+              >
+                <BookOpen size={16} /> Browse 779 Localized Topics
+              </button>
+            )}
+            <button
+              type="button"
+              onClick={() => switchTab("practice")}
+              className="nu-btn nu-btn-outline"
+              style={{ background: "rgba(15, 23, 42, 0.35)", color: "#ffffff", borderColor: "rgba(255,255,255,0.28)" }}
+            >
+              <ClipboardCheck size={16} /> Quiz &amp; {country.unitSystem === "SI" ? "US → SI" : "SI → US"} Lab Converter
+            </button>
+          </div>
+
+          {/* Unified Horizontal Stats Bar */}
           <div
             style={{
               background: "#ffffff",
               color: "#0f172a",
               borderRadius: 10,
               border: "1px solid rgba(15, 23, 42, 0.1)",
-              boxShadow: "0 4px 16px rgba(0, 0, 0, 0.1)",
+              boxShadow: "0 8px 24px rgba(0, 0, 0, 0.18)",
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(190px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fit, minmax(195px, 1fr))",
               overflow: "hidden"
             }}
           >
@@ -372,8 +478,43 @@ export default function CountryStudyHubPage({ forcedSlug = "" }) {
         </div>
       </section>
 
+      {/* HomePage-style Regulatory Trust & Localization Bar */}
+      <div style={{ background: "#ffffff", borderBottom: "1px solid #e2e8f0", padding: "12px 0" }}>
+        <div
+          className="nu-container"
+          style={{
+            maxWidth: 1180,
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: 14,
+            fontSize: "0.82rem",
+            color: "#334155",
+            fontWeight: 600
+          }}
+        >
+          <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+            <ShieldCheck size={16} color={theme.heroBg === "#0A0D14" ? "#7c3aed" : theme.heroBg} />
+            Aligned to {country.council}
+          </span>
+          <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+            <Sparkles size={16} color={theme.heroBg === "#0A0D14" ? "#7c3aed" : theme.heroBg} />
+            Drug &amp; Lab Standard: {country.drugConvention} · {country.unitSystem}
+          </span>
+          <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+            <CheckCircle2 size={16} color={theme.heroBg === "#0A0D14" ? "#7c3aed" : theme.heroBg} />
+            779 Localized Clinical Notes Included
+          </span>
+          <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+            <FileCheck2 size={16} color={theme.heroBg === "#0A0D14" ? "#7c3aed" : theme.heroBg} />
+            {country.examRequired} Blueprint
+          </span>
+        </div>
+      </div>
+
       <section className="nu-section">
-        <div className="nu-container" style={{ maxWidth: 1020 }}>
+        <div className="nu-container" style={{ maxWidth: 1180 }}>
           {globalData?.disclaimer && (
             <div style={{ padding: "11px 15px", borderRadius: 8, background: theme.tintBg, border: `1px solid ${theme.tintBorder}`, color: "#0f172a", fontSize: "0.84rem", marginBottom: 20 }}>
               <ShieldCheck size={15} style={{ display: "inline", marginRight: 6, verticalAlign: "text-bottom", color: theme.accent }} />
@@ -531,10 +672,221 @@ export default function CountryStudyHubPage({ forcedSlug = "" }) {
             </a>
           </div>
 
-          {/* Tab 1: About & Blueprint */}
-          {tab === "notes" && hub?.sections?.length > 0 && (
-            <div style={{ marginBottom: 28 }}>
-              <LessonSections sections={hub.sections} topicTitle={country.country} headingTag="h2" disableInlineFigures />
+          {/* Tab 1: Rich Country Home Overview (Clinical Notes + Visual Plates + Courses + Quick Tools) */}
+          {tab === "notes" && (
+            <div style={{ display: "grid", gap: 30, marginBottom: 28 }}>
+              {hub?.sections?.length > 0 && (
+                <div>
+                  <LessonSections sections={hub.sections} topicTitle={country.country} headingTag="h2" disableInlineFigures />
+                </div>
+              )}
+
+              {/* Curated Clinical Visual Plates Strip for this Country */}
+              {(COUNTRY_FEATURED_PLATES[targetSlug] || []).length > 0 && (
+                <section>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: 10, marginBottom: 14 }}>
+                    <div>
+                      <span style={{ fontSize: "0.72rem", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.06em", color: "#7c3aed" }}>
+                        CURATED CLINICAL PLATES · {countryMeta?.shortName || country.country.toUpperCase()}
+                      </span>
+                      <h2 style={{ margin: "2px 0 0", fontSize: "1.35rem", color: "#0f172a" }}>
+                        High-Yield Diagrams &amp; {country.examRequired.split("(")[0].trim()} Flowcharts
+                      </h2>
+                    </div>
+                    <Link to="/medical-atlas" style={{ fontSize: "0.84rem", fontWeight: 700, color: "#7c3aed", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 4 }}>
+                      Full Medical Atlas <ArrowRight size={14} />
+                    </Link>
+                  </div>
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(235px, 1fr))", gap: 14 }}>
+                    {(COUNTRY_FEATURED_PLATES[targetSlug] || []).map((plate) => (
+                      <div
+                        key={plate.src}
+                        style={{
+                          background: "#ffffff",
+                          border: "1px solid #cbd5e1",
+                          borderRadius: 10,
+                          overflow: "hidden",
+                          boxShadow: "0 2px 10px rgba(15, 23, 42, 0.04)",
+                          display: "flex",
+                          flexDirection: "column"
+                        }}
+                      >
+                        <div style={{ background: "#f8fafc", borderBottom: "1px solid #e2e8f0", aspectRatio: "16 / 10", overflow: "hidden" }}>
+                          <img
+                            src={plate.src}
+                            alt={plate.title}
+                            loading="lazy"
+                            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                          />
+                        </div>
+                        <div style={{ padding: "12px 14px", display: "flex", flexDirection: "column", gap: 4 }}>
+                          <span style={{ fontSize: "0.68rem", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.05em", color: "#7c3aed" }}>
+                            {plate.tag}
+                          </span>
+                          <div style={{ fontSize: "0.9rem", fontWeight: 700, color: "#0f172a", lineHeight: 1.35 }}>
+                            {plate.title}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              )}
+
+              {/* HomePage-style Country Specialization Courses Preview */}
+              {curriculum?.courses?.length > 0 && (
+                <section>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: 10, marginBottom: 14 }}>
+                    <div>
+                      <span style={{ fontSize: "0.72rem", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.06em", color: "#475569" }}>
+                        {curriculum.partnerLine}
+                      </span>
+                      <h2 style={{ margin: "2px 0 0", fontSize: "1.35rem", color: "#0f172a" }}>
+                        Featured {countryMeta?.shortName || country.country} Specialization Courses ({curriculum.courses.length})
+                      </h2>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => switchTab("curriculum")}
+                      style={{
+                        background: "none",
+                        border: "none",
+                        padding: 0,
+                        fontSize: "0.84rem",
+                        fontWeight: 700,
+                        color: "#7c3aed",
+                        cursor: "pointer",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: 4
+                      }}
+                    >
+                      Open Full {curriculum.modules.length}-Module Syllabus <ArrowRight size={14} />
+                    </button>
+                  </div>
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(255px, 1fr))", gap: 14 }}>
+                    {curriculum.courses.slice(0, 4).map((course) => (
+                      <div
+                        key={course.id}
+                        style={{
+                          background: "#ffffff",
+                          border: "1px solid #cbd5e1",
+                          borderTop: `4px solid ${theme.heroBg}`,
+                          borderRadius: 10,
+                          padding: 16,
+                          display: "flex",
+                          flexDirection: "column",
+                          justifyContent: "space-between",
+                          gap: 10
+                        }}
+                      >
+                        <div>
+                          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 8, marginBottom: 6 }}>
+                            <span style={{ fontSize: "0.72rem", fontWeight: 700, color: "#475569" }}>{course.provider}</span>
+                            <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: "0.75rem", fontWeight: 700, color: "#0f172a" }}>
+                              <Star size={12} fill="#0f172a" /> {course.rating}
+                            </span>
+                          </div>
+                          <h3 style={{ margin: "0 0 6px", fontSize: "0.98rem", color: "#0f172a", lineHeight: 1.35 }}>
+                            {course.title}
+                          </h3>
+                          <p style={{ margin: 0, fontSize: "0.83rem", color: "#475569", lineHeight: 1.5 }}>
+                            {course.summary}
+                          </p>
+                        </div>
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 10, borderTop: "1px solid #f1f5f9", fontSize: "0.76rem", color: "#334155" }}>
+                          <span>{course.level} · {course.topicsCount} topics</span>
+                          <Link
+                            to={`${countryMeta.topicsBase}/${course.sampleTopicSlug}`}
+                            style={{ color: "#7c3aed", fontWeight: 800, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 4 }}
+                          >
+                            Start <ArrowRight size={13} />
+                          </Link>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              )}
+
+              {/* HomePage-style 3-Card Quick Actions & Exam Tools Bento */}
+              <section style={{ background: "#ffffff", border: "1px solid #cbd5e1", borderRadius: 12, padding: 22 }}>
+                <h2 style={{ margin: "0 0 14px", fontSize: "1.2rem", color: "#0f172a" }}>
+                  Interactive Study Tools for {country.country}
+                </h2>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(230px, 1fr))", gap: 14 }}>
+                  <button
+                    type="button"
+                    onClick={() => switchTab("practice")}
+                    style={{
+                      textAlign: "left",
+                      background: "#f8fafc",
+                      border: "1px solid #cbd5e1",
+                      borderRadius: 10,
+                      padding: 16,
+                      cursor: "pointer"
+                    }}
+                  >
+                    <div style={{ fontSize: "0.72rem", fontWeight: 800, color: "#7c3aed", textTransform: "uppercase", marginBottom: 4 }}>
+                      Practice &amp; Unit Converter
+                    </div>
+                    <div style={{ fontWeight: 700, color: "#0f172a", fontSize: "0.96rem", marginBottom: 4 }}>
+                      Quiz + SI ↔ US Lab Values
+                    </div>
+                    <p style={{ margin: 0, fontSize: "0.82rem", color: "#475569", lineHeight: 1.45 }}>
+                      Convert blood glucose ({country.unitSystem}), HbA1c, creatinine, and BAN/rINN vs USAN drug names.
+                    </p>
+                  </button>
+
+                  {countryMeta && (
+                    <button
+                      type="button"
+                      onClick={() => switchTab("topics")}
+                      style={{
+                        textAlign: "left",
+                        background: "#f8fafc",
+                        border: "1px solid #cbd5e1",
+                        borderRadius: 10,
+                        padding: 16,
+                        cursor: "pointer"
+                      }}
+                    >
+                      <div style={{ fontSize: "0.72rem", fontWeight: 800, color: "#7c3aed", textTransform: "uppercase", marginBottom: 4 }}>
+                        Full Clinical Library
+                      </div>
+                      <div style={{ fontWeight: 700, color: "#0f172a", fontSize: "0.96rem", marginBottom: 4 }}>
+                        779 {countryMeta.shortName} Study Topics
+                      </div>
+                      <p style={{ margin: 0, fontSize: "0.82rem", color: "#475569", lineHeight: 1.45 }}>
+                        Search localized anatomy, pharmacology, paediatrics, OB/GYN &amp; med-surg topics.
+                      </p>
+                    </button>
+                  )}
+
+                  <button
+                    type="button"
+                    onClick={() => switchTab("roadmap")}
+                    style={{
+                      textAlign: "left",
+                      background: "#f8fafc",
+                      border: "1px solid #cbd5e1",
+                      borderRadius: 10,
+                      padding: 16,
+                      cursor: "pointer"
+                    }}
+                  >
+                    <div style={{ fontSize: "0.72rem", fontWeight: 800, color: "#7c3aed", textTransform: "uppercase", marginBottom: 4 }}>
+                      Registration &amp; Timeline
+                    </div>
+                    <div style={{ fontWeight: 700, color: "#0f172a", fontSize: "0.96rem", marginBottom: 4 }}>
+                      Official {country.council.split("(")[0].trim()} Checklist
+                    </div>
+                    <p style={{ margin: 0, fontSize: "0.82rem", color: "#475569", lineHeight: 1.45 }}>
+                      Review step-by-step credentialing ({country.timeline}), English language scores, and documents.
+                    </p>
+                  </button>
+                </div>
+              </section>
             </div>
           )}
 

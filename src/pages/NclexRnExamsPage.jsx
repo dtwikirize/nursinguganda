@@ -82,7 +82,17 @@ export default function NclexRnExamsPage() {
     <main style={{ background: "#f8fafc", minHeight: "86vh" }}>
       <NclexNavStrip />
 
-      <section style={{ background: "#1c1d1f", color: "#ffffff", padding: "30px 0", borderBottom: "4px solid #a435f0" }}>
+      <section
+        style={{
+          background: "#1c1d1f",
+          backgroundImage: "linear-gradient(105deg, rgba(15, 16, 20, 0.92) 0%, rgba(45, 22, 82, 0.85) 55%, rgba(15, 16, 20, 0.88) 100%), url('/assets/images/nclex-rn-hero-bg.webp')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          color: "#ffffff",
+          padding: "34px 0",
+          borderBottom: "4px solid #a435f0"
+        }}
+      >
         <div className="nu-container" style={{ maxWidth: 1180 }}>
           <div style={{ fontSize: "0.74rem", fontWeight: 800, color: "#d8b4fe", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: 6 }}>
             DEDICATED SIMULATION COURSE · INCLUDED WITH $99 ACADEMY

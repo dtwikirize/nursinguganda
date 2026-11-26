@@ -5,70 +5,67 @@
       "theme": "coursera-black",
       "eyebrow": "UK NMC ACADEMY · CBT & 10-STATION OSCE",
       "headline": "Nursing in the United Kingdom (NMC CBT & OSCE Hub)",
-      "subheadline": "Master NMC Future Nurse standards, Part A Numeracy, Part B Clinical CBT, APIE OSCE stations, NICE guidelines, and UK SI laboratory units.",
+      "subheadline": "Master NMC Future Nurse standards, Part A Numeracy, Part B Clinical CBT, APIE 10-station OSCEs, NHS NEWS2 escalation, UK NICE guidelines, and SI laboratory units.",
       "highlights": [
         { "label": "Exam Parts", "value": "CBT (Part A + B) & 10-Station OSCE" },
-        { "label": "Lab System", "value": "SI Units (mmol/L, g/L)" },
+        { "label": "Lab System", "value": "UK SI Units (mmol/L, g/L)" },
         { "label": "English Bar", "value": "IELTS 7.0 (6.5 Writing) / OET B" },
-        { "label": "Guidelines", "value": "NMC Code 2018 & UK NICE" }
+        { "label": "Guidelines", "value": "NMC Code 2018 · NEWS2 · UK NICE" }
       ],
       "sections": [
         {
-          "title": "1. UK NMC Test of Competence Structure (CBT & OSCE)",
+          "title": "1. UK NMC Registration Pipeline & 4 Future Nurse Pillars",
           "blocks": [
             {
-              "type": "paragraph",
-              "text": "Every internationally educated nurse seeking UK registration with the **Nursing and Midwifery Council (NMC)** completes **Part 1: Computer-Based Test (CBT)** at a Pearson VUE center, followed by **Part 2: Objective Structured Clinical Examination (OSCE)** in the UK."
+              "type": "figure",
+              "src": "/assets/images/medical-illustrations/hub-uk-nmc-pathway-news2.webp",
+              "alt": "UK NMC 5-stage competency pathway and NHS NEWS2 clinical escalation scores",
+              "caption": "UK NMC Test of Competence Flow & NHS NEWS2 Clinical Deterioration Thresholds"
             },
             {
-              "type": "diagram",
-              "variant": "flow",
-              "title": "UK NMC Registration & Examination Sequence",
-              "caption": "From NMC eligibility and CBT numeracy/theory to the 10-station UK OSCE.",
-              "steps": [
-                { "step": 1, "label": "NMC Eligibility", "detail": "Verify UNMC registration & English (IELTS/OET)" },
-                { "step": 2, "label": "CBT Part A", "detail": "15 clinical numeracy & IV math questions (30 mins)" },
-                { "step": 3, "label": "CBT Part B", "detail": "100 clinical/NMC Code questions (2h 30m)" },
-                { "step": 4, "label": "10-Station OSCE", "detail": "4 APIE stations + 4 skills + 2 professional values" },
-                { "step": 5, "label": "NMC PIN Issued", "detail": "Enter UK Register & begin NHS preceptorship" }
-              ]
-            },
-            {
-              "type": "table",
-              "title": "NMC CBT & OSCE Exam Blueprint Overview",
-              "headers": ["Exam Stage", "Format & Pass Focus", "High-Yield UK Priorities"],
-              "rows": [
-                [
-                  "**CBT Part A: Numeracy**",
-                  "15 short-answer calculation items (oral tablets, IV mL/hr, mg/kg, fluid balance).",
-                  ["Zero rounding errors — read exact decimal instructions", "Verify **micrograms vs milligrams** conversions cleanly"]
-                ],
-                [
-                  "**CBT Part B: Clinical**",
-                  "100 MCQs aligned to **Future Nurse: Standards of Proficiency (2018)**.",
-                  ["**NMC Code:** Prioritize people, practice effectively, preserve safety", "**Safeguarding**, Mental Capacity Act & **NICE Sepsis** rules"]
-                ],
-                [
-                  "**10-Station OSCE (UK)**",
-                  "4 APIE (Assessment, Planning, Implementation, Evaluation) + 4 clinical skills + 2 evidence/values stations.",
-                  ["**NEWS2** vital signs escalation", "**ANTT** aseptic wound/catheter care", "Closed-loop communication & patient consent"]
-                ]
+              "type": "cards",
+              "title": "The 3 UK NMC Competence Gateways",
+              "items": [
+                { "tag": "Gateway 1 · 30 mins", "title": "CBT Part A: Clinical Numeracy", "text": "15 short-answer calculations (IV mL/hr, mg/kg dosing, oral tablets, fluid balance). Verify **micrograms vs milligrams** cleanly." },
+                { "tag": "Gateway 2 · 2.5 hrs", "title": "CBT Part B: Clinical Judgment", "text": "100 MCQs aligned to **NMC Code (2018)**: Prioritize People, Practice Effectively, Preserve Safety, Promote Professionalism." },
+                { "tag": "Gateway 3 · UK Center", "title": "10-Station APIE OSCE", "text": "4 holistic **APIE** scenario stations (Assessment, Planning, Implementation, Evaluation) + 4 practical **ANTT** skills + 2 professional values stations." }
               ]
             }
           ]
         },
         {
-          "title": "2. UK vs. Uganda/US Drug Terminology & SI Lab Reference",
+          "title": "2. NHS NEWS2 Physiological Escalation & UK Sepsis Six",
+          "blocks": [
+            {
+              "type": "callout",
+              "tone": "alert",
+              "title": "UK Sepsis Six Bundle (Give 3, Take 3 Within 1 Hour)",
+              "text": "When **NEWS2 >= 5** (or suspected infection + organ dysfunction): **Give** O2 to target saturation, **IV Broad-Spectrum Antibiotics**, and **IV Crystalloid Fluid Bolus**; **Take** Blood Cultures, Serum **Lactate**, and hourly **Urine Output**."
+            },
+            {
+              "type": "table",
+              "title": "NEWS2 Adult Observation Scoring & Oxygen Scale Rules",
+              "headers": ["Parameter", "Normal (Score 0)", "Moderate (Score 2)", "Red Flag / Single Score 3", "NHS Ward Action"],
+              "rows": [
+                ["**Respiratory Rate**", "12 – 20 /min", "21 – 24 /min", "<= 8 or >= 25 /min", "Assess airway, breathing effort & Sepsis Six"],
+                ["**SpO2 Scale 1 (Standard)**", ">= 96%", "92 – 93%", "<= 91%", "Titrate supplemental O2 per target prescription"],
+                ["**SpO2 Scale 2 (COPD/CO2 Retention)**", "88 – 92% on O2", "95 – 96% on O2 (excess)", ">= 97% on O2 (hyperoxia risk)", "Target **88–92%** Venturi 24–28% to protect drive"],
+                ["**Systolic BP & Heart Rate**", "SBP 111–219 · HR 51–90", "SBP 91–100 · HR 111–130", "SBP <= 90 or >= 220 · HR >= 131", "Score >= 7 -> Continuous obs + Critical Care review"]
+              ]
+            }
+          ]
+        },
+        {
+          "title": "3. UK BNF Generic Naming, Controlled Drugs & Hypoglycemia",
           "blocks": [
             {
               "type": "table",
-              "title": "High-Yield UK NHS Naming & SI Units",
-              "headers": ["Parameter / Medication", "UK NMC / NHS Standard", "Key Clinical Watchpoint"],
+              "title": "High-Yield UK NHS Drug Charts & SI Lab Alerts",
+              "headers": ["UK BNF Drug / SI Marker", "UK Naming & Therapeutic Range", "NMC OSCE Safety Check"],
               "rows": [
-                ["**Paracetamol**", "Called *Paracetamol* (US calls it *Acetaminophen*).", "Max adult dose **4 g / 24 hours**; watch hepatotoxicity."],
-                ["**Adrenaline / Noradrenaline**", "Called *Adrenaline* & *Noradrenaline* (US: *Epinephrine*).", "Anaphylaxis adult IM dose: **0.5 mg (0.5 mL of 1:1000)**."],
-                ["**Salbutamol & Frusemide/Furosemide**", "Standard UK **BNF** generic naming on OSCE charts.", "Monitor **K+ (3.5–5.0 mmol/L)** on loop diuretics."],
-                ["**Blood Glucose (SI)**", "**4.0 – 7.0 mmol/L** fasting (multiply mmol/L × 18 for mg/dL).", "Hypoglycemia threshold in UK adults: **< 4.0 mmol/L** (treat fast!)."]
+                ["**Paracetamol & Adrenaline**", "Never written as Acetaminophen/Epinephrine on NHS MAR.", "Adult Paracetamol max **4 g / 24h**; Anaphylaxis IM **0.5 mg (1:1000)**."],
+                ["**Schedule 2 Controlled Drugs**", "Morphine, Oxycodone, Fentanyl (CD Cupboard & Register).", "Double-check balance & sign **CD Register** with 2 registered nurses."],
+                ["**Capillary Glucose (SI)**", "**4.0 – 7.0 mmol/L** fasting (< 4.0 mmol/L = Hypoglycemia).", "Conscious & < 4.0 mmol/L: give **15–20 g oral carbohydrate**, recheck 10–15 min."]
               ]
             }
           ]
@@ -89,15 +86,15 @@
         },
         {
           "id": "uk-q2",
-          "prompt": "Which 4-station sequence forms the core patient-scenario backbone of the UK NMC OSCE?",
+          "prompt": "On an NHS NEWS2 chart, which SpO2 target range applies when caring for a COPD patient with documented hypercapnic respiratory failure (Scale 2)?",
           "options": [
-            "SBAR (Situation, Background, Assessment, Recommendation)",
-            "APIE (Assessment, Planning, Implementation, Evaluation)",
-            "SOAPIE only",
-            "GCS & APGAR"
+            "98–100% via non-rebreather mask",
+            "88–92%",
+            "75–82%",
+            "Oxygen targets are never prescribed on UK charts"
           ],
           "answerIndex": 1,
-          "rationale": "The UK NMC OSCE evaluates structured holistic nursing across the 4 linked APIE stations: Assessment, Planning, Implementation, and Evaluation."
+          "rationale": "NEWS2 Scale 2 specifies a target SpO2 of 88–92% for COPD patients with hypercapnic respiratory failure; excessive oxygen risks CO2 narcosis."
         }
       ]
     },
@@ -106,70 +103,75 @@
       "theme": "red-black",
       "eyebrow": "USA NURSING ACADEMY · NEXT-GEN NCLEX-RN (NGN)",
       "headline": "Nursing in the United States (NCLEX-RN & CGFNS Hub)",
-      "subheadline": "Master NCSBN Next-Gen Clinical Judgment (CJMM), US conventional lab units (mg/dL, mEq/L), high-alert pharmacology, and prioritization rules.",
+      "subheadline": "Master Foreign RN CGFNS -> State Board licensure, NCSBN 6-Step Clinical Judgment (CJMM), US conventional labs (mg/dL, mEq/L), delegation EAT rules, and EB-3/H-1B visas.",
       "highlights": [
         { "label": "Exam Engine", "value": "Next-Gen NCLEX-RN (CAT · 85–150 Qs)" },
         { "label": "Lab System", "value": "US Conventional (mg/dL, mEq/L)" },
-        { "label": "Credentialing", "value": "CGFNS CES + State Board ATT" },
-        { "label": "Core Model", "value": "NCSBN 6-Step CJMM" }
+        { "label": "Credentialing", "value": "CGFNS CES + State Board ATT (~$800 Fees)" },
+        { "label": "Visa Tracks", "value": "EB-3 Green Card vs H-1B BScN" }
       ],
       "sections": [
         {
-          "title": "1. Next-Gen NCLEX-RN Clinical Judgment Model (CJMM)",
+          "title": "1. International Nurse US Pathway, Regulatory Fees & Visas",
           "blocks": [
             {
-              "type": "paragraph",
-              "text": "The **Next-Generation NCLEX-RN (NGN)** evaluates safe entry-level practice across **Client Needs** categories and the 6-step **NCSBN Clinical Judgment Measurement Model (CJMM)** using evolving case studies, matrix grids, bowtie items, and trend questions."
-            },
-            {
-              "type": "diagram",
-              "variant": "flow",
-              "title": "NCSBN 6-Step Clinical Judgment Loop",
-              "caption": "Every NGN case study tests these six sequential clinical reasoning steps.",
-              "steps": [
-                { "step": 1, "label": "Recognize Cues", "detail": "Spot abnormal vitals, labs & patient changes" },
-                { "step": 2, "label": "Analyze Cues", "detail": "Link findings to underlying pathophysiology" },
-                { "step": 3, "label": "Prioritize Hypotheses", "detail": "Rank urgent life-threats (ABC, Sepsis, Shock)" },
-                { "step": 4, "label": "Generate Solutions", "detail": "Identify safe nursing & provider interventions" },
-                { "step": 5, "label": "Take Action & Evaluate", "detail": "Intervene first, then verify patient response" }
-              ]
+              "type": "figure",
+              "src": "/assets/images/medical-illustrations/nclex-foreign-rn-licensure-roadmap.webp",
+              "alt": "4-step international nurse US licensure workflow and EB-3 vs H-1B visa comparison",
+              "caption": "International Nurse USA Pathway: CGFNS Verification, Pearson VUE ATT & EB-3 / H-1B Visas"
             },
             {
               "type": "table",
-              "title": "NCLEX Prioritization & Delegation Rules",
-              "headers": ["Framework", "Clinical Priority Rule", "Classic NCLEX Examples"],
+              "title": "Statutory US Licensing Milestones & Estimated Agency Costs",
+              "headers": ["Licensure Step", "Authorizing Body", "Est. Official Fee", "Required Documentation"],
               "rows": [
-                [
-                  "**ABCs (Airway · Breathing · Circulation)**",
-                  "Always secure **airway patency** before breathing, and breathing before circulation.",
-                  ["Stridor after thyroidectomy -> **Airway emergency**", "SpO2 86% -> raise HOB & give O2 before charting"]
-                ],
-                [
-                  "**Acute vs. Chronic / Unstable vs. Stable**",
-                  "New sudden deterioration beats expected chronic findings.",
-                  ["Sudden confusion in COPD patient beats baseline productive cough", "New chest pain beats scheduled discharge teaching"]
-                ],
-                [
-                  "**RN vs. LPN vs. UAP Delegation**",
-                  "RNs **never delegate EAT** (Evaluation, Assessment, Teaching) or unstable clients.",
-                  ["**UAP:** routine vitals on stable patients, bathing, I&O", "**LPN:** stable meds, wound dressings", "**RN:** IV push, blood transfusion initiation, initial teaching"]
-                ]
+                ["**1. Credential Verification**", "CGFNS International (CES)", "~$485 USD", "Secondary certificates + UNMC license direct + training transcripts"],
+                ["**2. Board & Fingerprints**", "State Board (e.g. TBON) & IdentoGO", "~$75 + $40 USD", "Board licensure application + electronic criminal background prints"],
+                ["**3. Exam Registration**", "Pearson VUE & ATT", "~$200 + $150 intl", "Receive Authorization to Test (ATT) & book Pearson VUE center"],
+                ["**4. Immigration & Jobs**", "Direct Hire Hospital / Visa Agency", "Employer-sponsored", "**EB-3** Permanent Green Card vs **H-1B** (BScN required, single contract)"]
               ]
             }
           ]
         },
         {
-          "title": "2. US Conventional Lab Values (mg/dL, mEq/L) & High-Alert Antidotes",
+          "title": "2. NCSBN 6-Step CJMM Prioritization & EAT Delegation Matrix",
+          "blocks": [
+            {
+              "type": "diagram",
+              "variant": "flow",
+              "title": "NCSBN 6-Step Clinical Judgment Measurement Model (CJMM)",
+              "caption": "Every evolving NGN case study evaluates these six linked clinical thinking steps.",
+              "steps": [
+                { "step": 1, "label": "Recognize Cues", "detail": "Spot vital shifts & critical lab trends" },
+                { "step": 2, "label": "Analyze Cues", "detail": "Link findings to urgent pathophysiology" },
+                { "step": 3, "label": "Prioritize Hypotheses", "detail": "Rank ABCs, Sepsis & Shock threats first" },
+                { "step": 4, "label": "Generate Solutions", "detail": "Select safe interventions & avoid contraindications" },
+                { "step": 5, "label": "Take Action & Evaluate", "detail": "Act at bedside then recheck patient outcomes" }
+              ]
+            },
+            {
+              "type": "cards",
+              "title": "NCLEX Scope of Practice: Never Delegate E-A-T",
+              "items": [
+                { "tag": "RN Only", "title": "Evaluation · Assessment · Teaching", "text": "Initial admissions, **blood transfusions**, IV push drugs, TPN lines, and **unstable clients** stay strictly with the RN." },
+                { "tag": "LPN / LVN", "title": "Stable Treatments & Oral/IM Meds", "text": "Maintains ostomies, sterile wound dressings, Foley catheters, oral/IM meds, and collects reinforcement vitals on **stable** clients." },
+                { "tag": "UAP / CNA", "title": "ADLs & Routine Measurements", "text": "Bathing, ambulation, feeding (non-dysphagia), linen changes, I&O recording, and routine vitals on **predictable** patients." }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "3. High-Yield US Conventional Labs, Antidotes & Isolation Grid",
           "blocks": [
             {
               "type": "table",
-              "title": "Must-Know US NCLEX Normal Ranges & Antidotes",
-              "headers": ["Lab / High-Alert Drug", "US Normal Value / Antidote", "Priority Nursing Action"],
+              "title": "Must-Know US NCLEX Conventional Values & Antidotes",
+              "headers": ["Parameter / Drug", "US Normal Range / Specific Antidote", "Critical Nursing Action"],
               "rows": [
-                ["**Sodium (Na+) / Potassium (K+)**", "**Na+:** 135–145 mEq/L · **K+:** 3.5–5.0 mEq/L", "Never push IV KCl; watch peaked T-waves if K+ > 5.0."],
-                ["**Blood Glucose & HbA1c**", "**Fasting:** 70–100 mg/dL · **HbA1c:** < 5.7% (DM < 7%)", "Note: US uses **mg/dL** (divide by 18 for Uganda/UK mmol/L)."],
-                ["**Warfarin / Heparin**", "**Warfarin:** Vitamin K (INR 2–3) · **Heparin:** Protamine sulfate", "Monitor **PT/INR** for Warfarin; **aPTT** for IV Heparin."],
-                ["**Opioids / Magnesium Sulfate**", "**Opioids:** Naloxone · **MgSO4:** Calcium gluconate", "Hold MgSO4 if **RR < 12–16**, absent DTRs, or urine < 30 mL/hr."]
+                ["**Electrolytes (Na+ / K+ / Ca2+)**", "**Na+:** 135–145 mEq/L · **K+:** 3.5–5.0 mEq/L · **Ca2+:** 8.5–10.5 mg/dL", "Never IV-push KCl; check Chvostek/Trousseau in low Ca2+."],
+                ["**Glucose (mg/dL) & Creatinine**", "**Glucose:** 70–100 mg/dL · **Creatinine:** 0.6–1.2 mg/dL", "Hold **Metformin** 48h around IV contrast; watch hypoglycemia <70 mg/dL."],
+                ["**Warfarin / IV Heparin**", "**Warfarin:** Vitamin K (INR 2–3) · **Heparin:** Protamine sulfate", "Check baseline **PT/INR** (Warfarin) and **aPTT** (Heparin drip)."],
+                ["**Transmission Precautions**", "**Airborne (MTV):** Measles, TB, Varicella · **Droplet:** Meningitis, Pertussis · **Contact:** MRSA, C.diff", "C.diff spores require **soap & water** handwashing (alcohol gel fails!)."]
               ]
             }
           ]
@@ -202,60 +204,57 @@
         }
       ]
     },
-    "canada-nnas-nclex": {
+    "canada-nnas-rexpn": {
       "route": "/nursing-canada",
       "theme": "red-black",
       "eyebrow": "CANADA NURSING ACADEMY · NNAS · NCLEX-RN & REx-PN",
       "headline": "Nursing in Canada (NNAS, NCLEX-RN & REx-PN Hub)",
-      "subheadline": "Master NNAS credential evaluation, provincial CNO/BCCNM/CRNA competencies, NCLEX-RN & REx-PN exam strategies, and Canadian SI lab ranges.",
+      "subheadline": "Master NNAS Advisory Reports, provincial regulation across CNO, BCCNM & CRNA, NCLEX-RN vs REx-PN competencies, Indigenous cultural safety, and Canadian SI labs.",
       "highlights": [
         { "label": "Credential Body", "value": "NNAS Advisory Report" },
-        { "label": "Licensing Exams", "value": "NCLEX-RN (RN) & REx-PN (RPN/LPN)" },
-        { "label": "Lab System", "value": "SI Units (mmol/L, g/L)" },
-        { "label": "Key Regulators", "value": "CNO · BCCNM · CRNA" }
+        { "label": "Exams", "value": "NCLEX-RN (RN) & REx-PN (RPN/LPN)" },
+        { "label": "Lab Units", "value": "Canadian SI (mmol/L, µmol/L, g/L)" },
+        { "label": "Provinces", "value": "CNO · BCCNM · CRNA · NSCN" }
       ],
       "sections": [
         {
-          "title": "1. Canadian NNAS Registration & Exam Pathway",
+          "title": "1. Provincial Regulators & NNAS Assessment Comparison",
           "blocks": [
             {
-              "type": "paragraph",
-              "text": "Internationally educated nurses apply through **NNAS (National Nursing Assessment Service)** before seeking registration with a provincial regulator such as **CNO (Ontario)**, **BCCNM (British Columbia)**, or **CRNA (Alberta)**."
-            },
-            {
-              "type": "diagram",
-              "variant": "flow",
-              "title": "Canada IEN Pathway (NNAS to Licensure)",
-              "caption": "Five core stages from NNAS verification to provincial RN or RPN/LPN practice.",
-              "steps": [
-                { "step": 1, "label": "NNAS File", "detail": "Verify education, Uganda UNMC license & experience" },
-                { "step": 2, "label": "Advisory Report", "detail": "Submit NNAS report to CNO, BCCNM or CRNA" },
-                { "step": 3, "label": "Competency Review", "detail": "Meet English, jurisprudence & bridging if required" },
-                { "step": 4, "label": "NCLEX-RN / REx-PN", "detail": "Pass RN (NCLEX-RN) or RPN/LPN (REx-PN)" },
-                { "step": 5, "label": "Provincial Register", "detail": "Receive active practice registration" }
-              ]
+              "type": "figure",
+              "src": "/assets/images/medical-illustrations/hub-canada-nnas-rexpn.webp",
+              "alt": "Canada NNAS to provincial RN and REx-PN licensure flowchart alongside Canadian ethics competencies",
+              "caption": "NNAS Advisory Sequence, NCLEX-RN vs REx-PN & Canadian Practice Competencies"
             },
             {
               "type": "table",
-              "title": "NCLEX-RN vs. REx-PN & Canadian SI Lab Notes",
-              "headers": ["Exam / Domain", "Who Takes It & Scope", "High-Yield Canadian Focus"],
+              "title": "Major Canadian Provincial Regulatory Colleges",
+              "headers": ["Province / College", "Licensing Track & Exam", "Unique Provincial Requirements"],
               "rows": [
-                [
-                  "**NCLEX-RN (Canada)**",
-                  "Registered Nurses (RNs) across Canadian provinces.",
-                  ["Uses **same NCSBN NGN format** as USA", "Expect **SI Lab Units** (`mmol/L`, `µmol/L`, `g/L`) on Canadian questions"]
-                ],
-                [
-                  "**REx-PN**",
-                  "Registered Practical Nurses (Ontario CNO) & LPNs (BC BCCNM).",
-                  ["Focuses on stable/predictable client care, medication safety & collaboration", "Computerized adaptive exam (90–150 items)"]
-                ],
-                [
-                  "**Entry-to-Practice (ETPCs)**",
-                  "CNO/BCCNM Clinician, Communicator, Collaborator, Leader, Scholar roles.",
-                  ["Cultural safety, informed consent & interprofessional SBAR escalation"]
-                ]
+                ["**Ontario (CNO)**", "RN (**NCLEX-RN**) & RPN (**REx-PN**)", "Online **CNO Jurisprudence Exam** + Supervised Practice Experience Partnership (SPEP) option"],
+                ["**British Columbia (BCCNM)**", "RN (**NCLEX-RN**) & LPN (**REx-PN**)", "Inspire / NCAS competency assessment if bridging needed + Cultural Safety modules"],
+                ["**Alberta (CRNA / CLPNA)**", "RN (**NCLEX-RN**) & LPN (**CPNRE/REx-PN**)", "Jurisprudence module + Employer currency of practice hours verification"],
+                ["**Quebec (OIIQ)**", "OIIQ Provincial Exam", "Mandatory **OQLF French proficiency** alongside equivalence stage"]
               ]
+            }
+          ]
+        },
+        {
+          "title": "2. Canadian Entry-to-Practice Competencies & Ethics Focus",
+          "blocks": [
+            {
+              "type": "callout",
+              "tone": "pearl",
+              "title": "High-Yield Canadian Exam Lens: Cultural Safety & Harm Reduction",
+              "text": "Canadian boards emphasize **Indigenous Cultural Safety & Anti-Racism**, trauma-informed relational care, **Naloxone harm-reduction** without judgment, and strict respect for client autonomy including end-of-life laws (**MAiD** referral boundaries)."
+            },
+            {
+              "type": "bullet",
+              "text": "**SI Units Only on Exams:** Unlike US exams, Canadian NCLEX-RN and REx-PN questions present laboratory panels strictly in **SI units**: fasting glucose **3.9–5.5 mmol/L**, hemoglobin **120–160 g/L (female)**, creatinine **50–100 µmol/L**."
+            },
+            {
+              "type": "bullet",
+              "text": "**Health Canada Medication Naming:** Familiarize both US and Commonwealth terms (**Acetaminophen** is standard in Canada alongside **Epinephrine**, while **Salbutamol** replaces Albuterol)."
             }
           ]
         }
@@ -280,55 +279,44 @@
       "theme": "green-black",
       "eyebrow": "AUSTRALIA NURSING ACADEMY · AHPRA / NMBA OBA",
       "headline": "Nursing in Australia (Ahpra & NMBA OBA Hub)",
-      "subheadline": "Master the Ahpra Outcomes-Based Assessment (OBA): Stage 1 NCLEX-RN, Stage 2 Australian OSCE, NMBA Standards for Practice, and SI lab units.",
+      "subheadline": "Master Ahpra Stream B Outcomes-Based Assessment (NCLEX-RN + Adelaide 10-Station OSCE), ACSQHC 8 NSQHS Standards, ISBAR handover, and Australian PBS naming.",
       "highlights": [
-        { "label": "Regulator", "value": "Ahpra & NMBA" },
-        { "label": "Stage 1 Exam", "value": "NCLEX-RN (Cognitive)" },
-        { "label": "Stage 2 Exam", "value": "Australian OSCE (10 Stations)" },
-        { "label": "Lab System", "value": "SI Units (mmol/L, g/L)" }
+        { "label": "Regulator", "value": "Ahpra & NMBA (IQNM Portal)" },
+        { "label": "OBA Exams", "value": "Stage 1 NCLEX-RN + Stage 2 OSCE" },
+        { "label": "Safety Code", "value": "8 NSQHS National Standards & ISBAR" },
+        { "label": "Lab System", "value": "Australian SI Units (mmol/L, g/L)" }
       ],
       "sections": [
         {
-          "title": "1. Australia Outcomes-Based Assessment (OBA) Pathway",
+          "title": "1. Ahpra Stream B Outcomes-Based Assessment (OBA)",
           "blocks": [
             {
-              "type": "paragraph",
-              "text": "Under **Ahpra** and the **Nursing and Midwifery Board of Australia (NMBA)**, Stream B internationally qualified nurses complete the two-stage **Outcomes-Based Assessment (OBA)**: **Stage 1 NCLEX-RN** followed by **Stage 2 Clinical OSCE** in Australia."
-            },
-            {
-              "type": "diagram",
-              "variant": "flow",
-              "title": "Ahpra / NMBA Stream B OBA Sequence",
-              "caption": "Two-stage assessment combining NCLEX-RN clinical judgment and Australian OSCE practice.",
-              "steps": [
-                { "step": 1, "label": "Ahpra Self-Check", "detail": "Verify UNMC qualification & Stream B placement" },
-                { "step": 2, "label": "Portfolio & Docs", "detail": "Submit identity, English & criminal checks" },
-                { "step": 3, "label": "Stage 1: NCLEX-RN", "detail": "Pass cognitive exam via Pearson VUE" },
-                { "step": 4, "label": "Stage 2: NMBA OSCE", "detail": "Complete behavioural stations in Australia" },
-                { "step": 5, "label": "NMBA Registration", "detail": "Practice across Australian hospitals" }
-              ]
-            },
+              "type": "figure",
+              "src": "/assets/images/medical-illustrations/hub-australia-oba-isbar.webp",
+              "alt": "Australia Ahpra Stream B OBA 5-stage process and NSQHS ISBAR clinical handover pillars",
+              "caption": "Australia OBA Pathway (NCLEX-RN + OSCE) & ISBAR Standard 6 Clinical Handover"
+            }
+          ]
+        },
+        {
+          "title": "2. ACSQHC 8 NSQHS National Standards & PBS Governance",
+          "blocks": [
             {
               "type": "table",
-              "title": "Australian NMBA Standards & Clinical Keynotes",
-              "headers": ["Domain", "Australian Standard", "Practical Nursing Watchpoint"],
+              "title": "Australian Hospital NSQHS Standards Tested on the NMBA OSCE",
+              "headers": ["NSQHS Standard", "Core Hospital Requirement", "Adelaide OSCE Examiner Checklist"],
               "rows": [
-                [
-                  "**NMBA RN Standards**",
-                  "7 interconnected standards: critical thinking, therapeutic relationships, capability, safe practice, evaluation.",
-                  ["Always explain procedures, verify **3 patient identifiers**, and obtain verbal consent"]
-                ],
-                [
-                  "**SI Units & Generic Drugs**",
-                  "Uses **SI units (`mmol/L`)** and Australian Approved Names (*Paracetamol*, *Adrenaline*, *Lignocaine*).",
-                  ["Same **Paracetamol / Adrenaline** conventions familiar from Uganda & UK training"]
-                ],
-                [
-                  "**OSCE Clinical Safety**",
-                  "Aseptic non-touch technique, medication rights, falls/pressure prevention & escalation.",
-                  ["Verbalize hand hygiene (**5 Moments**) & allergy checks clearly to examiners"]
-                ]
+                ["**Standard 3: HAI Prevention**", "National Hand Hygiene Initiative (**5 Moments**) & ANTT.", "Verbally identify **Moment 1 (Before Patient)** & clean catheter/IV hubs"],
+                ["**Standard 4: Medication Safety**", "**NIMC** National Inpatient Medication Chart + **Schedule 8 (S8)** lock.", "Double-check **3 Patient Identifiers** (Name, DOB, UR#) + Allergy box"],
+                ["**Standard 6: Clinical Handover**", "Structured **ISBAR** escalation across shifts & MET calls.", "Clearly state physiological trend + exact action/review timeframe"],
+                ["**Standard 8: Deterioration**", "**Between the Flags (BTF)** Yellow & Red zone MET triggers.", "Initiate O2/observations immediately and summon Medical Emergency Team"]
               ]
+            },
+            {
+              "type": "callout",
+              "tone": "pearl",
+              "title": "Australian PBS Approved Generic Drug Names",
+              "text": "Australian clinical charts mirror Commonwealth names (**Paracetamol**, **Adrenaline**, **Lignocaine**, **Frusemide**, **Salbutamol**) and use SI units (`mmol/L`, `g/L`)."
             }
           ]
         }
@@ -353,54 +341,33 @@
       "theme": "blue-black",
       "eyebrow": "KENYA NURSING ACADEMY · NCK KRCHN & BScN LICENSURE",
       "headline": "Nursing in Kenya (NCK Licensure & KRCHN/BScN Hub)",
-      "subheadline": "Master Nursing Council of Kenya (NCK) KRCHN & BScN national licensure exams, Kenyan clinical guidelines, maternal-child protocols, and SI laboratory units.",
+      "subheadline": "Master Nursing Council of Kenya (NCK) KRCHN & BScN national licensing examinations, KEML therapeutic protocols, KEPI cold chain, and East African registration.",
       "highlights": [
         { "label": "Regulatory Body", "value": "Nursing Council of Kenya (NCK)" },
         { "label": "Licensing Exam", "value": "NCK National Licensure (KRCHN / BSN)" },
-        { "label": "CPD & Renewal", "value": "Annual Practice License + CPD Points" },
-        { "label": "Lab System", "value": "SI Units (mmol/L, g/dL, °C)" }
+        { "label": "CPD & License", "value": "Annual Retention + 20–40 CPD Points" },
+        { "label": "Formulary", "value": "KEML · SHA · KEPI Immunization" }
       ],
       "sections": [
         {
-          "title": "1. Nursing Council of Kenya (NCK) Registration & Licensure",
+          "title": "1. NCK KRCHN & BScN Paper Breakdown & EAC Verification",
           "blocks": [
             {
-              "type": "paragraph",
-              "text": "The **Nursing Council of Kenya (NCK)** regulates Kenya-trained **KRCHN (Kenya Registered Community Health Nurse)**, **BScN**, and **KECHN** graduates, as well as foreign-trained East African nurses seeking Kenyan licensure through the **NCK Online Portal**."
-            },
-            {
-              "type": "diagram",
-              "variant": "flow",
-              "title": "Kenya NCK Licensure & Indexing Sequence",
-              "caption": "From training indexing and clinical logbooks to NCK national licensure and retention.",
-              "steps": [
-                { "step": 1, "label": "NCK Indexing", "detail": "Index with NCK via accredited KMTC or university" },
-                { "step": 2, "label": "Clinical Logbooks", "detail": "Complete medical-surgical, midwifery & community hours" },
-                { "step": 3, "label": "NCK Licensure Exam", "detail": "Pass Paper I & Paper II national licensing exam" },
-                { "step": 4, "label": "Foreign Verification", "detail": "EAC/foreign nurses submit UNMC good standing & transcripts" },
-                { "step": 5, "label": "NCK Practice License", "detail": "Receive registration & renew annual CPD license" }
+              "type": "cards",
+              "title": "Two Core NCK National Licensure Papers",
+              "items": [
+                { "tag": "Paper I", "title": "General Nursing, Med-Surg & Mental Health", "text": "Tests **ABC stabilization**, DKA & renal emergencies, acute trauma, oncology, psychiatry, and NCK ethics/nursing law." },
+                { "tag": "Paper II", "title": "Midwifery, Reproductive Health & Community", "text": "Tests **EMOC** (Oxytocin, Pritchard **MgSO4**), Partograph interpretation, IMCI danger signs, **KEPI** vaccines (+2°C to +8°C), and SHA/community entry." }
               ]
             },
             {
               "type": "table",
-              "title": "NCK KRCHN / BScN Exam Blueprint & High-Yield Clinical Focus",
-              "headers": ["NCK Exam Domain", "Core Focus Areas", "High-Yield Exam Watchpoints"],
+              "title": "High-Yield Kenya Ministry of Health & NCK Priority Thresholds",
+              "headers": ["Domain", "Kenya Standard Protocol", "High-Yield NCK Exam Watchpoint"],
               "rows": [
-                [
-                  "**Medical-Surgical & Critical Care**",
-                  "Shock, DKA, hypertension, sepsis, trauma, and perioperative nursing.",
-                  ["Prioritize **ABCs**, fluid resuscitation & early sepsis recognition", "Monitor **K+ (3.5–5.0 mmol/L)** and blood glucose (**3.9–5.5 mmol/L**)"]
-                ],
-                [
-                  "**Reproductive Health & Midwifery**",
-                  "Antenatal risk screening, partograph monitoring, PPH, eclampsia & newborn care.",
-                  ["Active management of 3rd stage (**Oxytocin 10 IU IM**)", "**MgSO4 (Pritchard)** loading & monitoring for patellar reflexes / respirations"]
-                ],
-                [
-                  "**Community Health & KEPI**",
-                  "Kenya Expanded Programme on Immunization, IMCI, malaria, TB & HIV care.",
-                  ["Cold chain (**+2°C to +8°C**) and vaccine schedules", "Integrated Management of Childhood Illness danger signs"]
-                ]
+                ["**Obstetric Emergencies**", "AMTSL with **Oxytocin 10 IU IM**; **Pritchard Regimen** (14g MgSO4 loading).", "Check respirations **>=16/min**, patellar reflexes present, urine **>=30 mL/hr** before repeat MgSO4."],
+                ["**Severe Malaria (Kenya MoH)**", "**IV Artesunate** at 0h, 12h, 24h -> oral **AL (Artemether-Lumefantrine)**.", "Monitor capillary blood glucose every 4h (watch quinine/severe malaria hypoglycemia)."],
+                ["**EAC Verification**", "Apply via **NCK Portal** with home council Good Standing + UNMC verification.", "Verify practical logbook hours across Med-Surg, Midwifery & Community units."]
               ]
             }
           ]
@@ -426,32 +393,32 @@
       "theme": "green-black",
       "eyebrow": "UGANDA NURSING ACADEMY · UHPAB (UNMEB) & UNMC",
       "headline": "Nursing in Uganda (UHPAB / UNMEB & UNMC Hub)",
-      "subheadline": "Master Uganda Ministry of Health Clinical Guidelines (2023), UHPAB (formerly UNMEB) Certificate/Diploma theory & OSCEs, and UNMC registration.",
+      "subheadline": "Master Uganda Ministry of Health Clinical Guidelines (2023), UHPAB (formerly UNMEB) Certificate, Diploma & BScN examinations, UNEPI cold chain, and UNMC licensure.",
       "highlights": [
         { "label": "Exam Board", "value": "UHPAB (formerly UNMEB)" },
         { "label": "Council", "value": "Uganda Nurses & Midwives Council (UNMC)" },
-        { "label": "Guidelines", "value": "Uganda Clinical Guidelines 2023 & WHO" },
-        { "label": "Lab System", "value": "SI Units (mmol/L, g/dL, °C)" }
+        { "label": "Guidelines", "value": "UCG 2023 · UNEPI · Option B+ EMTCT" },
+        { "label": "Referral System", "value": "7-Tier VHT -> Mulago National" }
       ],
       "sections": [
         {
-          "title": "1. Uganda UHPAB / UNMEB Exams & UNMC Registration",
+          "title": "1. Uganda Referral System, UHPAB Exams & UNMC Scope",
           "blocks": [
             {
-              "type": "paragraph",
-              "text": "In Uganda, nursing and midwifery examinations are conducted by **UHPAB** (formerly **UNMEB**) across Certificate, Diploma, and BScN tracks, followed by registration and annual licensing with the **Uganda Nurses and Midwives Council (UNMC)**."
+              "type": "figure",
+              "src": "/assets/images/medical-illustrations/leadership-hrm-uganda-health-policies.webp",
+              "alt": "Uganda Ministry of Health 7-tier referral pyramid from VHT to National Referral alongside IDSR and FEFO drug supply",
+              "caption": "Uganda MoH 7-Tier Health Referral Structure, HRM, FEFO Medicine Control & IDSR Surveillance"
             },
             {
-              "type": "diagram",
-              "variant": "flow",
-              "title": "Uganda Nursing & Midwifery Licensure Sequence",
-              "caption": "From accredited school training and UHPAB final exams to UNMC practicing license.",
-              "steps": [
-                { "step": 1, "label": "School & Indexing", "detail": "Enroll at MoES-accredited school & index with UHPAB" },
-                { "step": 2, "label": "Clinical Practicum", "detail": "Complete ward rotations & logbooks" },
-                { "step": 3, "label": "UHPAB Final Exams", "detail": "Pass theory papers, practicals & OSCE stations" },
-                { "step": 4, "label": "UNMC Registration", "detail": "Apply via UNMC portal with transcript & certificate" },
-                { "step": 5, "label": "Annual Renewal", "detail": "Maintain CPD points & valid UNMC practicing license" }
+              "type": "table",
+              "title": "Uganda Clinical Guidelines (UCG 2023) Must-Know Regimens",
+              "headers": ["Condition (Uganda MoH)", "First-Line UCG 2023 Regimen", "Bedside Nursing & OSCE Watchpoint"],
+              "rows": [
+                ["**Severe Malaria**", "**IV Artesunate** (2.4 mg/kg; 3.0 mg/kg <20 kg) at 0h, 12h, 24h -> 3-day AL.", "Reconstitute Artesunate in **5% Sodium Bicarbonate** + dilute with Normal Saline immediately."],
+                ["**Postpartum Haemorrhage (PPH)**", "**Oxytocin 10 IU IM** + IV/IM **Tranexamic Acid 1 g** within 3h + uterine massage.", "Call for help, run dual wide-bore IV crystalloids, quantify blood loss & empty bladder."],
+                ["**HIV EMTCT (Option B+)**", "Lifelong **TDF + 3TC + DTG (TLD)** for pregnant mothers + infant **Nevirapine**.", "Track maternal Viral Load (<1,000 copies/mL) & infant **DNA-PCR at 6 weeks**."],
+                ["**UNMC Annual Licensure**", "Maintain **Annual Practising Licence (APL)** & verified CPD logbook.", "Mandatory prior to hospital placement or Good Standing verification abroad (CGFNS/NMC)."]
               ]
             }
           ]
@@ -477,31 +444,33 @@
       "theme": "green-black",
       "eyebrow": "TANZANIA NURSING ACADEMY · TNMC LICENSURE",
       "headline": "Nursing in Tanzania (TNMC Licensure & EAC Hub)",
-      "subheadline": "Master Tanzania Nursing and Midwifery Council (TNMC) licensing examinations, Certificate/Diploma/BScN registration, and East African mutual recognition.",
+      "subheadline": "Master Tanzania Nursing and Midwifery Council (TNMC) national licensure assessments, NACTVET/TCU credentialing, and East African mutual recognition.",
       "highlights": [
         { "label": "Regulatory Body", "value": "Tanzania Nursing & Midwifery Council (TNMC)" },
         { "label": "Licensing Exam", "value": "TNMC National Licensing Exam" },
-        { "label": "Mutual Recognition", "value": "EAC Nursing Council Verification" },
+        { "label": "Verification", "value": "NACTVET / TCU & EAC Mutual Recognition" },
         { "label": "Lab System", "value": "SI Units (mmol/L, g/dL, °C)" }
       ],
       "sections": [
         {
-          "title": "1. Tanzania Nursing and Midwifery Council (TNMC) Pathway",
+          "title": "1. TNMC Registration Pillars & Tanzanian Clinical Priorities",
           "blocks": [
             {
-              "type": "paragraph",
-              "text": "The **Tanzania Nursing and Midwifery Council (TNMC)** regulates Certificate, Diploma, and BScN nurses and midwives in Tanzania, including foreign-trained East African nurses applying under EAC mutual recognition."
+              "type": "cards",
+              "title": "TNMC Credentialing & Practice Track",
+              "items": [
+                { "tag": "Step 1 · Academic", "title": "NACTVET / TCU Equivalence", "text": "Submit Certificate, Diploma or BScN academic transcripts alongside valid UNMC / home council Letter of Good Standing." },
+                { "tag": "Step 2 · Licensure", "title": "TNMC Licensing Exam", "text": "Covers Adult Medical-Surgical, Safe Motherhood (BEmONC), Newborn Resuscitation, Paediatrics & TNMC Code of Ethics." },
+                { "tag": "Step 3 · Retention", "title": "TNMC Roll & Practising License", "text": "Receive permanent Roll/Register number and maintain annual CPD retention." }
+              ]
             },
             {
-              "type": "diagram",
-              "variant": "flow",
-              "title": "Tanzania TNMC Registration Sequence",
-              "caption": "From qualification verification and TNMC licensing exam to practicing certificate.",
-              "steps": [
-                { "step": 1, "label": "TNMC Application", "detail": "Submit academic transcripts & home-council good standing" },
-                { "step": 2, "label": "Credential Check", "detail": "NACTVET / TCU & TNMC curriculum verification" },
-                { "step": 3, "label": "TNMC Licensing Exam", "detail": "Pass national licensure assessment" },
-                { "step": 4, "label": "Registration & License", "detail": "Receive TNMC Roll/Register number & practicing license" }
+              "type": "table",
+              "title": "High-Yield Tanzania Standard Treatment Guidelines (STG/NEMLIT)",
+              "headers": ["Focus Area", "Clinical Protocol", "Key Nurse Assessment"],
+              "rows": [
+                ["**Maternal & Neonatal**", "WHO Partograph + Oxytocin 10 IU IM + Chlorhexidine umbilical cord care.", "Monitor 4h cervical progress; initiate immediate newborn drying & Kangaroo Mother Care."],
+                ["**Infectious & Tropical**", "mRDT before **ALU** malaria therapy; **RHZE/RH** DOTs TB regimen; Oral Zinc + Low-osmolarity ORS.", "Isolate infectious sputum-positive TB; calculate pediatric ORS Plan A/B/C cleanly."]
               ]
             }
           ]
@@ -527,32 +496,33 @@
       "theme": "green-black",
       "eyebrow": "UAE & GULF NURSING ACADEMY · DHA / DOH / MOHAP / SCFHS",
       "headline": "Nursing in UAE & Gulf (DHA, DOH, MOHAP & SCFHS Hub)",
-      "subheadline": "Master Gulf Prometric CBT examinations, DataFlow Primary Source Verification (PSV), Good Standing requirements, and acute hospital nursing standards.",
+      "subheadline": "Compare Dubai DHA Sheryan, Abu Dhabi DOH TAMM & Saudi SCFHS Mumaris+ pathways, DataFlow PSV checks, Prometric CBT priorities, and multicultural ICU nursing.",
       "highlights": [
         { "label": "Regulators", "value": "DHA (Dubai) · DOH (Abu Dhabi) · SCFHS (KSA)" },
         { "label": "Exam Engine", "value": "Prometric / Pearson VUE CBT" },
         { "label": "Verification", "value": "DataFlow Primary Source Verification" },
-        { "label": "Experience Bar", "value": "Typically 2+ Years Post-Licensure" }
+        { "label": "Experience Bar", "value": "Minimum 2+ Years Continuous Acute Care" }
       ],
       "sections": [
         {
-          "title": "1. UAE (DHA / DOH / MOHAP) & Saudi (SCFHS) Licensure Pathway",
+          "title": "1. Comparing DHA, DOH (HAAD), MOHAP & SCFHS Licensing Portals",
           "blocks": [
             {
-              "type": "paragraph",
-              "text": "Nurses relocating to the UAE (**DHA Dubai**, **DOH Abu Dhabi**, **MOHAP**) or Saudi Arabia (**SCFHS Mumaris+**) complete **DataFlow Primary Source Verification (PSV)** of their degree, UNMC license, and clinical experience alongside a **Prometric / Pearson VUE** clinical exam."
+              "type": "table",
+              "title": "Side-by-Side Gulf Regulatory Authorities Guide",
+              "headers": ["Jurisdiction", "Portal & Authority", "Primary Source & Exam", "Clinical Experience & Key Note"],
+              "rows": [
+                ["**Dubai (UAE)**", "**DHA** (Sheryan Portal)", "**DataFlow PSV** + Prometric RN", "2+ years continuous post-license experience; gap <=2 yrs."],
+                ["**Abu Dhabi (UAE)**", "**DOH / HAAD** (TAMM Portal)", "**DataFlow PSV** + Pearson VUE CBT", "Strict medication safety, ICU hemodynamic & JCI hospital standards."],
+                ["**Northern Emirates**", "**MOHAP** Portal", "**DataFlow PSV** + Prometric CBT", "Transferable UAE eligibility letter convertible via employer offer."],
+                ["**Saudi Arabia (KSA)**", "**SCFHS** (Mumaris+)", "**DataFlow PSV** + Prometric Specialist", "Bachelor's (BScN) preferred for Specialist; Diploma = Nursing Technician."]
+              ]
             },
             {
-              "type": "diagram",
-              "variant": "flow",
-              "title": "Gulf Nursing Licensure & DataFlow Sequence",
-              "caption": "From DataFlow PSV and Good Standing verification to Prometric pass & eligibility letter.",
-              "steps": [
-                { "step": 1, "label": "Account & Eligibility", "detail": "Create Sheryan (DHA), TAMM (DOH) or Mumaris+ (SCFHS)" },
-                { "step": 2, "label": "DataFlow PSV", "detail": "Verify degree, UNMC Good Standing & 2+ yrs experience" },
-                { "step": 3, "label": "Prometric CBT Exam", "detail": "Pass clinical nursing MCQ exam at test center" },
-                { "step": 4, "label": "Eligibility Letter", "detail": "Receive Eligibility Letter for employer sponsorship" }
-              ]
+              "type": "callout",
+              "tone": "pearl",
+              "title": "Gulf Hospital & Cultural Practice Standards (Tested on Prometric)",
+              "text": "Respect **patient modesty & same-gender care preferences**, verify verbal/written consent cleanly with family involvement when requested, and prioritize JCI **International Patient Safety Goals (IPSGs)**: 2 identifiers, SBAR critical values, High-Alert medications, and Time-Out before procedures."
             }
           ]
         }
