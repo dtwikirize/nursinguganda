@@ -339,7 +339,7 @@ export default function CoursePlayerPage() {
               {/* Clean Monochrome Study Notes with Inline Anatomical Plates */}
               <LessonSections sections={activeLesson.sections || []} lesson={activeLesson} topicTitle={activeTopic.title} headingTag="h2" />
 
-              {/* AdSense only on Free Preview / Free Courses — NEVER on Paid Player */}
+              {/* AdSense only on Free Preview / Free Courses | NEVER on Paid Player */}
               {(!course.isFree && activeTopic.isFreePreview && !enrolled) || course.isFree ? (
                 <AdSlot slot="free-lesson-bottom" />
               ) : null}
@@ -369,7 +369,7 @@ export default function CoursePlayerPage() {
                   >
                     <CheckCircle2 size={16} />
                     {completedSet.has(activeTopic.slug)
-                      ? nextTopic ? "Completed — Next Lesson" : "Completed"
+                      ? nextTopic ? "Completed | Next Lesson" : "Completed"
                       : nextTopic ? "Mark Complete & Continue" : "Mark Lesson Complete"}
                   </button>
                   <button
@@ -547,7 +547,7 @@ export default function CoursePlayerPage() {
                     }}
                   >
                     <strong>
-                      Session Score: {sessionResult.score} / {sessionResult.totalQuestions} ({sessionResult.percent}%) —{" "}
+                      Session Score: {sessionResult.score} / {sessionResult.totalQuestions} ({sessionResult.percent}%) | {" "}
                       {sessionResult.passed ? "Checkpoint Passed" : "Review Notes & Retry"}
                     </strong>
                     {sessionResult.emailSent && (
@@ -656,7 +656,7 @@ export default function CoursePlayerPage() {
                         const res = await submitQuizResult({
                           quizType: "course_session",
                           quizSlug: `${courseSlug}::${activeTopic.slug}`,
-                          quizTitle: `${course.title} — ${activeTopic.title} (Session Quiz)`,
+                          quizTitle: `${course.title} | ${activeTopic.title} (Session Quiz)`,
                           score: graded.score,
                           totalQuestions: graded.totalQuestions,
                           breakdown: graded.breakdown,
@@ -755,7 +755,7 @@ export default function CoursePlayerPage() {
                         }}
                       >
                         <strong>
-                          Final Evaluation Result (Attempt #{evalResult.attemptNumber} of 4): {evalResult.score} / {evalResult.totalQuestions} ({evalResult.percent}%) —{" "}
+                          Final Evaluation Result (Attempt #{evalResult.attemptNumber} of 4): {evalResult.score} / {evalResult.totalQuestions} ({evalResult.percent}%) | {" "}
                           {evalResult.passed ? "PASSED! Certificate Unlocked." : `Below 60% passmark. ${evalResult.attemptsRemaining} attempt(s) remaining.`}
                         </strong>
                         {evalResult.emailSent && (

@@ -79,9 +79,9 @@ export default function Footer() {
                 </span>
               )}
             </Link>
-            <p style={{ color: "#cbd5e1", fontSize: "0.86rem", lineHeight: 1.55, margin: "0 0 14px", maxWidth: 320 }}>
+              <p style={{ color: "#cbd5e1", fontSize: "0.86rem", lineHeight: 1.55, margin: "0 0 14px", maxWidth: 320 }}>
               {countryCtx
-                ? `${countryCtx.meta.academy} — ${countryCtx.meta.examBadge}. Localized clinical study notes, ${countryCtx.meta.unitLabel}, and full curriculum prep.`
+                ? `${countryCtx.meta.academy} | ${countryCtx.meta.examBadge}. Localized clinical study notes, ${countryCtx.meta.unitLabel}, and full curriculum prep.`
                 : "Independent nursing and midwifery study platform aligned with Uganda Clinical Guidelines 2023, WHO protocols, UNMEB, and international licensure pathways."}
             </p>
             <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "#e2e8f0", marginBottom: 6 }}>
@@ -169,7 +169,8 @@ export default function Footer() {
                 <li><Link to="/mock-exams">109 UNMEB &amp; UHPAB Papers</Link></li>
                 <li><Link to="/quizzes">Free Mixed Topic Quizzes (270 Qs)</Link></li>
                 <li><Link to="/ebooks">87 Free Referenced eBooks (.pdf)</Link></li>
-                <li><Link to="/dictionary">A–Z Medical Dictionary (1,079)</Link></li>
+                <li><Link to="/dictionary">A-Z Medical Dictionary (1,079)</Link></li>
+                <li><Link to="/medical-images">Medical Images Dictionary</Link></li>
                 <li><Link to="/dictionary?tab=abbreviations">183 Ward Abbreviations</Link></li>
                 <li><Link to="/instruments">Medical Instrument Atlas (146)</Link></li>
               </ul>
@@ -211,7 +212,7 @@ export default function Footer() {
 
         <div className="nu-footer-bottom">
           <span>
-            © {new Date().getFullYear()} Nursing Uganda (nursinguganda.com). Independent educational revision resource — NOT affiliated with or an official credential from UNMEB, UHPAB, UNMC, or the Ministry of Health Uganda.{" "}
+            © {new Date().getFullYear()} Nursing Uganda (nursinguganda.com). Independent educational revision resource | NOT affiliated with or an official credential from UNMEB, UHPAB, UNMC, or the Ministry of Health Uganda.{" "}
             <Link to="/terms" style={{ color: "#e2e8f0", textDecoration: "underline" }}>Read Medical &amp; Certificate Disclaimers</Link>.
           </span>
           <span>Kampala, Uganda · support@nursinguganda.com</span>

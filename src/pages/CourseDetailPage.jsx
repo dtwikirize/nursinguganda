@@ -245,7 +245,7 @@ export default function CourseDetailPage() {
                   <div>
                     <h2 style={{ fontSize: "1.4rem", margin: "0 0 4px" }}>Earn a Verified Certificate of Completion</h2>
                     <p style={{ margin: 0, color: "var(--nu-ink-muted)", fontSize: "0.9rem" }}>
-                      Included with this unit — finish the lessons and pass the 30-question Final Evaluation (&ge; 60%) to download your personalized PDF certificate.
+                      Included with this unit | finish the lessons and pass the 30-question Final Evaluation (&ge; 60%) to download your personalized PDF certificate.
                     </p>
                   </div>
                 </div>

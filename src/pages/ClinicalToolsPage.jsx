@@ -298,8 +298,8 @@ export default function ClinicalToolsPage({ initialTabOverride = "" }) {
                     <strong style={{ color: "#0F2942", display: "block" }}>Unit System Toggle (SI vs US Conventional)</strong>
                     <small style={{ color: "#334155" }}>
                       {unitSystem === "si"
-                        ? "Active: SI Units (mmol/L, °C, µmol/L, g/L) — used in Uganda UHPAB/UNMEB, Kenya, UK NMC, Canada & Australia."
-                        : "Active: US Conventional Units (mg/dL, °F, g/dL) — used in US NextGen NCLEX-RN & CGFNS."}
+                        ? "Active: SI Units (mmol/L, °C, µmol/L, g/L) | used in Uganda UHPAB/UNMEB, Kenya, UK NMC, Canada & Australia."
+                        : "Active: US Conventional Units (mg/dL, °F, g/dL) | used in US NextGen NCLEX-RN & CGFNS."}
                     </small>
                   </div>
                 </div>

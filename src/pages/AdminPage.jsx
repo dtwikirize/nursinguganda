@@ -436,12 +436,12 @@ export default function AdminPage() {
                       style={{ height: 32, padding: "0 8px", border: "1px solid var(--nu-border)", borderRadius: 4, fontSize: "0.8rem" }}
                     >
                       <option value="monthly">Monthly Dispatch (12-Mo)</option>
-                      <option value="course-stall-10">Course Stall — 10 Days</option>
-                      <option value="course-stall-20">Course Stall — 20 Days</option>
-                      <option value="course-stall-30">Course Stall — 30+ Days</option>
-                      <option value="site-inactive-10">Site Away — 10 Days</option>
-                      <option value="site-inactive-20">Site Away — 20 Days (50% Off)</option>
-                      <option value="site-inactive-30">Site Away — 30+ Days</option>
+                      <option value="course-stall-10">Course Stall | 10 Days</option>
+                      <option value="course-stall-20">Course Stall | 20 Days</option>
+                      <option value="course-stall-30">Course Stall | 30+ Days</option>
+                      <option value="site-inactive-10">Site Away | 10 Days</option>
+                      <option value="site-inactive-20">Site Away | 20 Days (50% Off)</option>
+                      <option value="site-inactive-30">Site Away | 30+ Days</option>
                       <option value="digest">Weekly Study Digest</option>
                       <option value="welcome">Welcome Verification</option>
                       <option value="certificate">Certificate Earned</option>
@@ -564,7 +564,7 @@ export default function AdminPage() {
                     </thead>
                     <tbody>
                       {(emailsData?.retentionNudges || []).length === 0 ? (
-                        <tr><td colSpan={4} style={{ color: "var(--nu-ink-muted)" }}>No lifecycle nudges logged yet — runs daily at 05:00 UTC or via button above.</td></tr>
+                        <tr><td colSpan={4} style={{ color: "var(--nu-ink-muted)" }}>No lifecycle nudges logged yet | runs daily at 05:00 UTC or via button above.</td></tr>
                       ) : (
                         (emailsData?.retentionNudges || []).map((n) => (
                           <tr key={n.id}>
@@ -575,7 +575,7 @@ export default function AdminPage() {
                               </span>
                             </td>
                             <td><code>{n.targetKey}</code></td>
-                            <td>{n.sentAt ? new Date(n.sentAt).toLocaleDateString() : "—"}</td>
+                            <td>{n.sentAt ? new Date(n.sentAt).toLocaleDateString() : "-"}</td>
                           </tr>
                         ))
                       )}
@@ -602,14 +602,14 @@ export default function AdminPage() {
                       {sliceRows(filteredSubs).map((s) => (
                         <tr key={s.id}>
                           <td>{s.email}</td>
-                          <td>{s.name || "—"}</td>
+                          <td>{s.name || "-"}</td>
                           <td>
                             <span className={`nu-badge ${s.subscribed ? "nu-badge-free" : "nu-badge-highyield"}`}>
                               {s.subscribed ? "Active" : "Unsub"}
                             </span>
                           </td>
-                          <td><code>{s.lastMonthlySentYm || "—"}</code></td>
-                          <td>{s.lastDigestSentAt ? new Date(s.lastDigestSentAt).toLocaleDateString() : "—"}</td>
+                          <td><code>{s.lastMonthlySentYm || "-"}</code></td>
+                          <td>{s.lastDigestSentAt ? new Date(s.lastDigestSentAt).toLocaleDateString() : "-"}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -639,8 +639,8 @@ export default function AdminPage() {
                   {sliceRows(filteredOrders).map((o) => (
                     <tr key={o.id}>
                       <td><code>{o.paypalOrderId}</code></td>
-                      <td>{o.userEmail || o.userName || "—"}</td>
-                      <td>{o.payerEmail || "—"}</td>
+                      <td>{o.userEmail || o.userName || "-"}</td>
+                      <td>{o.payerEmail || "-"}</td>
                       <td><strong>${Number(o.amountUsd).toFixed(2)}</strong></td>
                       <td><span className="nu-badge nu-badge-free">{o.status}</span></td>
                       <td>{new Date(o.createdAt).toLocaleDateString()}</td>
@@ -679,7 +679,7 @@ export default function AdminPage() {
                       </td>
                       <td><code>{u.authProvider}</code></td>
                       <td>{u.enrollmentCount}</td>
-                      <td><code>{u.lastLoginIp || "—"}</code></td>
+                      <td><code>{u.lastLoginIp || "-"}</code></td>
                     </tr>
                   ))}
                 </tbody>
@@ -712,7 +712,7 @@ export default function AdminPage() {
                           {ev.severity}
                         </span>
                       </td>
-                      <td>{ev.email || "—"}</td>
+                      <td>{ev.email || "-"}</td>
                       <td><code>{ev.ipAddress}</code></td>
                       <td style={{ maxWidth: 260, overflow: "hidden", textOverflow: "ellipsis" }}>{ev.details}</td>
                       <td>{new Date(ev.createdAt).toLocaleString()}</td>

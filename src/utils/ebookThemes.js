@@ -1,6 +1,6 @@
 /**
  * Signature clinical textbook color systems inspired by OpenStax, Elsevier,
- * Bates, and WHO handbooks — shared across React eBook covers and jsPDF exports.
+ * Bates, and WHO handbooks | shared across React eBook covers and jsPDF exports.
  */
 
 export const EBOOK_PRESET_PALETTES = {

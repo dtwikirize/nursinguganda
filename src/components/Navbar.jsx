@@ -41,6 +41,7 @@ const FREE_HUBS = [
   { id: "quizzes", label: "Free Topic Quizzes (25+ Qs)", to: "/quizzes", icon: Award },
   { id: "mock-exams", label: "UNMEB Mock Exams", to: "/mock-exams", icon: Award },
   { id: "dictionary", label: "Medical Dictionary", to: "/dictionary", icon: FileText },
+  { id: "medical-images", label: "Medical Images Dictionary", to: "/medical-images", icon: Sparkles },
   { id: "instruments", label: "Instrument Atlas", to: "/instruments", icon: Stethoscope },
   { id: "clinical-tools", label: "Clinical Tools, Templates & Units", to: "/clinical-tools", icon: Wrench },
   { id: "global-nursing", label: "Becoming a Nurse (8 Countries)", to: "/global-nursing", icon: GraduationCap }
@@ -121,6 +122,7 @@ export default function Navbar() {
   const [lessonIndex, setLessonIndex] = useState([]);
   const [dictTerms, setDictTerms] = useState([]);
   const [instrumentList, setInstrumentList] = useState([]);
+  const [medicalImagesList, setMedicalImagesList] = useState([]);
   const [logoSrc, setLogoSrc] = useState(nuLogoUganda);
 
   const countryCtx = useMemo(() => getActiveCountryContext(location.pathname), [location.pathname]);
@@ -152,12 +154,14 @@ export default function Navbar() {
       fetch("/assets/data/canonical-lessons-index.json").then((r) => (r.ok ? r.json() : [])),
       fetch("/assets/data/dictionary.json").then((r) => (r.ok ? r.json() : null)),
       fetch("/assets/data/medical-instruments.json").then((r) => (r.ok ? r.json() : null)),
+      fetch("/assets/data/medical-images.json").then((r) => (r.ok ? r.json() : null)),
       hubEbooks.length ? Promise.resolve(null) : fetch("/assets/data/ebooks.json").then((r) => (r.ok ? r.json() : null))
     ])
-      .then(([lessons, dict, inst, eb]) => {
+      .then(([lessons, dict, inst, medImgs, eb]) => {
         if (Array.isArray(lessons)) setLessonIndex(lessons);
         if (dict?.terms) setDictTerms(dict.terms);
         if (inst?.categories) setInstrumentList(inst.categories.flatMap((c) => c.items || []));
+        if (medImgs?.images) setMedicalImagesList(medImgs.images);
         if (eb?.ebooks) setHubEbooks(eb.ebooks);
       })
       .catch(() => {});
@@ -266,6 +270,21 @@ export default function Navbar() {
       }
     }
 
+    for (const im of medicalImagesList) {
+      const hay = `${im.title} ${im.category} ${(im.structures || []).join(" ")} ${im.summary || ""}`.toLowerCase();
+      if (matchesAll(hay)) {
+        results.push({
+          key: `medimg:${im.id}`,
+          kind: "Medical Image",
+          title: im.title,
+          meta: im.category,
+          to: `/medical-images?img=${encodeURIComponent(im.id)}`,
+          rightTag: "Visual"
+        });
+        break;
+      }
+    }
+
     for (const b of hubEbooks) {
       const hay = `${b.title} ${b.subtitle || ""} ${b.category}`.toLowerCase();
       if (matchesAll(hay)) {
@@ -282,7 +301,7 @@ export default function Navbar() {
     }
 
     return results.slice(0, 9);
-  }, [courses, lessonIndex, dictTerms, instrumentList, hubEbooks, query]);
+  }, [courses, lessonIndex, dictTerms, instrumentList, medicalImagesList, hubEbooks, query]);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -537,6 +556,9 @@ export default function Navbar() {
                         <Link to="/dictionary" className="nu-coursera-mega-link" onClick={() => setMegaOpen(false)}>
                           Medical Dictionary (1,079 Terms)
                         </Link>
+                        <Link to="/medical-images" className="nu-coursera-mega-link" onClick={() => setMegaOpen(false)}>
+                          Medical Images Dictionary <span className="nu-coursera-mega-badge">New</span>
+                        </Link>
                         <Link to="/instruments" className="nu-coursera-mega-link" onClick={() => setMegaOpen(false)}>
                           Surgical Instrument Atlas (146)
                         </Link>
@@ -697,7 +719,11 @@ export default function Navbar() {
                       ))}
                       <div className="nu-nav-dropdown-sep" />
                       <Link to="/dictionary" className="nu-nav-dropdown-link" onClick={() => setActiveNavMenu("")}>
-                        <span>Medical Dictionary (A–Z)</span>
+                        <span>Medical Dictionary (A-Z)</span>
+                        <ChevronRight size={13} />
+                      </Link>
+                      <Link to="/medical-images" className="nu-nav-dropdown-link" onClick={() => setActiveNavMenu("")}>
+                        <span>Medical Images Dictionary</span>
                         <ChevronRight size={13} />
                       </Link>
                       <Link to="/instruments" className="nu-nav-dropdown-link" onClick={() => setActiveNavMenu("")}>

@@ -13,7 +13,7 @@ export default function AdSlot({ slot = "in-article", label = "Sponsored Educati
         {label}
       </div>
       <div style={{ marginTop: 4 }}>
-        Google AdSense responsive display slot (`{slot}`) — keeps core nursing study notes &amp; eBooks 100% free.
+        Google AdSense responsive display slot (`{slot}`) | keeps core nursing study notes &amp; eBooks 100% free.
       </div>
     </div>
   );

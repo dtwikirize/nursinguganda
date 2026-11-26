@@ -99,7 +99,7 @@ export default function CoursesCatalogPage() {
         <div className="nu-section-head">
           <h1>Nursing &amp; Midwifery Course Catalog</h1>
           <p>
-            {courses.length} structured course units across {programmes.length} Ugandan nursing &amp; midwifery programmes — individual paid courses now <strong>50% OFF</strong>.
+            {courses.length} structured course units across {programmes.length} Ugandan nursing &amp; midwifery programmes | individual paid courses now <strong>50% OFF</strong>.
           </p>
         </div>
 
@@ -199,7 +199,7 @@ export default function CoursesCatalogPage() {
                 <h2 style={{ margin: 0, fontSize: "1.18rem", color: "#0f2942" }}>
                   {programme === "all"
                     ? "Complete Programme Courses (Full Year 1–3 Curriculum)"
-                    : `${visibleFullCourses[0].programmeLabel} — Complete Full Curriculum Course`}
+                    : `${visibleFullCourses[0].programmeLabel} | Complete Full Curriculum Course`}
                 </h2>
                 <small style={{ color: "var(--nu-ink-muted)" }}>
                   Unlock an entire programme&apos;s combined units + 109 UNMEB past papers in one structured curriculum player ($12.99–$24.99).

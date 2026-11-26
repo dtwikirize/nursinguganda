@@ -76,6 +76,7 @@ const FreeQuizzesPage = lazyWithRetry(() => import("./pages/FreeQuizzesPage"));
 const GlobalNursingPage = lazyWithRetry(() => import("./pages/GlobalNursingPage"));
 const InstrumentsPage = lazyWithRetry(() => import("./pages/InstrumentsPage"));
 const LoginPage = lazyWithRetry(() => import("./pages/LoginPage"));
+const MedicalImagesPage = lazyWithRetry(() => import("./pages/MedicalImagesPage"));
 const MockExamsPage = lazyWithRetry(() => import("./pages/MockExamsPage"));
 const MyLearningPage = lazyWithRetry(() => import("./pages/MyLearningPage"));
 const NclexRnAcademyPage = lazyWithRetry(() => import("./pages/NclexRnAcademyPage"));
@@ -163,6 +164,7 @@ export default function App() {
           <Route path="/mock-exams" element={<MockExamsPage />} />
           <Route path="/quizzes" element={<FreeQuizzesPage />} />
           <Route path="/dictionary" element={<DictionaryPage />} />
+          <Route path="/medical-images" element={<MedicalImagesPage />} />
           <Route path="/instruments" element={<InstrumentsPage />} />
           <Route path="/clinical-tools" element={<ClinicalToolsPage />} />
           <Route path="/templates" element={<ClinicalToolsPage initialTabOverride="templates" />} />
@@ -199,7 +201,7 @@ export default function App() {
             element={
               <main className="nu-section">
                 <div className="nu-container" style={{ maxWidth: 640, padding: "48px 16px" }}>
-                  <h1>404 — Page Not Found</h1>
+                  <h1>404 | Page Not Found</h1>
                   <p style={{ color: "var(--nu-ink-muted)", marginBottom: 20 }}>
                     The study unit or resource you requested does not exist or has moved.
                   </p>

@@ -599,7 +599,7 @@ export default function CountryStudyHubPage({ forcedSlug = "" }) {
 
               {/* Coursera-style Expandable Syllabus Modules */}
               <h3 style={{ margin: "0 0 12px", fontSize: "1.18rem", color: "#0f172a" }}>
-                Full {countryMeta?.shortName} Syllabus — {curriculum.modules.length} Modules
+                Full {countryMeta?.shortName} Syllabus | {curriculum.modules.length} Modules
               </h3>
               <div style={{ display: "grid", gap: 10 }}>
                 {curriculum.modules.map((mod) => {
@@ -949,7 +949,7 @@ export default function CountryStudyHubPage({ forcedSlug = "" }) {
                     <strong style={{ fontSize: "1.25rem", color: "#0f172a" }}>
                       {(() => {
                         const n = Number(glucoseVal);
-                        if (!Number.isFinite(n) || n < 0) return "—";
+                        if (!Number.isFinite(n) || n < 0) return "-";
                         return glucoseDir === "si-to-us"
                           ? `${(n * 18.016).toFixed(0)} mg/dL`
                           : `${(n / 18.016).toFixed(1)} mmol/L`;

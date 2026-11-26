@@ -46,7 +46,7 @@ export default function NclexRnAcademyPage() {
     setPageSeo({
       title: "NCLEX-RN Preparation Course ($99 · 16-Week Academy) | Nursing Uganda",
       description:
-        "Complete 16-Unit Next-Gen NCLEX-RN (NGN) Preparation Course aligned with Saunders 9th Ed., Kaplan & LaCharity PDA — 48 topics, 20-Q topic quizzes, 60-Q unit evaluations & 4 full NCLEX-RN Examinations.",
+        "Complete 16-Unit Next-Gen NCLEX-RN (NGN) Preparation Course aligned with Saunders 9th Ed., Kaplan & LaCharity PDA | 48 topics, 20-Q topic quizzes, 60-Q unit evaluations & 4 full NCLEX-RN Examinations.",
       canonicalPath: "/nclex-rn",
       type: "article"
     });
@@ -102,7 +102,7 @@ export default function NclexRnAcademyPage() {
                 NCLEX-RN Preparation Course
               </h1>
               <p style={{ margin: "0 0 22px", color: "rgba(255,255,255,0.9)", fontSize: "1.02rem", lineHeight: 1.6, maxWidth: 720 }}>
-                16 structured Course Units with comprehensive clinical study notes aligned with <strong>Saunders Comprehensive Review (9th Ed.)</strong>, <strong>Kaplan NCLEX-RN Prep</strong>, and <strong>LaCharity PDA</strong> — complete with <strong>20-question topic quizzes</strong>, <strong>60-question mixed unit evaluations</strong>, and a dedicated <strong>NCLEX-RN Examinations</strong> simulation suite.
+                16 structured Course Units with comprehensive clinical study notes aligned with <strong>Saunders Comprehensive Review (9th Ed.)</strong>, <strong>Kaplan NCLEX-RN Prep</strong>, and <strong>LaCharity PDA</strong> | complete with <strong>20-question topic quizzes</strong>, <strong>60-question mixed unit evaluations</strong>, and a dedicated <strong>NCLEX-RN Examinations</strong> simulation suite.
               </p>
 
               {/* Unified White Coursera Stats Strip */}
@@ -187,7 +187,7 @@ export default function NclexRnAcademyPage() {
                   </>
                 ) : (
                   <>
-                    <ShoppingCart size={16} /> {inCart ? "Go to Cart ($99)" : "Enroll Now — $99"}
+                    <ShoppingCart size={16} /> {inCart ? "Go to Cart ($99)" : "Enroll Now | $99"}
                   </>
                 )}
               </button>

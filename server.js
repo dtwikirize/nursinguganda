@@ -214,7 +214,7 @@ function buildRouteMarkdown(reqPath) {
       .map((c) => `- [${c.title}](https://nursinguganda.com/course/${c.slug}) (${c.programmeLabel})`)
       .join("\n");
     return [
-      "# Nursing Uganda — Clinical Mastery That Gets You UNMEB-Ready",
+      "# Nursing Uganda | Clinical Mastery That Gets You UNMEB-Ready",
       "",
       "> Structured Certificate, Diploma & BScN nursing courses, free referenced study eBooks, UNMEB timed mock & essay past papers, A-Z medical dictionary (1,079+ terms), instrument atlas, and clinical tools aligned with Uganda Ministry of Health & WHO guidelines.",
       "",
@@ -242,12 +242,12 @@ function buildRouteMarkdown(reqPath) {
   }
   if (clean === "/courses") {
     const lines = (catalogData?.courses || []).slice(0, 30)
-      .map((c) => `- **${c.code ? `${c.code} · ` : ""}${c.title}** — [${c.programmeLabel}](https://nursinguganda.com/course/${c.slug}) (${c.lessonsCount || 0} lessons)`);
+      .map((c) => `- **${c.code ? `${c.code} · ` : ""}${c.title}** | [${c.programmeLabel}](https://nursinguganda.com/course/${c.slug}) (${c.lessonsCount || 0} lessons)`);
     return `# Nursing Uganda Course Catalog (${catalogData?.courses?.length || 83} Units)\n\n${lines.join("\n")}\n`;
   }
   if (clean === "/about" || clean === "/contact" || clean === "/terms" || clean === "/privacy-policy" || clean === "/editorial-policy") {
     return [
-      `# Nursing Uganda — ${clean.slice(1).replace(/-/g, " ").replace(/\b\w/g, (m) => m.toUpperCase())}`,
+      `# Nursing Uganda | ${clean.slice(1).replace(/-/g, " ").replace(/\b\w/g, (m) => m.toUpperCase())}`,
       "",
       "Independent nursing and midwifery study platform serving learners across Uganda (Kampala, Uganda).",
       "",
@@ -296,7 +296,7 @@ function isValidDynamicRoute(reqPath) {
 }
 
 const BOT_UA_RE = /(googlebot|adsbot-google|mediapartners-google|bingbot|slurp|duckduckbot|facebookexternalhit|twitterbot|whatsapp)/i;
-const SPA_ROUTE_RE = /^\/($|courses|course|learn|topics|ebooks|quizzes|mock-exams|dictionary|instruments|clinical-tools|templates|global-nursing|nursing-uk|nursing-usa|nursing-canada|nursing-australia|nclex-rn|cart|checkout|login|my-learning|nodadmin|about|editorial-policy|privacy-policy|terms|contact)(\/|$)/i;
+const SPA_ROUTE_RE = /^\/($|courses|course|learn|topics|ebooks|quizzes|mock-exams|dictionary|medical-images|instruments|clinical-tools|templates|global-nursing|nursing-uk|nursing-usa|nursing-canada|nursing-australia|nclex-rn|cart|checkout|login|my-learning|nodadmin|about|editorial-policy|privacy-policy|terms|contact)(\/|$)/i;
 
 // Markdown negotiation & `.md` routes
 app.get(["/index.md", "/courses.md", "/about.md", "/contact.md", "/terms.md", "/privacy-policy.md", "/editorial-policy.md"], (req, res) => {
@@ -333,9 +333,14 @@ const SEO_ROUTE_META = {
     h1: "Free Major Topic Quizzes (270 Questions)"
   },
   "/dictionary": {
-    title: "1,079+ A–Z Nursing & Medical Dictionary + 183 Ward Abbreviations | Nursing Uganda",
+    title: "1,079+ A-Z Nursing & Medical Dictionary + 183 Ward Abbreviations | Nursing Uganda",
     description: "Search 1,079 clinical definitions, pronunciations, nursing priorities, exam mnemonics, and 183 hospital ward abbreviations tailored for Ugandan and global nurses.",
     h1: "Nursing & Medical Dictionary (1,079 Terms · 183 Abbreviations)"
+  },
+  "/medical-images": {
+    title: "Medical Images Dictionary & Visual Anatomy Atlas | Nursing Uganda",
+    description: "Browse categorized high-resolution human anatomy plates, cellular biology diagrams, and clinical pathology visuals with labeled landmarks and study pearls.",
+    h1: "Medical Images Dictionary & Visual Anatomy Atlas"
   },
   "/instruments": {
     title: "146-Item Medical & Surgical Instrument Atlas (OSCE Guide & IPC) | Nursing Uganda",
@@ -355,7 +360,7 @@ const SEO_ROUTE_META = {
   "/global-nursing": {
     title: "Becoming a Nurse in Different Countries (Uganda, UK, USA, Kenya, Canada, Gulf) | Nursing Uganda",
     description: "Compare nursing licensure requirements, exams (UNMEB/UHPAB, NCK, TNMC, NMC CBT/OSCE, NCLEX-RN, Prometric), English scores & lab units across 8 countries.",
-    h1: "Becoming a Nurse in Different Countries — Global Licensure Hub"
+    h1: "Becoming a Nurse in Different Countries | Global Licensure Hub"
   },
   "/about": {
     title: "About Nursing Uganda & Institutional Non-Affiliation | Nursing Uganda",
@@ -477,7 +482,7 @@ app.use(
 app.use((req, res) => {
   res.status(404);
   if (prefersMarkdown(req)) {
-    return res.type("text/markdown; charset=utf-8").send("# 404 — Page Not Found\n\nThe requested page or asset does not exist on nursinguganda.com.");
+    return res.type("text/markdown; charset=utf-8").send("# 404 | Page Not Found\n\nThe requested page or asset does not exist on nursinguganda.com.");
   }
   if (req.accepts("html")) {
     const notFoundFile = resolveRootOrDist("404.html");
@@ -485,7 +490,7 @@ app.use((req, res) => {
       res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
       return res.sendFile(notFoundFile);
     }
-    return res.type("text/html; charset=utf-8").send("<h1>404 — Page Not Found</h1>");
+    return res.type("text/html; charset=utf-8").send("<h1>404 | Page Not Found</h1>");
   }
   return res.json({ error: "Not found", path: req.path });
 });

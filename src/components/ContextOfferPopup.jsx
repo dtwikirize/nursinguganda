@@ -157,7 +157,7 @@ export default function ContextOfferPopup() {
     badgeIcon = <Layers size={14} />;
     fabText = "50% OFF · Full Access";
     kicker = "50% STUDENT PRICE CUT LIVE";
-    headline = "Courses From $2.49 — Or Unlock Everything";
+    headline = "Courses From $2.49 | Or Unlock Everything";
     body = "Every individual paid unit is cut by 50% today. Or get the Full Platform All-Access Pass covering all 85 courses and 109+ mock papers.";
     priceMeta = `${formatUsd(allAccessItem.priceUsd)} (was $${allAccessItem.compareAtUsd.toFixed(2)} · ${formatUgxApprox(allAccessItem.priceUsd)})`;
     primaryLabel = `Full All-Access · ${formatUsd(allAccessItem.priceUsd)}`;
@@ -170,7 +170,7 @@ export default function ContextOfferPopup() {
       if (!activeCourse.isFree && !unitEnrolled) {
         kicker = "STUDY PREVIEW · 50% OFF TODAY";
         headline = `Unlock Full ${activeCourse.title}`;
-        body = `Get all ${activeCourse.lessonCount} clinical topics, quizzes & certificate at 50% OFF — or unlock every course sitewide.`;
+        body = `Get all ${activeCourse.lessonCount} clinical topics, quizzes & certificate at 50% OFF | or unlock every course sitewide.`;
         priceMeta = `${formatUsd(activeCourse.priceUsd)} (${formatUgxApprox(activeCourse.priceUsd)})`;
         primaryLabel = `Unlock Unit · ${formatUsd(activeCourse.priceUsd)}`;
         primaryAction = () => buyNow(activeCourse);

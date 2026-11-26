@@ -101,7 +101,7 @@ export default function GlobalNursingPage() {
             <span>
               {activeCountry
                 ? `Becoming a Registered Nurse in ${activeCountry.country}`
-                : "Becoming a Nurse in Different Countries — Global Licensure Hub"}
+                : "Becoming a Nurse in Different Countries | Global Licensure Hub"}
             </span>
           </h1>
           <p className="nu-cl-subtitle" style={{ maxWidth: 780 }}>

@@ -2,7 +2,7 @@ import React from "react";
 import { AlertTriangle, CheckCircle2, Layers, Sparkles, Table2 } from "lucide-react";
 import RichText from "./RichText";
 
-const IMAGE_VERSION = "20261124f";
+const IMAGE_VERSION = "20261126a";
 
 function withImgVersion(src) {
   const s = String(src || "");
@@ -241,7 +241,7 @@ const DOMAIN_TABLES = {
     rows: [
       ["Uncomplicated Malaria", "Positive RDT / smear + fever, chills, zero danger signs", "Oral Artemether-Lumefantrine (Coartem) BD x 3 days + Paracetamol"],
       ["Severe Malaria", "Prostration, impaired GCS, convulsions, hypoglycaemia, blackwater", "IV Artesunate 2.4 mg/kg at 0, 12, 24h (>20kg) or 3.0 mg/kg (<20kg)"],
-      ["Pregnancy (Trimester 1)", "Symptomatic malaria in first 12 weeks gestation", "Oral Quinine + Clindamycin (or Artesunate if severe—save mother's life!)"],
+      ["Pregnancy (Trimester 1)", "Symptomatic malaria in first 12 weeks gestation", "Oral Quinine + Clindamycin (or Artesunate if severe | save mother's life!)"],
       ["Hypoglycaemia Check", "Blood glucose < 2.2–2.5 mmol/L on ward glucometer", "IV Dextrose 10% (2–5 mL/kg child) / 50% Dextrose 50 mL adult"]
     ]
   },
@@ -300,13 +300,13 @@ function getInlineSectionRules() {
     {
       match: /\b(human\s+body\s+organization|structural\s+organization|levels?\s+of\s+organization)\b/i,
       titleOnly: true,
-      src: "/assets/images/medical-illustrations/anatomy-terms-01-structural-organization.webp",
+      src: "/assets/images/medical-illustrations/levels-of-structural-organization.webp",
       caption: "Figure: Levels of Structural Organization (Atom to Human Organism)"
     },
     {
       match: /\b(anatomical\s+position|relative\s+directional\s+terms|directional\s+terminology)\b/i,
       titleOnly: true,
-      src: "/assets/images/medical-illustrations/anatomy-terms-02-directional-terms.webp",
+      src: "/assets/images/medical-illustrations/anatomical-position-directional-terms.webp",
       caption: "Figure: Standard Anatomical Position & Directional Terms (Anterior & Lateral Views)"
     },
     {
@@ -318,13 +318,13 @@ function getInlineSectionRules() {
     {
       match: /\b(body\s+planes\s+and\s+sections|sagittal\s+plane|coronal\s+plane|transverse\s+plane)\b/i,
       titleOnly: true,
-      src: "/assets/images/medical-illustrations/anatomy-terms-04-body-planes.webp",
-      caption: "Figure: Sagittal, Coronal (Frontal), Transverse & Oblique Anatomical Planes"
+      src: "/assets/images/medical-illustrations/anatomical-body-planes-sections.webp",
+      caption: "Figure: Sagittal, Coronal (Frontal) & Transverse Anatomical Planes"
     },
     {
       match: /\b(body\s+cavities|protective\s+spaces\s+for\s+vital\s+organs|dorsal\s+body\s+cavity)\b/i,
       titleOnly: true,
-      src: "/assets/images/medical-illustrations/anatomy-terms-05-body-cavities.webp",
+      src: "/assets/images/medical-illustrations/dorsal-ventral-body-cavities.webp",
       caption: "Figure: Major Dorsal (Cranial & Vertebral) and Ventral (Thoracic & Abdominopelvic) Cavities"
     },
     {
@@ -343,37 +343,37 @@ function getInlineSectionRules() {
       match: /\bcardiovascular\s+system\b/i,
       titleOnly: true,
       src: "/assets/images/medical-illustrations/heart-cardiovascular.webp",
-      caption: "Cardiovascular System — Heart, Pulmonary & Systemic Circulation"
+      caption: "Cardiovascular System | Heart, Pulmonary & Systemic Circulation"
     },
     {
       match: /\bnervous\s+system\b/i,
       titleOnly: true,
       src: "/assets/images/medical-illustrations/brain-nervous-system.webp",
-      caption: "Nervous System — Central & Peripheral Control Pathways"
+      caption: "Nervous System | Central & Peripheral Control Pathways"
     },
     {
       match: /\bendocrine\s+system\b/i,
       titleOnly: true,
       src: "/assets/images/medical-illustrations/endocrine-glands.webp",
-      caption: "Endocrine System — Major Hormone-Secreting Glands"
+      caption: "Endocrine System | Major Hormone-Secreting Glands"
     },
     {
       match: /\brespiratory\s+system\b/i,
       titleOnly: true,
       src: "/assets/images/medical-illustrations/lungs-respiratory.webp",
-      caption: "Respiratory System — Airways, Lungs & Gas Exchange"
+      caption: "Respiratory System | Airways, Lungs & Gas Exchange"
     },
     {
       match: /\bdigestive\s+system\b/i,
       titleOnly: true,
       src: "/assets/images/medical-illustrations/digestive-gi-tract.webp",
-      caption: "Digestive System — Gastrointestinal Tract & Accessory Organs"
+      caption: "Digestive System | Gastrointestinal Tract & Accessory Organs"
     },
     {
       match: /\burinary\s+system\b/i,
       titleOnly: true,
       src: "/assets/images/medical-illustrations/kidney-renal-nephron.webp",
-      caption: "Urinary System — Renal Filtration & Fluid Homeostasis"
+      caption: "Urinary System | Renal Filtration & Fluid Homeostasis"
     },
     {
       match: /\breproductive\s+system\b/i,
@@ -384,7 +384,7 @@ function getInlineSectionRules() {
     {
       match: /\b(type[s]?\s+of\s+bone|classification\s+of\s+bone|long\s+bone|short\s+bone|flat\s+bone|irregular\s+bone|sesamoid)\b/i,
       src: "/assets/images/medical-illustrations/inline-types-of-bones.webp",
-      caption: "Types of Bones — Long, Short, Flat, Irregular & Sesamoid Classification"
+      caption: "Types of Bones | Long, Short, Flat, Irregular & Sesamoid Classification"
     },
     {
       match: /\b(epiphysis|diaphysis|periosteum|medullary\s+cavity|compact\s+bone|spongy\s+bone|ossification|fracture\s+healing)\b/i,
@@ -432,7 +432,8 @@ function getInlineSectionRules() {
       caption: "Intravenous Fluid Administration & Sterile Cannulation"
     },
     {
-      match: /\b(pressure\s+ulcer|pressure\s+injury|stage\s+[1-4]|epidermis|dermis|wound\s+healing)\b/i,
+      match: /\b(pressure\s+ulcer|pressure\s+injury|pressure\s+sore|stage\s+[1-4]\s+ulcer|epidermis|dermis|wound\s+healing|skin\s+layers|integumentary)\b/i,
+      titleOnly: true,
       src: "/assets/images/medical-illustrations/skin-wound-healing.webp",
       caption: "Skin Layers & Clinical Wound Depth Staging"
     }
@@ -489,21 +490,21 @@ function VisualPlateFigure({ src, index, topicTitle, isSingle, lesson, badge }) 
         <div className="nu-visual-split-media">
           <img
             src={withImgVersion(src)}
-            alt={`${topicTitle} — medical reference diagram ${index + 1}`}
+            alt={`${topicTitle} | medical reference diagram ${index + 1}`}
             loading="lazy"
             onLoad={handleLoad}
           />
         </div>
         <div className="nu-visual-split-info">
           <span className="nu-visual-split-tag">{badge || "Clinical Visual Guide"}</span>
-          <h4>{topicTitle} — Key Study Context</h4>
+          <h4>{topicTitle} | Key Study Context</h4>
           <ul>
             {takeaways.map((point, idx) => (
               <li key={idx}>{point}</li>
             ))}
           </ul>
           <figcaption>
-            Figure {index + 1}: {topicTitle} — Visual Clinical Guide
+            Figure {index + 1}: {topicTitle} | Visual Clinical Guide
           </figcaption>
         </div>
       </figure>
@@ -514,12 +515,12 @@ function VisualPlateFigure({ src, index, topicTitle, isSingle, lesson, badge }) 
     <figure className="nu-visual-figure">
       <img
         src={withImgVersion(src)}
-        alt={`${topicTitle} — medical reference diagram ${index + 1}`}
+        alt={`${topicTitle} | medical reference diagram ${index + 1}`}
         loading="lazy"
         onLoad={handleLoad}
       />
       <figcaption>
-        Figure {index + 1}: {topicTitle} — Visual Clinical Guide
+        Figure {index + 1}: {topicTitle} | Visual Clinical Guide
       </figcaption>
     </figure>
   );
@@ -815,7 +816,11 @@ export function LessonSections({ sections = [], lesson = null, topicTitle = "", 
           .join(" ");
 
         let inlineFig = null;
-        if (!disableInlineFigures && inlineImagesAdded < maxInlineImages && !/^reference|learning outcome/i.test(cleanHeading)) {
+        if (
+          !disableInlineFigures &&
+          inlineImagesAdded < maxInlineImages &&
+          !/^(reference|learning outcome|nursing uganda clinical lens|nursing priorities|clinical safety|unmeb)/i.test(cleanHeading)
+        ) {
           const picked = pickInlineSectionVisual(cleanHeading, bodySample, topicTitle, usedSrcs);
           if (picked) {
             usedSrcs.add(picked.src);

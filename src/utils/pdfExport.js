@@ -840,10 +840,10 @@ export function downloadNursingTemplatePdf(templateId, { withSample = true } = {
     );
   } else if (tpl.id === "sbar-handover") {
     const sections = [
-      { k: "S — SITUATION (Identify self, patient name, unit, exact active problem / urgent concern)", h: 40, sample: withSample ? "Example: Calling regarding Bed 4 Mr. M.K., 58 yrs post-laparotomy Day 1; sudden BP drop 88/54 mmHg, HR 122 bpm." : "" },
-      { k: "B — BACKGROUND (Relevant diagnoses, surgery/admission date, allergies, current IV meds/fluids)", h: 48, sample: withSample ? "Example: Admitted yesterday for perforated appendix repair; known hypertensive on Amlodipine; no drug allergies." : "" },
-      { k: "A — ASSESSMENT (Latest vitals, physical exam, SpO2, lab trends, clinical impression)", h: 52, sample: withSample ? "Example: Incision dressing shows fresh dark oozing; skin cool & clammy; SpO2 94% on air; urine output 15 mL past hr." : "" },
-      { k: "R — RECOMMENDATION (Urgent actions requested, review timeframe, immediate bedside steps taken)", h: 48, sample: withSample ? "Example: Request stat surgical registrar review within 10 mins, cross-match order, & confirm bolus Ringer's Lactate." : "" }
+      { k: "S | SITUATION (Identify self, patient name, unit, exact active problem / urgent concern)", h: 40, sample: withSample ? "Example: Calling regarding Bed 4 Mr. M.K., 58 yrs post-laparotomy Day 1; sudden BP drop 88/54 mmHg, HR 122 bpm." : "" },
+      { k: "B | BACKGROUND (Relevant diagnoses, surgery/admission date, allergies, current IV meds/fluids)", h: 48, sample: withSample ? "Example: Admitted yesterday for perforated appendix repair; known hypertensive on Amlodipine; no drug allergies." : "" },
+      { k: "A | ASSESSMENT (Latest vitals, physical exam, SpO2, lab trends, clinical impression)", h: 52, sample: withSample ? "Example: Incision dressing shows fresh dark oozing; skin cool & clammy; SpO2 94% on air; urine output 15 mL past hr." : "" },
+      { k: "R | RECOMMENDATION (Urgent actions requested, review timeframe, immediate bedside steps taken)", h: 48, sample: withSample ? "Example: Request stat surgical registrar review within 10 mins, cross-match order, & confirm bolus Ringer's Lactate." : "" }
     ];
     let sy = 43;
     sections.forEach((sec) => {
@@ -865,12 +865,12 @@ export function downloadNursingTemplatePdf(templateId, { withSample = true } = {
     });
   } else if (tpl.id === "soap-progress") {
     const blocks = [
-      { label: "S — Subjective Data (Patient symptoms, pain score 0-10, concerns verbatim)", h: 36 },
-      { label: "O — Objective Data (Temp, BP, HR, RR, SpO2, physical exam, labs, wound status)", h: 46 },
-      { label: "A — Assessment / Nursing Diagnosis (Clinical interpretation & progress)", h: 36 },
-      { label: "P — Plan (Short-term goals, diagnostic/medication/education targets)", h: 34 },
-      { label: "I — Implementation (Timed nursing actions delivered & medications given)", h: 38 },
-      { label: "E — Evaluation (Patient response, unmet needs, plan revision + Sign)", h: 30 }
+      { label: "S | Subjective Data (Patient symptoms, pain score 0-10, concerns verbatim)", h: 36 },
+      { label: "O | Objective Data (Temp, BP, HR, RR, SpO2, physical exam, labs, wound status)", h: 46 },
+      { label: "A | Assessment / Nursing Diagnosis (Clinical interpretation & progress)", h: 36 },
+      { label: "P | Plan (Short-term goals, diagnostic/medication/education targets)", h: 34 },
+      { label: "I | Implementation (Timed nursing actions delivered & medications given)", h: 38 },
+      { label: "E | Evaluation (Patient response, unmet needs, plan revision + Sign)", h: 30 }
     ];
     let sy = 42;
     blocks.forEach((b) => {

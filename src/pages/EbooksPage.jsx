@@ -42,7 +42,7 @@ export default function EbooksPage() {
           <span className="nu-badge nu-badge-free" style={{ marginBottom: 12 }}>100% Free Reference Library ({ebooks.length} Books)</span>
           <h1>Free Referenced Nursing &amp; Medical eBooks</h1>
           <p className="nu-cl-subtitle" style={{ maxWidth: 740 }}>
-            High-yield revision eBooks, open clinical textbooks, and WHO/MSF guidelines organized by specialty. All books are 100% free to read online or print to PDF — zero books are sold.
+            High-yield revision eBooks, open clinical textbooks, and WHO/MSF guidelines organized by specialty. All books are 100% free to read online or print to PDF | zero books are sold.
           </p>
         </div>
       </section>

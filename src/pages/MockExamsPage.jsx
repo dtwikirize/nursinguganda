@@ -214,9 +214,9 @@ export default function MockExamsPage() {
             <div className="nu-allaccess-banner" style={{ marginBottom: 20 }}>
               <div className="nu-allaccess-copy">
                 <span className="nu-allaccess-eyebrow">50% OFF PAST PAPER PASS OR FULL SITE ACCESS</span>
-                <h3>Unlock All {rawPapers.length}+ Past Papers ($4.99) — or All 85 Courses ($34.99)</h3>
+                <h3>Unlock All {rawPapers.length}+ Past Papers ($4.99) | or All 85 Courses ($34.99)</h3>
                 <p>
-                  Get every UNMEB &amp; UHPAB marking guide, timed mock drill &amp; PDF export — or unlock every course sitewide.
+                  Get every UNMEB &amp; UHPAB marking guide, timed mock drill &amp; PDF export | or unlock every course sitewide.
                 </p>
               </div>
               <div className="nu-allaccess-cta" style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
@@ -554,7 +554,7 @@ export default function MockExamsPage() {
                 <section style={{ marginBottom: 28 }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 8, marginBottom: 12 }}>
                     <h3 style={{ margin: 0, color: NAVY_TEXT }}>
-                      Section A — Objective Questions ({resolvedActivePaper.sectionA.length} Marks)
+                      Section A | Objective Questions ({resolvedActivePaper.sectionA.length} Marks)
                     </h3>
                     <button
                       type="button"
@@ -668,7 +668,7 @@ export default function MockExamsPage() {
                           htmlFor={`essay-draft-${q.id}`}
                           style={{ display: "flex", justifyContent: "space-between", fontSize: "0.78rem", fontWeight: 600, color: "#64748b", marginBottom: 6 }}
                         >
-                          <span>Practice Response Sheet (Optional — outline points before checking marking guide)</span>
+                          <span>Practice Response Sheet (Optional | outline points before checking marking guide)</span>
                           <span>{draftWords} words</span>
                         </label>
                         <textarea

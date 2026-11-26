@@ -287,7 +287,7 @@ export default function FreeQuizzesPage() {
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: 12 }}>
                     <div>
                       <h3 style={{ margin: "0 0 6px" }}>
-                        Your Score: {result.score} / {result.totalQuestions} ({result.percent}%) —{" "}
+                        Your Score: {result.score} / {result.totalQuestions} ({result.percent}%) | {" "}
                         {result.passed ? "Passed (>= 60%)" : "Keep Reviewing (< 60%)"}
                       </h3>
                       <div style={{ fontSize: "0.88rem", color: "#374151" }}>

@@ -37,9 +37,14 @@ const ROUTE_META = {
       "Test your UNMEB readiness with 10 randomized mixed-format topic quizzes across Anatomy, Pharmacology, Midwifery, Med-Surg, Paediatrics, and Emergency Care."
   },
   "/dictionary": {
-    title: "1,079+ A–Z Nursing & Medical Dictionary + 183 Ward Abbreviations | Nursing Uganda",
+    title: "1,079+ A-Z Nursing & Medical Dictionary + 183 Ward Abbreviations | Nursing Uganda",
     description:
       "Search 1,079 clinical definitions, pronunciations, nursing priorities, exam mnemonics, and 183 hospital ward abbreviations tailored for Ugandan nurses and global students."
+  },
+  "/medical-images": {
+    title: "Medical Images Dictionary & Visual Anatomy Atlas | Nursing Uganda",
+    description:
+      "Browse categorized high-resolution human anatomy plates, cellular biology diagrams, and clinical pathology visuals with labeled landmarks and study pearls."
   },
   "/instruments": {
     title: "146-Item Medical & Surgical Instrument Atlas (OSCE Guide & IPC) | Nursing Uganda",
@@ -192,7 +197,7 @@ export default function RouteSeo() {
           description: known.description,
           url: `${SITE_URL}/dictionary`
         };
-      } else if (clean === "/mock-exams" || clean === "/quizzes" || clean === "/courses" || clean === "/ebooks" || clean === "/instruments") {
+      } else if (clean === "/mock-exams" || clean === "/quizzes" || clean === "/courses" || clean === "/ebooks" || clean === "/instruments" || clean === "/medical-images") {
         schema = {
           "@type": "CollectionPage",
           name: known.title.split("|")[0].trim(),

@@ -75,7 +75,7 @@ export default function NclexRnPlayerPage() {
     if (!activeUnit) return;
     setPageSeo({
       title: `${activeUnit.weekLabel}: ${activeTopic?.title || activeUnit.title} | NCLEX-RN Academy`,
-      description: `NCLEX-RN 16-Unit Study Player — ${activeUnit.title}. Aligned with Saunders 9th Ed., Kaplan & LaCharity PDA.`,
+      description: `NCLEX-RN 16-Unit Study Player | ${activeUnit.title}. Aligned with Saunders 9th Ed., Kaplan & LaCharity PDA.`,
       canonicalPath: `/nclex-rn/unit/${activeUnit.slug}`,
       type: "article"
     });
@@ -273,7 +273,7 @@ export default function NclexRnPlayerPage() {
                   className="nu-btn nu-btn-primary"
                   style={{ background: "#a435f0", borderColor: "#a435f0", padding: "12px 24px" }}
                 >
-                  <ShoppingCart size={16} /> {inCart ? "Go to Cart ($99)" : "Enroll Now — $99"}
+                  <ShoppingCart size={16} /> {inCart ? "Go to Cart ($99)" : "Enroll Now | $99"}
                 </button>
               </div>
             ) : mode === "notes" && activeTopic ? (
@@ -324,8 +324,8 @@ export default function NclexRnPlayerPage() {
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 10, marginBottom: 18, padding: "12px 16px", background: "#f8fafc", borderRadius: 8, border: "1px solid #e2e8f0" }}>
                   <div style={{ fontSize: "0.88rem", color: "#334155", fontWeight: 600 }}>
                     {mode === "eval"
-                      ? `Mixed Final Evaluation — ${activeQuestions.length} Questions across ${activeUnit.weekLabel}`
-                      : `Topic Quiz — ${activeQuestions.length} Questions (${activeTopic?.title})`}
+                      ? `Mixed Final Evaluation | ${activeQuestions.length} Questions across ${activeUnit.weekLabel}`
+                      : `Topic Quiz | ${activeQuestions.length} Questions (${activeTopic?.title})`}
                   </div>
                   {submitted && (
                     <span style={{ padding: "5px 12px", borderRadius: 999, background: "#1c1d1f", color: "#ffffff", fontWeight: 800, fontSize: "0.84rem" }}>

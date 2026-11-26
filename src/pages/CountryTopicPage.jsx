@@ -92,8 +92,8 @@ export default function CountryTopicPage({ countryKey: forcedKey = "" }) {
   useEffect(() => {
     if (!indexEntry) return;
     setPageSeo({
-      title: `${indexEntry.title} — ${meta.shortName} Nursing Notes (${meta.examBadge}) | Nursing Uganda`,
-      description: `${indexEntry.excerpt || indexEntry.title} — Adapted for ${meta.name} (${meta.examBadge}, ${meta.unitLabel}).`,
+      title: `${indexEntry.title} | ${meta.shortName} Nursing Notes (${meta.examBadge}) | Nursing Uganda`,
+      description: `${indexEntry.excerpt || indexEntry.title} | Adapted for ${meta.name} (${meta.examBadge}, ${meta.unitLabel}).`,
       canonicalPath: `${meta.topicsBase}/${indexEntry.slug}`,
       type: "article"
     });

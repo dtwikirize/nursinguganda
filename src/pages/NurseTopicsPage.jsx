@@ -112,7 +112,7 @@ export default function NurseTopicsPage() {
           </span>
           <h1>Nurse Topics &amp; Clinical Study Notes</h1>
           <p style={{ maxWidth: 740, color: "#cbd5e1", margin: "10px 0 0", fontSize: "1.02rem" }}>
-            Browse every nursing and midwifery study topic directly by clinical specialty or keyword — from Anatomy &amp; Pharmacology to Midwifery, Paediatrics, and Ward Emergencies.
+            Browse every nursing and midwifery study topic directly by clinical specialty or keyword | from Anatomy &amp; Pharmacology to Midwifery, Paediatrics, and Ward Emergencies.
           </p>
         </div>
       </section>

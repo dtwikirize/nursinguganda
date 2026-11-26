@@ -73,7 +73,8 @@ const HUB_FOOTER_LINKS = `
     <a href="/mock-exams">109 UHPAB/UNMEB Past Papers (.pdf)</a>
     <a href="/quizzes">Free Mixed Topic Quizzes</a>
     <a href="/ebooks">Free eBooks (.pdf)</a>
-    <a href="/dictionary">A–Z Medical Dictionary</a>
+    <a href="/dictionary">A-Z Medical Dictionary</a>
+    <a href="/medical-images">Medical Images Dictionary</a>
     <a href="/instruments">Instrument Atlas</a>
     <a href="/clinical-tools">Dosage Calculator</a>
     <a href="/about">About</a>
@@ -98,6 +99,7 @@ function main() {
     { loc: `${SITE_URL}/mock-exams`, priority: "0.95" },
     { loc: `${SITE_URL}/quizzes`, priority: "0.85" },
     { loc: `${SITE_URL}/dictionary`, priority: "0.85" },
+    { loc: `${SITE_URL}/medical-images`, priority: "0.9" },
     { loc: `${SITE_URL}/instruments`, priority: "0.85" },
     { loc: `${SITE_URL}/clinical-tools`, priority: "0.85" },
     { loc: `${SITE_URL}/templates`, priority: "0.85" },

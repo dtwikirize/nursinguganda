@@ -350,7 +350,7 @@ export default function EbookReaderPage() {
                     </div>
                   )}
 
-                  {/* Chapters — Clean Narrative Content (No auto-injected tables for full textbooks) */}
+                  {/* Chapters | Clean Narrative Content (No auto-injected tables for full textbooks) */}
                   {visibleChapters.map((ch) => (
                     <article key={ch.slug || ch.chapterNumber} id={`ch-${ch.chapterNumber}`} style={{ marginBottom: 40 }}>
                       <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 10, fontSize: "0.78rem", fontWeight: 700, color: "var(--nu-purple)", textTransform: "uppercase" }}>
