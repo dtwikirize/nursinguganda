@@ -11496,64 +11496,109 @@
           ],
           "sections": [
             {
-              "title": "1. Clinical Overview & NCLEX-RN Blueprint",
+              "title": "1. Anemias & Sickle Cell Vaso-Occlusive Crisis",
               "blocks": [
                 {
                   "type": "paragraph",
-                  "text": "**Anemias, Sickle Cell Crisis, Thrombocytopenia & Blood Transfusions** is a high-yield focus area in **Course Unit 7: Oncology, Hematological Disorders & Oncological Emergencies** for the Next-Generation NCLEX-RN (NGN). This study guide integrates core pathophysiology, clinical judgment cues, pharmacology safety, and bedside nursing priorities across **Saunders Comprehensive Review (9th Ed.)**, **Kaplan NCLEX-RN Prep**, and **LaCharity PDA**."
-                }
-              ]
-            },
-            {
-              "title": "2. High-Yield Clinical Concepts & Nursing Priorities",
-              "blocks": [
+                  "text": "Hematologic nursing centers on **oxygen-carrying capacity (`Hgb`/`Hct`)**, **bleeding precautions (`Platelets < 50,000`)**, **infection prevention (`ANC < 500`)**, and **safe blood product administration**. In **Sickle Cell Crisis**, hypoxia, dehydration, cold, or infection trigger RBC sickling and microvascular occlusion — treat with **HOP**: **Hydration** (IV hypotonic/isotonic fluids), **Oxygen**, and **Pain control** (scheduled IV opioids, never cold compresses)."
+                },
                 {
-                  "type": "list",
-                  "items": [
-                    "ELITES NURSES FORUM Iron-Defficiency Anemia A. Description 1. Iron stores are depleted, resulting in a decreased iron supply for the manufacture of hemoglobin in red blood cells.",
-                    "ELITES NURSES FORUM C. Interventions 1. Increase dietary intake of foods rich in vitamin B12, such as meat and liver, if the anemia is a result of a dietary deficiency.",
-                    "ELITES NURSES FORUM Folate-Deficiency Anemia A. Description 1. A macrocytic anemia in which red blood cells are larger than normal and are oval-shaped rather than round-shaped due to the lack of inadequate intake of folate (vitamin B9).",
-                    "ELITES NURSES FORUM Aplastic Anemia A. Description 1. Aplastic anemia is a deficiency of circulating erythrocytes and all other formed elements of blood, resulting from the arrested development of cells within the bone marrow.",
-                    "D. Post transplantation period: Infection, bleeding, or neutropenia and thrombocytopenia are major concerns until engraftment occurs.",
-                    "ELITES NURSES FORUM Leukemia A malignant progressive disease in which the bone marrow produces increased numbers of immature or abnormal leukocytes. These suppress the production of normal blood cells, leading to anemia and other symptoms.",
-                    "ELITES NURSES FORUM D. Bleeding 1. During the period of greatest bone marrow suppression (the nadir), the platelet count may be extremely low."
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "3. Oncological Emergencies & Neutropenic Precautions",
-              "blocks": [
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u7t1-hematology-sickle-transfusion.webp",
+                  "alt": "Peripheral blood smear showing sickled red blood cells with NCLEX-RN Sickle Cell and Transfusion safety rules",
+                  "caption": "Sickle cell peripheral smear with HOP crisis protocol and blood transfusion rules (NU · nursinguganda.com)."
+                },
                 {
                   "type": "table",
-                  "title": "Oncological Emergencies & Neutropenic Precautions",
+                  "title": "High-Yield Anemias & Coagulopathies",
                   "headers": [
-                    "Emergency / Hazard",
-                    "Key Signs & Critical Labs",
-                    "Priority Safety Action"
+                    "Disorder",
+                    "Classic Labs & Cues",
+                    "Priority Nursing Interventions"
                   ],
                   "rows": [
                     [
-                      "**Neutropenia (ANC < 500–1,000)**",
-                      "Even mild **fever (>= 100.4°F / 38°C)** is a medical emergency!",
-                      "Private room, strict handwashing, **NO fresh flowers/raw fruits/rectal temps/enemas**."
+                      "**Iron-Deficiency Anemia**",
+                      "Low ferritin/Hgb, **microcytic**, fatigue, **pica**, spoon nails.",
+                      [
+                        "Give oral iron with **Vitamin C** (orange juice) on empty stomach; avoid milk/antacids; **use straw** for liquid iron; expect **dark green/black stools**."
+                      ]
                     ],
                     [
-                      "**Thrombocytopenia (Plt < 50k)**",
-                      "Petechiae, ecchymosis, epistaxis, hematuria.",
-                      "Soft toothbrush, **electric razor**, avoid IM injections/NSAIDs/straining."
+                      "**Pernicious Anemia (B12)**",
+                      "Lack of **intrinsic factor**, **macrocytic**, **beefy red tongue**, paresthesias.",
+                      [
+                        "Lifelong **IM / intranasal Vitamin B12** (oral B12 is not absorbed); teach **fall & burn safety** due to neuropathy."
+                      ]
                     ],
                     [
-                      "**Tumor Lysis Syndrome (TLS)**",
-                      "High **K+**, high **P+**, high **Uric Acid**, **LOW Ca2+** -> AKI.",
-                      "Aggressive IV hydration + **Allopurinol / Rasburicase** + cardiac monitoring."
+                      "**Sickle Cell Crisis**",
+                      "Severe bone/joint/abdominal pain, **priapism**, **acute chest syndrome**.",
+                      [
+                        "**IV fluids first** + **O2** + **IV Morphine/Hydromorphone**; **avoid cold packs** (worsen vasoconstriction); give **Hydroxyurea** & pneumococcal vaccine."
+                      ]
                     ],
                     [
-                      "**Brachytherapy (Internal Rad)**",
-                      "Sealed radioactive implant inside client.",
-                      "Private room, lead shield, **30-min/shift limit**, long forceps + lead container for dislodged implant."
+                      "**Thrombocytopenia / DIC**",
+                      "**Platelets < 50,000** (spontaneous bleed < 20,000); DIC = **high D-dimer, prolonged PT/aPTT, low fibrinogen**.",
+                      [
+                        "**Soft toothbrush, electric razor, no IM injections, no rectal temps/enemas, no aspirin/NSAIDs**; monitor for petechiae & neuro bleed."
+                      ]
                     ]
                   ]
+                }
+              ]
+            },
+            {
+              "title": "2. Blood Product Transfusion Safety & Reactions",
+              "blocks": [
+                {
+                  "type": "table",
+                  "title": "Blood Transfusion Protocol & Acute Reaction Management",
+                  "headers": [
+                    "Phase / Reaction Type",
+                    "Key Bedside Rules & Signs",
+                    "Immediate Nursing Action"
+                  ],
+                  "rows": [
+                    [
+                      "**Pre-Transfusion & Infusing**",
+                      "Type & Crossmatch; **2-RN verification**; **18–20G** IV; **0.9% NS ONLY** (never D5W/LR).",
+                      [
+                        "Baseline vitals; **stay at bedside first 15 minutes** (infuse slowly at 2 mL/min); **complete within 4 hours**."
+                      ]
+                    ],
+                    [
+                      "**Acute Hemolytic (ABO)**",
+                      "Fever, chills, **flank/low-back pain**, **hypotension**, hemoglobinuria (within 15 min).",
+                      [
+                        "**STOP transfusion immediately** -> disconnect & infuse **0.9% NS via NEW tubing** -> notify MD & blood bank -> send bag/tubing + urine/blood samples."
+                      ]
+                    ],
+                    [
+                      "**Febrile Non-Hemolytic**",
+                      "Sudden **fever (> 1°C rise)**, chills, headache.",
+                      [
+                        "**STOP transfusion** -> keep vein open w/ 0.9% NS -> give **Acetaminophen** -> notify provider."
+                      ]
+                    ],
+                    [
+                      "**TACO (Fluid Overload)**",
+                      "Dyspnea, **crackles**, **JVD**, hypertension, pink frothy sputum.",
+                      [
+                        "Slow/stop infusion -> **High-Fowler's** -> **O2** -> **IV Furosemide** as ordered."
+                      ]
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "3. Neutropenic Precautions (ANC < 500–1,000/mm³)",
+              "blocks": [
+                {
+                  "type": "paragraph",
+                  "text": "When **ANC < 500/mm³**, implement **protective (reverse) isolation**: private room, strict hand hygiene, **no fresh flowers or potted plants**, **no raw fruits/vegetables** (well-cooked only), **no standing water** in pitchers, and **no rectal temperatures/suppositories**. Report **temperature >= 38.0°C (100.4°F)** immediately — fever may be the ONLY sign of sepsis because neutropenic clients cannot form pus."
                 }
               ]
             },
@@ -11561,13 +11606,8 @@
               "title": "4. Exam Synthesis & Bedside Takeaways",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "ELITES NURSES FORUM D. Bleeding 1. During the period of greatest bone marrow suppression (the nadir), the platelet count may be extremely low.",
-                    "Integrate Anemias, Sickle Cell Crisis, Thrombocytopenia & Blood Transfusions cues across the 6-Step NCSBN CJMM: Recognize -> Analyze -> Prioritize -> Generate -> Act -> Evaluate.",
-                    "Compare US Conventional lab values (mg/dL, mEq/L) and US generic drug names (Acetaminophen, Epinephrine, Albuterol) before choosing an option.",
-                    "Verify mastery of Anemias, Sickle Cell Crisis, Thrombocytopenia & Blood Transfusions using the 20-question topic quiz and the Course Unit 7 60-question mixed Final Evaluation."
-                  ]
+                  "type": "paragraph",
+                  "text": "**NCLEX-RN Bottom Line:** **0.9% Normal Saline** is the ONLY solution compatible with blood products. At the first sign of ANY transfusion reaction, **STOP the blood first**, hang **new 0.9% NS tubing** (never flush the blood-filled tubing!), and call the provider. In **Sickle Cell Crisis**, prioritize **IV hydration + O2 + pain control**."
                 }
               ]
             }
@@ -11843,84 +11883,109 @@
           ],
           "sections": [
             {
-              "title": "1. Clinical Overview & NCLEX-RN Blueprint",
+              "title": "1. Chemotherapy, Radiation & Extravasation Safety",
               "blocks": [
                 {
                   "type": "paragraph",
-                  "text": "**Oncological Emergencies (TLS, SIADH, SVC, Hypercalcemia) & Chemo** is a high-yield focus area in **Course Unit 7: Oncology, Hematological Disorders & Oncological Emergencies** for the Next-Generation NCLEX-RN (NGN). This study guide integrates core pathophysiology, clinical judgment cues, pharmacology safety, and bedside nursing priorities across **Saunders Comprehensive Review (9th Ed.)**, **Kaplan NCLEX-RN Prep**, and **LaCharity PDA**."
-                }
-              ]
-            },
-            {
-              "title": "2. High-Yield Clinical Concepts & Nursing Priorities",
-              "blocks": [
+                  "text": "Cytotoxic chemotherapy targets rapidly dividing cells, causing **myelosuppression** (nadir 7–14 days post-dose), **mucositis**, and **vesicant extravasation** risk. **Internal radiation (Brachytherapy)** requires strict time, distance, and shielding precautions because the client emits radiation while the implant is in place."
+                },
                 {
-                  "type": "list",
-                  "items": [
-                    "ELITES NURSES FORUM E. Superior vena cava syndrome Description a. Superior vena cava (SVC) syndrome occurs when the SVC is compressed or obstructed by tumor growth (commonly associated with lung cancer and lymphoma).",
-                    "ELITES NURSES FORUM Superior Vena Cava Syndrome ELITES NURSES FORUM 2. Interventions a. Assess for early signs and symptoms of SVC syndrome.",
-                    "ELITES NURSES FORUM Chemotherapy Causes immunosuppression ○ Destroys cancer cells ○ Stops cancer cell growth ○ Prevents cancer cells from metastasizing But….this destroys healthy cells too.",
-                    "ELITES NURSES FORUM V. Chemotherapy A. Description 1. Chemotherapy kills or inhibits the reproduction of neoplastic cells and kills normal cells.",
-                    "ELITES NURSES FORUM VI. Radiation Therapy A. Description 1. Radiation therapy destroys cancer cells, with minimal exposure of normal cells to the damaging effects of radiation. The damaged cells die or become unable to divide.",
-                    "B. External beam radiation (teletherapy): The actual radiation source is external to the client.",
-                    "ELITES NURSES FORUM External Radiation Precautions ELITES NURSES FORUM C. Brachytherapy 1. The radiation source comes into direct, continuous contact with tumor tissues for a specific time.",
-                    "ELITES NURSES FORUM ELITES NURSES FORUM 7. Unsealed radiation source a. Administration is via the oral or IV route or by instillation into body cavities.",
-                    "ELITES NURSES FORUM 8. Sealed radiation source (see Clinical Judgment: Take Action Box) (Box 45.6) a. A sealed, temporary or permanent radiation source (solid implant) is implanted within the tumor target tissues.",
-                    "ELITES NURSES FORUM 9. Removal of sealed radiation sources a. The client is not radioactive after removal."
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "3. Oncological Emergencies & Neutropenic Precautions",
-              "blocks": [
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u7t2-oncological-emergencies-chemo.webp",
+                  "alt": "Chemotherapy IV infusion bags with NCLEX-RN Tumor Lysis Syndrome, SVC Syndrome and Brachytherapy priorities",
+                  "caption": "R-CHOP chemotherapy infusion with oncological emergency and radiation safety priorities (NU · nursinguganda.com)."
+                },
                 {
                   "type": "table",
-                  "title": "Oncological Emergencies & Neutropenic Precautions",
+                  "title": "Chemotherapy & Radiation Safety Protocols",
                   "headers": [
-                    "Emergency / Hazard",
-                    "Key Signs & Critical Labs",
-                    "Priority Safety Action"
+                    "Modality / Hazard",
+                    "Critical Nursing Rules",
+                    "NCLEX-RN Priority Action"
                   ],
                   "rows": [
                     [
-                      "**Neutropenia (ANC < 500–1,000)**",
-                      "Even mild **fever (>= 100.4°F / 38°C)** is a medical emergency!",
-                      "Private room, strict handwashing, **NO fresh flowers/raw fruits/rectal temps/enemas**."
+                      "**Vesicant Extravasation** (e.g., Doxorubicin, Vincristine)",
+                      "Pain, burning, swelling, redness, or loss of blood return at IV site.",
+                      [
+                        "**STOP infusion immediately** (leave catheter in) -> **aspirate residual drug** -> administer **antidote** (e.g., Dexrazoxane/Hyaluronidase) -> remove IV & apply cold/warm compress per drug."
+                      ]
                     ],
                     [
-                      "**Thrombocytopenia (Plt < 50k)**",
-                      "Petechiae, ecchymosis, epistaxis, hematuria.",
-                      "Soft toothbrush, **electric razor**, avoid IM injections/NSAIDs/straining."
+                      "**Brachytherapy (Internal Radiation)**",
+                      "Private room with lead sign; **no pregnant staff/visitors or children**; limit to **30 min/shift** at >= 6 ft.",
+                      [
+                        "If implant **dislodges**: **NEVER touch with bare hands** -> pick up with **long-handled forceps** -> place in **lead-lined container** in room."
+                      ]
                     ],
                     [
-                      "**Tumor Lysis Syndrome (TLS)**",
-                      "High **K+**, high **P+**, high **Uric Acid**, **LOW Ca2+** -> AKI.",
-                      "Aggressive IV hydration + **Allopurinol / Rasburicase** + cardiac monitoring."
-                    ],
-                    [
-                      "**Brachytherapy (Internal Rad)**",
-                      "Sealed radioactive implant inside client.",
-                      "Private room, lead shield, **30-min/shift limit**, long forceps + lead container for dislodged implant."
+                      "**External Beam Radiation**",
+                      "Client is **NOT radioactive** between sessions.",
+                      [
+                        "Wash skin gently with mild soap/water; **pat dry**; **do NOT wash off ink markings**; **no lotions, powders, sun, or tight clothes**."
+                      ]
                     ]
                   ]
                 }
               ]
             },
             {
-              "title": "4. Exam Synthesis & Bedside Takeaways",
+              "title": "2. Oncological Emergencies (TLS, SIADH, SVC, Hypercalcemia, Cord Compression)",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "ELITES NURSES FORUM External Radiation Precautions ELITES NURSES FORUM C. Brachytherapy 1. The radiation source comes into direct, continuous contact with tumor tissues for a specific time.",
-                    "ELITES NURSES FORUM ELITES NURSES FORUM 7. Unsealed radiation source a. Administration is via the oral or IV route or by instillation into body cavities.",
-                    "ELITES NURSES FORUM 8. Sealed radiation source (see Clinical Judgment: Take Action Box) (Box 45.6) a. A sealed, temporary or permanent radiation source (solid implant) is implanted within the tumor target tissues.",
-                    "ELITES NURSES FORUM 9. Removal of sealed radiation sources a. The client is not radioactive after removal.",
-                    "ELITES NURSES FORUM F. Additional interventions 1. Chemotherapy a. Induction therapy is aimed at achieving a rapid, complete remission of all manifestations of the disease.",
-                    "ELITES NURSES FORUM E. Nonsurgical interventions 1. Preoperative radiation for local control and postoperative radiation for palliation may be prescribed.",
-                    "ELITES NURSES FORUM E. Nonsurgical interventions 1. Radiation therapy may be prescribed for localized intrathoracic lung cancer and for palliation of hemoptysis, obstructions, dysphagia, superior vena cava syndrome, and pain."
+                  "type": "table",
+                  "title": "5 Life-Threatening Oncological Emergencies",
+                  "headers": [
+                    "Emergency & Cancer Link",
+                    "Pathophysiology & Lab Hallmarks",
+                    "Immediate Nursing Interventions"
+                  ],
+                  "rows": [
+                    [
+                      "**Tumor Lysis Syndrome (TLS)** (Leukemia / Lymphoma post-chemo)",
+                      "Massive cell lysis dumps intracellular ions: **Hyperkalemia**, **Hyperphosphatemia**, **Hyperuricemia**, **Hypocalcemia**.",
+                      [
+                        "**Aggressive IV hydration (0.9% NS)**, **Allopurinol / Rasburicase** (uric acid), **ECG monitoring** for peaked T waves (K+), **Kayexalate / Insulin+D50**."
+                      ]
+                    ],
+                    [
+                      "**Superior Vena Cava (SVC) Syndrome** (Lung cancer / Lymphoma)",
+                      "Tumor compresses SVC: **facial/periorbital & neck edema**, **JVD**, **stridor/dyspnea**, upper-chest collateral veins.",
+                      [
+                        "**AIRWAY PRIORITY**: Elevate HOB (**High-Fowler's**), **O2**, prepare for **emergency radiation / steroids**; **avoid upper-extremity IVs/BP**."
+                      ]
+                    ],
+                    [
+                      "**Spinal Cord Compression** (Breast/Prostate/Lung mets)",
+                      "**New/worsening back pain** (earliest sign!), lower-extremity weakness, **bowel/bladder incontinence**.",
+                      [
+                        "**Immobilize spine**, high-dose **IV Dexamethasone** immediately, prepare for **emergent MRI** + radiation/surgery."
+                      ]
+                    ],
+                    [
+                      "**Hypercalcemia of Malignancy** (Bone mets / Multiple myeloma)",
+                      "**Ca2+ > 10.5 mg/dL**: lethargy, bone pain, constipation, polyuria, shortened QT.",
+                      [
+                        "**Aggressive 0.9% NS IV** + **Loop diuretic** (after hydrated) + **Calcitonin / Bisphosphonates (Zoledronic acid)**."
+                      ]
+                    ],
+                    [
+                      "**SIADH** (Small-cell lung cancer)",
+                      "Ectopic ADH -> **hyponatremia (< 135)**, low serum osmolality, high urine SG.",
+                      [
+                        "**Fluid restriction**, **seizure precautions**, **3% hypertonic saline** if severe neuro symptoms."
+                      ]
+                    ]
                   ]
+                }
+              ]
+            },
+            {
+              "title": "3. Exam Synthesis & Bedside Takeaways",
+              "blocks": [
+                {
+                  "type": "paragraph",
+                  "text": "**NCLEX-RN Bottom Line:** Remember **TLS = \"High K+, High PO4, High Uric Acid, Low Ca2+\"** — hydrate aggressively and give **Allopurinol**. In **SVC Syndrome**, **facial/neck swelling + dyspnea = airway emergency** (High-Fowler's + O2 + emergency radiation). For a **dislodged brachytherapy seed**, use **long-handled forceps + lead container**."
                 }
               ]
             }
@@ -12196,84 +12261,137 @@
           ],
           "sections": [
             {
-              "title": "1. Clinical Overview & NCLEX-RN Blueprint",
+              "title": "1. CAUTION Warning Signs & Evidence-Based Screening",
               "blocks": [
                 {
                   "type": "paragraph",
-                  "text": "**Breast, Lung, Colorectal, Prostate & Cervical Cancers (CAUTION)** is a high-yield focus area in **Course Unit 7: Oncology, Hematological Disorders & Oncological Emergencies** for the Next-Generation NCLEX-RN (NGN). This study guide integrates core pathophysiology, clinical judgment cues, pharmacology safety, and bedside nursing priorities across **Saunders Comprehensive Review (9th Ed.)**, **Kaplan NCLEX-RN Prep**, and **LaCharity PDA**."
-                }
-              ]
-            },
-            {
-              "title": "2. High-Yield Clinical Concepts & Nursing Priorities",
-              "blocks": [
+                  "text": "Early detection dramatically improves oncology survival. NCLEX-RN tests the **CAUTION** mnemonic alongside **ACS/USPSTF screening intervals** and **post-operative precautions** (especially **post-mastectomy lymphedema prevention** and **post-prostatectomy TURP irrigation**)."
+                },
                 {
-                  "type": "list",
-                  "items": [
-                    "ELITES NURSES FORUM E. Superior vena cava syndrome Description a. Superior vena cava (SVC) syndrome occurs when the SVC is compressed or obstructed by tumor growth (commonly associated with lung cancer and lymphoma).",
-                    "ELITES NURSES FORUM B. Metastasis 1. Cancer cells move from their original location to other sites.",
-                    "B. Biopsy 1. Description a. Biopsy is the definitive means of diagnosing cancer and provides histological proof of malignancy.",
-                    "IV. Surgery A. Description: Surgery is indicated to diagnose, stage, and treat certain types of cancer.",
-                    "B. Prophylactic surgery 1. Prophylactic surgery is performed in clients with an existing premalignant condition or a known family history or genetic mutation that strongly predisposes the person to the development of cancer.",
-                    "D. Control (cytoreductive or “debulking”) surgery 1. Control surgery is a debulking procedure that consists of removing a large portion of a locally invasive tumor, such as advanced ovarian cancer.",
-                    "ELITES NURSES FORUM CONT F. Reconstructive or rehabilitative surgery is performed to improve quality of life by restoring maximal function and appearance, such as breast reconstruction after mastectomy.",
-                    "ELITES NURSES FORUM Chemotherapy Causes immunosuppression ○ Destroys cancer cells ○ Stops cancer cell growth ○ Prevents cancer cells from metastasizing But….this destroys healthy cells too.",
-                    "ELITES NURSES FORUM VI. Radiation Therapy A. Description 1. Radiation therapy destroys cancer cells, with minimal exposure of normal cells to the damaging effects of radiation. The damaged cells die or become unable to divide.",
-                    "ELITES NURSES FORUM Symptoms Painless lump in the breast or underarm Flattening or indentation on the breast."
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "3. Oncological Emergencies & Neutropenic Precautions",
-              "blocks": [
+                  "type": "figure",
+                  "src": "/assets/images/medical-illustrations/nclex-u7t3-cancer-screening-caution.webp",
+                  "alt": "Mammography MLO view showing breast mass with NCLEX-RN cancer screening and CAUTION rules",
+                  "caption": "Diagnostic mammography with cancer screening guidelines and CAUTION warning signs (NU · nursinguganda.com)."
+                },
                 {
                   "type": "table",
-                  "title": "Oncological Emergencies & Neutropenic Precautions",
+                  "title": "Cancer Screening Guidelines & High-Yield Post-Op Precautions",
                   "headers": [
-                    "Emergency / Hazard",
-                    "Key Signs & Critical Labs",
-                    "Priority Safety Action"
+                    "Cancer & Screening",
+                    "Target Population & Interval",
+                    "Key NCLEX-RN Nursing Precautions"
                   ],
                   "rows": [
                     [
-                      "**Neutropenia (ANC < 500–1,000)**",
-                      "Even mild **fever (>= 100.4°F / 38°C)** is a medical emergency!",
-                      "Private room, strict handwashing, **NO fresh flowers/raw fruits/rectal temps/enemas**."
+                      "**Breast Cancer** (`Mammography`)",
+                      "Annual/biennial **mammogram starting age 40–45**.",
+                      [
+                        "**Post-Mastectomy Affected Arm:** **NO BP cuffs, NO venipunctures/IVs, NO injections**; elevate arm on pillow; wear **MedicAlert** bracelet; watch for lymphedema."
+                      ]
                     ],
                     [
-                      "**Thrombocytopenia (Plt < 50k)**",
-                      "Petechiae, ecchymosis, epistaxis, hematuria.",
-                      "Soft toothbrush, **electric razor**, avoid IM injections/NSAIDs/straining."
+                      "**Colorectal Cancer** (`Colonoscopy`)",
+                      "**Colonoscopy every 10 years starting age 45** (or annual FIT).",
+                      [
+                        "Avoid **red meat, NSAIDs, & Vitamin C** 48–72 hr before guaiac FOBT (false positives/negatives); post-colonoscopy: watch for **perforation** (rigid abdomen, fever)."
+                      ]
                     ],
                     [
-                      "**Tumor Lysis Syndrome (TLS)**",
-                      "High **K+**, high **P+**, high **Uric Acid**, **LOW Ca2+** -> AKI.",
-                      "Aggressive IV hydration + **Allopurinol / Rasburicase** + cardiac monitoring."
+                      "**Cervical Cancer** (`Pap + HPV`)",
+                      "Age **21–29: Pap q3y**; Age **30–65: Pap + HPV co-test q5y**.",
+                      [
+                        "Avoid douching, tampons, or intercourse **24–48 hr before Pap**; HPV vaccine recommended ages 11–26."
+                      ]
                     ],
                     [
-                      "**Brachytherapy (Internal Rad)**",
-                      "Sealed radioactive implant inside client.",
-                      "Private room, lead shield, **30-min/shift limit**, long forceps + lead container for dislodged implant."
+                      "**Prostate Cancer** (`PSA + DRE`)",
+                      "Informed discussion age **50+** (40–45 if high risk/family hx).",
+                      [
+                        "**Do DRE AFTER blood draw for PSA** (prostate palpation falsely elevates PSA!). Post-TURP: maintain **3-way CBI** for **light pink** urine (no clots)."
+                      ]
+                    ],
+                    [
+                      "**Lung & Testicular**",
+                      "Annual **low-dose CT** (ages 50–80, >= 20 pack-year hx). **TSE monthly** (men 15–35).",
+                      [
+                        "Testicular self-exam **after a warm shower/bath** (painless hard lump = hallmark sign)."
+                      ]
                     ]
                   ]
                 }
               ]
             },
             {
-              "title": "4. Exam Synthesis & Bedside Takeaways",
+              "title": "2. The CAUTION Mnemonic for Cancer Warning Signs",
               "blocks": [
                 {
-                  "type": "list",
-                  "items": [
-                    "ELITES NURSES FORUM CONT F. Reconstructive or rehabilitative surgery is performed to improve quality of life by restoring maximal function and appearance, such as breast reconstruction after mastectomy.",
-                    "ELITES NURSES FORUM Chemotherapy Causes immunosuppression ○ Destroys cancer cells ○ Stops cancer cell growth ○ Prevents cancer cells from metastasizing But….this destroys healthy cells too.",
-                    "ELITES NURSES FORUM VI. Radiation Therapy A. Description 1. Radiation therapy destroys cancer cells, with minimal exposure of normal cells to the damaging effects of radiation. The damaged cells die or become unable to divide.",
-                    "ELITES NURSES FORUM Symptoms Painless lump in the breast or underarm Flattening or indentation on the breast.",
-                    "Change in the size, contour, texture of the breast.",
-                    "Screening Prostate Specific Antigen (PSA) ○ Blood test Digital Rectal Exams (DRE) ○ Done on men >40 y.o.",
-                    "Most common type of skin cancer Start in the basal cell layer (bottom layer) of the epidermis Form on areas of the body exposed to sun - head, face, neck."
+                  "type": "table",
+                  "title": "ACS CAUTION Early Warning Signs",
+                  "headers": [
+                    "Letter",
+                    "Warning Sign",
+                    "Clinical Correlation"
+                  ],
+                  "rows": [
+                    [
+                      "**C**",
+                      "**Change** in bowel or bladder habits",
+                      [
+                        "Alternating constipation/diarrhea or pencil-thin stools (colorectal); hematuria (bladder)."
+                      ]
+                    ],
+                    [
+                      "**A**",
+                      "**A sore** that does not heal",
+                      [
+                        "Basal/squamous cell carcinoma or oral cancer."
+                      ]
+                    ],
+                    [
+                      "**U**",
+                      "**Unusual** bleeding or discharge",
+                      [
+                        "Postmenopausal bleeding (endometrial); hemoptysis (lung)."
+                      ]
+                    ],
+                    [
+                      "**T**",
+                      "**Thickening** or lump in breast/testicle/elsewhere",
+                      [
+                        "Painless, firm, fixed breast or testicular mass."
+                      ]
+                    ],
+                    [
+                      "**I**",
+                      "**Indigestion** or difficulty swallowing (`dysphagia`)",
+                      [
+                        "Esophageal or gastric carcinoma."
+                      ]
+                    ],
+                    [
+                      "**O**",
+                      "**Obvious** change in a wart or mole (`ABCDE`)",
+                      [
+                        "Melanoma: Asymmetry, Border, Color, Diameter > 6 mm, Evolving."
+                      ]
+                    ],
+                    [
+                      "**N**",
+                      "**Nagging** cough or hoarseness",
+                      [
+                        "Laryngeal or bronchogenic lung cancer."
+                      ]
+                    ]
                   ]
+                }
+              ]
+            },
+            {
+              "title": "3. Exam Synthesis & Bedside Takeaways",
+              "blocks": [
+                {
+                  "type": "paragraph",
+                  "text": "**NCLEX-RN Bottom Line:** On the affected **post-mastectomy arm**, **NEVER take BP, draw blood, or start IVs**. Always draw **PSA BEFORE a digital rectal exam**, start **colorectal screening at age 45**, and report **rigid/board-like abdomen** immediately after colonoscopy as a sign of **bowel perforation**."
                 }
               ]
             }
