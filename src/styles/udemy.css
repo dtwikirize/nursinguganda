@@ -4617,3 +4617,205 @@ img {
     padding: 15px 14px 14px;
   }
 }
+
+/* ── Protected Image Viewer & Focus/Zoom Lightbox ────────── */
+.nu-img-protect-wrap {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+}
+.nu-img-protect-wrap.is-protected,
+.nu-img-protect-wrap.is-protected img,
+.nu-img-focus-stage.is-protected,
+.nu-img-focus-stage.is-protected img {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+}
+.nu-img-protect-wrap.is-protected img,
+.nu-img-focus-stage.is-protected img {
+  pointer-events: none;
+}
+.nu-img-shield {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  cursor: zoom-in;
+  background: transparent;
+}
+.nu-img-focus-btn {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 23, 42, 0.16);
+  background: rgba(255, 255, 255, 0.92);
+  color: #0f172a;
+  font-size: 0.74rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.12);
+  backdrop-filter: blur(4px);
+  transition: transform 0.14s ease, border-color 0.14s ease, color 0.14s ease;
+}
+.nu-img-focus-btn:hover {
+  border-color: #7c3aed;
+  color: #7c3aed;
+  transform: translateY(-1px);
+}
+.nu-img-focus-btn.is-compact {
+  padding: 5px 7px;
+}
+.nu-img-guard-toast {
+  position: absolute;
+  left: 50%;
+  top: 12px;
+  transform: translateX(-50%);
+  z-index: 6;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #0f172a;
+  color: #ffffff;
+  font-size: 0.76rem;
+  font-weight: 700;
+  white-space: nowrap;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.25);
+  pointer-events: none;
+}
+.nu-img-focus-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(15, 23, 42, 0.86);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+.nu-img-focus-modal {
+  width: min(1180px, 100%);
+  max-height: 94vh;
+  background: #f8fafc;
+  border-radius: 14px;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.nu-img-focus-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 14px;
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+}
+.nu-img-focus-title {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #0f172a;
+  min-width: 0;
+  flex: 1 1 240px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.nu-img-focus-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+.nu-focus-tool-btn,
+.nu-focus-lock-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 32px;
+  padding: 0 10px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  color: #0f172a;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+}
+.nu-focus-tool-btn:hover {
+  border-color: #7c3aed;
+  color: #7c3aed;
+}
+.nu-focus-tool-btn.is-accent {
+  background: #7c3aed;
+  border-color: #7c3aed;
+  color: #ffffff;
+}
+.nu-focus-tool-btn.is-accent:hover {
+  background: #6d28d9;
+  color: #ffffff;
+}
+.nu-focus-lock-link {
+  background: #faf5ff;
+  border-color: #ddd6fe;
+  color: #6d28d9;
+}
+.nu-focus-zoom-val {
+  min-width: 44px;
+  text-align: center;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #334155;
+}
+.nu-focus-close-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #0f172a;
+  cursor: pointer;
+}
+.nu-img-focus-stage {
+  flex: 1 1 auto;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  min-height: 340px;
+  background: #f8fafc;
+}
+.nu-img-focus-inner {
+  position: relative;
+  transform-origin: center center;
+  transition: transform 0.14s ease;
+  max-width: 100%;
+}
+.nu-img-focus-inner img {
+  display: block;
+  max-width: 100%;
+  max-height: 76vh;
+  width: auto;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+}

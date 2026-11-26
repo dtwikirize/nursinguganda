@@ -1,8 +1,9 @@
 import React from "react";
 import { AlertTriangle, CheckCircle2, Layers, Sparkles, Table2 } from "lucide-react";
+import MedicalImageFrame from "./MedicalImageFrame";
 import RichText from "./RichText";
 
-const IMAGE_VERSION = "20261126d";
+const IMAGE_VERSION = "20261126e";
 
 function withImgVersion(src) {
   const s = String(src || "");
@@ -600,6 +601,78 @@ function getInlineSectionRules() {
       caption: "Respiratory Pharmacology: Asthma & Bronchodilator Targets"
     },
     {
+      match: /\b(kwashiorkor|marasmus|severe\s+acute\s+malnutrition|muac|f-?75|f-?100)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/paed-malnutrition-kwashiorkor-marasmus.webp",
+      caption: "Severe Acute Malnutrition: Kwashiorkor vs. Marasmus"
+    },
+    {
+      match: /\b(measles|koplik\s+spot|rubeola)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/paed-measles-rubeola-clinical.webp",
+      caption: "Measles (Rubeola): 3 Cs, Koplik Spots & Cephalocaudal Rash"
+    },
+    {
+      match: /\b(immediate\s+care\s+of\s+the\s+newborn|apgar|kangaroo\s+mother|helping\s+babies\s+breathe|neonatal\s+resuscitation)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/paed-newborn-resuscitation-apgar-kmc.webp",
+      caption: "Immediate Newborn Care, APGAR Scoring, HBB & Kangaroo Mother Care"
+    },
+    {
+      match: /\b(unepi|immunization\s+schedule|vaccine\s+vial\s+monitor|cold\s+chain)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/paed-unepi-immunization-schedule.webp",
+      caption: "Uganda UNEPI Immunization Sites & Vaccine Vial Monitor (VVM)"
+    },
+    {
+      match: /\b(neonatal\s+jaundice|phototherapy|kernicterus|kramer)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/paed-neonatal-jaundice-phototherapy.webp",
+      caption: "Neonatal Jaundice, Kernicterus & Phototherapy Nursing"
+    },
+    {
+      match: /\b(nephrotic|nephritic\s+syndrome|glomerulonephritis)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/paed-nephrotic-vs-nephritic-syndrome.webp",
+      caption: "Paediatric Nephrotic Syndrome vs. Acute Nephritic Syndrome"
+    },
+    {
+      match: /\b(imci|imnci|dehydration\s+plan|oral\s+rehydration|general\s+danger\s+sign)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/paed-imci-dehydration-ors-plans.webp",
+      caption: "IMCI Dehydration Assessment & Oral Rehydration Therapy (ORS)"
+    },
+    {
+      match: /\b(snake\s*bite|stings\s+and\s+bites|anaphylax|antivenom)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/condition-snakebite-stings-envenomation.webp",
+      caption: "Snakebite Envenomation, Insect Stings & Anaphylaxis Management"
+    },
+    {
+      match: /\b(rabies|hydrophobia|negri\s+bod|post[- ]exposure\s+prophylaxis)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/condition-rabies-pep-hydrophobia.webp",
+      caption: "Rabies Pathogenesis, Negri Bodies & WHO PEP Protocol"
+    },
+    {
+      match: /\b(varicella|chicken\s*pox|scabies|sarcoptes)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/condition-varicella-scabies-skin-rashes.webp",
+      caption: "Paediatric Skin Rashes: Varicella vs. Scabies"
+    },
+    {
+      match: /\b(atopic\s+dermatitis|eczema|skin\s+allerg|plant\s+allerg)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/condition-atopic-dermatitis-anaphylaxis.webp",
+      caption: "Atopic Dermatitis (Eczema) & Contact Skin Allergies"
+    },
+    {
+      match: /\b(wallace\s+rule\s+of\s+nines|parkland\s+formula|burn\s+tbsa|rule\s+of\s+nines)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/condition-burns-rule-of-nines.webp",
+      caption: "Burn TBSA Estimation (Wallace Rule of Nines)"
+    },
+    {
       match: /\b(pressure\s+ulcer|pressure\s+injury|pressure\s+sore|stage\s+[1-4]\s+ulcer|epidermis|dermis|wound\s+healing|skin\s+layers|integumentary)\b/i,
       titleOnly: true,
       src: "/assets/images/medical-illustrations/skin-wound-healing.webp",
@@ -656,9 +729,11 @@ function VisualPlateFigure({ src, index, topicTitle, isSingle, lesson, badge }) 
     return (
       <figure className="nu-visual-figure nu-visual-figure--split">
         <div className="nu-visual-split-media">
-          <img
+          <MedicalImageFrame
             src={withImgVersion(src)}
             alt={`${topicTitle} | medical reference diagram ${index + 1}`}
+            title={`Figure ${index + 1}: ${topicTitle}`}
+            caption={`${topicTitle} | Visual Clinical Guide`}
             loading="lazy"
             onLoad={handleLoad}
           />
@@ -681,9 +756,11 @@ function VisualPlateFigure({ src, index, topicTitle, isSingle, lesson, badge }) 
 
   return (
     <figure className="nu-visual-figure">
-      <img
+      <MedicalImageFrame
         src={withImgVersion(src)}
         alt={`${topicTitle} | medical reference diagram ${index + 1}`}
+        title={`Figure ${index + 1}: ${topicTitle}`}
+        caption={`${topicTitle} | Visual Clinical Guide`}
         loading="lazy"
         onLoad={handleLoad}
       />
@@ -1106,9 +1183,11 @@ export function LessonSections({ sections = [], lesson = null, topicTitle = "", 
 
               {inlineFig && (
                 <figure className="nu-note-inline-figure">
-                  <img
+                  <MedicalImageFrame
                     src={withImgVersion(inlineFig.src)}
                     alt={inlineFig.caption}
+                    title={inlineFig.caption}
+                    caption={inlineFig.caption}
                     loading="lazy"
                   />
                   <figcaption>{inlineFig.caption}</figcaption>

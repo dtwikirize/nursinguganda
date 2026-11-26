@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { ArrowLeft, BookOpen, ChevronLeft, ChevronRight, Download, List, ShieldCheck } from "lucide-react";
 import AdSlot from "../components/AdSlot";
 import EbookCover from "../components/EbookCover";
+import MedicalImageFrame from "../components/MedicalImageFrame";
 import NursingLoader from "../components/NursingLoader";
 import ReferencesBox from "../components/ReferencesBox";
 import { setPageSeo } from "../components/RouteSeo";
@@ -343,7 +344,14 @@ export default function EbookReaderPage() {
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 14, marginBottom: 28 }}>
                       {ebook.figures.map((fig) => (
                         <figure key={fig.src} style={{ margin: 0, background: "#ffffff", border: "1px solid #e2e8f0", borderRadius: 8, overflow: "hidden", padding: 10 }}>
-                          <img src={fig.src} alt={fig.caption} loading="lazy" style={{ width: "100%", height: 180, objectFit: "contain", display: "block" }} />
+                          <MedicalImageFrame
+                            src={fig.src}
+                            alt={fig.caption}
+                            title={fig.caption}
+                            caption={fig.caption}
+                            compactBadge
+                            imgStyle={{ width: "100%", height: 180, objectFit: "contain", display: "block" }}
+                          />
                           <figcaption style={{ marginTop: 8, fontSize: "0.78rem", color: "#475569", textAlign: "center" }}>{fig.caption}</figcaption>
                         </figure>
                       ))}

@@ -11,6 +11,7 @@ import {
   X
 } from "lucide-react";
 import AdSlot from "../components/AdSlot";
+import MedicalImageFrame from "../components/MedicalImageFrame";
 import NursingLoader from "../components/NursingLoader";
 import ReferencesBox from "../components/ReferencesBox";
 
@@ -235,10 +236,13 @@ export default function InstrumentsPage() {
 
               <div className="nu-inst-detail-grid">
                 <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 10, padding: 14, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <img
+                  <MedicalImageFrame
                     src={normalizeInstImg(selected.image)}
                     alt={selected.imageAlt || selected.name}
-                    style={{ width: "100%", height: 220, objectFit: "contain", background: "#fff", borderRadius: 6 }}
+                    title={selected.name}
+                    caption={selected.category}
+                    style={{ width: "100%" }}
+                    imgStyle={{ width: "100%", height: 220, objectFit: "contain", background: "#fff", borderRadius: 6 }}
                   />
                 </div>
 
@@ -320,10 +324,12 @@ export default function InstrumentsPage() {
                   >
                     <div className="nu-inst-card-media">
                       <span className="nu-inst-cat-pill">{getShortCategoryLabel(item.category)}</span>
-                      <img
+                      <MedicalImageFrame
                         src={normalizeInstImg(item.image)}
                         alt={item.name}
-                        loading="lazy"
+                        title={item.name}
+                        allowFocus={false}
+                        style={{ width: "100%", height: "100%" }}
                       />
                     </div>
                     <div className="nu-inst-card-body">

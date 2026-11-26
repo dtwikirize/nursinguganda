@@ -11,6 +11,7 @@ import {
   X
 } from "lucide-react";
 import AdSlot from "../components/AdSlot";
+import MedicalImageFrame from "../components/MedicalImageFrame";
 import NursingLoader from "../components/NursingLoader";
 import ReferencesBox from "../components/ReferencesBox";
 import { setPageSeo } from "../components/RouteSeo";
@@ -39,7 +40,7 @@ const IMAGE_ATLAS_REFS = [
 function imgUrlWithVersion(src) {
   const s = String(src || "");
   if (!s) return "";
-  return s.includes("?") ? s : `${s}?v=20261126d`;
+  return s.includes("?") ? s : `${s}?v=20261126e`;
 }
 
 export default function MedicalImagesPage() {
@@ -272,10 +273,12 @@ export default function MedicalImagesPage() {
                 }}
               >
                 <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 12, padding: 10 }}>
-                  <img
+                  <MedicalImageFrame
                     src={imgUrlWithVersion(selected.file)}
                     alt={selected.alt || selected.title}
-                    style={{ width: "100%", height: "auto", borderRadius: 8, display: "block" }}
+                    title={selected.title}
+                    caption={selected.category}
+                    imgStyle={{ width: "100%", height: "auto", borderRadius: 8, display: "block" }}
                   />
                 </div>
 
@@ -388,11 +391,13 @@ export default function MedicalImagesPage() {
                       }}
                       aria-label={`Inspect ${item.title}`}
                     >
-                      <img
+                      <MedicalImageFrame
                         src={imgUrlWithVersion(item.file)}
                         alt={item.alt || item.title}
-                        loading="lazy"
-                        style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                        title={item.title}
+                        allowFocus={false}
+                        style={{ width: "100%", height: "100%" }}
+                        imgStyle={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                       />
                     </button>
 
