@@ -3,7 +3,7 @@ import { AlertTriangle, CheckCircle2, Layers, Sparkles, Table2 } from "lucide-re
 import MedicalImageFrame from "./MedicalImageFrame";
 import RichText from "./RichText";
 
-const IMAGE_VERSION = "20261126f";
+const IMAGE_VERSION = "20261126g";
 
 function withImgVersion(src) {
   const s = String(src || "");
@@ -761,6 +761,78 @@ function getInlineSectionRules() {
       titleOnly: true,
       src: "/assets/images/medical-illustrations/medsurg-shock-haemorrhage-cpr.webp",
       caption: "Surgical Emergencies: Shock, Haemorrhage & Adult BLS/CPR"
+    },
+    {
+      match: /\b(vital\s+signs|vital\s+observations|health\s+assessment|korotkoff|sphygmomanometer)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/foundations-vital-signs-monitoring.webp",
+      caption: "Fundamental Vital Signs & Bedside Observations"
+    },
+    {
+      match: /\b(nursing\s+process|adpie|admission.*discharge|standards\s+of\s+care)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/foundations-nursing-process-adpie.webp",
+      caption: "The Nursing Process (ADPIE) & Clinical Reasoning"
+    },
+    {
+      match: /\b(pain\s+management|pain\s+assessment|who\s+analgesic|pqrst)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/foundations-pain-assessment-who-ladder.webp",
+      caption: "Pain Assessment (PQRST / 0-10 Scale) & WHO Analgesic Ladder"
+    },
+    {
+      match: /\b(palliative\s+care|total\s+pain|spikes\s+protocol|last\s+office|death\s+and\s+dying|breaking\s+of\s+bad\s+news)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/foundations-palliative-end-of-life-care.webp",
+      caption: "Palliative Care, Total Pain, SPIKES & Last Office Dignity"
+    },
+    {
+      match: /\b(leadership|delegation|conflict\s+resolution|tuckman|health\s+service\s+management)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/leadership-management-styles-delegation.webp",
+      caption: "Nursing Leadership, Safe Delegation & Conflict Resolution"
+    },
+    {
+      match: /\b(human\s+resource|uganda.*referral|idsr|fefo|equipment\s+and\s+supplies|financial\s+management)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/leadership-hrm-uganda-health-policies.webp",
+      caption: "Uganda Health Referral System, HRM & Resource Management"
+    },
+    {
+      match: /\b(ethical\s+standards|medico-legal|unmc|informed\s+consent|bioethics|euthanasia)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/ethics-medico-legal-nursing-principles.webp",
+      caption: "Nursing Ethics, Patient Rights & Medico-Legal Practice"
+    },
+    {
+      match: /\b(nursing\s+research|research\s+process|study\s+design|sampling|literature\s+review)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/research-nursing-process-study-designs.webp",
+      caption: "Applied Nursing Research: Process, Sampling & Study Designs"
+    },
+    {
+      match: /\b(occupational\s+health|hierarchy\s+of\s+controls|personal\s+protective\s+equipment|fire\s+extinguisher|needlestick)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/safety-occupational-hazards-ppe-fire.webp",
+      caption: "Occupational Health & Safety: Hazard Controls, PPE & Fire"
+    },
+    {
+      match: /\b(disaster\s+management|disaster\s+preparedness|start\s+triage|mass\s+casualty)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/safety-disaster-management-triage.webp",
+      caption: "Disaster Management Cycle & Mass-Casualty START Triage"
+    },
+    {
+      match: /\b(primary\s+health\s+care|\bcbhc\b|home\s+visiting|alma-ata|community\s+mobilization)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/community-phc-cbhc-home-visiting.webp",
+      caption: "Primary Health Care (PHC), CBHC & Home Visiting"
+    },
+    {
+      match: /\b(nursing\s+informatics|electronic\s+health\s+record|\bhmis\b|dhis2|entrepreneurship|business\s+planning)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/informatics-telehealth-health-entrepreneurship.webp",
+      caption: "Nursing Informatics, Digital HMIS & Health Entrepreneurship"
     },
     {
       match: /\b(pressure\s+ulcer|pressure\s+injury|pressure\s+sore|stage\s+[1-4]\s+ulcer|epidermis|dermis|wound\s+healing|skin\s+layers|integumentary)\b/i,

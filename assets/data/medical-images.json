@@ -13,7 +13,8 @@
     "Foundations & Clinical Nursing",
     "Pharmacology & Medications",
     "Paediatrics & Child Health",
-    "Medical-Surgical & Pathology"
+    "Medical-Surgical & Pathology",
+    "Leadership, Ethics, Safety & Fundamentals"
   ],
   "images": [
     {
@@ -2479,6 +2480,239 @@
         {
           "label": "First Aid - Midwives Revision",
           "to": "/learn/certificate-in-midwifery-anatomy-and-physiology-1-and-first-aid/first-aid"
+        }
+      ]
+    },
+    {
+      "id": "foundations-vital-signs-monitoring",
+      "title": "Fundamental Vital Signs & Bedside Observations",
+      "category": "Leadership, Ethics, Safety & Fundamentals",
+      "file": "/assets/images/medical-illustrations/foundations-vital-signs-monitoring.webp",
+      "alt": "Clinical illustration of nurse taking brachial blood pressure with cuff and stethoscope, pulse oximeter reading 98%, digital thermometer 36.8 C, and bedside vital signs monitor",
+      "summary": "Demonstrates accurate brachial blood pressure auscultation, pulse oximetry, axillary thermometry, and adult resting vital sign reference ranges.",
+      "structures": [
+        "Aneroid Sphygmomanometer & Stethoscope",
+        "Fingertip Pulse Oximeter (SpO2 98%)",
+        "Digital Thermometer (36.8 C)",
+        "Multiparameter Monitor Waveforms"
+      ],
+      "clinicalPearl": "Cuff bladder width should cover ~40% of arm circumference at heart level; rising RR and falling SpO2 precede shock or arrest.",
+      "relatedTopics": [
+        {
+          "label": "BNS 113: Health Assessment",
+          "to": "/learn/bachelor-of-nursing-science-top-up-health-assessment/health-assessment-bns-curriculum"
+        }
+      ]
+    },
+    {
+      "id": "foundations-nursing-process-adpie",
+      "title": "The Nursing Process (ADPIE) & Clinical Reasoning",
+      "category": "Leadership, Ethics, Safety & Fundamentals",
+      "file": "/assets/images/medical-illustrations/foundations-nursing-process-adpie.webp",
+      "alt": "Five-step circular ADPIE nursing process workflow paired with stethoscope physical assessment and blood pressure vascular resistance illustration",
+      "summary": "Breaks down the cyclic Assessment, Diagnosis, Planning (SMART), Implementation, and Evaluation nursing framework paired with haemodynamic assessment.",
+      "structures": [
+        "1. Assessment",
+        "2. Nursing Diagnosis",
+        "3. SMART Planning",
+        "4. Implementation & 5. Evaluation"
+      ],
+      "clinicalPearl": "Diagnose patient responses rather than medical labels, and prioritize Airway-Breathing-Circulation first.",
+      "relatedTopics": [
+        {
+          "label": "BNS 112: Foundations of Nursing",
+          "to": "/learn/bachelor-of-nursing-science-top-up-foundations-of-nursing/foundations-of-nursing-bns-curriculum"
+        }
+      ]
+    },
+    {
+      "id": "foundations-pain-assessment-who-ladder",
+      "title": "Pain Assessment (PQRST / 0-10 Scale) & WHO Analgesic Ladder",
+      "category": "Leadership, Ethics, Safety & Fundamentals",
+      "file": "/assets/images/medical-illustrations/foundations-pain-assessment-who-ladder.webp",
+      "alt": "WHO 3-step ascending analgesic ladder alongside 0-10 visual pain faces scale and PQRST pain assessment guide",
+      "summary": "Illustrates WHO oral-first pain escalation from non-opioids to weak and strong opioids paired with PQRST bedside pain assessment and laxative co-prescribing.",
+      "structures": [
+        "WHO Step 1 Non-Opioid",
+        "WHO Step 2 Weak Opioid",
+        "WHO Step 3 Strong Opioid",
+        "PQRST Assessment"
+      ],
+      "clinicalPearl": "Give chronic analgesia by the clock rather than PRN alone; monitor RR (<12/min) and sedation on Morphine and keep Naloxone ready.",
+      "relatedTopics": [
+        {
+          "label": "Symptoms Control",
+          "to": "/learn/certificate-in-nursing-paediatric-nursing-i/symptoms-control"
+        }
+      ]
+    },
+    {
+      "id": "foundations-palliative-end-of-life-care",
+      "title": "Palliative Care, Total Pain, SPIKES & Last Office Dignity",
+      "category": "Leadership, Ethics, Safety & Fundamentals",
+      "file": "/assets/images/medical-illustrations/foundations-palliative-end-of-life-care.webp",
+      "alt": "Four domains of Cicely Saunders Total Pain paired with SPIKES breaking bad news steps and respectful Last Office post-mortem checklist",
+      "summary": "Combines physical, psychological, social, and spiritual 'Total Pain' care with SPIKES compassionate disclosure and dignified Last Office procedures.",
+      "structures": [
+        "Total Pain 4 Domains",
+        "SPIKES Disclosure Steps",
+        "Last Office Procedure"
+      ],
+      "clinicalPearl": "Palliative care affirms life without hastening death; oral/subcutaneous symptom care and empathetic presence preserve dignity.",
+      "relatedTopics": [
+        {
+          "label": "Last Office",
+          "to": "/learn/certificate-in-midwifery-foundations-of-nursing-ii-sociology-and-psychology/last-office"
+        }
+      ]
+    },
+    {
+      "id": "leadership-management-styles-delegation",
+      "title": "Nursing Leadership, Safe Delegation & Conflict Resolution",
+      "category": "Leadership, Ethics, Safety & Fundamentals",
+      "file": "/assets/images/medical-illustrations/leadership-management-styles-delegation.webp",
+      "alt": "Autocratic, Democratic, and Laissez-Faire nursing leadership styles compared with 5 Rights of Safe Delegation and Tuckman team stages",
+      "summary": "Contrasts ward leadership styles and matches safe clinical task assignment to the Five Rights of Delegation and Tuckman group development stages.",
+      "structures": [
+        "Autocratic vs Democratic vs Laissez-Faire",
+        "5 Rights of Delegation",
+        "Tuckman Team Stages"
+      ],
+      "clinicalPearl": "Accountability cannot be delegated — you remain responsible for verifying delegated vitals and acting on abnormal findings.",
+      "relatedTopics": []
+    },
+    {
+      "id": "leadership-hrm-uganda-health-policies",
+      "title": "Uganda Health Referral System, HRM & Resource Management",
+      "category": "Leadership, Ethics, Safety & Fundamentals",
+      "file": "/assets/images/medical-illustrations/leadership-hrm-uganda-health-policies.webp",
+      "alt": "Uganda Ministry of Health 7-tier referral pyramid from VHT HC I to National Referral Mulago paired with HRM, FEFO stores, and IDSR surveillance",
+      "summary": "Maps Uganda's seven-tier health facility referral ladder alongside human resource management, FEFO medicine stewardship, budgeting, and IDSR disease notification.",
+      "structures": [
+        "7-Tier Uganda Referral Pyramid",
+        "Human Resource Planning",
+        "FEFO Equipment & Stock Control",
+        "IDSR 24h Notification"
+      ],
+      "clinicalPearl": "Apply FEFO (First-Expired, First-Out) in ward stores and notify IDSR epidemic-prone conditions immediately.",
+      "relatedTopics": [
+        {
+          "label": "INTEGRATED DISEASE SURVEILLANCE",
+          "to": "/learn/diploma-in-midwifery-extension-health-services-management-and-entrepreneurship/integrated-disease-surveillance"
+        }
+      ]
+    },
+    {
+      "id": "ethics-medico-legal-nursing-principles",
+      "title": "Nursing Ethics, Patient Rights & Medico-Legal Practice",
+      "category": "Leadership, Ethics, Safety & Fundamentals",
+      "file": "/assets/images/medical-illustrations/ethics-medico-legal-nursing-principles.webp",
+      "alt": "Four bioethical pillars Autonomy, Beneficence, Non-Maleficence, and Justice paired with UNMC licensure, NDA medicines, and consent rules",
+      "summary": "Outlines the four foundational bioethical principles alongside UNMC Annual Practising Licence scope, malpractice elements, consent verification, and charting law.",
+      "structures": [
+        "Autonomy & Informed Consent",
+        "Beneficence & Non-Maleficence",
+        "Justice & Fidelity",
+        "UNMC Medico-Legal Charting"
+      ],
+      "clinicalPearl": "Only competent adults sign consent (or parent/guardian for minors); draw a single line through charting errors without correction fluid.",
+      "relatedTopics": [
+        {
+          "label": "Patient/client’s rights",
+          "to": "/learn/diploma-nursing-direct-mental-health-nursing-ii-pharmacology-iii/diploma-nursing-direct-mental-health-nursing-ii-pharmacology-iii-patient-client-s-rights"
+        }
+      ]
+    },
+    {
+      "id": "research-nursing-process-study-designs",
+      "title": "Applied Nursing Research: Process, Sampling & Study Designs",
+      "category": "Leadership, Ethics, Safety & Fundamentals",
+      "file": "/assets/images/medical-illustrations/research-nursing-process-study-designs.webp",
+      "alt": "Five-chapter nursing research proposal workflow alongside six-tier Evidence-Based Study Design Hierarchy pyramid",
+      "summary": "Structures the five-chapter nursing research proposal (PICO, literature, Kish-Leslie sampling, REC/IRB ethics, APA) with the clinical evidence hierarchy pyramid.",
+      "structures": [
+        "5-Chapter Proposal Flow",
+        "Probability & Non-Probability Sampling",
+        "Evidence-Based Study Pyramid"
+      ],
+      "clinicalPearl": "Always obtain Institutional Research Ethics Committee (REC/IRB) approval and signed consent before collecting patient research data.",
+      "relatedTopics": []
+    },
+    {
+      "id": "safety-occupational-hazards-ppe-fire",
+      "title": "Occupational Health & Safety: Hazard Controls, PPE & Fire",
+      "category": "Leadership, Ethics, Safety & Fundamentals",
+      "file": "/assets/images/medical-illustrations/safety-occupational-hazards-ppe-fire.webp",
+      "alt": "NIOSH Hierarchy of Controls inverted pyramid alongside healthcare PPE donning photo, safety goggles, sharps box, and RACE/PASS fire steps",
+      "summary": "Pairs the NIOSH Hierarchy of Controls and five hospital hazard classes with proper PPE donning/doffing sequence, 3/4 sharps safety, and PASS fire response.",
+      "structures": [
+        "NIOSH Hierarchy of Controls",
+        "PPE Donning & Doffing Order",
+        "3/4 Sharps Safety Box",
+        "RACE & PASS Fire Drill"
+      ],
+      "clinicalPearl": "After a needlestick injury wash immediately with soap and water (do NOT squeeze the wound), report, and start HIV PEP within 2h (<72h max).",
+      "relatedTopics": [
+        {
+          "label": "Work related injuries and Fatalities",
+          "to": "/learn/certificate-in-midwifery-community-health-and-occupational-health-and-safety/work-related-injuries-and-fatalities"
+        }
+      ]
+    },
+    {
+      "id": "safety-disaster-management-triage",
+      "title": "Disaster Management Cycle & Mass-Casualty START Triage",
+      "category": "Leadership, Ethics, Safety & Fundamentals",
+      "file": "/assets/images/medical-illustrations/safety-disaster-management-triage.webp",
+      "alt": "Four-phase Disaster Management Cycle Mitigation-Preparedness-Response-Recovery paired with Red Yellow Green Black START triage categories",
+      "summary": "Visualizes hospital disaster preparedness phases alongside colour-coded START mass-casualty triage using Respirations, Perfusion, and Mental status (RPM).",
+      "structures": [
+        "4-Phase Disaster Cycle",
+        "Red Immediate (P1)",
+        "Yellow Delayed (P2)",
+        "Green Minimal (P3) & Black Expectant"
+      ],
+      "clinicalPearl": "Use RPM (<60s check: Respirations, Perfusion, Mental status) to prioritise the greatest good for the greatest number.",
+      "relatedTopics": []
+    },
+    {
+      "id": "community-phc-cbhc-home-visiting",
+      "title": "Primary Health Care (PHC), CBHC & Home Visiting",
+      "category": "Leadership, Ethics, Safety & Fundamentals",
+      "file": "/assets/images/medical-illustrations/community-phc-cbhc-home-visiting.webp",
+      "alt": "Ugandan nurse measuring MUAC at clinic outreach alongside Home Visiting Bag Technique, three levels of disease prevention, and Alma-Ata PHC pillars",
+      "summary": "Combines Ugandan outreach MUAC screening with aseptic Home Visiting Bag Technique, Primary/Secondary/Tertiary prevention levels, and Alma-Ata PHC elements.",
+      "structures": [
+        "Home Visiting Bag Technique",
+        "Primary, Secondary & Tertiary Prevention",
+        "4 Alma-Ata PHC Pillars"
+      ],
+      "clinicalPearl": "Place the nursing bag on clean barrier paper above the floor and visit healthy or newborn homes before infectious cases.",
+      "relatedTopics": [
+        {
+          "label": "Levels of disease prevention",
+          "to": "/learn/certificate-in-nursing-medical-nursing-i-and-pharmacology-i/certificate-in-nursing-medical-nursing-i-and-pharmacology-i-levels-of-disease-prevention"
+        }
+      ]
+    },
+    {
+      "id": "informatics-telehealth-health-entrepreneurship",
+      "title": "Nursing Informatics, Digital HMIS & Health Entrepreneurship",
+      "category": "Leadership, Ethics, Safety & Fundamentals",
+      "file": "/assets/images/medical-illustrations/informatics-telehealth-health-entrepreneurship.webp",
+      "alt": "Clinician holding Electronic Medical Record terminal with DIKW nursing informatics hierarchy and health entrepreneurship planning steps",
+      "summary": "Links Data-Information-Knowledge-Wisdom (DIKW) EHR workflows and HMIS/DHIS2 governance with ethical nurse-led clinic entrepreneurship and business planning.",
+      "structures": [
+        "EHR / HMIS Charting",
+        "DIKW Informatics Hierarchy",
+        "Enterprise Structures & Business Plan",
+        "DHIS2 & UNMC Licensing"
+      ],
+      "clinicalPearl": "EHR allergy alerts boost safety when staff never share passwords and always lock unattended workstations.",
+      "relatedTopics": [
+        {
+          "label": "Maintenance of the computers and their components",
+          "to": "/learn/diploma-nursing-direct-introduction-to-basic-computer-and-guidance-and-counseling/maintenance-of-the-computers-and-their-components"
         }
       ]
     }
