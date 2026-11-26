@@ -2,7 +2,7 @@ import React from "react";
 import { AlertTriangle, CheckCircle2, Layers, Sparkles, Table2 } from "lucide-react";
 import RichText from "./RichText";
 
-const IMAGE_VERSION = "20261126a";
+const IMAGE_VERSION = "20261126b";
 
 function withImgVersion(src) {
   const s = String(src || "");
@@ -376,10 +376,52 @@ function getInlineSectionRules() {
       caption: "Urinary System | Renal Filtration & Fluid Homeostasis"
     },
     {
-      match: /\breproductive\s+system\b/i,
+      match: /\b(female\s+pelvis|bony\s+pelvis|pelvic\s+brim)\b/i,
       titleOnly: true,
-      src: "/assets/images/medical-illustrations/obstetric-fetus-pelvis.webp",
-      caption: "Reproductive & Pelvic Anatomy"
+      src: "/assets/images/medical-illustrations/female-bony-pelvis-anatomy.webp",
+      caption: "Female Bony Pelvis & Obstetrical Landmarks"
+    },
+    {
+      match: /\b(pelvic\s+floor|levator\s+ani)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/pelvic-floor-muscles-anatomy.webp",
+      caption: "Female Pelvic Floor Muscles (Levator Ani & Coccygeus)"
+    },
+    {
+      match: /\b(fetal\s+skull|foetal\s+skull|fontanel|bregma|lambda)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/fetal-skull-sutures-fontanelles.webp",
+      caption: "Foetal Skull Bones, Sutures & Fontanelles"
+    },
+    {
+      match: /\b(fetal\s+circulation|foetal\s+circulation|ductus\s+venosus|ductus\s+arteriosus|foramen\s+ovale)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/fetal-circulation-shunts.webp",
+      caption: "Foetal Circulation & Three Circulatory Shunts"
+    },
+    {
+      match: /\b(placenta\s+at\s+term|examination\s+of\s+the\s+placenta|cotyledon)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/placenta-at-term-surfaces-anatomy.webp",
+      caption: "Placenta at Term | Foetal Amnion & Maternal Cotyledons"
+    },
+    {
+      match: /\b(partograph)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/who-modified-partograph-chart.webp",
+      caption: "WHO Modified Partograph | Alert & Action Lines"
+    },
+    {
+      match: /\b(episiotomy)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/episiotomy-incision-types.webp",
+      caption: "Types of Episiotomy & Perineal Protection"
+    },
+    {
+      match: /\b(reproductive\s+system|female\s+reproductive\s+system|male\s+reproductive\s+system)\b/i,
+      titleOnly: true,
+      src: "/assets/images/medical-illustrations/female-reproductive-internal-external-organs.webp",
+      caption: "Female Reproductive Internal & External Anatomy"
     },
     {
       match: /\b(type[s]?\s+of\s+bone|classification\s+of\s+bone|long\s+bone|short\s+bone|flat\s+bone|irregular\s+bone|sesamoid)\b/i,

@@ -547,18 +547,19 @@
     },
     {
       "id": "obstetric-fetus-pelvis",
-      "title": "Term Pregnancy | Foetus in Utero & Pelvic Anatomy",
+      "title": "Gravid Uterus & Foetus at Term (Sagittal View)",
       "category": "Reproductive & Midwifery",
       "file": "/assets/images/medical-illustrations/obstetric-fetus-pelvis.webp",
-      "alt": "Sagittal obstetric illustration of term fetus in vertex presentation inside the uterus, placenta, umbilical cord, and maternal pelvis",
-      "summary": "Sagittal obstetric plate showing vertex fetal presentation, placenta, umbilical cord, cervical effacement landmarks, and pelvic outlet relationships.",
+      "alt": "Sagittal pelvic anatomy of term cephalic fetus inside gravid uterus showing placenta, umbilical cord, L4-L5 vertebrae, bladder, pubic symphysis, cervix, and rectum",
+      "summary": "Standardized sagittal obstetrical view linking term foetal attitude and longitudinal cephalic lie to bladder compression, L4-L5 sacrum, and birth canal orientation.",
       "structures": [
-        "Fetal Vertex Presentation",
-        "Placenta & Umbilical Cord",
-        "Uterine Wall & Cervix",
-        "Maternal Sacrum & Pubic Symphysis"
+        "Gravid Uterus & Placenta",
+        "Umbilical Cord",
+        "Lumbar Spine (L4-L5) & Sacrum",
+        "Urinary Bladder & Pubic Symphysis",
+        "Cervix, Vagina & Rectum"
       ],
-      "clinicalPearl": "Monitor fetal heart rate (110–160 bpm), descent, and cervical dilation on the WHO Modified Partograph during active labour.",
+      "clinicalPearl": "Always encourage regular voiding or catheterize a distended bladder during labour | a full bladder physically blocks foetal head descent and impairs uterine involution.",
       "relatedTopics": [
         {
           "label": "Obstetrical Anatomy",
@@ -568,17 +569,19 @@
     },
     {
       "id": "condition-preeclampsia-placenta",
-      "title": "Placenta, Umbilical Vascular Anatomy & APH Reference",
+      "title": "Pre-Eclampsia & Antepartum Haemorrhage (Praevia vs Abruption)",
       "category": "Reproductive & Midwifery",
       "file": "/assets/images/medical-illustrations/condition-preeclampsia-placenta.webp",
-      "alt": "Clinical obstetric photograph of human placenta and umbilical cord anatomy",
-      "summary": "Clinical reference of the term placenta and umbilical cord used in examination of the placenta after third stage delivery.",
+      "alt": "Three-column clinical diagram comparing spiral artery vasospasm in pre-eclampsia, placenta praevia over internal os, and abruptio placentae with retroplacental clot",
+      "summary": "Compares hypertensive spiral artery vasospasm (MgSO4 Pritchard regimen) with painless bright-red Placenta Praevia and painful dark-bleeding Abruptio Placentae.",
       "structures": [
-        "Maternal Cotyledons",
-        "Fetal Amnion & Chorion",
-        "Umbilical Arteries (2) & Vein (1)"
+        "Spiral Artery Vasospasm",
+        "MgSO4 & Calcium Gluconate",
+        "Placenta Praevia (Internal Os)",
+        "Retroplacental Haematoma (Abruption)",
+        "No Digital Vaginal Exam Rule"
       ],
-      "clinicalPearl": "Always inspect both maternal and fetal surfaces after delivery; retained cotyledons cause life-threatening postpartum haemorrhage (PPH).",
+      "clinicalPearl": "Strictly NEVER perform a digital vaginal examination in suspected Placenta Praevia; confirm placental site on ultrasound first.",
       "relatedTopics": [
         {
           "label": "Examination of the Placenta",
@@ -1006,6 +1009,419 @@
         {
           "label": "Prepare for Lumbar Puncture",
           "to": "/learn/diploma-nursing-direct-foundations-of-nursing-ii/prepare-for-lumbar-puncture"
+        }
+      ]
+    },
+    {
+      "id": "female-bony-pelvis-anatomy",
+      "title": "Female Bony Pelvis & Obstetrical Landmarks",
+      "category": "Reproductive & Midwifery",
+      "file": "/assets/images/medical-illustrations/female-bony-pelvis-anatomy.webp",
+      "alt": "Anterior anatomical vector diagram of the female bony pelvis showing ilium, ischium, pubis, sacrum, sacral promontory, pelvic brim, ischial spines, and pubic symphysis",
+      "summary": "Illustrates the four bones (two innominate coxal bones, sacrum, coccyx) and four joints of the true obstetrical pelvis, emphasizing gynaecoid landmarks.",
+      "structures": [
+        "Ilium, Iliac Crest & Iliac Fossa",
+        "Sacral Promontory & Sacroiliac Joints",
+        "Pelvic Brim (Inlet)",
+        "Ischial Spines (Station 0)",
+        "Pubic Symphysis & Subpubic Arch (>90 deg)",
+        "Obturator Foramina"
+      ],
+      "clinicalPearl": "Relaxin softens the pubic symphysis and sacroiliac ligaments in late pregnancy; assess the subpubic arch (>90 deg) for adequate gynaecoid outlet.",
+      "relatedTopics": [
+        {
+          "label": "Female Pelvis (Obstetrical Anatomy)",
+          "to": "/learn/certificate-in-midwifery-obstetrical-anatomy/female-pelvis"
+        },
+        {
+          "label": "Diploma Midwifery I: Female Pelvis",
+          "to": "/learn/diploma-in-midwifery-extension-midwifery-i-and-obstetric-anatomy/female-pelvis"
+        }
+      ]
+    },
+    {
+      "id": "pelvic-brim-fetal-lie-presentation",
+      "title": "Obstetrical Pelvic Assessment & Conjugates",
+      "category": "Reproductive & Midwifery",
+      "file": "/assets/images/medical-illustrations/pelvic-brim-fetal-lie-presentation.webp",
+      "alt": "Sagittal and superior pelvic inlet views comparing True, Obstetric, and Diagonal conjugates along with inlet, cavity, and outlet birth diameters",
+      "summary": "Compares True (11.0 cm), Obstetric (10.0 cm), and clinically palpable Diagonal (12.5 cm) conjugates alongside transverse (13.0 cm) and oblique (12.0 cm) pelvic brim diameters.",
+      "structures": [
+        "True (Anatomical) Conjugate (11.0 cm)",
+        "Obstetric Conjugate (10.0 cm tightest)",
+        "Diagonal Conjugate (12.5 cm palpated)",
+        "Transverse Inlet (13.0 cm)",
+        "Oblique Inlet (12.0 cm)",
+        "Ischial Spine Station 0"
+      ],
+      "clinicalPearl": "Calculate the tightest passage bedside: Obstetric Conjugate = Diagonal Conjugate minus 1.5 to 2.0 cm.",
+      "relatedTopics": [
+        {
+          "label": "Pelvic Assessment",
+          "to": "/learn/certificate-in-midwifery-obstetrical-anatomy/pelvic-assessment"
+        },
+        {
+          "label": "Diploma Midwifery: Pelvic Assessment",
+          "to": "/learn/diploma-in-midwifery-extension-midwifery-i-and-obstetric-anatomy/pelvic-assessment"
+        }
+      ]
+    },
+    {
+      "id": "pelvic-floor-muscles-anatomy",
+      "title": "Female Pelvic Floor Muscles (Levator Ani & Coccygeus)",
+      "category": "Reproductive & Midwifery",
+      "file": "/assets/images/medical-illustrations/pelvic-floor-muscles-anatomy.webp",
+      "alt": "Superior anatomical view of female pelvic floor muscles showing puborectalis, pubococcygeus, iliococcygeus, coccygeus, and urethral, vaginal, and rectal hiatuses",
+      "summary": "Maps the levator ani muscular sling (puborectalis, pubococcygeus, iliococcygeus) and coccygeus supporting pelvic viscera and guiding internal rotation during second-stage labour.",
+      "structures": [
+        "Puborectalis",
+        "Pubococcygeus",
+        "Iliococcygeus",
+        "Coccygeus",
+        "Urethral Hiatus",
+        "Vaginal Canal & Rectal Hiatus"
+      ],
+      "clinicalPearl": "Teach postnatal Kegel exercises to restore pubococcygeal tone and prevent stress urinary incontinence and pelvic organ prolapse.",
+      "relatedTopics": [
+        {
+          "label": "Pelvic Floor Muscles",
+          "to": "/learn/certificate-in-midwifery-obstetrical-anatomy/pelvic-floor-muscles"
+        },
+        {
+          "label": "Pelvic Organ Prolapse (POP)",
+          "to": "/learn/diploma-nursing-direct-gynaecology-ii-and-reproductive-health-ii/pelvic-organ-prolapse-pop"
+        }
+      ]
+    },
+    {
+      "id": "female-perineum-external-genitalia",
+      "title": "Female External Genitalia & Perineal Anatomy",
+      "category": "Reproductive & Midwifery",
+      "file": "/assets/images/medical-illustrations/female-perineum-external-genitalia.webp",
+      "alt": "Lithotomy view of female external genitalia showing clitoris, labia, vaginal introitus, perineal body, external anal sphincter, and anus",
+      "summary": "Highlights external vulval landmarks, the central fibromuscular perineal body, and external anal sphincter integrity evaluated during antenatal exams and perineal repair.",
+      "structures": [
+        "Clitoris",
+        "Labia Majora & Minora",
+        "Vaginal Introitus",
+        "Perineal Body",
+        "External Anal Sphincter",
+        "Anus"
+      ],
+      "clinicalPearl": "Always perform a systematic rectal-perineal inspection after delivery to detect and repair hidden 3rd- or 4th-degree anal sphincter tears.",
+      "relatedTopics": [
+        {
+          "label": "Vulva, Vagina and Cervix",
+          "to": "/learn/certificate-in-midwifery-obstetrical-anatomy/female-external-genital-organs"
+        },
+        {
+          "label": "Vulva Toilet / Swabbing",
+          "to": "/learn/certificate-in-midwifery-foundations-of-nursing-ii-sociology-and-psychology/vulva-toilet-swabbing"
+        }
+      ]
+    },
+    {
+      "id": "uterus-fallopian-tubes-cervix",
+      "title": "Uterus, Fallopian Tubes, Isthmus & Cervix",
+      "category": "Reproductive & Midwifery",
+      "file": "/assets/images/medical-illustrations/uterus-fallopian-tubes-cervix.webp",
+      "alt": "Coronal section of the uterus, uterine tubes, ovary, fundus, body, isthmus, and cervix",
+      "summary": "Delineates the four uterine regions (fundus, corpus, isthmus forming the lower uterine segment, and cervix), triple-layered myometrium, and adnexal structures.",
+      "structures": [
+        "Fundus of Uterus",
+        "Body (Corpus) of Uterus",
+        "Isthmus (Lower Segment)",
+        "Cervix (Internal & External Os)",
+        "Fallopian Tube & Fimbriae",
+        "Ovary"
+      ],
+      "clinicalPearl": "Oblique interlacing ('living ligature') myometrial fibres contract strongly post-delivery to compress spiral arteries and stop postpartum bleeding.",
+      "relatedTopics": [
+        {
+          "label": "Uterus, Uterine Tubes & Ovaries",
+          "to": "/learn/certificate-in-midwifery-obstetrical-anatomy/uterus-fallopian-tubes-and-ovaries"
+        },
+        {
+          "label": "Uterine Fibroids",
+          "to": "/learn/diploma-nursing-direct-gynaecology-ii-and-reproductive-health-ii/uterine-fibroids"
+        }
+      ]
+    },
+    {
+      "id": "female-breast-mammary-gland",
+      "title": "Female Breast & Mammary Gland Anatomy",
+      "category": "Reproductive & Midwifery",
+      "file": "/assets/images/medical-illustrations/female-breast-mammary-gland.webp",
+      "alt": "Sagittal anatomical diagram of the lactating female breast showing mammary lobes, lobules, lactiferous ducts, ampulla, nipple, areola, and pectoral muscle",
+      "summary": "Details the 15-20 radial glandular lobes, milk-secreting alveoli, lactiferous ductules, and dual endocrine control by Prolactin and Oxytocin.",
+      "structures": [
+        "Mammary Lobes & Lobules",
+        "Secondary Mammary Tubules",
+        "Lactiferous Ducts & Ampulla",
+        "Nipple & Areola",
+        "Pectoralis Major Muscle"
+      ],
+      "clinicalPearl": "Early skin-to-skin and suckling within 1 hour of birth stimulates maternal Oxytocin, aiding both milk let-down and uterine contraction.",
+      "relatedTopics": [
+        {
+          "label": "Female Breast (Mammary Gland)",
+          "to": "/learn/certificate-in-midwifery-obstetrical-anatomy/female-breast-mammary-gland"
+        }
+      ]
+    },
+    {
+      "id": "menstrual-cycle-ovarian-endometrial",
+      "title": "Menstrual Cycle (Ovarian & Endometrial Phases)",
+      "category": "Reproductive & Midwifery",
+      "file": "/assets/images/medical-illustrations/menstrual-cycle-ovarian-endometrial.webp",
+      "alt": "28-day menstrual cycle diagram aligning ovarian follicular/luteal development with endometrial shedding, proliferative growth, ovulation at Day 14, and secretory thickening",
+      "summary": "Correlates ovarian follicle maturation, the Day-14 LH-triggered ovulation, and corpus luteum formation with menstrual, proliferative, and secretory endometrial shifts.",
+      "structures": [
+        "Menstrual Phase (Days 1-5)",
+        "Follicular / Proliferative Phase",
+        "Ovulation (Day 14 LH Surge)",
+        "Corpus Luteum",
+        "Luteal / Secretory Phase (Days 15-28)"
+      ],
+      "clinicalPearl": "Estimated Date of Delivery (Naegele's Rule): Add 7 days and 9 months to the first day of the Last Menstrual Period (LMP).",
+      "relatedTopics": [
+        {
+          "label": "Menstruation Cycle",
+          "to": "/learn/certificate-in-midwifery-obstetrical-anatomy/menstruation-cycle"
+        },
+        {
+          "label": "Menstrual Disorders",
+          "to": "/learn/certificate-in-midwifery-gynecology-and-reproductive-health/menstrual-disorders"
+        }
+      ]
+    },
+    {
+      "id": "fertilization-early-embryology",
+      "title": "Fertilization, Cleavage & Blastocyst Implantation",
+      "category": "Reproductive & Midwifery",
+      "file": "/assets/images/medical-illustrations/fertilization-early-embryology.webp",
+      "alt": "Horizontal embryological pathway showing Day 14 ovulation, ampullary fertilization, zygote, 2-cell/4-cell cleavage, morula, blastocyst, and Day 6-7 endometrial implantation",
+      "summary": "Traces ovum release from the ovary, ampullary fertilization, mitotic cleavage to morula (Days 3-4), and blastocyst implantation into decidua (Days 6-7).",
+      "structures": [
+        "Ovulation (Day 14)",
+        "Ampullary Fertilization",
+        "Zygote (46 Chromosomes)",
+        "2-Cell & 4-Cell/8-Cell Cleavage",
+        "Morula (Days 3-4)",
+        "Blastocyst Implantation (Days 6-7)"
+      ],
+      "clinicalPearl": "Weeks 3-8 represent organogenesis | avoid teratogenic medications, alcohol, and unprescribed herbal remedies in early first trimester.",
+      "relatedTopics": [
+        {
+          "label": "Fertilization and Embryology",
+          "to": "/learn/certificate-in-midwifery-obstetrical-anatomy/fertilization-and-embryology"
+        }
+      ]
+    },
+    {
+      "id": "placenta-at-term-surfaces-anatomy",
+      "title": "Placenta at Term (Foetal Amnion & Maternal Cotyledons)",
+      "category": "Reproductive & Midwifery",
+      "file": "/assets/images/medical-illustrations/placenta-at-term-surfaces-anatomy.webp",
+      "alt": "Side-by-side comparison of smooth shiny foetal placental surface with 3-vessel umbilical cord versus rough lobulated maternal surface showing 15-20 cotyledons",
+      "summary": "Contrasts the smooth amnion-covered foetal surface and central 3-vessel cord (2 arteries, 1 vein) against the rough maternal surface bearing 15-20 cotyledons.",
+      "structures": [
+        "Foetal Surface (Shiny Amnion)",
+        "Chorionic Blood Vessels",
+        "Umbilical Cord (2 Arteries + 1 Vein)",
+        "Maternal Surface (Decidua Basalis)",
+        "15-20 Cotyledons & Sulci"
+      ],
+      "clinicalPearl": "Always inspect both placental surfaces on a flat tray immediately after delivery | a missing cotyledon or membrane rag causes PPH and puerperal sepsis.",
+      "relatedTopics": [
+        {
+          "label": "Placenta at Term",
+          "to": "/learn/certificate-in-midwifery-obstetrical-anatomy/placenta-at-term"
+        },
+        {
+          "label": "Examination of the Placenta",
+          "to": "/learn/certificate-in-midwifery-midwifery-i-and-pharmacology-i/certificate-in-midwifery-midwifery-i-and-pharmacology-i-1-22-examination-of-placenta"
+        }
+      ]
+    },
+    {
+      "id": "fetal-circulation-shunts",
+      "title": "Foetal Circulation & Three Circulatory Shunts",
+      "category": "Reproductive & Midwifery",
+      "file": "/assets/images/medical-illustrations/fetal-circulation-shunts.webp",
+      "alt": "Anatomical vector diagram of foetal circulation labeling umbilical vein, ductus venosus, foramen ovale, ductus arteriosus, descending aorta, and umbilical arteries",
+      "summary": "Illustrates oxygenated placental return via the single umbilical vein through three temporary bypasses | ductus venosus, foramen ovale, and ductus arteriosus.",
+      "structures": [
+        "Umbilical Vein (Oxygenated FROM Placenta)",
+        "Ductus Venosus (Bypasses Liver)",
+        "Foramen Ovale (RA to LA)",
+        "Ductus Arteriosus (PA to Aorta)",
+        "2 Umbilical Arteries (TO Placenta)"
+      ],
+      "clinicalPearl": "First newborn breath drops pulmonary vascular resistance, closing the foramen ovale functionally and converting shunts into adult ligaments.",
+      "relatedTopics": [
+        {
+          "label": "Fetal Circulation",
+          "to": "/learn/certificate-in-midwifery-obstetrical-anatomy/fetal-circulation"
+        }
+      ]
+    },
+    {
+      "id": "fetal-skull-sutures-fontanelles",
+      "title": "Foetal Skull Bones, Sutures & Fontanelles",
+      "category": "Reproductive & Midwifery",
+      "file": "/assets/images/medical-illustrations/fetal-skull-sutures-fontanelles.webp",
+      "alt": "Lateral diagram of the foetal skull labeling frontal, parietal, temporal, occipital bones, anterior fontanelle, posterior fontanelle, coronal and lambdoid sutures, and regions",
+      "summary": "Identifies cranial vault bones, sutures enabling obstetrical moulding, Anterior (Bregma) and Posterior (Lambda) fontanelles, and critical presenting diameters (SOB 9.5 cm).",
+      "structures": [
+        "Frontal, Parietal, Temporal & Occipital Bones",
+        "Anterior Fontanelle (Bregma)",
+        "Posterior Fontanelle (Lambda)",
+        "Coronal & Lambdoid Sutures",
+        "Brow, Vertex & Occiput Regions"
+      ],
+      "clinicalPearl": "Well-flexed vertex presents the smallest AP diameter (suboccipitobregmatic 9.5 cm); full extension gives mentovertical brow presentation (13.5 cm), causing obstruction.",
+      "relatedTopics": [
+        {
+          "label": "Fetal Skull",
+          "to": "/learn/certificate-in-midwifery-obstetrical-anatomy/fetal-skull"
+        }
+      ]
+    },
+    {
+      "id": "first-stage-labour-cervical-dilation",
+      "title": "First Stage of Labour (Cervical Effacement & Dilation)",
+      "category": "Reproductive & Midwifery",
+      "file": "/assets/images/medical-illustrations/first-stage-labour-cervical-dilation.webp",
+      "alt": "Five sequential coronal panels showing progression from closed uneffaced cervix with mucus plug to 50% effaced, 1 cm fully effaced, 7 cm, and 10 cm full dilation",
+      "summary": "Visualizes progressive cervical shortening (effacement) and opening from 0 cm latent phase through 4-10 cm active labour with intact amniotic membranes.",
+      "structures": [
+        "Uneffaced Closed Cervix",
+        "50% Effacement",
+        "Amniotic Membrane",
+        "Active Dilation (7 cm)",
+        "Full Dilation (10 cm)"
+      ],
+      "clinicalPearl": "Begin plotting the WHO Partograph once active labour starts (>=4 cm cervical dilation); expected dilation in active phase is >=1 cm/hour.",
+      "relatedTopics": [
+        {
+          "label": "Normal First Stage of Labour",
+          "to": "/learn/diploma-in-midwifery-extension-midwifery-i-and-obstetric-anatomy/normal-first-stage-of-labour"
+        }
+      ]
+    },
+    {
+      "id": "second-third-stage-labour-mechanics",
+      "title": "Second & Third Stages of Labour (Crowning & AMTSL)",
+      "category": "Reproductive & Midwifery",
+      "file": "/assets/images/medical-illustrations/second-third-stage-labour-mechanics.webp",
+      "alt": "Side-by-side obstetrical diagrams of second-stage foetal head crowning/extension and third-stage placental separation and uterine contraction",
+      "summary": "Pairs second-stage crowning and cardinal movements with third-stage placental detachment, descent, and Uganda MoH Active Management of Third Stage of Labour (AMTSL).",
+      "structures": [
+        "Crowning & Extension",
+        "Cardinal Movements of Labour",
+        "Placental Detachment (Upper to Lower Segment)",
+        "AMTSL (Oxytocin 10 IU IM)",
+        "Controlled Cord Traction"
+      ],
+      "clinicalPearl": "Wait for firm uterine contraction before Controlled Cord Traction while guarding the suprapubic fundus upward (Brandt-Andrews manoeuvre) to prevent uterine inversion.",
+      "relatedTopics": [
+        {
+          "label": "Normal Second Stage of Labour",
+          "to": "/learn/diploma-in-midwifery-extension-midwifery-i-and-obstetric-anatomy/normal-second-stage-of-labour"
+        },
+        {
+          "label": "Normal Third Stage of Labour",
+          "to": "/learn/diploma-in-midwifery-extension-midwifery-i-and-obstetric-anatomy/normal-third-stage-of-labour"
+        }
+      ]
+    },
+    {
+      "id": "who-modified-partograph-chart",
+      "title": "WHO Modified Partograph & Alert/Action Lines",
+      "category": "Reproductive & Midwifery",
+      "file": "/assets/images/medical-illustrations/who-modified-partograph-chart.webp",
+      "alt": "Authentic WHO labour partograph plotting fetal heart rate, liquor/moulding, cervical dilation X along Alert and Action lines, descent O, contractions, oxytocin, pulse, BP, and urine",
+      "summary": "Standardized WHO labour monitoring chart showing cervical dilation ('X') plotted against the Alert line and Action line (+4 hours) alongside foetal heart rate, contractions, and maternal vitals.",
+      "structures": [
+        "Foetal Heart Rate Grid (q30m)",
+        "Liquor & Skull Moulding",
+        "Cervix 'X' vs Descent 'O'",
+        "Alert & Action Lines (+4 hrs)",
+        "Contractions per 10 Minutes",
+        "Maternal Pulse, BP & Urine"
+      ],
+      "clinicalPearl": "If cervical dilation crosses to the right of the Alert line, reassess bladder, hydration, and cephalopelvic disproportion immediately before reaching the Action line.",
+      "relatedTopics": [
+        {
+          "label": "Partograph",
+          "to": "/learn/diploma-in-midwifery-extension-midwifery-i-and-obstetric-anatomy/partograph"
+        }
+      ]
+    },
+    {
+      "id": "episiotomy-incision-types",
+      "title": "Types of Episiotomy & Perineal Incision Anatomy",
+      "category": "Reproductive & Midwifery",
+      "file": "/assets/images/medical-illustrations/episiotomy-incision-types.webp",
+      "alt": "Perineal diagram illustrating four episiotomy incision lines: Median (1), Mediolateral at 45 degrees (2), Transverse (3), and J-shaped (4) relative to the anus",
+      "summary": "Compares Median, Mediolateral (preferred 45-degree Uganda/WHO standard), Transverse, and J-shaped episiotomies and restricts use to selective clinical indications.",
+      "structures": [
+        "1. Median (Midline) Incision",
+        "2. Mediolateral (45 deg Preferred)",
+        "3. Transverse Incision",
+        "4. J-Shaped Incision",
+        "Posterior Fourchette & Anus"
+      ],
+      "clinicalPearl": "Routine episiotomy is NOT recommended; perform selective mediolateral episiotomy under Lignocaine 1% only for foetal distress, tight perineum, or operative birth.",
+      "relatedTopics": [
+        {
+          "label": "Episiotomy",
+          "to": "/learn/diploma-in-midwifery-extension-midwifery-i-and-obstetric-anatomy/episiotomy"
+        }
+      ]
+    },
+    {
+      "id": "breastfeeding-attachment-latch",
+      "title": "Breastfeeding Positioning & Optimal Latch Technique",
+      "category": "Reproductive & Midwifery",
+      "file": "/assets/images/medical-illustrations/breastfeeding-attachment-latch.webp",
+      "alt": "Comparison of poor nipple-only attachment versus optimal deep areolar latch extending to the junction of the baby's hard and soft palates",
+      "summary": "Illustrates WHO breastfeeding attachment principles contrasting shallow painful nipple sucking against deep asymmetric areolar latch for effective milk transfer.",
+      "structures": [
+        "Poor Attachment (Nipple Only)",
+        "Optimal Deep Areolar Latch",
+        "Mouth Wide Open",
+        "Lower Lip Turned Outward",
+        "Hard-Soft Palate Junction"
+      ],
+      "clinicalPearl": "Cracked sore nipples indicate poor positioning and shallow latch | correct attachment immediately relieves maternal pain and boosts milk supply.",
+      "relatedTopics": [
+        {
+          "label": "Normal Puerperium",
+          "to": "/learn/diploma-in-midwifery-extension-midwifery-i-and-obstetric-anatomy/normal-puerperium"
+        }
+      ]
+    },
+    {
+      "id": "ectopic-pregnancy-implantation-sites",
+      "title": "Ectopic Pregnancy Implantation Sites",
+      "category": "Reproductive & Midwifery",
+      "file": "/assets/images/medical-illustrations/ectopic-pregnancy-implantation-sites.webp",
+      "alt": "Uterus and fallopian tube anatomy showing ectopic implantation sites including ampullar tubal, isthmic tubal, interstitial, infundibular, ovarian, abdominal, and cervical",
+      "summary": "Maps extrauterine implantation locations led by ampullar tubal (~70-80%) and high-rupture-risk isthmic/interstitial sites causing acute haemoperitoneum.",
+      "structures": [
+        "Ampullar Tubal (~70-80%)",
+        "Isthmic Tubal (Early Rupture)",
+        "Interstitial / Cornual",
+        "Infundibular / Fimbrial",
+        "Ovarian, Abdominal & Cervical"
+      ],
+      "clinicalPearl": "Any reproductive-age woman with amenorrhoea, lower abdominal pain, and vaginal bleeding or syncope has a ruptured ectopic pregnancy until proven otherwise.",
+      "relatedTopics": [
+        {
+          "label": "Ectopic Pregnancy",
+          "to": "/learn/certificate-in-midwifery-gynecology-and-reproductive-health/ectopic-pregnancy"
         }
       ]
     }
