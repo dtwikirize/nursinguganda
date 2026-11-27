@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FlaskConical, ShieldAlert, X } from "lucide-react";
 
 const US_LAB_PANELS = [
@@ -42,6 +42,15 @@ const US_LAB_PANELS = [
  * NCLEX-RN Study Player and Examinations Simulation suite (Black + Blue theme).
  */
 export default function NclexLabDrawer({ open, onClose }) {
+  useEffect(() => {
+    if (!open) return undefined;
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") onClose?.();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [open, onClose]);
+
   if (!open) return null;
 
   return (
@@ -116,7 +125,7 @@ export default function NclexLabDrawer({ open, onClose }) {
         <div style={{ padding: "16px 20px", overflowY: "auto", display: "grid", gap: 16 }}>
           <div style={{ padding: "10px 12px", borderRadius: 8, background: "#eff6ff", borderLeft: "4px solid #1d4ed8", fontSize: "0.8rem", color: "#09090b", display: "flex", gap: 8, alignItems: "center" }}>
             <ShieldAlert size={16} color="#1d4ed8" />
-            <span><strong>Quick Tip:</strong> NCSBN tests in US conventional units (`mg/dL`, `mEq/L`). Always pair critical electrolyte changes with cardiac monitoring or airway checks first.</span>
+            <span><strong>Quick Tip:</strong> NCSBN tests in US conventional units (<strong>mg/dL</strong>, <strong>mEq/L</strong>). Always pair critical electrolyte changes with cardiac monitoring or airway checks first.</span>
           </div>
 
           {US_LAB_PANELS.map((panel) => (

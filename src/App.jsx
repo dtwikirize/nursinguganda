@@ -181,6 +181,7 @@ export default function App() {
           <Route path="/nursing-australia/topics/:topicSlug" element={<CountryTopicPage countryKey="australia" />} />
           <Route path="/nclex-rn" element={<NclexRnAcademyPage />} />
           <Route path="/nclex-rn/learn" element={<NclexRnPlayerPage />} />
+          <Route path="/nclex-rn/player" element={<Navigate to="/nclex-rn/learn" replace />} />
           <Route path="/nclex-rn/unit/:unitSlug" element={<NclexRnPlayerPage />} />
           <Route path="/nclex-rn/exams" element={<NclexRnExamsPage />} />
 
