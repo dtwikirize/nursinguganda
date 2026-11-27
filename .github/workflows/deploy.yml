@@ -45,6 +45,6 @@ jobs:
           set net:timeout 30
           put -O / dist/index.html
           put -O / dist/.htaccess
-          mirror -R --only-newer --parallel=2 --exclude api/config.php ./dist/ /
+          mirror -R --only-newer --exclude api/config.php ./dist/ /
           bye
           EOF
