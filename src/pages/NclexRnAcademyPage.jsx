@@ -9,12 +9,14 @@ import {
   ChevronUp,
   ClipboardCheck,
   Lock,
+  PlayCircle,
   ShoppingCart,
   ShieldCheck,
   Unlock
 } from "lucide-react";
 import { useApp } from "../context/AppContext";
 import CountryFlag from "../components/CountryFlag";
+import MedicalImageFrame from "../components/MedicalImageFrame";
 import NclexNavStrip from "../components/NclexNavStrip";
 import NursingLoader from "../components/NursingLoader";
 import { setPageSeo } from "../components/RouteSeo";
@@ -279,6 +281,116 @@ export default function NclexRnAcademyPage() {
             ))}
           </div>
 
+          {/* 1B. Video Orientation Spotlight: Foreign-Trained RN USA Roadmap */}
+          <div
+            style={{
+              background: "#09090b",
+              color: "#ffffff",
+              border: "1.5px solid #2563eb",
+              borderRadius: 16,
+              padding: "24px 26px",
+              marginBottom: 34,
+              boxShadow: "0 12px 30px rgba(9, 9, 11, 0.2)"
+            }}
+          >
+            <div
+              className="nu-notes-two-col"
+              style={{
+                display: "grid",
+                gridTemplateColumns: "minmax(0, 1.35fr) minmax(260px, 0.85fr)",
+                gap: 24,
+                alignItems: "center"
+              }}
+            >
+              <div
+                style={{
+                  position: "relative",
+                  width: "100%",
+                  paddingBottom: "56.25%",
+                  height: 0,
+                  overflow: "hidden",
+                  borderRadius: 12,
+                  border: "1.5px solid rgba(96, 165, 250, 0.45)",
+                  background: "#000000"
+                }}
+              >
+                <iframe
+                  src="https://www.youtube.com/embed/5EABM_CrXro?rel=0"
+                  title="How to Become a Registered Nurse in the USA | Step-by-Step Guide for International Nurses"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    border: 0
+                  }}
+                />
+              </div>
+
+              <div>
+                <div
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 6,
+                    padding: "4px 10px",
+                    borderRadius: 999,
+                    background: "#1d4ed8",
+                    color: "#ffffff",
+                    fontSize: "0.72rem",
+                    fontWeight: 800,
+                    letterSpacing: "0.06em",
+                    textTransform: "uppercase",
+                    marginBottom: 10
+                  }}
+                >
+                  <PlayCircle size={14} /> Official Video Orientation
+                </div>
+                <h2 style={{ margin: "0 0 10px", fontSize: "1.3rem", color: "#ffffff", lineHeight: 1.3 }}>
+                  How to Become a Registered Nurse in the USA
+                </h2>
+                <p style={{ margin: "0 0 14px", fontSize: "0.88rem", color: "#cbd5e1", lineHeight: 1.58 }}>
+                  Watch our step-by-step walkthrough for internationally educated nurses covering CGFNS verification, State Board ATT, NCLEX-RN exam booking, and U.S. sponsorship pathways.
+                </p>
+                <ul style={{ margin: "0 0 16px", padding: 0, listStyle: "none", display: "grid", gap: 7, fontSize: "0.84rem", color: "#e2e8f0" }}>
+                  <li style={{ display: "flex", gap: 8, alignItems: "center" }}>
+                    <CheckCircle2 size={15} color="#60a5fa" /> Baseline nursing license &amp; transcript checks
+                  </li>
+                  <li style={{ display: "flex", gap: 8, alignItems: "center" }}>
+                    <CheckCircle2 size={15} color="#60a5fa" /> State Board application &amp; Pearson VUE CAT
+                  </li>
+                  <li style={{ display: "flex", gap: 8, alignItems: "center" }}>
+                    <CheckCircle2 size={15} color="#60a5fa" /> EB-3 permanent residency vs H-1B pathways
+                  </li>
+                </ul>
+                <a
+                  href="https://www.youtube.com/watch?v=5EABM_CrXro"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 8,
+                    padding: "9px 15px",
+                    borderRadius: 8,
+                    background: "#ffffff",
+                    color: "#09090b",
+                    fontWeight: 800,
+                    fontSize: "0.83rem",
+                    textDecoration: "none"
+                  }}
+                >
+                  Watch on @nursinguganda <ArrowRight size={14} />
+                </a>
+              </div>
+            </div>
+          </div>
+
           {/* 2. Reconstructed Visual Study Guides (3 Plates) */}
           <div style={{ marginBottom: 34 }}>
             <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-end", gap: 12, marginBottom: 14 }}>
@@ -294,12 +406,13 @@ export default function NclexRnAcademyPage() {
                 Open Full USA NCLEX &amp; Lab Converter Hub →
               </Link>
             </div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(310px, 1fr))", gap: 16 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(360px, 1fr))", gap: 18 }}>
               {[
                 {
                   src: "/assets/images/medical-illustrations/nclex-foreign-rn-licensure-roadmap.webp",
                   alt: "International nurse 4-step US licensure workflow from CGFNS and Pearson VUE to EB-3 vs H-1B visa",
-                  cap: "1. Foreign-Trained Nurse Licensure Flow & EB-3 vs H-1B Visas"
+                  cap: "1. Foreign-Trained Nurse Licensure Flow & EB-3 vs H-1B Visas",
+                  fullRow: true
                 },
                 {
                   src: "/assets/images/medical-illustrations/nclex-ngn-cat-question-formats.webp",
@@ -312,14 +425,27 @@ export default function NclexRnAcademyPage() {
                   cap: "3. 24-Week Intensive Schedule & $99 All-Inclusive Value"
                 }
               ].map((fig) => (
-                <figure key={fig.src} style={{ margin: 0, background: "#ffffff", border: "1px solid #cbd5e1", borderRadius: 12, overflow: "hidden", boxShadow: "0 2px 10px rgba(15,23,42,0.04)" }}>
-                  <img
+                <figure
+                  key={fig.src}
+                  style={{
+                    margin: 0,
+                    gridColumn: fig.fullRow ? "1 / -1" : undefined,
+                    background: "#ffffff",
+                    border: "1.5px solid #cbd5e1",
+                    borderRadius: 14,
+                    overflow: "hidden",
+                    boxShadow: "0 4px 16px rgba(15,23,42,0.06)"
+                  }}
+                >
+                  <MedicalImageFrame
                     src={fig.src}
                     alt={fig.alt}
+                    title={fig.cap}
                     loading="lazy"
-                    style={{ width: "100%", height: "auto", display: "block", background: "#f8fafc" }}
+                    allowFocus={true}
+                    imgStyle={{ width: "100%", height: "auto", display: "block", background: "#f8fafc" }}
                   />
-                  <figcaption style={{ padding: "10px 14px", fontSize: "0.82rem", fontWeight: 700, color: "#0f172a", borderTop: "1px solid #e2e8f0" }}>
+                  <figcaption style={{ padding: "12px 16px", fontSize: "0.88rem", fontWeight: 700, color: "#09090b", borderTop: "1px solid #e2e8f0" }}>
                     {fig.cap}
                   </figcaption>
                 </figure>
