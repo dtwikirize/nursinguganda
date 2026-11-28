@@ -67,6 +67,90 @@ const ROUTE_META = {
     description:
       "Country-by-country nursing licensure roadmaps comparing exams (UNMEB/UHPAB, NCK, TNMC, NMC CBT & OSCE, NCLEX-RN, Prometric), English scores & lab units."
   },
+  "/nclex-rn": {
+    title: "NCLEX-RN Academy (54 Next-Gen Clinical Plates & CAT Exam Engine) | Nursing Uganda",
+    description:
+      "Next-Gen NCLEX-RN revision for international nurses: 16 units, 48 topics, 54 standardized clinical plates, CAT mock exams & video orientation.",
+    image: `${SITE_URL}/assets/images/medical-illustrations/nclex-ngn-cat-question-formats.webp`,
+    type: "website"
+  },
+  "/nclex-rn/exams": {
+    title: "Next-Gen NCLEX-RN Practice CAT Exams & Case Studies | Nursing Uganda",
+    description:
+      "Timed and tutor-mode Computer Adaptive Testing (CAT) NCLEX-RN exams featuring evolving case studies, matrix grids, and bow-tie questions.",
+    image: `${SITE_URL}/assets/images/medical-illustrations/nclex-ngn-cat-question-formats.webp`,
+    type: "website"
+  },
+  "/nursing-uk": {
+    title: "Nursing in the UK: NMC CBT & 10-Station OSCE Study Hub | Nursing Uganda",
+    description:
+      "Complete roadmap to practicing as an RN in the NHS: NMC Test of Competence (CBT Part A Numeracy & Part B Clinical), 10-Station OSCE, NEWS2 escalation & Sepsis Six.",
+    image: `${SITE_URL}/assets/images/medical-illustrations/hub-uk-nmc-pathway-news2.webp`,
+    type: "article"
+  },
+  "/nursing-usa": {
+    title: "Nursing in the USA: Next-Gen NCLEX-RN & CGFNS Licensure Hub | Nursing Uganda",
+    description:
+      "Foreign nurse pathway to practicing in the United States: CGFNS CES credential evaluation, State Board ATT, Pearson VUE CAT exam, and EB-3 visa sponsorship.",
+    image: `${SITE_URL}/assets/images/medical-illustrations/nclex-foreign-rn-licensure-roadmap.webp`,
+    type: "article"
+  },
+  "/nursing-canada": {
+    title: "Nursing in Canada: NNAS, NCLEX-RN & REx-PN Licensure Hub | Nursing Uganda",
+    description:
+      "Canadian provincial nurse registration guide: NNAS Advisory Report, CNO/BCCNM requirements, NCLEX-RN vs REx-PN, SI lab units, and Indigenous cultural safety competencies.",
+    image: `${SITE_URL}/assets/images/medical-illustrations/hub-canada-nnas-rexpn.webp`,
+    type: "article"
+  },
+  "/nursing-australia": {
+    title: "Nursing in Australia: Ahpra & NMBA Stream B OBA Hub | Nursing Uganda",
+    description:
+      "Outcomes-Based Assessment (OBA) guide for international nurses: IQNM self-check, Stage 1 NCLEX-RN, Stage 2 Clinical OSCE, and NSQHS ISBAR clinical handover.",
+    image: `${SITE_URL}/assets/images/medical-illustrations/hub-australia-oba-isbar.webp`,
+    type: "article"
+  },
+  "/global-nursing/kenya-nck": {
+    title: "Nursing in Kenya: NCK Licensure & KRCHN/BScN Practice Hub | Nursing Uganda",
+    description:
+      "Kenya Nursing Council (NCK) national licensure pipeline: Papers I, II & III, continuous internship logbook, KEMSA Severe Malaria Artesunate & Pritchard Eclampsia protocols.",
+    image: `${SITE_URL}/assets/images/medical-illustrations/hub-kenya-nck-pathway.webp`,
+    type: "article"
+  },
+  "/global-nursing/uganda-unmc": {
+    title: "Nursing in Uganda: UNMC Licensure & MoH 7-Tier Referral Hub | Nursing Uganda",
+    description:
+      "Uganda Nurses and Midwives Council (UNMC) regulation, UHPAB/UNMEB national exams, MoH 7-tier health facility hierarchy, and UCG 2023 clinical standards.",
+    image: `${SITE_URL}/assets/images/medical-illustrations/hub-uganda-unmc-pathway.webp`,
+    type: "article"
+  },
+  "/global-nursing/uganda-unmc-uhpab": {
+    title: "Nursing in Uganda: UNMC Licensure & MoH 7-Tier Referral Hub | Nursing Uganda",
+    description:
+      "Uganda Nurses and Midwives Council (UNMC) regulation, UHPAB/UNMEB national exams, MoH 7-tier health facility hierarchy, and UCG 2023 clinical standards.",
+    image: `${SITE_URL}/assets/images/medical-illustrations/hub-uganda-unmc-pathway.webp`,
+    type: "article"
+  },
+  "/global-nursing/tanzania-tnmc": {
+    title: "Nursing in Tanzania: TNMC Licensure & STG/NEMLIT Hub | Nursing Uganda",
+    description:
+      "Tanzania Nursing and Midwives Council (TNMC) licensure framework, NACTE indexing, WHO Modified Partograph Action Line emergency protocols, and NTLP TB standards.",
+    image: `${SITE_URL}/assets/images/medical-illustrations/hub-tanzania-tnmc-pathway.webp`,
+    type: "article"
+  },
+  "/global-nursing/gulf-dha-moh-scfhs": {
+    title: "Nursing in UAE & Gulf: DHA, DOH, MOHAP & SCFHS Prometric Hub | Nursing Uganda",
+    description:
+      "Gulf GCC healthcare licensing roadmap: DataFlow Primary Source Verification (PSV), DHA Sheryan, DOH TAMM, SCFHS Mumaris+, Prometric CBT, and JCI IPSG patient safety goals.",
+    image: `${SITE_URL}/assets/images/medical-illustrations/hub-gulf-dha-doh-scfhs.webp`,
+    type: "article"
+  },
+  "/global-nursing/gulf-dha-doh-scfhs": {
+    title: "Nursing in UAE & Gulf: DHA, DOH, MOHAP & SCFHS Prometric Hub | Nursing Uganda",
+    description:
+      "Gulf GCC healthcare licensing roadmap: DataFlow Primary Source Verification (PSV), DHA Sheryan, DOH TAMM, SCFHS Mumaris+, Prometric CBT, and JCI IPSG patient safety goals.",
+    image: `${SITE_URL}/assets/images/medical-illustrations/hub-gulf-dha-doh-scfhs.webp`,
+    type: "article"
+  },
   "/about": {
     title: "About Nursing Uganda & Institutional Non-Affiliation | Nursing Uganda",
     description:
@@ -163,6 +247,10 @@ export function setPageSeo({
   upsertMeta("property", "og:url", canonicalUrl);
   upsertMeta("property", "og:image", image);
   upsertMeta("name", "twitter:image", image);
+  if (image && image.includes("/medical-illustrations/")) {
+    upsertMeta("property", "og:image:width", "1280");
+    upsertMeta("property", "og:image:height", "800");
+  }
 
   const crumbName = title ? title.split("|")[0].trim() : "Page";
   const defaultSchema = cleanPath === "/" || noindex
@@ -213,11 +301,26 @@ export default function RouteSeo() {
           operatingSystem: "Any",
           url: `${SITE_URL}/clinical-tools`
         };
+      } else if (clean.startsWith("/nursing-") || clean.startsWith("/global-nursing/")) {
+        schema = {
+          "@type": "MedicalWebPage",
+          name: known.title.split("|")[0].trim(),
+          description: known.description,
+          url: `${SITE_URL}${clean}`,
+          image: known.image || DEFAULT_IMAGE,
+          educationalLevel: "Professional Certification",
+          about: {
+            "@type": "MedicalSpecialty",
+            name: "Nursing & Midwifery Licensure"
+          }
+        };
       }
       setPageSeo({
         title: known.title,
         description: known.description || ROUTE_META["/"].description,
         canonicalPath: clean,
+        image: known.image || DEFAULT_IMAGE,
+        type: known.type || "website",
         noindex: Boolean(known.noindex),
         schema
       });

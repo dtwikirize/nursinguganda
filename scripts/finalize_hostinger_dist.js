@@ -48,6 +48,7 @@ const dataFiles = [
   "dictionary.json",
   "ebooks.json",
   "global-nursing.json",
+  "medical-images.json",
   "medical-instruments.json",
   "mock-exams.json",
   "nclex-rn-course.json",
@@ -122,7 +123,16 @@ try {
   if (fs.existsSync(lessonsPath)) {
     const lessons = JSON.parse(fs.readFileSync(lessonsPath, "utf8")) || [];
     const today = new Date().toISOString().slice(0, 10);
-    const hubs = ["/nursing-uk", "/nursing-usa", "/nursing-canada", "/nursing-australia"];
+    const hubs = [
+      "/nursing-uk",
+      "/nursing-usa",
+      "/nursing-canada",
+      "/nursing-australia",
+      "/global-nursing/kenya-nck",
+      "/global-nursing/uganda-unmc-uhpab",
+      "/global-nursing/tanzania-tnmc",
+      "/global-nursing/gulf-dha-doh-scfhs"
+    ];
     const urls = [
       `  <url>\n    <loc>https://nursinguganda.com/nclex-rn</loc>\n    <lastmod>${today}</lastmod>\n    <priority>0.95</priority>\n  </url>`,
       `  <url>\n    <loc>https://nursinguganda.com/nclex-rn/exams</loc>\n    <lastmod>${today}</lastmod>\n    <priority>0.90</priority>\n  </url>`

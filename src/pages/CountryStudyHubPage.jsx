@@ -10,6 +10,7 @@ import {
   ChevronUp,
   ClipboardCheck,
   Clock,
+  Download,
   ExternalLink,
   FileCheck2,
   Layers,
@@ -23,6 +24,12 @@ import CountryFlag from "../components/CountryFlag";
 import NursingLoader from "../components/NursingLoader";
 import { setPageSeo } from "../components/RouteSeo";
 import { LessonSections } from "../components/TopicVisuals";
+import {
+  getCountryHubOfflineUrls,
+  isOfflinePackSaved,
+  saveOfflinePack,
+  removeOfflinePack
+} from "../utils/offlineLibrary";
 import {
   COUNTRY_CURRICULA,
   COUNTRY_META,
@@ -304,16 +311,49 @@ export default function CountryStudyHubPage({ forcedSlug = "" }) {
   const hub = hubsData?.hubs?.[targetSlug] || null;
   const themeKey = hub?.theme || resolveThemeKey(targetSlug);
   const theme = THEME_CONFIG[themeKey] || THEME_CONFIG["green-black"];
+  const featuredPlates = COUNTRY_FEATURED_PLATES[targetSlug] || [];
+
+  const [offlineSaved, setOfflineSaved] = useState(false);
+  const [offlineSaving, setOfflineSaving] = useState(false);
+
+  useEffect(() => {
+    if (!targetSlug) return;
+    const urls = getCountryHubOfflineUrls(targetSlug, featuredPlates);
+    isOfflinePackSaved(urls).then((res) => setOfflineSaved(Boolean(res?.saved)));
+  }, [targetSlug, featuredPlates]);
+
+  const handleToggleOfflinePack = async () => {
+    const urls = getCountryHubOfflineUrls(targetSlug, featuredPlates);
+    setOfflineSaving(true);
+    try {
+      if (offlineSaved) {
+        await removeOfflinePack(urls);
+        setOfflineSaved(false);
+      } else {
+        await saveOfflinePack(urls);
+        setOfflineSaved(true);
+      }
+    } catch (e) {
+      console.warn("Failed to toggle offline pack", e);
+    } finally {
+      setOfflineSaving(false);
+    }
+  };
 
   useEffect(() => {
     if (!country) return;
+    const flagshipImg = featuredPlates[0]?.src
+      ? (featuredPlates[0].src.startsWith("http") ? featuredPlates[0].src : `https://nursinguganda.com${featuredPlates[0].src}`)
+      : undefined;
+
     setPageSeo({
       title: hub?.headline ? `${hub.headline} | Nursing Uganda` : `Becoming a Nurse in ${country.country} (${country.council}) | Nursing Uganda`,
       description: hub?.subheadline || country.summary,
       canonicalPath: hub?.route || `/global-nursing/${country.slug}`,
+      image: flagshipImg,
       type: "article"
     });
-  }, [country, hub]);
+  }, [country, hub, featuredPlates]);
 
   if (loading) {
     return (
@@ -458,6 +498,29 @@ export default function CountryStudyHubPage({ forcedSlug = "" }) {
               style={{ background: "rgba(15, 23, 42, 0.35)", color: "#ffffff", borderColor: "rgba(255,255,255,0.28)" }}
             >
               <ClipboardCheck size={16} /> Quiz &amp; {country.unitSystem === "SI" ? "US → SI" : "SI → US"} Lab Converter
+            </button>
+            <button
+              type="button"
+              onClick={handleToggleOfflinePack}
+              disabled={offlineSaving}
+              className="nu-btn nu-btn-outline"
+              style={{
+                background: offlineSaved ? "#065f46" : "rgba(15, 23, 42, 0.55)",
+                color: "#ffffff",
+                borderColor: offlineSaved ? "#10b981" : "rgba(255,255,255,0.38)",
+                fontWeight: 700
+              }}
+              title="Cache this country hub notes, clinical guidelines and high-resolution diagrams for offline hospital ward use"
+            >
+              {offlineSaved ? (
+                <>
+                  <CheckCircle2 size={16} color="#34d399" /> Ward Offline Ready
+                </>
+              ) : (
+                <>
+                  <Download size={16} /> {offlineSaving ? "Caching Ward Pack..." : "Save for Ward Offline Practice"}
+                </>
+              )}
             </button>
           </div>
 

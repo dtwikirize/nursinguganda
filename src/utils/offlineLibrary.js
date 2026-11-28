@@ -70,3 +70,34 @@ function ask(type, payload, timeoutMs = 60000) {
 export const saveEbookOffline = (urls) => ask("SAVE_EBOOK", { urls });
 export const removeEbookOffline = (urls) => ask("REMOVE_EBOOK", { urls }, 15000);
 export const isEbookSavedOffline = (urls) => ask("IS_EBOOK_SAVED", { urls }, 15000);
+
+// Generic Offline Ward Pack helpers for Country Hubs, Clinical Tools & Reference Data
+export const saveOfflinePack = (urls) => ask("SAVE_EBOOK", { urls });
+export const removeOfflinePack = (urls) => ask("REMOVE_EBOOK", { urls }, 15000);
+export const isOfflinePackSaved = (urls) => ask("IS_EBOOK_SAVED", { urls }, 15000);
+
+export function getCountryHubOfflineUrls(targetSlug, featuredPlates = []) {
+  if (!targetSlug) return [];
+  const urls = [
+    targetSlug.startsWith("/") ? targetSlug : `/global-nursing/${targetSlug}`,
+    "/assets/data/country-study-hubs.json",
+    "/assets/data/medical-images.json",
+    "/assets/data/canonical-lessons-index.json",
+    "/assets/images/brand/nursing-uganda-logo-light.svg",
+    "/assets/images/brand/nu-variant-3-192.png"
+  ];
+  if (targetSlug === "united-kingdom-nmc") urls.push("/nursing-uk");
+  if (targetSlug === "united-states-nclex") urls.push("/nursing-usa", "/nclex-rn");
+  if (targetSlug === "canada-nnas-nclex" || targetSlug === "canada-nnas-rexpn") urls.push("/nursing-canada");
+  if (targetSlug === "australia-ahpra-nmba") urls.push("/nursing-australia");
+  if (targetSlug === "kenya-nck") urls.push("/global-nursing/kenya-nck");
+  if (targetSlug === "uganda-unmc" || targetSlug === "uganda-unmc-uhpab") urls.push("/global-nursing/uganda-unmc", "/global-nursing/uganda-unmc-uhpab");
+  if (targetSlug === "tanzania-tnmc") urls.push("/global-nursing/tanzania-tnmc");
+  if (targetSlug === "gulf-dha-moh-scfhs" || targetSlug === "gulf-dha-doh-scfhs") urls.push("/global-nursing/gulf-dha-moh-scfhs", "/global-nursing/gulf-dha-doh-scfhs");
+
+  (featuredPlates || []).forEach((p) => {
+    if (p?.src) urls.push(p.src.startsWith("/") ? p.src : `/${p.src}`);
+  });
+
+  return Array.from(new Set(urls));
+}

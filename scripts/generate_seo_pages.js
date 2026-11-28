@@ -265,11 +265,25 @@ function main() {
 
   // Generate Global Nursing Licensure SEO pages (/global-nursing/<slug>/index.html)
   const globalDataPath = path.join(DATA_DIR, "global-nursing.json");
+  const COUNTRY_FLAGSHIP_PLATES = {
+    "united-kingdom-nmc": `${SITE_URL}/assets/images/medical-illustrations/hub-uk-nmc-pathway-news2.webp`,
+    "united-states-nclex": `${SITE_URL}/assets/images/medical-illustrations/nclex-foreign-rn-licensure-roadmap.webp`,
+    "canada-nnas-rexpn": `${SITE_URL}/assets/images/medical-illustrations/hub-canada-nnas-rexpn.webp`,
+    "canada-nnas-nclex": `${SITE_URL}/assets/images/medical-illustrations/hub-canada-nnas-rexpn.webp`,
+    "australia-ahpra-nmba": `${SITE_URL}/assets/images/medical-illustrations/hub-australia-oba-isbar.webp`,
+    "kenya-nck": `${SITE_URL}/assets/images/medical-illustrations/hub-kenya-nck-pathway.webp`,
+    "uganda-unmc": `${SITE_URL}/assets/images/medical-illustrations/hub-uganda-unmc-pathway.webp`,
+    "uganda-unmc-uhpab": `${SITE_URL}/assets/images/medical-illustrations/hub-uganda-unmc-pathway.webp`,
+    "tanzania-tnmc": `${SITE_URL}/assets/images/medical-illustrations/hub-tanzania-tnmc-pathway.webp`,
+    "gulf-dha-moh-scfhs": `${SITE_URL}/assets/images/medical-illustrations/hub-gulf-dha-doh-scfhs.webp`,
+    "gulf-dha-doh-scfhs": `${SITE_URL}/assets/images/medical-illustrations/hub-gulf-dha-doh-scfhs.webp`
+  };
   if (fs.existsSync(globalDataPath)) {
     fs.rmSync(path.join(ROOT, "global-nursing"), { recursive: true, force: true });
     const countries = JSON.parse(fs.readFileSync(globalDataPath, "utf8")).countries || [];
     for (const c of countries) {
       const canonical = `${SITE_URL}/global-nursing/${c.slug}`;
+      const imageUrl = COUNTRY_FLAGSHIP_PLATES[c.slug] || DEFAULT_IMG;
       urls.push({ loc: canonical, priority: "0.85" });
       const stepsHtml = (c.steps || []).map((s) => `<li>${esc(s)}</li>`).join("");
       const docsHtml = (c.documents || []).map((d) => `<li>${esc(d)}</li>`).join("");
@@ -277,6 +291,7 @@ function main() {
         title: `Becoming a Nurse in ${c.country} (${c.council}) | Nursing Uganda`,
         description: c.summary,
         canonicalUrl: canonical,
+        imageUrl,
         jsonLd: {
           "@context": "https://schema.org",
           "@graph": [

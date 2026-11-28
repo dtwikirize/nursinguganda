@@ -152,7 +152,7 @@
     // still reach what they have read.
     if ("caches" in window) {
       caches.keys().then(function (keys) {
-        var pageCaches = keys.filter(function (k) { return k.indexOf("nu-pages-") === 0; });
+        var pageCaches = keys.filter(function (k) { return k.indexOf("nu-pages-") === 0 || k.indexOf("nu-ebooks-") === 0; });
         return Promise.all(pageCaches.map(function (k) {
           return caches.open(k).then(function (c) { return c.keys(); });
         }));
