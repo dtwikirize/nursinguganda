@@ -1,7 +1,7 @@
 {
   "title": "Nursing Uganda Medical Images Dictionary & Visual Atlas",
   "description": "Categorized high-resolution clinical diagrams, human anatomy plates, and disease reference visuals aligned with UNMEB, UHPAB, WHO, and NCLEX curricula.",
-  "updatedAt": "2026-11-26",
+  "updatedAt": "2026-11-28",
   "categories": [
     "Foundations & Cellular",
     "Musculoskeletal & Neuro",
@@ -3269,6 +3269,94 @@
         {
           "label": "Nursing Australia Study Hub",
           "to": "/nursing-australia"
+        }
+      ]
+    },
+    {
+      "id": "hub-kenya-nck-pathway",
+      "title": "Kenya Nursing Council (NCK) Licensure Pipeline & Clinical Protocols",
+      "category": "Global Nursing & Licensing Pathways",
+      "file": "/assets/images/medical-illustrations/hub-kenya-nck-pathway.webp",
+      "alt": "NCK 5-stage registration pathway, KRCHN/BScN 3-paper examination, and KEMSA severe malaria and eclampsia protocols",
+      "summary": "Details Kenya NCK indexation, clinical logbook sign-offs, national examinations, 1-year internship, and national clinical protocols.",
+      "structures": [
+        "NCK Student Indexation",
+        "Clinical Logbook Rotations",
+        "NCK Papers I, II, III Licensure",
+        "1-Year Supervised Internship",
+        "Full Practice PIN & EAC Mobility"
+      ],
+      "clinicalPearl": "Before every repeat dose of Magnesium Sulfate (Pritchard regimen), verify RR ≥ 16/min, urine output ≥ 30 mL/hr, and patellar reflex present.",
+      "relatedTopics": [
+        {
+          "label": "Nursing Kenya Hub",
+          "to": "/global-nursing/kenya-nck"
+        }
+      ]
+    },
+    {
+      "id": "hub-uganda-unmc-pathway",
+      "title": "Uganda Nurses & Midwives Council (UNMC) & MoH 7-Tier Referral System",
+      "category": "Global Nursing & Licensing Pathways",
+      "file": "/assets/images/medical-illustrations/hub-uganda-unmc-pathway.webp",
+      "alt": "Uganda UNMC 5-stage registration pathway, UHPAB national exams, and Uganda MoH 7-tier health facility referral hierarchy",
+      "summary": "Comprehensive guide to Ugandan nursing and midwifery registration, UHPAB state boards, and clinical referral tiers from HC II to National Referral Hospital.",
+      "structures": [
+        "Accredited Training Enrolment",
+        "UHPAB / UNMEB State Boards",
+        "1-Year Regional Referral Internship",
+        "UNMC Certificate & Annual Practicing License",
+        "Uganda MoH 7-Tier Facility Hierarchy"
+      ],
+      "clinicalPearl": "Uganda Clinical Guidelines (UCG 2023) mandate first-line adult antiretroviral therapy as TLD (Tenofovir + Lamivudine + Dolutegravir) taken once daily.",
+      "relatedTopics": [
+        {
+          "label": "Nursing Uganda Hub",
+          "to": "/global-nursing/uganda-unmc-uhpab"
+        }
+      ]
+    },
+    {
+      "id": "hub-tanzania-tnmc-pathway",
+      "title": "Tanzania Nursing & Midwives Council (TNMC) Licensure & Partograph Protocols",
+      "category": "Global Nursing & Licensing Pathways",
+      "file": "/assets/images/medical-illustrations/hub-tanzania-tnmc-pathway.webp",
+      "alt": "Tanzania TNMC 5-stage registration pipeline, WHO modified partograph action line, and NTLP tuberculosis DOTS standards",
+      "summary": "Guides nurses and midwives through NACTE indexing, TNMC national licensure examinations, supervised internship, and obstetric partograph emergency thresholds.",
+      "structures": [
+        "NTA Level 4-8 Indexing",
+        "Competency Clinical Logbook",
+        "TNMC National Written & OSCE Exam",
+        "1-Year Supervised Hospital Internship",
+        "WHO Partograph Alert vs Action Lines"
+      ],
+      "clinicalPearl": "When maternal labor crosses the WHO Partograph Action Line (4 hours right of Alert Line), immediate medical transfer and EmONC intervention are mandatory.",
+      "relatedTopics": [
+        {
+          "label": "Nursing Tanzania Hub",
+          "to": "/global-nursing/tanzania-tnmc"
+        }
+      ]
+    },
+    {
+      "id": "hub-gulf-dha-doh-scfhs",
+      "title": "Gulf (GCC) Nursing Licensure: DHA, DOH (HAAD), MOHAP & SCFHS Pipeline",
+      "category": "Global Nursing & Licensing Pathways",
+      "file": "/assets/images/medical-illustrations/hub-gulf-dha-doh-scfhs.webp",
+      "alt": "Gulf healthcare authority 5-stage licensing pipeline, DataFlow primary source verification, and JCI international patient safety standards",
+      "summary": "Step-by-step roadmap for overseas nurses applying to Dubai (DHA), Abu Dhabi (DOH), UAE Northern Emirates (MOHAP), and Saudi Arabia (SCFHS).",
+      "structures": [
+        "DataFlow Primary Source Verification (PSV)",
+        "Health Authority Credentialing Portals",
+        "Prometric CBT Computer-Based Exam",
+        "12-Month Board Eligibility Letter",
+        "JCI IPSG High-Alert Drug Verification"
+      ],
+      "clinicalPearl": "JCI IPSG Goal 3 mandates independent double-checks by two qualified nurses for all high-alert medications (concentrated electrolytes, insulin, anticoagulants, narcotics).",
+      "relatedTopics": [
+        {
+          "label": "Nursing Gulf Hub",
+          "to": "/global-nursing/gulf-dha-doh-scfhs"
         }
       ]
     }

@@ -16,8 +16,7 @@ import {
   MapPin,
   Search,
   ShieldCheck,
-  Sparkles,
-  Star
+  Sparkles
 } from "lucide-react";
 import AdSlot from "../components/AdSlot";
 import CountryFlag from "../components/CountryFlag";
@@ -137,7 +136,12 @@ const COUNTRY_FEATURED_PLATES = {
     { src: "/assets/images/medical-illustrations/medsurg-shock-haemorrhage-cpr.webp", title: "Critical Care Stabilization & ACLS Priorities", tag: "Physiological Integrity" },
     { src: "/assets/images/medical-illustrations/medsurg-cardiovascular-mi-hf.webp", title: "Acute Coronary Care & Haemodynamic Monitoring", tag: "Prioritization" }
   ],
-  "canada-nnas-rexpn": [],
+  "canada-nnas-rexpn": [
+    { src: "/assets/images/medical-illustrations/hub-canada-nnas-rexpn.webp", title: "NNAS Advisory, CNO / BCCNM & NCLEX/REx-PN", tag: "Provincial Licensure" },
+    { src: "/assets/images/medical-illustrations/psych-therapeutic-nurse-patient-erikson.webp", title: "Therapeutic Communication & Trauma-Informed Care", tag: "Cultural Safety" },
+    { src: "/assets/images/medical-illustrations/pharmacology-iv-fluids-infusion.webp", title: "SI Medication Calculations & Electrolyte Safety", tag: "CNO Standard" },
+    { src: "/assets/images/medical-illustrations/leadership-research-ethics.webp", title: "Scope of Practice, Autonomy & MAiD Ethics", tag: "CNA Ethics" }
+  ],
   "canada-nnas-nclex": [
     { src: "/assets/images/medical-illustrations/hub-canada-nnas-rexpn.webp", title: "NNAS Advisory, CNO / BCCNM & NCLEX/REx-PN", tag: "Provincial Licensure" },
     { src: "/assets/images/medical-illustrations/psych-therapeutic-nurse-patient-erikson.webp", title: "Therapeutic Communication & Trauma-Informed Care", tag: "Cultural Safety" },
@@ -151,24 +155,42 @@ const COUNTRY_FEATURED_PLATES = {
     { src: "/assets/images/medical-illustrations/medsurg-stroke-cva-hemorrhage.webp", title: "Stroke Code FAST, Thrombolysis & swallow screen", tag: "NSQHS Partnering" }
   ],
   "kenya-nck": [
+    { src: "/assets/images/medical-illustrations/hub-kenya-nck-pathway.webp", title: "NCK Licensure Pipeline, 3 Papers & KEMSA Protocols", tag: "NCK Licensure" },
     { src: "/assets/images/medical-illustrations/condition-malaria-smear.webp", title: "Severe Malaria, Artesunate & WHO Protocols", tag: "KEMSA / MoH" },
     { src: "/assets/images/medical-illustrations/condition-preeclampsia-placenta.webp", title: "Eclampsia & Pritchard MgSO4 Emergency Pack", tag: "Paper I & II" },
     { src: "/assets/images/medical-illustrations/paed-imci-dehydration-ors-plans.webp", title: "IMCI Paediatric Dehydration Plan A, B & C", tag: "Paediatric Paper" },
     { src: "/assets/images/medical-illustrations/immune-hiv-opportunistic-infections-pep.webp", title: "NASCOP HIV Care, Opportunistic Infections & PEP", tag: "Community Health" }
   ],
   "uganda-unmc": [
+    { src: "/assets/images/medical-illustrations/hub-uganda-unmc-pathway.webp", title: "UNMC Registration, MoH 7-Tier Referral & UCG 2023", tag: "UNMC · UHPAB" },
+    { src: "/assets/images/medical-illustrations/leadership-hrm-uganda-health-policies.webp", title: "UNMC Regulation, MoH 7-Tier Referral & HRM", tag: "UCG 2023" },
+    { src: "/assets/images/medical-illustrations/paed-unepi-immunization-schedule.webp", title: "UNEPI Immunization Schedule & Cold Chain", tag: "MoH Uganda" },
+    { src: "/assets/images/medical-illustrations/community-phc-cbhc-home-visiting.webp", title: "VHTs, Primary Health Care & CBHC Home Visits", tag: "Community Paper" },
+    { src: "/assets/images/medical-illustrations/pharmacology-antiretrovirals-hiv-cycle.webp", title: "First-Line TLD, EMTCT & Paediatric ARV Dosing", tag: "UCG Pharmacology" }
+  ],
+  "uganda-unmc-uhpab": [
+    { src: "/assets/images/medical-illustrations/hub-uganda-unmc-pathway.webp", title: "UNMC Registration, MoH 7-Tier Referral & UCG 2023", tag: "UNMC · UHPAB" },
     { src: "/assets/images/medical-illustrations/leadership-hrm-uganda-health-policies.webp", title: "UNMC Regulation, MoH 7-Tier Referral & HRM", tag: "UCG 2023" },
     { src: "/assets/images/medical-illustrations/paed-unepi-immunization-schedule.webp", title: "UNEPI Immunization Schedule & Cold Chain", tag: "MoH Uganda" },
     { src: "/assets/images/medical-illustrations/community-phc-cbhc-home-visiting.webp", title: "VHTs, Primary Health Care & CBHC Home Visits", tag: "Community Paper" },
     { src: "/assets/images/medical-illustrations/pharmacology-antiretrovirals-hiv-cycle.webp", title: "First-Line TLD, EMTCT & Paediatric ARV Dosing", tag: "UCG Pharmacology" }
   ],
   "tanzania-tnmc": [
+    { src: "/assets/images/medical-illustrations/hub-tanzania-tnmc-pathway.webp", title: "TNMC Licensure, WHO Partograph & NTLP Standards", tag: "TNMC Licensure" },
     { src: "/assets/images/medical-illustrations/who-modified-partograph-chart.webp", title: "WHO Modified Partograph & Alert/Action Lines", tag: "TNMC Midwifery" },
     { src: "/assets/images/medical-illustrations/paed-newborn-resuscitation-apgar-kmc.webp", title: "Helping Babies Breathe & Kangaroo Mother Care", tag: "Neonatal Care" },
     { src: "/assets/images/medical-illustrations/condition-tb-pneumonia-xray.webp", title: "NTLP Tuberculosis DOTS & GeneXpert Screening", tag: "STG/NEMLIT" },
     { src: "/assets/images/medical-illustrations/micro-wash-sanitation-food-housing.webp", title: "Cholera Outbreak Control, WASH & Sanitation", tag: "Public Health" }
   ],
   "gulf-dha-moh-scfhs": [
+    { src: "/assets/images/medical-illustrations/hub-gulf-dha-doh-scfhs.webp", title: "Gulf Licensing: DHA, DOH, SCFHS & JCI IPSG Standards", tag: "Gulf Licensure" },
+    { src: "/assets/images/medical-illustrations/hand-hygiene-who-11-steps.webp", title: "JCI IPSG Infection Control & Hand Hygiene Audit", tag: "JCI Hospital Prep" },
+    { src: "/assets/images/medical-illustrations/pharmacology-parenteral-injection-angles.webp", title: "High-Alert Medication Independent Double Check", tag: "IPSG Goal 3" },
+    { src: "/assets/images/medical-illustrations/safety-occupational-hazards-ppe-fire.webp", title: "OSHAD Fire Safety, Isolation & Hazardous PPE", tag: "DHA / SCFHS" },
+    { src: "/assets/images/medical-illustrations/blood-transfusion-clinical-procedure.webp", title: "2-Nurse Blood Transfusion Bedside Verification", tag: "IPSG Goal 1" }
+  ],
+  "gulf-dha-doh-scfhs": [
+    { src: "/assets/images/medical-illustrations/hub-gulf-dha-doh-scfhs.webp", title: "Gulf Licensing: DHA, DOH, SCFHS & JCI IPSG Standards", tag: "Gulf Licensure" },
     { src: "/assets/images/medical-illustrations/hand-hygiene-who-11-steps.webp", title: "JCI IPSG Infection Control & Hand Hygiene Audit", tag: "JCI Hospital Prep" },
     { src: "/assets/images/medical-illustrations/pharmacology-parenteral-injection-angles.webp", title: "High-Alert Medication Independent Double Check", tag: "IPSG Goal 3" },
     { src: "/assets/images/medical-illustrations/safety-occupational-hazards-ppe-fire.webp", title: "OSHAD Fire Safety, Isolation & Hazardous PPE", tag: "DHA / SCFHS" },
@@ -784,7 +806,7 @@ export default function CountryStudyHubPage({ forcedSlug = "" }) {
                           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 8, marginBottom: 6 }}>
                             <span style={{ fontSize: "0.72rem", fontWeight: 700, color: "#475569" }}>{course.provider}</span>
                             <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: "0.75rem", fontWeight: 700, color: "#0f172a" }}>
-                              <Star size={12} fill="#0f172a" /> {course.rating}
+                              <Layers size={12} /> {course.topicsCount} topics
                             </span>
                           </div>
                           <h3 style={{ margin: "0 0 6px", fontSize: "0.98rem", color: "#0f172a", lineHeight: 1.35 }}>
@@ -926,7 +948,7 @@ export default function CountryStudyHubPage({ forcedSlug = "" }) {
                       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 8, marginBottom: 8 }}>
                         <span style={{ fontSize: "0.74rem", fontWeight: 700, color: "#475569" }}>{course.provider}</span>
                         <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: "0.76rem", fontWeight: 700, color: "#0f172a" }}>
-                          <Star size={13} fill="#0f172a" /> {course.rating}
+                          <Layers size={13} /> {course.topicsCount} topics
                         </span>
                       </div>
                       <h3 style={{ margin: "0 0 8px", fontSize: "1.02rem", color: "#0f172a", lineHeight: 1.35 }}>
