@@ -48,7 +48,7 @@ export default function EbookCover({ ebook, presetId = "", compact = false }) {
           )}
         </div>
         <div className="nu-textbook-foot">
-          <span>{(ebook.chapters || []).length || 5} Sections · ~{ebook.estimatedPages || 90} pp.</span>
+          <span>{(ebook.chapters || []).length || ebook.chapterCount || 5} Sections · ~{ebook.estimatedPages || 90} pp.</span>
           <span className="nu-textbook-badge" style={{ background: theme.accentHex }}>
             FREE BOOK
           </span>
@@ -134,7 +134,7 @@ export default function EbookCover({ ebook, presetId = "", compact = false }) {
 
       {/* Cover Publisher Footer */}
       <div className="nu-textbook-foot">
-        <span>{ebook.chapters?.length || 6} Chapters · ~{ebook.estimatedPages || 90} pp.</span>
+        <span>{ebook.chapters?.length || ebook.chapterCount || 6} Chapters · ~{ebook.estimatedPages || 90} pp.</span>
         <span className="nu-textbook-badge" style={{ background: theme.accentHex }}>
           FREE PDF
         </span>

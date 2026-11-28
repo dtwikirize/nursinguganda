@@ -22,7 +22,6 @@ const NCLEX_COURSE_ITEM = {
   code: "NCLEX-RN 16W",
   programmeLabel: "USA & International NCLEX-RN Academy",
   priceUsd: 99,
-  compareAtUsd: 249,
   thumbnail: "/assets/images/udemy/cat-medsurg.webp",
   isFree: false
 };

@@ -1,164 +1,187 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-UG">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Updating | Nursing Uganda</title>
+  <meta name="robots" content="noindex">
+  <title>Offline | Nursing Uganda</title>
   <style>
+    :root{
+      --navy:#0f2942;
+      --purple:#8710d8;
+      --ink:#1c1d1f;
+      --muted:#6a6f73;
+      --rule:#e2e8f0;
+      --paper:#f7f9fa;
+      --card:#ffffff;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --navy:#dbe6f3;
+        --purple:#c79bf5;
+        --ink:#eef2f7;
+        --muted:#9aa3ad;
+        --rule:#2a3442;
+        --paper:#0e1621;
+        --card:#15202e;
+      }
+    }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif}
+    html,body{min-height:100%}
     body{
       display:flex;align-items:center;justify-content:center;min-height:100vh;
-      background:linear-gradient(160deg,#fdf2f7 0%,#f8f0f4 40%,#fce7f3 100%);
-      padding:1.5rem;
+      background:var(--paper);color:var(--ink);padding:1.5rem;
+      font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+      line-height:1.55;
     }
-
-    /* ── Card ─────────────────────────────────────────────────── */
     .card{
-      width:100%;max-width:440px;
-      background:#fff;border-radius:22px;
-      box-shadow:0 4px 6px -1px rgba(166,68,104,.07),0 20px 50px -12px rgba(166,68,104,.18);
-      overflow:hidden;text-align:center;
+      width:100%;max-width:460px;background:var(--card);
+      border:1px solid var(--rule);border-radius:14px;overflow:hidden;
+      box-shadow:0 1px 2px rgba(15,41,66,.04),0 16px 40px -18px rgba(15,41,66,.22);
     }
+    .accent{height:3px;background:linear-gradient(90deg,var(--navy) 0%,var(--purple) 100%)}
+    .body{padding:2.25rem 2rem 1.75rem}
 
-    /* ── Top accent bar ───────────────────────────────────────── */
-    .accent-bar{
-      height:4px;
-      background:linear-gradient(90deg,#A64468 0%,#d472a0 50%,#A64468 100%);
-      background-size:200% 100%;
-      animation:shimmer 2s linear infinite;
+    .mark{
+      display:inline-flex;align-items:center;justify-content:center;
+      width:52px;height:52px;border-radius:12px;
+      background:var(--navy);margin-bottom:1.25rem;
     }
-    @keyframes shimmer{to{background-position:-200% 0}}
+    .mark span{font-weight:800;font-size:1.15rem;letter-spacing:.02em;color:#fff}
+    .mark span i{color:#c79bf5;font-style:normal}
+    @media (prefers-color-scheme: dark){ .mark span{color:#0e1621} }
 
-    /* ── Body ─────────────────────────────────────────────────── */
-    .body{padding:2.75rem 2rem 2.25rem}
-
-    /* ── Mark / monogram ──────────────────────────────────────── */
-    .mark-wrap{
-      position:relative;width:88px;height:88px;margin:0 auto 1.5rem;
-    }
-    .mark-ring{
-      position:absolute;inset:0;border-radius:50%;
-      border:2.5px solid transparent;
-      border-top-color:#A64468;border-right-color:rgba(166,68,104,.4);
-      animation:spin 1.1s cubic-bezier(.55,.15,.45,.85) infinite;
-    }
-    .mark-ring-outer{
-      position:absolute;inset:-6px;border-radius:50%;
-      border:1.5px solid transparent;
-      border-bottom-color:rgba(166,68,104,.25);border-left-color:rgba(166,68,104,.15);
-      animation:spin 2.2s linear infinite reverse;
-    }
-    @keyframes spin{to{transform:rotate(360deg)}}
-    .mark-inner{
-      position:absolute;inset:8px;border-radius:50%;
-      background:linear-gradient(135deg,#A64468 0%,#7a3050 100%);
-      display:flex;align-items:center;justify-content:center;
-    }
-    .mark-letters{
-      font-size:1.35rem;font-weight:800;color:#fff;letter-spacing:-.03em;
-      line-height:1;user-select:none;
-    }
-
-    /* ── Badge ────────────────────────────────────────────────── */
     .badge{
-      display:inline-flex;align-items:center;gap:6px;
-      background:rgba(166,68,104,.08);border:1px solid rgba(166,68,104,.2);
-      border-radius:999px;padding:5px 14px;margin-bottom:1.1rem;
-      font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#A64468;
+      display:inline-flex;align-items:center;gap:7px;
+      font-size:.72rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;
+      color:var(--muted);margin-bottom:.85rem;
     }
-    .badge-dot{
-      width:6px;height:6px;border-radius:50%;background:#A64468;
-      animation:pulse-dot 1.4s ease-in-out infinite;
-    }
-    @keyframes pulse-dot{
-      0%,100%{opacity:1;transform:scale(1)}
-      50%{opacity:.4;transform:scale(.7)}
-    }
+    .dot{width:7px;height:7px;border-radius:50%;background:#b45309;flex:none}
 
-    /* ── Text ─────────────────────────────────────────────────── */
-    h1{font-size:1.45rem;font-weight:800;color:#1f2937;letter-spacing:-.02em;margin-bottom:.6rem}
-    p{font-size:.9rem;color:#6b7280;line-height:1.65;max-width:300px;margin:0 auto}
+    h1{font-size:1.5rem;line-height:1.25;letter-spacing:-.01em;margin-bottom:.6rem;color:var(--ink)}
+    p{color:var(--muted);font-size:.94rem}
+    p + p{margin-top:.7rem}
 
-    /* ── Progress bar ─────────────────────────────────────────── */
-    .progress-wrap{
-      margin:1.75rem auto 0;max-width:280px;
-      background:rgba(166,68,104,.1);border-radius:999px;height:5px;overflow:hidden;
+    .saved{
+      margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid var(--rule);
     }
-    .progress-fill{
-      height:100%;border-radius:999px;
-      background:linear-gradient(90deg,#A64468,#d472a0);
-      animation:progress-drain 10s linear forwards;
+    .saved h2{
+      font-size:.72rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
+      color:var(--muted);margin-bottom:.7rem;
     }
-    @keyframes progress-drain{from{width:100%}to{width:0%}}
+    .links{display:flex;flex-wrap:wrap;gap:.5rem}
+    .links a{
+      display:inline-block;padding:.45rem .8rem;border:1px solid var(--rule);
+      border-radius:7px;font-size:.85rem;font-weight:500;
+      color:var(--ink);text-decoration:none;background:var(--paper);
+    }
+    .links a:hover{border-color:var(--purple);color:var(--purple)}
+    .links a:focus-visible{outline:3px solid var(--purple);outline-offset:2px}
 
-    /* ── Countdown ────────────────────────────────────────────── */
-    .countdown{
-      margin-top:1rem;font-size:.78rem;color:#9ca3af;
+    .actions{padding:1.1rem 2rem 1.6rem;border-top:1px solid var(--rule);display:flex;flex-wrap:wrap;gap:.6rem;align-items:center}
+    .btn{
+      display:inline-block;padding:.6rem 1.1rem;border-radius:8px;border:0;
+      background:var(--purple);color:#fff;font-size:.9rem;font-weight:600;
+      font-family:inherit;cursor:pointer;text-decoration:none;
     }
-    .countdown span{color:#A64468;font-weight:700}
+    .btn:focus-visible{outline:3px solid var(--navy);outline-offset:2px}
+    .btn-quiet{background:transparent;color:var(--muted);font-weight:500;padding:.6rem .4rem}
+    .btn-quiet:hover{color:var(--purple)}
+    @media (prefers-color-scheme: dark){ .btn{color:#0e1621} }
 
-    /* ── Footer links ─────────────────────────────────────────── */
-    .footer{
-      padding:.9rem 2rem 1.5rem;
-      border-top:1px solid #f3f4f6;
-      font-size:.75rem;color:#9ca3af;
-    }
-    .footer a{color:#A64468;text-decoration:none;font-weight:600}
-    .footer a:hover{text-decoration:underline}
+    .status{font-size:.8rem;color:var(--muted);margin-left:auto}
+    @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
   </style>
 </head>
 <body>
 
 <div class="card">
-  <div class="accent-bar"></div>
+  <div class="accent"></div>
 
   <div class="body">
-    <!-- Spinning mark -->
-    <div class="mark-wrap">
-      <div class="mark-ring-outer"></div>
-      <div class="mark-ring"></div>
-      <div class="mark-inner">
-        <span class="mark-letters">NU</span>
-      </div>
-    </div>
+    <div class="mark"><span>N<i>U</i></span></div>
 
-    <!-- Status badge -->
-    <div class="badge">
-      <span class="badge-dot"></span>
-      Updating now
-    </div>
+    <div class="badge"><span class="dot"></span> No connection</div>
 
-    <!-- Heading + message -->
-    <h1>We'll be right back</h1>
+    <h1>You&rsquo;re offline</h1>
     <p>
-      Nursing Uganda is being updated with new content and improvements.
-      This takes only a moment. The page will reload automatically.
+      This page hasn&rsquo;t been opened on this device yet, so there&rsquo;s no saved copy to show.
+      Anything you have already read &mdash; lessons, eBooks, the dictionary &mdash; still opens without a connection.
+    </p>
+    <p>
+      Nursing Uganda will reconnect on its own as soon as you have signal again.
     </p>
 
-    <!-- Progress bar draining to zero = 10s refresh -->
-    <div class="progress-wrap">
-      <div class="progress-fill" id="pf"></div>
+    <div class="saved" id="saved" hidden>
+      <h2>Available offline</h2>
+      <div class="links" id="savedLinks"></div>
     </div>
-    <p class="countdown">Refreshing in <span id="cd">10</span>s</p>
   </div>
 
-  <div class="footer">
-    <a href="/">Go to homepage</a>
-    &nbsp;&middot;&nbsp;
-    <a href="mailto:info@nursinguganda.com">Contact support</a>
+  <div class="actions">
+    <button class="btn" type="button" id="retry">Try again</button>
+    <a class="btn btn-quiet" href="/">Go to homepage</a>
+    <span class="status" id="status"></span>
   </div>
 </div>
 
 <script>
-  // Countdown + auto-refresh
-  var s = 10;
-  var el = document.getElementById("cd");
-  var t = setInterval(function(){
-    s--;
-    if(el) el.textContent = s;
-    if(s <= 0){ clearInterval(t); location.reload(true); }
-  }, 1000);
+  (function () {
+    var statusEl = document.getElementById("status");
+    var retry = document.getElementById("retry");
+
+    function setStatus(text) { if (statusEl) statusEl.textContent = text; }
+
+    retry.addEventListener("click", function () {
+      setStatus("Checking…");
+      location.reload();
+    });
+
+    // Reload automatically the moment the connection comes back, rather than
+    // polling on a countdown the way the old "Updating" page did.
+    window.addEventListener("online", function () {
+      setStatus("Back online — reloading…");
+      location.reload();
+    });
+
+    if (navigator.onLine) {
+      setStatus("Connection looks active — try again");
+    }
+
+    // List pages this device has already cached, so an offline student can
+    // still reach what they have read.
+    if ("caches" in window) {
+      caches.keys().then(function (keys) {
+        var pageCaches = keys.filter(function (k) { return k.indexOf("nu-pages-") === 0; });
+        return Promise.all(pageCaches.map(function (k) {
+          return caches.open(k).then(function (c) { return c.keys(); });
+        }));
+      }).then(function (groups) {
+        var urls = [];
+        groups.forEach(function (reqs) {
+          reqs.forEach(function (r) {
+            try {
+              var u = new URL(r.url);
+              if (u.origin === location.origin && urls.indexOf(u.pathname) === -1 && u.pathname !== "/_offline.html") {
+                urls.push(u.pathname);
+              }
+            } catch (e) {}
+          });
+        });
+        if (!urls.length) return;
+
+        var wrap = document.getElementById("saved");
+        var list = document.getElementById("savedLinks");
+        urls.slice(0, 8).forEach(function (path) {
+          var a = document.createElement("a");
+          a.href = path;
+          a.textContent = path === "/" ? "Home" : decodeURIComponent(path.replace(/^\//, "").replace(/\/$/, "")).replace(/[-/]/g, " ");
+          list.appendChild(a);
+        });
+        wrap.hidden = false;
+      }).catch(function () {});
+    }
+  })();
 </script>
 </body>
 </html>

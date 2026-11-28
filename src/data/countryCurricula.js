@@ -185,7 +185,6 @@ export const COUNTRY_CURRICULA = {
         title: "NMC CBT Part A: Clinical Numeracy & IV Calculations",
         provider: "UK NMC Academy",
         level: "Module 1 · 12 hrs",
-        rating: "4.9",
         topicsCount: 18,
         summary: "Zero-rounding-error drills for oral dosages, mg/kg weight-based dosing, IV drip rates (mL/hr), and fluid balance charts.",
         sampleTopicSlug: "dosage-calculations"
@@ -195,7 +194,6 @@ export const COUNTRY_CURRICULA = {
         title: "NMC CBT Part B: Future Nurse Theory & NMC Code",
         provider: "UK NMC Academy",
         level: "Module 2 · 24 hrs",
-        rating: "4.9",
         topicsCount: 120,
         summary: "100-question blueprint covering Safeguarding, Mental Capacity Act, NICE Sepsis, infection control, and BNF pharmacology.",
         sampleTopicSlug: "infection-prevention-and-control"
@@ -205,7 +203,6 @@ export const COUNTRY_CURRICULA = {
         title: "10-Station UK OSCE: APIE, NEWS2 & ANTT Skills",
         provider: "UK NMC Academy",
         level: "Module 3 · 32 hrs",
-        rating: "4.8",
         topicsCount: 64,
         summary: "Step-by-step APIE care planning, NEWS2 escalation, ANTT wound/catheter care, and structured SBAR communication.",
         sampleTopicSlug: "taking-vital-signs-or-observations"
@@ -289,7 +286,6 @@ export const COUNTRY_CURRICULA = {
         title: "Next-Gen NCLEX (NGN): 6-Step Clinical Judgment Mastery",
         provider: "USA NCLEX Academy",
         level: "Module 1 · 22 hrs",
-        rating: "4.9",
         topicsCount: 95,
         summary: "Master Recognize Cues, Analyze Cues, Prioritize Hypotheses, Generate Solutions, Take Action, and Evaluate Outcomes.",
         sampleTopicSlug: "nursing-process"
@@ -299,7 +295,6 @@ export const COUNTRY_CURRICULA = {
         title: "US Pharmacology & Conventional Lab Values (mg/dL, mEq/L)",
         provider: "USA NCLEX Academy",
         level: "Module 2 · 28 hrs",
-        rating: "4.9",
         topicsCount: 160,
         summary: "High-alert US generic names (Acetaminophen, Epinephrine, Albuterol), therapeutic drug ranges, and conventional lab drills.",
         sampleTopicSlug: "instilling-medication"
@@ -309,7 +304,6 @@ export const COUNTRY_CURRICULA = {
         title: "NCLEX Prioritization, Delegation (RN/LPN/UAP) & Safety",
         provider: "USA NCLEX Academy",
         level: "Module 3 · 34 hrs",
-        rating: "4.8",
         topicsCount: 110,
         summary: "Master ABCs, Maslow, acute-vs-chronic triage, airborne/droplet/contact isolation, and State Board scope of practice.",
         sampleTopicSlug: "first-aid"
@@ -393,7 +387,6 @@ export const COUNTRY_CURRICULA = {
         title: "NNAS Advisory Report & Provincial College Pathways",
         provider: "Canada Nursing Academy",
         level: "Module 1 · 14 hrs",
-        rating: "4.9",
         topicsCount: 28,
         summary: "Navigate NNAS Main vs Expedited pathways, CNO Ontario jurisprudence, BCCNM BC, and CRNA Alberta requirements.",
         sampleTopicSlug: "ethics-in-research"
@@ -403,7 +396,6 @@ export const COUNTRY_CURRICULA = {
         title: "Canadian NCLEX-RN & REx-PN Clinical Decision Mastery",
         provider: "Canada Nursing Academy",
         level: "Module 2 · 36 hrs",
-        rating: "4.9",
         topicsCount: 150,
         summary: "Dual-track prep for RN (NCLEX-RN) and RPN/LPN (REx-PN 90–150 items) using Canadian SI laboratory standards.",
         sampleTopicSlug: "fluid-and-electrolyte-imbalance"
@@ -413,7 +405,6 @@ export const COUNTRY_CURRICULA = {
         title: "Canadian Healthcare Ethics, Cultural Safety & Medication Safety",
         provider: "Canada Nursing Academy",
         level: "Module 3 · 22 hrs",
-        rating: "4.8",
         topicsCount: 75,
         summary: "Trauma-informed care, Indigenous cultural safety, interprofessional SBAR, and Health Canada drug standards.",
         sampleTopicSlug: "communication-in-palliative-care"
@@ -487,7 +478,6 @@ export const COUNTRY_CURRICULA = {
         title: "Ahpra OBA Stage 1: NCLEX-RN Cognitive Exam Prep",
         provider: "Australia NMBA Academy",
         level: "Module 1 · 32 hrs",
-        rating: "4.9",
         topicsCount: 140,
         summary: "Targeted NCLEX-RN cognitive mastery bridged to Australian SI units and clinical reasoning.",
         sampleTopicSlug: "nursing-process"
@@ -497,7 +487,6 @@ export const COUNTRY_CURRICULA = {
         title: "Ahpra OBA Stage 2: 10-Station Australian OSCE Mastery",
         provider: "Australia NMBA Academy",
         level: "Module 2 · 26 hrs",
-        rating: "4.9",
         topicsCount: 68,
         summary: "Behavioral stations, 3-identifier checks, 5 Moments of Hand Hygiene, NSQHS safety, and PBS medication charts.",
         sampleTopicSlug: "taking-vital-signs-or-observations"
@@ -508,7 +497,6 @@ export const COUNTRY_CURRICULA = {
         title: "NMBA 7 RN Standards, Cultural Safety & Australian Drugs",
         provider: "Australia NMBA Academy",
         level: "Module 3 · 12 hrs",
-        rating: "4.8",
         topicsCount: 45,
         summary: "Master Australian Approved Names (Paracetamol, Adrenaline, Lignocaine) and NMBA professional accountability.",
         sampleTopicSlug: "instilling-medication"
@@ -582,7 +570,6 @@ export const COUNTRY_CURRICULA = {
         title: "NCK Medical-Surgical, Critical Care & Pharmacology",
         provider: "Kenya NCK Academy",
         level: "Module 1 · 24 hrs",
-        rating: "4.9",
         topicsCount: 140,
         summary: "High-yield Kenyan ward priorities: shock, DKA, hypertension, sepsis, perioperative care & KEML drug safety.",
         sampleTopicSlug: "surgical-shock"
@@ -592,7 +579,6 @@ export const COUNTRY_CURRICULA = {
         title: "NCK Reproductive Health, Partograph & Maternal-Newborn Care",
         provider: "Kenya NCK Academy",
         level: "Module 2 · 22 hrs",
-        rating: "4.9",
         topicsCount: 95,
         summary: "Antenatal screening, AMTSL, PPH, eclampsia (MgSO4 Pritchard), and newborn resuscitation.",
         sampleTopicSlug: "certificate-in-midwifery-midwifery-i-and-pharmacology-i-1-8-labour"
@@ -602,7 +588,6 @@ export const COUNTRY_CURRICULA = {
         title: "Community Health, KEPI Immunization & IMCI",
         provider: "Kenya NCK Academy",
         level: "Module 3 · 18 hrs",
-        rating: "4.8",
         topicsCount: 80,
         summary: "Kenya immunization schedule, cold chain, IMCI danger signs, TB/HIV, and primary healthcare management.",
         sampleTopicSlug: "infection-prevention-and-control"
@@ -676,7 +661,6 @@ export const COUNTRY_CURRICULA = {
         title: "UHPAB (UNMEB) Certificate & Diploma Nursing Core",
         provider: "Nursing Uganda",
         level: "All Years · 40 hrs",
-        rating: "4.9",
         topicsCount: 320,
         summary: "Complete Ugandan nursing & midwifery syllabi aligned with UCG 2023 and 109 past UNMEB papers.",
         sampleTopicSlug: "dosage-calculations"
@@ -686,7 +670,6 @@ export const COUNTRY_CURRICULA = {
         title: "Uganda Midwifery, Maternal & Newborn Health",
         provider: "Nursing Uganda",
         level: "Midwifery Track · 24 hrs",
-        rating: "4.9",
         topicsCount: 124,
         summary: "Partograph, PPH, pre-eclampsia, UNEPI immunization, and neonatal resuscitation protocols.",
         sampleTopicSlug: "certificate-in-midwifery-midwifery-i-and-pharmacology-i-1-8-labour"
@@ -696,7 +679,6 @@ export const COUNTRY_CURRICULA = {
         title: "Uganda Practicals, OSCE & Ward Procedures",
         provider: "Nursing Uganda",
         level: "Clinical Track · 16 hrs",
-        rating: "4.8",
         topicsCount: 65,
         summary: "Step-by-step ward trays, aseptic technique, vital signs, and UHPAB viva preparation.",
         sampleTopicSlug: "taking-vital-signs-or-observations"
@@ -760,7 +742,6 @@ export const COUNTRY_CURRICULA = {
         title: "TNMC National Licensing Exam Core (Med-Surg & Pharm)",
         provider: "Tanzania TNMC Academy",
         level: "Module 1 · 24 hrs",
-        rating: "4.9",
         topicsCount: 120,
         summary: "Core medical-surgical, emergency resuscitation, and Tanzania Standard Treatment Guidelines pharmacology.",
         sampleTopicSlug: "surgical-shock"
@@ -770,7 +751,6 @@ export const COUNTRY_CURRICULA = {
         title: "Tanzania Reproductive, Maternal & Child Health",
         provider: "Tanzania TNMC Academy",
         level: "Module 2 · 20 hrs",
-        rating: "4.8",
         topicsCount: 90,
         summary: "Focused antenatal care, partograph, BEmONC/CEmONC emergencies, and immunization.",
         sampleTopicSlug: "certificate-in-midwifery-midwifery-i-and-pharmacology-i-1-8-labour"
@@ -823,7 +803,6 @@ export const COUNTRY_CURRICULA = {
         title: "DHA / DOH / SCFHS Prometric Clinical Nursing Mastery",
         provider: "Gulf Prometric Academy",
         level: "Module 1 · 32 hrs",
-        rating: "4.9",
         topicsCount: 150,
         summary: "High-yield ICU, Med-Surg, Maternity, Pediatrics, and Infection Control MCQs for Gulf Prometric exams.",
         sampleTopicSlug: "surgical-shock"
@@ -833,7 +812,6 @@ export const COUNTRY_CURRICULA = {
         title: "DataFlow PSV, Sheryan/TAMM & High-Alert Pharmacology",
         provider: "Gulf Prometric Academy",
         level: "Module 2 · 18 hrs",
-        rating: "4.8",
         topicsCount: 80,
         summary: "Step-by-step DataFlow PSV checklist, Good Standing rules, and IV/electrolyte safety.",
         sampleTopicSlug: "fluid-and-electrolyte-imbalance"

@@ -41,6 +41,7 @@ function copyDirSafe(srcRel, destRel = srcRel, ignoreNames = new Set()) {
 // 1. Lightweight datasets (skip 27 MB curriculum.json and 3.5 MB topic-image-matches.json)
 const dataFiles = [
   "catalog.json",
+  "ebooks-featured.json",
   "canonical-lessons-index.json",
   "clinical-tools.json",
   "country-study-hubs.json",

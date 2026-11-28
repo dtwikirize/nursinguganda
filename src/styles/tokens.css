@@ -9,6 +9,10 @@
   /* Udemy-Inspired Visual System — Nursing Uganda */
   --nu-purple: #a137f2;
   --nu-purple-hover: #8710d8;
+  /* Purple used as TEXT on light grounds. #a137f2 only reaches 4.41:1 on the
+     lavender surfaces it is usually paired with; this clears AA at 6.18:1.
+     Keep --nu-purple for fills, where white-on-purple is what matters. */
+  --nu-purple-text: #8710d8;
   --nu-purple-soft: #f7edff;
   --nu-purple-border: #d8b4fe;
 
@@ -23,7 +27,7 @@
   --nu-border: #d1d7dc;
   --nu-border-light: #e8ecef;
 
-  --nu-star: #b4690e;
+  --nu-star: #9a5a0c;
   --nu-star-fill: #e59819;
   --nu-bestseller-bg: #eceb98;
   --nu-bestseller-ink: #3d3c0a;

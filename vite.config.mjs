@@ -43,8 +43,16 @@ export default defineConfig({
     assetsDir: "assets/app",
     sourcemap: false
   },
+  // Without these the dep optimizer crawls the 433 MB assets/ tree on a cold
+  // start and the dev server dies with EMFILE: too many open files.
+  optimizeDeps: {
+    entries: ["index.html", "src/main.jsx"]
+  },
   server: {
     port: 5173,
-    open: false
+    open: false,
+    watch: {
+      ignored: ["**/assets/**", "**/dist/**", "**/Nursing-ug Web_app/**"]
+    }
   }
 });

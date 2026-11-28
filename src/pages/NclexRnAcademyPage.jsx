@@ -27,7 +27,6 @@ const NCLEX_COURSE_ITEM = {
   code: "NCLEX-RN 16W",
   programmeLabel: "USA & International NCLEX-RN Academy",
   priceUsd: 99,
-  compareAtUsd: 249,
   thumbnail: "/assets/images/udemy/cat-medsurg.webp",
   isFree: false
 };
@@ -161,7 +160,6 @@ export default function NclexRnAcademyPage() {
               </div>
               <div style={{ display: "flex", alignItems: "baseline", gap: 10, margin: "8px 0 14px" }}>
                 <strong style={{ fontSize: "2.3rem", color: "#ffffff" }}>$99</strong>
-                <span style={{ textDecoration: "line-through", color: "#94a3b8", fontSize: "1rem" }}>$249</span>
                 <span style={{ fontSize: "0.76rem", background: "#1d4ed8", color: "#fff", padding: "3px 8px", borderRadius: 999, fontWeight: 700 }}>
                   60% OFF
                 </span>

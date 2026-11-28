@@ -8,7 +8,7 @@
     "build": "vite build && node scripts/finalize_hostinger_dist.js",
     "preview": "vite preview",
     "start": "node server.js",
-    "build:data": "node scripts/split_curriculum.js && node scripts/extract_tools_data.js && node scripts/generate_ebooks.js",
+    "build:data": "node scripts/split_curriculum.js && node scripts/extract_tools_data.js && node scripts/generate_ebooks.js && node scripts/sync_site_counts.js",
     "build:pages": "node scripts/generate_seo_pages.js"
   },
   "engines": {

@@ -17,7 +17,7 @@ const LOGIN_SLIDES = [
     desc: "Timed Section A MCQs, Section B & C essay scenarios with direct PDF export."
   },
   {
-    tag: "50% Student Cut Live",
+    tag: "87 Free Reference eBooks",
     title: "Units From $2.49 or Full All-Access",
     desc: "Sync progress across devices and download QR-verified study certificates."
   }
@@ -410,7 +410,7 @@ export default function LoginPage() {
           </div>
 
           <Link to="/courses" className="nu-auth-bottom-pill">
-            Browse 83 Nursing Courses
+            Browse {COURSE_COUNT} Nursing Courses
           </Link>
         </section>
 

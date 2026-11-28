@@ -30,6 +30,11 @@ function readJsonSafe(filePath, fallback = null) {
 const catalogData = readJsonSafe(path.join(DATA_DIR, "catalog.json"), { courses: [] });
 const ebooksData = readJsonSafe(path.join(DATA_DIR, "ebooks.json"), { ebooks: [] });
 const globalNursingData = readJsonSafe(path.join(DATA_DIR, "global-nursing.json"), { countries: [] });
+
+// Advertised counts are derived from the data, never hand-maintained. A stale
+// hardcoded "83" previously shipped in the /courses <title> and <h1>.
+const COURSE_COUNT = (catalogData?.courses || []).length;
+
 const validCourseSlugs = new Set([
   ...(catalogData?.courses || []).map((c) => String(c.slug || "").toLowerCase()),
   ...(catalogData?.fullCourses || []).map((c) => String(c.slug || "").toLowerCase())
@@ -55,11 +60,11 @@ app.use((req, res, next) => {
     "Content-Security-Policy",
     [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' https://accounts.google.com https://apis.google.com https://www.paypal.com https://www.sandbox.paypal.com https://pagead2.googlesyndication.com https://analytics.onebigfile.com",
+      "script-src 'self' 'unsafe-inline' https://accounts.google.com https://apis.google.com https://www.paypal.com https://www.sandbox.paypal.com https://pagead2.googlesyndication.com",
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://accounts.google.com",
       "font-src 'self' data: https://fonts.gstatic.com",
       "img-src 'self' data: blob: https://*.googleusercontent.com https://www.paypalobjects.com https://*.paypal.com https://pagead2.googlesyndication.com",
-      "connect-src 'self' https://accounts.google.com https://oauth2.googleapis.com https://www.paypal.com https://www.sandbox.paypal.com https://api-m.paypal.com https://api-m.sandbox.paypal.com https://analytics.onebigfile.com",
+      "connect-src 'self' https://accounts.google.com https://oauth2.googleapis.com https://www.paypal.com https://www.sandbox.paypal.com https://api-m.paypal.com https://api-m.sandbox.paypal.com",
       "frame-src 'self' https://accounts.google.com https://www.paypal.com https://www.sandbox.paypal.com https://googleads.g.doubleclick.net",
       "object-src 'none'",
       "base-uri 'self'",
@@ -214,12 +219,12 @@ function buildRouteMarkdown(reqPath) {
       .map((c) => `- [${c.title}](https://nursinguganda.com/course/${c.slug}) (${c.programmeLabel})`)
       .join("\n");
     return [
-      "# Nursing Uganda | Clinical Mastery That Gets You UNMEB-Ready",
+      "# Nursing Uganda | NCLEX-RN & UNMEB Clinical Licensing Mastery",
       "",
       "> Structured Certificate, Diploma & BScN nursing courses, free referenced study eBooks, UNMEB timed mock & essay past papers, A-Z medical dictionary (1,079+ terms), instrument atlas, and clinical tools aligned with Uganda Ministry of Health & WHO guidelines.",
       "",
       "## Core Study Sections",
-      "- [Explore All 83 Nursing Courses](https://nursinguganda.com/courses)",
+      `- [Explore All ${COURSE_COUNT} Nursing Courses](https://nursinguganda.com/courses)`,
       "- [Nurse Topics & Clinical Study Notes (779 Topics)](https://nursinguganda.com/topics)",
       "- [UNMEB Timed Mock & Essay Past Papers](https://nursinguganda.com/mock-exams)",
       "- [Free Referenced Study eBooks](https://nursinguganda.com/ebooks)",
@@ -308,9 +313,9 @@ app.get(["/index.md", "/courses.md", "/about.md", "/contact.md", "/terms.md", "/
 
 const SEO_ROUTE_META = {
   "/courses": {
-    title: "All 83 Nursing & Midwifery Courses (Certificate, Diploma & BScN) | Nursing Uganda",
-    description: "Browse 83 structured Ugandan nursing and midwifery course units covering Anatomy, Pharmacology, Medical-Surgical Nursing, Midwifery, Paediatrics, and Community Health.",
-    h1: "All 83 Nursing & Midwifery Courses"
+    title: `All ${COURSE_COUNT} Nursing & Midwifery Courses (Certificate, Diploma & BScN) | Nursing Uganda`,
+    description: `Browse ${COURSE_COUNT} structured Ugandan nursing and midwifery course units covering Anatomy, Pharmacology, Medical-Surgical Nursing, Midwifery, Paediatrics, and Community Health.`,
+    h1: `All ${COURSE_COUNT} Nursing & Midwifery Courses`
   },
   "/topics": {
     title: "779 Nurse Topics & Clinical Study Notes (Anatomy to Midwifery) | Nursing Uganda",

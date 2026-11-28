@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { ArrowLeft, BookOpen, ChevronLeft, ChevronRight, Download, List, ShieldCheck } from "lucide-react";
+import { ArrowLeft, BookOpen, Check, ChevronLeft, ChevronRight, CloudDownload, Download, List, ShieldCheck, Trash2 } from "lucide-react";
 import AdSlot from "../components/AdSlot";
 import EbookCover from "../components/EbookCover";
 import MedicalImageFrame from "../components/MedicalImageFrame";
@@ -11,6 +11,13 @@ import TopicVisuals, { LessonSections } from "../components/TopicVisuals";
 import { recordEbookDownload } from "../lib/api";
 import { EBOOK_PRESET_PALETTES } from "../utils/ebookThemes";
 import { downloadEbookPdf } from "../utils/pdfExport";
+import {
+  ebookOfflineUrls,
+  isEbookSavedOffline,
+  offlineSupported,
+  removeEbookOffline,
+  saveEbookOffline
+} from "../utils/offlineLibrary";
 
 export default function EbookReaderPage() {
   const { slug } = useParams();
@@ -21,6 +28,8 @@ export default function EbookReaderPage() {
   const [email, setEmail] = useState("");
   const [themePreset, setThemePreset] = useState("");
   const [downloadedMsg, setDownloadedMsg] = useState("");
+  const [offlineState, setOfflineState] = useState("idle"); // idle | saving | saved | error
+  const [offlineMsg, setOfflineMsg] = useState("");
 
   useEffect(() => {
     let cancelled = false;
@@ -87,6 +96,45 @@ export default function EbookReaderPage() {
       cancelled = true;
     };
   }, [slug]);
+
+  // Reflect whether this book is already in the offline cache.
+  useEffect(() => {
+    if (!ebook?.slug || !offlineSupported()) return;
+    let cancelled = false;
+    isEbookSavedOffline(ebookOfflineUrls(ebook)).then((res) => {
+      if (!cancelled && res?.saved) setOfflineState("saved");
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [ebook]);
+
+  const handleSaveOffline = async () => {
+    if (!ebook) return;
+    const urls = ebookOfflineUrls(ebook);
+
+    if (offlineState === "saved") {
+      await removeEbookOffline(urls);
+      setOfflineState("idle");
+      setOfflineMsg("Removed from offline library.");
+      return;
+    }
+
+    setOfflineState("saving");
+    setOfflineMsg(`Saving ${urls.length} files for offline reading...`);
+    const res = await saveEbookOffline(urls);
+
+    if (res?.ok) {
+      setOfflineState("saved");
+      setOfflineMsg("Saved. This book now opens without a connection.");
+    } else if (res?.saved > 0) {
+      setOfflineState("saved");
+      setOfflineMsg(`Saved ${res.saved} of ${urls.length} files. Some images need a better connection.`);
+    } else {
+      setOfflineState("error");
+      setOfflineMsg("Could not save. Check your connection and try again.");
+    }
+  };
 
   const handleDownloadPdf = async (e) => {
     if (e) e.preventDefault();
@@ -167,6 +215,42 @@ export default function EbookReaderPage() {
               </form>
               {downloadedMsg && (
                 <small style={{ display: "block", marginTop: 8, color: "var(--nu-success)" }}>{downloadedMsg}</small>
+              )}
+
+              {offlineSupported() && (
+                <>
+                  <button
+                    type="button"
+                    onClick={handleSaveOffline}
+                    disabled={offlineState === "saving"}
+                    className={`nu-btn ${offlineState === "saved" ? "nu-btn-outline" : "nu-btn-purple-outline"}`}
+                    style={{ width: "100%", fontSize: "0.82rem" }}
+                  >
+                    {offlineState === "saved" ? (
+                      <>
+                        <Check size={15} /> Saved for offline
+                        <Trash2 size={14} style={{ marginLeft: 6, opacity: 0.7 }} />
+                      </>
+                    ) : offlineState === "saving" ? (
+                      <>Saving for offline...</>
+                    ) : (
+                      <>
+                        <CloudDownload size={15} /> Save for offline reading
+                      </>
+                    )}
+                  </button>
+                  {offlineMsg && (
+                    <small
+                      style={{
+                        display: "block",
+                        fontSize: "0.74rem",
+                        color: offlineState === "error" ? "var(--nu-danger)" : "var(--nu-ink-muted)"
+                      }}
+                    >
+                      {offlineMsg}
+                    </small>
+                  )}
+                </>
               )}
               {ebook.relatedCourseSlug && (
                 <Link
@@ -273,7 +357,7 @@ export default function EbookReaderPage() {
                               }
                             }}
                           >
-                            <div style={{ fontSize: "0.7rem", fontWeight: 700, color: "var(--nu-purple)", textTransform: "uppercase", letterSpacing: "0.04em" }}>
+                            <div style={{ fontSize: "0.7rem", fontWeight: 700, color: "var(--nu-purple-text)", textTransform: "uppercase", letterSpacing: "0.04em" }}>
                               Chapter {ch.chapterNumber}{ch.pageRange ? ` · ${ch.pageRange}` : ""}
                             </div>
                             <div style={{ fontSize: "0.83rem", fontWeight: isActive ? 700 : 600, lineHeight: 1.35, marginTop: 2 }}>
@@ -318,7 +402,7 @@ export default function EbookReaderPage() {
                           borderTop: "1px solid var(--nu-border-light)",
                           fontSize: "0.8rem",
                           fontWeight: 700,
-                          color: "var(--nu-purple)"
+                          color: "var(--nu-purple-text)"
                         }}
                       >
                         Master References ({(ebook.references || []).length})
@@ -330,7 +414,7 @@ export default function EbookReaderPage() {
                 {/* Main Book Content Column */}
                 <div id="ebook-reader-top" style={{ minWidth: 0 }}>
                   <div style={{ borderBottom: "2px solid var(--nu-ink)", paddingBottom: 16, marginBottom: 22 }}>
-                    <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "var(--nu-purple)", textTransform: "uppercase", letterSpacing: "0.06em" }}>
+                    <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "var(--nu-purple-text)", textTransform: "uppercase", letterSpacing: "0.06em" }}>
                       {ebook.category || "Nursing Study Textbook"}
                     </div>
                     <h2 style={{ fontFamily: "var(--nu-font-serif)", fontSize: "1.85rem", margin: "6px 0" }}>{ebook.title}</h2>
@@ -361,7 +445,7 @@ export default function EbookReaderPage() {
                   {/* Chapters | Clean Narrative Content (No auto-injected tables for full textbooks) */}
                   {visibleChapters.map((ch) => (
                     <article key={ch.slug || ch.chapterNumber} id={`ch-${ch.chapterNumber}`} style={{ marginBottom: 40 }}>
-                      <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 10, fontSize: "0.78rem", fontWeight: 700, color: "var(--nu-purple)", textTransform: "uppercase" }}>
+                      <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 10, fontSize: "0.78rem", fontWeight: 700, color: "var(--nu-purple-text)", textTransform: "uppercase" }}>
                         <span>Chapter {ch.chapterNumber} of {allChapters.length}</span>
                         {ch.pageRange && <span style={{ color: "var(--nu-ink-muted)" }}>· {ch.pageRange}</span>}
                         {ch.wordCount > 0 && <span style={{ color: "var(--nu-ink-muted)" }}>· ~{ch.wordCount.toLocaleString()} words</span>}

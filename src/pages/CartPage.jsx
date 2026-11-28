@@ -11,7 +11,7 @@ import {
   Trash2
 } from "lucide-react";
 import { formatUgxApprox, formatUsd, useApp } from "../context/AppContext";
-import { UNMEB_PASS_ITEM, getAllAccessCartItem } from "../utils/offers";
+import { UNMEB_PASS_ITEM, getAllAccessCartItem, getBundleSavingPercent } from "../utils/offers";
 
 export default function CartPage() {
   const { catalog, cart, cartTotalUsd, removeFromCart, clearCart, addToCart, enrollments } = useApp();
@@ -22,8 +22,16 @@ export default function CartPage() {
     cart.some((i) => i.slug === "all-access-pass") ||
     enrollments.includes("all-access-pass");
 
+  // Only bundles carry a real "if bought separately" total, so only bundles
+  // can show a saving. Single units have no former price to compare against.
   const originalTotalUsd = cart.reduce(
-    (sum, item) => sum + Number(item.compareAtUsd && item.compareAtUsd > item.priceUsd ? item.compareAtUsd : item.priceUsd || 0),
+    (sum, item) =>
+      sum +
+      Number(
+        item.separatelyUsd && item.separatelyUsd > item.priceUsd
+          ? item.separatelyUsd
+          : item.priceUsd || 0
+      ),
     0
   );
   const savingsUsd = Math.max(0, Number((originalTotalUsd - cartTotalUsd).toFixed(2)));
@@ -101,10 +109,8 @@ export default function CartPage() {
             <div style={{ display: "grid", gap: 14 }}>
               {cart.map((item) => {
                 const detailHref = item.type === "bundle" ? "/mock-exams" : `/course/${item.slug}`;
-                const hasDiscount = Number(item.compareAtUsd || 0) > Number(item.priceUsd || 0);
-                const pctOff = hasDiscount
-                  ? Math.round(((item.compareAtUsd - item.priceUsd) / item.compareAtUsd) * 100)
-                  : 0;
+                const hasDiscount = Number(item.separatelyUsd || 0) > Number(item.priceUsd || 0);
+                const pctOff = hasDiscount ? getBundleSavingPercent(item.priceUsd, item.separatelyUsd) : 0;
                 const thumbSrc = item.thumbnail
                   ? item.thumbnail.startsWith("/")
                     ? item.thumbnail
@@ -165,12 +171,12 @@ export default function CartPage() {
                     </div>
 
                     <div style={{ textAlign: "right", minWidth: 112 }}>
-                      <strong style={{ display: "block", fontSize: "1.14rem", color: "var(--nu-purple)" }}>
+                      <strong style={{ display: "block", fontSize: "1.14rem", color: "var(--nu-purple-text)" }}>
                         {formatUsd(item.priceUsd)}
                       </strong>
                       {hasDiscount && (
-                        <small style={{ display: "block", textDecoration: "line-through", color: "#94a3b8" }}>
-                          {formatUsd(item.compareAtUsd)}
+                        <small style={{ display: "block", color: "var(--nu-ink-muted)" }}>
+                          {formatUsd(item.separatelyUsd)} separately
                         </small>
                       )}
                       <small style={{ display: "block", fontSize: "0.74rem", color: "var(--nu-ink-muted)" }}>
@@ -225,7 +231,9 @@ export default function CartPage() {
                     <small style={{ color: "#cbd5e1" }}>
                       Unlock every paid unit across all 6 programmes + 109+ UNMEB past papers for{" "}
                       <strong style={{ color: "#ffffff" }}>{formatUsd(allAccessItem.priceUsd)}</strong>{" "}
-                      <s style={{ color: "#94a3b8" }}>${allAccessItem.compareAtUsd.toFixed(2)}</s>
+                      <span style={{ color: "#cbd5e1" }}>
+                        — ${allAccessItem.separatelyUsd.toFixed(2)} if bought separately
+                      </span>
                     </small>
                   </div>
                   <button

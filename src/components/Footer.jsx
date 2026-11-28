@@ -82,7 +82,7 @@ export default function Footer() {
               <p style={{ color: "#cbd5e1", fontSize: "0.86rem", lineHeight: 1.55, margin: "0 0 14px", maxWidth: 320 }}>
               {countryCtx
                 ? `${countryCtx.meta.academy} | ${countryCtx.meta.examBadge}. Localized clinical study notes, ${countryCtx.meta.unitLabel}, and full curriculum prep.`
-                : "Independent nursing and midwifery study platform aligned with Uganda Clinical Guidelines 2023, WHO protocols, UNMEB, and international licensure pathways."}
+                : "Independent nursing and midwifery study platform aligned with Uganda Clinical Guidelines 2023, WHO protocols, UNMEB, and the NCLEX-RN, NMC and other international licensure pathways."}
             </p>
             <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "#e2e8f0", marginBottom: 6 }}>
               {countryCtx ? `Weekly ${countryCtx.meta.shortName} Exam & Clinical Digest` : "Weekly UNMEB & Clinical Revision Digest"}

@@ -146,9 +146,13 @@ export default function App() {
     <>
       <ScrollToTop />
       <RouteSeo />
+      <a className="nu-skip-link" href="#nu-main">
+        Skip to main content
+      </a>
       {!hideChrome && <Navbar />}
       <ContextOfferPopup />
       <AppErrorBoundary>
+        <div id="nu-main" tabIndex={-1}>
         <Suspense fallback={<PageLoader />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -216,6 +220,7 @@ export default function App() {
           />
         </Routes>
         </Suspense>
+        </div>
       </AppErrorBoundary>
       {!hideChrome && <Footer />}
     </>

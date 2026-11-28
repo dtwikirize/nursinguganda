@@ -528,7 +528,7 @@ export default function MyLearningPage() {
                   <div style={{ display: "grid", gap: 10 }}>
                     {noteEntries.map(([key, text]) => (
                       <div key={key} style={{ padding: 12, background: "var(--nu-bg-subtle)", border: "1px solid var(--nu-border-light)", borderRadius: 4 }}>
-                        <strong style={{ fontSize: "0.82rem", color: "var(--nu-purple)" }}>{key}</strong>
+                        <strong style={{ fontSize: "0.82rem", color: "var(--nu-purple-text)" }}>{key}</strong>
                         <p style={{ margin: "4px 0 0", fontSize: "0.9rem" }}>{text}</p>
                       </div>
                     ))}

@@ -99,7 +99,7 @@ export default function CoursesCatalogPage() {
         <div className="nu-section-head">
           <h1>Nursing &amp; Midwifery Course Catalog</h1>
           <p>
-            {courses.length} structured course units across {programmes.length} Ugandan nursing &amp; midwifery programmes | individual paid courses now <strong>50% OFF</strong>.
+            {courses.length} structured course units across {programmes.length} Ugandan nursing &amp; midwifery programmes | individual paid units from <strong>$2.49</strong>.
           </p>
         </div>
 
@@ -112,7 +112,7 @@ export default function CoursesCatalogPage() {
               <h3>Get Every Course ({courses.length} Units) + 109 UNMEB Past Papers</h3>
               <p>
                 Unlock all 6 programmes together for <strong>{formatUsd(allAccessItem.priceUsd)}</strong>{" "}
-                <s>${allAccessItem.compareAtUsd.toFixed(2)}</s> instead of buying units separately.
+                — ${allAccessItem.separatelyUsd.toFixed(2)} if bought separately.
               </p>
             </div>
             <div className="nu-allaccess-cta">
@@ -239,8 +239,7 @@ export default function CoursesCatalogPage() {
                           FULL PROGRAMME · {fc.unitCount} UNITS
                         </span>
                         <span style={{ fontWeight: 800, fontSize: "1.02rem", color: "#0f2942" }}>
-                          {formatUsd(fc.priceUsd)}{" "}
-                          <s style={{ fontSize: "0.78rem", color: "#64748b", fontWeight: 500 }}>${Number(fc.compareAtUsd || fc.priceUsd * 2).toFixed(2)}</s>
+                          {formatUsd(fc.priceUsd)}
                         </span>
                       </div>
                       <h3 style={{ margin: "0 0 6px", fontSize: "1rem", color: "#0f172a" }}>

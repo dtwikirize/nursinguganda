@@ -6,14 +6,16 @@ import {
   Baby,
   BookOpen,
   Brain,
+  Clock,
+  Eye,
   HeartPulse,
   Microscope,
   Pill,
   ShieldCheck,
-  Star,
   Stethoscope
 } from "lucide-react";
 import { formatUsd, useApp } from "../context/AppContext";
+import { courseFacts } from "../utils/courseFacts";
 
 const DESIGN_PALETTES = {
   "Anatomy & Physiology": { orb: "rgba(96, 165, 250, 0.72)", core: "#2563eb", Icon: HeartPulse },
@@ -33,11 +35,8 @@ export default function CourseCard({ course }) {
   const { isEnrolled } = useApp();
   const enrolled = isEnrolled(course.slug, course.isFree);
 
-  const badgeClass = course.isFree
-    ? "nu-badge-free"
-    : course.badge === "Bestseller"
-      ? "nu-badge-bestseller"
-      : "nu-badge-highyield";
+  const badgeClass = course.isFree ? "nu-badge-free" : "nu-badge-highyield";
+  const { studyHours, updatedLabel } = courseFacts(course);
 
   const theme = DESIGN_PALETTES[course.category] || { orb: "rgba(168, 85, 247, 0.76)", core: "#6d28d9", Icon: BookOpen };
   const IconComp = theme.Icon;
@@ -98,23 +97,25 @@ export default function CourseCard({ course }) {
           {course.programmeLabel} · {course.lessonCount} lessons
         </div>
 
-        <div className="nu-rating-row">
-          <span className="nu-rating-num">{Number(course.rating || 4.8).toFixed(1)}</span>
-          <span className="nu-stars" aria-label={`Rated ${course.rating} out of 5`}>
-            {[0, 1, 2, 3, 4].map((i) => (
-              <Star key={i} size={12} fill="#b4690e" stroke="#b4690e" />
-            ))}
-          </span>
-          <span className="nu-rating-count">({(course.reviewCount || 120).toLocaleString()})</span>
+        <div className="nu-card-facts">
+          {studyHours && (
+            <span className="nu-card-fact">
+              <Clock size={12} strokeWidth={2.2} aria-hidden="true" /> {studyHours}
+            </span>
+          )}
+          {course.freePreviewCount > 0 && (
+            <span className="nu-card-fact">
+              <Eye size={12} strokeWidth={2.2} aria-hidden="true" /> {course.freePreviewCount} free
+              {course.freePreviewCount === 1 ? " preview" : " previews"}
+            </span>
+          )}
+          {updatedLabel && <span className="nu-card-fact">Updated {updatedLabel}</span>}
         </div>
 
         <div className="nu-price-row">
           <span className="nu-price-now">
             {enrolled && !course.isFree ? "Enrolled" : formatUsd(course.priceUsd)}
           </span>
-          {!course.isFree && !enrolled && course.compareAtUsd > course.priceUsd && (
-            <span className="nu-price-was">${course.compareAtUsd.toFixed(2)}</span>
-          )}
         </div>
 
         <span className={`nu-badge ${badgeClass}`}>

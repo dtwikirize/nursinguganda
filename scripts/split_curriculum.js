@@ -130,17 +130,6 @@ function selectReferences(allRefs, haystack, limit = 4) {
   return picked;
 }
 
-function deterministicMetric(seedStr, min, max, decimals = 0) {
-  let h = 2166136261;
-  for (let i = 0; i < seedStr.length; i++) {
-    h ^= seedStr.charCodeAt(i);
-    h = (h * 16777619) >>> 0;
-  }
-  const ratio = (h % 10000) / 10000;
-  const val = min + ratio * (max - min);
-  return decimals > 0 ? Number(val.toFixed(decimals)) : Math.round(val);
-}
-
 function extractLessonSummary(lesson) {
   const sections = Array.isArray(lesson.sections) ? lesson.sections : [];
   let charCount = 0;
@@ -295,11 +284,19 @@ function main() {
 
           // Make Year 1 Semester 1 courses free lead magnets; others paid with UGX/USD pricing
           const isFoundationFree = yearKey === "year-1" && semKey === "semester-1";
+          // Price bands by how much material the unit actually contains, so the
+          // figure is defensible. This was previously a hash of the course slug,
+          // which meant no one had decided what any unit cost.
+          // Band thresholds sit on the lesson-count quintiles of the paid units.
           const priceChoices = [4.99, 6.99, 8.99, 9.99, 11.99];
-          const priceUsd = isFoundationFree
-            ? 0
-            : priceChoices[deterministicMetric(courseSlug, 0, priceChoices.length - 1)];
-          const compareAtUsd = priceUsd > 0 ? Number((priceUsd * 2.2).toFixed(2)) : 0;
+          const priceBand = (count) => {
+            if (count <= 8) return 0;
+            if (count <= 15) return 1;
+            if (count <= 23) return 2;
+            if (count <= 37) return 3;
+            return 4;
+          };
+          const priceUsd = isFoundationFree ? 0 : priceChoices[priceBand(lessonCount)];
           const totalMinutes = Object.values(unitLessons).reduce((acc, l) => acc + l.readMinutes, 0);
 
           const unitRefs = selectReferences(
@@ -312,14 +309,11 @@ function main() {
             .flatMap((g) => g.topics.slice(0, 2).map((t) => `Master clinical concepts and exam-ready principles of ${t.title}`))
             .slice(0, 6);
 
-          const rating = deterministicMetric(courseSlug + "r", 4.5, 4.95, 1);
-          const reviewCount = deterministicMetric(courseSlug + "rv", 42, 420);
-          const studentCount = deterministicMetric(courseSlug + "st", 280, 3400);
-          const badge = isFoundationFree
-            ? "Free Course"
-            : rating >= 4.8
-              ? "Bestseller"
-              : "UNMEB High-Yield";
+          // No rating / reviewCount / studentCount is generated. These were
+          // previously derived from a hash of the course slug and rendered to
+          // users as genuine social proof, which is a misleading commercial
+          // practice. Reinstate them only from a real reviews table.
+          const badge = isFoundationFree ? "Free Course" : "UNMEB High-Yield";
 
           const courseSummary = {
             slug: courseSlug,
@@ -338,10 +332,6 @@ function main() {
             totalMinutes,
             isFree: priceUsd === 0,
             priceUsd,
-            compareAtUsd,
-            rating,
-            reviewCount,
-            studentCount,
             badge,
             clinicalReviewer: "Nursing Uganda Editorial & Clinical Review Team",
             updatedAt: "2026-11",

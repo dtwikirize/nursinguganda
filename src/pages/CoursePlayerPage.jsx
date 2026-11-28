@@ -671,7 +671,7 @@ export default function CoursePlayerPage() {
                     </button>
                     {!user && (
                       <small style={{ color: "var(--nu-ink-muted)" }}>
-                        <Link to="/login" style={{ color: "var(--nu-purple)", fontWeight: 700 }}>Sign in</Link> to save session scores and receive email reports.
+                        <Link to="/login" style={{ color: "var(--nu-purple-text)", fontWeight: 700 }}>Sign in</Link> to save session scores and receive email reports.
                       </small>
                     )}
                   </div>

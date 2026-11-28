@@ -13,7 +13,6 @@ import {
   Layers,
   ShieldCheck,
   Sparkles,
-  Star,
   Stethoscope
 } from "lucide-react";
 import CourseCard from "../components/CourseCard";
@@ -27,9 +26,7 @@ const CLINICAL_SERIES_CARDS = [
   {
     title: "NextGen NCLEX-RN Mastery",
     coverTitle: "NCLEX-RN: NextGen Clinical Judgment",
-    rating: "4.9",
-    count: "1.4K",
-    type: "Study Plan",
+    fact: "16 units · 48 topics · 4 CAT exams",
     to: "/nclex-rn",
     orb: "rgba(168, 85, 247, 0.85)",
     core: "#6d28d9",
@@ -38,9 +35,7 @@ const CLINICAL_SERIES_CARDS = [
   {
     title: "Clinical Pharmacology & Safe Dosing",
     coverTitle: "Pharmacology & Safe Prescribing",
-    rating: "4.9",
-    count: "2.1K",
-    type: "Study Plan",
+    fact: "6 chapters · WHO & BNF referenced",
     to: "/ebooks/book-instant-clinical-pharmacology",
     orb: "rgba(139, 92, 246, 0.82)",
     core: "#4c1d95",
@@ -49,9 +44,7 @@ const CLINICAL_SERIES_CARDS = [
   {
     title: "Midwifery, Labour & Newborn Care",
     coverTitle: "Midwifery & Safe Delivery",
-    rating: "4.8",
-    count: "1.8K",
-    type: "Study Plan",
+    fact: "WHO partograph · MoH 2023 aligned",
     to: "/topics?cat=Midwifery+%26+Maternal+Health",
     orb: "rgba(192, 132, 252, 0.85)",
     core: "#7e22ce",
@@ -60,9 +53,7 @@ const CLINICAL_SERIES_CARDS = [
   {
     title: "Medical-Surgical Ward Practice",
     coverTitle: "Medical-Surgical Nursing",
-    rating: "4.9",
-    count: "1.6K",
-    type: "Study Plan",
+    fact: "Ward practice · UCG 2023 referenced",
     to: "/topics?cat=Medical-Surgical+Nursing",
     orb: "rgba(129, 140, 248, 0.82)",
     core: "#4338ca",
@@ -71,9 +62,7 @@ const CLINICAL_SERIES_CARDS = [
   {
     title: "UK NMC CBT & OSCE Track",
     coverTitle: "United Kingdom NMC Licensing",
-    rating: "4.9",
-    count: "980",
-    type: "Study Plan",
+    fact: "NMC CBT & OSCE · NEWS2 scoring",
     to: "/nursing-uk",
     orb: "rgba(167, 139, 250, 0.82)",
     core: "#5b21b6",
@@ -82,9 +71,7 @@ const CLINICAL_SERIES_CARDS = [
   {
     title: "Paediatrics, IMCI & Child Health",
     coverTitle: "Paediatrics & Child Health",
-    rating: "4.8",
-    count: "1.1K",
-    type: "Study Plan",
+    fact: "IMCI plans A/B/C · UNEPI schedule",
     to: "/topics?cat=Paediatrics+%26+Child+Health",
     orb: "rgba(168, 85, 247, 0.82)",
     core: "#6b21a8",
@@ -128,7 +115,9 @@ export default function HomePage() {
   };
 
   useEffect(() => {
-    fetch("/assets/data/ebooks.json")
+    // Slim 4-record slice built at build time. The full ebooks.json is 1.1 MB
+    // (165 KB compressed) and this section renders four cards from it.
+    fetch("/assets/data/ebooks-featured.json")
       .then((r) => (r.ok ? r.json() : { ebooks: [] }))
       .then((d) => setEbooks((d.ebooks || []).slice(0, 4)))
       .catch(() => {});
@@ -149,10 +138,13 @@ export default function HomePage() {
     [courses, activeProg, activeTab]
   );
 
+  // Ranked by actual depth of material, not by the enrolment figures that
+  // used to be generated at build time.
   const topCourses = useMemo(
     () =>
       [...courses]
-        .sort((a, b) => Number(b.studentCount || 0) - Number(a.studentCount || 0))
+        .filter((c) => !c.isFree)
+        .sort((a, b) => Number(b.lessonCount || 0) - Number(a.lessonCount || 0))
         .slice(0, 4),
     [courses]
   );
@@ -276,9 +268,7 @@ export default function HomePage() {
                     <div className="nu-series-body">
                       <h3 className="nu-series-card-title">{card.title}</h3>
                       <div className="nu-series-meta">
-                        <Star size={12} fill="#0f172a" stroke="#0f172a" />
-                        <strong>{card.rating}</strong>
-                        <span>({card.count}) · {card.type}</span>
+                        <span>{card.fact}</span>
                       </div>
                     </div>
                   </Link>
@@ -347,7 +337,7 @@ export default function HomePage() {
           <div className="nu-section-head">
             <h2>All the nursing &amp; midwifery units you need in one place</h2>
             <p>
-              Individual paid courses are now <strong>50% OFF</strong> (from $2.49), or unlock every unit &amp; past paper together.
+              Individual paid units start at <strong>$2.49</strong>, or unlock every unit &amp; past paper together.
             </p>
           </div>
 
@@ -355,13 +345,15 @@ export default function HomePage() {
             <div className="nu-allaccess-banner">
               <div className="nu-allaccess-copy">
                 <span className="nu-allaccess-eyebrow">
-                  <Layers size={13} /> FULL PLATFORM ALL-ACCESS · 50% OFF UNITS LIVE
+                  <Layers size={13} /> FULL PLATFORM ALL-ACCESS
                 </span>
-                <h3>Unlock All {catalog?.courses?.length || 83} Courses + 109 UNMEB Past Papers</h3>
+                <h3>Unlock All {catalog?.courses?.length || 85} Courses + 109 UNMEB Past Papers</h3>
                 <p>
                   One pass unlocks every Certificate, Diploma &amp; BScN unit, all clinical quizzes &amp; verified certificates for{" "}
                   <strong>{formatUsd(allAccessItem.priceUsd)}</strong>{" "}
-                  <s>${allAccessItem.compareAtUsd.toFixed(2)}</s>
+                  <span style={{ opacity: 0.85 }}>
+                    — ${allAccessItem.separatelyUsd.toFixed(2)} if bought separately
+                  </span>
                 </p>
               </div>
               <div className="nu-allaccess-cta">
@@ -459,8 +451,8 @@ export default function HomePage() {
       <section className="nu-section">
         <div className="nu-container">
           <div className="nu-section-head">
-            <h2>Learners are viewing</h2>
-            <p>Most enrolled clinical &amp; exam preparation units this semester.</p>
+            <h2>Most comprehensive units</h2>
+            <p>The clinical &amp; exam preparation units with the deepest referenced material.</p>
           </div>
           <div className="nu-course-grid">
             {topCourses.map((course) => (

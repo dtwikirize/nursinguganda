@@ -379,7 +379,7 @@ export default function ClinicalToolsPage({ initialTabOverride = "" }) {
                           return (
                             <tr key={idx} style={{ borderBottom: "1px solid var(--nu-border-light)" }}>
                               <td style={{ padding: "10px 16px", fontWeight: 600 }}>{item.name}</td>
-                              <td style={{ padding: "10px 16px", fontWeight: 700, color: "var(--nu-purple)" }}>
+                              <td style={{ padding: "10px 16px", fontWeight: 700, color: "var(--nu-purple-text)" }}>
                                 {item.value} {item.unit}
                               </td>
                               <td style={{ padding: "10px 16px", fontSize: "0.86rem", color: "var(--nu-ink-muted)" }}>

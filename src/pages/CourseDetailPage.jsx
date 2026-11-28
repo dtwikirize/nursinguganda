@@ -8,19 +8,19 @@ import {
   ChevronUp,
   Clock,
   FileText,
+  Layers,
   Lock,
   PlayCircle,
   ShieldCheck,
-  ShoppingCart,
-  Star,
-  Users
+  ShoppingCart
 } from "lucide-react";
 import ReferencesBox from "../components/ReferencesBox";
 import CertificateCard from "../components/CertificateCard";
 import NursingLoader from "../components/NursingLoader";
 import { setPageSeo } from "../components/RouteSeo";
 import { formatUgxApprox, formatUsd, useApp } from "../context/AppContext";
-import { getAllAccessCartItem, getDiscountPercent, getProgrammeBundleItem } from "../utils/offers";
+import { getAllAccessCartItem, getProgrammeBundleItem } from "../utils/offers";
+import { formatStudyTime } from "../utils/courseFacts";
 
 export default function CourseDetailPage() {
   const { slug } = useParams();
@@ -93,6 +93,7 @@ export default function CourseDetailPage() {
   }
 
   const enrolled = isEnrolled(course.slug, course.isFree, course.programmeId);
+  const studyHours = formatStudyTime(course.totalMinutes);
   const explicitlyEnrolled = enrollments.includes(course.slug);
   const inCart = cart.some((x) => x.slug === course.slug);
   const firstLessonSlug = course.topicGroups?.[0]?.topics?.[0]?.slug || "";
@@ -134,17 +135,17 @@ export default function CourseDetailPage() {
               <p className="nu-cl-subtitle">{course.subtitle}</p>
 
               <div className="nu-cl-stats">
-                <span className={`nu-badge ${course.isFree ? "nu-badge-free" : "nu-badge-bestseller"}`}>
+                <span className={`nu-badge ${course.isFree ? "nu-badge-free" : "nu-badge-highyield"}`}>
                   {course.badge}
                 </span>
-                <span style={{ display: "inline-flex", alignItems: "center", gap: 5, color: "#f3ca8c", fontWeight: 700 }}>
-                  {course.rating}
-                  <Star size={14} fill="#f3ca8c" stroke="#f3ca8c" />
-                  <span style={{ color: "#c0c4fc", fontWeight: 400 }}>({course.reviewCount} ratings)</span>
-                </span>
                 <span style={{ display: "inline-flex", alignItems: "center", gap: 5 }}>
-                  <Users size={15} /> {course.studentCount.toLocaleString()} students
+                  <Layers size={15} /> {course.lessonCount} referenced lessons
                 </span>
+                {studyHours && (
+                  <span style={{ display: "inline-flex", alignItems: "center", gap: 5 }}>
+                    <Clock size={15} /> {studyHours}
+                  </span>
+                )}
               </div>
 
               <div className="nu-cl-meta-line">
@@ -273,16 +274,6 @@ export default function CourseDetailPage() {
               <div className="nu-purchase-body">
                 <div className="nu-purchase-price">
                   <strong>{enrolled && !course.isFree ? "Enrolled" : formatUsd(course.priceUsd)}</strong>
-                  {!course.isFree && course.compareAtUsd > course.priceUsd && !enrolled && (
-                    <>
-                      <span className="nu-price-was">${course.compareAtUsd.toFixed(2)}</span>
-                      {getDiscountPercent(course.priceUsd, course.compareAtUsd) > 0 && (
-                        <span className="nu-price-cut-badge">
-                          {getDiscountPercent(course.priceUsd, course.compareAtUsd)}% OFF
-                        </span>
-                      )}
-                    </>
-                  )}
                 </div>
                 {!course.isFree && !enrolled && (
                   <div style={{ fontSize: "0.82rem", color: "var(--nu-ink-muted)", marginBottom: 14 }}>
@@ -341,7 +332,9 @@ export default function CourseDetailPage() {
                     <p style={{ margin: "0 0 10px", fontSize: "0.8rem", color: "#475569" }}>
                       Unlock every semester unit in {course.programmeLabel} + 109 UNMEB Papers for{" "}
                       <strong>{formatUsd(progBundleItem.priceUsd)}</strong>{" "}
-                      <s style={{ color: "#64748b" }}>${progBundleItem.compareAtUsd.toFixed(2)}</s>
+                      <span style={{ color: "#64748b" }}>
+                        — ${progBundleItem.separatelyUsd.toFixed(2)} if bought separately
+                      </span>
                     </p>
                     <div style={{ display: "grid", gap: 6 }}>
                       <button

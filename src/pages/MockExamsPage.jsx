@@ -213,7 +213,7 @@ export default function MockExamsPage() {
           {!hasExamPass && !activeExam && !resolvedActivePaper && (
             <div className="nu-allaccess-banner" style={{ marginBottom: 20 }}>
               <div className="nu-allaccess-copy">
-                <span className="nu-allaccess-eyebrow">50% OFF PAST PAPER PASS OR FULL SITE ACCESS</span>
+                <span className="nu-allaccess-eyebrow">PAST PAPER PASS OR FULL SITE ACCESS</span>
                 <h3>Unlock All {rawPapers.length}+ Past Papers ($4.99) | or All 85 Courses ($34.99)</h3>
                 <p>
                   Get every UNMEB &amp; UHPAB marking guide, timed mock drill &amp; PDF export | or unlock every course sitewide.
@@ -396,7 +396,7 @@ export default function MockExamsPage() {
                         >
                           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
                             <span className={`nu-badge ${unlocked ? "nu-badge-free" : "nu-badge-highyield"}`}>
-                              {paper.isFreeSample ? "Free Sample Paper" : unlocked ? "Unlocked" : "Exam Pass ($4.99 · 50% Off)"}
+                              {paper.isFreeSample ? "Free Sample Paper" : unlocked ? "Unlocked" : "Exam Pass ($4.99)"}
                             </span>
                             <span style={{ fontSize: "0.8rem", color: "var(--nu-ink-muted)", display: "inline-flex", alignItems: "center", gap: 4 }}>
                               <Clock size={13} /> {paper.duration} min · {paper.totalMarks} Marks
@@ -468,7 +468,7 @@ export default function MockExamsPage() {
                       <article key={ex.id} style={{ border: "1px solid var(--nu-border)", borderRadius: 12, padding: 22, background: "#fff", display: "flex", flexDirection: "column", gap: 10 }}>
                         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                           <span className={`nu-badge ${unlocked ? "nu-badge-free" : "nu-badge-highyield"}`}>
-                            {ex.isFreeSample ? "Free Sample" : unlocked ? "Unlocked" : "Exam Pass ($4.99 · 50% Off)"}
+                            {ex.isFreeSample ? "Free Sample" : unlocked ? "Unlocked" : "Exam Pass ($4.99)"}
                           </span>
                           <span style={{ fontSize: "0.82rem", color: "var(--nu-ink-muted)", display: "inline-flex", alignItems: "center", gap: 4 }}>
                             <Clock size={14} /> {ex.duration} min

@@ -393,7 +393,7 @@ export default function Navbar() {
               onClick={() => setMegaOpen((v) => !v)}
               style={{
                 background: megaOpen ? "#ede9fe" : "#f5f3ff",
-                color: "var(--nu-purple)",
+                color: "var(--nu-purple-text)",
                 fontWeight: 700,
                 padding: "8px 14px",
                 borderRadius: 6
@@ -747,7 +747,7 @@ export default function Navbar() {
                   {activeNavMenu === "ebooks" && (
                     <div className="nu-nav-dropdown" role="menu" aria-label="Free eBooks Submenu">
                       <div className="nu-nav-dropdown-head">Free Textbooks &amp; Guides (87)</div>
-                      <Link to="/ebooks" className="nu-nav-dropdown-link" style={{ fontWeight: 700, color: "var(--nu-purple)" }} onClick={() => setActiveNavMenu("")}>
+                      <Link to="/ebooks" className="nu-nav-dropdown-link" style={{ fontWeight: 700, color: "var(--nu-purple-text)" }} onClick={() => setActiveNavMenu("")}>
                         <span>Browse All Free Study Books</span>
                         <ChevronRight size={13} />
                       </Link>
@@ -805,7 +805,7 @@ export default function Navbar() {
                   {activeNavMenu === "mock-exams" && (
                     <div className="nu-nav-dropdown nu-nav-dropdown--right" role="menu" aria-label="Mock Exams Submenu">
                       <div className="nu-nav-dropdown-head">Exam Prep &amp; Simulators</div>
-                      <Link to="/mock-exams" className="nu-nav-dropdown-link" style={{ fontWeight: 700, color: "var(--nu-purple)" }} onClick={() => setActiveNavMenu("")}>
+                      <Link to="/mock-exams" className="nu-nav-dropdown-link" style={{ fontWeight: 700, color: "var(--nu-purple-text)" }} onClick={() => setActiveNavMenu("")}>
                         <span>All UNMEB Mock Exams (109)</span>
                         <ChevronRight size={13} />
                       </Link>
@@ -856,7 +856,7 @@ export default function Navbar() {
                   {activeNavMenu === "nclex-rn" && (
                     <div className="nu-nav-dropdown nu-nav-dropdown--right" role="menu" aria-label="NCLEX-RN Submenu">
                       <div className="nu-nav-dropdown-head">International Licensing Track</div>
-                      <Link to="/nclex-rn" className="nu-nav-dropdown-link" style={{ fontWeight: 700, color: "var(--nu-purple)" }} onClick={() => setActiveNavMenu("")}>
+                      <Link to="/nclex-rn" className="nu-nav-dropdown-link" style={{ fontWeight: 700, color: "var(--nu-purple-text)" }} onClick={() => setActiveNavMenu("")}>
                         <span>NCLEX-RN 16-Unit Academy ($99)</span>
                         <ChevronRight size={13} />
                       </Link>
@@ -953,7 +953,7 @@ export default function Navbar() {
                       <Link
                         to="/my-learning"
                         className="nu-mega-sublink"
-                        style={{ fontWeight: 700, color: "var(--nu-purple)", display: "flex", alignItems: "center", justifyContent: "space-between" }}
+                        style={{ fontWeight: 700, color: "var(--nu-purple-text)", display: "flex", alignItems: "center", justifyContent: "space-between" }}
                         onClick={() => setUserMenuOpen(false)}
                       >
                         <span>
@@ -984,7 +984,7 @@ export default function Navbar() {
                         <Link
                           to="/nodadmin"
                           className="nu-mega-sublink"
-                          style={{ color: "var(--nu-purple)", fontWeight: 700 }}
+                          style={{ color: "var(--nu-purple-text)", fontWeight: 700 }}
                           onClick={() => setUserMenuOpen(false)}
                         >
                           <Award size={14} style={{ display: "inline", marginRight: 6 }} />
@@ -1026,7 +1026,7 @@ export default function Navbar() {
                   {userMenuOpen && (
                     <div className="nu-nav-dropdown nu-nav-dropdown--right" role="menu" aria-label="Account Menu">
                       <div className="nu-nav-dropdown-head">Account &amp; My Learning</div>
-                      <Link to="/my-learning" className="nu-nav-dropdown-link" style={{ fontWeight: 700, color: "var(--nu-purple)" }} onClick={() => setUserMenuOpen(false)}>
+                      <Link to="/my-learning" className="nu-nav-dropdown-link" style={{ fontWeight: 700, color: "var(--nu-purple-text)" }} onClick={() => setUserMenuOpen(false)}>
                         <span>My Learning {enrollments.length > 0 ? `(${enrollments.length})` : ""}</span>
                         <ChevronRight size={13} />
                       </Link>
@@ -1145,7 +1145,7 @@ export default function Navbar() {
                   )}
                 </div>
                 {user?.isAdmin && (
-                  <Link to="/nodadmin" className="nu-mobile-link" style={{ color: "var(--nu-purple)", fontWeight: 700 }} onClick={() => setMobileOpen(false)}>
+                  <Link to="/nodadmin" className="nu-mobile-link" style={{ color: "var(--nu-purple-text)", fontWeight: 700 }} onClick={() => setMobileOpen(false)}>
                     <span className="nu-mobile-link-left">
                       <Award size={17} color="#A137F2" />
                       <span>Owner Admin Panel</span>
@@ -1284,7 +1284,7 @@ export default function Navbar() {
                           <Link
                             to={`/courses?programme=${encodeURIComponent(p.id)}`}
                             className="nu-mobile-sublink"
-                            style={{ color: "var(--nu-purple)", fontWeight: 700 }}
+                            style={{ color: "var(--nu-purple-text)", fontWeight: 700 }}
                             onClick={() => setMobileOpen(false)}
                           >
                             View all {p.courseCount} units →

@@ -13,6 +13,19 @@ import {
 import { formatUgxApprox, formatUsd, useApp } from "../context/AppContext";
 import { UNMEB_PASS_ITEM, getAllAccessCartItem, getProgrammeBundleItem } from "../utils/offers";
 
+const DISMISS_KEY = "nu_popup_dismissed_at";
+const DISMISS_WINDOW_MS = 24 * 60 * 60 * 1000;
+
+/** One dismissal silences the spotlight everywhere for 24 hours. */
+function dismissedToday() {
+  try {
+    const at = Number(localStorage.getItem(DISMISS_KEY) || 0);
+    return at > 0 && Date.now() - at < DISMISS_WINDOW_MS;
+  } catch {
+    return false;
+  }
+}
+
 export default function ContextOfferPopup() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -70,7 +83,7 @@ export default function ContextOfferPopup() {
     if (zone === "topics") return ["books", "nclex", ...(!hasAllAccess ? ["offer"] : [])];
     if (zone === "exams") return [...(!hasAllAccess ? ["offer"] : []), "nclex", "books"];
     if (zone === "nclex") return ["nclex", "books"];
-    // Home page rotates across NCLEX-RN, New Books, and All-Access 50% Cut
+    // Home page rotates across NCLEX-RN, New Books, and All-Access
     return ["nclex", "books", ...(!hasAllAccess ? ["offer"] : [])];
   }, [zone, hasAllAccess]);
 
@@ -98,23 +111,48 @@ export default function ContextOfferPopup() {
     setModeIdx(0);
     setOpen(false);
     if (isHiddenRoute) return;
-    if (zone === "cart" && cart.length === 0) return;
+    // Never interrupt an active checkout.
+    if (zone === "cart") return;
+    if (dismissedToday()) return;
 
-    let alreadyClosed = false;
-    try {
-      alreadyClosed = sessionStorage.getItem(`nu_popup_closed_${zone}`) === "1";
-    } catch {}
-    if (alreadyClosed) return;
+    // Engagement-based rather than a short timer. The popup used to cover the
+    // hero 4.8s after load, before most visitors had finished reading it.
+    // It now waits for a reader who is actually engaged — half a screen of
+    // scrolling, or exit intent — with a long timer only as a last resort.
+    let fired = false;
+    const show = () => {
+      if (fired) return;
+      fired = true;
+      setOpen(true);
+    };
+    const onScroll = () => {
+      const seen = window.scrollY + window.innerHeight;
+      if (seen > document.documentElement.scrollHeight * 0.5) show();
+    };
+    const onExitIntent = (e) => {
+      if (e.clientY <= 0) show();
+    };
 
-    const delayMs = zone === "cart" ? 1800 : zone === "learn" || zone === "course" ? 4200 : 4800;
-    const timer = setTimeout(() => setOpen(true), delayMs);
-    return () => clearTimeout(timer);
-  }, [zone, path, isHiddenRoute, cart.length]);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    document.addEventListener("scroll", onScroll, { passive: true, capture: true });
+    document.addEventListener("mouseout", onExitIntent);
+    const fallback = setTimeout(show, 20000);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      document.removeEventListener("scroll", onScroll, { capture: true });
+      document.removeEventListener("mouseout", onExitIntent);
+      clearTimeout(fallback);
+    };
+  }, [zone, path, isHiddenRoute]);
 
   const handleClose = () => {
     setOpen(false);
     try {
-      sessionStorage.setItem(`nu_popup_closed_${zone}`, "1");
+      // One dismissal silences the popup everywhere for 24 hours. It was
+      // previously keyed per zone, so a visitor moving between sections was
+      // interrupted again on each one despite having closed it each time.
+      localStorage.setItem(DISMISS_KEY, String(Date.now()));
     } catch {}
   };
 
@@ -136,7 +174,7 @@ export default function ContextOfferPopup() {
   let kicker = "INTERNATIONAL LICENSING TRACK";
   let headline = "NCLEX-RN Complete 16-Unit Academy ($99)";
   let body = "Prepare for US, Canadian & Australian licensure with NGN 6-step Clinical Judgment lessons, High-Yield Pharmacology, and 4 adaptive CAT exams.";
-  let priceMeta = "$99.00 complete academy (was $249.00)";
+  let priceMeta = "$99.00 — complete 16-unit academy";
   let primaryLabel = "Open NCLEX-RN Academy";
   let primaryAction = () => { setOpen(false); navigate("/nclex-rn"); };
   let secondaryLabel = "Try CAT Mock Exams";
@@ -155,22 +193,22 @@ export default function ContextOfferPopup() {
     secondaryAction = () => { setOpen(false); navigate("/ebooks"); };
   } else if (activeMode === "offer") {
     badgeIcon = <Layers size={14} />;
-    fabText = "50% OFF · Full Access";
-    kicker = "50% STUDENT PRICE CUT LIVE";
-    headline = "Courses From $2.49 | Or Unlock Everything";
-    body = "Every individual paid unit is cut by 50% today. Or get the Full Platform All-Access Pass covering all 85 courses and 109+ mock papers.";
-    priceMeta = `${formatUsd(allAccessItem.priceUsd)} (was $${allAccessItem.compareAtUsd.toFixed(2)} · ${formatUgxApprox(allAccessItem.priceUsd)})`;
+    fabText = "Full platform access";
+    kicker = "FULL PLATFORM ALL-ACCESS";
+    headline = "Units from $2.49, or unlock everything";
+    body = "Paid units start at $2.49 each. The Full Platform All-Access Pass covers all 85 courses and 109+ mock papers in one purchase.";
+    priceMeta = `${formatUsd(allAccessItem.priceUsd)} — $${allAccessItem.separatelyUsd.toFixed(2)} if bought separately · ${formatUgxApprox(allAccessItem.priceUsd)}`;
     primaryLabel = `Full All-Access · ${formatUsd(allAccessItem.priceUsd)}`;
     primaryAction = () => buyNow(allAccessItem);
-    secondaryLabel = "Browse 50% Off Courses";
+    secondaryLabel = "Browse All Courses";
     secondaryAction = () => { setOpen(false); navigate("/courses"); };
 
     if (zone === "learn" && activeCourse) {
       const unitEnrolled = isEnrolled(activeCourse.slug, activeCourse.isFree);
       if (!activeCourse.isFree && !unitEnrolled) {
-        kicker = "STUDY PREVIEW · 50% OFF TODAY";
+        kicker = "STUDY PREVIEW";
         headline = `Unlock Full ${activeCourse.title}`;
-        body = `Get all ${activeCourse.lessonCount} clinical topics, quizzes & certificate at 50% OFF | or unlock every course sitewide.`;
+        body = `Get all ${activeCourse.lessonCount} clinical topics, quizzes & the certificate for this unit, or unlock every course sitewide.`;
         priceMeta = `${formatUsd(activeCourse.priceUsd)} (${formatUgxApprox(activeCourse.priceUsd)})`;
         primaryLabel = `Unlock Unit · ${formatUsd(activeCourse.priceUsd)}`;
         primaryAction = () => buyNow(activeCourse);
@@ -180,8 +218,8 @@ export default function ContextOfferPopup() {
     } else if (zone === "course" && activeCourse) {
       const unitEnrolled = isEnrolled(activeCourse.slug, activeCourse.isFree);
       if (!activeCourse.isFree && !unitEnrolled) {
-        kicker = "50% UNIT CUT OR FULL ACCESS";
-        headline = "Choose Single Unit (50% Off) or Everything";
+        kicker = "SINGLE UNIT OR FULL ACCESS";
+        headline = "Choose a single unit or everything";
         body = `Enroll in ${activeCourse.title} for ${formatUsd(activeCourse.priceUsd)}, or unlock ALL 85 courses + 109 past papers.`;
         primaryLabel = `Full All-Access · ${formatUsd(allAccessItem.priceUsd)}`;
         primaryAction = () => buyNow(allAccessItem);
@@ -191,11 +229,11 @@ export default function ContextOfferPopup() {
         secondaryAction = () => buyNow(activeProgBundle || activeCourse);
       }
     } else if (zone === "exams") {
-      kicker = "UNMEB EXAM PREP · 50% OFF";
+      kicker = "UNMEB EXAM PREP";
       headline = "Unlock All 109+ Past Papers & Full Courses";
       body = "Practice timed UNMEB & UHPAB mock exams with complete marking guides, or unlock every study course & exam bank together.";
       priceMeta = !hasExamPass
-        ? `${formatUsd(UNMEB_PASS_ITEM.priceUsd)} (was $${UNMEB_PASS_ITEM.compareAtUsd.toFixed(2)} · ${formatUgxApprox(UNMEB_PASS_ITEM.priceUsd)})`
+        ? `${formatUsd(UNMEB_PASS_ITEM.priceUsd)} (${formatUgxApprox(UNMEB_PASS_ITEM.priceUsd)})`
         : `${formatUsd(allAccessItem.priceUsd)} (${formatUgxApprox(allAccessItem.priceUsd)})`;
       primaryLabel = !hasExamPass
         ? `Unlock Past Papers · ${formatUsd(UNMEB_PASS_ITEM.priceUsd)}`
@@ -252,7 +290,7 @@ export default function ContextOfferPopup() {
                 cursor: "pointer"
               }}
             >
-              {m === "nclex" ? "NCLEX-RN ($99)" : m === "books" ? "New 87 Books" : "50% Off Pass"}
+              {m === "nclex" ? "NCLEX-RN ($99)" : m === "books" ? "New 87 Books" : "All-Access Pass"}
             </button>
           ))}
         </div>

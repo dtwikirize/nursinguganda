@@ -28,6 +28,56 @@ button {
   cursor: pointer;
 }
 
+/* ---------------------------------------------------------------------------
+   Keyboard focus. Previously nothing in the stylesheet defined a focus ring,
+   so keyboard users fell back to the UA default, which reads poorly on the
+   dark navbar and on custom-styled cards.
+   --------------------------------------------------------------------------- */
+:focus-visible {
+  outline: 3px solid var(--nu-purple-text);
+  outline-offset: 2px;
+  border-radius: var(--nu-radius-xs, 4px);
+}
+/* On dark surfaces the purple ring loses contrast; use white there. */
+.nu-topbar :focus-visible,
+.nu-footer :focus-visible,
+.nu-hero :focus-visible,
+[data-surface="dark"] :focus-visible {
+  outline-color: #ffffff;
+}
+
+/* Skip link: first focusable element, visible only when focused. */
+.nu-skip-link {
+  position: absolute;
+  left: 8px;
+  top: -64px;
+  z-index: 2000;
+  padding: 12px 18px;
+  background: var(--nu-ink);
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: var(--nu-radius-xs, 4px);
+  transition: top 0.15s ease-in;
+}
+.nu-skip-link:focus {
+  top: 8px;
+}
+
+/* ---------------------------------------------------------------------------
+   Minimum hit area. WCAG 2.2 target size is 24px; 44px is the comfortable
+   touch minimum. Applied to the nav controls that were measuring 23-36px.
+   --------------------------------------------------------------------------- */
+.nu-icon-btn,
+.nu-mobile-toggle,
+.nu-promo-close,
+.nu-offer-close {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
 img {
   max-width: 100%;
   display: block;
@@ -231,7 +281,7 @@ img {
 }
 .nu-nav-link-btn:hover,
 .nu-nav-link:hover {
-  color: var(--nu-purple);
+  color: var(--nu-purple-text);
 }
 .nu-nav-link {
   font-size: 0.9rem;
@@ -294,7 +344,7 @@ img {
 }
 .nu-nav-dropdown-link:hover {
   background: var(--nu-purple-soft);
-  color: var(--nu-purple);
+  color: var(--nu-purple-text);
 }
 .nu-nav-dropdown-link span {
   overflow: hidden;
@@ -324,7 +374,7 @@ img {
 }
 .nu-ebook-toc-item.is-active {
   background: #faf5ff;
-  border-left-color: var(--nu-purple);
+  border-left-color: var(--nu-purple-text);
 }
 
 .nu-search-form {
@@ -345,7 +395,7 @@ img {
 }
 .nu-search-box:focus-within {
   background: #ffffff;
-  border-color: var(--nu-purple);
+  border-color: var(--nu-purple-text);
   box-shadow: 0 0 0 2px rgba(164, 53, 240, 0.15);
 }
 .nu-search-box input {
@@ -441,7 +491,7 @@ img {
   transition: color 0.12s;
 }
 .nu-coursera-mega-link:hover {
-  color: var(--nu-purple);
+  color: var(--nu-purple-text);
   text-decoration: underline;
 }
 .nu-coursera-mega-badge {
@@ -449,7 +499,7 @@ img {
   padding: 1px 8px;
   border-radius: 999px;
   background: #ede9fe;
-  color: var(--nu-purple);
+  color: var(--nu-purple-text);
   font-size: 0.72rem;
   font-weight: 700;
 }
@@ -463,7 +513,7 @@ img {
   text-underline-offset: 3px;
 }
 .nu-coursera-mega-viewall:hover {
-  color: var(--nu-purple);
+  color: var(--nu-purple-text);
 }
 .nu-coursera-mega-footer {
   margin: 0 32px;
@@ -483,7 +533,7 @@ img {
   text-underline-offset: 3px;
 }
 .nu-coursera-mega-footer a:hover {
-  color: var(--nu-purple);
+  color: var(--nu-purple-text);
 }
 @keyframes nuMegaFadeIn {
   from {
@@ -530,7 +580,7 @@ img {
 }
 .nu-mega-clean-link:hover {
   background: var(--nu-purple-soft);
-  color: var(--nu-purple);
+  color: var(--nu-purple-text);
 }
 @media (max-width: 1120px) {
   .nu-mega-grid {
@@ -547,7 +597,7 @@ img {
 }
 .nu-mega-kicker {
   padding: 2px 14px 4px;
-  font-size: 0.67rem;
+  font-size: 0.7rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -600,13 +650,13 @@ img {
 .nu-mega-item:hover,
 .nu-mega-item.active {
   background: var(--nu-purple-soft);
-  color: var(--nu-purple);
+  color: var(--nu-purple-text);
   font-weight: 600;
 }
 .nu-mega-item:hover .nu-mega-count,
 .nu-mega-item.active .nu-mega-count {
   background: rgba(161, 55, 242, 0.14);
-  color: var(--nu-purple);
+  color: var(--nu-purple-text);
 }
 .nu-mega-middle {
   padding: 14px 18px;
@@ -631,7 +681,7 @@ img {
 .nu-mega-view-all {
   font-size: 0.8rem;
   font-weight: 700;
-  color: var(--nu-purple);
+  color: var(--nu-purple-text);
   white-space: nowrap;
 }
 .nu-mega-view-all:hover {
@@ -691,15 +741,15 @@ img {
   gap: 6px;
 }
 .nu-mega-code {
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   font-weight: 700;
-  color: var(--nu-purple);
+  color: var(--nu-purple-text);
   background: rgba(161, 55, 242, 0.08);
   padding: 1px 6px;
   border-radius: 3px;
 }
 .nu-mega-pill {
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   font-weight: 700;
   padding: 1px 6px;
   border-radius: 3px;
@@ -748,7 +798,7 @@ img {
   transition: box-shadow 0.15s, border-color 0.15s;
 }
 .nu-mega-feature-card:hover {
-  border-color: var(--nu-purple);
+  border-color: var(--nu-purple-text);
   box-shadow: var(--nu-shadow-sm);
 }
 .nu-mega-feature-thumb {
@@ -768,7 +818,7 @@ img {
   align-items: center;
   gap: 4px;
   width: fit-content;
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   font-weight: 700;
   background: var(--nu-bestseller-bg);
   color: var(--nu-bestseller-ink);
@@ -839,7 +889,7 @@ img {
   color: var(--nu-ink);
 }
 .nu-mega-sublink:hover {
-  color: var(--nu-purple);
+  color: var(--nu-purple-text);
 }
 
 .nu-nav-actions {
@@ -860,7 +910,7 @@ img {
   border-radius: var(--nu-radius-xs);
 }
 .nu-icon-btn:hover {
-  color: var(--nu-purple);
+  color: var(--nu-purple-text);
   background: var(--nu-bg-subtle);
 }
 .nu-mobile-toggle {
@@ -927,8 +977,8 @@ img {
 }
 .nu-btn-purple-outline {
   background: #ffffff;
-  color: var(--nu-purple);
-  border-color: var(--nu-purple);
+  color: var(--nu-purple-text);
+  border-color: var(--nu-purple-text);
 }
 .nu-btn-purple-outline:hover {
   background: var(--nu-purple-soft);
@@ -1194,7 +1244,7 @@ img {
   background: rgba(15, 23, 42, 0.72);
   border: 1px solid rgba(192, 132, 252, 0.55);
   color: #f3e8ff;
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   font-weight: 600;
 }
 .nu-series-art-title {
@@ -1215,12 +1265,13 @@ img {
   gap: 6px;
 }
 .nu-series-micro {
-  width: 24px;
-  height: 24px;
+  min-width: 26px;
+  height: 26px;
+  padding: 0 6px;
   border-radius: 999px;
   background: #ffffff;
   color: #1e1b4b;
-  font-size: 0.54rem;
+  font-size: 0.72rem;
   font-weight: 800;
   display: inline-flex;
   align-items: center;
@@ -1268,7 +1319,7 @@ img {
 }
 .nu-series-nav-btn:hover {
   background: #f8fafc;
-  color: var(--nu-purple);
+  color: var(--nu-purple-text);
 }
 .nu-series-nav-btn--right {
   right: -8px;
@@ -1346,14 +1397,14 @@ img {
   background: rgba(15, 23, 42, 0.72);
   border: 1px solid rgba(192, 132, 252, 0.45);
   color: #f3e8ff;
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   font-weight: 700;
   padding: 2px 8px;
   border-radius: 999px;
   white-space: nowrap;
 }
 .nu-card-editorial-cat {
-  font-size: 0.66rem;
+  font-size: 0.7rem;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.82);
   text-align: right;
@@ -1460,6 +1511,23 @@ img {
   gap: 4px;
   font-size: 0.82rem;
   margin-bottom: 4px;
+}
+/* Verifiable course facts shown in place of the former star-rating row. */
+.nu-card-facts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 10px;
+  font-size: 0.78rem;
+  color: var(--nu-ink-muted);
+  margin-bottom: 4px;
+  min-height: 1.3em;
+}
+.nu-card-fact {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  white-space: nowrap;
 }
 .nu-rating-num {
   font-weight: 700;
@@ -1642,7 +1710,7 @@ img {
   gap: 10px;
 }
 .nu-preview-tag {
-  color: var(--nu-purple);
+  color: var(--nu-purple-text);
   font-weight: 700;
   font-size: 0.82rem;
   text-decoration: underline;
@@ -1805,7 +1873,7 @@ img {
   font-size: 0.88rem;
 }
 .nu-refs-list a {
-  color: var(--nu-purple);
+  color: var(--nu-purple-text);
   text-decoration: underline;
 }
 
@@ -2044,11 +2112,11 @@ img {
 }
 .nu-dash-nav-btn:hover {
   background: var(--nu-bg-subtle);
-  color: var(--nu-purple);
+  color: var(--nu-purple-text);
 }
 .nu-dash-nav-btn.active {
   background: var(--nu-purple-soft);
-  color: var(--nu-purple);
+  color: var(--nu-purple-text);
   font-weight: 700;
 }
 .nu-dash-main {
@@ -2217,7 +2285,7 @@ img {
 .nu-mobile-link:hover,
 .nu-mobile-prog-btn.open {
   background: var(--nu-purple-soft);
-  color: var(--nu-purple);
+  color: var(--nu-purple-text);
   font-weight: 600;
 }
 .nu-mobile-link-left {
@@ -2247,7 +2315,7 @@ img {
   line-height: 1.35;
 }
 .nu-mobile-sublink:hover {
-  color: var(--nu-purple);
+  color: var(--nu-purple-text);
 }
 .nu-mobile-drawer-foot {
   padding: 12px 16px;
@@ -2643,7 +2711,7 @@ img {
   border-radius: 4px;
   background: #0f2942;
   color: #ffffff;
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   font-weight: 800;
   margin-bottom: 5px;
 }
@@ -3038,7 +3106,7 @@ img {
   position: absolute;
   top: 10px;
   left: 10px;
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   font-weight: 700;
   padding: 3px 9px;
   border-radius: 999px;
@@ -3588,7 +3656,7 @@ img {
   justify-content: space-between;
   align-items: center;
   gap: 8px;
-  font-size: 0.55rem;
+  font-size: 0.72rem;
   font-weight: 500;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -3606,7 +3674,7 @@ img {
   gap: 6px;
 }
 .nu-textbook-kicker {
-  font-size: 0.66rem;
+  font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -3655,7 +3723,7 @@ img {
 .nu-textbook-badge {
   padding: 2px 8px;
   border-radius: 999px;
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   font-weight: 800;
   color: #ffffff;
   letter-spacing: 0.04em;
@@ -4482,7 +4550,7 @@ img {
   background: #f3e8ff;
   color: #6d28d9;
   border: 1px solid #e9d5ff;
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   font-weight: 800;
   padding: 2px 6px;
   border-radius: 4px;

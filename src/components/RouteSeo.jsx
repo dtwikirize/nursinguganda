@@ -1,20 +1,21 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
+import { COURSE_COUNT } from "../data/siteCounts";
+
 const SITE_URL = "https://nursinguganda.com";
 const DEFAULT_IMAGE = `${SITE_URL}/assets/images/udemy/hero-banner.webp`;
 
 const ROUTE_META = {
   "/": {
-    title: "Nursing Uganda | UNMEB & UHPAB Past Papers, Courses, Free eBooks & Clinical Tools",
+    title: "Nursing Uganda | NCLEX-RN, UNMEB & UHPAB Past Papers, Courses & Free eBooks",
     description:
-      "Master Certificate, Diploma & BScN nursing and midwifery in Uganda with 85 courses, 109 UHPAB/UNMEB past papers with Dark Navy PDF answers, free eBooks, 1,079+ medical terms & OSCE tools.",
+      "NCLEX-RN Academy plus Certificate, Diploma & BScN nursing and midwifery in Uganda — 85 courses, 109 UHPAB/UNMEB past papers with Dark Navy PDF answers, 87 free eBooks, 1,079+ medical terms & OSCE tools.",
     type: "website"
   },
   "/courses": {
-    title: "All 83 Nursing & Midwifery Courses (Certificate, Diploma & BScN) | Nursing Uganda",
-    description:
-      "Browse all 83 structured Ugandan nursing and midwifery course units covering Anatomy, Pharmacology, Medical-Surgical Nursing, Midwifery, Paediatrics, and Community Health."
+    title: `All ${COURSE_COUNT} Nursing & Midwifery Courses (Certificate, Diploma & BScN) | Nursing Uganda`,
+    description: `Browse all ${COURSE_COUNT} structured Ugandan nursing and midwifery course units covering Anatomy, Pharmacology, Medical-Surgical Nursing, Midwifery, Paediatrics, and Community Health.`
   },
   "/topics": {
     title: "779 Nurse Topics & Clinical Study Notes (Anatomy to Midwifery) | Nursing Uganda",

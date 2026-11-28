@@ -117,7 +117,9 @@ export function AppProvider({ children }) {
           programmeLabel: course.programmeLabel,
           thumbnail: course.thumbnail,
           priceUsd: Number(course.priceUsd || 4.99),
-          compareAtUsd: Number(course.compareAtUsd || 0),
+          // Bundles carry a real "if bought separately" total; single units
+          // have no former price and must not display one.
+          separatelyUsd: Number(course.separatelyUsd || 0),
           lessonCount: course.lessonCount,
           type: course.type || "course",
           courseSlugs: course.courseSlugs || [course.slug]

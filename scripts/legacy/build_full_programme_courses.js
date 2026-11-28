@@ -4,6 +4,14 @@
  * and registers them under `catalog.fullCourses` inside `assets/data/catalog.json`.
  * Keeps payload tiny (< 60 KB per master file) by referencing `sourceCourseSlug` per topic for lazy loading.
  */
+// ⚠️ DISABLED — this legacy generator emitted fabricated rating / reviewCount /
+// studentCount / compareAtUsd fields, which were removed from the live site as
+// misleading commercial claims. Do not run it without stripping those first.
+throw new Error(
+  "build_full_programme_courses.js is disabled: it generates fabricated ratings, " +
+  "review counts, student counts and reference prices. See scripts/split_curriculum.js."
+);
+
 const fs = require("node:fs");
 const path = require("node:path");
 
