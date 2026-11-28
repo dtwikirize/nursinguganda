@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Lock, ShieldCheck } from "lucide-react";
-import PayPalCheckoutButton from "../components/PayPalCheckoutButton";
+import CardPaymentForm from "../components/CardPaymentForm";
 import { formatUgxApprox, formatUsd, useApp } from "../context/AppContext";
 
 export default function CheckoutPage() {
@@ -34,10 +34,28 @@ export default function CheckoutPage() {
     );
   }
 
-  return (
+  // payment method selector added
+    const [paymentMethod, setPaymentMethod] = useState('paypal');
+    const handleCardSuccess = async (payload) => {
+      // reuse existing success flow
+      await handleSuccess(payload);
+    };
+    const handleCardError = (msg) => {
+      setError(msg);
+    };
+    return (
+
     <main className="nu-section">
       <div className="nu-container">
-        <h1 style={{ fontFamily: "var(--nu-font-serif)", marginBottom: 24 }}>Secure PayPal Checkout</h1>
+        <h1 style={{ fontFamily: "var(--nu-font-serif)", marginBottom: 12 }}>Secure Checkout</h1>
+        <div style={{ marginBottom: 16, display: 'flex', gap: 12, alignItems: 'center' }}>
+          <label>
+            <input type="radio" name="paymentMethod" value="paypal" checked={paymentMethod === 'paypal'} onChange={() => setPaymentMethod('paypal')} /> PayPal
+          </label>
+          <label>
+            <input type="radio" name="paymentMethod" value="card" checked={paymentMethod === 'card'} onChange={() => setPaymentMethod('card')} /> Card
+          </label>
+        </div>
 
         <div className="nu-cl-grid">
           <div style={{ display: "grid", gap: 20 }}>
@@ -69,12 +87,19 @@ export default function CheckoutPage() {
 
                 {processing ? (
                   <p>Verifying payment and unlocking your study units...</p>
-                ) : (
+                ) : paymentMethod === 'paypal' ? (
                   <PayPalCheckoutButton
                     totalUsd={cartTotalUsd}
                     items={cart}
                     onSuccess={handleSuccess}
                     onError={setError}
+                  />
+                ) : (
+                  <CardPaymentForm
+                    totalUsd={cartTotalUsd}
+                    items={cart}
+                    onSuccess={handleCardSuccess}
+                    onError={handleCardError}
                   />
                 )}
               </div>
