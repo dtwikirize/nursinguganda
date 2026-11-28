@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <linearGradient id="v3WhitePurple" x1="250" y1="120" x2="430" y2="390" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#C084FC"/>
+      <stop offset="100%" stop-color="#A137F2"/>
+    </linearGradient>
+  </defs>
+  <!-- Crisp White Rounded Squircle with Soft Clinical Border -->
+  <rect x="8" y="8" width="496" height="496" rx="116" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="14"/>
+
+  <!-- Option 4 Navy Open N -->
+  <path
+    d="M88 368V152C88 142 96 134 106 134H134C144 134 152 139 158 148L244 294V134H294V352C294 362 286 370 276 370H248C238 370 230 365 224 356L138 210V368H88Z"
+    fill="#0F2942"
+  />
+  <!-- Overlapping Royal Purple U with Crisp White Separation -->
+  <path
+    d="M234 134H294V276C294 308 313 326 342 326C371 326 390 308 390 276V134H440V278C440 338 398 376 342 376C286 376 234 338 234 278V134Z"
+    fill="url(#v3WhitePurple)"
+    stroke="#FFFFFF"
+    stroke-width="18"
+    stroke-linejoin="round"
+  />
+  <!-- Navy Clinical Accent Dot -->
+  <circle cx="415" cy="96" r="18" fill="#0F2942"/>
+</svg>

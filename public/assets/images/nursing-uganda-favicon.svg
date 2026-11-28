@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3d1120"/>
+      <stop offset="100%" stop-color="#5c1a35"/>
+    </linearGradient>
+    <linearGradient id="ribbon1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6b1f3a"/>
+      <stop offset="100%" stop-color="#A64468"/>
+    </linearGradient>
+    <linearGradient id="ribbon2" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c8688e"/>
+      <stop offset="100%" stop-color="#e8a0bc"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background rounded square -->
+  <rect width="64" height="64" rx="13" fill="url(#bg)"/>
+
+  <!-- Ribbon N shape — left stroke (dark) -->
+  <path d="M14,50 C14,50 14,22 14,18 C14,14 18,12 20,14
+           C22,16 38,42 40,44 C42,46 44,44 44,40
+           L44,14"
+        fill="none" stroke="url(#ribbon1)" stroke-width="7"
+        stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Ribbon N shape — highlight stripe (light) -->
+  <path d="M17,48 C17,48 17,23 17,19 C17,16 20,14.5 21.5,16
+           C23,17.5 37,41 39,43 C40.5,44.5 42,43 42,40
+           L42,16"
+        fill="none" stroke="url(#ribbon2)" stroke-width="2.5"
+        stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+
+  <!-- U curve bottom -->
+  <path d="M44,14 L44,42 Q44,52 32,52 Q20,52 20,42 L20,40"
+        fill="none" stroke="url(#ribbon1)" stroke-width="7"
+        stroke-linecap="round"/>
+</svg>

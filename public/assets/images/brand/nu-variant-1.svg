@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <linearGradient id="v1Purple" x1="256" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#B048F7"/>
+      <stop offset="100%" stop-color="#7E1CD4"/>
+    </linearGradient>
+    <linearGradient id="v1Dark" x1="0" y1="0" x2="256" y2="512" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#242528"/>
+      <stop offset="100%" stop-color="#141517"/>
+    </linearGradient>
+  </defs>
+  <!-- Split Rounded Squircle -->
+  <path d="M116 0H256V512H116C51.935 512 0 460.065 0 396V116C0 51.935 51.935 0 116 0Z" fill="url(#v1Dark)"/>
+  <path d="M256 0H396C460.065 0 512 51.935 512 116V396C512 460.065 460.065 512 396 512H256V0Z" fill="url(#v1Purple)"/>
+  <!-- Continuous Joint NU Ribbon: shared central spine at x=232..280 -->
+  <path
+    d="M104 374V146C104 134 114 126 126 126H142C151 126 159 131 164 139L232 256V144C232 133 241 124 252 124H262C273 124 282 133 282 144V286C282 320 304 342 336 342C368 342 388 320 388 286V144C388 133 397 124 408 124H416C427 124 436 133 436 144V288C436 350 394 388 336 388C294 388 263 367 246 334L152 174V374C152 384 144 392 134 392H122C112 392 104 384 104 374Z"
+    fill="#FFFFFF"
+  />
+  <!-- Crisp Gold Spark Notch above Shared Spine -->
+  <rect x="242" y="72" width="28" height="28" rx="6" transform="rotate(45 256 86)" fill="#ECEB98"/>
+</svg>

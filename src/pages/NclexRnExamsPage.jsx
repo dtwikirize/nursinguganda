@@ -14,7 +14,9 @@ import { useApp } from "../context/AppContext";
 import NclexLabDrawer from "../components/NclexLabDrawer";
 import NclexNavStrip from "../components/NclexNavStrip";
 import NursingLoader from "../components/NursingLoader";
+import QuestionRationalePlate from "../components/QuestionRationalePlate";
 import { setPageSeo } from "../components/RouteSeo";
+import { findQuestionVisualPlate } from "../utils/questionPlateMatcher";
 
 const NCLEX_COURSE_ITEM = {
   slug: "nclex-rn-preparation-course",
@@ -332,6 +334,10 @@ export default function NclexRnExamsPage() {
                               <strong>Rationale:</strong> {q.rationale}
                             </div>
                           )}
+                          {submitted && (() => {
+                            const matchedPlate = findQuestionVisualPlate(q, { unitTitle: activeExam?.title });
+                            return matchedPlate ? <QuestionRationalePlate plate={matchedPlate} /> : null;
+                          })()}
                         </div>
                       );
                     })}

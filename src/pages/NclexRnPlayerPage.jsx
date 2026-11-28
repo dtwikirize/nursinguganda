@@ -18,9 +18,11 @@ import { useApp } from "../context/AppContext";
 import NclexLabDrawer from "../components/NclexLabDrawer";
 import NclexNavStrip from "../components/NclexNavStrip";
 import NursingLoader from "../components/NursingLoader";
+import QuestionRationalePlate from "../components/QuestionRationalePlate";
 import { setPageSeo } from "../components/RouteSeo";
 import { LessonSections } from "../components/TopicVisuals";
 import { exportNclexUnitPdf } from "../utils/pdfExport";
+import { findQuestionVisualPlate } from "../utils/questionPlateMatcher";
 
 const NCLEX_COURSE_ITEM = {
   slug: "nclex-rn-preparation-course",
@@ -626,6 +628,13 @@ export default function NclexRnPlayerPage() {
                           <strong>Rationale:</strong> {q.rationale}
                         </div>
                       )}
+                      {submitted && (() => {
+                        const matchedPlate = findQuestionVisualPlate(q, {
+                          unitTitle: activeUnit?.title,
+                          topicTitle: activeTopic?.title
+                        });
+                        return matchedPlate ? <QuestionRationalePlate plate={matchedPlate} /> : null;
+                      })()}
                     </div>
                   ))}
                 </div>
