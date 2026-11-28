@@ -212,7 +212,7 @@ export default function Footer() {
 
         <div className="nu-footer-bottom">
           <span>
-            © {new Date().getFullYear()} Nursing Uganda (nursinguganda.com). Independent educational revision resource | NOT affiliated with or an official credential from UNMEB, UHPAB, UNMC, or the Ministry of Health Uganda.{" "}
+            © {new Date().getFullYear()} Nursing Uganda (nursinguganda.com). Independent educational revision resource | NOT affiliated with or an official credential from UNMEB, UHPAB, UNMC, or the Ministry of Health Uganda. Updated Nov 2026.
             <Link to="/terms" style={{ color: "#e2e8f0", textDecoration: "underline" }}>Read Medical &amp; Certificate Disclaimers</Link>.
           </span>
           <span>Kampala, Uganda · support@nursinguganda.com</span>
